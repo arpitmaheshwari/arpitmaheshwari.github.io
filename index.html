@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-16"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="style.css" />		
+	</head>
+	<body ng-app="validationApp" ng-controller="mainController">
+
+		<header>
+			<img class="banner-image" src="../images/precision-lms-logo.svg" alt="Precision-LMS">
+		</header>
+
+		<main>
+		<!-- Login form -->
+		<div>
+			<form class="login-form" ng-hide="showILT" autocomplete="on" name="userForm" ng-submit="isILTlogin && (showILT = !showILT) || authenticate(userForm.$valid) " novalidate>
+				<h4>Login</h4>
+
+				<div class="login-input-set" >						
+					<input type="text" placeholder="Username / Email" class="basic-input-field" name="loginEmail"  ng-model="loginEmail" ng-pattern="/^[A-z0-9@_.]+$/" required/>
+					<p ng-show="userForm.loginEmail.$error.required && !userForm.loginEmail.$pristine" class="validation-error">Email is required.</p>
+            		<p ng-show="!userForm.loginEmail.$error.required && userForm.loginEmail.$error.pattern" class="validation-error">Please enter between A-z and 0-9.</p>
+
+					<input required type="password" name="loginPassword" value="" placeholder="Password / Class Code" class="basic-input-field" ng-model="loginPassword"/>	
+					<p ng-show="userForm.loginPassword.$error.required && !userForm.loginPassword.$pristine" class="validation-error">Password is required.</p>
+	
+				</div>
+				<div class="label-container">
+				<input type="checkbox" ng-model="isILTlogin" name="isILTlogin" value="" id="ILT-user-checkbox" >
+					<label for="ILT-user-checkbox" >
+						I am logging in with a code.</label>
+						<label>
+							( <a href="" class="white-color">What's this ?</a> )
+					</label>
+				</div>
+
+				<div class="login-button-set">
+					<input type="submit" name="" value="Log In" class="login-button" ng-disabled="userForm.$invalid"/>
+				</div>
+				<a target="_blank" href="http://www.ptc.com/common/account/index.htm" class="plain-link">
+					Forgot password
+					<span class="icon-forward"></span>
+				</a>
+			</form>
+			<form class="login-form" ng-hide="!showILT" autocomplete="on" name="ILTForm" ng-submit="authenticate(ILTForm.$valid)" novalidate>
+				<h4>First time login</h4>
+				<div id="ilt-name-fields">
+					
+					<p>Looks like you are logging in for the first time . Please provide us your first and last name to set you going.</p>
+
+					<input type="text" placeholder="Confirm Email" class="basic-input-field" name="confirmEmail"  ng-model="confirmEmail" ng-pattern="/^[A-z0-9@_.]+$/" required/>
+					<p ng-show="ILTForm.confirmEmail.$error.required && !ILTForm.confirmEmail.$pristine" class="validation-error">Email is required.</p>
+            		<p ng-show="!ILTForm.confirmEmail.$error.required && ILTForm.confirmEmail.$error.pattern" class="validation-error">Please enter between A-z and 0-9.</p>
+            		<p ng-show="userForm.loginEmail.value != ILTForm.confirmEmail.value" class="validation-error">Email not matching. </p>
+
+					<input type="text" placeholder="First Name" class="basic-input-field" name="loginFirstname"  ng-model="loginFirstname" ng-pattern="/^[A-z]+$/" required/>
+					<p ng-show="ILTForm.loginFirstname.$error.required && !ILTForm.loginFirstname.$pristine" class="validation-error">First Name is required.</p>
+            		<p ng-show="!ILTForm.loginFirstname.$error.required && ILTForm.loginFirstname.$error.pattern" class="validation-error">Please enter between A-z.</p>
+
+            		<input type="text" placeholder="Last Name" class="basic-input-field" name="loginLastname" ng-model="loginLastname" ng-pattern="/^[A-z]+$/" required/>
+					<p ng-show="ILTForm.loginLastname.$error.required && !ILTForm.loginLastname.$pristine" class="validation-error">Last Name is required.</p>
+            		<p ng-show="!ILTForm.loginLastname.$error.required && ILTForm.loginLastname.$error.pattern" class="validation-error">Please enter between A-z.</p>
+
+				</div>
+
+
+				<div class="login-button-set">
+					<input type="submit" name="" value="Enroll" class="login-button" ng-disabled="ILTForm.$invalid"/>
+					<a href="" ng-click="showILT = !showILT" class="plain-link" >
+						Back to Login
+						<span class="icon-forward"></span>
+					</a>
+				</div>
+			</form>
+		</main>
+		<footer>
+			<div class="info-bar">
+				<p>
+					<!-- <i class="fa fa-language white-color"></i> -->
+					<a href="" class="language-links link-active" title="English" value="0">English</a>
+					<a href="" class="language-links" title="German" value="2">Deutsch</a>
+					<a href="" class="language-links" title="French" value="1">Français</a>
+					<a href="" class="language-links" title="Italian" value="6">Italiano</a>
+					<a href="" class="language-links" title="Japanese" value="3">日本の</a>
+					<a href="" class="language-links" title="Korean" value="7">한국의</a>
+					<a href="" class="language-links" title="Simplified Chinese" value="4">簡體中國</a>
+					<a href="" class="language-links" title="Traditional Chinese" value="5">中國傳統</a>
+				</p>
+				<a target="_blank" target="_blank" class="language-links" href="https://www.ptc.com/common/ptccopy.htm" title="PTC Copyrights">
+					Copyright &copy;
+					<span>2014</span>
+				</a>
+				<a target="_blank" target="_blank" class="language-links" href="https://www.ptc.com" title="PTC.com">PTC Inc. All Rights Reserved</a>
+				<a target="_blank" target="_blank" class="language-links" href="https://www.ptc.com/common/privacy.htm">Privacy Policy</a>
+				<a target="_blank" href="http://www.ptc.com" class="language-links">About Us</a>				
+			</div>
+		</footer>
+<!-- 		// <script type="text/javascript" src="../js/libs/angular-1.2.6.js"></script>
+		// <script type="text/javascript" src="../js/login-init.js"></script>
+		// <script type="text/javascript" src="../js/libs/rem.min.js"></script> -->
+		<script type="text/javascript">
+		 //  	$('input[type="password"]').keypress(function(e) { 
+			//     var s = String.fromCharCode( e.which );
+			//     if ( s.toUpperCase() === s && s.toLowerCase() !== s && !e.shiftKey ) {
+			//         $('#login-password-label').text("CAPS is on").css({'display':'block'});
+			//     }
+			//     else{
+			//         $('#login-password-label').css({'display':'none'});		    	
+			//     }
+			// });
+		</script>
+	</body>
+</html>
