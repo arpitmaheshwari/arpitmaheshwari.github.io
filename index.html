@@ -1,114 +1,190 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-16"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="style.css" />		
-	</head>
-	<body ng-app="validationApp" ng-controller="mainController">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website of Arpit Maheshwari">
+    <meta name="author" content="Arpit Maheshwari">
+    <link rel="icon" href="assets/img/favicon.ico">
 
-		<header>
-			<img class="banner-image" src="../images/precision-lms-logo.svg" alt="Precision-LMS">
-		</header>
+    <title>Arpit Maheshwari</title>
 
-		<main>
-		<!-- Login form -->
-		<div>
-			<form class="login-form" ng-hide="showILT" autocomplete="on" name="userForm" ng-submit="isILTlogin && (showILT = !showILT) || authenticate(userForm.$valid) " novalidate>
-				<h4>Login</h4>
-विकिपीडिया:इण्टरनेट पर हिन्दी के साधन
-				<div class="login-input-set" >						
-					<input type="text" placeholder="Username / Email" class="basic-input-field" name="loginEmail"  ng-model="loginEmail" ng-pattern="/^[A-z0-9@_.]+$/" required/>
-					<p ng-show="userForm.loginEmail.$error.required && !userForm.loginEmail.$pristine" class="validation-error">Email is required.</p>
-            		<p ng-show="!userForm.loginEmail.$error.required && userForm.loginEmail.$error.pattern" class="validation-error">Please enter between A-z and 0-9.</p>
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
 
-					<input required type="password" name="loginPassword" value="" placeholder="Password / Class Code" class="basic-input-field" ng-model="loginPassword"/>	
-					<p ng-show="userForm.loginPassword.$error.required && !userForm.loginPassword.$pristine" class="validation-error">Password is required.</p>
-	
-				</div>
-				<div class="label-container">
-				<input type="checkbox" ng-model="isILTlogin" name="isILTlogin" value="" id="ILT-user-checkbox" >
-					<label for="ILT-user-checkbox" >
-						I am logging in with a code.</label>
-						<label>
-							( <a href="" class="white-color">What's this ?</a> )
-					</label>
-				</div>
-
-				<div class="login-button-set">
-					<input type="submit" name="" value="Log In" class="login-button" ng-disabled="userForm.$invalid"/>
-				</div>
-				<a target="_blank" href="http://www.ptc.com/common/account/index.htm" class="plain-link">
-					Forgot password
-					<span class="icon-forward"></span>
-				</a>
-			</form>
-			<form class="login-form" ng-hide="!showILT" autocomplete="on" name="ILTForm" ng-submit="authenticate(ILTForm.$valid)" novalidate>
-				<h4>First time login</h4>
-				<div id="ilt-name-fields">
-					
-					<p>Looks like you are logging in for the first time . Please provide us your first and last name to set you going.</p>
-
-					<input type="text" placeholder="Confirm Email" class="basic-input-field" name="confirmEmail"  ng-model="confirmEmail" ng-pattern="/^[A-z0-9@_.]+$/" required/>
-					<p ng-show="ILTForm.confirmEmail.$error.required && !ILTForm.confirmEmail.$pristine" class="validation-error">Email is required.</p>
-            		<p ng-show="!ILTForm.confirmEmail.$error.required && ILTForm.confirmEmail.$error.pattern" class="validation-error">Please enter between A-z and 0-9.</p>
-            		<p ng-show="userForm.loginEmail.value != ILTForm.confirmEmail.value" class="validation-error">Email not matching. </p>
-
-					<input type="text" placeholder="First Name" class="basic-input-field" name="loginFirstname"  ng-model="loginFirstname" ng-pattern="/^[A-z]+$/" required/>
-					<p ng-show="ILTForm.loginFirstname.$error.required && !ILTForm.loginFirstname.$pristine" class="validation-error">First Name is required.</p>
-            		<p ng-show="!ILTForm.loginFirstname.$error.required && ILTForm.loginFirstname.$error.pattern" class="validation-error">Please enter between A-z.</p>
-
-            		<input type="text" placeholder="Last Name" class="basic-input-field" name="loginLastname" ng-model="loginLastname" ng-pattern="/^[A-z]+$/" required/>
-					<p ng-show="ILTForm.loginLastname.$error.required && !ILTForm.loginLastname.$pristine" class="validation-error">Last Name is required.</p>
-            		<p ng-show="!ILTForm.loginLastname.$error.required && ILTForm.loginLastname.$error.pattern" class="validation-error">Please enter between A-z.</p>
-
-				</div>
+    <!-- Custom styles for this template -->
+    <link href="assets/css/ionicons.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
 
 
-				<div class="login-button-set">
-					<input type="submit" name="" value="Enroll" class="login-button" ng-disabled="ILTForm.$invalid"/>
-					<a href="" ng-click="showILT = !showILT" class="plain-link" >
-						Back to Login
-						<span class="icon-forward"></span>
-					</a>
-				</div>
-			</form>
-		</main>
-		<footer>
-			<div class="info-bar">
-				<p>
-					<!-- <i class="fa fa-language white-color"></i> -->
-					<a href="" class="language-links link-active" title="English" value="0">English</a>
-					<a href="" class="language-links" title="German" value="2">Deutsch</a>
-					<a href="" class="language-links" title="French" value="1">Français</a>
-					<a href="" class="language-links" title="Italian" value="6">Italiano</a>
-					<a href="" class="language-links" title="Japanese" value="3">日本の</a>
-					<a href="" class="language-links" title="Korean" value="7">한국의</a>
-					<a href="" class="language-links" title="Simplified Chinese" value="4">簡體中國</a>
-					<a href="" class="language-links" title="Traditional Chinese" value="5">中國傳統</a>
-				</p>
-				<a target="_blank" target="_blank" class="language-links" href="https://www.ptc.com/common/ptccopy.htm" title="PTC Copyrights">
-					Copyright &copy;
-					<span>2014</span>
-				</a>
-				<a target="_blank" target="_blank" class="language-links" href="https://www.ptc.com" title="PTC.com">PTC Inc. All Rights Reserved</a>
-				<a target="_blank" target="_blank" class="language-links" href="https://www.ptc.com/common/privacy.htm">Privacy Policy</a>
-				<a target="_blank" href="http://www.ptc.com" class="language-links">About Us</a>				
-			</div>
-		</footer>
-<!-- 		// <script type="text/javascript" src="../js/libs/angular-1.2.6.js"></script>
-		// <script type="text/javascript" src="../js/login-init.js"></script>
-		// <script type="text/javascript" src="../js/libs/rem.min.js"></script> -->
-		<script type="text/javascript">
-		 //  	$('input[type="password"]').keypress(function(e) { 
-			//     var s = String.fromCharCode( e.which );
-			//     if ( s.toUpperCase() === s && s.toLowerCase() !== s && !e.shiftKey ) {
-			//         $('#login-password-label').text("CAPS is on").css({'display':'block'});
-			//     }
-			//     else{
-			//         $('#login-password-label').css({'display':'none'});		    	
-			//     }
-			// });
-		</script>
-	</body>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div id="h">
+       <div class="logo">
+        <h2>UxPERT</h2>
+      </div><!--/logo -->
+      <div class="container centered">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <h1>Hello, my name is <b>Arpit Maheshwari</b>.<br/>I create for the web.</h1>
+          </div>
+        </div><!--/row-->
+
+        <div class="row mt">
+          <div class="col-sm-4">
+            <i class="ion-ios7-monitor-outline"></i>
+            <h3>User Experience</h3>
+          </div><!--/col-md-4-->
+
+          <div class="col-sm-4">
+            <i class="ion-ios7-browsers-outline"></i>
+            <h3>Web Craft</h3>
+          </div><!--/col-md-4-->
+
+          <div class="col-sm-4">
+            <i class="ion-ios7-copy-outline"></i>
+            <h3>UI Development</h3>
+          </div><!--/col-md-4-->
+        
+        </div><!--/row-->
+      </div><!--/container-->
+    </div><!--H-->
+
+    <div class="container ptb">
+      <div class="row">
+        <h2 class="centered mb">I craft handsome sites & stunning apps<br/>that empower users to do magic.</h2>
+        <div class="col-md-6">
+          <p>I work across the UxD cycle to define, design and develop user interfaces for digital products, responsive websites (RWD) and mobile apps. </p>
+        </div><!--/col-md-6-->
+        <div class="col-md-6">
+          <p>I like to create things , to work on new and unexplored areas, technically complex concepts and information-heavy environments.</p>
+        </div><!--/col-md-6-->
+      </div><!--/row-->
+    </div><!-- /.container -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <img src="assets/img/items.png" class="img-responsive" alt="">
+        </div>
+      </div><!--/row-->
+    </div><!--/.container-->
+
+    <div id="f">
+      <div class="container">
+        <div class="row centered">
+          <div class="col-md-8 col-md-offset-2">
+            <a href="https://in.linkedin.com/in/arpitmaheshwariprofile" target="_blank" ><i class="ion-social-linkedin"></i></a>
+            <a href="https://twitter.com/_maheshwari_" target="_blank" ><i class="ion-social-twitter"></i></a>
+          </div><!--/col-md-8-->
+        </div>
+      </div><!--/container-->
+    </div><!--/.F-->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/retina-1.1.0.js"></script>
+    <script src="assets/js/jquery.hoverdir.js"></script>
+    <script src="assets/js/jquery.hoverex.min.js"></script>
+    <script src="assets/js/jquery.prettyPhoto.js"></script>
+    <script src="assets/js/jquery.isotope.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+
+    <script>
+// Portfolio
+(function($) {
+  "use strict";
+  var $container = $('.portfolio'),
+    $items = $container.find('.portfolio-item'),
+    portfolioLayout = 'fitRows';
+    
+    if( $container.hasClass('portfolio-centered') ) {
+      portfolioLayout = 'masonry';
+    }
+        
+    $container.isotope({
+      filter: '*',
+      animationEngine: 'best-available',
+      layoutMode: portfolioLayout,
+      animationOptions: {
+      duration: 750,
+      easing: 'linear',
+      queue: false
+    },
+    masonry: {
+    }
+    }, refreshWaypoints());
+    
+    function refreshWaypoints() {
+      setTimeout(function() {
+      }, 1000);   
+    }
+        
+    $('nav.portfolio-filter ul a').on('click', function() {
+        var selector = $(this).attr('data-filter');
+        $container.isotope({ filter: selector }, refreshWaypoints());
+        $('nav.portfolio-filter ul a').removeClass('active');
+        $(this).addClass('active');
+        return false;
+    });
+    
+    function getColumnNumber() { 
+      var winWidth = $(window).width(), 
+      columnNumber = 1;
+    
+      if (winWidth > 1200) {
+        columnNumber = 5;
+      } else if (winWidth > 950) {
+        columnNumber = 4;
+      } else if (winWidth > 600) {
+        columnNumber = 3;
+      } else if (winWidth > 400) {
+        columnNumber = 2;
+      } else if (winWidth > 250) {
+        columnNumber = 1;
+      }
+        return columnNumber;
+      }       
+      
+      function setColumns() {
+        var winWidth = $(window).width(), 
+        columnNumber = getColumnNumber(), 
+        itemWidth = Math.floor(winWidth / columnNumber);
+        
+        $container.find('.portfolio-item').each(function() { 
+          $(this).css( { 
+          width : itemWidth + 'px' 
+        });
+      });
+    }
+    
+    function setPortfolio() { 
+      setColumns();
+      $container.isotope('reLayout');
+    }
+      
+    $container.imagesLoaded(function () { 
+      setPortfolio();
+    });
+    
+    $(window).on('resize', function () { 
+    setPortfolio();          
+  });
+})(jQuery);
+</script>
+  </body>
 </html>
