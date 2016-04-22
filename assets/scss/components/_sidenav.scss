@@ -1,5 +1,5 @@
 #sidenav{
-  background: $teal;
+  background: $primary-color;
   display: inline-block;
   margin: 0;
   padding: $pageTopMargin 0;
@@ -13,23 +13,21 @@
   ul{
     color: $white;
     list-style: none;
-    margin: 0;
-    text-align: center;
-  }
 
-  li{
-    border-bottom: 2px solid darken($teal,2%);
+    li{
+      border-bottom: 2px solid darken($primary-color,2%);
 
-    img{
-      padding-bottom: 50px;
-    }
+      img{
+        margin: auto;
+        padding: 0 0 $sidebarGutter $sidebarGutter;
+      }
 
-    a{
-      @extend .linkBlock;
-      @extend .whiteLinks;
+      a{
+        @extend .linkBlock;
+        @extend .whiteLinks;
 
-      font-size: 18px;
-      padding: 20px 0;
+        padding: 20px 0 20px $sidebarGutter;
+      }
     }
   }
 }

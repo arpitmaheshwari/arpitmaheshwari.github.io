@@ -1,7 +1,25 @@
 #homepageContent{
   display: inline-block;
-  margin: $pageTopMargin 0 0 $sidebarWidth;
-  padding: 0 20px;
-  vertical-align: top;
-  width: 100% - $sidebarWidth;
+  padding: $commonGutter $commonGutter 0 $sidebarWidth;
+
+  header,main{
+    padding-left: $commonGutter;
+  }
+  section{
+    border-bottom: solid 3px #f4f4f4;
+    margin-left: $commonGutter;
+    padding: 10px 0 20px 0;
+
+    &:last-child{
+      border-bottom: 0;
+    }
+  }
+
+  .my-skills{
+    @include horStackedList(2);
+  }
+
+  .contact-me{
+    @include horStackedList(4);
+  }
 }
