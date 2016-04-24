@@ -1,11 +1,42 @@
-.linkedinLink{
+@mixin link($color){
+  color: $color;
+  text-decoration: none;
+
+  &:visited{
+    color: $color;
+  }
+
+  &:hover, &:focus{
+    color: darken($color,5%);
+    text-decoration: none;
+  }
+
+  &:active{
+    color: darken($color,7%);
+    text-decoration: none;
+  }
+}
+
+a{
+  @include link($primary-color);
+}
+
+.portfolioLink{
   @include button-link($primary-color);
+  float: right;
+  margin-top: 10px;
+}
+
+.linkedinLink{
+  @include link($primary-color);
+  margin-bottom: 10px;
 }
 
 .twitterLink{
-  @include button-link($primary-color);
+  @include link($primary-color);
+  margin-bottom: 10px;
 }
 
 .githubLink{
-  @include button-link($primary-color);
+  @include link($primary-color);
 }

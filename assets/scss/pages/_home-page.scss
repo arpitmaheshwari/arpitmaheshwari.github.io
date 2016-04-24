@@ -1,25 +1,50 @@
 #homepageContent{
-  display: inline-block;
-  padding: $commonGutter $commonGutter 0 $sidebarWidth;
+  margin: 0 auto;
+  max-width: 80%;
 
-  header,main{
-    padding-left: $commonGutter;
+  @include bp(baby-bear){
+    max-width: initial;
+    padding: 0 10px;
   }
-  section{
-    border-bottom: solid 3px #f4f4f4;
-    margin-left: $commonGutter;
-    padding: 10px 0 20px 0;
 
-    &:last-child{
-      border-bottom: 0;
+  .content-section{
+    padding: 30px 30px 60px 30px;
+    @include bp(baby-bear){
+      padding: 0;
+    }
+
+    aside{
+      display: inline-block;
+      padding: 5px;
+      text-align: center;
+      vertical-align: middle;
+      width: 49%;
+
+      @include bp(teen-bear){
+        display: none;
+      }
+
+      img{
+        vertical-align: middle;
+        width: 50%;
+      }
+    }
+    section{
+      display: inline-block;
+      font-size: 24px;
+      padding: 5px 10% 5px 5px;
+      vertical-align: middle;
+      width: 50%;
+
+      @include bp(teen-bear){
+        width: 100%;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 20px;
+      }
     }
   }
-
-  .my-skills{
-    @include horStackedList(2);
-  }
-
-  .contact-me{
-    @include horStackedList(4);
-  }
 }
+

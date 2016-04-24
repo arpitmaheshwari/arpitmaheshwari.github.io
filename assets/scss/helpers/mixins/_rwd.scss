@@ -1,0 +1,23 @@
+$MQs: true;
+
+@mixin bp($point) {
+  @if ($MQs) {
+    $bp-babybear: "(max-width: #{$bp-babybear})";
+    $bp-teenbear: "(max-width: #{$bp-teenbear})";
+    $bp-mamabear: "(max-width: #{$bp-mamabear})";
+    $bp-papabear: "(max-width: #{$bp-papabear})";
+
+    @if $point == papa-bear {
+      @media #{$bp-papabear} { @content; }
+    }
+    @else if $point == mama-bear {
+      @media #{$bp-mamabear} { @content; }
+    }
+    @else if $point == teen-bear {
+      @media #{$bp-teenbear} { @content; }
+    }
+    @else if $point == baby-bear {
+      @media #{$bp-babybear}  { @content; }
+    }
+  }
+}
