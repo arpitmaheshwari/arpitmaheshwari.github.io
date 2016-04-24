@@ -1,17 +1,20 @@
 #homepageContent{
   margin: 0 auto;
-  max-width: 80%;
+  max-width: 70%;
 
+  @include bp(mama-bear){
+    max-width: 80%;
+  }
+  @include bp(teen-bear){
+    max-width: 90%;
+  }
   @include bp(baby-bear){
     max-width: initial;
-    padding: 0 10px;
+    padding: 0 20px;
   }
 
   .content-section{
-    padding: 30px 30px 60px 30px;
-    @include bp(baby-bear){
-      padding: 0;
-    }
+    margin: 30px 0 60px;
 
     aside{
       display: inline-block;
@@ -20,30 +23,42 @@
       vertical-align: middle;
       width: 49%;
 
-      @include bp(teen-bear){
+      // Hiding image and showing text in full width
+      @include bp(baby-bear){
         display: none;
       }
 
       img{
         vertical-align: middle;
-        width: 50%;
+        width: 350px;
+
+        // Reducing width of images
+        @include bp(teen-bear){
+          width: 200px;
+        }
       }
     }
     section{
       display: inline-block;
       font-size: 24px;
-      padding: 5px 10% 5px 5px;
       vertical-align: middle;
       width: 50%;
 
-      @include bp(teen-bear){
+      // Hiding image and showing text in full width
+      @include bp(baby-bear){
         width: 100%;
-        padding: 0;
       }
 
       li {
         margin-bottom: 20px;
       }
+    }
+  }
+
+  #skillSet,#contactMe{
+    text-align: center;
+    @include bp(baby-bear){
+      text-align: left;
     }
   }
 }
