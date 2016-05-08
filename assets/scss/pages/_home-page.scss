@@ -14,7 +14,11 @@
   }
 
   .content-section{
-    margin: 30px 0 60px;
+    margin: 30px 0 90px;
+    // Reducing mrgin between sections in lower resolution
+    @include bp(baby-bear){
+      margin: 30px 0 0;
+    }
 
     aside{
       display: inline-block;

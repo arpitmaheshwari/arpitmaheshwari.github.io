@@ -1,0 +1,32 @@
+@mixin link($color){
+  color: $color;
+  text-decoration: none;
+
+  &:visited{
+    color: $color;
+  }
+
+  &:hover, &:focus{
+    color: darken($color,5%);
+    text-decoration: none;
+  }
+
+  &:active{
+    color: darken($color,7%);
+    text-decoration: none;
+  }
+}
+
+@mixin openInNewTabIndicator(){
+  &:after{
+    @extend .icomoon;
+    @include fontSize(16px);
+    content: $icon-link;
+    visibility: hidden;
+  }
+  &:hover{
+    &:after{
+      visibility: visible;
+    }
+  }
+}
