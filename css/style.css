@@ -1932,3 +1932,116 @@ body .symp-btn{
 	margin-left: 24px;
 	line-height: 1.8;
   }
+
+
+.social {
+    position: fixed;
+    bottom: 5px;
+}
+
+.social a {
+    color: white;
+    text-decoration: none;
+}
+
+.social ul {
+    padding: 0px;
+    transform: translate(-270px,0);
+}
+
+.social ul li {
+    display: block;
+    margin: 3px 20px;
+	margin-bottom: 10px;
+    /* background: rgba(200, 158, 172, 0.5); */
+	background-color: #4b8ef1;
+    width: 300px;
+    text-align: right;
+    padding: 10px;
+    border-radius: 0 30px 30px 0;
+    transition: all 1.5s;
+}
+
+.social ul li:hover {
+    transform: translate(110px,0);
+	background:#4b8ef1;
+	background-image: url('../img/client-bg.png');    
+	transition: all 1.5s;
+}
+
+.social ul li:hover a {
+    color: white;
+	font-size: 20px;
+}
+
+.social ul li:hover i{
+    color: #c44a73;
+    background: white;
+    transform: rotate(360deg);
+    transition: all 1.5s;
+}
+
+.social ul li i {
+    margin-left: 10px;
+    color: #4b8ef1;
+    background: white;
+    padding: 10px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    transform: rotate(0deg);
+    text-align: center;
+    font-size: 18px;
+}
+
+.youtubeBtn{
+    position: fixed;
+    left: 50%;
+  transform:translatex(-50%);
+    bottom: 20px;
+    cursor: pointer;
+    transition: all .3s;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+  background:#000;
+  padding:2px 10px;
+  border-radius:5px;
+}
+.youtubeBtn i{
+	font-size:20px;
+  float:left;
+}
+.youtubeBtn a{
+    color:#ff0000;
+    animation: youtubeAnim 1000ms linear infinite;
+  float:right;
+}
+.youtubeBtn a:hover{
+  color:#c9110f;
+  transition:all .3s ease-in-out;
+}
+.youtubeBtn i:active{
+  transform:scale(.9);
+  transition:all .3s ease-in-out;
+}
+.youtubeBtn span{
+    font-family: 'Lato';
+    font-weight: bold;
+    color: #fff;
+    display: block;
+    font-size: 12px;
+    float: right;
+    line-height: 20px;
+    padding-left: 5px;
+  
+}
+
+@keyframes youtubeAnim{
+  0%,100%{
+    color:#c9110f;
+  }
+  50%{
+    color:#ff0000;
+  }
+}
