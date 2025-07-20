@@ -2056,3 +2056,72 @@ body .symp-btn{
     color:#ff0000;
   }
 }
+
+/*--------Accordion-------*/
+.acc-kontainer {
+  width: 100%;
+  margin: auto;
+}
+.acc-kontainer .acc-body {
+  width: 98%;
+  width: calc(100% - 20px);
+  margin: 0 auto;
+  height: 0;
+  color: rgba(0, 0, 0, 0);;
+  background-color: rgba(255, 255, 255, 0.8);
+  line-height: 28px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+
+.acc-kontainer label {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: block;
+  padding: 15px;
+  width: 100%;
+  color: #000;
+  font-weight: 400;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.acc-kontainer input{
+  display: none;
+}
+
+.acc-kontainer label:before {
+  font-family: 'FontAwesome';
+  content: '\f067';
+  font-weight: bolder;
+  float: right;
+}
+
+.acc-kontainer label i {
+  margin-right: 10px;
+}
+
+.acc-kontainer input:checked+label {
+  background-color: rgba(255, 255, 255, 0.65);
+}
+
+.acc-kontainer input:checked+label:before {
+  font-family: 'FontAwesome';
+  content: '\f00d';
+  transition: 0.5s;
+}
+
+.acc-kontainer input:checked~.acc-body {
+  height: auto;
+  color: #000;
+  font-size: 16px;
+  padding: 20px;
+  transition: 0.5s;
+}
+
+.about-section{
+	background: #ffffff url("../img/pexels-ali-naderi-22991-103889.jpg") no-repeat center top;
+	background-size: cover;
+}
