@@ -146,24 +146,35 @@ nav.scrolled { background: rgba(10,10,10,0.85); backdrop-filter: blur(16px); pad
 .philosophy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .philosophy-headline { font-family: var(--ff-display); font-weight: 300; font-size: clamp(36px, 4vw, 54px); line-height: 1.15; }
 .philosophy-headline em { font-style: italic; color: var(--gold); }
-.philosophy-principles { display: flex; flex-direction: column; gap: 32px; }
-.principle { padding-left: 24px; border-left: 2px solid var(--border); transition: border-color 0.3s; }
-.principle:hover { border-color: var(--gold); }
-.principle-title { font-weight: 600; font-size: 15px; margin-bottom: 8px; }
-.principle-desc { font-size: 14px; color: var(--ink-muted); line-height: 1.8; }
+.philosophy-sub { font-size: 11px; font-family: var(--ff-mono); letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 48px; }
+.philosophy-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+}
+.phil-card { background: var(--bg); padding: 40px 28px; position: relative; transition: background 0.3s; }
+.phil-card:hover { background: var(--bg-card); }
+.phil-num { font-family: var(--ff-display); font-size: 64px; font-weight: 300; color: rgba(212,168,94,0.1); line-height: 1; margin-bottom: 20px; transition: color 0.3s; }
+.phil-card:hover .phil-num { color: rgba(212,168,94,0.2); }
+.phil-title { font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px; }
+.phil-card:nth-child(3) .phil-title { color: var(--gold); }
+.phil-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.7; }
 
 #expertise { background: var(--bg-soft); border-top: 1px solid var(--border); }
-.expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
-.expertise-card { background: var(--bg-soft); padding: 48px 36px; position: relative; transition: background 0.4s; }
-.expertise-card:hover { background: var(--bg-card); }
-.expertise-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s var(--ease-out); }
-.expertise-card:hover::before { transform: scaleX(1); }
-.expertise-number { font-family: var(--ff-mono); font-size: 11px; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 24px; }
-.expertise-title { font-family: var(--ff-display); font-size: 26px; font-weight: 400; line-height: 1.25; margin-bottom: 16px; }
-.expertise-desc { font-size: 14px; color: var(--ink-muted); line-height: 1.8; }
-.expertise-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
-.tag { font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--border); border-radius: 2px; color: var(--ink-dim); transition: border-color 0.2s, color 0.2s; }
-.expertise-card:hover .tag { border-color: var(--border-accent); color: var(--gold); }
+.expertise-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+.expertise-headline { font-family: var(--ff-display); font-weight: 300; font-size: clamp(36px, 4vw, 54px); line-height: 1.15; }
+.expertise-headline em { font-style: italic; color: var(--gold); }
+.expertise-intro { font-size: 15px; color: var(--ink-muted); line-height: 1.8; margin-top: 24px; max-width: 42ch; }
+.expertise-list { display: flex; flex-direction: column; }
+.exp-row { display: flex; gap: 24px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--border); transition: border-color 0.3s; }
+.exp-row:first-child { border-top: 1px solid var(--border); }
+.exp-row:hover { border-color: var(--border-accent); }
+.exp-num { font-family: var(--ff-mono); font-size: 11px; color: var(--gold); letter-spacing: 0.1em; flex-shrink: 0; width: 28px; }
+.exp-content { flex: 1; }
+.exp-title { font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.exp-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.7; }
+.expertise-cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 40px; padding: 16px 32px; background: var(--gold); color: var(--bg); font-family: var(--ff-sans); font-weight: 600; font-size: 14px; border-radius: 2px; transition: background 0.3s, transform 0.2s; }
+.expertise-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+.expertise-cta svg { width: 16px; height: 16px; }
 
 #process { border-top: 1px solid var(--border); }
 .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
@@ -232,7 +243,7 @@ footer { border-top: 1px solid var(--border); padding: 40px 48px; display: flex;
 
 @media (max-width: 1024px) {
   nav { padding: 20px 32px; } .section { padding: 80px 32px; }
-  .about-grid, .philosophy-grid, .now-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-grid, .philosophy-grid, .now-grid, .expertise-layout { grid-template-columns: 1fr; gap: 48px; }
   .expertise-grid { grid-template-columns: 1fr 1fr; } .process-steps { grid-template-columns: 1fr 1fr; }
   .work-grid { grid-template-columns: 1fr; } .case-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
   .case-card.featured .case-visual { border-radius: 4px 4px 0 0; }
@@ -244,7 +255,7 @@ footer { border-top: 1px solid var(--border); padding: 40px 48px; display: flex;
 @media (max-width: 768px) {
   nav { padding: 20px 24px; } .nav-links { display: none; } .menu-toggle { display: flex; }
   .section { padding: 60px 24px; } #hero { padding: 0 24px 48px; }
-  .expertise-grid, .about-pillars { grid-template-columns: 1fr; } .process-steps { grid-template-columns: 1fr; }
+  .expertise-layout { grid-template-columns: 1fr; } .philosophy-cards { grid-template-columns: 1fr; } .process-steps { grid-template-columns: 1fr; }
   .industry-list { grid-template-columns: 1fr 1fr; } .thoughts-grid { grid-template-columns: 1fr; }
   footer { flex-direction: column; gap: 16px; text-align: center; }
   .hero-stats { gap: 24px; } .stat-number { font-size: 32px; } .about-photo-frame { width: 240px !important; height: 300px !important; }
@@ -314,7 +325,7 @@ footer { border-top: 1px solid var(--border); padding: 40px 48px; display: flex;
     <div class="about-left reveal">
       <div class="about-photo-frame" style="width:300px;height:380px;position:relative;border:none;background:transparent;overflow:visible">
         <div style="position:absolute;inset:0;border-radius:6px;border:1px solid rgba(212,168,94,0.25);overflow:hidden;background:var(--bg-card)">
-          <img src="20190105220407596_save.jpg" alt="Arpit Maheshwari" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+          <img src="https://arpitmaheshwari.com/img/20190105220407596Photoroom.png" alt="Arpit Maheshwari" style="width:100%;height:100%;object-fit:cover;object-position:center top">
         </div>
         <!-- Decorative gold accent frame -->
         <div style="position:absolute;top:-8px;left:-8px;width:80px;height:80px;border-top:2px solid var(--gold);border-left:2px solid var(--gold);border-radius:6px 0 0 0;pointer-events:none"></div>
@@ -427,24 +438,36 @@ footer { border-top: 1px solid var(--border); padding: 40px 48px; display: flex;
 </div></section>
 
 <section id="philosophy" class="section"><div class="section-inner">
-  <p class="section-label">Design Philosophy</p>
-  <div class="philosophy-grid">
-    <div class="reveal"><h2 class="philosophy-headline">Because to design<br>is <em>humane.</em></h2><p style="font-size:15px;color:var(--ink-muted);margin-top:24px;line-height:1.8;max-width:42ch">Design reaches people and improves their lives. Every pixel, every flow, every micro-interaction should serve that purpose.</p></div>
-    <div class="philosophy-principles">
-      <div class="principle reveal reveal-delay-1"><div class="principle-title">Users over aesthetics</div><div class="principle-desc">Beautiful design means nothing if it doesn't serve the user. I start with understanding real people — their needs, constraints, and context — before opening any design tool.</div></div>
-      <div class="principle reveal reveal-delay-2"><div class="principle-title">Ship over perfection</div><div class="principle-desc">There's a difference between a plan and design. Design for the present means adapting your work to the reality users face today — then iterating.</div></div>
-      <div class="principle reveal reveal-delay-3"><div class="principle-title">Accessible by default</div><div class="principle-desc">Inclusion isn't a feature, it's a foundation. Every product should be usable by people of all abilities — screen reader users, keyboard navigators, and everyone in between.</div></div>
-      <div class="principle reveal reveal-delay-4"><div class="principle-title">Data informs, empathy decides</div><div class="principle-desc">Analytics tell you what happened. User research tells you why. I combine both to make design decisions that are both measurable and meaningful.</div></div>
-    </div>
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:48px">
+    <h2 class="philosophy-headline reveal">My Design<br><em>Philosophy</em></h2>
+    <p class="philosophy-sub reveal reveal-delay-1">What guides my work</p>
+  </div>
+  <div class="philosophy-cards reveal reveal-delay-2">
+    <div class="phil-card"><div class="phil-num">01</div><div class="phil-title">Empathy Before Pixels</div><div class="phil-desc">Every design decision begins with a person — their goals, frustrations, and mental models. I spend more time listening than sketching. Understanding comes first; solutions follow. A solution without empathy is just decoration.</div></div>
+    <div class="phil-card"><div class="phil-num">02</div><div class="phil-title">Simplicity is Earned, Not Given</div><div class="phil-desc">Simple interfaces are the hardest to design. They require deep understanding of the problem, the courage to remove what doesn't serve the user, and the discipline to resist over-engineering. Complexity is easy. Clarity is the work.</div></div>
+    <div class="phil-card"><div class="phil-num">03</div><div class="phil-title">Ship, Learn, Evolve</div><div class="phil-desc">Products are never finished — they're grown. I believe in launching early with intent, observing real behaviour, and iterating based on evidence. A product shipped and refined beats a perfect product never launched.</div></div>
+    <div class="phil-card"><div class="phil-num">04</div><div class="phil-title">Accessibility is Not Optional</div><div class="phil-desc">Designing for the margins improves the experience for everyone. Inclusive design isn't a constraint — it's a creative challenge that makes better products. Every user deserves a dignified experience.</div></div>
+    <div class="phil-card"><div class="phil-num">05</div><div class="phil-title">Design Must Speak Business</div><div class="phil-desc">Beautiful design that doesn't move the needle is a vanity project. I measure success in outcomes — adoption, retention, task completion, revenue impact. Good design and good business are not in tension; they're inseparable.</div></div>
+    <div class="phil-card"><div class="phil-num">06</div><div class="phil-title">Collaboration Multiplies Ideas</div><div class="phil-desc">I work fluidly with engineers, product managers, data scientists, and business stakeholders. The best design decisions emerge from honest cross-functional tension — not from a designer working in isolation.</div></div>
   </div>
 </div></section>
 
 <section id="expertise" class="section"><div class="section-inner">
-  <p class="section-label">Expertise</p>
-  <div class="expertise-grid reveal">
-    <div class="expertise-card"><div class="expertise-number">01</div><h3 class="expertise-title">Product Design & UX</h3><p class="expertise-desc">End-to-end product design covering research, information architecture, prototyping, and usability testing. I design for clarity and scale.</p><div class="expertise-tags"><span class="tag">Figma</span><span class="tag">Prototyping</span><span class="tag">IA</span><span class="tag">Usability Testing</span></div></div>
-    <div class="expertise-card"><div class="expertise-number">02</div><h3 class="expertise-title">Design Strategy</h3><p class="expertise-desc">Translating business goals into design direction. Competitive analysis, product roadmap alignment, and stakeholder communication.</p><div class="expertise-tags"><span class="tag">Roadmap</span><span class="tag">Competitive Analysis</span><span class="tag">OKRs</span></div></div>
-    <div class="expertise-card"><div class="expertise-number">03</div><h3 class="expertise-title">Accessibility & Inclusion</h3><p class="expertise-desc">WCAG-compliant design for global audiences, including assistive technology users. I've improved accessibility for platforms with 550k+ annual visits.</p><div class="expertise-tags"><span class="tag">WCAG</span><span class="tag">ARIA</span><span class="tag">Screen Readers</span></div></div>
+  <p class="section-label">What I Do</p>
+  <div class="expertise-layout">
+    <div class="reveal">
+      <h2 class="expertise-headline">Design That<br><em>Works.</em></h2>
+      <p class="expertise-intro">I work at the intersection of design and business — creating solutions that are technically feasible, commercially viable, and deeply human.</p>
+      <a href="#contact" class="expertise-cta">Start a Project <svg class="icon"><use href="#i-arrow-right"/></svg></a>
+    </div>
+    <div class="expertise-list">
+      <div class="exp-row reveal reveal-delay-1"><div class="exp-num">01</div><div class="exp-content"><div class="exp-title">Product Design</div><div class="exp-desc">End-to-end — from zero to shipped. Information architecture, wireframes, high-fidelity UI, and design systems that scale.</div></div></div>
+      <div class="exp-row reveal reveal-delay-2"><div class="exp-num">02</div><div class="exp-content"><div class="exp-title">UX Research</div><div class="exp-desc">Qualitative interviews, usability tests, heuristic audits. Turning ambiguity into insight before a pixel is drawn.</div></div></div>
+      <div class="exp-row reveal reveal-delay-3"><div class="exp-num">03</div><div class="exp-content"><div class="exp-title">AI-Augmented Design</div><div class="exp-desc">Integrating AI into product flows — intelligent dashboards, decision tools, and interfaces that stay human.</div></div></div>
+      <div class="exp-row reveal reveal-delay-4"><div class="exp-num">04</div><div class="exp-content"><div class="exp-title">Design Strategy</div><div class="exp-desc">Finding the right problem before solving it, then building the roadmap to get there.</div></div></div>
+      <div class="exp-row reveal"><div class="exp-num">05</div><div class="exp-content"><div class="exp-title">Frontend Prototyping</div><div class="exp-desc">HTML/CSS/JS prototypes that live in browsers, not just Figma.</div></div></div>
+      <div class="exp-row reveal reveal-delay-1"><div class="exp-num">06</div><div class="exp-content"><div class="exp-title">Accessibility & Inclusion</div><div class="exp-desc">WCAG-compliant, screen-reader tested design for global audiences. Making the web usable for everyone.</div></div></div>
+    </div>
   </div>
 </div></section>
 
