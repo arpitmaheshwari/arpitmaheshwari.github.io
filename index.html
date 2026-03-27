@@ -303,7 +303,85 @@ footer{border-top:1px solid var(--border);padding:40px 48px;display:flex;align-i
 </footer>
 
 <script>
-const nav=document.getElementById('nav');window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60)});const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));function animateCounter(el,t,s){let st=0;const fn=ts=>{if(!st)st=ts;const p=Math.min((ts-st)/1200,1);el.textContent=Math.floor((1-Math.pow(1-p,3))*t)+s;if(p<1)requestAnimationFrame(fn);else el.textContent=t+s};requestAnimationFrame(fn)}const so=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.querySelectorAll('.stat-number').forEach(n=>{const t=n.textContent.trim();if(t==='15')animateCounter(n,15,'');else if(t==='8+')animateCounter(n,8,'+');else if(t==='550k')animateCounter(n,550,'k')});so.unobserve(x.target)}})},{threshold:.5});const hs=document.querySelector('.hero-stats');if(hs)so.observe(hs);document.getElementById('menuToggle').addEventListener('click',()=>{const l=document.querySelector('.nav-links');if(l.style.display==='flex')l.style.display='none';else l.style.cssText='display:flex;flex-direction:column;position:fixed;top:70px;left:0;right:0;background:rgba(10,10,10,0.97);padding:32px 24px;gap:24px;border-bottom:1px solid rgba(255,255,255,0.07);z-index:99'});const secs=document.querySelectorAll('section[id]');window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-200)c=s.id});document.querySelectorAll('.nav-links a').forEach(a=>{a.style.color=a.getAttribute('href')==='#'+c?'var(--gold)':''})});
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(x => {
+    if (x.isIntersecting) x.target.classList.add('visible');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Counter animation
+function animateCounter(el, t, s) {
+  let st = 0;
+  const fn = ts => {
+    if (!st) st = ts;
+    const p = Math.min((ts - st) / 1200, 1);
+    el.textContent = Math.floor((1 - Math.pow(1 - p, 3)) * t) + s;
+    if (p < 1) requestAnimationFrame(fn);
+    else el.textContent = t + s;
+  };
+  requestAnimationFrame(fn);
+}
+
+const so = new IntersectionObserver(entries => {
+  entries.forEach(x => {
+    if (x.isIntersecting) {
+      x.target.querySelectorAll('.stat-number').forEach(n => {
+        const t = n.textContent.trim();
+        if (t === '15') animateCounter(n, 15, '');
+        else if (t === '8+') animateCounter(n, 8, '+');
+        else if (t === '550k') animateCounter(n, 550, 'k');
+      });
+      so.unobserve(x.target);
+    }
+  });
+}, { threshold: 0.5 });
+const hs = document.querySelector('.hero-stats');
+if (hs) so.observe(hs);
+
+// Mobile menu — toggle, close on outside click, close on link click
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (navLinks.style.display === 'flex') {
+    navLinks.style.display = 'none';
+  } else {
+    navLinks.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:70px;left:0;right:0;background:rgba(10,10,10,0.97);padding:32px 24px;gap:24px;border-bottom:1px solid rgba(255,255,255,0.07);z-index:99';
+  }
+});
+
+document.addEventListener('click', (e) => {
+  if (navLinks.style.display === 'flex' && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+    navLinks.style.display = 'none';
+  }
+});
+
+navLinks.addEventListener('click', (e) => {
+  if (e.target.tagName === 'A') {
+    navLinks.style.display = 'none';
+  }
+});
+
+// Active nav highlight on scroll
+const secs = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let c = '';
+  secs.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 200) c = s.id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + c ? 'var(--gold)' : '';
+  });
+});
 </script>
 </body>
 </html>
