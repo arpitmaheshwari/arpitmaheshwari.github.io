@@ -114,6 +114,56 @@
   <section style="margin-bottom:80px">
     <h2 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:24px">Act IV — The Work</h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I rebuilt the entire recommendation interface around three principles: (1) Show confidence as the primary signal, not an afterthought. (2) Explain the reasoning before showing the result. (3) Make override easy and consequence-free.</p>
+
+    <!-- Abstract UI Diagram: Confidence Score & Reasoning -->
+    <div style="margin: 40px 0; padding: 40px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;">
+      <div style="font-family:var(--ff-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom: 24px; text-align:center;">Wireframe: Confidence-First Recommendation</div>
+      
+      <!-- The Wireframe Container -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 24px; max-width: 500px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+        <!-- Header -->
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid var(--border);">
+          <div>
+            <div style="width:120px; height:12px; background:var(--ink-muted); border-radius:2px; margin-bottom:12px; opacity:0.3;"></div>
+            <div style="width:200px; height:16px; background:var(--ink); border-radius:2px;"></div>
+          </div>
+          <!-- Confidence Badge -->
+          <div style="display:flex; align-items:center; gap:8px; background:rgba(94, 212, 142, 0.1); padding:6px 12px; border-radius:4px; border:1px solid rgba(94, 212, 142, 0.2);">
+            <div style="width:8px; height:8px; background:#5ED48E; border-radius:50%;"></div>
+            <div style="font-family:var(--ff-mono); font-size:12px; color:#5ED48E; font-weight:600;">87% Confidence</div>
+          </div>
+        </div>
+
+        <!-- The "Why" Section -->
+        <div style="margin-bottom:24px;">
+          <div style="font-family:var(--ff-mono); font-size:10px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;">Algorithm Reasoning</div>
+          <div style="display:flex; gap:12px; margin-bottom:12px; align-items:center;">
+            <div style="color:var(--gold);"><svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+            <div style="width:100%; height:8px; background:var(--ink-muted); border-radius:2px; opacity:0.3;"></div>
+          </div>
+          <div style="display:flex; gap:12px; margin-bottom:12px; align-items:center;">
+            <div style="color:var(--gold);"><svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+            <div style="width:80%; height:8px; background:var(--ink-muted); border-radius:2px; opacity:0.3;"></div>
+          </div>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <div style="color:var(--gold);"><svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+            <div style="width:90%; height:8px; background:var(--ink-muted); border-radius:2px; opacity:0.3;"></div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div style="display:flex; gap:12px;">
+          <div style="flex:1; height:36px; background:var(--gold); border-radius:4px; display:flex; align-items:center; justify-content:center;">
+             <div style="width:60px; height:6px; background:var(--bg); border-radius:2px; opacity:0.8;"></div>
+          </div>
+          <div style="flex:1; height:36px; border:1px solid var(--border); border-radius:4px; display:flex; align-items:center; justify-content:center;">
+             <div style="width:80px; height:6px; background:var(--ink-muted); border-radius:2px; opacity:0.5;"></div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-muted); text-align:center; margin-top:24px; font-family:var(--ff-sans);">Fig 1. Abstracting the "Confidence + Why + Override" architecture.</p>
+    </div>
+
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Confidence Scoring System:</strong> Every recommendation now opened with a confidence score—numeric, visual (color-coded gauge), and linguistic ("High confidence, based on 8 similar campaigns"). This gave technical buyers, executives, and hesitant buyers three ways to understand the same signal. A buyer didn't need to be a data scientist to read "87% confidence"; they could read the color or the language instead.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Transparent Reasoning (The "Why" Section):</strong> Below the confidence score came a structured explanation of the algorithm's logic. "This targets the same audience as your top-performing 2023 campaigns" (showing pattern recognition). "At 15% lower cost than similar high-performing placements" (showing cost efficiency). "Based on 127 historical campaigns with similar targeting" (showing sample size and statistical foundation). Buyers could now evaluate the reasoning before deciding whether to trust it.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Override as a Feature, Not a Failure:</strong> The algorithm was correct 78% of the time. But buyers needed autonomy. I made override prominent and easy—a single button, no confirmation dialog for the first override. But each override was logged and fed back into the model. Over time, the system learned which types of recommendations specific buyers questioned, allowing it to adapt. This wasn't a failure state; it was the feedback loop that built trust.</p>

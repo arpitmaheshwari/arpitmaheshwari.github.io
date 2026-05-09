@@ -111,6 +111,59 @@
   <section style="margin-bottom:80px">
     <h2 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:24px">Act IV — The Work</h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I redesigned the entire analysis output from conclusions to reasoning chains. Every risk flag now showed its logic: "Customer concentration: 65% of revenue from 1 customer. Portfolio median: 15%. Companies with >50% concentration have 8× higher 5-year default risk. This company's diversification plan: Active (3 new customers in pipeline). Analyst assessment opportunity: Does this context change the risk profile?"</p>
+
+    <!-- Abstract UI Diagram: Contextual Override -->
+    <div style="margin: 40px 0; padding: 40px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;">
+      <div style="font-family:var(--ff-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom: 24px; text-align:center;">Wireframe: Contextual Override</div>
+      
+      <!-- The Wireframe Container -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 24px; max-width: 500px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+        <!-- Risk Flag Header -->
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid var(--border);">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:24px; height:24px; background:rgba(212, 168, 94, 0.2); border-radius:4px; display:flex; align-items:center; justify-content:center; color:var(--gold);">
+              <svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </div>
+            <div>
+              <div style="width:150px; height:14px; background:var(--ink); border-radius:2px; margin-bottom:6px;"></div>
+              <div style="width:100px; height:10px; background:var(--ink-muted); border-radius:2px; opacity:0.5;"></div>
+            </div>
+          </div>
+          <div style="padding:4px 8px; background:rgba(212, 168, 94, 0.1); border-radius:2px; font-family:var(--ff-mono); font-size:10px; color:var(--gold); text-transform:uppercase; letter-spacing:0.1em;">Medium Risk</div>
+        </div>
+
+        <!-- Comparative Context -->
+        <div style="margin-bottom:24px; background:var(--bg-soft); padding:16px; border-radius:4px; border:1px solid var(--border);">
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-family:var(--ff-mono); font-size:10px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.1em;">
+            <span>Target Company</span>
+            <span>Peer Median</span>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+            <div style="font-family:var(--ff-display); font-size:24px; color:var(--ink);">65%</div>
+            <div style="flex:1; margin:0 16px; height:1px; border-top:1px dashed var(--border);"></div>
+            <div style="font-family:var(--ff-display); font-size:24px; color:var(--ink-muted);">15%</div>
+          </div>
+          <div style="width:100%; height:8px; background:var(--ink-muted); border-radius:2px; opacity:0.3; margin-bottom:8px;"></div>
+          <div style="width:80%; height:8px; background:var(--ink-muted); border-radius:2px; opacity:0.3;"></div>
+        </div>
+
+        <!-- Override Interaction -->
+        <div style="border-left:2px solid var(--gold); padding-left:16px; margin-bottom:16px;">
+          <div style="font-family:var(--ff-mono); font-size:10px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px;">Analyst Override Context</div>
+          <div style="width:100%; height:36px; border:1px solid var(--border); border-radius:4px; display:flex; align-items:center; padding:0 12px; background:var(--bg);">
+            <div style="width:120px; height:8px; background:var(--ink-muted); border-radius:2px; opacity:0.5;"></div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div style="display:flex; justify-content:flex-end;">
+          <div style="width:100px; height:32px; background:var(--gold); border-radius:2px; display:flex; align-items:center; justify-content:center;">
+             <div style="width:50px; height:6px; background:var(--bg); border-radius:2px; opacity:0.8;"></div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--ink-muted); text-align:center; margin-top:24px; font-family:var(--ff-sans);">Fig 2. Abstracting the "Comparative Context & Respectful Override" architecture.</p>
+    </div>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I added peer-comparative analysis to every metric. A metric wasn't evaluated in isolation; it was shown against the peer distribution. SaaS company with 8% growth? Shown against 25th/50th/75th percentiles for SaaS. Immediately clear whether it was unusual or typical. This external reference point made the AI's concerns concrete and verifiable—not an algorithm's opinion, but an observation against data the analyst could cross-check.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I designed an override interface that was respectful. For any flagged concern, an analyst could click "I contextualize this differently" and provide their own reasoning. That feedback improved the model, but more importantly, it made analysts feel respected. They weren't being told what to think. They were being given a second opinion they could accept, reject, or modify with their own judgment.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8">The deepest design decision: I made risk factors visible as weighted components rather than a single aggregated score. "This company has: moderate revenue growth (8% impact on risk) · high customer concentration (35% impact) · recent leadership stability (−10% impact) = Net risk: Medium." An analyst could immediately see if the AI was weighting things the way they would. Disagreement became a conversation about methodology, not a mystery.</p>
