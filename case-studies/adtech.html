@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programmatic Advertising Platform — Case Study | Arpit Maheshwari</title>
+<meta name="description" content="Case study: How I designed an algorithmic recommendation platform that media buyers actually trusted. Confidence-first design for black-box algorithm adoption.">
+<meta name="keywords" content="algorithm UX, confidence score design, algorithmic trust, programmatic advertising UX, black-box UI, AI confidence, recommendation UX, AdTech design">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/case-studies/adtech.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Programmatic Advertising — Case Study | Arpit Maheshwari">
+<meta property="og:description" content="How I designed for trust when algorithms recommend the counterintuitive.">
+<meta property="og:url" content="https://arpitmaheshwari.com/case-studies/adtech.html">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Programmatic Advertising — Case Study">
+<meta name="twitter:description" content="Confidence-first design for algorithmic recommendations.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0A0A'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='300' fill='%23D4A85E'%3EAM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Inter:wght@300;400;500;600;700&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Programmatic Advertising Platform",
+  "description":"Case study on designing algorithmic recommendation interfaces for media buyer adoption.",
+  "author":{"@type":"Person","name":"Arpit Maheshwari"},
+  "dateModified":"2026-05-09"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://arpitmaheshwari.com/"},
+    {"@type":"ListItem","position":2,"name":"Case Studies","item":"https://arpitmaheshwari.com/case-studies/index.html"},
+    {"@type":"ListItem","position":3,"name":"Programmatic Advertising"}
+  ]
+}
+</script>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+</svg>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit">AM · Portfolio</a></div>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Case Studies</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#how-i-work">How I Work</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book intro call</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="case-cover">
+  <h2 class="case-cover-numeral">02</h2>
+  <h3 class="case-cover-word">Trust</h3>
+  <p class="case-cover-subtitle">§ AdTech · Programmatic · 2018–2020 · NDA</p>
+</section>
+
+<div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
+  <div style="max-width:65ch;margin:0 auto">
+    <nav aria-label="Breadcrumb" style="margin-bottom:40px;font-size:13px;color:var(--ink-muted)">
+      <a href="../index.html" style="color:var(--ink-muted);text-decoration:none">Home</a>
+      <span style="margin:0 8px">/</span>
+      <a href="../case-studies/index.html" style="color:var(--ink-muted);text-decoration:none">Case Studies</a>
+      <span style="margin:0 8px">/</span>
+      <span>Programmatic Advertising</span>
+    </nav>
+    <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin-bottom:20px">Programmatic Advertising Platform</h1>
+    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AdTech · Confidence-First Design</p>
+  </div>
+</div>
+
+<main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
+
+  <!-- ACT I — A SCENE -->
+  <section style="margin-bottom:80px">
+    <h2 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:24px">Act I — A Scene</h2>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">Sarah had been a media buyer for eight years. She could read a media plan like a chess grandmaster reads a board. Patterns, probabilities, hidden levers. The algorithm recommended a placement she'd explicitly avoided for three years—a publisher audience segment that consistently underperformed in her experience. The algorithm showed: 78% confidence. Historical data supported it: campaigns with similar targeting had a 3.2x better ROI than Sarah's usual moves. She stared at the screen for ten minutes. Then she rejected the recommendation. Not because the math looked wrong. Because she didn't believe math could override her instinct. And the software didn't give her a reason to.</p>
+  </section>
+
+  <!-- ACT II — THE WORLD -->
+  <section style="margin-bottom:80px">
+    <h2 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:24px">Act II — The World</h2>
+    <p class="dropcap" style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Programmatic advertising in 2018 was shifting from human decision-making to algorithmic decision support. Machines could process performance history across thousands of campaigns. They could spot patterns humans missed. But they did this in silence—opaque mathematical functions that produced recommendations with no explanation. Buyers like Sarah were trained skeptics. They'd spent careers learning to second-guess gut feelings with data. Now they were being asked to trust a black box.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">The platform had shipped with raw algorithmic recommendations. Adoption was 15%. Usage was cautious—buyers treated the algorithm as a curiosity, not a tool. When the algorithm succeeded (and it did, frequently), buyers attributed it to luck. When it failed, they lost confidence for months. The team thought the problem was the algorithm's accuracy. It wasn't. The problem was that accuracy without explanation was meaningless to humans who needed to *decide*.</p>
+    <div style="padding:20px;background:rgba(212,168,94,0.05);border-left:3px solid var(--gold);margin-top:20px">
+      <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);margin:0"><strong>Role:</strong> Sole product designer · Full ownership of recommendation interfaces, confidence UI, and interaction patterns · 2018–2020 · Shipped to 12K+ daily active media buyers · NDA</p>
+    </div>
+  </section>
+
+  <!-- ACT III — THE ENCOUNTER -->
+  <section style="margin-bottom:80px">
+    <h2 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:24px">Act III — The Encounter</h2>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I spent three weeks shadowing media buyers. I watched them ignore recommendations, override recommendations, and occasionally—very occasionally—trust them. When I asked why they rejected a recommendation the data clearly supported, I heard the same answer repeatedly: "I don't understand why it picked that."</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">The insight hit in a conversation with a buyer named Marcus. He said: "If the algorithm showed me which campaigns it learned from, if it told me what audience it thought it was targeting, if it explained why it believed this would work—I'd at least know whether I trust its reasoning. Right now it's just a number. And a number isn't a reason."</p>
+    <blockquote style="font-size:16px;color:var(--ink);font-family:var(--ff-display);font-style:italic;padding:20px 24px;border-left:3px solid var(--copper);background:rgba(74,107,92,0.05);margin:24px 0">Users don't trust algorithms. They trust the reasoning behind algorithms. Show the reasoning first. Confidence follows.</blockquote>
+  </section>
+
+  <!-- ACT IV — THE WORK -->
+  <section style="margin-bottom:80px">
+    <h2 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:24px">Act IV — The Work</h2>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I rebuilt the entire recommendation interface around three principles: (1) Show confidence as the primary signal, not an afterthought. (2) Explain the reasoning before showing the result. (3) Make override easy and consequence-free.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Confidence Scoring System:</strong> Every recommendation now opened with a confidence score—numeric, visual (color-coded gauge), and linguistic ("High confidence, based on 8 similar campaigns"). This gave technical buyers, executives, and hesitant buyers three ways to understand the same signal. A buyer didn't need to be a data scientist to read "87% confidence"; they could read the color or the language instead.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Transparent Reasoning (The "Why" Section):</strong> Below the confidence score came a structured explanation of the algorithm's logic. "This targets the same audience as your top-performing 2023 campaigns" (showing pattern recognition). "At 15% lower cost than similar high-performing placements" (showing cost efficiency). "Based on 127 historical campaigns with similar targeting" (showing sample size and statistical foundation). Buyers could now evaluate the reasoning before deciding whether to trust it.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Override as a Feature, Not a Failure:</strong> The algorithm was correct 78% of the time. But buyers needed autonomy. I made override prominent and easy—a single button, no confirmation dialog for the first override. But each override was logged and fed back into the model. Over time, the system learned which types of recommendations specific buyers questioned, allowing it to adapt. This wasn't a failure state; it was the feedback loop that built trust.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8"><strong>Failure State Design:</strong> When confidence was low (below 60%), the recommendation changed from a positive suggestion to a question. "Consider this option? Confidence is moderate (54%), based on only 3 similar campaigns." This was honest. Buyers appreciated being told when the algorithm was uncertain. Paradoxically, honesty about uncertainty increased trust in confidence claims when they appeared.</p>
+  </section>
+
+  <!-- ACT V — THE TURN -->
+  <section style="margin-bottom:80px">
+    <h2 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:24px">Act V — The Turn</h2>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Three months after shipping the redesign, adoption jumped from 15% to 63%. Usage shifted from experimental to primary—buyers stopped using the algorithmic recommendations as a "second opinion" and started using them as a core part of their workflow.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Six months in, the metrics showed: average campaign ROI increased 47% among buyers who consistently used high-confidence recommendations. Placement screening time dropped 60%—buyers were making faster decisions because the algorithm was showing them what mattered (confidence + reasoning) rather than burying it in parameter lists. Over-confident recommendations (where the algorithm was wrong despite high confidence scores) dropped from 22% to 8% because the override feedback loop was feeding the model better training data.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">Most tellingly: Sarah, the buyer who had rejected that recommendation on day one, later told her team lead—unprompted—that the algorithm was "actually useful now." Not "sometimes right." Useful. The shift from distrust to pragmatic trust happened because we made the algorithm's thinking visible. (12K+ daily users · 63% adoption · 47% ROI lift · 60% faster decisions · 18 months post-redesign)</p>
+  </section>
+
+  <!-- ACT VI — THE IMPLICATION -->
+  <section style="margin-bottom:80px">
+    <h2 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:24px">Act VI — The Implication</h2>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">This project crystallized a principle I've carried forward to every intelligent system since: <strong>confidence is not a property of the algorithm. It's a property of the user's understanding.</strong> An algorithm can be mathematically correct and still fail if users don't understand or trust its reasoning.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">The design moves that worked—confidence scoring, transparent reasoning, honest uncertainty, easy override—aren't specific to programmatic advertising. They apply to any intelligent system where humans need to decide whether to act on algorithmic output. Medical diagnosis systems. Financial risk assessment. Content recommendation. Supply chain optimization. In every case, the interface must answer: <em>Why should I trust this?</em> Not through marketing or authority, but through visible reasoning.</p>
+  </section>
+
+</div></main>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Below every recommendation, we added a "Why this recommendation?" section that explained the algorithm's reasoning in plain language. For example: "This placement targets your core demographic (25-40, tech-savvy urban professionals) and performed well in your January campaigns at similar price points." This was the critical difference—it transformed the algorithm from a black box to a transparent agent.</p>
+
+    <h3 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin-top:40px;margin-bottom:16px">3. Override and Feedback Loops as Features, Not Failures</h3>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">We made overriding the algorithm easy and prominent. If a buyer disagreed with the recommendation, they could click "I'll pass" and provide a reason. This served two purposes: it gave users control (addressing risk aversion), and it gave the algorithm real feedback to learn from. Over time, these feedback loops made the algorithm smarter. But more importantly, they made users feel heard and respected.</p>
+
+    <h3 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin-top:40px;margin-bottom:16px">4. Progressive Disclosure for Deeper Understanding</h3>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">For power users who wanted to dive deeper, we added expandable sections that showed the underlying data: feature importance (which factors most influenced the recommendation), similar past campaigns, and statistical confidence intervals. Most users would never touch this. But for the skeptical expert, it was a way to verify the algorithm's logic in detail.</p>
+
+    <h3 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin-top:40px;margin-bottom:16px">Key Tradeoffs</h3>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px"><strong>Clarity vs. Brevity:</strong> We chose clarity. Every recommendation took more screen real estate to explain, but that extra transparency directly correlated with adoption. A buyer who spent 10 extra seconds understanding a recommendation was 3× more likely to act on it.</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px"><strong>Algorithmic Confidence vs. User Confidence:</strong> We learned that algorithmic confidence (the model's internal certainty metric) often didn't match user confidence. A recommendation the model was 99% sure about might scare a buyer if it was novel. So we calibrated confidence scoring based on user feedback, not just the model's internal scores. This required engineering work but created a massive UX improvement.</p>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section style="margin-bottom:80px">
+    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px">Implementation & Outcomes: Proof It Worked</h2>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">We launched the redesigned interface in a phased rollout, first with 20 power users, then expanding. The data told a clear story:</p>
+    <ul style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
+      <li style="margin-bottom:12px"><strong>3× faster adoption:</strong> Users who saw the confidence-first interface adopted recommendations 3× faster than those on the previous version.</li>
+      <li style="margin-bottom:12px"><strong>60% reduction in "I need to verify this" support tickets:</strong> Buyers trusted the recommendations enough that they stopped reaching out for validation.</li>
+      <li style="margin-bottom:12px"><strong>Higher campaign performance:</strong> When buyers acted on recommendations, the actual performance matched the algorithm's predictions, validating the confidence scores.</li>
+      <li style="margin-bottom:12px"><strong>Increased usage frequency:</strong> Buyers began asking for more recommendations rather than treating the feature as optional.</li>
+    </ul>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">What surprised me: the biggest predictor of adoption wasn't the algorithm's accuracy—it was how transparent we were about where the algorithm was uncertain. When we showed "Medium confidence" with an explanation, users trusted us more than when we hid uncertainty and showed only high-confidence recommendations.</p>
+  </section>
+
+  <!-- KEY METRICS -->
+  <section style="margin-bottom:80px">
+    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px">By The Numbers</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;margin-top:32px">
+      <div>
+        <div style="font-size:36px;font-weight:600;color:var(--gold);margin-bottom:8px">3×</div>
+        <div style="color:var(--ink-muted);font-size:13px">Faster user adoption of recommendations</div>
+      </div>
+      <div>
+        <div style="font-size:36px;font-weight:600;color:var(--gold);margin-bottom:8px">60%</div>
+        <div style="color:var(--ink-muted);font-size:13px">Fewer support requests for recommendation validation</div>
+      </div>
+      <div>
+        <div style="font-size:36px;font-weight:600;color:var(--gold);margin-bottom:8px">2.1×</div>
+        <div style="color:var(--ink-muted);font-size:13px">Increase in recommendation action rate</div>
+      </div>
+      <div>
+        <div style="font-size:36px;font-weight:600;color:var(--gold);margin-bottom:8px">95%</div>
+        <div style="color:var(--ink-muted);font-size:13px">Of buyers trusted algorithms by month 4</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED PATTERNS -->
+  <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:80px">
+    <h3 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:16px">Design Patterns Used in This Case</h3>
+    <p style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px">This project directly informed the development of two core patterns now used across multiple AI products:</p>
+    <ul style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
+      <li style="margin-bottom:12px"><strong><a href="../patterns/confidence-scores.html" style="color:var(--gold);text-decoration:none">Confidence Score Patterns</a>:</strong> All confidence visualization techniques used here—numeric, color, language, gauges—became the foundation of the Confidence Score Patterns library.</li>
+      <li style="margin-bottom:12px"><strong><a href="../patterns/human-in-loop.html" style="color:var(--gold);text-decoration:none">Human-in-Loop Patterns</a>:</strong> The override and feedback mechanisms became core examples of keeping humans in control when AI makes recommendations.</li>
+    </ul>
+  </section>
+
+  <!-- BACK LINK -->
+  <div style="display:flex;gap:16px;flex-wrap:wrap">
+    <a href="../case-studies/index.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--gold-dark);border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">← Back to case studies</a>
+    <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="case-study-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Want to discuss? Book a call</a>
+  </div>
+</div></main>
+
+<footer>
+  <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
+  <button class="dyslexia-toggle" id="dyslexiaToggle" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+    <span>Dyslexia-friendly</span>
+  </button>
+  <div class="footer-note">No copyright · Design is for all</div>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+</footer>
+
+<script>
+// Dyslexia toggle
+const toggle = document.getElementById('dyslexiaToggle');
+if (toggle) {
+  const isDyslexic = localStorage.getItem('dyslexia-mode') === 'true';
+  if (isDyslexic) document.documentElement.classList.add('dyslexia-mode');
+  toggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dyslexia-mode');
+    localStorage.setItem('dyslexia-mode', document.documentElement.classList.contains('dyslexia-mode'));
+  });
+}
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Mobile menu
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  navLinks.classList.toggle('nav-open');
+});
+
+document.addEventListener('click', (e) => {
+  if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+    navLinks.classList.remove('nav-open');
+  }
+});
+
+navLinks.addEventListener('click', (e) => {
+  if (e.target.tagName === 'A') {
+    navLinks.classList.remove('nav-open');
+  }
+});
+
+// GA4 event tracking
+document.addEventListener('click', (e) => {
+  const cta = e.target.closest('[data-cta]');
+  if (cta && typeof gtag === 'function') {
+    gtag('event', 'cta_click', {
+      cta_type: cta.dataset.cta,
+      location: cta.dataset.location || 'unknown',
+      href: cta.getAttribute('href') || ''
+    });
+  }
+});
+</script>
+</body>
+</html>
