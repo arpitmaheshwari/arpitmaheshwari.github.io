@@ -64,6 +64,29 @@ body.dyslexia-mode .thought-title,
 body.dyslexia-mode .remote-card-title,
 body.dyslexia-mode .tool-group-title{font-family:'Lexend',sans-serif}
 
+/* Reading mode (Light Mode for Case Studies) */
+.reading-toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:transparent;border:1px solid var(--border);border-radius:4px;color:var(--ink-dim);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.05em;cursor:pointer;transition:border-color 0.3s,color 0.3s,background 0.3s}
+.reading-toggle:hover{border-color:var(--border-accent);color:var(--ink)}
+.reading-toggle.active{border-color:var(--gold);color:var(--gold);background:rgba(212,168,94,0.08)}
+.reading-toggle svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5}
+
+body.reading-mode {
+  --bg: #FDFCF9;
+  --bg-soft: #F4F1E9;
+  --bg-card: #FFFFFF;
+  --border: rgba(0,0,0,0.08);
+  --border-accent: rgba(212,168,94,0.4);
+  --ink: #1F1F1F;
+  --ink-muted: rgba(31,31,31,0.7);
+  --ink-dim: rgba(31,31,31,0.4);
+}
+body.reading-mode .case-cover-word {
+  color: #1F1F1F;
+}
+body.reading-mode .pullquote {
+  color: #1F1F1F;
+}
+
 /* ===== PHASE 4B: MAGAZINE VISUAL SYSTEM ===== */
 
 /* Magazine Cover System */

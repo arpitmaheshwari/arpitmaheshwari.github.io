@@ -62,13 +62,19 @@
 
 <div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
   <div style="max-width:65ch;margin:0 auto">
-    <nav aria-label="Breadcrumb" style="margin-bottom:40px;font-size:13px;color:var(--ink-muted)">
-      <a href="../index.html" style="color:var(--ink-muted);text-decoration:none">Home</a>
-      <span style="margin:0 8px">/</span>
-      <a href="../case-studies/index.html" style="color:var(--ink-muted);text-decoration:none">Case Studies</a>
-      <span style="margin:0 8px">/</span>
-      <span>AI-Assisted Due Diligence</span>
-    </nav>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;">
+      <nav aria-label="Breadcrumb" style="font-size:13px;color:var(--ink-muted)">
+        <a href="../index.html" style="color:var(--ink-muted);text-decoration:none">Home</a>
+        <span style="margin:0 8px">/</span>
+        <a href="../case-studies/index.html" style="color:var(--ink-muted);text-decoration:none">Case Studies</a>
+        <span style="margin:0 8px">/</span>
+        <span>AI-Assisted Due Diligence</span>
+      </nav>
+      <button class="reading-toggle" id="readingToggle" aria-label="Toggle light mode for reading" title="Switch to light mode">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Reading Mode</span>
+      </button>
+    </div>
     <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin-bottom:20px">AI-Assisted Due Diligence</h1>
     <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">FinTech · Expert Skepticism & Trust</p>
   </div>
@@ -158,10 +164,26 @@
 const toggle = document.getElementById('dyslexiaToggle');
 if (toggle) {
   const isDyslexic = localStorage.getItem('dyslexia-mode') === 'true';
-  if (isDyslexic) document.documentElement.classList.add('dyslexia-mode');
+  if (isDyslexic) document.body.classList.add('dyslexia-mode');
   toggle.addEventListener('click', () => {
-    document.documentElement.classList.toggle('dyslexia-mode');
-    localStorage.setItem('dyslexia-mode', document.documentElement.classList.contains('dyslexia-mode'));
+    document.body.classList.toggle('dyslexia-mode');
+    localStorage.setItem('dyslexia-mode', document.body.classList.contains('dyslexia-mode'));
+  });
+}
+
+// Reading mode toggle
+const readingToggle = document.getElementById('readingToggle');
+if (readingToggle) {
+  const isReading = localStorage.getItem('reading-mode') === 'true';
+  if (isReading) {
+    document.body.classList.add('reading-mode');
+    readingToggle.classList.add('active');
+  }
+  readingToggle.addEventListener('click', () => {
+    document.body.classList.toggle('reading-mode');
+    const isActive = document.body.classList.contains('reading-mode');
+    readingToggle.classList.toggle('active', isActive);
+    localStorage.setItem('reading-mode', isActive);
   });
 }
 
