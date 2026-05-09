@@ -422,6 +422,41 @@
     </div>
   </div>
 
+  <!-- Interactive Proof Component -->
+  <div style="margin-top:60px; padding:40px; background:var(--bg-soft); border:1px solid var(--border); border-radius:8px; display:flex; flex-direction:column; align-items:center; position:relative; overflow:hidden;" class="reveal">
+    <div style="position:absolute; top:0; left:0; width:100%; height:4px; background:linear-gradient(90deg, transparent, var(--gold), transparent);"></div>
+    <div style="text-align:center; margin-bottom:40px;">
+      <h3 style="font-family:var(--ff-display); font-size:24px; color:var(--ink); margin-bottom:12px;">Interactive Proof: The Confidence Widget</h3>
+      <p style="font-size:15px; color:var(--ink-muted); max-width:600px; margin:0 auto; line-height:1.6;">Built with Vanilla HTML/CSS to demonstrate the "Distrust First" design principle.<br><strong>Hover over the widget below</strong> to see the algorithmic reasoning.</p>
+    </div>
+    
+    <!-- The Component -->
+    <div class="confidence-widget" id="demoWidget">
+      <div class="cw-header">
+        <span class="cw-title">Acquisition Target Alpha</span>
+        <div class="cw-badge cw-medium" id="demoBadge">
+          <svg viewBox="0 0 24 24" class="cw-icon"><circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.2"/><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+          <span class="cw-score">65% Confidence</span>
+        </div>
+      </div>
+      
+      <div class="cw-body" id="demoBody">
+        <div class="cw-reasoning">
+          <div class="cw-label">Why 65%?</div>
+          <ul class="cw-factors">
+            <li><span class="cw-pos">+20%</span> Strong YOY revenue growth (40%)</li>
+            <li><span class="cw-neg">-35%</span> High customer concentration (1 account = 65% rev)</li>
+            <li><span class="cw-pos">+15%</span> Leadership stability (Avg tenure 6 yrs)</li>
+          </ul>
+        </div>
+        <div class="cw-actions">
+          <button class="cw-btn cw-primary">Accept Risk</button>
+          <button class="cw-btn cw-secondary">Override with Context</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Tools grid within the same section -->
   <div style="margin-top:80px">
     <h3 class="expertise-headline reveal" style="margin-bottom:32px">Tools & <em>technical skills.</em></h3>

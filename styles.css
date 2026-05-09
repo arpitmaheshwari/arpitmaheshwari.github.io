@@ -64,6 +64,142 @@ body.dyslexia-mode .thought-title,
 body.dyslexia-mode .remote-card-title,
 body.dyslexia-mode .tool-group-title{font-family:'Lexend',sans-serif}
 
+/* ===== INTERACTIVE PROOF WIDGET ===== */
+.confidence-widget {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  font-family: var(--ff-sans);
+}
+.confidence-widget:hover {
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  border-color: var(--border-accent);
+}
+.cw-header {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+  cursor: default;
+}
+.confidence-widget:hover .cw-header {
+  border-bottom-color: var(--border);
+}
+.cw-title {
+  font-size: 15px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.cw-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.cw-medium {
+  background: rgba(212, 168, 94, 0.1);
+  color: var(--gold);
+  border: 1px solid rgba(212, 168, 94, 0.2);
+}
+.cw-icon {
+  width: 14px;
+  height: 14px;
+}
+.cw-body {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--bg-soft);
+}
+.confidence-widget:hover .cw-body {
+  max-height: 300px;
+  opacity: 1;
+}
+.cw-reasoning {
+  padding: 20px;
+}
+.cw-label {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-dim);
+  margin-bottom: 12px;
+}
+.cw-factors {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+.cw-factors li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.cw-pos {
+  color: #5ED48E;
+  font-family: var(--ff-mono);
+  font-weight: 600;
+  min-width: 36px;
+}
+.cw-neg {
+  color: #E66A6A;
+  font-family: var(--ff-mono);
+  font-weight: 600;
+  min-width: 36px;
+}
+.cw-actions {
+  display: flex;
+  gap: 12px;
+  padding: 0 20px 20px;
+}
+.cw-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+.cw-primary {
+  background: var(--gold);
+  color: var(--bg);
+  font-weight: 600;
+}
+.cw-primary:hover {
+  background: var(--gold-light);
+}
+.cw-secondary {
+  background: transparent;
+  color: var(--ink-muted);
+  border: 1px solid var(--border);
+}
+.cw-secondary:hover {
+  border-color: var(--ink-muted);
+  color: var(--ink);
+}
+
 /* Reading mode (Light Mode for Case Studies) */
 .reading-toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:transparent;border:1px solid var(--border);border-radius:4px;color:var(--ink-dim);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.05em;cursor:pointer;transition:border-color 0.3s,color 0.3s,background 0.3s}
 .reading-toggle:hover{border-color:var(--border-accent);color:var(--ink)}
