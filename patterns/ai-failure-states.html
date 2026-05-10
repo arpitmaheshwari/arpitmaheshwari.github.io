@@ -46,8 +46,8 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit">AM · Portfolio</a></div>
-  <ul class="nav-links"><li><a href="../case-studies/index.html">Case Studies</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#how-i-work">How I Work</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
-  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book intro call</a>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
 </nav>
 
@@ -73,6 +73,40 @@
   <section style="margin-bottom:60px">
     <p style="font-size:17px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px;font-family:var(--ff-display);font-style:italic">Most designers spend 90% of their time designing the happy path. Algorithms fail — they timeout, hallucinate, encounter data outside their training distribution. How you communicate that failure is where trust is built or shattered.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">The best AI products don't hide failures. They acknowledge them transparently and provide a clear next step. Five patterns follow.</p>
+    
+    <!-- Abstract UI Diagram: Failure State Comparison -->
+    <div style="margin: 40px 0; padding: 40px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;">
+      <div style="font-family:var(--ff-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom: 24px; text-align:center;">Wireframe: The Honest Failure State</div>
+      
+      <div style="display:flex; gap:20px; align-items:stretch;">
+        <!-- The Bad Way -->
+        <div style="flex:1; background: var(--bg-card); border: 1px solid rgba(255,100,100,0.2); border-radius: 6px; padding: 24px; opacity:0.8; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+          <div style="font-family:var(--ff-mono); font-size:10px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;">Standard Error</div>
+          <div style="width:40px; height:40px; border-radius:50%; background:rgba(255,100,100,0.1); color:#ff6464; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;">✕</div>
+          <div style="font-family:var(--ff-display); font-size:16px; color:var(--ink); margin-bottom:8px;">Error 500</div>
+          <div style="font-family:var(--ff-sans); font-size:12px; color:var(--ink-dim);">Something went wrong.</div>
+        </div>
+
+        <!-- The Good Way -->
+        <div style="flex:1; background: var(--bg-card); border: 1px solid var(--gold); border-radius: 6px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+          <div style="font-family:var(--ff-mono); font-size:10px; color:var(--gold); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px; text-align:center;">Honest AI Fallback</div>
+          <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:16px;">
+            <div style="width:24px; height:24px; border-radius:4px; background:var(--ink-muted); opacity:0.2;"></div>
+            <div>
+              <div style="font-family:var(--ff-sans); font-size:14px; color:var(--ink); font-weight:600; margin-bottom:4px;">I couldn't find a confident answer</div>
+              <div style="font-family:var(--ff-sans); font-size:12px; color:var(--ink-dim); line-height:1.5;">This query requires data outside my current training cutoff.</div>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--border); padding-top:16px;">
+            <div style="font-family:var(--ff-mono); font-size:10px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px;">Suggested actions:</div>
+            <div style="display:flex; gap:8px;">
+              <div style="flex:1; text-align:center; padding:8px; border:1px solid var(--border); border-radius:4px; font-family:var(--ff-sans); font-size:11px; color:var(--ink);">Search Web</div>
+              <div style="flex:1; text-align:center; padding:8px; background:var(--ink); color:var(--bg); border-radius:4px; font-family:var(--ff-sans); font-size:11px;">Ask Expert</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section style="margin-bottom:64px">

@@ -46,8 +46,8 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit">AM · Portfolio</a></div>
-  <ul class="nav-links"><li><a href="../case-studies/index.html">Case Studies</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#how-i-work">How I Work</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
-  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book intro call</a>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
 </nav>
 
@@ -73,6 +73,50 @@
   <section style="margin-bottom:60px">
     <p style="font-size:17px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px;font-family:var(--ff-display);font-style:italic">A user sees an ML recommendation and asks: "Why did you pick this?" If you can't answer clearly, they won't trust it.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">Explainability is the bridge between model output and human understanding. The goal isn't 100% technical accuracy — it's directional truth presented in language users understand and can verify against their own intuition. Five patterns follow.</p>
+    
+    <!-- Abstract UI Diagram: Feature Importance -->
+    <div style="margin: 40px 0; padding: 40px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;">
+      <div style="font-family:var(--ff-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom: 24px; text-align:center;">Wireframe: Feature Importance</div>
+      
+      <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 24px; max-width: 500px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <div style="font-family:var(--ff-mono); font-size:10px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;">Key Decision Drivers</div>
+        
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <!-- Feature 1 -->
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <div style="font-family:var(--ff-sans); font-size:13px; color:var(--ink);">Historical Default Rate (Industry)</div>
+              <div style="font-family:var(--ff-mono); font-size:12px; color:var(--ink); font-weight:600;">45%</div>
+            </div>
+            <div style="width:100%; height:6px; background:var(--ink-muted); border-radius:3px; opacity:0.1; overflow:hidden;">
+              <div style="width:45%; height:100%; background:var(--gold);"></div>
+            </div>
+          </div>
+          
+          <!-- Feature 2 -->
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <div style="font-family:var(--ff-sans); font-size:13px; color:var(--ink);">Customer Concentration > 40%</div>
+              <div style="font-family:var(--ff-mono); font-size:12px; color:var(--ink); font-weight:600;">30%</div>
+            </div>
+            <div style="width:100%; height:6px; background:var(--ink-muted); border-radius:3px; opacity:0.1; overflow:hidden;">
+              <div style="width:30%; height:100%; background:var(--gold);"></div>
+            </div>
+          </div>
+
+          <!-- Feature 3 -->
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <div style="font-family:var(--ff-sans); font-size:13px; color:var(--ink);">Liquidity Ratio < 1.0</div>
+              <div style="font-family:var(--ff-mono); font-size:12px; color:var(--ink); font-weight:600;">15%</div>
+            </div>
+            <div style="width:100%; height:6px; background:var(--ink-muted); border-radius:3px; opacity:0.1; overflow:hidden;">
+              <div style="width:15%; height:100%; background:var(--gold);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section style="margin-bottom:64px">

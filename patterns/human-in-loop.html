@@ -46,8 +46,8 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit">AM · Portfolio</a></div>
-  <ul class="nav-links"><li><a href="../case-studies/index.html">Case Studies</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#how-i-work">How I Work</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
-  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book intro call</a>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
 </nav>
 
@@ -73,6 +73,40 @@
   <section style="margin-bottom:60px">
     <p style="font-size:17px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px;font-family:var(--ff-display);font-style:italic">The most robust AI systems don't replace human judgment — they augment it. Humans provide oversight, catch edge cases, inject domain expertise where the model is weak.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">Designing the handoff between AI and human is tricky. Make it easy to override, and users ignore the AI entirely. Make it hard, and they resent the system. Five patterns for getting the balance right.</p>
+    
+    <!-- Abstract UI Diagram: The Override Modal -->
+    <div style="margin: 40px 0; padding: 40px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;">
+      <div style="font-family:var(--ff-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom: 24px; text-align:center;">Wireframe: The Respectful Override</div>
+      
+      <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 24px; max-width: 450px; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px;">
+          <div>
+            <div style="font-family:var(--ff-display); font-size:18px; color:var(--ink); margin-bottom:4px;">Override Recommendation</div>
+            <div style="font-family:var(--ff-sans); font-size:12px; color:var(--ink-muted);">Help the model learn by explaining your choice.</div>
+          </div>
+          <div style="width:24px; height:24px; border-radius:50%; background:var(--ink-muted); opacity:0.1;"></div>
+        </div>
+        
+        <div style="background:rgba(212, 168, 94, 0.05); border:1px solid rgba(212, 168, 94, 0.2); border-radius:4px; padding:12px; margin-bottom:20px;">
+          <div style="font-family:var(--ff-mono); font-size:10px; color:var(--gold); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">AI Suggested</div>
+          <div style="font-family:var(--ff-sans); font-size:13px; color:var(--ink);">Approve Loan (High Confidence)</div>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <div style="font-family:var(--ff-sans); font-size:12px; color:var(--ink); font-weight:600; margin-bottom:8px;">Reason for override</div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <div style="padding:6px 12px; border:1px solid var(--border); border-radius:16px; font-family:var(--ff-sans); font-size:11px; color:var(--ink);">Missing context</div>
+            <div style="padding:6px 12px; background:var(--ink); color:var(--bg); border-radius:16px; font-family:var(--ff-sans); font-size:11px;">Recent market shift</div>
+            <div style="padding:6px 12px; border:1px solid var(--border); border-radius:16px; font-family:var(--ff-sans); font-size:11px; color:var(--ink);">Client relationship</div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:12px; border-top:1px solid var(--border); padding-top:16px;">
+          <div style="padding:8px 16px; font-family:var(--ff-sans); font-size:12px; color:var(--ink-muted); font-weight:600;">Cancel</div>
+          <div style="padding:8px 16px; background:var(--ink); color:var(--bg); border-radius:4px; font-family:var(--ff-sans); font-size:12px; font-weight:600;">Confirm Override</div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section style="margin-bottom:64px">

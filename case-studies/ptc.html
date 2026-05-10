@@ -49,8 +49,8 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit">AM · Portfolio</a></div>
-  <ul class="nav-links"><li><a href="../case-studies/index.html">Case Studies</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#how-i-work">How I Work</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
-  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book intro call</a>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
 </nav>
 
@@ -107,6 +107,47 @@
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Localization-First Architecture:</strong> I structured the information architecture knowing it would be translated. Short labels. Clear hierarchy. Minimal text in images. Open space for text expansion (some languages need 30% more width than English). We tested each of the 11 languages early—week 3, not week 20. The translators' feedback informed the design, not the other way around.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Keyboard-First Navigation:</strong> Every interactive element was keyboard-navigable from day one. Skip links let keyboard users jump directly to content. Screen reader users got semantic headings, proper landmarks, meaningful form labels. This wasn't bolted on in QA. It was part of the component system.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8">Mobile-first performance. We optimized for the 3G phones that most of our global learners used. Lazy-loaded images with low-quality placeholders. Progressive enhancement (works without JavaScript, then JavaScript enhances). Cached content. The core learning experience loaded in under 2 seconds on a 3G connection instead of 10.</p>
+    
+    <!-- Abstract UI Diagram: Before & After -->
+    <div style="margin: 40px 0; padding: 40px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;">
+      <div style="font-family:var(--ff-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom: 24px; text-align:center;">Wireframe: Progressive Disclosure</div>
+      
+      <div style="display:flex; gap:20px; align-items:flex-start;">
+        <!-- Before -->
+        <div style="flex:1; background: var(--bg-card); border: 1px solid rgba(255,100,100,0.2); border-radius: 6px; padding: 20px; opacity:0.8;">
+          <div style="font-family:var(--ff-mono); font-size:10px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;">Old UI (12 Filters)</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="width:100%; height:20px; background:var(--ink-muted); opacity:0.1; border-radius:4px;"></div>
+            <div style="width:100%; height:20px; background:var(--ink-muted); opacity:0.1; border-radius:4px;"></div>
+            <div style="width:100%; height:20px; background:var(--ink-muted); opacity:0.1; border-radius:4px;"></div>
+            <div style="width:100%; height:20px; background:var(--ink-muted); opacity:0.1; border-radius:4px;"></div>
+            <div style="width:100%; height:20px; background:var(--ink-muted); opacity:0.1; border-radius:4px;"></div>
+            <div style="width:100%; height:20px; background:var(--ink-muted); opacity:0.1; border-radius:4px;"></div>
+            <div style="font-family:var(--ff-sans); font-size:11px; color:var(--ink-dim); margin-top:8px; font-style:italic;">+ 6 more complex filters shown instantly</div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:center; color:var(--ink-dim); padding-top:40px;">→</div>
+
+        <!-- After -->
+        <div style="flex:1; background: var(--bg-card); border: 1px solid var(--gold); border-radius: 6px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+          <div style="font-family:var(--ff-mono); font-size:10px; color:var(--gold); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;">New UI (Progressive)</div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; gap:8px; align-items:center; border-bottom:1px solid var(--border); padding-bottom:8px;">
+              <div style="width:12px; height:12px; border-radius:50%; border:2px solid var(--ink);"></div>
+              <div style="width:120px; height:12px; background:var(--ink); opacity:0.8; border-radius:2px;"></div>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center; border-bottom:1px solid var(--border); padding-bottom:8px;">
+              <div style="width:12px; height:12px; border-radius:50%; border:2px solid var(--ink);"></div>
+              <div style="width:150px; height:12px; background:var(--ink); opacity:0.8; border-radius:2px;"></div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; margin-top:12px; cursor:pointer;">
+              <div style="font-family:var(--ff-sans); font-size:12px; color:var(--ink); font-weight:600;">+ Show Advanced Filters</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ACT V — THE TURN -->
@@ -114,6 +155,11 @@
     <h2 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:24px">Act V — The Turn</h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">We launched the redesigned platform to 550k+ users across 11 languages. Course enrollment jumped 28%. Completion rates improved 15%. Mobile usage (especially in emerging markets) jumped 40%. Support tickets for "how do I find a course?" dropped 60%.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">But the most important metric: accessibility compliance. We exceeded WCAG AA standards. 99% of automated accessibility tests passed. Manual testing confirmed keyboard and screen reader usability. This wasn't because we were "doing good." It was because building accessibility-first meant we'd eliminated friction for everyone—including people who didn't have an accessibility need but still benefited from simpler, faster interactions. (550K+ users · 28% enrollment lift · 15% completion improvement · 40% mobile growth · WCAG AA+ compliance · 11 languages, 80+ countries)</p>
+    
+    <figure style="margin:40px 0;text-align:center">
+      <img src="../assets/visuals/ptc_mobile.png" alt="Localized Mobile UI" style="width:100%;height:auto;border-radius:4px;border:1px solid var(--border)">
+      <figcaption style="font-family:var(--ff-sans);font-size:12px;color:var(--ink-muted);margin-top:12px">Localized Learning Path UI — Designing for expansion (German)</figcaption>
+    </figure>
   </section>
 
   <!-- ACT VI — THE IMPLICATION -->

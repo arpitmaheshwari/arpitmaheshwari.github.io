@@ -53,8 +53,8 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit">AM · Portfolio</a></div>
-  <ul class="nav-links"><li><a href="../case-studies/index.html">Case Studies</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#how-i-work">How I Work</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
-  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book intro call</a>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
 </nav>
 
@@ -80,6 +80,11 @@
   <section style="margin-bottom:60px">
     <p style="font-size:17px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px;font-family:var(--ff-display);font-style:italic">When an algorithm recommends something, users ask an invisible question: "How sure are you?" Without a clear answer, they distrust the recommendation and ignore it — even if the algorithm is 99% correct.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">Confidence scores bridge that trust gap. But how you show confidence matters as much as whether you show it. Five patterns follow, each with the contexts where it works and the contexts where it breaks trust.</p>
+    
+    <figure style="margin:40px 0;text-align:center">
+      <img src="../assets/visuals/patterns_confidence.png" alt="Confidence Threshold Dial" style="width:100%;height:auto;border-radius:4px;border:1px solid var(--border)">
+      <figcaption style="font-family:var(--ff-sans);font-size:12px;color:var(--ink-muted);margin-top:12px">The Confidence Threshold — Finding the point where recommendation overrides doubt</figcaption>
+    </figure>
   </section>
 
   <section style="margin-bottom:64px">
@@ -101,6 +106,48 @@
           <tr><td style="padding:10px 12px">&lt;70%</td><td style="padding:10px 12px">Hidden or "Low confidence" warning</td><td style="padding:10px 12px">"Manually verify this"</td></tr>
         </tbody>
       </table>
+    </div>
+    
+    <!-- Abstract UI Diagram: Confidence Badges -->
+    <div style="margin: 40px 0; padding: 40px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;">
+      <div style="font-family:var(--ff-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom: 24px; text-align:center;">Wireframe: Threshold-Based Badges</div>
+      
+      <div style="display:flex; flex-direction:column; gap:16px; max-width: 400px; margin: 0 auto;">
+        <!-- High Confidence -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 16px; display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:32px; height:32px; background:var(--ink-muted); opacity:0.1; border-radius:4px;"></div>
+            <div style="width:120px; height:12px; background:var(--ink); border-radius:2px;"></div>
+          </div>
+          <div style="background:rgba(94, 212, 142, 0.1); border:1px solid rgba(94, 212, 142, 0.2); padding:4px 8px; border-radius:4px; display:flex; gap:6px; align-items:center;">
+            <div style="width:6px; height:6px; background:#5ED48E; border-radius:50%;"></div>
+            <div style="font-family:var(--ff-mono); font-size:11px; color:#5ED48E; font-weight:600;">92%</div>
+          </div>
+        </div>
+
+        <!-- Medium Confidence -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 16px; display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:32px; height:32px; background:var(--ink-muted); opacity:0.1; border-radius:4px;"></div>
+            <div style="width:140px; height:12px; background:var(--ink); border-radius:2px;"></div>
+          </div>
+          <div style="background:rgba(212, 168, 94, 0.1); border:1px solid rgba(212, 168, 94, 0.2); padding:4px 8px; border-radius:4px; display:flex; gap:6px; align-items:center;">
+            <div style="width:6px; height:6px; background:#D4A85E; border-radius:50%;"></div>
+            <div style="font-family:var(--ff-sans); font-size:11px; color:#D4A85E; font-weight:500;">Moderate</div>
+          </div>
+        </div>
+
+        <!-- Low Confidence -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 16px; display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:32px; height:32px; background:var(--ink-muted); opacity:0.1; border-radius:4px;"></div>
+            <div style="width:100px; height:12px; background:var(--ink); border-radius:2px;"></div>
+          </div>
+          <div style="background:transparent; border:1px dashed var(--ink-muted); padding:4px 8px; border-radius:4px; display:flex; gap:6px; align-items:center; opacity:0.7;">
+            <div style="font-family:var(--ff-sans); font-size:11px; color:var(--ink-muted); font-style:italic;">Low confidence</div>
+          </div>
+        </div>
+      </div>
     </div>
     <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Use when</strong> recommendations have variable confidence (ML models), users have expertise to override, and false negatives are costly. <strong>Avoid when</strong> all recommendations are equally confident or users lack domain knowledge to verify.</p>
   </section>

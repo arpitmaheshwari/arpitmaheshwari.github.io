@@ -53,8 +53,8 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit">AM · Portfolio</a></div>
-  <ul class="nav-links"><li><a href="../case-studies/index.html">Case Studies</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#how-i-work">How I Work</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
-  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book intro call</a>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
 </nav>
 
@@ -113,6 +113,46 @@
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px"><strong>Finance module:</strong> All salaries visible. All budgets visible. All spending transparent. No CFO approval gates. Instead, peer accountability: if you're under-spending while others are constrained, someone asks why. If you're overpaying for a role, salary data makes it obvious. Friction becomes visible and addressable.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px"><strong>People module:</strong> No managers write performance reviews. Instead, leveling frameworks are public. Peer feedback is collected. Compensation bands are transparent. An engineer who says "I'm ready to move to Level 3" sees exactly what L3 work looks like, what peers think about their readiness, and what bands apply. Growth is peer-validated, not managerially gatekept.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8"><strong>Projects module:</strong> Work doesn't flow down from authority. Projects show impact, resource needs, and dependencies. Teams bid for them. Resources compete through transparent trade-offs, not hidden budget approval.</p>
+    
+    <!-- Abstract UI Diagram: Workflow Pipeline -->
+    <div style="margin: 40px 0; padding: 40px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;">
+      <div style="font-family:var(--ff-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom: 24px; text-align:center;">Wireframe: Decentralized Project Bidding Pipeline</div>
+      
+      <!-- The Wireframe Container -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 24px; max-width: 600px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <div style="display:flex; justify-content:space-between; position:relative;">
+          <!-- Connecting Line -->
+          <div style="position:absolute; top:24px; left:40px; right:40px; height:2px; background:var(--border); z-index:1;"></div>
+          
+          <!-- Node 1 -->
+          <div style="display:flex; flex-direction:column; align-items:center; z-index:2; width:120px;">
+            <div style="width:48px; height:48px; border-radius:50%; background:var(--bg-card); border:2px solid var(--ink); display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
+              <div style="width:12px; height:12px; border-radius:50%; background:var(--ink);"></div>
+            </div>
+            <div style="font-family:var(--ff-mono); font-size:11px; color:var(--ink); font-weight:600; margin-bottom:4px; text-align:center;">PROPOSE</div>
+            <div style="font-family:var(--ff-sans); font-size:10px; color:var(--ink-dim); text-align:center; line-height:1.4;">Anyone creates a project spec</div>
+          </div>
+
+          <!-- Node 2 -->
+          <div style="display:flex; flex-direction:column; align-items:center; z-index:2; width:120px;">
+            <div style="width:48px; height:48px; border-radius:50%; background:var(--bg-card); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
+              <div style="width:12px; height:12px; border-radius:50%; background:var(--gold);"></div>
+            </div>
+            <div style="font-family:var(--ff-mono); font-size:11px; color:var(--gold); font-weight:600; margin-bottom:4px; text-align:center;">BID</div>
+            <div style="font-family:var(--ff-sans); font-size:10px; color:var(--ink-dim); text-align:center; line-height:1.4;">Teams attach their time/budget</div>
+          </div>
+
+          <!-- Node 3 -->
+          <div style="display:flex; flex-direction:column; align-items:center; z-index:2; width:120px;">
+            <div style="width:48px; height:48px; border-radius:50%; background:var(--bg-card); border:2px dashed var(--ink-muted); display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
+              <div style="width:12px; height:12px; border-radius:50%; background:var(--ink-muted);"></div>
+            </div>
+            <div style="font-family:var(--ff-mono); font-size:11px; color:var(--ink-dim); font-weight:600; margin-bottom:4px; text-align:center;">EXECUTE</div>
+            <div style="font-family:var(--ff-sans); font-size:10px; color:var(--ink-dim); text-align:center; line-height:1.4;">Highest ROI bids win resources</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ACT V — THE TURN -->
@@ -120,6 +160,11 @@
     <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin-bottom:24px;font-style:italic">Act V — The Turn (150 words)</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">The platform shipped. Over 18 months, the company grew from 35 to 120 people without hiring a single manager. Decision latency dropped — no approval chains, no waiting for bandwidth. Turnover dropped because transparency builds trust. Revenue per employee increased 60% because self-directed work aligns with business impact. Salary compression decreased because visibility removed hidden resentment.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">The most unexpected outcome: radical pay transparency <em>reduced</em> dissatisfaction. People could see what roles earned, why, and where they stood. The silence that usually breeds resentment was replaced with clear norms. Friction was visible and addressable. (120 employees managing themselves · 35% faster decisions · 60% revenue per employee lift · 18 months post-launch)</p>
+    
+    <figure style="margin:40px 0;text-align:center">
+      <img src="../assets/visuals/orgos_kanban.png" alt="Enterprise Kanban UI" style="width:100%;height:auto;border-radius:4px;border:1px solid var(--border)">
+      <figcaption style="font-family:var(--ff-sans);font-size:12px;color:var(--ink-muted);margin-top:12px">OrgOS Kanban Module — Radical transparency across decentralized teams</figcaption>
+    </figure>
   </section>
 
   <!-- ACT VI — THE IMPLICATION -->

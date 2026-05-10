@@ -49,8 +49,8 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit">AM · Portfolio</a></div>
-  <ul class="nav-links"><li><a href="../case-studies/index.html">Case Studies</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#how-i-work">How I Work</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
-  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book intro call</a>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
 </nav>
 
@@ -107,6 +107,50 @@
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Usage-to-Cost Visualization:</strong> For data charges, we created a chart showing the customer's daily data usage throughout the month. A highlighted line showed their plan limit. The visualization answered the question immediately: "When did I exceed my limit? How much overage am I paying for?" Behavior became visible, and cost became a logical consequence of that behavior.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Per-Item Context and Math:</strong> Every roaming charge, every international call, every service fee came with its calculation. "Call to US: 14 minutes at £0.35/minute = £4.90." Customers could verify the math. They could check the rate. Charges became auditable.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8">Predictive alerts and dispute mechanisms. We added intelligent warnings: "You're on track for £35 in data overage charges. [Upgrade plan] [Reduce usage]." And if a customer questioned a charge, one click opened a dispute form where they could explain. We tracked these disputes—not as customer complaints, but as signals about clarity gaps in the interface.</p>
+    
+    <!-- Abstract UI Diagram: Dashboard Widget -->
+    <div style="margin: 40px 0; padding: 40px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;">
+      <div style="font-family:var(--ff-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom: 24px; text-align:center;">Wireframe: Usage-to-Cost Widget</div>
+      
+      <!-- The Wireframe Container -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 24px; max-width: 400px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <!-- Header -->
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:24px;">
+          <div>
+            <div style="font-family:var(--ff-mono); font-size:10px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">Current Bill</div>
+            <div style="font-family:var(--ff-display); font-size:32px; color:var(--ink); line-height:1;">£67.00</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-family:var(--ff-sans); font-size:12px; color:var(--gold); font-weight:600;">+£18 Overage</div>
+          </div>
+        </div>
+
+        <!-- Breakdown -->
+        <div style="display:flex; flex-direction:column; gap:12px; border-top:1px solid var(--border); padding-top:20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <div style="width:8px; height:8px; border-radius:50%; background:var(--ink-muted);"></div>
+              <div style="font-family:var(--ff-sans); font-size:13px; color:var(--ink);">Base Subscription</div>
+            </div>
+            <div style="font-family:var(--ff-mono); font-size:13px; color:var(--ink);">£35.00</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <div style="width:8px; height:8px; border-radius:50%; background:var(--gold);"></div>
+              <div style="font-family:var(--ff-sans); font-size:13px; color:var(--ink);">Data Overage</div>
+            </div>
+            <div style="font-family:var(--ff-mono); font-size:13px; color:var(--ink);">£18.00</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <div style="width:8px; height:8px; border-radius:50%; background:var(--copper);"></div>
+              <div style="font-family:var(--ff-sans); font-size:13px; color:var(--ink);">Roaming</div>
+            </div>
+            <div style="font-family:var(--ff-mono); font-size:13px; color:var(--ink);">£14.00</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ACT V — THE TURN -->
@@ -114,6 +158,11 @@
     <h2 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:24px">Act V — The Turn</h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Within six months of launch, billing support tickets dropped 40%. Not because we hid information, but because we made it transparent enough to understand. Customers used the billing portal 3.5× more often—not complaining, but checking their usage proactively using the predictive alerts. Disputes and chargebacks dropped 60% because customers could now verify for themselves that their bill was correct.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Most tellingly, Priority tier NPS (Net Promoter Score) improved 12 points. In telecom, that's massive. Customers still paid the same amount. The network wasn't faster. But they trusted their bills because they understood them. Rebecca never had to call support again because the bill itself told her story: when she roamed, how much data she used, and why the charge was what it was. (Global customers across UK · 40% support reduction · 3.5× portal engagement · 60% fewer disputes · +12 NPS improvement)</p>
+    
+    <figure style="margin:40px 0;text-align:center">
+      <img src="../assets/visuals/o2_datastream.png" alt="Data Stream Node Graph" style="width:100%;height:auto;border-radius:4px;border:1px solid var(--border)">
+      <figcaption style="font-family:var(--ff-sans);font-size:12px;color:var(--ink-muted);margin-top:12px">Abstract Data Stream — Mapping complex telco interactions to clean visual nodes</figcaption>
+    </figure>
   </section>
 
   <!-- ACT VI — THE IMPLICATION -->

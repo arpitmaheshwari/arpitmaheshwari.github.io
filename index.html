@@ -89,14 +89,17 @@
 </svg>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-logo">AM · Portfolio</div>
-  <ul class="nav-links"><li><a href="./case-studies/index.html">Work</a></li><li><a href="./patterns/index.html">Patterns</a></li><li><a href="#about">About</a></li></ul>
+  <div class="nav-logo"><a href="./index.html" style="text-decoration:none;color:inherit">AM · Portfolio</a></div>
+  <ul class="nav-links"><li><a href="./case-studies/index.html">Work</a></li><li><a href="./patterns/index.html">Patterns</a></li><li><a href="./index.html#about">About</a></li><li><a href="./index.html#contact">Contact</a></li></ul>
   <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
 </nav>
 
-<section id="hero">
-  <div class="hero-bg" aria-hidden="true"></div><div class="hero-grid-lines" aria-hidden="true"></div>
+<section id="hero" style="position:relative;">
+  <canvas id="hero-canvas" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+  <div class="hero-bg" aria-hidden="true" style="z-index:1;"></div>
+  <div class="hero-grid-lines" aria-hidden="true" style="z-index:1;"></div>
+  <div style="position:relative; z-index:2;">
   <p class="hero-eyebrow">Founding Designer · With Staff-Level Expertise</p>
   <h1 class="hero-headline">
     <span class="line"><span class="line-inner">15 years designing</span></span>
@@ -119,6 +122,8 @@
         <div class="stat"><div class="stat-number" style="font-size:36px">550k</div><div class="stat-label">Users impacted</div></div>
       </div>
     </div>
+    </div>
+  </div>
   </div>
 </section>
 
@@ -764,6 +769,103 @@ const sectionViewObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s));
+
+// ===== INTERACTIVE HERO CANVAS =====
+const canvas = document.getElementById('hero-canvas');
+if (canvas) {
+  const ctx = canvas.getContext('2d', { alpha: true });
+  let width, height, particles = [];
+  const mouse = { x: null, y: null, radius: 150 };
+
+  const resize = () => {
+    width = canvas.width = canvas.offsetWidth;
+    height = canvas.height = canvas.offsetHeight;
+    initParticles();
+  };
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.vx = (Math.random() - 0.5) * 0.5;
+      this.vy = (Math.random() - 0.5) * 0.5;
+      this.size = Math.random() * 1.5 + 0.5;
+    }
+    update() {
+      if (this.x > width || this.x < 0) this.vx = -this.vx;
+      if (this.y > height || this.y < 0) this.vy = -this.vy;
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Mouse interaction
+      if (mouse.x != null && mouse.y != null) {
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < mouse.radius) {
+          const force = (mouse.radius - dist) / mouse.radius;
+          this.x -= (dx / dist) * force * 1.5;
+          this.y -= (dy / dist) * force * 1.5;
+        }
+      }
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(212, 168, 94, 0.4)';
+      ctx.fill();
+    }
+  }
+
+  const initParticles = () => {
+    particles = [];
+    const count = Math.floor((width * height) / 12000); // density
+    for (let i = 0; i < count; i++) particles.push(new Particle());
+  };
+
+  const animate = () => {
+    ctx.clearRect(0, 0, width, height);
+    
+    // Update & Draw
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+      
+      // Connect
+      for (let j = i; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        if (dist < 100) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(212, 168, 94, ${0.15 * (1 - dist/100)})`;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animate);
+  };
+
+  // Event Listeners
+  window.addEventListener('resize', resize);
+  document.getElementById('hero').addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  document.getElementById('hero').addEventListener('mouseleave', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
+  // Init
+  resize();
+  animate();
+}
 </script>
 </body>
 </html>

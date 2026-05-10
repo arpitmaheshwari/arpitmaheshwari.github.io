@@ -49,8 +49,8 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit">AM · Portfolio</a></div>
-  <ul class="nav-links"><li><a href="../case-studies/index.html">Case Studies</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#how-i-work">How I Work</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
-  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book intro call</a>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
 </nav>
 
@@ -105,6 +105,11 @@
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I shadowed a deal team through a full evaluation cycle. What became clear: they weren't rejecting the AI. They were ignoring it because they couldn't verify it. When David flagged customer concentration, I asked: "If the system showed you *why* it was concerned, would that change how you use it?" He said: "Not if I disagree with the logic. But if I could see the logic and it made sense, I'd trust my own judgment less and the system's judgment more."</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8">The insight was stark: <em>Analysts don't trust algorithms. Analysts trust reasoning they can verify.</em> Transparency wasn't optional. It was foundational.</p>
     <blockquote style="font-size:16px;color:var(--ink);font-family:var(--ff-display);font-style:italic;padding:20px 24px;border-left:3px solid var(--copper);background:rgba(74,107,92,0.05);margin:24px 0">Experts don't fear automation. They fear being wrong. Show them your reasoning so they can verify it. Then they own the decision—algorithm or gut.</blockquote>
+    
+    <figure style="margin:40px 0;text-align:center">
+      <img src="../assets/visuals/fintech_risk.png" alt="Fintech Risk Factor Radar Chart" style="width:100%;height:auto;border-radius:4px;border:1px solid var(--border)">
+      <figcaption style="font-family:var(--ff-sans);font-size:12px;color:var(--ink-muted);margin-top:12px">Abstract Risk Factor Breakdown — Using familiar mental models (radar charts) to explain algorithmic weighting</figcaption>
+    </figure>
   </section>
 
   <!-- ACT IV — THE WORK -->
@@ -164,23 +169,60 @@
       </div>
       <p style="font-size:13px; color:var(--ink-muted); text-align:center; margin-top:24px; font-family:var(--ff-sans);">Fig 2. Abstracting the "Comparative Context & Respectful Override" architecture.</p>
     </div>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I added peer-comparative analysis to every metric. A metric wasn't evaluated in isolation; it was shown against the peer distribution. SaaS company with 8% growth? Shown against 25th/50th/75th percentiles for SaaS. Immediately clear whether it was unusual or typical. This external reference point made the AI's concerns concrete and verifiable—not an algorithm's opinion, but an observation against data the analyst could cross-check.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I designed an override interface that was respectful. For any flagged concern, an analyst could click "I contextualize this differently" and provide their own reasoning. That feedback improved the model, but more importantly, it made analysts feel respected. They weren't being told what to think. They were being given a second opinion they could accept, reject, or modify with their own judgment.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">The deepest design decision: I made risk factors visible as weighted components rather than a single aggregated score. "This company has: moderate revenue growth (8% impact on risk) · high customer concentration (35% impact) · recent leadership stability (−10% impact) = Net risk: Medium." An analyst could immediately see if the AI was weighting things the way they would. Disagreement became a conversation about methodology, not a mystery.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I added peer-comparative analysis to every metric. A metric wasn't evaluated in isolation; it was shown against the peer distribution.</p>
+    <!-- Key Insight Callout -->
+    <div style="padding:20px 24px;background:rgba(212,168,94,0.05);border-left:3px solid var(--gold);margin:24px 0">
+      <p style="font-size:14px;color:var(--ink);line-height:1.7;margin:0"><strong>Key insight:</strong> SaaS company with 8% growth? Shown against 25th/50th/75th percentiles for SaaS. Immediately clear whether it was unusual or typical. External reference points made the AI's concerns concrete and verifiable — not an algorithm's opinion, but an observation against data the analyst could cross-check.</p>
+    </div>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I designed an override interface that was <em>respectful</em>. For any flagged concern, an analyst could click "I contextualize this differently" and provide their own reasoning. That feedback improved the model, but more importantly, it made analysts feel respected.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:12px">The deepest design decision: I made risk factors visible as <strong>weighted components</strong> rather than a single aggregated score:</p>
+    <ul style="font-size:14px;color:var(--ink);line-height:1.8;margin-bottom:20px;padding-left:24px">
+      <li style="margin-bottom:8px">Moderate revenue growth → <strong>8% impact</strong> on risk</li>
+      <li style="margin-bottom:8px">High customer concentration → <strong>35% impact</strong> on risk</li>
+      <li style="margin-bottom:8px">Recent leadership stability → <strong>-10% impact</strong> on risk</li>
+      <li>Net risk: <strong>Medium</strong></li>
+    </ul>
+    <blockquote style="font-size:16px;color:var(--ink);font-family:var(--ff-display);font-style:italic;padding:20px 24px;border-left:3px solid var(--copper);background:rgba(74,107,92,0.05);margin:24px 0">Disagreement became a conversation about methodology, not a mystery. That's the difference between a tool experts ignore and one they adopt.</blockquote>
   </section>
 
   <!-- ACT V — THE TURN -->
   <section style="margin-bottom:80px">
     <h2 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:24px">Act V — The Turn</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Six months after shipping the transparent reasoning model, the metrics shifted. Analysts spent 60% less time verifying the AI's analyses—not because they trusted blindly, but because they could understand the logic quickly and decide whether it was sound. Double-check cycles dropped 40%. Most importantly, analysts started using the system proactively ("What else should I look at on this company?") rather than defensively ("Let me verify this flag").</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Deal quality improved. When analysts understood the AI's analysis well enough to make informed decisions—whether to accept or reject its conclusions—their risk-adjusted returns on acquired companies improved 18% versus previous years. Not because the algorithm was smarter. Because the analysts could now use it intelligently. (150+ analysts · 60% faster screening · 40% fewer verification steps · 2.3× higher engagement with recommendations · 18% improvement in deal risk assessment accuracy)</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Six months after shipping the transparent reasoning model, the metrics shifted. Analysts spent 60% less time verifying the AI's analyses — not because they trusted blindly, but because they could understand the logic quickly and decide whether it was sound.</p>
+    <!-- Metrics Grid -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:32px 0">
+      <div style="padding:20px;border:1px solid var(--border);border-radius:4px;text-align:center">
+        <div style="font-size:28px;font-weight:600;color:var(--gold);margin-bottom:4px">60%</div>
+        <div style="font-size:12px;color:var(--ink-muted);font-family:var(--ff-mono);text-transform:uppercase;letter-spacing:0.05em">Faster screening</div>
+      </div>
+      <div style="padding:20px;border:1px solid var(--border);border-radius:4px;text-align:center">
+        <div style="font-size:28px;font-weight:600;color:var(--gold);margin-bottom:4px">40%</div>
+        <div style="font-size:12px;color:var(--ink-muted);font-family:var(--ff-mono);text-transform:uppercase;letter-spacing:0.05em">Fewer verifications</div>
+      </div>
+      <div style="padding:20px;border:1px solid var(--border);border-radius:4px;text-align:center">
+        <div style="font-size:28px;font-weight:600;color:var(--gold);margin-bottom:4px">2.3×</div>
+        <div style="font-size:12px;color:var(--ink-muted);font-family:var(--ff-mono);text-transform:uppercase;letter-spacing:0.05em">Engagement lift</div>
+      </div>
+      <div style="padding:20px;border:1px solid var(--border);border-radius:4px;text-align:center">
+        <div style="font-size:28px;font-weight:600;color:var(--gold);margin-bottom:4px">18%</div>
+        <div style="font-size:12px;color:var(--ink-muted);font-family:var(--ff-mono);text-transform:uppercase;letter-spacing:0.05em">Better risk accuracy</div>
+      </div>
+    </div>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">Most importantly, analysts started using the system <em>proactively</em> ("What else should I look at on this company?") rather than <em>defensively</em> ("Let me verify this flag"). Not because the algorithm was smarter. Because the analysts could now use it intelligently.</p>
   </section>
 
   <!-- ACT VI — THE IMPLICATION -->
   <section style="margin-bottom:80px">
     <h2 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:24px">Act VI — The Implication</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">This project taught me that the core challenge in expert-domain AI design is not better algorithms. It's better interfaces for expert judgment. Experts don't want automation. They want amplification. They want the algorithm to do what they're bad at (processing scale, spotting patterns across thousands of data points) and leave room for what they're good at (judgment, context, exceptions, gut calls).</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">The design principle: always show your work. Transparent reasoning. Comparative context. Easy override. Respectful disagreement. Not because experts are paranoid (though they should be). But because expertise *is* the ability to verify and contextualize. When you hide the algorithm's reasoning, you're asking experts to abandon their expertise. When you show it, you let them amplify it.</p>
+    <blockquote style="font-size:18px;color:var(--ink);font-family:var(--ff-display);font-style:italic;padding:20px 24px;border-left:3px solid var(--gold);background:rgba(212,168,94,0.05);margin:0 0 24px 0">Experts don’t want automation. They want amplification.</blockquote>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">They want the algorithm to do what they’re bad at (processing scale, spotting patterns across thousands of data points) and leave room for what they’re good at (judgment, context, exceptions, gut calls).</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">The design principle: always show your work.</p>
+    <ul style="font-size:14px;color:var(--ink);line-height:1.8;margin:16px 0 0;padding-left:24px">
+      <li style="margin-bottom:6px">Transparent reasoning</li>
+      <li style="margin-bottom:6px">Comparative context</li>
+      <li style="margin-bottom:6px">Easy override</li>
+      <li>Respectful disagreement</li>
+    </ul>
   </section>
 
 </div></main>
