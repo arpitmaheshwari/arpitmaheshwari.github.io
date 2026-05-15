@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ML Explainability Patterns — How to Show Why the Algorithm Decided | Arpit Maheshwari</title>
+<title>ML Explainability: Why the Algorithm Decided</title>
 <meta name="description" content="Five patterns for making ML model decisions transparent — feature importance, counterfactual reasoning, comparative explanation, reasoning paths, and uncertainty bands.">
 <meta name="keywords" content="ML explainability, AI explainability, feature importance, counterfactual UX, model transparency, design patterns, intelligent systems">
 <meta name="author" content="Arpit Maheshwari">
@@ -13,8 +13,11 @@
 <meta property="og:title" content="ML Explainability Patterns | Arpit Maheshwari">
 <meta property="og:description" content="Patterns for explaining machine learning model decisions to users.">
 <meta property="og:url" content="https://arpitmaheshwari.com/patterns/ml-explainability.html">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/ml-explainability-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Arpit Maheshwari Portfolio">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ML Explainability Patterns">
 <meta name="twitter:description" content="Five patterns for translating model logic into user-intelligible narratives.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0A0A'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='300' fill='%23D4A85E'%3EAM%3C/text%3E%3C/svg%3E">
@@ -35,6 +38,13 @@
   ]
 }
 </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PFY6ME99K8');
+</script>
 <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -46,9 +56,9 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit">AM · Portfolio</a></div>
-  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li><li class="nav-links-reading"><button class="nav-reading-toggle" id="navReadingToggle" aria-label="Toggle reading mode">🔤 Reading</button></li></ul>
   <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
-  <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
 <div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
@@ -152,6 +162,13 @@
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">Uncertainty bands are honest. They communicate: "The model thinks it's $45K, but I'm not 100% sure. Here's the range where it probably lands." This pattern doesn't explain <em>why</em>; it explains <em>how much to trust</em>.</p>
   </section>
 
+  <!-- MID-ARTICLE CTA -->
+  <div class="pullquote-card">
+    <p class="pullquote-card-text">Shipping ML without explanation?</p>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">Your users won't trust what they can't verify. I've designed explainability surfaces for fintech analysts and program managers across $2B+ in decision value. Let's compare notes under NDA.</p>
+    <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="mid-article" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:13px;letter-spacing:0.03em;border-radius:2px;text-decoration:none;transition:background 0.3s,transform 0.2s" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Book a 30-min call <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+  </div>
+
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px">Implementation Checklist</h2>
     <ul style="font-size:15px;color:var(--ink-muted);line-height:1.8;padding-left:24px">
@@ -192,7 +209,7 @@
   </section>
 
   <div style="display:flex;gap:16px;flex-wrap:wrap">
-    <a href="../patterns/index.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--gold-dark);border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">← Back to patterns</a>
+    <a href="./confidence-scores.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Read Pattern 01 / Confidence Scores →</a>
     <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="pattern-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Apply this with me</a>
   </div>
 </div></main>
@@ -210,14 +227,75 @@
 <script>
 const toggle = document.getElementById('dyslexiaToggle');
 if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'true'; if (isDyslexic) document.documentElement.classList.add('dyslexia-mode'); toggle.addEventListener('click', () => { document.documentElement.classList.toggle('dyslexia-mode'); localStorage.setItem('dyslexia-mode', document.documentElement.classList.contains('dyslexia-mode')); }); }
+const navReadingBtn = document.getElementById('navReadingToggle');
+if (navReadingBtn) { if (localStorage.getItem('reading-mode') === 'true') { document.documentElement.classList.add('reading-mode'); navReadingBtn.classList.add('active'); } navReadingBtn.addEventListener('click', () => { document.documentElement.classList.toggle('reading-mode'); const isOn = document.documentElement.classList.contains('reading-mode'); navReadingBtn.classList.toggle('active', isOn); localStorage.setItem('reading-mode', isOn ? 'true' : 'false'); if (typeof gtag === 'function') gtag('event', 'reading_mode_toggle', { state: isOn ? 'on' : 'off' }); }); }
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+// Mobile menu (consolidated handler with aria-expanded + Escape support)
 const menuBtn = document.getElementById('menuToggle');
 const navLinks = document.querySelector('.nav-links');
-menuBtn.addEventListener('click', (e) => { e.stopPropagation(); navLinks.classList.toggle('nav-open'); });
-document.addEventListener('click', (e) => { if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) navLinks.classList.remove('nav-open'); });
-navLinks.addEventListener('click', (e) => { if (e.target.tagName === 'A') navLinks.classList.remove('nav-open'); });
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close drawer when clicking outside it
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close drawer on Escape key + return focus to hamburger
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+
+  // Close drawer when any link OR the reading toggle inside it is clicked
+  navLinks.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A' || e.target.closest('.nav-reading-toggle')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
 document.addEventListener('click', (e) => { const cta = e.target.closest('[data-cta]'); if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' }); });
+
+// Scroll depth — fires once per threshold (25/50/75/100)
+const scrollDepthHits = new Set();
+function trackScrollDepth() {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (docHeight <= 0) return;
+  const pct = Math.min(100, Math.floor((window.scrollY / docHeight) * 100));
+  [25, 50, 75, 100].forEach(threshold => {
+    if (pct >= threshold && !scrollDepthHits.has(threshold)) {
+      scrollDepthHits.add(threshold);
+      if (typeof gtag === 'function') gtag('event', 'scroll_depth', { percent: threshold });
+    }
+  });
+}
+window.addEventListener('scroll', trackScrollDepth, { passive: true });
+
+// Section visibility — fires once per section when 50% in viewport
+const sectionViewObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.viewed) {
+      entry.target.dataset.viewed = '1';
+      if (typeof gtag === 'function') {
+        gtag('event', 'section_view', { section_id: entry.target.id });
+      }
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s));
 </script>
 </body>
 </html>
