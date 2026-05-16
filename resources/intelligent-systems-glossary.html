@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intelligent Systems Glossary — Arpit Maheshwari</title>
+  <meta name="description" content="40+ core terms defined: WCAG AA, ML explainability, confidence layers, SHAP/LIME, human-in-loop, programmatic advertising, and more.">
+  <meta property="og:title" content="Intelligent Systems Glossary">
+  <meta property="og:description" content="40+ core terms for designing AI products: terminology guide for non-technical founders and cross-functional teams.">
+  <meta property="og:url" content="https://arpitmaheshwari.com/resources/intelligent-systems-glossary.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://arpitmaheshwari.com/resources/intelligent-systems-glossary.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@400;500&family=Lexend:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
+  <div style="max-width:65ch;margin:0 auto">
+    <nav aria-label="Breadcrumb" style="margin-bottom:40px;font-size:13px;color:var(--ink-muted)">
+      <a href="../index.html" style="color:var(--ink-muted);text-decoration:none">Home</a>
+      <span style="margin:0 8px">/</span>
+      <a href="./index.html" style="color:var(--ink-muted);text-decoration:none">Resources</a>
+      <span style="margin:0 8px">/</span>
+      <span>Glossary</span>
+    </nav>
+    <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin-bottom:20px">Intelligent Systems Glossary</h1>
+    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">Reference · Terminology · 40+ Definitions</p>
+  </div>
+</div>
+
+<main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
+
+  <p style="font-family:var(--ff-display);font-size:clamp(18px,3vw,24px);font-style:italic;color:var(--ink);line-height:1.5;margin-bottom:40px">Built for non-technical founders and cross-functional teams shipping AI products. Click any term to get a clear, practical definition.</p>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">AI & Machine Learning</h2>
+  <dl style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">
+    <dt style="font-weight:600;margin-top:16px"><abbr title="Web Content Accessibility Guidelines, Level AA—industry standard for accessible web design">WCAG AA</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">Web Content Accessibility Guidelines Level AA is the practical baseline standard for web accessibility. It ensures your product works for users with disabilities: colorblind users, keyboard-only users, screen reader users, and users with low vision.</dd>
+
+    <dt style="font-weight:600;margin-top:16px"><abbr title="Making visible to users why a machine learning model made a decision">ML Explainability</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">Showing users why an algorithm made a decision, not just what it decided. Example: instead of "Risk: High," explain "Risk: High — due to 6 failed trades in the last 18 months and 2x normal deal size."</dd>
+
+    <dt style="font-weight:600;margin-top:16px"><abbr title="Methods for determining which inputs drove an ML prediction (SHAP, LIME)">Feature Importance</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">Which inputs to the model drove the prediction most? Tools like SHAP and LIME show which factors influenced the decision. Non-technical users care: "This recommendation is based on X, Y, Z."</dd>
+
+    <dt style="font-weight:600;margin-top:16px"><abbr title="When the model's training data doesn't match the real-world data it's being used on">Distribution Shift</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">When a model is trained on one type of data but deployed on a different type, it fails silently. Example: model trained on 90-second trades suddenly sees trades that take 30 minutes. It doesn't know this is different.</dd>
+
+    <dt style="font-weight:600;margin-top:16px"><abbr title="A workflow where AI suggests and humans verify or override">Human-in-the-Loop</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">AI suggests, humans decide. Rather than fully automating a decision, the system shows the recommendation and lets users confirm, edit, or override. Builds trust and preserves human judgment.</dd>
+
+    <dt style="font-weight:600;margin-top:16px"><abbr title="The UI surface that communicates how certain the algorithm is about its decision">Confidence Layer</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">The interface that communicates uncertainty. "92% confident" paired with "what data drove this" and "how would the decision change if X changed." The difference between a user trusting and rejecting the same recommendation.</dd>
+  </dl>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Product & Design</h2>
+  <dl style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">
+    <dt style="font-weight:600;margin-top:16px"><abbr title="The mental effort required to use a feature or product">Cognitive Friction</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">Unnecessary mental effort. "What does this button do?" or "Why is this here?" are friction points. Remove one confusing step and adoption rises 10-30%.</dd>
+
+    <dt style="font-weight:600;margin-top:16px"><abbr title="How fast a new user experiences the core benefit of the product">Time-to-Value (TTV)</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">How long before a new user feels "Oh, I see why this is useful." Shorter TTV = faster adoption. If TTV is 1 hour but users abandon at 15 minutes, you have a design problem.</dd>
+
+    <dt style="font-weight:600;margin-top:16px"><abbr title="Users acquire other users because the product is so good they tell others">Product-Led Growth (PLG)</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">No expensive sales team needed—the product itself drives adoption. Figma and Slack did this: so useful, users tell other users, virality follows.</dd>
+
+    <dt style="font-weight:600;margin-top:16px"><abbr title="Information architecture, layout, visual hierarchy, and interaction patterns">User Experience (UX)</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">How a user feels when they use your product. Not just beauty—clarity, speed, joy, trust. Good UX removes friction; bad UX creates confusion and abandonment.</dd>
+  </dl>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Business & Go-to-Market</h2>
+  <dl style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">
+    <dt style="font-weight:600;margin-top:16px"><abbr title="How much money you spend to acquire one paying customer">Customer Acquisition Cost (CAC)</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">Total marketing spend ÷ new customers acquired. If CAC is $1,000 but the customer only generates $500 in lifetime value, your unit economics are broken.</dd>
+
+    <dt style="font-weight:600;margin-top:16px"><abbr title="Total revenue a customer generates over their lifetime">Lifetime Value (LTV)</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">If a customer pays $100/month for 3 years, LTV ≈ $3,600. Healthy businesses have LTV > 3× CAC. Below that, you're losing money on every customer.</dd>
+
+    <dt style="font-weight:600;margin-top:16px"><abbr title="A pain point so urgent, users will pay to solve it immediately">Painkiller vs. Vitamin</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">Painkiller = must-have (users are desperate). Vitamin = nice-to-have (adoption is slower). Competing on painkillers is easier than vitamins. Build painkillers first.</dd>
+
+    <dt style="font-weight:600;margin-top:16px"><abbr title="The point where your product solves a problem users want badly enough to pay for">Product-Market Fit (PMF)</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">When your product solves a real problem for a specific market and users want it badly enough to tell others. Without PMF, growth is unsustainable. With it, growth becomes effortless.</dd>
+
+    <dt style="font-weight:600;margin-top:16px"><abbr title="Automated ad-buying via real-time bidding on impressions">Programmatic Advertising</abbr></dt>
+    <dd style="margin-left:0;color:var(--ink-muted)">Instead of humans buying individual ad placements, algorithms bid on impressions in real-time. Faster, cheaper, more precise than manual buying. Also: easier to mess up.</dd>
+  </dl>
+
+  <p style="font-size:13px;color:var(--ink-muted);margin-top:60px;padding-top:40px;border-top:1px solid var(--border);">This glossary is updated monthly. Missing a term? <a href="mailto:arpit@arpitmaheshwari.com" style="color:var(--gold);text-decoration:none">Email me</a> and I'll add it.</p>
+
+</div></main>
+
+<footer style="border-top:1px solid var(--border);padding:40px 48px;display:flex;align-items:center;justify-content:space-between">
+  <div class="footer-logo" style="font-family:var(--ff-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)">© 2026 Arpit Maheshwari</div>
+  <a href="../index.html" style="font-family:var(--ff-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-dim)'">← Back to Home</a>
+</footer>
+
+<script>
+// Mobile menu toggle
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+}
+
+// Reading mode toggle
+
+// Dyslexia mode
+const isDyslexia = localStorage.getItem('dyslexia-mode') === 'true';
+if (isDyslexia) document.documentElement.classList.add('dyslexia-mode');
+
+// GA4 events
+document.querySelectorAll('[data-cta]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'cta_click', {
+        cta_type: el.dataset.cta,
+        location: el.dataset.location || 'unknown',
+        page: window.location.pathname
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>

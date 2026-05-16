@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>47 Things to Check Before Shipping AI — Arpit Maheshwari</title>
+  <meta name="description" content="Comprehensive pre-launch checklist for AI products: functionality, performance, security, accessibility, user trust, and edge cases.">
+  <meta property="og:title" content="47 Things to Check Before Shipping AI">
+  <meta property="og:description" content="Comprehensive pre-launch checklist for AI products: functionality, performance, security, accessibility, user trust, and edge cases.">
+  <meta property="og:url" content="https://arpitmaheshwari.com/resources/ai-design-checklist.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://arpitmaheshwari.com/resources/ai-design-checklist.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@400;500&family=Lexend:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
+  <div style="max-width:65ch;margin:0 auto">
+    <nav aria-label="Breadcrumb" style="margin-bottom:40px;font-size:13px;color:var(--ink-muted)">
+      <a href="../index.html" style="color:var(--ink-muted);text-decoration:none">Home</a>
+      <span style="margin:0 8px">/</span>
+      <a href="./index.html" style="color:var(--ink-muted);text-decoration:none">Resources</a>
+      <span style="margin:0 8px">/</span>
+      <span>AI Design Checklist</span>
+    </nav>
+    <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin-bottom:20px">47 Things to Check Before Shipping AI</h1>
+    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">Checklist · Shipping · Production Ready</p>
+  </div>
+</div>
+
+<main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
+
+  <p style="font-family:var(--ff-display);font-size:clamp(18px,3vw,24px);font-style:italic;color:var(--ink);line-height:1.5;margin-bottom:40px">Use this checklist 2 weeks before production launch. Ship nothing without checking all three categories. Happy path demo ≠ production ready.</p>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Functionality & UX (15 items)</h2>
+  <ul style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px;padding-left:24px">
+    <li>[ ] All happy paths tested with real user workflows (not demo data)</li>
+    <li>[ ] Edge cases tested: empty states, boundary values, invalid inputs</li>
+    <li>[ ] Error messages are human-readable, not error codes</li>
+    <li>[ ] Loading states show progress (spinner, percentage, ETA)</li>
+    <li>[ ] Timeout handling: what happens if the API doesn't respond in 30 sec?</li>
+    <li>[ ] Undo/rollback: can users reverse actions? Are they reversible?</li>
+    <li>[ ] Mobile responsive tested at 375px, 768px, 1280px</li>
+    <li>[ ] Keyboard navigation works (Tab, Enter, Escape)</li>
+    <li>[ ] No console errors in DevTools</li>
+    <li>[ ] Performance: page interactive < 2.5 sec, interactions < 100ms</li>
+    <li>[ ] Forms autosave progress so data isn't lost on network failure</li>
+    <li>[ ] Confirmation dialogs for destructive actions (delete, publish)</li>
+    <li>[ ] All external links work and open in new tab (_blank)</li>
+    <li>[ ] Copy/paste works (text selection, clipboard permission)</li>
+    <li>[ ] Date/time inputs work across browsers (no custom date pickers with bugs)</li>
+  </ul>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Performance, Security & Scale (16 items)</h2>
+  <ul style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px;padding-left:24px">
+    <li>[ ] Load tested with realistic data volume (10x expected day-1 volume)</li>
+    <li>[ ] Database queries optimized (no N+1 queries, indexes added)</li>
+    <li>[ ] API rate limiting implemented (prevent DDoS, accidental abuse)</li>
+    <li>[ ] API responses are efficient (gzip, JSON not XML, pagination for large datasets)</li>
+    <li>[ ] Sensitive data encrypted (passwords, tokens, PII in transit and at rest)</li>
+    <li>[ ] No API secrets in code or client-side (use server-side env vars only)</li>
+    <li>[ ] CORS headers locked down (only allow expected origins)</li>
+    <li>[ ] SQL injection / XSS prevention audited (use parameterized queries, sanitize inputs)</li>
+    <li>[ ] Authentication is required (no public endpoints that should be private)</li>
+    <li>[ ] Authorization is correct (user A can't see user B's data)</li>
+    <li>[ ] Logging captures: errors, suspicious activity, API latency</li>
+    <li>[ ] Monitoring in place: alerts for 5xx errors, slow queries, high memory</li>
+    <li>[ ] Rollback plan documented (what if this deploy breaks?)</li>
+    <li>[ ] Database backups tested (can you restore from them?)</li>
+    <li>[ ] Third-party dependencies checked for known vulnerabilities (npm audit)</li>
+    <li>[ ] Privacy policy updated (what data do you collect? How long do you keep it?)</li>
+  </ul>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Accessibility & Trust (16 items)</h2>
+  <ul style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px;padding-left:24px">
+    <li>[ ] Color contrast ≥ 4.5:1 (WCAG AA minimum)</li>
+    <li>[ ] All form inputs have associated labels (not just placeholders)</li>
+    <li>[ ] Focus indicators visible (not outline: none without replacement)</li>
+    <li>[ ] Screen reader tested: page structure logical, images have alt text</li>
+    <li>[ ] No autoplay videos or sounds (user controls media)</li>
+    <li>[ ] Reduced motion supported (animations disabled if prefers-reduced-motion)</li>
+    <li>[ ] Font size adjustable (users can zoom, minimum 16px on mobile to prevent auto-zoom)</li>
+    <li>[ ] No text as images (always use actual text + alt text for diagrams)</li>
+    <li>[ ] AI confidence scores explained (not just "92%" but "92% — likely correct")</li>
+    <li>[ ] Failure states designed: what happens when the AI is wrong or uncertain?</li>
+    <li>[ ] Override mechanism clear (how do users say "AI, you're wrong"?)</li>
+    <li>[ ] Data provenance shown (where did these inputs come from?)</li>
+    <li>[ ] Bias awareness: does the AI make different decisions for different demographics?</li>
+    <li>[ ] Edge cases designed: what if the user's data doesn't match the training data?</li>
+    <li>[ ] Legal review done (especially if financial, medical, or decision-making product)</li>
+    <li>[ ] Beta tester feedback incorporated (did anyone report confusion?)</li>
+  </ul>
+
+  <div style="padding:32px;border-left:3px solid var(--gold);margin:32px 0;background:var(--bg-card)">
+    <p style="font-family:var(--ff-display);font-style:italic;font-size:18px;line-height:1.6;color:var(--ink);margin:0"><strong>If you can't check an item, you're not ready to ship.</strong> Unchecked items are debt. You'll pay for it in support tickets, churn, and regret.</p>
+  </div>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Launch Ritual</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">One week before launch: run through this checklist with a fresh pair of eyes (not the builder). Have them use the product as a user would. Every item unchecked = one day delay. No exceptions.</p>
+
+</div></main>
+
+<footer style="border-top:1px solid var(--border);padding:40px 48px;display:flex;align-items:center;justify-content:space-between">
+  <div class="footer-logo" style="font-family:var(--ff-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)">© 2026 Arpit Maheshwari</div>
+  <a href="../index.html" style="font-family:var(--ff-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-dim)'">← Back to Home</a>
+</footer>
+
+<script>
+// Mobile menu toggle
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+}
+
+// Reading mode toggle
+
+// Dyslexia mode
+const isDyslexia = localStorage.getItem('dyslexia-mode') === 'true';
+if (isDyslexia) document.documentElement.classList.add('dyslexia-mode');
+
+// GA4 events
+document.querySelectorAll('[data-cta]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'cta_click', {
+        cta_type: el.dataset.cta,
+        location: el.dataset.location || 'unknown',
+        page: window.location.pathname
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>

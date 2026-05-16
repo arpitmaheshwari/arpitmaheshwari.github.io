@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human-in-the-Loop: When to Ask, When to Override — Arpit Maheshwari</title>
+  <meta name="description" content="If an AI is right 99% of the time, making users click 'confirm' 99% of the time is broken design. I design systems that only ask for confirmation when the AI is uncertain.">
+  <meta property="og:title" content="Human-in-the-Loop: When to Ask, When to Override">
+  <meta property="og:description" content="If an AI is right 99% of the time, making users click 'confirm' 99% of the time is broken design. I design systems that only ask for confirmation when the AI is uncertain.">
+  <meta property="og:url" content="https://arpitmaheshwari.com/writing/human-in-loop.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/human-in-loop-og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="article:published_time" content="2026-05-12">
+  <meta property="article:modified_time" content="2026-05-16">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://arpitmaheshwari.com/writing/human-in-loop.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@400;500&family=Lexend:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Human-in-the-Loop: When to Ask, When to Override",
+    "description": "If an AI is right 99% of the time, making users click 'confirm' 99% of the time is broken design. I design systems that only ask for confirmation when the AI is uncertain.",
+    "author": {
+      "@type": "Person",
+      "name": "Arpit Maheshwari",
+      "url": "https://arpitmaheshwari.com"
+    },
+    "datePublished": "2026-05-12",
+    "dateModified": "2026-05-16",
+    "image": "https://arpitmaheshwari.com/assets/og-images/human-in-loop-og.png"
+  }
+  </script>
+</head>
+<body>
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
+  <div style="max-width:65ch;margin:0 auto">
+    <nav aria-label="Breadcrumb" style="margin-bottom:40px;font-size:13px;color:var(--ink-muted)">
+      <a href="../index.html" style="color:var(--ink-muted);text-decoration:none">Home</a>
+      <span style="margin:0 8px">/</span>
+      <a href="./index.html" style="color:var(--ink-muted);text-decoration:none">Writing</a>
+      <span style="margin:0 8px">/</span>
+      <span>Human-in-the-Loop</span>
+    </nav>
+    <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin-bottom:20px">Human-in-the-Loop: When to Ask, When to Override</h1>
+    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">Pattern · May 2026 · 5 min read</p>
+  </div>
+</div>
+
+<main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
+
+  <p style="font-family:var(--ff-display);font-size:clamp(18px,3vw,24px);font-style:italic;color:var(--ink);line-height:1.5;margin-bottom:40px">If an AI is right 99% of the time, making users click "confirm" 99% of the time is broken design. I design systems that only ask for confirmation when the AI is uncertain—respecting user time and building trust through earned authority.</p>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">The Confirmation Tax</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">In 2019, I watched a learning platform require students to confirm every recommendation: "Do you want to take this course?" Even though the recommendation engine was 94% accurate, students clicked "skip" 60% of the time. Not because the recommendation was wrong—because they were tired of clicking. The confirmation flow became a friction tax that eroded adoption.</p>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">This is the human-in-the-loop design trap: you ask for human input to preserve autonomy. But too much input = user fatigue = worse decisions (users stop paying attention, click randomly).</p>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">The Confidence-Based Rule</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Instead of asking users to confirm every decision, only ask when the AI is uncertain:</p>
+  <ul style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px;padding-left:24px">
+    <li><strong>Confidence ≥ 85%:</strong> Execute silently. No human intervention needed. The AI has earned authority.</li>
+    <li><strong>Confidence 50–85%:</strong> Ask for confirmation. Low enough confidence that human input has value. High enough that the AI recommendation is still useful context.</li>
+    <li><strong>Confidence < 50%:</strong> Don't ask. Flag as "insufficient confidence to recommend." Let the user make the call from scratch if they want to.</li>
+  </ul>
+
+  <div style="padding:32px;border-left:3px solid var(--gold);margin:32px 0;background:var(--bg-card)">
+    <p style="font-family:var(--ff-display);font-style:italic;font-size:18px;line-height:1.6;color:var(--ink);margin:0"><strong>The best human-in-the-loop systems are invisible.</strong> Users don't see AI asking them for permission. They see AI decisions where the system is confident, and they see "not sure" where it isn't.</p>
+  </div>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Three Patterns for Override</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Pattern 1: Undo, don't confirm.</strong> Execute the AI decision first. Give users a 5-second undo window with one click. This respects user time (no waiting) while preserving autonomy (quick override if needed).</p>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Pattern 2: Prominence by confidence.</strong> Show high-confidence recommendations prominent (large card, top of list). Low-confidence recommendations small (footer, low priority). Users naturally gravitate to where the AI is confident, and override is opt-in, not forced.</p>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Pattern 3: Edit, not approve.</strong> For decisions with medium confidence, let users edit the output instead of just approve/reject. "AI says: Account risk—high. You can: [adjust] [override] [confirm]." Editing feels like collaboration, not rubber-stamping.</p>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Key Takeaway</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Human-in-the-loop isn't about asking users to verify every AI decision. It's about asking at the right moment—when the AI is uncertain and human input actually improves the outcome. Build systems where humans override confidently, not reluctantly.</p>
+
+  <div style="margin-top:60px;padding-top:40px;border-top:1px solid var(--border)">
+    <p style="font-family:var(--ff-mono);font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px">Continue exploring</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <a href="./confidence-scoring.html" style="display:block;padding:16px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);text-decoration:none;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'" data-cta="next-essay" data-location="essay-footer">
+        <div style="font-family:var(--ff-mono);font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">Next essay</div>
+        <div style="font-family:var(--ff-display);font-size:16px;color:var(--ink)">Confidence Scoring</div>
+      </a>
+      <a href="./index.html" style="display:block;padding:16px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);text-decoration:none;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'" data-cta="back-to-writing" data-location="essay-footer">
+        <div style="font-family:var(--ff-mono);font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">All essays</div>
+        <div style="font-family:var(--ff-display);font-size:16px;color:var(--ink)">Back to Writing</div>
+      </a>
+    </div>
+  </div>
+
+</div></main>
+
+<footer style="border-top:1px solid var(--border);padding:40px 48px;display:flex;align-items:center;justify-content:space-between">
+  <div class="footer-logo" style="font-family:var(--ff-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)">© 2026 Arpit Maheshwari</div>
+  <a href="../index.html" style="font-family:var(--ff-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-dim)'">← Back to Home</a>
+</footer>
+
+<script>
+// Mobile menu toggle
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+}
+
+// Reading mode toggle
+
+// Dyslexia mode
+const isDyslexia = localStorage.getItem('dyslexia-mode') === 'true';
+if (isDyslexia) document.documentElement.classList.add('dyslexia-mode');
+
+// GA4 events
+document.querySelectorAll('[data-cta]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'cta_click', {
+        cta_type: el.dataset.cta,
+        location: el.dataset.location || 'unknown',
+        page: window.location.pathname
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>

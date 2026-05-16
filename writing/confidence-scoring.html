@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How I Design Confidence Scores for AI Products — Arpit Maheshwari</title>
+  <meta name="description" content="The bottleneck in AI adoption isn't the model—it's user confidence. How to design confidence scores that make non-technical users trust algorithmic recommendations.">
+  <meta property="og:title" content="How I Design Confidence Scores for AI Products">
+  <meta property="og:description" content="The bottleneck in AI adoption isn't the model—it's user confidence. How to design confidence scores that make non-technical users trust algorithmic recommendations.">
+  <meta property="og:url" content="https://arpitmaheshwari.com/writing/confidence-scoring.html">
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2026-05-09">
+  <meta property="article:modified_time" content="2026-05-09">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://arpitmaheshwari.com/writing/confidence-scoring.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@400;500&family=Lexend:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How I Design Confidence Scores for AI Products",
+    "description": "The bottleneck in AI adoption isn't the model—it's user confidence.",
+    "author": {
+      "@type": "Person",
+      "name": "Arpit Maheshwari",
+      "url": "https://arpitmaheshwari.com"
+    },
+    "datePublished": "2026-05-09",
+    "dateModified": "2026-05-09"
+  }
+  </script>
+</head>
+<body>
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
+  <div style="max-width:65ch;margin:0 auto">
+    <nav aria-label="Breadcrumb" style="margin-bottom:40px;font-size:13px;color:var(--ink-muted)">
+      <a href="../index.html" style="color:var(--ink-muted);text-decoration:none">Home</a>
+      <span style="margin:0 8px">/</span>
+      <a href="./index.html" style="color:var(--ink-muted);text-decoration:none">Writing</a>
+      <span style="margin:0 8px">/</span>
+      <span>Confidence Scoring</span>
+    </nav>
+    <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin-bottom:20px">How I Design Confidence Scores for AI Products</h1>
+    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">Design Pattern · May 2026 · 8 min read</p>
+  </div>
+</div>
+
+<main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
+
+  <p style="font-family:var(--ff-display);font-size:clamp(18px,3vw,24px);font-style:italic;color:var(--ink);line-height:1.5;margin-bottom:40px">The bottleneck in AI adoption isn't the model. It's the moment a user looks at an algorithmic recommendation and has to decide: should I trust this? I design confidence scores as the primary interaction—not the secondary footnote.</p>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">The Trust Problem</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">In 2018, I worked with a media-buying platform that had built a recommendation engine. The algorithm was good—60% more profitable than buyer intuition across 10K+ campaigns. But buyers rejected it 47% of the time. Not because the math was wrong. Because the system showed a number and said nothing else.</p>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Buyers are trained skeptics. They trust data over intuition, but only if they understand *why* the data points in a direction. An algorithm that says "buy this" without explanation is a threat to their expertise. So they override it. Human judgment feels safer than machine judgment they don't understand.</p>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">The Design Principle</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Confidence scores are not a data visualization problem. They're a trust problem. Here's what I design for:</p>
+
+  <div style="padding:32px;border-left:3px solid var(--gold);margin:32px 0;background:var(--bg-card)">
+    <p style="font-family:var(--ff-display);font-style:italic;font-size:18px;line-height:1.6;color:var(--ink);margin:0"><strong>A confidence score is a contract.</strong> The model commits to a number. The user commits to acting on it. Design that contract transparently.</p>
+  </div>
+
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">This means:</p>
+  <ul style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px;padding-left:24px">
+    <li><strong>The number comes first.</strong> Not as a badge. As the headline. "78% confidence" must be unmissable.</li>
+    <li><strong>The reasoning comes second.</strong> Show what the model weighted. Show data provenance. Show what could make the confidence drop.</li>
+    <li><strong>The override path comes third.</strong> Users must understand not just the recommendation, but how to challenge it.</li>
+  </ul>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Three Confidence Score Patterns</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Pattern 1: <strong>Numeric Confidence.</strong> A percentage (0–100%). Clear, comparable, precise. But abstract for non-technical users. Pair it with language: "78% confidence—likely, not certain."</p>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Pattern 2: <strong>Color + Language.</strong> Green (high confidence), yellow (medium), red (low). Add words: "High confidence" / "Consider with caution" / "Low confidence." Colors alone are inaccessible; always use text too.</p>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Pattern 3: <strong>Explicit Uncertainty.</strong> When confidence is below 50%, hide the score. Show: "This is uncertain. We don't recommend acting on this alone." Remove the illusion of precision where none exists.</p>
+
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Key Takeaway</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The best confidence scores don't hide uncertainty. They expose it. They say: "Here's what we're confident about. Here's where we could be wrong." This is harder to design than an optimistic "85% confidence!" banner. But it builds actual trust—the kind that doesn't collapse when the algorithm eventually makes a mistake.</p>
+
+  <div style="margin-top:60px;padding-top:40px;border-top:1px solid var(--border)">
+    <p style="font-family:var(--ff-mono);font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px">Continue exploring</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <a href="./failure-states.html" style="display:block;padding:16px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);text-decoration:none;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-family:var(--ff-mono);font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">Next essay</div>
+        <div style="font-family:var(--ff-display);font-size:16px;color:var(--ink)">Design the Failure State First</div>
+      </a>
+      <a href="./index.html" style="display:block;padding:16px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);text-decoration:none;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-family:var(--ff-mono);font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">All essays</div>
+        <div style="font-family:var(--ff-display);font-size:16px;color:var(--ink)">Back to Writing</div>
+      </a>
+    </div>
+  </div>
+
+</div></main>
+
+<footer style="border-top:1px solid var(--border);padding:40px 48px;display:flex;align-items:center;justify-content:space-between">
+  <div class="footer-logo" style="font-family:var(--ff-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)">© 2026 Arpit Maheshwari</div>
+  <a href="../index.html" style="font-family:var(--ff-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-dim)'">← Back to Home</a>
+</footer>
+
+<script>
+// Mobile menu toggle
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+}
+
+// Reading mode toggle
+
+// Dyslexia mode
+const isDyslexia = localStorage.getItem('dyslexia-mode') === 'true';
+if (isDyslexia) document.documentElement.classList.add('dyslexia-mode');
+
+// GA4 events
+document.querySelectorAll('[data-cta]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'cta_click', {
+        cta_type: el.dataset.cta,
+        location: el.dataset.location || 'unknown',
+        page: window.location.pathname
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>

@@ -66,7 +66,7 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
-  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li><li class="nav-links-reading"><button class="nav-reading-toggle" id="navReadingToggle" aria-label="Toggle reading mode">🔤 Reading</button></li></ul>
+  <ul class="nav-links"><li><a href="../case-studies/index.html">Work</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
   <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -264,20 +264,6 @@ if (toggle) {
 }
 
 // Reading Mode toggle
-const navReadingBtn = document.getElementById('navReadingToggle');
-if (navReadingBtn) {
-  if (localStorage.getItem('reading-mode') === 'true') {
-    document.documentElement.classList.add('reading-mode');
-    navReadingBtn.classList.add('active');
-  }
-  navReadingBtn.addEventListener('click', () => {
-    document.documentElement.classList.toggle('reading-mode');
-    const isOn = document.documentElement.classList.contains('reading-mode');
-    navReadingBtn.classList.toggle('active', isOn);
-    localStorage.setItem('reading-mode', isOn ? 'true' : 'false');
-    if (typeof gtag === 'function') gtag('event', 'reading_mode_toggle', { state: isOn ? 'on' : 'off' });
-  });
-}
 
 // Nav scroll
 const nav = document.getElementById('nav');
@@ -315,7 +301,7 @@ if (menuBtn && navLinks) {
 
   // Close drawer when any link OR the reading toggle inside it is clicked
   navLinks.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A' || e.target.closest('.nav-reading-toggle')) {
+    if (e.target.tagName === 'A') {
       navLinks.classList.remove('nav-open');
       menuBtn.setAttribute('aria-expanded', 'false');
     }
