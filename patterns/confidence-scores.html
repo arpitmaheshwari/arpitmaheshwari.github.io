@@ -103,7 +103,7 @@
 
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">1. Numeric Score with Threshold Hiding</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Show a confidence percentage (0–100%) but only when confidence exceeds a threshold (typically 60–70%). Below the threshold, show "Low confidence" or hide the score entirely.</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Show a confidence percentage (0–100%) but only when confidence exceeds a <abbr title="The numeric boundary (e.g., 65%) below which the system either hides output or flags uncertainty to the user" style="border-bottom:1px dotted var(--ink);cursor:help">threshold</abbr> (typically 60–70%). Below the threshold, show "Low confidence" or hide the score entirely.</p>
     <ul style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
       <li style="margin-bottom:8px"><strong>Reduces decision paralysis:</strong> Users don't see a 42% score and freeze. The system says "I'm not confident enough to recommend this."</li>
       <li style="margin-bottom:8px"><strong>Respects user expertise:</strong> High-confidence recommendations get a number; low-confidence becomes a "flag for review" signal.</li>
@@ -170,7 +170,7 @@
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">2. Color Gradient (Red → Yellow → Green)</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Map confidence to a three-color spectrum. &lt;50% = red. 50–80% = yellow. 80%+ = green. The gradient is instantly recognizable because users already know red = warning, green = go.</p>
     <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:8px"><strong>Strengths:</strong> Bulk-list scannability; emotional clarity; supports color-coded reports.</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:8px"><strong>Weaknesses:</strong> Colorblind users can't distinguish red from green — always pair with numeric or icon. Color alone misleads when context for "safe enough" varies. Cultural variation: red doesn't always mean warning globally.</p>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:8px"><strong>Weaknesses:</strong> <abbr title="People with color vision deficiency who cannot distinguish certain colors, typically red and green" style="border-bottom:1px dotted var(--ink);cursor:help">Colorblind</abbr> users can't distinguish red from green — always pair with numeric or icon. Color alone misleads when context for "safe enough" varies. Cultural variation: red doesn't always mean warning globally.</p>
     <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Use when</strong> bulk review workflows, visual scanning is required, users are sighted and color-aware. <strong>Avoid when</strong> accessibility is paramount or context for confidence is missing.</p>
   </section>
 
@@ -202,7 +202,7 @@
 
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">5. Confidence Spectrum (Range / Distribution)</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Instead of a static score, show confidence as a range: "We're 60–80% confident this lead is qualified." The range communicates uncertainty without false precision.</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Instead of a static score, show confidence as a range: "We're 60–80% confident this lead is qualified." The range communicates uncertainty without <abbr title="Displaying a confidence score with more decimal places (e.g., 76.32%) than the model's actual certainty warrants, misleading users about precision" style="border-bottom:1px dotted var(--ink);cursor:help">false precision</abbr>.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Or show a histogram: "Past leads with similar confidence scores had a 75% conversion rate. Conversions ranged from 60% to 85%." This educates users on what past confidence scores predicted.</p>
     <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Strength:</strong> Honest about uncertainty; doesn't pretend to 1% precision when the model's true uncertainty is ±15%. <strong>Weakness:</strong> Adds visual complexity; requires user education.</p>
   </section>
@@ -219,10 +219,10 @@
     <ul style="font-size:15px;color:var(--ink-muted);line-height:1.8;padding-left:24px">
       <li style="margin-bottom:10px"><strong>Define confidence ranges</strong> for your domain (usually 50%, 70%, 90%).</li>
       <li style="margin-bottom:10px"><strong>Pair with action.</strong> Show what the user should <em>do</em> with the score, not just the number.</li>
-      <li style="margin-bottom:10px"><strong>Show calibration data.</strong> "Previous leads with 85% confidence had 78% conversion."</li>
+      <li style="margin-bottom:10px"><strong>Show <abbr title="The alignment between predicted confidence and actual accuracy; a 70% confidence score should be correct approximately 70% of the time" style="border-bottom:1px dotted var(--ink);cursor:help">calibration</abbr> data.</strong> "Previous leads with 85% confidence had 78% conversion."</li>
       <li style="margin-bottom:10px"><strong>Provide override.</strong> Confidence ≠ final decision. Users dismiss or flag.</li>
       <li style="margin-bottom:10px"><strong>Test with users.</strong> Does 75% feel "safe to act on"? Run research; intuitions vary.</li>
-      <li style="margin-bottom:10px"><strong>Accessibility.</strong> Never use color alone — pair with numeric, label, or icon.</li>
+      <li style="margin-bottom:10px"><strong><abbr title="The design principle of making interfaces usable by people with disabilities including vision, hearing, motor, and cognitive disabilities" style="border-bottom:1px dotted var(--ink);cursor:help">Accessibility</abbr>.</strong> Never use color alone — pair with numeric, label, or icon.</li>
       <li style="margin-bottom:10px"><strong>Mobile.</strong> Confidence scores take space — collapse to icon if needed.</li>
     </ul>
   </section>

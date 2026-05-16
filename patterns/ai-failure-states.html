@@ -78,14 +78,14 @@
       <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin:0">AI Failure State Patterns</h1>
       <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">Stable</span>
     </div>
-    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · Graceful Degradation</p>
+    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · <abbr title="A system design approach where functionality degrades gracefully when failures occur, offering reduced but still-useful alternatives rather than failing completely" style="border-bottom:1px dotted var(--ink);cursor:help">Graceful Degradation</abbr></p>
   </div>
 </div>
 
 <main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
 
   <section style="margin-bottom:60px">
-    <p style="font-size:17px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px;font-family:var(--ff-display);font-style:italic">Most designers spend 90% of their time designing the happy path. Algorithms fail — they timeout, hallucinate, encounter data outside their training distribution. How you communicate that failure is where trust is built or shattered.</p>
+    <p style="font-size:17px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px;font-family:var(--ff-display);font-style:italic">Most designers spend 90% of their time designing the happy path. Algorithms fail — they timeout, <abbr title="When a machine learning model generates convincing-sounding but false or made-up information because it's trying to complete a pattern without actual data" style="border-bottom:1px dotted var(--ink);cursor:help">hallucinate</abbr>, encounter data outside their training distribution. How you communicate that failure is where trust is built or shattered.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">The best AI products don't hide failures. They acknowledge them transparently and provide a clear next step. Five patterns follow.</p>
     
     <!-- Abstract UI Diagram: Failure State Comparison -->
@@ -125,7 +125,7 @@
 
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">1. The Honest "I Don't Know"</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">When the model's confidence falls below a threshold, show a transparent message: "I couldn't find a confident answer. This might be because [reason]." Don't pretend to know. Don't hallucinate a plausible answer.</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">When the model's confidence falls below a <abbr title="The numeric boundary (e.g., 65%) below which the system either hides output or flags uncertainty to the user" style="border-bottom:1px dotted var(--ink);cursor:help">threshold</abbr>, show a transparent message: "I couldn't find a confident answer. This might be because [reason]." Don't pretend to know. Don't hallucinate a plausible answer.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px"><strong>Example language:</strong></p>
     <ul style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
       <li style="margin-bottom:8px">"I'm not confident enough in my answer. Try rephrasing your question or checking your data."</li>
@@ -133,11 +133,12 @@
       <li style="margin-bottom:8px">"The system encountered an edge case. Please contact support with this reference ID: XYZ."</li>
     </ul>
     <p style="font-size:14px;color:var(--ink-muted);line-height:1.8">The key is <strong>specificity</strong>. "Something went wrong" is useless. "Your query matches fewer than 3 historical examples, so I can't predict with confidence" gives users actionable insight into <em>why</em> the failure happened.</p>
+    <p style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-top:12px"><em>See also: </em><abbr title="Unusual, boundary, or rare scenarios that fall outside the normal or happy path workflow" style="border-bottom:1px dotted var(--ink);cursor:help">edge case</abbr> <em>(ref: line 133)</em></p>
   </section>
 
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">2. The Graduated Fallback</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Instead of failure = dead end, offer increasingly degraded but still-useful options. "I can't give a precise recommendation, but here are three alternatives: (A) Use the default, (B) See similar historical cases, (C) Talk to an expert."</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Instead of failure = dead end, offer increasingly degraded but still-useful options. "I can't give a precise recommendation, but here are three alternatives: (A) Use the default, (B) See similar historical cases, (C) Talk to an expert." This is <abbr title="A secondary plan or option that activates when the primary solution fails, ensuring the user can still proceed" style="border-bottom:1px dotted var(--ink);cursor:help">fallback</abbr> design at scale.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px"><strong>Fallback hierarchy (best to worst):</strong></p>
     <ol style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
       <li style="margin-bottom:6px">Primary: AI recommendation (high confidence)</li>

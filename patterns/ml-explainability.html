@@ -137,13 +137,13 @@
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">1. Feature Importance (What Mattered Most)</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Show the top 3–5 features that most influenced the decision, ranked by importance. "This lead scored high because: (1) 85% match on job title [importance: 45%], (2) Company size in target range [importance: 30%], (3) Recent activity on site [importance: 15%]."</p>
     <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:8px"><strong>Strengths:</strong> Simple to implement; users can verify; builds intuition over time.</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Weaknesses:</strong> Doesn't explain feature interactions; misleading if features are correlated.</p>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Weaknesses:</strong> Doesn't explain <abbr title="How changes in one input variable affect the impact of another input variable on the decision—for example, job title and industry may interact, making both more important together than separately" style="border-bottom:1px dotted var(--ink);cursor:help">feature interactions</abbr>; misleading if features are correlated.</p>
   </section>
 
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">2. Counterfactual Reasoning ("What If")</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Show what would change the decision. "The system predicted this lead is high-value. If you had [changed one thing], the prediction would drop to medium-value." Or: "You're 3 steps away from the next tier. Here's what would get you there."</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Counterfactuals are powerful because users immediately understand the causal story. They see the decision as changeable (not inevitable) and know what to modify.</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px"><abbr title="A hypothetical scenario showing what would change if one input variable were different, revealing causal relationships and decision boundaries" style="border-bottom:1px dotted var(--ink);cursor:help">Counterfactuals</abbr> are powerful because users immediately understand the causal story. They see the decision as changeable (not inevitable) and know what to modify.</p>
     <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>When counterfactuals shine:</strong> Any system where users can take action — sales (close a deal), education (improve a score), recommendations (get better suggestions).</p>
   </section>
 
@@ -157,7 +157,7 @@
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">4. Reasoning Path ("Step by Step")</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Trace the decision-making chain. "To predict conversion, I first checked industry (SaaS), then company size (50–200), then engagement (high), then estimated conversion as 73%."</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Mimics how a human analyst would reason through the problem. Users see the branching logic.</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Works for:</strong> Tree-based models, decision trees, rule-based systems. <strong>Breaks for:</strong> Neural networks (no interpretable path; forcing a narrative is hand-waving).</p>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Works for:</strong> <abbr title="Machine learning models like decision trees, random forests, and gradient boosting that split data into interpretable branches, making decisions traceable step-by-step" style="border-bottom:1px dotted var(--ink);cursor:help">Tree-based models</abbr>, decision trees, rule-based systems. <strong>Breaks for:</strong> <abbr title="Deep learning models with multiple layers of interconnected nodes whose decision logic is mathematically complex and not easily interpretable by humans" style="border-bottom:1px dotted var(--ink);cursor:help">Neural networks</abbr> (no interpretable path; forcing a narrative is hand-waving).</p>
   </section>
 
   <section style="margin-bottom:64px">
@@ -177,11 +177,11 @@
     <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px">Implementation Checklist</h2>
     <ul style="font-size:15px;color:var(--ink-muted);line-height:1.8;padding-left:24px">
       <li style="margin-bottom:10px"><strong>Choose explanation type</strong> based on domain — feature importance, counterfactual, or comparative.</li>
-      <li style="margin-bottom:10px"><strong>Compute explanations:</strong> Tree models = built-in importance; neural networks = LIME/SHAP; rule-based = trace rules.</li>
+      <li style="margin-bottom:10px"><strong>Compute explanations:</strong> Tree models = built-in importance; neural networks = <abbr title="LIME (Local Interpretable Model-agnostic Explanations) and SHAP (SHapley Additive exPlanations) are mathematical methods that explain neural network predictions by attributing each decision to individual input features" style="border-bottom:1px dotted var(--ink);cursor:help">LIME/SHAP</abbr>; rule-based = trace rules.</li>
       <li style="margin-bottom:10px"><strong>Translate to plain language:</strong> "Feature X has importance 0.34" → "Job title was the strongest signal (34% of the decision)."</li>
       <li style="margin-bottom:10px"><strong>Test with users:</strong> Can they explain <em>why</em> the model decided? Do they trust it more?</li>
       <li style="margin-bottom:10px"><strong>Avoid fake explanations:</strong> Don't invent a narrative if you don't understand the model's logic.</li>
-      <li style="margin-bottom:10px"><strong>Progressive disclosure:</strong> Simple by default (top 3 features); detailed on click.</li>
+      <li style="margin-bottom:10px"><strong><abbr title="A design pattern where complex information is hidden initially to reduce cognitive load, then revealed on user action to avoid overwhelming them" style="border-bottom:1px dotted var(--ink);cursor:help">Progressive disclosure</abbr>:</strong> Simple by default (top 3 features); detailed on click.</li>
     </ul>
   </section>
 

@@ -125,7 +125,7 @@
 
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">1. The Approve / Reject / Flag Interface</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">AI recommends. User has three options: (1) Approve and execute, (2) Reject and discard, (3) Flag for later review. The simplest HITL flow.</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">AI recommends. User has three options: (1) Approve and execute, (2) Reject and discard, (3) Flag for later review. The simplest <abbr title="Human-in-the-loop; a system design pattern where humans and AI systems work together iteratively, with humans making final decisions or corrections" style="border-bottom:1px dotted var(--ink);cursor:help">HITL</abbr> flow.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">AI does the heavy lifting (gathering data, running inference). The human verifies (eyeballing the recommendation and either blessing or questioning it).</p>
     <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-top:16px"><strong>Use when</strong> high-volume, low-friction decisions (content moderation, fraud detection, segmentation). <strong>Gotcha:</strong> users click through without reading. Add a confirmation for high-stakes decisions.</p>
   </section>
@@ -145,8 +145,8 @@
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">4. The Escalation Ladder</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">For decisions above a confidence threshold, auto-approve. Below the threshold, escalate to a human. Below an even lower threshold, escalate to a senior expert.</p>
+    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">4. The <abbr title="The process of routing uncertain or high-risk decisions to increasingly senior reviewers based on confidence levels" style="border-bottom:1px dotted var(--ink);cursor:help">Escalation</abbr> Ladder</h2>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">For decisions above a <abbr title="The numeric score or percentage that determines whether a decision is confident enough for automated approval or requires human review" style="border-bottom:1px dotted var(--ink);cursor:help">confidence threshold</abbr>, auto-approve. Below the threshold, escalate to a human. Below an even lower threshold, escalate to a senior expert.</p>
     <div style="overflow-x:auto;margin:24px 0">
       <table style="width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-muted)">
         <thead>
@@ -183,9 +183,9 @@
       <li style="margin-bottom:10px"><strong>Choose the human role:</strong> Verifier (approve/reject), editor (modify), or expert (override with explanation)?</li>
       <li style="margin-bottom:10px"><strong>Define the decision boundary:</strong> What can AI decide alone? What requires review? What requires expertise?</li>
       <li style="margin-bottom:10px"><strong>Track all decisions:</strong> AI recommendation, human decision, confidence, reasoning.</li>
-      <li style="margin-bottom:10px"><strong>Analyze divergence:</strong> Weekly — where do humans override? Monthly — patterns. Quarterly — model improvements.</li>
+      <li style="margin-bottom:10px"><strong>Analyze divergence:</strong> Weekly — where do humans override? Monthly — patterns. Quarterly — model improvements and <abbr title="To update and improve a machine learning model by feeding it new data from user corrections and feedback" style="border-bottom:1px dotted var(--ink);cursor:help">retrain</abbr>.</li>
       <li style="margin-bottom:10px"><strong>Close the loop:</strong> Tell users "Your feedback improved accuracy by X%."</li>
-      <li style="margin-bottom:10px"><strong>Prevent approval fatigue:</strong> Don't ask users to approve 100 low-risk items daily.</li>
+      <li style="margin-bottom:10px"><strong>Prevent <abbr title="Cognitive overload and decreased decision quality that occurs when users must make too many approval decisions in succession" style="border-bottom:1px dotted var(--ink);cursor:help">approval fatigue</abbr>:</strong> Don't ask users to approve 100 low-risk items daily.</li>
     </ul>
   </section>
 
