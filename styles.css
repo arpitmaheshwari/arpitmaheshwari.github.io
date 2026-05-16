@@ -276,5 +276,8 @@ h1, h2, h3, h4, h5, h6 {
   scroll-margin-top: 80px;
 }
 
+/* Exit-Intent Banner (Phase 6B §6.2.8) */
+#exitIntentBanner{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--bg-card);border-top:1px solid var(--border);padding:20px 24px;text-align:center;opacity:0;transform:translateY(100px);transition:opacity 0.3s ease-out,transform 0.3s ease-out;pointer-events:none}#exitIntentBanner p{margin:0;color:var(--ink)}#exitIntentBanner p:first-child{font-weight:600;margin-bottom:8px}#exitIntentBanner p:nth-child(2){font-size:13px;color:var(--ink-muted);margin-bottom:16px}#exitIntentForm{display:flex;flex-direction:column;gap:12px;max-width:300px;margin:0 auto}#exitIntentForm input{padding:10px 12px;border:1px solid var(--border);border-radius:4px;font-size:14px;font-family:var(--ff-sans)}#exitIntentForm button{padding:10px 16px;background:var(--gold);color:var(--bg);border:none;border-radius:4px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity 0.2s}#exitIntentForm button:hover{opacity:0.8}#dismissExitIntent{position:absolute;top:12px;right:12px;background:none;border:none;font-size:20px;color:var(--ink-muted);cursor:pointer;padding:4px 8px;transition:color 0.2s}#dismissExitIntent:hover{color:var(--ink)}@media(max-width:480px){#exitIntentBanner{max-height:180px;overflow-y:auto;padding:16px}#exitIntentForm{max-width:100%}}
+
 /* Reduced Motion Preference */
 @media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}}
