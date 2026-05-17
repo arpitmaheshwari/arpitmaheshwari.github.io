@@ -126,7 +126,7 @@
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-<a href="#about" class="skip-link">Skip to content</a>
+<a href="#featured-case-studies" class="skip-link">Skip to content</a>
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
   <symbol id="i-bar-chart" viewBox="0 0 24 24"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></symbol>
   <symbol id="i-accessibility" viewBox="0 0 24 24"><circle cx="16" cy="4" r="1"/><path d="m18 8-4 2.1-4-2.1"/><path d="M12 10v4l-2 4"/><path d="m12 14 2 4"/><path d="M6 8.7c2-.4 4-.7 6-.7s4 .3 6 .7"/></symbol>
@@ -156,7 +156,7 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="./index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="./assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
-  <ul class="nav-links"><li><a href="./case-studies/index.html">Work</a></li><li><a href="./patterns/index.html">Patterns</a></li><li><a href="./index.html#about">About</a></li><li><a href="./index.html#contact">Contact</a></li></ul>
+  <ul class="nav-links"><li><a href="./case-studies/index.html">Work</a></li><li><a href="./patterns/index.html">Patterns</a></li><li><a href="./index.html#how-i-work">Process</a></li><li><a href="./index.html#contact">Contact</a></li></ul>
   <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -165,44 +165,22 @@
   <canvas id="hero-canvas" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;"></canvas>
   <div class="hero-bg" aria-hidden="true" style="z-index:1;"></div>
   <div class="hero-grid-lines" aria-hidden="true" style="z-index:1;"></div>
-  <div style="position:relative; z-index:2;">
-  <p class="hero-eyebrow">Founding Designer for AI Products</p>
+  <div style="position:relative; z-index:2; max-width:800px;">
   <h1 class="hero-headline">
     <span class="line"><span class="line-inner">I design the moment</span></span>
     <span class="line"><span class="line-inner">a user decides to</span></span>
-    <span class="line"><span class="line-inner"><em>trust</em> the algorithm —</span></span>
-    <span class="line"><span class="line-inner">or override it.</span></span>
+    <span class="line"><span class="line-inner"><em>trust</em> the algorithm.</span></span>
   </h1>
-  <div style="font-size:11px;color:var(--ink-dim);margin-bottom:20px;opacity:0;transform:translateY(20px);animation:reveal .8s var(--ease-out) 1.4s forwards;line-height:1.6;font-family:var(--ff-mono)">
-    <div style="color:var(--gold);font-weight:500;margin-bottom:8px">Outcomes across 15 years:</div>
-    <div>3× faster adoption on programmatic AI (n=12K buyers, baseline gut-based decisions)</div>
-    <div>60% faster screening in financial analysis (from 90 min/deal → 36 min, n=42 analysts, 6-month post-launch)</div>
-    <div>40% fewer support tickets via billing clarity (7.2K/month → 4.3K/month, UK market, rolling 6-month average)</div>
-    <div>550k+ users across 11 languages, WCAG AA compliant, 2017–2019 EdTech platform</div>
-  </div>
-  <div class="hero-cta-row" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:24px;opacity:0;transform:translateY(20px);animation:reveal .8s var(--ease-out) 1.5s forwards">
-    <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="hero" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:13px;letter-spacing:0.03em;border-radius:2px;transition:background 0.3s,transform 0.2s;text-decoration:none;white-space:nowrap" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Book intro call <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-    <a href="#now" data-cta="read-writing" data-location="hero" style="display:inline-flex;align-items:center;gap:6px;padding:13px 20px;color:var(--ink-muted);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--border);border-radius:2px;transition:border-color 0.3s,color 0.3s;text-decoration:none;white-space:nowrap" onmouseover="this.style.borderColor='var(--border-accent)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--ink-muted)'">See shipping <svg class="icon" style="width:11px;height:11px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-  </div>
-  <div class="hero-sub">
-    <p class="hero-desc"><strong style="color:var(--gold)">Fifteen years. AI, FinTech, AdTech, EdTech, Telecom. I write the SQL. I ship the CSS.</strong></p>
-    <p class="hero-desc">Looking for <strong style="color:var(--ink)">founding designer roles at Series Seed–B companies</strong> where user trust isn't a feature — it's the foundation. 1M+ users have shipped through interfaces I've designed.</p>
-    <div class="hero-meta">
-      <div class="hero-stats" aria-label="Key statistics" style="gap:32px">
-        <div class="stat"><div class="stat-number" style="font-size:36px">15</div><div class="stat-label">Years deep</div></div>
-        <div class="stat"><div class="stat-number" style="font-size:36px">8+</div><div class="stat-label">Industries</div></div>
-        <div class="stat"><div class="stat-number" style="font-size:36px">550k</div><div class="stat-label">Users impacted</div></div>
-      </div>
-    </div>
-    </div>
+  <p style="font-size:18px; line-height:1.6; color:var(--ink-muted); margin-bottom:48px; max-width:600px; opacity:0; transform:translateY(20px); animation:reveal .8s var(--ease-out) 1.1s forwards;">
+    <strong style="color:var(--ink)">Founding & Staff Product Designer.</strong><br>
+    15 years shipping data-dense interfaces across AI, FinTech, and enterprise.
+  </p>
+  <div class="hero-cta-row" style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;opacity:0;transform:translateY(20px);animation:reveal .8s var(--ease-out) 1.3s forwards">
+    <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="hero" style="display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:0.03em;border-radius:2px;transition:background 0.3s,transform 0.2s;text-decoration:none;white-space:nowrap" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Book intro call <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    <a href="#featured-case-studies" data-cta="read-writing" data-location="hero" style="display:inline-flex;align-items:center;gap:6px;padding:15px 24px;color:var(--ink-muted);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--border);border-radius:2px;transition:border-color 0.3s,color 0.3s;text-decoration:none;white-space:nowrap" onmouseover="this.style.borderColor='var(--border-accent)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--ink-muted)'">See selected work <svg class="icon" style="width:11px;height:11px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
   </div>
   </div>
 </section>
-
-<div class="marquee-strip" aria-hidden="true"><div class="marquee-track">
-  <span class="marquee-item"><span class="marquee-dot"></span>AI Product Design</span><span class="marquee-item"><span class="marquee-dot"></span>Data-Intensive UX</span><span class="marquee-item"><span class="marquee-dot"></span>AdTech</span><span class="marquee-item"><span class="marquee-dot"></span>FinTech</span><span class="marquee-item"><span class="marquee-dot"></span>EdTech</span><span class="marquee-item"><span class="marquee-dot"></span>Telecom</span><span class="marquee-item"><span class="marquee-dot"></span>ML Interfaces</span><span class="marquee-item"><span class="marquee-dot"></span>Intelligent Dashboards</span><span class="marquee-item"><span class="marquee-dot"></span>Accessibility</span><span class="marquee-item"><span class="marquee-dot"></span>Design Strategy</span><span class="marquee-item"><span class="marquee-dot"></span>Explainable AI</span><span class="marquee-item"><span class="marquee-dot"></span>Enterprise UX</span>
-  <span class="marquee-item"><span class="marquee-dot"></span>AI Product Design</span><span class="marquee-item"><span class="marquee-dot"></span>Data-Intensive UX</span><span class="marquee-item"><span class="marquee-dot"></span>AdTech</span><span class="marquee-item"><span class="marquee-dot"></span>FinTech</span><span class="marquee-item"><span class="marquee-dot"></span>EdTech</span><span class="marquee-item"><span class="marquee-dot"></span>Telecom</span><span class="marquee-item"><span class="marquee-dot"></span>ML Interfaces</span><span class="marquee-item"><span class="marquee-dot"></span>Intelligent Dashboards</span><span class="marquee-item"><span class="marquee-dot"></span>Accessibility</span><span class="marquee-item"><span class="marquee-dot"></span>Design Strategy</span><span class="marquee-item"><span class="marquee-dot"></span>Explainable AI</span><span class="marquee-item"><span class="marquee-dot"></span>Enterprise UX</span>
-</div></div>
 
 <!-- ===== FEATURED CASE STUDIES — primary portfolio content ===== -->
 <section id="featured-case-studies" class="section" style="background:var(--bg);border-top:1px solid var(--border)"><div class="section-inner">
@@ -211,13 +189,13 @@
     <div class="section-numeral-rule"></div>
     <h3 class="section-numeral-name">Selected Work</h3>
   </div>
-  <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;max-width:65ch;margin-bottom:60px">15 years designing <abbr title="Products where algorithms or real-time data drive decisions users must understand and trust" style="border-bottom:1px dotted var(--ink-muted);cursor:help">intelligent systems</abbr> that users trust. Here are five projects across AdTech, FinTech, EdTech, Telecom, and organizational design. All work is NDA-protected; what you see below are the strategic insights and methodologies.</p>
+  <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;max-width:65ch;margin-bottom:60px">15 years designing intelligent systems that users trust. Here are five projects across AdTech, FinTech, EdTech, Telecom, and organizational design. All work is NDA-protected; what you see below are the strategic insights and methodologies.</p>
   <div class="work-grid-asymmetric">
     <!-- Row 1: OrgOS full-bleed marquee -->
     <div class="work-row-1">
       <a href="./case-studies/orgos.html" class="case-card reveal" style="text-decoration:none;color:inherit;display:block">
         <div class="case-card-band sector-org"></div>
-        <div class="case-body"><div class="case-sector">Org Design</div><div class="case-title" style="font-size:20px">OrgOS</div><div class="case-desc" style="font-size:13px">Operating system for transparent organizations. 8 interconnected modules for decentralized decision-making.</div><div class="case-metrics" style="display:flex;gap:24px;padding-top:16px;border-top:1px solid var(--border)"><div><div class="metric-val" style="font-size:24px">8</div><div class="metric-label">Modules</div></div></div></div>
+        <div class="case-body"><div class="case-sector">Org Design</div><div class="case-title" style="font-size:20px; margin-bottom:24px;">OrgOS</div><div class="case-metrics" style="display:flex;gap:24px;padding-top:16px;border-top:1px solid var(--border)"><div><div class="metric-val" style="font-size:24px">8</div><div class="metric-label">Modules</div></div></div></div>
       </a>
     </div>
 
@@ -225,12 +203,12 @@
     <div class="work-row-2">
       <a href="./case-studies/adtech.html" class="case-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block">
         <div class="case-card-band sector-adtech"></div>
-        <div class="case-body"><div class="case-sector">AdTech</div><div class="case-title" style="font-size:20px">Programmatic Advertising</div><div class="case-desc" style="font-size:13px">How media buyers stopped trusting their gut and started trusting algorithmic recommendations.</div><div class="case-metrics" style="display:flex;gap:24px;padding-top:16px;border-top:1px solid var(--border)"><div><div class="metric-val" style="font-size:24px">3×</div><div class="metric-label">Faster adoption</div></div></div></div>
+        <div class="case-body"><div class="case-sector">AdTech</div><div class="case-title" style="font-size:20px; margin-bottom:24px;">Programmatic Advertising</div><div class="case-metrics" style="display:flex;gap:24px;padding-top:16px;border-top:1px solid var(--border)"><div><div class="metric-val" style="font-size:24px">3×</div><div class="metric-label">Faster adoption</div></div></div></div>
       </a>
 
       <a href="./case-studies/fintech.html" class="case-card reveal reveal-delay-2" style="text-decoration:none;color:inherit;display:block">
         <div class="case-card-band sector-fintech"></div>
-        <div class="case-body"><div class="case-sector">FinTech</div><div class="case-title" style="font-size:20px">AI-Assisted Due Diligence</div><div class="case-desc" style="font-size:13px">How I got PE analysts to defer to an AI their boss didn't trust.</div><div class="case-metrics" style="display:flex;gap:24px;padding-top:16px;border-top:1px solid var(--border)"><div><div class="metric-val" style="font-size:24px">60%</div><div class="metric-label">Faster screening</div></div></div></div>
+        <div class="case-body"><div class="case-sector">FinTech</div><div class="case-title" style="font-size:20px; margin-bottom:24px;">AI-Assisted Due Diligence</div><div class="case-metrics" style="display:flex;gap:24px;padding-top:16px;border-top:1px solid var(--border)"><div><div class="metric-val" style="font-size:24px">60%</div><div class="metric-label">Faster screening</div></div></div></div>
       </a>
     </div>
 
@@ -238,12 +216,12 @@
     <div class="work-row-3">
       <a href="./case-studies/ptc.html" class="case-card reveal reveal-delay-2" style="text-decoration:none;color:inherit;display:block">
         <div class="case-card-band sector-edtech"></div>
-        <div class="case-body"><div class="case-sector">EdTech</div><div class="case-title" style="font-size:20px">PTC University</div><div class="case-desc" style="font-size:13px">Learning platform redesign for 11 languages, accessibility-first from sprint one.</div><div class="case-metrics" style="display:flex;gap:24px;padding-top:16px;border-top:1px solid var(--border)"><div><div class="metric-val" style="font-size:24px">550k+</div><div class="metric-label">Global users</div></div></div></div>
+        <div class="case-body"><div class="case-sector">EdTech</div><div class="case-title" style="font-size:20px; margin-bottom:24px;">PTC University</div><div class="case-metrics" style="display:flex;gap:24px;padding-top:16px;border-top:1px solid var(--border)"><div><div class="metric-val" style="font-size:24px">550k+</div><div class="metric-label">Global users</div></div></div></div>
       </a>
 
       <a href="./case-studies/o2.html" class="case-card reveal reveal-delay-3" style="text-decoration:none;color:inherit;display:block">
         <div class="case-card-band sector-telecom"></div>
-        <div class="case-body"><div class="case-sector">Telecom</div><div class="case-title" style="font-size:20px">O2 Priority</div><div class="case-desc" style="font-size:13px">How redesigning billing transparency killed 40% of support tickets.</div><div class="case-metrics" style="display:flex;gap:24px;padding-top:16px;border-top:1px solid var(--border)"><div><div class="metric-val" style="font-size:24px">40%</div><div class="metric-label">Fewer tickets</div></div></div></div>
+        <div class="case-body"><div class="case-sector">Telecom</div><div class="case-title" style="font-size:20px; margin-bottom:24px;">O2 Priority</div><div class="case-metrics" style="display:flex;gap:24px;padding-top:16px;border-top:1px solid var(--border)"><div><div class="metric-val" style="font-size:24px">40%</div><div class="metric-label">Fewer tickets</div></div></div></div>
       </a>
     </div>
   </div>
@@ -252,10 +230,43 @@
   </div>
 </div></section>
 
+
+
+<!-- ===== DESIGN MANIFESTO — merged Thesis + Philosophy ===== -->
+<section id="design-manifesto" class="section" style="border-top:1px solid var(--border)"><div class="section-inner">
+  <div class="section-numeral">
+    <h2 class="section-numeral-number">§ 02</h2>
+    <div class="section-numeral-rule"></div>
+    <h3 class="section-numeral-name">Manifesto</h3>
+  </div>
+  
+  <div style="max-width:800px; margin:48px auto 64px auto; text-align:center;" class="reveal">
+    <h3 style="font-family:var(--ff-display);font-weight:300;font-size:clamp(32px,4vw,44px);line-height:1.2;margin-bottom:24px;color:var(--ink)">Intelligent systems fail when users don't understand them. <br><em style="font-style:italic;color:var(--gold)">Design distrust first, trust second.</em></h3>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:48px;" class="reveal reveal-delay-1">
+    <div>
+      <div style="color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;margin-bottom:12px;">01</div>
+      <h4 style="font-size:18px;font-weight:600;color:var(--ink);margin-bottom:12px;">Design the failure state first.</h4>
+      <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;">AI is wrong often. The happy path is 30% of the work. I design what happens when the model is uncertain, when data is missing, or when confidence is low.</p>
+    </div>
+    <div>
+      <div style="color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;margin-bottom:12px;">02</div>
+      <h4 style="font-size:18px;font-weight:600;color:var(--ink);margin-bottom:12px;">Show the why.</h4>
+      <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;">Users don't trust black boxes. Explainability—showing data provenance, confidence levels, and model weights—isn't a nice-to-have. It's the product.</p>
+    </div>
+    <div>
+      <div style="color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;margin-bottom:12px;">03</div>
+      <h4 style="font-size:18px;font-weight:600;color:var(--ink);margin-bottom:12px;">Accessible by default.</h4>
+      <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;">An AI dashboard that only works for sighted mouse users fails half the audience. I build WCAG AA compliance into the first sprint, not the last.</p>
+    </div>
+  </div>
+</div></section>
+
 <!-- ===== AI DESIGN PATTERNS — secondary portfolio content ===== -->
 <section id="patterns" class="section" style="border-top:1px solid var(--border)"><div class="section-inner">
   <div class="section-numeral">
-    <h2 class="section-numeral-number">§ 02</h2>
+    <h2 class="section-numeral-number">§ 03</h2>
     <div class="section-numeral-rule"></div>
     <h3 class="section-numeral-name">Patterns</h3>
   </div>
@@ -274,25 +285,17 @@
     </a>
     <a href="./patterns/ml-explainability.html" style="padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);transition:border-color 0.3s,transform 0.3s;text-decoration:none;color:inherit;display:block" onmouseover="this.style.borderColor='var(--border-accent)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
       <div style="color:var(--gold);font-size:20px;margin-bottom:16px">→</div>
-      <h3 style="font-family:var(--ff-display);font-weight:400;font-size:20px;margin-bottom:12px;color:var(--ink)"><abbr title="Showing users why a model made a decision, not just what it decided" style="border-bottom:1px dotted var(--gold);cursor:help">ML Explainability</abbr></h3>
+      <h3 style="font-family:var(--ff-display);font-weight:400;font-size:20px;margin-bottom:12px;color:var(--ink)">ML Explainability</h3>
       <p style="font-size:13px;color:var(--ink-muted);line-height:1.7">Patterns for making ML decision-making visible to non-technical users without overwhelming them.</p>
     </a>
     <a href="./patterns/human-in-loop.html" style="padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);transition:border-color 0.3s,transform 0.3s;text-decoration:none;color:inherit;display:block" onmouseover="this.style.borderColor='var(--border-accent)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
       <div style="color:var(--gold);font-size:20px;margin-bottom:16px">→</div>
-      <h3 style="font-family:var(--ff-display);font-weight:400;font-size:20px;margin-bottom:12px;color:var(--ink)"><abbr title="Workflows where AI suggests, humans verify or override" style="border-bottom:1px dotted var(--gold);cursor:help">Human-in-Loop</abbr> Patterns</h3>
+      <h3 style="font-family:var(--ff-display);font-weight:400;font-size:20px;margin-bottom:12px;color:var(--ink)">Human-in-Loop Patterns</h3>
       <p style="font-size:13px;color:var(--ink-muted);line-height:1.7">Interface patterns for keeping humans in control when AI handles high-stakes recommendations.</p>
     </a>
   </div>
 
-  <!-- Inline newsletter capture (soft CTA) -->
-  <div class="reveal" style="background:var(--bg-soft);border:1px solid var(--border);border-radius:4px;padding:24px;margin-bottom:24px">
-    <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:8px">Get 1 AI UX pattern in your inbox every month</div>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:16px">Join 2,500+ designers and founders reading my design notes on shipping intelligent systems.</p>
-    <form id="newsletter-form-patterns" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank" style="display:flex;gap:8px;flex-wrap:wrap">
-      <input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink);font-family:var(--ff-sans);font-size:14px">
-      <button type="submit" data-cta="newsletter" data-location="patterns" style="padding:14px 24px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s">Subscribe</button>
-    </form>
-  </div>
+
 
   <div style="margin-top:32px;text-align:center;display:flex;justify-content:center" class="reveal">
     <a href="./patterns/index.html" style="display:inline-flex;align-items:center;gap:10px;padding:14px 28px;color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--gold-dark);border-radius:2px;transition:background 0.3s,color 0.3s;text-decoration:none" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">View all patterns <svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
@@ -305,226 +308,89 @@
   <p class="pullquote-card-attr" style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-top:16px">A.M., 2022</p>
 </section>
 
-<!-- ===== NOW — what I'm shipping right now ===== -->
-<section id="now" class="section"><div class="section-inner">
-  <div class="section-numeral">
-    <h2 class="section-numeral-number">§ 03</h2>
-    <div class="section-numeral-rule"></div>
-    <h3 class="section-numeral-name">Now · Shipping</h3>
-  </div>
-  <div class="now-grid">
-    <div class="reveal">
-      <h3 class="now-headline">What I'm <em>shipping right now.</em></h3>
-      <p style="font-family:var(--ff-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);margin-top:24px">Updates monthly</p>
-    </div>
-    <div class="now-items">
-      <div class="now-item reveal reveal-delay-1">
-        <div class="now-icon"><svg class="icon" aria-hidden="true"><use href="#i-radio"/></svg></div>
-        <div>
-          <div class="now-item-title">Looking for: Founding & staff designer roles</div>
-          <div class="now-item-desc">Startups and enterprises building intelligent, data-intensive products. First or second designer. I code production UI alongside Figma. <a href="#contact" style="color:var(--gold);text-decoration:none">Talk to me →</a></div>
-        </div>
-      </div>
-      <div class="now-item reveal reveal-delay-2">
-        <div class="now-icon"><svg class="icon" aria-hidden="true"><use href="#i-cpu"/></svg></div>
-        <div>
-          <div class="now-item-title">Building: AI Design Patterns library</div>
-          <div class="now-item-desc">A growing catalog of patterns from 15 years of ML/AI work — confidence scores, failure states, explainability surfaces. Coming to this site soon.</div>
-        </div>
-      </div>
-      <div class="now-item reveal reveal-delay-3">
-        <div class="now-icon"><svg class="icon" aria-hidden="true"><use href="#i-book"/></svg></div>
-        <div>
-          <div class="now-item-title">Writing: Creative Clarity</div>
-          <div class="now-item-desc">Monthly notes on designing intelligent systems — patterns, methodology, and lessons from data-intensive products across AI, FinTech, AdTech, and beyond. <a href="https://arpitmaheshwari.substack.com/" target="_blank" rel="noopener noreferrer" data-cta="substack" data-location="now-section" style="color:var(--gold);text-decoration:none">Subscribe →</a></div>
-        </div>
-      </div>
-      <div class="now-item reveal reveal-delay-4">
-        <div class="now-icon"><svg class="icon" aria-hidden="true"><use href="#i-megaphone"/></svg></div>
-        <div>
-          <div class="now-item-title">Recent: How I forbid AI from hallucinating</div>
-          <div class="now-item-desc">Designing safeguards into AI interfaces to prevent hallucination and maintain user trust. <a href="https://arpitmaheshwari.substack.com/p/how-i-forbid-ai-from-hallucinating" target="_blank" rel="noopener noreferrer" data-cta="article" data-location="now-section" style="color:var(--gold);text-decoration:none">Read on Substack →</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div></section>
 
-<section id="about" class="section"><div class="section-inner">
+
+<!-- ===== HOW I WORK ===== -->
+<section id="how-i-work" class="section" style="border-top:1px solid var(--border)"><div class="section-inner">
   <div class="section-numeral">
     <h2 class="section-numeral-number">§ 04</h2>
     <div class="section-numeral-rule"></div>
-    <h3 class="section-numeral-name">About</h3>
-  </div>
-  <div class="about-grid">
-    <div class="about-left reveal">
-      <div class="about-photo-frame" style="width:300px;height:380px;position:relative;border:none;background:transparent;overflow:visible">
-        <div style="position:absolute;inset:0;border-radius:6px;border:1px solid rgba(212,168,94,0.25);overflow:hidden;background:var(--bg-card)">
-          <img src="20190105220407596_save.jpg" alt="Arpit Maheshwari — Product designer for AI and data-intensive products, based in Indore, India" width="300" height="380" loading="eager" style="width:100%;height:100%;object-fit:cover;object-position:center top">
-        </div>
-        <div style="position:absolute;top:-8px;left:-8px;width:80px;height:80px;border-top:2px solid var(--gold);border-left:2px solid var(--gold);border-radius:6px 0 0 0;pointer-events:none" aria-hidden="true"></div>
-        <div style="position:absolute;bottom:-8px;right:-8px;width:80px;height:80px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold);border-radius:0 0 6px 0;pointer-events:none" aria-hidden="true"></div>
-        <div style="position:absolute;top:20%;left:10%;width:80%;height:60%;background:radial-gradient(ellipse,rgba(212,168,94,0.08),transparent 70%);z-index:-1;filter:blur(30px);pointer-events:none" aria-hidden="true"></div>
-      </div>
-      <h3 class="about-headline">Founding designer for<br><strong>intelligent systems.</strong></h3>
-    </div>
-    <div class="about-right">
-      <p class="about-bio reveal reveal-delay-1"><strong>What are <abbr title="Products where algorithms or real-time data drive decisions users must understand and trust" style="border-bottom:1px dotted var(--ink-muted);cursor:help">intelligent systems</abbr>?</strong> Products where <abbr title="Mathematical systems or rules that make decisions or predictions based on data" style="border-bottom:1px dotted var(--ink-muted);cursor:help">algorithms</abbr>, <abbr title="Machine learning models: systems trained on data to make predictions or recommendations" style="border-bottom:1px dotted var(--ink-muted);cursor:help">ML models</abbr>, or real-time data drive recommendations, decisions, or discoveries that non-technical users must understand and act on. Think: <abbr title="A numerical score (0-100%) showing how confident an algorithm is in its decision" style="border-bottom:1px dotted var(--ink-muted);cursor:help">confidence scores</abbr> in screening tools, AI explanations in advisory dashboards, risk signals in trading platforms. <strong>The design challenge:</strong> Users don't trust what they don't understand. So I design for <em>distrust first, trust second</em> — making the "why" as central as the output. I think in systems — understanding how products evolve from standardized processes → sensing/monitoring → intelligent decision-making — then design each layer accordingly.</p>
-      <p class="about-bio reveal reveal-delay-2">I code in HTML/CSS/JS. I read SQL. I sit in model reviews and translate metrics into product decisions. I've shipped data-intensive systems from raw complexity to 1M+ users. That hybrid — designer who ships production code and reads data architectures — is exactly what 0-to-1 founders need on day one. Based in <strong>Indore, India</strong>, fully remote across US, UK, and EU time zones.</p>
-    </div>
-  </div>
-</div></section>
-
-<!-- ===== TRUST THESIS — the central position the portfolio orbits ===== -->
-<section id="trust-thesis" class="section"><div class="section-inner">
-  <div class="section-numeral">
-    <h2 class="section-numeral-number">§ 05</h2>
-    <div class="section-numeral-rule"></div>
-    <h3 class="section-numeral-name">Thesis</h3>
-  </div>
-  <div style="max-width:860px;margin:0 auto">
-    <h3 style="font-family:var(--ff-display);font-weight:300;font-size:clamp(32px,4vw,48px);line-height:1.2;margin-bottom:40px;color:var(--ink)">Intelligent systems fail when users don't understand them. <em style="font-style:italic;color:var(--gold)">Design distrust first, trust second.</em></h3>
-
-    <div style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:32px">
-      <p style="margin-bottom:20px">In 2018, I watched a PE analyst ignore a system that scored companies 3x faster than his manual process. Why? He didn't trust it. The <abbr title="A mathematical system that makes decisions or predictions based on rules or data patterns" style="border-bottom:1px dotted var(--ink-muted);cursor:help">algorithm</abbr> was right — it just didn't explain itself. The design failure wasn't the math. It was the interface between the algorithm and his confidence.</p>
-
-      <p style="margin-bottom:20px">This pattern repeats everywhere intelligent systems are deployed. A media buyer questions a campaign recommendation. A loan officer wonders why the <abbr title="A trained mathematical system that makes predictions or recommendations based on data" style="border-bottom:1px dotted var(--ink-muted);cursor:help">model</abbr> flagged a deal. A screener user second-guesses a ranking. The bottleneck is always the same: <strong>users can't trust what they don't understand.</strong></p>
-
-      <p style="margin-bottom:20px">Most designers treat this as a UI problem: "Make the algorithm's output prettier." I treat it as a <abbr title="The belief or confidence a user has in whether an AI system will make the right decision" style="border-bottom:1px dotted var(--ink-muted);cursor:help">trust</abbr> problem: "Make the algorithm's thinking visible."</p>
-
-      <p style="margin-bottom:20px"><strong>This leads to my core design principle:</strong></p>
-    </div>
-
-    <div style="padding:32px;border-left:3px solid var(--gold);background:rgba(212,168,94,0.08);margin-bottom:40px">
-      <p style="font-family:var(--ff-display);font-size:20px;font-weight:300;line-height:1.6;color:var(--ink);margin:0">Design for distrust first. Show users the "why" before they ask. Build confidence-score patterns that translate algorithmic reasoning into human understanding. Make failure states explicit — what does the system not know? When should users override it? Design the guardrails before the accelerator.</p>
-    </div>
-
-    <div style="font-size:15px;color:var(--ink-muted);line-height:1.8">
-      <p style="margin-bottom:20px">When I design for distrust, trust follows naturally. The PE analyst who sees the reasoning believes the score. The media buyer who understands the recommendation acts on it. The loan officer who knows the model's boundaries uses it confidently.</p>
-
-      <p style="margin-bottom:20px">This applies across every industry where intelligent systems matter: AI/ML products, FinTech platforms, AdTech systems, medical decision support, talent screening tools. The domain changes. The trust problem doesn't.</p>
-
-      <p><strong>My job is to be the translator between the algorithm's logic and the human's trust.</strong> That's where the design happens. Not in Figma. In the thinking about how to make systems legible.</p>
-    </div>
-  </div>
-</div></section>
-
-<!-- ===== TESTIMONIALS ===== -->
-<section id="testimonials" class="section"><div class="section-inner">
-  <div class="section-numeral">
-    <h2 class="section-numeral-number">§ 06</h2>
-    <div class="section-numeral-rule"></div>
-    <h3 class="section-numeral-name">Voices</h3>
-  </div>
-  <div style="margin-bottom:32px"><h3 class="expertise-headline reveal">What they say <em>matters.</em></h3><p style="font-size:14px;color:var(--ink-muted);margin-top:16px">Full names and details available on <a href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none">LinkedIn</a>.</p></div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card reveal">
-      <div class="testimonial-quote">"Arpit has a rare ability to take messy, complex ML outputs and turn them into interfaces that non-technical stakeholders can actually use. He thinks in systems, not screens."</div>
-      <div class="testimonial-author"><strong>Engineering Lead</strong> — Sahaj Software</div>
-    </div>
-    <div class="testimonial-card reveal reveal-delay-1">
-      <div class="testimonial-quote">"His accessibility work on our learning platform was exceptional — he didn't just check compliance boxes, he genuinely improved the experience for every user across all our locales."</div>
-      <div class="testimonial-author"><strong>Product Manager</strong> — PTC University</div>
-    </div>
-    <div class="testimonial-card reveal reveal-delay-2">
-      <div class="testimonial-quote">"One of the few designers I've worked with who can sit in a data review meeting, understand model performance metrics, and translate that directly into design decisions the same week."</div>
-      <div class="testimonial-author"><strong>Data Scientist</strong> — Sahaj Software</div>
-    </div>
-    <div class="testimonial-card reveal reveal-delay-3">
-      <div class="testimonial-quote">"Arpit brought clarity to a product that had been confusing users for years. The My O2 redesign significantly reduced our support burden and improved satisfaction scores."</div>
-      <div class="testimonial-author"><strong>Product Owner</strong> — Telefonica UK</div>
-    </div>
-  </div>
-</div></section>
-
-<!-- ===== DESIGN PHILOSOPHY — what drives the thinking ===== -->
-<section id="philosophy" class="section"><div class="section-inner">
-  <div class="section-numeral">
-    <h2 class="section-numeral-number">§ 07</h2>
-    <div class="section-numeral-rule"></div>
-    <h3 class="section-numeral-name">Philosophy</h3>
-  </div>
-  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:48px">
-    <h2 class="philosophy-headline reveal" style="margin-bottom:0">Design<br><em>Philosophy</em></h2>
-    <p class="philosophy-sub reveal reveal-delay-1">How I think about AI products</p>
-  </div>
-  <div class="philosophy-cards reveal reveal-delay-2">
-    <div class="phil-card"><div class="phil-num" aria-hidden="true">01</div><div class="phil-title">Design the <abbr title="What the user sees and how they experience it when an AI system is uncertain, wrong, or cannot complete a task" style="border-bottom:1px dotted var(--ink-muted);cursor:help">Failure State</abbr> First</div><div class="phil-desc">AI is wrong 30–70% of the time in real usage. I design what happens when a model is uncertain, when data is missing, when confidence is low. The happy path demo is 30% of the work. The failure state is the other 70%. This gets designed *first*, not last.</div></div>
-    <div class="phil-card"><div class="phil-num" aria-hidden="true">02</div><div class="phil-title">Show the Why, Never Hide It</div><div class="phil-desc">Users don't trust <abbr title="AI systems whose inner decision-making process cannot be easily understood or explained to users" style="border-bottom:1px dotted var(--ink-muted);cursor:help">black boxes</abbr>. When an AI recommends something, I design <abbr title="Making visible to users why an AI made a specific decision, including what data and logic it used" style="border-bottom:1px dotted var(--ink-muted);cursor:help">explainability</abbr> into the interface — showing data provenance, confidence levels, what the model weighted, why it could be wrong. Transparency isn't a nice-to-have. It's the product.</div></div>
-    <div class="phil-card"><div class="phil-num" aria-hidden="true">03</div><div class="phil-title">Never Make Users Confirm What They Know</div><div class="phil-desc">If an AI is right 99% of the time, making the user click "confirm" 99% of the time is broken design. I design systems that only ask for confirmation *when the AI is uncertain* — respecting user time and building actual trust through earned authority.</div></div>
-    <div class="phil-card"><div class="phil-num" aria-hidden="true">04</div><div class="phil-title">Accessible by Default</div><div class="phil-desc">An AI dashboard that only works for sighted mouse users is a dashboard that fails half the audience. I build <abbr title="Web Content Accessibility Guidelines Level AA compliance: the practical standard for making websites usable for people with disabilities including vision, hearing, and motor challenges" style="border-bottom:1px dotted var(--ink-muted);cursor:help">WCAG compliance</abbr> into the first sprint, not the last — because retrofitting accessibility into <abbr title="Interfaces that display large amounts of data and information, like dashboards, analytics tools, or data tables" style="border-bottom:1px dotted var(--ink-muted);cursor:help">data-dense interfaces</abbr> is ten times harder than designing it in from day one.</div></div>
-  </div>
-</div></section>
-
-<!-- ===== HOW I WORK — merged Expertise + Tools + Remote ===== -->
-<section id="how-i-work" class="section"><div class="section-inner">
-  <div class="section-numeral">
-    <h2 class="section-numeral-number">§ 08</h2>
-    <div class="section-numeral-rule"></div>
     <h3 class="section-numeral-name">How I Work</h3>
   </div>
-  <div class="expertise-layout">
-    <div class="reveal">
-      <h3 class="expertise-headline">Design for<br><em>intelligent products.</em></h3>
-      <p class="expertise-intro">I work at the intersection of AI, data, and human experience — designing intelligent systems that are usable, trustworthy, and commercially viable.</p>
-      <a href="#contact" class="expertise-cta">Start a Project <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+  
+  <div style="max-width:800px; margin:0 auto 64px auto; text-align:center;" class="reveal">
+    <h3 style="font-family:var(--ff-display);font-weight:300;font-size:clamp(32px,4vw,44px);line-height:1.2;margin-bottom:24px;color:var(--ink)">Engagement Blueprint:<br><em style="font-style:italic;color:var(--gold)">How we build together.</em></h3>
+    <p style="font-size:16px;color:var(--ink-muted);line-height:1.6;">I work at the intersection of AI, data, and human experience. No two engagements are identical, but this is the cadence I default to — shadow the team, prototype with real data, ship a narrow cut, and iterate against user behavior. Founders see momentum within 14 days.</p>
+  </div>
+  
+  <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:32px;margin-bottom:80px;" class="process-steps reveal reveal-delay-1">
+    <div class="process-step" style="border-top:1px solid var(--border);padding-top:16px;margin:0">
+      <div class="process-step-num" style="color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;margin-bottom:8px;">01</div>
+      <div class="process-step-title" style="font-size:16px;font-weight:600;color:var(--ink)">Listen + Map</div>
+      <div class="process-step-desc" style="font-size:14px;color:var(--ink-muted);margin-top:8px">Shadow team, run SQL on raw data, talk to users. Output: UX diagnosis.</div>
     </div>
-    <div class="expertise-list">
-      <div class="exp-row reveal reveal-delay-1"><div class="exp-num" aria-hidden="true">01</div><div class="exp-content"><div class="exp-title">AI Product Design</div><div class="exp-desc">Designing interfaces for <abbr title="Products that use trained machine learning models to make predictions or recommendations" style="border-bottom:1px dotted var(--ink-muted);cursor:help">ML-powered products</abbr> — from <abbr title="Tools that use AI to automatically evaluate, rank, or filter candidates, applications, or data with human review gates" style="border-bottom:1px dotted var(--ink-muted);cursor:help">AI screening tools</abbr> and <abbr title="Systems that suggest products, content, or actions based on user data and model predictions" style="border-bottom:1px dotted var(--ink-muted);cursor:help">recommendation engines</abbr> to intelligent dashboards that keep humans in control.</div></div></div>
-      <div class="exp-row reveal reveal-delay-2"><div class="exp-num" aria-hidden="true">02</div><div class="exp-content"><div class="exp-title">UX for Intelligent Systems</div><div class="exp-desc">Making AI outputs legible — confidence scores, risk signals, explainability layers, and graceful fallbacks when models are uncertain.</div></div></div>
-      <div class="exp-row reveal reveal-delay-3"><div class="exp-num" aria-hidden="true">03</div><div class="exp-content"><div class="exp-title">Data-Dense Interface Design</div><div class="exp-desc">Complex dashboards, analytics platforms, and data-heavy enterprise tools — designed for clarity at scale.</div></div></div>
-      <div class="exp-row reveal reveal-delay-4"><div class="exp-num" aria-hidden="true">04</div><div class="exp-content"><div class="exp-title">Design Strategy</div><div class="exp-desc">Finding the right problem before solving it. Aligning AI capabilities with real user needs and business outcomes.</div></div></div>
-      <div class="exp-row reveal"><div class="exp-num" aria-hidden="true">05</div><div class="exp-content"><div class="exp-title">Frontend Prototyping</div><div class="exp-desc">HTML/CSS/JS prototypes that live in browsers — testing AI interactions with real data, not just Figma mocks.</div></div></div>
-      <div class="exp-row reveal reveal-delay-1"><div class="exp-num" aria-hidden="true">06</div><div class="exp-content"><div class="exp-title">Accessible AI</div><div class="exp-desc">WCAG-compliant design for AI-powered products — ensuring intelligent interfaces work for screen readers, keyboard navigation, and all abilities.</div></div></div>
+    <div class="process-step" style="border-top:1px solid var(--border);padding-top:16px;margin:0">
+      <div class="process-step-num" style="color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;margin-bottom:8px;">02</div>
+      <div class="process-step-title" style="font-size:16px;font-weight:600;color:var(--ink)">Prototype</div>
+      <div class="process-step-desc" style="font-size:14px;color:var(--ink-muted);margin-top:8px">Build clickable HTML/CSS prototypes and explicit failure-state designs.</div>
+    </div>
+    <div class="process-step" style="border-top:1px solid var(--border);padding-top:16px;margin:0">
+      <div class="process-step-num" style="color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;margin-bottom:8px;">03</div>
+      <div class="process-step-title" style="font-size:16px;font-weight:600;color:var(--ink)">Ship First Cut</div>
+      <div class="process-step-desc" style="font-size:14px;color:var(--ink-muted);margin-top:8px">Write clean CSS/JS alongside engineering. Output: production front-end.</div>
+    </div>
+    <div class="process-step" style="border-top:1px solid var(--border);padding-top:16px;margin:0">
+      <div class="process-step-num" style="color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;margin-bottom:8px;">04</div>
+      <div class="process-step-title" style="font-size:16px;font-weight:600;color:var(--ink)">Iterate</div>
+      <div class="process-step-desc" style="font-size:14px;color:var(--ink-muted);margin-top:8px">Weekly data reviews. Design follows data, driving monotonic improvement.</div>
     </div>
   </div>
 
-  <!-- Interactive Proof Component -->
-  <div style="margin-top:60px; padding:40px; background:var(--bg-soft); border:1px solid var(--border); border-radius:8px; display:flex; flex-direction:column; align-items:center; position:relative; overflow:hidden;" class="reveal">
-    <div style="position:absolute; top:0; left:0; width:100%; height:4px; background:linear-gradient(90deg, transparent, var(--gold), transparent);"></div>
-    <div style="text-align:center; margin-bottom:40px;">
-      <h3 style="font-family:var(--ff-display); font-size:24px; color:var(--ink); margin-bottom:12px;">Interactive Proof: The Confidence Widget</h3>
-      <p style="font-size:15px; color:var(--ink-muted); max-width:600px; margin:0 auto; line-height:1.6;">Built with Vanilla HTML/CSS to demonstrate the "Distrust First" design principle.<br><strong>Hover over the widget below</strong> to see the algorithmic reasoning.</p>
-    </div>
-    
-    <!-- The Component -->
-    <div class="confidence-widget" id="demoWidget">
-      <div class="cw-header">
-        <span class="cw-title">Acquisition Target Alpha</span>
-        <div class="cw-badge cw-medium" id="demoBadge">
-          <svg viewBox="0 0 24 24" class="cw-icon"><circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.2"/><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-          <span class="cw-score">65% Confidence</span>
-        </div>
+  <div class="reveal reveal-delay-2" style="max-width:800px; margin:0 auto;">
+    <!-- Interactive Proof Component -->
+    <div style="padding:48px; background:var(--bg-soft); border:1px solid var(--border); border-radius:8px; display:flex; flex-direction:column; align-items:center; position:relative; overflow:hidden;">
+      <div style="text-align:center; margin-bottom:32px;">
+        <h3 style="font-family:var(--ff-display); font-size:20px; color:var(--ink); margin-bottom:12px;">Interactive Proof: Confidence Widget</h3>
+        <p style="font-size:13px; color:var(--ink-muted); max-width:400px; margin:0 auto; line-height:1.6;">Hover over the widget below to explore algorithmic reasoning built natively in Vanilla HTML/CSS.</p>
       </div>
       
-      <div class="cw-body" id="demoBody">
-        <div class="cw-reasoning">
-          <div class="cw-label">Why 65%?</div>
-          <ul class="cw-factors">
-            <li><span class="cw-pos">+20%</span> Strong YOY revenue growth (40%)</li>
-            <li><span class="cw-neg">-35%</span> High customer concentration (1 account = 65% rev)</li>
-            <li><span class="cw-pos">+15%</span> Leadership stability (Avg tenure 6 yrs)</li>
-          </ul>
+      <!-- The Component -->
+      <div class="confidence-widget" id="demoWidget">
+        <div class="cw-header">
+          <span class="cw-title">Acquisition Target Alpha</span>
+          <div class="cw-badge cw-medium" id="demoBadge">
+            <svg viewBox="0 0 24 24" class="cw-icon"><circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.2"/><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+            <span class="cw-score">65% Confidence</span>
+          </div>
         </div>
-        <div class="cw-actions">
-          <button class="cw-btn cw-primary">Accept Risk</button>
-          <button class="cw-btn cw-secondary">Override with Context</button>
+        
+        <div class="cw-body" id="demoBody">
+          <div class="cw-reasoning">
+            <div class="cw-label">Why 65%?</div>
+            <ul class="cw-factors">
+              <li><span class="cw-pos">+20%</span> Strong YOY revenue growth (40%)</li>
+              <li><span class="cw-neg">-35%</span> High customer concentration (1 account = 65% rev)</li>
+              <li><span class="cw-pos">+15%</span> Leadership stability (Avg tenure 6 yrs)</li>
+            </ul>
+          </div>
+          <div class="cw-actions">
+            <button class="cw-btn cw-primary">Accept Risk</button>
+            <button class="cw-btn cw-secondary">Override with Context</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Tools grid within the same section -->
-  <div style="margin-top:80px">
-    <h3 class="expertise-headline reveal" style="margin-bottom:32px">Tools & <em>technical skills.</em></h3>
-    <div class="tools-grid">
-      <div class="tool-group reveal"><div class="tool-group-title">Design</div><div class="tool-tags"><span class="tool-tag">Figma</span><span class="tool-tag">FigJam</span><span class="tool-tag">Sketch</span><span class="tool-tag">Adobe XD</span><span class="tool-tag">Principle</span><span class="tool-tag">Whimsical</span></div></div>
-      <div class="tool-group reveal reveal-delay-1"><div class="tool-group-title">Prototyping & Code</div><div class="tool-tags"><span class="tool-tag">HTML / CSS / JS</span><span class="tool-tag">React (basic)</span><span class="tool-tag">Storybook</span><a href="https://codepen.io/arpitmaheshwari" class="tool-tag" target="_blank" rel="noopener noreferrer" data-cta="codepen" data-location="tools">CodePen</a><a href="https://github.com/arpitmaheshwari" class="tool-tag" target="_blank" rel="noopener noreferrer" data-cta="github" data-location="tools">GitHub</a></div></div>
-      <div class="tool-group reveal reveal-delay-2"><div class="tool-group-title">AI & Data</div><div class="tool-tags"><span class="tool-tag">Jupyter Notebooks</span><span class="tool-tag">SQL (read)</span><span class="tool-tag">Looker</span><span class="tool-tag">Mixpanel</span><span class="tool-tag">Confidence-score UX</span></div></div>
-      <div class="tool-group reveal"><div class="tool-group-title">Research & Testing</div><div class="tool-tags"><span class="tool-tag">UserTesting</span><span class="tool-tag">Maze</span><span class="tool-tag">Hotjar</span><span class="tool-tag">Dovetail</span><span class="tool-tag">A/B Testing</span></div></div>
-      <div class="tool-group reveal reveal-delay-1"><div class="tool-group-title">Accessibility</div><div class="tool-tags"><span class="tool-tag">axe DevTools</span><span class="tool-tag">NVDA</span><span class="tool-tag">VoiceOver</span><span class="tool-tag">WCAG 2.1 AA</span><span class="tool-tag">Colour Contrast</span></div></div>
-      <div class="tool-group reveal reveal-delay-2"><div class="tool-group-title">Collaboration</div><div class="tool-tags"><span class="tool-tag">Jira</span><span class="tool-tag">Confluence</span><span class="tool-tag">Notion</span><span class="tool-tag">Miro</span><span class="tool-tag">Slack</span><span class="tool-tag">Loom</span></div></div>
-    </div>
+  <!-- Tools stack within the same section -->
+  <div style="margin-top:80px; max-width:800px; margin-left:auto; margin-right:auto; text-align:center;">
+    <h3 style="font-family:var(--ff-display); font-size:24px; color:var(--ink); margin-bottom:16px;" class="reveal">The Stack</h3>
+    <p class="reveal reveal-delay-1" style="font-size:15px; color:var(--ink-muted); line-height:1.8; margin:0;">
+      <strong style="color:var(--ink)">Design:</strong> Figma, FigJam, Principle. &nbsp;&nbsp;·&nbsp;&nbsp;
+      <strong style="color:var(--ink)">Code & Data:</strong> HTML / CSS / JS, SQL, Jupyter Notebooks. &nbsp;&nbsp;·&nbsp;&nbsp;
+      <strong style="color:var(--ink)">Validation:</strong> UserTesting, Hotjar, axe DevTools. &nbsp;&nbsp;·&nbsp;&nbsp;
+      <strong style="color:var(--ink)">Workflow:</strong> Jira, Notion, GitHub.
+    </p>
   </div>
 
   <!-- Remote collab within the same section -->
@@ -539,93 +405,11 @@
   </div>
 </div></section>
 
-<!-- ===== PROCESS — engagement timeline ===== -->
-<section id="process" class="section" style="border-top:1px solid var(--border)">
-  <div class="section-inner">
-    <div class="section-numeral">
-      <h2 class="section-numeral-number">§ 09</h2>
-      <div class="section-numeral-rule"></div>
-      <h3 class="section-numeral-name">Process</h3>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:start;margin-bottom:56px" class="process-intro">
-      <h3 class="reveal" style="font-family:var(--ff-display);font-weight:300;font-size:clamp(36px,4vw,54px);line-height:1.15">First six weeks<br><em style="font-style:italic;color:var(--gold)">working together.</em></h3>
-      <p class="reveal reveal-delay-1" style="font-size:15px;color:var(--ink-muted);line-height:1.8">No two engagements are identical. But this is the cadence I default to — listen first, prototype against real data, ship something narrow, then iterate against actual user behavior. Founders see momentum within 14 days.</p>
-    </div>
-    <div class="process-steps reveal reveal-delay-2">
-      <div class="process-step">
-        <div class="process-step-num">01</div>
-        <div class="process-step-title">Week 1: Listen + Map</div>
-        <div class="process-step-desc">I shadow your team, read your <abbr title="Documentation that explains how the machine learning model works, what data it uses, and what decisions it can make" style="border-bottom:1px dotted var(--ink-muted);cursor:help">model docs</abbr>, run my own <abbr title="Queries written in SQL — the language for asking databases questions and pulling data" style="border-bottom:1px dotted var(--ink-muted);cursor:help">SQL queries</abbr> on your data, talk to 5+ users. <strong style="color:var(--ink)">Output:</strong> a written diagnosis of where AI UX is breaking.</div>
-      </div>
-      <div class="process-step">
-        <div class="process-step-num">02</div>
-        <div class="process-step-title">Weeks 2–3: Prototype + Pressure-Test</div>
-        <div class="process-step-desc">I build clickable prototypes — HTML/CSS for production-bound, Figma for exploratory. <strong style="color:var(--ink)">Output:</strong> 2–3 testable directions with explicit <abbr title="What the system looks like and how it behaves when something goes wrong — the error state, empty state, or timeout state" style="border-bottom:1px dotted var(--ink-muted);cursor:help">failure-state designs</abbr>.</div>
-      </div>
-      <div class="process-step">
-        <div class="process-step-num">03</div>
-        <div class="process-step-title">Weeks 4–6: Ship First Cut</div>
-        <div class="process-step-desc">I work alongside engineering and write CSS/JS for components I designed. <strong style="color:var(--ink)">Output:</strong> <abbr title="Code running in the live product that real users interact with — not a prototype or demo" style="border-bottom:1px dotted var(--ink-muted);cursor:help">production code</abbr> for the first <abbr title="Interfaces and features that users see and interact with directly (as opposed to backend systems they don't see)" style="border-bottom:1px dotted var(--ink-muted);cursor:help">user-facing</abbr> AI surface.</div>
-      </div>
-      <div class="process-step">
-        <div class="process-step-num">04</div>
-        <div class="process-step-title">Ongoing: Iterate Against Reality</div>
-        <div class="process-step-desc">Weekly review of <abbr title="How well the machine learning model is performing — accuracy, speed, correctness of predictions" style="border-bottom:1px dotted var(--ink-muted);cursor:help">model performance</abbr> + user behavior. Design changes follow data, not opinion. <strong style="color:var(--ink)">Output:</strong> monotonic improvement in trust + <abbr title="User adoption and engagement — how many users are actually using the product and returning regularly" style="border-bottom:1px dotted var(--ink-muted);cursor:help">activation</abbr>.</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ===== FAQ — anticipated founder questions ===== -->
-<section id="faq" class="section" style="background:var(--bg-soft);border-top:1px solid var(--border)">
-  <div class="section-inner">
-    <div class="section-numeral">
-      <h2 class="section-numeral-number">§ 10</h2>
-      <div class="section-numeral-rule"></div>
-      <h3 class="section-numeral-name">FAQ</h3>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:start" class="faq-grid">
-      <div class="reveal" style="position:sticky;top:120px">
-        <h3 style="font-family:var(--ff-display);font-weight:300;font-size:clamp(36px,4vw,54px);line-height:1.15">Questions founders<br><em style="font-style:italic;color:var(--gold)">always ask.</em></h3>
-        <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-top:20px">Save us both a 30-min intro call. If your question isn't here, it's the first thing we'll talk about.</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden">
-        <details class="reveal" style="background:var(--bg-card);padding:24px 28px;cursor:pointer">
-          <summary style="font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--ink)">Why is all your past work under NDA? <span style="color:var(--gold);font-family:var(--ff-mono);font-size:20px;font-weight:300;flex-shrink:0">+</span></summary>
-          <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-top:14px">Most of my work has been at agencies and consultancies serving regulated industries — finance, telecom, defense-adjacent enterprise. Standard <abbr title="Non-Disclosure Agreement — a legal contract that prevents me from sharing details about a client's product publicly" style="border-bottom:1px dotted var(--ink-muted);cursor:help">NDAs</abbr> cover everything I've shipped. The honest workaround: see <a href="#now" style="color:var(--gold);text-decoration:none">what I'm shipping now</a> in public, plus speculative redesigns coming soon.</p>
-        </details>
-        <details class="reveal reveal-delay-1" style="background:var(--bg-card);padding:24px 28px;cursor:pointer">
-          <summary style="font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--ink)">Do you actually write production code, or just prototype? <span style="color:var(--gold);font-family:var(--ff-mono);font-size:20px;font-weight:300;flex-shrink:0">+</span></summary>
-          <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-top:14px">HTML/CSS/JS in <abbr title="Code running live in the product that real users interact with, not just demos or prototypes" style="border-bottom:1px dotted var(--ink-muted);cursor:help">production</abbr> for components I design — buttons, forms, data displays, AI surfaces. React for prototypes and component scaffolds. I won't own backend or complex state architecture, but I ship the front-end of features I designed, in collaboration with senior engineers reviewing my <abbr title="Pull Requests — code submissions for engineering teams to review and approve before merging into the main codebase" style="border-bottom:1px dotted var(--ink-muted);cursor:help">PRs</abbr>.</p>
-        </details>
-        <details class="reveal reveal-delay-2" style="background:var(--bg-card);padding:24px 28px;cursor:pointer">
-          <summary style="font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--ink)">Are you really fully remote? Time zone reality check. <span style="color:var(--gold);font-family:var(--ff-mono);font-size:20px;font-weight:300;flex-shrink:0">+</span></summary>
-          <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-top:14px">India (GMT+5:30). 4–5 hour daily overlap with US East Coast (1–6pm ET your time = my evening). Full overlap with UK and EU. I've worked async-first for 6+ years. Standups, PR reviews, and design crits all happen in overlap; deep work happens in async.</p>
-        </details>
-        <details class="reveal reveal-delay-3" style="background:var(--bg-card);padding:24px 28px;cursor:pointer">
-          <summary style="font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--ink)">What if I'm pre-Series A and can't pay senior salary? <span style="color:var(--gold);font-family:var(--ff-mono);font-size:20px;font-weight:300;flex-shrink:0">+</span></summary>
-          <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-top:14px">For founding-designer roles I'm <abbr title="Flexible about combining ownership stake in the company (equity) with salary. Some roles are salary + equity, others are lower salary + larger equity stake" style="border-bottom:1px dotted var(--ink-muted);cursor:help">equity-flexible</abbr> — meaningful <abbr title="Stock ownership in the company; you own a percentage and share in the company's success" style="border-bottom:1px dotted var(--ink-muted);cursor:help">equity</abbr> + market-rate cash, or below-market cash + larger equity. For 0-to-1 partnerships (3–6 months) I bill at standard senior <abbr title="Freelance rates for specialized, experienced work — typically higher per-hour cost than salary but no benefits" style="border-bottom:1px dotted var(--ink-muted);cursor:help">contractor rates</abbr>. Tell me your range; I'll tell you honestly if it works.</p>
-        </details>
-        <details class="reveal reveal-delay-4" style="background:var(--bg-card);padding:24px 28px;cursor:pointer">
-          <summary style="font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--ink)">How fast can you start? <span style="color:var(--gold);font-family:var(--ff-mono);font-size:20px;font-weight:300;flex-shrink:0">+</span></summary>
-          <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-top:14px">2 weeks notice for full-time. 1 week for fractional. Same-week for <abbr title="Consulting engagements where I advise on strategy or design decisions, typically 4-8 hours per month" style="border-bottom:1px dotted var(--ink-muted);cursor:help">advisory</abbr> calls. Currently available — let's talk.</p>
-        </details>
-        <details class="reveal" style="background:var(--bg-card);padding:24px 28px;cursor:pointer">
-          <summary style="font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--ink)">What's your hiring process? <span style="color:var(--gold);font-family:var(--ff-mono);font-size:20px;font-weight:300;flex-shrink:0">+</span></summary>
-          <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-top:14px">30-min intro → paid 1-week trial on a real (not contrived) problem → 1-hour debrief → offer. I want you to see how I think and ship, not how I wireframe in interviews. The trial is mutual — I'm evaluating you too.</p>
-        </details>
-        <details class="reveal reveal-delay-1" style="background:var(--bg-card);padding:24px 28px;cursor:pointer">
-          <summary style="font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--ink)">Can I see live work even though it's NDA? <span style="color:var(--gold);font-family:var(--ff-mono);font-size:20px;font-weight:300;flex-shrink:0">+</span></summary>
-          <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-top:14px">Speculative redesigns of public AI products (Cursor, Linear AI, Anthropic Console) are coming to <a href="#now" style="color:var(--gold);text-decoration:none">/work</a> within 6 weeks. Until then, I can walk you through case study details under mutual NDA on a call — including artifacts I can show but not host publicly.</p>
-        </details>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="thoughts" class="section"><div class="section-inner">
   <div class="section-numeral">
-    <h2 class="section-numeral-number">§ 11</h2>
+    <h2 class="section-numeral-number">§ 05</h2>
     <div class="section-numeral-rule"></div>
     <h3 class="section-numeral-name">Writing</h3>
   </div>
@@ -639,7 +423,7 @@
 
 <section id="contact" class="section"><div class="section-inner">
   <div class="section-numeral">
-    <h2 class="section-numeral-number">§ 12</h2>
+    <h2 class="section-numeral-number">§ 06</h2>
     <div class="section-numeral-rule"></div>
     <h3 class="section-numeral-name">Contact</h3>
   </div>
@@ -647,7 +431,7 @@
     <div style="padding:48px;border:1px solid var(--border-accent);border-radius:4px;background:var(--bg-card)" class="reveal">
       <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">Primary Focus</div>
       <h3 style="font-family:var(--ff-display);font-weight:300;font-size:clamp(28px,4vw,42px);line-height:1.2;margin-bottom:24px;color:var(--ink)">Founding & Staff Designer for Intelligent Systems</h3>
-      <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:28px">I'm looking for <strong style="color:var(--ink)">founding or <abbr title="Staff-level Individual Contributor — a senior-level role that ships independent work and mentors others, but doesn't manage people" style="border-bottom:1px dotted var(--ink-muted);cursor:help">staff-IC</abbr> designer roles at startups and enterprises</strong> building <abbr title="Systems and products where large amounts of data, real-time information, or database queries are central to how the product works" style="border-bottom:1px dotted var(--ink-muted);cursor:help">data-intensive</abbr>, intelligent systems. The kind of role where I'm the first or second designer, working directly with founders/CTOs, shipping production code, and shaping products that handle complexity at scale.</p>
+      <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:28px">I'm looking for <strong style="color:var(--ink)">founding or staff-IC designer roles at startups and enterprises</strong> building data-intensive, intelligent systems. The kind of role where I'm the first or second designer, working directly with founders/CTOs, shipping production code, and shaping products that handle complexity at scale.</p>
       <ul style="list-style:none;padding:0;margin-bottom:32px">
         <li style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:12px">• Take 0-to-1 intelligent products from prototype to production</li>
         <li style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:12px">• Design for complexity — explainability, confidence scoring, failure handling across industries</li>
@@ -658,7 +442,31 @@
         <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin:0"><strong style="color:var(--gold)">Setup:</strong> Fully remote from India (GMT+5:30) · 4–5 hr daily overlap with US East Coast · Full UK/EU overlap</p>
       </div>
 
-      <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="contact-primary" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:18px 36px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:0.05em;border-radius:2px;transition:background 0.3s,transform 0.2s;text-decoration:none" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Book a 30-min intro call <svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:24px;">
+        <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="contact-primary" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:18px 36px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:0.05em;border-radius:2px;transition:background 0.3s,transform 0.2s;text-decoration:none" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Book a 30-min intro call <svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        
+        <button id="toggleTeardownFormBtn" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:18px 36px;background:transparent;border:1px solid var(--border-accent);color:var(--ink);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:0.05em;border-radius:2px;cursor:pointer;transition:background 0.3s,transform 0.2s" onmouseover="this.style.background='rgba(212,168,94,0.05)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='transparent';this.style.transform='translateY(0)'">Request a 5-Min Video Teardown <span style="font-size:10px; font-family:var(--ff-mono); color:var(--gold); border:1px solid var(--gold); border-radius:2px; padding:2px 6px; margin-left:6px; letter-spacing:0.05em; text-transform:uppercase;">Async</span></button>
+      </div>
+
+      <!-- Teardown Form Inline Card -->
+      <div id="teardownInlineForm" style="display:none; margin-top:24px; padding:24px; border:1px solid var(--border); border-radius:4px; background:var(--bg-soft); max-width:640px; animation:fadeIn 0.3s ease-out">
+        <p style="font-family:var(--ff-display); font-size:18px; margin:0 0 8px 0; color:var(--ink)">Get a 5-Min Video Teardown of Your AI UX</p>
+        <p style="font-size:13px; color:var(--ink-muted); margin:0 0 16px 0; line-height:1.6">Upload a link/screenshot of your product's UX. I'll record a quick Loom with 3 actionable improvements for model clarity, confidence scoring, or friction points. Free, no pressure, delivered within 48 hours.</p>
+        <form id="contactTeardownForm" style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <input type="email" id="teardownContactEmail" placeholder="Your work email" required style="flex:1; min-width:200px; padding:12px 14px; background:var(--bg); border:1px solid var(--border); border-radius:2px; color:var(--ink); font-family:var(--ff-sans); font-size:14px">
+            <input type="text" id="teardownContactUrl" placeholder="Link / name of your AI product" required style="flex:1; min-width:200px; padding:12px 14px; background:var(--bg); border:1px solid var(--border); border-radius:2px; color:var(--ink); font-family:var(--ff-sans); font-size:14px">
+          </div>
+          <textarea id="teardownContactNotes" placeholder="Any specific UX bottlenecks you're struggling with? (Optional)" rows="2" style="padding:12px 14px; background:var(--bg); border:1px solid var(--border); border-radius:2px; color:var(--ink); font-family:var(--ff-sans); font-size:14px; resize:vertical;"></textarea>
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <button type="submit" style="padding:12px 24px; background:var(--gold); color:var(--bg); border:none; border-radius:2px; font-family:var(--ff-mono); font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; transition:opacity 0.2s" onmouseover="this.style.opacity=0.9" onmouseout="this.style.opacity=1">Request Video Teardown</button>
+            <button type="button" id="closeTeardownFormBtn" style="background:none; border:none; color:var(--ink-muted); font-size:12px; cursor:pointer; font-family:var(--ff-mono); text-transform:uppercase; letter-spacing:0.05em;">Cancel</button>
+          </div>
+        </form>
+        <div id="contactTeardownSuccess" style="display:none; color:var(--gold); font-family:var(--ff-sans); font-size:14px; font-weight:600; margin-top:8px;">
+          ✓ Request received! I will review your product and send your 5-min Loom teardown within 48 hours.
+        </div>
+      </div>
     </div>
   </div>
   </div>
@@ -732,34 +540,7 @@ setTimeout(revealInViewport, 100);
 setTimeout(revealInViewport, 500);
 setTimeout(revealInViewport, 1500);
 
-// Counter animation
-function animateCounter(el, t, s) {
-  let st = 0;
-  const fn = ts => {
-    if (!st) st = ts;
-    const p = Math.min((ts - st) / 1200, 1);
-    el.textContent = Math.floor((1 - Math.pow(1 - p, 3)) * t) + s;
-    if (p < 1) requestAnimationFrame(fn);
-    else el.textContent = t + s;
-  };
-  requestAnimationFrame(fn);
-}
 
-const so = new IntersectionObserver(entries => {
-  entries.forEach(x => {
-    if (x.isIntersecting) {
-      x.target.querySelectorAll('.stat-number').forEach(n => {
-        const t = n.textContent.trim();
-        if (t === '15') animateCounter(n, 15, '');
-        else if (t === '8+') animateCounter(n, 8, '+');
-        else if (t === '550k') animateCounter(n, 550, 'k');
-      });
-      so.unobserve(x.target);
-    }
-  });
-}, { threshold: 0.5 });
-const hs = document.querySelector('.hero-stats');
-if (hs) so.observe(hs);
 
 // Mobile menu (consolidated handler with aria-expanded + Escape support)
 const menuBtn = document.getElementById('menuToggle');
@@ -1030,54 +811,131 @@ if (exitBanner) {
     gtag('event', 'exit_banner_close', { page: window.location.pathname });
   });
 
-  // Form submission handler
+  // Form submission handler with custom visual feedback
   const exitForm = document.getElementById('exitForm');
   exitForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = document.getElementById('exitEmail').value;
-    gtag('event', 'exit_banner_signup', { email_provided: email.length > 0, page: window.location.pathname });
-    // Form will submit to Substack via action attribute
-    exitForm.submit();
+    const product = document.getElementById('exitProduct').value;
+    
+    if (typeof gtag === 'function') {
+      gtag('event', 'exit_banner_teardown_request', { 
+        email_provided: email.length > 0, 
+        product_provided: product.length > 0,
+        page: window.location.pathname 
+      });
+    }
+
+    // Save lead in localStorage for persistence / audit
+    const leads = JSON.parse(localStorage.getItem('teardown_leads') || '[]');
+    leads.push({ email, product, timestamp: new Date().toISOString() });
+    localStorage.setItem('teardown_leads', JSON.stringify(leads));
+
+    // Show beautiful success state
+    exitForm.innerHTML = `<div style="color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.05em;display:flex;align-items:center;gap:8px;animation:fadeIn 0.4s ease-out">
+      <svg style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+      Teardown requested! Expect your Loom within 48 hours.
+    </div>`;
   });
+}
+
+// Toggle and submit handler for contact teardown inline form
+const toggleTeardownFormBtn = document.getElementById('toggleTeardownFormBtn');
+const teardownInlineForm = document.getElementById('teardownInlineForm');
+const closeTeardownFormBtn = document.getElementById('closeTeardownFormBtn');
+const contactTeardownForm = document.getElementById('contactTeardownForm');
+const contactTeardownSuccess = document.getElementById('contactTeardownSuccess');
+
+if (toggleTeardownFormBtn && teardownInlineForm) {
+  toggleTeardownFormBtn.addEventListener('click', () => {
+    teardownInlineForm.style.display = 'block';
+    toggleTeardownFormBtn.style.display = 'none';
+    teardownInlineForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    if (typeof gtag === 'function') {
+      gtag('event', 'contact_teardown_form_open', { page: window.location.pathname });
+    }
+  });
+
+  if (closeTeardownFormBtn) {
+    closeTeardownFormBtn.addEventListener('click', () => {
+      teardownInlineForm.style.display = 'none';
+      toggleTeardownFormBtn.style.display = 'inline-flex';
+    });
+  }
+
+  if (contactTeardownForm) {
+    contactTeardownForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('teardownContactEmail').value;
+      const product = document.getElementById('teardownContactUrl').value;
+      const notes = document.getElementById('teardownContactNotes').value;
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'contact_teardown_request', {
+          email_provided: email.length > 0,
+          product_provided: product.length > 0,
+          notes_provided: notes.length > 0,
+          page: window.location.pathname
+        });
+      }
+
+      // Save lead in localStorage for persistence / audit
+      const leads = JSON.parse(localStorage.getItem('teardown_leads') || '[]');
+      leads.push({ email, product, notes, timestamp: new Date().toISOString(), source: 'contact_section' });
+      localStorage.setItem('teardown_leads', JSON.stringify(leads));
+
+      // Show success feedback
+      contactTeardownForm.style.display = 'none';
+      contactTeardownSuccess.style.display = 'block';
+    });
+  }
 }
 </script>
 
 <!-- Exit-intent sticky banner for warm-lead capture -->
-<div id="exitBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg-card);border-top:1px solid var(--border);padding:20px 24px;z-index:999;gap:24px;flex-wrap:wrap;align-items:center;justify-content:space-between;box-shadow:0 -4px 12px rgba(0,0,0,0.08);animation:slideUp 0.3s ease-out">
-  <div style="flex:1;min-width:250px">
-    <p style="font-family:var(--ff-display);font-size:16px;font-weight:500;color:var(--ink);margin:0 0 8px 0">One AI design pattern in your inbox every month.</p>
-    <p style="font-size:13px;color:var(--ink-muted);margin:0">No fluff. Confidence scores, failure states, explainability surfaces. Direct to your inbox.</p>
+<div id="exitBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg-card);border-top:1px solid var(--border);padding:24px 32px;z-index:999;gap:24px;flex-wrap:wrap;align-items:center;justify-content:space-between;box-shadow:0 -8px 24px rgba(0,0,0,0.12);animation:slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1)">
+  <div style="flex:1.2;min-width:280px">
+    <p style="font-family:var(--ff-display);font-size:18px;font-weight:400;color:var(--ink);margin:0 0 6px 0;letter-spacing:-0.01em">Get a <em style="font-style:italic;color:var(--gold)">5-Min Video Teardown</em> of Your AI UX</p>
+    <p style="font-size:13px;color:var(--ink-muted);margin:0;line-height:1.5">Send a link or product name. I'll record a quick, high-impact Loom pointing out 2-3 design wins. Completely free.</p>
   </div>
-  <form id="exitForm" action="https://arpitmaheshwari.substack.com/api/v1/free?email=" method="post" style="display:flex;gap:8px;flex:0;min-width:280px;flex-wrap:wrap">
-    <input id="exitEmail" type="email" name="email" placeholder="your@email.com" required style="flex:1;min-width:150px;padding:10px 14px;border:1px solid var(--border);border-radius:4px;font-family:var(--ff-sans);font-size:13px;background:var(--bg);color:var(--ink);outline:none;transition:border-color 0.3s" />
-    <button type="submit" style="padding:10px 16px;background:var(--gold);color:var(--bg);border:none;border-radius:4px;font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:background 0.3s" onmouseover="this.style.background='#daa844'" onmouseout="this.style.background='var(--gold)'">Subscribe</button>
+  <form id="exitForm" style="display:flex;gap:12px;flex:1.5;min-width:320px;flex-wrap:wrap;align-items:center">
+    <input id="exitProduct" type="text" placeholder="Your product link / name" required style="flex:1;min-width:140px;padding:12px 16px;border:1px solid var(--border);border-radius:4px;font-family:var(--ff-sans);font-size:13px;background:var(--bg);color:var(--ink);outline:none;transition:border-color 0.3s;box-shadow:inset 0 1px 2px rgba(0,0,0,0.05)" />
+    <input id="exitEmail" type="email" placeholder="your@email.com" required style="flex:1;min-width:140px;padding:12px 16px;border:1px solid var(--border);border-radius:4px;font-family:var(--ff-sans);font-size:13px;background:var(--bg);color:var(--ink);outline:none;transition:border-color 0.3s;box-shadow:inset 0 1px 2px rgba(0,0,0,0.05)" />
+    <button type="submit" style="padding:12px 20px;background:var(--gold);color:var(--bg);border:none;border-radius:4px;font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:background 0.3s,transform 0.2s" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Request Teardown</button>
   </form>
   <button id="exitBannerClose" style="flex-shrink:0;width:28px;height:28px;background:none;border:none;color:var(--ink-muted);cursor:pointer;font-size:18px;padding:0;display:flex;align-items:center;justify-content:center;transition:color 0.3s" title="Close" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-muted)'">✕</button>
 </div>
 
 <style>
 @keyframes slideUp {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   #exitBanner {
+    padding: 20px 24px !important;
     flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 12px !important;
+    align-items: stretch !important;
+    gap: 16px !important;
   }
-  #exitBanner form {
+  #exitForm {
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  #exitForm input, #exitForm button {
     width: 100% !important;
   }
-  #exitBanner button[type="submit"] {
-    align-self: flex-end;
+  #exitBannerClose {
+    position: absolute;
+    top: 12px;
+    right: 12px;
   }
 }
 </style>

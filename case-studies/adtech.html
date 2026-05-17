@@ -101,7 +101,7 @@
   <!-- ACT II — THE WORLD -->
   <section style="margin-bottom:80px">
     <h2 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:24px">Act II — The World</h2>
-    <p class="dropcap" style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><abbr title="Automated ad-buying via real-time bidding on impressions" style="border-bottom:1px dotted var(--ink);cursor:help">Programmatic advertising</abbr> in 2018 was shifting from human decision-making to algorithmic decision support. Machines could process performance history across thousands of campaigns. They could spot patterns humans missed. But they did this in silence—opaque mathematical functions that produced recommendations with no explanation. Buyers like Sarah were trained skeptics. They'd spent careers learning to second-guess gut feelings with data. Now they were being asked to trust a black box.</p>
+    <p class="dropcap" style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Programmatic advertising in 2018 was shifting from human decision-making to algorithmic decision support. Machines could process performance history across thousands of campaigns. They could spot patterns humans missed. But they did this in silence—opaque mathematical functions that produced recommendations with no explanation. Buyers like Sarah were trained skeptics. They'd spent careers learning to second-guess gut feelings with data. Now they were being asked to trust a black box.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8">The platform had shipped with raw algorithmic recommendations. Adoption was 15%. Usage was cautious—buyers treated the algorithm as a curiosity, not a tool. When the algorithm succeeded (and it did, frequently), buyers attributed it to luck. When it failed, they lost confidence for months. The team thought the problem was the algorithm's accuracy. It wasn't. The problem was that accuracy without explanation was meaningless to humans who needed to *decide*.</p>
     <div style="padding:20px;background:rgba(212,168,94,0.05);border-left:3px solid var(--gold);margin-top:20px">
       <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);margin:0"><strong>Role:</strong> Sole product designer · Full ownership of recommendation interfaces, confidence UI, and interaction patterns · 2018–2020 · Shipped to 12K+ daily active media buyers · NDA</p>
@@ -144,8 +144,8 @@
         <!-- Header -->
         <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid var(--border);">
           <div>
-            <div style="width:120px; height:12px; background:var(--ink-muted); border-radius:2px; margin-bottom:12px; opacity:0.3;"></div>
-            <div style="width:200px; height:16px; background:var(--ink); border-radius:2px;"></div>
+            <div style="width:40%; max-width:120px; height:12px; background:var(--ink-muted); border-radius:2px; margin-bottom:12px; opacity:0.3;"></div>
+            <div style="width:70%; max-width:200px; height:16px; background:var(--ink); border-radius:2px;"></div>
           </div>
           <!-- Confidence Badge -->
           <div style="display:flex; align-items:center; gap:8px; background:rgba(94, 212, 142, 0.1); padding:6px 12px; border-radius:4px; border:1px solid rgba(94, 212, 142, 0.2);">
@@ -174,17 +174,17 @@
         <!-- Actions -->
         <div style="display:flex; gap:12px;">
           <div style="flex:1; height:36px; background:var(--gold); border-radius:4px; display:flex; align-items:center; justify-content:center;">
-             <div style="width:60px; height:6px; background:var(--bg); border-radius:2px; opacity:0.8;"></div>
+             <div style="width:50%; max-width:60px; height:6px; background:var(--bg); border-radius:2px; opacity:0.8;"></div>
           </div>
           <div style="flex:1; height:36px; border:1px solid var(--border); border-radius:4px; display:flex; align-items:center; justify-content:center;">
-             <div style="width:80px; height:6px; background:var(--ink-muted); border-radius:2px; opacity:0.5;"></div>
+             <div style="width:60%; max-width:80px; height:6px; background:var(--ink-muted); border-radius:2px; opacity:0.5;"></div>
           </div>
         </div>
       </div>
       <p style="font-size:13px; color:var(--ink-muted); text-align:center; margin-top:24px; font-family:var(--ff-sans);">Fig 1. Abstracting the "Confidence + Why + Override" architecture.</p>
     </div>
 
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong><abbr title="A UI surface that communicates how certain the algorithm is, and gives users a path to override" style="border-bottom:1px dotted var(--ink);cursor:help">Confidence Scoring System</abbr>:</strong> Every recommendation now opened with a confidence score—numeric, visual (color-coded gauge), and linguistic ("High confidence, based on 8 similar campaigns").</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Confidence Scoring System:</strong> Every recommendation now opened with a confidence score—numeric, visual (color-coded gauge), and linguistic ("High confidence, based on 8 similar campaigns").</p>
     <!-- Key Insight Callout -->
     <div style="padding:20px 24px;background:rgba(212,168,94,0.05);border-left:3px solid var(--gold);margin:24px 0">
       <p style="font-size:14px;color:var(--ink);line-height:1.7;margin:0"><strong>Key insight:</strong> Three modalities for the same signal — numeric, visual, and linguistic — meant a buyer didn't need to be a data scientist to read "87% confidence." They could read the color or the language instead.</p>
@@ -247,10 +247,16 @@
 </div></main>
 
   <!-- MID-ARTICLE CTA -->
-  <aside style="margin:60px 0 80px;padding:32px;background:rgba(212,168,94,0.05);border-left:3px solid var(--gold);border-radius:2px">
-    <p style="font-family:var(--ff-display);font-size:22px;font-style:italic;color:var(--ink);margin-bottom:16px">Building something similar?</p>
-    <p style="margin-bottom:20px;color:var(--ink-muted);line-height:1.6">If your AI product is hitting a trust wall, I've shipped through this before. Let's compare notes under NDA.</p>
-    <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="case-study-mid-article" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Book a 30-min call ↗</a>
+  <aside style="margin:48px 0;padding:24px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr;gap:16px">
+    <div>
+      <p style="font-family:var(--ff-display);font-size:20px;font-weight:300;color:var(--ink);line-height:1.4;margin:0 0 8px 0">Optimizing an AdTech dashboard or data-density interface?</p>
+      <p style="font-size:14px;color:var(--ink-muted);line-height:1.6;margin:0">If your AI product is hitting a trust wall, I've shipped through this before. Let's compare notes under NDA.</p>
+    </div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+      <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="case-study-mid-article" style="color:var(--gold);text-decoration:none;font-family:var(--ff-mono);font-size:12px;letter-spacing:0.05em;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:6px;transition:color 0.2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--gold)'">Optimize your AdTech dashboard with me ↗</a>
+      <span style="color:var(--border);font-family:var(--ff-mono);font-size:12px">|</span>
+      <a href="#exitBanner" onclick="document.getElementById('exitBanner').style.display='flex';document.getElementById('exitProduct').focus();return false;" style="color:var(--ink);text-decoration:none;font-family:var(--ff-mono);font-size:12px;letter-spacing:0.05em;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:6px;transition:color 0.2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink)'">Get a 5-Min Video Teardown ↗</a>
+    </div>
   </aside>
 
   <!-- RELATED PATTERNS -->
@@ -277,7 +283,7 @@
   <!-- SEQUENTIAL NAVIGATION -->
   <div style="display:flex;gap:16px;flex-wrap:wrap">
     <a href="./fintech.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Read 03 / Override →</a>
-    <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="case-study-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Book a call ↗</a>
+    <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="case-study-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Optimize your AdTech dashboard ↗</a>
   </div>
 </div></main>
 
