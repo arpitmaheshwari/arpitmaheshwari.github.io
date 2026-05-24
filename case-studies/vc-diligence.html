@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical Due Diligence Platform — Arpit Maheshwari</title>
+<meta name="description" content="Case study: How I designed a technical due-diligence platform for venture firms — AI-extracted signals + partner-grade trust. Diligence cycles compressed from 3 weeks to 4 days.">
+<meta name="keywords" content="VC technical due diligence, AI extraction UX, investment platform design, trust UX, FinTech design, partner-grade AI">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/case-studies/vc-diligence.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Technical Due Diligence Platform — Case Study | Arpit Maheshwari">
+<meta property="og:description" content="AI-extracted technical signals + partner-grade trust. Diligence cycles 3 weeks → 4 days.">
+<meta property="og:url" content="https://arpitmaheshwari.com/case-studies/vc-diligence.html">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/vc-diligence-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Technical Due Diligence Platform — Case Study">
+<meta name="twitter:description" content="High-speed AI extraction without sacrificing partner-level confidence.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0A0A'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='300' fill='%23D4A85E'%3EAM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Technical Due Diligence Platform",
+  "description":"Case study on designing AI-powered technical due-diligence for venture capital firms.",
+  "author":{"@type":"Person","name":"Arpit Maheshwari"},
+  "datePublished":"2024-09-01",
+  "dateModified":"2026-05-24"
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PFY6ME99K8');
+</script>
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../styles.css?v=p11g">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+</svg>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-work">How I Lead</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+  <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
+  <div style="max-width:65ch;margin:0 auto">
+    <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin-bottom:20px">Technical Due Diligence Platform</h1>
+    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">VC / FinTech · High-Speed Diligence · Partner-Grade Trust</p>
+  </div>
+</div>
+
+<main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
+
+  <!-- META -->
+  <p style="font-size:13px;color:var(--gold);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:32px">VC / FinTech · Technical Due Diligence Platform · 2026</p>
+
+  <p style="font-family:var(--ff-display);font-size:clamp(17px,1.8vw,21px);font-style:italic;color:var(--ink);line-height:1.7;margin-bottom:32px">I led design for a technical due-diligence platform that lets venture firms move from term sheet to investment decision in days, not weeks. As the design lead working with the ML team and a head of investment, I argued the platform's job wasn't to produce a verdict — it was to produce a verdict the partner trusted enough to sign on. I designed the layer between AI-extracted technical signals (code quality, architecture risk, team-velocity proxies, founder credibility markers) and the human partner who has to commit capital. Confidence scoring at the artefact level, reasoning surfaces that named which signals drove each risk score, and override mechanisms that fed analyst dissent back into the model. Diligence cycles compressed from <strong>3 weeks to 4 days</strong> at the trust level a Series A partner requires. <strong>Client is under NDA.</strong> The framework — high-speed AI extraction without sacrificing partner-level confidence — carries forward.</p>
+
+  <!-- NDA CALENDLY CTA -->
+  <section style="margin:40px 0 60px;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px">
+    <p style="font-family:var(--ff-display);font-size:clamp(22px,3vw,28px);font-style:italic;line-height:1.4;color:var(--ink);margin:0 0 12px 0">Want to know more about this work?</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.7;margin:0 0 24px 0;max-width:60ch">I can walk you through the decisions, the visuals I cannot host publicly, and the outcomes — under mutual NDA on a 30-min call.</p>
+    <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nda-case-cta" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:0.05em;border-radius:2px;text-decoration:none;transition:background 0.3s,transform 0.2s" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Book a 30-min call <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+  </section>
+
+  <!-- RELATED PATTERNS -->
+  <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:60px">
+    <h3 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:16px">Design Patterns Demonstrated</h3>
+    <ul style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin:0;padding-left:24px">
+      <li style="margin-bottom:12px"><strong><a href="../patterns/confidence-scores.html" style="color:var(--gold);text-decoration:none">Confidence Score Patterns</a>:</strong> Per-signal and per-document confidence with reasoning surfaces so partners could verify which inputs drove which scores.</li>
+      <li style="margin-bottom:12px"><strong><a href="../patterns/ml-explainability.html" style="color:var(--gold);text-decoration:none">ML Explainability Patterns</a>:</strong> The "why this risk score" surface — naming which extracted signals and code-quality measures drove each judgement.</li>
+      <li><strong><a href="../patterns/human-in-loop.html" style="color:var(--gold);text-decoration:none">Human-in-Loop Patterns</a>:</strong> Analyst overrides fed back into the model. Partner sign-off as a first-class workflow, not a rubber stamp.</li>
+    </ul>
+  </section>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section style="background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;padding:32px;margin-bottom:60px">
+    <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:12px">Get AI design patterns in your inbox</div>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">One pattern per month with tradeoffs and code examples. 2,500+ designers already subscribed.</p>
+    <form action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank" style="display:flex;gap:8px;flex-wrap:wrap">
+      <input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink);font-family:var(--ff-sans);font-size:14px">
+      <button type="submit" data-cta="newsletter" data-location="case-study-newsletter" style="padding:14px 24px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- SEQUENTIAL NAVIGATION -->
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:48px">
+    <a href="./ptc.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Read 01 / PTC →</a>
+    <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="case-study-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Book a 30-min call ↗</a>
+  </div>
+</div></main>
+
+<footer>
+  <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
+  <button class="dyslexia-toggle" id="dyslexiaToggle" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+    <span>Dyslexia-friendly</span>
+  </button>
+  <div class="footer-note">No copyright · Design is for all</div>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+</footer>
+
+<script>
+// Dyslexia toggle
+const toggle = document.getElementById('dyslexiaToggle');
+if (toggle) {
+  const isDyslexic = localStorage.getItem('dyslexia-mode') === 'true';
+  if (isDyslexic) document.documentElement.classList.add('dyslexia-mode');
+  toggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dyslexia-mode');
+    localStorage.setItem('dyslexia-mode', document.documentElement.classList.contains('dyslexia-mode'));
+  });
+}
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Mobile menu
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+  navLinks.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+</script>
+</body>
+</html>
