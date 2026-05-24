@@ -68,11 +68,11 @@ nav.scrolled{background:rgba(10,10,10,.92);backdrop-filter:blur(16px);padding:16
 .hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%)}
 .hero-headline{font-family:var(--ff-display);font-weight:300;font-size:clamp(36px,4.8vw,64px);line-height:1.12;letter-spacing:-.02em;margin-bottom:32px;max-width:none}
 .hero-headline .line{display:block}
-.hero-headline .line-inner{display:block;white-space:nowrap;opacity:0;transform:translateY(60px)}
-.hero-headline .line:nth-child(1) .line-inner{animation:slideUp 1s var(--ease-out) .5s forwards}
-.hero-headline .line:nth-child(2) .line-inner{animation:slideUp 1s var(--ease-out) .65s forwards}
-.hero-headline .line:nth-child(3) .line-inner{animation:slideUp 1s var(--ease-out) .8s forwards}
-.hero-headline .line:nth-child(4) .line-inner{animation:slideUp 1s var(--ease-out) .95s forwards}
+/* Hero text visible immediately (LCP optimization), animation enhances entry */
+.hero-headline .line-inner{display:block;white-space:nowrap;opacity:0;transform:translateY(20px);animation:slideUp .5s var(--ease-out) forwards}
+.hero-headline .line:nth-child(2) .line-inner{animation-delay:.08s}
+.hero-headline .line:nth-child(3) .line-inner{animation-delay:.16s}
+.hero-headline .line:nth-child(4) .line-inner{animation-delay:.24s}
 .hero-headline em{font-style:italic;color:var(--gold)}
 
 /* ----- Section scaffolding ----- */
