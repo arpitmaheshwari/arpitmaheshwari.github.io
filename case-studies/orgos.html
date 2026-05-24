@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OrgOS: Operating System for Organizations</title>
-<meta name="description" content="Case study: OrgOS, a unified platform for transparent, decentralized operations across sales, finance, people, and projects — for an organization with zero hierarchy.">
+<meta name="description" content="Case study: designing an operating system for radically transparent organisations — open finances, peer-set salaries, zero managers. 120-person team.">
 <meta name="keywords" content="operating system, flat organization, transparent salary, peer accountability, decentralized operations, OrgOS, organizational design, enterprise SaaS">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
@@ -287,5 +287,29 @@ exitForm.addEventListener('submit', async (e) => {
   </form>
 </div>
 
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+    '/now/': 'Now',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
 </body>
 </html>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Explainability Layer: Making AI Legible — Arpit Maheshwari</title>
-  <meta name="description" content="Users don't trust black boxes. I design explainability into interfaces—showing confidence, data provenance, what the model weighted, why it could be wrong. Transparency is the product.">
+  <title>ML Explainability — Arpit Maheshwari</title>
+  <meta name="description" content="Designing the &quot;why&quot; surface for ML systems. How to make algorithmic decisions verifiable without overwhelming non-technical users.">
   <meta property="og:title" content="The Explainability Layer: Making AI Legible">
   <meta property="og:description" content="Users don't trust black boxes. I design explainability into interfaces—showing confidence, data provenance, what the model weighted, why it could be wrong.">
   <meta property="og:url" content="https://arpitmaheshwari.com/writing/explainability.html">
@@ -38,6 +38,7 @@
   </script>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-work">How I Lead</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
@@ -146,6 +147,30 @@ document.querySelectorAll('[data-cta]').forEach(el => {
     }
   });
 });
+</script>
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+    '/now/': 'Now',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
 </script>
 </body>
 </html>
