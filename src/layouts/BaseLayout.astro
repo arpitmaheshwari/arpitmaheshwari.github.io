@@ -1,0 +1,86 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+const { title, description, ogImage = "https://arpitmaheshwari.com/20190105220407596_save.jpg" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="author" content="Arpit Maheshwari">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="canonical" href={Astro.url.href}>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={Astro.url.href}>
+  <meta property="og:image" content={ogImage}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImage}>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0A0A'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='300' fill='%23D4A85E'%3EAM%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Inter:wght@300;400;500;600;700&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</head>
+<body>
+  <slot />
+</body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --bg: #0F0A0E;
+    --ink: #F5F3F0;
+    --ink-muted: #B8B3AE;
+    --ink-dim: #8B8278;
+    --gold: #D4A85E;
+    --gold-dark: #A68A47;
+    --border: #1A1410;
+    --border-accent: #2A2218;
+    --bg-card: #1A1410;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      font-size: 14px;
+    }
+  }
+</style>
