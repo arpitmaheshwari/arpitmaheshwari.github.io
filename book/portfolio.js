@@ -37,31 +37,31 @@ const WORK = [{
   desc: "Eight modules that let a 120-person team self-organise. Zero managers; transparency as the coordination layer."
 }];
 const PRINCIPLES = [{
-  h: "I work at the model layer.",
+  h: "I design for business outcomes, not just user friction.",
   p: "I read the evals and sit in on customer calls before I open a design file. I shape what gets measured, then I ship the front-end."
 }, {
-  h: "No AI feature without a failure state.",
-  p: "If I can't design what happens when the model is wrong, the feature isn't ready. Trust is built at the edges."
+  h: "I design the wrong-answer screen first.",
+  p: "If I don't know how the system fails gracefully, the happy path doesn't matter. Trust is built in the error states."
 }, {
-  h: "I won't be the only designer past forty people.",
-  p: "I write the language down so the next designer inherits a system, not my head."
+  h: "The org chart is the hardest wireframe.",
+  p: "Most UX problems are actually just symptoms of misaligned internal teams. I design for the organization before I design the interface."
 }];
 const PATTERNS = [{
   k: "gauge",
   h: "Confidence scores",
-  p: "How much certainty to show, and when a number earns the right to drive a decision."
+  p: "How much certainty to show, and the threshold at which a number earns the right to drive a business decision."
 }, {
   k: "alert",
   h: "Failure states",
-  p: "The designed moment the model is wrong — the difference between a tool people trust and one they abandon."
+  p: "The designed moment the model is wrong — preventing user abandonment by handling errors gracefully."
 }, {
   k: "branch",
   h: "Explainability",
-  p: "\u201CWhy this?\u201D surfaces that turn a black-box output into a reviewable argument."
+  p: "\u201CWhy this?\u201D surfaces that turn a black-box output into a reviewable, business-justified argument."
 }, {
   k: "loop",
   h: "Human-in-the-loop",
-  p: "Where the person overrides, corrects, or teaches the system — and how that feels like authorship, not babysitting."
+  p: "Where the person overrides the system — creating a workflow that scales without increasing overhead."
 }];
 const WRITING = [{
   d: "2026 · Essay",
@@ -174,11 +174,11 @@ const CASES = {
       no: "1.1",
       label: "before — seven disconnected portals, eleven sign-in screens"
     },
-    tension: "Every portal had an owner, a budget line, and a story for why it was special. Consolidation meant telling six VPs their product was now a tab. The direction that tested best with learners was politically radioactive — so the design work was really a case made in the language of money and risk, not pixels. I couldn't draw my way past the org chart.",
+    tension: "Every portal had a VP, a budget line, and a reason why it was 'special'. Consolidation meant telling six executives their product was now a tab. The real design work was a political case made in the language of risk and P&L—I couldn't draw my way past the org chart.",
     note1: "the org chart was the real wireframe",
     decisionLede: "Three decisions did the load-bearing work:",
     moves: [{
-      h: "One taxonomy before one UI",
+      h: "One data model before one UI",
       p: "I rebuilt the content model first — a single skill graph every portal mapped onto — so the merge became a data migration, not a turf war over screens."
     }, {
       h: "Localisation as a default state",
@@ -327,10 +327,10 @@ const NDA_CASES = [{
   title: "O2 Priority Billing",
   standfirst: "The bills were correct and unreadable. Three decisions cut \u201Cexplain my bill\u201D tickets by two-fifths.",
   meta: [["Role", "Senior Product Designer"], ["Surface", "Billing \u00B7 web + app"], ["Status", "Shipped \u00B7 under NDA"]],
-  context: "Accurate bills that no one could parse generate the same support load as wrong ones. \u201CWhy is it this much?\u201D was the single biggest call driver \u2014 and the answer was already on the screen, just illegible.",
+  context: "Accurate bills that no one could parse generated the same support load as wrong ones. 'Why is my bill higher?' was the single largest call driver. The answer was on the screen, just buried.",
   moves: [{
     h: "Lead with the delta",
-    p: "Answered \u201Cwhy more than last month?\u201D at the top, before the line-item table."
+    p: "Answered 'why more than last month?' in plain text at the top, preempting the support call before the user even scrolled to the line-item table."
   }, {
     h: "Plain-language lines",
     p: "Rewrote charge labels in the words customers used, not the billing system's."
