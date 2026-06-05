@@ -86,47 +86,6 @@ const WRITING = [{
 }];
 const STATUS = ["Available · 4-wk notice", "Founding / Staff / Director", "Remote · GMT+5:30"];
 
-/* ---- PRAISE (advance blurbs; names withheld where the work is NDA) ---- */
-const PRAISE = [{
-  q: "He reads the evals before he opens a design file. He changed what we measured, then changed what we shipped.",
-  by: "VP Product · FinTech platform (under NDA)"
-}, {
-  q: "Arpit killed six of our products and every VP somehow thanked him for it.",
-  by: "Head of Learning Platforms · PTC University"
-}, {
-  q: "The first designer I've worked with who designs the wrong-answer screen first. Our analysts finally trust the model.",
-  by: "Director, Data Science · PE diligence platform (NDA)"
-}, {
-  q: "We asked for a dashboard. He gave us a way to run a hundred-person company without managers.",
-  by: "Founder · OrgOS"
-}, {
-  q: "Frameworks public, products shipped, ego absent. Rare three.",
-  by: "Engineering Lead · AdTech (NDA)"
-}];
-
-/* ---- CUTTING-ROOM FLOOR (directions argued for and killed) ---- */
-const FLOOR = [{
-  tag: "AdTech",
-  sketch: "three-option recommendation card",
-  h: "Three options",
-  p: "tested 2.3\u00D7 worse than one. People froze."
-}, {
-  tag: "FinTech",
-  sketch: "skeuomorphic confidence dial",
-  h: "The confidence dial",
-  p: "beautiful, and unreadable at a glance."
-}, {
-  tag: "Org design",
-  sketch: "org-chart view of OrgOS",
-  h: "The org chart",
-  p: "it drew the hierarchy we were deleting."
-}, {
-  tag: "EdTech",
-  sketch: "per-portal logins, \u2018kept for migration\u2019",
-  h: "Seven logins",
-  p: "\u2018just for migration.\u2019 Killed it; migrated anyway."
-}];
-
 /* ---- CURRICULUM VITAE (the printable appendix) ---- */
 const CV_SKILLS = ["Design leadership", "AI / ML UX", "Design systems", "Research & evals", "Prototyping", "Org design"];
 const CV_EXP = [{
@@ -877,50 +836,44 @@ function buildBook(ctx) {
     n: "—",
     name: "About the Author",
     sub: "Who's writing, and why",
-    pg: "p. iv",
-    to: 3
+    pg: "p. ii",
+    to: 2
   }, {
     n: "I",
     name: "Selected Work",
     sub: "Overview → five cases",
     pg: "p. 2",
-    to: 4
+    to: 3
   }, {
     n: "II",
     name: "How I Lead",
     sub: "Principles & one confession",
     pg: "p. 4",
-    to: 5
+    to: 4
   }, {
     n: "III",
     name: "A Field Guide to Trust",
     sub: "Overview → four patterns",
     pg: "p. 6",
-    to: 6
+    to: 5
   }, {
     n: "IV",
     name: "Notes & Writing",
     sub: "Essays, talks, field notes",
     pg: "p. 8",
-    to: 7
+    to: 6
   }, {
     n: "V",
-    name: "The Cutting-Room Floor",
-    sub: "What I argued for and killed",
-    pg: "p. 10",
-    to: 8
-  }, {
-    n: "VI",
     name: "Colophon & Contact",
     sub: "How this was made; write to me",
-    pg: "p. 12",
-    to: 9
+    pg: "p. 10",
+    to: 7
   }, {
     n: "—",
     name: "Curriculum Vitæ",
     sub: "The printable appendix",
-    pg: "p. 14",
-    to: 10
+    pg: "p. 12",
+    to: 8
   }];
   const ptcA = caseSpreadA(CASES.ptc),
     ptcB = caseSpreadB(CASES.ptc);
@@ -1029,61 +982,13 @@ function buildBook(ctx) {
         marginTop: 26
       }
     }, "turn pages across \u2192 open items to go deeper \u2197"))
-  }, /* 2 · PRAISE (front matter) */
-  {
-    kind: "spread",
-    runheadL: VERSO,
-    runheadR: "Praise",
-    folioL: "ii",
-    folioR: "iii",
-    left: /*#__PURE__*/React.createElement("div", {
-      className: "bk-reveal",
-      style: {
-        display: "flex",
-        flexDirection: "column",
-        height: "100%"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "bk-cover__imprint",
-      style: {
-        color: "var(--bk-ink-faint)"
-      }
-    }, "Advance praise"), /*#__PURE__*/React.createElement("div", {
-      className: "bk-spacer"
-    }), /*#__PURE__*/React.createElement("div", {
-      style: {
-        width: 64,
-        height: 64,
-        marginBottom: 20
-      }
-    }, /*#__PURE__*/React.createElement(Emblem, {
-      stroke: "var(--bk-ember)"
-    })), /*#__PURE__*/React.createElement("h2", {
-      className: "bk-title bk-title--l"
-    }, "Praise for", /*#__PURE__*/React.createElement("br", null), "this volume"), /*#__PURE__*/React.createElement("p", {
-      className: "bk-standfirst"
-    }, "What people say when the NDA lets them. Names withheld where the work can't be."), /*#__PURE__*/React.createElement("div", {
-      className: "bk-spacer"
-    }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-      className: "bk-stamp"
-    }, "Verbatim \xB7 on file"))),
-    right: /*#__PURE__*/React.createElement("div", {
-      className: "bk-reveal"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "bk-kicker"
-    }, "From clients & teams"), /*#__PURE__*/React.createElement("div", {
-      className: "bk-blurbs"
-    }, PRAISE.map((b, i) => /*#__PURE__*/React.createElement("blockquote", {
-      className: "bk-blurb",
-      key: i
-    }, /*#__PURE__*/React.createElement("p", null, b.q), /*#__PURE__*/React.createElement("cite", null, b.by)))))
-  }, /* 3 · ABOUT THE AUTHOR (front matter) */
+  }, /* 2 · About the Author (front matter) */
   {
     kind: "spread",
     runheadL: VERSO,
     runheadR: "About the Author",
-    folioL: "iv",
-    folioR: "v",
+    folioL: "ii",
+    folioR: "iii",
     left: /*#__PURE__*/React.createElement("div", {
       className: "bk-reveal"
     }, /*#__PURE__*/React.createElement("div", {
@@ -1364,66 +1269,13 @@ function buildBook(ctx) {
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-writing__date"
     }, w.d), /*#__PURE__*/React.createElement("h4", null, w.h), /*#__PURE__*/React.createElement("p", null, w.p)))))
-  }, /* 8 · CHAPTER V — THE CUTTING-ROOM FLOOR */
+  }, /* CHAPTER VI — COLOPHON & CONTACT */
   {
     kind: "spread",
     runheadL: VERSO,
-    runheadR: "V · The Cutting-Room Floor",
+    runheadR: "V · Colophon & Contact",
     folioL: "10",
     folioR: "11",
-    left: /*#__PURE__*/React.createElement("div", {
-      className: "bk-reveal"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "bk-kicker"
-    }, "Chapter Five"), /*#__PURE__*/React.createElement("span", {
-      className: "bk-chno"
-    }, "\u2116 V"), /*#__PURE__*/React.createElement("h2", {
-      className: "bk-title bk-title--l",
-      style: {
-        margin: "4px 0 16px"
-      }
-    }, "The", /*#__PURE__*/React.createElement("br", null), "Cutting-", /*#__PURE__*/React.createElement("br", null), "Room Floor"), /*#__PURE__*/React.createElement("p", {
-      className: "bk-body bk-drop"
-    }, "Every shipped screen is a graveyard of the ones that didn't make it. A few directions I argued for and lost \u2014 or argued for, won, then killed anyway. The deletions taught me more than the launches did."), /*#__PURE__*/React.createElement("div", {
-      className: "bk-note",
-      style: {
-        marginTop: 22
-      }
-    }, "kill your darlings, then frame them \u2192")),
-    right: /*#__PURE__*/React.createElement("div", {
-      className: "bk-reveal"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "bk-kicker"
-    }, "Selected deletions"), /*#__PURE__*/React.createElement("div", {
-      className: "bk-floor"
-    }, FLOOR.map((f, i) => /*#__PURE__*/React.createElement("div", {
-      className: "bk-floor__item",
-      key: i
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "bk-figure",
-      style: {
-        minHeight: 116,
-        marginTop: 0
-      }
-    }, /*#__PURE__*/React.createElement("span", {
-      className: "bk-figure__tag"
-    }, f.tag), /*#__PURE__*/React.createElement("div", {
-      className: "bk-figure__mid",
-      style: {
-        fontSize: 10
-      }
-    }, "[ ", f.sketch, " ]")), /*#__PURE__*/React.createElement("span", {
-      className: "bk-stamp bk-floor__stamp" + (i % 2 ? " bk-stamp--r" : "")
-    }, "Killed"), /*#__PURE__*/React.createElement("div", {
-      className: "bk-floor__lbl"
-    }, /*#__PURE__*/React.createElement("b", null, f.h), " \u2014 ", f.p)))))
-  }, /* 9 · CHAPTER VI — COLOPHON & CONTACT */
-  {
-    kind: "spread",
-    runheadL: VERSO,
-    runheadR: "VI · Colophon & Contact",
-    folioL: "12",
-    folioR: "13",
     left: /*#__PURE__*/React.createElement("div", {
       className: "bk-reveal",
       style: {
@@ -1433,9 +1285,9 @@ function buildBook(ctx) {
       }
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-kicker"
-    }, "Chapter Six"), /*#__PURE__*/React.createElement("span", {
+    }, "Chapter Five"), /*#__PURE__*/React.createElement("span", {
       className: "bk-chno"
-    }, "\u2116 VI"), /*#__PURE__*/React.createElement("h2", {
+    }, "\u2116 V"), /*#__PURE__*/React.createElement("h2", {
       className: "bk-title bk-title--m",
       style: {
         margin: "4px 0 16px"
@@ -1489,8 +1341,8 @@ function buildBook(ctx) {
     kind: "spread",
     runheadL: VERSO,
     runheadR: "Appendix · Curriculum Vitæ",
-    folioL: "14",
-    folioR: "15",
+    folioL: "12",
+    folioR: "13",
     left: /*#__PURE__*/React.createElement("div", {
       className: "bk-reveal",
       style: {
