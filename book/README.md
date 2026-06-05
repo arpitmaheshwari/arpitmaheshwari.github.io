@@ -1,4 +1,4 @@
-# A Working Book — book-theme portfolio
+# Creative Clarity — book-theme portfolio
 
 An interactive "bound book" portfolio that lives at `/book/`, parallel to the
 main static site at `/`. Self-contained: cover → contents → chapters, with a

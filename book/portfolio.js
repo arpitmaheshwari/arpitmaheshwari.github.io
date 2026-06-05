@@ -1,4 +1,4 @@
-/* book-content.jsx — content model + spread renderers for A Working Book.
+/* book-content.jsx — content model + spread renderers for Creative Clarity.
    Exposes window.buildBook(ctx) -> { spine:[7 spreads], sections:{cases,patterns} },
    and window.BOOK_META. ctx = { headline, go, enter }.
 
@@ -14,27 +14,27 @@ const WORK = [{
   tag: "EdTech · Non-NDA",
   title: "PTC University",
   metric: "$1M/yr",
-  desc: "Consolidated seven overlapping platforms into one learning system across eleven languages. The redesign was easy; the political case for killing six products was the work."
+  desc: "Led the strategic consolidation of seven siloed platforms across eleven languages. The design work was navigating org-chart politics; the output was a single, unified system."
 }, {
   tag: "FinTech · NDA",
   title: "AI-Assisted Due Diligence",
   metric: "−60%",
-  desc: "Refused to ship the model without an \u201Cexplain this score\u201D surface. PE analysts went from ignoring it to leading with it."
+  desc: "Overcame internal skepticism by designing explainability into the UI, turning an ignored AI risk model into the firm's primary diligence tool."
 }, {
   tag: "AdTech · NDA",
   title: "Programmatic Advertising",
   metric: "15\u219263%",
-  desc: "Designed confidence into the recommendation before the recommendation. Media buyers finally acted on the algorithm."
+  desc: "Designed a memory-enabled recommendation system. Solved the 'black box' trust issue, increasing algorithmic adoption from 15% to 63%."
 }, {
   tag: "Telecom · NDA",
   title: "O2 Priority Billing",
   metric: "−40%",
-  desc: "Bills were correct and unreadable. Three decisions cut \u201Cexplain my bill\u201D tickets by two-fifths."
+  desc: "Identified that accurate but unreadable bills caused the same support load as wrong ones. Three design interventions cut support tickets by two-fifths."
 }, {
   tag: "Org Design · Non-NDA",
   title: "OrgOS",
   metric: "120",
-  desc: "Eight modules that let a 120-person team self-organise. Zero managers; transparency as the coordination layer."
+  desc: "Designed operational software for a zero-manager consultancy. Built transparency tools that enabled self-organization without reintroducing hierarchy."
 }];
 const PRINCIPLES = [{
   h: "I design for business outcomes, not just user friction.",
@@ -65,12 +65,12 @@ const PATTERNS = [{
 }];
 const WRITING = [{
   d: "2026 · Essay",
-  h: "The trust layer is the product",
-  p: "Why the surface where users decide to act on a model matters more than the model."
+  h: "The Agentic MVP: Why Your Next Launch Will Be Lovable",
+  p: "How the rise of agentic systems is rewriting what 'minimum viable' means — and why lovability is now the bar."
 }, {
-  d: "2025 · Field note",
-  h: "I argued for three options and lost",
-  p: "The A/B test that changed how I design every recommendation."
+  d: "2026 · Field note",
+  h: "The AI Fight Club",
+  p: "Weaponizing Claude and Gemini for Bulletproof Products. A practical method for stress-testing AI interfaces."
 }, {
   d: "2025 · Talk",
   h: "Designing for the eval, not the mock",
@@ -87,7 +87,7 @@ const WRITING = [{
 const STATUS = ["Available · 4-wk notice", "Founding / Staff / Director", "Remote · GMT+5:30"];
 
 /* ---- CURRICULUM VITAE (the printable appendix) ---- */
-const CV_SKILLS = ["Design leadership", "AI / ML UX", "Design systems", "Research & evals", "Prototyping", "Org design"];
+const CV_SKILLS = ["Model-Layer Design", "Data-Intensive UI", "Design Leadership", "Organizational Design", "Research & Evals", "System Architecture"];
 const CV_EXP = [{
   yr: "2021\u2014",
   role: "Principal Product Designer",
@@ -174,14 +174,14 @@ const CASES = {
     no: "02",
     tag: "Org Design · Non-NDA",
     title: "OrgOS",
-    standfirst: "A 120-person company with zero managers. The job: make a flat org legible without quietly installing a hierarchy to do it.",
+    standfirst: "A 120-person company with zero managers. The job: build operational software that enables scale without smuggling a boss back in through the side door.",
     meta: [["Role", "Founding Designer"], ["Span", "Ongoing · 8 modules"], ["Surface", "Internal web app"], ["Result", "Live across the org"]],
-    context: "A 120-person consultancy ran with no managers. Coordination happened in hallway conversations and a sprawl of spreadsheets — which works at forty people and snaps at a hundred. They wanted software that made the flat org legible, without the software smuggling a boss back in through the side door.",
+    context: "A 120-person consultancy ran with no managers. Coordination happened in hallway conversations and a sprawl of spreadsheets — which works at forty people and snaps at a hundred. They needed software that made the flat org legible, without the software secretly imposing a hierarchy.",
     fig1: {
       no: "2.1",
       label: "before — coordination by spreadsheet + hallway conversation"
     },
-    tension: "Every obvious feature carried a hierarchy inside it. Dashboards imply someone watching; approvals imply someone approving; assignments imply someone assigning. The real constraint was to build coordination tools that never curdled into control tools — to let transparency do the job a manager usually does, without anyone holding the authority a manager usually has.",
+    tension: "Every traditional feature carried a hierarchy inside it. Dashboards imply someone watching; approvals imply someone approving; assignments imply someone assigning. The real constraint was building coordination tools that never curdled into control tools — letting transparency do the work of a manager.",
     note1: "every feature wanted to grow a boss",
     decisionLede: "I kept deleting features that worked. Three survived as the spine:",
     moves: [{
@@ -226,13 +226,13 @@ const NDA_CASES = [{
   title: "AI-Assisted Due Diligence",
   standfirst: "A risk model the analysts wouldn't touch \u2014 until it learned to show its work.",
   meta: [["Role", "Lead Product Designer"], ["Surface", "PE diligence platform"], ["Status", "Shipped \u00B7 under NDA"]],
-  context: "Private-equity analysts had an AI that scored deal risk and an instinct to ignore it. A confident number with no account of itself is just another opinion \u2014 and theirs was better paid. The model was good; the trust was missing.",
+  context: "Analysts had an AI that scored deal risk and an instinct to ignore it. A confident number with no reasoning is just an opinion. The model was good; the trust interface was missing.",
   moves: [{
     h: "Explain before score",
-    p: "Put the three documents that moved the number next to the number \u2014 before the verdict, not buried behind it."
+    p: "Put the three documents that moved the number next to the number \u2014 proving the business value before the verdict, not buried behind it."
   }, {
     h: "Design the decline",
-    p: "Shipped a visible \u201CI'm not sure about this one\u201D state so the model could refuse to bluff."
+    p: "Shipped a visible \u201CI'm not sure about this one\u201D state so the model could refuse to bluff, preserving user trust."
   }, {
     h: "Disagreement on record",
     p: "Made \u201CI disagree\u201D a first-class, logged action that fed the next eval."
@@ -256,16 +256,16 @@ const NDA_CASES = [{
   title: "Programmatic Advertising",
   standfirst: "Media buyers ignored the algorithm until the algorithm remembered its own track record.",
   meta: [["Role", "Lead Product Designer"], ["Surface", "DSP recommendation UI"], ["Status", "Shipped \u00B7 under NDA"]],
-  context: "A demand-side platform recommended bids no one acted on. The recommendation was confident and amnesiac \u2014 it never said how it had done last month, so buyers trusted their gut over the box.",
+  context: "A demand-side platform recommended bids no one acted on. The AI was amnesiac\u2014it never showed its past accuracy, so buyers trusted their gut over the algorithm.",
   moves: [{
     h: "Confidence with memory",
-    p: "Sat each recommendation beside its own 30-day hit rate. Confidence that remembers gets acted on."
+    p: "Sat each recommendation beside its own 30-day hit rate. Confidence that remembers builds trust and gets acted on."
   }, {
     h: "Act / review / ignore",
-    p: "Anchored every score to one of three actions, never a bare percentage."
+    p: "Anchored every score to one of three business actions, never a bare percentage."
   }, {
     h: "Override teaches",
-    p: "A buyer's override visibly retrained next week's call \u2014 correcting felt like teaching, not rework."
+    p: "A buyer's override visibly retrained next week's call \u2014 turning corrections into training signals rather than rework."
   }],
   plateNo: "4.1",
   plateCn: "recommendation card + 30-day track record",
@@ -317,8 +317,8 @@ const PATTERN_PAGES = {
     k: "gauge",
     h: "Confidence scores",
     principle: "A number people can act on \u2014 not just read.",
-    def: "How much certainty to show, in what form, and the threshold at which a score has earned the right to drive a decision rather than merely decorate one.",
-    note: "a percentage is a feeling until it's anchored to an action",
+    def: "How much certainty to show, in what form, and the threshold at which a score has earned the right to drive a business decision rather than merely decorate a dashboard.",
+    note: "a percentage is a feeling until it's anchored to a business action",
     dos: ["Anchor the score to an action — act, review, or ignore — not just a bare number.", "Show the score's own track record so people can calibrate their trust.", "Round to the precision you'd be willing to defend out loud."],
     donts: ["Render 87.3% when what you actually mean is \u201Cprobably.\u201D", "Let a high score auto-execute with no visible way to override.", "Reuse one confidence scale across decisions of wildly different stakes."],
     instTag: "AdTech · Programmatic",
@@ -335,8 +335,8 @@ const PATTERN_PAGES = {
     k: "alert",
     h: "Failure states",
     principle: "If you can't design the wrong answer, the feature isn't ready.",
-    def: "The designed moment the model is wrong — how it admits it, what it offers instead, and how a miss costs trust slowly instead of all at once.",
-    note: "I design the wrong-answer screen first now",
+    def: "The designed moment the model is wrong \u2014 preventing user abandonment by making recovery from a miss cheaper than the mistake itself.",
+    note: "I design the error recovery first now",
     dos: ["Design the wrong-answer screen before you design the happy path.", "Make recovery from a miss cheaper than the mistake itself.", "Say what the system doesn't know, plainly and early."],
     donts: ["Hide uncertainty behind a confident-looking default.", "File \u201Cwhat if it's wrong\u201D as an edge case to handle later.", "Apologise for an error without offering the next step."],
     instTag: "FinTech · Due Diligence",
@@ -352,9 +352,9 @@ const PATTERN_PAGES = {
     no: "03",
     k: "branch",
     h: "Explainability",
-    principle: "Turn a black-box output into a reviewable argument.",
-    def: "The \u201Cwhy this?\u201D surface that lets a person inspect, challenge, and either endorse or reject the model's reasoning — the difference between obeying a score and owning a decision.",
-    note: "an output you can argue with is an output you'll stand behind",
+    principle: "Turn a black-box output into an auditable argument.",
+    def: "The \u201Cwhy this?\u201D surface that lets a person inspect, challenge, and either endorse or reject the model's reasoning \u2014 the difference between obeying a score and owning a business decision.",
+    note: "an output you can audit is an output you'll stand behind",
     dos: ["Show the two or three inputs that actually moved the result.", "Let the user trace from the output back to the evidence.", "Make \u201CI disagree\u201D a first-class, recorded action."],
     donts: ["Dump every feature weight on screen and call it transparency.", "Explain after the decision instead of before it.", "Mistake a tooltip for an account of the reasoning."],
     instTag: "FinTech · Due Diligence",
@@ -371,7 +371,7 @@ const PATTERN_PAGES = {
     k: "loop",
     h: "Human-in-the-loop",
     principle: "Override should feel like authorship, not babysitting.",
-    def: "Where and how the person corrects, overrides, or teaches the system — designed so the human stays the author of the decision, not the janitor of the model's mistakes.",
+    def: "Where and how the person corrects the system \u2014 turning human corrections into training signals rather than rework, so the workflow scales without increasing overhead.",
     note: "correcting the model should feel like teaching, not cleanup",
     dos: ["Make the human's edit visibly improve the next result.", "Put the control where the decision happens, never buried in settings.", "Default to the human's last call when the stakes are high."],
     donts: ["Ask for approval on everything until approval means nothing.", "Treat corrections as exceptions instead of as training signal.", "Make overriding feel like a fight with the product."],
@@ -890,7 +890,7 @@ function buildBook(ctx) {
       className: "bk-cover"
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-cover__imprint"
-    }, "A Working Book \xB7 Vol. I \xB7 MMXXVI"), /*#__PURE__*/React.createElement("div", {
+    }, "Creative Clarity \xB7 Vol. I \xB7 MMXXVI"), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-cover__emblem"
@@ -900,7 +900,7 @@ function buildBook(ctx) {
       className: "bk-cover__rule"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-cover__sub"
-    }, "Designing trust into AI & data products.", /*#__PURE__*/React.createElement("br", null), "Fifteen years, five industries, measured."), /*#__PURE__*/React.createElement("button", {
+    }, "Designing for business outcomes, not just user friction.", /*#__PURE__*/React.createElement("br", null), "Fifteen years, five industries, measured."), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1)
     }, /*#__PURE__*/React.createElement("span", {
@@ -925,7 +925,7 @@ function buildBook(ctx) {
       style: {
         color: "var(--bk-ink-faint)"
       }
-    }, "A Working Book"), /*#__PURE__*/React.createElement("div", {
+    }, "Creative Clarity"), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -946,7 +946,7 @@ function buildBook(ctx) {
         marginTop: 18,
         maxWidth: "30ch"
       }
-    }, "Design leader for AI & data-intensive products. Frameworks public, products under NDA, outcomes measured."), /*#__PURE__*/React.createElement("div", {
+    }, "Design leader for AI & data-intensive products. I navigate org-chart politics and ship the model layer. Frameworks public, outcomes measured."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-body",
@@ -1024,7 +1024,7 @@ function buildBook(ctx) {
       style: {
         marginTop: 8
       }
-    }, "Design leader for AI & data-intensive products. Fifteen years, five industries, one stubborn idea: the interface is where trust is won or lost."), /*#__PURE__*/React.createElement("div", {
+    }, "Design leader for AI & data-intensive products. Fifteen years, five industries, one stubborn idea: the bottleneck is never the model — it's the decision a business makes after it."), /*#__PURE__*/React.createElement("div", {
       className: "bk-chips",
       style: {
         marginTop: 16
@@ -1916,7 +1916,7 @@ function App() {
     style: {
       opacity: 0.6
     }
-  }, "A Working Book")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
+  }, "Creative Clarity")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
     style: {
       opacity: 0
     }
@@ -1968,7 +1968,7 @@ function App() {
         style: {
           opacity: 0.6
         }
-      }, "A Working Book")), sp.left, /*#__PURE__*/React.createElement("div", {
+      }, "Creative Clarity")), sp.left, /*#__PURE__*/React.createElement("div", {
         className: "bk-folio"
       }, sp.folioL), /*#__PURE__*/React.createElement("div", {
         className: "bk-corner bk-corner--prev",
@@ -2093,7 +2093,7 @@ function App() {
       onClick: exitSection
     }, Caret("prev"), " ", section.label) : /*#__PURE__*/React.createElement("span", {
       className: "name"
-    }, "Arpit Maheshwari"), isCover ? /*#__PURE__*/React.createElement("span", null, "A Working Book") : /*#__PURE__*/React.createElement("button", {
+    }, "Arpit Maheshwari"), isCover ? /*#__PURE__*/React.createElement("span", null, "Creative Clarity") : /*#__PURE__*/React.createElement("button", {
       className: "bk-m-jump",
       onClick: () => setMenu(true),
       "aria-label": "Open chapter menu"
