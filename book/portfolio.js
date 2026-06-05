@@ -1,4 +1,4 @@
-/* book-content.jsx — content model + spread renderers for The Monograph.
+/* book-content.jsx — content model + spread renderers for A Working Book.
    Exposes window.buildBook(ctx) -> { spine:[7 spreads], sections:{cases,patterns} },
    and window.BOOK_META. ctx = { headline, go, enter }.
 
@@ -431,32 +431,23 @@ window.BOOK_META = {
 };
 
 /* ---- small SVG bits ---------------------------------------- */
-function Emblem({
-  stroke = "var(--bk-ochre)"
-}) {
+function Emblem() {
   return /*#__PURE__*/React.createElement("svg", {
-    viewBox: "0 0 96 96",
+    viewBox: "0 0 100 100",
     width: "100%",
     height: "100%",
-    fill: "none",
-    stroke: stroke,
-    strokeWidth: "2.4"
+    "aria-hidden": "true"
   }, /*#__PURE__*/React.createElement("path", {
-    d: "M48 26 C30 16 16 20 16 20 L16 74 C16 74 32 70 48 80"
+    d: "M49 31 C35 23 24 26 24 26 L24 69 C24 69 36 66 49 75 Z",
+    fill: "#F4ECDA"
   }), /*#__PURE__*/React.createElement("path", {
-    d: "M48 26 C66 16 80 20 80 20 L80 74 C80 74 64 70 48 80"
-  }), /*#__PURE__*/React.createElement("line", {
-    x1: "48",
-    y1: "26",
-    x2: "48",
-    y2: "80"
+    d: "M51 31 C65 23 76 26 76 26 L76 69 C76 69 64 66 51 75 Z",
+    fill: "#F4ECDA"
   }), /*#__PURE__*/React.createElement("circle", {
-    cx: "48",
-    cy: "50",
-    r: "7",
-    fill: stroke,
-    stroke: "none",
-    opacity: "0.9"
+    cx: "50",
+    cy: "49",
+    r: "6",
+    fill: "#CE9230"
   }));
 }
 function Dia({
@@ -946,7 +937,7 @@ function buildBook(ctx) {
       className: "bk-cover"
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-cover__imprint"
-    }, "A Working Monograph \xB7 Vol. I \xB7 MMXXVI"), /*#__PURE__*/React.createElement("div", {
+    }, "A Working Book \xB7 Vol. I \xB7 MMXXVI"), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-cover__emblem"
@@ -981,7 +972,7 @@ function buildBook(ctx) {
       style: {
         color: "var(--bk-ink-faint)"
       }
-    }, "The Monograph"), /*#__PURE__*/React.createElement("div", {
+    }, "A Working Book"), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -1451,11 +1442,11 @@ function buildBook(ctx) {
       }
     }, "Colophon"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "This monograph was set in ", /*#__PURE__*/React.createElement("span", {
+    }, "This book was set in ", /*#__PURE__*/React.createElement("span", {
       className: "bk-em"
-    }, "Instrument Serif"), " and ", /*#__PURE__*/React.createElement("span", {
+    }, "Playfair Display"), " and ", /*#__PURE__*/React.createElement("span", {
       className: "bk-em"
-    }, "Newsreader"), ", with margin notes in Caveat and folios in Spline Sans Mono. Bound, printed, and maintained by its author."), /*#__PURE__*/React.createElement("p", {
+    }, "Spectral"), ", with margin notes in Caveat and folios in Spline Sans Mono. Bound, printed, and maintained by its author."), /*#__PURE__*/React.createElement("p", {
       className: "bk-body",
       style: {
         marginTop: 12
@@ -1525,10 +1516,7 @@ function buildBook(ctx) {
       key: i
     }, s))), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
-    }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
-      className: "bk-btn bk-btn--ghost",
-      onClick: () => window.print()
-    }, "Print this page \u2193")), /*#__PURE__*/React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
         marginTop: 18
@@ -1732,6 +1720,38 @@ function mix(a, b, t) {
     B = p(b);
   return "#" + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, "0")).join("");
 }
+function ChapterMenu({
+  spine,
+  onPick,
+  onClose
+}) {
+  const items = [{
+    i: 0,
+    label: "Cover",
+    sub: "Home"
+  }].concat(spine.slice(1).map((sp, k) => ({
+    i: k + 1,
+    label: sp.runheadR,
+    sub: null
+  })));
+  return /*#__PURE__*/React.createElement("div", {
+    className: "bk-menu",
+    onClick: onClose
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bk-menu__panel",
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bk-menu__head"
+  }, "Jump to a chapter"), items.map(it => /*#__PURE__*/React.createElement("button", {
+    key: it.i,
+    className: "bk-menu__item",
+    onClick: () => onPick(it.i)
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "bk-menu__label"
+  }, it.label), it.sub ? /*#__PURE__*/React.createElement("span", {
+    className: "bk-menu__sub"
+  }, it.sub) : null))));
+}
 function Arrow({
   dir,
   onClick,
@@ -1795,6 +1815,7 @@ function App() {
   const [mLeaf, setMLeaf] = useState(0); // mobile flat-page index
   const [mDir, setMDir] = useState(1);
   const [scale, setScale] = useState(1);
+  const [menu, setMenu] = useState(false);
   const animating = useRef(false);
   const locRef = useRef(loc);
   locRef.current = loc;
@@ -1936,6 +1957,30 @@ function App() {
     }, "out");
   }, [goIndex]);
 
+  // unified quick-jump used by the Chapters menu (desktop + mobile) + Home
+  const jumpTo = useCallback(i => {
+    if (animating.current) return;
+    if (locRef.current.deck !== "spine") {
+      changeLevel({
+        deck: "spine",
+        i
+      }, "out");
+      return;
+    }
+    if (mobileRef.current) {
+      const nl = {
+        deck: "spine",
+        i
+      };
+      setLoc(nl);
+      persist(nl);
+      setMDir(1);
+      setMLeaf(firstPageOf("spine", i));
+      return;
+    }
+    goIndex(i);
+  }, [goIndex]);
+
   // ---- mobile paging ----
   const stepMobile = useCallback(dir => {
     if (animating.current) return;
@@ -1975,7 +2020,7 @@ function App() {
       const l = locRef.current;
       const isCover = l.deck === "spine" && l.i === 0;
       const w = isCover ? COVER_W : SPREAD_W;
-      let s = Math.min((window.innerWidth - 160) / w, (window.innerHeight - 150) / COVER_H, 1.0);
+      let s = Math.min((window.innerWidth - 72) / w, (window.innerHeight - 72) / COVER_H, 1.2);
       if (l.deck !== "spine") s *= 0.96; // sit a touch smaller a level down
       setScale(s > 0.2 ? s : 0.3);
     };
@@ -2019,7 +2064,7 @@ function App() {
     style: {
       opacity: 0.6
     }
-  }, "The Monograph")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
+  }, "A Working Book")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
     style: {
       opacity: 0
     }
@@ -2071,7 +2116,7 @@ function App() {
         style: {
           opacity: 0.6
         }
-      }, "The Monograph")), sp.left, /*#__PURE__*/React.createElement("div", {
+      }, "A Working Book")), sp.left, /*#__PURE__*/React.createElement("div", {
         className: "bk-folio"
       }, sp.folioL), /*#__PURE__*/React.createElement("div", {
         className: "bk-corner bk-corner--prev",
@@ -2130,7 +2175,32 @@ function App() {
       style: {
         transform: `scale(${scale})`
       }
-    }, inner)), /*#__PURE__*/React.createElement(Arrow, {
+    }, inner)), /*#__PURE__*/React.createElement("button", {
+      className: "bk-menu-btn",
+      onClick: () => setMenu(true),
+      "aria-label": "Open chapter menu"
+    }, /*#__PURE__*/React.createElement("svg", {
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }, /*#__PURE__*/React.createElement("line", {
+      x1: "4",
+      y1: "7",
+      x2: "20",
+      y2: "7"
+    }), /*#__PURE__*/React.createElement("line", {
+      x1: "4",
+      y1: "12",
+      x2: "20",
+      y2: "12"
+    }), /*#__PURE__*/React.createElement("line", {
+      x1: "4",
+      y1: "17",
+      x2: "14",
+      y2: "17"
+    })), "Chapters"), /*#__PURE__*/React.createElement(Arrow, {
       dir: "prev",
       onClick: () => goIndex(curSpread - 1),
       disabled: prevDisabled
@@ -2171,7 +2241,32 @@ function App() {
       onClick: exitSection
     }, Caret("prev"), " ", section.label) : /*#__PURE__*/React.createElement("span", {
       className: "name"
-    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("span", null, inSection ? section.kind + " · " + (pg.idxLabel || "") : isCover ? "A Working Monograph" : pg.chapter)), /*#__PURE__*/React.createElement("div", {
+    }, "Arpit Maheshwari"), isCover ? /*#__PURE__*/React.createElement("span", null, "A Working Book") : /*#__PURE__*/React.createElement("button", {
+      className: "bk-m-jump",
+      onClick: () => setMenu(true),
+      "aria-label": "Open chapter menu"
+    }, /*#__PURE__*/React.createElement("svg", {
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }, /*#__PURE__*/React.createElement("line", {
+      x1: "4",
+      y1: "7",
+      x2: "20",
+      y2: "7"
+    }), /*#__PURE__*/React.createElement("line", {
+      x1: "4",
+      y1: "12",
+      x2: "20",
+      y2: "12"
+    }), /*#__PURE__*/React.createElement("line", {
+      x1: "4",
+      y1: "17",
+      x2: "14",
+      y2: "17"
+    })), "Chapters")), /*#__PURE__*/React.createElement("div", {
       className: "bk-m-stage"
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-m-page" + (isCover ? " bk-m-page--cover" : ""),
@@ -2205,6 +2300,13 @@ function App() {
   }
   return /*#__PURE__*/React.createElement("div", {
     style: wrapVars
-  }, mobile ? renderMobile() : renderDesktop());
+  }, mobile ? renderMobile() : renderDesktop(), menu && /*#__PURE__*/React.createElement(ChapterMenu, {
+    spine: book.spine,
+    onPick: i => {
+      setMenu(false);
+      jumpTo(i);
+    },
+    onClose: () => setMenu(false)
+  }));
 }
 ReactDOM.createRoot(document.getElementById("app")).render(/*#__PURE__*/React.createElement(App, null));
