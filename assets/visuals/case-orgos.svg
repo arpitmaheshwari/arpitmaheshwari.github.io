@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="t d">
+  <title id="t">OrgOS — eight modules around one shared object model, zero managers</title>
+  <desc id="d">A calm wide editorial line-art banner on cream paper. A single central core labelled "one object model" sits at the centre. Eight small labelled rounded rectangles — Staffing, Comp, OKRs, Onboarding, Reviews, Hiring, Finance and Roadmap — are spread across the full width in a wide ring and each connect directly to the central core with a thin spoke, rather than in a top-down hierarchy tree. The arrangement conveys coordination through one shared object model and transparency, not a boss-led chain of command. A quiet caption reads "0 managers, 8 modules".</desc>
+
+  <defs>
+    <style>
+      .hd{font-family:Georgia,'Times New Roman',serif}
+      .lb{font-family:ui-sans-serif,system-ui,sans-serif}
+    </style>
+  </defs>
+
+  <!-- palette: bg cream #F4ECDA / panel #EEE4CE / ink #2C2620 / soft #6A6052 / faint #998D78 / ember #C0512B / ochre #CE9230 / pine #2F5D52 / hairline rgba(44,38,32,0.12) -->
+
+  <!-- paper: fills the full 1280x400 canvas -->
+  <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
+  <rect x="20" y="20" width="1240" height="360" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+  <!-- heading (top-left, large) -->
+  <text x="44" y="62" class="hd" font-size="30" fill="#2C2620">OrgOS — coordination without a boss</text>
+  <text x="44" y="88" class="lb" font-size="15" letter-spacing="0.3" fill="#6A6052">Eight modules. One shared object model. No hierarchy.</text>
+  <line x1="44" y1="104" x2="1236" y2="104" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+  <!-- ===== wide radial network ===== -->
+  <!-- centre cx=640 cy=242 ; wide ring rx=548 ry=104 -->
+
+  <!-- faint connecting ring (peer transparency, not chain of command) -->
+  <ellipse cx="640" cy="242" rx="548" ry="104" fill="none" stroke="rgba(44,38,32,0.12)" stroke-width="1" stroke-dasharray="3 6"/>
+
+  <!-- spokes (drawn before nodes so they tuck under) -->
+  <g stroke="#998D78" stroke-width="1.2" fill="none" opacity="0.9">
+    <line x1="640" y1="242" x2="640" y2="138"/>
+    <line x1="640" y1="242" x2="1027" y2="168"/>
+    <line x1="640" y1="242" x2="1188" y2="242"/>
+    <line x1="640" y1="242" x2="1027" y2="316"/>
+    <line x1="640" y1="242" x2="640" y2="346"/>
+    <line x1="640" y1="242" x2="253" y2="316"/>
+    <line x1="640" y1="242" x2="92" y2="242"/>
+    <line x1="640" y1="242" x2="253" y2="168"/>
+  </g>
+
+  <!-- central core "one object model" -->
+  <circle cx="640" cy="242" r="62" fill="#F4ECDA" stroke="#C0512B" stroke-width="2"/>
+  <circle cx="640" cy="242" r="48" fill="none" stroke="#C0512B" stroke-width="1" opacity="0.4"/>
+  <circle cx="640" cy="242" r="6" fill="#C0512B"/>
+  <text x="640" y="238" text-anchor="middle" class="lb" font-size="13" font-weight="600" fill="#2C2620">one</text>
+  <text x="640" y="256" text-anchor="middle" class="lb" font-size="13" font-weight="600" fill="#2C2620">object</text>
+  <text x="640" y="274" text-anchor="middle" class="lb" font-size="13" font-weight="600" fill="#2C2620">model</text>
+
+  <!-- module node template: rounded rect w=128 h=42, label centred -->
+
+  <!-- N: Staffing (640,138) -->
+  <g>
+    <rect x="576" y="117" width="128" height="42" rx="9" fill="#F4ECDA" stroke="#2F5D52" stroke-width="1.4"/>
+    <circle cx="640" cy="159" r="3.5" fill="#2F5D52"/>
+    <text x="640" y="143" text-anchor="middle" class="lb" font-size="14" fill="#2C2620">Staffing</text>
+  </g>
+
+  <!-- NE: Comp (1027,168) -->
+  <g>
+    <rect x="963" y="147" width="128" height="42" rx="9" fill="#F4ECDA" stroke="#CE9230" stroke-width="1.4"/>
+    <circle cx="975" cy="187" r="3.5" fill="#CE9230"/>
+    <text x="1027" y="173" text-anchor="middle" class="lb" font-size="14" fill="#2C2620">Comp</text>
+  </g>
+
+  <!-- E: OKRs (1188,242) -->
+  <g>
+    <rect x="1108" y="221" width="128" height="42" rx="9" fill="#F4ECDA" stroke="#C0512B" stroke-width="1.4"/>
+    <circle cx="1108" cy="242" r="3.5" fill="#C0512B"/>
+    <text x="1172" y="247" text-anchor="middle" class="lb" font-size="14" fill="#2C2620">OKRs</text>
+  </g>
+
+  <!-- SE: Onboarding (1027,316) -->
+  <g>
+    <rect x="963" y="295" width="128" height="42" rx="9" fill="#F4ECDA" stroke="#2F5D52" stroke-width="1.4"/>
+    <circle cx="975" cy="297" r="3.5" fill="#2F5D52"/>
+    <text x="1027" y="321" text-anchor="middle" class="lb" font-size="14" fill="#2C2620">Onboarding</text>
+  </g>
+
+  <!-- S: Reviews (640,346) -->
+  <g>
+    <rect x="576" y="325" width="128" height="42" rx="9" fill="#F4ECDA" stroke="#CE9230" stroke-width="1.4"/>
+    <circle cx="640" cy="325" r="3.5" fill="#CE9230"/>
+    <text x="640" y="351" text-anchor="middle" class="lb" font-size="14" fill="#2C2620">Reviews</text>
+  </g>
+
+  <!-- SW: Hiring (253,316) -->
+  <g>
+    <rect x="189" y="295" width="128" height="42" rx="9" fill="#F4ECDA" stroke="#C0512B" stroke-width="1.4"/>
+    <circle cx="305" cy="297" r="3.5" fill="#C0512B"/>
+    <text x="253" y="321" text-anchor="middle" class="lb" font-size="14" fill="#2C2620">Hiring</text>
+  </g>
+
+  <!-- W: Finance (92,242) -->
+  <g>
+    <rect x="44" y="221" width="128" height="42" rx="9" fill="#F4ECDA" stroke="#2F5D52" stroke-width="1.4"/>
+    <circle cx="172" cy="242" r="3.5" fill="#2F5D52"/>
+    <text x="108" y="247" text-anchor="middle" class="lb" font-size="14" fill="#2C2620">Finance</text>
+  </g>
+
+  <!-- NW: Roadmap (253,168) -->
+  <g>
+    <rect x="189" y="147" width="128" height="42" rx="9" fill="#F4ECDA" stroke="#CE9230" stroke-width="1.4"/>
+    <circle cx="305" cy="187" r="3.5" fill="#CE9230"/>
+    <text x="253" y="173" text-anchor="middle" class="lb" font-size="14" fill="#2C2620">Roadmap</text>
+  </g>
+
+  <!-- caption -->
+  <text x="1236" y="88" text-anchor="end" class="lb" font-size="14" letter-spacing="1.5" fill="#6A6052">0 managers &#183; 8 modules</text>
+</svg>

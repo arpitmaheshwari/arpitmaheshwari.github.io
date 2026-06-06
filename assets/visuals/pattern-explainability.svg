@@ -1,0 +1,88 @@
+<svg viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+  <title id="t">Explainability pattern</title>
+  <desc id="d">A wide left-to-right banner: a final score on the right is traced back to the two or three inputs that drove it via an explanation drawer, with an "I disagree" affordance as a first-class action.</desc>
+  <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
+
+  <!-- header -->
+  <text x="36" y="62" font-family="Georgia, 'Times New Roman', serif" font-size="34" fill="#2C2620">Explainability</text>
+  <text x="36" y="92" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" fill="#6A6052">Turn a black-box output into an auditable argument.</text>
+  <line x1="36" y1="110" x2="1244" y2="110" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+  <!-- LEFT: the three inputs that drove the output -->
+  <text x="36" y="158" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="#998D78">DRIVERS</text>
+
+  <!-- driver 1 -->
+  <g>
+    <rect x="36" y="174" width="300" height="48" rx="8" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <rect x="36" y="174" width="5" height="48" rx="2.5" fill="#C0512B"/>
+    <text x="58" y="196" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" fill="#2C2620">Payment history</text>
+    <text x="58" y="214" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#6A6052">weight +0.42</text>
+    <rect x="232" y="190" width="92" height="7" rx="3.5" fill="rgba(44,38,32,0.12)"/>
+    <rect x="232" y="190" width="78" height="7" rx="3.5" fill="#C0512B"/>
+  </g>
+
+  <!-- driver 2 -->
+  <g>
+    <rect x="36" y="234" width="300" height="48" rx="8" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <rect x="36" y="234" width="5" height="48" rx="2.5" fill="#CE9230"/>
+    <text x="58" y="256" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" fill="#2C2620">Account age</text>
+    <text x="58" y="274" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#6A6052">weight +0.27</text>
+    <rect x="232" y="250" width="92" height="7" rx="3.5" fill="rgba(44,38,32,0.12)"/>
+    <rect x="232" y="250" width="50" height="7" rx="3.5" fill="#CE9230"/>
+  </g>
+
+  <!-- driver 3 -->
+  <g>
+    <rect x="36" y="294" width="300" height="48" rx="8" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <rect x="36" y="294" width="5" height="48" rx="2.5" fill="#2F5D52"/>
+    <text x="58" y="316" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" fill="#2C2620">Recent inquiries</text>
+    <text x="58" y="334" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#6A6052">weight -0.15</text>
+    <rect x="232" y="310" width="92" height="7" rx="3.5" fill="rgba(44,38,32,0.12)"/>
+    <rect x="232" y="310" width="28" height="7" rx="3.5" fill="#2F5D52"/>
+  </g>
+
+  <!-- MIDDLE: explanation drawer / why-this surface, tracing lines converge right -->
+  <text x="470" y="158" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="#998D78">WHY THIS OUTPUT</text>
+  <rect x="470" y="174" width="360" height="168" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+  <line x1="470" y1="212" x2="830" y2="212" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+  <circle cx="492" cy="194" r="4" fill="#C0512B"/>
+  <text x="506" y="199" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="#2C2620">Explanation drawer</text>
+
+  <!-- contribution rows inside the drawer -->
+  <text x="492" y="244" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#6A6052">Payment history</text>
+  <rect x="640" y="234" width="160" height="9" rx="4.5" fill="rgba(44,38,32,0.12)"/>
+  <rect x="640" y="234" width="132" height="9" rx="4.5" fill="#C0512B"/>
+
+  <text x="492" y="280" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#6A6052">Account age</text>
+  <rect x="640" y="270" width="160" height="9" rx="4.5" fill="rgba(44,38,32,0.12)"/>
+  <rect x="640" y="270" width="86" height="9" rx="4.5" fill="#CE9230"/>
+
+  <text x="492" y="316" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#6A6052">Recent inquiries</text>
+  <rect x="640" y="306" width="160" height="9" rx="4.5" fill="rgba(44,38,32,0.12)"/>
+  <rect x="640" y="306" width="48" height="9" rx="4.5" fill="#2F5D52"/>
+
+  <!-- tracing connectors: drivers -> drawer -->
+  <path d="M336 198 C 400 198, 412 200, 470 220" fill="none" stroke="#C0512B" stroke-width="2"/>
+  <path d="M336 258 C 400 258, 412 265, 470 270" fill="none" stroke="#CE9230" stroke-width="2"/>
+  <path d="M336 318 C 400 318, 412 312, 470 320" fill="none" stroke="#2F5D52" stroke-width="2"/>
+
+  <!-- tracing connector: drawer -> output score (the trace-back arrow, drawn left from output) -->
+  <path d="M1004 250 C 920 250, 905 252, 830 252" fill="none" stroke="#2C2620" stroke-width="2" stroke-dasharray="2 6"/>
+  <polygon points="830,252 844,246 844,258" fill="#2C2620"/>
+  <text x="858" y="378" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#998D78">traced back from the score</text>
+
+  <!-- RIGHT: the output / score -->
+  <text x="1004" y="158" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="#998D78">OUTPUT</text>
+  <rect x="1004" y="174" width="240" height="120" rx="12" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+  <circle cx="1124" cy="232" r="46" fill="none" stroke="rgba(44,38,32,0.12)" stroke-width="10"/>
+  <path d="M1124 186 A 46 46 0 1 1 1085 257" fill="none" stroke="#C0512B" stroke-width="10" stroke-linecap="round"/>
+  <text x="1124" y="226" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="36" fill="#2C2620">724</text>
+  <text x="1124" y="248" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#6A6052">risk score</text>
+
+  <!-- "I disagree" first-class affordance -->
+  <rect x="1004" y="306" width="240" height="44" rx="10" fill="#F4ECDA" stroke="#C0512B" stroke-width="2"/>
+  <path d="M1028 322 l8 8 14 -16" fill="none" stroke="#C0512B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1062" y="334" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" font-weight="600" fill="#C0512B">I disagree</text>
+
+  <text x="1004" y="378" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#998D78">a first-class action, not a footnote</text>
+</svg>

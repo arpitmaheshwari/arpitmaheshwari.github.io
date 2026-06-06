@@ -11,30 +11,35 @@
 */
 
 const WORK = [{
-  tag: "Telecom · NDA",
-  title: "Telefónica MyO2 & Priority Moments",
-  metric: "1M+",
-  desc: "Drove retention and brand loyalty for O2 UK — loyalty and rewards experiences (the MyO2 app and Priority Moments) shipped to over a million subscribers."
-}, {
   tag: "EdTech · Non-NDA",
-  title: "PTC University",
+  title: "PTC University — Learning Connector",
   metric: "$1M/yr",
   desc: "Led the strategic consolidation of five siloed platforms across eleven languages. The design work was navigating org-chart politics; the output was a single, unified system."
 }, {
+  tag: "Telecom · Non-NDA",
+  title: "Telefónica MyO2 & Priority Moments",
+  metric: "4M+",
+  desc: "Designed and built every screen of MyO2 (4M+ users) and Priority Moments — O2 UK, mobile web."
+}, {
   tag: "FinTech · NDA",
-  title: "AI-Assisted Due Diligence",
+  title: "AI-Assisted Private Equity Investing",
   metric: "−60%",
-  desc: "Overcame internal skepticism by designing explainability into the UI, turning an ignored AI risk model into the firm's primary diligence tool."
+  desc: "Explainability that turned an AI risk model PE analysts ignored into the firm's primary tool."
 }, {
   tag: "AdTech · NDA",
-  title: "Programmatic Advertising",
-  metric: "15→63%",
-  desc: "Designed a memory-enabled recommendation system. Solved the 'black box' trust issue, increasing algorithmic adoption from 15% to 63%."
+  title: "Programmatic Advertising Platform",
+  metric: "2wk→3hr",
+  desc: "A trust layer — confidence, reasoning, override — that cut campaign planning from two weeks to three hours."
 }, {
-  tag: "Org Design · Non-NDA",
+  tag: "Org Design · NDA",
   title: "OrgOS",
-  metric: "120",
-  desc: "Designed operational software for a zero-manager consultancy. Built transparency tools that enabled self-organization without reintroducing hierarchy."
+  metric: "200",
+  desc: "Operating software for a zero-manager, 200-person org — coordination without hierarchy."
+}, {
+  tag: "VC/PE · NDA",
+  title: "Technical Due Diligence Platform",
+  metric: "3wk→4d",
+  desc: "AI scoring of startup technical risk — VC/PE due diligence from three weeks to four days."
 }];
 const PRINCIPLES = [{
   h: "I design for business outcomes, not just user friction.",
@@ -44,15 +49,21 @@ const PRINCIPLES = [{
   p: "If I don't know how the system fails gracefully, the happy path doesn't matter. Trust is built in the error states."
 }, {
   h: "The org chart is the hardest wireframe.",
-  p: "Most UX problems are actually just symptoms of misaligned internal teams. I design for the organization before I design the interface."
+  p: "Most UX problems are symptoms of misaligned internal teams, so I design for the organization before the interface. Then I write the system down, so the next designer inherits more than my taste."
+}, {
+  h: "Override is a feature, not a failure.",
+  p: "Every time a user corrects the model, they reveal something the training data didn't capture. I design override mechanisms as first-class interactions — logged, visible, and fed back into the next eval."
+}, {
+  h: "I read the data before I open Figma.",
+  p: "SQL queries, support tickets, model evals — I want the raw signal before the summary. Design decisions grounded in actual data survive reviews; ones made from instinct don't."
 }];
 const PATTERNS = [{
   k: "gauge",
-  h: "Confidence scores",
+  h: "Confidence Scores",
   p: "How much certainty to show, and the threshold at which a number earns the right to drive a business decision."
 }, {
   k: "alert",
-  h: "Failure states",
+  h: "Failure States",
   p: "The designed moment the model is wrong — preventing user abandonment by handling errors gracefully."
 }, {
   k: "branch",
@@ -60,7 +71,7 @@ const PATTERNS = [{
   p: "\u201CWhy this?\u201D surfaces that turn a black-box output into a reviewable, business-justified argument."
 }, {
   k: "loop",
-  h: "Human-in-the-loop",
+  h: "Human-in-the-Loop",
   p: "Where the person overrides the system — creating a workflow that scales without increasing overhead."
 }];
 const WRITING = [{
@@ -94,12 +105,12 @@ const CV_EXP = [{
   org: "Sahaj AI · AI products for AdTech, HRTech & Private Equity"
 }, {
   yr: "2014–19",
-  role: "Technical Lead",
-  org: "PTC Inc. · PTC University EdTech · 350k+ users, 550k+ visits · NASA, Apple, Boeing, Airbus & more"
+  role: "Lead Product Designer",
+  org: "PTC Inc. · PTC University — Learning Connector · 550k+ registered, 350k+ active · NASA, Apple, Boeing, Airbus & more"
 }, {
   yr: "2012–14",
   role: "Front End Specialist",
-  org: "Equal Experts · O2 UK rewards · 1M+ subscribers"
+  org: "Equal Experts · O2 UK consumer apps · 4M+ users"
 }, {
   yr: "2010–12",
   role: "Systems Analyst",
@@ -119,32 +130,32 @@ const CV_EDU = [{
   org: "Shri Vaishnav Institute of Technology & Science · Indore"
 }];
 
-/* ---- CASE STUDIES (the two non-NDA projects, in full) ------ */
+/* ---- CASE STUDY (PTC — non-NDA, shown in full) ------ */
 const CASES = {
   ptc: {
     key: "ptc",
     no: "01",
     tag: "EdTech · Non-NDA",
-    title: "PTC\u00A0University",
+    title: "PTC\u00A0University — Learning Connector",
     standfirst: "Five overlapping learning platforms, eleven languages, one furious procurement line. The redesign was the easy part.",
-    meta: [["Role", "Lead Product Designer"], ["Span", "14 months · two squads"], ["Surface", "Web LMS · 11 languages"], ["Result", "Shipped · in production"]],
-    context: "PTC had grown its training into five separate portals — product certifications, partner enablement, internal onboarding — each with its own login, its own taxonomy, its own translation pipeline. Learners bounced between them; eleven localisation teams duplicated the same work. The brief on my desk read \u201Credesign the LMS.\u201D The real problem was that there were five of them.",
+    meta: [["Role", "Lead Product Designer"], ["Span", "2014–2019 · two squads"], ["Surface", "Web LMS · 11 languages"], ["Result", "Shipped · in production"]],
+    context: "PTC had grown its training into five separate platforms — Learning Connector, LearningExchange, Precision LMS, Digital Guides and IoTU — each with its own login, its own taxonomy, its own translation pipeline. Learners bounced between them; localisation teams duplicated the same work across nine languages. The brief on my desk read \u201Credesign the LMS.\u201D The real problem was that there were five of them.",
     fig1: {
       no: "1.1",
-      label: "before — five disconnected portals, eleven sign-in screens"
+      label: "before — five disconnected platforms, five sign-in screens"
     },
     tension: "Every portal had a VP, a budget line, and a reason why it was 'special'. Consolidation meant telling four executives their product was now a tab. The real design work was a political case made in the language of risk and P&L—I couldn't draw my way past the org chart.",
     note1: "the org chart was the real wireframe",
     decisionLede: "Three decisions did the load-bearing work:",
     moves: [{
       h: "One data model before one UI",
-      p: "I rebuilt the content model first — a single skill graph every portal mapped onto — so the merge became a data migration, not a turf war over screens."
+      p: "Rebuilt the content model first — one skill graph every platform mapped onto — so merging was a data migration, not a turf war."
     }, {
       h: "Localisation as a default state",
-      p: "Designed the eleven-language experience as the baseline, not an afterthought, so no region could argue it needed its own fork."
+      p: "Made localisation the baseline — nine languages, built to scale to eleven — so no region could fork off."
     }, {
       h: "A switch-off ladder",
-      p: "Sequenced the four shutdowns so each VP watched their users land softly in the new system before their portal went dark."
+      p: "Sequenced the four shutdowns so each VP watched their users land softly before their portal went dark."
     }],
     fig2: {
       no: "1.2",
@@ -152,95 +163,82 @@ const CASES = {
     },
     outcome: [{
       v: "$1M",
-      l: "Saved per year — licensing + localisation"
+      l: "Saved per year — print + shipping"
     }, {
       v: "5\u21921",
       l: "Platforms consolidated"
     }, {
-      v: "11",
+      v: "9→11",
       l: "Languages, one pipeline"
     }, {
-      v: "4 days",
-      l: "Content publish, down from ~3 weeks"
+      v: "550k+",
+      l: "Registered · 350k+ active"
     }],
     quote: {
       t: "The redesign took a quarter. The case for deleting four products took a year — and that was the actual design work.",
       cite: "— PTC University, project note"
     },
     note2: "killed four products. proudest deletion of my career."
-  },
-  orgos: {
-    key: "orgos",
-    no: "02",
-    tag: "Org Design · Non-NDA",
-    title: "OrgOS",
-    standfirst: "A 120-person company with zero managers. The job: build operational software that enables scale without smuggling a boss back in through the side door.",
-    meta: [["Role", "Founding Designer"], ["Span", "Ongoing · 8 modules"], ["Surface", "Internal web app"], ["Result", "Live across the org"]],
-    context: "A 120-person consultancy ran with no managers. Coordination happened in hallway conversations and a sprawl of spreadsheets — which works at forty people and snaps at a hundred. They needed software that made the flat org legible, without the software secretly imposing a hierarchy.",
-    fig1: {
-      no: "2.1",
-      label: "before — coordination by spreadsheet + hallway conversation"
-    },
-    tension: "Every traditional feature carried a hierarchy inside it. Dashboards imply someone watching; approvals imply someone approving; assignments imply someone assigning. The real constraint was building coordination tools that never curdled into control tools — letting transparency do the work of a manager.",
-    note1: "every feature wanted to grow a boss",
-    decisionLede: "I kept deleting features that worked. Three survived as the spine:",
-    moves: [{
-      h: "Read access is the feature",
-      p: "Everything visible by default — who's on what, who's overloaded, what's stalled — so coordination came from information, not instruction."
-    }, {
-      h: "Commitments, not assignments",
-      p: "People pull work and publish commitments in the open. The system tracks promises kept; it never hands out tasks."
-    }, {
-      h: "Eight modules, one grammar",
-      p: "Staffing, comp, OKRs, onboarding all speak the same object model — so the org can recompose its own process without me in the room."
-    }],
-    fig2: {
-      no: "2.2",
-      label: "the eight modules sharing one object model"
-    },
-    outcome: [{
-      v: "120",
-      l: "People coordinating, self-serve"
-    }, {
-      v: "0",
-      l: "Managers in the loop"
-    }, {
-      v: "8",
-      l: "Modules, one shared grammar"
-    }, {
-      v: "100%",
-      l: "Of the org, in production"
-    }],
-    quote: {
-      t: "I kept deleting features that worked, because each one quietly reintroduced a boss.",
-      cite: "— OrgOS, design log"
-    },
-    note2: "transparency as the coordination layer ♥"
   }
 };
 
 /* ---- NDA WALK-THROUGHS (the three under-NDA projects, redacted) ---- */
 const NDA_CASES = [{
+  no: "02",
+  img: "../assets/visuals/case-o2.svg",
+  tag: "Telecom · Non-NDA",
+  redacted: false,
+  ph: "MyO2 account dashboard + Priority Moments rewards — O2 UK mobile web",
+  title: "Telefónica MyO2 & Priority Moments",
+  standfirst: "Two consumer products for O2 — the UK brand of Telefónica, one of Britain's largest carriers. I designed every screen, then built it. Mobile web.",
+  meta: [["Role", "Designer + Front-end"], ["Client", "O2 UK (Telefónica) · via Equal Experts"], ["Status", "Shipped · public"]],
+  context: "O2 UK needed two things on mobile: let customers run their account without phoning in, and a reason to stay. I designed and built every screen of both — MyO2 (self-service) and Priority Moments (loyalty) — on mobile web, via Equal Experts.",
+  moves: [{
+    h: "MyO2 — the account, self-serve",
+    p: "O2 UK's official self-service app: check your data, calls and texts, view and pay bills, change tariff, see upgrades, manage the whole account in one place. Designed and built to make everyday tasks self-serve — and cut call-centre volume. It went on to serve more than four million users."
+  }, {
+    h: "Priority Moments — a reason to stay",
+    p: "O2's loyalty programme: rewards from high-street brands — Odeon, M&S, Caffè Nero — surfaced by interest, behaviour and location. Launched in 2011 behind a £6m campaign, it hit 2.6M registrations in year one — 2.5M+ active — and was the only loyalty app with a five-star App Store rating."
+  }, {
+    h: "Designed it, then built it",
+    p: "Every screen across both products — designer and front-end on the same hands, on mobile web. The reach was national; the craft was getting a carrier-scale account to feel like a single, fast, legible app on a phone."
+  }],
+  plateNo: "2.1",
+  plateCn: "MyO2 self-service + Priority Moments rewards — mobile web",
+  ledger: [{
+    v: "4M+",
+    l: "MyO2 users served"
+  }, {
+    v: "2.6M",
+    l: "Priority sign-ups · yr 1"
+  }, {
+    v: "5★",
+    l: "Priority App Store rating"
+  }],
+  note: "designed every screen, then built it — mobile web",
+  stamp: { t: "5★ APP", v: "ok" }
+}, {
   no: "03",
+  img: "../assets/visuals/case-fintech.svg",
   tag: "FinTech · NDA",
-  title: "AI-Assisted Due Diligence",
-  standfirst: "A risk model the analysts wouldn't touch \u2014 until it learned to show its work.",
-  meta: [["Role", "Lead Product Designer"], ["Surface", "PE diligence platform"], ["Status", "Shipped \u00B7 under NDA"]],
-  context: "Analysts had an AI that scored deal risk and an instinct to ignore it. A confident number with no reasoning is just an opinion. The model was good; the trust interface was missing.",
+  title: "AI-Assisted Private Equity Investing",
+  standfirst: "A risk model the analysts wouldn't touch — until it learned to show its work.",
+  meta: [["Role", "Lead Product Designer"], ["Surface", "AI for private-equity investing"], ["Status", "Shipped · under NDA"]],
+  context: "Leading design with six engineers, I faced analysts with an AI that scored deal risk and every instinct to ignore it. A confident number with no reasoning is just an opinion — the model was good, the trust interface wasn't.",
   moves: [{
     h: "Explain before score",
-    p: "Put the three documents that moved the number next to the number \u2014 proving the business value before the verdict, not buried behind it."
+    p: "Put the three documents that moved the number next to the number — proving the business value before the verdict, not buried behind it."
   }, {
     h: "Design the decline",
-    p: "Shipped a visible \u201CI'm not sure about this one\u201D state so the model could refuse to bluff, preserving user trust."
+    p: "Shipped a visible “I'm not sure about this one” state so the model could refuse to bluff, preserving user trust."
   }, {
     h: "Disagreement on record",
-    p: "Made \u201CI disagree\u201D a first-class, logged action that fed the next eval."
+    p: "Made “I disagree” a first-class, logged action that fed the next eval."
   }],
   plateNo: "3.1",
-  plateCn: "explanation drawer \u2014 output traced to source documents",
+  plateCn: "explanation drawer — output traced to source documents",
   ledger: [{
-    v: "\u221260%",
+    v: "−60%",
     l: "Time per diligence pass"
   }, {
     v: "3",
@@ -249,73 +247,110 @@ const NDA_CASES = [{
     v: "Lead",
     l: "Analysts now open with it"
   }],
-  note: "trust = the model declining to bluff"
+  note: "trust = the model declining to bluff",
+  stamp: { t: "Trusted", v: "r" }
 }, {
   no: "04",
+  img: "../assets/visuals/case-adtech.svg",
   tag: "AdTech · NDA",
-  title: "Programmatic Advertising",
-  standfirst: "Media buyers ignored the algorithm until the algorithm remembered its own track record.",
-  meta: [["Role", "Lead Product Designer"], ["Surface", "DSP recommendation UI"], ["Status", "Shipped \u00B7 under NDA"]],
-  context: "A demand-side platform recommended bids no one acted on. The AI was amnesiac\u2014it never showed its past accuracy, so buyers trusted their gut over the algorithm.",
+  title: "Programmatic Advertising Platform",
+  standfirst: "Media buyers ignored the algorithm — until they could see why it recommended each bid, and override it.",
+  meta: [["Role", "Lead Product Designer"], ["Surface", "DSP recommendation UI"], ["Status", "Shipped · under NDA"]],
+  context: "A demand-side platform recommended bids no one acted on. Buyers trusted their gut over a black box that never showed its reasoning — so its calls sat unused while planning dragged on for weeks.",
   moves: [{
-    h: "Confidence with memory",
-    p: "Sat each recommendation beside its own 30-day hit rate. Confidence that remembers builds trust and gets acted on."
+    h: "A confidence score that earns the action",
+    p: "Each recommendation carried a confidence score mapped to one action — act, review, or ignore — never a bare percentage."
   }, {
-    h: "Act / review / ignore",
-    p: "Anchored every score to one of three business actions, never a bare percentage."
+    h: "Show the reasoning, not just the score",
+    p: "Surfaced why this bid: the signals that drove each call, so a buyer could inspect the recommendation instead of trusting a black box."
   }, {
-    h: "Override teaches",
-    p: "A buyer's override visibly retrained next week's call \u2014 turning corrections into training signals rather than rework."
+    h: "Override as a first-class action",
+    p: "Made overriding the model a logged, first-class action that fed the next eval — corrections became training signal, not rework."
   }],
   plateNo: "4.1",
-  plateCn: "recommendation card + 30-day track record",
+  plateCn: "recommendation card — confidence score, reasoning, override",
   ledger: [{
-    v: "15\u219263%",
-    l: "Recommendations acted on"
+    v: "2wk→3hr",
+    l: "Campaign planning time"
   }, {
-    v: "30d",
-    l: "Track record, always shown"
+    v: "3",
+    l: "Actions a score maps to"
   }, {
-    v: "1",
-    l: "Scale, one meaning"
+    v: "Why",
+    l: "Reasoning on every call"
   }],
-  note: "a score with a memory got acted on"
+  note: "buyers act when they can see the why — and override it",
+  stamp: { t: "Shipped", v: "" }
 }, {
   no: "05",
-  tag: "Telecom · NDA",
-  title: "Telefónica MyO2 & Priority Moments",
-  standfirst: "The bills were correct and unreadable. Three decisions cut \u201Cexplain my bill\u201D tickets by two-fifths.",
-  meta: [["Role", "Senior Product Designer"], ["Surface", "Billing \u00B7 web + app"], ["Status", "Shipped \u00B7 under NDA"]],
-  context: "Accurate bills that no one could parse generated the same support load as wrong ones. 'Why is my bill higher?' was the single largest call driver. The answer was on the screen, just buried.",
+  img: "../assets/visuals/case-orgos.svg",
+  tag: "Org Design · NDA",
+  title: "OrgOS",
+  standfirst: "A 200-person organisation with zero managers. The brief: software that scales coordination without smuggling a boss back in.",
+  meta: [["Role", "Design Lead"], ["Surface", "Internal operating system"], ["Status", "Shipped · under NDA"]],
+  context: "A radically transparent, 200-person org run on hallway conversation and spreadsheets — fine at forty, breaking at two hundred. Leading four engineering streams and a PM, I made the flat org legible without imposing a hierarchy. Every feature wanted to grow a boss; the work was refusing that.",
   moves: [{
-    h: "Lead with the delta",
-    p: "Answered 'why more than last month?' in plain text at the top, preempting the support call before the user even scrolled to the line-item table."
+    h: "Read access is the feature",
+    p: "Everything visible by default — who's on what, who's overloaded, what's stalled — so coordination came from information, not instruction."
   }, {
-    h: "Plain-language lines",
-    p: "Rewrote charge labels in the words customers used, not the billing system's."
+    h: "Commitments, not assignments",
+    p: "People pull work and publish commitments in the open. The system tracks promises kept; it never hands out tasks."
   }, {
-    h: "One tap to the cause",
-    p: "Every change traced to the event behind it \u2014 a roaming day, a plan change."
+    h: "Eight modules, one grammar",
+    p: "Staffing, comp, OKRs, onboarding all speak one object model — so the org can recompose its own process without me in the room."
   }],
   plateNo: "5.1",
-  plateCn: "bill summary \u2014 the delta, explained first",
+  plateCn: "eight modules sharing one object model",
   ledger: [{
-    v: "\u221240%",
-    l: "\u2018Explain my bill\u2019 tickets"
+    v: "200",
+    l: "People coordinating, self-serve"
   }, {
-    v: "#1",
-    l: "Was the top call driver"
+    v: "0",
+    l: "Managers in the loop"
   }, {
-    v: "2",
-    l: "Surfaces, one model"
+    v: "8",
+    l: "Modules, one grammar"
   }],
-  note: "correct isn't the same as legible"
+  note: "transparency as the coordination layer",
+  stamp: { t: "Zero Managers", v: "ok" }
+}, {
+  no: "06",
+  img: "../assets/visuals/case-vc.svg",
+  tag: "VC/PE · NDA",
+  title: "Technical Due Diligence Platform",
+  standfirst: "Investors had three weeks to judge a startup's technology. The platform got them there in four days.",
+  meta: [["Role", "Design Lead"], ["Surface", "Technical-DD platform · VC + PE"], ["Status", "Shipped · under NDA"]],
+  context: "VC and PE investors judge a target's technology — code quality, architecture, team velocity, founder credibility — under deal pressure, and the AI scoring it was a black box they wouldn't bet capital on. With the ML team and a head of investment, I made its judgement auditable enough to act on.",
+  moves: [{
+    h: "Score at the signal level",
+    p: "Confidence scoring on each technical signal — code quality, architecture risk, team-velocity proxies, founder-credibility markers — not one opaque verdict."
+  }, {
+    h: "Trace every risk to its evidence",
+    p: "Each risk score named the signals that drove it, so a partner could inspect the reasoning before committing capital."
+  }, {
+    h: "Dissent on record",
+    p: "Override mechanisms fed analyst dissent back into the model — disagreement became training signal, not noise."
+  }],
+  plateNo: "6.1",
+  plateCn: "technical-risk dossier — each score traced to its signals",
+  ledger: [{
+    v: "3wk→4d",
+    l: "Diligence cycle time"
+  }, {
+    v: "VC + PE",
+    l: "Both fund types served"
+  }, {
+    v: "4",
+    l: "Signal classes scored"
+  }],
+  note: "made the model's verdict auditable enough to bet on",
+  stamp: { t: "4-Day DD", v: "" }
 }];
 const PATTERN_PAGES = {
   gauge: {
     no: "01",
     k: "gauge",
-    h: "Confidence scores",
+    h: "Confidence Scores",
     principle: "A number people can act on \u2014 not just read.",
     def: "How much certainty to show, in what form, and the threshold at which a score has earned the right to drive a business decision rather than merely decorate a dashboard.",
     note: "a percentage is a feeling until it's anchored to a business action",
@@ -327,13 +362,14 @@ const PATTERN_PAGES = {
     }, "what it had gotten right last month"), ". Confidence with a memory got acted on; confidence alone never did."),
     fig: {
       no: "3.1",
+      img: "../assets/visuals/pattern-confidence.svg",
       label: "confidence chip + 30-day track record"
     }
   },
   alert: {
     no: "02",
     k: "alert",
-    h: "Failure states",
+    h: "Failure States",
     principle: "If you can't design the wrong answer, the feature isn't ready.",
     def: "The designed moment the model is wrong \u2014 preventing user abandonment by making recovery from a miss cheaper than the mistake itself.",
     note: "I design the error recovery first now",
@@ -345,6 +381,7 @@ const PATTERN_PAGES = {
     }, "\u201CI'm not sure about this one\u201D"), " state first. Analysts trusted the confident answers more once they'd watched the model decline to bluff."),
     fig: {
       no: "3.2",
+      img: "../assets/visuals/pattern-failure.svg",
       label: "graceful low-confidence / model-declines state"
     }
   },
@@ -363,13 +400,14 @@ const PATTERN_PAGES = {
     }, "leading their memos with it"), " \u2014 once \u201Cexplain this score\u201D surfaced the three documents behind the number."),
     fig: {
       no: "3.3",
+      img: "../assets/visuals/pattern-explainability.svg",
       label: "explanation drawer — output traced to source documents"
     }
   },
   loop: {
     no: "04",
     k: "loop",
-    h: "Human-in-the-loop",
+    h: "Human-in-the-Loop",
     principle: "Override should feel like authorship, not babysitting.",
     def: "Where and how the person corrects the system \u2014 turning human corrections into training signals rather than rework, so the workflow scales without increasing overhead.",
     note: "correcting the model should feel like teaching, not cleanup",
@@ -381,12 +419,13 @@ const PATTERN_PAGES = {
     }, "stopped feeling like rework"), " and started feeling like teaching."),
     fig: {
       no: "3.4",
+      img: "../assets/visuals/pattern-loop.svg",
       label: "override → feedback → next recommendation"
     }
   }
 };
 window.BOOK_META = {
-  spine: 11
+  spine: 10
 };
 
 /* ---- small SVG bits ---------------------------------------- */
@@ -408,6 +447,21 @@ function Emblem() {
     r: "6",
     fill: "#CE9230"
   }));
+}
+/* recurring monogram — the "AM" device + a tiny caption (styled via .bk-device) */
+function Device({
+  label,
+  on,
+  style
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "bk-device" + (on === "dark" ? " bk-device--on-dark" : ""),
+    style: style
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "bk-device__mark"
+  }, "AM"), label && /*#__PURE__*/React.createElement("span", {
+    className: "bk-device__label"
+  }, label));
 }
 function Dia({
   kind
@@ -506,13 +560,20 @@ function Dia({
 /* ---- reusable page pieces ---------------------------------- */
 function Figure({
   no,
-  label
+  label,
+  img
 }) {
   return /*#__PURE__*/React.createElement("div", {
-    className: "bk-figure"
-  }, /*#__PURE__*/React.createElement("span", {
+    className: "bk-figure",
+    style: img ? { minHeight: 0 } : null
+  }, img ? null : /*#__PURE__*/React.createElement("span", {
     className: "bk-figure__tag"
-  }, "Fig. ", no), /*#__PURE__*/React.createElement("div", {
+  }, "Fig. ", no), img ? /*#__PURE__*/React.createElement("img", {
+    src: img,
+    alt: label,
+    loading: "lazy",
+    style: { width: "100%", height: "auto", display: "block" }
+  }) : /*#__PURE__*/React.createElement("div", {
     className: "bk-figure__mid"
   }, "[ ", label, " ]"));
 }
@@ -523,13 +584,19 @@ function Plate({
   cn,
   ph,
   redacted,
-  wide
+  wide,
+  img
 }) {
   return /*#__PURE__*/React.createElement("div", {
     className: "bk-plate" + (redacted ? " bk-plate--redacted" : "") + (wide ? " bk-plate--wide" : "")
   }, /*#__PURE__*/React.createElement("div", {
     className: "bk-plate__img"
-  }, redacted ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  }, img ? /*#__PURE__*/React.createElement("img", {
+    src: img,
+    alt: cn,
+    loading: "lazy",
+    style: { width: "100%", height: "100%", objectFit: "cover", display: "block" }
+  }) : redacted ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "bk-plate__ph"
   }, ph), /*#__PURE__*/React.createElement("span", {
     className: "bk-stamp bk-stamp--r",
@@ -629,6 +696,8 @@ function caseSpreadA(c) {
       id: "pl-" + c.key + "-" + c.fig1.no,
       no: c.fig1.no,
       cn: c.fig1.label,
+      wide: true,
+      img: "../assets/visuals/case-ptc-before.svg",
       ph: "Drop a screenshot \u00b7 " + c.fig1.label
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
@@ -661,6 +730,8 @@ function caseSpreadB(c) {
       id: "pl-" + c.key + "-" + c.fig2.no,
       no: c.fig2.no,
       cn: c.fig2.label,
+      wide: true,
+      img: "../assets/visuals/case-ptc.svg",
       ph: "Drop a screenshot \u00b7 " + c.fig2.label
     })),
     right: /*#__PURE__*/React.createElement("div", {
@@ -717,15 +788,28 @@ function caseWalk(c) {
     }, /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
     }, c.context)), /*#__PURE__*/React.createElement(Plate, {
+      id: "pl-case-" + c.no + "-" + c.plateNo,
       no: c.plateNo,
       cn: c.plateCn,
-      ph: "Screens under NDA \u2014 full walk-through on request",
-      redacted: true,
-      wide: true
+      ph: c.redacted === false ? c.ph || c.plateCn : "Screens under NDA \u2014 full walk-through on request",
+      redacted: c.redacted !== false,
+      wide: true,
+      img: c.img
     })),
     right: /*#__PURE__*/React.createElement("div", {
-      className: "bk-reveal"
-    }, /*#__PURE__*/React.createElement(Beat, {
+      className: "bk-reveal",
+      style: {
+        position: "relative"
+      }
+    }, c.stamp && /*#__PURE__*/React.createElement("span", {
+      className: "bk-stamp" + (c.stamp.v === "r" ? " bk-stamp--r" : c.stamp.v === "ok" ? " bk-stamp--ok" : ""),
+      style: {
+        position: "absolute",
+        top: -6,
+        right: 0,
+        zIndex: 3
+      }
+    }, c.stamp.t), /*#__PURE__*/React.createElement(Beat, {
       n: "02",
       label: "What I did"
     }), /*#__PURE__*/React.createElement("div", {
@@ -794,7 +878,8 @@ function patternSpread(p) {
       className: "bk-instance__label"
     }, "From the work \xB7 ", p.instTag), /*#__PURE__*/React.createElement("p", null, p.inst)), /*#__PURE__*/React.createElement(Figure, {
       no: p.fig.no,
-      label: p.fig.label
+      label: p.fig.label,
+      img: p.fig.img
     }))
   };
 }
@@ -823,7 +908,7 @@ function ContactForm() {
     placeholder: "A link to your product (optional)"
   }), /*#__PURE__*/React.createElement("button", {
     type: "submit",
-    className: "bk-btn"
+    className: "bk-btn bk-btn--ghost"
   }, "Request the teardown \u2192"));
 }
 
@@ -834,32 +919,32 @@ function buildBook(ctx) {
   const enter = ctx.enter; // open a section a level deeper: enter(key, idx)
   const TOC = [{
     n: "—",
-    name: "About the Author",
-    sub: "Who's writing, and why",
+    name: "How I Lead",
+    sub: "How I work — three principles",
     pg: "p. ii",
     to: 2
   }, {
     n: "I",
     name: "Selected Work",
-    sub: "Overview → five cases",
+    sub: "Overview → six cases",
     pg: "p. 2",
     to: 3
   }, {
     n: "II",
-    name: "How I Lead",
-    sub: "Three principles",
+    name: "A Field Guide to Trust",
+    sub: "Overview → four patterns",
     pg: "p. 4",
     to: 4
   }, {
     n: "III",
-    name: "A Field Guide to Trust",
-    sub: "Overview → four patterns",
+    name: "Notes & Writing",
+    sub: "Essays, talks, field notes",
     pg: "p. 6",
     to: 5
   }, {
-    n: "IV",
-    name: "Notes & Writing",
-    sub: "Essays, talks, field notes",
+    n: "—",
+    name: "Curriculum Vitæ",
+    sub: "The printable appendix",
     pg: "p. 8",
     to: 6
   }, {
@@ -868,17 +953,9 @@ function buildBook(ctx) {
     sub: "Write to me — let's talk",
     pg: "p. 10",
     to: 7
-  }, {
-    n: "—",
-    name: "Curriculum Vitæ",
-    sub: "The printable appendix",
-    pg: "p. 12",
-    to: 8
   }];
   const ptcA = caseSpreadA(CASES.ptc),
     ptcB = caseSpreadB(CASES.ptc);
-  const orgA = caseSpreadA(CASES.orgos),
-    orgB = caseSpreadB(CASES.orgos);
   const ndaPages = NDA_CASES.map(c => caseWalk(c));
   const patPages = ["gauge", "alert", "branch", "loop"].map(k => patternSpread(PATTERN_PAGES[k]));
 
@@ -894,7 +971,10 @@ function buildBook(ctx) {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-cover__emblem"
-    }, /*#__PURE__*/React.createElement(Emblem, null)), /*#__PURE__*/React.createElement("h1", {
+    }, /*#__PURE__*/React.createElement(Device, {
+      on: "dark",
+      label: "Vol. I"
+    })), /*#__PURE__*/React.createElement("h1", {
       className: "bk-cover__title"
     }, "Arpit", /*#__PURE__*/React.createElement("br", null), "Maheshwari"), /*#__PURE__*/React.createElement("div", {
       className: "bk-cover__rule"
@@ -927,15 +1007,12 @@ function buildBook(ctx) {
       }
     }, "Creative Clarity"), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
-    }), /*#__PURE__*/React.createElement("div", {
+    }), /*#__PURE__*/React.createElement(Device, {
+      label: "the monogram, recurring",
       style: {
-        width: 70,
-        height: 70,
         marginBottom: 22
       }
-    }, /*#__PURE__*/React.createElement(Emblem, {
-      stroke: "var(--bk-ember)"
-    })), /*#__PURE__*/React.createElement("h1", {
+    }), /*#__PURE__*/React.createElement("h1", {
       className: "bk-title bk-title--l",
       dangerouslySetInnerHTML: {
         __html: ctx.headline
@@ -982,28 +1059,23 @@ function buildBook(ctx) {
         marginTop: 26
       }
     }, "turn pages across \u2192 open items to go deeper \u2197"))
-  }, /* 2 · About the Author (front matter) */
+  }, /* 2 · How I Lead (front matter) */
   {
     kind: "spread",
     runheadL: VERSO,
-    runheadR: "About the Author",
+    runheadR: "How I Lead",
     folioL: "ii",
     folioR: "iii",
     left: /*#__PURE__*/React.createElement("div", {
       className: "bk-reveal"
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-kicker"
-    }, "About the author"), /*#__PURE__*/React.createElement("div", {
-      className: "bk-plate",
-      style: {
-        marginTop: 16
-      }
+    }, "How I lead"), /*#__PURE__*/React.createElement("div", {
+      className: "bk-plate bk-tape",
+      style: { marginTop: 14, marginBottom: 32 }
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-plate__img",
-      style: {
-        aspectRatio: "1 / 1",
-        maxWidth: 300
-      }
+      style: { aspectRatio: "1 / 1", maxWidth: 220 }
     }, /*#__PURE__*/React.createElement("image-slot", {
       id: "about-portrait",
       placeholder: "Drop a portrait",
@@ -1015,53 +1087,39 @@ function buildBook(ctx) {
       className: "bk-plate__no"
     }, "Frontispiece"), /*#__PURE__*/React.createElement("span", {
       className: "bk-plate__cn"
-    }, "the author, such as he is"))), /*#__PURE__*/React.createElement("h2", {
-      className: "bk-title bk-title--m",
+    }, "the author, such as he is"))), /*#__PURE__*/React.createElement("p", {
+      className: "bk-lede bk-drop",
       style: {
-        marginTop: 18
+        marginTop: 0
       }
-    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("p", {
-      className: "bk-body",
+    }, "I lead from inside the work, not above it. I'd rather pair with an engineer on an eval than present a roadmap, and the best design decision in an AI product is usually about ", /*#__PURE__*/React.createElement("span", {
+      className: "bk-mark"
+    }, "what the system admits it doesn't know"), "."), /*#__PURE__*/React.createElement("div", {
+      className: "bk-note",
       style: {
-        marginTop: 8
+        marginTop: 22
       }
-    }, "Design leader for AI & data-intensive products. Fifteen years, many industries, one stubborn idea: the bottleneck is never the model — it's the decision a business makes after it."), /*#__PURE__*/React.createElement("div", {
-      className: "bk-chips",
+    }, "credibility = the misses, written down →"), /*#__PURE__*/React.createElement("div", {
+      className: "bk-coffee",
+      "aria-hidden": "true",
       style: {
-        marginTop: 16
+        marginTop: 34
       }
-    }, /*#__PURE__*/React.createElement("span", {
-      className: "bk-chip"
-    }, "Indore, India"), /*#__PURE__*/React.createElement("span", {
-      className: "bk-chip"
-    }, "15 years"), /*#__PURE__*/React.createElement("span", {
-      className: "bk-chip"
-    }, "AI / Data UX"))),
+    })),
     right: /*#__PURE__*/React.createElement("div", {
       className: "bk-reveal"
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-kicker"
-    }, "The longer story"), /*#__PURE__*/React.createElement("p", {
-      className: "bk-lede bk-drop",
+    }, "Principles"), /*#__PURE__*/React.createElement("div", {
       style: {
-        marginTop: 12
+        marginTop: 14
       }
-    }, "I came up through engineering — an electronics degree, then building mobile software for Fortune 500 banks and pharma — before I realised the interesting problem was rarely the code. It was whether anyone would trust what it produced."), /*#__PURE__*/React.createElement(Beat, {
-      n: "01",
-      label: "How I got here"
-    }, /*#__PURE__*/React.createElement("p", {
-      className: "bk-body"
-    }, "From front-end work on O2's rewards for a million-plus subscribers, to leading design for PTC University's learning platform — used by NASA, Apple, Boeing and Airbus, 350,000+ engineers — to consulting on AI products across AdTech, HRTech and private equity. Usually the first or only designer in the room when the model and the interface had to be argued about together.")), /*#__PURE__*/React.createElement(Beat, {
-      n: "02",
-      label: "What I believe"
-    }, /*#__PURE__*/React.createElement("p", {
-      className: "bk-body"
-    }, "That an AI product is only as good as whether a person will act on it; that the wrong-answer screen matters more than the happy path; and that the most senior thing a designer can do is write the system down, so the next one inherits more than my taste.")), /*#__PURE__*/React.createElement("div", {
-      className: "bk-note",
-      style: {
-        marginTop: 16
-      }
-    }, "I set type for fun. it shows."))
+    }, PRINCIPLES.map((p, i) => /*#__PURE__*/React.createElement("div", {
+      className: "bk-principle",
+      key: i
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "bk-principle__n"
+    }, String(i + 1).padStart(2, "0")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, p.h), /*#__PURE__*/React.createElement("p", null, p.p))))))
   }, /* 4 · CHAPTER I — SELECTED WORK (hub) */
   {
     kind: "spread",
@@ -1082,7 +1140,7 @@ function buildBook(ctx) {
       }
     }, "Selected", /*#__PURE__*/React.createElement("br", null), "Work"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body bk-drop"
-    }, "Five industries, one throughline: I make machine intelligence legible enough that people will actually act on it. Two cases open in full; three more travel as redacted walk-throughs."), /*#__PURE__*/React.createElement("div", {
+    }, "Five industries, one throughline: I make machine intelligence legible enough that people will actually act on it. Two are public — PTC in full, MyO2 in brief — and four travel as redacted walk-throughs."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
         margin: "22px 0 18px"
@@ -1115,10 +1173,10 @@ function buildBook(ctx) {
     }, "Also in this volume"), /*#__PURE__*/React.createElement("div", {
       className: "bk-list",
       style: {
-        marginTop: 16
+        marginTop: 8
       }
     }, WORK.slice(1).map((w, i) => {
-      const openIdx = [4, 5, 6, 2][i];
+      const openIdx = [2, 3, 4, 5, 6][i];
       return /*#__PURE__*/React.createElement("div", {
         className: "bk-item bk-item--link",
         key: i,
@@ -1132,12 +1190,17 @@ function buildBook(ctx) {
       }, w.metric)), /*#__PURE__*/React.createElement("h4", null, w.title, /*#__PURE__*/React.createElement("span", {
         className: "bk-item__case"
       }, "open \u2197")), /*#__PURE__*/React.createElement("p", null, w.desc));
-    })))
-  }, /* 3 · CHAPTER II — HOW I LEAD */
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "bk-note bk-note--r",
+      style: {
+        marginTop: 22
+      }
+    }, "four are redacted — the logos are just shy."))
+  }, /* 4 · CHAPTER III — A FIELD GUIDE TO TRUST (hub) */
   {
     kind: "spread",
     runheadL: VERSO,
-    runheadR: "II · How I Lead",
+    runheadR: "II · A Field Guide to Trust",
     folioL: "4",
     folioR: "5",
     left: /*#__PURE__*/React.createElement("div", {
@@ -1151,48 +1214,6 @@ function buildBook(ctx) {
       style: {
         margin: "4px 0 16px"
       }
-    }, "How I", /*#__PURE__*/React.createElement("br", null), "Lead"), /*#__PURE__*/React.createElement("p", {
-      className: "bk-body bk-drop"
-    }, "I lead from inside the work, not above it. I'd rather pair with an engineer on an eval than present a roadmap, and I think the best design decision in an AI product is usually about ", /*#__PURE__*/React.createElement("span", {
-      className: "bk-mark"
-    }, "what the system admits it doesn't know"), "."), /*#__PURE__*/React.createElement("div", {
-      className: "bk-note",
-      style: {
-        marginTop: 22
-      }
-    }, "credibility = the misses, written down \u2192")),
-    right: /*#__PURE__*/React.createElement("div", {
-      className: "bk-reveal"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "bk-kicker"
-    }, "Principles"), /*#__PURE__*/React.createElement("div", {
-      style: {
-        marginTop: 14
-      }
-    }, PRINCIPLES.map((p, i) => /*#__PURE__*/React.createElement("div", {
-      className: "bk-principle",
-      key: i
-    }, /*#__PURE__*/React.createElement("span", {
-      className: "bk-principle__n"
-    }, String(i + 1).padStart(2, "0")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, p.h), /*#__PURE__*/React.createElement("p", null, p.p))))))
-  }, /* 4 · CHAPTER III — A FIELD GUIDE TO TRUST (hub) */
-  {
-    kind: "spread",
-    runheadL: VERSO,
-    runheadR: "III · A Field Guide to Trust",
-    folioL: "6",
-    folioR: "7",
-    left: /*#__PURE__*/React.createElement("div", {
-      className: "bk-reveal"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "bk-kicker"
-    }, "Chapter Three"), /*#__PURE__*/React.createElement("span", {
-      className: "bk-chno"
-    }, "\u2116 III"), /*#__PURE__*/React.createElement("h2", {
-      className: "bk-title bk-title--l",
-      style: {
-        margin: "4px 0 16px"
-      }
     }, "A Field", /*#__PURE__*/React.createElement("br", null), "Guide to", /*#__PURE__*/React.createElement("br", null), "Trust"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body bk-drop"
     }, "A working catalogue of the interface patterns I reach for when the product is only as good as whether people believe it. Each is a small argument about where certainty belongs on the screen \u2014 open one to read it in full."), /*#__PURE__*/React.createElement("div", {
@@ -1200,7 +1221,12 @@ function buildBook(ctx) {
       style: {
         marginTop: 22
       }
-    }, "open a pattern to go a level deeper \u2197")),
+    }, "open a pattern to go a level deeper \u2197"), /*#__PURE__*/React.createElement(Device, {
+      label: "a working catalogue",
+      style: {
+        marginTop: 30
+      }
+    })),
     right: /*#__PURE__*/React.createElement("div", {
       className: "bk-reveal"
     }, /*#__PURE__*/React.createElement("div", {
@@ -1224,9 +1250,9 @@ function buildBook(ctx) {
   {
     kind: "spread",
     runheadL: VERSO,
-    runheadR: "IV · Notes & Writing",
-    folioL: "8",
-    folioR: "9",
+    runheadR: "III · Notes & Writing",
+    folioL: "6",
+    folioR: "7",
     left: /*#__PURE__*/React.createElement("div", {
       className: "bk-reveal",
       style: {
@@ -1236,9 +1262,9 @@ function buildBook(ctx) {
       }
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-kicker"
-    }, "Chapter Four"), /*#__PURE__*/React.createElement("span", {
+    }, "Chapter Three"), /*#__PURE__*/React.createElement("span", {
       className: "bk-chno"
-    }, "\u2116 IV"), /*#__PURE__*/React.createElement("h2", {
+    }, "\u2116 III"), /*#__PURE__*/React.createElement("h2", {
       className: "bk-title bk-title--l",
       style: {
         margin: "4px 0 20px"
@@ -1250,7 +1276,7 @@ function buildBook(ctx) {
       target: "_blank",
       rel: "noopener",
       className: "bk-em"
-    }, "Creative Clarity ↗"), " — my Substack on designing AI and data-intensive products. New essays most months."), /*#__PURE__*/React.createElement("div", {
+    }, "Creative Clarity ", Icon({ name: "external", cls: "bk-icon--sm" })), " — my Substack on designing AI and data-intensive products. New essays most months."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note"
@@ -1268,70 +1294,19 @@ function buildBook(ctx) {
       key: i
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-writing__date"
-    }, w.d), /*#__PURE__*/React.createElement("h4", null, w.h), /*#__PURE__*/React.createElement("p", null, w.p)))))
-  }, /* CHAPTER VI — COLOPHON & CONTACT */
-  {
-    kind: "spread",
-    runheadL: VERSO,
-    runheadR: "Contact",
-    folioL: "10",
-    folioR: "11",
-    left: /*#__PURE__*/React.createElement("div", {
-      className: "bk-reveal",
-      style: {
-        display: "flex",
-        flexDirection: "column",
-        height: "100%"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "bk-kicker"
-    }, "Let's talk"), /*#__PURE__*/React.createElement("h2", {
-      className: "bk-title bk-title--m",
-      style: {
-        margin: "4px 0 14px"
-      }
-    }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
-      className: "bk-body"
-    }, "If your AI or data product is stalling at the trust layer — users second-guessing the model, adoption flat, the 'why' buried — that's the problem I've spent fifteen years solving. Let's compare notes."), /*#__PURE__*/React.createElement("div", {
-      className: "bk-spacer"
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "bk-note"
-    }, "thanks for reading to the end \u2665")),
-    right: /*#__PURE__*/React.createElement("div", {
-      className: "bk-reveal"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "bk-kicker"
-    }, "Write to me"), /*#__PURE__*/React.createElement("h2", {
-      className: "bk-title bk-title--m",
-      style: {
-        margin: "8px 0 10px"
-      }
-    }, "A free read on", /*#__PURE__*/React.createElement("br", null), "your AI UX."), /*#__PURE__*/React.createElement("p", {
-      className: "bk-body",
-      style: {
-        marginBottom: 14
-      }
-    }, "Send a link to your product and I'll record a five-minute review \u2014 three concrete improvements, within 48 hours, no strings."), /*#__PURE__*/React.createElement("div", {
-      className: "bk-chips",
-      style: {
-        marginBottom: 18
-      }
-    }, STATUS.map((s, i) => /*#__PURE__*/React.createElement("span", {
-      className: "bk-chip",
-      key: i
-    }, s))), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
-      className: "bk-contactlinks",
-      style: {
-        marginTop: 26
-      }
-    }, /*#__PURE__*/React.createElement("a", null, "hello@arpitmaheshwari.com ", /*#__PURE__*/React.createElement("span", null, "EMAIL")), /*#__PURE__*/React.createElement("a", null, "linkedin.com/in/arpitmaheshwari ", /*#__PURE__*/React.createElement("span", null, "LINKEDIN")), /*#__PURE__*/React.createElement("a", null, "Book a 30-min call ", /*#__PURE__*/React.createElement("span", null, "CALENDAR \u2197"))))
-  }, /* 10 · APPENDIX — CURRICULUM VITAE */
+    }, w.d), /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("a", {
+          href: "https://substack.com/@arpitmaheshwari",
+          target: "_blank",
+          rel: "noopener",
+          className: "bk-em"
+        }, w.h)), /*#__PURE__*/React.createElement("p", null, w.p)))))
+  }, /* APPENDIX - CURRICULUM VITAE */
   {
     kind: "spread",
     runheadL: VERSO,
     runheadR: "Appendix · Curriculum Vitæ",
-    folioL: "12",
-    folioR: "13",
+    folioL: "8",
+    folioR: "9",
     left: /*#__PURE__*/React.createElement("div", {
       className: "bk-reveal",
       style: {
@@ -1395,6 +1370,92 @@ function buildBook(ctx) {
     }, r.role), /*#__PURE__*/React.createElement("p", {
       className: "bk-cv__org"
     }, r.org))))))
+  }, /* COLOPHON & CONTACT */
+  {
+    kind: "spread",
+    runheadL: VERSO,
+    runheadR: "Contact",
+    folioL: "10",
+    folioR: "11",
+    left: /*#__PURE__*/React.createElement("div", {
+      className: "bk-reveal",
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        height: "100%"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "bk-kicker"
+    }, "Let's talk"), /*#__PURE__*/React.createElement("h2", {
+      className: "bk-title bk-title--m",
+      style: {
+        margin: "4px 0 14px"
+      }
+    }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
+      className: "bk-body"
+    }, "If your AI or data product is stalling at the trust layer — users second-guessing the model, adoption flat, the 'why' buried — that's the problem I've spent fifteen years solving. Let's compare notes."), /*#__PURE__*/React.createElement("a", {
+      className: "bk-btn",
+      href: "https://calendly.com/arpitmaheshwari",
+      target: "_blank",
+      rel: "noopener",
+      style: {
+        marginTop: 20,
+        alignSelf: "flex-start"
+      }
+    }, "Book a 30-min call ", Icon({ name: "arrow-up-right" })), /*#__PURE__*/React.createElement("div", {
+      className: "bk-social",
+      style: {
+        marginTop: 24
+      }
+    }, /*#__PURE__*/React.createElement("a", {
+      className: "bk-social__btn",
+      href: "https://www.linkedin.com/in/arpitmaheshwariprofile/",
+      target: "_blank",
+      rel: "noopener",
+      "aria-label": "LinkedIn"
+    }, Icon({
+      name: "linkedin"
+    })), /*#__PURE__*/React.createElement("a", {
+      className: "bk-social__btn",
+      href: "https://arpitmaheshwari.substack.com",
+      target: "_blank",
+      rel: "noopener",
+      "aria-label": "Substack — Creative Clarity"
+    }, Icon({
+      name: "rss"
+    }))), /*#__PURE__*/React.createElement("div", {
+      className: "bk-spacer"
+    }), /*#__PURE__*/React.createElement(Device, {
+      label: "fin.",
+      style: {
+        marginBottom: 14
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "bk-note"
+    }, "thanks for reading to the end ♥")),
+    right: /*#__PURE__*/React.createElement("div", {
+      className: "bk-reveal"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "bk-kicker"
+    }, "Not ready to talk?"), /*#__PURE__*/React.createElement("h2", {
+      className: "bk-title bk-title--m",
+      style: {
+        margin: "8px 0 10px"
+      }
+    }, "Request a free", /*#__PURE__*/React.createElement("br", null), "teardown."), /*#__PURE__*/React.createElement("p", {
+      className: "bk-body",
+      style: {
+        marginBottom: 14
+      }
+    }, "Send a link to your product and I'll record a five-minute review — three concrete improvements, within 48 hours, no strings."), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
+      className: "bk-chips",
+      style: {
+        marginTop: 18
+      }
+    }, STATUS.map((s, i) => /*#__PURE__*/React.createElement("span", {
+      className: "bk-chip",
+      key: i
+    }, s))))
   }];
 
   /* ----- SECTIONS — one level deeper, opened from a hub ----- */
@@ -1418,40 +1479,40 @@ function buildBook(ctx) {
         folioR: "4",
         ...ptcB
       }, {
-        crumb: "OrgOS",
-        idxLabel: "1 / 2",
-        runheadR: "OrgOS",
-        folioL: "1",
-        folioR: "2",
-        ...orgA
-      }, {
-        crumb: "OrgOS",
-        idxLabel: "2 / 2",
-        runheadR: "OrgOS",
-        folioL: "3",
-        folioR: "4",
-        ...orgB
-      }, {
-        crumb: "Due Diligence",
-        idxLabel: "walk-through",
-        runheadR: "AI-Assisted Due Diligence",
+        crumb: "MyO2 & Priority Moments",
+        idxLabel: "in brief",
+        runheadR: "Telefónica MyO2 & Priority Moments",
         folioL: "1",
         folioR: "2",
         ...ndaPages[0]
       }, {
-        crumb: "Programmatic",
+        crumb: "Private Equity Investing",
         idxLabel: "walk-through",
-        runheadR: "Programmatic Advertising",
+        runheadR: "AI-Assisted Private Equity Investing",
         folioL: "1",
         folioR: "2",
         ...ndaPages[1]
       }, {
-        crumb: "O2 Priority",
+        crumb: "Programmatic",
         idxLabel: "walk-through",
-        runheadR: "Telefónica MyO2 & Priority Moments",
+        runheadR: "Programmatic Advertising Platform",
         folioL: "1",
         folioR: "2",
         ...ndaPages[2]
+      }, {
+        crumb: "OrgOS",
+        idxLabel: "walk-through",
+        runheadR: "OrgOS",
+        folioL: "1",
+        folioR: "2",
+        ...ndaPages[3]
+      }, {
+        crumb: "Technical Due Diligence",
+        idxLabel: "walk-through",
+        runheadR: "Technical Due Diligence Platform",
+        folioL: "1",
+        folioR: "2",
+        ...ndaPages[4]
       }]
     },
     patterns: {
@@ -1594,7 +1655,20 @@ function ChapterMenu({
   }, it.sub) : null)), /*#__PURE__*/React.createElement("button", {
     className: "bk-menu__exit",
     onClick: () => { try { localStorage.setItem('am-view', 'classic'); } catch (e) {} location.href = '../index.html?view=classic'; }
-  }, "Switch to the classic website ↗")));
+  }, "Switch to the classic website ", Icon({ name: "arrow-up-right", cls: "bk-icon--sm" }))));
+}
+function Icon(props) {
+  var name = props.name;
+  var has = typeof window !== "undefined" && window.MonographIcons && MonographIcons.has && MonographIcons.has(name);
+  var html = has ? MonographIcons.markup(name, props.cls ? {
+    "class": props.cls
+  } : {}) : "";
+  return /*#__PURE__*/React.createElement("span", {
+    className: "bk-iconwrap",
+    dangerouslySetInnerHTML: {
+      __html: html
+    }
+  });
 }
 function Arrow({
   dir,
@@ -1660,6 +1734,16 @@ function App() {
   const [mDir, setMDir] = useState(1);
   const [scale, setScale] = useState(1);
   const [menu, setMenu] = useState(false);
+  // ---- opening ritual: closed book that clicks open (plays once) ----
+  const readOpened = () => {
+    try {
+      return localStorage.getItem("bk-opened") === "1";
+    } catch (e) {
+      return false;
+    }
+  };
+  const [opened, setOpened] = useState(readOpened); // ritual already played?
+  const [opening, setOpening] = useState(false); // cover currently swinging open
   const animating = useRef(false);
   const locRef = useRef(loc);
   locRef.current = loc;
@@ -1670,7 +1754,15 @@ function App() {
   const bookRef = useRef(null);
   const zoomCount = useRef(0);
   const reduce = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const persist = l => localStorage.setItem("bk-loc", JSON.stringify(l));
+  const persist = l => {
+    localStorage.setItem("bk-loc", JSON.stringify(l));
+    try {
+      var b = bookRef.current, lbl = "";
+      if (b) lbl = l.deck === "spine" ? (b.spine[l.i] && b.spine[l.i].runheadR) || "Cover" : (b.sections[l.deck] && b.sections[l.deck].items[l.i] && b.sections[l.deck].items[l.i].crumb) || "";
+      var live = document.getElementById("bk-live");
+      if (live && lbl) live.textContent = lbl;
+    } catch (e) {}
+  };
 
   // ---- deck helpers (read the fresh book from a ref) ----
   const deckArr = d => d === "spine" ? bookRef.current.spine : bookRef.current.sections[d].items;
@@ -1825,6 +1917,35 @@ function App() {
     goIndex(i);
   }, [goIndex]);
 
+  // ---- opening ritual: swing the cover open on its left hinge, once ----
+  const openRitual = useCallback(() => {
+    if (animating.current || opening) return;
+    try {
+      localStorage.setItem("bk-opened", "1");
+    } catch (e) {}
+    setOpened(true);
+    if (reduce()) {
+      // reduced motion: skip the swing, go straight to the first spread
+      go(1);
+      return;
+    }
+    setOpening(true); // adds .is-open → cover rotates ~162deg off the spine
+    animating.current = true;
+    // hold the open cover for the full swing, then reveal the first spread in
+    // one move (set loc directly so the cover never snaps flat again)
+    setTimeout(() => {
+      const nl = {
+        deck: "spine",
+        i: 1
+      };
+      setLoc(nl);
+      persist(nl);
+      setMLeaf(firstPageOf("spine", 1));
+      setOpening(false);
+      animating.current = false;
+    }, 900);
+  }, [opening, go]);
+
   // ---- mobile paging ----
   const stepMobile = useCallback(dir => {
     if (animating.current) return;
@@ -1917,9 +2038,35 @@ function App() {
   }, side === "l" ? sp.folioL : sp.folioR));
   function renderDesktop() {
     const sp = deck[curSpread];
+    // opening ritual is live only on the cover, before it has played (or while
+    // it is mid-swing), on desktop. `opening` keeps it mounted during the swing
+    // even though `opened` flips to true the instant the click is registered.
+    const ritual = !inSection && curSpread === 0 && !anim && (!opened || opening);
     let inner;
     if (!inSection && curSpread === 0 && !anim) {
-      inner = book.spine[0].cover;
+      if (ritual) {
+        // closed book: a fixed-size sizer keeps .bk-book at cover dimensions
+        // while the cover overlays it (position:absolute) and swings open.
+        inner = /*#__PURE__*/React.createElement("div", {
+          className: "bk-cover-sizer",
+          style: {
+            position: "relative",
+            width: COVER_W,
+            height: COVER_H,
+            cursor: "pointer"
+          },
+          // capture phase: run the ritual before the cover's own "Open the book"
+          // button fires go(1), and stop that bubble so the swing always plays
+          onClickCapture: e => {
+            e.stopPropagation();
+            openRitual();
+          }
+        }, book.spine[0].cover, /*#__PURE__*/React.createElement("div", {
+          className: "bk-opencue"
+        }, "Click to open"));
+      } else {
+        inner = book.spine[0].cover;
+      }
     } else if (anim) {
       const from = deck[anim.from],
         to = deck[anim.to];
@@ -1984,6 +2131,49 @@ function App() {
     }
     const prevDisabled = !inSection && curSpread === 0;
     const nextDisabled = !inSection && curSpread === book.spine.length - 1;
+
+    // ---- thumb-index tabs (right edge): FRONT / WORK / GUIDE / END ----
+    // i = spine index of each region's hub. Hidden on the cover.
+    const TABS = [{
+      label: "Front",
+      color: "var(--bk-ink)",
+      i: 1
+    }, {
+      label: "Work",
+      color: "var(--bk-ember)",
+      i: 3
+    }, {
+      label: "Guide",
+      color: "var(--bk-pine)",
+      i: 4
+    }, {
+      label: "Contact",
+      color: "var(--bk-ochre)",
+      i: 7
+    }];
+    // which tab reads as active: in a section, light its hub; else the spine spread
+    const activeTab = inSection ? loc.deck === "cases" ? 3 : loc.deck === "patterns" ? 4 : -1 : curSpread;
+    const onCover = !inSection && curSpread === 0;
+    const thumbTabs = onCover ? null : /*#__PURE__*/React.createElement("div", {
+      className: "bk-thumbtabs"
+    }, TABS.map(tb => /*#__PURE__*/React.createElement("div", {
+      className: "bk-tab" + (activeTab === tb.i ? " on" : ""),
+      key: tb.i,
+      style: {
+        "--tab": tb.color
+      },
+      role: "button",
+      tabIndex: 0,
+      "aria-label": "Jump to " + tb.label,
+      onClick: () => jumpTo(tb.i),
+      onKeyDown: e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          jumpTo(tb.i);
+        }
+      }
+    }, tb.label)));
+
     return /*#__PURE__*/React.createElement("div", {
       className: "bk-stage" + (inSection ? " bk-stage--deep" : "")
     }, inSection && /*#__PURE__*/React.createElement("button", {
@@ -2015,11 +2205,11 @@ function App() {
       key: zoom.key,
       "data-z": zoom.dir || undefined
     }, /*#__PURE__*/React.createElement("div", {
-      className: "bk-book" + (inSection ? " bk-book--deep" : ""),
+      className: "bk-book" + (inSection ? " bk-book--deep" : "") + (ritual ? " bk-openbook" : "") + (ritual && opening ? " is-open" : ""),
       style: {
         transform: `scale(${scale})`
       }
-    }, inner)), /*#__PURE__*/React.createElement("button", {
+    }, inner, thumbTabs)), /*#__PURE__*/React.createElement("button", {
       className: "bk-menu-btn",
       onClick: () => setMenu(true),
       "aria-label": "Open chapter menu"
@@ -2059,7 +2249,16 @@ function App() {
     }, deck.map((_, i) => /*#__PURE__*/React.createElement("span", {
       className: "bk-progress__dot" + (i === curSpread ? " on" : ""),
       key: i,
-      onClick: () => goIndex(i)
+      role: "button",
+      tabIndex: 0,
+      "aria-label": "Go to page " + (i + 1),
+      onClick: () => goIndex(i),
+      onKeyDown: e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          goIndex(i);
+        }
+      }
     }))), /*#__PURE__*/React.createElement("span", {
       className: "bk-progress__esc",
       onClick: exitSection
@@ -2068,7 +2267,16 @@ function App() {
     }, book.spine.map((_, i) => /*#__PURE__*/React.createElement("span", {
       className: "bk-progress__dot" + (i === curSpread ? " on" : ""),
       key: i,
-      onClick: () => goIndex(i)
+      role: "button",
+      tabIndex: 0,
+      "aria-label": "Go to page " + (i + 1),
+      onClick: () => goIndex(i),
+      onKeyDown: e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          goIndex(i);
+        }
+      }
     }))), /*#__PURE__*/React.createElement("span", null, curSpread === 0 ? "" : sp.folioL === "\u2014" ? "\u2014 \u00b7 " + sp.folioR : "pp. " + sp.folioL + "\u2013" + sp.folioR))));
   }
   function renderMobile() {
@@ -2135,7 +2343,7 @@ function App() {
       "aria-label": "previous page"
     }, Caret("prev")), /*#__PURE__*/React.createElement("span", {
       className: "bk-m-label"
-    }, inSection ? pg.crumb + " · " + pg.idxLabel : isCover ? "Cover · tap to begin →" : pg.chapter), /*#__PURE__*/React.createElement("button", {
+    }, inSection ? pg.crumb + " · " + pg.idxLabel : isCover ? /*#__PURE__*/React.createElement(React.Fragment, null, "Cover · tap to begin ", Icon({ name: "arrow-right", cls: "bk-icon--sm" })) : pg.chapter), /*#__PURE__*/React.createElement("button", {
       className: "bk-m-btn",
       onClick: () => stepMobile(1),
       disabled: !inSection && idx === flat.length - 1,

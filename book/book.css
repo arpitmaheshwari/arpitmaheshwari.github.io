@@ -35,8 +35,8 @@
   --bk-marker:      rgba(206,146,48,0.40);
 
   /* ---- type ---- */
-  --bk-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
-  --bk-serif:   'Newsreader', Georgia, serif;
+  --bk-display: 'Playfair Display', Georgia, serif;
+  --bk-serif:   'Spectral', Georgia, serif;
   --bk-hand:    'Caveat', 'Segoe Script', cursive;
   --bk-mono:    'Spline Sans Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
@@ -111,6 +111,32 @@ body {
 }
 
 /* ============================================================
+   THUMB-INDEX TABS — color-coded section tabs on the page edge.
+   Ported from monograph.css §7, recolored to coral. Anchored to
+   the right edge of the relatively-positioned .bk-book. Each tab
+   carries its section color via --tab; the active one fills.
+   FRONT / WORK / GUIDE / END → front matter · Selected Work ·
+   Field Guide · end matter (Contact).
+   ============================================================ */
+.bk-thumbtabs { position: absolute; top: 84px; right: -28px; display: flex; flex-direction: column; gap: 7px; z-index: 5; }
+.bk-tab {
+  --tab: var(--bk-ember);
+  width: 28px; min-height: 84px; padding: 12px 0; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  writing-mode: vertical-rl; text-orientation: mixed;
+  font-family: var(--bk-mono); font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase;
+  background: var(--bk-paper-edge); color: var(--bk-ink-soft);
+  border-radius: 0 7px 7px 0; border-left: 4px solid var(--tab);
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.16);
+  border-top: none; border-right: none; border-bottom: none;
+  transition: width var(--bk-ease), background var(--bk-ease), color var(--bk-ease);
+}
+.bk-tab:hover { width: 34px; }
+.bk-tab.on { width: 38px; background: var(--tab); color: #F7F0E1; border-left-color: var(--tab); }
+/* hide the thumb-index on mobile, where the book uses its flat fallback */
+@media (max-width: 820px) { .bk-thumbtabs { display: none; } }
+
+/* ============================================================
    PAGE
    ============================================================ */
 .bk-page {
@@ -118,6 +144,7 @@ body {
   padding: var(--bk-pad);
   min-width: 0;
   display: flex; flex-direction: column;
+  overflow: hidden; /* fixed-page guard: content can never spill past / stretch the 880px page */
 }
 .bk-page--l { background: var(--bk-paper-2); border-radius: 5px 0 0 5px; }
 .bk-page--r { background: var(--bk-paper); border-radius: 0 5px 5px 0; }
@@ -187,7 +214,7 @@ body {
   font-family: var(--bk-display); float: left; font-size: 76px; line-height: 0.66;
   padding: 8px 12px 0 0; color: var(--bk-ember);
 }
-.bk-em { color: var(--bk-ember); font-style: italic; }
+.bk-em { color: var(--bk-ember); font-style: italic; text-decoration: none; }
 .bk-mark { background: linear-gradient(180deg, transparent 58%, var(--bk-marker) 58% 92%, transparent 92%); padding: 0 2px; }
 .bk-note {
   font-family: var(--bk-hand); font-size: 22px; line-height: 1.15; color: var(--bk-ember-deep);
@@ -232,6 +259,29 @@ body {
 /* ---- switch to the classic website ---- */
 .bk-cover__classic { display: inline-block; align-self: flex-start; margin: 16px 0 0; font-family: var(--bk-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,236,218,0.62); border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; }
 .bk-cover__classic:hover { color: #F4ECDA; border-color: rgba(244,236,218,0.5); }
+
+/* ============================================================
+   OPENING RITUAL — the closed book that clicks open.
+   Ported from monograph.css §6, recolored to coral (--bk-ember).
+   The book lands closed; on first click the cover swings ~162°
+   off its left-edge hinge to reveal the first spread underneath.
+   Plays once (persisted), respects prefers-reduced-motion.
+   ============================================================ */
+.bk-openbook { perspective: 2400px; }
+.bk-openbook .bk-cover {
+  position: absolute; inset: 0; z-index: 9; transform-origin: left center;
+  backface-visibility: hidden; cursor: pointer;
+  transition: transform 900ms var(--bk-flip), box-shadow 900ms var(--bk-flip);
+}
+.bk-openbook.is-open .bk-cover { transform: rotateY(-162deg); box-shadow: 0 30px 50px rgba(0,0,0,0.4); pointer-events: none; }
+.bk-opencue {
+  position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 11;
+  font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(244,236,218,0.7); pointer-events: none; transition: opacity var(--bk-ease);
+  animation: bkCue 1.8s var(--bk-ease) infinite;
+}
+.bk-openbook.is-open .bk-opencue { opacity: 0; }
+@keyframes bkCue { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,5px); } }
 .bk-menu__exit { display: block; width: 100%; text-align: left; margin-top: 16px; padding: 14px 0 2px; border: none; border-top: 1px solid rgba(153,141,120,0.3); background: none; cursor: pointer; font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bk-ink-faint); transition: color .2s; }
 .bk-menu__exit:hover { color: var(--bk-ember); }
 
@@ -242,9 +292,9 @@ body {
 .bk-toc__item {
   display: grid; grid-template-columns: 30px 1fr auto; align-items: baseline; gap: 14px;
   padding: 14px 8px; cursor: pointer; border-radius: 6px;
-  transition: background var(--bk-ease), color var(--bk-ease);
+  transition: background var(--bk-ease), transform var(--bk-ease);
 }
-.bk-toc__item:hover { background: rgba(192,81,43,0.07); }
+.bk-toc__item:hover { background: rgba(192,81,43,0.07); transform: translateX(6px); }
 .bk-toc__num { font-family: var(--bk-mono); font-size: 12px; color: var(--bk-ember); }
 .bk-toc__name { font-family: var(--bk-display); font-size: 27px; color: var(--bk-ink); line-height: 1; }
 .bk-toc__name small { display: block; font-family: var(--bk-serif); font-size: 12.5px; color: var(--bk-ink-faint); margin-top: 5px; letter-spacing: 0.01em; }
@@ -252,7 +302,7 @@ body {
 .bk-toc__dots { border-bottom: 1.5px dotted var(--bk-ink-faint); align-self: center; height: 1px; opacity: 0.5; }
 
 .bk-list { display: flex; flex-direction: column; }
-.bk-item { padding: 15px 0; border-top: 1px solid var(--bk-rule); }
+.bk-item { padding: 8px 0; border-top: 1px solid var(--bk-rule); }
 .bk-item:first-child { border-top: none; }
 .bk-item__top { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; }
 .bk-item__tag { font-family: var(--bk-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bk-ink-faint); white-space: nowrap; }
@@ -286,9 +336,8 @@ body {
 .bk-pattern h4 { font-family: var(--bk-serif); font-weight: 600; font-size: 16px; margin: 0 0 4px; color: var(--bk-ink); }
 .bk-pattern p { font-family: var(--bk-serif); font-size: 13px; line-height: 1.5; color: var(--bk-ink-soft); margin: 0; }
 
-.bk-writing { padding: 13px 0; border-top: 1px solid var(--bk-rule); cursor: pointer; transition: padding-left var(--bk-ease); }
+.bk-writing { padding: 13px 0; border-top: 1px solid var(--bk-rule); }
 .bk-writing:first-of-type { border-top: none; }
-.bk-writing:hover { padding-left: 8px; }
 .bk-writing__date { font-family: var(--bk-mono); font-size: 10.5px; letter-spacing: 0.08em; color: var(--bk-ink-faint); }
 .bk-writing h4 { font-family: var(--bk-serif); font-weight: 600; font-size: 17px; margin: 3px 0 3px; color: var(--bk-ink); }
 .bk-writing p { font-family: var(--bk-serif); font-size: 13px; line-height: 1.5; color: var(--bk-ink-soft); margin: 0; }
@@ -308,6 +357,7 @@ body {
   display: inline-flex; align-items: center; gap: 9px; cursor: pointer; border: none; white-space: nowrap;
   font-family: var(--bk-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
   padding: 14px 22px; border-radius: 4px; background: var(--bk-ember); color: #F7F0E1;
+  text-decoration: none;
   transition: transform var(--bk-ease), background var(--bk-ease);
 }
 .bk-btn:hover { transform: translateY(-2px); background: var(--bk-ember-deep); }
@@ -334,17 +384,17 @@ body {
    ============================================================ */
 .bk-standfirst {
   font-family: var(--bk-display); font-style: italic; font-size: 22px; line-height: 1.3;
-  color: var(--bk-ink-soft); margin: 12px 0 0; max-width: 30ch; text-wrap: pretty;
+  color: var(--bk-ink-soft); margin: 6px 0 0; max-width: 30ch; text-wrap: pretty;
 }
 .bk-meta {
-  display: grid; grid-template-columns: auto 1fr; gap: 8px 20px; margin: 22px 0 0; padding: 16px 0;
+  display: grid; grid-template-columns: auto 1fr; gap: 6px 20px; margin: 12px 0 0; padding: 10px 0;
   border-top: 1px solid var(--bk-rule); border-bottom: 1px solid var(--bk-rule);
 }
 .bk-meta dt { font-family: var(--bk-mono); font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bk-ink-faint); padding-top: 2px; }
 .bk-meta dd { font-family: var(--bk-serif); font-size: 14.5px; color: var(--bk-ink); margin: 0; }
 
 /* a narrative beat (Context / Tension / Decision / Outcome) */
-.bk-beat { margin-top: 22px; }
+.bk-beat { margin-top: 14px; }
 .bk-beat__label { display: flex; align-items: baseline; gap: 11px; margin-bottom: 9px; }
 .bk-beat__n { font-family: var(--bk-display); font-style: italic; font-size: 18px; color: var(--bk-ochre); }
 .bk-beat__t { font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bk-ember); font-weight: 500; white-space: nowrap; }
@@ -410,13 +460,11 @@ body {
 .bk-feature--link:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(34,28,22,0.12); }
 .bk-feature__more { font-family: var(--bk-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bk-ember); margin-top: 14px; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
 .bk-feature__more span { color: var(--bk-ink-faint); }
-.bk-item--link { cursor: pointer; transition: padding-left var(--bk-ease); }
-.bk-item--link:hover { padding-left: 7px; }
-.bk-item__case { font-family: var(--bk-mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bk-ember); margin-left: 9px; vertical-align: 2px; }
-.bk-pattern--link { cursor: pointer; border-radius: 8px; transition: background var(--bk-ease); padding-left: 6px; padding-right: 6px; margin-left: -6px; }
-.bk-pattern--link:hover { background: rgba(192,81,43,0.06); }
-.bk-pattern__go { color: var(--bk-ember); opacity: 0; transition: opacity var(--bk-ease); }
-.bk-pattern--link:hover .bk-pattern__go { opacity: 1; }
+.bk-item--link { cursor: pointer; border-radius: 6px; transition: background var(--bk-ease), transform var(--bk-ease); }
+.bk-item--link:hover { background: rgba(192,81,43,0.07); transform: translateX(6px); }
+.bk-item__case, .bk-pattern__go { font-family: var(--bk-mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bk-ember); margin-left: 9px; vertical-align: 2px; }
+.bk-pattern--link { cursor: pointer; border-radius: 8px; transition: background var(--bk-ease), transform var(--bk-ease); padding-left: 6px; padding-right: 6px; margin-left: -6px; }
+.bk-pattern--link:hover { background: rgba(192,81,43,0.07); transform: translateX(6px); }
 
 /* ============================================================
    PAGE-TURN — realistic 3D leaf flip (desktop)
@@ -463,6 +511,8 @@ body {
   .bk-leaf { animation: none !important; display: none; }
   .bk-reveal > * { animation: none !important; transform: none !important; }
   .bk-cover__open .dot { animation: none; }
+  .bk-openbook .bk-cover { transition: none; }
+  .bk-opencue { animation: none; }
 }
 
 /* ============================================================
@@ -487,9 +537,19 @@ body {
   font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
   color: rgba(244,236,218,0.66);
 }
-.bk-progress__dots { display: flex; gap: 7px; }
-.bk-progress__dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(244,236,218,0.25); cursor: pointer; transition: background var(--bk-ease), transform var(--bk-ease); }
-.bk-progress__dot.on { background: var(--bk-ochre); transform: scale(1.35); }
+.bk-progress__dots { display: flex; align-items: center; gap: 7px; }
+/* DS look: 7px cream dot, faint inactive, ochre active scaled up.
+   A small content-box tap pad keeps the hit target generous without
+   inflating the visible dot or the 7px rhythm. */
+.bk-progress__dot {
+  box-sizing: content-box; width: 7px; height: 7px; padding: 2px;
+  background-clip: content-box; border-radius: 50%; cursor: pointer;
+  background-color: rgba(244,236,218,0.38);
+  transition: background-color var(--bk-ease), transform var(--bk-ease);
+}
+.bk-progress__dot:hover { background-color: rgba(244,236,218,0.7); }
+.bk-progress__dot.on { background-color: var(--bk-ochre); transform: scale(1.25); }
+.bk-progress__dot:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 3px; }
 
 /* ============================================================
    DEPTH — zoom transition + breadcrumb + back (a level deeper)
@@ -614,7 +674,7 @@ body {
    ============================================================ */
 
 /* photographic plate — drop a real screenshot into the slot */
-.bk-plate { position: relative; margin-top: 18px; }
+.bk-plate { position: relative; margin-top: 10px; }
 .bk-plate__img {
   position: relative; overflow: hidden; aspect-ratio: 4 / 3;
   border: 1px solid var(--bk-paper-edge); background: var(--bk-paper-deep);
@@ -630,7 +690,7 @@ body {
   content: ""; position: absolute; inset: 0; mix-blend-mode: multiply; pointer-events: none;
   background: linear-gradient(160deg, rgba(168,57,43,0.22), rgba(34,28,22,0.14));
 }
-.bk-plate--wide .bk-plate__img { aspect-ratio: 16 / 7; }
+.bk-plate--wide .bk-plate__img { aspect-ratio: 16 / 5; }
 .bk-plate--redacted .bk-plate__img {
   background:
     repeating-linear-gradient(135deg, rgba(44,38,32,0.05) 0 9px, transparent 9px 18px),
@@ -641,19 +701,21 @@ body {
 .bk-plate__no { font-family: var(--bk-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bk-ember); white-space: nowrap; }
 .bk-plate__cn { font-family: var(--bk-serif); font-style: italic; font-size: 12.5px; color: var(--bk-ink-soft); line-height: 1.4; }
 
-/* rubber-stamp overprint */
+/* rubber-stamp overprint — DS's bolder "inked-on" look */
 .bk-stamp {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--bk-mono); font-weight: 500; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--bk-ember); border: 2px solid var(--bk-ember); border-radius: 4px; padding: 5px 11px;
-  transform: rotate(-4deg); mix-blend-mode: multiply; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.25);
+  font-family: var(--bk-mono); font-weight: 500; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--bk-ember); border: 2.5px solid var(--bk-ember); border-radius: 5px;
+  padding: 8px 13px; transform: rotate(-7deg); opacity: 0.86; mix-blend-mode: multiply;
+  box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.25);
 }
 .bk-stamp--r { transform: rotate(5deg); }
 .bk-stamp--ok { color: var(--bk-pine); border-color: var(--bk-pine); }
+.bk-stamp--ochre { color: #9A6A18; border-color: #9A6A18; }
 
 /* headline-number ledger */
 .bk-ledger { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 18px; padding: 16px 0; border-top: 2px solid var(--bk-ember); border-bottom: 2px solid var(--bk-ember); }
-.bk-ledger__fig { font-family: var(--bk-display); font-style: italic; font-size: 36px; line-height: 0.82; color: var(--bk-ember); }
+.bk-ledger__fig { font-family: var(--bk-display); font-style: italic; font-size: 42px; line-height: 0.82; color: var(--bk-ember); }
 .bk-ledger__lbl { font-family: var(--bk-mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bk-ink-faint); margin-top: 8px; line-height: 1.3; }
 
 /* praise / blurbs */
@@ -731,3 +793,106 @@ body {
 
 /* About portrait — warm editorial treatment */
 .bk-plate__img image-slot::part(image){ filter: sepia(0.14) contrast(1.03); }
+
+
+/* ============================================================
+   ICONOGRAPHY — engraved line glyphs + social marks
+   Adopted from The Monograph design system; accent recolored to
+   the book's --bk-ember coral. Rendered via monograph-icons.js.
+   ============================================================ */
+.bk-iconwrap { display: inline-flex; align-items: center; line-height: 0; }
+.bk-icon { width: 1.25em; height: 1.25em; flex: none; display: inline-block; vertical-align: -0.18em; }
+.bk-icon--sm { width: 1em; height: 1em; }
+.bk-icon--lg { width: 1.6em; height: 1.6em; }
+.bk-icon--xl { width: 2.6em; height: 2.6em; }
+.bk-icon--accent { color: var(--bk-ember); }
+.bk-icon--ochre  { color: var(--bk-ochre); }
+.bk-icon--pine   { color: var(--bk-pine); }
+.bk-icon--faint  { color: var(--bk-ink-faint); }
+
+.bk-ilink {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--bk-ember); text-decoration: none;
+  font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  transition: gap var(--bk-ease), color var(--bk-ease);
+}
+.bk-ilink:hover { gap: 11px; color: var(--bk-ember-deep); }
+.bk-iconbtn {
+  width: 40px; height: 40px; border-radius: 50%; flex: none; cursor: pointer;
+  display: grid; place-items: center; background: transparent; border: none; color: var(--bk-ink-soft);
+  transition: background var(--bk-ease), color var(--bk-ease);
+}
+.bk-iconbtn:hover { background: rgba(34,28,22,0.06); color: var(--bk-ink); }
+
+.bk-social { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.bk-social__btn {
+  width: 44px; height: 44px; border-radius: 50%; flex: none;
+  display: grid; place-items: center; text-decoration: none; cursor: pointer;
+  border: 1.5px solid var(--bk-ink); color: var(--bk-ink); background: transparent;
+  transition: background var(--bk-ease), color var(--bk-ease), border-color var(--bk-ease), transform var(--bk-ease);
+}
+.bk-social__btn .bk-icon { width: 19px; height: 19px; vertical-align: 0; }
+.bk-social__btn:hover { background: var(--bk-ember); border-color: var(--bk-ember); color: var(--bk-paper); transform: translateY(-2px); }
+.bk-social--sm .bk-social__btn { width: 36px; height: 36px; }
+.bk-social--sm .bk-social__btn .bk-icon { width: 16px; height: 16px; }
+.bk-social--invert .bk-social__btn { border-color: rgba(244,236,218,0.45); color: var(--bk-paper); }
+.bk-social--invert .bk-social__btn:hover { background: var(--bk-paper); color: var(--bk-ink); border-color: var(--bk-paper); }
+
+@media (max-width: 820px) { .bk-ilink:hover { gap: 8px; } }
+
+/* ============================================================
+   PRINTER'S MARK / MONOGRAM — recurring colophon device.
+   Ported from The Monograph design system; accent recolored to
+   the book's --bk-ember coral. Repeats on cover/bookmark/openers.
+   ============================================================ */
+.bk-device { display: inline-flex; flex-direction: column; align-items: center; gap: 7px; }
+.bk-device__mark {
+  width: 60px; height: 60px; display: grid; place-items: center; border-radius: 50%;
+  border: 1.5px solid var(--bk-ember); color: var(--bk-ember);
+  font-family: var(--bk-display); font-style: italic; font-size: 27px; letter-spacing: -0.02em;
+}
+.bk-device__label { font-family: var(--bk-mono); font-size: 8px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--bk-ink-faint); }
+.bk-device--on-dark .bk-device__mark { border-color: var(--bk-paper); color: var(--bk-paper); }
+.bk-device--on-dark .bk-device__label { color: rgba(244,236,218,0.6); }
+
+/* ============================================================
+   EPHEMERA — taped photo, sticky note, coffee ring. The scrapbook
+   layer: physical artifacts tucked among the formal typesetting.
+   Ported from the design system; use sparingly (1-2 per spread).
+   ============================================================ */
+/* a taped-in Polaroid / snapshot */
+.bk-tape { position: relative; background: #FBF7EC; padding: 9px 9px 30px; box-shadow: 0 9px 20px rgba(0,0,0,0.20); transform: rotate(-3deg); }
+.bk-tape::before, .bk-tape::after {
+  content: ""; position: absolute; top: -10px; width: 58px; height: 21px;
+  background: rgba(206,182,120,0.42); box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+}
+.bk-tape::before { left: 12px; transform: rotate(-8deg); }
+.bk-tape::after  { right: 12px; transform: rotate(7deg); }
+.bk-tape__cap { position: absolute; left: 0; right: 0; bottom: 7px; text-align: center; font-family: var(--bk-hand); font-size: 17px; color: var(--bk-ink-soft); }
+
+/* a stuck-on sticky note */
+.bk-sticky {
+  position: relative; padding: 16px 16px 18px; transform: rotate(2deg);
+  background: linear-gradient(180deg, #EBDFAE, #E4D69A); color: #5A4A22;
+  font-family: var(--bk-hand); font-size: 19px; line-height: 1.18;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.16);
+}
+.bk-sticky::after { content: ""; position: absolute; top: 0; right: 0; border-width: 0 16px 16px 0; border-style: solid; border-color: rgba(0,0,0,0.10) transparent; }
+
+/* a coffee-ring stain — decorative, place absolutely, low z */
+.bk-coffee {
+  position: absolute; width: 92px; height: 92px; border-radius: 50%; pointer-events: none;
+  border: 7px solid rgba(120,74,38,0.13);
+  box-shadow: inset 0 0 0 2px rgba(120,74,38,0.05), 0 0 0 1px rgba(120,74,38,0.06);
+  transform: rotate(12deg);
+}
+
+/* Keyboard focus indicators (WCAG 2.4.7) — visible rings for keyboard users only.
+   Reuses the .bk-progress__dot:focus-visible pattern. :focus-visible keeps mouse clicks ring-free. */
+.bk-arrow:focus-visible,
+.bk-menu-btn:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 3px; border-radius: 50%; }
+.bk-tab:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 3px; border-radius: 4px; }
+.bk-btn:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 3px; border-radius: 6px; }
+.bk-item--link:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 3px; border-radius: 6px; }
+.bk-pattern--link:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 3px; border-radius: 8px; }
+.bk-menu__item:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 3px; }

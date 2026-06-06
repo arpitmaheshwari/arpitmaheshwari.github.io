@@ -1,0 +1,88 @@
+<svg viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+  <title id="t">AdTech trust layer: confidence, reasoning, and override across one wide recommendation strip.</title>
+  <desc id="d">A wide editorial line-art banner laid out left to right. On the left, a confidence arc gauge reads 87 percent. In the middle, a "Why this" row shows three signal bars feeding the score. On the right, an action choice of act, review, or ignore sits beside a visible override toggle. Small title top-left reads Confidence, Reasoning, Override.</desc>
+
+  <!-- palette: cream F4ECDA / panel EEE4CE / ink 2C2620 / soft 6A6052 / faint 998D78 / ember C0512B / ochre CE9230 / pine 2F5D52 / hairline rgba(44,38,32,0.12) -->
+
+  <!-- full-canvas cream fill -->
+  <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
+
+  <!-- title top-left -->
+  <text x="40" y="46" font-family="Georgia, 'Times New Roman', serif" font-size="22" letter-spacing="0.4" fill="#2C2620">Confidence &#183; Reasoning &#183; Override</text>
+  <line x1="40" y1="58" x2="300" y2="58" stroke="#C0512B" stroke-width="2"/>
+
+  <!-- main panel, edge to edge with ~36px padding -->
+  <rect x="40" y="80" width="1200" height="284" rx="14" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+
+  <!-- two soft divider rails between the three zones -->
+  <line x1="408" y1="108" x2="408" y2="336" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+  <line x1="836" y1="108" x2="836" y2="336" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+
+  <!-- ============ ZONE 1 : CONFIDENCE ARC GAUGE (left) ============ -->
+  <text x="84" y="128" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="2.5" fill="#6A6052">CONFIDENCE</text>
+
+  <!-- gauge centered at (224, 246), radius 92, 270deg sweep starting bottom-left -->
+  <!-- faint track -->
+  <path d="M 159.0 311.0 A 92 92 0 1 1 289.0 311.0" fill="none" stroke="#998D78" stroke-width="11" stroke-linecap="round" opacity="0.35"/>
+  <!-- ember value arc: 87% of the 270deg sweep -->
+  <path d="M 159.0 311.0 A 92 92 0 1 1 312.4 230.6" fill="none" stroke="#C0512B" stroke-width="11" stroke-linecap="round"/>
+
+  <!-- arc endpoint markers -->
+  <circle cx="159.0" cy="311.0" r="4.5" fill="#6A6052"/>
+  <circle cx="312.4" cy="230.6" r="6.5" fill="#F4ECDA" stroke="#C0512B" stroke-width="3"/>
+
+  <!-- big percent readout -->
+  <text x="224" y="252" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#2C2620">87<tspan font-size="30" fill="#6A6052">%</tspan></text>
+  <text x="224" y="284" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" letter-spacing="1.5" fill="#6A6052">match confidence</text>
+
+  <!-- ============ ZONE 2 : WHY THIS — 3 signal bars (middle) ============ -->
+  <text x="452" y="128" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="2.5" fill="#6A6052">WHY THIS</text>
+
+  <!-- bar track x 452..804 (len 352) -->
+  <!-- row 1 : Audience fit (ember, high) -->
+  <text x="452" y="174" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="#2C2620">Audience fit</text>
+  <rect x="452" y="184" width="352" height="14" rx="7" fill="#F4ECDA" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+  <rect x="452" y="184" width="313" height="14" rx="7" fill="#C0512B"/>
+  <text x="804" y="195" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#6A6052">89</text>
+
+  <!-- row 2 : Brand safety (pine, medium-high) -->
+  <text x="452" y="234" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="#2C2620">Brand safety</text>
+  <rect x="452" y="244" width="352" height="14" rx="7" fill="#F4ECDA" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+  <rect x="452" y="244" width="268" height="14" rx="7" fill="#2F5D52"/>
+  <text x="804" y="255" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#6A6052">76</text>
+
+  <!-- row 3 : Recent lift (ochre, medium) -->
+  <text x="452" y="294" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="#2C2620">Recent lift</text>
+  <rect x="452" y="304" width="352" height="14" rx="7" fill="#F4ECDA" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+  <rect x="452" y="304" width="222" height="14" rx="7" fill="#CE9230"/>
+  <text x="804" y="315" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#6A6052">63</text>
+
+  <!-- signals feed the score note -->
+  <text x="452" y="336" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12.5" font-style="italic" fill="#998D78">Three signals feed the score</text>
+
+  <!-- ============ ZONE 3 : ACTION CHOICE + OVERRIDE (right) ============ -->
+  <text x="880" y="128" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="2.5" fill="#6A6052">DECISION</text>
+
+  <!-- three action chips stacked -->
+  <!-- Act (selected, ember outline + dot) -->
+  <rect x="880" y="148" width="320" height="46" rx="10" fill="#F4ECDA" stroke="#C0512B" stroke-width="2"/>
+  <circle cx="906" cy="171" r="8" fill="#C0512B"/>
+  <text x="926" y="177" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" fill="#2C2620">Act on it</text>
+  <text x="1184" y="176" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" letter-spacing="1" fill="#C0512B">RECOMMENDED</text>
+
+  <!-- Review (idle) -->
+  <rect x="880" y="204" width="320" height="46" rx="10" fill="#F4ECDA" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+  <circle cx="906" cy="227" r="8" fill="none" stroke="#998D78" stroke-width="2"/>
+  <text x="926" y="233" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" fill="#6A6052">Review first</text>
+
+  <!-- Ignore (idle) -->
+  <rect x="880" y="260" width="320" height="46" rx="10" fill="#F4ECDA" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+  <circle cx="906" cy="283" r="8" fill="none" stroke="#998D78" stroke-width="2"/>
+  <text x="926" y="289" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" fill="#6A6052">Ignore</text>
+
+  <!-- override toggle row -->
+  <text x="880" y="336" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#2C2620">Manual override</text>
+  <!-- toggle track ON, pine -->
+  <rect x="1146" y="320" width="54" height="24" rx="12" fill="#2F5D52"/>
+  <circle cx="1188" cy="332" r="9" fill="#F4ECDA"/>
+</svg>

@@ -1,0 +1,93 @@
+<svg viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+  <title id="t">Technical due-diligence signals resolved into one auditable verdict.</title>
+  <desc id="d">A wide editorial line-art diagram of a VC and PE technical due-diligence dossier. On the left, four labelled horizontal signal bars score Code quality, Architecture risk, Team velocity and Founder credibility. Hairline traces carry the four signals rightward into a single circular verdict badge reading B plus, Commit. A small timeline motif notes the review compressed from three weeks to four days. Title reads Signals to auditable verdict.</desc>
+
+  <!-- palette: cream F4ECDA / panel EEE4CE / ink 2C2620 / soft 6A6052 / faint 998D78 / ember C0512B / ochre CE9230 / pine 2F5D52 / hairline rgba(44,38,32,0.12) -->
+  <defs>
+    <style>
+      .hd{font-family:Georgia,'Times New Roman',serif;fill:#2C2620;}
+      .lb{font-family:ui-sans-serif,system-ui,sans-serif;fill:#6A6052;}
+      .em{font-family:ui-sans-serif,system-ui,sans-serif;fill:#C0512B;}
+    </style>
+  </defs>
+
+  <!-- paper -->
+  <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
+  <rect x="18" y="18" width="1244" height="364" fill="none" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+  <!-- ===================== HEADER ===================== -->
+  <text x="48" y="58" class="lb" font-size="14" letter-spacing="3" opacity="0.85">TECHNICAL DUE-DILIGENCE DOSSIER</text>
+  <text x="48" y="96" class="hd" font-size="34">Signals &#8594; auditable verdict</text>
+  <line x1="48" y1="118" x2="1232" y2="118" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+  <!-- ===================== LEFT: FOUR SIGNAL BARS ===================== -->
+  <g>
+    <!-- panel behind the signal stack -->
+    <rect x="48" y="150" width="612" height="206" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+    <text x="76" y="184" class="lb" font-size="13" letter-spacing="2">SIGNALS SCORED</text>
+
+    <!-- bar geometry: track x=76 w=420, value right-aligned at x=624 -->
+    <!-- 1. Code quality -->
+    <text x="76" y="216" class="lb" font-size="15" fill="#2C2620">Code quality</text>
+    <text x="624" y="216" class="lb" font-size="13" text-anchor="end" opacity="0.85">82</text>
+    <rect x="76" y="224" width="420" height="10" rx="5" fill="#998D78" opacity="0.30"/>
+    <rect x="76" y="224" width="344" height="10" rx="5" fill="#2F5D52"/>
+
+    <!-- 2. Architecture risk -->
+    <text x="76" y="252" class="lb" font-size="15" fill="#2C2620">Architecture risk</text>
+    <text x="624" y="252" class="lb" font-size="13" text-anchor="end" opacity="0.85">58</text>
+    <rect x="76" y="260" width="420" height="10" rx="5" fill="#998D78" opacity="0.30"/>
+    <rect x="76" y="260" width="244" height="10" rx="5" fill="#CE9230"/>
+
+    <!-- 3. Team velocity -->
+    <text x="76" y="288" class="lb" font-size="15" fill="#2C2620">Team velocity</text>
+    <text x="624" y="288" class="lb" font-size="13" text-anchor="end" opacity="0.85">76</text>
+    <rect x="76" y="296" width="420" height="10" rx="5" fill="#998D78" opacity="0.30"/>
+    <rect x="76" y="296" width="319" height="10" rx="5" fill="#2F5D52"/>
+
+    <!-- 4. Founder credibility -->
+    <text x="76" y="324" class="lb" font-size="15" fill="#2C2620">Founder credibility</text>
+    <text x="624" y="324" class="lb" font-size="13" text-anchor="end" opacity="0.85">88</text>
+    <rect x="76" y="332" width="420" height="10" rx="5" fill="#998D78" opacity="0.30"/>
+    <rect x="76" y="332" width="370" height="10" rx="5" fill="#2F5D52"/>
+  </g>
+
+  <!-- ===================== TRACES: four signals -> verdict ===================== -->
+  <!-- bars end near x=660; badge center (1064,253) r=104, left entry ~x=952 -->
+  <g stroke="#998D78" stroke-width="1.5" fill="none" opacity="0.85">
+    <path d="M 660 229 C 760 229 800 253 952 253"/>
+    <path d="M 660 265 C 770 265 810 253 952 253"/>
+    <path d="M 660 301 C 770 301 810 253 952 253"/>
+    <path d="M 660 337 C 760 337 800 253 952 253"/>
+  </g>
+  <!-- merge node at badge entry -->
+  <circle cx="952" cy="253" r="5" fill="#F4ECDA" stroke="#998D78" stroke-width="1.5"/>
+  <text x="724" y="158" class="lb" font-size="12.5" opacity="0.85">Four signals &#8594; one verdict</text>
+
+  <!-- ===================== RIGHT: VERDICT BADGE ===================== -->
+  <g>
+    <!-- outer ring -->
+    <circle cx="1064" cy="253" r="104" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+    <!-- score arc: track + value arc (ember), center (1064,253) r=88 -->
+    <path d="M 1004 329 A 88 88 0 1 1 1124 329"
+          fill="none" stroke="#998D78" stroke-width="9" stroke-linecap="round" opacity="0.4"/>
+    <path d="M 1004 329 A 88 88 0 1 1 1148 261"
+          fill="none" stroke="#C0512B" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="1148" cy="261" r="6" fill="#F4ECDA" stroke="#C0512B" stroke-width="3"/>
+    <!-- verdict readout -->
+    <text x="1064" y="206" class="lb" font-size="12" text-anchor="middle" letter-spacing="2" opacity="0.85">VERDICT</text>
+    <text x="1064" y="262" class="hd" font-size="56" text-anchor="middle">B+</text>
+    <text x="1064" y="296" class="em" font-size="18" text-anchor="middle" font-weight="600" letter-spacing="2">COMMIT</text>
+  </g>
+
+  <!-- ===================== FOOTER: timeline motif ===================== -->
+  <g>
+    <text x="48" y="372" class="lb" font-size="13" font-style="italic" opacity="0.9">Auditable trail&#8201;&#8212;&#8201;every grade links back to the signal that earned it.</text>
+    <!-- 3 weeks -> 4 days timeline, right side -->
+    <line x1="916" y1="368" x2="1110" y2="368" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+    <circle cx="916" cy="368" r="4.5" fill="none" stroke="#998D78" stroke-width="1.5"/>
+    <circle cx="1110" cy="368" r="4.5" fill="#C0512B"/>
+    <text x="906" y="372" class="lb" font-size="13" text-anchor="end" opacity="0.85">3 weeks</text>
+    <text x="1124" y="372" class="em" font-size="13" font-weight="600">4 days</text>
+  </g>
+</svg>

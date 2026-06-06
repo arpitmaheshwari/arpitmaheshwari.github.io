@@ -1,0 +1,93 @@
+<svg viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+  <title id="t">Confidence Scores pattern</title>
+  <desc id="d">A confidence gauge reading mapped to a three-band action scale of act, review and ignore, beside a thirty-day track-record sparkline.</desc>
+  <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
+
+  <!-- Title block -->
+  <text x="36" y="74" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="bold" fill="#2C2620">Confidence Scores</text>
+  <text x="36" y="106" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" fill="#6A6052">A number anchored to an action &#8212; with its own track record.</text>
+  <line x1="36" y1="126" x2="1244" y2="126" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+  <!-- ===== LEFT: Confidence gauge ===== -->
+  <g transform="translate(40,150)">
+    <rect x="0" y="0" width="430" height="214" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="#998D78">CONFIDENCE</text>
+
+    <!-- Gauge arc, semicircle centered at (215,168) r=128 -->
+    <!-- track -->
+    <path d="M 87 168 A 128 128 0 0 1 343 168" fill="none" stroke="rgba(44,38,32,0.12)" stroke-width="14" stroke-linecap="round"/>
+    <!-- value arc to ~78% (sweep across 180deg -> angle 180*0.78=140.4deg from left) -->
+    <!-- end point: cx + r*cos(180-140.4), cy - r*sin(140.4)... compute: theta from left=140.4deg -->
+    <path d="M 87 168 A 128 128 0 0 1 313.4 107.6" fill="none" stroke="#C0512B" stroke-width="14" stroke-linecap="round"/>
+
+    <!-- needle to 78% -->
+    <line x1="215" y1="168" x2="313.4" y2="107.6" stroke="#2C2620" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="215" cy="168" r="7" fill="#2C2620"/>
+
+    <!-- value -->
+    <text x="215" y="156" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="bold" fill="#2C2620">78</text>
+    <text x="215" y="182" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="#6A6052">% confident</text>
+
+    <!-- end labels -->
+    <text x="78" y="200" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#998D78">0</text>
+    <text x="352" y="200" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#998D78">100</text>
+  </g>
+
+  <!-- connector -->
+  <path d="M 478 257 H 524" fill="none" stroke="rgba(44,38,32,0.12)" stroke-width="2"/>
+  <path d="M 518 251 L 526 257 L 518 263 Z" fill="#998D78"/>
+
+  <!-- ===== MIDDLE: Action scale (3 bands) ===== -->
+  <g transform="translate(534,150)">
+    <rect x="0" y="0" width="386" height="214" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="#998D78">ACTION</text>
+
+    <!-- ACT band (active) -->
+    <rect x="24" y="54" width="338" height="40" rx="7" fill="#2F5D52"/>
+    <circle cx="48" cy="74" r="6" fill="#F4ECDA"/>
+    <text x="66" y="80" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" font-weight="bold" fill="#F4ECDA">Act</text>
+    <text x="338" y="80" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#F4ECDA">75&#8211;100</text>
+
+    <!-- REVIEW band -->
+    <rect x="24" y="100" width="338" height="40" rx="7" fill="#F4ECDA" stroke="#CE9230" stroke-width="1.5"/>
+    <circle cx="48" cy="120" r="6" fill="#CE9230"/>
+    <text x="66" y="126" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" fill="#2C2620">Review</text>
+    <text x="338" y="126" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#6A6052">40&#8211;74</text>
+
+    <!-- IGNORE band -->
+    <rect x="24" y="146" width="338" height="40" rx="7" fill="#F4ECDA" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <circle cx="48" cy="166" r="6" fill="#998D78"/>
+    <text x="66" y="172" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" fill="#6A6052">Ignore</text>
+    <text x="338" y="172" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#998D78">0&#8211;39</text>
+
+    <!-- pointer marking 78 -> Act band -->
+    <path d="M 8 74 L 20 68 L 20 80 Z" fill="#C0512B"/>
+  </g>
+
+  <!-- connector -->
+  <path d="M 928 257 H 974" fill="none" stroke="rgba(44,38,32,0.12)" stroke-width="2"/>
+  <path d="M 968 251 L 976 257 L 968 263 Z" fill="#998D78"/>
+
+  <!-- ===== RIGHT: 30-day track record sparkline ===== -->
+  <g transform="translate(984,150)">
+    <rect x="0" y="0" width="260" height="214" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <text x="22" y="36" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="#998D78">30-DAY TRACK RECORD</text>
+
+    <!-- baseline -->
+    <line x1="22" y1="150" x2="238" y2="150" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+    <!-- sparkline: calibration accuracy over time, gently rising -->
+    <polyline points="22,128 46,134 70,120 94,124 118,108 142,114 166,98 190,104 214,90 238,86"
+              fill="none" stroke="#C0512B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="238" cy="86" r="5" fill="#C0512B"/>
+
+    <!-- subtle dots on a few nodes -->
+    <circle cx="70" cy="120" r="2.5" fill="#998D78"/>
+    <circle cx="118" cy="108" r="2.5" fill="#998D78"/>
+    <circle cx="166" cy="98" r="2.5" fill="#998D78"/>
+
+    <text x="22" y="178" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#998D78">Day 1</text>
+    <text x="238" y="178" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#998D78">Day 30</text>
+    <text x="22" y="198" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#2C2620">Calibration: <tspan font-weight="bold" fill="#2F5D52">91%</tspan></text>
+  </g>
+</svg>

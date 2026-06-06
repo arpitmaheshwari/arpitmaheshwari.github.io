@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="t d">
+  <title id="t">Human-in-the-Loop pattern</title>
+  <desc id="d">A wide editorial diagram: the model suggests, the human overrides and edits, and the correction feeds back as a training signal to improve the next suggestion.</desc>
+  <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#C0512B"/>
+    </marker>
+    <marker id="arrowPine" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2F5D52"/>
+    </marker>
+  </defs>
+
+  <!-- Title block -->
+  <text x="36" y="60" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="600" fill="#2C2620">Human-in-the-Loop</text>
+  <text x="36" y="90" font-family="ui-sans-serif, system-ui, sans-serif" font-size="17" fill="#6A6052">Override should feel like authorship &#8212; corrections become the next training signal.</text>
+
+  <!-- baseline hairline -->
+  <line x1="36" y1="108" x2="1244" y2="108" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+  <!-- ============ STAGE 1: MODEL SUGGESTS ============ -->
+  <g>
+    <text x="160" y="170" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="2" fill="#998D78">01 &#183; MODEL</text>
+    <rect x="56" y="186" width="208" height="132" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+    <!-- suggestion lines -->
+    <line x1="84" y1="218" x2="236" y2="218" stroke="#998D78" stroke-width="6" stroke-linecap="round"/>
+    <line x1="84" y1="244" x2="212" y2="244" stroke="#998D78" stroke-width="6" stroke-linecap="round"/>
+    <line x1="84" y1="270" x2="236" y2="270" stroke="#998D78" stroke-width="6" stroke-linecap="round"/>
+    <!-- confidence dot -->
+    <circle cx="240" cy="206" r="6" fill="#CE9230"/>
+    <text x="160" y="354" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#2C2620">Suggests</text>
+  </g>
+
+  <!-- arrow stage1 -> stage2 -->
+  <line x1="276" y1="252" x2="392" y2="252" stroke="#C0512B" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- ============ STAGE 2: HUMAN OVERRIDES / EDITS ============ -->
+  <g>
+    <text x="510" y="170" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="2" fill="#998D78">02 &#183; HUMAN</text>
+    <rect x="406" y="186" width="208" height="132" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+    <!-- original line (struck through) -->
+    <line x1="434" y1="218" x2="566" y2="218" stroke="#998D78" stroke-width="6" stroke-linecap="round"/>
+    <line x1="430" y1="218" x2="572" y2="218" stroke="#C0512B" stroke-width="2.5"/>
+    <!-- corrected line in ember -->
+    <line x1="434" y1="248" x2="586" y2="248" stroke="#C0512B" stroke-width="6" stroke-linecap="round"/>
+    <line x1="434" y1="274" x2="540" y2="274" stroke="#C0512B" stroke-width="6" stroke-linecap="round"/>
+    <!-- pen / cursor mark -->
+    <path d="M566 270 l24 -24 14 14 -24 24 -18 4 z" fill="#2C2620"/>
+    <path d="M566 270 l8 8" stroke="#F4ECDA" stroke-width="1.5"/>
+    <text x="510" y="354" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#2C2620">Overrides &amp; edits</text>
+  </g>
+
+  <!-- arrow stage2 -> stage3 -->
+  <line x1="626" y1="252" x2="742" y2="252" stroke="#C0512B" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- ============ STAGE 3: NEXT RESULT (IMPROVED) ============ -->
+  <g>
+    <text x="860" y="170" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="2" fill="#998D78">03 &#183; NEXT RESULT</text>
+    <rect x="756" y="186" width="208" height="132" rx="10" fill="#EEE4CE" stroke="#2F5D52" stroke-width="2"/>
+    <line x1="784" y1="218" x2="936" y2="218" stroke="#2F5D52" stroke-width="6" stroke-linecap="round"/>
+    <line x1="784" y1="244" x2="912" y2="244" stroke="#2F5D52" stroke-width="6" stroke-linecap="round"/>
+    <line x1="784" y1="270" x2="936" y2="270" stroke="#2F5D52" stroke-width="6" stroke-linecap="round"/>
+    <!-- check mark -->
+    <path d="M926 200 l7 8 14 -16" fill="none" stroke="#2F5D52" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="860" y="354" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#2C2620">Improved</text>
+  </g>
+
+  <!-- ============ FEEDBACK LOOP: correction feeds the next suggestion ============ -->
+  <!-- big return arc from stage 3 (top) back over to stage 1 (top), in pine -->
+  <path d="M860 186 C 860 124, 700 124, 510 124 C 320 124, 160 124, 160 186"
+        fill="none" stroke="#2F5D52" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" marker-end="url(#arrowPine)"/>
+  <text x="510" y="116" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="#2F5D52">correction &#8594; next training signal</text>
+
+  <!-- ============ RIGHT RAIL: the principle restated, anchoring the far right ============ -->
+  <line x1="1012" y1="150" x2="1012" y2="330" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+  <text x="1044" y="186" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="2" fill="#998D78">THE LOOP</text>
+  <g font-family="Georgia, 'Times New Roman', serif" font-size="21" fill="#2C2620">
+    <circle cx="1052" cy="224" r="4" fill="#C0512B"/>
+    <text x="1068" y="230">Suggest</text>
+    <circle cx="1052" cy="262" r="4" fill="#C0512B"/>
+    <text x="1068" y="268">Override</text>
+    <circle cx="1052" cy="300" r="4" fill="#2F5D52"/>
+    <text x="1068" y="306">Re-learn</text>
+  </g>
+</svg>
