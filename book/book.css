@@ -8,8 +8,8 @@
 
 :root {
   /* ---- surface / desk ---- */
-  --bk-desk:        #1B2A26;   /* deep pine desk */
-  --bk-desk-2:      #14201D;   /* vignette edge */
+  --bk-desk:        #2A1712;   /* deep warm desk */
+  --bk-desk-2:      #170C09;   /* vignette edge */
 
   /* ---- paper ---- */
   --bk-paper:       #F4ECDA;   /* warm cream page */
@@ -202,9 +202,9 @@ body {
   width: 620px; height: 880px; border-radius: 6px 10px 10px 6px; position: relative;
   background:
     radial-gradient(140% 120% at 12% 8%, rgba(255,255,255,0.06), transparent 45%),
-    linear-gradient(150deg, #356a5d 0%, var(--bk-pine) 55%, #234a41 100%);
+    linear-gradient(150deg, #CE6A4E 0%, var(--bk-ember) 55%, #8E3320 100%);
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
-  padding: 64px 60px;
+  padding: 64px 60px 104px;
   display: flex; flex-direction: column;
   color: #F4ECDA;
   overflow: hidden;
@@ -229,6 +229,11 @@ body {
 }
 .bk-cover__open .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bk-ochre); animation: bkpulse 1.8s var(--bk-ease) infinite; }
 @keyframes bkpulse { 0%,100%{opacity:0.35; transform:scale(0.8)} 50%{opacity:1; transform:scale(1.25)} }
+/* ---- switch to the classic website ---- */
+.bk-cover__classic { display: inline-block; align-self: flex-start; margin: 16px 0 0; font-family: var(--bk-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,236,218,0.62); border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; }
+.bk-cover__classic:hover { color: #F4ECDA; border-color: rgba(244,236,218,0.5); }
+.bk-menu__exit { display: block; width: 100%; text-align: left; margin-top: 16px; padding: 14px 0 2px; border: none; border-top: 1px solid rgba(153,141,120,0.3); background: none; cursor: pointer; font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bk-ink-faint); transition: color .2s; }
+.bk-menu__exit:hover { color: var(--bk-ember); }
 
 /* ============================================================
    CONTACT / TABLE / COMPONENTS
@@ -551,7 +556,7 @@ body {
 .bk-m-top .name { color: var(--bk-ochre); }
 .bk-m-jump {
   display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
-  background: none; border: none; padding: 4px 0; color: var(--bk-ochre);
+  background: var(--bk-ember); border: none; padding: 7px 14px; border-radius: 20px; color: #F4ECDA;
   font-family: var(--bk-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
 }
 .bk-m-jump svg { width: 14px; height: 14px; }
@@ -574,7 +579,7 @@ body {
 }
 .bk-m-btn {
   width: 48px; height: 48px; border-radius: 50%; flex: none; cursor: pointer;
-  border: 1.5px solid rgba(244,236,218,0.30); background: rgba(244,236,218,0.10);
+  border: 1.5px solid rgba(244,236,218,0.55); background: rgba(244,236,218,0.20);
   color: #F4ECDA; display: grid; place-items: center;
 }
 .bk-m-btn:disabled { opacity: 0.25; }

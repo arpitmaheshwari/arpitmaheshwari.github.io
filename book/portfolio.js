@@ -11,10 +11,15 @@
 */
 
 const WORK = [{
+  tag: "Telecom · NDA",
+  title: "Telefónica MyO2 & Priority Moments",
+  metric: "1M+",
+  desc: "Drove retention and brand loyalty for O2 UK — loyalty and rewards experiences (the MyO2 app and Priority Moments) shipped to over a million subscribers."
+}, {
   tag: "EdTech · Non-NDA",
   title: "PTC University",
   metric: "$1M/yr",
-  desc: "Led the strategic consolidation of seven siloed platforms across eleven languages. The design work was navigating org-chart politics; the output was a single, unified system."
+  desc: "Led the strategic consolidation of five siloed platforms across eleven languages. The design work was navigating org-chart politics; the output was a single, unified system."
 }, {
   tag: "FinTech · NDA",
   title: "AI-Assisted Due Diligence",
@@ -23,13 +28,8 @@ const WORK = [{
 }, {
   tag: "AdTech · NDA",
   title: "Programmatic Advertising",
-  metric: "15\u219263%",
+  metric: "15→63%",
   desc: "Designed a memory-enabled recommendation system. Solved the 'black box' trust issue, increasing algorithmic adoption from 15% to 63%."
-}, {
-  tag: "Telecom · NDA",
-  title: "O2 Priority Billing",
-  metric: "−40%",
-  desc: "Identified that accurate but unreadable bills caused the same support load as wrong ones. Three design interventions cut support tickets by two-fifths."
 }, {
   tag: "Org Design · Non-NDA",
   title: "OrgOS",
@@ -89,34 +89,34 @@ const STATUS = ["Available · 4-wk notice", "Founding / Staff / Director", "Remo
 /* ---- CURRICULUM VITAE (the printable appendix) ---- */
 const CV_SKILLS = ["Model-Layer Design", "Data-Intensive UI", "Design Leadership", "Organizational Design", "Research & Evals", "System Architecture"];
 const CV_EXP = [{
-  yr: "2021\u2014",
-  role: "Principal Product Designer",
-  org: "Independent / fractional \u00B7 AI & data products (under NDA)"
+  yr: "2019—",
+  role: "Solution Consultant",
+  org: "Sahaj AI · AI products for AdTech, HRTech & Private Equity"
 }, {
-  yr: "2018\u201321",
-  role: "Lead Product Designer",
-  org: "PTC University \u00B7 EdTech learning platform"
+  yr: "2014–19",
+  role: "Technical Lead",
+  org: "PTC Inc. · PTC University EdTech · 350k+ users, 550k+ visits · NASA, Apple, Boeing, Airbus & more"
 }, {
-  yr: "2015\u201318",
-  role: "Senior Product Designer",
-  org: "FinTech & AdTech platforms (NDA)"
+  yr: "2012–14",
+  role: "Front End Specialist",
+  org: "Equal Experts · O2 UK rewards · 1M+ subscribers"
 }, {
-  yr: "2012\u201315",
-  role: "Product Designer",
-  org: "Telecom (O2 Priority) & early-stage SaaS"
+  yr: "2010–12",
+  role: "Systems Analyst",
+  org: "Tata Consultancy Services · mobile for Fortune 500"
 }, {
-  yr: "2009\u201312",
-  role: "Designer",
-  org: "Editorial & print production"
+  yr: "2009",
+  role: "Intern",
+  org: "Nokia Networks · Indore"
 }];
 const CV_EDU = [{
-  yr: "\u2014",
-  role: "B.Des, Communication Design",
-  org: "India"
+  yr: "2017–18",
+  role: "Executive MBA, Business Analytics",
+  org: "Institute of Management Technology · Ghaziabad"
 }, {
-  yr: "\u2014",
-  role: "Selected writing & talks",
-  org: "See Chapter IV \u00B7 Notes & Writing"
+  yr: "2006–10",
+  role: "B.E., Electronics & Communication",
+  org: "Shri Vaishnav Institute of Technology & Science · Indore"
 }];
 
 /* ---- CASE STUDIES (the two non-NDA projects, in full) ------ */
@@ -126,14 +126,14 @@ const CASES = {
     no: "01",
     tag: "EdTech · Non-NDA",
     title: "PTC\u00A0University",
-    standfirst: "Seven overlapping learning platforms, eleven languages, one furious procurement line. The redesign was the easy part.",
+    standfirst: "Five overlapping learning platforms, eleven languages, one furious procurement line. The redesign was the easy part.",
     meta: [["Role", "Lead Product Designer"], ["Span", "14 months · two squads"], ["Surface", "Web LMS · 11 languages"], ["Result", "Shipped · in production"]],
-    context: "PTC had grown its training into seven separate portals — product certifications, partner enablement, internal onboarding — each with its own login, its own taxonomy, its own translation pipeline. Learners bounced between them; eleven localisation teams duplicated the same work. The brief on my desk read \u201Credesign the LMS.\u201D The real problem was that there were seven of them.",
+    context: "PTC had grown its training into five separate portals — product certifications, partner enablement, internal onboarding — each with its own login, its own taxonomy, its own translation pipeline. Learners bounced between them; eleven localisation teams duplicated the same work. The brief on my desk read \u201Credesign the LMS.\u201D The real problem was that there were five of them.",
     fig1: {
       no: "1.1",
-      label: "before — seven disconnected portals, eleven sign-in screens"
+      label: "before — five disconnected portals, eleven sign-in screens"
     },
-    tension: "Every portal had a VP, a budget line, and a reason why it was 'special'. Consolidation meant telling six executives their product was now a tab. The real design work was a political case made in the language of risk and P&L—I couldn't draw my way past the org chart.",
+    tension: "Every portal had a VP, a budget line, and a reason why it was 'special'. Consolidation meant telling four executives their product was now a tab. The real design work was a political case made in the language of risk and P&L—I couldn't draw my way past the org chart.",
     note1: "the org chart was the real wireframe",
     decisionLede: "Three decisions did the load-bearing work:",
     moves: [{
@@ -144,7 +144,7 @@ const CASES = {
       p: "Designed the eleven-language experience as the baseline, not an afterthought, so no region could argue it needed its own fork."
     }, {
       h: "A switch-off ladder",
-      p: "Sequenced the seven shutdowns so each VP watched their users land softly in the new system before their portal went dark."
+      p: "Sequenced the four shutdowns so each VP watched their users land softly in the new system before their portal went dark."
     }],
     fig2: {
       no: "1.2",
@@ -154,7 +154,7 @@ const CASES = {
       v: "$1M",
       l: "Saved per year — licensing + localisation"
     }, {
-      v: "7\u21921",
+      v: "5\u21921",
       l: "Platforms consolidated"
     }, {
       v: "11",
@@ -164,10 +164,10 @@ const CASES = {
       l: "Content publish, down from ~3 weeks"
     }],
     quote: {
-      t: "The redesign took a quarter. The case for deleting six products took a year — and that was the actual design work.",
+      t: "The redesign took a quarter. The case for deleting four products took a year — and that was the actual design work.",
       cite: "— PTC University, project note"
     },
-    note2: "killed six products. proudest deletion of my career."
+    note2: "killed four products. proudest deletion of my career."
   },
   orgos: {
     key: "orgos",
@@ -283,7 +283,7 @@ const NDA_CASES = [{
 }, {
   no: "05",
   tag: "Telecom · NDA",
-  title: "O2 Priority Billing",
+  title: "Telefónica MyO2 & Priority Moments",
   standfirst: "The bills were correct and unreadable. Three decisions cut \u201Cexplain my bill\u201D tickets by two-fifths.",
   meta: [["Role", "Senior Product Designer"], ["Surface", "Billing \u00B7 web + app"], ["Status", "Shipped \u00B7 under NDA"]],
   context: "Accurate bills that no one could parse generated the same support load as wrong ones. 'Why is my bill higher?' was the single largest call driver. The answer was on the screen, just buried.",
@@ -805,7 +805,7 @@ function ContactForm() {
   const [sent, setSent] = React.useState(false);
   if (sent) return /*#__PURE__*/React.createElement("div", {
     className: "bk-ok"
-  }, "Noted. Your five-minute teardown arrives within 48 hours.");
+  }, "Noted. Your five-minute review arrives within 48 hours.");
   return /*#__PURE__*/React.createElement("form", {
     className: "bk-form",
     onSubmit: e => {
@@ -847,7 +847,7 @@ function buildBook(ctx) {
   }, {
     n: "II",
     name: "How I Lead",
-    sub: "Principles & one confession",
+    sub: "Three principles",
     pg: "p. 4",
     to: 4
   }, {
@@ -863,9 +863,9 @@ function buildBook(ctx) {
     pg: "p. 8",
     to: 6
   }, {
-    n: "V",
-    name: "Colophon & Contact",
-    sub: "How this was made; write to me",
+    n: "—",
+    name: "Contact",
+    sub: "Write to me — let's talk",
     pg: "p. 10",
     to: 7
   }, {
@@ -900,7 +900,7 @@ function buildBook(ctx) {
       className: "bk-cover__rule"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-cover__sub"
-    }, "Designing for business outcomes, not just user friction.", /*#__PURE__*/React.createElement("br", null), "Fifteen years, five industries, measured."), /*#__PURE__*/React.createElement("button", {
+    }, "Designing for business outcomes, not just user friction.", /*#__PURE__*/React.createElement("br", null), "Fifteen years across many industries — outcomes measured, not just shipped."), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1)
     }, /*#__PURE__*/React.createElement("span", {
@@ -946,7 +946,7 @@ function buildBook(ctx) {
         marginTop: 18,
         maxWidth: "30ch"
       }
-    }, "Design leader for AI & data-intensive products. I navigate org-chart politics and ship the model layer. Frameworks public, outcomes measured."), /*#__PURE__*/React.createElement("div", {
+    }, "Product Design Leader. I build operational software and data-intensive systems that scale without adding overhead. Frameworks public, outcomes measured."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-body",
@@ -1024,7 +1024,7 @@ function buildBook(ctx) {
       style: {
         marginTop: 8
       }
-    }, "Design leader for AI & data-intensive products. Fifteen years, five industries, one stubborn idea: the bottleneck is never the model — it's the decision a business makes after it."), /*#__PURE__*/React.createElement("div", {
+    }, "Design leader for AI & data-intensive products. Fifteen years, many industries, one stubborn idea: the bottleneck is never the model — it's the decision a business makes after it."), /*#__PURE__*/React.createElement("div", {
       className: "bk-chips",
       style: {
         marginTop: 16
@@ -1173,13 +1173,7 @@ function buildBook(ctx) {
       key: i
     }, /*#__PURE__*/React.createElement("span", {
       className: "bk-principle__n"
-    }, String(i + 1).padStart(2, "0")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, p.h), /*#__PURE__*/React.createElement("p", null, p.p))))), /*#__PURE__*/React.createElement("div", {
-      className: "bk-confession"
-    }, /*#__PURE__*/React.createElement("span", {
-      className: "bk-confession__label"
-    }, "When I was wrong"), /*#__PURE__*/React.createElement("p", null, "I argued the recommendation card should show three ranked options. Engineering wanted one. I lost the argument."), /*#__PURE__*/React.createElement("p", null, "Next quarter's test: the one-option version converted ", /*#__PURE__*/React.createElement("span", {
-      className: "bk-em"
-    }, "2.3\xD7 better"), ". Three options made people freeze. I redesigned how I approach every recommendation surface after that.")))
+    }, String(i + 1).padStart(2, "0")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, p.h), /*#__PURE__*/React.createElement("p", null, p.p))))))
   }, /* 4 · CHAPTER III — A FIELD GUIDE TO TRUST (hub) */
   {
     kind: "spread",
@@ -1273,7 +1267,7 @@ function buildBook(ctx) {
   {
     kind: "spread",
     runheadL: VERSO,
-    runheadR: "V · Colophon & Contact",
+    runheadR: "Contact",
     folioL: "10",
     folioR: "11",
     left: /*#__PURE__*/React.createElement("div", {
@@ -1285,25 +1279,19 @@ function buildBook(ctx) {
       }
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-kicker"
-    }, "Chapter Five"), /*#__PURE__*/React.createElement("span", {
-      className: "bk-chno"
-    }, "\u2116 V"), /*#__PURE__*/React.createElement("h2", {
+    }, "Also by the author"), /*#__PURE__*/React.createElement("h2", {
       className: "bk-title bk-title--m",
       style: {
-        margin: "4px 0 16px"
+        margin: "4px 0 12px"
       }
-    }, "Colophon"), /*#__PURE__*/React.createElement("p", {
+    }, "Creative Clarity"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "This book was set in ", /*#__PURE__*/React.createElement("span", {
+    }, "My Substack on designing AI and data-intensive products — the thinking behind this book, in essays, most months. ", /*#__PURE__*/React.createElement("a", {
+      href: "https://arpitmaheshwari.substack.com",
+      target: "_blank",
+      rel: "noopener",
       className: "bk-em"
-    }, "Playfair Display"), " and ", /*#__PURE__*/React.createElement("span", {
-      className: "bk-em"
-    }, "Spectral"), ", with margin notes in Caveat and folios in Spline Sans Mono. Bound, printed, and maintained by its author."), /*#__PURE__*/React.createElement("p", {
-      className: "bk-body",
-      style: {
-        marginTop: 12
-      }
-    }, "No analytics. No cookies. No newsletter to join. If something here is useful, take it and build."), /*#__PURE__*/React.createElement("div", {
+    }, "Read it ↗")), /*#__PURE__*/React.createElement("div", {
       className: "bk-chips",
       style: {
         marginTop: 22
@@ -1359,7 +1347,7 @@ function buildBook(ctx) {
       }
     }, "Curriculum Vit\xE6"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "The short, printable version. Fifteen years across five industries, leading design from the model layer to the front end."), /*#__PURE__*/React.createElement("div", {
+    }, "The short, printable version. Fifteen years across many industries, leading design from the model layer to the front end."), /*#__PURE__*/React.createElement("div", {
       className: "bk-cv__sub"
     }, "What I do"), /*#__PURE__*/React.createElement("div", {
       className: "bk-chips"
@@ -1459,7 +1447,7 @@ function buildBook(ctx) {
       }, {
         crumb: "O2 Priority",
         idxLabel: "walk-through",
-        runheadR: "O2 Priority Billing",
+        runheadR: "Telefónica MyO2 & Priority Moments",
         folioL: "1",
         folioR: "2",
         ...ndaPages[2]
@@ -1602,7 +1590,10 @@ function ChapterMenu({
     className: "bk-menu__label"
   }, it.label), it.sub ? /*#__PURE__*/React.createElement("span", {
     className: "bk-menu__sub"
-  }, it.sub) : null))));
+  }, it.sub) : null)), /*#__PURE__*/React.createElement("button", {
+    className: "bk-menu__exit",
+    onClick: () => { try { localStorage.setItem('am-view', 'classic'); } catch (e) {} location.href = '../index.html?view=classic'; }
+  }, "Switch to the classic website ↗")));
 }
 function Arrow({
   dir,
@@ -1916,7 +1907,7 @@ function App() {
     style: {
       opacity: 0.6
     }
-  }, "Creative Clarity")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
+  }, "")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
     style: {
       opacity: 0
     }
@@ -1968,7 +1959,7 @@ function App() {
         style: {
           opacity: 0.6
         }
-      }, "Creative Clarity")), sp.left, /*#__PURE__*/React.createElement("div", {
+      }, "")), sp.left, /*#__PURE__*/React.createElement("div", {
         className: "bk-folio"
       }, sp.folioL), /*#__PURE__*/React.createElement("div", {
         className: "bk-corner bk-corner--prev",
@@ -2093,7 +2084,7 @@ function App() {
       onClick: exitSection
     }, Caret("prev"), " ", section.label) : /*#__PURE__*/React.createElement("span", {
       className: "name"
-    }, "Arpit Maheshwari"), isCover ? /*#__PURE__*/React.createElement("span", null, "Creative Clarity") : /*#__PURE__*/React.createElement("button", {
+    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("button", {
       className: "bk-m-jump",
       onClick: () => setMenu(true),
       "aria-label": "Open chapter menu"

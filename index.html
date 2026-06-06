@@ -3,8 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+/* View router (homepage only): the book is the front door. A no-JS crawler never runs this, so the classic site stays fully indexable; anyone who chose Classic (or arrives with ?view=classic) stays here; deep links carry no router and are never moved. */
+(function(){try{var p=new URLSearchParams(location.search);if(p.get('view')==='classic'){localStorage.setItem('am-view','classic');return;}if(localStorage.getItem('am-view')!=='classic'){location.replace('./book/');}}catch(e){}})();
+</script>
 <title>Design Leader for AI & Data Products — Arpit Maheshwari</title>
-<meta name="description" content="I lead design for AI and data-intensive products. 15 years of decisions across five industries. Founding · Staff IC · Director-level. Available now.">
+<meta name="description" content="I lead design for AI and data-intensive products. 15 years of decisions across multiple industries. Founding · Staff IC · Director-level. Available now.">
 <meta name="keywords" content="design leader, head of design, director of design, founding designer, staff product designer, AI design lead, model-layer design, eval-aware design, data-literate designer, intelligent systems leadership, ML interface design, design engineering, FinTech, AdTech, EdTech, Telecom, Arpit Maheshwari, design strategy, decision-layer design">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -15,7 +19,7 @@
 <link rel="canonical" href="https://arpitmaheshwari.com/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Design Leader for AI & Data Products — Arpit Maheshwari">
-<meta property="og:description" content="Fifteen years of decisions across five industries. Founding · Staff IC · Director-level. Frameworks public, products NDA, outcomes measured.">
+<meta property="og:description" content="Fifteen years of decisions across multiple industries. Founding · Staff IC · Director-level. Frameworks public, products NDA, outcomes measured.">
 <meta property="og:url" content="https://arpitmaheshwari.com/">
 <meta property="og:image" content="https://arpitmaheshwari.com/20190105220407596_save.jpg">
 <meta property="og:image:width" content="1200">
@@ -24,7 +28,7 @@
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Design Leader for AI & Data Products — Arpit Maheshwari">
-<meta name="twitter:description" content="Fifteen years of decisions across five industries. Founding · Staff IC · Director-level. Frameworks public, products NDA, outcomes measured.">
+<meta name="twitter:description" content="Fifteen years of decisions across multiple industries. Founding · Staff IC · Director-level. Frameworks public, products NDA, outcomes measured.">
 <meta name="twitter:image" content="https://arpitmaheshwari.com/20190105220407596_save.jpg">
 <meta name="twitter:site" content="@arp_maheshwari">
 <meta name="twitter:creator" content="@arp_maheshwari">
@@ -125,7 +129,7 @@
   gtag('js', new Date());
   gtag('config', 'G-PFY6ME99K8');
 </script>
-<link rel="stylesheet" href="./styles.css?v=p11a">
+<link rel="stylesheet" href="./styles.css?v=p13">
 </head>
 <body>
 <a href="#featured-case-studies" class="skip-link">Skip to content</a>
@@ -158,7 +162,7 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="./index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="./assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
-  <ul class="nav-links"><li><a href="./index.html#featured-case-studies">Work</a></li><li><a href="./index.html#patterns">Patterns</a></li><li><a href="./index.html#thoughts">Writing</a></li><li><a href="./index.html#how-i-work">How I Lead</a></li><li><a href="./index.html#contact">Contact</a></li></ul>
+  <ul class="nav-links"><li><a href="./index.html#featured-case-studies">Work</a></li><li><a href="./index.html#patterns">Patterns</a></li><li><a href="./index.html#thoughts">Writing</a></li><li><a href="./index.html#how-i-work">How I Lead</a></li><li><a href="./index.html#contact">Contact</a></li><li class="nav-book"><a href="./book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="https://calendly.com/arpitmaheshwari" class="nav-cta" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="nav">Book a call ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -175,7 +179,7 @@
     <span class="line"><span class="line-inner"><em>products.</em></span></span>
   </h1>
   <p style="font-family:var(--ff-display); font-size:clamp(20px, 2.6vw, 26px); font-style:italic; color:var(--ink); line-height:1.4; margin-bottom:32px; max-width:640px; opacity:0; transform:translateY(20px); animation:reveal .4s var(--ease-out) .3s forwards;">
-    Fifteen years of decisions across five industries. Frameworks public, products NDA, outcomes measured.
+    Fifteen years of decisions across multiple industries. Frameworks public, products NDA, outcomes measured.
   </p>
 
   <!-- PROOF STRIP — three chips. The loudest thing on the page after the H1. (Restructure v2) -->
@@ -342,7 +346,7 @@
     <h2 class="section-numeral-name">Patterns</h2>
   </div>
   <h3 class="section-label" style="margin-top: 48px;">AI Design Patterns Library</h3>
-  <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;max-width:65ch;margin-bottom:60px">Patterns I've shipped into production for AI products across five industries. Each one carries the tradeoff I learned the hard way — what I tried, what broke, what I changed.</p>
+  <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;max-width:65ch;margin-bottom:60px">Patterns I've shipped into production for AI products across multiple industries. Each one carries the tradeoff I learned the hard way — what I tried, what broke, what I changed.</p>
   <div class="philosophy-cards reveal" style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:48px">
     <a href="./patterns/confidence-scores.html" style="padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);transition:border-color 0.3s,transform 0.3s;text-decoration:none;color:inherit;display:block" onmouseover="this.style.borderColor='var(--border-accent)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
       <div style="color:var(--gold);font-size:20px;margin-bottom:16px">→</div>
@@ -502,12 +506,12 @@
 
     <!-- Async option — single inline line, no card -->
     <p style="margin:32px 0 0 0;font-family:var(--ff-mono);font-size:12px;letter-spacing:0.04em;color:var(--ink-muted);line-height:1.7">
-      <span style="color:var(--ink-dim);text-transform:uppercase;letter-spacing:0.1em;font-size:10px">Async option:</span> Send me a link to your AI product — I'll record a 5-min Loom with three actionable improvements within 48 hours. <button id="toggleTeardownFormBtn" style="background:none;border:none;color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.04em;cursor:pointer;text-decoration:underline;padding:0">Request a video teardown →</button>
+      <span style="color:var(--ink-dim);text-transform:uppercase;letter-spacing:0.1em;font-size:10px">Async option:</span> Send me a link to your AI product — I'll record a 5-min Loom with three actionable improvements within 48 hours. <button id="toggleTeardownFormBtn" style="background:none;border:none;color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.04em;cursor:pointer;text-decoration:underline;padding:0">Get free feedback →</button>
     </p>
 
     <!-- Teardown form (inline, hidden by default) -->
     <div id="teardownInlineForm" style="display:none; margin-top:24px; padding:24px; border:1px solid var(--border); border-radius:4px; background:var(--bg-soft); animation:fadeIn 0.3s ease-out">
-      <p style="font-family:var(--ff-display); font-size:18px; margin:0 0 8px 0; color:var(--ink)">Get a 5-min video teardown</p>
+      <p style="font-family:var(--ff-display); font-size:18px; margin:0 0 8px 0; color:var(--ink)">Get free feedback on your product</p>
       <p style="font-size:13px; color:var(--ink-muted); margin:0 0 16px 0; line-height:1.6">Upload a link/screenshot. I'll record a quick Loom with 3 actionable improvements for model clarity, confidence scoring, or friction. Free. 48-hour turnaround.</p>
       <form id="contactTeardownForm" style="display:flex; flex-direction:column; gap:12px;">
         <div style="display:flex; gap:12px; flex-wrap:wrap;">
@@ -516,7 +520,7 @@
         </div>
         <textarea id="teardownContactNotes" placeholder="Any specific UX bottlenecks you're struggling with? (Optional)" rows="2" style="padding:12px 14px; background:var(--bg); border:1px solid var(--border); border-radius:2px; color:var(--ink); font-family:var(--ff-sans); font-size:14px; resize:vertical;"></textarea>
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-          <button type="submit" style="padding:12px 24px; background:var(--gold); color:var(--bg); border:none; border-radius:2px; font-family:var(--ff-mono); font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; transition:opacity 0.2s" onmouseover="this.style.opacity=0.9" onmouseout="this.style.opacity=1">Request video teardown</button>
+          <button type="submit" style="padding:12px 24px; background:var(--gold); color:var(--bg); border:none; border-radius:2px; font-family:var(--ff-mono); font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; transition:opacity 0.2s" onmouseover="this.style.opacity=0.9" onmouseout="this.style.opacity=1">Send it over</button>
           <button type="button" id="closeTeardownFormBtn" style="background:none; border:none; color:var(--ink-muted); font-size:12px; cursor:pointer; font-family:var(--ff-mono); text-transform:uppercase; letter-spacing:0.05em;">Cancel</button>
         </div>
       </form>
