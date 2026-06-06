@@ -1007,7 +1007,8 @@ function buildBook(ctx) {
     }, /*#__PURE__*/React.createElement("image-slot", {
       id: "about-portrait",
       placeholder: "Drop a portrait",
-      shape: "rect"
+      shape: "rect",
+      src: "../arpit-maheshwari.jpg"
     })), /*#__PURE__*/React.createElement("div", {
       className: "bk-plate__cap"
     }, /*#__PURE__*/React.createElement("span", {
@@ -1045,12 +1046,12 @@ function buildBook(ctx) {
       style: {
         marginTop: 12
       }
-    }, "I started in newspaper production \u2014 laying out pages against a press deadline \u2014 which is where I learned that typography is an argument and the deadline is not negotiable."), /*#__PURE__*/React.createElement(Beat, {
+    }, "I came up through engineering — an electronics degree, then building mobile software for Fortune 500 banks and pharma — before I realised the interesting problem was rarely the code. It was whether anyone would trust what it produced."), /*#__PURE__*/React.createElement(Beat, {
       n: "01",
       label: "How I got here"
     }, /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "Software started needing both the argument and the deadline, so I followed it in. Fifteen years later I've designed across EdTech, FinTech, AdTech, telecom and org design \u2014 usually the first or only designer in the room when the model and the interface had to be argued about together.")), /*#__PURE__*/React.createElement(Beat, {
+    }, "From front-end work on O2's rewards for a million-plus subscribers, to leading design for PTC University's learning platform — used by NASA, Apple, Boeing and Airbus, 350,000+ engineers — to consulting on AI products across AdTech, HRTech and private equity. Usually the first or only designer in the room when the model and the interface had to be argued about together.")), /*#__PURE__*/React.createElement(Beat, {
       n: "02",
       label: "What I believe"
     }, /*#__PURE__*/React.createElement("p", {
@@ -1242,9 +1243,14 @@ function buildBook(ctx) {
       style: {
         margin: "4px 0 20px"
       }
-    }, "Notes &", /*#__PURE__*/React.createElement("br", null), "Writing"), /*#__PURE__*/React.createElement("blockquote", {
-      className: "bk-pull"
-    }, "If you can't design what happens when the model is wrong, you haven't designed the feature yet.", /*#__PURE__*/React.createElement("cite", null, "\u2014 from \u201CThe trust layer is the product\u201D")), /*#__PURE__*/React.createElement("div", {
+    }, "Notes &", /*#__PURE__*/React.createElement("br", null), "Writing"), /*#__PURE__*/React.createElement("p", {
+      className: "bk-body"
+    }, "These notes live on ", /*#__PURE__*/React.createElement("a", {
+      href: "https://arpitmaheshwari.substack.com",
+      target: "_blank",
+      rel: "noopener",
+      className: "bk-em"
+    }, "Creative Clarity ↗"), " — my Substack on designing AI and data-intensive products. New essays most months."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note"
@@ -1279,27 +1285,14 @@ function buildBook(ctx) {
       }
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-kicker"
-    }, "Also by the author"), /*#__PURE__*/React.createElement("h2", {
+    }, "Let's talk"), /*#__PURE__*/React.createElement("h2", {
       className: "bk-title bk-title--m",
       style: {
-        margin: "4px 0 12px"
+        margin: "4px 0 14px"
       }
-    }, "Creative Clarity"), /*#__PURE__*/React.createElement("p", {
+    }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "My Substack on designing AI and data-intensive products — the thinking behind this book, in essays, most months. ", /*#__PURE__*/React.createElement("a", {
-      href: "https://arpitmaheshwari.substack.com",
-      target: "_blank",
-      rel: "noopener",
-      className: "bk-em"
-    }, "Read it ↗")), /*#__PURE__*/React.createElement("div", {
-      className: "bk-chips",
-      style: {
-        marginTop: 22
-      }
-    }, STATUS.map((s, i) => /*#__PURE__*/React.createElement("span", {
-      className: "bk-chip",
-      key: i
-    }, s))), /*#__PURE__*/React.createElement("div", {
+    }, "If your AI or data product is stalling at the trust layer — users second-guessing the model, adoption flat, the 'why' buried — that's the problem I've spent fifteen years solving. Let's compare notes."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note"
@@ -1318,7 +1311,15 @@ function buildBook(ctx) {
       style: {
         marginBottom: 14
       }
-    }, "Send a link to your product and I'll record a five-minute teardown \u2014 three concrete improvements, within 48 hours, no strings."), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
+    }, "Send a link to your product and I'll record a five-minute review \u2014 three concrete improvements, within 48 hours, no strings."), /*#__PURE__*/React.createElement("div", {
+      className: "bk-chips",
+      style: {
+        marginBottom: 18
+      }
+    }, STATUS.map((s, i) => /*#__PURE__*/React.createElement("span", {
+      className: "bk-chip",
+      key: i
+    }, s))), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-contactlinks",
       style: {
         marginTop: 26
