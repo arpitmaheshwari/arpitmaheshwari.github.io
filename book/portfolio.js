@@ -1433,9 +1433,7 @@ function buildBook(ctx) {
       style: {
         marginBottom: 14
       }
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "bk-note"
-    }, "thanks for reading to the end ♥")),
+    })),
     right: /*#__PURE__*/React.createElement("div", {
       className: "bk-reveal"
     }, /*#__PURE__*/React.createElement("div", {
@@ -1458,7 +1456,10 @@ function buildBook(ctx) {
     }, STATUS.map((s, i) => /*#__PURE__*/React.createElement("span", {
       className: "bk-chip",
       key: i
-    }, s))))
+    }, s))), /*#__PURE__*/React.createElement("div", {
+      className: "bk-note",
+      style: { marginTop: "auto", textAlign: "center", paddingTop: 16 }
+    }, "thanks for reading to the end ♥"))
   }];
 
   /* ----- SECTIONS — one level deeper, opened from a hub ----- */
