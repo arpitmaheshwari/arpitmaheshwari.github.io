@@ -2353,8 +2353,11 @@ function App() {
       className: "bk-m-page" + (isCover ? " bk-m-page--cover" : ""),
       key: loc.deck + ":" + idx,
       style: {
-        "--m-rot":    mDir > 0 ? "90deg" : "-90deg",
-        "--m-origin": mDir > 0 ? "100% 50%" : "0% 50%"
+        "--m-rot":         mDir > 0 ? "90deg" : "-90deg",
+        "--m-origin":      mDir > 0 ? "100% 50%" : "0% 50%",
+        "--m-shadow-grad": mDir > 0
+          ? "linear-gradient(to right, rgba(0,0,0,0.38) 0%, transparent 55%)"
+          : "linear-gradient(to left,  rgba(0,0,0,0.38) 0%, transparent 55%)"
       }
     }, isCover ? pg.cover : /*#__PURE__*/React.createElement(React.Fragment, null, pg.content, pg.folio && pg.folio !== "\u2014" ? /*#__PURE__*/React.createElement("div", {
       className: "bk-m-folio"
