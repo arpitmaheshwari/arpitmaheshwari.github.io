@@ -192,7 +192,7 @@ const NDA_CASES = [{
   title: "Telefónica MyO2 & Priority Moments",
   standfirst: "Two consumer products for O2 — the UK brand of Telefónica, one of Britain's largest carriers. I designed every screen, then built it. Mobile web.",
   meta: [["Role", "Designer + Front-end"], ["Client", "O2 UK (Telefónica) · via Equal Experts"], ["Status", "Shipped · public"]],
-  context: "O2 UK needed two things on mobile: let customers run their account without phoning in, and a reason to stay. I designed and built every screen of both — MyO2 (self-service) and Priority Moments (loyalty) — on mobile web, via Equal Experts.",
+  context: "Designed and built. Not designed, then handed off. Every screen of both products — MyO2 and Priority Moments — on mobile web, at national scale.",
   moves: [{
     h: "MyO2 — the account, self-serve",
     p: "O2 UK's official self-service app: check your data, calls and texts, view and pay bills, change tariff, see upgrades, manage the whole account in one place. Designed and built to make everyday tasks self-serve — and cut call-centre volume. It went on to serve more than four million users."
@@ -224,7 +224,7 @@ const NDA_CASES = [{
   title: "AI-Assisted Private Equity Investing",
   standfirst: "A risk model the analysts wouldn't touch — until it learned to show its work.",
   meta: [["Role", "Lead Product Designer"], ["Surface", "AI for private-equity investing"], ["Status", "Shipped · under NDA"]],
-  context: "Leading design with six engineers, I faced analysts with an AI that scored deal risk and every instinct to ignore it. A confident number with no reasoning is just an opinion — the model was good, the trust interface wasn't.",
+  context: "A risk model nobody would use. Not because it was wrong. Because it never showed its work.",
   moves: [{
     h: "Explain before score",
     p: "Put the three documents that moved the number next to the number — proving the business value before the verdict, not buried behind it."
@@ -256,7 +256,7 @@ const NDA_CASES = [{
   title: "Programmatic Advertising Platform",
   standfirst: "Media buyers ignored the algorithm — until they could see why it recommended each bid, and override it.",
   meta: [["Role", "Lead Product Designer"], ["Surface", "DSP recommendation UI"], ["Status", "Shipped · under NDA"]],
-  context: "A demand-side platform recommended bids no one acted on. Buyers trusted their gut over a black box that never showed its reasoning — so its calls sat unused while planning dragged on for weeks.",
+  context: "The algorithm was right. The traders trusted their gut instead. That’s a design problem, not a model problem.",
   moves: [{
     h: "A confidence score that earns the action",
     p: "Each recommendation carried a confidence score mapped to one action — act, review, or ignore — never a bare percentage."
@@ -320,7 +320,7 @@ const NDA_CASES = [{
   title: "Technical Due Diligence Platform",
   standfirst: "Investors had three weeks to judge a startup's technology. The platform got them there in four days.",
   meta: [["Role", "Design Lead"], ["Surface", "Technical-DD platform · VC + PE"], ["Status", "Shipped · under NDA"]],
-  context: "VC and PE investors judge a target's technology — code quality, architecture, team velocity, founder credibility — under deal pressure, and the AI scoring it was a black box they wouldn't bet capital on. With the ML team and a head of investment, I made its judgement auditable enough to act on.",
+  context: "Three weeks of due diligence, compressed. The hard part wasn't the compression — it was making the model's verdict something an investor would stake capital on.",
   moves: [{
     h: "Score at the signal level",
     p: "Confidence scoring on each technical signal — code quality, architecture risk, team-velocity proxies, founder-credibility markers — not one opaque verdict."
@@ -981,7 +981,7 @@ function buildBook(ctx) {
       className: "bk-cover__rule"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-cover__sub"
-    }, "Designing for business outcomes, not just user friction.", /*#__PURE__*/React.createElement("br", null), "Fifteen years across many industries — outcomes measured, not just shipped."), /*#__PURE__*/React.createElement("button", {
+    }, "The problem is never the model. It’s the gap between what the model knows and what a user will bet on. Fifteen years building for that gap."), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1)
     }, /*#__PURE__*/React.createElement("span", {
@@ -1143,7 +1143,7 @@ function buildBook(ctx) {
       }
     }, "Selected", /*#__PURE__*/React.createElement("br", null), "Work"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body bk-drop"
-    }, "Five industries, one throughline: I make machine intelligence legible enough that people will actually act on it. Two are public — PTC in full, MyO2 in brief — and four travel as redacted walk-throughs."), /*#__PURE__*/React.createElement("div", {
+    }, "Every brief starts with “improve the UX.” Every diagnosis ends somewhere else. Two cases are public. Four travel under NDA. Same destination in all of them."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
         margin: "22px 0 18px"
@@ -1219,7 +1219,7 @@ function buildBook(ctx) {
       }
     }, "A Field", /*#__PURE__*/React.createElement("br", null), "Guide to", /*#__PURE__*/React.createElement("br", null), "Trust"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body bk-drop"
-    }, "A working catalogue of the interface patterns I reach for when the product is only as good as whether people believe it. Each is a small argument about where certainty belongs on the screen \u2014 open one to read it in full."), /*#__PURE__*/React.createElement("div", {
+    }, "Four patterns for the AI problem that isn’t the AI. Each one is a small argument about where certainty belongs on the screen."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
         marginTop: 22
@@ -1396,7 +1396,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "If your AI or data product is stalling at the trust layer — users second-guessing the model, adoption flat, the 'why' buried — that's the problem I've spent fifteen years solving. Let's compare notes."), /*#__PURE__*/React.createElement("a", {
+    }, "The model isn't the problem. It rarely is. Let's talk about what is."), /*#__PURE__*/React.createElement("a", {
       className: "bk-btn",
       href: "https://calendly.com/arpitmaheshwari",
       target: "_blank",
