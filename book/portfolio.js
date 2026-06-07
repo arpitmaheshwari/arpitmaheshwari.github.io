@@ -1574,7 +1574,7 @@ const SPREAD_W = 1180,
   COVER_W = 620,
   COVER_H = 880;
 const TWEAK_DEFAULTS = {
-  "accent": "#8E3942",
+  "accent": "#C0512B",
   "pairing": "Playfair \u00b7 Spectral",
   "warmth": 70,
   "density": "comfy",
@@ -1615,6 +1615,8 @@ const DEEP = {
   // amber
   "#8E3942": "#6A2A30",
   // claret
+  "#C0512B": "#97391A",
+  // coral (book default)
   "#3D4F86": "#2A395F",
   // indigo
   "#236E6B": "#154F4D" // teal
