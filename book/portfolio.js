@@ -920,19 +920,19 @@ function buildBook(ctx) {
   const TOC = [{
     n: "—",
     name: "How I Lead",
-    sub: "How I work — three principles",
+    sub: "Principles & approach",
     pg: "p. ii",
     to: 2
   }, {
     n: "I",
     name: "Selected Work",
-    sub: "Overview → six cases",
+    sub: "Case studies",
     pg: "p. 2",
     to: 3
   }, {
     n: "II",
     name: "A Field Guide to Trust",
-    sub: "Overview → four patterns",
+    sub: "AI UX patterns",
     pg: "p. 4",
     to: 4
   }, {
@@ -1008,7 +1008,7 @@ function buildBook(ctx) {
     }, "Creative Clarity"), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement(Device, {
-      label: "the monogram, recurring",
+      label: "the monogram",
       style: {
         marginBottom: 22
       }
@@ -1043,10 +1043,12 @@ function buildBook(ctx) {
       }
     }, "Contents"), /*#__PURE__*/React.createElement("div", {
       className: "bk-toc"
-    }, TOC.map((tc, i) => /*#__PURE__*/React.createElement("div", {
+    }, TOC.map((tc, i) => /*#__PURE__*/React.createElement("button", {
       className: "bk-toc__item",
       key: i,
-      onClick: () => go(tc.to)
+      onClick: () => go(tc.to),
+      onKeyDown: e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(tc.to); } },
+      "aria-label": tc.name
     }, /*#__PURE__*/React.createElement("span", {
       className: "bk-toc__num"
     }, tc.n), /*#__PURE__*/React.createElement("span", {
@@ -1679,7 +1681,7 @@ function Arrow({
     className: "bk-arrow bk-arrow--" + dir,
     onClick: onClick,
     disabled: disabled,
-    "aria-label": dir
+    "aria-label": dir === "prev" ? "Previous page" : "Next page"
   }, /*#__PURE__*/React.createElement("svg", {
     viewBox: "0 0 24 24",
     fill: "none",
@@ -2246,12 +2248,11 @@ function App() {
       className: "bk-progress"
     }, inSection ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", null, sp.crumb, " \xB7 ", sp.idxLabel), /*#__PURE__*/React.createElement("span", {
       className: "bk-progress__dots"
-    }, deck.map((_, i) => /*#__PURE__*/React.createElement("span", {
+    }, deck.map((_, i) => /*#__PURE__*/React.createElement("button", {
       className: "bk-progress__dot" + (i === curSpread ? " on" : ""),
       key: i,
-      role: "button",
-      tabIndex: 0,
-      "aria-label": "Go to page " + (i + 1),
+      "aria-label": "Go to spread " + (i + 1),
+      "aria-current": i === curSpread ? "true" : undefined,
       onClick: () => goIndex(i),
       onKeyDown: e => {
         if (e.key === "Enter" || e.key === " ") {
@@ -2264,12 +2265,11 @@ function App() {
       onClick: exitSection
     }, "esc \u21A9 ", section.label)) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", null, curSpread === 0 ? "Cover" : sp.runheadR), /*#__PURE__*/React.createElement("span", {
       className: "bk-progress__dots"
-    }, book.spine.map((_, i) => /*#__PURE__*/React.createElement("span", {
+    }, book.spine.map((_, i) => /*#__PURE__*/React.createElement("button", {
       className: "bk-progress__dot" + (i === curSpread ? " on" : ""),
       key: i,
-      role: "button",
-      tabIndex: 0,
-      "aria-label": "Go to page " + (i + 1),
+      "aria-label": "Go to spread " + (i + 1),
+      "aria-current": i === curSpread ? "true" : undefined,
       onClick: () => goIndex(i),
       onKeyDown: e => {
         if (e.key === "Enter" || e.key === " ") {

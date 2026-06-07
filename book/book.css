@@ -290,11 +290,18 @@ body {
    ============================================================ */
 .bk-toc { display: flex; flex-direction: column; gap: 2px; margin-top: 8px; }
 .bk-toc__item {
+  /* button reset — now a <button> for keyboard + mobile touch accessibility */
+  appearance: none; -webkit-appearance: none;
+  border: none; background: none; text-align: left; font: inherit; color: inherit; width: 100%;
+  /* layout */
   display: grid; grid-template-columns: 30px 1fr auto; align-items: baseline; gap: 14px;
   padding: 14px 8px; cursor: pointer; border-radius: 6px;
   transition: background var(--bk-ease), transform var(--bk-ease);
+  /* ensure minimum tap target */
+  min-height: 44px;
 }
 .bk-toc__item:hover { background: rgba(192,81,43,0.07); transform: translateX(6px); }
+.bk-toc__item:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 2px; }
 .bk-toc__num { font-family: var(--bk-mono); font-size: 12px; color: var(--bk-ember); }
 .bk-toc__name { font-family: var(--bk-display); font-size: 27px; color: var(--bk-ink); line-height: 1; }
 .bk-toc__name small { display: block; font-family: var(--bk-serif); font-size: 12.5px; color: var(--bk-ink-faint); margin-top: 5px; letter-spacing: 0.01em; }
@@ -521,11 +528,14 @@ body {
 .bk-arrow {
   position: fixed; top: 50%; transform: translateY(-50%); z-index: 20;
   width: 56px; height: 56px; border-radius: 50%; cursor: pointer;
-  background: rgba(244,236,218,0.10); border: 1.5px solid rgba(244,236,218,0.30);
+  /* WCAG 1.4.11 — button boundary must hit 3:1 against adjacent bg.
+     Ember (#C0512B) on dark desk (#1B1613) = 3.80:1 ✓
+     Cream icon (#F4ECDA) on ember = 4.01:1 ✓ (WCAG AA large) */
+  background: rgba(192,81,43,0.88); border: 1.5px solid rgba(244,236,218,0.40);
   color: #F4ECDA; display: grid; place-items: center; backdrop-filter: blur(4px);
   transition: background var(--bk-ease), transform var(--bk-ease), opacity var(--bk-ease);
 }
-.bk-arrow:hover { background: rgba(244,236,218,0.2); }
+.bk-arrow:hover { background: rgba(192,81,43,1); }
 .bk-arrow--prev { left: 26px; } .bk-arrow--prev:hover { transform: translateY(-50%) translateX(-3px); }
 .bk-arrow--next { right: 26px; } .bk-arrow--next:hover { transform: translateY(-50%) translateX(3px); }
 .bk-arrow[disabled] { opacity: 0; pointer-events: none; }
@@ -540,9 +550,14 @@ body {
 .bk-progress__dots { display: flex; align-items: center; gap: 7px; }
 /* DS look: 7px cream dot, faint inactive, ochre active scaled up.
    A small content-box tap pad keeps the hit target generous without
-   inflating the visible dot or the 7px rhythm. */
+   inflating the visible dot or the 7px rhythm.
+   Now <button> elements: reset browser button defaults first. */
 .bk-progress__dot {
-  box-sizing: content-box; width: 7px; height: 7px; padding: 2px;
+  /* button reset */
+  appearance: none; -webkit-appearance: none;
+  border: none; padding: 2px; margin: 0;
+  /* visual */
+  box-sizing: content-box; width: 7px; height: 7px;
   background-clip: content-box; border-radius: 50%; cursor: pointer;
   background-color: rgba(244,236,218,0.38);
   transition: background-color var(--bk-ease), transform var(--bk-ease);
