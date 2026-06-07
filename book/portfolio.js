@@ -2349,15 +2349,15 @@ function App() {
         if (Math.abs(diff) > 48) { if (diff > 0) stepMobile(1); else stepMobile(-1); }
         touchRef.current = null;
       }
-    }, /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", { className: "bk-m-underneath" }), /*#__PURE__*/React.createElement("div", {
       className: "bk-m-page" + (isCover ? " bk-m-page--cover" : ""),
       key: loc.deck + ":" + idx,
       style: {
-        "--m-slide-from":  mDir > 0 ? "64px" : "-64px",
-        "--m-tilt":        mDir > 0 ? "14deg" : "-14deg",
+        "--m-rot":         mDir > 0 ? "90deg" : "-90deg",
+        "--m-origin":      mDir > 0 ? "100% 50%" : "0% 50%",
         "--m-shadow-grad": mDir > 0
-          ? "linear-gradient(to right, rgba(0,0,0,0.28) 0%, transparent 50%)"
-          : "linear-gradient(to left,  rgba(0,0,0,0.28) 0%, transparent 50%)"
+          ? "linear-gradient(to right, rgba(0,0,0,0.32) 0%, transparent 50%)"
+          : "linear-gradient(to left,  rgba(0,0,0,0.32) 0%, transparent 50%)"
       }
     }, isCover ? pg.cover : /*#__PURE__*/React.createElement(React.Fragment, null, pg.content, pg.folio && pg.folio !== "\u2014" ? /*#__PURE__*/React.createElement("div", {
       className: "bk-m-folio"

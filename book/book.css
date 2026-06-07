@@ -651,24 +651,31 @@ body {
 }
 .bk-m-jump svg { width: 14px; height: 14px; }
 .bk-m-stage { flex: 1; min-height: 0; position: relative; overflow: hidden; }
+/* cream layer that's always beneath the turning page —
+   makes rotateY(90deg) show paper, not darkness, exactly like a real book */
+.bk-m-underneath {
+  position: absolute; inset: 0;
+  background: var(--bk-paper);
+  z-index: 3;
+}
 .bk-m-page {
   position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch;
   padding: 32px 26px 104px;
   background: var(--bk-paper);
-  /* slide-with-tilt: page enters from off-screen so it's always visible — no
-     invisible-edge jerk. A gentle rotateY tilt gives the depth of a page turn
-     without starting from an invisible 90deg edge. */
+  transform-origin: var(--m-origin, 50% 50%);
   will-change: transform, opacity;
-  animation: mFlip 340ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: mFlip 400ms cubic-bezier(0.42, 0, 0.18, 1) both;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   z-index: 4;
 }
-/* leading-edge shadow that fades as the page settles */
+/* crease shadow that sweeps in from the fold edge and fades */
 .bk-m-page::after {
   content: '';
   position: absolute; inset: 0;
   background: var(--m-shadow-grad, transparent);
   pointer-events: none;
-  animation: mShadow 340ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: mShadow 400ms cubic-bezier(0.42, 0, 0.18, 1) both;
   z-index: 10;
 }
 .bk-m-page--cover { padding: 0; overflow: hidden; animation: none; }
@@ -676,16 +683,17 @@ body {
 .bk-m-folio { font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--bk-ink-faint); margin-top: 28px; text-align: center; }
 @keyframes mFlip {
   from {
-    transform: translateX(var(--m-slide-from, 60px)) perspective(900px) rotateY(var(--m-tilt, 12deg));
-    opacity: 0.7;
+    transform: perspective(800px) rotateY(var(--m-rot, 90deg));
+    opacity: 0.6;
   }
   to {
-    transform: translateX(0) perspective(900px) rotateY(0deg);
+    transform: perspective(800px) rotateY(0deg);
     opacity: 1;
   }
 }
 @keyframes mShadow {
-  from { opacity: 0.6; }
+  from { opacity: 1; }
+  50%  { opacity: 0.5; }
   to   { opacity: 0; }
 }
 
