@@ -981,7 +981,7 @@ function buildBook(ctx) {
       className: "bk-cover__rule"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-cover__sub"
-    }, "The problem is never the model. It’s the gap between what the model knows and what a user will bet on. Fifteen years building for that gap."), /*#__PURE__*/React.createElement("button", {
+    }, "You’ve built something smart. Nobody’s acting on it. That gap — between what the model knows and what a person will stake a decision on — is what I design for."), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1)
     }, /*#__PURE__*/React.createElement("span", {
@@ -1024,7 +1024,7 @@ function buildBook(ctx) {
         marginTop: 18,
         maxWidth: "30ch"
       }
-    }, "Product Design Leader. I build operational software and data-intensive systems that scale without adding overhead. Frameworks public, outcomes measured."), /*#__PURE__*/React.createElement("div", {
+    }, "In fifteen years of shipping AI products, I’ve watched the same moment play out in five industries: the model surfaces something true, and the person at the screen pauses. Not because the model is wrong. Because they don’t know how to trust it yet. This book is everything I’ve figured out about that pause."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-body",
