@@ -10,6 +10,8 @@
   <meta property="og:url" content="https://arpitmaheshwari.com/writing/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Writing & Articles — Arpit Maheshwari">
+  <meta name="twitter:description" content="Essays on AI design, intelligent systems, and the trust layer between users and algorithms.">
   <link rel="canonical" href="https://arpitmaheshwari.com/writing/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,8 +99,8 @@ if (menuBtn && navLinks) {
 }
 
 // Dyslexia mode (same localStorage key as homepage)
-const isDyslexia = localStorage.getItem('dyslexia-mode') === 'true';
-if (isDyslexia) document.documentElement.classList.add('dyslexia-mode');
+const isDyslexia = localStorage.getItem('dyslexia-mode') === 'on';
+if (isDyslexia) document.body.classList.add('dyslexia-mode');
 
 // GA4 events
 document.querySelectorAll('[data-cta]').forEach(el => {

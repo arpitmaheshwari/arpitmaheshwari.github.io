@@ -144,8 +144,8 @@ if (menuBtn && navLinks) {
 // Reading mode toggle
 
 // Dyslexia mode
-const isDyslexia = localStorage.getItem('dyslexia-mode') === 'true';
-if (isDyslexia) document.documentElement.classList.add('dyslexia-mode');
+const isDyslexia = localStorage.getItem('dyslexia-mode') === 'on';
+if (isDyslexia) document.body.classList.add('dyslexia-mode');
 
 // GA4 events
 document.querySelectorAll('[data-cta]').forEach(el => {

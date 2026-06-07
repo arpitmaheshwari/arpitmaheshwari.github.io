@@ -115,7 +115,7 @@
   <!-- FOOTER ACTION CTA -->
   <aside style="margin:48px 0;padding:24px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr;gap:16px">
     <div>
-      <p style="font-family:var(--ff-display);font-size:20px;font-weight:300;color:var(--ink);line-height:1.4;margin:0 0 8px 0">Ready to optimize your product's visual spec specs?</p>
+      <p style="font-family:var(--ff-display);font-size:20px;font-weight:300;color:var(--ink);line-height:1.4;margin:0 0 8px 0">Ready to optimize your product's visual specifications?</p>
       <p style="font-size:14px;color:var(--ink-muted);line-height:1.6;margin:0">I partner with founders and product teams to translate complex data structures into high-fidelity interaction systems. Let's collaborate.</p>
     </div>
     <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
@@ -146,11 +146,12 @@
 // Dyslexia toggle
 const toggle = document.getElementById('dyslexiaToggle');
 if (toggle) {
-  const isDyslexic = localStorage.getItem('dyslexia-mode') === 'true';
+  const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on';
   if (isDyslexic) document.documentElement.classList.add('dyslexia-mode');
   toggle.addEventListener('click', () => {
     document.documentElement.classList.toggle('dyslexia-mode');
-    localStorage.setItem('dyslexia-mode', document.documentElement.classList.contains('dyslexia-mode'));
+    const isOn = document.documentElement.classList.contains('dyslexia-mode');
+    localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off');
   });
 }
 

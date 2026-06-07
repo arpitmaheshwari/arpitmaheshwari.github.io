@@ -647,6 +647,15 @@ if (menuBtn && navLinks) {
       menuBtn.setAttribute('aria-expanded', 'false');
     }
   });
+
+  // Focus trap within open nav
+  navLinks.addEventListener('keydown', e => {
+    if (!navLinks.classList.contains('nav-open') || e.key !== 'Tab') return;
+    const focusable = [...navLinks.querySelectorAll('a, button, [tabindex="0"]')].filter(el => !el.disabled);
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
 }
 
 // Active nav highlight on scroll

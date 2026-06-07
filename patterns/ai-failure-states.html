@@ -237,7 +237,7 @@
 
 <script>
 const toggle = document.getElementById('dyslexiaToggle');
-if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'true'; if (isDyslexic) document.documentElement.classList.add('dyslexia-mode'); toggle.addEventListener('click', () => { document.documentElement.classList.toggle('dyslexia-mode'); localStorage.setItem('dyslexia-mode', document.documentElement.classList.contains('dyslexia-mode')); }); }
+if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on'; if (isDyslexic) document.documentElement.classList.add('dyslexia-mode'); toggle.addEventListener('click', () => { document.documentElement.classList.toggle('dyslexia-mode'); const isOn = document.documentElement.classList.contains('dyslexia-mode'); localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off'); }); }
 document.addEventListener('click', (e) => { const cta = e.target.closest('[data-cta]'); if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' }); });
 
 // Scroll depth — fires once per threshold (25/50/75/100)

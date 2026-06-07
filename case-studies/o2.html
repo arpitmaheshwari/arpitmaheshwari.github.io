@@ -182,11 +182,12 @@
 // Dyslexia toggle
 const toggle = document.getElementById('dyslexiaToggle');
 if (toggle) {
-  const isDyslexic = localStorage.getItem('dyslexia-mode') === 'true';
+  const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on';
   if (isDyslexic) document.documentElement.classList.add('dyslexia-mode');
   toggle.addEventListener('click', () => {
     document.documentElement.classList.toggle('dyslexia-mode');
-    localStorage.setItem('dyslexia-mode', document.documentElement.classList.contains('dyslexia-mode'));
+    const isOn = document.documentElement.classList.contains('dyslexia-mode');
+    localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off');
   });
 }
 

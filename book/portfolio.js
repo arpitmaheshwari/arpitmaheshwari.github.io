@@ -32,7 +32,7 @@ const WORK = [{
   desc: "A trust layer — confidence, reasoning, override — that cut campaign planning from two weeks to three hours."
 }, {
   tag: "Org Design · NDA",
-  title: "OrgOS",
+  title: "OrgOS — Operating System for Transparent Organizations",
   metric: "200",
   desc: "Operating software for a zero-manager, 200-person org — coordination without hierarchy."
 }, {
@@ -59,7 +59,7 @@ const PRINCIPLES = [{
 }];
 const PATTERNS = [{
   k: "gauge",
-  h: "Confidence Scores",
+  h: "Confidence Score Patterns",
   p: "How much certainty to show, and the threshold at which a number earns the right to drive a business decision."
 }, {
   k: "alert",
@@ -285,7 +285,7 @@ const NDA_CASES = [{
   no: "05",
   img: "../assets/visuals/case-orgos.svg",
   tag: "Org Design · NDA",
-  title: "OrgOS",
+  title: "OrgOS — Operating System for Transparent Organizations",
   standfirst: "A 200-person organisation with zero managers. The brief: software that scales coordination without smuggling a boss back in.",
   meta: [["Role", "Design Lead"], ["Surface", "Internal operating system"], ["Status", "Shipped · under NDA"]],
   context: "A radically transparent, 200-person org run on hallway conversation and spreadsheets — fine at forty, breaking at two hundred. Leading four engineering streams and a PM, I made the flat org legible without imposing a hierarchy. Every feature wanted to grow a boss; the work was refusing that.",
@@ -350,7 +350,7 @@ const PATTERN_PAGES = {
   gauge: {
     no: "01",
     k: "gauge",
-    h: "Confidence Scores",
+    h: "Confidence Score Patterns",
     principle: "A number people can act on \u2014 not just read.",
     def: "How much certainty to show, in what form, and the threshold at which a score has earned the right to drive a business decision rather than merely decorate a dashboard.",
     note: "a percentage is a feeling until it's anchored to a business action",
@@ -1523,9 +1523,9 @@ function buildBook(ctx) {
       label: "A Field Guide to Trust",
       kind: "Pattern",
       items: [{
-        crumb: "Confidence Scores",
+        crumb: "Confidence Score Patterns",
         idxLabel: "1 / 4",
-        runheadR: "Confidence Scores",
+        runheadR: "Confidence Score Patterns",
         folioL: "1",
         folioR: "2",
         ...patPages[0]
@@ -2161,13 +2161,12 @@ function App() {
     const onCover = !inSection && curSpread === 0;
     const thumbTabs = onCover ? null : /*#__PURE__*/React.createElement("div", {
       className: "bk-thumbtabs"
-    }, TABS.map(tb => /*#__PURE__*/React.createElement("div", {
+    }, TABS.map(tb => /*#__PURE__*/React.createElement("button", {
       className: "bk-tab" + (activeTab === tb.i ? " on" : ""),
       key: tb.i,
       style: {
         "--tab": tb.color
       },
-      role: "button",
       tabIndex: 0,
       "aria-label": "Jump to " + tb.label,
       onClick: () => jumpTo(tb.i),
