@@ -604,6 +604,15 @@ body {
 .bk-crumb__sep { color: rgba(244,236,218,0.4); }
 .bk-crumb__cur { color: var(--bk-ochre); }
 
+/* desktop logo mark — top left (shown when not in a section) */
+.bk-logo-mark {
+  position: fixed; top: 19px; left: 26px; z-index: 21;
+  display: flex; align-items: center; text-decoration: none;
+  opacity: 0.82; transition: opacity var(--bk-ease);
+}
+.bk-logo-mark:hover { opacity: 1; }
+.bk-logo-mark img { display: block; width: 32px; height: 32px; }
+
 /* back button — top left */
 .bk-back {
   position: fixed; top: 19px; left: 26px; z-index: 21;

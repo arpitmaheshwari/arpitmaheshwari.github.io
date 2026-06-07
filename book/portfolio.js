@@ -2182,7 +2182,16 @@ function App() {
 
     return /*#__PURE__*/React.createElement("div", {
       className: "bk-stage" + (inSection ? " bk-stage--deep" : "")
-    }, inSection && /*#__PURE__*/React.createElement("button", {
+    }, !inSection && /*#__PURE__*/React.createElement("a", {
+      href: "../index.html",
+      className: "bk-logo-mark",
+      "aria-label": "Arpit Maheshwari — back to portfolio"
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "../assets/logo.svg",
+      alt: "AM",
+      width: 32, height: 32,
+      style: { display: "block" }
+    })), inSection && /*#__PURE__*/React.createElement("button", {
       className: "bk-back",
       onClick: exitSection
     }, /*#__PURE__*/React.createElement("svg", {
@@ -2295,9 +2304,17 @@ function App() {
     }, inSection ? /*#__PURE__*/React.createElement("button", {
       className: "bk-m-back",
       onClick: exitSection
-    }, Caret("prev"), " ", section.label) : /*#__PURE__*/React.createElement("span", {
+    }, Caret("prev"), " ", section.label) : /*#__PURE__*/React.createElement("div", {
+      style: { display: "flex", alignItems: "center", gap: "10px" }
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "../assets/logo.svg",
+      alt: "",
+      "aria-hidden": "true",
+      width: 28, height: 28,
+      style: { display: "block" }
+    }), /*#__PURE__*/React.createElement("span", {
       className: "name"
-    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("button", {
+    }, "ARPIT MAHESHWARI")), /*#__PURE__*/React.createElement("button", {
       className: "bk-m-jump",
       onClick: () => setMenu(true),
       "aria-label": "Open chapter menu"
