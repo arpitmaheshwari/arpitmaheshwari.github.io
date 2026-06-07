@@ -1095,7 +1095,7 @@ function buildBook(ctx) {
       style: {
         marginTop: 0
       }
-    }, "I lead from inside the work, not above it. I'd rather pair with an engineer on an eval than present a roadmap, and the best design decision in an AI product is usually about ", /*#__PURE__*/React.createElement("span", {
+    }, "Most design leads present roadmaps. I read your evals. The best call in an AI product is almost never about the interface — it's about ", /*#__PURE__*/React.createElement("span", {
       className: "bk-mark"
     }, "what the system admits it doesn't know"), "."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
@@ -1279,7 +1279,7 @@ function buildBook(ctx) {
       target: "_blank",
       rel: "noopener",
       className: "bk-em"
-    }, "Creative Clarity ", Icon({ name: "external", cls: "bk-icon--sm" })), " — my Substack on designing AI and data-intensive products. New essays most months."), /*#__PURE__*/React.createElement("div", {
+    }, "Creative Clarity ", Icon({ name: "external", cls: "bk-icon--sm" })), ". If you want to know how I think before hiring me — this is the fastest way."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note"
@@ -1326,7 +1326,7 @@ function buildBook(ctx) {
       }
     }, "Curriculum Vit\xE6"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "The short, printable version. Fifteen years across many industries, leading design from the model layer to the front end."), /*#__PURE__*/React.createElement("div", {
+    }, "The facts, in order. For the founder who needs to check the work before the call."), /*#__PURE__*/React.createElement("div", {
       className: "bk-cv__sub"
     }, "What I do"), /*#__PURE__*/React.createElement("div", {
       className: "bk-chips"
