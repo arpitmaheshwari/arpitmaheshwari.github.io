@@ -655,32 +655,37 @@ body {
   position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch;
   padding: 32px 26px 104px;
   background: var(--bk-paper);
-  /* page-flip: origin at the leading edge — right for forward, left for backward */
-  transform-origin: var(--m-origin, 50% 50%);
-  animation: mFlip 380ms cubic-bezier(0.0, 0.0, 0.25, 1) both;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  /* slide-with-tilt: page enters from off-screen so it's always visible — no
+     invisible-edge jerk. A gentle rotateY tilt gives the depth of a page turn
+     without starting from an invisible 90deg edge. */
+  will-change: transform, opacity;
+  animation: mFlip 340ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   z-index: 4;
 }
-/* fold-shadow pseudo-element — simulates the crease shadow of a turning page */
+/* leading-edge shadow that fades as the page settles */
 .bk-m-page::after {
   content: '';
   position: absolute; inset: 0;
   background: var(--m-shadow-grad, transparent);
   pointer-events: none;
-  animation: mShadow 380ms cubic-bezier(0.0, 0.0, 0.25, 1) both;
+  animation: mShadow 340ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   z-index: 10;
 }
 .bk-m-page--cover { padding: 0; overflow: hidden; animation: none; }
 .bk-m-page--cover::after { display: none; }
 .bk-m-folio { font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--bk-ink-faint); margin-top: 28px; text-align: center; }
 @keyframes mFlip {
-  from { transform: perspective(700px) rotateY(var(--m-rot, 0deg)); opacity: 0.45; }
-  to   { transform: perspective(700px) rotateY(0deg); opacity: 1; }
+  from {
+    transform: translateX(var(--m-slide-from, 60px)) perspective(900px) rotateY(var(--m-tilt, 12deg));
+    opacity: 0.7;
+  }
+  to {
+    transform: translateX(0) perspective(900px) rotateY(0deg);
+    opacity: 1;
+  }
 }
 @keyframes mShadow {
-  from { opacity: 1; }
-  60%  { opacity: 0.4; }
+  from { opacity: 0.6; }
   to   { opacity: 0; }
 }
 
