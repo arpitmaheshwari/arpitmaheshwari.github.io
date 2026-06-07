@@ -942,13 +942,13 @@ function buildBook(ctx) {
     pg: "p. 6",
     to: 5
   }, {
-    n: "—",
+    n: "IV",
     name: "Curriculum Vitæ",
     sub: "The printable appendix",
     pg: "p. 8",
     to: 6
   }, {
-    n: "—",
+    n: "V",
     name: "Contact",
     sub: "Write to me — let's talk",
     pg: "p. 10",
@@ -1747,6 +1747,7 @@ function App() {
   const [opened, setOpened] = useState(readOpened); // ritual already played?
   const [opening, setOpening] = useState(false); // cover currently swinging open
   const animating = useRef(false);
+  const touchRef = useRef(null); // swipe tracking for mobile
   const locRef = useRef(loc);
   locRef.current = loc;
   const mobileRef = useRef(mobile);
@@ -2319,7 +2320,14 @@ function App() {
       x2: "14",
       y2: "17"
     })), "Chapters")), /*#__PURE__*/React.createElement("div", {
-      className: "bk-m-stage"
+      className: "bk-m-stage",
+      onTouchStart: e => { touchRef.current = e.touches[0].clientX; },
+      onTouchEnd: e => {
+        if (touchRef.current === null) return;
+        const diff = touchRef.current - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 48) { if (diff > 0) stepMobile(1); else stepMobile(-1); }
+        touchRef.current = null;
+      }
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-m-page" + (isCover ? " bk-m-page--cover" : ""),
       key: loc.deck + ":" + idx,
@@ -2328,13 +2336,7 @@ function App() {
       }
     }, isCover ? pg.cover : /*#__PURE__*/React.createElement(React.Fragment, null, pg.content, pg.folio && pg.folio !== "\u2014" ? /*#__PURE__*/React.createElement("div", {
       className: "bk-m-folio"
-    }, "\xB7 ", pg.crumb ? pg.crumb + " " + pg.folio : pg.folio, " \xB7") : null)), (idx > 0 || inSection) && /*#__PURE__*/React.createElement("div", {
-      className: "bk-m-tap bk-m-tap--prev",
-      onClick: () => stepMobile(-1)
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "bk-m-tap bk-m-tap--next",
-      onClick: () => stepMobile(1)
-    }), /*#__PURE__*/React.createElement("div", {
+    }, "\xB7 ", pg.crumb ? pg.crumb + " " + pg.folio : pg.folio, " \xB7") : null)), /*#__PURE__*/React.createElement("div", {
       className: "bk-m-nav"
     }, /*#__PURE__*/React.createElement("button", {
       className: "bk-m-btn",
