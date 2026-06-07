@@ -134,7 +134,7 @@ body {
 .bk-tab:hover { width: 34px; }
 .bk-tab.on { width: 38px; background: var(--tab); color: #F7F0E1; border-left-color: var(--tab); }
 /* hide the thumb-index on mobile, where the book uses its flat fallback */
-@media (max-width: 820px) { .bk-thumbtabs { display: none; } }
+@media (max-width: 1024px) { .bk-thumbtabs { display: none; } }
 
 /* ============================================================
    PAGE
@@ -705,6 +705,30 @@ body {
 .bk-mobile .bk-figure { min-height: 150px; }
 
 /* ============================================================
+   TABLET — single-page reader at larger canvas (600px–1024px)
+   Phone gets the base .bk-mobile rules above.
+   Tablet gets bigger padding, larger type, restored 2-col layouts.
+   ============================================================ */
+@media (min-width: 600px) and (max-width: 1024px) {
+  .bk-m-page    { padding: 40px 44px 120px; }
+  .bk-m-top     { padding: 16px 28px; }
+  .bk-m-nav     { padding: 18px 28px 26px; }
+  .bk-m-btn     { width: 56px; height: 56px; }
+  .bk-m-label   { font-size: 11px; }
+  /* larger body type on tablet canvas */
+  .bk-mobile .bk-body      { font-size: 17px; line-height: 1.78; }
+  .bk-mobile .bk-lede      { font-size: 20px; }
+  .bk-mobile .bk-standfirst { font-size: 22px; }
+  .bk-mobile .bk-note      { font-size: 16px; }
+  /* restore 2-column layouts that phone collapses to 1 */
+  .bk-mobile .bk-metrics   { grid-template-columns: 1fr 1fr; gap: 0; }
+  .bk-mobile .bk-dodont    { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .bk-mobile .bk-figure    { min-height: 220px; }
+  /* larger nav buttons for tablet fingers */
+  .bk-m-btn svg { width: 22px; height: 22px; }
+}
+
+/* ============================================================
    ADDED PAGES — plates, praise, about, cutting-room, CV
    (ported from the design system; --bk-accent → --bk-ember)
    ============================================================ */
@@ -825,7 +849,7 @@ body {
 .bk-menu__sub { font-family: var(--bk-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bk-ember); white-space: nowrap; }
 
 /* on mobile the menu button lives in the top bar (.bk-m-jump), so hide the fixed desktop pill */
-@media (max-width: 820px) { .bk-menu-btn { display: none; } }
+@media (max-width: 1024px) { .bk-menu-btn { display: none; } }
 
 /* About portrait — warm editorial treatment */
 .bk-plate__img image-slot::part(image){ filter: sepia(0.14) contrast(1.03); }
@@ -874,7 +898,7 @@ body {
 .bk-social--invert .bk-social__btn { border-color: rgba(244,236,218,0.45); color: var(--bk-paper); }
 .bk-social--invert .bk-social__btn:hover { background: var(--bk-paper); color: var(--bk-ink); border-color: var(--bk-paper); }
 
-@media (max-width: 820px) { .bk-ilink:hover { gap: 8px; } }
+@media (max-width: 1024px) { .bk-ilink:hover { gap: 8px; } }
 
 /* ============================================================
    PRINTER'S MARK / MONOGRAM — recurring colophon device.

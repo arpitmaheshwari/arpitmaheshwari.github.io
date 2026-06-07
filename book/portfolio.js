@@ -1716,7 +1716,7 @@ function Caret(d) {
 function App() {
   const t = TWEAK_DEFAULTS;
   const setTweak = function () {};
-  const mq = "(max-width: 820px)";
+  const mq = "(max-width: 1024px)";
   const [mobile, setMobile] = useState(() => window.matchMedia(mq).matches);
 
   // ---- location in the IA tree: which deck, which spread index ----

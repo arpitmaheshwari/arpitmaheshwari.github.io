@@ -156,12 +156,21 @@ abbr[title]::before{content:"";position:absolute;bottom:125%;left:50%;transform:
 abbr[title]:hover::after,abbr[title]:focus::after,abbr[title]:active::after{opacity:1;transform:translateX(-50%) scale(1);pointer-events:auto}
 abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{opacity:1;pointer-events:auto}
 
-/* ----- Responsive: tablet + below ----- */
-@media(max-width:1024px){
+/* ----- Responsive: tablet (769px–1024px) ----- */
+@media(min-width:769px) and (max-width:1024px){
   nav{padding:20px 32px}
   .section{padding:80px 32px}
   .thoughts-grid{grid-template-columns:1fr 1fr}
   #hero{padding:100px 32px 48px}
+  .remote-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ----- Responsive: mobile + tablet hamburger (≤900px) ----- */
+@media(max-width:900px){
+  .nav-links{display:none;flex-direction:column;align-items:stretch;position:fixed;top:64px;left:0;right:0;background:rgba(10,10,10,0.97);padding:32px 24px;gap:24px;border-bottom:1px solid var(--border);z-index:99}
+  .nav-links a{display:block;padding:12px 16px;font-size:15px}
+  .nav-links.nav-open{display:flex}
+  .menu-toggle{display:flex}
 }
 
 /* ----- Responsive: mobile (≤768px) ----- */
@@ -169,10 +178,6 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
   nav{padding:16px 20px;gap:8px}
   .nav-logo span{display:none}
   .nav-logo img{width:36px!important;height:36px!important}
-  .nav-links{display:none;flex-direction:column;align-items:stretch;position:fixed;top:64px;left:0;right:0;background:rgba(10,10,10,0.97);padding:32px 24px;gap:24px;border-bottom:1px solid var(--border);z-index:99}
-  .nav-links a{display:block;padding:12px 16px;font-size:15px}
-  .nav-links.nav-open{display:flex}
-  .menu-toggle{display:flex}
   nav.scrolled{padding:14px 24px}
   .nav-cta{padding:8px 16px;font-size:11px;margin-left:auto;margin-right:16px}
   .section{padding:60px 24px}
