@@ -201,7 +201,7 @@ const NDA_CASES = [{
     p: "O2's loyalty programme: rewards from high-street brands — Odeon, M&S, Caffè Nero — surfaced by interest, behaviour and location. Launched in 2011 behind a £6m campaign, it hit 2.6M registrations in year one — 2.5M+ active — and was the only loyalty app with a five-star App Store rating."
   }, {
     h: "Designed it, then built it",
-    p: "Every screen across both products — designer and front-end on the same hands, on mobile web. The reach was national; the craft was getting a carrier-scale account to feel like a single, fast, legible app on a phone."
+    p: "Every screen across both products — designer and front-end on the same hands, on mobile web. A billing number that has to be exactly right. A tap target for a customer with a cracked screen. At four million users, every small decision was being made for a stadium-sized crowd at once."
   }],
   plateNo: "2.1",
   plateCn: "MyO2 self-service + Priority Moments rewards — mobile web",
@@ -262,7 +262,7 @@ const NDA_CASES = [{
     p: "Each recommendation carried a confidence score mapped to one action — act, review, or ignore — never a bare percentage."
   }, {
     h: "Show the reasoning, not just the score",
-    p: "Surfaced why this bid: the signals that drove each call, so a buyer could inspect the recommendation instead of trusting a black box."
+    p: "Surfaced the signals that drove each call — not a tooltip, the actual reasoning — so a buyer could check the model's work the same way they'd check an analyst's."
   }, {
     h: "Override as a first-class action",
     p: "Made overriding the model a logged, first-class action that fed the next eval — corrections became training signal, not rework."
