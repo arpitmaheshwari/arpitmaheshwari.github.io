@@ -32,7 +32,7 @@ const WORK = [{
   desc: "A trust layer — confidence, reasoning, override — that cut campaign planning from two weeks to three hours."
 }, {
   tag: "Org Design · NDA",
-  title: "OrgOS — Operating System for Transparent Organizations",
+  title: "OrgOS — Zero Managers",
   metric: "200",
   desc: "Operating software for a zero-manager, 200-person org — coordination without hierarchy."
 }, {
@@ -285,7 +285,7 @@ const NDA_CASES = [{
   no: "05",
   img: "../assets/visuals/case-orgos.svg",
   tag: "Org Design · NDA",
-  title: "OrgOS — Operating System for Transparent Organizations",
+  title: "OrgOS — Zero Managers",
   standfirst: "A 200-person organisation with zero managers. The brief: software that scales coordination without smuggling a boss back in.",
   meta: [["Role", "Design Lead"], ["Surface", "Internal operating system"], ["Status", "Shipped · under NDA"]],
   context: "A radically transparent, 200-person org run on hallway conversation and spreadsheets — fine at forty, breaking at two hundred. Leading four engineering streams and a PM, I made the flat org legible without imposing a hierarchy. Every feature wanted to grow a boss; the work was refusing that.",
