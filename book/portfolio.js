@@ -916,6 +916,7 @@ function ContactForm() {
 const VERSO = "Arpit Maheshwari";
 function buildBook(ctx) {
   const go = ctx.go; // jump within the spine
+  const jumpTo = ctx.jumpTo || go; // mobile-aware jump
   const enter = ctx.enter; // open a section a level deeper: enter(key, idx)
   const TOC = [{
     n: "—",
@@ -1046,8 +1047,8 @@ function buildBook(ctx) {
     }, TOC.map((tc, i) => /*#__PURE__*/React.createElement("button", {
       className: "bk-toc__item",
       key: i,
-      onClick: () => go(tc.to),
-      onKeyDown: e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(tc.to); } },
+      onClick: () => jumpTo(tc.to),
+      onKeyDown: e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); jumpTo(tc.to); } },
       "aria-label": tc.name
     }, /*#__PURE__*/React.createElement("span", {
       className: "bk-toc__num"
@@ -2015,6 +2016,7 @@ function App() {
   const book = buildBook({
     headline: t.headline,
     go,
+    jumpTo,
     enter
   });
   bookRef.current = book;
