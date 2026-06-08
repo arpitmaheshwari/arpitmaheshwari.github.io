@@ -887,7 +887,10 @@ function patternSpread(p) {
 /* ---- contact form (own state) ------------------------------ */
 function ContactForm() {
   const [email, setEmail] = React.useState("");
+  const [product, setProduct] = React.useState("");
   const [sent, setSent] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState("");
   if (sent) return /*#__PURE__*/React.createElement("div", {
     className: "bk-ok"
   }, "Noted. Your five-minute review arrives within 48 hours.");
@@ -895,21 +898,42 @@ function ContactForm() {
     className: "bk-form",
     onSubmit: e => {
       e.preventDefault();
-      if (email.trim()) setSent(true);
+      if (!email.trim()) return;
+      setLoading(true);
+      setError("");
+      fetch("https://formspree.io/f/xpqednyy", {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: new FormData(e.target)
+      }).then(r => r.json()).then(data => {
+        setLoading(false);
+        if (data.ok) setSent(true);
+        else setError("Something went wrong — please try again.");
+      }).catch(() => {
+        setLoading(false);
+        setError("Could not connect — please try again.");
+      });
     }
   }, /*#__PURE__*/React.createElement("input", {
     type: "email",
+    name: "email",
     required: true,
     placeholder: "you@company.com",
     value: email,
     onChange: e => setEmail(e.target.value)
   }), /*#__PURE__*/React.createElement("input", {
     type: "url",
-    placeholder: "A link to your product (optional)"
-  }), /*#__PURE__*/React.createElement("button", {
+    name: "product",
+    placeholder: "A link to your product (optional)",
+    value: product,
+    onChange: e => setProduct(e.target.value)
+  }), error ? /*#__PURE__*/React.createElement("p", {
+    style: { color: "var(--bk-ember)", fontSize: "12px", margin: "4px 0 0", fontFamily: "var(--bk-mono)" }
+  }, error) : null, /*#__PURE__*/React.createElement("button", {
     type: "submit",
-    className: "bk-btn bk-btn--ghost"
-  }, "Request the teardown \u2192"));
+    className: "bk-btn bk-btn--ghost",
+    disabled: loading
+  }, loading ? "Sending…" : "Request the teardown →"));
 }
 
 /* ---- runheads ---------------------------------------------- */
