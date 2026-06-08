@@ -1450,7 +1450,21 @@ function buildBook(ctx) {
       "aria-label": "Substack — Creative Clarity"
     }, Icon({
       name: "rss"
+    })), /*#__PURE__*/React.createElement("a", {
+      className: "bk-social__btn",
+      href: "https://github.com/arpitmaheshwari/",
+      target: "_blank",
+      rel: "noopener",
+      "aria-label": "GitHub"
+    }, Icon({
+      name: "github"
     }))), /*#__PURE__*/React.createElement("div", {
+      className: "bk-chips",
+      style: { marginTop: 20 }
+    }, STATUS.map((st, i) => /*#__PURE__*/React.createElement("span", {
+      className: "bk-chip",
+      key: i
+    }, st))), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement(Device, {
       label: "fin.",
@@ -1473,14 +1487,6 @@ function buildBook(ctx) {
         marginBottom: 14
       }
     }, "Send a link to your product and I'll record a five-minute review — three concrete improvements, within 48 hours, no strings."), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
-      className: "bk-chips",
-      style: {
-        marginTop: 18
-      }
-    }, STATUS.map((s, i) => /*#__PURE__*/React.createElement("span", {
-      className: "bk-chip",
-      key: i
-    }, s))), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: { marginTop: "auto", textAlign: "center", paddingTop: 16 }
     }, "thanks for reading to the end ♥"))
