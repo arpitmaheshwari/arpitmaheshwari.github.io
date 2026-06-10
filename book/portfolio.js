@@ -1464,7 +1464,7 @@ function buildBook(ctx) {
     }, STATUS.map((st, i) => /*#__PURE__*/React.createElement("span", {
       className: "bk-chip",
       key: i
-    }, st))), /*#__PURE__*/React.createElement("div", {
+    }, st))), /*#__PURE__*/React.createElement("p", { style: { marginTop: 18, fontSize: 12.5, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "Arpit Maheshwari designs the trust layer of AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement(Device, {
       label: "fin.",
