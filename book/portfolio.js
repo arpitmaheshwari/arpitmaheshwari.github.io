@@ -1420,7 +1420,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "The model isn't the problem. It rarely is. Let's talk about what is."), /*#__PURE__*/React.createElement("a", {
+    }, "Your model works. Your users still hesitate. That hesitation is a design problem — and it's the one I solve. Let's talk."), /*#__PURE__*/React.createElement("a", {
       className: "bk-btn",
       href: "https://calendly.com/arpitmaheshwari",
       target: "_blank",
@@ -1464,7 +1464,7 @@ function buildBook(ctx) {
     }, STATUS.map((st, i) => /*#__PURE__*/React.createElement("span", {
       className: "bk-chip",
       key: i
-    }, st))), /*#__PURE__*/React.createElement("p", { style: { marginTop: 18, fontSize: 12.5, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "Arpit Maheshwari designs the trust layer of AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
+    }, st))), /*#__PURE__*/React.createElement("p", { style: { marginTop: 18, fontSize: 12.5, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "I design the trust layer of AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement(Device, {
       label: "fin.",
