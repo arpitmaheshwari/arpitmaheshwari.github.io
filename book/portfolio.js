@@ -1753,7 +1753,7 @@ function App() {
   const readLoc = () => {
     try {
       const s = JSON.parse(localStorage.getItem("bk-loc"));
-      if (s && typeof s.i === "number" && (s.deck === "spine" || s.deck === "cases" || s.deck === "patterns")) return s;
+      if (s && typeof s.i === "number" && (s.deck === "spine" || s.deck === "cases" || s.deck === "patterns")) return { deck: s.deck, i: Math.max(0, Math.floor(s.i)) };
     } catch (e) {}
     return {
       deck: "spine",
@@ -1906,7 +1906,7 @@ function App() {
     animating.current = true;
     setAnim({
       dir: target > l.i ? "next" : "prev",
-      from: l.i,
+      from: Math.min(Math.max(l.i, 0), arr.length - 1),
       to: target
     });
     setTimeout(() => {
@@ -2059,7 +2059,9 @@ function App() {
   const curSpread = Math.min(Math.max(loc.i, 0), deck.length - 1);
 
   // a single desktop page face (used by base spread + flipping leaf)
-  const PageFace = (sp, side) => /*#__PURE__*/React.createElement("div", {
+  const PageFace = (sp, side) => !sp ? /*#__PURE__*/React.createElement("div", {
+    className: "bk-page bk-page--" + side
+  }) : /*#__PURE__*/React.createElement("div", {
     className: "bk-page bk-page--" + side
   }, /*#__PURE__*/React.createElement("div", {
     className: "bk-runhead"
