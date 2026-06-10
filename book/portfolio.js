@@ -1,4 +1,4 @@
-/* book-content.jsx — content model + spread renderers for Creative Clarity.
+/* book-content.jsx — content model + spread renderers for The Trust Layer.
    Exposes window.buildBook(ctx) -> { spine:[7 spreads], sections:{cases,patterns} },
    and window.BOOK_META. ctx = { headline, go, enter }.
 
@@ -992,7 +992,7 @@ function buildBook(ctx) {
       className: "bk-cover"
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-cover__imprint"
-    }, "Creative Clarity \xB7 Vol. I \xB7 MMXXVI"), /*#__PURE__*/React.createElement("div", {
+    }, "The Trust Layer \xB7 Vol. I \xB7 MMXXVI"), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-cover__emblem"
@@ -1030,7 +1030,7 @@ function buildBook(ctx) {
       style: {
         color: "var(--bk-ink-faint)"
       }
-    }, "Creative Clarity"), /*#__PURE__*/React.createElement("div", {
+    }, "The Trust Layer"), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement(Device, {
       label: "the monogram",
@@ -1303,7 +1303,7 @@ function buildBook(ctx) {
       target: "_blank",
       rel: "noopener",
       className: "bk-em"
-    }, "Creative Clarity ", Icon({ name: "external", cls: "bk-icon--sm" })), ". If you want to know how I think before hiring me — this is the fastest way."), /*#__PURE__*/React.createElement("div", {
+    }, "The Trust Layer ", Icon({ name: "external", cls: "bk-icon--sm" })), ". If you want to know how I think before hiring me — this is the fastest way."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note"
@@ -1447,7 +1447,7 @@ function buildBook(ctx) {
       href: "https://arpitmaheshwari.substack.com",
       target: "_blank",
       rel: "noopener",
-      "aria-label": "Substack — Creative Clarity"
+      "aria-label": "Substack — The Trust Layer"
     }, Icon({
       name: "rss"
     })), /*#__PURE__*/React.createElement("a", {
