@@ -95,7 +95,7 @@ const WRITING = [{
   h: "Reading the support tickets myself",
   p: "The cheapest research method nobody on the design team wants to do."
 }];
-const STATUS = ["Available · 4-wk notice", "Founding / Staff / Director", "Remote · GMT+5:30"];
+const STATUS = ["Available · 4 weeks' notice", "Founding / Staff / Director", "Remote · GMT+5:30"];
 
 /* ---- CURRICULUM VITAE (the printable appendix) ---- */
 const CV_SKILLS = ["Model-Layer Design", "Data-Intensive UI", "Design Leadership", "Organizational Design", "Research & Evals", "System Architecture"];
