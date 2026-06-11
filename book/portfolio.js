@@ -893,7 +893,7 @@ function ContactForm() {
   const [error, setError] = React.useState("");
   if (sent) return /*#__PURE__*/React.createElement("div", {
     className: "bk-ok"
-  }, "Noted. Your five-minute review arrives within 48 hours.");
+  }, "Got it — I reply within 48 hours.");
   return /*#__PURE__*/React.createElement("form", {
     className: "bk-form",
     onSubmit: e => {
@@ -924,7 +924,7 @@ function ContactForm() {
   }), /*#__PURE__*/React.createElement("input", {
     type: "url",
     name: "product",
-    placeholder: "A link to your product (optional)",
+    placeholder: "Link to the role or your company (optional)",
     value: product,
     onChange: e => setProduct(e.target.value)
   }), error ? /*#__PURE__*/React.createElement("p", {
@@ -933,7 +933,7 @@ function ContactForm() {
     type: "submit",
     className: "bk-btn bk-btn--ghost",
     disabled: loading
-  }, loading ? "Sending…" : "Request the teardown →"));
+  }, loading ? "Sending…" : "Send me the role →"));
 }
 
 /* ---- runheads ---------------------------------------------- */
@@ -1005,7 +1005,7 @@ function buildBook(ctx) {
       className: "bk-cover__rule"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-cover__sub"
-    }, "Fifteen years designing the half-second where a person decides to believe a machine."), /*#__PURE__*/React.createElement("button", {
+    }, "Fifteen years designing the half-second where a person decides to believe a machine."), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Founding / Staff / Director \xB7 Available \xB7 4 weeks\u2019 notice"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "In a hurry? Skim the classic site \u2192"), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1)
     }, /*#__PURE__*/React.createElement("span", {
@@ -1420,16 +1420,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "Your model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. One seat, full-time: founding, staff, or a director-level trust-layer role. Available, four weeks’ notice."), /*#__PURE__*/React.createElement("a", {
-      className: "bk-btn",
-      href: "https://calendly.com/arpitmaheshwari",
-      target: "_blank",
-      rel: "noopener",
-      style: {
-        marginTop: 20,
-        alignSelf: "flex-start"
-      }
-    }, "Book a 30-min call ", Icon({ name: "arrow-up-right" })), /*#__PURE__*/React.createElement("div", {
+    }, "Your model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. One seat, full-time: founding, staff, or a director-level trust-layer role. Available, four weeks’ notice."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-social",
       style: {
         marginTop: 24
@@ -1476,17 +1467,17 @@ function buildBook(ctx) {
       className: "bk-reveal"
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-kicker"
-    }, "Not ready to talk?"), /*#__PURE__*/React.createElement("h2", {
+    }, "Hiring?"), /*#__PURE__*/React.createElement("h2", {
       className: "bk-title bk-title--m",
       style: {
         margin: "8px 0 10px"
       }
-    }, "Request a free", /*#__PURE__*/React.createElement("br", null), "teardown."), /*#__PURE__*/React.createElement("p", {
+    }, "Send me", /*#__PURE__*/React.createElement("br", null), "the role."), /*#__PURE__*/React.createElement("p", {
       className: "bk-body",
       style: {
         marginBottom: 14
       }
-    }, "Send a link to your AI product. Within 48 hours you’ll get a five-minute Loom with three specific improvements. Free, no follow-up sequence."), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
+    }, "No public email — this form lands straight in my inbox. A line about the role and the stage, or just a link. I reply within 48 hours."), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: { marginTop: "auto", textAlign: "center", paddingTop: 16 }
     }, "thanks for reading to the end ♥"))
