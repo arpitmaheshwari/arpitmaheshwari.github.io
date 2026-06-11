@@ -10,7 +10,7 @@
 <link rel="canonical" href="https://arpitmaheshwari.com/patterns/act-review-ignore.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Act / Review / Ignore Rule — AI Design | Arpit Maheshwari">
-<meta property="og:description" content="A confidence number that doesn't tell the user what to do next is an opinion in percentage points. The rule for turning a score into a decision.">
+<meta property="og:description" content="An unexplained 87% is a shrug with decimals. The rule for resolving any AI score into one of three verbs the user can act on: act, review, or ignore.">
 <meta property="og:url" content="https://arpitmaheshwari.com/patterns/act-review-ignore.html">
 <meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/act-review-ignore-og.png">
 <meta property="og:image:width" content="1200">
@@ -86,59 +86,59 @@
 <main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
 
   <section style="margin-bottom:60px">
-    <p style="font-size:19px;color:var(--ink);line-height:1.7;margin-bottom:20px;font-family:var(--ff-display);font-style:italic">One score, one action.</p>
-    <p style="font-size:16px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">A confidence number that doesn't tell the user what to do next is an opinion in percentage points. Every confidence surface I ship maps to exactly one of three actions — <strong style="color:var(--ink)">act</strong>, <strong style="color:var(--ink)">review</strong>, or <strong style="color:var(--ink)">ignore</strong> — never a bare 87%.</p>
-    <p style="font-size:16px;color:var(--ink-muted);line-height:1.8">This is the rule the four pattern libraries below all serve. Confidence scores, failure states, explainability, and human-in-the-loop are the instruments. This is the contract they enforce: a score the user can act on, not just read.</p>
+    <p style="font-size:19px;color:var(--ink);line-height:1.7;margin-bottom:20px;font-family:var(--ff-display);font-style:italic">One score, one action. The rule every confidence surface I ship has followed since a roomful of traders taught me why.</p>
+    <p style="font-size:16px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">An unexplained 87% is a shrug with decimals. It reports the model's mood and assigns the user all of the work: is 87 high for this kind of call? High enough to spend money on? Higher than my own hunch? While the person does that math, the moment to act expires — and a recommendation nobody acts on rounds down to zero, whatever the model's accuracy says.</p>
+    <p style="font-size:16px;color:var(--ink-muted);line-height:1.8">The rule: a confidence score may never reach the screen alone. It resolves into exactly one of three verbs before the user sees it — <strong style="color:var(--ink)">act</strong>, <strong style="color:var(--ink)">review</strong>, or <strong style="color:var(--ink)">ignore</strong>.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">1. The score commits to an action — not a number</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">A bare percentage pushes the decision back onto the user: <em>"87% — now you figure out whether that's good enough."</em> That's the algorithm refusing to take a position. The rule flips it: the model has to translate its own certainty into one of three recommended moves, and the interface states the move before — or instead of — the number.</p>
+    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">1. The score resolves to a verb — not a number</h2>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px"><strong style="color:var(--ink)">Act.</strong> Confidence clears the threshold where the cost of checking exceeds the cost of being wrong. The interface makes acting one motion. <strong style="color:var(--ink)">Review.</strong> The model has a position but not the standing to hold it alone — the interface opens the reasoning, not the spinner. <strong style="color:var(--ink)">Ignore.</strong> Below the floor, a recommendation is noise wearing a number; the interface says so and steps aside.</p>
     <div style="overflow-x:auto;margin:24px 0">
       <table style="width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-muted)">
         <thead>
           <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Confidence band</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Action</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">What the interface does</th></tr>
         </thead>
         <tbody>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong style="color:var(--ink)">High</strong></td><td style="padding:10px 12px">Act</td><td style="padding:10px 12px">Recommends a default the user can accept in one move — with an undo always in reach.</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong style="color:var(--ink)">Medium</strong></td><td style="padding:10px 12px">Review</td><td style="padding:10px 12px">Surfaces the reasoning and routes the call to a human. The system declines to decide alone.</td></tr>
-          <tr><td style="padding:10px 12px"><strong style="color:var(--ink)">Low</strong></td><td style="padding:10px 12px">Ignore</td><td style="padding:10px 12px">Withholds the recommendation rather than guess, and offers the manual path instead.</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong style="color:var(--ink)">High</strong></td><td style="padding:10px 12px">Act</td><td style="padding:10px 12px">Offers a default the user accepts in one motion, undo always in reach.</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong style="color:var(--ink)">Medium</strong></td><td style="padding:10px 12px">Review</td><td style="padding:10px 12px">Opens the reasoning and hands the call to a person. The system declines to decide alone.</td></tr>
+          <tr><td style="padding:10px 12px"><strong style="color:var(--ink)">Low</strong></td><td style="padding:10px 12px">Ignore</td><td style="padding:10px 12px">Holds the recommendation back rather than guess, and points to the manual path.</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8">Where each band starts is a domain decision, set with the team and calibrated against real outcomes — not a universal cutoff. The rule isn't the numbers. The rule is that every score lands on exactly one action.</p>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8">Where each band starts is a product decision someone owns, argues for, and revisits against real outcomes — that ownership is the point a raw score lets nobody take. The rule isn't the cutoffs. The rule is that every score lands on exactly one verb.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">2. Every "review" needs a reasoning surface</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">"Review" is the dangerous band — it asks a human to make a call without saying why the system is unsure. So the moment a score lands on <em>review</em>, the interface owes the user the model's reasoning: the handful of signals that drove the score, in language the person can check against their own judgment.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">Even when the user overrules the model, they should understand <em>how</em> it got there. A review without a reason is just a shrug with extra steps. (See the <a href="./ml-explainability.html" style="color:var(--gold);text-decoration:none">ML Explainability</a> and <a href="./confidence-scores.html" style="color:var(--gold);text-decoration:none">Confidence Score</a> patterns for the surfaces that do this.)</p>
+    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">2. "Review" forces the reasoning surface to exist</h2>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">A verb of <em>review</em> is empty without something to review. So the moment a score lands there, the interface owes the user the handful of signals that drove it, in language the person can test against their own judgment. Build the rule and you have to build the reasoning panel; there is no skipping it.</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">Even when the user overrules the model, they should see <em>how</em> it got there. A review without a reason is a shrug with extra steps. (See the <a href="./ml-explainability.html" style="color:var(--gold);text-decoration:none">ML Explainability</a> and <a href="./confidence-scores.html" style="color:var(--gold);text-decoration:none">Confidence Score</a> patterns for the surfaces that do this.)</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">3. Every action is reversible — the override loop</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">An <em>act</em> the user can't undo isn't trust — it's a bet they didn't agree to make. So the third part of the rule: every recommended action carries a first-class override. Not a buried setting; the override path is visible at the point of decision.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">And every override is signal. When a user rejects a high-confidence recommendation, that's the most valuable feedback the system gets — it feeds the next round of calibration. Designing the override well is how the trust layer keeps earning its confidence bands instead of assuming them. (This is the <a href="./human-in-loop.html" style="color:var(--gold);text-decoration:none">Human-in-Loop</a> pattern in practice.)</p>
+    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">3. The override stops being a failure mode</h2>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">An <em>act</em> the user can't undo is a bet they never agreed to make. So every recommended action carries a first-class override — not a buried setting, but a path visible at the point of decision.</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">A user correcting the model inside a review state is not the system breaking; it is the training data the next version needs. Log it, feed it back, and show people their fingerprints on next week's calls. The first time someone watches their own pushback sharpen the model, the override flips from a fight into coaching. (This is the <a href="./human-in-loop.html" style="color:var(--gold);text-decoration:none">Human-in-Loop</a> pattern in practice.)</p>
   </section>
 
   <!-- MID-ARTICLE CTA -->
   <div class="pullquote-card">
     <p class="pullquote-card-text">Your AI ships a number and hopes the user knows what to do with it?</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">That gap — between what the model knows and what a person will stake a decision on — is the work. I've designed this rule into production AI products across AdTech, FinTech, and EdTech. Let's apply it to yours.</p>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">The gap between what the model knows and what a person will stake a decision on is the work. I've built this rule into production AI products across AdTech, FinTech, and EdTech. Let's apply it to yours.</p>
     <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="mid-article-pattern" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:13px;letter-spacing:0.03em;border-radius:2px;text-decoration:none;transition:background 0.3s,transform 0.2s" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Book a 30-min call <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
   </div>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px">The rule in one line</h2>
-    <p style="font-size:16px;color:var(--ink-muted);line-height:1.8">If a score on your screen doesn't bind to <strong style="color:var(--ink)">act</strong>, <strong style="color:var(--ink)">review</strong>, or <strong style="color:var(--ink)">ignore</strong> — with a reason for every review and an override for every act — it's decoration. Delete it or finish it.</p>
+    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px">Where it has run</h2>
+    <p style="font-size:16px;color:var(--ink-muted);line-height:1.8">Media buying: planning fell from two weeks to three hours once buyers acted instead of re-deriving the model. PE screening: 60% faster across 42 deals in 90 days. Technical diligence: three-week cycles to four days. Different stakes, same three verbs. If a score on your screen doesn't bind to <strong style="color:var(--ink)">act</strong>, <strong style="color:var(--ink)">review</strong>, or <strong style="color:var(--ink)">ignore</strong>, with a reason for every review and an override for every act, it's decoration. Delete it or finish it.</p>
   </section>
 
   <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:80px">
     <h3 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:16px">See This Rule In Action</h3>
-    <p style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px">This rule was forged on, and shows up across, these case studies:</p>
+    <p style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px">A roomful of traders taught me this rule. It now runs across these case studies:</p>
     <ul style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
-      <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> media-buyer recommendations bound to an action, with reasoning and override built in.</li>
-      <li style="margin-bottom:12px"><strong><a href="../case-studies/fintech.html" style="color:var(--gold);text-decoration:none">AI-Assisted Private Equity Investing</a>:</strong> analyst scores that route to review with the model's reasoning, not a bare verdict.</li>
+      <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> each buyer recommendation resolves to one verb, with named reasoning and an override that trains next week's model.</li>
+      <li style="margin-bottom:12px"><strong><a href="../case-studies/fintech.html" style="color:var(--gold);text-decoration:none">AI-Assisted Private Equity Investing</a>:</strong> a score that opens its own reasoning when it hits review, never a bare verdict the analyst has to take on faith.</li>
     </ul>
   </section>
 

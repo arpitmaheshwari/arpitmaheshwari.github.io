@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ML Explainability: Why the Algorithm Decided</title>
-<meta name="description" content="ML explainability UX patterns. Designing the &quot;why&quot; surface so non-technical users can trust algorithmic decisions in high-stakes products.">
+<meta name="description" content="ML explainability UX patterns. Designing the &quot;why&quot; surface so a non-technical person can act on an algorithmic decision without a stats degree.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="canonical" href="https://arpitmaheshwari.com/patterns/ml-explainability.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ML Explainability Patterns | Arpit Maheshwari">
-<meta property="og:description" content="Patterns for explaining machine learning model decisions to users.">
+<meta property="og:description" content="Patterns for showing a person why the machine decided, at a depth they can use.">
 <meta property="og:url" content="https://arpitmaheshwari.com/patterns/ml-explainability.html">
 <meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/ml-explainability-og.png">
 <meta property="og:image:width" content="1200">
@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Arpit Maheshwari Portfolio">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ML Explainability Patterns">
-<meta name="twitter:description" content="Five patterns for translating model logic into user-intelligible narratives.">
+<meta name="twitter:description" content="Five patterns for turning model logic into something a person can read and act on.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0A0A'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='300' fill='%23D4A85E'%3EAM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,14 +72,14 @@
       <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin:0">ML Explainability Patterns</h1>
       <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">Experimental</span>
     </div>
-    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · Showing the Why · Last updated May 2026</p>
+    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · Showing the Why · Last updated June 2026</p>
   </div>
 </div>
 
 <main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
 
   <section style="margin-bottom:60px">
-    <p style="font-size:17px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px;font-family:var(--ff-display);font-style:italic">The difference between a recommendation and a decision is accountability. A recommendation you can trace back to evidence is one you'll stand behind. One you can't is one you'll override until you build your own process instead. These patterns are about making the model's reasoning auditable — not complete, not technical, but auditable enough to act on.</p>
+    <p style="font-size:17px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px;font-family:var(--ff-display);font-style:italic">A recommendation you can trace back to evidence is one you'll stand behind. One you can't is one you'll override — and then you rebuild your own process beside it. These patterns show a person why the machine decided. Not the full math, not the model internals. Just enough of the reasoning to act on it without a stats degree.</p>
     
     <!-- Abstract UI Diagram: Feature Importance -->
     <div style="margin: 40px 0; padding: 40px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;">
@@ -131,53 +131,53 @@
 
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">1. Feature Importance (What Mattered Most)</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Show the top 3–5 features that most influenced the decision, ranked by importance. "This lead scored high because: (1) 85% match on job title [importance: 45%], (2) Company size in target range [importance: 30%], (3) Recent activity on site [importance: 15%]."</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:8px"><strong>Strengths:</strong> Simple to implement; users can verify; builds intuition over time.</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Weaknesses:</strong> Doesn't explain <abbr title="How changes in one input variable affect the impact of another input variable on the decision—for example, job title and industry may interact, making both more important together than separately" style="border-bottom:1px dotted var(--ink);cursor:help">feature interactions</abbr>; misleading if features are correlated.</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Name the top 3–5 features that drove the call, ranked. "This lead scored high because: (1) 85% match on job title [importance: 45%], (2) Company size in target range [importance: 30%], (3) Recent activity on site [importance: 15%]." The person reads three reasons, not a black box.</p>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:8px"><strong>Strengths:</strong> Cheap to build. The user can check the work. Repeated exposure trains their intuition.</p>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Weaknesses:</strong> It hides <abbr title="How changes in one input variable affect the impact of another input variable on the decision—for example, job title and industry may interact, making both more important together than separately" style="border-bottom:1px dotted var(--ink);cursor:help">feature interactions</abbr>. When features are correlated, the ranking lies.</p>
   </section>
 
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">2. Counterfactual Reasoning ("What If")</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Show what would change the decision. "The system predicted this lead is high-value. If you had [changed one thing], the prediction would drop to medium-value." Or: "You're 3 steps away from the next tier. Here's what would get you there."</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px"><abbr title="A hypothetical scenario showing what would change if one input variable were different, revealing causal relationships and decision boundaries" style="border-bottom:1px dotted var(--ink);cursor:help">Counterfactuals</abbr> are powerful because users immediately understand the causal story. They see the decision as changeable (not inevitable) and know what to modify.</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>When counterfactuals shine:</strong> Any system where users can take action — sales (close a deal), education (improve a score), recommendations (get better suggestions).</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Show the one input that flips the call. "The system rated this lead high-value. Change [one thing] and it drops to medium-value." Or: "You're 3 steps away from the next tier. Here's what closes the gap."</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">A <abbr title="A hypothetical scenario showing what would change if one input variable were different, revealing causal relationships and decision boundaries" style="border-bottom:1px dotted var(--ink);cursor:help">counterfactual</abbr> lands because the person reads it as a causal story, not a verdict. The decision stops feeling fixed. They know exactly what lever to pull.</p>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Choose it when the user can act:</strong> sales (close a deal), education (lift a score), recommendations (steer toward better picks).</p>
   </section>
 
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">3. Comparative Explanation ("How It Compares")</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Compare the recommended item to other options. "I recommended Option A. It scores higher on [dimension 1] but lower on [dimension 2] than Option B."</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">Comparisons are easier to understand than absolute scores. Users see the trade-off (Option A is riskier but higher-upside vs. Option B is safer).</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Set the pick against its rivals. "I recommended Option A. It beats Option B on [dimension 1] and loses to it on [dimension 2]."</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">A person reads a comparison faster than an absolute score. The trade-off is right there: Option A is riskier with more upside, Option B is the safe call.</p>
   </section>
 
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">4. Reasoning Path ("Step by Step")</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Trace the decision-making chain. "To predict conversion, I first checked industry (SaaS), then company size (50–200), then engagement (high), then estimated conversion as 73%."</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Mimics how a human analyst would reason through the problem. Users see the branching logic.</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Works for:</strong> <abbr title="Machine learning models like decision trees, random forests, and gradient boosting that split data into interpretable branches, making decisions traceable step-by-step" style="border-bottom:1px dotted var(--ink);cursor:help">Tree-based models</abbr>, decision trees, rule-based systems. <strong>Breaks for:</strong> <abbr title="Deep learning models with multiple layers of interconnected nodes whose decision logic is mathematically complex and not easily interpretable by humans" style="border-bottom:1px dotted var(--ink);cursor:help">Neural networks</abbr> (no interpretable path; forcing a narrative is hand-waving).</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Walk the chain in order. "To predict conversion, I checked industry (SaaS), then company size (50–200), then engagement (high), then landed on 73%."</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">It reads the way a human analyst would talk through the case. The person follows the branch, step by step.</p>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Works for:</strong> <abbr title="Machine learning models like decision trees, random forests, and gradient boosting that split data into interpretable branches, making decisions traceable step-by-step" style="border-bottom:1px dotted var(--ink);cursor:help">tree-based models</abbr>, decision trees, rule-based systems — anything with a real path to trace. <strong>Breaks for:</strong> <abbr title="Deep learning models with multiple layers of interconnected nodes whose decision logic is mathematically complex and not easily interpretable by humans" style="border-bottom:1px dotted var(--ink);cursor:help">neural networks</abbr>. There's no path to show, and inventing one is hand-waving with a UI.</p>
   </section>
 
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">5. Confidence + Uncertainty Bands</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Show not just the prediction, but the range of uncertainty. "Predicted revenue: $45K (±$15K). Actual revenue is likely between $30K–$60K based on past prediction errors."</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">Uncertainty bands are honest. They communicate: "The model thinks it's $45K, but I'm not 100% sure. Here's the range where it probably lands." This pattern doesn't explain <em>why</em>; it explains <em>how much to trust</em>.</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Ship the prediction with its range. "Predicted revenue: $45K (±$15K). Past errors put the real number between $30K–$60K."</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">A band is an honest surface. It says: the model's best guess is $45K, it isn't 100% sure, and here's the spread it usually misses by. This one doesn't explain <em>why</em> — it tells the person <em>how hard to lean</em>.</p>
   </section>
 
   <!-- MID-ARTICLE CTA -->
   <div class="pullquote-card">
-    <p class="pullquote-card-text">Shipping ML without explanation?</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">Your users won't trust what they can't verify. I've designed explainability surfaces for fintech analysts and program managers across $2B+ in decision value. Let's compare notes under NDA.</p>
+    <p class="pullquote-card-text">Shipping ML with no "why" surface?</p>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">A person won't bet on what they can't check. I've built the explanation surface for fintech analysts and program managers across $2B+ in decision value. Bring yours and we'll compare notes under NDA.</p>
     <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="mid-article-pattern" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:13px;letter-spacing:0.03em;border-radius:2px;text-decoration:none;transition:background 0.3s,transform 0.2s" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Book a 30-min call <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
   </div>
 
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px">Implementation Checklist</h2>
     <ul style="font-size:15px;color:var(--ink-muted);line-height:1.8;padding-left:24px">
-      <li style="margin-bottom:10px"><strong>Choose explanation type</strong> based on domain — feature importance, counterfactual, or comparative.</li>
-      <li style="margin-bottom:10px"><strong>Compute explanations:</strong> Tree models = built-in importance; neural networks = <abbr title="LIME (Local Interpretable Model-agnostic Explanations) and SHAP (SHapley Additive exPlanations) are mathematical methods that explain neural network predictions by attributing each decision to individual input features" style="border-bottom:1px dotted var(--ink);cursor:help">LIME/SHAP</abbr>; rule-based = trace rules.</li>
-      <li style="margin-bottom:10px"><strong>Translate to plain language:</strong> "Feature X has importance 0.34" → "Job title was the strongest signal (34% of the decision)."</li>
-      <li style="margin-bottom:10px"><strong>Test with users:</strong> Can they explain <em>why</em> the model decided? Do they trust it more?</li>
-      <li style="margin-bottom:10px"><strong>Avoid fake explanations:</strong> Don't invent a narrative if you don't understand the model's logic.</li>
-      <li style="margin-bottom:10px"><strong><abbr title="A design pattern where complex information is hidden initially to reduce cognitive load, then revealed on user action to avoid overwhelming them" style="border-bottom:1px dotted var(--ink);cursor:help">Progressive disclosure</abbr>:</strong> Simple by default (top 3 features); detailed on click.</li>
+      <li style="margin-bottom:10px"><strong>Pick the explanation type</strong> from the domain — feature importance, counterfactual, or comparative.</li>
+      <li style="margin-bottom:10px"><strong>Compute it:</strong> tree models give you importance for free; neural networks need <abbr title="LIME (Local Interpretable Model-agnostic Explanations) and SHAP (SHapley Additive exPlanations) are mathematical methods that explain neural network predictions by attributing each decision to individual input features" style="border-bottom:1px dotted var(--ink);cursor:help">LIME/SHAP</abbr>; rule-based systems trace the rules.</li>
+      <li style="margin-bottom:10px"><strong>Say it in plain words:</strong> "Feature X has importance 0.34" becomes "Job title was the strongest signal — 34% of the decision."</li>
+      <li style="margin-bottom:10px"><strong>Watch a real user read it:</strong> can they say <em>why</em> the model decided? Do they lean on it more after?</li>
+      <li style="margin-bottom:10px"><strong>Don't fake it:</strong> if you can't follow the model's logic, don't write a story that pretends you can.</li>
+      <li style="margin-bottom:10px"><strong><abbr title="A design pattern where complex information is hidden initially to reduce cognitive load, then revealed on user action to avoid overwhelming them" style="border-bottom:1px dotted var(--ink);cursor:help">Progressive disclosure</abbr>:</strong> top 3 features by default, the rest one click away.</li>
     </ul>
   </section>
 
@@ -203,15 +203,15 @@
   <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:80px">
     <h3 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:16px">See This Pattern In Action</h3>
     <ul style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
-      <li style="margin-bottom:12px"><strong><a href="../case-studies/fintech.html" style="color:var(--gold);text-decoration:none">AI-Assisted Due Diligence</a>:</strong> Explaining why the model ranked an investment opportunity.</li>
-      <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> Showing which factors influenced media buyer recommendations.</li>
+      <li style="margin-bottom:12px"><strong><a href="../case-studies/fintech.html" style="color:var(--gold);text-decoration:none">AI-Assisted Due Diligence</a>:</strong> the surface that let analysts pull a score apart and see why the model ranked a deal.</li>
+      <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> naming the exact signals behind every media-buyer recommendation.</li>
     </ul>
   </section>
 
   <!-- NEWSLETTER SIGNUP -->
   <section style="background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;padding:32px;margin-bottom:60px">
     <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:12px">Get AI design patterns in your inbox</div>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">One pattern per month with tradeoffs and code examples.</p>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">One pattern a month. The tradeoffs I paid for, plus code.</p>
     <form action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank" style="display:flex;gap:8px;flex-wrap:wrap">
       <input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink);font-family:var(--ff-sans);font-size:14px">
       <button type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="padding:14px 24px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s">Subscribe</button>
