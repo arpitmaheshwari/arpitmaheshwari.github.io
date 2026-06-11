@@ -14,65 +14,65 @@ const WORK = [{
   tag: "EdTech · Non-NDA",
   title: "PTC University — Learning Connector",
   metric: "$1M/yr",
-  desc: "Led the strategic consolidation of five siloed platforms across eleven languages. The design work was navigating org-chart politics; the output was a single, unified system."
+  desc: "Five learning platforms, one survivor, eleven languages. Drawing the screens was easy; the case for retiring four products was the work that mattered."
 }, {
   tag: "Telecom · Non-NDA",
   title: "Telefónica MyO2 & Priority Moments",
   metric: "4M+",
-  desc: "Designed and built every screen of MyO2 (4M+ users) and Priority Moments — O2 UK, mobile web."
+  desc: "Two O2 UK products at national scale. Every screen drawn by me, then coded by me — mobile web."
 }, {
   tag: "FinTech · NDA",
   title: "AI-Assisted Private Equity Investing",
   metric: "−60%",
-  desc: "Explainability that turned an AI risk model PE analysts ignored into the firm's primary tool."
+  desc: "Analysts are paid to doubt confident numbers, so I held the launch until the score could explain itself."
 }, {
   tag: "AdTech · NDA",
   title: "Programmatic Advertising Platform",
   metric: "2wk→3hr",
-  desc: "A trust layer — confidence, reasoning, override — that cut campaign planning from two weeks to three hours."
+  desc: "Traders watched the algorithm win and still played hunches. The fix was the interface, not the model."
 }, {
   tag: "Org Design · NDA",
   title: "OrgOS — Zero Managers",
   metric: "200",
-  desc: "Operating software for a zero-manager, 200-person org — coordination without hierarchy."
+  desc: "Eight modules doing the coordination work a management layer usually does — 200 people, zero managers."
 }, {
   tag: "VC/PE · NDA",
   title: "Technical Due Diligence Platform",
   metric: "3wk→4d",
-  desc: "AI scoring of startup technical risk — VC/PE due diligence from three weeks to four days."
+  desc: "Partners stake millions on claims they can't verify. Extracting the signals was the model's job; trusting it was theirs."
 }];
 const PRINCIPLES = [{
-  h: "I design for business outcomes, not just user friction.",
-  p: "I read the evals and sit in on customer calls before I open a design file. I shape what gets measured, then I ship the front-end."
+  h: "I design for outcomes, not just friction.",
+  p: "By Friday of week one I've read your evals and sat in your customer calls. I shape what gets measured, then I ship the front-end under my own name in the PR."
 }, {
   h: "I design the wrong-answer screen first.",
-  p: "If I don't know how the system fails gracefully, the happy path doesn't matter. Trust is built in the error states."
+  p: "No AI feature ships until I've watched someone fail to use it. If I can't draw how the system fails, the happy path doesn't matter — trust is built in the error states."
 }, {
   h: "The org chart is the hardest wireframe.",
-  p: "Most UX problems are symptoms of misaligned internal teams, so I design for the organization before the interface. Then I write the system down, so the next designer inherits more than my taste."
+  p: "Most UX problems are misaligned teams wearing UX clothes, so I design the organization before the interface. Then I write the system down — the next designer should inherit more than my taste."
 }, {
   h: "Override is a feature, not a failure.",
-  p: "Every time a user corrects the model, they reveal something the training data didn't capture. I design override mechanisms as first-class interactions — logged, visible, and fed back into the next eval."
+  p: "A user correcting the model is the training data the next version needs. I design the override as a first-class move — logged, visible, fed back, so people see their fingerprints on next week's calls."
 }, {
   h: "I read the data before I open Figma.",
-  p: "SQL queries, support tickets, model evals — I want the raw signal before the summary. Design decisions grounded in actual data survive reviews; ones made from instinct don't."
+  p: "SQL, raw support tickets, model evals — I want the signal before the summary. Decisions grounded in the data survive the review; the ones I made on instinct don't."
 }];
 const PATTERNS = [{
   k: "gauge",
   h: "Confidence Score Patterns",
-  p: "How much certainty to show, and the threshold at which a number earns the right to drive a business decision."
+  p: "Five ways to put a number on certainty, and when each one earns or burns the trust to drive a decision."
 }, {
   k: "alert",
   h: "Failure States",
-  p: "The designed moment the model is wrong — preventing user abandonment by handling errors gracefully."
+  p: "What the screen says when the model can't deliver — and how saying it honestly keeps users from leaving."
 }, {
   k: "branch",
   h: "Explainability",
-  p: "\u201CWhy this?\u201D surfaces that turn a black-box output into a reviewable, business-justified argument."
+  p: "Showing a non-technical person why the machine decided, at a depth they can use without a stats degree."
 }, {
   k: "loop",
   h: "Human-in-the-Loop",
-  p: "Where the person overrides the system — creating a workflow that scales without increasing overhead."
+  p: "Keeping the person in command when the stakes outgrow the model's confidence."
 }];
 const WRITING = [{
   d: "2026 · Essay",
@@ -137,25 +137,25 @@ const CASES = {
     no: "01",
     tag: "EdTech · Non-NDA",
     title: "PTC\u00A0University — Learning Connector",
-    standfirst: "Five overlapping learning platforms, eleven languages, one furious procurement line. The redesign was the easy part.",
+    standfirst: "I made the call to collapse five learning platforms into one. The real deliverable was the political case for killing four products.",
     meta: [["Role", "Lead Product Designer"], ["Span", "2014–2019 · two squads"], ["Surface", "Web LMS · 11 languages"], ["Result", "Shipped · in production"]],
-    context: "PTC had grown its training into five separate platforms — Learning Connector, LearningExchange, Precision LMS, Digital Guides and IoTU — each with its own login, its own taxonomy, its own translation pipeline. Learners bounced between them; localisation teams duplicated the same work across nine languages. The brief on my desk read \u201Credesign the LMS.\u201D The real problem was that there were five of them.",
+    context: "PTC sold software on perpetual licenses: pay once, own forever. Around it sat five learning platforms — Learning Connector, LearningExchange, Precision LMS, Digital Guides, IoTU — five logins, five lines on an invoice. Three weeks in the customer-success recordings: nothing was wrong with the navigation. The brief said \u201Credesign the UX.\u201D I argued the contract was the broken interface.",
     fig1: {
       no: "1.1",
       label: "before — five disconnected platforms, five sign-in screens"
     },
-    tension: "Every portal had a VP, a budget line, and a reason why it was 'special'. Consolidation meant telling four executives their product was now a tab. The real design work was a political case made in the language of risk and P&L—I couldn't draw my way past the org chart.",
+    tension: "Perpetual licenses meant no recurring revenue, so stale content, so engineers learned on YouTube. The CRO had 60% of revenue on perpetual. Consolidation meant telling four executives their product was now a tab — a case made in P&L, not pixels.",
     note1: "the org chart was the real wireframe",
     decisionLede: "Three decisions did the load-bearing work:",
     moves: [{
       h: "One data model before one UI",
       p: "Rebuilt the content model first — one skill graph every platform mapped onto — so merging was a data migration, not a turf war."
     }, {
-      h: "Localisation as a default state",
-      p: "Made localisation the baseline — nine languages, built to scale to eleven — so no region could fork off."
+      h: "Localisation as an architecture call",
+      p: "Built knowing German and Russian run 30% longer: short labels, shallow hierarchy, no text in images."
     }, {
       h: "A switch-off ladder",
-      p: "Sequenced the four shutdowns so each VP watched their users land softly before their portal went dark."
+      p: "Sequenced the four shutdowns so each VP watched users land softly before the portal went dark."
     }],
     fig2: {
       no: "1.2",
@@ -190,18 +190,18 @@ const NDA_CASES = [{
   redacted: false,
   ph: "MyO2 account dashboard + Priority Moments rewards — O2 UK mobile web",
   title: "Telefónica MyO2 & Priority Moments",
-  standfirst: "Two consumer products for O2 — the UK brand of Telefónica, one of Britain's largest carriers. I designed every screen, then built it. Mobile web.",
+  standfirst: "Drawn by me, then coded by me — every screen of two O2 UK products on mobile web, at a scale where rounding errors have populations.",
   meta: [["Role", "Designer + Front-end"], ["Client", "O2 UK (Telefónica) · via Equal Experts"], ["Status", "Shipped · public"]],
-  context: "Designed and built. Not designed, then handed off. Every screen of both products — MyO2 and Priority Moments — on mobile web, at national scale.",
+  context: "I owned both sides of the handoff: drew the screens, then wrote the front-end that shipped them. MyO2 and Priority Moments, mobile web, national scale.",
   moves: [{
-    h: "MyO2 — the account, self-serve",
-    p: "O2 UK's official self-service app: check your data, calls and texts, view and pay bills, change tariff, see upgrades, manage the whole account in one place. Designed and built to make everyday tasks self-serve — and cut call-centre volume. It went on to serve more than four million users."
+    h: "MyO2 — the whole account, alone",
+    p: "O2 UK's self-service app: data and usage, the bill, a tariff change, an upgrade — the whole account without dialing anyone. The math is blunt: every self-service task that lands is a contact-centre call that never happens. It went on to serve more than four million users."
   }, {
-    h: "Priority Moments — a reason to stay",
-    p: "O2's loyalty programme: rewards from high-street brands — Odeon, M&S, Caffè Nero — surfaced by interest, behaviour and location. Launched in 2011 behind a £6m campaign, it hit 2.6M registrations in year one — 2.5M+ active — and was the only loyalty app with a five-star App Store rating."
+    h: "Priority Moments — a reason to open it",
+    p: "O2's loyalty programme: rewards from Odeon, M&S, Caffè Nero, matched by interest, behaviour and location. Launched July 2011 behind a £6m campaign, it hit 2.6M registrations in year one — 2.5M+ active — the only loyalty app with a five-star App Store rating."
   }, {
-    h: "Designed it, then built it",
-    p: "Every screen across both products — designer and front-end on the same hands, on mobile web. A billing number that has to be exactly right. A tap target for a customer with a cracked screen. At four million users, every small decision was being made for a stadium-sized crowd at once."
+    h: "Same designer, same stack, opposite job",
+    p: "MyO2 is a utility; Priority is a habit. Both on mobile web under a top UK brand, where small things stop being small — a tap target, a spinner, an exact billing figure lands on a stadium at once. The outcome figures are public, reported by O2 and Equal Experts. The claim is the work."
   }],
   plateNo: "2.1",
   plateCn: "MyO2 self-service + Priority Moments rewards — mobile web",
@@ -222,18 +222,18 @@ const NDA_CASES = [{
   img: "../assets/visuals/case-fintech.svg",
   tag: "FinTech · NDA",
   title: "AI-Assisted Private Equity Investing",
-  standfirst: "A risk model the analysts wouldn't touch — until it learned to show its work.",
+  standfirst: "I held the release until the model could defend its own scores. Then screening sped up 60%.",
   meta: [["Role", "Lead Product Designer"], ["Surface", "AI for private-equity investing"], ["Status", "Shipped · under NDA"]],
-  context: "A risk model nobody would use. Not because it was wrong. Because it never showed its work.",
+  context: "Analysts are paid to doubt confident numbers. A score they can't cross-examine is a liability with a UI.",
   moves: [{
-    h: "Explain before score",
-    p: "Put the three documents that moved the number next to the number — proving the business value before the verdict, not buried behind it."
+    h: "Explain before the verdict",
+    p: "An “explain this score” surface: pull a rating into its signals, challenge the weighting, watch it answer — sources beside the number."
   }, {
     h: "Design the decline",
-    p: "Shipped a visible “I'm not sure about this one” state so the model could refuse to bluff, preserving user trust."
+    p: "A visible “I'm not sure about this one” state, so the model could refuse to bluff instead of guessing."
   }, {
     h: "Disagreement on record",
-    p: "Made “I disagree” a first-class, logged action that fed the next eval."
+    p: "A logged override when the analyst disagreed — fed the next eval."
   }],
   plateNo: "3.1",
   plateCn: "explanation drawer — output traced to source documents",
@@ -254,18 +254,18 @@ const NDA_CASES = [{
   img: "../assets/visuals/case-adtech.svg",
   tag: "AdTech · NDA",
   title: "Programmatic Advertising Platform",
-  standfirst: "Media buyers ignored the algorithm — until they could see why it recommended each bid, and override it.",
+  standfirst: "The algorithm beat the traders, and they played their hunches anyway. A missing interface, not a bad model.",
   meta: [["Role", "Lead Product Designer"], ["Surface", "DSP recommendation UI"], ["Status", "Shipped · under NDA"]],
-  context: "The algorithm was right. The traders trusted their gut instead. That’s a design problem, not a model problem.",
+  context: "The engine beat the buyers, visibly — yet adoption was near zero. A bare number just asks for faith.",
   moves: [{
-    h: "A confidence score that earns the action",
-    p: "Each recommendation carried a confidence score mapped to one action — act, review, or ignore — never a bare percentage."
+    h: "A score tied to one action",
+    p: "Each recommendation resolved to one verb — act, review, or ignore — never a naked 87% on the screen."
   }, {
-    h: "Show the reasoning, not just the score",
-    p: "Surfaced the signals that drove each call — not a tooltip, the actual reasoning — so a buyer could check the model's work the same way they'd check an analyst's."
+    h: "Reasons named out loud",
+    p: "A reasoning panel named the exact signals behind each call — not a tooltip, the actual argument a buyer could check like an analyst's."
   }, {
-    h: "Override as a first-class action",
-    p: "Made overriding the model a logged, first-class action that fed the next eval — corrections became training signal, not rework."
+    h: "An override that teaches",
+    p: "The override logged the correction and fed next week's model. Watching their pushback land flipped fighting into coaching."
   }],
   plateNo: "4.1",
   plateCn: "recommendation card — confidence score, reasoning, override",
@@ -286,18 +286,18 @@ const NDA_CASES = [{
   img: "../assets/visuals/case-orgos.svg",
   tag: "Org Design · NDA",
   title: "OrgOS — Zero Managers",
-  standfirst: "A 200-person organisation with zero managers. The brief: software that scales coordination without smuggling a boss back in.",
+  standfirst: "Two hundred people. No managers. Eight modules doing the job of an org chart — coordination that never smuggles a boss back in.",
   meta: [["Role", "Design Lead"], ["Surface", "Internal operating system"], ["Status", "Shipped · under NDA"]],
-  context: "A radically transparent, 200-person org run on hallway conversation and spreadsheets — fine at forty, breaking at two hundred. Leading four engineering streams and a PM, I made the flat org legible without imposing a hierarchy. Every feature wanted to grow a boss; the work was refusing that.",
+  context: "Transparency does the coordinating — salaries, finances, assignments, reviews, open to everyone. That holds at forty; at two hundred the hallway stops scaling. Every obvious feature — assignment, approval, escalation — was a manager wearing a different name. The job was saying no to each one.",
   moves: [{
     h: "Read access is the feature",
-    p: "Everything visible by default — who's on what, who's overloaded, what's stalled — so coordination came from information, not instruction."
+    p: "Who's on what, who's blocked, who decides — visible to everyone, always. Pull, not push. Coordination came from information, not instruction."
   }, {
     h: "Commitments, not assignments",
     p: "People pull work and publish commitments in the open. The system tracks promises kept; it never hands out tasks."
   }, {
     h: "Eight modules, one grammar",
-    p: "Staffing, comp, OKRs, onboarding all speak one object model — so the org can recompose its own process without me in the room."
+    p: "Staffing, comp, OKRs, onboarding all spoke one object model, so the org could rebuild its own process with nobody in the room."
   }],
   plateNo: "5.1",
   plateCn: "eight modules sharing one object model",
@@ -318,18 +318,18 @@ const NDA_CASES = [{
   img: "../assets/visuals/case-vc.svg",
   tag: "VC/PE · NDA",
   title: "Technical Due Diligence Platform",
-  standfirst: "Investors had three weeks to judge a startup's technology. The platform got them there in four days.",
+  standfirst: "Partners bet millions on claims they'll never check. The model extracted the evidence; the design made them stand on it.",
   meta: [["Role", "Design Lead"], ["Surface", "Technical-DD platform · VC + PE"], ["Status", "Shipped · under NDA"]],
-  context: "Three weeks of due diligence, compressed. The hard part wasn't the compression — it was making the model's verdict something an investor would stake capital on.",
+  context: "Finding the signals is easy — models do that. The hard part is getting a partner to stake their reputation on an extraction they didn't run.",
   moves: [{
     h: "Score at the signal level",
-    p: "Confidence scoring on each technical signal — code quality, architecture risk, team-velocity proxies, founder-credibility markers — not one opaque verdict."
+    p: "Confidence on each signal — code quality, architecture risk, team velocity, founder credibility — not one opaque verdict."
   }, {
-    h: "Trace every risk to its evidence",
-    p: "Each risk score named the signals that drove it, so a partner could inspect the reasoning before committing capital."
+    h: "Provenance on every claim",
+    p: "Each score named the signals that drove it, with a clean drill from summary to source, before a partner committed capital."
   }, {
     h: "Dissent on record",
-    p: "Override mechanisms fed analyst dissent back into the model — disagreement became training signal, not noise."
+    p: "Analyst overrides fed back into the model; partner sign-off was real workflow, not a rubber stamp."
   }],
   plateNo: "6.1",
   plateCn: "technical-risk dossier — each score traced to its signals",
@@ -351,8 +351,8 @@ const PATTERN_PAGES = {
     no: "01",
     k: "gauge",
     h: "Confidence Score Patterns",
-    principle: "A number people can act on \u2014 not just read.",
-    def: "How much certainty to show, in what form, and the threshold at which a score has earned the right to drive a business decision rather than merely decorate a dashboard.",
+    principle: "A score with no action attached is decoration.",
+    def: "How much certainty to show, in what form, and the threshold at which a number earns the right to drive a decision instead of decorating a dashboard.",
     note: "a percentage is a feeling until it's anchored to a business action",
     dos: ["Anchor the score to an action — act, review, or ignore — not just a bare number.", "Show the score's own track record so people can calibrate their trust.", "Round to the precision you'd be willing to defend out loud."],
     donts: ["Render 87.3% when what you actually mean is \u201Cprobably.\u201D", "Let a high score auto-execute with no visible way to override.", "Reuse one confidence scale across decisions of wildly different stakes."],
@@ -371,7 +371,7 @@ const PATTERN_PAGES = {
     k: "alert",
     h: "Failure States",
     principle: "If you can't design the wrong answer, the feature isn't ready.",
-    def: "The designed moment the model is wrong \u2014 preventing user abandonment by making recovery from a miss cheaper than the mistake itself.",
+    def: "What the screen says when the model can't deliver \u2014 and how saying it honestly makes recovery cheaper than the mistake itself.",
     note: "I design the error recovery first now",
     dos: ["Design the wrong-answer screen before you design the happy path.", "Make recovery from a miss cheaper than the mistake itself.", "Say what the system doesn't know, plainly and early."],
     donts: ["Hide uncertainty behind a confident-looking default.", "File \u201Cwhat if it's wrong\u201D as an edge case to handle later.", "Apologise for an error without offering the next step."],
@@ -389,8 +389,8 @@ const PATTERN_PAGES = {
     no: "03",
     k: "branch",
     h: "Explainability",
-    principle: "Turn a black-box output into an auditable argument.",
-    def: "The \u201Cwhy this?\u201D surface that lets a person inspect, challenge, and either endorse or reject the model's reasoning \u2014 the difference between obeying a score and owning a business decision.",
+    principle: "Turn a black-box output into an argument a person can audit.",
+    def: "Showing a non-technical person why the machine decided, at a depth they can use without a stats degree \u2014 the difference between obeying a score and owning the decision.",
     note: "an output you can audit is an output you'll stand behind",
     dos: ["Show the two or three inputs that actually moved the result.", "Let the user trace from the output back to the evidence.", "Make \u201CI disagree\u201D a first-class, recorded action."],
     donts: ["Dump every feature weight on screen and call it transparency.", "Explain after the decision instead of before it.", "Mistake a tooltip for an account of the reasoning."],
@@ -408,8 +408,8 @@ const PATTERN_PAGES = {
     no: "04",
     k: "loop",
     h: "Human-in-the-Loop",
-    principle: "Override should feel like authorship, not babysitting.",
-    def: "Where and how the person corrects the system \u2014 turning human corrections into training signals rather than rework, so the workflow scales without increasing overhead.",
+    principle: "Keep the person in command when the stakes outgrow the model.",
+    def: "Where and how the person corrects the system \u2014 turning corrections into the training signal the next version needs, so the workflow scales without growing overhead.",
     note: "correcting the model should feel like teaching, not cleanup",
     dos: ["Make the human's edit visibly improve the next result.", "Put the control where the decision happens, never buried in settings.", "Default to the human's last call when the stakes are high."],
     donts: ["Ask for approval on everything until approval means nothing.", "Treat corrections as exceptions instead of as training signal.", "Make overriding feel like a fight with the product."],
@@ -1005,7 +1005,7 @@ function buildBook(ctx) {
       className: "bk-cover__rule"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-cover__sub"
-    }, "You’ve built something smart. Nobody’s acting on it. That gap — between what the model knows and what a person will stake a decision on — is what I design for."), /*#__PURE__*/React.createElement("button", {
+    }, "Fifteen years designing the half-second where a person decides to believe a machine."), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1)
     }, /*#__PURE__*/React.createElement("span", {
@@ -1048,7 +1048,7 @@ function buildBook(ctx) {
         marginTop: 18,
         maxWidth: "30ch"
       }
-    }, "In fifteen years of shipping AI products, I’ve watched the same moment play out in five industries: the model surfaces something true, and the person at the screen pauses. Not because the model is wrong. Because they don’t know how to trust it yet. This book is everything I’ve figured out about that pause."), /*#__PURE__*/React.createElement("div", {
+    }, "Fifteen years, five industries, the same half-second: the model surfaces something true, and the person at the screen pauses — not because the model is wrong, but because they don’t know how to bet on it yet. This book is everything I’ve worked out about that pause."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-body",
@@ -1119,7 +1119,7 @@ function buildBook(ctx) {
       style: {
         marginTop: 0
       }
-    }, "Most design leads present roadmaps. I read your evals. The best call in an AI product is almost never about the interface — it's about ", /*#__PURE__*/React.createElement("span", {
+    }, "Hire me and week one looks like this: reading eval results before opening a design file, sitting silent on customer calls, writing the diagnosis nobody assigned. The best call in an AI product is rarely the interface — it's ", /*#__PURE__*/React.createElement("span", {
       className: "bk-mark"
     }, "what the system admits it doesn't know"), "."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
@@ -1167,7 +1167,7 @@ function buildBook(ctx) {
       }
     }, "Selected", /*#__PURE__*/React.createElement("br", null), "Work"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body bk-drop"
-    }, "Every brief starts with “improve the UX.” Every diagnosis ends somewhere else. Two cases are public. Four travel under NDA. Same destination in all of them."), /*#__PURE__*/React.createElement("div", {
+    }, "Fifteen years of this work mostly lives behind NDAs. The six here are the shape of all of it — two told in full, four as decision walkthroughs. Every brief opened with “improve the UX”; every diagnosis ended somewhere else."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
         margin: "22px 0 18px"
@@ -1243,7 +1243,7 @@ function buildBook(ctx) {
       }
     }, "A Field", /*#__PURE__*/React.createElement("br", null), "Guide to", /*#__PURE__*/React.createElement("br", null), "Trust"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body bk-drop"
-    }, "Four patterns for the AI problem that isn’t the AI. Each one is a small argument about where certainty belongs on the screen."), /*#__PURE__*/React.createElement("div", {
+    }, "Everything here ran in production, failed somewhere specific, and came back stronger. The tradeoffs are written down because I paid for them once — so you don’t have to."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
         marginTop: 22
@@ -1303,7 +1303,7 @@ function buildBook(ctx) {
       target: "_blank",
       rel: "noopener",
       className: "bk-em"
-    }, "The Trust Layer ", Icon({ name: "external", cls: "bk-icon--sm" })), ". If you want to know how I think before hiring me — this is the fastest way."), /*#__PURE__*/React.createElement("div", {
+    }, "The Trust Layer ", Icon({ name: "external", cls: "bk-icon--sm" })), ". One idea per issue, on getting humans to act on machines. The fastest way to know how I think before you hire me."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note"
@@ -1350,7 +1350,7 @@ function buildBook(ctx) {
       }
     }, "Curriculum Vit\xE6"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "The facts, in order. For the founder who needs to check the work before the call."), /*#__PURE__*/React.createElement("div", {
+    }, "The facts, in order — for the founder who checks the work before the call. Every number arrives holding its baseline."), /*#__PURE__*/React.createElement("div", {
       className: "bk-cv__sub"
     }, "What I do"), /*#__PURE__*/React.createElement("div", {
       className: "bk-chips"
@@ -1420,7 +1420,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "Your model works. Your users still hesitate. That hesitation is a design problem — and it's the one I solve. Let's talk."), /*#__PURE__*/React.createElement("a", {
+    }, "Your model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. One seat, full-time: founding, staff, or a director-level trust-layer role. Available, four weeks’ notice."), /*#__PURE__*/React.createElement("a", {
       className: "bk-btn",
       href: "https://calendly.com/arpitmaheshwari",
       target: "_blank",
@@ -1486,7 +1486,7 @@ function buildBook(ctx) {
       style: {
         marginBottom: 14
       }
-    }, "Send a link to your product and I'll record a five-minute review — three concrete improvements, within 48 hours, no strings."), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
+    }, "Send a link to your AI product. Within 48 hours you’ll get a five-minute Loom with three specific improvements. Free, no follow-up sequence."), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: { marginTop: "auto", textAlign: "center", paddingTop: 16 }
     }, "thanks for reading to the end ♥"))
