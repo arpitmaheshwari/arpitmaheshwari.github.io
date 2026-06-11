@@ -56,7 +56,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p13">
+<link rel="stylesheet" href="../styles.css?v=p19">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -80,6 +80,112 @@
 </div>
 
 <main id="main" class="section" style="background:var(--bg)"><div style="max-width:760px;margin:0 auto;padding:60px 24px">
+
+  <!-- VITALS STRIP -->
+  <dl class="case-vitals">
+    <div><dt>Role</dt><dd>Designer + Front-end</dd></div>
+    <div><dt>Client</dt><dd>O2 UK (Telefónica) · via Equal Experts</dd></div>
+    <div><dt>Scale</dt><dd class="gold">4M+ users</dd></div>
+    <div><dt>Sign-ups</dt><dd>2.6M · year one</dd></div>
+    <div><dt>Status</dt><dd>Shipped · public</dd></div>
+  </dl>
+
+  <!-- VISUAL HERO — era-honest recreation -->
+  <section class="recon" id="recon-o2" role="group" aria-label="Era-honest recreation: MyO2 account screen and Priority offer card">
+    <div class="recon-badge">Era-honest recreation — rebuilt in HTML/CSS for illustration · originals not retained</div>
+    <div class="recon-stage">
+      <style>
+        #recon-o2 .rx2-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:600px;margin:0 auto}
+        #recon-o2 .rx2-phone{border:2px solid var(--border);border-radius:24px;background:var(--bg);padding:14px 12px 12px}
+        #recon-o2 .rx2-ear{width:38px;height:4px;border-radius:2px;background:var(--border);margin:0 auto 10px}
+        #recon-o2 .rx2-screen{border:1px solid var(--border);border-radius:4px;overflow:hidden;background:var(--bg-card);min-height:236px}
+        #recon-o2 .rx2-chin{width:20px;height:20px;border:1px solid var(--border);border-radius:50%;margin:10px auto 0}
+        #recon-o2 .rx2-appbar{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:var(--gold-dark);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:12px}
+        #recon-o2 .rx2-appbar.alt{background:var(--copper)}
+        #recon-o2 .rx2-sig4{font-size:9px;letter-spacing:2px;opacity:.8}
+        #recon-o2 .rx2-tabs{display:flex;border-bottom:1px solid var(--border)}
+        #recon-o2 .rx2-tab{flex:1;padding:9px 0;background:var(--bg-card);border:none;border-bottom:2px solid transparent;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);transition:color .2s,border-color .2s}
+        #recon-o2 .rx2-tab[aria-checked="true"]{color:var(--gold);border-bottom-color:var(--gold)}
+        #recon-o2 .rx2-view{padding:16px 14px}
+        #recon-o2 .rx2-big{font-family:var(--ff-display);font-weight:300;font-size:30px;color:var(--ink);margin:2px 0}
+        #recon-o2 .rx2-sub{font-family:var(--ff-mono);font-size:10px;color:var(--ink-dim);margin:0 0 14px}
+        #recon-o2 .rx2-row{display:flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:10px;color:var(--ink-muted);margin-bottom:8px}
+        #recon-o2 .rx2-row span:first-child{flex:0 0 36px}
+        #recon-o2 .rx2-track{flex:1;height:5px;border-radius:3px;background:var(--border);position:relative;overflow:hidden}
+        #recon-o2 .rx2-track i{position:absolute;top:0;left:0;bottom:0;background:var(--gold);display:block}
+        #recon-o2 .rx2-pay{display:block;width:100%;padding:10px 0;background:var(--gold);border:none;border-radius:3px;color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:12px;letter-spacing:.04em}
+        #recon-o2 .rx2-offer{padding:16px 14px}
+        #recon-o2 .rx2-kicker{font-family:var(--ff-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 8px}
+        #recon-o2 .rx2-otitle{font-family:var(--ff-sans);font-weight:600;font-size:14px;line-height:1.4;color:var(--ink);margin:0 0 4px}
+        #recon-o2 .rx2-osub{font-family:var(--ff-mono);font-size:10px;color:var(--ink-dim);margin:0 0 14px}
+        #recon-o2 .rx2-use{display:block;width:100%;padding:10px 0;background:transparent;border:1px solid var(--gold);border-radius:3px;color:var(--gold);font-family:var(--ff-sans);font-weight:600;font-size:12px;letter-spacing:.04em;transition:background .2s,color .2s}
+        #recon-o2 .rx2-use:hover{background:var(--gold);color:var(--bg)}
+        #recon-o2 .rx2-codewrap{border:1px dashed var(--gold-dark);border-radius:3px;padding:12px;text-align:center}
+        #recon-o2 .rx2-codelabel{font-family:var(--ff-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 6px}
+        #recon-o2 .rx2-codeval{font-family:var(--ff-mono);font-size:18px;letter-spacing:.18em;color:var(--gold);margin:0}
+        #recon-o2 .rx2-label{text-align:center;font-family:var(--ff-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);margin:10px 0 0}
+        #recon-o2 .rx2-hide{display:none}
+        @media (max-width:768px){#recon-o2 .rx2-grid{grid-template-columns:1fr;max-width:300px}}
+      </style>
+      <div class="rx2-grid">
+        <div class="rx2-phone">
+          <div class="rx2-ear" aria-hidden="true"></div>
+          <div class="rx2-screen">
+            <div class="rx2-appbar">MyO2 <span class="rx2-sig4" aria-hidden="true">▮▮▮▯</span></div>
+            <div class="rx2-tabs" role="radiogroup" aria-label="MyO2 account sections">
+              <button type="button" class="rx2-tab" role="radio" aria-checked="true" data-view="usage" data-cta="recon" data-location="recon-o2">Usage</button>
+              <button type="button" class="rx2-tab" role="radio" aria-checked="false" data-view="bill" data-cta="recon" data-location="recon-o2">Bill</button>
+            </div>
+            <div class="rx2-view" id="rx2-usage">
+              <p class="rx2-big">2.1 GB</p>
+              <p class="rx2-sub">data left · renews in 9 days</p>
+              <div class="rx2-row"><span>Data</span><span class="rx2-track"><i style="width:52%"></i></span></div>
+              <div class="rx2-row"><span>Mins</span><span class="rx2-track"><i style="width:74%"></i></span></div>
+              <div class="rx2-row"><span>Texts</span><span class="rx2-track"><i style="width:88%"></i></span></div>
+            </div>
+            <div class="rx2-view rx2-hide" id="rx2-bill">
+              <p class="rx2-big">£21.50</p>
+              <p class="rx2-sub">due 28 March</p>
+              <button type="button" class="rx2-pay" data-cta="recon" data-location="recon-o2">Pay now</button>
+            </div>
+          </div>
+          <div class="rx2-chin" aria-hidden="true"></div>
+          <p class="rx2-label">MyO2 · the account, self-served</p>
+        </div>
+        <div class="rx2-phone">
+          <div class="rx2-ear" aria-hidden="true"></div>
+          <div class="rx2-screen">
+            <div class="rx2-appbar alt">Priority <span class="rx2-sig4" aria-hidden="true">▮▮▮▯</span></div>
+            <div class="rx2-offer">
+              <p class="rx2-kicker">This week · near you</p>
+              <p class="rx2-otitle">2-for-1 cinema tickets — Sky Screen</p>
+              <p class="rx2-osub">Tonight · 0.4 mi away</p>
+              <button type="button" class="rx2-use" id="rx2-use" data-cta="recon" data-location="recon-o2">Use offer</button>
+              <div class="rx2-codewrap rx2-hide" id="rx2-code">
+                <p class="rx2-codelabel">Show this code at the till</p>
+                <p class="rx2-codeval">PRI-4F7K</p>
+              </div>
+            </div>
+          </div>
+          <div class="rx2-chin" aria-hidden="true"></div>
+          <p class="rx2-label">Priority · a reason to open it</p>
+        </div>
+      </div>
+    </div>
+    <div class="recon-caption">Interactive · data shown is illustrative, not client data</div>
+  </section>
+  <script>(function(){var r=document.getElementById('recon-o2');if(!r)return;
+    var usage=r.querySelector('#rx2-usage'),bill=r.querySelector('#rx2-bill');
+    r.querySelectorAll('.rx2-tab').forEach(function(b){b.addEventListener('click',function(){
+      r.querySelectorAll('.rx2-tab').forEach(function(x){x.setAttribute('aria-checked','false')});
+      b.setAttribute('aria-checked','true');
+      var isBill=b.dataset.view==='bill';
+      usage.classList.toggle('rx2-hide',isBill);bill.classList.toggle('rx2-hide',!isBill);
+    });});
+    var use=r.querySelector('#rx2-use'),code=r.querySelector('#rx2-code');
+    use.addEventListener('click',function(){use.classList.add('rx2-hide');code.classList.remove('rx2-hide');});
+  })();</script>
+  <div class="loom-slot" data-video-url="" data-video-title="MyO2 &amp; Priority — walkthrough"></div>
 
   <!-- TOP THESIS -->
   <p style="font-family:var(--ff-display);font-size:clamp(22px,4vw,32px);font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">Drawn by me, then coded by me — every screen of two O2 UK products on mobile web, at a scale where rounding errors have populations. 4M+ users on MyO2; 2.6M first-year sign-ups on Priority Moments.</p>
@@ -291,6 +397,21 @@ document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s))
     });
   }
 })();
+</script>
+<script>
+document.querySelectorAll('.loom-slot').forEach(function(slot){
+  var url=slot.dataset.videoUrl; if(!url) return;
+  slot.classList.add('has-video');
+  var btn=document.createElement('button');
+  btn.className='loom-facade'; btn.setAttribute('data-cta','loom-play'); btn.setAttribute('data-location','case-loom');
+  btn.innerHTML='<span class="loom-play" aria-hidden="true">▶</span><span class="loom-title">'+(slot.dataset.videoTitle||'Watch the walkthrough')+'</span>';
+  btn.addEventListener('click',function(){
+    var w=document.createElement('div'); w.className='loom-frame';
+    var f=document.createElement('iframe'); f.src=url; f.allowFullscreen=true; f.loading='lazy'; f.title=slot.dataset.videoTitle||'Walkthrough';
+    w.appendChild(f); slot.replaceChildren(w);
+  });
+  slot.replaceChildren(btn);
+});
 </script>
 </body>
 </html>

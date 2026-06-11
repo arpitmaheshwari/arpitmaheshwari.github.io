@@ -58,7 +58,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p13">
+<link rel="stylesheet" href="../styles.css?v=p19">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -85,6 +85,87 @@
 
   <!-- META · LOCKED PHASE 11E -->
   <p style="font-size:13px;color:var(--gold);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:32px">AdTech · Programmatic Advertising Platform · 2019–2026</p>
+
+  <!-- VITALS STRIP -->
+  <dl class="case-vitals">
+    <div><dt>Role</dt><dd>Lead Product Designer</dd></div>
+    <div><dt>Span</dt><dd>2019–2026</dd></div>
+    <div><dt>Surface</dt><dd>DSP recommendation UI</dd></div>
+    <div><dt>Planning</dt><dd class="gold">2 wks → 3 hrs</dd></div>
+    <div><dt>Status</dt><dd>Shipped · under NDA</dd></div>
+  </dl>
+
+  <!-- VISUAL HERO — interactive reconstruction -->
+  <section class="recon" id="recon-adtech" role="group" aria-label="Interactive reconstruction: confidence score resolving to act, review, or ignore">
+    <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA</div>
+    <div class="recon-stage">
+      <style>
+        #recon-adtech .rxa-card{max-width:480px;margin:0 auto;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:20px;transition:border-color .25s}
+        #recon-adtech .rxa-card.act{border-color:var(--gold-dark)}
+        #recon-adtech .rxa-card.ignore{opacity:.75}
+        #recon-adtech .rxa-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+        #recon-adtech .rxa-kicker{font-family:var(--ff-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim)}
+        #recon-adtech .rxa-verb{font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:.12em;padding:5px 12px;border-radius:2px;border:1px solid var(--border);color:var(--ink-muted)}
+        #recon-adtech .rxa-verb.v-act{border-color:var(--gold);color:var(--gold)}
+        #recon-adtech .rxa-verb.v-review{border-color:var(--copper);color:var(--copper)}
+        #recon-adtech .rxa-rec{font-family:var(--ff-display);font-weight:300;font-size:18px;line-height:1.45;color:var(--ink);margin:0 0 6px}
+        #recon-adtech .rxa-score{font-family:var(--ff-mono);font-size:11px;color:var(--ink-dim);margin:0 0 14px}
+        #recon-adtech .rxa-why{background:none;border:none;padding:0;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);text-decoration:underline;text-underline-offset:3px}
+        #recon-adtech .rxa-panel{display:none;margin:14px 0 0;border-top:1px solid var(--border);padding-top:14px}
+        #recon-adtech .rxa-panel.open{display:block}
+        #recon-adtech .rxa-sig{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-size:12.5px;color:var(--ink-muted)}
+        #recon-adtech .rxa-bar{flex:0 0 90px;height:5px;border-radius:3px;background:var(--border);position:relative;overflow:hidden}
+        #recon-adtech .rxa-bar i{position:absolute;inset:0;background:var(--gold);transform-origin:left;display:block}
+        #recon-adtech .rxa-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+        #recon-adtech .rxa-override{padding:8px 14px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--border);border-radius:2px;color:var(--ink-muted);transition:border-color .2s,color .2s}
+        #recon-adtech .rxa-override:hover{border-color:var(--gold-dark);color:var(--gold)}
+        #recon-adtech .rxa-logged{display:none;font-family:var(--ff-mono);font-size:11px;color:var(--copper);margin-top:12px}
+        #recon-adtech .rxa-card.overridden .rxa-logged{display:block}
+        #recon-adtech .rxa-presets{display:flex;gap:8px;justify-content:center;margin:0 0 18px;flex-wrap:wrap}
+        #recon-adtech .rxa-preset{padding:8px 14px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink-muted);transition:border-color .2s,color .2s}
+        #recon-adtech .rxa-preset[aria-checked="true"]{border-color:var(--gold);color:var(--gold)}
+      </style>
+      <div class="rxa-presets" role="radiogroup" aria-label="Model confidence preset">
+        <button type="button" class="rxa-preset" role="radio" aria-checked="true" data-score="92" data-verb="act" data-cta="recon" data-location="recon-adtech">High confidence</button>
+        <button type="button" class="rxa-preset" role="radio" aria-checked="false" data-score="74" data-verb="review" data-cta="recon" data-location="recon-adtech">Medium</button>
+        <button type="button" class="rxa-preset" role="radio" aria-checked="false" data-score="41" data-verb="ignore" data-cta="recon" data-location="recon-adtech">Low</button>
+      </div>
+      <div class="rxa-card act" id="rxa-card">
+        <div class="rxa-top">
+          <span class="rxa-kicker">Recommendation · Campaign 7</span>
+          <span class="rxa-verb v-act" id="rxa-verb">ACT</span>
+        </div>
+        <p class="rxa-rec">Shift evening budget toward Channel B — stronger projected reach this week.</p>
+        <p class="rxa-score">model confidence <span id="rxa-score">92</span> · the verb is the interface, not the number</p>
+        <button type="button" class="rxa-why" id="rxa-why" aria-expanded="false" aria-controls="rxa-panel">Why this call</button>
+        <div class="rxa-panel" id="rxa-panel">
+          <div class="rxa-sig"><span class="rxa-bar"><i style="transform:scaleX(.85)"></i></span> 30-day channel performance</div>
+          <div class="rxa-sig"><span class="rxa-bar"><i style="transform:scaleX(.6)"></i></span> Audience overlap with target segment</div>
+          <div class="rxa-sig"><span class="rxa-bar"><i style="transform:scaleX(.35)"></i></span> Inventory price trend</div>
+        </div>
+        <div class="rxa-actions">
+          <button type="button" class="rxa-override" id="rxa-override" data-cta="recon" data-location="recon-adtech">Override this call</button>
+        </div>
+        <p class="rxa-logged">Overridden — logged · feeds next week's model</p>
+      </div>
+    </div>
+    <div class="recon-caption">Interactive · data shown is illustrative, not client data</div>
+  </section>
+  <script>(function(){var r=document.getElementById('recon-adtech');if(!r)return;
+    var card=r.querySelector('#rxa-card'),verb=r.querySelector('#rxa-verb'),score=r.querySelector('#rxa-score');
+    r.querySelectorAll('.rxa-preset').forEach(function(b){b.addEventListener('click',function(){
+      r.querySelectorAll('.rxa-preset').forEach(function(x){x.setAttribute('aria-checked','false')});
+      b.setAttribute('aria-checked','true');
+      var v=b.dataset.verb; score.textContent=b.dataset.score;
+      verb.textContent=v.toUpperCase(); verb.className='rxa-verb'+(v==='act'?' v-act':v==='review'?' v-review':'');
+      card.className='rxa-card '+v;
+      card.classList.remove('overridden');
+    });});
+    var why=r.querySelector('#rxa-why'),panel=r.querySelector('#rxa-panel');
+    why.addEventListener('click',function(){var open=panel.classList.toggle('open');why.setAttribute('aria-expanded',String(open));});
+    r.querySelector('#rxa-override').addEventListener('click',function(){card.classList.add('overridden');});
+  })();</script>
+  <div class="loom-slot" data-video-url="" data-video-title="AdTech — 4-minute walkthrough"></div>
 
   <p style="font-family:var(--ff-display);font-size:clamp(17px,1.8vw,21px);font-style:italic;color:var(--ink);line-height:1.7;margin-bottom:32px">The scoreboard said the algorithm beat the traders. The traders read the scoreboard and played their hunches anyway. That's not a modeling failure — it's a missing interface. <strong>Client is under NDA</strong> — decisions and outcomes on a call.</p>
 
@@ -267,6 +348,21 @@ document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s))
     });
   }
 })();
+</script>
+<script>
+document.querySelectorAll('.loom-slot').forEach(function(slot){
+  var url=slot.dataset.videoUrl; if(!url) return;
+  slot.classList.add('has-video');
+  var btn=document.createElement('button');
+  btn.className='loom-facade'; btn.setAttribute('data-cta','loom-play'); btn.setAttribute('data-location','case-loom');
+  btn.innerHTML='<span class="loom-play" aria-hidden="true">▶</span><span class="loom-title">'+(slot.dataset.videoTitle||'Watch the walkthrough')+'</span>';
+  btn.addEventListener('click',function(){
+    var w=document.createElement('div'); w.className='loom-frame';
+    var f=document.createElement('iframe'); f.src=url; f.allowFullscreen=true; f.loading='lazy'; f.title=slot.dataset.videoTitle||'Walkthrough';
+    w.appendChild(f); slot.replaceChildren(w);
+  });
+  slot.replaceChildren(btn);
+});
 </script>
 </body>
 </html>

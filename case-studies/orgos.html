@@ -58,7 +58,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p13">
+<link rel="stylesheet" href="../styles.css?v=p19">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -86,6 +86,80 @@
 
   <!-- META · LOCKED PHASE 11E -->
   <p style="font-size:13px;color:var(--gold);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:32px">Product Strategy · Enterprise SaaS · Organizational Design · 2026</p>
+
+  <!-- VITALS STRIP -->
+  <dl class="case-vitals">
+    <div><dt>Role</dt><dd>Design Lead</dd></div>
+    <div><dt>Surface</dt><dd>Internal operating system</dd></div>
+    <div><dt>Org</dt><dd class="gold">200 people · 0 managers</dd></div>
+    <div><dt>Modules</dt><dd>8</dd></div>
+    <div><dt>Status</dt><dd>Shipped · under NDA</dd></div>
+  </dl>
+
+  <!-- VISUAL HERO — interactive reconstruction -->
+  <section class="recon" id="recon-orgos" role="group" aria-label="Interactive reconstruction: commitments board with transparency toggle">
+    <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA</div>
+    <div class="recon-stage">
+      <style>
+        #recon-orgos .rxo-toggle{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+        #recon-orgos .rxo-mode{padding:8px 14px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink-muted);transition:border-color .2s,color .2s}
+        #recon-orgos .rxo-mode[aria-checked="true"]{border-color:var(--gold);color:var(--gold)}
+        #recon-orgos .rxo-note{min-height:18px;font-family:var(--ff-mono);font-size:11px;color:var(--copper);margin:0 0 12px}
+        #recon-orgos .rxo-board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+        #recon-orgos .rxo-col{border:1px solid var(--border);border-radius:4px;background:var(--bg);padding:12px;min-height:120px}
+        #recon-orgos .rxo-colh{font-family:var(--ff-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 10px}
+        #recon-orgos .rxo-chip{position:relative;display:block;width:100%;text-align:left;background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:10px 12px;margin-bottom:8px;color:var(--ink-muted);font-size:12px;line-height:1.5}
+        #recon-orgos button.rxo-chip{cursor:pointer;transition:border-color .2s}
+        #recon-orgos button.rxo-chip:not([disabled]):hover{border-color:var(--gold-dark)}
+        #recon-orgos .rxo-chip b{display:block;font-family:var(--ff-sans);font-weight:600;font-size:12px;color:var(--ink);margin-bottom:5px}
+        #recon-orgos .rxo-meta{display:flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:10px;color:var(--ink-dim)}
+        #recon-orgos .rxo-own{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;border:1px solid var(--border);font-family:var(--ff-mono);font-size:9px;color:var(--gold);transition:filter .2s}
+        #recon-orgos.rxo-locked .rxo-own{filter:blur(3px)}
+        #recon-orgos .rxo-lock{display:none;position:absolute;top:8px;right:10px;font-size:10px;opacity:.8}
+        #recon-orgos.rxo-locked .rxo-lock{display:block}
+        #recon-orgos .rxo-chip.rxo-moved{border-color:var(--gold-dark)}
+        @media (max-width:768px){#recon-orgos .rxo-board{grid-template-columns:1fr}#recon-orgos .rxo-col{min-height:0}}
+      </style>
+      <div class="rxo-toggle" role="radiogroup" aria-label="Transparency mode">
+        <button type="button" class="rxo-mode" role="radio" aria-checked="true" data-mode="on" data-cta="recon" data-location="recon-orgos">Transparency: on</button>
+        <button type="button" class="rxo-mode" role="radio" aria-checked="false" data-mode="off" data-cta="recon" data-location="recon-orgos">off</button>
+      </div>
+      <p class="rxo-note" id="rxo-note" role="status" aria-live="polite"></p>
+      <div class="rxo-board">
+        <div class="rxo-col" id="rxo-col-open">
+          <p class="rxo-colh">Open asks</p>
+          <button type="button" class="rxo-chip rxo-ask" data-cta="recon" data-location="recon-orgos"><b>Refactor onboarding flow — needs 2</b><span class="rxo-meta"><span class="rxo-own">RK</span> asked by</span><span class="rxo-lock" aria-hidden="true">🔒</span></button>
+          <button type="button" class="rxo-chip rxo-ask" data-cta="recon" data-location="recon-orgos"><b>Draft Q3 pricing note — needs 1</b><span class="rxo-meta"><span class="rxo-own">MT</span> asked by</span><span class="rxo-lock" aria-hidden="true">🔒</span></button>
+          <button type="button" class="rxo-chip rxo-ask" data-cta="recon" data-location="recon-orgos"><b>Translate help docs — needs 1</b><span class="rxo-meta"><span class="rxo-own">JL</span> asked by</span><span class="rxo-lock" aria-hidden="true">🔒</span></button>
+        </div>
+        <div class="rxo-col" id="rxo-col-committed">
+          <p class="rxo-colh">Committed</p>
+          <div class="rxo-chip"><b>Ship invoice templates</b><span class="rxo-meta"><span class="rxo-own">AS</span> committed</span><span class="rxo-lock" aria-hidden="true">🔒</span></div>
+          <div class="rxo-chip"><b>Rotate on-call schedule</b><span class="rxo-meta"><span class="rxo-own">PD</span> committed</span><span class="rxo-lock" aria-hidden="true">🔒</span></div>
+        </div>
+        <div class="rxo-col" id="rxo-col-blocked">
+          <p class="rxo-colh">Blocked</p>
+          <div class="rxo-chip"><b>Vendor contract review</b><span class="rxo-meta"><span class="rxo-own">KV</span> waiting on legal</span><span class="rxo-lock" aria-hidden="true">🔒</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="recon-caption">Interactive · data shown is illustrative, not client data</div>
+  </section>
+  <script>(function(){var r=document.getElementById('recon-orgos');if(!r)return;
+    r.querySelectorAll('.rxo-mode').forEach(function(b){b.addEventListener('click',function(){
+      r.querySelectorAll('.rxo-mode').forEach(function(x){x.setAttribute('aria-checked','false')});
+      b.setAttribute('aria-checked','true');
+      r.classList.toggle('rxo-locked',b.dataset.mode==='off');
+    });});
+    var note=r.querySelector('#rxo-note'),com=r.querySelector('#rxo-col-committed'),t;
+    r.querySelectorAll('.rxo-ask').forEach(function(b){b.addEventListener('click',function(){
+      if(b.disabled)return;
+      com.appendChild(b);b.disabled=true;b.classList.add('rxo-moved');
+      note.textContent='you committed — nobody assigned you';
+      clearTimeout(t);t=setTimeout(function(){note.textContent='';},2000);
+    });});
+  })();</script>
+  <div class="loom-slot" data-video-url="" data-video-title="OrgOS — walkthrough"></div>
 
   <p style="font-family:var(--ff-display);font-size:clamp(17px,1.8vw,21px);font-style:italic;color:var(--ink);line-height:1.7;margin-bottom:32px">Two hundred people. No managers. Eight modules doing the job of an org chart. The whole thing runs on transparency: salaries, finances, project assignments, reviews — open to everyone. That holds at forty. At two hundred, the hallway stops scaling. What lives in one person's head stays there, and the org grows a quiet hierarchy to route around the gap.</p>
 
@@ -259,6 +333,21 @@ document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s))
     });
   }
 })();
+</script>
+<script>
+document.querySelectorAll('.loom-slot').forEach(function(slot){
+  var url=slot.dataset.videoUrl; if(!url) return;
+  slot.classList.add('has-video');
+  var btn=document.createElement('button');
+  btn.className='loom-facade'; btn.setAttribute('data-cta','loom-play'); btn.setAttribute('data-location','case-loom');
+  btn.innerHTML='<span class="loom-play" aria-hidden="true">▶</span><span class="loom-title">'+(slot.dataset.videoTitle||'Watch the walkthrough')+'</span>';
+  btn.addEventListener('click',function(){
+    var w=document.createElement('div'); w.className='loom-frame';
+    var f=document.createElement('iframe'); f.src=url; f.allowFullscreen=true; f.loading='lazy'; f.title=slot.dataset.videoTitle||'Walkthrough';
+    w.appendChild(f); slot.replaceChildren(w);
+  });
+  slot.replaceChildren(btn);
+});
 </script>
 </body>
 </html>

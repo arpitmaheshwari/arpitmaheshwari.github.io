@@ -58,7 +58,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p13">
+<link rel="stylesheet" href="../styles.css?v=p19">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -85,6 +85,93 @@
 
   <!-- META -->
   <p style="font-size:13px;color:var(--gold);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:32px">VC &amp; PE / FinTech · Technical Due Diligence Platform · 2026</p>
+
+  <!-- VITALS STRIP -->
+  <dl class="case-vitals">
+    <div><dt>Role</dt><dd>Design Lead</dd></div>
+    <div><dt>Surface</dt><dd>Technical-DD platform · VC + PE</dd></div>
+    <div><dt>Cycle</dt><dd class="gold">3 wks → 4 days</dd></div>
+    <div><dt>Status</dt><dd>Shipped · under NDA</dd></div>
+  </dl>
+
+  <!-- VISUAL HERO — interactive reconstruction -->
+  <section class="recon" id="recon-vc" role="group" aria-label="Interactive reconstruction: technical-risk dossier with drill-to-source and partner sign-off">
+    <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA</div>
+    <div class="recon-stage">
+      <style>
+        #recon-vc .rxv-card{max-width:520px;margin:0 auto;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:20px}
+        #recon-vc .rxv-vlabel{font-family:var(--ff-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 4px}
+        #recon-vc .rxv-vtext{font-family:var(--ff-display);font-weight:300;font-size:19px;line-height:1.4;color:var(--ink);margin:0 0 16px}
+        #recon-vc .rxv-vtext span{color:var(--gold)}
+        #recon-vc .rxv-row{border-top:1px solid var(--border)}
+        #recon-vc .rxv-sig{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;padding:12px 2px;font-size:13px;color:var(--ink);font-family:var(--ff-sans);transition:color .2s}
+        #recon-vc .rxv-sig:hover{color:var(--gold)}
+        #recon-vc .rxv-right{display:inline-flex;align-items:center;gap:10px}
+        #recon-vc .rxv-st{font-family:var(--ff-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);border:1px solid var(--border);border-radius:2px;padding:2px 7px}
+        #recon-vc .rxv-st.watch{color:var(--copper);border-color:var(--copper)}
+        #recon-vc .rxv-chev{font-family:var(--ff-mono);color:var(--gold);transition:transform .2s;display:inline-block}
+        #recon-vc .rxv-sig[aria-expanded="true"] .rxv-chev{transform:rotate(45deg)}
+        #recon-vc .rxv-trail{display:none;padding:0 2px 14px}
+        #recon-vc .rxv-trail.open{display:block}
+        #recon-vc .rxv-ev{font-size:12.5px;color:var(--ink-muted);line-height:1.6;margin:0 0 6px}
+        #recon-vc .rxv-cite{font-family:var(--ff-mono);font-size:10px;letter-spacing:.04em;color:var(--ink-dim);margin:0}
+        #recon-vc .rxv-foot{display:flex;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:16px}
+        #recon-vc .rxv-sign{padding:9px 16px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--gold-dark);border-radius:2px;color:var(--gold);transition:border-color .2s,color .2s}
+        #recon-vc .rxv-sign[disabled]{border-color:var(--border);color:var(--ink-dim);cursor:not-allowed}
+        #recon-vc .rxv-sign.rxv-signed{border-color:var(--gold);color:var(--gold);cursor:default}
+        #recon-vc .rxv-hint{font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:var(--ink-dim);margin:0}
+      </style>
+      <div class="rxv-card">
+        <p class="rxv-vlabel">Dossier · Company K</p>
+        <p class="rxv-vtext">Technical verdict: <span>proceed with conditions</span></p>
+        <div class="rxv-row">
+          <button type="button" class="rxv-sig" id="rxv-s1" aria-expanded="false" aria-controls="rxv-t1" data-cta="recon" data-location="recon-vc">Code quality <span class="rxv-right"><span class="rxv-st">clear</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
+          <div class="rxv-trail" id="rxv-t1">
+            <p class="rxv-ev">Core modules read clean; test coverage thins around the billing paths.</p>
+            <p class="rxv-cite">source: repo scan · static analysis pass 02</p>
+          </div>
+        </div>
+        <div class="rxv-row">
+          <button type="button" class="rxv-sig" id="rxv-s2" aria-expanded="false" aria-controls="rxv-t2" data-cta="recon" data-location="recon-vc">Architecture risk <span class="rxv-right"><span class="rxv-st watch">watch</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
+          <div class="rxv-trail" id="rxv-t2">
+            <p class="rxv-ev">A single job queue becomes the chokepoint well before the growth plan needs it to hold.</p>
+            <p class="rxv-cite">source: design-doc review · infra audit 01</p>
+          </div>
+        </div>
+        <div class="rxv-row">
+          <button type="button" class="rxv-sig" id="rxv-s3" aria-expanded="false" aria-controls="rxv-t3" data-cta="recon" data-location="recon-vc">Team velocity <span class="rxv-right"><span class="rxv-st">clear</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
+          <div class="rxv-trail" id="rxv-t3">
+            <p class="rxv-ev">Merge cadence is steady, but two contributors carry most of the commit history.</p>
+            <p class="rxv-cite">source: repo scan · commit log 12 mo</p>
+          </div>
+        </div>
+        <div class="rxv-row">
+          <button type="button" class="rxv-sig" id="rxv-s4" aria-expanded="false" aria-controls="rxv-t4" data-cta="recon" data-location="recon-vc">Founder credibility <span class="rxv-right"><span class="rxv-st watch">watch</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
+          <div class="rxv-trail" id="rxv-t4">
+            <p class="rxv-ev">Claims in the deck match the demo; one benchmark could not be reproduced.</p>
+            <p class="rxv-cite">source: repo scan · interview note 04</p>
+          </div>
+        </div>
+        <div class="rxv-foot">
+          <button type="button" class="rxv-sign" id="rxv-sign" disabled title="review all four signals first" data-cta="recon" data-location="recon-vc">Partner sign-off</button>
+          <p class="rxv-hint" id="rxv-hint" aria-live="polite">review all four signals first</p>
+        </div>
+      </div>
+    </div>
+    <div class="recon-caption">Interactive · data shown is illustrative, not client data</div>
+  </section>
+  <script>(function(){var r=document.getElementById('recon-vc');if(!r)return;
+    var opened=0,seen={},sign=r.querySelector('#rxv-sign'),hint=r.querySelector('#rxv-hint');
+    r.querySelectorAll('.rxv-sig').forEach(function(b){b.addEventListener('click',function(){
+      var t=document.getElementById(b.getAttribute('aria-controls'));
+      var open=t.classList.toggle('open');b.setAttribute('aria-expanded',String(open));
+      if(!seen[b.id]){seen[b.id]=1;opened++;}
+      if(opened===4&&sign.disabled){sign.disabled=false;sign.removeAttribute('title');hint.textContent='all four signals reviewed';}
+    });});
+    sign.addEventListener('click',function(){if(sign.classList.contains('rxv-signed'))return;
+      sign.classList.add('rxv-signed');sign.textContent='Signed — conditions attached';hint.textContent='';});
+  })();</script>
+  <div class="loom-slot" data-video-url="" data-video-title="Technical Due Diligence — walkthrough"></div>
 
   <p style="font-family:var(--ff-display);font-size:clamp(17px,1.8vw,21px);font-style:italic;color:var(--ink);line-height:1.7;margin-bottom:32px">Partners bet millions on a startup's technology in days, on claims they will never personally check. The model extracted the evidence. The design made partners willing to stand on it. Diligence cycles ran <strong>3 weeks to 4 days</strong>. <strong>Confidential</strong> — I'll walk the framework on a call.</p>
 
@@ -201,6 +288,21 @@ if (menuBtn && navLinks) {
     });
   }
 })();
+</script>
+<script>
+document.querySelectorAll('.loom-slot').forEach(function(slot){
+  var url=slot.dataset.videoUrl; if(!url) return;
+  slot.classList.add('has-video');
+  var btn=document.createElement('button');
+  btn.className='loom-facade'; btn.setAttribute('data-cta','loom-play'); btn.setAttribute('data-location','case-loom');
+  btn.innerHTML='<span class="loom-play" aria-hidden="true">▶</span><span class="loom-title">'+(slot.dataset.videoTitle||'Watch the walkthrough')+'</span>';
+  btn.addEventListener('click',function(){
+    var w=document.createElement('div'); w.className='loom-frame';
+    var f=document.createElement('iframe'); f.src=url; f.allowFullscreen=true; f.loading='lazy'; f.title=slot.dataset.videoTitle||'Walkthrough';
+    w.appendChild(f); slot.replaceChildren(w);
+  });
+  slot.replaceChildren(btn);
+});
 </script>
 </body>
 </html>

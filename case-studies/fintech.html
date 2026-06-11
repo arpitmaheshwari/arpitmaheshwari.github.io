@@ -56,7 +56,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p13">
+<link rel="stylesheet" href="../styles.css?v=p19">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -83,6 +83,107 @@
 
   <!-- META · LOCKED PHASE 11E -->
   <p style="font-size:13px;color:var(--gold);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:32px">FinTech · AI-Assisted Private Equity Investing · 2025</p>
+
+  <!-- VITALS STRIP -->
+  <dl class="case-vitals">
+    <div><dt>Role</dt><dd>Lead Product Designer</dd></div>
+    <div><dt>Surface</dt><dd>AI for private-equity investing</dd></div>
+    <div><dt>Screening · n=42 · 90-day window</dt><dd class="gold">−60% time</dd></div>
+    <div><dt>Status</dt><dd>Shipped · under NDA</dd></div>
+  </dl>
+
+  <!-- VISUAL HERO — interactive reconstruction -->
+  <section class="recon" id="recon-fintech" role="group" aria-label="Interactive reconstruction: explain-this-score drawer with adjustable signal weights">
+    <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA</div>
+    <div class="recon-stage">
+      <style>
+        #recon-fintech .rxf-card{max-width:520px;margin:0 auto;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:20px}
+        #recon-fintech .rxf-deal{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+        #recon-fintech .rxf-name{font-family:var(--ff-display);font-weight:400;font-size:17px;color:var(--ink)}
+        #recon-fintech .rxf-risk{font-family:var(--ff-mono);font-size:12px;color:var(--ink-muted)}
+        #recon-fintech .rxf-risk b{font-size:15px;font-weight:500;color:var(--gold)}
+        #recon-fintech .rxf-conf{font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--copper);border:1px solid var(--border);border-radius:2px;padding:3px 8px}
+        #recon-fintech .rxf-explain{background:none;border:none;padding:0;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);text-decoration:underline;text-underline-offset:3px}
+        #recon-fintech .rxf-drawer{display:none;margin-top:16px;border-top:1px solid var(--border);padding-top:16px}
+        #recon-fintech .rxf-drawer.open{display:block}
+        #recon-fintech .rxf-sig{border:1px solid var(--border);border-radius:4px;padding:12px;margin-bottom:10px}
+        #recon-fintech .rxf-sig.low{border-style:dashed;opacity:.72}
+        #recon-fintech .rxf-sigtop{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+        #recon-fintech .rxf-doc{font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim)}
+        #recon-fintech .rxf-bar{flex:0 0 80px;height:5px;border-radius:3px;background:var(--border);position:relative;overflow:hidden}
+        #recon-fintech .rxf-bar i{position:absolute;inset:0;background:var(--gold);transform-origin:left;display:block}
+        #recon-fintech .rxf-sig.low .rxf-bar i{background:var(--ink-dim)}
+        #recon-fintech .rxf-claim{font-size:12.5px;color:var(--ink-muted);line-height:1.6;margin:0 0 10px}
+        #recon-fintech .rxf-unsure{font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:var(--copper);margin:0 0 10px}
+        #recon-fintech .rxf-weight{display:flex;align-items:center;gap:10px}
+        #recon-fintech .rxf-wlabel{font-family:var(--ff-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim)}
+        #recon-fintech .rxf-step{width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink-muted);font-size:14px;line-height:1;transition:border-color .2s,color .2s}
+        #recon-fintech .rxf-step:hover{border-color:var(--gold-dark);color:var(--gold)}
+        #recon-fintech .rxf-wval{font-family:var(--ff-mono);font-size:13px;color:var(--ink);min-width:14px;text-align:center}
+        #recon-fintech .rxf-actions{margin-top:14px}
+        #recon-fintech .rxf-override{padding:8px 14px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--border);border-radius:2px;color:var(--ink-muted);transition:border-color .2s,color .2s}
+        #recon-fintech .rxf-override:hover{border-color:var(--gold-dark);color:var(--gold)}
+        #recon-fintech .rxf-logged{display:none;font-family:var(--ff-mono);font-size:11px;color:var(--copper);margin:12px 0 0}
+        #recon-fintech .rxf-card.overridden .rxf-logged{display:block}
+      </style>
+      <div class="rxf-card" id="rxf-card">
+        <div class="rxf-deal">
+          <span class="rxf-name">Deal Atlas-7</span>
+          <span class="rxf-risk">Risk <b id="rxf-score" aria-live="polite">62</b></span>
+          <span class="rxf-conf">Medium confidence</span>
+        </div>
+        <button type="button" class="rxf-explain" id="rxf-explain" aria-expanded="false" aria-controls="rxf-drawer" data-cta="recon" data-location="recon-fintech">Explain this score</button>
+        <div class="rxf-drawer" id="rxf-drawer">
+          <div class="rxf-sig" data-risk="76">
+            <div class="rxf-sigtop"><span class="rxf-doc">Q3 board pack · p.12</span><span class="rxf-bar" aria-hidden="true"><i style="transform:scaleX(.82)"></i></span></div>
+            <p class="rxf-claim">Top customer is 38% of recurring revenue — concentration pushes the score up.</p>
+            <div class="rxf-weight"><span class="rxf-wlabel">Weight</span>
+              <button type="button" class="rxf-step" data-dir="down" aria-label="Decrease weight: Q3 board pack" data-cta="recon" data-location="recon-fintech">−</button>
+              <span class="rxf-wval">3</span>
+              <button type="button" class="rxf-step" data-dir="up" aria-label="Increase weight: Q3 board pack" data-cta="recon" data-location="recon-fintech">+</button>
+            </div>
+          </div>
+          <div class="rxf-sig" data-risk="52">
+            <div class="rxf-sigtop"><span class="rxf-doc">Audited statements · FY24</span><span class="rxf-bar" aria-hidden="true"><i style="transform:scaleX(.65)"></i></span></div>
+            <p class="rxf-claim">Margins hold steady across three years; working capital reads clean.</p>
+            <div class="rxf-weight"><span class="rxf-wlabel">Weight</span>
+              <button type="button" class="rxf-step" data-dir="down" aria-label="Decrease weight: audited statements" data-cta="recon" data-location="recon-fintech">−</button>
+              <span class="rxf-wval">2</span>
+              <button type="button" class="rxf-step" data-dir="up" aria-label="Increase weight: audited statements" data-cta="recon" data-location="recon-fintech">+</button>
+            </div>
+          </div>
+          <div class="rxf-sig low" data-risk="40">
+            <div class="rxf-sigtop"><span class="rxf-doc">Founder interview · note 07</span><span class="rxf-bar" aria-hidden="true"><i style="transform:scaleX(.28)"></i></span></div>
+            <p class="rxf-claim">Churn figure couldn't be matched against the raw export.</p>
+            <p class="rxf-unsure">“I'm not sure about this one” — low confidence, kept visible</p>
+            <div class="rxf-weight"><span class="rxf-wlabel">Weight</span>
+              <button type="button" class="rxf-step" data-dir="down" aria-label="Decrease weight: founder interview" data-cta="recon" data-location="recon-fintech">−</button>
+              <span class="rxf-wval">1</span>
+              <button type="button" class="rxf-step" data-dir="up" aria-label="Increase weight: founder interview" data-cta="recon" data-location="recon-fintech">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="rxf-actions">
+          <button type="button" class="rxf-override" id="rxf-override" data-cta="recon" data-location="recon-fintech">Log override</button>
+        </div>
+        <p class="rxf-logged">Disagreement logged — training signal</p>
+      </div>
+    </div>
+    <div class="recon-caption">Interactive · data shown is illustrative, not client data</div>
+  </section>
+  <script>(function(){var r=document.getElementById('recon-fintech');if(!r)return;
+    var score=r.querySelector('#rxf-score'),card=r.querySelector('#rxf-card');
+    var sigs=Array.prototype.slice.call(r.querySelectorAll('.rxf-sig'));
+    function recompute(){var num=0,den=0;sigs.forEach(function(s){var w=parseInt(s.querySelector('.rxf-wval').textContent,10);num+=w*parseFloat(s.dataset.risk);den+=w;});score.textContent=den?Math.round(num/den):0;}
+    r.querySelectorAll('.rxf-step').forEach(function(b){b.addEventListener('click',function(){
+      var v=b.parentNode.querySelector('.rxf-wval');var w=parseInt(v.textContent,10)+(b.dataset.dir==='up'?1:-1);
+      if(w<1)w=1;if(w>5)w=5;v.textContent=w;recompute();
+    });});
+    var ex=r.querySelector('#rxf-explain'),dr=r.querySelector('#rxf-drawer');
+    ex.addEventListener('click',function(){var open=dr.classList.toggle('open');ex.setAttribute('aria-expanded',String(open));});
+    r.querySelector('#rxf-override').addEventListener('click',function(){card.classList.add('overridden');});
+  })();</script>
+  <div class="loom-slot" data-video-url="" data-video-title="AI-Assisted Private Equity Investing — walkthrough"></div>
 
   <p style="font-family:var(--ff-display);font-size:clamp(17px,1.8vw,21px);font-style:italic;color:var(--ink);line-height:1.7;margin-bottom:32px">I held the release until the model could defend its own scores. Screening ran 60% faster once it could. <strong>Client is under NDA</strong> — I'll walk through the methodology on a call.</p>
 
@@ -254,6 +355,21 @@ document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s))
     });
   }
 })();
+</script>
+<script>
+document.querySelectorAll('.loom-slot').forEach(function(slot){
+  var url=slot.dataset.videoUrl; if(!url) return;
+  slot.classList.add('has-video');
+  var btn=document.createElement('button');
+  btn.className='loom-facade'; btn.setAttribute('data-cta','loom-play'); btn.setAttribute('data-location','case-loom');
+  btn.innerHTML='<span class="loom-play" aria-hidden="true">▶</span><span class="loom-title">'+(slot.dataset.videoTitle||'Watch the walkthrough')+'</span>';
+  btn.addEventListener('click',function(){
+    var w=document.createElement('div'); w.className='loom-frame';
+    var f=document.createElement('iframe'); f.src=url; f.allowFullscreen=true; f.loading='lazy'; f.title=slot.dataset.videoTitle||'Walkthrough';
+    w.appendChild(f); slot.replaceChildren(w);
+  });
+  slot.replaceChildren(btn);
+});
 </script>
 </body>
 </html>
