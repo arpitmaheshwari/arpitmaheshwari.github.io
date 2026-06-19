@@ -1,0 +1,95 @@
+<svg viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+  <title id="t">Reversibility pattern</title>
+  <desc id="d">An applied action with a visible undo, a one-click reversal restoring the prior state, and a staged rollout with a halt control partway along its timeline.</desc>
+  <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
+
+  <!-- Title block -->
+  <text x="36" y="74" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="bold" fill="#2C2620">Reversibility</text>
+  <text x="36" y="106" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" fill="#6A6052">Cheap to undo &#8212; so people dare to act.</text>
+  <line x1="36" y1="126" x2="1244" y2="126" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+  <!-- ===== LEFT: ACT &#8212; applied action with visible undo ===== -->
+  <g transform="translate(40,150)">
+    <rect x="0" y="0" width="392" height="214" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="#998D78">ACT</text>
+
+    <!-- applied card -->
+    <rect x="24" y="56" width="344" height="118" rx="9" fill="#F4ECDA" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+    <!-- status dot + applied label -->
+    <circle cx="48" cy="86" r="6" fill="#2F5D52"/>
+    <text x="64" y="91" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="0.5" fill="#2F5D52">APPLIED</text>
+
+    <!-- action title -->
+    <text x="40" y="124" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="bold" fill="#2C2620">Reallocate budget</text>
+
+    <!-- Undo control, shown up front -->
+    <rect x="40" y="138" width="98" height="30" rx="15" fill="#F4ECDA" stroke="#C0512B" stroke-width="1.5"/>
+    <!-- curved back-arrow glyph -->
+    <path d="M 64 153 A 9 9 0 1 0 73 162" fill="none" stroke="#C0512B" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M 57 149 L 64 150 L 62 157 Z" fill="#C0512B"/>
+    <text x="83" y="158" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="bold" fill="#C0512B">Undo</text>
+
+    <!-- reassurance caption -->
+    <text x="24" y="200" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#6A6052">Exit shown before you commit.</text>
+  </g>
+
+  <!-- connector: labelled "one click" -->
+  <path d="M 440 257 H 486" fill="none" stroke="rgba(44,38,32,0.12)" stroke-width="2"/>
+  <path d="M 480 251 L 488 257 L 480 263 Z" fill="#998D78"/>
+  <text x="463" y="247" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#998D78">one click</text>
+
+  <!-- ===== MIDDLE: ONE CLICK BACK &#8212; reversal restoring prior state ===== -->
+  <g transform="translate(496,150)">
+    <rect x="0" y="0" width="338" height="214" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="#998D78">ONE CLICK BACK</text>
+
+    <!-- large counter-clockwise undo arrow (ember) centered -->
+    <g transform="translate(169,118)">
+      <!-- arc sweeping counter-clockwise, ~300deg -->
+      <path d="M 28 -14 A 36 36 0 1 0 36 8" fill="none" stroke="#C0512B" stroke-width="6" stroke-linecap="round"/>
+      <!-- arrowhead at the start (top), pointing back -->
+      <path d="M 28 -28 L 30 -10 L 13 -16 Z" fill="#C0512B"/>
+    </g>
+
+    <!-- restored line -->
+    <text x="169" y="194" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" fill="#2C2620">Restored &#8212; <tspan font-weight="bold" fill="#2F5D52">no damage</tspan></text>
+  </g>
+
+  <!-- connector -->
+  <path d="M 842 257 H 888" fill="none" stroke="rgba(44,38,32,0.12)" stroke-width="2"/>
+  <path d="M 882 251 L 890 257 L 882 263 Z" fill="#998D78"/>
+
+  <!-- ===== RIGHT: STAGED ROLLOUT &#8212; timeline with halt control ===== -->
+  <g transform="translate(898,150)">
+    <rect x="0" y="0" width="346" height="214" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="#998D78">STAGED ROLLOUT</text>
+
+    <!-- timeline baseline -->
+    <line x1="40" y1="108" x2="306" y2="108" stroke="rgba(44,38,32,0.12)" stroke-width="2"/>
+
+    <!-- completed segment (green) up to the halt -->
+    <line x1="40" y1="108" x2="157" y2="108" stroke="#2F5D52" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- phase ticks (4) -->
+    <circle cx="40" cy="108" r="6" fill="#2F5D52"/>
+    <text x="40" y="138" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#6A6052">P1</text>
+
+    <circle cx="129" cy="108" r="6" fill="#2F5D52"/>
+    <text x="129" y="138" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#6A6052">P2</text>
+
+    <circle cx="217" cy="108" r="6" fill="#F4ECDA" stroke="#998D78" stroke-width="2"/>
+    <text x="217" y="138" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#998D78">P3</text>
+
+    <circle cx="306" cy="108" r="6" fill="#F4ECDA" stroke="#998D78" stroke-width="2"/>
+    <text x="306" y="138" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#998D78">P4</text>
+
+    <!-- halt / pause control partway along (ochre) -->
+    <circle cx="157" cy="108" r="15" fill="#F4ECDA" stroke="#CE9230" stroke-width="2"/>
+    <rect x="152" y="101.5" width="4" height="13" rx="1.5" fill="#CE9230"/>
+    <rect x="158" y="101.5" width="4" height="13" rx="1.5" fill="#CE9230"/>
+
+    <!-- faint caption -->
+    <text x="24" y="190" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#998D78">halt mid-flight &#183; 24-mo grace</text>
+  </g>
+</svg>

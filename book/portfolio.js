@@ -450,7 +450,7 @@ const PATTERN_PAGES = {
     donts: ["Cite a source the user can't actually open and verify.", "Summarise the evidence so heavily that the trail goes cold.", "Reveal provenance only after the answer is challenged."],
     instTag: "VC \xB7 Technical Diligence",
     inst: React.createElement(React.Fragment, null, "Partners signed off faster once every score carried a clean drill from summary to the source document — ", React.createElement("span", { className: "bk-em" }, "they'll stand on an extraction they can open"), ", never one they can't."),
-    fig: { no: "3.5", img: null, label: "claim → the sources behind it" }
+    fig: { no: "3.5", img: "../assets/visuals/pattern-provenance.svg", label: "claim → the sources behind it" }
   },
   bounds: {
     no: "06",
@@ -463,7 +463,7 @@ const PATTERN_PAGES = {
     donts: ["Imply the product can do things it can't, then degrade silently.", "Bury scope in a terms page nobody reads.", "Treat 'out of scope' as an error instead of an honest answer."],
     instTag: "AdTech \xB7 Programmatic",
     inst: React.createElement(React.Fragment, null, "Each call resolved to act, review, or ignore — and ", React.createElement("span", { className: "bk-em" }, "“ignore” was the model admitting it had nothing worth saying"), ". The honest no is what made buyers believe the act."),
-    fig: { no: "3.6", img: null, label: "in-scope / out-of-scope, drawn before launch" }
+    fig: { no: "3.6", img: "../assets/visuals/pattern-capability.svg", label: "in-scope / out-of-scope, drawn before launch" }
   },
   calib: {
     no: "07",
@@ -476,7 +476,7 @@ const PATTERN_PAGES = {
     donts: ["Show a confidence number with no past to back it.", "Average away the cases where the model is reliably wrong.", "Reset the track record silently every time the model changes."],
     instTag: "FinTech \xB7 Due Diligence",
     inst: React.createElement(React.Fragment, null, "Ninety days and forty-two deals in, the score had been right often enough that analysts ", React.createElement("span", { className: "bk-em" }, "stopped re-checking the confident calls"), ". The history earned the trust the number alone couldn't."),
-    fig: { no: "3.7", img: null, label: "confidence beside its 90-day hit rate" }
+    fig: { no: "3.7", img: "../assets/visuals/pattern-calibration.svg", label: "confidence beside its 90-day hit rate" }
   },
   undo: {
     no: "08",
@@ -489,7 +489,7 @@ const PATTERN_PAGES = {
     donts: ["Hide undo, or make reversing cost more than the original action.", "Make a wrong call feel permanent.", "Force an irreversible commit to get any value from the model."],
     instTag: "EdTech \xB7 PTC University",
     inst: React.createElement(React.Fragment, null, "Retiring four products, I sequenced the shutdowns so every team ", React.createElement("span", { className: "bk-em" }, "watched their users land softly before the lights went out"), " — a migration you could halt beats a leap you can't take back."),
-    fig: { no: "3.8", img: null, label: "act → undo, one move each" }
+    fig: { no: "3.8", img: "../assets/visuals/pattern-reversibility.svg", label: "act → undo, one move each" }
   }
 };
 window.BOOK_META = {
