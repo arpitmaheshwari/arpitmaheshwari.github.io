@@ -24,11 +24,13 @@
     <text x="40" y="124" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="bold" fill="#2C2620">Reallocate budget</text>
 
     <!-- Undo control, shown up front -->
-    <rect x="40" y="138" width="98" height="30" rx="15" fill="#F4ECDA" stroke="#C0512B" stroke-width="1.5"/>
-    <!-- curved back-arrow glyph -->
-    <path d="M 64 153 A 9 9 0 1 0 73 162" fill="none" stroke="#C0512B" stroke-width="2.2" stroke-linecap="round"/>
-    <path d="M 57 149 L 64 150 L 62 157 Z" fill="#C0512B"/>
-    <text x="83" y="158" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="bold" fill="#C0512B">Undo</text>
+    <rect x="40" y="138" width="100" height="30" rx="15" fill="#F4ECDA" stroke="#C0512B" stroke-width="1.5"/>
+    <!-- undo glyph (clean rotate-counter-clockwise), fully contained within the pill -->
+    <g transform="translate(49,143) scale(0.8)" fill="none" stroke="#C0512B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 14 4 9l5-5"/>
+      <path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H9"/>
+    </g>
+    <text x="80" y="158" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="bold" fill="#C0512B">Undo</text>
 
     <!-- reassurance caption -->
     <text x="24" y="200" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#6A6052">Exit shown before you commit.</text>
