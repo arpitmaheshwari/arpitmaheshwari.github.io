@@ -23,22 +23,22 @@ const WORK = [{
 }, {
   tag: "FinTech · NDA",
   title: "AI-Assisted Private Equity Investing",
-  metric: "−60%",
+  metric: "60% faster",
   desc: "Analysts are paid to doubt confident numbers, so I held the launch until the score could explain itself."
 }, {
   tag: "AdTech · NDA",
   title: "Programmatic Advertising Platform",
-  metric: "2wk→3hr",
+  metric: "2 wks → 3 hrs",
   desc: "Traders watched the algorithm win and still played hunches. The fix was the interface, not the model."
 }, {
   tag: "Org Design · NDA",
-  title: "OrgOS — Zero Managers",
+  title: "OrgOS · Transparent Org Tooling",
   metric: "200",
   desc: "Eight modules doing the coordination work a management layer usually does — 200 people, zero managers."
 }, {
   tag: "VC/PE · NDA",
   title: "Technical Due Diligence Platform",
-  metric: "3wk→4d",
+  metric: "3 wks → 4 days",
   desc: "Partners stake millions on claims they can't verify. Extracting the signals was the model's job; trusting it was theirs."
 }];
 const PRINCIPLES = [{
@@ -192,7 +192,7 @@ const NDA_CASES = [{
   title: "Telefónica MyO2 & Priority Moments",
   standfirst: "Drawn by me, then coded by me — every screen of two O2 UK products on mobile web, at a scale where rounding errors have populations.",
   meta: [["Role", "Designer + Front-end"], ["Client", "O2 UK (Telefónica) · via Equal Experts"], ["Status", "Shipped · public"]],
-  context: "I owned both sides of the handoff: drew the screens, then wrote the front-end that shipped them. MyO2 and Priority Moments, mobile web, national scale.",
+  context: "I owned both sides of the handoff: drew the screens, then wrote the front-end that shipped them. MyO2 and Priority Moments, mobile web, national scale. The proof isn't the sign-ups — it's the 2.5M who came back: every self-service task that lands is a call the contact centre never takes, and a loyalty app people actually open.",
   moves: [{
     h: "MyO2 — the whole account, alone",
     p: "O2 UK's self-service app: data and usage, the bill, a tariff change, an upgrade — the whole account without dialing anyone. The math is blunt: every self-service task that lands is a contact-centre call that never happens. It went on to serve more than four million users."
@@ -224,7 +224,7 @@ const NDA_CASES = [{
   title: "AI-Assisted Private Equity Investing",
   standfirst: "I held the release until the model could defend its own scores. Then screening sped up 60%.",
   meta: [["Role", "Lead Product Designer"], ["Surface", "AI for private-equity investing"], ["Status", "Shipped · under NDA"]],
-  context: "Analysts are paid to doubt confident numbers. A score they can't cross-examine is a liability with a UI.",
+  context: "Analysts are paid to doubt confident numbers. A score they can't cross-examine is a liability with a UI — and on a deal, an unexplained verdict is one nobody signs. Without trust the tool was dead on arrival, however good the model.",
   moves: [{
     h: "Explain before the verdict",
     p: "An “explain this score” surface: pull a rating into its signals, challenge the weighting, watch it answer — sources beside the number."
@@ -238,8 +238,8 @@ const NDA_CASES = [{
   plateNo: "3.1",
   plateCn: "explanation drawer — output traced to source documents",
   ledger: [{
-    v: "−60%",
-    l: "Time per diligence pass"
+    v: "60% faster",
+    l: "Per diligence pass · n=42 · 90-day window"
   }, {
     v: "3",
     l: "Sources behind every score"
@@ -270,7 +270,7 @@ const NDA_CASES = [{
   plateNo: "4.1",
   plateCn: "recommendation card — confidence score, reasoning, override",
   ledger: [{
-    v: "2wk→3hr",
+    v: "2 wks → 3 hrs",
     l: "Campaign planning time"
   }, {
     v: "3",
@@ -285,7 +285,7 @@ const NDA_CASES = [{
   no: "05",
   img: "../assets/visuals/case-orgos.svg",
   tag: "Org Design · NDA",
-  title: "OrgOS — Zero Managers",
+  title: "OrgOS · Transparent Org Tooling",
   standfirst: "Two hundred people. No managers. Eight modules doing the job of an org chart — coordination that never smuggles a boss back in.",
   meta: [["Role", "Design Lead"], ["Surface", "Internal operating system"], ["Status", "Shipped · under NDA"]],
   context: "Transparency does the coordinating — salaries, finances, assignments, reviews, open to everyone. That holds at forty; at two hundred the hallway stops scaling. Every obvious feature — assignment, approval, escalation — was a manager wearing a different name. The job was saying no to each one.",
@@ -312,7 +312,7 @@ const NDA_CASES = [{
     l: "Modules, one grammar"
   }],
   note: "transparency as the coordination layer",
-  stamp: { t: "Zero Managers", v: "ok" }
+  stamp: { t: "0 Managers", v: "ok" }
 }, {
   no: "06",
   img: "../assets/visuals/case-vc.svg",
@@ -334,7 +334,7 @@ const NDA_CASES = [{
   plateNo: "6.1",
   plateCn: "technical-risk dossier — each score traced to its signals",
   ledger: [{
-    v: "3wk→4d",
+    v: "3 wks → 4 days",
     l: "Diligence cycle time"
   }, {
     v: "VC + PE",
@@ -835,7 +835,16 @@ function caseWalk(c) {
       style: {
         marginTop: 16
       }
-    }, c.note))
+    }, c.note), c.redacted !== false ? /*#__PURE__*/React.createElement("p", {
+      className: "bk-nda-foot",
+      style: {
+        marginTop: 14,
+        fontSize: 11.5,
+        lineHeight: 1.5,
+        fontStyle: "italic",
+        color: "var(--bk-ink-faint)"
+      }
+    }, "The screens are redacted on purpose — full case under NDA. The moves, outcomes and principles are public; I'll walk through the artifacts and numbers on a call under mutual NDA.") : null)
   };
 }
 
@@ -914,17 +923,27 @@ function ContactForm() {
         setError("Could not connect — please try again.");
       });
     }
-  }, /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "bk-form__label",
+    htmlFor: "bk-email",
+    style: { fontFamily: "var(--bk-mono)", fontSize: "11px", letterSpacing: ".04em", textTransform: "uppercase", color: "var(--bk-ink-faint)", marginBottom: "-5px" }
+  }, "Your work email"), /*#__PURE__*/React.createElement("input", {
     type: "email",
+    id: "bk-email",
     name: "email",
     required: true,
     placeholder: "you@company.com",
     value: email,
     onChange: e => setEmail(e.target.value)
-  }), /*#__PURE__*/React.createElement("input", {
+  }), /*#__PURE__*/React.createElement("label", {
+    className: "bk-form__label",
+    htmlFor: "bk-product",
+    style: { fontFamily: "var(--bk-mono)", fontSize: "11px", letterSpacing: ".04em", textTransform: "uppercase", color: "var(--bk-ink-faint)", marginBottom: "-5px" }
+  }, "Link to the role or your company (optional)"), /*#__PURE__*/React.createElement("input", {
     type: "url",
+    id: "bk-product",
     name: "product",
-    placeholder: "Link to the role or your company (optional)",
+    placeholder: "https://… the role you're hiring for",
     value: product,
     onChange: e => setProduct(e.target.value)
   }), error ? /*#__PURE__*/React.createElement("p", {
@@ -1007,10 +1026,20 @@ function buildBook(ctx) {
       className: "bk-cover__sub"
     }, "Fifteen years designing the half-second where a person decides to believe a machine."), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Founding / Staff / Director \xB7 Available \xB7 4 weeks\u2019 notice"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "In a hurry? Skim the classic site \u2192"), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
-      onClick: () => go(1)
+      onClick: () => go(1),
+      "aria-label": "Open the book \u2014 click or press space"
     }, /*#__PURE__*/React.createElement("span", {
       className: "dot"
-    }), " Open the book"))
+    }), " Open the book \u2192"), /*#__PURE__*/React.createElement("span", {
+      className: "bk-cover__openhint",
+      style: {
+        display: "block",
+        marginTop: 8,
+        fontSize: 11,
+        letterSpacing: ".04em",
+        opacity: 0.6
+      }
+    }, "click or press space"))
   }, /* 1 · TITLE / CONTENTS */
   {
     kind: "spread",
@@ -1085,7 +1114,7 @@ function buildBook(ctx) {
       style: {
         marginTop: 26
       }
-    }, "turn pages across \u2192 open items to go deeper \u2197"))
+    }, "arrows, \u2190 \u2192 keys, or swipe to turn \u2014 open an item to go deeper \u2197"))
   }, /* 2 · How I Lead (front matter) */
   {
     kind: "spread",
@@ -1321,12 +1350,12 @@ function buildBook(ctx) {
       key: i
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-writing__date"
-    }, w.d), /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("a", {
-          href: "https://substack.com/@arpitmaheshwari",
-          target: "_blank",
-          rel: "noopener",
-          className: "bk-em"
-        }, w.h)), /*#__PURE__*/React.createElement("p", null, w.p)))))
+    }, w.d), /*#__PURE__*/React.createElement("h4", null, w.h), /*#__PURE__*/React.createElement("p", null, w.p), /*#__PURE__*/React.createElement("a", {
+      href: "https://arpitmaheshwari.substack.com",
+      target: "_blank",
+      rel: "noopener",
+      className: "bk-em bk-writing__link"
+    }, "View on Substack ", Icon({ name: "arrow-right", cls: "bk-icon--sm" }))))))
   }, /* APPENDIX - CURRICULUM VITAE */
   {
     kind: "spread",
@@ -1420,7 +1449,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "Your model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. One seat, full-time: founding, staff, or a director-level trust-layer role. Available, four weeks’ notice."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
+    }, "Your model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. One seat, full-time: founding, staff, or a director-level trust-layer role. Available, 4 weeks’ notice."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-social",
       style: {
         marginTop: 24
@@ -1654,6 +1683,22 @@ function ChapterMenu({
   onPick,
   onClose
 }) {
+  const panelRef = useRef(null);
+  useEffect(() => {
+    const el = panelRef.current;
+    if (el) {
+      const first = el.querySelector("button");
+      if (first) first.focus();
+    }
+    const onKey = e => {
+      if (e.key === "Escape") {
+        e.stopPropagation();
+        onClose();
+      }
+    };
+    document.addEventListener("keydown", onKey, true);
+    return () => document.removeEventListener("keydown", onKey, true);
+  }, [onClose]);
   const items = [{
     i: 0,
     label: "Cover",
@@ -1668,6 +1713,10 @@ function ChapterMenu({
     onClick: onClose
   }, /*#__PURE__*/React.createElement("div", {
     className: "bk-menu__panel",
+    ref: panelRef,
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-label": "Jump to a chapter",
     onClick: e => e.stopPropagation()
   }, /*#__PURE__*/React.createElement("div", {
     className: "bk-menu__head"
@@ -1779,6 +1828,8 @@ function App() {
   mobileRef.current = mobile;
   const mLeafRef = useRef(mLeaf);
   mLeafRef.current = mLeaf;
+  const menuRef = useRef(menu);
+  menuRef.current = menu;
   const bookRef = useRef(null);
   const zoomCount = useRef(0);
   const reduce = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1996,6 +2047,10 @@ function App() {
   useEffect(() => {
     const onKey = e => {
       if (e.key === "Escape") {
+        if (menuRef.current) {
+          setMenu(false);
+          return;
+        }
         exitSection();
         return;
       }
@@ -2369,7 +2424,7 @@ function App() {
       onTouchEnd: e => {
         if (touchRef.current === null) return;
         const diff = touchRef.current - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 48) { if (diff > 0) stepMobile(1); else stepMobile(-1); }
+        if (Math.abs(diff) > 30) { if (diff > 0) stepMobile(1); else stepMobile(-1); }
         touchRef.current = null;
       }
     }, /*#__PURE__*/React.createElement("div", { className: "bk-m-underneath" }), /*#__PURE__*/React.createElement("div", {

@@ -12,7 +12,7 @@
   --border:rgba(255,255,255,0.07);
   --border-accent:rgba(212,168,94,0.3);
   --ink:#F2EDE4;
-  --ink-muted:rgba(242,237,228,0.5);
+  --ink-muted:rgba(242,237,228,0.62);
   --ink-dim:rgba(242,237,228,0.6);
   --gold:#D4A85E;
   --gold-light:#E8C88A;
@@ -20,6 +20,7 @@
   --copper:#4A6B5C;
   --copper-light:#6B8A7C;
   --ff-display:'Fraunces','Cormorant Garamond',Georgia,serif;
+  --ff-serif:'Fraunces','Cormorant Garamond',Georgia,serif;
   --ff-sans:'Inter Tight','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --ff-mono:'JetBrains Mono','DM Mono',monospace;
   --ease-out:cubic-bezier(0.16,1,0.3,1);
@@ -36,6 +37,22 @@ h1,h2,h3,h4,h5,h6{scroll-margin-top:80px}
 /* Focus states (a11y) */
 a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 input[type="email"]:focus-visible,input[type="text"]:focus-visible,textarea:focus-visible{background-color:rgba(212,168,94,0.05)}
+
+/* Visually-hidden labels (a11y) — read by screen readers, removed from visual flow */
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Hero proof chips — hover + keyboard focus (was inline onmouseover) */
+.proof-chip{transition:background .2s}
+.proof-chip:hover{background:rgba(212,168,94,0.08)!important}
+.proof-chip:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;background:rgba(212,168,94,0.08)!important}
+
+/* Case cards — hover lift + keyboard focus (was inline onmouseover) */
+.case-card-v2:hover{border-color:var(--border-accent)!important;transform:translateY(-4px)}
+.case-card-v2:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-color:var(--border-accent)!important}
+
+/* Errata block — "a time I was wrong" given real section weight, not whispered */
+.errata-block{padding:36px 40px;border:1px solid var(--gold-dark);border-left:4px solid var(--gold);border-radius:6px;background:rgba(212,168,94,0.05)}
+@media (max-width:600px){.errata-block{padding:28px 22px}}
 
 /* Icons */
 .icon{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}

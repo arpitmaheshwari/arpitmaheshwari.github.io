@@ -22,7 +22,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;600&family=JetBrains+Mono:wght@400;500&family=Lexend:wght@400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;600&family=JetBrains+Mono:wght@400;500&family=Lexend:wght@400&display=swap" media="print" onload="this.media='all';this.onload=null">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;600&family=JetBrains+Mono:wght@400;500&family=Lexend:wght@400&display=swap"></noscript>
-  <link rel="stylesheet" href="../styles.css?v=p19">
+  <link rel="stylesheet" href="../styles.css?v=p20">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -44,7 +44,7 @@
 <a href="#main" class="skip-link">Skip to content</a>
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
-  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-work">How I Lead</a></li><li><a href="../index.html#contact">Contact</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li><a href="../index.html#contact">Contact</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -58,34 +58,28 @@
 
 <main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
 
-  <p style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 28px 0">Part of my <a href="../patterns/ml-explainability.html" style="color:var(--gold);text-decoration:none">AI Design Patterns library → ML Explainability Patterns</a></p>
+  <p style="font-family:var(--ff-display);font-size:clamp(18px,3vw,24px);font-style:italic;color:var(--ink);line-height:1.5;margin-bottom:40px">"Your algorithm says this trade is risky. I need to know why." The model had an answer — 72% — and no way to defend it. She overrode it. Three weeks later the trade lost $2.1M. The model had been right. The interface just couldn't say so.</p>
 
-  <p style="font-family:var(--ff-display);font-size:clamp(18px,3vw,24px);font-style:italic;color:var(--ink);line-height:1.5;margin-bottom:40px">Users don't trust black boxes. When an AI recommends something, I design explainability into the interface—showing confidence, data provenance, what the model weighted, why it could be wrong. Transparency is the product.</p>
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">The question the system couldn't answer</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">In 2021 a compliance officer put that question to me directly, and I didn't have a good answer. The risk model flagged a trade at 72%. She wasn't refusing to listen — she was doing her job, which is to never sign off on something she can't explain to an auditor. The system gave her a number and a recommendation and nothing in between. So she did the only defensible thing and waved the model away. The trade went through unsupervised. Three weeks later it cost the firm $2.1M.</p>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Here's the part that stayed with me: the model wasn't wrong. It had caught the risk. The failure was entirely on the interface — nobody had designed the layer that turns a score into a reason. And a score without a reason is, to an expert who's accountable for the decision, just noise with a confident font.</p>
 
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">The Black Box Fallacy</h2>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">In 2021, a compliance officer told me: "Your algorithm says this trade is risky. I need to know why." The model output a risk score of 72%. But the system couldn't explain it. Not because the model was secret—just because nobody had designed the explanation interface. She rejected the recommendation, and the trade went through unsupervised. Three weeks later, the trade lost $2.1M.</p>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The algorithm wasn't the problem. The explainability layer was. When users can't understand why an AI made a decision, they don't trust it. When they don't trust it, they override it—even when it's right.</p>
-
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">What Explainability Means</h2>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Explainability isn't showing users the model weights or the neural net architecture. It's answering the question every user is asking: "Why this, not that?"</p>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Three layers make explainability work:</p>
-  <ul style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px;padding-left:24px">
-    <li><strong>Data provenance.</strong> Where did the inputs come from? Are they reliable? (Stale data = unreliable prediction)</li>
-    <li><strong>Feature importance.</strong> Which inputs drove the prediction most? (Not the model weights—the user-relevant factors)</li>
-    <li><strong>Counterfactuals.</strong> What would have to change for the prediction to flip? (Users want to know the boundary, not just the decision)</li>
-  </ul>
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">What she actually needed</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I used to think explainability meant exposing the machinery — model weights, feature vectors, the architecture. It doesn't. The compliance officer didn't want a lecture on the model. She wanted an answer to one human question: <em>why this, and not that?</em> When I rebuilt the surface, that's the only question I designed around. The recommendation moved down the page. The reasoning moved up: this counterparty has six failed trades in eighteen months; their average position is $500K; this one is $2M, twice their normal appetite. Suddenly she wasn't being asked to trust a number. She was being handed a case she could check, argue with, and put her name next to.</p>
 
   <div style="padding:32px;border-left:3px solid var(--gold);margin:32px 0;background:var(--bg-card)">
-    <p style="font-family:var(--ff-display);font-style:italic;font-size:18px;line-height:1.6;color:var(--ink);margin:0"><strong>Explainability is not a data science problem. It's a design problem.</strong> You can have the best model in the world. If users can't understand it, they won't use it.</p>
+    <p style="font-family:var(--ff-display);font-style:italic;font-size:18px;line-height:1.6;color:var(--ink);margin:0"><strong>Explainability isn't a data-science problem. It's a design problem.</strong> You can ship the best model in the world; if the person on the hook for the decision can't see why it decided, they won't use it — and they'll be right not to.</p>
   </div>
 
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">How I Design for Explainability</h2>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Layer 1: Show the "why" as the primary interface.</strong> The recommendation itself is secondary. "Risk Score: 72%" goes below. The "why" goes above: "Counterparty has 6 failed trades in 18 months. Average account size $500K. This one is $2M—2x their normal risk appetite."</p>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Layer 2: Make feature importance visual.</strong> Don't list factors as bullets. Show them as a horizontal bar chart: "Counterparty history (40%) · Account volatility (35%) · Deal size (25%)." Users scan visuals faster than text.</p>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>Layer 3: Offer interactive exploration.</strong> Hover over "Counterparty history" and see the actual 6 trades. Click "Account volatility" to see the 18-month history. Let users verify the reasoning themselves.</p>
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Why I design the explanation first</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The most useful habit I took from that engagement is to design the explanation surface <em>before</em> the model is finished. It sounds backwards, but it does something quietly powerful: when the interface has to show <em>why</em>, the model is forced to produce reasons a person can actually read — not just an output, but the handful of signals behind it, and the boundary at which the answer would flip. Demand legibility from the UI and you end up demanding it from the model too.</p>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The sophisticated systems rarely fail because the math is wrong. They fail at the explanation layer, in front of a person who has to be accountable for what they approve. Interpretability is the bridge between a model that's correct and a model anyone is willing to act on. Most teams build the model and bolt the bridge on later. I'd rather build the bridge first and let it shape the model.</p>
 
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Key Takeaway</h2>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The most sophisticated algorithms fail at the explainability layer. Not because the math is wrong, but because users can't understand it. When you design the explanation surface *before* the algorithm, you force the model to produce interpretable outputs. And interpretability is the bridge between AI and adoption.</p>
+  <div style="padding:24px 28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);margin:48px 0 8px">
+    <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:8px">The reference version</div>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin:0 0 12px">Want the playbook, not the story? The ML-explainability patterns I design from — provenance, feature importance, counterfactuals — with the do's, don'ts, and worked examples.</p>
+    <a href="../patterns/ml-explainability.html" data-cta="pattern-reference" data-location="essay-body" style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.05em;color:var(--gold);text-decoration:none">See the pattern reference: ML Explainability Patterns →</a>
+  </div>
 
   <div style="margin-top:60px;padding-top:40px;border-top:1px solid var(--border)">
     <p style="font-family:var(--ff-mono);font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px">Continue exploring</p>
@@ -138,7 +132,7 @@ if (menuBtn && navLinks) {
 
 // Dyslexia mode
 const isDyslexia = localStorage.getItem('dyslexia-mode') === 'on';
-if (isDyslexia) document.documentElement.classList.add('dyslexia-mode');
+if (isDyslexia) document.body.classList.add('dyslexia-mode');
 
 // GA4 events
 document.querySelectorAll('[data-cta]').forEach(el => {

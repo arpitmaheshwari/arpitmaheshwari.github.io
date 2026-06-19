@@ -58,7 +58,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p19">
+<link rel="stylesheet" href="../styles.css?v=p20">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -69,7 +69,7 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
-  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-work">How I Lead</a></li><li><a href="../index.html#contact">Contact</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li><a href="../index.html#contact">Contact</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -120,6 +120,7 @@
         #recon-vc .rxv-sign[disabled]{border-color:var(--border);color:var(--ink-dim);cursor:not-allowed}
         #recon-vc .rxv-sign.rxv-signed{border-color:var(--gold);color:var(--gold);cursor:default}
         #recon-vc .rxv-hint{font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:var(--ink-dim);margin:0}
+        #recon-vc .rxv-sig:focus-visible,#recon-vc .rxv-sign:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
       </style>
       <div class="rxv-card">
         <p class="rxv-vlabel">Dossier · Company K</p>
@@ -173,7 +174,7 @@
   })();</script>
   <div class="loom-slot" data-video-url="" data-video-title="Technical Due Diligence — walkthrough"></div>
 
-  <p style="font-family:var(--ff-display);font-size:clamp(17px,1.8vw,21px);font-style:italic;color:var(--ink);line-height:1.7;margin-bottom:32px">Partners bet millions on a startup's technology in days, on claims they will never personally check. The model extracted the evidence. The design made partners willing to stand on it. Diligence cycles ran <strong>3 weeks to 4 days</strong>. <strong>Confidential</strong> — I'll walk the framework on a call.</p>
+  <p style="font-family:var(--ff-display);font-size:clamp(17px,1.8vw,21px);font-style:italic;color:var(--ink);line-height:1.7;margin-bottom:32px">Partners bet millions on a startup's technology in days, on claims they will never personally check. The model extracted the evidence. The design made partners willing to stand on it. Diligence cycles ran <strong>3 weeks to 4 days</strong>. Details are confidential; I'll walk through the framework and numbers on a call under mutual NDA.</p>
 
   <figure style="margin:40px 0;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--bg-card)">
     <img src="../assets/visuals/case-vc.svg" alt="Diagram: four technical-risk signals (code quality, architecture risk, team velocity, founder credibility) feeding one auditable verdict; diligence cut from three weeks to four days." loading="lazy" width="1280" height="400" style="display:block;width:100%;height:auto">
@@ -182,8 +183,8 @@
 
   <!-- NDA CALENDLY CTA -->
   <section style="margin:40px 0 60px;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px">
-    <p style="font-family:var(--ff-display);font-size:clamp(22px,3vw,28px);font-style:italic;line-height:1.4;color:var(--ink);margin:0 0 12px 0">Want the part I can't host here?</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.7;margin:0 0 24px 0;max-width:60ch">Hiring? In an interview I'll walk you through the decisions, the artifacts I can't host publicly, and the numbers — under mutual NDA.</p>
+    <p style="font-family:var(--ff-display);font-size:clamp(22px,3vw,28px);font-style:italic;line-height:1.4;color:var(--ink);margin:0 0 12px 0">The framework is the part worth walking through.</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.7;margin:0 0 24px 0;max-width:60ch">Details are confidential; I'll walk through the decisions, artifacts, and numbers on a call under mutual NDA.</p>
     <a href="../index.html#contact" data-cta="send-role" data-location="nda-case-cta" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:0.05em;border-radius:2px;text-decoration:none;transition:background 0.3s,transform 0.2s" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Send me the role <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
   </section>
 
@@ -221,10 +222,10 @@
 const toggle = document.getElementById('dyslexiaToggle');
 if (toggle) {
   const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on';
-  if (isDyslexic) document.documentElement.classList.add('dyslexia-mode');
+  if (isDyslexic) document.body.classList.add('dyslexia-mode');
   toggle.addEventListener('click', () => {
-    document.documentElement.classList.toggle('dyslexia-mode');
-    const isOn = document.documentElement.classList.contains('dyslexia-mode');
+    document.body.classList.toggle('dyslexia-mode');
+    const isOn = document.body.classList.contains('dyslexia-mode');
     localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off');
   });
 }

@@ -50,7 +50,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p19">
+<link rel="stylesheet" href="../styles.css?v=p20">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -61,7 +61,7 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
-  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-work">How I Lead</a></li><li><a href="../index.html#contact">Contact</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li><a href="../index.html#contact">Contact</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -70,7 +70,7 @@
   <div style="max-width:65ch;margin:0 auto">
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
       <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin:0">ML Explainability Patterns</h1>
-      <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">Experimental</span>
+      <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">In production</span>
     </div>
     <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · Showing the Why · Last updated June 2026</p>
   </div>
@@ -133,13 +133,13 @@
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">1. Feature Importance (What Mattered Most)</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Name the top 3–5 features that drove the call, ranked. "This lead scored high because: (1) 85% match on job title [importance: 45%], (2) Company size in target range [importance: 30%], (3) Recent activity on site [importance: 15%]." The person reads three reasons, not a black box.</p>
     <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:8px"><strong>Strengths:</strong> Cheap to build. The user can check the work. Repeated exposure trains their intuition.</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Weaknesses:</strong> It hides <abbr title="How changes in one input variable affect the impact of another input variable on the decision—for example, job title and industry may interact, making both more important together than separately" style="border-bottom:1px dotted var(--ink);cursor:help">feature interactions</abbr>. When features are correlated, the ranking lies.</p>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Weaknesses:</strong> It hides <abbr tabindex="0" title="How changes in one input variable affect the impact of another input variable on the decision—for example, job title and industry may interact, making both more important together than separately" style="border-bottom:1px dotted var(--ink);cursor:help">feature interactions</abbr>. When features are correlated, the ranking lies.</p>
   </section>
 
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">2. Counterfactual Reasoning ("What If")</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Show the one input that flips the call. "The system rated this lead high-value. Change [one thing] and it drops to medium-value." Or: "You're 3 steps away from the next tier. Here's what closes the gap."</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">A <abbr title="A hypothetical scenario showing what would change if one input variable were different, revealing causal relationships and decision boundaries" style="border-bottom:1px dotted var(--ink);cursor:help">counterfactual</abbr> lands because the person reads it as a causal story, not a verdict. The decision stops feeling fixed. They know exactly what lever to pull.</p>
+    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">A <abbr tabindex="0" title="A hypothetical scenario showing what would change if one input variable were different, revealing causal relationships and decision boundaries" style="border-bottom:1px dotted var(--ink);cursor:help">counterfactual</abbr> lands because the person reads it as a causal story, not a verdict. The decision stops feeling fixed. They know exactly what lever to pull.</p>
     <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Choose it when the user can act:</strong> sales (close a deal), education (lift a score), recommendations (steer toward better picks).</p>
   </section>
 
@@ -153,7 +153,7 @@
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">4. Reasoning Path ("Step by Step")</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Walk the chain in order. "To predict conversion, I checked industry (SaaS), then company size (50–200), then engagement (high), then landed on 73%."</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">It reads the way a human analyst would talk through the case. The person follows the branch, step by step.</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Works for:</strong> <abbr title="Machine learning models like decision trees, random forests, and gradient boosting that split data into interpretable branches, making decisions traceable step-by-step" style="border-bottom:1px dotted var(--ink);cursor:help">tree-based models</abbr>, decision trees, rule-based systems — anything with a real path to trace. <strong>Breaks for:</strong> <abbr title="Deep learning models with multiple layers of interconnected nodes whose decision logic is mathematically complex and not easily interpretable by humans" style="border-bottom:1px dotted var(--ink);cursor:help">neural networks</abbr>. There's no path to show, and inventing one is hand-waving with a UI.</p>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Works for:</strong> <abbr tabindex="0" title="Machine learning models like decision trees, random forests, and gradient boosting that split data into interpretable branches, making decisions traceable step-by-step" style="border-bottom:1px dotted var(--ink);cursor:help">tree-based models</abbr>, decision trees, rule-based systems — anything with a real path to trace. <strong>Breaks for:</strong> <abbr tabindex="0" title="Deep learning models with multiple layers of interconnected nodes whose decision logic is mathematically complex and not easily interpretable by humans" style="border-bottom:1px dotted var(--ink);cursor:help">neural networks</abbr>. There's no path to show, and inventing one is hand-waving with a UI.</p>
   </section>
 
   <section style="margin-bottom:64px">
@@ -173,11 +173,11 @@
     <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px">Implementation Checklist</h2>
     <ul style="font-size:15px;color:var(--ink-muted);line-height:1.8;padding-left:24px">
       <li style="margin-bottom:10px"><strong>Pick the explanation type</strong> from the domain — feature importance, counterfactual, or comparative.</li>
-      <li style="margin-bottom:10px"><strong>Compute it:</strong> tree models give you importance for free; neural networks need <abbr title="LIME (Local Interpretable Model-agnostic Explanations) and SHAP (SHapley Additive exPlanations) are mathematical methods that explain neural network predictions by attributing each decision to individual input features" style="border-bottom:1px dotted var(--ink);cursor:help">LIME/SHAP</abbr>; rule-based systems trace the rules.</li>
+      <li style="margin-bottom:10px"><strong>Compute it:</strong> tree models give you importance for free; neural networks need <abbr tabindex="0" title="LIME (Local Interpretable Model-agnostic Explanations) and SHAP (SHapley Additive exPlanations) are mathematical methods that explain neural network predictions by attributing each decision to individual input features" style="border-bottom:1px dotted var(--ink);cursor:help">LIME/SHAP</abbr>; rule-based systems trace the rules.</li>
       <li style="margin-bottom:10px"><strong>Say it in plain words:</strong> "Feature X has importance 0.34" becomes "Job title was the strongest signal — 34% of the decision."</li>
       <li style="margin-bottom:10px"><strong>Watch a real user read it:</strong> can they say <em>why</em> the model decided? Do they lean on it more after?</li>
       <li style="margin-bottom:10px"><strong>Don't fake it:</strong> if you can't follow the model's logic, don't write a story that pretends you can.</li>
-      <li style="margin-bottom:10px"><strong><abbr title="A design pattern where complex information is hidden initially to reduce cognitive load, then revealed on user action to avoid overwhelming them" style="border-bottom:1px dotted var(--ink);cursor:help">Progressive disclosure</abbr>:</strong> top 3 features by default, the rest one click away.</li>
+      <li style="margin-bottom:10px"><strong><abbr tabindex="0" title="A design pattern where complex information is hidden initially to reduce cognitive load, then revealed on user action to avoid overwhelming them" style="border-bottom:1px dotted var(--ink);cursor:help">Progressive disclosure</abbr>:</strong> top 3 features by default, the rest one click away.</li>
     </ul>
   </section>
 
@@ -224,7 +224,7 @@
   </section>
 
   <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:48px">
-    <a href="./confidence-scores.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Read Pattern 01 / Confidence Scores →</a>
+    <a href="./human-in-loop.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / Human-in-Loop →</a>
     <a href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
   </div>
 </div></main>
@@ -241,7 +241,7 @@
 
 <script>
 const toggle = document.getElementById('dyslexiaToggle');
-if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on'; if (isDyslexic) document.documentElement.classList.add('dyslexia-mode'); toggle.addEventListener('click', () => { document.documentElement.classList.toggle('dyslexia-mode'); const isOn = document.documentElement.classList.contains('dyslexia-mode'); localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off'); }); }
+if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on'; if (isDyslexic) document.body.classList.add('dyslexia-mode'); toggle.addEventListener('click', () => { document.body.classList.toggle('dyslexia-mode'); const isOn = document.body.classList.contains('dyslexia-mode'); localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off'); }); }
 document.addEventListener('click', (e) => { const cta = e.target.closest('[data-cta]'); if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' }); });
 
 // Scroll depth — fires once per threshold (25/50/75/100)

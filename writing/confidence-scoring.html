@@ -18,7 +18,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;600&family=JetBrains+Mono:wght@400;500&family=Lexend:wght@400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;600&family=JetBrains+Mono:wght@400;500&family=Lexend:wght@400&display=swap" media="print" onload="this.media='all';this.onload=null">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;600&family=JetBrains+Mono:wght@400;500&family=Lexend:wght@400&display=swap"></noscript>
-  <link rel="stylesheet" href="../styles.css?v=p19">
+  <link rel="stylesheet" href="../styles.css?v=p20">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -43,7 +43,7 @@
 <a href="#main" class="skip-link">Skip to content</a>
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
-  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-work">How I Lead</a></li><li><a href="../index.html#contact">Contact</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li><a href="../index.html#contact">Contact</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -57,35 +57,30 @@
 
 <main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
 
-  <p style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 28px 0">Part of my <a href="../patterns/confidence-scores.html" style="color:var(--gold);text-decoration:none">AI Design Patterns library → Confidence Score Patterns</a></p>
+  <p style="font-family:var(--ff-display);font-size:clamp(18px,3vw,24px);font-style:italic;color:var(--ink);line-height:1.5;margin-bottom:40px">In 2018 I watched a media buyer look at a recommendation that was, statistically, better than her own judgment — and override it anyway. That half-second of doubt is the whole problem. It's also the only thing I was hired to design.</p>
 
-  <p style="font-family:var(--ff-display);font-size:clamp(18px,3vw,24px);font-style:italic;color:var(--ink);line-height:1.5;margin-bottom:40px">The bottleneck in AI adoption isn't the model. It's the moment a user looks at an algorithmic recommendation and has to decide: should I trust this? I design confidence scores as the primary interaction—not the secondary footnote.</p>
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">The number that said nothing</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The platform had built a recommendation engine, and on paper it was very good: across more than 10,000 campaigns it was running 60% more profitable than buyer intuition. The buyers rejected it 47% of the time anyway. I sat next to one of them for an afternoon to understand why. She wasn't fighting the math. She'd glance at the recommendation, see a bare number next to a "buy" button, and quietly do what she'd already decided to do.</p>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">That afternoon reframed the whole brief for me. Media buyers are trained skeptics — they'll take data over instinct, but only when they can see which way the data is pointing and why. A system that says "buy this" and offers nothing else isn't a tool to them; it's a threat to the judgment they're paid for. So they reach for the thing that feels safer: their own call. The model wasn't being out-argued. It was being ignored.</p>
 
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">The Trust Problem</h2>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">In 2018, I worked with a media-buying platform that had built a recommendation engine. The algorithm was good—60% more profitable than buyer intuition across 10K+ campaigns. But buyers rejected it 47% of the time. Not because the math was wrong. Because the system showed a number and said nothing else.</p>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Buyers are trained skeptics. They trust data over intuition, but only if they understand *why* the data points in a direction. An algorithm that says "buy this" without explanation is a threat to their expertise. So they override it. Human judgment feels safer than machine judgment they don't understand.</p>
-
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">The Design Principle</h2>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Confidence scores are not a data visualization problem. They're a trust problem. Here's what I design for:</p>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The fix everyone reached for first was a better number — recalibrate, add a decimal, make it look more authoritative. That's the trap. The buyer didn't distrust the score because it was imprecise. She distrusted it because it arrived as a verdict with no way in. What she needed wasn't a more confident number; it was a number she could interrogate and then choose to act on. The moment I started treating the score as the start of a conversation instead of the end of one, rejection started to fall.</p>
 
   <div style="padding:32px;border-left:3px solid var(--gold);margin:32px 0;background:var(--bg-card)">
-    <p style="font-family:var(--ff-display);font-style:italic;font-size:18px;line-height:1.6;color:var(--ink);margin:0"><strong>A confidence score is a contract.</strong> The model commits to a number. The user commits to acting on it. Design that contract transparently.</p>
+    <p style="font-family:var(--ff-display);font-style:italic;font-size:18px;line-height:1.6;color:var(--ink);margin:0"><strong>A confidence score is a contract.</strong> The model commits to a number. The user commits to acting on it. My job is to make both halves of that bargain visible — so the person can see what they're agreeing to before they agree.</p>
   </div>
 
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">This means:</p>
-  <ul style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px;padding-left:24px">
-    <li><strong>The number comes first.</strong> Not as a badge. As the headline. "78% confidence" must be unmissable.</li>
-    <li><strong>The reasoning comes second.</strong> Show what the model weighted. Show data provenance. Show what could make the confidence drop.</li>
-    <li><strong>The override path comes third.</strong> Users must understand not just the recommendation, but how to challenge it.</li>
-  </ul>
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">What I actually changed</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The thing I'm proudest of on that project is the smallest: below a certain confidence, we stopped showing a number at all. A 42% score is worse than useless — it's an invitation to freeze. Replacing it with a plain "not confident enough to recommend — flag for review" let the buyer move on instead of staring at a figure she'd never act on. We spent the rest of the engagement on the same instinct, again and again: don't dress up uncertainty, name it, and always leave a door open for the expert to walk through and disagree.</p>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">That's the counter-intuitive part. The honest interface — the one that admits where the model is shaky — earned more trust than the optimistic one ever did. An "85% confident!" banner buys you exactly one mistake before a skeptic writes the whole system off. A score that already told you where it might be wrong survives the day it actually is.</p>
 
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Three Confidence Score Patterns</h2>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Pattern 1: <strong>Numeric Confidence.</strong> A percentage (0–100%). Clear, comparable, precise. But abstract for non-technical users. Pair it with language: "78% confidence—likely, not certain."</p>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Pattern 2: <strong>Color + Language.</strong> Green (high confidence), yellow (medium), red (low). Add words: "High confidence" / "Consider with caution" / "Low confidence." Colors alone are inaccessible; always use text too.</p>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Pattern 3: <strong>Explicit Uncertainty.</strong> When confidence is below 50%, hide the score. Show: "This is uncertain. We don't recommend acting on this alone." Remove the illusion of precision where none exists.</p>
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">What I believe now</h2>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Confidence scoring isn't a data-visualization problem. It's a trust problem wearing a number's clothes. The model is rarely the bottleneck in adoption; the half-second of doubt in front of the screen is. Design for that half-second and the rest of the model's value finally gets used. Ignore it, and you've built something statistically excellent that nobody bets on.</p>
 
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Key Takeaway</h2>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The best confidence scores don't hide uncertainty. They expose it. They say: "Here's what we're confident about. Here's where we could be wrong." This is harder to design than an optimistic "85% confidence!" banner. But it builds actual trust—the kind that doesn't collapse when the algorithm eventually makes a mistake.</p>
+  <div style="padding:24px 28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);margin:48px 0 8px">
+    <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:8px">The reference version</div>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin:0 0 12px">Want the playbook, not the story? The five confidence-score patterns I lean on — with the trade-offs, the do's and don'ts, and worked examples.</p>
+    <a href="../patterns/confidence-scores.html" data-cta="pattern-reference" data-location="essay-body" style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.05em;color:var(--gold);text-decoration:none">See the pattern reference: Confidence Score Patterns →</a>
+  </div>
 
   <div style="margin-top:60px;padding-top:40px;border-top:1px solid var(--border)">
     <p style="font-family:var(--ff-mono);font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px">Continue exploring</p>
@@ -138,7 +133,7 @@ if (menuBtn && navLinks) {
 
 // Dyslexia mode
 const isDyslexia = localStorage.getItem('dyslexia-mode') === 'on';
-if (isDyslexia) document.documentElement.classList.add('dyslexia-mode');
+if (isDyslexia) document.body.classList.add('dyslexia-mode');
 
 // GA4 events
 document.querySelectorAll('[data-cta]').forEach(el => {

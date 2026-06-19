@@ -4,6 +4,17 @@
    Namespace: --bk-* / .bk-*
    Fonts loaded via <link> in the HTML head:
      Playfair Display · Spectral · Caveat · Spline Sans Mono
+   ------------------------------------------------------------
+   PALETTE — DELIBERATE, NOT DRIFT.
+   The book runs a warm terracotta-on-cream "printed paper"
+   palette (--bk-ember #C0512B on --bk-paper #F4ECDA). This is an
+   INTENTIONAL second identity, distinct from the classic site's
+   gold-on-dark "screen" identity (#D4A85E on near-black). The two
+   surfaces are meant to feel like the same author working in two
+   different media — ink on paper vs light on glass — not like two
+   different brands. Do NOT "unify" this to the gold/dark palette:
+   the contrast between the two views is the point. Keep the warm
+   paper palette here on purpose.
    ============================================================ */
 
 :root {
@@ -20,7 +31,7 @@
   /* ---- ink ---- */
   --bk-ink:         #2C2620;   /* espresso text */
   --bk-ink-soft:    #6A6052;   /* secondary */
-  --bk-ink-faint:   #998D78;   /* tertiary / meta */
+  --bk-ink-faint:   #847862;   /* tertiary / meta — darkened from #998D78 to clear WCAG AA on cream */
 
   /* ---- accents (tweakable: --bk-ember is primary) ---- */
   --bk-ember:       #C0512B;   /* terracotta — PRIMARY accent */
@@ -189,8 +200,10 @@ body {
    TYPOGRAPHY
    ============================================================ */
 .bk-kicker {
-  font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.26em;
-  text-transform: uppercase; color: var(--bk-ember); font-weight: 500;
+  /* ember-deep (#97391A ≈ 6.4:1 on cream) instead of ember (#C0512B ≈ 3.9:1) —
+     small uppercase mono needs the higher contrast to clear WCAG AA. */
+  font-family: var(--bk-mono); font-size: 11.5px; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--bk-ember-deep); font-weight: 500;
 }
 .bk-chno {
   display: block; margin-top: 7px;
@@ -201,7 +214,9 @@ body {
   font-family: var(--bk-display); font-weight: 400; line-height: 0.98;
   letter-spacing: -0.005em; color: var(--bk-ink); margin: 0;
 }
-.bk-title--xl { font-size: clamp(54px, 7vw, 92px); }
+/* Cap below the 78px cover title so the cover stays the largest type in the book
+   (corrects an inverted hierarchy where section spreads could out-size the cover). */
+.bk-title--xl { font-size: clamp(52px, 6vw, 72px); }
 .bk-title--l  { font-size: 56px; }
 .bk-title--m  { font-size: 30px; }
 .bk-serifhead { font-family: var(--bk-serif); font-weight: 600; font-size: 21px; line-height: 1.2; color: var(--bk-ink); margin: 0; }
@@ -404,7 +419,7 @@ body {
 .bk-beat { margin-top: 14px; }
 .bk-beat__label { display: flex; align-items: baseline; gap: 11px; margin-bottom: 9px; }
 .bk-beat__n { font-family: var(--bk-display); font-style: italic; font-size: 18px; color: var(--bk-ochre); }
-.bk-beat__t { font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bk-ember); font-weight: 500; white-space: nowrap; }
+.bk-beat__t { font-family: var(--bk-mono); font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bk-ember-deep); font-weight: 500; white-space: nowrap; }
 
 /* numbered design moves */
 .bk-moves { display: flex; flex-direction: column; margin-top: 6px; }
@@ -520,7 +535,11 @@ body {
   .bk-cover__open .dot { animation: none; }
   .bk-openbook .bk-cover { transition: none; }
   .bk-opencue { animation: none; }
+  /* mobile page-turn: swap the 3D rotateY flip for a flat opacity fade */
+  .bk-m-page { animation: mFade 220ms ease both; transform: none !important; }
+  .bk-m-page::after { animation: none !important; display: none; }
 }
+@keyframes mFade { from { opacity: 0; } to { opacity: 1; } }
 
 /* ============================================================
    NAV (outside the scaled book)
@@ -986,6 +1005,30 @@ body {
 .bk-item--link:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 3px; border-radius: 6px; }
 .bk-pattern--link:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 3px; border-radius: 8px; }
 .bk-menu__item:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 3px; }
+/* remaining interactive elements — same ring so the whole book is keyboard-navigable */
+.bk-feature--link:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 3px; border-radius: 10px; }
+.bk-back:focus-visible,
+.bk-m-back:focus-visible,
+.bk-m-jump:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 3px; border-radius: 999px; }
+.bk-m-btn:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 3px; border-radius: 50%; }
+.bk-crumb button:focus-visible,
+.bk-progress__esc:focus-visible,
+.bk-cover__open:focus-visible,
+.bk-cover__classic:focus-visible,
+.bk-cover__skimlink:focus-visible,
+.bk-contactlinks a:focus-visible,
+.bk-menu__exit:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 3px; border-radius: 4px; }
+
+/* Skip-link (WCAG 2.4.1) — off-screen until a keyboard user tabs to it,
+   then a high-contrast pill that jumps focus past the chrome into the book. */
+.bk-skip {
+  position: fixed; top: 12px; left: 12px; z-index: 100;
+  transform: translateY(-150%); transition: transform var(--bk-ease);
+  background: var(--bk-ember); color: #F7F0E1; text-decoration: none;
+  font-family: var(--bk-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 11px 18px; border-radius: 6px; box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+.bk-skip:focus { transform: translateY(0); outline: 2px solid var(--bk-ochre); outline-offset: 3px; }
 
 /* Cover skim strip — the 10-second payload for first-time visitors */
 .bk-cover__skim {

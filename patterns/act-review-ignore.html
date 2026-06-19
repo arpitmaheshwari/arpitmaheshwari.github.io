@@ -57,7 +57,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p19">
+<link rel="stylesheet" href="../styles.css?v=p20">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -68,7 +68,7 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
-  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-work">How I Lead</a></li><li><a href="../index.html#contact">Contact</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li><a href="../index.html#contact">Contact</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -77,7 +77,7 @@
   <div style="max-width:65ch;margin:0 auto">
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap">
       <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin:0">The Act / Review / Ignore Rule</h1>
-      <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">The rule</span>
+      <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">In production</span>
     </div>
     <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · The named framework behind the patterns · Last updated June 2026</p>
   </div>
@@ -137,8 +137,9 @@
     <h3 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:16px">See This Rule In Action</h3>
     <p style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px">A roomful of traders taught me this rule. It now runs across these case studies:</p>
     <ul style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
-      <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> each buyer recommendation resolves to one verb, with named reasoning and an override that trains next week's model.</li>
+      <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> each buyer recommendation resolves to one verb, with named reasoning and an override that trains next week's model. Planning fell from 2 wks → 3 hrs.</li>
       <li style="margin-bottom:12px"><strong><a href="../case-studies/fintech.html" style="color:var(--gold);text-decoration:none">AI-Assisted Private Equity Investing</a>:</strong> a score that opens its own reasoning when it hits review, never a bare verdict the analyst has to take on faith.</li>
+      <li style="margin-bottom:12px"><strong><a href="../case-studies/vc-diligence.html" style="color:var(--gold);text-decoration:none">VC Technical Diligence</a>:</strong> the same three verbs took the diligence cycle from 3 wks → 4 days.</li>
     </ul>
   </section>
 
@@ -172,10 +173,10 @@
 const toggle = document.getElementById('dyslexiaToggle');
 if (toggle) {
   const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on';
-  if (isDyslexic) document.documentElement.classList.add('dyslexia-mode');
+  if (isDyslexic) document.body.classList.add('dyslexia-mode');
   toggle.addEventListener('click', () => {
-    document.documentElement.classList.toggle('dyslexia-mode');
-    const isOn = document.documentElement.classList.contains('dyslexia-mode');
+    document.body.classList.toggle('dyslexia-mode');
+    const isOn = document.body.classList.contains('dyslexia-mode');
     localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off');
   });
 }
