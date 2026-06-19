@@ -52,9 +52,14 @@ not personal KPIs. I joined the Priority programme in **2013** (within my Equal 
 and designed + built the reward/offer screens. Keep that distinction wherever O2 is described.
 
 ## 4. The patterns library (the "playbook")
-Five entries, all marked **In production**: the **Act / Review / Ignore** rule + **Confidence Scores**,
-**AI Failure States**, **ML Explainability**, **Human-in-Loop**. Each pattern links to its matching
-**Writing** essay and vice-versa. Patterns = the *reference* (do/don'ts, demos); Writing = the *stories*.
+The **Act / Review / Ignore** rule (foundational) + **8 patterns**, all marked **In production**:
+Confidence Scores · AI Failure States · ML Explainability · Human-in-Loop · and (added 2026-06-19)
+**Provenance & Citations** (VC + FinTech) · **The Capability Contract** (AdTech + FinTech) ·
+**Calibration & Track Record** (AdTech + FinTech) · **Reversibility / Safe-to-Act** (PTC + AdTech).
+Live in BOTH views: classic pages in `/patterns/` + book field-guide spreads. The book's field-guide
+opener lists all 8 — it is fit-tuned to 880px, so keep it spill-verified if you add a ninth.
+The original four each link to a matching **Writing** essay; the four new ones have no essay yet.
+Patterns = the *reference* (do/don'ts, demos); Writing = the *stories*.
 
 ## 5. Testimonials (all confirmed genuine — 2026-06-19)
 Use real names + titles, verbatim quotes. Current placements:
