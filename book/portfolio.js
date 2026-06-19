@@ -73,6 +73,22 @@ const PATTERNS = [{
   k: "loop",
   h: "Human-in-the-Loop",
   p: "Keeping the person in command when the stakes outgrow the model's confidence."
+}, {
+  k: "trace",
+  h: "Provenance & Citations",
+  p: "The exact source behind every claim — one click from the number to the document that produced it."
+}, {
+  k: "bounds",
+  h: "The Capability Contract",
+  p: "Saying what the system can't do, up front — so the rest of it earns belief."
+}, {
+  k: "calib",
+  h: "Calibration & Track Record",
+  p: "Showing whether the confidence has actually been right before, so trust is earned, not assumed."
+}, {
+  k: "undo",
+  h: "Reversibility",
+  p: "Making the model's suggestion cheap to walk back, so people dare to act on it."
 }];
 const WRITING = [{
   d: "2026 · Essay",
@@ -422,6 +438,58 @@ const PATTERN_PAGES = {
       img: "../assets/visuals/pattern-loop.svg",
       label: "override → feedback → next recommendation"
     }
+  },
+  trace: {
+    no: "05",
+    k: "trace",
+    h: "Provenance & Citations",
+    principle: "An answer you can trace is an answer you'll defend.",
+    def: "Explainability says why the model decided; provenance says where the evidence came from — the exact source behind every claim, one click from the number to the document that produced it.",
+    note: "the score and its sources travel together, or not at all",
+    dos: ["Put the source next to the claim, not behind a 'details' link.", "Let a person open the original document the model read, unedited.", "Say how many sources back a number — and flag the one that disagreed."],
+    donts: ["Cite a source the user can't actually open and verify.", "Summarise the evidence so heavily that the trail goes cold.", "Reveal provenance only after the answer is challenged."],
+    instTag: "VC \xB7 Technical Diligence",
+    inst: React.createElement(React.Fragment, null, "Partners signed off faster once every score carried a clean drill from summary to the source document — ", React.createElement("span", { className: "bk-em" }, "they'll stand on an extraction they can open"), ", never one they can't."),
+    fig: { no: "3.5", img: null, label: "claim → the sources behind it" }
+  },
+  bounds: {
+    no: "06",
+    k: "bounds",
+    h: "The Capability Contract",
+    principle: "Trust starts with an honest “no.”",
+    def: "The model's promise, stated up front: what this system is for, where it taps out, and what it hands back to a human — set before the first use, not after the first complaint.",
+    note: "say where it taps out, before it taps out",
+    dos: ["State the model's limits in the interface, not just the docs.", "Hand off to a human the moment a request leaves the model's competence.", "Make the boundary specific — 'I can't price illiquid assets,' not 'results may vary.'"],
+    donts: ["Imply the product can do things it can't, then degrade silently.", "Bury scope in a terms page nobody reads.", "Treat 'out of scope' as an error instead of an honest answer."],
+    instTag: "AdTech \xB7 Programmatic",
+    inst: React.createElement(React.Fragment, null, "Each call resolved to act, review, or ignore — and ", React.createElement("span", { className: "bk-em" }, "“ignore” was the model admitting it had nothing worth saying"), ". The honest no is what made buyers believe the act."),
+    fig: { no: "3.6", img: null, label: "in-scope / out-of-scope, drawn before launch" }
+  },
+  calib: {
+    no: "07",
+    k: "calib",
+    h: "Calibration & Track Record",
+    principle: "Show whether the confidence has been right before.",
+    def: "A confidence number is a claim; its track record is the evidence. Show whether “80% sure” has actually been right about 80% of the time — so a person learns how hard to lean, and watches that judgment improve as the history grows.",
+    note: "confidence with a memory gets acted on; confidence alone doesn't",
+    dos: ["Show the model's hit rate beside its current confidence.", "Break the record down by the kind of case, not one global average.", "Let the history update in the open, so trust is earned, not assumed."],
+    donts: ["Show a confidence number with no past to back it.", "Average away the cases where the model is reliably wrong.", "Reset the track record silently every time the model changes."],
+    instTag: "FinTech \xB7 Due Diligence",
+    inst: React.createElement(React.Fragment, null, "Ninety days and forty-two deals in, the score had been right often enough that analysts ", React.createElement("span", { className: "bk-em" }, "stopped re-checking the confident calls"), ". The history earned the trust the number alone couldn't."),
+    fig: { no: "3.7", img: null, label: "confidence beside its 90-day hit rate" }
+  },
+  undo: {
+    no: "08",
+    k: "undo",
+    h: "Reversibility",
+    principle: "People act on the model when it's easy to walk back.",
+    def: "Adoption stalls when acting feels risky, not when the model is wrong. Make the action cheap to undo — one click to reverse, a clear path back, no permanent damage — and people will try the recommendation they'd otherwise ignore.",
+    note: "reversibility buys the first action; accuracy keeps the rest",
+    dos: ["Make acting on a recommendation one click to reverse.", "Show the way back before the person commits.", "Stage risky changes so they can be halted, not just rolled back."],
+    donts: ["Hide undo, or make reversing cost more than the original action.", "Make a wrong call feel permanent.", "Force an irreversible commit to get any value from the model."],
+    instTag: "EdTech \xB7 PTC University",
+    inst: React.createElement(React.Fragment, null, "Retiring four products, I sequenced the shutdowns so every team ", React.createElement("span", { className: "bk-em" }, "watched their users land softly before the lights went out"), " — a migration you could halt beats a leap you can't take back."),
+    fig: { no: "3.8", img: null, label: "act → undo, one move each" }
   }
 };
 window.BOOK_META = {
@@ -535,6 +603,38 @@ function Dia({
     d: "M19 24 L36 16 M19 30 L36 38",
     stroke: p,
     strokeWidth: "2.4"
+  }));
+  if (kind === "trace") return React.createElement("svg", props, React.createElement("circle", {
+    cx: "27", cy: "12", r: "4", stroke: e, strokeWidth: "3"
+  }), React.createElement("line", {
+    x1: "27", y1: "16", x2: "27", y2: "26", stroke: p, strokeWidth: "3", strokeLinecap: "round"
+  }), React.createElement("rect", {
+    x: "16", y: "26", width: "22", height: "18", rx: "2", stroke: p, strokeWidth: "3"
+  }), React.createElement("line", {
+    x1: "21", y1: "33", x2: "33", y2: "33", stroke: o, strokeWidth: "2.4", strokeLinecap: "round"
+  }), React.createElement("line", {
+    x1: "21", y1: "38", x2: "30", y2: "38", stroke: o, strokeWidth: "2.4", strokeLinecap: "round"
+  }));
+  if (kind === "bounds") return React.createElement("svg", props, React.createElement("rect", {
+    x: "10", y: "14", width: "26", height: "26", rx: "4", stroke: p, strokeWidth: "3"
+  }), React.createElement("circle", {
+    cx: "23", cy: "27", r: "3.4", fill: e
+  }), React.createElement("circle", {
+    cx: "44", cy: "40", r: "3", stroke: o, strokeWidth: "2.6"
+  }));
+  if (kind === "calib") return React.createElement("svg", props, React.createElement("circle", {
+    cx: "27", cy: "27", r: "16", stroke: p, strokeWidth: "3"
+  }), React.createElement("circle", {
+    cx: "27", cy: "27", r: "9", stroke: o, strokeWidth: "2.6"
+  }), React.createElement("circle", {
+    cx: "27", cy: "27", r: "3.4", fill: e
+  }));
+  if (kind === "undo") return React.createElement("svg", props, React.createElement("path", {
+    d: "M40 20 A14 14 0 1 0 40 34", stroke: p, strokeWidth: "3", fill: "none", strokeLinecap: "round"
+  }), React.createElement("path", {
+    d: "M40 14 L40 22 L32 22", stroke: e, strokeWidth: "3", fill: "none", strokeLinecap: "round", strokeLinejoin: "round"
+  }), React.createElement("circle", {
+    cx: "14", cy: "27", r: "3.4", fill: o
   }));
   return /*#__PURE__*/React.createElement("svg", props, /*#__PURE__*/React.createElement("path", {
     d: "M14 20 A14 14 0 1 1 14 34",
@@ -1001,7 +1101,7 @@ function buildBook(ctx) {
   const ptcA = caseSpreadA(CASES.ptc),
     ptcB = caseSpreadB(CASES.ptc);
   const ndaPages = NDA_CASES.map(c => caseWalk(c));
-  const patPages = ["gauge", "alert", "branch", "loop"].map(k => patternSpread(PATTERN_PAGES[k]));
+  const patPages = ["gauge", "alert", "branch", "loop", "trace", "bounds", "calib", "undo"].map(k => patternSpread(PATTERN_PAGES[k]));
 
   /* ----- THE SPINE — seven spreads, the only linear flow ----- */
   const spine = [/* 0 · COVER */
@@ -1575,32 +1675,60 @@ function buildBook(ctx) {
       kind: "Pattern",
       items: [{
         crumb: "Confidence Score Patterns",
-        idxLabel: "1 / 4",
+        idxLabel: "1 / 8",
         runheadR: "Confidence Score Patterns",
         folioL: "1",
         folioR: "2",
         ...patPages[0]
       }, {
         crumb: "Failure States",
-        idxLabel: "2 / 4",
+        idxLabel: "2 / 8",
         runheadR: "Failure States",
         folioL: "1",
         folioR: "2",
         ...patPages[1]
       }, {
         crumb: "Explainability",
-        idxLabel: "3 / 4",
+        idxLabel: "3 / 8",
         runheadR: "Explainability",
         folioL: "1",
         folioR: "2",
         ...patPages[2]
       }, {
         crumb: "Human-in-the-Loop",
-        idxLabel: "4 / 4",
+        idxLabel: "4 / 8",
         runheadR: "Human-in-the-Loop",
         folioL: "1",
         folioR: "2",
         ...patPages[3]
+      }, {
+        crumb: "Provenance & Citations",
+        idxLabel: "5 / 8",
+        runheadR: "Provenance & Citations",
+        folioL: "1",
+        folioR: "2",
+        ...patPages[4]
+      }, {
+        crumb: "The Capability Contract",
+        idxLabel: "6 / 8",
+        runheadR: "The Capability Contract",
+        folioL: "1",
+        folioR: "2",
+        ...patPages[5]
+      }, {
+        crumb: "Calibration & Track Record",
+        idxLabel: "7 / 8",
+        runheadR: "Calibration & Track Record",
+        folioL: "1",
+        folioR: "2",
+        ...patPages[6]
+      }, {
+        crumb: "Reversibility",
+        idxLabel: "8 / 8",
+        runheadR: "Reversibility",
+        folioL: "1",
+        folioR: "2",
+        ...patPages[7]
       }]
     }
   };

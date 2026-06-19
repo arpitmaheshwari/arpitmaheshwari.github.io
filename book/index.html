@@ -29,7 +29,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Spectral:ital,wght@0,400;0,600;1,400&family=Caveat:wght@500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Spectral:ital,wght@0,400;0,600;1,400&family=Caveat:wght@500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Spectral:ital,wght@0,400;0,600;1,400&family=Caveat:wght@500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" /></noscript>
-<link rel="stylesheet" href="book.css?v=41" />
+<link rel="stylesheet" href="book.css?v=42" />
 <script defer src="image-slot.js"></script>
 <script type="application/ld+json">
 {
@@ -309,6 +309,66 @@
 </ul>
 <p class='nsb-inst'><em>AdTech · Programmatic:</em> When a buyer&#x27;s override visibly retrained the next week&#x27;s recommendation, correcting the model stopped feeling like rework and started feeling like teaching.</p>
 </article>
+<article class='nsb-pattern'>
+<h3>05 · Provenance &amp; Citations</h3>
+<p class='nsb-principle'>An answer you can trace is an answer you&#x27;ll defend.</p>
+<p>Explainability says why the model decided; provenance says where the evidence came from — the exact source behind every claim, one click from the number to the document that produced it.</p>
+<p class='nsb-lbl'>Do</p><ul>
+<li>Put the source next to the claim, not behind a &#x27;details&#x27; link.</li>
+<li>Let a person open the original document the model read, unedited.</li>
+<li>Say how many sources back a number — and flag the one that disagreed.</li>
+</ul><p class='nsb-lbl'>Don’t</p><ul>
+<li>Cite a source the user can&#x27;t actually open and verify.</li>
+<li>Summarise the evidence so heavily that the trail goes cold.</li>
+<li>Reveal provenance only after the answer is challenged.</li>
+</ul>
+<p class='nsb-inst'><em>VC · Technical Diligence:</em> Partners signed off faster once every score carried a clean drill from summary to the source document — they&#x27;ll stand on an extraction they can open, never one they can&#x27;t.</p>
+</article>
+<article class='nsb-pattern'>
+<h3>06 · The Capability Contract</h3>
+<p class='nsb-principle'>Trust starts with an honest &#x201C;no.&#x201D;</p>
+<p>The model&#x27;s promise, stated up front: what this system is for, where it taps out, and what it hands back to a human — set before the first use, not after the first complaint.</p>
+<p class='nsb-lbl'>Do</p><ul>
+<li>State the model&#x27;s limits in the interface, not just the docs.</li>
+<li>Hand off to a human the moment a request leaves the model&#x27;s competence.</li>
+<li>Make the boundary specific — &#x27;I can&#x27;t price illiquid assets,&#x27; not &#x27;results may vary.&#x27;</li>
+</ul><p class='nsb-lbl'>Don’t</p><ul>
+<li>Imply the product can do things it can&#x27;t, then degrade silently.</li>
+<li>Bury scope in a terms page nobody reads.</li>
+<li>Treat &#x27;out of scope&#x27; as an error instead of an honest answer.</li>
+</ul>
+<p class='nsb-inst'><em>AdTech · Programmatic:</em> Each call resolved to act, review, or ignore — and &#x201C;ignore&#x201D; was the model admitting it had nothing worth saying. The honest no is what made buyers believe the act.</p>
+</article>
+<article class='nsb-pattern'>
+<h3>07 · Calibration &amp; Track Record</h3>
+<p class='nsb-principle'>Show whether the confidence has been right before.</p>
+<p>A confidence number is a claim; its track record is the evidence. Show whether &#x201C;80% sure&#x201D; has actually been right about 80% of the time — so a person learns how hard to lean, and watches that judgment improve as the history grows.</p>
+<p class='nsb-lbl'>Do</p><ul>
+<li>Show the model&#x27;s hit rate beside its current confidence.</li>
+<li>Break the record down by the kind of case, not one global average.</li>
+<li>Let the history update in the open, so trust is earned, not assumed.</li>
+</ul><p class='nsb-lbl'>Don’t</p><ul>
+<li>Show a confidence number with no past to back it.</li>
+<li>Average away the cases where the model is reliably wrong.</li>
+<li>Reset the track record silently every time the model changes.</li>
+</ul>
+<p class='nsb-inst'><em>FinTech · Due Diligence:</em> Ninety days and forty-two deals in, the score had been right often enough that analysts stopped re-checking the confident calls. The history earned the trust the number alone couldn&#x27;t.</p>
+</article>
+<article class='nsb-pattern'>
+<h3>08 · Reversibility</h3>
+<p class='nsb-principle'>People act on the model when it&#x27;s easy to walk back.</p>
+<p>Adoption stalls when acting feels risky, not when the model is wrong. Make the action cheap to undo — one click to reverse, a clear path back, no permanent damage — and people will try the recommendation they&#x27;d otherwise ignore.</p>
+<p class='nsb-lbl'>Do</p><ul>
+<li>Make acting on a recommendation one click to reverse.</li>
+<li>Show the way back before the person commits.</li>
+<li>Stage risky changes so they can be halted, not just rolled back.</li>
+</ul><p class='nsb-lbl'>Don’t</p><ul>
+<li>Hide undo, or make reversing cost more than the original action.</li>
+<li>Make a wrong call feel permanent.</li>
+<li>Force an irreversible commit to get any value from the model.</li>
+</ul>
+<p class='nsb-inst'><em>EdTech · PTC University:</em> Retiring four products, I sequenced the shutdowns so every team watched their users land softly before the lights went out — a migration you could halt beats a leap you can&#x27;t take back.</p>
+</article>
 </section>
 <section><h2>Notes &amp; Writing</h2>
 <p>One idea per issue, on getting humans to act on machines. The fastest way to know how I think before you hire me.</p>
@@ -350,6 +410,6 @@
 <script defer src="./vendor/react.production.min.js"></script>
 <script defer src="./vendor/react-dom.production.min.js"></script>
 <script src="monograph-icons.js" defer></script>
-<script src="portfolio.js?v=69" defer></script>
+<script src="portfolio.js?v=70" defer></script>
 </body>
 </html>
