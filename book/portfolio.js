@@ -153,7 +153,7 @@ const CASES = {
     no: "01",
     tag: "EdTech · Non-NDA",
     title: "PTC\u00A0University — Learning Connector",
-    standfirst: "I made the call to collapse five learning platforms into one. The real deliverable was the political case for killing four products.",
+    standfirst: "Five platforms, one survivor. The redesign took a quarter — the case for killing four products took a year. That was the design work.",
     meta: [["Role", "Lead Product Designer"], ["Span", "2014–2019 · two squads"], ["Surface", "Web LMS · 11 languages"], ["Result", "Shipped · in production"]],
     context: "PTC sold software on perpetual licenses: pay once, own forever. Around it sat five learning platforms — Learning Connector, LearningExchange, Precision LMS, Digital Guides, IoTU — five logins, five lines on an invoice. Three weeks in the customer-success recordings: nothing was wrong with the navigation. The brief said \u201Credesign the UX.\u201D I argued the contract was the broken interface.",
     fig1: {
