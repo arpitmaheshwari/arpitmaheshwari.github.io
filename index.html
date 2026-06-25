@@ -21,8 +21,8 @@
 <meta property="og:description" content="AI products don't fail at the model — they fail in the half-second before a person acts on it. Arpit Maheshwari has designed that half-second for fifteen years. Hiring: founding, staff, or director roles.">
 <meta property="og:url" content="https://arpitmaheshwari.com/">
 <meta property="og:image" content="https://arpitmaheshwari.com/arpit-maheshwari.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="926">
+<meta property="og:image:height" content="1273">
 <meta property="og:site_name" content="Arpit Maheshwari Portfolio">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
@@ -246,7 +246,7 @@
       <div class="hd-top"><span class="hd-name">Lead 4471 · confidence</span><span class="hd-score" id="hd-score">0</span></div>
       <div class="hd-track"><div class="hd-fill" id="hd-fill"></div></div>
       <div class="hd-scale"><span data-band="ignore">Ignore</span><span data-band="review">Review</span><span data-band="act">Act</span></div>
-      <div class="hd-verdict" id="hd-verdict" aria-live="polite"><span class="hd-arrow">→</span>&nbsp;<span id="hd-verb">…</span></div>
+      <div class="hd-verdict" id="hd-verdict"><span class="hd-arrow">→</span>&nbsp;<span id="hd-verb">…</span></div>
       <div class="hd-reason" id="hd-reason">a score tied to one action</div>
     </div>
     <div class="hd-foot">Not a number that ends in a shrug — a confidence that ends in an action.</div>
@@ -621,7 +621,7 @@
 
 <footer>
   <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
-  <button class="dyslexia-toggle" id="dyslexiaToggle" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
+  <button class="dyslexia-toggle" id="dyslexiaToggle" aria-pressed="false" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
     <span>Dyslexia-friendly</span>
   </button>
@@ -739,11 +739,13 @@ const dyslexiaBtn = document.getElementById('dyslexiaToggle');
 if (localStorage.getItem('dyslexia-mode') === 'on') {
   document.body.classList.add('dyslexia-mode');
   dyslexiaBtn.classList.add('active');
+  dyslexiaBtn.setAttribute('aria-pressed', 'true');
 }
 dyslexiaBtn.addEventListener('click', () => {
   document.body.classList.toggle('dyslexia-mode');
   const isOn = document.body.classList.contains('dyslexia-mode');
   dyslexiaBtn.classList.toggle('active', isOn);
+  dyslexiaBtn.setAttribute('aria-pressed', isOn ? 'true' : 'false');
   localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off');
   if (typeof gtag === 'function') gtag('event', 'dyslexia_toggle', { state: isOn ? 'on' : 'off' });
 });
@@ -963,8 +965,14 @@ if (canvas) {
   paint(states[0]);
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce) return;
-  var i=0;
-  setInterval(function(){ i=(i+1)%states.length; paint(states[i]); },3200);
+  var i=0, timer=setInterval(tick,3200);
+  function tick(){ i=(i+1)%states.length; paint(states[i]); }
+  var demoEl=document.querySelector('.hero-demo');
+  if(demoEl){
+    var stop=function(){ clearInterval(timer); timer=null; }, run=function(){ if(!timer) timer=setInterval(tick,3200); };
+    demoEl.addEventListener('mouseenter',stop); demoEl.addEventListener('mouseleave',run);
+    demoEl.addEventListener('focusin',stop); demoEl.addEventListener('focusout',run);
+  }
 })();
 </script>
 </body>

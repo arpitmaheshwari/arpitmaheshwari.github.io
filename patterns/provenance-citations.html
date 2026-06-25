@@ -13,8 +13,8 @@
 <meta property="og:description" content="Patterns for tracing an AI output back to the evidence behind it — the difference between a number people override and one they'll stand on.">
 <meta property="og:url" content="https://arpitmaheshwari.com/patterns/provenance-citations.html">
 <meta property="og:image" content="https://arpitmaheshwari.com/arpit-maheshwari.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="926">
+<meta property="og:image:height" content="1273">
 <meta property="og:site_name" content="Arpit Maheshwari Portfolio">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Provenance &amp; Citations Patterns">
@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;600&family=JetBrains+Mono:wght@400;500&family=Lexend:wght@400&display=swap" media="print" onload="this.media='all';this.onload=null">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;600&family=JetBrains+Mono:wght@400;500&family=Lexend:wght@400&display=swap"></noscript>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"TechArticle","headline":"Provenance &amp; Citations","description":"Provenance patterns for AI products — trace every claim back to the exact source, so a person acts on what they can open and check, not a summary.","author":{"@type":"Person","name":"Arpit Maheshwari"},"datePublished":"2026-06-19"}
+{"@context":"https://schema.org","@type":"TechArticle","headline":"Provenance &amp; Citations","description":"Provenance patterns for AI products — trace every claim back to the exact source, so a person acts on what they can open and check, not a summary.","author":{"@type":"Person","name":"Arpit Maheshwari"},"datePublished":"2026-06-19","dateModified":"2026-06-19"}
 </script>
 <script type="application/ld+json">
 {
@@ -148,7 +148,7 @@
 
 <footer>
   <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
-  <button class="dyslexia-toggle" id="dyslexiaToggle" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
+  <button class="dyslexia-toggle" id="dyslexiaToggle" aria-pressed="false" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
     <span>Dyslexia-friendly</span>
   </button>
@@ -158,7 +158,7 @@
 
 <script>
 const toggle = document.getElementById('dyslexiaToggle');
-if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on'; if (isDyslexic) document.body.classList.add('dyslexia-mode'); toggle.addEventListener('click', () => { document.body.classList.toggle('dyslexia-mode'); const isOn = document.body.classList.contains('dyslexia-mode'); localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off'); }); }
+if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on'; if (isDyslexic) { document.body.classList.add('dyslexia-mode'); toggle.setAttribute('aria-pressed', 'true'); } toggle.addEventListener('click', () => { document.body.classList.toggle('dyslexia-mode'); const isOn = document.body.classList.contains('dyslexia-mode'); toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false'); localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off'); }); }
 document.addEventListener('click', (e) => { const cta = e.target.closest('[data-cta]'); if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' }); });
 
 // Scroll depth — fires once per threshold (25/50/75/100)

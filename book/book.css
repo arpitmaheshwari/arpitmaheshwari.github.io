@@ -31,7 +31,7 @@
   /* ---- ink ---- */
   --bk-ink:         #2C2620;   /* espresso text */
   --bk-ink-soft:    #6A6052;   /* secondary */
-  --bk-ink-faint:   #847862;   /* tertiary / meta — darkened from #998D78 to clear WCAG AA on cream */
+  --bk-ink-faint:   #6B5C4E;   /* tertiary / meta — #6B5C4E clears WCAG AA (~5.2:1) on the cream page */
 
   /* ---- accents (tweakable: --bk-ember is primary) ---- */
   --bk-ember:       #C0512B;   /* terracotta — PRIMARY accent */
@@ -317,6 +317,8 @@ body {
 }
 .bk-toc__item:hover { background: rgba(192,81,43,0.07); transform: translateX(6px); }
 .bk-toc__item:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 2px; }
+/* focus-ring fallback for any link/button not otherwise covered (footer, logo, no-script links) */
+.bk-fulltext a:focus-visible, .bk-foot a:focus-visible, a:focus-visible, button:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 2px; border-radius: 2px; }
 .bk-toc__num { font-family: var(--bk-mono); font-size: 12px; color: var(--bk-ember); }
 .bk-toc__name { font-family: var(--bk-display); font-size: 27px; color: var(--bk-ink); line-height: 1; }
 .bk-toc__name small { display: block; font-family: var(--bk-serif); font-size: 12.5px; color: var(--bk-ink-faint); margin-top: 5px; letter-spacing: 0.01em; }

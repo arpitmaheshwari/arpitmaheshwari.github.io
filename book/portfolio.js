@@ -541,7 +541,9 @@ function Dia({
     width: "100%",
     height: "100%",
     viewBox: "0 0 54 54",
-    fill: "none"
+    fill: "none",
+    "aria-hidden": "true",
+    focusable: "false"
   };
   if (kind === "gauge") return /*#__PURE__*/React.createElement("svg", props, /*#__PURE__*/React.createElement("path", {
     d: "M10 40 A18 18 0 0 1 44 40",
@@ -1026,7 +1028,7 @@ function ContactForm() {
   }, /*#__PURE__*/React.createElement("label", {
     className: "bk-form__label",
     htmlFor: "bk-email",
-    style: { fontFamily: "var(--bk-mono)", fontSize: "11px", letterSpacing: ".04em", textTransform: "uppercase", color: "var(--bk-ink-faint)", marginBottom: "-5px" }
+    style: { fontFamily: "var(--bk-mono)", fontSize: "11px", letterSpacing: ".04em", textTransform: "uppercase", color: "var(--bk-ink-faint)", marginBottom: "3px" }
   }, "Your work email"), /*#__PURE__*/React.createElement("input", {
     type: "email",
     id: "bk-email",
@@ -1038,7 +1040,7 @@ function ContactForm() {
   }), /*#__PURE__*/React.createElement("label", {
     className: "bk-form__label",
     htmlFor: "bk-product",
-    style: { fontFamily: "var(--bk-mono)", fontSize: "11px", letterSpacing: ".04em", textTransform: "uppercase", color: "var(--bk-ink-faint)", marginBottom: "-5px" }
+    style: { fontFamily: "var(--bk-mono)", fontSize: "11px", letterSpacing: ".04em", textTransform: "uppercase", color: "var(--bk-ink-faint)", marginBottom: "3px" }
   }, "Link to the role or your company (optional)"), /*#__PURE__*/React.createElement("input", {
     type: "url",
     id: "bk-product",
@@ -1047,6 +1049,7 @@ function ContactForm() {
     value: product,
     onChange: e => setProduct(e.target.value)
   }), error ? /*#__PURE__*/React.createElement("p", {
+    role: "alert",
     style: { color: "var(--bk-ember)", fontSize: "12px", margin: "4px 0 0", fontFamily: "var(--bk-mono)" }
   }, error) : null, /*#__PURE__*/React.createElement("button", {
     type: "submit",
