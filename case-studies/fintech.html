@@ -72,14 +72,38 @@
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
-<div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
-  <div style="max-width:65ch;margin:0 auto">
-    <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin-bottom:20px">AI-Assisted Private Equity Investing</h1>
-    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">FinTech · Expert Skepticism & Trust</p>
+<style>
+/* Case hero — punchy, proof-forward (matches PTC) */
+.case-hero{padding:100px 24px 44px;background:var(--bg);border-bottom:1px solid var(--border)}
+.case-hero__in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center}
+.case-hero__in--solo{grid-template-columns:1fr;max-width:880px}
+.case-hero__kicker{font-family:var(--ff-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
+.case-hero h1{font-family:var(--ff-display);font-size:clamp(34px,4.4vw,56px);font-weight:300;line-height:1.12;color:var(--ink);margin:0 0 22px}
+.case-hero__hook{font-family:var(--ff-display);font-style:italic;font-size:clamp(18px,1.9vw,23px);line-height:1.5;color:var(--ink);margin:0 0 34px;max-width:54ch}
+.case-stats{display:flex;flex-wrap:wrap;gap:28px 44px}
+.case-stat b{display:block;font-family:var(--ff-display);font-weight:300;font-size:clamp(30px,3.4vw,46px);line-height:1;color:var(--gold);letter-spacing:-.01em}
+.case-stat span{display:block;margin-top:8px;font-family:var(--ff-sans);font-size:13px;color:var(--ink-muted);line-height:1.45;max-width:22ch}
+.case-hero__fig{margin:0}
+.case-hero__fig img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border);box-shadow:0 30px 64px rgba(0,0,0,.5)}
+.case-hero__fig figcaption{margin-top:14px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);line-height:1.5}
+@media(max-width:860px){.case-hero{padding:84px 20px 28px}.case-hero__in{grid-template-columns:1fr;gap:32px}.case-stats{gap:22px 36px}}
+</style>
+<header class="case-hero">
+  <div class="case-hero__in case-hero__in--solo">
+    <div>
+      <p class="case-hero__kicker">FinTech · AI-Assisted Private Equity · NDA</p>
+      <h1>AI-Assisted Private Equity Investing</h1>
+      <p class="case-hero__hook">Analysts get paid to doubt confident numbers — so I held the launch until the score could argue its own case. Then they stopped auditing it and started leaning on it.</p>
+      <div class="case-stats">
+        <div class="case-stat"><b>60% faster</b><span>deal screening · n=42 · 90-day window</span></div>
+        <div class="case-stat"><b>3</b><span>sources sat beside every score, not behind it</span></div>
+        <div class="case-stat"><b>Lead</b><span>analysts now open the memo with it</span></div>
+      </div>
+    </div>
   </div>
-</div>
+</header>
 
-<main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
+<main id="main" class="section" style="background:var(--bg);padding-top:56px"><div style="max-width:65ch;margin:0 auto;padding:0 24px">
 
   <!-- META · LOCKED PHASE 11E -->
   <p style="font-size:13px;color:var(--gold);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:32px">FinTech · AI-Assisted Private Equity Investing · 2025</p>
@@ -186,7 +210,7 @@
   })();</script>
   <div class="loom-slot" data-video-url="" data-video-title="AI-Assisted Private Equity Investing — walkthrough"></div>
 
-  <p style="font-family:var(--ff-display);font-size:clamp(17px,1.8vw,21px);font-style:italic;color:var(--ink);line-height:1.7;margin-bottom:32px">I held the release until the model could defend its own scores. Screening ran 60% faster once it could.</p>
+  <p style="font-family:var(--ff-display);font-size:clamp(17px,1.8vw,21px);font-style:italic;color:var(--ink);line-height:1.7;margin-bottom:32px">I held the release until the model could defend its own scores.</p>
 
   <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">PE analysts are paid to be suspicious of confident numbers. Doubt is the job, and they're good at it. A score they couldn't cross-examine wasn't a tool — it was a liability with a UI, and they treated it like one.</p>
 

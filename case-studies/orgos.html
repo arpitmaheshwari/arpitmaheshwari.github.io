@@ -74,15 +74,38 @@
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
-<div style="padding:80px 24px 60px;background:var(--bg);border-bottom:1px solid var(--border)">
-  <div style="max-width:1000px;margin:0 auto">
-    <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin-bottom:20px">OrgOS · Transparent Org Tooling</h1>
-    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:24px">Product Strategy · Enterprise SaaS · Organizational Design</p>
-
+<style>
+/* Case hero — punchy, proof-forward (matches PTC) */
+.case-hero{padding:100px 24px 44px;background:var(--bg);border-bottom:1px solid var(--border)}
+.case-hero__in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center}
+.case-hero__in--solo{grid-template-columns:1fr;max-width:880px}
+.case-hero__kicker{font-family:var(--ff-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
+.case-hero h1{font-family:var(--ff-display);font-size:clamp(34px,4.4vw,56px);font-weight:300;line-height:1.12;color:var(--ink);margin:0 0 22px}
+.case-hero__hook{font-family:var(--ff-display);font-style:italic;font-size:clamp(18px,1.9vw,23px);line-height:1.5;color:var(--ink);margin:0 0 34px;max-width:54ch}
+.case-stats{display:flex;flex-wrap:wrap;gap:28px 44px}
+.case-stat b{display:block;font-family:var(--ff-display);font-weight:300;font-size:clamp(30px,3.4vw,46px);line-height:1;color:var(--gold);letter-spacing:-.01em}
+.case-stat span{display:block;margin-top:8px;font-family:var(--ff-sans);font-size:13px;color:var(--ink-muted);line-height:1.45;max-width:22ch}
+.case-hero__fig{margin:0}
+.case-hero__fig img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border);box-shadow:0 30px 64px rgba(0,0,0,.5)}
+.case-hero__fig figcaption{margin-top:14px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);line-height:1.5}
+@media(max-width:860px){.case-hero{padding:84px 20px 28px}.case-hero__in{grid-template-columns:1fr;gap:32px}.case-stats{gap:22px 36px}}
+</style>
+<header class="case-hero">
+  <div class="case-hero__in case-hero__in--solo">
+    <div>
+      <p class="case-hero__kicker">Org Design · NDA</p>
+      <h1>OrgOS · Transparent Org Tooling</h1>
+      <p class="case-hero__hook">Two hundred people, no managers. Eight modules doing the job of an org chart — coordination that doesn't smuggle a boss back in through the side door.</p>
+      <div class="case-stats">
+        <div class="case-stat"><b>200</b><span>people coordinating, self-serve</span></div>
+        <div class="case-stat"><b>0</b><span>managers in the loop</span></div>
+        <div class="case-stat"><b>8</b><span>modules · one object model</span></div>
+      </div>
+    </div>
   </div>
-</div>
+</header>
 
-<main id="main" class="section" style="background:var(--bg);padding:40px 24px"><div style="max-width:1000px;margin:0 auto">
+<main id="main" class="section" style="background:var(--bg);padding-top:56px"><div style="max-width:1000px;margin:0 auto;padding:0 24px">
 
   <!-- META · LOCKED PHASE 11E -->
   <p style="font-size:13px;color:var(--gold);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:32px">Product Strategy · Enterprise SaaS · Organizational Design · 2026</p>
@@ -161,7 +184,7 @@
   })();</script>
   <div class="loom-slot" data-video-url="" data-video-title="OrgOS — walkthrough"></div>
 
-  <p style="font-family:var(--ff-display);font-size:clamp(17px,1.8vw,21px);font-style:italic;color:var(--ink);line-height:1.7;margin-bottom:32px">Two hundred people. No managers. Eight modules doing the job of an org chart. The whole thing runs on transparency: salaries, finances, project assignments, reviews — open to everyone. That holds at forty. At two hundred, the hallway stops scaling. What lives in one person's head stays there, and the org grows a quiet hierarchy to route around the gap.</p>
+  <p style="font-family:var(--ff-display);font-size:clamp(17px,1.8vw,21px);font-style:italic;color:var(--ink);line-height:1.7;margin-bottom:32px">The whole thing runs on transparency: salaries, finances, project assignments, reviews — open to everyone. That holds at forty. At two hundred, the hallway stops scaling. What lives in one person's head stays there, and the org grows a quiet hierarchy to route around the gap.</p>
 
   <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The ask said design tooling for a 200-person company with no management layer. The actual ask: build coordination that doesn't smuggle a hierarchy back in through the side door. Every obvious feature — task assignment, approval flows, escalation paths — was a manager wearing a different name. The job was saying no to each one.</p>
 
