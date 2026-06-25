@@ -167,22 +167,48 @@
 </nav>
 
 <main id="main">
+<style>
+/* Hero "half-second" live demo — a confidence score resolving into an action */
+.hero-demo{flex:0 1 340px;align-self:center;opacity:0;transform:translateY(20px);animation:reveal .5s var(--ease-out) .5s forwards}
+.hd-tag{font-family:var(--ff-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.hd-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:24px 24px 22px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.hd-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
+.hd-name{font-family:var(--ff-mono);font-size:11px;letter-spacing:.04em;color:var(--ink-muted)}
+.hd-score{font-family:var(--ff-display);font-weight:300;font-size:46px;line-height:.9;color:var(--ink);font-variant-numeric:tabular-nums}
+.hd-track{height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.hd-fill{height:100%;width:0;border-radius:3px;background:var(--gold);transition:width .6s var(--ease-out),background .35s}
+.hd-fill.band-act{background:var(--copper-light)}
+.hd-fill.band-review{background:var(--gold)}
+.hd-fill.band-ignore{background:var(--ink-muted)}
+.hd-scale{display:flex;justify-content:space-between;margin-top:9px;font-family:var(--ff-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim)}
+.hd-scale span{transition:color .3s,opacity .3s;opacity:.6}
+.hd-scale span.on{color:var(--ink);opacity:1}
+.hd-verdict{margin-top:18px;font-family:var(--ff-sans);font-weight:600;font-size:18px;line-height:1.1;color:var(--gold);display:flex;align-items:center}
+.hd-verdict.band-act{color:var(--copper-light)}
+.hd-verdict.band-review{color:var(--gold)}
+.hd-verdict.band-ignore{color:var(--ink-muted)}
+.hd-reason{margin-top:7px;font-size:12.5px;color:var(--ink-muted);line-height:1.5;min-height:40px}
+.hd-foot{margin-top:14px;font-family:var(--ff-display);font-style:italic;font-size:13.5px;color:var(--ink-dim);line-height:1.5}
+@media (max-width:980px){.hero-demo{flex:1 1 100%;max-width:440px;margin-top:4px}}
+@media (prefers-reduced-motion:reduce){.hd-fill{transition:none}.hero-demo{animation:none;opacity:1;transform:none}}
+</style>
 <section id="hero" style="position:relative;">
   <canvas id="hero-canvas" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;"></canvas>
   <div class="hero-bg" aria-hidden="true" style="z-index:1;"></div>
   <div class="hero-grid-lines" aria-hidden="true" style="z-index:1;"></div>
-  <div style="position:relative; z-index:2; max-width:800px;">
+  <div style="position:relative; z-index:2; display:flex; gap:clamp(28px,4vw,56px); align-items:center; flex-wrap:wrap; width:100%;">
+  <div style="flex:1 1 520px; min-width:0; max-width:660px;">
   <h1 class="hero-headline">
     <span class="line"><span class="line-inner">Your model is right.</span></span>
     <span class="line"><span class="line-inner">Your users still</span></span>
     <span class="line"><span class="line-inner"><em>won't bet on it.</em></span></span>
   </h1>
   <p style="font-family:var(--ff-display); font-size:clamp(20px, 2.6vw, 26px); font-style:italic; color:var(--ink); line-height:1.4; margin-bottom:32px; max-width:640px; opacity:0; transform:translateY(20px); animation:reveal .4s var(--ease-out) .3s forwards;">
-    That half-second of doubt is where AI products go to die — and it's the only thing I design. Confidence that ends in an action. Reasoning a person can interrogate. An override the system learns from. Fifteen years on this one problem; every number below arrives holding its baseline.
+    That half-second of doubt is the only thing I design — the trust layer between a person and an algorithm. Fifteen years, five industries, one problem.
   </p>
 
   <!-- PROOF STRIP — three chips. The loudest thing on the page after the H1. (Restructure v2) -->
-  <div class="hero-proof-strip" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:0; max-width:780px; margin-bottom:36px; border:1px solid var(--border); border-radius:4px; overflow:hidden; opacity:0; transform:translateY(20px); animation:reveal .4s var(--ease-out) .35s forwards;">
+  <div class="hero-proof-strip" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:0; max-width:780px; margin-bottom:36px; border:1px solid var(--border); border-radius:4px; overflow:hidden; opacity:0; transform:translateY(20px); animation:reveal .4s var(--ease-out) .35s forwards;">
     <a href="./case-studies/adtech.html" class="proof-chip" data-cta="proof-chip" data-location="hero-chip-1" style="padding:20px 22px; background:var(--bg-card); border-right:1px solid var(--border); text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:8px">
       <div style="font-family:var(--ff-display); font-weight:300; font-size:30px; color:var(--gold); line-height:1; letter-spacing:-0.01em">2 wks → 3 hrs</div>
       <div style="font-family:var(--ff-sans); font-size:13px; color:var(--ink); line-height:1.5">what campaign planning took once traders started betting on the algorithm</div>
@@ -210,6 +236,18 @@
     <a href="#contact" data-cta="send-role" data-location="hero" style="display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:0.03em;border-radius:2px;transition:background 0.3s,transform 0.2s;text-decoration:none;white-space:nowrap" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Send me the role <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
     <a href="#featured-case-studies" data-cta="read-writing" data-location="hero" style="display:inline-flex;align-items:center;gap:6px;padding:15px 24px;color:var(--ink-muted);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--border);border-radius:2px;transition:border-color 0.3s,color 0.3s;text-decoration:none;white-space:nowrap" onmouseover="this.style.borderColor='var(--border-accent)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--ink-muted)'">See selected work <svg class="icon" style="width:11px;height:11px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
     <a href="./hire/" data-cta="resume" data-location="hero" style="display:inline-flex;align-items:center;gap:6px;padding:15px 8px;color:var(--ink-muted);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px;white-space:nowrap" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-muted)'">One-page résumé</a>
+  </div>
+  </div>
+  <div class="hero-demo reveal" aria-label="Live example: a confidence score resolving into an action — the half-second I design">
+    <div class="hd-tag">The half-second I design</div>
+    <div class="hd-card">
+      <div class="hd-top"><span class="hd-name">Lead 4471 · confidence</span><span class="hd-score" id="hd-score">0</span></div>
+      <div class="hd-track"><div class="hd-fill" id="hd-fill"></div></div>
+      <div class="hd-scale"><span data-band="ignore">Ignore</span><span data-band="review">Review</span><span data-band="act">Act</span></div>
+      <div class="hd-verdict" id="hd-verdict" aria-live="polite"><span class="hd-arrow">→</span>&nbsp;<span id="hd-verb">…</span></div>
+      <div class="hd-reason" id="hd-reason">a score tied to one action</div>
+    </div>
+    <div class="hd-foot">Not a number that ends in a shrug — a confidence that ends in an action.</div>
   </div>
   </div>
 </section>
@@ -903,5 +941,28 @@ if (canvas) {
 
 </style>
 
+<script>
+/* Hero half-second demo: cycle a confidence score through Act / Review / Ignore */
+(function(){
+  var score=document.getElementById('hd-score'),fill=document.getElementById('hd-fill'),verb=document.getElementById('hd-verb'),verdict=document.getElementById('hd-verdict'),reason=document.getElementById('hd-reason'),scale=document.querySelector('.hd-scale');
+  if(!score||!fill||!verb) return;
+  var states=[
+    {n:87,band:'act',verb:'Act on it',reason:'high confidence, signals named — a trader can check the model’s work and move'},
+    {n:54,band:'review',verb:'Review first',reason:'mixed signals — surfaced for a human to weigh, not auto-run'},
+    {n:19,band:'ignore',verb:'Ignore',reason:'low confidence — the model declines to bluff'}
+  ];
+  function paint(s){
+    score.textContent=s.n;
+    fill.style.width=s.n+'%'; fill.className='hd-fill band-'+s.band;
+    verb.textContent=s.verb; verdict.className='hd-verdict band-'+s.band; reason.textContent=s.reason;
+    if(scale) [].forEach.call(scale.children,function(c){c.classList.toggle('on',c.getAttribute('data-band')===s.band);});
+  }
+  paint(states[0]);
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) return;
+  var i=0;
+  setInterval(function(){ i=(i+1)%states.length; paint(states[i]); },3200);
+})();
+</script>
 </body>
 </html>

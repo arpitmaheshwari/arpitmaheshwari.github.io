@@ -1127,7 +1127,7 @@ function buildBook(ctx) {
     }, "Fifteen years designing the half-second where a person decides to believe a machine."), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Founding / Staff / Director \xB7 Available \xB7 4 weeks\u2019 notice"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "In a hurry? Skim the classic site \u2192"), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1),
-      "aria-label": "Open the book \u2014 click or press space"
+      "aria-label": "Open the book \u2014 tap or press space"
     }, /*#__PURE__*/React.createElement("span", {
       className: "dot"
     }), " Open the book \u2192"), /*#__PURE__*/React.createElement("span", {
@@ -1139,7 +1139,7 @@ function buildBook(ctx) {
         letterSpacing: ".04em",
         opacity: 0.6
       }
-    }, "click or press space"))
+    }, "tap or press space"))
   }, /* 1 · TITLE / CONTENTS */
   {
     kind: "spread",
