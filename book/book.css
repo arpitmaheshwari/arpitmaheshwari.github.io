@@ -66,6 +66,43 @@ body {
   color: var(--bk-ink);
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ===== PREMIUM MICRO-TYPOGRAPHY (metric-safe in the fixed 880px spreads) ===== */
+
+/* Optical sizing — metric-neutral, NONE fit-risk. Drives Playfair's opsz axis by
+   render size on every display object, plus the Spectral prose/standfirst. */
+.bk-cover__title, .bk-title, .bk-title--xl, .bk-title--l, .bk-title--m,
+.bk-drop::first-letter, .bk-feature__metric, .bk-metric__v, .bk-ledger__fig,
+.bk-item__metric, .bk-principle__n, .bk-move__n, .bk-beat__n,
+.bk-pull, .bk-blurb p, .bk-chno, .bk-standfirst, .bk-principle-stmt,
+.bk-toc__name, .bk-serifhead, .bk-ok, .bk-body, .bk-lede {
+  font-optical-sizing: auto;
+}
+
+/* Ligatures + OLD-STYLE proportional figures on Spectral running prose.
+   Oldstyle keeps proportional advance widths (same as the default proportional
+   figures), so figure widths don't change — LOW/NONE fit-risk. */
+.bk-body, .bk-lede, .bk-standfirst {
+  font-variant-ligatures: common-ligatures contextual;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
+/* Pull-quote refinement — hanging punctuation (progressive, Safari, fit-neutral). */
+.bk-pull, .bk-blurb p {
+  hanging-punctuation: first last;
+}
+
+/* CAREFUL / PER-ELEMENT — TABULAR-LINING figures on the big italic Playfair stats.
+   MEDIUM fit-risk: tabular changes digit advance and could in principle wrap a
+   metric inside the fixed 880px spread. Verify .bk-metrics / .bk-ledger / feature
+   metric show NO new line wraps (spill-0). Most values are short
+   (e.g. "200", "60% faster", "5→1") so risk is contained, but flag for re-check. */
+.bk-feature__metric, .bk-metric__v, .bk-ledger__fig,
+.bk-item__metric, .bk-principle__n, .bk-move__n, .bk-beat__n {
+  font-variant-numeric: tabular-nums lining-nums;
 }
 .bk-stage {
   position: fixed; inset: 0;

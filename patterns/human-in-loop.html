@@ -50,7 +50,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p20">
+<link rel="stylesheet" href="../styles.css?v=p21">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -69,7 +69,7 @@
 <div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
   <div style="max-width:65ch;margin:0 auto">
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
-      <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin:0">Human-in-the-Loop Patterns</h1>
+      <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.15;color:var(--ink);margin:0;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.02em">Human-in-the-Loop Patterns</h1>
       <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">In production</span>
     </div>
     <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · Collaborative Workflows · Last updated June 2026</p>
@@ -79,7 +79,7 @@
 <main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
 
   <section style="margin-bottom:60px">
-    <p style="font-size:17px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px;font-family:var(--ff-display);font-style:italic">An override is the user telling you what the training data missed. Treat it as noise and you throw the lesson away. Treat it as signal and the next version arrives smarter. Every pattern here keeps the person in command when the stakes outgrow the model's confidence — and logs what they do about it.</p>
+    <p style="font-size:17px;color:var(--ink-muted);line-height:1.45;margin-bottom:20px;font-family:var(--ff-display);font-style:italic;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:oldstyle-nums proportional-nums">An override is the user telling you what the training data missed. Treat it as noise and you throw the lesson away. Treat it as signal and the next version arrives smarter. Every pattern here keeps the person in command when the stakes outgrow the model's confidence — and logs what they do about it.</p>
     
     <!-- Abstract UI Diagram: The Override Modal -->
     <div style="margin: 40px 0; padding: 40px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;">
@@ -88,7 +88,7 @@
       <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 24px; max-width: 450px; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px;">
           <div>
-            <div style="font-family:var(--ff-display); font-size:18px; color:var(--ink); margin-bottom:4px;">Override Recommendation</div>
+            <div style="font-family:var(--ff-display); font-size:18px; color:var(--ink); margin-bottom:4px; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual;">Override Recommendation</div>
             <div style="font-family:var(--ff-sans); font-size:12px; color:var(--ink-muted);">Tell the model why. Your reason trains the next call.</div>
           </div>
           <div style="width:24px; height:24px; border-radius:50%; background:var(--ink-muted); opacity:0.1;"></div>
@@ -120,31 +120,31 @@
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">1. The Approve / Reject / Flag Interface</h2>
+    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">1. The Approve / Reject / Flag Interface</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">The model proposes. The user picks one of three: approve and execute, reject and discard, or flag for later. This is the simplest <abbr tabindex="0" title="Human-in-the-loop; a system design pattern where humans and AI systems work together iteratively, with humans making final decisions or corrections" style="border-bottom:1px dotted var(--ink);cursor:help">HITL</abbr> flow there is.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">The model carries the load — pulling the data, running the inference. The person carries the judgment: read the recommendation, then bless it or question it.</p>
     <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-top:16px"><strong>Choose it for</strong> high-volume, low-friction calls — content moderation, fraud detection, segmentation. <strong>Where it bit me:</strong> people click through without reading. On anything high-stakes, put a confirmation between the click and the consequence.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">2. The Editable Recommendation</h2>
+    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">2. The Editable Recommendation</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">The model hands over a draft — an email, a document, a decision. The person edits it before it ships. "AI suggested this email subject. You modified it. Predicted open rate increased from 22% to 25%. Ship it?"</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">A draft you can edit respects the expertise you brought to the screen. You verify the model's thinking <em>while</em> you improve it. After a few rounds you know its blind spots, and you edit for them on sight.</p>
     <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-top:16px"><strong>Choose it for</strong> personalized content like email, drafting like documents and code, or creative output like design suggestions.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">3. The Expert Override</h2>
+    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">3. The Expert Override</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">The model recommends action X at high confidence. The user overrides with action Y. The system logs the swap and asks <em>why</em>. "You chose Y instead of X. Why?" → the user explains → the model has a new lesson.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">An override is not a failure. It is the user pointing at something the model couldn't see. Track the overrides and the patterns surface: "90% of the time users override Prediction B, they cite Domain Concern X. Add that to the model."</p>
     <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-top:16px"><strong>Choose it when</strong> you want the model to get better in production. Log the override, name the missing feature, retrain, repeat.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">4. The <abbr tabindex="0" title="The process of routing uncertain or high-risk decisions to increasingly senior reviewers based on confidence levels" style="border-bottom:1px dotted var(--ink);cursor:help">Escalation</abbr> Ladder</h2>
+    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">4. The <abbr tabindex="0" title="The process of routing uncertain or high-risk decisions to increasingly senior reviewers based on confidence levels" style="border-bottom:1px dotted var(--ink);cursor:help">Escalation</abbr> Ladder</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Clear the top <abbr tabindex="0" title="The numeric score or percentage that determines whether a decision is confident enough for automated approval or requires human review" style="border-bottom:1px dotted var(--ink);cursor:help">confidence threshold</abbr> and the system auto-approves. Fall below it and the call goes to a human. Fall below a second, lower line and it goes to a senior one. Risk earns review; certainty earns speed.</p>
     <div style="overflow-x:auto;margin:24px 0">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-muted)">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-muted);font-variant-numeric:tabular-nums lining-nums">
         <thead>
           <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Confidence</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Action</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Speed</th></tr>
         </thead>
@@ -160,7 +160,7 @@
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px">5. The Feedback Loop (Learn From Corrections)</h2>
+    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">5. The Feedback Loop (Learn From Corrections)</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Every correction a person makes — a reject, an edit, a line of explanation — is a small lesson the model hasn't learned yet. Catch it the moment it happens, and once a month let the month's worth of lessons retrain the thing.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">"In May, you corrected 120 recommendations. Top theme: you rejected deals in healthcare when industry was &lt;2 years old. We've added 'company age' as a feature. Accuracy improved from 81% to 85% in June."</p>
     <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-top:16px"><strong>The loop pays off:</strong> the model sharpens, the user trusts it more, the trust buys more feedback, and the feedback sharpens it again.</p>
@@ -174,7 +174,7 @@
   </div>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px">Implementation Checklist</h2>
+    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Implementation Checklist</h2>
     <ul style="font-size:15px;color:var(--ink-muted);line-height:1.8;padding-left:24px">
       <li style="margin-bottom:10px"><strong>Name the human's role:</strong> verifier who approves or rejects, editor who modifies, or expert who overrides with a reason?</li>
       <li style="margin-bottom:10px"><strong>Draw the decision boundary:</strong> what does the model decide alone, what needs a review, what needs an expert?</li>
@@ -186,9 +186,9 @@
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px">Trade-offs: Automation vs. Control</h2>
+    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Trade-offs: Automation vs. Control</h2>
     <div style="overflow-x:auto">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-muted)">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-muted);font-variant-numeric:tabular-nums lining-nums">
         <thead>
           <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Approach</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Speed</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Trust</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Best For</th></tr>
         </thead>
@@ -203,7 +203,7 @@
   </section>
 
   <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:80px">
-    <h3 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:16px">See This Pattern In Action</h3>
+    <h3 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual">See This Pattern In Action</h3>
     <ul style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
       <li style="margin-bottom:12px"><strong><a href="../case-studies/fintech.html" style="color:var(--gold);text-decoration:none">AI-Assisted Due Diligence</a>:</strong> analysts read the model's scores and override them with domain expertise.</li>
       <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> media buyers approve or reject the algorithm's calls, and the rejections train the next ones.</li>
@@ -223,7 +223,7 @@
 
   <section style="margin-bottom:32px;padding-top:32px;border-top:1px solid var(--border)">
     <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:10px">Companion essay</div>
-    <a href="../writing/human-in-loop.html" style="font-family:var(--ff-display);font-size:18px;color:var(--gold);text-decoration:none">Human-in-the-Loop: When to Ask, When to Override →</a>
+    <a href="../writing/human-in-loop.html" style="font-family:var(--ff-display);font-size:18px;color:var(--gold);text-decoration:none;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual">Human-in-the-Loop: When to Ask, When to Override →</a>
   </section>
 
   <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:48px">
