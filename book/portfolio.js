@@ -42,7 +42,7 @@ const WORK = [{
   desc: "Partners stake millions on claims they can't verify. Extracting the signals was the model's job; trusting it was theirs."
 }];
 const PRINCIPLES = [{
-  h: "I design for outcomes, not just friction.",
+  h: "What gets measured is a design decision.",
   p: "By Friday of week one I've read your evals and sat in your customer calls. I shape what gets measured, then I ship the front-end under my own name in the PR."
 }, {
   h: "I design the wrong-answer screen first.",
@@ -1296,7 +1296,7 @@ function buildBook(ctx) {
       }
     }, "Selected", /*#__PURE__*/React.createElement("br", null), "Work"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body bk-drop"
-    }, "Fifteen years of this work mostly lives behind NDAs. The six here are the shape of all of it — two told in full, four as decision walkthroughs. Every brief opened with “improve the UX”; every diagnosis ended somewhere else."), /*#__PURE__*/React.createElement("div", {
+    }, "Every brief opened with “improve the UX.” Every diagnosis ended somewhere else. Fifteen years of this work mostly lives behind NDAs; the six here are the shape of all of it — two told in full, four as decision walkthroughs."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
         margin: "22px 0 18px"
