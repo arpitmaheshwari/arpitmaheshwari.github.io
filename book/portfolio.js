@@ -208,7 +208,7 @@ const NDA_CASES = [{
   title: "Telefónica MyO2 & Priority Moments",
   standfirst: "Drawn by me, then coded by me — every screen of two O2 UK products on mobile web, at a scale where rounding errors have populations.",
   meta: [["Role", "Designer + Front-end"], ["Client", "O2 UK (Telefónica) · via Equal Experts"], ["Status", "Shipped · public"]],
-  context: "I owned both sides of the handoff: drew the screens, then wrote the front-end that shipped them. MyO2 and Priority Moments, mobile web, national scale. The proof isn't the sign-ups — it's the 2.5M who came back: every self-service task that lands is a call the contact centre never takes, and a loyalty app people actually open.",
+  context: "The one move: own both sides of the handoff — draw the screens, then code the front-end that ships them, so nothing is lost in translation. MyO2 and Priority Moments, mobile web, national scale. The proof isn't sign-ups — it's the 2.5M who came back: every self-service task that lands is a call the contact centre never takes.",
   moves: [{
     h: "MyO2 — the whole account, alone",
     p: "O2 UK's self-service app: data and usage, the bill, a tariff change, an upgrade — the whole account without dialing anyone. The math is blunt: every self-service task that lands is a contact-centre call that never happens. It went on to serve more than four million users."
@@ -240,7 +240,7 @@ const NDA_CASES = [{
   title: "AI-Assisted Private Equity Investing",
   standfirst: "I held the release until the model could defend its own scores. Then screening sped up 60%.",
   meta: [["Role", "Lead Product Designer"], ["Surface", "AI for private-equity investing"], ["Status", "Shipped · under NDA"]],
-  context: "Analysts are paid to doubt confident numbers. A score they can't cross-examine is a liability with a UI — and on a deal, an unexplained verdict is one nobody signs. Without trust the tool was dead on arrival, however good the model.",
+  context: "The model worked — that was never the problem. Analysts are paid to doubt confident numbers, and a score they can't cross-examine is a liability. An unexplained verdict is one nobody signs; without trust it was dead on arrival.",
   moves: [{
     h: "Explain before the verdict",
     p: "An “explain this score” surface: pull a rating into its signals, challenge the weighting, watch it answer — sources beside the number."
