@@ -1757,12 +1757,16 @@ const SPREAD_W = 1180,
   COVER_H = 880;
 const TWEAK_DEFAULTS = {
   "accent": "#C0512B",
-  "pairing": "Playfair \u00b7 Spectral",
+  "pairing": "Newsreader \u00b7 Spectral",
   "warmth": 70,
   "density": "comfy",
   "headline": "Arpit\u003cbr\/>Maheshwari"
 };
 const PAIRINGS = {
+  "Newsreader · Spectral": {
+    d: "'Newsreader', Georgia, serif",
+    s: "'Spectral', Georgia, serif"
+  },
   "Instrument · Newsreader": {
     d: "'Instrument Serif', Georgia, serif",
     s: "'Newsreader', Georgia, serif"
