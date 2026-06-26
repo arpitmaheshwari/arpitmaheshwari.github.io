@@ -155,12 +155,12 @@ const CASES = {
     title: "PTC\u00A0University — Learning Connector",
     standfirst: "Five platforms, one survivor. The redesign took a quarter — the case for killing four products took a year. That was the design work.",
     meta: [["Role", "Lead Product Designer"], ["Span", "2014–2019 · two squads"], ["Surface", "Web LMS · 11 languages"], ["Result", "Shipped · in production"]],
-    context: "PTC sold software on perpetual licenses: pay once, own forever. Around it sat five learning platforms — Learning Connector, LearningExchange, Precision LMS, Digital Guides, IoTU — five logins, five lines on an invoice. Three weeks in the customer-success recordings: nothing was wrong with the navigation. The brief said \u201Credesign the UX.\u201D I argued the contract was the broken interface.",
+    context: "The brief said “redesign the UX.” Three weeks in the customer-success recordings said the navigation was fine — so I made the call that the contract was the broken interface: kill four of five learning platforms (LearningExchange, Precision LMS, Digital Guides, IoTU) and move the survivor off perpetual, pay-once-own-forever licenses.",
     fig1: {
       no: "1.1",
       label: "before — five disconnected platforms, five sign-in screens"
     },
-    tension: "Perpetual licenses meant no recurring revenue, so stale content, so engineers learned on YouTube. The CRO had 60% of revenue on perpetual. Consolidation meant telling four executives their product was now a tab — a case made in P&L, not pixels.",
+    tension: "The cost was political, not visual: telling four executives their product was now a tab, against a CRO with 60% of revenue on perpetual. Get it wrong and you ship a prettier version of a product no one returns to.",
     note1: "the org chart was the real wireframe",
     decisionLede: "Three decisions did the load-bearing work:",
     moves: [{
@@ -208,7 +208,7 @@ const NDA_CASES = [{
   title: "Telefónica MyO2 & Priority Moments",
   standfirst: "Drawn by me, then coded by me — every screen of two O2 UK products on mobile web, at a scale where rounding errors have populations.",
   meta: [["Role", "Designer + Front-end"], ["Client", "O2 UK (Telefónica) · via Equal Experts"], ["Status", "Shipped · public"]],
-  context: "The one move: own both sides of the handoff — draw the screens, then code the front-end that ships them, so nothing is lost in translation. MyO2 and Priority Moments, mobile web, national scale. The proof isn't sign-ups — it's the 2.5M who came back: every self-service task that lands is a call the contact centre never takes.",
+  context: "The one move: own both sides of the handoff — draw every screen, then code the front-end that ships it, so nothing is lost in translation. The cost of that scale: a rounding error has a population — a wrong tap target or billing figure lands on a stadium at once. The proof isn't sign-ups; it's the 2.5M who came back.",
   moves: [{
     h: "MyO2 — the whole account, alone",
     p: "O2 UK's self-service app: data and usage, the bill, a tariff change, an upgrade — the whole account without dialing anyone. The math is blunt: every self-service task that lands is a contact-centre call that never happens. It went on to serve more than four million users."
@@ -240,7 +240,7 @@ const NDA_CASES = [{
   title: "AI-Assisted Private Equity Investing",
   standfirst: "I held the release until the model could defend its own scores. Then screening sped up 60%.",
   meta: [["Role", "Lead Product Designer"], ["Surface", "AI for private-equity investing"], ["Status", "Shipped · under NDA"]],
-  context: "The model worked — that was never the problem. Analysts are paid to doubt confident numbers, and a score they can't cross-examine is a liability. An unexplained verdict is one nobody signs; without trust it was dead on arrival.",
+  context: "So I held the launch — not to improve the model (already right) but until the score could survive cross-examination by analysts paid to doubt it. Ship early and you get a confident verdict nobody signs: dead on arrival.",
   moves: [{
     h: "Explain before the verdict",
     p: "An “explain this score” surface: pull a rating into its signals, challenge the weighting, watch it answer — sources beside the number."
@@ -272,7 +272,7 @@ const NDA_CASES = [{
   title: "Programmatic Advertising Platform",
   standfirst: "The algorithm beat the traders, and they played their hunches anyway. A missing interface, not a bad model.",
   meta: [["Role", "Lead Product Designer"], ["Surface", "DSP recommendation UI"], ["Status", "Shipped · under NDA"]],
-  context: "The engine beat the buyers, visibly — yet adoption was near zero. A bare number just asks for faith.",
+  context: "The engine beat the buyers; adoption sat near zero. I left the model and rebuilt the interface around it.",
   moves: [{
     h: "A score tied to one action",
     p: "Each recommendation resolved to one verb — act, review, or ignore — never a naked 87% on the screen."
@@ -304,7 +304,7 @@ const NDA_CASES = [{
   title: "OrgOS · Transparent Org Tooling",
   standfirst: "Two hundred people. No managers. Eight modules doing the job of an org chart — coordination that never smuggles a boss back in.",
   meta: [["Role", "Design Lead"], ["Surface", "Internal operating system"], ["Status", "Shipped · under NDA"]],
-  context: "Transparency does the coordinating — salaries, finances, assignments, reviews, open to everyone. That holds at forty; at two hundred the hallway stops scaling. Every obvious feature — assignment, approval, escalation — was a manager wearing a different name. The job was saying no to each one.",
+  context: "The decision: refuse every feature with a manager hiding inside it. Transparency coordinates — salaries, finances, assignments, open to all — but holds only to forty; at two hundred the hallway stops scaling. Assignment, approval, escalation were each a boss in disguise.",
   moves: [{
     h: "Read access is the feature",
     p: "Who's on what, who's blocked, who decides — visible to everyone, always. Pull, not push. Coordination came from information, not instruction."
@@ -336,7 +336,7 @@ const NDA_CASES = [{
   title: "Technical Due Diligence Platform",
   standfirst: "Partners bet millions on claims they'll never check. The model extracted the evidence; the design made them stand on it.",
   meta: [["Role", "Design Lead"], ["Surface", "Technical-DD platform · VC + PE"], ["Status", "Shipped · under NDA"]],
-  context: "Finding the signals is easy — models do that. The hard part is getting a partner to stake their reputation on an extraction they didn't run.",
+  context: "Extraction is easy. The call: no verdict is reviewable until its evidence is — a score a partner can't audit is a confident guess.",
   moves: [{
     h: "Score at the signal level",
     p: "Confidence on each signal — code quality, architecture risk, team velocity, founder credibility — not one opaque verdict."
