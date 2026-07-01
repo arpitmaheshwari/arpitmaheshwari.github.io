@@ -147,7 +147,7 @@
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
       The usual suspects: a smarter model, a higher score.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The obvious fixes all pointed at the engine. Make the model read more. Train it on more deals. Surface a single, confident risk score per company so the partner has one number to act on. Every one of those would have demoed well and changed nothing.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The obvious fixes all pointed at the engine. Make the model read more. Train it on more deals. Surface a single, confident risk score per company so the partner has one number to act on. Every one of those sharpens a tool the partner had already decided not to use.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8">Because a partner staking millions does not distrust a number for being imprecise. They distrust it for being unaccountable. A higher-confidence score the partner still can't trace back to evidence is just a more persuasive thing to be wrong about — and the first time it's wrong on a real deal, the whole platform goes back in a drawer.</p>
   </section>
 
@@ -157,7 +157,7 @@
       The real culprit: the verdict had no chain of evidence.
     </h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The verdict was right. That was exactly why it was dangerous. A correct verdict the partner couldn't audit is indistinguishable, on the day of the deal, from a confident hallucination — the exact failure mode an LLM is prone to, and the one this design is built to guard against. The missing piece was never accuracy — it was provenance: grounding, a path from the generated verdict down to the cited source behind it, the repo scan, the infra audit, the interview note. Retrieval-grounded, in the language of the field: every claim traceable to the document it came from.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">So the design work was the trust layer, not the extraction. Every one of the four signals carries its own confidence and, more importantly, its own cited source. Each score maps to a next step a partner can actually take — proceed, attach a condition, send an analyst back. The one decision that organized everything: <strong style="color:var(--ink)">no verdict is reviewable until its evidence is.</strong> A partner cannot sign off until they've opened all four signals and seen the trail underneath each one.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">So the design work sat downstream of the extraction, in the trust it had to earn. Every one of the four signals carries its own confidence and, more importantly, its own cited source. Each score maps to a next step a partner can actually take — proceed, attach a condition, send an analyst back. The one decision that organized everything: <strong style="color:var(--ink)">no verdict is reviewable until its evidence is.</strong> A partner cannot sign off until they've opened all four signals and seen the trail underneath each one.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Try it — open each signal to see the evidence, then sign:</p>
     <section class="recon" id="recon-vc" role="group" aria-label="Interactive reconstruction: technical-risk dossier with drill-to-source and partner sign-off">
     <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA</div>
@@ -275,9 +275,9 @@
 
   <!-- THE PRINCIPLE -->
   <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">The principle it left me with.</h2>
+    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">The rule I took away.</h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">When a model already works and people still won't act on it, the missing piece is almost never accuracy. It's accountability — a path from the answer back to the evidence, sturdy enough that the person staking something on it will put their name to it.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">I design for that gap now on every AI product. The fastest way to make an expert trust a model is rarely a better model. It's giving them the receipts, and refusing to let them sign until they've read them.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">That gap is where I start now when an expert and a model have to share a decision. The fastest way to make an expert trust a model is rarely a better model. It's giving them the receipts, and refusing to let them sign until they've read them.</p>
   </section>
 
   <!-- NDA CALENDLY CTA -->

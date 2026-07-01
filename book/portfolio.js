@@ -111,7 +111,7 @@ const WRITING = [{
   h: "Reading the support tickets myself",
   p: "The cheapest research method nobody on the design team wants to do."
 }];
-const STATUS = ["Available · 4 weeks' notice", "Founding / Staff / Director", "Remote · GMT+5:30"];
+const STATUS = ["Available · 4 weeks' notice", "Founding designer · AI", "Remote · GMT+5:30"];
 
 /* ---- CURRICULUM VITAE (the printable appendix) ---- */
 const CV_SKILLS = ["Model-Layer Design", "Data-Intensive UI", "Design Leadership", "Organizational Design", "Research & Evals", "System Architecture"];
@@ -1127,7 +1127,7 @@ function buildBook(ctx) {
       className: "bk-cover__rule"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-cover__sub"
-    }, "Fifteen years designing the half-second where a person decides to believe a machine."), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Founding / Staff / Director \xB7 Available \xB7 4 weeks\u2019 notice"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "In a hurry? Skim the classic site \u2192"), /*#__PURE__*/React.createElement("button", {
+    }, "Fifteen years designing the half-second where a person decides to believe a machine."), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Founding designer for AI products \xB7 available now"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "In a hurry? Skim the classic site \u2192"), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1),
       "aria-label": "Open the book \u2014 tap or press space"
@@ -1306,7 +1306,10 @@ function buildBook(ctx) {
       }
     }, "the one I'm proudest of \u2193"), /*#__PURE__*/React.createElement("div", {
       className: "bk-feature bk-feature--link",
-      onClick: () => enter("cases", 0)
+      role: "button",
+      tabIndex: 0,
+      onClick: () => enter("cases", 0),
+      onKeyDown: e => { if (e.key === "Enter" || e.key === " ") { if (e.key === " ") e.preventDefault(); enter("cases", 0); } }
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-item__tag"
     }, WORK[0].tag), /*#__PURE__*/React.createElement("h4", {
@@ -1339,7 +1342,10 @@ function buildBook(ctx) {
       return /*#__PURE__*/React.createElement("div", {
         className: "bk-item bk-item--link",
         key: i,
-        onClick: () => enter("cases", openIdx)
+        role: "button",
+        tabIndex: 0,
+        onClick: () => enter("cases", openIdx),
+        onKeyDown: e => { if (e.key === "Enter" || e.key === " ") { if (e.key === " ") e.preventDefault(); enter("cases", openIdx); } }
       }, /*#__PURE__*/React.createElement("div", {
         className: "bk-item__top"
       }, /*#__PURE__*/React.createElement("span", {
@@ -1397,7 +1403,10 @@ function buildBook(ctx) {
     }, PATTERNS.map((p, i) => /*#__PURE__*/React.createElement("div", {
       className: "bk-pattern bk-pattern--link",
       key: i,
-      onClick: () => enter("patterns", i)
+      role: "button",
+      tabIndex: 0,
+      onClick: () => enter("patterns", i),
+      onKeyDown: e => { if (e.key === "Enter" || e.key === " ") { if (e.key === " ") e.preventDefault(); enter("patterns", i); } }
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-pattern__dia"
     }, /*#__PURE__*/React.createElement(Dia, {
@@ -1552,7 +1561,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "Your model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. One seat, full-time: founding, staff, or a director-level trust-layer role. Available, 4 weeks’ notice."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
+    }, "Your model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. Founding designer for AI products — also open to a staff or director trust-layer seat. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-social",
       style: {
         marginTop: 24

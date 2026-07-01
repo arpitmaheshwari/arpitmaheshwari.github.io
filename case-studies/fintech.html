@@ -143,7 +143,7 @@
       A score nobody trusts is a screen nobody opens.
     </h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Deal screening is where capital decisions begin, and the cost of a missed risk is measured in funds, not clicks. An analyst who can't defend a number to the investment committee won't stake a recommendation on it — so an unexplainable score, however accurate, just becomes one more thing to audit by hand. The model added work instead of removing it.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">Shipping it that way would have demoed beautifully and changed nothing: a confident verdict with no argument behind it, quietly ignored by the people it was built for. The real deliverable was never the score. It was the case the score could make for itself.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">Shipping it that way would have looked impressive in a demo and moved nothing in practice: a confident verdict with nothing to cross-examine, quietly set aside by the people it was built for. What the analyst actually needed wasn't the score. It was the case the score could make for itself.</p>
   </section>
 
   <!-- §03 — THE MOVE -->
@@ -151,7 +151,7 @@
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
       I held the launch until the score could explain itself.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">So I built an "explain this score" surface that grounds the model in its evidence. An analyst could pull any rating apart into the signals behind it, challenge the weighting, and watch the score answer back — and every signal came stapled to the exact document it was retrieved from, so no claim floated free of a source. I held the release until the model could survive that — the one decision the whole project hung on, and the one that delayed it.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">So I built an "explain this score" surface that grounds the model in its evidence. An analyst could pull any rating apart into the signals behind it, challenge the weighting, and watch the score answer back — and every signal came stapled to the exact document it was retrieved from, so no claim floated free of a source. I held the release until the model could survive that — the call the whole project hung on, and the one that delayed it.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Three things were non-negotiable: a cited source behind each generated number, a visible "I'm not sure about this one" state where the model abstains instead of bluffing a confident answer it can't ground, and a logged override when the analyst disagreed. The abstention state mattered most — an LLM's worst failure is a fluent, wrong claim, and I'd rather it say nothing than hallucinate. The override drew the longest argument — logging disagreement felt exposing. What it actually built was the feedback that sharpened the system over time.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The design followed the evaluation layer directly: where the model's own confidence in a claim ran low, that reading became the on-screen "I'm not sure about this one" — a hidden eval score turned into a state the analyst could see and act on.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:24px">Pull a score apart and challenge it below — the signals, their cited sources, their weights, and the score answering back:</p>
@@ -259,7 +259,7 @@
       What holding the launch cost.
     </h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Holding the release wasn't free. The accurate LLM sat finished while I built the surface that could defend it — the retrieval that tied each claim to a source, the abstention state, the override — weeks the team could feel, against a model that already worked. The honest version is that I chose to ship later on purpose, because shipping a correct score nobody acted on would have been the more expensive mistake.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The override feature drew the loudest pushback inside the team — logging an analyst's disagreement felt like exposing them. I kept it anyway, and reframed it: not a record of being wrong, but the feedback that sharpened the system over time.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The override feature drew the loudest pushback inside the team — logging an analyst's disagreement felt like exposing them. I kept it anyway, and reframed it: not a record of being wrong, but the analyst teaching the model where it was.</p>
     <blockquote style="margin:24px 0;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px">
       <p style="margin:0;font-family:var(--ff-sans);font-size:18px;font-style:italic;line-height:1.6;color:var(--ink)">Accuracy gets you a correct number. It doesn't get you a decision. The gap between the two is the whole job — and it's made of trust, not math.</p>
     </blockquote>
@@ -285,16 +285,16 @@
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline">
         <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Override loop</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">Logged disagreement became the feedback that sharpened the system over time</div>
+        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">Logged disagreement became a training signal the model learned from</div>
       </div>
     </div>
   </section>
 
   <!-- THE PRINCIPLE -->
   <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">The principle it left me with.</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">When an LLM product stalls, the instinct is to make the model more accurate. But accuracy was never this product's ceiling — belief was. A correct score that can't survive cross-examination is just a confident stranger, and experts are right to ignore confident strangers — especially from a system that can hallucinate a fluent, wrong answer.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">I run that check on every LLM product now. Before tuning the model, I ask whether every generated claim is grounded in a source the reader can open, and whether the model will abstain when it isn't sure — because the trust layer, not the accuracy layer, is usually what decides whether anyone acts on the number.</p>
+    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">What this one taught me.</h2>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">When an LLM product stalls, the instinct is to make the model more accurate. But accuracy was never this product's ceiling — belief was. A correct score no one can interrogate reads, to an expert, like a smooth pitch with no references attached — and experts are trained to walk past a smooth pitch, especially from a system that can state a wrong answer as fluently as a right one.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">This became my first question on any LLM product. Before tuning the model, I ask whether every generated claim is grounded in a source the reader can open, and whether the model will abstain when it isn't sure — because the trust layer, not the accuracy layer, is usually what decides whether anyone acts on the number.</p>
   </section>
 
   <!-- NDA CALENDLY CTA — locked phase 11E -->
