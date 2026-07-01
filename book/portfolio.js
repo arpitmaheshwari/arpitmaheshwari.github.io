@@ -238,9 +238,9 @@ const NDA_CASES = [{
   img: "../assets/visuals/case-fintech.svg",
   tag: "FinTech · NDA",
   title: "AI-Assisted Private Equity Investing",
-  standfirst: "I held the release until the model could defend its own scores. Then screening sped up 60%.",
+  standfirst: "I held the release until the LLM could defend its own scores. Then screening sped up 60%.",
   meta: [["Role", "Lead Product Designer"], ["Surface", "AI for private-equity investing"], ["Status", "Shipped · under NDA"]],
-  context: "So I held the launch — not to improve the model (already right) but until the score could survive cross-examination by analysts paid to doubt it. Ship early and you get a confident verdict nobody signs: dead on arrival.",
+  context: "An LLM read the deal docs and scored the risk. I held the launch until it grounded every claim in a cited source (retrieval) and abstained on thin cases — a confident hallucination nobody signs is dead on arrival.",
   moves: [{
     h: "Explain before the verdict",
     p: "An “explain this score” surface: pull a rating into its signals, challenge the weighting, watch it answer — sources beside the number."
@@ -334,9 +334,9 @@ const NDA_CASES = [{
   img: "../assets/visuals/case-vc.svg",
   tag: "VC/PE · NDA",
   title: "Technical Due Diligence Platform",
-  standfirst: "Partners bet millions on claims they'll never check. The model extracted the evidence; the design made them stand on it.",
+  standfirst: "Partners bet millions on claims they'll never check. An LLM extracted the evidence; the design made them stand on it.",
   meta: [["Role", "Design Lead"], ["Surface", "Technical-DD platform · VC + PE"], ["Status", "Shipped · under NDA"]],
-  context: "Extraction is easy. The call: no verdict is reviewable until its evidence is — a score a partner can't audit is a confident guess.",
+  context: "An LLM read the code and docs. No verdict ships without a cited source (retrieval) — unaudited, it's a confident hallucination.",
   moves: [{
     h: "Score at the signal level",
     p: "Confidence on each signal — code quality, architecture risk, team velocity, founder credibility — not one opaque verdict."

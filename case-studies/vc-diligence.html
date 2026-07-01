@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Technical Due Diligence Platform — Arpit Maheshwari</title>
-<meta name="description" content="Case study: AI technical due diligence for VC and PE firms. The model extracted the evidence; the design made partners willing to stand on it. Cycles 3 weeks to 4 days.">
+<meta name="description" content="Case study: LLM-powered technical due diligence for VC and PE firms. An LLM read the code and docs and extracted the evidence; the design grounded every verdict in a cited source so partners would stand on it. Cycles 3 weeks to 4 days.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="canonical" href="https://arpitmaheshwari.com/case-studies/vc-diligence.html">
@@ -95,7 +95,7 @@
     <div>
       <p class="case-hero__kicker">VC &amp; PE · Technical Due Diligence · NDA</p>
       <h1>Technical Due Diligence Platform</h1>
-      <p class="case-hero__hook">Partners stake millions on technical claims they'll never personally verify. The model extracted the evidence; the design made them willing to stand on it.</p>
+      <p class="case-hero__hook">Partners stake millions on technical claims they'll never personally verify. An LLM read the codebase and design docs and extracted the evidence; the design made them willing to stand on it.</p>
       <div class="case-stats">
         <div class="case-stat"><b>3 wks → 4 days</b><span>diligence cycle time</span></div>
         <div class="case-stat"><b>4</b><span>signal classes scored, each to a next step</span></div>
@@ -129,7 +129,7 @@
   </figure>
 
   <!-- THE HOOK — the symptom, stated as a mystery -->
-  <p style="font-family:var(--ff-display);font-size:clamp(22px,4vw,32px);font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">A partner has four days to decide whether a startup's technology is real, and millions riding on the answer. The model could read the whole codebase in an afternoon. The diligence still took three weeks. The bottleneck was never the reading.</p>
+  <p style="font-family:var(--ff-display);font-size:clamp(22px,4vw,32px);font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">A partner has four days to decide whether a startup's technology is real, and millions riding on the answer. An LLM could read the whole codebase in an afternoon. The diligence still took three weeks. The bottleneck was never the reading.</p>
   <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:60px">A diagnosis · symptom → wrong suspects → the real culprit</p>
 
   <!-- §01 — THE SYMPTOM -->
@@ -138,8 +138,8 @@
       The symptom: a fast model, and a verdict nobody would sign.
     </h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">VC and PE partners stake millions on a startup's technology on claims they will never personally check. They can't read the codebase. They can't reproduce the benchmark. So the deal stalls in a three-week diligence cycle while analysts assemble something a partner is willing to put their name to.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The model handled the hard technical work in an afternoon: scan the repos, read the design docs, score four classes of risk — code quality, architecture risk, team velocity, founder credibility. The extraction was never the problem.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">The problem was that a partner would read a clean machine verdict and still pick up the phone to re-check it by hand. The model produced an answer. It did not produce something anyone would stand on. That is what kept the cycle at three weeks.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">An LLM handled the hard technical work in an afternoon: read the unstructured repos, read the design docs, score four classes of risk — code quality, architecture risk, team velocity, founder credibility. The extraction was never the problem.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">The problem was that a partner would read a clean machine verdict and still pick up the phone to re-check it by hand. The LLM produced an answer. It did not produce something anyone would stand on. That is what kept the cycle at three weeks.</p>
   </section>
 
   <!-- §02 — THE WRONG SUSPECTS -->
@@ -156,8 +156,8 @@
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
       The real culprit: the verdict had no chain of evidence.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The verdict was right. That was exactly why it was dangerous. A correct verdict the partner couldn't audit is indistinguishable, on the day of the deal, from a confident hallucination. The missing piece was never accuracy — it was provenance: a path from the verdict down to the repo scan, the infra audit, the interview note behind it.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">So the design work was the trust layer, not the extraction. Every one of the four signals carries its own confidence and, more importantly, its own source. Each score maps to a next step a partner can actually take — proceed, attach a condition, send an analyst back. The one decision that organized everything: <strong style="color:var(--ink)">no verdict is reviewable until its evidence is.</strong> A partner cannot sign off until they've opened all four signals and seen the trail underneath each one.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The verdict was right. That was exactly why it was dangerous. A correct verdict the partner couldn't audit is indistinguishable, on the day of the deal, from a confident hallucination — the exact failure mode an LLM is prone to, and the one this design is built to guard against. The missing piece was never accuracy — it was provenance: grounding, a path from the generated verdict down to the cited source behind it, the repo scan, the infra audit, the interview note. Retrieval-grounded, in the language of the field: every claim traceable to the document it came from.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">So the design work was the trust layer, not the extraction. Every one of the four signals carries its own confidence and, more importantly, its own cited source. Each score maps to a next step a partner can actually take — proceed, attach a condition, send an analyst back. The one decision that organized everything: <strong style="color:var(--ink)">no verdict is reviewable until its evidence is.</strong> A partner cannot sign off until they've opened all four signals and seen the trail underneath each one.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Try it — open each signal to see the evidence, then sign:</p>
     <section class="recon" id="recon-vc" role="group" aria-label="Interactive reconstruction: technical-risk dossier with drill-to-source and partner sign-off">
     <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA</div>
@@ -237,7 +237,7 @@
       sign.classList.add('rxv-signed');sign.textContent='Signed — conditions attached';hint.textContent='';});
   })();</script>
 
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-top:36px">That sign-off gate looks like a small interaction. It was the whole argument. It turns the model from an oracle you either believe or ignore into an evidence file a partner walks through — which is the difference between a tool that sits in a drawer and one that compresses three weeks into four days. The analyst's overrides feed back to the model, so the trust runs both ways.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-top:36px">That sign-off gate looks like a small interaction. It was the whole argument. It turns the LLM from an oracle you either believe or ignore into an evidence file a partner walks through, each verdict grounded in its cited source — which is the difference between a tool that sits in a drawer and one that compresses three weeks into four days. The analyst's overrides feed back to the model, so the trust runs both ways.</p>
   </section>
 
   <!-- §04 — WHAT IT COST -->

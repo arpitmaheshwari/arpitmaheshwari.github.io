@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI-Assisted Private Equity Investing — Arpit Maheshwari</title>
-<meta name="description" content="Case study: How I designed explainability-first UX for PE analysts to trust AI recommendations in high-stakes decisions.">
+<meta name="description" content="Case study: How I designed explainability-first UX for PE analysts to trust an LLM's deal-risk analysis — grounded in cited sources, with abstention over hallucination — in high-stakes decisions.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="canonical" href="https://arpitmaheshwari.com/case-studies/fintech.html">
@@ -93,7 +93,7 @@
     <div>
       <p class="case-hero__kicker">FinTech · AI-Assisted Private Equity · NDA</p>
       <h1>AI-Assisted Private Equity Investing</h1>
-      <p class="case-hero__hook">Analysts get paid to doubt confident numbers — so I held the launch until the score could argue its own case. Then they stopped auditing it and started leaning on it.</p>
+      <p class="case-hero__hook">An LLM read the deal documents and scored the risk — but analysts get paid to doubt confident numbers, so I held the launch until every generated claim could name the source it came from. Then they stopped auditing it and started leaning on it.</p>
       <div class="case-stats">
         <div class="case-stat"><b>60% faster</b><span>deal screening · n=42 · 90-day window</span></div>
         <div class="case-stat"><b>3</b><span>sources sat beside every score, not behind it</span></div>
@@ -111,7 +111,7 @@
   <!-- VITALS STRIP -->
   <dl class="case-vitals">
     <div><dt>Role</dt><dd>Lead Product Designer</dd></div>
-    <div><dt>Surface</dt><dd>AI for private-equity investing</dd></div>
+    <div><dt>Surface</dt><dd>LLM over deal docs for PE investing</dd></div>
     <div><dt>Screening</dt><dd class="gold">60% faster <span style="display:block;font-family:var(--ff-mono);font-size:11px;font-weight:400;letter-spacing:0.04em;color:var(--ink-muted);margin-top:4px">n=42 · 90-day window</span></dd></div>
     <div><dt>Status</dt><dd>Shipped · under NDA</dd></div>
   </dl>
@@ -124,7 +124,7 @@
   <div class="loom-slot" data-video-url="" data-video-title="AI-Assisted Private Equity Investing — walkthrough"></div>
 
   <!-- THE MYTH — the reframe that runs the whole case -->
-  <p style="font-family:var(--ff-display);font-size:clamp(22px,4vw,32px);font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">The model already scored deal risk accurately. That was never the bottleneck — belief was. So I held the launch until the score could argue its own case to people whose entire job is to doubt confident numbers.</p>
+  <p style="font-family:var(--ff-display);font-size:clamp(22px,4vw,32px);font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">A large language model already read the deal documents and scored the risk accurately. Accuracy was never the bottleneck — belief was. So I held the launch until every claim the model generated could point back to the source it came from, for people whose entire job is to doubt confident numbers.</p>
   <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:60px">One reframe · accuracy was solved, trust wasn't</p>
 
   <!-- §01 — THE MYTH -->
@@ -132,9 +132,9 @@
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
       Accuracy was never the bottleneck. Trust was.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">PE analysts are paid to be suspicious of confident numbers. Doubt is the job, and they're good at it. A score they couldn't cross-examine wasn't a tool — it was a liability with a UI, and they treated it like one.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The model scored deal risk accurately. That was never the bottleneck. The bottleneck was that every score read the same on screen whether the model was ninety percent confident or fifty percent guessing. With no way to check the reasoning, analysts built parallel scorecards and let the AI rank as a sanity check at best.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">So the work was never to make the model more accurate. It was to make a correct score survive cross-examination by the most skeptical reader in the building — and to hold the launch until it could.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">PE analysts are paid to be suspicious of confident numbers. Doubt is the job, and they're good at it. A score they couldn't cross-examine wasn't a tool — it was a liability with a UI, and they treated it like one. It didn't help that the number came out of a large language model reading messy deal documents: the same technology that, pushed too far, will invent a confident answer it can't back up.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The LLM scored deal risk accurately — reading board packs, statements and interview notes the way a junior analyst would. That was never the bottleneck. The bottleneck was that every score read the same on screen whether the model was ninety percent confident or fifty percent guessing, and nothing on screen told you whether a claim was pulled from a real document or quietly made up. With no way to check the reasoning, analysts built parallel scorecards and let the AI rank as a sanity check at best.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">So the work was never to make the model more accurate. It was to make a correct score survive cross-examination by the most skeptical reader in the building — to tie every generated claim back to the document it came from — and to hold the launch until it could.</p>
   </section>
 
   <!-- §02 — THE STAKES -->
@@ -151,9 +151,10 @@
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
       I held the launch until the score could explain itself.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">So I built an "explain this score" surface. An analyst could pull any rating apart into the signals behind it, challenge the weighting, and watch the score answer back. I held the release until the model could survive that — the one decision the whole project hung on, and the one that delayed it.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Three things were non-negotiable: the primary sources behind each number, a visible "I'm not sure about this one" state for low-confidence cases, and a logged override when the analyst disagreed. The override drew the longest argument — logging disagreement felt exposing. What it actually built was the training signal that sharpened the model over time.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:24px">Pull a score apart and challenge it below — the signals, their weights, and the score answering back:</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">So I built an "explain this score" surface that grounds the model in its evidence. An analyst could pull any rating apart into the signals behind it, challenge the weighting, and watch the score answer back — and every signal came stapled to the exact document it was retrieved from, so no claim floated free of a source. I held the release until the model could survive that — the one decision the whole project hung on, and the one that delayed it.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Three things were non-negotiable: a cited source behind each generated number, a visible "I'm not sure about this one" state where the model abstains instead of bluffing a confident answer it can't ground, and a logged override when the analyst disagreed. The abstention state mattered most — an LLM's worst failure is a fluent, wrong claim, and I'd rather it say nothing than hallucinate. The override drew the longest argument — logging disagreement felt exposing. What it actually built was the feedback that sharpened the system over time.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The design followed the evaluation layer directly: where the model's own confidence in a claim ran low, that reading became the on-screen "I'm not sure about this one" — a hidden eval score turned into a state the analyst could see and act on.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:24px">Pull a score apart and challenge it below — the signals, their cited sources, their weights, and the score answering back:</p>
   <!-- VISUAL — interactive reconstruction -->
   <section class="recon" id="recon-fintech" role="group" aria-label="Interactive reconstruction: explain-this-score drawer with adjustable signal weights">
     <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA</div>
@@ -257,8 +258,8 @@
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
       What holding the launch cost.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Holding the release wasn't free. The accurate model sat finished while I built the surface that could defend it — weeks the team could feel, against a model that already worked. The honest version is that I chose to ship later on purpose, because shipping a correct score nobody acted on would have been the more expensive mistake.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The override feature drew the loudest pushback inside the team — logging an analyst's disagreement felt like exposing them. I kept it anyway, and reframed it: not a record of being wrong, but the signal that sharpened the model over time.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Holding the release wasn't free. The accurate LLM sat finished while I built the surface that could defend it — the retrieval that tied each claim to a source, the abstention state, the override — weeks the team could feel, against a model that already worked. The honest version is that I chose to ship later on purpose, because shipping a correct score nobody acted on would have been the more expensive mistake.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The override feature drew the loudest pushback inside the team — logging an analyst's disagreement felt like exposing them. I kept it anyway, and reframed it: not a record of being wrong, but the feedback that sharpened the system over time.</p>
     <blockquote style="margin:24px 0;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px">
       <p style="margin:0;font-family:var(--ff-sans);font-size:18px;font-style:italic;line-height:1.6;color:var(--ink)">Accuracy gets you a correct number. It doesn't get you a decision. The gap between the two is the whole job — and it's made of trust, not math.</p>
     </blockquote>
@@ -268,7 +269,7 @@
   <section id="the-receipt" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:8px;line-height:1.3">The receipt.</h2>
     <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:32px">Interrogation turned into reliance · every number with its window</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:32px">Screening ran 60% faster across 42 deals in a 90-day window, and analysts went from ignoring the model to leading their deal memos with it. The model didn't get more accurate — they could finally see where its confidence came from.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:32px">Screening ran 60% faster across 42 deals in a 90-day window, and analysts went from ignoring the model to leading their deal memos with it. The LLM didn't get more accurate — they could finally trace every claim to its cited source and see where its confidence came from.</p>
     <div style="display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden">
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04);border-bottom:1px solid var(--border)">
         <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Screening speed</div>
@@ -280,11 +281,11 @@
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04);border-bottom:1px solid var(--border)">
         <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Explainability</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">3 primary sources sat beside every score, not behind it · low-confidence states kept visible</div>
+        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">3 cited sources sat beside every score, not behind it · every claim grounded, low-confidence claims flagged as abstention</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline">
         <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Override loop</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">Logged disagreement became the training signal that sharpened the model over time</div>
+        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">Logged disagreement became the feedback that sharpened the system over time</div>
       </div>
     </div>
   </section>
@@ -292,8 +293,8 @@
   <!-- THE PRINCIPLE -->
   <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">The principle it left me with.</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">When an AI product stalls, the instinct is to make the model more accurate. But accuracy was never this product's ceiling — belief was. A correct score that can't survive cross-examination is just a confident stranger, and experts are right to ignore confident strangers.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">I run that check on every AI product now. Before tuning the model, I ask whether the person reading it can see where the confidence came from — because the trust layer, not the accuracy layer, is usually what decides whether anyone acts on the number.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">When an LLM product stalls, the instinct is to make the model more accurate. But accuracy was never this product's ceiling — belief was. A correct score that can't survive cross-examination is just a confident stranger, and experts are right to ignore confident strangers — especially from a system that can hallucinate a fluent, wrong answer.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">I run that check on every LLM product now. Before tuning the model, I ask whether every generated claim is grounded in a source the reader can open, and whether the model will abstain when it isn't sure — because the trust layer, not the accuracy layer, is usually what decides whether anyone acts on the number.</p>
   </section>
 
   <!-- NDA CALENDLY CTA — locked phase 11E -->
@@ -309,7 +310,7 @@
     <h3 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:16px">Design Patterns Used in This Case</h3>
     <p style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px">This project produced two patterns I now reach for whenever AI meets domain experts:</p>
     <ul style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
-      <li style="margin-bottom:12px"><strong><a href="../patterns/ml-explainability.html" style="color:var(--gold);text-decoration:none">ML Explainability Patterns</a>:</strong> How to expose a reasoning chain — from the steps the model took to how this deal stacks against its peers — so a non-technical expert can read the why, not just the verdict.</li>
+      <li style="margin-bottom:12px"><strong><a href="../patterns/ml-explainability.html" style="color:var(--gold);text-decoration:none">ML Explainability Patterns</a>:</strong> How to ground each generated claim in the cited source it was retrieved from — and surface abstention when the model isn't sure — so a non-technical expert can read the why, not just the verdict.</li>
       <li style="margin-bottom:12px"><strong><a href="../patterns/human-in-loop.html" style="color:var(--gold);text-decoration:none">Human-in-Loop Patterns</a>:</strong> The override-and-explain loop, the visible weighting on each risk factor, and disagreement handled with respect — the moves that keep the expert in command.</li>
     </ul>
   </section>
