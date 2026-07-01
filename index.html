@@ -773,6 +773,38 @@ if (newsletterForm) {
   });
 }
 
+// Contact form — AJAX submit so the recruiter stays on-domain with an inline confirmation
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('button[type="submit"]');
+    const origHTML = btn ? btn.innerHTML : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: 'send-role', location: 'contact-submit' });
+    const succeed = () => {
+      contactForm.innerHTML = '<div role="status" aria-live="polite" style="padding:24px 20px;background:var(--bg-card);border:1px solid var(--gold-dark);border-radius:4px">' +
+        '<p style="font-family:var(--ff-display);font-size:22px;font-weight:300;color:var(--ink);margin:0 0 6px 0">Got it — thank you.</p>' +
+        '<p style="font-size:14px;color:var(--ink-muted);line-height:1.65;margin:0">I reply within ~48 hours. If it\'s time-sensitive, book a call just below.</p></div>';
+    };
+    const fail = () => {
+      if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+      let err = document.getElementById('contact-error');
+      if (!err) {
+        err = document.createElement('p');
+        err.id = 'contact-error';
+        err.setAttribute('role', 'alert');
+        err.style.cssText = 'font-size:13px;color:var(--gold);margin:12px 0 0 0';
+        contactForm.appendChild(err);
+      }
+      err.textContent = 'That didn\'t send — please try again, or book a call just below.';
+    };
+    fetch(contactForm.action, { method: 'POST', body: new FormData(contactForm), headers: { 'Accept': 'application/json' } })
+      .then(r => { if (r.ok) succeed(); else fail(); })
+      .catch(fail);
+  });
+}
+
 // Scroll depth — fires once per threshold (25/50/75/100)
 const scrollDepthHits = new Set();
 function trackScrollDepth() {
