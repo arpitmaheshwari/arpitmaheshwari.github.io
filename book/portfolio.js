@@ -1127,7 +1127,7 @@ function buildBook(ctx) {
       className: "bk-cover__rule"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-cover__sub"
-    }, "Fifteen years designing the half-second where a person decides to believe a machine."), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Founding designer for AI products \xB7 available now"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "In a hurry? Skim the classic site \u2192"), /*#__PURE__*/React.createElement("button", {
+    }, "Fifteen years designing the half-second where a person decides to bet on a machine."), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Founding designer for AI products \xB7 available now"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "Read the classic site instead \u2192"), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1),
       "aria-label": "Open the book \u2014 tap or press space"
@@ -1188,7 +1188,7 @@ function buildBook(ctx) {
         fontSize: 13,
         color: "var(--bk-ink-faint)"
       }
-    }, "First edition \xB7 set in Instrument Serif & Newsreader \xB7 Indore, India \xB7 MMXXVI")),
+    }, "First edition \xB7 set in Newsreader & Spectral \xB7 Indore, India \xB7 MMXXVI")),
     right: /*#__PURE__*/React.createElement("div", {
       className: "bk-reveal"
     }, /*#__PURE__*/React.createElement("div", {
