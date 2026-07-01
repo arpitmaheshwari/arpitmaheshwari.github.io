@@ -2221,7 +2221,7 @@ function App() {
     return () => window.removeEventListener("resize", fit);
   }, [mobile, loc, anim]);
   const accentDeep = DEEP[t.accent] || t.accent;
-  const pr = PAIRINGS[t.pairing] || PAIRINGS["Instrument · Newsreader"];
+  const pr = PAIRINGS[t.pairing] || PAIRINGS["Newsreader · Spectral"];
   const wrapVars = {
     "--bk-ember": t.accent,
     "--bk-ember-deep": accentDeep,
