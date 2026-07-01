@@ -207,7 +207,7 @@
     <span class="line"><span class="line-inner"><em>won't bet on it.</em></span></span>
   </h1>
   <p style="font-family:var(--ff-display); font-size:clamp(20px, 2.6vw, 26px); font-style:italic; color:var(--ink); line-height:1.4; margin-bottom:32px; max-width:640px; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual; opacity:0; transform:translateY(20px); animation:reveal .4s var(--ease-out) .3s forwards;">
-    That half-second of doubt is the only thing I design — the trust layer between a person and an algorithm. Fifteen years, five industries, one problem.
+    The half-second of doubt is the only thing I design. Fifteen years, five industries, one problem.
   </p>
 
   <!-- PROOF STRIP — three chips. The loudest thing on the page after the H1. (Restructure v2) -->
@@ -243,14 +243,15 @@
     <a href="./hire/" data-cta="resume" data-location="hero" style="display:inline-flex;align-items:center;gap:6px;padding:15px 8px;color:var(--ink-muted);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px;white-space:nowrap" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-muted)'">One-page résumé</a>
   </div>
   </div>
-  <div class="hero-demo reveal" aria-label="Live example: a confidence score resolving into an action — the half-second I design">
-    <div class="hd-tag">The half-second I design</div>
+  <div class="hero-demo reveal" aria-label="Interactive: drag the model's confidence and watch it resolve into an action — the half-second I design">
+    <div class="hd-tag">The half-second I design — try it</div>
     <div class="hd-card">
-      <div class="hd-top"><span class="hd-name">Lead 4471 · confidence</span><span class="hd-score" id="hd-score">0</span></div>
-      <div class="hd-track"><div class="hd-fill" id="hd-fill"></div></div>
+      <div class="hd-top"><span class="hd-name">Lead 4471 · confidence</span><span class="hd-score" id="hd-score">87</span></div>
+      <input type="range" class="hd-range" id="hd-range" min="0" max="100" value="87" aria-label="Drag the model's confidence and watch it resolve into an action">
       <div class="hd-scale"><span data-band="ignore">Ignore</span><span data-band="review">Review</span><span data-band="act">Act</span></div>
       <div class="hd-verdict" id="hd-verdict"><span class="hd-arrow">→</span>&nbsp;<span id="hd-verb">…</span></div>
       <div class="hd-reason" id="hd-reason">a score tied to one action</div>
+      <div class="hd-drag" id="hd-drag" aria-hidden="true">drag the score ↔</div>
     </div>
     <div class="hd-foot">Not a number that ends in a shrug — a confidence that ends in an action.</div>
   </div>
@@ -982,35 +983,52 @@ if (canvas && !prefersReducedMotion) {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
+.hd-range{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--gold) 87%,rgba(212,168,94,0.16) 87%);outline:none;margin:16px 0 12px;cursor:grab;display:block}
+.hd-range:active{cursor:grabbing}
+.hd-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);border:3px solid var(--bg-card);box-shadow:0 0 0 1px var(--gold),0 2px 8px rgba(0,0,0,0.4);cursor:grab}
+.hd-range::-moz-range-thumb{width:20px;height:20px;border:3px solid var(--bg-card);border-radius:50%;background:var(--gold);box-shadow:0 0 0 1px var(--gold);cursor:grab}
+.hd-range:focus-visible{box-shadow:0 0 0 3px rgba(212,168,94,0.35)}
+.hd-drag{font-family:var(--ff-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-dim);margin-top:8px;transition:opacity .4s}
+.hd-drag.hd-drag--used{opacity:0}
+@media (prefers-reduced-motion:reduce){.hd-drag{animation:none}}
 </style>
 
 <script>
 /* Hero half-second demo: cycle a confidence score through Act / Review / Ignore */
 (function(){
-  var score=document.getElementById('hd-score'),fill=document.getElementById('hd-fill'),verb=document.getElementById('hd-verb'),verdict=document.getElementById('hd-verdict'),reason=document.getElementById('hd-reason'),scale=document.querySelector('.hd-scale');
-  if(!score||!fill||!verb) return;
-  var states=[
-    {n:87,band:'act',verb:'Act on it',reason:'high confidence, signals named — a trader can check the model’s work and move'},
-    {n:54,band:'review',verb:'Review first',reason:'mixed signals — surfaced for a human to weigh, not auto-run'},
-    {n:19,band:'ignore',verb:'Ignore',reason:'low confidence — the model declines to bluff'}
-  ];
-  function paint(s){
-    score.textContent=s.n;
-    fill.style.width=s.n+'%'; fill.className='hd-fill band-'+s.band;
-    verb.textContent=s.verb; verdict.className='hd-verdict band-'+s.band; reason.textContent=s.reason;
-    if(scale) [].forEach.call(scale.children,function(c){c.classList.toggle('on',c.getAttribute('data-band')===s.band);});
+  var score=document.getElementById('hd-score'),range=document.getElementById('hd-range'),verb=document.getElementById('hd-verb'),verdict=document.getElementById('hd-verdict'),reason=document.getElementById('hd-reason'),scale=document.querySelector('.hd-scale'),drag=document.getElementById('hd-drag');
+  if(!score||!range||!verb) return;
+  var BANDS={
+    act:{verb:'Act on it',reason:'high confidence, signals named — a trader can check the model’s work and move'},
+    review:{verb:'Review first',reason:'mixed signals — surfaced for a human to weigh, not auto-run'},
+    ignore:{verb:'Ignore',reason:'low confidence — the model declines to bluff'}
+  };
+  function bandOf(n){ return n>=70?'act':n>=40?'review':'ignore'; }
+  function paint(n){
+    n=Math.max(0,Math.min(100,Math.round(n)));
+    var b=bandOf(n);
+    score.textContent=n;
+    range.value=n;
+    range.style.background='linear-gradient(90deg,var(--gold) '+n+'%,rgba(212,168,94,0.16) '+n+'%)';
+    verb.textContent=BANDS[b].verb; reason.textContent=BANDS[b].reason;
+    verdict.className='hd-verdict band-'+b;
+    if(scale) [].forEach.call(scale.children,function(c){c.classList.toggle('on',c.getAttribute('data-band')===b);});
   }
-  paint(states[0]);
+  var userTook=false, timer=null;
+  function handOver(){ if(userTook) return; userTook=true; if(timer){clearInterval(timer);timer=null;} if(drag) drag.classList.add('hd-drag--used'); }
+  range.addEventListener('input',function(){ handOver(); paint(+range.value); });
+  paint(87);
+  // Gentle auto-demo (resolves through the three bands) until the visitor grabs the slider; skipped for reduced-motion.
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce) return;
-  var i=0, timer=setInterval(tick,3200);
-  function tick(){ i=(i+1)%states.length; paint(states[i]); }
-  var demoEl=document.querySelector('.hero-demo');
-  if(demoEl){
-    var stop=function(){ clearInterval(timer); timer=null; }, run=function(){ if(!timer) timer=setInterval(tick,3200); };
-    demoEl.addEventListener('mouseenter',stop); demoEl.addEventListener('mouseleave',run);
-    demoEl.addEventListener('focusin',stop); demoEl.addEventListener('focusout',run);
+  if(!reduce){
+    var seq=[87,54,19,72], i=0;
+    var start=function(){ if(!userTook&&!timer) timer=setInterval(function(){ if(userTook){clearInterval(timer);timer=null;return;} i=(i+1)%seq.length; paint(seq[i]); },2600); };
+    start();
+    var demoEl=document.querySelector('.hero-demo');
+    if(demoEl){
+      demoEl.addEventListener('mouseenter',function(){ if(!userTook&&timer){clearInterval(timer);timer=null;} });
+      demoEl.addEventListener('mouseleave',start);
+    }
   }
 })();
 </script>
