@@ -1123,17 +1123,17 @@ function buildBook(ctx) {
       label: "Vol. I"
     })), /*#__PURE__*/React.createElement("h1", {
       className: "bk-cover__title"
-    }, "Arpit", /*#__PURE__*/React.createElement("br", null), "Maheshwari"), /*#__PURE__*/React.createElement("div", {
+    }, "The half-second where a person decides to ", /*#__PURE__*/React.createElement("em", null, "bet"), " on a machine."), /*#__PURE__*/React.createElement("div", {
       className: "bk-cover__rule"
     }), /*#__PURE__*/React.createElement("p", {
-      className: "bk-cover__sub"
-    }, "Fifteen years designing the half-second where a person decides to bet on a machine."), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Founding designer for AI products \xB7 shipped to 4M+"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "Read the classic site instead \u2192"), /*#__PURE__*/React.createElement("button", {
+      className: "bk-cover__byline"
+    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Founding designer for AI products \xB7 shipped to 4M+"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "Read the classic site instead \u2192"), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1),
       "aria-label": "Open the book \u2014 tap or press space"
     }, /*#__PURE__*/React.createElement("span", {
       className: "dot"
-    }), " Open \u2014 six case studies \u2192"), /*#__PURE__*/React.createElement("span", {
+    }), " Open \u2014 6 AI case studies inside \u2192"), /*#__PURE__*/React.createElement("span", {
       className: "bk-cover__openhint",
       style: {
         display: "block",
