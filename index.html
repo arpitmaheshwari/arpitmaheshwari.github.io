@@ -844,6 +844,9 @@ if (canvas && !prefersReducedMotion) {
   const ctx = canvas.getContext('2d', { alpha: true });
   let width = 0, height = 0, particles = [];
   const mouse = { x: null, y: null, radius: 150 };
+  // "noise resolves into signal": drifting particles settle onto a confidence track
+  const SETTLE_DELAY = 1200, SETTLE_DUR = 2200;
+  let startTime = null, signalY = 0, settle = 0;
 
   const resize = () => {
     const hero = document.getElementById('hero');
@@ -863,6 +866,7 @@ if (canvas && !prefersReducedMotion) {
         canvas.style.height = height + 'px';
         canvas.width = width;   // Critical: set the drawing surface resolution
         canvas.height = height;
+        signalY = height * 0.66;
         initParticles();
       }
     }
@@ -875,12 +879,23 @@ if (canvas && !prefersReducedMotion) {
       this.vx = (Math.random() - 0.5) * 0.5;
       this.vy = (Math.random() - 0.5) * 0.5;
       this.size = Math.random() * 1.5 + 0.5;
+      this.targetY = signalY + (Math.random() - 0.5) * 26; // ±13px band
+      this.phase = Math.random() * Math.PI * 2;
     }
-    update() {
+    update(now) {
+      // horizontal drift + edge bounce always continue
       if (this.x > width || this.x < 0) this.vx = -this.vx;
-      if (this.y > height || this.y < 0) this.vy = -this.vy;
       this.x += this.vx;
-      this.y += this.vy;
+      // vertical: free drift early, then resolve onto the signal band as settle ramps
+      if (settle < 1) {
+        if (this.y > height || this.y < 0) this.vy = -this.vy;
+        this.y += this.vy * (1 - settle);
+      }
+      if (settle > 0) {
+        this.vy *= (1 - 0.06 * settle);
+        this.y += (this.targetY - this.y) * 0.03 * settle;
+        this.y += Math.sin(now * 0.001 + this.phase) * 0.35 * settle; // residual breath
+      }
 
       // Mouse interaction
       if (mouse.x != null && mouse.y != null) {
@@ -908,23 +923,38 @@ if (canvas && !prefersReducedMotion) {
     for (let i = 0; i < count; i++) particles.push(new Particle());
   };
 
-  const animate = () => {
+  const animate = (now) => {
+    if (startTime === null) startTime = now || 0;
+    const raw = ((now || 0) - startTime - SETTLE_DELAY) / SETTLE_DUR;
+    const p = Math.max(0, Math.min(1, raw));
+    settle = p * p * (3 - 2 * p); // smoothstep ease
+
     ctx.clearRect(0, 0, width, height);
-    
+
+    // the confidence track the noise resolves onto
+    if (settle > 0) {
+      ctx.beginPath();
+      ctx.strokeStyle = `rgba(212, 168, 94, ${0.10 * settle})`;
+      ctx.lineWidth = 1;
+      ctx.moveTo(0, signalY);
+      ctx.lineTo(width, signalY);
+      ctx.stroke();
+    }
+
     // Update & Draw
     for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
+      particles[i].update(now || 0);
       particles[i].draw();
-      
+
       // Connect
       for (let j = i; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        
-        if (dist < 100) {
+
+        if (dist < 80) {
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(212, 168, 94, ${0.15 * (1 - dist/100)})`;
+          ctx.strokeStyle = `rgba(212, 168, 94, ${0.10 * (1 - dist/80)})`;
           ctx.lineWidth = 0.5;
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
@@ -968,6 +998,32 @@ if (canvas && !prefersReducedMotion) {
   } else {
     startAnimation();
   }
+} else if (canvas) {
+  // Reduced motion: draw the resolved signal once, with no animation.
+  const ctx = canvas.getContext('2d', { alpha: true });
+  const drawStatic = () => {
+    const hero = document.getElementById('hero');
+    const rect = hero ? hero.getBoundingClientRect() : null;
+    if (!rect || rect.width <= 0 || rect.height <= 0) return;
+    const w = rect.width, h = rect.height, sy = h * 0.66;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    canvas.width = w; canvas.height = h;
+    ctx.clearRect(0, 0, w, h);
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(212, 168, 94, 0.10)';
+    ctx.lineWidth = 1;
+    ctx.moveTo(0, sy); ctx.lineTo(w, sy); ctx.stroke();
+    const count = Math.floor((w * h) / 12000);
+    for (let i = 0; i < count; i++) {
+      const x = Math.random() * w, y = sy + (Math.random() - 0.5) * 26;
+      ctx.beginPath();
+      ctx.arc(x, y, Math.random() * 1.5 + 0.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(212, 168, 94, 0.4)';
+      ctx.fill();
+    }
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', drawStatic);
+  else requestAnimationFrame(drawStatic);
 }
 
 </script>
