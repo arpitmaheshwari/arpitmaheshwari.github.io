@@ -191,6 +191,30 @@
 .hd-verdict.band-ignore{color:var(--ink-muted)}
 .hd-reason{margin-top:7px;font-size:12.5px;color:var(--ink-muted);line-height:1.5;min-height:40px}
 .hd-foot{margin-top:14px;font-family:var(--ff-display);font-style:italic;font-size:13.5px;color:var(--ink-dim);line-height:1.5}
+.hd-diag-q{font-family:var(--ff-display);font-weight:300;font-size:21px;line-height:1.25;color:var(--ink);margin:0 0 16px;letter-spacing:-.01em}
+.hd-presets{display:flex;flex-direction:column;gap:8px}
+.hd-preset{display:block;text-align:left;background:transparent;border:1px solid var(--border);border-radius:6px;padding:10px 13px;color:var(--ink-muted);font-family:var(--ff-sans);font-size:13px;line-height:1.4;text-decoration:none;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.hd-preset:hover{border-color:var(--gold);color:var(--ink);background:rgba(212,168,94,.05)}
+.hd-preset span{font-family:var(--ff-mono);font-size:10px;color:var(--gold);margin-right:9px}
+.hd-free{margin-top:12px}
+.hd-free input{width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--ink);font-family:var(--ff-display);font-style:italic;font-size:14px;padding:8px 2px;outline:none}
+.hd-free input::placeholder{color:var(--ink-dim)}
+.hd-free input:focus{border-color:var(--gold)}
+.hd-kicker{font-family:var(--ff-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+.hd-said{font-size:12px;color:var(--ink-dim);margin:0 0 9px;line-height:1.45}
+.hd-reframe{font-family:var(--ff-display);font-weight:300;font-size:19px;line-height:1.3;color:var(--ink);margin:0 0 16px;letter-spacing:-.01em}
+.hd-reframe em{font-style:italic;color:var(--gold)}
+.hd-moves{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.hd-move{display:flex;gap:10px;font-size:12.5px;color:var(--ink-muted);line-height:1.45}
+.hd-move b{font-family:var(--ff-mono);font-size:11px;color:var(--gold);flex:0 0 auto;font-weight:400}
+.hd-slider-lead{font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 2px}
+.hd-answer-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px}
+.hd-answer-foot a{font-family:var(--ff-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.hd-answer-foot a:hover{border-color:var(--gold)}
+.hd-reset{background:none;border:none;color:var(--ink-dim);font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;padding:0;transition:color .2s}
+.hd-reset:hover{color:var(--ink-muted)}
+#hd-answer[hidden]{display:none}
+#hd-answer{animation:reveal .4s var(--ease-out) forwards}
 @media (max-width:980px){.hero-demo{flex:1 1 100%;max-width:440px;margin-top:4px}}
 @media (prefers-reduced-motion:reduce){.hd-fill{transition:none}.hero-demo{animation:none;opacity:1;transform:none}}
 </style>
@@ -243,15 +267,32 @@
     <a href="./hire/" data-cta="resume" data-location="hero" style="display:inline-flex;align-items:center;gap:6px;padding:15px 8px;color:var(--ink-muted);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px;white-space:nowrap" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-muted)'">One-page résumé</a>
   </div>
   </div>
-  <div class="hero-demo reveal" aria-label="Interactive: drag the model's confidence and watch it resolve into an action — the half-second I design">
-    <div class="hd-tag">The half-second I design — try it</div>
+  <div class="hero-demo reveal" aria-label="Interactive: name where your AI product loses people, and watch the fix resolve into an action">
+    <div class="hd-tag">Try it — name your problem</div>
     <div class="hd-card">
-      <div class="hd-top"><span class="hd-name">Lead 4471 · confidence</span><span class="hd-score" id="hd-score">87</span></div>
-      <input type="range" class="hd-range" id="hd-range" min="0" max="100" value="87" aria-label="Drag the model's confidence and watch it resolve into an action">
-      <div class="hd-scale"><span data-band="ignore">Ignore</span><span data-band="review">Review</span><span data-band="act">Act</span></div>
-      <div class="hd-verdict" id="hd-verdict"><span class="hd-arrow">→</span>&nbsp;<span id="hd-verb">…</span></div>
-      <div class="hd-reason" id="hd-reason">a score tied to one action</div>
-      <div class="hd-drag" id="hd-drag" aria-hidden="true">drag the score ↔</div>
+      <div id="hd-diag">
+        <p class="hd-diag-q">Where does your AI product lose people?</p>
+        <div class="hd-presets">
+          <a href="./case-studies/adtech.html" class="hd-preset" data-i="0"><span>01</span>Users ignore our recommendations.</a>
+          <a href="./case-studies/fintech.html" class="hd-preset" data-i="1"><span>02</span>Great accuracy, low adoption.</a>
+          <a href="./case-studies/adtech.html" class="hd-preset" data-i="2"><span>03</span>They override the model every time.</a>
+          <a href="./patterns/act-review-ignore.html" class="hd-preset" data-i="3"><span>04</span>Nobody trusts the score.</a>
+        </div>
+        <form class="hd-free" id="hd-free"><input type="text" id="hd-free-input" placeholder="…or say it in your own words" aria-label="Describe where your AI product loses people"></form>
+      </div>
+      <div id="hd-answer" hidden aria-live="polite">
+        <p class="hd-kicker">The half-second</p>
+        <p class="hd-said" id="hd-said"></p>
+        <p class="hd-reframe" id="hd-reframe"></p>
+        <div class="hd-moves" id="hd-moves"></div>
+        <p class="hd-slider-lead">The core move, live — drag it:</p>
+        <div class="hd-top"><span class="hd-name">Lead 4471 · confidence</span><span class="hd-score" id="hd-score">87</span></div>
+        <input type="range" class="hd-range" id="hd-range" min="0" max="100" value="87" aria-label="Drag the model's confidence and watch it resolve into an action">
+        <div class="hd-scale"><span data-band="ignore">Ignore</span><span data-band="review">Review</span><span data-band="act">Act</span></div>
+        <div class="hd-verdict" id="hd-verdict"><span class="hd-arrow">→</span>&nbsp;<span id="hd-verb">…</span></div>
+        <div class="hd-reason" id="hd-reason">a score tied to one action</div>
+        <div class="hd-answer-foot"><a id="hd-case" href="#featured-case-studies" data-cta="diag-case" data-location="hero-diagnostic">see the case →</a><button type="button" class="hd-reset" id="hd-reset">↔ try another</button></div>
+      </div>
     </div>
     <div class="hd-foot">Not a number that ends in a shrug — a confidence that ends in an action.</div>
   </div>
@@ -1050,9 +1091,9 @@ if (canvas && !prefersReducedMotion) {
 </style>
 
 <script>
-/* Hero half-second demo: cycle a confidence score through Act / Review / Ignore */
+/* Hero diagnostic: name the problem → reframe + first moves → the Act/Review/Ignore slider as the live payoff */
 (function(){
-  var score=document.getElementById('hd-score'),range=document.getElementById('hd-range'),verb=document.getElementById('hd-verb'),verdict=document.getElementById('hd-verdict'),reason=document.getElementById('hd-reason'),scale=document.querySelector('.hd-scale'),drag=document.getElementById('hd-drag');
+  var score=document.getElementById('hd-score'),range=document.getElementById('hd-range'),verb=document.getElementById('hd-verb'),verdict=document.getElementById('hd-verdict'),reason=document.getElementById('hd-reason'),scale=document.querySelector('.hd-scale');
   if(!score||!range||!verb) return;
   var BANDS={
     act:{verb:'Act on it',reason:'high confidence, signals named — a trader can check the model’s work and move'},
@@ -1070,22 +1111,36 @@ if (canvas && !prefersReducedMotion) {
     verdict.className='hd-verdict band-'+b;
     if(scale) [].forEach.call(scale.children,function(c){c.classList.toggle('on',c.getAttribute('data-band')===b);});
   }
-  var userTook=false, timer=null;
-  function handOver(){ if(userTook) return; userTook=true; if(timer){clearInterval(timer);timer=null;} if(drag) drag.classList.add('hd-drag--used'); }
-  range.addEventListener('input',function(){ handOver(); paint(+range.value); });
+  range.addEventListener('input',function(){ paint(+range.value); });
   paint(87);
-  // Gentle auto-demo (resolves through the three bands) until the visitor grabs the slider; skipped for reduced-motion.
-  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!reduce){
-    var seq=[87,54,19,72], i=0;
-    var start=function(){ if(!userTook&&!timer) timer=setInterval(function(){ if(userTook){clearInterval(timer);timer=null;return;} i=(i+1)%seq.length; paint(seq[i]); },2600); };
-    start();
-    var demoEl=document.querySelector('.hero-demo');
-    if(demoEl){
-      demoEl.addEventListener('mouseenter',function(){ if(!userTook&&timer){clearInterval(timer);timer=null;} });
-      demoEl.addEventListener('mouseleave',start);
-    }
+
+  /* Diagnostic layer — enhances the card when JS is on; without JS the presets stay plain links to the cases. */
+  var diag=document.getElementById('hd-diag'),answer=document.getElementById('hd-answer'),
+      said=document.getElementById('hd-said'),reframe=document.getElementById('hd-reframe'),
+      moves=document.getElementById('hd-moves'),caseLink=document.getElementById('hd-case'),
+      reset=document.getElementById('hd-reset'),freeForm=document.getElementById('hd-free'),freeInput=document.getElementById('hd-free-input');
+  var DIAG=[
+    {q:'Users ignore our recommendations.',a:'The model isn’t unconvincing. It’s <em>uncommitted</em> — a score that asks for faith and offers no collateral.',m:['Bind every score to one action','Name the reasons out loud, on the recommendation','Give an override the model actually learns from'],href:'./case-studies/adtech.html',start:87},
+    {q:'Great accuracy, low adoption.',a:'Accuracy was never the bottleneck. <em>Trust was.</em>',m:['Put the evidence beside the answer, not behind it','Let people argue back — and show the model listens','Make the confident case defensible, not just correct'],href:'./case-studies/fintech.html',start:87},
+    {q:'They override the model every time.',a:'Every override is the interface admitting it <em>never earned the call.</em>',m:['Make the recommendation legible before it asks','Rank by what they can act on right now','Turn each override into next week’s training signal'],href:'./case-studies/adtech.html',start:54},
+    {q:'Nobody trusts the score.',a:'A naked number ends in a shrug. A score tied to a <em>verb</em> ends in an action.',m:['Replace the % with act / review / ignore','State what the system can’t do, up front','Show confidence as consequence, not decoration'],href:'./patterns/act-review-ignore.html',start:87}
+  ];
+  function reveal(d){
+    if(said) said.textContent='You said: “'+d.q+'”';
+    if(reframe) reframe.innerHTML=d.a;
+    if(moves) moves.innerHTML=d.m.map(function(mv,i){return '<div class="hd-move"><b>0'+(i+1)+'</b><span>'+mv+'</span></div>';}).join('');
+    if(caseLink) caseLink.setAttribute('href',d.href);
+    if(answer) answer.hidden=false;
+    if(diag) diag.hidden=true;
+    paint(d.start||87);
   }
+  [].forEach.call(document.querySelectorAll('.hd-preset'),function(el){
+    el.addEventListener('click',function(e){ e.preventDefault(); reveal(DIAG[+el.getAttribute('data-i')]); });
+  });
+  if(freeForm) freeForm.addEventListener('submit',function(e){ e.preventDefault(); var v=(freeInput.value||'').trim(); if(!v) return;
+    reveal({q:v,a:'That’s the half-second I design for — the pause between a right answer and an acted-on one.',m:['Name exactly where they hesitate','Show them the evidence they’re missing','Give the doubt one clear place to go'],href:'#featured-case-studies',start:87});
+  });
+  if(reset) reset.addEventListener('click',function(){ if(answer) answer.hidden=true; if(diag) diag.hidden=false; });
 })();
 </script>
 </body>
