@@ -191,28 +191,26 @@
 .hd-verdict.band-ignore{color:var(--ink-muted)}
 .hd-reason{margin-top:7px;font-size:12.5px;color:var(--ink-muted);line-height:1.5;min-height:40px}
 .hd-foot{margin-top:14px;font-family:var(--ff-display);font-style:italic;font-size:13.5px;color:var(--ink-dim);line-height:1.5}
-.hd-diag-q{font-family:var(--ff-display);font-weight:300;font-size:21px;line-height:1.25;color:var(--ink);margin:0 0 16px;letter-spacing:-.01em}
-.hd-presets{display:flex;flex-direction:column;gap:8px}
-.hd-preset{display:block;text-align:left;background:transparent;border:1px solid var(--border);border-radius:6px;padding:10px 13px;color:var(--ink-muted);font-family:var(--ff-sans);font-size:13px;line-height:1.4;text-decoration:none;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
-.hd-preset:hover{border-color:var(--gold);color:var(--ink);background:rgba(212,168,94,.05)}
-.hd-preset span{font-family:var(--ff-mono);font-size:10px;color:var(--gold);margin-right:9px}
-.hd-free{margin-top:12px}
-.hd-free input{width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--ink);font-family:var(--ff-display);font-style:italic;font-size:14px;padding:8px 2px;outline:none}
+.hd-diag-q{font-family:var(--ff-display);font-weight:300;font-size:21px;line-height:1.3;color:var(--ink);margin:0 0 18px;letter-spacing:-.01em}
+.hd-presets{display:flex;flex-direction:column;gap:10px}
+.hd-preset{display:flex;align-items:center;text-align:left;background:transparent;border:1px solid var(--border);border-radius:8px;padding:13px 15px;color:var(--ink);font-family:var(--ff-sans);font-size:14px;line-height:1.35;text-decoration:none;cursor:pointer;transition:border-color .2s,color .2s,background .2s,transform .2s}
+.hd-preset:hover,.hd-preset:focus-visible{border-color:var(--gold);background:rgba(212,168,94,.06);transform:translateX(3px);outline:none}
+.hd-preset span{font-family:var(--ff-mono);font-size:10px;color:var(--gold);margin-right:11px;flex:0 0 auto}
+.hd-preset::after{content:"→";margin-left:auto;padding-left:12px;color:var(--gold);opacity:.45;transition:opacity .2s,transform .2s;flex:0 0 auto}
+.hd-preset:hover::after{opacity:1;transform:translateX(2px)}
+.hd-free{margin-top:14px}
+.hd-free input{width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--ink);font-family:var(--ff-display);font-style:italic;font-size:15px;padding:9px 2px;outline:none}
 .hd-free input::placeholder{color:var(--ink-dim)}
 .hd-free input:focus{border-color:var(--gold)}
-.hd-kicker{font-family:var(--ff-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
-.hd-said{font-size:12px;color:var(--ink-dim);margin:0 0 9px;line-height:1.45}
-.hd-reframe{font-family:var(--ff-display);font-weight:300;font-size:19px;line-height:1.3;color:var(--ink);margin:0 0 16px;letter-spacing:-.01em}
+.hd-kicker{font-family:var(--ff-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 8px}
+.hd-said{font-family:var(--ff-display);font-style:italic;font-size:15px;color:var(--ink-muted);margin:0;line-height:1.4}
+.hd-rule{width:44px;height:2px;background:var(--gold);opacity:.5;margin:16px 0}
+.hd-reframe{font-family:var(--ff-display);font-weight:300;font-size:clamp(21px,2.3vw,26px);line-height:1.28;color:var(--ink);margin:0 0 24px;letter-spacing:-.01em}
 .hd-reframe em{font-style:italic;color:var(--gold)}
-.hd-moves{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
-.hd-move{display:flex;gap:10px;font-size:12.5px;color:var(--ink-muted);line-height:1.45}
-.hd-move b{font-family:var(--ff-mono);font-size:11px;color:var(--gold);flex:0 0 auto;font-weight:400}
-.hd-slider-lead{font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 2px}
-.hd-answer-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px}
-.hd-answer-foot a{font-family:var(--ff-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
-.hd-answer-foot a:hover{border-color:var(--gold)}
-.hd-reset{background:none;border:none;color:var(--ink-dim);font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;padding:0;transition:color .2s}
-.hd-reset:hover{color:var(--ink-muted)}
+.hd-case-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:13px;letter-spacing:.02em;border-radius:2px;text-decoration:none;transition:background .3s,transform .2s}
+.hd-case-btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.hd-reset{display:block;background:none;border:none;color:var(--ink-dim);font-family:var(--ff-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;padding:0;margin-top:16px;transition:color .2s}
+.hd-reset:hover{color:var(--gold)}
 #hd-answer[hidden]{display:none}
 #hd-answer{animation:reveal .4s var(--ease-out) forwards}
 @media (max-width:980px){.hero-demo{flex:1 1 100%;max-width:440px;margin-top:4px}}
@@ -253,17 +251,12 @@
         <form class="hd-free" id="hd-free"><input type="text" id="hd-free-input" placeholder="…or say it in your own words" aria-label="Describe where your AI product loses people"></form>
       </div>
       <div id="hd-answer" hidden aria-live="polite">
-        <p class="hd-kicker">The half-second</p>
+        <p class="hd-kicker">You said</p>
         <p class="hd-said" id="hd-said"></p>
+        <div class="hd-rule" aria-hidden="true"></div>
         <p class="hd-reframe" id="hd-reframe"></p>
-        <div class="hd-moves" id="hd-moves"></div>
-        <p class="hd-slider-lead">The core move, live — drag it:</p>
-        <div class="hd-top"><span class="hd-name">Lead 4471 · confidence</span><span class="hd-score" id="hd-score">87</span></div>
-        <input type="range" class="hd-range" id="hd-range" min="0" max="100" value="87" aria-label="Drag the model's confidence and watch it resolve into an action">
-        <div class="hd-scale"><span data-band="ignore">Ignore</span><span data-band="review">Review</span><span data-band="act">Act</span></div>
-        <div class="hd-verdict" id="hd-verdict"><span class="hd-arrow">→</span>&nbsp;<span id="hd-verb">…</span></div>
-        <div class="hd-reason" id="hd-reason">a score tied to one action</div>
-        <div class="hd-answer-foot"><a id="hd-case" href="#featured-case-studies" data-cta="diag-case" data-location="hero-diagnostic">see the case →</a><button type="button" class="hd-reset" id="hd-reset">↔ try another</button></div>
+        <a id="hd-case" class="hd-case-btn" href="#featured-case-studies" data-cta="diag-case" data-location="hero-diagnostic">See how I fixed it <svg class="icon" style="width:12px;height:12px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        <button type="button" class="hd-reset" id="hd-reset">↩ try another</button>
       </div>
     </div>
     <div class="hd-foot">Not a number that ends in a shrug — a confidence that ends in an action.</div>
@@ -1090,32 +1083,12 @@ if (canvas && !prefersReducedMotion) {
 <script>
 /* Hero diagnostic: name the problem → reframe + first moves → the Act/Review/Ignore slider as the live payoff */
 (function(){
-  var score=document.getElementById('hd-score'),range=document.getElementById('hd-range'),verb=document.getElementById('hd-verb'),verdict=document.getElementById('hd-verdict'),reason=document.getElementById('hd-reason'),scale=document.querySelector('.hd-scale');
-  if(!score||!range||!verb) return;
-  var BANDS={
-    act:{verb:'Act on it',reason:'high confidence, signals named — a trader can check the model’s work and move'},
-    review:{verb:'Review first',reason:'mixed signals — surfaced for a human to weigh, not auto-run'},
-    ignore:{verb:'Ignore',reason:'low confidence — the model declines to bluff'}
-  };
-  function bandOf(n){ return n>=70?'act':n>=40?'review':'ignore'; }
-  function paint(n){
-    n=Math.max(0,Math.min(100,Math.round(n)));
-    var b=bandOf(n);
-    score.textContent=n;
-    range.value=n;
-    range.style.background='linear-gradient(90deg,var(--gold) '+n+'%,rgba(212,168,94,0.16) '+n+'%)';
-    verb.textContent=BANDS[b].verb; reason.textContent=BANDS[b].reason;
-    verdict.className='hd-verdict band-'+b;
-    if(scale) [].forEach.call(scale.children,function(c){c.classList.toggle('on',c.getAttribute('data-band')===b);});
-  }
-  range.addEventListener('input',function(){ paint(+range.value); });
-  paint(87);
-
-  /* Diagnostic layer — enhances the card when JS is on; without JS the presets stay plain links to the cases. */
+  /* Diagnostic layer — the tappable problem chips are the affordance; without JS they stay plain links to the cases. */
   var diag=document.getElementById('hd-diag'),answer=document.getElementById('hd-answer'),
       said=document.getElementById('hd-said'),reframe=document.getElementById('hd-reframe'),
-      moves=document.getElementById('hd-moves'),caseLink=document.getElementById('hd-case'),
+      caseLink=document.getElementById('hd-case'),
       reset=document.getElementById('hd-reset'),freeForm=document.getElementById('hd-free'),freeInput=document.getElementById('hd-free-input');
+  if(!diag||!answer) return;
   var DIAG=[
     {q:'Users ignore our recommendations.',a:'The model isn’t unconvincing. It’s <em>uncommitted</em> — a score that asks for faith and offers no collateral.',m:['Bind every score to one action','Name the reasons out loud, on the recommendation','Give an override the model actually learns from'],href:'./case-studies/adtech.html',start:87},
     {q:'Great accuracy, low adoption.',a:'Accuracy was never the bottleneck. <em>Trust was.</em>',m:['Put the evidence beside the answer, not behind it','Let people argue back — and show the model listens','Make the confident case defensible, not just correct'],href:'./case-studies/fintech.html',start:87},
@@ -1123,13 +1096,11 @@ if (canvas && !prefersReducedMotion) {
     {q:'Nobody trusts the score.',a:'A naked number ends in a shrug. A score tied to a <em>verb</em> ends in an action.',m:['Replace the % with act / review / ignore','State what the system can’t do, up front','Show confidence as consequence, not decoration'],href:'./patterns/act-review-ignore.html',start:87}
   ];
   function reveal(d){
-    if(said) said.textContent='You said: “'+d.q+'”';
+    if(said) said.textContent='“'+d.q+'”';
     if(reframe) reframe.innerHTML=d.a;
-    if(moves) moves.innerHTML=d.m.map(function(mv,i){return '<div class="hd-move"><b>0'+(i+1)+'</b><span>'+mv+'</span></div>';}).join('');
     if(caseLink) caseLink.setAttribute('href',d.href);
-    if(answer) answer.hidden=false;
-    if(diag) diag.hidden=true;
-    paint(d.start||87);
+    answer.hidden=false;
+    diag.hidden=true;
   }
   [].forEach.call(document.querySelectorAll('.hd-preset'),function(el){
     el.addEventListener('click',function(e){ e.preventDefault(); reveal(DIAG[+el.getAttribute('data-i')]); });
