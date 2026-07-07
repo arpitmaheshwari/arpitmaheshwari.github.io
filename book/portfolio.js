@@ -380,7 +380,8 @@ const PATTERN_PAGES = {
       no: "3.1",
       img: "../assets/visuals/pattern-confidence.svg",
       label: "confidence chip + 30-day track record"
-    }
+    },
+    demo: /*#__PURE__*/React.createElement(GaugeDemo)
   },
   alert: {
     no: "02",
@@ -951,6 +952,53 @@ function caseWalk(c) {
 }
 
 /* ---- pattern spread builder -------------------------------- */
+/* Field Guide live demo — Gauge: one confidence score, three stakes, tap to see it resolve to an action (no slider) */
+function GaugeDemo() {
+  const [stake, setStake] = React.useState(1);
+  const MAP = [{
+    k: "Low",
+    verb: "Act on it",
+    sub: "87% clears the bar — let it run.",
+    cls: "act"
+  }, {
+    k: "Medium",
+    verb: "Review first",
+    sub: "87% is close — a human glances before it ships.",
+    cls: "review"
+  }, {
+    k: "High",
+    verb: "Hand to a human",
+    sub: "87% isn't enough when the downside is real.",
+    cls: "ignore"
+  }];
+  const m = MAP[stake];
+  return /*#__PURE__*/React.createElement("div", {
+    className: "bk-demo"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bk-demo__lead"
+  }, "The same score, three stakes — tap one"), /*#__PURE__*/React.createElement("div", {
+    className: "bk-demo__row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bk-demo__chip"
+  }, "87%"), /*#__PURE__*/React.createElement("div", {
+    className: "bk-demo__seg",
+    role: "group",
+    "aria-label": "Choose the stakes"
+  }, MAP.map((o, i) => /*#__PURE__*/React.createElement("button", {
+    key: i,
+    type: "button",
+    className: "bk-demo__seg-btn" + (i === stake ? " is-on" : ""),
+    onClick: () => setStake(i),
+    "aria-pressed": i === stake
+  }, o.k)))), /*#__PURE__*/React.createElement("div", {
+    className: "bk-demo__verdict bk-demo__verdict--" + m.cls
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "bk-demo__verb"
+  }, "→ ", m.verb), /*#__PURE__*/React.createElement("span", {
+    className: "bk-demo__sub"
+  }, m.sub)));
+}
+
 function patternSpread(p) {
   return {
     left: /*#__PURE__*/React.createElement("div", {
@@ -987,7 +1035,7 @@ function patternSpread(p) {
       className: "bk-instance"
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-instance__label"
-    }, "From the work \xB7 ", p.instTag), /*#__PURE__*/React.createElement("p", null, p.inst)), /*#__PURE__*/React.createElement(Figure, {
+    }, "From the work \xB7 ", p.instTag), /*#__PURE__*/React.createElement("p", null, p.inst)), p.demo || /*#__PURE__*/React.createElement(Figure, {
       no: p.fig.no,
       label: p.fig.label,
       img: p.fig.img

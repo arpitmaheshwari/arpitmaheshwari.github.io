@@ -518,6 +518,21 @@ body {
 .bk-instance p { font-family: var(--bk-serif); font-size: 14px; line-height: 1.55; color: var(--bk-ink); margin: 0; }
 .bk-instance p .bk-em { font-style: italic; }
 
+/* Field Guide live demo (Gauge) — tappable, non-slider, sized to the fixed spread */
+.bk-demo { margin-top: 22px; padding: 15px 17px; border: 1px solid var(--bk-rule); border-radius: 10px; }
+.bk-demo__lead { font-family: var(--bk-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bk-ink-faint); margin-bottom: 12px; }
+.bk-demo__row { display: flex; align-items: center; gap: 14px; margin-bottom: 13px; }
+.bk-demo__chip { font-family: var(--bk-display); font-size: 32px; font-weight: 500; line-height: 1; color: var(--bk-ink); flex: 0 0 auto; }
+.bk-demo__seg { display: flex; gap: 5px; flex: 1 1 auto; }
+.bk-demo__seg-btn { flex: 1; padding: 8px 4px; font-family: var(--bk-mono); font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bk-ink-soft); background: transparent; border: 1px solid var(--bk-rule); border-radius: 5px; cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
+.bk-demo__seg-btn:hover { border-color: var(--bk-ochre); color: var(--bk-ink); }
+.bk-demo__seg-btn.is-on { background: var(--bk-ember); color: #F4ECDA; border-color: var(--bk-ember); }
+.bk-demo__seg-btn:focus-visible { outline: 2px solid var(--bk-ochre); outline-offset: 2px; }
+.bk-demo__verdict { display: flex; flex-direction: column; gap: 4px; padding-top: 12px; border-top: 1px solid var(--bk-rule); }
+.bk-demo__verb { font-family: var(--bk-display); font-style: italic; font-size: 20px; line-height: 1.1; color: var(--bk-ember); }
+.bk-demo__verdict--act .bk-demo__verb { color: #2F5D52; }
+.bk-demo__sub { font-family: var(--bk-serif); font-size: 12.5px; line-height: 1.4; color: var(--bk-ink-soft); }
+
 /* clickable affordances on overview spreads */
 .bk-feature--link { cursor: pointer; transition: transform var(--bk-ease), box-shadow var(--bk-ease); }
 .bk-feature--link:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(34,28,22,0.12); }
