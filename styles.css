@@ -101,6 +101,12 @@ nav.scrolled{background:rgba(10,10,10,.92);backdrop-filter:blur(16px);padding:16
 .section-label::before{content:'';width:32px;height:1px;background:var(--gold)}
 .section-numeral{display:flex;align-items:center;gap:16px;margin-bottom:40px;font-variant-numeric:tabular-nums lining-nums}
 .section-numeral-name{font-family:var(--ff-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-muted);margin:0;font-variant-numeric:tabular-nums lining-nums}
+/* Editorial sidehead: label sits in a left gutter, content fills a readable measure beside it — the empty horizontal space becomes structured margin, not a void */
+.section-inner.editorial{display:grid;grid-template-columns:170px minmax(0,760px);gap:clamp(36px,5vw,72px);justify-content:center;align-items:start}
+.section-inner.editorial .section-numeral{margin:0;padding-top:6px}
+.section-inner.editorial .section-body{min-width:0}
+.section-inner.editorial .section-body>:first-child{margin-top:0!important}
+@media(max-width:900px){.section-inner.editorial{grid-template-columns:1fr;gap:20px;justify-content:stretch}}
 
 /* ----- Writing section (homepage "Thoughts" cards) ----- */
 .thoughts-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:24px}
