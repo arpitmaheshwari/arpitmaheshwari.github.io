@@ -2424,7 +2424,7 @@ function App() {
     // opening ritual is live only on the cover, before it has played (or while
     // it is mid-swing), on desktop. `opening` keeps it mounted during the swing
     // even though `opened` flips to true the instant the click is registered.
-    const ritual = !inSection && curSpread === 0 && !anim && (!opened || opening);
+    const ritual = !inSection && curSpread === 0 && !anim; // cover is always the interactive closed-book, so it swings on every click (not just first visit)
     let inner;
     if (!inSection && curSpread === 0 && !anim) {
       if (ritual) {
