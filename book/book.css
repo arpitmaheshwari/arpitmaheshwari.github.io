@@ -324,10 +324,11 @@ body {
 .bk-openbook { perspective: 2400px; }
 .bk-openbook .bk-cover {
   position: absolute; inset: 0; z-index: 9; transform-origin: left center;
-  backface-visibility: hidden; cursor: pointer; will-change: transform;
-  transition: transform 900ms var(--bk-flip);
+  backface-visibility: hidden; cursor: pointer;
 }
-.bk-openbook.is-open .bk-cover { transform: rotateY(-162deg); pointer-events: none; }
+/* keyframe animation, not a transition — survives React re-renders mid-swing so the cover reliably opens */
+.bk-openbook.is-open .bk-cover { animation: bkCoverSwing 900ms var(--bk-flip) forwards; pointer-events: none; }
+@keyframes bkCoverSwing { from { transform: rotateY(0deg); } to { transform: rotateY(-162deg); } }
 .bk-opencue {
   position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 11;
   font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
@@ -572,7 +573,7 @@ body {
 .bk-leaf__front { border-radius: 0 5px 5px 0; }
 .bk-leaf__back  { transform: rotateY(180deg); border-radius: 5px 0 0 5px; }
 /* page catches the light as it stands edge-on */
-.bk-leaf__gloss { position: absolute; inset: 0; pointer-events: none; background: rgba(22,15,8,0.42); opacity: 0; will-change: opacity; }
+.bk-leaf__gloss { position: absolute; inset: 0; pointer-events: none; background: rgba(22,15,8,0.42); opacity: 0; }
 .bk-leaf__front .bk-leaf__gloss { animation: glossFront var(--leaf-dur,840ms) var(--bk-flip) forwards; }
 .bk-leaf__back  .bk-leaf__gloss { animation: glossBack  var(--leaf-dur,840ms) var(--bk-flip) forwards; }
 @keyframes leafNext { from { transform: rotateY(0deg); }   to { transform: rotateY(-180deg); } }
@@ -587,13 +588,9 @@ body {
 /* reveal on enter — transform-only so content is ALWAYS visible
    (some capture/preview environments freeze the animation clock at frame 0;
    keeping opacity:1 guarantees legibility regardless). */
-.bk-reveal > * { animation: bkReveal 520ms var(--bk-ease) both; }
-.bk-reveal > *:nth-child(2) { animation-delay: 60ms; }
-.bk-reveal > *:nth-child(3) { animation-delay: 120ms; }
-.bk-reveal > *:nth-child(4) { animation-delay: 180ms; }
-.bk-reveal > *:nth-child(5) { animation-delay: 240ms; }
-.bk-reveal > *:nth-child(6) { animation-delay: 300ms; }
-.bk-reveal > *:nth-child(7) { animation-delay: 360ms; }
+/* No per-mount fade-in: it replayed on every page-turn (the spread remounts), dimming the
+   fresh page to 0.35 and back — the "refresh/blink". The flip itself is the transition. */
+.bk-reveal > * { animation: none; opacity: 1; }
 /* opacity-only entrance — NO vertical translate, so the book never shifts on a page-flip
    (0.35 floor keeps content legible even if a capture freezes the clock at frame 0) */
 @keyframes bkReveal { from { opacity: 0.35; } to { opacity: 1; } }
@@ -603,7 +600,7 @@ body {
   .bk-reveal > * { animation: none !important; transform: none !important; }
   .bk-cover__open .dot { animation: none; }
   .bk-cover__rule { animation: none; width: 56px; }
-  .bk-openbook .bk-cover { transition: none; }
+  .bk-openbook.is-open .bk-cover { animation: none; transform: rotateY(-162deg); }
   .bk-opencue { animation: none; }
   /* mobile page-turn: swap the 3D rotateY flip for a flat opacity fade */
   .bk-m-page { animation: mFade 220ms ease both; transform: none !important; }
