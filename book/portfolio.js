@@ -384,6 +384,7 @@ const PATTERN_PAGES = {
     demo: /*#__PURE__*/React.createElement(GaugeDemo)
   },
   alert: {
+    demo: /*#__PURE__*/React.createElement(AlertDemo),
     no: "02",
     k: "alert",
     h: "Failure States",
@@ -403,6 +404,7 @@ const PATTERN_PAGES = {
     }
   },
   branch: {
+    demo: /*#__PURE__*/React.createElement(BranchDemo),
     no: "03",
     k: "branch",
     h: "Explainability",
@@ -422,6 +424,7 @@ const PATTERN_PAGES = {
     }
   },
   loop: {
+    demo: /*#__PURE__*/React.createElement(LoopDemo),
     no: "04",
     k: "loop",
     h: "Human-in-the-Loop",
@@ -441,6 +444,7 @@ const PATTERN_PAGES = {
     }
   },
   trace: {
+    demo: /*#__PURE__*/React.createElement(TraceDemo),
     no: "05",
     k: "trace",
     h: "Provenance & Citations",
@@ -454,6 +458,7 @@ const PATTERN_PAGES = {
     fig: { no: "3.5", img: "../assets/visuals/pattern-provenance.svg", label: "claim → the sources behind it" }
   },
   bounds: {
+    demo: /*#__PURE__*/React.createElement(BoundsDemo),
     no: "06",
     k: "bounds",
     h: "The Capability Contract",
@@ -467,6 +472,7 @@ const PATTERN_PAGES = {
     fig: { no: "3.6", img: "../assets/visuals/pattern-capability.svg", label: "in-scope / out-of-scope, drawn before launch" }
   },
   calib: {
+    demo: /*#__PURE__*/React.createElement(CalibDemo),
     no: "07",
     k: "calib",
     h: "Calibration & Track Record",
@@ -480,6 +486,7 @@ const PATTERN_PAGES = {
     fig: { no: "3.7", img: "../assets/visuals/pattern-calibration.svg", label: "confidence beside its 90-day hit rate" }
   },
   undo: {
+    demo: /*#__PURE__*/React.createElement(UndoDemo),
     no: "08",
     k: "undo",
     h: "Reversibility",
@@ -997,6 +1004,104 @@ function GaugeDemo() {
   }, "→ ", m.verb), /*#__PURE__*/React.createElement("span", {
     className: "bk-demo__sub"
   }, m.sub)));
+}
+
+/* Field Guide — Failure States: flip between a confident read and an honest "I can't" */
+function AlertDemo() {
+  const h = React.createElement;
+  const [ok, setOk] = React.useState(false);
+  return h("div", { className: "bk-demo" },
+    h("div", { className: "bk-demo__lead" }, "Tap to see it deliver — or admit it can't"),
+    h("div", { className: "bk-demo__seg", role: "group", "aria-label": "Model state" },
+      h("button", { type: "button", className: "bk-demo__seg-btn" + (ok ? " is-on" : ""), onClick: () => setOk(true), "aria-pressed": ok }, "Confident"),
+      h("button", { type: "button", className: "bk-demo__seg-btn" + (!ok ? " is-on" : ""), onClick: () => setOk(false), "aria-pressed": !ok }, "Unsure")),
+    h("div", { className: "bk-demo__verdict" + (ok ? " bk-demo__verdict--act" : "") },
+      h("span", { className: "bk-demo__verb" }, ok ? "Risk 7.2 / 10" : "“I can't price this one.”"),
+      h("span", { className: "bk-demo__sub" }, ok ? "Confident read — here's the breakdown." : "Illiquid asset — handing you to a human →")));
+}
+
+/* Field Guide — Explainability: tap to unfold the reasons behind the number */
+function BranchDemo() {
+  const h = React.createElement;
+  const [open, setOpen] = React.useState(false);
+  return h("div", { className: "bk-demo" },
+    h("div", { className: "bk-demo__lead" }, "A number you can audit"),
+    h("div", { className: "bk-demo__scoreline" },
+      h("span", { className: "bk-demo__chip" }, "Risk 7.2"),
+      h("button", { type: "button", className: "bk-demo__btn", onClick: () => setOpen(!open), "aria-expanded": open }, "Why this score? ", h("span", { className: "bk-demo__chev" + (open ? " is-open" : "") }, "▸"))),
+    open && h("ul", { className: "bk-demo__panel" },
+      h("li", null, "One client is 60% of revenue"),
+      h("li", null, "Founder is the sole code owner"),
+      h("li", null, "Churn up three quarters running")));
+}
+
+/* Field Guide — Human-in-the-Loop: your correction visibly becomes training */
+function LoopDemo() {
+  const h = React.createElement;
+  const [done, setDone] = React.useState(false);
+  return h("div", { className: "bk-demo" },
+    h("div", { className: "bk-demo__lead" }, "Correcting it should feel like teaching"),
+    h("div", { className: "bk-demo__verdict" + (done ? " bk-demo__verdict--act" : "") },
+      h("span", { className: "bk-demo__verb" }, done ? "Noted — you're teaching it" : "Recommend: raise bid 12%"),
+      h("span", { className: "bk-demo__sub" }, done ? "Next week's model retrains on your call →" : "Not sure the model's right?")),
+    h("button", { type: "button", className: "bk-demo__btn", onClick: () => setDone(!done) }, done ? "↺ start over" : "I disagree"));
+}
+
+/* Field Guide — Provenance: the claim and the sources behind it travel together */
+function TraceDemo() {
+  const h = React.createElement;
+  const [open, setOpen] = React.useState(false);
+  return h("div", { className: "bk-demo" },
+    h("div", { className: "bk-demo__lead" }, "The score and its sources travel together"),
+    h("div", { className: "bk-demo__scoreline" },
+      h("span", { className: "bk-demo__verb" }, "“Valuation looks stretched”"),
+      h("button", { type: "button", className: "bk-demo__btn", onClick: () => setOpen(!open), "aria-expanded": open }, h("span", { className: "bk-demo__chev" + (open ? " is-open" : "") }, "▸"), " 3 sources")),
+    open && h("ul", { className: "bk-demo__panel bk-demo__panel--src" },
+      h("li", null, "Cap table · row 14 ↗"),
+      h("li", null, "Board deck Q3 · p. 8 ↗"),
+      h("li", null, "Auditor's note · §2.1 ↗")));
+}
+
+/* Field Guide — Capability Contract: switch between what it does and what it declines */
+function BoundsDemo() {
+  const h = React.createElement;
+  const [inScope, setIn] = React.useState(true);
+  return h("div", { className: "bk-demo" },
+    h("div", { className: "bk-demo__lead" }, "An honest “no”, drawn up front"),
+    h("div", { className: "bk-demo__seg", role: "group", "aria-label": "Scope" },
+      h("button", { type: "button", className: "bk-demo__seg-btn" + (inScope ? " is-on" : ""), onClick: () => setIn(true), "aria-pressed": inScope }, "In scope"),
+      h("button", { type: "button", className: "bk-demo__seg-btn" + (!inScope ? " is-on" : ""), onClick: () => setIn(false), "aria-pressed": !inScope }, "Out of scope")),
+    h("div", { className: "bk-demo__verdict" + (inScope ? " bk-demo__verdict--act" : "") },
+      h("span", { className: "bk-demo__verb" }, inScope ? "✓ Price liquid public equities" : "✗ Illiquid, pre-revenue assets"),
+      h("span", { className: "bk-demo__sub" }, inScope ? "Confident here — this is the job." : "Out of range — handed to a human, not guessed.")));
+}
+
+/* Field Guide — Calibration: reveal whether the confidence has been right before */
+function CalibDemo() {
+  const h = React.createElement;
+  const [show, setShow] = React.useState(false);
+  return h("div", { className: "bk-demo" },
+    h("div", { className: "bk-demo__lead" }, "Confidence with a memory"),
+    h("div", { className: "bk-demo__scoreline" },
+      h("span", { className: "bk-demo__chip" }, "80% sure"),
+      h("button", { type: "button", className: "bk-demo__btn", onClick: () => setShow(!show), "aria-expanded": show }, show ? "hide track record" : "Show its track record ▸")),
+    show && h("div", { className: "bk-demo__panel" },
+      h("div", { className: "bk-demo__stat" }, h("b", null, "Right 82% of the time"), h("span", null, " · last 90 days · 42 deals")),
+      h("div", { className: "bk-demo__bar" }, h("span", { style: { width: "82%" } }))));
+}
+
+/* Field Guide — Reversibility: watch how a way-back changes whether people act */
+function UndoDemo() {
+  const h = React.createElement;
+  const [safe, setSafe] = React.useState(true);
+  return h("div", { className: "bk-demo" },
+    h("div", { className: "bk-demo__lead" }, "Reversibility buys the first action"),
+    h("div", { className: "bk-demo__seg", role: "group", "aria-label": "Reversibility" },
+      h("button", { type: "button", className: "bk-demo__seg-btn" + (safe ? " is-on" : ""), onClick: () => setSafe(true), "aria-pressed": safe }, "1-click undo"),
+      h("button", { type: "button", className: "bk-demo__seg-btn" + (!safe ? " is-on" : ""), onClick: () => setSafe(false), "aria-pressed": !safe }, "No way back")),
+    h("div", { className: "bk-demo__verdict" + (safe ? " bk-demo__verdict--act" : "") },
+      h("span", { className: "bk-demo__verb" }, safe ? "Act now — undo anytime" : "Act now — permanent"),
+      h("span", { className: "bk-demo__sub" }, safe ? "Cheap to walk back, so people try it." : "Feels risky — so most won't act at all.")));
 }
 
 function patternSpread(p) {
