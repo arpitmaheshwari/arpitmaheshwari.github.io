@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Technical Screen, Pre-Answered — Arpit Maheshwari</title>
+<meta name="description" content="The questions a CTO asks an AI-product designer in the first call — answered in writing, with receipts.">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/screen/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Technical Screen, Pre-Answered — Arpit Maheshwari">
+<meta property="og:description" content="The questions a CTO asks an AI-product designer in the first call — answered in writing, with receipts.">
+<meta property="og:url" content="https://arpitmaheshwari.com/screen/">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/screen-og.png">
+<meta property="og:image:alt" content="The technical screen, pre-answered — Arpit Maheshwari">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta property="og:locale" content="en_IN" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Technical Screen, Pre-Answered — Arpit Maheshwari">
+<meta name="twitter:description" content="The questions a CTO asks an AI-product designer in the first call — answered in writing, with receipts.">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/screen-og.png">
+<meta name="twitter:image:alt" content="The technical screen, pre-answered — Arpit Maheshwari">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&display=swap" media="print" onload="this.media='all';this.onload=null">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&display=swap"></noscript>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"How do you know the model is right?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"I don't — and I won't pretend to. Whether the model is right is the ML team's work and their measurement to defend. What I own starts where the eval ends: week one I'm reading eval results before I open a design file, then I design what gets measured into the surface — abstentions the user can see, overrides that get logged, a track record that accumulates in the open. The screen never claims more certainty than the eval supports."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Your model reports 87% confidence. What does the user see?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Never the 87. The score resolves to a verb before it reaches the screen — act, review, or ignore — with the signals that drove it and an override on every act. A naked number ends in a shrug. A score tied to a verb ends in an action."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Walk me through an abstention decision.",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"On the PE screening tool, the model's 'I'm not sure about this one' state shipped in the first release — I held the launch until it existed. The threshold was a design argument: too eager and analysts skim past the abstentions; too shy and one fluent, wrong claim undoes the trust the tool has earned. The threshold has to fail toward humility."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Do you actually speak our language?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Enough to argue in it: retrieval grounding and provenance, per-claim confidence versus offline evals, calibration and track record, abstention thresholds, overrides as training signal, capability boundaries. Each one maps to a pattern I've shipped and documented."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"What about latency and cost?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"They're design inputs, and I ask about both in week one: what's precomputed versus generated on demand, when retrieval cost means evidence loads behind the number instead of beside it, and what the loading state promises while the model thinks. The answers are specific to your stack — that's part of what the first week is for."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"What did you own, versus the team?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"The model's accuracy and its lift are the ML and data science team's work and their measurement to defend. Mine is the layer where a right answer becomes an acted-on one — the evidence beside the number, the abstention state, the logged override, the score that resolves to a decision. Same rule on my O2 work: the launch-era figures are O2's; the screens I owned are mine."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Tell me about a time you were wrong.",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"I fought hard for a recommendation card with three ranked options; engineering wanted one. The A/B test made their answer permanent — the single-option card converted 2.3× better, because three choices froze people at the moment we needed them to move. Every recommendation surface I've designed since starts from that loss."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Can you ship code, or just Figma?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"The receipt is the page you're reading — this site is hand-built HTML, CSS, and JavaScript. In production I ship the front-end of the features I design, in the PR under my name, with senior engineers reviewing. I won't claim the backend or complex state architecture."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Why should we trust a designer with this at all?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Because the failure mode you're hiring against isn't a wrong model — it's a right model nobody bets on. That half-second of doubt is the only thing I design. My standing offer: a 30-minute intro, a paid 1-week trial on a real (not contrived) problem, a 1-hour debrief, then a decision. The trial is mutual — I'm evaluating you too."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PFY6ME99K8');
+</script>
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="stylesheet" href="../styles.css?v=p24">
+<style>
+  .scr-wrap { max-width: 760px; margin: 0 auto; padding: 120px 24px 80px; }
+  .scr-kicker { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin: 0 0 20px; }
+  .scr-title { font-family: var(--ff-display); font-weight: 300; font-size: clamp(34px,5vw,52px); line-height: 1.15; color: var(--ink); margin: 0 0 24px; letter-spacing: -0.01em; }
+  .scr-stand { font-family: var(--ff-display); font-weight: 300; font-style: italic; font-size: clamp(18px,2.4vw,22px); line-height: 1.55; color: var(--ink); margin: 0 0 72px; }
+  .scr-q { margin: 0 0 64px; padding-top: 36px; border-top: 1px solid var(--border); }
+  .scr-num { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 14px; }
+  .scr-q h2 { font-family: var(--ff-display); font-weight: 400; font-size: clamp(22px,3vw,30px); line-height: 1.35; color: var(--ink); margin: 0 0 18px; letter-spacing: -0.01em; }
+  .scr-q p { font-size: 15px; line-height: 1.8; color: var(--ink); margin: 0 0 16px; }
+  .scr-q p a { color: var(--gold); text-decoration: none; }
+  .scr-q p a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .scr-receipt { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-dim); margin: 18px 0 0; }
+  .scr-receipt a { color: var(--gold); text-decoration: none; }
+  .scr-receipt a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .scr-close { margin-top: 8px; padding: 36px 32px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; }
+  .scr-close-line { font-family: var(--ff-display); font-weight: 300; font-size: clamp(22px,3vw,28px); line-height: 1.4; color: var(--ink); margin: 0 0 24px; }
+  .scr-cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .scr-after { font-family: var(--ff-mono); font-size: 11.5px; letter-spacing: 0.04em; line-height: 2; color: var(--ink-muted); margin: 28px 0 0; }
+  .scr-after a { color: var(--gold); text-decoration: none; }
+  .scr-after a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .scr-print-note { font-family: var(--ff-mono); font-size: 10px; color: var(--ink-dim); margin-top: 28px; }
+  @media print {
+    nav, .nav-cta, .menu-toggle, footer, .scr-print-note, .skip-link { display: none !important; }
+    body { background: #fff !important; color: #111 !important; }
+    .scr-wrap { padding: 0; max-width: 100%; }
+    .scr-title, .scr-stand, .scr-q h2, .scr-q p, .scr-close-line { color: #111 !important; }
+    .scr-kicker, .scr-q p a, .scr-receipt a, .scr-after a { color: #8a6320 !important; }
+    .scr-num, .scr-receipt, .scr-after { color: #555 !important; }
+    .scr-close { background: #fff !important; border-color: #ddd !important; }
+    .scr-q { border-color: #ddd !important; page-break-inside: avoid; }
+    a { text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li><a href="../index.html#contact">Contact</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
+  <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<main id="main"><div class="scr-wrap">
+
+  <p class="scr-kicker">Hiring · Before the first call</p>
+  <h1 class="scr-title">The technical screen, pre-answered.</h1>
+  <p class="scr-stand">I wrote an interview guide for founders hiring their first AI designer. Only fair I sit the exam too — here are my answers to the questions that actually decide a screen, in writing, so our first call can be about your product instead.</p>
+
+  <!-- 01 -->
+  <section class="scr-q">
+    <p class="scr-num">01</p>
+    <h2>&ldquo;How do you know the model is right?&rdquo;</h2>
+    <p>I don't — and I won't pretend to. Whether the model is right is the ML team's work and their measurement to defend; the eval is their proof, not mine. What I own starts where the eval ends. Week one, I'm reading eval results before I open a design file, because the interface inherits every property the eval measures — and a few it doesn't. Then I design what gets measured into the surface itself: abstentions the user can see, overrides that get logged, a track record that accumulates in the open. One rule holds throughout: the screen never claims more certainty than the eval supports. The fastest way to lose an ML team is to design a surface their eval can't back.</p>
+    <p class="scr-receipt">Receipt → <a href="../index.html#how-i-lead">how I lead: eval design before interface design</a></p>
+  </section>
+
+  <!-- 02 -->
+  <section class="scr-q">
+    <p class="scr-num">02</p>
+    <h2>&ldquo;Your model reports 87% confidence. What does the user see?&rdquo;</h2>
+    <p>Never the 87. An unexplained 87% is a shrug with decimals — it reports the model's mood and hands the user all of the work. So the score resolves to a verb before it reaches the screen: act, review, or ignore. Every review carries the handful of signals that drove it, in language a person can test against their own judgment; every act carries an override. Where the bands sit is a product decision someone owns and revisits against real outcomes — the same 87 can mean <em>act</em> on a media plan and <em>review</em> on a deal memo, because the stakes set the verb, not the number. A naked number ends in a shrug. A score tied to a verb ends in an action.</p>
+    <p class="scr-receipt">Receipt → <a href="../patterns/act-review-ignore.html">the Act / Review / Ignore rule</a></p>
+  </section>
+
+  <!-- 03 -->
+  <section class="scr-q">
+    <p class="scr-num">03</p>
+    <h2>&ldquo;Walk me through an abstention decision.&rdquo;</h2>
+    <p>On the PE screening tool, the state I fought hardest for was the model saying &ldquo;I'm not sure about this one.&rdquo; It shipped in the first release — I held the launch until it existed, alongside a cited source behind every number and a logged override. The threshold was a design argument as much as a statistical one. Pitch it too eager and the tool cries uncertainty on claims it could defend, and analysts learn to skim past the abstentions; too shy, and one fluent, wrong claim undoes the trust the tool has earned. The threshold has to fail toward humility — the cheaper mistake. And the effect ran the direction you'd hope: once analysts had watched the model decline to bluff, its confident answers started carrying weight. They went from ignoring the score to leading their deal memos with it.</p>
+    <p class="scr-receipt">Receipt → <a href="../case-studies/fintech.html">the FinTech case: 60% faster screening, abstention over hallucination</a></p>
+  </section>
+
+  <!-- 04 -->
+  <section class="scr-q">
+    <p class="scr-num">04</p>
+    <h2>&ldquo;Do you actually speak our language?&rdquo;</h2>
+    <p>Enough to argue in it. <a href="../patterns/provenance-citations.html">Retrieval grounding and provenance</a> — every generated claim traces to a source the reader can open, or it doesn't ship. Per-claim confidence versus offline evals — different signals with different jobs: one belongs on the screen beside the claim, the other decides whether the screen is allowed to exist. <a href="../patterns/calibration-track-record.html">Calibration and track record</a> — does &ldquo;80% sure&rdquo; actually mean right 80% of the time, and does the history accumulate in the open instead of quietly resetting on retrain. Abstention thresholds — where the model stops answering, owned as a product decision, not left to a default. Overrides as training signal — the user's disagreement, logged, feeding the next cycle instead of vanishing into a support ticket. <a href="../patterns/capability-contract.html">Capability boundaries</a> — the honest &ldquo;no,&rdquo; stated in the interface before the first failure, not after the first complaint.</p>
+  </section>
+
+  <!-- 05 -->
+  <section class="scr-q">
+    <p class="scr-num">05</p>
+    <h2>&ldquo;What about latency and cost?&rdquo;</h2>
+    <p>They're design inputs, and I ask about both in week one. What's precomputed and what's generated on demand — because an explanation drawer is a latency budget decision, and a drawer that takes four seconds to open teaches people to stop opening it. When retrieval costs real money per call, the evidence may have to load behind the number instead of beside it — that's a trust tradeoff, and it should be made on purpose rather than discovered in the invoice. And the loading state is a promise: what the interface says while the model thinks sets what the person expects when it answers. I won't hand you case numbers here, because I don't have honest ones — these are the questions I bring, and the answers are always specific to your stack. That's part of what the first week is for.</p>
+  </section>
+
+  <!-- 06 -->
+  <section class="scr-q">
+    <p class="scr-num">06</p>
+    <h2>&ldquo;What did <em>you</em> own, versus the team?&rdquo;</h2>
+    <p>I keep this boundary sharp, because blurring it insults the people who did the work. The model's accuracy, its lift, its benchmarks — that's the ML and data science team's work and their measurement to defend. Mine is the layer where a right answer becomes an acted-on one: the evidence beside the number, the abstention state, the override that gets logged instead of lost, the score that resolves to a decision. I write it the same way about my O2 work — &ldquo;the launch-era figures are O2's; the screens I owned are mine.&rdquo; A candidate who claims the model's numbers as their own is telling you something. A candidate who can't say exactly which pixels were theirs is telling you more.</p>
+    <p class="scr-receipt">Receipt → <a href="../case-studies/o2.html">the O2 case, scoped honestly</a></p>
+  </section>
+
+  <!-- 07 -->
+  <section class="scr-q">
+    <p class="scr-num">07</p>
+    <h2>&ldquo;Tell me about a time you were wrong.&rdquo;</h2>
+    <p>I fought hard for a recommendation card with three ranked options — give people choice, I argued. Engineering wanted one option, the top pick, nothing else. They won the meeting, and the next quarter's A/B test made it permanent: the single-option card converted 2.3× better, because three choices froze people at the exact moment we needed them to move. Every recommendation surface I've designed since starts from that loss. There's a second scar. I used to treat a human-in-the-loop checkpoint as a safety net by itself — it isn't, because people click through without reading. Now, on anything high-stakes, a confirmation sits between the click and the consequence.</p>
+    <p class="scr-receipt">Receipt → <a href="../patterns/human-in-loop.html">the Human-in-Loop pattern, scar included</a></p>
+  </section>
+
+  <!-- 08 -->
+  <section class="scr-q">
+    <p class="scr-num">08</p>
+    <h2>&ldquo;Can you ship code, or just Figma?&rdquo;</h2>
+    <p>The receipt is the page you're reading. This site is hand-built HTML, CSS, and JavaScript — view source, or read the repository. In production I ship the front-end of the features I design — buttons, forms, data displays, AI surfaces — in the PR, under my name, with senior engineers reviewing. React for prototypes and component scaffolds. I won't claim the backend or complex state architecture; that's someone else's craft, and I'd rather be reviewed by them than pretend at it. A designer who codes doesn't need the handoff meeting — the handoff is the pull request.</p>
+    <p class="scr-receipt">Receipt → <a href="https://github.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer">the code behind this site ↗</a></p>
+  </section>
+
+  <!-- 09 -->
+  <section class="scr-q">
+    <p class="scr-num">09</p>
+    <h2>&ldquo;Why should we trust a designer with this at all?&rdquo;</h2>
+    <p>Because the failure mode you're hiring against isn't a wrong model — it's a right model nobody bets on. Your model is right; your users still won't act on it, and that half-second of doubt is the only thing I design. The trust layer — the exact pixels where a person decides the model deserves their click — is a design problem, and it's the whole job I'm asking you to hire me for. But don't take a page's word for it; take the standing offer from my FAQ. A 30-minute intro, then a paid 1-week trial on a real (not contrived) problem, then a 1-hour debrief, then a decision. The trial is mutual — I'm evaluating you too.</p>
+  </section>
+
+  <!-- CLOSE -->
+  <div class="scr-close">
+    <p class="scr-close-line">That's the screen. The call can be about your product.</p>
+    <div class="scr-cta-row">
+      <a href="../index.html#contact" data-cta="send-role" data-location="screen-close" style="display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:0.03em;border-radius:2px;transition:background 0.3s,transform 0.2s;text-decoration:none;white-space:nowrap" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Send me the role →</a>
+      <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="screen-close" style="display:inline-flex;align-items:center;gap:8px;padding:15px 24px;color:var(--gold);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:0.03em;border:1px solid var(--gold-dark);border-radius:2px;text-decoration:none;transition:border-color 0.3s,color 0.3s;white-space:nowrap" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--gold-dark)'">Book 30 minutes ↗</a>
+    </div>
+    <p class="scr-after">The 12 questions I give founders to ask <em>any</em> AI-design candidate: <a href="../resources/founder-questions.html">the hiring guide →</a><br>My one-page summary: <a href="../hire/">/hire →</a></p>
+  </div>
+
+  <p class="scr-print-note">Print this page (⌘P) to take the answers into the call.</p>
+
+</div></main>
+
+<footer>
+  <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
+  <div class="footer-note">No rights reserved — good patterns should travel</div>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">Back to top</button>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { if (nav) nav.classList.toggle('scrolled', window.scrollY > 60); });
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = navLinks.classList.toggle('nav-open'); menuBtn.setAttribute('aria-expanded', String(isOpen)); });
+  document.addEventListener('click', (e) => { if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) { navLinks.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); } });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) { navLinks.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.focus(); } });
+}
+if (localStorage.getItem('dyslexia-mode') === 'on') document.body.classList.add('dyslexia-mode');
+document.addEventListener('click', (e) => {
+  const cta = e.target.closest('[data-cta]');
+  if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' });
+});
+</script>
+</body>
+</html>
