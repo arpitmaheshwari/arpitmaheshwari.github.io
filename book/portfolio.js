@@ -214,7 +214,7 @@ const NDA_CASES = [{
     p: "O2 UK's self-service app: data and usage, the bill, a tariff change, an upgrade — the whole account without dialing anyone. The math is blunt: every self-service task that lands is a contact-centre call that never happens. It went on to serve more than four million users."
   }, {
     h: "Priority Moments — a reason to open it",
-    p: "O2's loyalty programme: rewards from Odeon, M&S, Caffè Nero, matched by interest, behaviour and location. Launched July 2011 behind a £6m campaign, it hit 2.6M registrations in year one — 2.5M+ active — the only loyalty app with a five-star App Store rating."
+    p: "O2's loyalty programme: rewards from Odeon, M&S, Caffè Nero, matched by interest, behaviour and location. Launched July 2011; 2.6M registrations in year one, 2.5M+ active. The launch figures are O2's record — I joined in 2013 and owned the reward and offer screens."
   }, {
     h: "Same designer, same stack, opposite job",
     p: "MyO2 is a utility; Priority is a habit. Both on mobile web under a top UK brand, where small things stop being small — a tap target, a spinner, an exact billing figure lands on a stadium at once. The outcome figures are public, reported by O2 and Equal Experts. The claim is the work."
