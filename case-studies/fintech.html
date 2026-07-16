@@ -121,8 +121,6 @@
     <a href="#the-receipt">The receipt</a>
   </div>
 
-  <div class="loom-slot" data-video-url="" data-video-title="AI-Assisted Private Equity Investing — walkthrough"></div>
-
   <!-- THE MYTH — the reframe that runs the whole case -->
   <p style="font-family:var(--ff-display);font-size:clamp(22px,4vw,32px);font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">A large language model already read the deal documents and scored the risk accurately. Accuracy was never the bottleneck — belief was. So I held the launch until every claim the model generated could point back to the source it came from, for people whose entire job is to doubt confident numbers.</p>
   <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:60px">One reframe · accuracy was solved, trust wasn't</p>
@@ -293,8 +291,7 @@
   <!-- THE PRINCIPLE -->
   <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">What this one taught me.</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">When an LLM product stalls, the instinct is to make the model more accurate. But accuracy was never this product's ceiling — belief was. A correct score no one can interrogate reads, to an expert, like a smooth pitch with no references attached — and experts are trained to walk past a smooth pitch, especially from a system that can state a wrong answer as fluently as a right one.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">This became my first question on any LLM product. Before tuning the model, I ask whether every generated claim is grounded in a source the reader can open, and whether the model will abstain when it isn't sure — because the trust layer, not the accuracy layer, is usually what decides whether anyone acts on the number.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">Accuracy was never this product's ceiling — belief was. A correct score no one can interrogate reads, to an expert, like a smooth pitch with no references attached — and experts are trained to walk past a smooth pitch.</p>
   </section>
 
   <!-- NDA CALENDLY CTA — locked phase 11E -->
@@ -456,21 +453,6 @@ document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s))
     });
   }
 })();
-</script>
-<script>
-document.querySelectorAll('.loom-slot').forEach(function(slot){
-  var url=slot.dataset.videoUrl; if(!url) return;
-  slot.classList.add('has-video');
-  var btn=document.createElement('button');
-  btn.className='loom-facade'; btn.setAttribute('data-cta','loom-play'); btn.setAttribute('data-location','case-loom');
-  btn.innerHTML='<span class="loom-play" aria-hidden="true">▶</span><span class="loom-title">'+(slot.dataset.videoTitle||'Watch the walkthrough')+'</span>';
-  btn.addEventListener('click',function(){
-    var w=document.createElement('div'); w.className='loom-frame';
-    var f=document.createElement('iframe'); f.src=url; f.allowFullscreen=true; f.loading='lazy'; f.title=slot.dataset.videoTitle||'Walkthrough';
-    w.appendChild(f); slot.replaceChildren(w);
-  });
-  slot.replaceChildren(btn);
-});
 </script>
 </body>
 </html>

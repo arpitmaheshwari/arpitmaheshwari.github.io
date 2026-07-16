@@ -124,8 +124,6 @@
     <a href="#the-receipt">The receipt</a>
   </div>
 
-  <div class="loom-slot" data-video-url="" data-video-title="AdTech — 4-minute walkthrough"></div>
-
   <!-- THE MYTH — the counter-intuitive claim that reframes everything -->
   <p style="font-family:var(--ff-display);font-size:clamp(22px,4vw,32px);font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">The model was right. That was the problem. The scoreboard said the algorithm beat the traders — and the traders read the scoreboard, then played their hunches anyway.</p>
   <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:60px">One wrong diagnosis · and the interface that fixed it</p>
@@ -450,21 +448,6 @@ document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s))
     });
   }
 })();
-</script>
-<script>
-document.querySelectorAll('.loom-slot').forEach(function(slot){
-  var url=slot.dataset.videoUrl; if(!url) return;
-  slot.classList.add('has-video');
-  var btn=document.createElement('button');
-  btn.className='loom-facade'; btn.setAttribute('data-cta','loom-play'); btn.setAttribute('data-location','case-loom');
-  btn.innerHTML='<span class="loom-play" aria-hidden="true">▶</span><span class="loom-title">'+(slot.dataset.videoTitle||'Watch the walkthrough')+'</span>';
-  btn.addEventListener('click',function(){
-    var w=document.createElement('div'); w.className='loom-frame';
-    var f=document.createElement('iframe'); f.src=url; f.allowFullscreen=true; f.loading='lazy'; f.title=slot.dataset.videoTitle||'Walkthrough';
-    w.appendChild(f); slot.replaceChildren(w);
-  });
-  slot.replaceChildren(btn);
-});
 </script>
 </body>
 </html>

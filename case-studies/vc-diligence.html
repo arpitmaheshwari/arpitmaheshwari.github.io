@@ -120,8 +120,6 @@
     <a href="#the-receipt">The receipt</a>
   </div>
 
-  <div class="loom-slot" data-video-url="" data-video-title="Technical Due Diligence — walkthrough"></div>
-
   <!-- THE BEFORE — what the firm thought it was buying -->
   <figure style="margin:8px 0 56px;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--bg-card)">
     <img src="../assets/visuals/case-vc.svg" alt="Diagram: four technical-risk signals (code quality, architecture risk, team velocity, founder credibility) feeding one auditable verdict; diligence cut from three weeks to four days." loading="lazy" width="1280" height="400" style="display:block;width:100%;height:auto">
@@ -278,8 +276,7 @@
   <!-- THE PRINCIPLE -->
   <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">The rule I took away.</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">When a model already works and people still won't act on it, the missing piece is almost never accuracy. It's accountability — a path from the answer back to the evidence, sturdy enough that the person staking something on it will put their name to it.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">That gap is where I start now when an expert and a model have to share a decision. The fastest way to make an expert trust a model is rarely a better model. It's giving them the receipts, and refusing to let them sign until they've read them.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">The fastest way to make an expert trust a model is rarely a better model. It's giving them the receipts, and refusing to let them sign until they've read them.</p>
   </section>
 
   <!-- NDA CALENDLY CTA -->
@@ -394,21 +391,6 @@ if (menuBtn && navLinks) {
     });
   }
 })();
-</script>
-<script>
-document.querySelectorAll('.loom-slot').forEach(function(slot){
-  var url=slot.dataset.videoUrl; if(!url) return;
-  slot.classList.add('has-video');
-  var btn=document.createElement('button');
-  btn.className='loom-facade'; btn.setAttribute('data-cta','loom-play'); btn.setAttribute('data-location','case-loom');
-  btn.innerHTML='<span class="loom-play" aria-hidden="true">▶</span><span class="loom-title">'+(slot.dataset.videoTitle||'Watch the walkthrough')+'</span>';
-  btn.addEventListener('click',function(){
-    var w=document.createElement('div'); w.className='loom-frame';
-    var f=document.createElement('iframe'); f.src=url; f.allowFullscreen=true; f.loading='lazy'; f.title=slot.dataset.videoTitle||'Walkthrough';
-    w.appendChild(f); slot.replaceChildren(w);
-  });
-  slot.replaceChildren(btn);
-});
 </script>
 </body>
 </html>

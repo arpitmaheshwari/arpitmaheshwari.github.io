@@ -123,8 +123,6 @@
     <a href="#the-principle">The principle</a>
   </div>
 
-  <div class="loom-slot" data-video-url="" data-video-title="OrgOS — walkthrough"></div>
-
   <!-- THE HOOK — the counter-intuitive claim that reframes the problem -->
   <p style="font-family:var(--ff-display);font-size:clamp(22px,4vw,32px);font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">Everyone wanted to hear that a 200-person company runs with zero managers. The harder truth: transparency was already doing the managers' job — and at 200 people it had quietly started to fail.</p>
   <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:16px">Transparency worked · scaling it was the problem</p>
@@ -233,11 +231,7 @@
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
       What it cost: transparency only coordinates if people trust it enough to act.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Making the work visible was the easy half. Getting two hundred people to actually pull from an open board — instead of waiting for the manager who no longer existed — was the hard half. A board nobody trusts is just a prettier inbox. The design wasn't done when the screens shipped; it was done when people believed the screens enough to commit on their own.</p>
-    <blockquote style="margin:24px 0;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px">
-      <p style="margin:0;font-family:var(--ff-sans);font-size:18px;font-style:italic;line-height:1.6;color:var(--ink)">A model that's right but unadopted is indistinguishable from one that's wrong. The trust layer is the product.</p>
-    </blockquote>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">Most coordination tooling fails the same way: it makes information available and assumes people will act on it. They don't — not until the system has earned it. That's the check I run on every AI product now. The model being correct is table stakes; whether anyone trusts it enough to move is where the real work lives.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">A board nobody trusts is just a prettier inbox. The design wasn't done when the screens shipped; it was done when people believed the screens enough to commit on their own.</p>
   </section>
 
   <!-- NDA CALENDLY CTA — locked phase 11E -->
@@ -411,21 +405,6 @@ document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s))
     });
   }
 })();
-</script>
-<script>
-document.querySelectorAll('.loom-slot').forEach(function(slot){
-  var url=slot.dataset.videoUrl; if(!url) return;
-  slot.classList.add('has-video');
-  var btn=document.createElement('button');
-  btn.className='loom-facade'; btn.setAttribute('data-cta','loom-play'); btn.setAttribute('data-location','case-loom');
-  btn.innerHTML='<span class="loom-play" aria-hidden="true">▶</span><span class="loom-title">'+(slot.dataset.videoTitle||'Watch the walkthrough')+'</span>';
-  btn.addEventListener('click',function(){
-    var w=document.createElement('div'); w.className='loom-frame';
-    var f=document.createElement('iframe'); f.src=url; f.allowFullscreen=true; f.loading='lazy'; f.title=slot.dataset.videoTitle||'Walkthrough';
-    w.appendChild(f); slot.replaceChildren(w);
-  });
-  slot.replaceChildren(btn);
-});
 </script>
 </body>
 </html>
