@@ -152,6 +152,102 @@
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">So I built an "explain this score" surface that grounds the model in its evidence. An analyst could pull any rating apart into the signals behind it, challenge the weighting, and watch the score answer back — and every signal came stapled to the exact document it was retrieved from, so no claim floated free of a source. I held the release until the model could survive that — the call the whole project hung on, and the one that delayed it.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Three things were non-negotiable: a cited source behind each generated number, a visible "I'm not sure about this one" state where the model abstains instead of bluffing a confident answer it can't ground, and a logged override when the analyst disagreed. The abstention state mattered most — an LLM's worst failure is a fluent, wrong claim, and I'd rather it say nothing than hallucinate. The override drew the longest argument — logging disagreement felt exposing. What it actually built was the feedback that sharpened the system over time.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The design followed the model's own signals directly: every generated claim carried a per-claim confidence, and where it ran low, that claim rendered as the on-screen "I'm not sure about this one" — a signal that had lived only in evaluation dashboards turned into a state the analyst could see and act on. Setting that threshold was a design argument as much as a statistical one. Pitch it too eager and the tool cries uncertainty on claims it could defend, and analysts learn to skim past the abstentions; too shy, and one fluent, wrong claim undoes the trust the tool has earned. The threshold has to fail toward humility — the cheaper mistake.</p>
+    <!-- PLATE — production-fidelity reconstruction, synthetic data -->
+    <style>
+      .plF{width:min(840px,calc(100vw - 32px));margin:36px 50% 10px;transform:translateX(-50%);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
+      .plF *{box-sizing:border-box}
+      .plF-chrome{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#22252B;border-bottom:1px solid #2E323A}
+      .plF-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
+      .plF-chrome span{margin-left:10px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8B93A1}
+      .plF-app{background:#F4F5F7;color:#16181D}
+      .plF-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:#fff;border-bottom:1px solid #E3E6EA}
+      .plF-brand{font-weight:600;font-size:13px;color:#16181D}
+      .plF-deal{font-size:13px;color:#5C6470}
+      .plF-deal b{color:#16181D;font-weight:600}
+      .plF-stage{font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#185FA5;background:#E8F0FA;border-radius:3px;padding:3px 8px}
+      .plF-body{display:grid;grid-template-columns:1.5fr 1fr;gap:0}
+      @media(max-width:700px){.plF-body{grid-template-columns:1fr}}
+      .plF-main{padding:18px;border-right:1px solid #E3E6EA}
+      @media(max-width:700px){.plF-main{border-right:none;border-bottom:1px solid #E3E6EA}}
+      .plF-score{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+      .plF-score b{font-size:40px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+      .plF-verb{font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7A5410;background:#FCF2DC;border:1px solid #EAD9B0;border-radius:3px;padding:4px 9px}
+      .plF-sub{font-size:11px;color:#5C6470;margin-bottom:14px}
+      .plF-sig{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#fff;border:1px solid #E3E6EA;border-radius:6px;margin-bottom:8px}
+      .plF-sig.sel{border-color:#185FA5;box-shadow:0 0 0 1px #185FA5 inset}
+      .plF-sig.abst{border-style:dashed;background:#FAFAF8}
+      .plF-sname{flex:1 1 auto;min-width:0;font-size:12.5px;font-weight:600;color:#16181D}
+      .plF-sname small{display:block;font-weight:400;font-size:11px;color:#5C6470;margin-top:2px}
+      .plF-risk{font-family:var(--ff-mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:3px;flex:0 0 auto}
+      .plF-risk.hi{color:#8C2B2B;background:#F9E8E8}
+      .plF-risk.md{color:#7A5410;background:#FCF2DC}
+      .plF-conf{font-family:var(--ff-mono);font-size:10.5px;color:#5C6470;flex:0 0 auto;font-variant-numeric:tabular-nums}
+      .plF-src{font-family:var(--ff-mono);font-size:10px;color:#185FA5;background:#E8F0FA;border-radius:3px;padding:3px 7px;white-space:nowrap;flex:0 0 auto}
+      .plF-ovr{display:inline-block;font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.05em;color:#0E7A5F;background:#E6F3EE;border-radius:3px;padding:2px 6px;margin:2px 0 8px 12px}
+      .plF-foot{font-family:var(--ff-mono);font-size:10px;color:#5C6470;padding-top:10px;border-top:1px solid #E3E6EA;margin-top:4px}
+      .plF-rail{padding:18px;background:#FBFBFC}
+      .plF-rl{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5C6470;margin-bottom:10px}
+      .plF-quote{background:#fff;border:1px solid #E3E6EA;border-left:3px solid #185FA5;border-radius:4px;padding:12px 14px;font-size:12.5px;line-height:1.6;color:#16181D;font-style:italic}
+      .plF-quote mark{background:#FDF0C9;font-style:italic}
+      .plF-cite{font-family:var(--ff-mono);font-size:10px;color:#5C6470;margin:8px 0 12px}
+      .plF-open{display:inline-block;font-size:11.5px;font-weight:600;color:#fff;background:#185FA5;border-radius:4px;padding:8px 12px}
+      .plF-more{display:inline-block;font-size:11px;color:#185FA5;margin-left:10px}
+      .plF-weights{margin-top:16px;border-top:1px solid #E3E6EA;padding-top:12px}
+      .plF-w{display:flex;align-items:center;gap:8px;font-size:11px;color:#5C6470;margin-bottom:6px}
+      .plF-w i{height:5px;border-radius:3px;background:#185FA5;display:inline-block}
+      .plF-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 28px;transform:translateX(-50%)}
+    </style>
+    <div class="plF" role="img" aria-label="Reconstructed deal-screening interface: a composite risk score of 6.8 resolved to 'review first', four scored signals each citing their source document, one abstained claim reading 'I'm not sure about this one', and an evidence panel quoting the cited board pack.">
+      <div class="plF-chrome" aria-hidden="true"><i></i><i></i><i></i><span>deal-screening · internal build · reconstruction</span></div>
+      <div class="plF-app">
+        <div class="plF-bar">
+          <span class="plF-brand">Deal Screening</span>
+          <span class="plF-deal">Deal: <b>Project Halyard</b> · Meridian Growth Fund II</span>
+          <span class="plF-stage">Screening</span>
+        </div>
+        <div class="plF-body">
+          <div class="plF-main">
+            <div class="plF-score"><b>6.8</b><span class="plF-verb">→ Review first</span></div>
+            <div class="plF-sub">Composite risk · 4 signals · model v2.3 · every claim cited or abstained</div>
+            <div class="plF-sig sel">
+              <span class="plF-sname">Revenue concentration<small>Top client is 61% of ARR</small></span>
+              <span class="plF-risk hi">High</span><span class="plF-conf">conf 92%</span><span class="plF-src">Board pack Q3 · p.12</span>
+            </div>
+            <div class="plF-sig">
+              <span class="plF-sname">Founder dependency<small>Sole approver on 4 of 5 key systems</small></span>
+              <span class="plF-risk md">Med</span><span class="plF-conf">conf 84%</span><span class="plF-src">Org chart · p.3</span>
+            </div>
+            <span class="plF-ovr">✓ analyst override logged → next retrain</span>
+            <div class="plF-sig">
+              <span class="plF-sname">Contract churn trend<small>Logo churn rising two consecutive quarters</small></span>
+              <span class="plF-risk md">Med</span><span class="plF-conf">conf 78%</span><span class="plF-src">KPI export · row 214</span>
+            </div>
+            <div class="plF-sig abst">
+              <span class="plF-sname">Mid-market cohort churn<small>“I'm not sure about this one” — figure couldn't be matched against the raw export</small></span>
+              <span class="plF-conf">abstained</span><span class="plF-src" style="color:#5C6470;background:#EFEFEC">→ analyst queue</span>
+            </div>
+            <div class="plF-foot">3 sources attached to every scored claim · abstentions route to a human, never to a guess</div>
+          </div>
+          <div class="plF-rail">
+            <div class="plF-rl">Evidence — revenue concentration</div>
+            <div class="plF-quote">“…invoicing shows <mark>the top account at 61% of recognised ARR</mark> for the trailing four quarters, against 44% a year prior…”</div>
+            <div class="plF-cite">Board pack Q3 · page 12 · uploaded 11 Mar</div>
+            <span class="plF-open">Open source document ↗</span><span class="plF-more">2 more sources</span>
+            <div class="plF-weights">
+              <div class="plF-rl">Why this score</div>
+              <div class="plF-w"><i style="width:64%"></i>Revenue concentration</div>
+              <div class="plF-w"><i style="width:41%"></i>Founder dependency</div>
+              <div class="plF-w"><i style="width:33%"></i>Churn trend</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <figcaption class="plF-caption">
+      <span style="display:block;font-family:var(--ff-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Plate 01 · Deal screening — reconstruction · all names and figures synthetic</span>
+      <span style="display:block;font-family:var(--ff-display);font-style:italic;font-size:13.5px;color:var(--ink-dim);line-height:1.6">Redrawn from memory at production fidelity — the client's pixels stay theirs. This is the surface the case describes: a verb instead of a naked score, reasons with the evidence beside them, and the honest “I'm not sure.”</span>
+    </figcaption>
+
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:24px">Pull a score apart and challenge it below — the signals, their cited sources, their weights, and the score answering back:</p>
   <!-- VISUAL — interactive reconstruction -->
   <section class="recon" id="recon-fintech" role="group" aria-label="Interactive reconstruction: explain-this-score drawer with adjustable signal weights">
