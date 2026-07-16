@@ -92,6 +92,13 @@
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">People don't refuse the model because they've judged it wrong; they refuse because acting feels like a commitment they can't unwind. The cure is rarely a better model — it's a cheaper undo. When reversing costs nothing, the bar to trying the suggestion drops to almost zero.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">This reframes the whole adoption problem. You're not asking the user to bet that the model is right; you're asking them to try something they can instantly take back. That's a far smaller ask — and it's the one that actually gets the first action.</p>
   </section>
+  <!-- LIVE DEMO — same demo as the book's field guide -->
+  <section style="margin-bottom:64px">
+    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Try it — the pattern, live</h2>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+    <div data-demo="undo"></div>
+  </section>
+
 
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Show the way back before they commit</h2>
@@ -115,6 +122,23 @@
       <li style="margin-bottom:10px"><strong>Measure first-action rate, not just accuracy</strong> — reversibility moves the former.</li>
     </ul>
   </section>
+  <section style="margin-bottom:64px">
+    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Trade-offs by Approach</h2>
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-muted);font-variant-numeric:tabular-nums lining-nums">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Choice</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Best For</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Trade-off</th></tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong>One-click undo</strong></td><td style="padding:10px 12px">Frequent, low-cost actions</td><td style="padding:10px 12px">Needs true reversal underneath, not a cosmetic toast</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong>Grace window (undo for 30s)</strong></td><td style="padding:10px 12px">Sends, posts, purchases</td><td style="padding:10px 12px">Delays the action; a window that's too short is theater</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong>Staged rollout / halt</strong></td><td style="padding:10px 12px">Big, systemic changes</td><td style="padding:10px 12px">Slower to full effect; needs progress visibility</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong>Preview before commit</strong></td><td style="padding:10px 12px">First-time or high-stakes acts</td><td style="padding:10px 12px">Adds a step; friction where trust is already high</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
 
   <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:80px">
     <h3 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual">See This Pattern In Action</h3>
@@ -208,5 +232,6 @@ document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s))
   }
 })();
 </script>
+<script src="./demos.js?v=1" defer></script>
 </body>
 </html>

@@ -93,6 +93,13 @@
     <p style="font-size:16px;color:var(--ink-muted);line-height:1.8">The rule: a confidence score may never reach the screen alone. It resolves into exactly one of three verbs before the user sees it — <strong style="color:var(--ink)">act</strong>, <strong style="color:var(--ink)">review</strong>, or <strong style="color:var(--ink)">ignore</strong>.</p>
   </section>
 
+  <!-- LIVE DEMO — the rule, working -->
+  <section style="margin-bottom:64px">
+    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Try it — the rule, live</h2>
+    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">Three scores from the same model. Watch each one resolve to a verb with its reasons — never a naked number. Synthetic data; nothing leaves the page.</p>
+    <div data-demo="verbs"></div>
+  </section>
+
   <section style="margin-bottom:64px">
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">1. The score resolves to a verb — not a number</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px"><strong style="color:var(--ink)">Act.</strong> Confidence clears the threshold where the cost of checking exceeds the cost of being wrong. The interface makes acting one motion. <strong style="color:var(--ink)">Review.</strong> The model has a position but not the standing to hold it alone — the interface opens the reasoning, not the spinner. <strong style="color:var(--ink)">Ignore.</strong> Below the floor, a recommendation is noise wearing a number; the interface says so and steps aside.</p>
@@ -121,6 +128,19 @@
     <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">3. The override stops being a failure mode</h2>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">An <em>act</em> the user can't undo is a bet they never agreed to make. So every recommended action carries a first-class override — not a buried setting, but a path visible at the point of decision.</p>
     <p style="font-size:15px;color:var(--ink-muted);line-height:1.8">A user correcting the model inside a review state is not the system breaking; it is the training data the next version needs. Log it, feed it back, and show people their fingerprints on next week's calls. The first time someone watches their own pushback sharpen the model, the override flips from a fight into coaching. (This is the <a href="./human-in-loop.html" style="color:var(--gold);text-decoration:none">Human-in-Loop</a> pattern in practice.)</p>
+  </section>
+
+  <section style="margin-bottom:64px">
+    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Implementation Checklist</h2>
+    <ul style="font-size:15px;color:var(--ink-muted);line-height:1.8;padding-left:24px">
+      <li style="margin-bottom:10px"><strong>Bind every score to exactly one verb</strong> — act, review, or ignore — before it reaches the screen.</li>
+      <li style="margin-bottom:10px"><strong>Write down where each band starts, and who owns that call.</strong> Band edges are a product decision, not a stats default.</li>
+      <li style="margin-bottom:10px"><strong>Build the surface "review" demands.</strong> Reasons named on the call itself — not in a tooltip, not in the docs.</li>
+      <li style="margin-bottom:10px"><strong>Give "act" a visible override</strong> — one click, logged, and fed back to the model as training signal.</li>
+      <li style="margin-bottom:10px"><strong>Let "ignore" say the honest no.</strong> Below the line, the model declines to bluff — the honest no is what makes the act believable.</li>
+      <li style="margin-bottom:10px"><strong>Revisit the band edges against real outcomes</strong> on a schedule, not when someone complains.</li>
+      <li style="margin-bottom:10px"><strong>Audit your screens:</strong> any score not bound to a verb is decoration. Delete it or finish it.</li>
+    </ul>
   </section>
 
   <section style="margin-bottom:64px">
@@ -272,5 +292,6 @@ document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s))
   }
 })();
 </script>
+<script src="./demos.js?v=1" defer></script>
 </body>
 </html>
