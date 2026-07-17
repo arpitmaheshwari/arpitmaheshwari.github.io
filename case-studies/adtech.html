@@ -154,6 +154,107 @@
     </h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I built three things. A confidence score that resolved to one of three verbs — act, review, or ignore — and never reached the screen as a naked 87%; where each band starts is a product decision someone owns — revisited against real outcomes, not picked because the numbers look round. A reasoning panel that named the exact signals behind each call. And an override that logged the correction and fed it into next week's model.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">The override was the one decision.</strong> The safe build would have stopped at a prettier score with a tooltip — explainable, demoable, and still ignored. Giving traders a button to overrule the algorithm felt like undermining it. It was the opposite. The first time a buyer watched their own pushback sharpen the following week's calls, the relationship flipped from fighting the model to coaching it. Trust wasn't something I could design into the score; it was something they earned by being allowed to argue back.</p>
+    <!-- PLATE — production-fidelity reconstruction, synthetic data -->
+    <style>
+      .plA{width:min(840px,calc(100vw - 32px));margin:36px 50% 10px;transform:translateX(-50%);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
+      .plA *{box-sizing:border-box}
+      .plA-chrome{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#22252B;border-bottom:1px solid #2E323A}
+      .plA-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
+      .plA-chrome span{margin-left:10px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8B93A1}
+      .plA-app{background:#F4F5F7;color:#16181D}
+      .plA-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:#fff;border-bottom:1px solid #E3E6EA;flex-wrap:wrap}
+      .plA-brand{font-weight:600;font-size:13px;color:#16181D}
+      .plA-camp{font-size:13px;color:#5C6470}
+      .plA-camp b{color:#16181D;font-weight:600}
+      .plA-stage{font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#185FA5;background:#E8F0FA;border-radius:3px;padding:3px 8px;white-space:nowrap}
+      .plA-body{display:grid;grid-template-columns:1.5fr 1fr;gap:0}
+      @media(max-width:700px){.plA-body{grid-template-columns:1fr}}
+      .plA-main{padding:18px;border-right:1px solid #E3E6EA}
+      @media(max-width:700px){.plA-main{border-right:none;border-bottom:1px solid #E3E6EA}}
+      .plA-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+      .plA-head b{font-size:16px;font-weight:600;color:#16181D}
+      .plA-sub{font-size:11px;color:#5C6470;margin-bottom:14px}
+      .plA-card{background:#fff;border:1px solid #E3E6EA;border-left:3px solid #E3E6EA;border-radius:6px;padding:12px 14px;margin-bottom:8px}
+      .plA-card.act{border-left-color:#0E7A5F}
+      .plA-card.rev{border-color:#185FA5;border-left:3px solid #7A5410;box-shadow:0 0 0 1px #185FA5 inset}
+      .plA-card.ign{border-left-color:#E3E6EA;opacity:.72}
+      .plA-ctop{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+      .plA-rec{font-size:12.5px;font-weight:600;color:#16181D}
+      .plA-verb{font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;border-radius:3px;padding:4px 9px;white-space:nowrap;flex:0 0 auto}
+      .plA-verb.act{color:#0E7A5F;background:#E6F3EE;border:1px solid #BFDFD4}
+      .plA-verb.rev{color:#7A5410;background:#FCF2DC;border:1px solid #EAD9B0}
+      .plA-verb.ign{color:#5C6470;background:#EFEFEC;border:1px solid #E3E6EA}
+      .plA-conf{font-family:var(--ff-mono);font-size:10.5px;color:#5C6470;font-variant-numeric:tabular-nums}
+      .plA-reason{font-size:11px;color:#5C6470;line-height:1.55;margin:4px 0 0}
+      .plA-note{font-size:10.5px;color:#5C6470;font-style:italic;margin-top:4px}
+      .plA-btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+      .plA-apply{display:inline-block;font-size:11px;font-weight:600;color:#fff;background:#0E7A5F;border-radius:4px;padding:6px 12px}
+      .plA-quiet{display:inline-block;font-size:11px;color:#5C6470;background:#fff;border:1px solid #E3E6EA;border-radius:4px;padding:6px 12px}
+      .plA-ovr{display:inline-block;font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.05em;color:#0E7A5F;background:#E6F3EE;border-radius:3px;padding:2px 6px;margin:2px 0 8px 12px}
+      .plA-foot{font-family:var(--ff-mono);font-size:10px;color:#5C6470;padding-top:10px;border-top:1px solid #E3E6EA;margin-top:4px}
+      .plA-rail{padding:18px;background:#FBFBFC}
+      .plA-rl{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5C6470;margin-bottom:10px}
+      .plA-w{display:flex;align-items:center;gap:8px;font-size:11px;color:#5C6470;margin-bottom:6px}
+      .plA-w i{height:5px;border-radius:3px;background:#185FA5;display:inline-block;flex:0 0 auto}
+      .plA-board{background:#fff;border:1px solid #E3E6EA;border-radius:4px;padding:12px 14px;margin-top:16px}
+      .plA-mono{font-family:var(--ff-mono);font-size:10px;color:#5C6470;margin-bottom:8px}
+      .plA-cmp{display:flex;align-items:center;gap:8px;font-size:11px;color:#5C6470;margin-bottom:6px}
+      .plA-cmp i{height:8px;border-radius:2px;display:inline-block;flex:0 0 auto}
+      .plA-cmp .m{background:#0E7A5F}
+      .plA-cmp .d{background:#C6CBD2}
+      .plA-bcap{font-size:10.5px;color:#5C6470;font-style:italic;line-height:1.55;margin-top:8px}
+      .plA-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 28px;transform:translateX(-50%)}
+    </style>
+    <div class="plA" role="img" aria-label="Reconstructed campaign-planning interface: a queue of three model recommendations, each with a confidence score resolved to a verb — a 91 reading 'act' on a budget shift to CTV, a 73 reading 'review' on a bid-cap raise surfaced for a trader, and a 38 reading 'ignore' — plus a side panel showing the weighted signals behind the reviewed call and a small scoreboard comparing model versus desk over the trailing thirty days.">
+      <div class="plA-chrome" aria-hidden="true"><i></i><i></i><i></i><span>campaign-planner · trader desk · reconstruction</span></div>
+      <div class="plA-app">
+        <div class="plA-bar">
+          <span class="plA-brand">Campaign Planner</span>
+          <span class="plA-camp">Campaign: <b>Q3 Retail — Northside</b></span>
+          <span class="plA-stage">Planning · 3 hrs elapsed</span>
+        </div>
+        <div class="plA-body">
+          <div class="plA-main">
+            <div class="plA-head"><b>Today's calls</b></div>
+            <div class="plA-sub">every score resolves to a verb — act, review, or ignore</div>
+            <div class="plA-card act">
+              <div class="plA-ctop"><span class="plA-rec">Shift 12% of budget → CTV, evenings</span><span class="plA-conf">conf 91</span><span class="plA-verb act">→ Act</span></div>
+              <p class="plA-reason">30-day channel performance ↑ · audience overlap 64% · inventory price −8%</p>
+              <div class="plA-btns"><span class="plA-apply">Apply</span><span class="plA-quiet">Override &amp; log</span></div>
+            </div>
+            <span class="plA-ovr">✓ trader override on Friday's call → fed to next week's model</span>
+            <div class="plA-card rev">
+              <div class="plA-ctop"><span class="plA-rec">Raise bid cap on segment K-31</span><span class="plA-conf">conf 73</span><span class="plA-verb rev">→ Review</span></div>
+              <p class="plA-reason">mixed signals — recency conflict between panels 12 and 14</p>
+              <p class="plA-note">surfaced for a trader; never auto-run</p>
+            </div>
+            <div class="plA-card ign">
+              <div class="plA-ctop"><span class="plA-rec">Rotate creative set on display</span><span class="plA-conf">conf 38</span><span class="plA-verb ign">Ignore</span></div>
+              <p class="plA-reason">below the line — the model declines to bluff</p>
+            </div>
+            <div class="plA-foot">bands are owned product decisions, revisited against outcomes</div>
+          </div>
+          <div class="plA-rail">
+            <div class="plA-rl">Why this call — segment K-31</div>
+            <div class="plA-w"><i style="width:58%"></i>30-day channel perf</div>
+            <div class="plA-w"><i style="width:44%"></i>Audience overlap</div>
+            <div class="plA-w"><i style="width:31%"></i>Inventory price trend</div>
+            <div class="plA-board">
+              <div class="plA-rl" style="margin-bottom:6px">The scoreboard</div>
+              <div class="plA-mono">model vs desk · trailing 30d</div>
+              <div class="plA-cmp"><i class="m" style="width:72%"></i>model</div>
+              <div class="plA-cmp"><i class="d" style="width:47%"></i>desk</div>
+              <div class="plA-bcap">the lift is the DS team's number — this screen's job was getting it acted on</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <figcaption class="plA-caption">
+      <span style="display:block;font-family:var(--ff-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Plate 03 · Campaign planning — reconstruction · all names and figures synthetic</span>
+      <span style="display:block;font-family:var(--ff-display);font-style:italic;font-size:13.5px;color:var(--ink-dim);line-height:1.6">Redrawn from memory at production fidelity. A verb instead of a naked 87, the reasons on the card, and an override the model learns from — the screen that turned right-and-ignored into right-and-acted-on.</span>
+    </figcaption>
+
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:32px">The whole case fits in one card. Switch the confidence and watch the verb change — then open the reasoning, then override it:</p>
     <section class="recon" id="recon-adtech" role="group" aria-label="Interactive reconstruction: confidence score resolving to act, review, or ignore">
     <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA</div>

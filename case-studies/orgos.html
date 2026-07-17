@@ -153,7 +153,98 @@
       I made transparency do the coordinating — pull, not push.
     </h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The one decision: replace assignment with visibility. Who's on what, who's blocked, who decides — visible to everyone, always. Pull, not push. Commitments, not assignments. Nobody hands you work; you see what's open and you pick it up. Eight modules — staffing, comp, OKRs, onboarding — all spoke one object model, so the org could rebuild its own process with nobody in the room to arbitrate.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:32px">The commitments board below is the clearest version of it. An open ask sits there until someone chooses it — flip transparency off and you watch the coordination disappear with it, identities blurred, the board gone quiet. That switch is the whole argument in one control.</p>
+    <!-- PLATE — production-fidelity reconstruction, synthetic data -->
+    <style>
+      .plO{width:min(840px,calc(100vw - 32px));margin:36px 50% 10px;transform:translateX(-50%);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
+      .plO *{box-sizing:border-box}
+      .plO-chrome{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#22252B;border-bottom:1px solid #2E323A}
+      .plO-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
+      .plO-chrome span{margin-left:10px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8B93A1}
+      .plO-app{background:#F4F5F7;color:#16181D}
+      .plO-bar{display:flex;align-items:center;gap:14px;padding:12px 18px;background:#fff;border-bottom:1px solid #E3E6EA;flex-wrap:wrap}
+      .plO-brand{font-weight:600;font-size:13px;color:#16181D}
+      .plO-tabs{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+      .plO-tab{font-size:11.5px;color:#5C6470;padding:4px 10px;border-radius:3px}
+      .plO-tab.on{color:#185FA5;background:#E8F0FA;font-weight:600}
+      .plO-count{margin-left:auto;font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:#5C6470;background:#F4F5F7;border:1px solid #E3E6EA;border-radius:3px;padding:3px 8px;white-space:nowrap}
+      .plO-body{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:18px}
+      @media(max-width:700px){.plO-body{grid-template-columns:1fr}}
+      .plO-colh{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5C6470;margin-bottom:10px}
+      .plO-colh b{color:#16181D;font-weight:600}
+      .plO-card{background:#fff;border:1px solid #E3E6EA;border-radius:6px;padding:11px 12px;margin-bottom:8px}
+      .plO-ct{font-size:12.5px;font-weight:600;color:#16181D;line-height:1.45}
+      .plO-cx{font-size:11px;color:#5C6470;line-height:1.5;margin-top:3px}
+      .plO-cf{display:flex;align-items:center;gap:7px;font-family:var(--ff-mono);font-size:10px;color:#5C6470;margin-top:8px;padding-top:8px;border-top:1px solid #E3E6EA}
+      .plO-av{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#E8F0FA;color:#185FA5;font-family:var(--ff-mono);font-size:9px;font-weight:600;flex:0 0 auto}
+      .plO-pick{display:inline-block;font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.04em;color:#0E7A5F;background:#E6F3EE;border-radius:3px;padding:3px 7px;margin-top:8px}
+      .plO-dec{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#7A5410;background:#FCF2DC;border-radius:3px;padding:2px 7px}
+      .plO-foot{font-family:var(--ff-mono);font-size:10px;letter-spacing:.04em;color:#5C6470;background:#fff;border-top:1px solid #E3E6EA;padding:11px 18px;text-align:center}
+      .plO-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 28px;transform:translateX(-50%)}
+    </style>
+    <div class="plO" role="img" aria-label="Reconstructed commitments board from the internal tool: three columns — open asks anyone can pick up, work people committed to themselves with a note that nobody assigned it, and decisions made in the open — under an app bar reading 200 people, 0 managers. All names are synthetic initials.">
+      <div class="plO-chrome" aria-hidden="true"><i></i><i></i><i></i><span>orgos · commitments · reconstruction</span></div>
+      <div class="plO-app">
+        <div class="plO-bar">
+          <span class="plO-brand">OrgOS</span>
+          <span class="plO-tabs"><span class="plO-tab on">Commitments</span><span class="plO-tab">Staffing</span><span class="plO-tab">Comp</span><span class="plO-tab">OKRs</span></span>
+          <span class="plO-count">200 people · 0 managers</span>
+        </div>
+        <div class="plO-body">
+          <div>
+            <div class="plO-colh"><b>Open asks</b> · anyone can pick up</div>
+            <div class="plO-card">
+              <div class="plO-ct">Q3 onboarding revamp — needs a writer</div>
+              <div class="plO-cx">Draft the new first-week guide; platform docs are stale</div>
+              <div class="plO-cf">needs: 1 person · visible to all</div>
+            </div>
+            <div class="plO-card">
+              <div class="plO-ct">Comp band review — data pass</div>
+              <div class="plO-cx">Pull the anonymised band data before the open session</div>
+              <div class="plO-cf">needs: 1 person · visible to all</div>
+            </div>
+            <div class="plO-card">
+              <div class="plO-ct">Retro facilitator — platform team</div>
+              <div class="plO-cx">Outside voice preferred; runbook attached</div>
+              <div class="plO-cf">needs: 1 person · visible to all</div>
+            </div>
+          </div>
+          <div>
+            <div class="plO-colh"><b>Committed</b> · self-assigned</div>
+            <div class="plO-card">
+              <div class="plO-ct">Onboarding object model — merge staffing fields</div>
+              <div class="plO-cx">Unblocks two other asks once the fields align</div>
+              <span class="plO-pick">nobody assigned this — RK picked it up</span>
+              <div class="plO-cf"><span class="plO-av">RK</span>committed by RK · Tue</div>
+            </div>
+            <div class="plO-card">
+              <div class="plO-ct">Quarterly comp letter template</div>
+              <div class="plO-cx">Plain-language version, same numbers everyone sees</div>
+              <div class="plO-cf"><span class="plO-av">MT</span>committed by MT · Wed</div>
+            </div>
+          </div>
+          <div>
+            <div class="plO-colh"><b>Decided</b> · in the open</div>
+            <div class="plO-card">
+              <div class="plO-ct">New pairing policy</div>
+              <div class="plO-cx">Decided by the people it affects · 14 voices</div>
+              <div class="plO-cf"><span class="plO-av">AS</span><span class="plO-dec">Decision doc public</span></div>
+            </div>
+            <div class="plO-card">
+              <div class="plO-ct">Travel budget</div>
+              <div class="plO-cx">Thresholds agreed in the open thread</div>
+              <div class="plO-cf"><span class="plO-dec">Decision doc public</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="plO-foot">who's on what, who's blocked, who decides — visible to everyone, always · pull, not push</div>
+      </div>
+    </div>
+    <figcaption class="plO-caption">
+      <span style="display:block;font-family:var(--ff-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Plate 04 · Commitments board — reconstruction · all names synthetic</span>
+      <span style="display:block;font-family:var(--ff-display);font-style:italic;font-size:13.5px;color:var(--ink-dim);line-height:1.6">Redrawn from memory at production fidelity. Coordination without a router: you see what's open, you pick it up — and the org chart never grows back.</span>
+    </figcaption>
+
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:32px">The board above is what it looked like; the one below is the same surface, live — flip transparency off and watch the coordination go with it. An open ask sits there until someone chooses it — flip transparency off and you watch the coordination disappear with it, identities blurred, the board gone quiet. That switch is the whole argument in one control.</p>
 
   <!-- VISUAL HERO — interactive reconstruction -->
   <section class="recon" id="recon-orgos" role="group" aria-label="Interactive reconstruction: commitments board with transparency toggle">
@@ -220,10 +311,6 @@
     });});
   })();</script>
 
-    <figure style="margin:40px 0;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--bg-card)">
-  <img src="../assets/visuals/case-orgos.svg" alt="Diagram: eight operating-system modules arranged in a ring around one shared object model, with zero managers." loading="lazy" width="1280" height="400" style="display:block;width:100%;height:auto">
-  <figcaption style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);padding:12px 16px;border-top:1px solid var(--border)">Eight modules, one object model, zero managers</figcaption>
-</figure>
   </section>
 
   <!-- §04 — THE HONEST LINE + THE PRINCIPLE -->

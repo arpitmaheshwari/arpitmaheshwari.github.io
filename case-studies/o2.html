@@ -118,12 +118,6 @@
     <a href="#the-receipt">The receipt</a>
   </div>
 
-  <!-- THE BEFORE — the two surfaces this case lives on -->
-  <figure style="margin:8px 0 56px;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--bg-card)">
-  <img src="../assets/visuals/case-o2.svg" alt="Diagram: two O2 UK mobile-web products — MyO2 self-service (data, bill, tariff) and Priority Moments loyalty rewards." loading="lazy" width="1280" height="400" style="display:block;width:100%;height:auto">
-  <figcaption style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);padding:12px 16px;border-top:1px solid var(--border)">MyO2 self-service + Priority Moments loyalty · mobile web</figcaption>
-</figure>
-
   <!-- TOP THESIS — annotated-build opener -->
   <p style="font-family:var(--ff-display);font-size:clamp(22px,4vw,32px);font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">This case is the screens. I drew every one of them, then wrote the front-end that shipped them — two O2 UK products on mobile web, at a scale where rounding errors have populations. So read it the way it was built: as decisions made on the actual interface.</p>
   <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:60px">Designer and front-end · delivered through Equal Experts</p>
@@ -148,6 +142,104 @@
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">Read it on the screens themselves.</h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Here are the two surfaces, era-honest, rebuilt so you can touch the decisions instead of reading about them. The MyO2 screen leads with the one number a customer opens the app to check — data left, days to renewal — then the bill, with paying it one tap away. No dashboard, no menu maze: the task is the screen.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The Priority card does the opposite of dense. One offer, the reason it's relevant — this week, near you — and a single action. The pivotal decision lived right here: tap <em>Use offer</em> and the screen doesn't navigate away to a coupon wallet, it flips in place to the code you show at the till. Keeping redemption on the same surface is what turns a nice-looking offer into a redeemed one — the difference between a loyalty programme people browse and one they use.</p>
+    <!-- PLATE — production-fidelity reconstruction, synthetic data -->
+    <style>
+      .plM{width:min(840px,calc(100vw - 32px));margin:36px 50% 10px;transform:translateX(-50%);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
+      .plM *{box-sizing:border-box}
+      .plM-chrome{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#22252B;border-bottom:1px solid #2E323A}
+      .plM-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
+      .plM-chrome span{margin-left:10px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8B93A1}
+      .plM-stage{background:#22252B;padding:28px 16px;display:grid;grid-template-columns:repeat(3,minmax(0,250px));gap:18px;justify-content:center}
+      @media(max-width:700px){.plM-stage{grid-template-columns:minmax(0,250px)}}
+      .plM-phone{width:100%;max-width:250px;background:#14161B;border-radius:22px;padding:10px 8px 12px;box-shadow:0 14px 30px rgba(0,0,0,.5)}
+      .plM-ear{width:36px;height:4px;border-radius:2px;background:#2E323A;margin:2px auto 8px}
+      .plM-screen{background:#F4F5F7;color:#16181D;border-radius:5px;overflow:hidden;display:flex;flex-direction:column;min-height:352px}
+      .plM-status{display:flex;justify-content:space-between;padding:4px 9px;background:#16181D;color:#9BA3B0;font-family:var(--ff-mono);font-size:9px;letter-spacing:.06em}
+      .plM-hdr{padding:11px 12px;background:#11318F;color:#fff;font-weight:600;font-size:13.5px}
+      .plM-body{padding:12px;flex:1 1 auto}
+      .plM-big{font-size:31px;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums;margin:4px 0 2px}
+      .plM-sub{font-size:10.5px;color:#5C6470;margin:0 0 10px}
+      .plM-info{font-size:10.5px;line-height:1.5;color:#185FA5;background:#E8F0FA;border-radius:4px;padding:8px 10px;margin-bottom:10px}
+      .plM-btn{display:block;width:100%;padding:11px 0;background:#11318F;border-radius:4px;color:#fff;font-weight:600;font-size:12.5px;text-align:center;margin-bottom:10px}
+      .plM-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 10px;background:#fff;border:1px solid #E3E6EA;border-radius:4px;font-size:12px;font-weight:600;color:#16181D;margin-bottom:6px}
+      .plM-row i{font-style:normal;color:#8B93A1}
+      .plM-nav{display:flex;border-top:1px solid #E3E6EA;background:#fff}
+      .plM-nav b{flex:1;padding:9px 0;text-align:center;font-family:var(--ff-mono);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:400;color:#8B93A1}
+      .plM-nav b.on{color:#11318F;font-weight:700;box-shadow:inset 0 2px 0 #11318F}
+      .plM-mlabel{display:flex;justify-content:space-between;align-items:baseline;font-size:11.5px;font-weight:600;color:#16181D;margin:10px 0 5px}
+      .plM-mlabel small{font-weight:400;font-size:10.5px;color:#5C6470;font-variant-numeric:tabular-nums}
+      .plM-track{height:8px;border-radius:4px;background:#E3E6EA;overflow:hidden}
+      .plM-track i{display:block;height:100%;background:#11318F;border-radius:4px}
+      .plM-track i.mut{background:#C4C9D2}
+      .plM-msub{font-size:9.5px;color:#5C6470;margin:4px 0 0}
+      .plM-tag{display:inline-block;font-family:var(--ff-mono);font-size:9px;letter-spacing:.14em;color:#185FA5;background:#E8F0FA;border-radius:3px;padding:3px 7px;margin-bottom:8px}
+      .plM-otitle{font-size:14.5px;font-weight:600;line-height:1.35;margin:0 0 3px}
+      .plM-osub{font-size:10.5px;color:#5C6470;margin:0 0 12px}
+      .plM-code{border:1.5px dashed #9BA3B0;border-radius:5px;padding:12px 10px;text-align:center;background:#fff;margin-bottom:10px}
+      .plM-code b{display:block;font-family:var(--ff-mono);font-size:15px;letter-spacing:.08em;font-weight:600;color:#16181D}
+      .plM-code span{display:block;font-size:9.5px;color:#5C6470;margin-top:4px}
+      .plM-match{font-family:var(--ff-mono);font-size:9px;letter-spacing:.05em;color:#8B93A1;padding:8px 12px;border-top:1px solid #E3E6EA;background:#fff}
+      .plM-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 28px;transform:translateX(-50%)}
+    </style>
+    <div class="plM" role="img" aria-label="Reconstructed 2013–14 mobile-web screens, three phones side by side: a MyO2 bill screen showing £42.17 due 28 June with a roaming note and a Pay now button; a MyO2 usage screen with meters for data (2.1 of 4 GB), minutes (187 of 600) and unlimited texts; and a Priority offer card — free hot drink at Caffè Nero — with the redemption code PRIORITY-4417 shown in place on the card.">
+      <div class="plM-chrome" aria-hidden="true"><i></i><i></i><i></i><span>myo2 + priority · mobile web · reconstruction</span></div>
+      <div class="plM-stage">
+        <div class="plM-phone">
+          <div class="plM-ear"></div>
+          <div class="plM-screen">
+            <div class="plM-status"><span>O2-UK</span><span>14:32</span></div>
+            <div class="plM-hdr">My Bill</div>
+            <div class="plM-body">
+              <div class="plM-big">£42.17</div>
+              <div class="plM-sub">due 28 Jun · direct debit</div>
+              <div class="plM-info">includes £7.00 roaming — Spain, 3 days</div>
+              <div class="plM-btn">Pay now</div>
+              <div class="plM-row">Usage this month<i>→</i></div>
+              <div class="plM-row">Change tariff<i>→</i></div>
+            </div>
+            <div class="plM-nav"><b class="on">Bill</b><b>Usage</b><b>Tariff</b><b>Help</b></div>
+          </div>
+        </div>
+        <div class="plM-phone">
+          <div class="plM-ear"></div>
+          <div class="plM-screen">
+            <div class="plM-status"><span>O2-UK</span><span>14:32</span></div>
+            <div class="plM-hdr">Usage</div>
+            <div class="plM-body">
+              <div class="plM-mlabel" style="margin-top:2px">Data<small>2.1 of 4 GB</small></div>
+              <div class="plM-track"><i style="width:52%"></i></div>
+              <div class="plM-msub">resets in 9 days</div>
+              <div class="plM-mlabel">Minutes<small>187 of 600</small></div>
+              <div class="plM-track"><i style="width:31%"></i></div>
+              <div class="plM-mlabel">Texts<small>240 · unlimited</small></div>
+              <div class="plM-track"><i class="mut" style="width:100%"></i></div>
+              <div class="plM-row" style="margin-top:14px">Add a data Bolt On<i>→</i></div>
+            </div>
+            <div class="plM-nav"><b>Bill</b><b class="on">Usage</b><b>Tariff</b><b>Help</b></div>
+          </div>
+        </div>
+        <div class="plM-phone">
+          <div class="plM-ear"></div>
+          <div class="plM-screen">
+            <div class="plM-status"><span>O2-UK</span><span>14:32</span></div>
+            <div class="plM-hdr">Priority</div>
+            <div class="plM-body">
+              <span class="plM-tag">THIS WEEK</span>
+              <div class="plM-otitle">Free hot drink — Caffè Nero</div>
+              <div class="plM-osub">any size, Mon–Thu</div>
+              <div class="plM-code"><b>PRIORITY-4417</b><span>show this code at the till</span></div>
+              <div class="plM-btn">Save to phone</div>
+            </div>
+            <div class="plM-match">matched to you: nearby · morning routine</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <figcaption class="plM-caption">
+      <span style="display:block;font-family:var(--ff-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Plate 05 · MyO2 + Priority — reconstruction · originals not retained; redrawn from memory, figures synthetic</span>
+      <span style="display:block;font-family:var(--ff-display);font-style:italic;font-size:13.5px;color:var(--ink-dim);line-height:1.6">The screens this case is about, redrawn at the fidelity they shipped: an exact bill, honest meters, and a reward that redeems where it lands.</span>
+    </figcaption>
+
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:32px">Try both — switch the MyO2 tabs, then use the offer:</p>
     <section class="recon" id="recon-o2" role="group" aria-label="Era-honest recreation: MyO2 account screen and Priority offer card">
     <div class="recon-badge">Era-honest recreation — rebuilt in HTML/CSS for illustration · originals not retained</div>
@@ -249,7 +341,7 @@
   <!-- §04 — THE HONEST LINE -->
   <section id="the-honest-line" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">What it cost: I can't hand you the original screens.</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Be straight about the limits of this page. The originals aren't retained — the two surfaces above are era-honest recreations, rebuilt in HTML and CSS for illustration, with data that's invented, not client data. And the headline numbers — 4M+ users, 2.6M registrations, the 5-star rating, the £6m launch campaign — are public figures reported by O2 and Equal Experts, not personal KPIs I'm claiming.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Be straight about the limits of this page. The 2013-era originals weren't retained — so the screens above are labeled facsimiles, redrawn from memory at the fidelity they shipped, with data that's invented, not client data. And the headline numbers — 4M+ users, 2.6M registrations, the 5-star rating, the £6m launch campaign — are public figures reported by O2 and Equal Experts, not personal KPIs I'm claiming.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">There was a cost to working this way, too. Owning both the drawing and the code on a national-scale consumer product means there's no one to blame when a billing figure renders wrong or a tap target is two pixels short — it's your screen on a stadium of phones at once. That discipline is the price of doing both jobs.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8">So the claim is narrow on purpose: the launch-era figures are O2's; the screens I owned are mine. Every screen on both products, designed and built by me.</p>
   </section>

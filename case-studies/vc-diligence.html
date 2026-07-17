@@ -156,6 +156,98 @@
     </h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The verdict was right. That was exactly why it was dangerous. A correct verdict the partner couldn't audit is indistinguishable, on the day of the deal, from a confident hallucination — the exact failure mode an LLM is prone to, and the one this design is built to guard against. The missing piece was never accuracy — it was provenance: grounding, a path from the generated verdict down to the cited source behind it, the repo scan, the infra audit, the interview note. Retrieval-grounded, in the language of the field: every claim traceable to the document it came from.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">So the design work sat downstream of the extraction, in the trust it had to earn. Every one of the four signals carries its own confidence and, more importantly, its own cited source. Each score maps to a next step a partner can actually take — proceed, attach a condition, send an analyst back. The one decision that organized everything: <strong style="color:var(--ink)">no verdict is reviewable until its evidence is.</strong> A partner cannot sign off until they've opened all four signals and seen the trail underneath each one.</p>
+    <!-- PLATE — production-fidelity reconstruction, synthetic data -->
+    <style>
+      .plV{width:min(840px,calc(100vw - 32px));margin:36px 50% 10px;transform:translateX(-50%);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
+      .plV *{box-sizing:border-box}
+      .plV-chrome{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#22252B;border-bottom:1px solid #2E323A}
+      .plV-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
+      .plV-chrome span{margin-left:10px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8B93A1}
+      .plV-app{background:#F4F5F7;color:#16181D}
+      .plV-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:#fff;border-bottom:1px solid #E3E6EA}
+      .plV-brand{font-weight:600;font-size:13px;color:#16181D}
+      .plV-deal{font-size:13px;color:#5C6470}
+      .plV-deal b{color:#16181D;font-weight:600}
+      .plV-elapsed{font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#185FA5;background:#E8F0FA;border-radius:3px;padding:3px 8px;white-space:nowrap}
+      .plV-body{display:grid;grid-template-columns:1.5fr 1fr;gap:0}
+      @media(max-width:700px){.plV-body{grid-template-columns:1fr}}
+      .plV-main{padding:18px;border-right:1px solid #E3E6EA}
+      @media(max-width:700px){.plV-main{border-right:none;border-bottom:1px solid #E3E6EA}}
+      .plV-vlab{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5C6470;margin-bottom:4px}
+      .plV-verdict{font-family:var(--ff-display);font-weight:300;font-size:26px;line-height:1.25;color:#16181D;margin-bottom:4px}
+      .plV-verdict em{font-style:normal;color:#7A5410}
+      .plV-sub{font-size:11px;color:#5C6470;margin-bottom:14px}
+      .plV-sig{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#fff;border:1px solid #E3E6EA;border-radius:6px;margin-bottom:8px}
+      .plV-sig.sel{border-color:#185FA5;box-shadow:0 0 0 1px #185FA5 inset}
+      .plV-sname{flex:1 1 auto;min-width:0;font-size:12.5px;font-weight:600;color:#16181D}
+      .plV-sname small{display:block;font-weight:400;font-size:11px;color:#5C6470;margin-top:2px}
+      .plV-st{font-family:var(--ff-mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:3px;flex:0 0 auto}
+      .plV-st.clear{color:#0E7A5F;background:#E6F3EE}
+      .plV-st.watch{color:#7A5410;background:#FCF2DC}
+      .plV-conf{font-family:var(--ff-mono);font-size:10.5px;color:#5C6470;flex:0 0 auto;font-variant-numeric:tabular-nums}
+      .plV-src{font-family:var(--ff-mono);font-size:10px;color:#185FA5;background:#E8F0FA;border-radius:3px;padding:3px 7px;white-space:nowrap;flex:0 0 auto}
+      .plV-foot{font-family:var(--ff-mono);font-size:10px;color:#5C6470;padding-top:10px;border-top:1px solid #E3E6EA;margin-top:4px}
+      .plV-rail{padding:18px;background:#FBFBFC}
+      .plV-rl{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5C6470;margin-bottom:10px}
+      .plV-quote{background:#fff;border:1px solid #E3E6EA;border-left:3px solid #185FA5;border-radius:4px;padding:12px 14px;font-size:12.5px;line-height:1.6;color:#16181D;font-style:italic}
+      .plV-quote mark{background:#FDF0C9;font-style:italic}
+      .plV-cite{font-family:var(--ff-mono);font-size:10px;color:#5C6470;margin:8px 0 12px}
+      .plV-open{display:inline-block;font-size:11.5px;font-weight:600;color:#fff;background:#185FA5;border-radius:4px;padding:8px 12px}
+      .plV-more{display:inline-block;font-size:11px;color:#185FA5;margin-left:10px}
+      .plV-signoff{margin-top:16px;border-top:1px solid #E3E6EA;padding-top:12px}
+      .plV-signed{display:inline-block;font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#0E7A5F;background:#E6F3EE;border:1px solid #0E7A5F;border-radius:4px;padding:8px 12px}
+      .plV-cond{font-size:11px;color:#5C6470;margin-top:8px}
+      .plV-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 28px;transform:translateX(-50%)}
+    </style>
+    <div class="plV" role="img" aria-label="Reconstructed technical-diligence dossier, partner view: verdict 'Proceed — with conditions' over four signal classes — code quality, architecture risk and team velocity marked clear, founder credibility marked watch because a deck benchmark could not be reproduced — each with a confidence figure and a source chip; an evidence rail quotes the engineer's reproduction note showing results roughly 40% below the published figure, and a partner sign-off reads 'Signed — conditions attached' with an independent benchmark required before close.">
+      <div class="plV-chrome" aria-hidden="true"><i></i><i></i><i></i><span>technical-diligence · partner view · reconstruction</span></div>
+      <div class="plV-app">
+        <div class="plV-bar">
+          <span class="plV-brand">Diligence Dossier</span>
+          <span class="plV-deal">Deal: <b>Project Ridgeline</b> · Series B</span>
+          <span class="plV-elapsed">4 days elapsed</span>
+        </div>
+        <div class="plV-body">
+          <div class="plV-main">
+            <div class="plV-vlab">Verdict</div>
+            <div class="plV-verdict">Proceed — <em>with conditions</em></div>
+            <div class="plV-sub">4 signal classes · every claim drills to its source</div>
+            <div class="plV-sig">
+              <span class="plV-sname">Code quality</span>
+              <span class="plV-st clear">Clear</span><span class="plV-conf">conf 91%</span><span class="plV-src">repo scan · 214 files</span>
+            </div>
+            <div class="plV-sig">
+              <span class="plV-sname">Architecture risk</span>
+              <span class="plV-st clear">Clear</span><span class="plV-conf">conf 88%</span><span class="plV-src">design docs · §4</span>
+            </div>
+            <div class="plV-sig">
+              <span class="plV-sname">Team velocity</span>
+              <span class="plV-st clear">Clear</span><span class="plV-conf">conf 76%</span><span class="plV-src">commit history · release cadence</span>
+            </div>
+            <div class="plV-sig sel">
+              <span class="plV-sname">Founder credibility<small>benchmark in the deck could not be reproduced</small></span>
+              <span class="plV-st watch">Watch</span><span class="plV-conf">conf 64%</span><span class="plV-src">founder interviews · reference calls</span>
+            </div>
+            <div class="plV-foot">sign-off unlocks only after all four evidence trails are opened</div>
+          </div>
+          <div class="plV-rail">
+            <div class="plV-rl">Evidence — founder credibility</div>
+            <div class="plV-quote">“…the throughput benchmark on p.6 of the deck could not be reproduced from the released build; observed results were <mark>~40% below the published figure</mark>…”</div>
+            <div class="plV-cite">engineer's reproduction note · run 2 of 2</div>
+            <span class="plV-open">Open the trail ↗</span><span class="plV-more">3 more items</span>
+            <div class="plV-signoff">
+              <div class="plV-rl">Partner sign-off</div>
+              <span class="plV-signed">Signed — conditions attached</span>
+              <div class="plV-cond">condition: independent benchmark before close</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <figcaption class="plV-caption">
+      <span style="display:block;font-family:var(--ff-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Plate 02 · Diligence dossier — reconstruction · all names and figures synthetic</span>
+      <span style="display:block;font-family:var(--ff-display);font-style:italic;font-size:13.5px;color:var(--ink-dim);line-height:1.6">Redrawn from memory at production fidelity. The verdict a partner can stand on: four signals, each with a trail, and a sign-off that prices the doubt instead of rubber-stamping it.</span>
+    </figcaption>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Try it — open each signal to see the evidence, then sign:</p>
     <section class="recon" id="recon-vc" role="group" aria-label="Interactive reconstruction: technical-risk dossier with drill-to-source and partner sign-off">
     <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA</div>
