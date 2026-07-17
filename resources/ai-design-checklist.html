@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>47 Things to Check Before Shipping AI — Arpit Maheshwari</title>
+  <title>53 Things to Check Before Shipping AI — Arpit Maheshwari</title>
   <meta name="description" content="Comprehensive pre-launch checklist for AI products: functionality, performance, security, accessibility, user trust, and edge cases.">
-  <meta property="og:title" content="47 Things to Check Before Shipping AI">
+  <meta property="og:title" content="53 Things to Check Before Shipping AI">
   <meta property="og:description" content="Comprehensive pre-launch checklist for AI products: functionality, performance, security, accessibility, user trust, and edge cases.">
   <meta property="og:url" content="https://arpitmaheshwari.com/resources/ai-design-checklist.html">
   <meta property="og:type" content="article">
@@ -33,7 +33,7 @@
 
 <div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
   <div style="max-width:65ch;margin:0 auto">
-    <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin-bottom:20px">47 Things to Check Before Shipping AI</h1>
+    <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin-bottom:20px">53 Things to Check Before Shipping AI</h1>
     <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">Checklist · Shipping · Production Ready</p>
   </div>
 </div>
@@ -42,14 +42,31 @@
 
   <p style="font-family:var(--ff-display);font-size:clamp(18px,3vw,24px);font-style:italic;color:var(--ink);line-height:1.5;margin-bottom:40px">Use this checklist 2 weeks before production launch. Ship nothing without checking all three categories. Happy path demo ≠ production ready.</p>
 
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Functionality & UX (15 items)</h2>
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">The Trust Layer — AI-specific (14 items)</h2>
+  <p style="font-size:13px;color:var(--ink-muted);line-height:1.7;margin:-8px 0 16px">The half this checklist exists for. Each item maps to a pattern in <a href="../patterns/" style="color:var(--gold);text-decoration:none">the field guide</a>.</p>
+  <ul style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px;padding-left:24px">
+    <li>[ ] Every confidence score resolves to a verb — act, review, or ignore — never a naked %</li>
+    <li>[ ] Abstention state shipped: the model can say “I'm not sure” instead of bluffing</li>
+    <li>[ ] The interface claims no more certainty than the eval supports</li>
+    <li>[ ] AI confidence scores explained (not just “92%” but “92% — likely correct”)</li>
+    <li>[ ] The score's track record is visible — and doesn't reset when the model retrains</li>
+    <li>[ ] Failure states designed: what happens when the AI is wrong or uncertain?</li>
+    <li>[ ] Override mechanism clear (how do users say “AI, you're wrong”?) — logged, and fed back to training</li>
+    <li>[ ] Capability boundary stated in the interface — what it can't do, before it fails</li>
+    <li>[ ] Data provenance shown (where did these inputs come from?) — one click from claim to source</li>
+    <li>[ ] AI actions reversible: undo/rollback designed before the recommendation ships</li>
+    <li>[ ] AI latency states honest: the wait tells the user what the model is doing</li>
+    <li>[ ] Bias awareness: does the AI make different decisions for different demographics?</li>
+    <li>[ ] Edge cases designed: what if the user's data doesn't match the training data?</li>
+    <li>[ ] Legal review done (especially if financial, medical, or decision-making product)</li>
+  </ul>
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Product &amp; UX fundamentals (14 items)</h2>
   <ul style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px;padding-left:24px">
     <li>[ ] All happy paths tested with real user workflows (not demo data)</li>
     <li>[ ] Edge cases tested: empty states, boundary values, invalid inputs</li>
     <li>[ ] Error messages are human-readable, not error codes</li>
     <li>[ ] Loading states show progress (spinner, percentage, ETA)</li>
     <li>[ ] Timeout handling: what happens if the API doesn't respond in 30 sec?</li>
-    <li>[ ] Undo/rollback: can users reverse actions? Are they reversible?</li>
     <li>[ ] Mobile responsive tested at 375px, 768px, 1280px</li>
     <li>[ ] Keyboard navigation works (Tab, Enter, Escape)</li>
     <li>[ ] No console errors in DevTools</li>
@@ -60,8 +77,20 @@
     <li>[ ] Copy/paste works (text selection, clipboard permission)</li>
     <li>[ ] Date/time inputs work across browsers (no custom date pickers with bugs)</li>
   </ul>
-
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Performance, Security & Scale (16 items)</h2>
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Accessibility (9 items)</h2>
+  <ul style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px;padding-left:24px">
+    <li>[ ] Color contrast ≥ 4.5:1 (WCAG AA minimum)</li>
+    <li>[ ] All form inputs have associated labels (not just placeholders)</li>
+    <li>[ ] Focus indicators visible (not outline: none without replacement)</li>
+    <li>[ ] Screen reader tested: page structure logical, images have alt text</li>
+    <li>[ ] No autoplay videos or sounds (user controls media)</li>
+    <li>[ ] Reduced motion supported (animations disabled if prefers-reduced-motion)</li>
+    <li>[ ] Font size adjustable (users can zoom, minimum 16px on mobile to prevent auto-zoom)</li>
+    <li>[ ] No text as images (always use actual text + alt text for diagrams)</li>
+    <li>[ ] Beta tester feedback incorporated (did anyone report confusion?)</li>
+  </ul>
+  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Engineering hygiene (16 items)</h2>
+  <p style="font-size:13px;color:var(--ink-muted);line-height:1.7;margin:-8px 0 16px">Not design's to own — but design's to ask about. Run this pass sitting next to your engineer.</p>
   <ul style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px;padding-left:24px">
     <li>[ ] Load tested with realistic data volume (10x expected day-1 volume)</li>
     <li>[ ] Database queries optimized (no N+1 queries, indexes added)</li>
@@ -79,26 +108,6 @@
     <li>[ ] Database backups tested (can you restore from them?)</li>
     <li>[ ] Third-party dependencies checked for known vulnerabilities (npm audit)</li>
     <li>[ ] Privacy policy updated (what data do you collect? How long do you keep it?)</li>
-  </ul>
-
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Accessibility & Trust (16 items)</h2>
-  <ul style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px;padding-left:24px">
-    <li>[ ] Color contrast ≥ 4.5:1 (WCAG AA minimum)</li>
-    <li>[ ] All form inputs have associated labels (not just placeholders)</li>
-    <li>[ ] Focus indicators visible (not outline: none without replacement)</li>
-    <li>[ ] Screen reader tested: page structure logical, images have alt text</li>
-    <li>[ ] No autoplay videos or sounds (user controls media)</li>
-    <li>[ ] Reduced motion supported (animations disabled if prefers-reduced-motion)</li>
-    <li>[ ] Font size adjustable (users can zoom, minimum 16px on mobile to prevent auto-zoom)</li>
-    <li>[ ] No text as images (always use actual text + alt text for diagrams)</li>
-    <li>[ ] AI confidence scores explained (not just "92%" but "92% — likely correct")</li>
-    <li>[ ] Failure states designed: what happens when the AI is wrong or uncertain?</li>
-    <li>[ ] Override mechanism clear (how do users say "AI, you're wrong"?)</li>
-    <li>[ ] Data provenance shown (where did these inputs come from?)</li>
-    <li>[ ] Bias awareness: does the AI make different decisions for different demographics?</li>
-    <li>[ ] Edge cases designed: what if the user's data doesn't match the training data?</li>
-    <li>[ ] Legal review done (especially if financial, medical, or decision-making product)</li>
-    <li>[ ] Beta tester feedback incorporated (did anyone report confusion?)</li>
   </ul>
 
   <div style="padding:32px;border-left:3px solid var(--gold);margin:32px 0;background:var(--bg-card)">
