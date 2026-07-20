@@ -34,7 +34,7 @@ const WORK = [{
   tag: "Org Design · NDA",
   title: "OrgOS · Transparent Org Tooling",
   metric: "200",
-  desc: "Eight modules doing the coordination work a management layer usually does — 200 people, zero managers."
+  desc: "Eight modules doing the coordination work a management layer usually does — built for 200 people, zero managers; 250 run on it today."
 }, {
   tag: "VC/PE · NDA",
   title: "Technical Due Diligence Platform",
@@ -318,8 +318,8 @@ const NDA_CASES = [{
   plateNo: "5.1",
   plateCn: "eight modules sharing one object model",
   ledger: [{
-    v: "200",
-    l: "People coordinating, self-serve"
+    v: "250",
+    l: "On it today · designed for 200"
   }, {
     v: "0",
     l: "Managers in the loop"
@@ -327,7 +327,7 @@ const NDA_CASES = [{
     v: "8",
     l: "Modules, one grammar"
   }],
-  note: "transparency as the coordination layer",
+  note: "the org outgrew the number; the model held",
   stamp: { t: "0 Managers", v: "ok" }
 }, {
   no: "06",
