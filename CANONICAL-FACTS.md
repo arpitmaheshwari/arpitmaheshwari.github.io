@@ -76,7 +76,35 @@ Use real names + titles, verbatim quotes. Current placements:
   near-black `#0A0A0A` + gold `#D4A85E`, Fraunces/Inter Tight type.
 - They look different **on purpose**. Both must tell the **same facts** (this file) in their own voice.
 
-## 7. Housekeeping conventions
+## 7. The narrative spine (every page is a chapter of ONE argument)
+
+The site tells one story. Every edit must advance it, not restate it:
+
+> **Your model is right. Your users still won't bet on it.** (the problem — hero, locked)
+> **The half-second of doubt is the only thing I design.** (the specialization)
+> **Trust is built from learnable moves** — a verb instead of a naked score, evidence beside
+> the number, an honest "I'm not sure," an override that teaches. (the patterns)
+> **Six cases prove it** — each owns ONE distinct chapter, below. (the proof)
+> **One seat, full-time.** (the ask)
+
+**Each case owns exactly one beat — no case may restate another's moral:**
+- **AdTech** owns "the model was right — that was the problem" (the origin of Act/Review/Ignore).
+- **FinTech** owns abstention & evidence ("I'd rather it say nothing than hallucinate").
+- **VC Diligence** owns provenance & the sign-off gate ("pricing the doubt").
+- **PTC** owns "the contract was the broken interface" (design as business argument).
+- **O2** owns craft at scale ("drawn by me, then coded by me").
+- **OrgOS** owns "coordination is a trust problem between people."
+
+**Hedge policy — honesty with command, not apology:** attribution scoping (what's the ML/DS
+team's vs. mine) appears ONCE per case, stated as ownership of the boundary ("The model's
+accuracy is their result to defend; the acting-on-it is mine") — never twice, never as a
+disclaimer, never in consecutive paragraphs.
+
+**Banned repetitions:** "the trust layer is the product" and generic restatements of the hero
+thesis may appear on the homepage and ONE case (AdTech) only. Each other page closes on its
+own beat.
+
+## 8. Housekeeping conventions
 - **Cache version (bump on every change so visitors see updates):** classic pages use
   `styles.css?v=pNN` (now **p20**); book uses `book.css?v=NN` (**41**) and `portfolio.js?v=NN` (**69**).
 - **Analytics:** Google Analytics ID `G-PFY6ME99K8` (same across all pages).
