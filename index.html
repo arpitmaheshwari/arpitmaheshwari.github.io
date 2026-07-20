@@ -1098,7 +1098,14 @@ if (canvas && !prefersReducedMotion) {
     el.addEventListener('click',function(e){ e.preventDefault(); reveal(DIAG[+el.getAttribute('data-i')]); });
   });
   if(freeForm) freeForm.addEventListener('submit',function(e){ e.preventDefault(); var v=(freeInput.value||'').trim(); if(!v) return;
-    reveal({q:v,a:'That’s the half-second I design for — the pause between a right answer and an acted-on one.',m:['Name exactly where they hesitate','Show them the evidence they’re missing','Give the doubt one clear place to go'],href:'#featured-case-studies',start:87});
+    var lv=v.toLowerCase();
+    var route=null;
+    if(/ignor|dismiss|don.t (use|act)|unused|adopt/.test(lv)) route=DIAG[/accura|correct|right/.test(lv)?1:0];
+    else if(/overrid|hunch|gut|manual|bypass/.test(lv)) route=DIAG[2];
+    else if(/score|confiden|percent|%|number|trust/.test(lv)) route=DIAG[3];
+    else if(/accura|correct|right|precis/.test(lv)) route=DIAG[1];
+    if(route){ reveal({q:v,a:route.a,m:route.m,href:route.href,start:route.start}); }
+    else { reveal({q:v,a:'That’s the half-second I design for — the pause between a right answer and an acted-on one. Six cases below show the moves.',m:[],href:'#featured-case-studies',start:87}); }
   });
   if(reset) reset.addEventListener('click',function(){ if(answer) answer.hidden=true; if(diag) diag.hidden=false; });
 })();
