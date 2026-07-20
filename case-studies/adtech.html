@@ -145,7 +145,7 @@
       A campaign took two weeks, and a winning model nobody used was worth nothing.
     </h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Planning a campaign the old way meant about two weeks of media-buyers reconciling spreadsheets against their gut. The whole point of the engine was to collapse that — and it could have, except the people whose job it was to act on it didn't.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">That's the quiet failure mode of a good algorithm: it isn't wrong, it's unused. The business had paid for an edge that sat on a screen no one bet on. Chasing more accuracy would have spent the budget on the half that already worked, while the half that was broken — trust — stayed broken.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8"> The business had paid for an edge that sat on a screen no one bet on. Chasing more accuracy would have spent the budget on the half that already worked, while the half that was broken — trust — stayed broken.</p>
   </section>
 
   <!-- §03 — THE MOVE -->
@@ -153,7 +153,7 @@
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
       So I stopped touching the model and rebuilt the screen between it and the trader.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I built three things. A confidence score that resolved to one of three verbs — act, review, or ignore — and never reached the screen as a naked 87%; where each band starts is a product decision someone owns — revisited against real outcomes, not picked because the numbers look round. A reasoning panel that named the exact signals behind each call. And an override that logged the correction and fed it into next week's model.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I built three things. A confidence score that never reached the screen as a naked 87% — it resolved to one verb: act, review, or ignore; where each band starts is a product decision someone owns — revisited against real outcomes, not picked because the numbers look round. A reasoning panel that named the exact signals behind each call. And an override that logged the correction and fed it into next week's model.</p>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">The override was the one decision.</strong> The safe build would have stopped at a prettier score with a tooltip — explainable, demoable, and still ignored. Giving traders a button to overrule the algorithm felt like undermining it. It was the opposite. The first time a buyer watched their own pushback sharpen the following week's calls, the relationship flipped from fighting the model to coaching it. Trust wasn't something I could design into the score; it was something they earned by being allowed to argue back.</p>
     <!-- PLATE — production-fidelity reconstruction, synthetic data -->
     <style>
@@ -245,7 +245,7 @@
               <div class="plA-mono">model vs desk · trailing 30d</div>
               <div class="plA-cmp"><i class="m" style="width:72%"></i>model</div>
               <div class="plA-cmp"><i class="d" style="width:47%"></i>desk</div>
-              <div class="plA-bcap">the lift is the DS team's number — this screen's job was getting it acted on</div>
+              <div class="plA-bcap">what changed wasn't the model — it was what happened to its calls</div>
             </div>
           </div>
         </div>
@@ -366,18 +366,17 @@
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
       What it took to admit: the smartest thing on the screen wasn't the model.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The hard part wasn't the design. It was walking back my own first call — that a model this good should sell itself — after I'd already argued for it. It didn't sell itself. Campaign planning dropped from about two weeks to three hours, and not one of those hours came from a better algorithm.</p>
     <blockquote style="margin:24px 0;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px">
       <p style="margin:0;font-family:var(--ff-sans);font-size:18px;font-style:italic;line-height:1.6;color:var(--ink)">The model never changed. The humans finally bet on it. A correct answer no one acts on is worth exactly nothing.</p>
     </blockquote>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">The cost of the right diagnosis was admitting the wrong one was more flattering. "Make the model smarter" is the answer that protects the data-science team and the budget. "They don't trust it" points the finger at the interface — which was the actual ceiling.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8">"Make the model smarter" is the answer that protects the data-science team and the budget. "They don't trust it" points the finger at the interface — which was the actual ceiling.</p>
   </section>
 
   <!-- §06 — THE PRINCIPLE -->
   <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
     <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">The principle it left me with.</h2>
     <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">When a model is right and nobody acts on it, the problem is almost never accuracy. It's that the model asks for faith and gives no collateral. The trust layer — a verb instead of a number, the reasons named, and a way to argue back that the model actually listens to — is what converts a correct answer into an acted-on one.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">It reset how I open every AI project since. Before anyone asks to retrain, I ask whether the humans were ever given anything to bet on. Most of the time the model was already right. That was the problem.</p>
+    <p style="font-size:15px;color:var(--ink);line-height:1.8"></p>
   </section>
 
   <!-- NDA CALENDLY CTA — locked phase 11E -->
@@ -410,6 +409,7 @@
   <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin:0 0 60px 0">I write about this on <a href="https://arpitmaheshwari.substack.com" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="case-study-substack" style="color:var(--gold);text-decoration:none">The Trust Layer ↗</a></p>
 
   <!-- SEQUENTIAL NAVIGATION -->
+  <p style="font-family:var(--ff-display);font-style:italic;font-size:15px;color:var(--ink-dim);line-height:1.6;margin:0 0 16px">The rule was forged here. Next: the same discipline with millions staked on a single verdict — provenance as a gate a partner will sign.</p>
   <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:48px">
     <a href="./fintech.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Read 04 / AI Due Diligence →</a>
     <a href="../index.html#contact" data-cta="send-role" data-location="case-study-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
