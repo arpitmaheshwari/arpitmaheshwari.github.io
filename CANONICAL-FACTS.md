@@ -141,6 +141,12 @@ Arpit's process, reframed in the site's voice from his three-layer model. All su
 - **Philosophy line (verbatim on all surfaces):** "Design is an upward spiral: every turn
   reduces risk and raises the odds of adoption. Confidence is earned in loops, not declared
   in launches." (Ties the process to the trust-layer thesis.)
+- **The tooling fact (added 2026-07-22, Arpit's account):** prototypes are AI-assisted
+  **working HTML** — not clickable pictures. They go in front of real users for usability
+  testing, and when they survive, **the code ships as part of the production codebase**.
+  AI is the sounding board throughout the loop — a tireless colleague to argue with before
+  spending an engineer's afternoon. Surfaces: /process (Prove move), resume bullets + skills,
+  portfolio PDF method page.
 
 Rules: never present as a stock double-diamond; no fabricated loop counts for specific
 projects; case references stay qualitative (e.g., Act/Review/Ignore was born in a Listen loop).
