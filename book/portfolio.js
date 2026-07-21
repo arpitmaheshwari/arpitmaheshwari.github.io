@@ -154,7 +154,7 @@ const CASES = {
     tag: "EdTech · Non-NDA",
     title: "PTC\u00A0University — Learning Connector",
     standfirst: "Five platforms, one survivor. The redesign took a quarter — the case for killing four products took a year. That was the design work.",
-    meta: [["Role", "Lead Product Designer"], ["Span", "2014–2019 · two squads"], ["Surface", "Web LMS · 11 languages"], ["Result", "Shipped · in production"]],
+    meta: [["Role", "Lead Product Designer"], ["Span", "2014–2019 · the CX team I built"], ["Surface", "Web LMS · 11 languages"], ["Result", "Shipped · in production"]],
     context: "The brief said “redesign the UX.” Three weeks in the customer-success recordings said the navigation was fine — so I made the call that the contract was the broken interface: kill four of five learning platforms (LearningExchange, Precision LMS, Digital Guides, IoTU) and move the survivor off perpetual, pay-once-own-forever licenses.",
     fig1: {
       no: "1.1",
@@ -207,8 +207,8 @@ const NDA_CASES = [{
   ph: "MyO2 account dashboard + Priority Moments rewards — O2 UK mobile web",
   title: "Telefónica MyO2 & Priority Moments",
   standfirst: "Drawn by me, then coded by me — every screen of two O2 UK products on mobile web, at a scale where rounding errors have populations.",
-  meta: [["Role", "Designer + Front-end"], ["Client", "O2 UK (Telefónica) · via Equal Experts"], ["Status", "Shipped · public"]],
-  context: "The one move: own both sides of the handoff — draw every screen, then code the front-end that ships it, so nothing is lost in translation. The cost of that scale: a rounding error has a population — a wrong tap target or billing figure lands on a stadium at once. The proof isn't sign-ups; it's the 2.5M who came back.",
+  meta: [["Role", "Designer + Front-end"], ["Team", "Equal Experts squad · O2 UK"], ["Status", "Shipped · public"]],
+  context: "The one move: own both sides of the handoff — draw every screen, then code the front-end that ships it, so nothing is lost in translation. The cost of that scale: a rounding error has a population. The proof isn't sign-ups; it's the 2.5M who came back.",
   moves: [{
     h: "MyO2 — the whole account, alone",
     p: "O2 UK's self-service app: data and usage, the bill, a tariff change, an upgrade — the whole account without dialing anyone. The math is blunt: every self-service task that lands is a contact-centre call that never happens. It went on to serve more than four million users."
@@ -239,7 +239,7 @@ const NDA_CASES = [{
   tag: "FinTech · NDA",
   title: "AI-Assisted Private Equity Investing",
   standfirst: "I held the release until the LLM could defend its own scores. Then screening sped up 60%.",
-  meta: [["Role", "Lead Product Designer"], ["Surface", "AI for private-equity investing"], ["Status", "Shipped · under NDA"]],
+  meta: [["Role", "Lead Product Designer"], ["Team", "Engineers · data scientists · PM"], ["Surface", "AI for private-equity investing"], ["Status", "Shipped · under NDA"]],
   context: "An LLM read the deal docs and scored the risk. I held the launch until it grounded every claim in a cited source (retrieval) and abstained on thin cases — a confident hallucination nobody signs is dead on arrival.",
   moves: [{
     h: "Explain before the verdict",
@@ -271,7 +271,7 @@ const NDA_CASES = [{
   tag: "AdTech · NDA",
   title: "Programmatic Advertising Platform",
   standfirst: "The algorithm beat the traders, and they played their hunches anyway. A missing interface, not a bad model.",
-  meta: [["Role", "Lead Product Designer"], ["Surface", "DSP recommendation UI"], ["Status", "Shipped · under NDA"]],
+  meta: [["Role", "Lead Product Designer"], ["Team", "50+ distributed agile team"], ["Surface", "DSP recommendation UI"], ["Status", "Shipped · under NDA"]],
   context: "The engine beat the buyers; adoption sat near zero. I left the model and rebuilt the interface around it.",
   moves: [{
     h: "A score tied to one action",
@@ -295,7 +295,7 @@ const NDA_CASES = [{
     v: "Why",
     l: "Reasoning on every call"
   }],
-  note: "buyers act when they can see the why — and override it",
+  note: "software did the speed; design did the acting-on-it",
   stamp: { t: "Shipped", v: "" }
 }, {
   no: "05",
@@ -303,7 +303,7 @@ const NDA_CASES = [{
   tag: "Org Design · NDA",
   title: "OrgOS · Transparent Org Tooling",
   standfirst: "Two hundred people. No managers. Eight modules doing the job of an org chart — coordination that never smuggles a boss back in.",
-  meta: [["Role", "Design Lead"], ["Surface", "Internal operating system"], ["Status", "Shipped · under NDA"]],
+  meta: [["Role", "Design Lead"], ["Team", "4 engineering streams + a PM"], ["Surface", "Internal operating system"], ["Status", "Shipped · under NDA"]],
   context: "The decision: refuse every feature with a manager hiding inside it. Transparency coordinates — salaries, finances, assignments, open to all — but holds only to forty; at two hundred the hallway stops scaling. Assignment, approval, escalation were each a boss in disguise.",
   moves: [{
     h: "Read access is the feature",
@@ -327,7 +327,7 @@ const NDA_CASES = [{
     v: "8",
     l: "Modules, one grammar"
   }],
-  note: "the org outgrew the number; the model held",
+  note: "the org's numbers, the founders' philosophy — my tooling held at scale",
   stamp: { t: "0 Managers", v: "ok" }
 }, {
   no: "06",
@@ -335,7 +335,7 @@ const NDA_CASES = [{
   tag: "VC/PE · NDA",
   title: "Technical Due Diligence Platform",
   standfirst: "Partners bet millions on claims they'll never check. An LLM extracted the evidence; the design made them stand on it.",
-  meta: [["Role", "Design Lead"], ["Surface", "Technical-DD platform · VC + PE"], ["Status", "Shipped · under NDA"]],
+  meta: [["Role", "Design Lead"], ["Team", "Model engineers · data scientists"], ["Surface", "Technical-DD platform · VC + PE"], ["Status", "Shipped · under NDA"]],
   context: "An LLM read the code and docs. No verdict ships without a cited source (retrieval) — unaudited, it's a confident hallucination.",
   moves: [{
     h: "Score at the signal level",
@@ -1218,13 +1218,13 @@ function buildBook(ctx) {
   const jumpTo = ctx.jumpTo || go; // mobile-aware jump
   const enter = ctx.enter; // open a section a level deeper: enter(key, idx)
   const TOC = [{
-    n: "—",
+    n: "ii",
     name: "How I Lead",
     sub: "Principles & approach",
     pg: "p. ii",
     to: 2
   }, {
-    n: "\u2014",
+    n: "iv",
     name: "The Method",
     sub: "How the work gets made",
     pg: "p. iv",
@@ -1417,7 +1417,7 @@ function buildBook(ctx) {
       style: {
         marginTop: 22
       }
-    }, "credibility = the misses, written down →"), /*#__PURE__*/React.createElement("div", {
+    }, "the miss, written down: my first accessibility pass buried screen-reader users in verbose ARIA labels — they skim, not listen. A week with the monitor off, then I recoded it."), /*#__PURE__*/React.createElement("div", {
       className: "bk-coffee",
       "aria-hidden": "true",
       style: {
@@ -1466,7 +1466,7 @@ function buildBook(ctx) {
       /*#__PURE__*/React.createElement("div", { style: { marginTop: 14 } },
         [["01", "Listen", "Research the problem space in its own words, not mine. Act / Review / Ignore was born here \u2014 watching traders override a correct model."],
          ["02", "Structure", "Journeys and information architecture: what the product is, before what it looks like."],
-         ["03", "Prove", "Prototypes from paper-rough to production-real \u2014 each one a question wearing an interface."],
+         ["03", "Prove", "AI-assisted working HTML, not clickable pictures \u2014 tested with users, and when it survives, shipped as part of the codebase."],
          ["04", "Land", "Visual design, brand, tone \u2014 the layer people mistake for the whole job."]
         ].map((m, i) => /*#__PURE__*/React.createElement("div", { className: "bk-principle", key: i },
           /*#__PURE__*/React.createElement("span", { className: "bk-principle__n" }, m[0]),
@@ -1583,7 +1583,7 @@ function buildBook(ctx) {
         marginTop: 22
       }
     }, "open a pattern to go a level deeper \u2197"), /*#__PURE__*/React.createElement(Device, {
-      label: "a working catalogue",
+      label: "prior art: PAIR \u00B7 HAX \u2014 this is the production-side report",
       style: {
         marginTop: 30
       }
