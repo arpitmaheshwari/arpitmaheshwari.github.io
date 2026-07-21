@@ -46,6 +46,22 @@ Use the exact metric strings below on every surface (homepage chip, case-study p
 **Number-writing rules:** arrow is "→" with a space each side. Never write "−60%" (use "60% faster").
 Never abbreviate to "3w → 4d" (use "3 wks → 4 days"). Lowercase "k" in "550k+".
 
+### The documented miss (added 2026-07-22 — Arpit's own account, the one failure story)
+On PTC accessibility work: first pass added extensive ARIA labels for visually-impaired users.
+Testing with real users exposed the mistake — screen-reader users don't listen through long
+sentences; they skim fast, jumping by headings and landmarks, and the verbose labels made the
+interface SLOWER for exactly the people they were meant to help. To rebuild empathy he worked
+with the monitor off / eyes closed, navigating by screen reader (this is the same fact as the
+About line — one week, monitor switched off). Then he re-did the front-end code. Failure → fix.
+Use this story wherever a "documented miss" is needed (PTC case, PDF). Never invent metrics
+for the redo; the honest arc IS the value.
+
+### Research texture (Arpit's account, 2026-07-22)
+- AdTech: research included campaign planners, media sellers, and creative agencies ("a lot" —
+  no exact count claimed; the pain-point tables in his old case doc came from these).
+- VC diligence: usability testing with investment analysts.
+- Trader-observation counts/quotes for the Act/Review/Ignore origin: STILL UNKNOWN — do not invent.
+
 ### O2 honesty note (important)
 The launch-era O2 figures (July 2011 launch, £6m campaign, 2.6M year-one, 5★) are **O2's public facts**,
 not personal KPIs. I joined the Priority programme in **2013** (within my Equal Experts tenure, 2012–14)
