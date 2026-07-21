@@ -108,5 +108,16 @@ own beat.
 - **Cache version (bump on every change so visitors see updates):** classic pages use
   `styles.css?v=pNN` (now **p20**); book uses `book.css?v=NN` (**41**) and `portfolio.js?v=NN` (**69**).
 - **Analytics:** Google Analytics ID `G-PFY6ME99K8` (same across all pages).
-- **Primary action:** the "Send me the role" form (Formspree). Calendly is the quiet secondary. No public
-  email address on the site by design.
+- **Primary action:** the "Send me the role" form (Formspree). Calendly is the quiet secondary.
+  **Email IS public** (changed 2026-07-21 after recruiter feedback — recruiters don't fill forms):
+  maheshwari.arpit88@gmail.com, assembled by a small script on the page so bots can't scrape it.
+  It appears on the homepage contact section and /hire.
+- **Team credits (added 2026-07-21):** every case names its team — AdTech "50+ distributed agile team",
+  FinTech "cross-functional: engineers, data scientists, PM", VC "alongside the engineers and data
+  scientists who built the model", OrgOS "four engineering streams + a PM". No solo-genius voice.
+- **Title honesty:** documents and site say **Design Leader — AI & Data-Intensive Products** as
+  positioning; the résumé names the official employer title ("Solution Consultant") beside the
+  functional one ("Design Lead — AI Products"). LinkedIn must match this story — never claim
+  "Principal" as a conferred rank anywhere.
+- **AdTech reference:** the case page notes a named reference (the client's CTO) is available on
+  request — consistent with the public Anant East testimonial.
