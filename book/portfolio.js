@@ -235,7 +235,7 @@ const NDA_CASES = [{
   stamp: { t: "5★ APP", v: "ok" }
 }, {
   no: "03",
-  img: "../assets/visuals/case-fintech.svg",
+  img: "../assets/shots/fintech-screening.png",
   tag: "FinTech · NDA",
   title: "AI-Assisted Private Equity Investing",
   standfirst: "I held the release until the LLM could defend its own scores. Then screening sped up 60%.",
@@ -267,7 +267,7 @@ const NDA_CASES = [{
   stamp: { t: "Trusted", v: "r" }
 }, {
   no: "04",
-  img: "../assets/visuals/case-adtech.svg",
+  img: "../assets/shots/adtech-planner.png",
   tag: "AdTech · NDA",
   title: "Programmatic Advertising Platform",
   standfirst: "The algorithm beat the traders, and they played their hunches anyway. A missing interface, not a bad model.",
@@ -841,7 +841,7 @@ function caseSpreadB(c) {
       no: c.fig2.no,
       cn: c.fig2.label,
       wide: true,
-      img: "../assets/visuals/case-ptc.svg",
+      img: "../assets/shots/ptc-portal.png",
       ph: "Drop a screenshot \u00b7 " + c.fig2.label
     })),
     right: /*#__PURE__*/React.createElement("div", {
@@ -2127,6 +2127,11 @@ function App() {
 
   // ---- location in the IA tree: which deck, which spread index ----
   const readLoc = () => {
+    // a shared link (#deck-i) outranks the reader's saved place
+    try {
+      const h = /^#(spine|cases|patterns)-(\d+)$/.exec(window.location.hash || "");
+      if (h) return { deck: h[1], i: Math.max(0, parseInt(h[2], 10) || 0) };
+    } catch (e) {}
     try {
       const s = JSON.parse(localStorage.getItem("bk-loc"));
       if (s && typeof s.i === "number" && (s.deck === "spine" || s.deck === "cases" || s.deck === "patterns")) return { deck: s.deck, i: Math.max(0, Math.floor(s.i)) };
@@ -2149,6 +2154,8 @@ function App() {
   // ---- opening ritual: closed book that clicks open (plays once) ----
   const readOpened = () => {
     try {
+      // arriving via a shared deep link skips the cover ritual
+      if (/^#(spine|cases|patterns)-\d+$/.test(window.location.hash || "") && window.location.hash !== "#spine-0") return true;
       return localStorage.getItem("bk-opened") === "1";
     } catch (e) {
       return false;
@@ -2171,6 +2178,11 @@ function App() {
   const reduce = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const persist = l => {
     localStorage.setItem("bk-loc", JSON.stringify(l));
+    try {
+      // every spread gets a shareable URL; the cover keeps a clean one
+      const h = l.deck === "spine" && l.i === 0 ? window.location.pathname + window.location.search : "#" + l.deck + "-" + l.i;
+      window.history.replaceState(null, "", h);
+    } catch (e) {}
     try {
       var b = bookRef.current, lbl = "";
       if (b) lbl = l.deck === "spine" ? (b.spine[l.i] && b.spine[l.i].runheadR) || "Cover" : (b.sections[l.deck] && b.sections[l.deck].items[l.i] && b.sections[l.deck].items[l.i].crumb) || "";

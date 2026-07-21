@@ -152,6 +152,11 @@ Rules: never present as a stock double-diamond; no fabricated loop counts for sp
 projects; case references stay qualitative (e.g., Act/Review/Ignore was born in a Listen loop).
 
 ## 9. SURFACE FREEZE (2026-07-21 — recruiter audit #2)
+**The no-drift rule (2026-07-22):** any change to a canonical fact ships to BOTH views
+(classic + book) and the PDF sources **in the same commit** — a surface that lags is a surface
+that lies. **The routing rule (2026-07-22):** the classic site is the front door for everyone;
+the book opens only by explicit choice ("Read as a book" / ?view=book) and every book spread
+has a shareable URL (#deck-index).
 **No new pages or surfaces without retiring one.** The estate is complete: home, /hire,
 /screen, /process, /patterns, /folio, /book, writing. Every future improvement goes INTO
 an existing surface, never beside it. The remaining gaps are evidence, not architecture:

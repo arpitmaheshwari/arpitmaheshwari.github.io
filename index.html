@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
 /* View router (homepage only): the book is the front door on desktop. Phones, touch, and reduced-motion get the scannable classic site by default — no rushed mobile screener forced into the page-turn book. A no-JS crawler never runs this, so classic stays fully indexable; ?view=classic (or a prior Classic choice) always stays here; deep links carry no router. The book remains one tap away via the nav. */
-(function(){try{var p=new URLSearchParams(location.search);if(p.get('view')==='classic'){localStorage.setItem('am-view','classic');return;}var small=(window.innerWidth||0)<=768;var coarse=window.matchMedia&&window.matchMedia('(pointer:coarse)').matches;var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;if(small||coarse||reduce){return;}if(localStorage.getItem('am-view')!=='classic'){location.replace('./book/');}}catch(e){}})();
+(function(){try{var p=new URLSearchParams(location.search);if(p.get('view')==='classic'){localStorage.setItem('am-view','classic');return;}if(p.get('view')==='book'){localStorage.setItem('am-view','book');location.replace('./book/');return;}if(localStorage.getItem('am-view')==='book'){location.replace('./book/');}}catch(e){}})();
 </script>
 <title>Founding Designer for AI Products — Arpit Maheshwari</title>
 <meta name="description" content="AI products don't fail at the model — they fail in the half-second before a person acts on it. I've designed that half-second for fifteen years.">
