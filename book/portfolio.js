@@ -1450,15 +1450,11 @@ function buildBook(ctx) {
       /*#__PURE__*/React.createElement("p", { className: "bk-lede bk-drop", style: { marginTop: 14 } },
         "Every product is a series of bets someone else has to accept. The process isn\u2019t a ritual for making screens \u2014 it\u2019s a machine for making each bet ",
         /*#__PURE__*/React.createElement("span", { className: "bk-mark" }, "smaller, better-evidenced, and easier to say yes to"), "."),
-      /*#__PURE__*/React.createElement("div", { style: { marginTop: 20 } },
-        [["I", "The wager worth making", "Desirable, feasible, viable \u2014 the overlap is the bet. Everything outside it dies in review, six sprints later than it should have."],
-         ["II", "The spiral", "Four moves in loops, every loop ending in front of a user. Research is a rhythm, not a phase."],
-         ["III", "The loop that never closes", "MVP, then version n. Shipping is the first honest data \u2014 what users do returns as the next brief."]
-        ].map((a, i) => /*#__PURE__*/React.createElement("div", { className: "bk-principle", key: i },
-          /*#__PURE__*/React.createElement("span", { className: "bk-principle__n" }, a[0]),
-          /*#__PURE__*/React.createElement("div", null,
-            /*#__PURE__*/React.createElement("h4", null, a[1]),
-            /*#__PURE__*/React.createElement("p", null, a[2]))))),
+      /*#__PURE__*/React.createElement("img", {
+        src: "../assets/visuals/method-book.svg",
+        alt: "The method in three acts: the wager (desirable, feasible, viable), the spiral of four moves, and the open loop from MVP to version n",
+        style: { width: "100%", maxWidth: 430, display: "block", margin: "22px 0 0" }
+      }),
       /*#__PURE__*/React.createElement("div", { className: "bk-note", style: { marginTop: 20 } },
         "the same shape on every project, whatever the industry")),
     right: /*#__PURE__*/React.createElement("div", { className: "bk-reveal" },
