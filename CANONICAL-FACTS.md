@@ -104,7 +104,32 @@ disclaimer, never in consecutive paragraphs.
 thesis may appear on the homepage and ONE case (AdTech) only. Each other page closes on its
 own beat.
 
-## 8. Housekeeping conventions
+## 8. The design process (canonical framing — added 2026-07-21)
+Arpit's process, reframed in the site's voice from his three-layer model. All surfaces
+(homepage band, /process page, portfolio PDF, book spread) use THESE names and this order:
+
+> **Every product is a series of bets someone else has to accept.** The process exists
+> to make each bet smaller, better-evidenced, and easier to say yes to.
+
+- **Act I — The wager worth making** (his Foundation): three questions before any pixel —
+  does the market actually want it (desirability) · can we actually build it (feasibility) ·
+  does it sustain a business (viability). The overlap is the product vision; everything
+  outside it is a feature that dies in review.
+- **Act II — The spiral** (his Engine): not a line, a spiral — 4 moves per loop, each loop
+  ending in front of a user: **Listen** (research, problem space) → **Structure** (journeys,
+  information architecture) → **Prove** (prototypes, low→high fidelity) → **Land** (visual
+  design, brand, tone). Research is a rhythm, not a phase.
+- **Act III — The loop that never closes** (his Execution): MVP → V1 → V2 → Vn. Shipping is
+  the first honest data — what users DO feeds back into the roadmap, and the spiral keeps
+  turning after launch.
+- **Philosophy line (verbatim on all surfaces):** "Design is an upward spiral: every turn
+  reduces risk and raises the odds of adoption. Confidence is earned in loops, not declared
+  in launches." (Ties the process to the trust-layer thesis.)
+
+Rules: never present as a stock double-diamond; no fabricated loop counts for specific
+projects; case references stay qualitative (e.g., Act/Review/Ignore was born in a Listen loop).
+
+## 9. Housekeeping conventions
 - **Cache version (bump on every change so visitors see updates):** classic pages use
   `styles.css?v=pNN` (now **p20**); book uses `book.css?v=NN` (**41**) and `portfolio.js?v=NN` (**69**).
 - **Analytics:** Google Analytics ID `G-PFY6ME99K8` (same across all pages).

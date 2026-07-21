@@ -1224,35 +1224,41 @@ function buildBook(ctx) {
     pg: "p. ii",
     to: 2
   }, {
+    n: "\u2014",
+    name: "The Method",
+    sub: "How the work gets made",
+    pg: "p. iv",
+    to: 3
+  }, {
     n: "I",
     name: "Selected Work",
     sub: "Case studies",
     pg: "p. 2",
-    to: 3
+    to: 4
   }, {
     n: "II",
     name: "A Field Guide to Trust",
     sub: "AI UX patterns",
     pg: "p. 4",
-    to: 4
+    to: 5
   }, {
     n: "III",
     name: "Notes & Writing",
     sub: "Essays, talks, field notes",
     pg: "p. 6",
-    to: 5
+    to: 6
   }, {
     n: "IV",
     name: "Curriculum Vitæ",
     sub: "The printable appendix",
     pg: "p. 8",
-    to: 6
+    to: 7
   }, {
     n: "V",
     name: "Contact",
     sub: "Write to me — let's talk",
     pg: "p. 10",
-    to: 7
+    to: 8
   }];
   const ptcA = caseSpreadA(CASES.ptc),
     ptcB = caseSpreadB(CASES.ptc);
@@ -1432,6 +1438,43 @@ function buildBook(ctx) {
     }, /*#__PURE__*/React.createElement("span", {
       className: "bk-principle__n"
     }, String(i + 1).padStart(2, "0")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, p.h), /*#__PURE__*/React.createElement("p", null, p.p))))))
+  }, /* 2b · The Method (front matter) */
+  {
+    kind: "spread",
+    runheadL: VERSO,
+    runheadR: "The Method",
+    folioL: "iv",
+    folioR: "v",
+    left: /*#__PURE__*/React.createElement("div", { className: "bk-reveal" },
+      /*#__PURE__*/React.createElement("div", { className: "bk-kicker" }, "The Method"),
+      /*#__PURE__*/React.createElement("p", { className: "bk-lede bk-drop", style: { marginTop: 14 } },
+        "Every product is a series of bets someone else has to accept. The process isn\u2019t a ritual for making screens \u2014 it\u2019s a machine for making each bet ",
+        /*#__PURE__*/React.createElement("span", { className: "bk-mark" }, "smaller, better-evidenced, and easier to say yes to"), "."),
+      /*#__PURE__*/React.createElement("div", { style: { marginTop: 20 } },
+        [["I", "The wager worth making", "Desirable, feasible, viable \u2014 the overlap is the bet. Everything outside it dies in review, six sprints later than it should have."],
+         ["II", "The spiral", "Four moves in loops, every loop ending in front of a user. Research is a rhythm, not a phase."],
+         ["III", "The loop that never closes", "MVP, then version n. Shipping is the first honest data \u2014 what users do returns as the next brief."]
+        ].map((a, i) => /*#__PURE__*/React.createElement("div", { className: "bk-principle", key: i },
+          /*#__PURE__*/React.createElement("span", { className: "bk-principle__n" }, a[0]),
+          /*#__PURE__*/React.createElement("div", null,
+            /*#__PURE__*/React.createElement("h4", null, a[1]),
+            /*#__PURE__*/React.createElement("p", null, a[2]))))),
+      /*#__PURE__*/React.createElement("div", { className: "bk-note", style: { marginTop: 20 } },
+        "the same shape on every project, whatever the industry")),
+    right: /*#__PURE__*/React.createElement("div", { className: "bk-reveal" },
+      /*#__PURE__*/React.createElement("div", { className: "bk-kicker" }, "The four moves of the spiral"),
+      /*#__PURE__*/React.createElement("div", { style: { marginTop: 14 } },
+        [["01", "Listen", "Research the problem space in its own words, not mine. Act / Review / Ignore was born here \u2014 watching traders override a correct model."],
+         ["02", "Structure", "Journeys and information architecture: what the product is, before what it looks like."],
+         ["03", "Prove", "Prototypes from paper-rough to production-real \u2014 each one a question wearing an interface."],
+         ["04", "Land", "Visual design, brand, tone \u2014 the layer people mistake for the whole job."]
+        ].map((m, i) => /*#__PURE__*/React.createElement("div", { className: "bk-principle", key: i },
+          /*#__PURE__*/React.createElement("span", { className: "bk-principle__n" }, m[0]),
+          /*#__PURE__*/React.createElement("div", null,
+            /*#__PURE__*/React.createElement("h4", null, m[1]),
+            /*#__PURE__*/React.createElement("p", null, m[2]))))),
+      /*#__PURE__*/React.createElement("p", { className: "bk-lede", style: { marginTop: 20, fontStyle: "italic" } },
+        "\u201CConfidence is earned in loops, not declared in launches.\u201D"))
   }, /* 4 · CHAPTER I — SELECTED WORK (hub) */
   {
     kind: "spread",
@@ -2524,18 +2567,18 @@ function App() {
     }, {
       label: "Work",
       color: "var(--bk-ember)",
-      i: 3
+      i: 4
     }, {
       label: "Guide",
       color: "var(--bk-pine)",
-      i: 4
+      i: 5
     }, {
       label: "Contact",
       color: "var(--bk-ochre)",
-      i: 7
+      i: 8
     }];
     // which tab reads as active: in a section, light its hub; else the spine spread
-    const activeTab = inSection ? loc.deck === "cases" ? 3 : loc.deck === "patterns" ? 4 : -1 : curSpread;
+    const activeTab = inSection ? loc.deck === "cases" ? 4 : loc.deck === "patterns" ? 5 : -1 : curSpread;
     const onCover = !inSection && curSpread === 0;
     const thumbTabs = onCover ? null : /*#__PURE__*/React.createElement("div", {
       className: "bk-thumbtabs"
