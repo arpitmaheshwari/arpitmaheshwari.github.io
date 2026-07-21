@@ -129,7 +129,19 @@ Arpit's process, reframed in the site's voice from his three-layer model. All su
 Rules: never present as a stock double-diamond; no fabricated loop counts for specific
 projects; case references stay qualitative (e.g., Act/Review/Ignore was born in a Listen loop).
 
-## 9. Housekeeping conventions
+## 9. SURFACE FREEZE (2026-07-21 — recruiter audit #2)
+**No new pages or surfaces without retiring one.** The estate is complete: home, /hire,
+/screen, /process, /patterns, /folio, /book, writing. Every future improvement goes INTO
+an existing surface, never beside it. The remaining gaps are evidence, not architecture:
+process video, named quotes for the AI metrics, LinkedIn parity, domain email.
+
+**Provenance captions (locked wording):** AdTech screens = "white-labelled" (true — client
+brand removed). FinTech screens = "AlphaDeals product UI, shown under its own name · synthetic
+data · client identity under NDA" (the product brand is public via Arpit's own materials;
+NEVER caption it "white-labelled"). Never claim a screen is something it isn't — provenance
+accuracy IS the positioning.
+
+## 10. Housekeeping conventions
 - **Cache version (bump on every change so visitors see updates):** classic pages use
   `styles.css?v=pNN` (now **p20**); book uses `book.css?v=NN` (**41**) and `portfolio.js?v=NN` (**69**).
 - **Analytics:** Google Analytics ID `G-PFY6ME99K8` (same across all pages).
