@@ -697,16 +697,42 @@ function Plate({
   wide,
   img
 }) {
+  const [zoom, setZoom] = React.useState(false);
+  React.useEffect(() => {
+    if (!zoom) return;
+    const h = e => {
+      if (e.key === "Escape") {
+        e.stopPropagation();
+        setZoom(false);
+      }
+    };
+    window.addEventListener("keydown", h, true);
+    return () => window.removeEventListener("keydown", h, true);
+  }, [zoom]);
   return /*#__PURE__*/React.createElement("div", {
     className: "bk-plate" + (redacted ? " bk-plate--redacted" : "") + (wide ? " bk-plate--wide" : "")
   }, /*#__PURE__*/React.createElement("div", {
     className: "bk-plate__img"
-  }, img ? /*#__PURE__*/React.createElement("img", {
+  }, img ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
     src: img,
     alt: cn,
     loading: "lazy",
-    style: { width: "100%", height: "100%", objectFit: "cover", display: "block" }
-  }) : redacted ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    role: "button",
+    tabIndex: 0,
+    title: "Click to enlarge",
+    onClick: () => setZoom(true),
+    onKeyDown: e => { if (e.key === "Enter") setZoom(true); },
+    style: { width: "100%", height: "100%", objectFit: "cover", display: "block", cursor: "zoom-in" }
+  }), zoom && /*#__PURE__*/React.createElement("div", {
+    role: "dialog",
+    "aria-label": (cn || "plate") + " \u2014 enlarged",
+    onClick: () => setZoom(false),
+    style: { position: "fixed", inset: 0, zIndex: 9999, background: "rgba(20,16,12,.92)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "zoom-out", padding: "3vh 3vw" }
+  }, /*#__PURE__*/React.createElement("img", {
+    src: img,
+    alt: cn,
+    style: { maxWidth: "94vw", maxHeight: "92vh", objectFit: "contain", borderRadius: 6, boxShadow: "0 24px 80px rgba(0,0,0,.6)" }
+  }))) : redacted ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "bk-plate__ph"
   }, ph), /*#__PURE__*/React.createElement("span", {
     className: "bk-stamp bk-stamp--r",
@@ -1788,7 +1814,15 @@ function buildBook(ctx) {
     }, STATUS.map((st, i) => /*#__PURE__*/React.createElement("span", {
       className: "bk-chip",
       key: i
-    }, st))), /*#__PURE__*/React.createElement("p", { style: { marginTop: 18, fontSize: 12.5, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "I design the trust layer of AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
+    }, st))), /*#__PURE__*/React.createElement("div", {
+      className: "bk-note",
+      style: { marginTop: 16 }
+    }, "prefer to talk first? ", /*#__PURE__*/React.createElement("a", {
+      href: "https://calendly.com/arpitmaheshwari",
+      target: "_blank",
+      rel: "noopener",
+      style: { color: "var(--bk-ember, #C0512B)" }
+    }, "book 30 minutes \u2197")), /*#__PURE__*/React.createElement("p", { style: { marginTop: 14, fontSize: 12.5, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "I design the trust layer of AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement(Device, {
       label: "fin.",
@@ -1810,7 +1844,10 @@ function buildBook(ctx) {
       style: {
         marginBottom: 14
       }
-    }, "No public email — this form lands straight in my inbox. A line about the role and the stage, or just a link. I reply within 48 hours."), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
+    }, "A line about the role and the stage, or just a link — I reply within 48 hours. Prefer email? ", /*#__PURE__*/React.createElement("a", {
+      href: "mailto:maheshwari.arpit88@gmail.com?subject=Role%20for%20Arpit",
+      style: { color: "var(--bk-ember, #C0512B)" }
+    }, "maheshwari.arpit88@gmail.com")), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: { marginTop: "auto", textAlign: "center", paddingTop: 16 }
     }, "thanks for reading to the end ♥"))
@@ -2410,6 +2447,28 @@ function App() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [goIndex, stepMobile, exitSection]);
+
+  // in-book deep links: a hash change navigates instead of dying silently
+  useEffect(() => {
+    const onHash = () => {
+      const m = /^#(spine|cases|patterns)-(\d+)$/.exec(window.location.hash || "");
+      if (!m) return;
+      const nl = { deck: m[1], i: Math.max(0, parseInt(m[2], 10) || 0) };
+      const cur = locRef.current;
+      if (nl.deck === cur.deck && nl.i === cur.i) return;
+      setOpened(true);
+      if (animating.current) return;
+      if (nl.deck === "spine") {
+        if (cur.deck !== "spine") changeLevel(nl, "out");
+        else if (mobileRef.current) { setLoc(nl); persist(nl); setMDir(1); setMLeaf(firstPageOf("spine", nl.i)); }
+        else goIndex(nl.i);
+      } else {
+        changeLevel(nl, "in");
+      }
+    };
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, [goIndex]);
   useLayoutEffect(() => {
     if (mobile) return;
     const fit = () => {
