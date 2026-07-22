@@ -2410,25 +2410,27 @@ function App() {
     } catch (e) {}
     setOpened(true);
     if (reduce()) {
-      // reduced motion: skip the swing, go straight to the first spread
+      // reduced motion: skip the animation, go straight to the first spread
       go(1);
       return;
     }
-    setOpening(true); // adds .is-open → cover rotates ~162deg off the spine
     animating.current = true;
-    // hold the open cover for the full swing, then reveal the first spread in
-    // one move (set loc directly so the cover never snaps flat again)
+    // Clean lift + reveal: mount the first spread IMMEDIATELY (so there is a real page
+    // underneath — no empty flash, no hard blink), then let the cover overlay fade + lift
+    // away over it while the spread fades in. `opening` keeps the overlay mounted for the
+    // dissolve; the width change (cover 620 → spread 1180) is hidden inside the cross-fade.
+    const nl = {
+      deck: "spine",
+      i: 1
+    };
+    setLoc(nl);
+    persist(nl);
+    setMLeaf(firstPageOf("spine", 1));
+    setOpening(true);
     setTimeout(() => {
-      const nl = {
-        deck: "spine",
-        i: 1
-      };
-      setLoc(nl);
-      persist(nl);
-      setMLeaf(firstPageOf("spine", 1));
       setOpening(false);
       animating.current = false;
-    }, 900);
+    }, 660);
   }, [opening, go]);
   openRitualRef.current = openRitual; // keep the ref current so goIndex always calls the live handler
 
@@ -2728,11 +2730,14 @@ function App() {
       key: zoom.key,
       "data-z": zoom.dir || undefined
     }, /*#__PURE__*/React.createElement("div", {
-      className: "bk-book" + (inSection ? " bk-book--deep" : "") + (ritual ? " bk-openbook" : "") + (ritual && opening ? " is-open" : ""),
+      className: "bk-book" + (inSection ? " bk-book--deep" : "") + (ritual ? " bk-openbook" : "") + (opening ? " is-opening" : ""),
       style: {
         transform: `scale(${scale})`
       }
-    }, inner, thumbTabs)), /*#__PURE__*/React.createElement("button", {
+    }, inner, opening && /*#__PURE__*/React.createElement("div", {
+      className: "bk-coverlift",
+      "aria-hidden": "true"
+    }, book.spine[0].cover), thumbTabs)), /*#__PURE__*/React.createElement("button", {
       className: "bk-menu-btn",
       onClick: () => setMenu(true),
       "aria-label": "Open chapter menu"
