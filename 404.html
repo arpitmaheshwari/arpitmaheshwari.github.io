@@ -3,40 +3,109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Page Not Found — Arpit Maheshwari</title>
-<meta name="description" content="The page you're looking for doesn't exist. Return to the portfolio.">
+<title>404 — A failure state, by design · Arpit Maheshwari</title>
+<meta name="description" content="The page you asked for doesn't exist — and this one won't pretend otherwise. A 404 that demonstrates the AI failure-state pattern it's named after.">
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://arpitmaheshwari.com/">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0A0A'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='300' fill='%23D4A85E'%3EAM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&display=swap" media="print" onload="this.media='all';this.onload=null">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-:root{--bg:#0A0A0A;--ink:#F2EDE4;--ink-muted:rgba(242,237,228,0.5);--gold:#D4A85E;--border:rgba(255,255,255,0.07);--ff-display:'Cormorant Garamond',Georgia,serif;--ff-mono:'DM Mono',monospace;--ff-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
-body{background:var(--bg);color:var(--ink);font-family:var(--ff-sans);line-height:1.7}
-main{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px 48px;text-align:center;max-width:600px;margin:0 auto}
-h1{font-family:var(--ff-display);font-size:120px;font-weight:300;line-height:1;color:var(--gold);margin-bottom:24px}
-p{font-size:16px;color:var(--ink-muted);margin-bottom:20px;line-height:1.8}
-a{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:32px;padding:16px 32px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:14px;border-radius:2px;text-decoration:none;transition:background 0.3s,transform 0.2s}
-a:hover{background:#E8C88A;transform:translateY(-2px)}
-footer{border-top:1px solid var(--border);padding:40px 48px;text-align:center;font-family:var(--ff-mono);font-size:11px;color:var(--ink-muted);letter-spacing:0.1em;text-transform:uppercase}
+  :root{
+    --bg:#0A0A0A; --ink:#F2EDE4; --ink-muted:rgba(242,237,228,0.62);
+    --ink-dim:rgba(242,237,228,0.4); --gold:#D4A85E; --gold-light:#E8C88A;
+    --gold-dark:#A07835; --border:rgba(255,255,255,0.09); --terra:#C0512B;
+    --ff-display:'Newsreader',Georgia,serif; --ff-sans:'IBM Plex Sans',system-ui,sans-serif;
+    --ff-mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;overflow-x:hidden}
+  body{background:var(--bg);color:var(--ink);font-family:var(--ff-sans);line-height:1.7;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    max-width:640px;margin:0 auto;padding:72px 32px 40px;position:relative}
+
+  /* ghost numeral behind the message — the same device as the portfolio chapter marks */
+  .ghost{position:absolute;top:50%;left:50%;transform:translate(-50%,-58%);
+    font-family:var(--ff-display);font-weight:300;font-size:clamp(220px,42vw,420px);
+    line-height:1;color:transparent;-webkit-text-stroke:1px rgba(212,168,94,0.13);
+    text-stroke:1px rgba(212,168,94,0.13);pointer-events:none;user-select:none;z-index:0;white-space:nowrap}
+
+  .content{position:relative;z-index:1}
+  .kick{font-family:var(--ff-mono);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;
+    color:var(--gold-dark);margin-bottom:22px}
+  h1{font-family:var(--ff-display);font-weight:300;font-size:clamp(30px,5vw,44px);
+    line-height:1.18;letter-spacing:-0.01em;margin-bottom:22px}
+  h1 em{font-style:italic;color:var(--gold)}
+  .lede{font-size:15.5px;color:var(--ink-muted);line-height:1.85;max-width:52ch;margin-bottom:14px}
+
+  /* the confidence readout — a live nod to the confidence-score + abstention patterns */
+  .meter{margin:30px 0 36px;max-width:420px}
+  .meter__row{display:flex;justify-content:space-between;align-items:baseline;
+    font-family:var(--ff-mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--ink-dim);margin-bottom:9px}
+  .meter__val{color:var(--gold);font-size:12px}
+  .meter__track{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden}
+  .meter__fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-dark),var(--gold));
+    border-radius:2px;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+
+  .actions{display:flex;flex-wrap:wrap;gap:14px 18px;align-items:center;margin-top:4px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;background:var(--gold);
+    color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:13.5px;
+    letter-spacing:0.01em;border-radius:2px;text-decoration:none;transition:background .25s,transform .2s}
+  .btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+  .inline-links{font-size:13.5px;color:var(--ink-muted)}
+  .inline-links a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark);
+    padding-bottom:1px;transition:color .2s,border-color .2s}
+  .inline-links a:hover{color:var(--gold-light);border-color:var(--gold-light)}
+
+  .meta-note{margin-top:40px;padding-top:22px;border-top:1px solid var(--border);
+    font-size:13px;color:var(--ink-dim);line-height:1.8;max-width:54ch}
+  .meta-note a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark);
+    padding-bottom:1px}
+  .meta-note a:hover{color:var(--gold-light)}
+  footer{position:relative;z-index:1;text-align:left;max-width:640px;margin:24px auto 0;
+    padding:0 32px;font-family:var(--ff-mono);font-size:10px;color:var(--ink-dim);
+    letter-spacing:0.12em;text-transform:uppercase}
+
+  @media (prefers-reduced-motion:reduce){.meter__fill{transition:none}}
 </style>
 </head>
 <body>
-<main>
-<h1>404</h1>
-<p>Lost in the index.</p>
-<p style="font-size:14px">This page doesn't exist. Here's where to pick the thread back up:</p>
-<a href="/">Back to home</a>
-<p style="margin-top:24px;font-size:13px;color:var(--ink-muted);line-height:2">Or go straight to
-<a href="/index.html?view=classic#featured-case-studies" style="display:inline;background:none;color:var(--gold);padding:0;margin:0;font-weight:600;border-radius:0;text-decoration:underline;text-underline-offset:3px">the work</a> ·
-<a href="/book/" style="display:inline;background:none;color:var(--gold);padding:0;margin:0;font-weight:600;border-radius:0;text-decoration:underline;text-underline-offset:3px">the book edition</a> ·
-<a href="/index.html?view=classic" style="display:inline;background:none;color:var(--gold);padding:0;margin:0;font-weight:600;border-radius:0;text-decoration:underline;text-underline-offset:3px">the classic site</a></p>
-</main>
-<footer>© 2026 Arpit Maheshwari</footer>
+<div class="wrap">
+  <div class="ghost" aria-hidden="true">404</div>
+  <div class="content">
+    <p class="kick">Error 404 · a failure state, by design</p>
+    <h1>You asked for a page I don't have.<br>So I <em>won't pretend</em> I do.</h1>
+    <p class="lede">Designing the wrong-answer screen first is a habit here — the same one I build into AI products, where a confident guess about something that isn't there costs a real person real money. A dead link is just a model with no answer. The honest move is the same: say so plainly, then make getting back cheap.</p>
+
+    <div class="meter" role="img" aria-label="Confidence this page exists: zero percent.">
+      <div class="meter__row"><span>Confidence this page exists</span><span class="meter__val" id="pct">0%</span></div>
+      <div class="meter__track"><div class="meter__fill" id="fill"></div></div>
+    </div>
+
+    <div class="actions">
+      <a class="btn" href="/">← Back to the front door</a>
+      <span class="inline-links">or jump to <a href="/index.html?view=classic#featured-case-studies">the work</a> · <a href="/book/">the book</a> · <a href="/patterns/">the patterns</a></span>
+    </div>
+
+    <p class="meta-note">Not lost on you, I hope: this page is a live demo of one of the eight patterns in my library — <a href="/patterns/ai-failure-states.html">AI Failure States</a>. If a broken link can be designed with a straight face, so can a model that doesn't know the answer.</p>
+  </div>
+</div>
+<footer>© 2026 Arpit Maheshwari · The Trust Layer</footer>
+<script>
+  // The confidence readout settles honestly at ~0 — the one thing this page is certain of.
+  (function () {
+    var fill = document.getElementById('fill');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { fill.style.width = '2%'; return; }
+    // brief flicker of false hope, then the honest answer: it settles to near-zero
+    requestAnimationFrame(function () {
+      fill.style.width = '38%';
+      setTimeout(function () { fill.style.width = '2%'; }, 620);
+    });
+  })();
+</script>
 </body>
 </html>
