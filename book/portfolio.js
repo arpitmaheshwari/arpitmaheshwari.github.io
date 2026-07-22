@@ -698,36 +698,49 @@ function Plate({
   img
 }) {
   const [zoom, setZoom] = React.useState(false);
+  const dlgRef = React.useRef(null);
+  const returnRef = React.useRef(null);
   React.useEffect(() => {
     if (!zoom) return;
+    returnRef.current = document.activeElement;
+    if (dlgRef.current) dlgRef.current.focus();
     const h = e => {
       if (e.key === "Escape") {
         e.stopPropagation();
         setZoom(false);
+      } else if (e.key === "Tab") {
+        e.preventDefault(); // nothing else to tab to — the dialog is the only stop
       }
     };
     window.addEventListener("keydown", h, true);
-    return () => window.removeEventListener("keydown", h, true);
+    return () => {
+      window.removeEventListener("keydown", h, true);
+      if (returnRef.current && returnRef.current.focus) returnRef.current.focus();
+    };
   }, [zoom]);
   return /*#__PURE__*/React.createElement("div", {
     className: "bk-plate" + (redacted ? " bk-plate--redacted" : "") + (wide ? " bk-plate--wide" : "")
   }, /*#__PURE__*/React.createElement("div", {
     className: "bk-plate__img"
-  }, img ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
+  }, img ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    "aria-label": "Enlarge: " + (cn || "screenshot"),
+    onClick: () => setZoom(true),
+    style: { all: "unset", display: "block", width: "100%", height: "100%", cursor: "zoom-in", boxSizing: "border-box" }
+  }, /*#__PURE__*/React.createElement("img", {
     src: img,
     alt: cn,
     loading: "lazy",
-    role: "button",
-    tabIndex: 0,
     title: "Click to enlarge",
-    onClick: () => setZoom(true),
-    onKeyDown: e => { if (e.key === "Enter") setZoom(true); },
-    style: { width: "100%", height: "100%", objectFit: "cover", display: "block", cursor: "zoom-in" }
-  }), zoom && /*#__PURE__*/React.createElement("div", {
+    style: { width: "100%", height: "100%", objectFit: "cover", display: "block" }
+  })), zoom && /*#__PURE__*/React.createElement("div", {
     role: "dialog",
-    "aria-label": (cn || "plate") + " \u2014 enlarged",
+    "aria-modal": "true",
+    "aria-label": (cn || "plate") + " \u2014 enlarged. Escape or click to close.",
+    tabIndex: -1,
+    ref: dlgRef,
     onClick: () => setZoom(false),
-    style: { position: "fixed", inset: 0, zIndex: 9999, background: "rgba(20,16,12,.92)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "zoom-out", padding: "3vh 3vw" }
+    style: { position: "fixed", inset: 0, zIndex: 9999, background: "rgba(20,16,12,.92)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "zoom-out", padding: "3vh 3vw", outline: "none" }
   }, /*#__PURE__*/React.createElement("img", {
     src: img,
     alt: cn,
@@ -1821,7 +1834,7 @@ function buildBook(ctx) {
       href: "https://calendly.com/arpitmaheshwari",
       target: "_blank",
       rel: "noopener",
-      style: { color: "var(--bk-ember, #C0512B)" }
+      style: { color: "var(--bk-ember-ink, #B04A24)" }
     }, "book 30 minutes \u2197")), /*#__PURE__*/React.createElement("p", { style: { marginTop: 14, fontSize: 12.5, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "I design the trust layer of AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement(Device, {
@@ -1846,7 +1859,7 @@ function buildBook(ctx) {
       }
     }, "A line about the role and the stage, or just a link — I reply within 48 hours. Prefer email? ", /*#__PURE__*/React.createElement("a", {
       href: "mailto:maheshwari.arpit88@gmail.com?subject=Role%20for%20Arpit",
-      style: { color: "var(--bk-ember, #C0512B)" }
+      style: { color: "var(--bk-ember-ink, #B04A24)" }
     }, "maheshwari.arpit88@gmail.com")), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: { marginTop: "auto", textAlign: "center", paddingTop: 16 }

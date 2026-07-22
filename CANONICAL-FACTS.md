@@ -91,6 +91,13 @@ Use real names + titles, verbatim quotes. Current placements:
 - **Classic** (`/`) — the search-engine surface + scrolling read. Dark "screen" identity:
   near-black `#0A0A0A` + gold `#D4A85E`, Fraunces/Inter Tight type.
 - They look different **on purpose**. Both must tell the **same facts** (this file) in their own voice.
+- **Accessible text tokens (2026-07-22 — measured, not vibes; all body-size text ≥4.5:1):**
+  Book: `--bk-ember-ink #B04A24` and `--bk-ochre-ink #8F5E10` for body-size text; the original
+  ember/ochre stay for backgrounds and large display (≥24px) only. Documents (PDF + resume):
+  captions/dim `#6F6350` (4.99:1), gold kickers/dates `#8A6423` (4.55:1) on cream `#F4ECDA`.
+  Diagram SVGs use the same. Caption rule: sentence case beyond ~40 chars, ≥8pt in documents.
+  If you add a new text color, run the contrast math BEFORE shipping — the classic site's
+  tokens already pass and must stay passing.
 
 ## 7. The narrative spine (every page is a chapter of ONE argument)
 
