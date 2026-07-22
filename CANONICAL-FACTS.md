@@ -72,6 +72,12 @@ Facts that stay: quietness score 1-10, the mascot, warm palette, London Undergro
 Rail footfall data, ~1,000 monthly visitors / 250 active users (honest small scale), zero-complaints
 claim REMOVED earlier (keep removed). Surfaces: portfolio PDF (currently "Coda · Side Project" — fix).
 
+### O2 evidence (updated 2026-07-22)
+Primary O2 imagery on all surfaces = **MyO2 self-service app screens** (home, minutes/data
+allowances) — Arpit's own files, the genuine 4M-user product. File: assets/shots/o2-app-screens.png.
+The earlier Internet Archive capture (o2-mobile-2013.png) was REMOVED at Arpit's instruction once
+the real app screens arrived. Caption everywhere: "MyO2 self-service app · the 4M-user account area".
+
 ### O2 honesty note (important)
 The launch-era O2 figures (July 2011 launch, £6m campaign, 2.6M year-one, 5★) are **O2's public facts**,
 not personal KPIs. I joined the Priority programme in **2013** (within my Equal Experts tenure, 2012–14)
