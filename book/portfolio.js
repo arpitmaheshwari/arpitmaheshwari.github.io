@@ -2318,6 +2318,7 @@ function App() {
     }, "out");
   }, []);
 
+  const openRitualRef = useRef(null); // points at the latest openRitual; lets goIndex route cover-opens through the swing without a definition-order/stale-closure trap
   // ---- lateral flip within the current deck (desktop) ----
   const goIndex = useCallback(target => {
     if (animating.current) return;
@@ -2329,6 +2330,13 @@ function App() {
       return;
     }
     if (target === l.i) return;
+    // opening from the cover: route EVERY forward affordance (right arrow, → key,
+    // the "Open" button) through the same cover swing that clicking the cover body plays.
+    // Without this they hit the instant-swap branch below and skip the flip entirely.
+    if (l.deck === "spine" && l.i === 0 && target === 1 && !mobileRef.current && !reduce() && openRitualRef.current) {
+      openRitualRef.current();
+      return;
+    }
     const coverInvolved = l.deck === "spine" && (l.i === 0 || target === 0);
     if (coverInvolved || reduce()) {
       animating.current = true;
@@ -2422,6 +2430,7 @@ function App() {
       animating.current = false;
     }, 900);
   }, [opening, go]);
+  openRitualRef.current = openRitual; // keep the ref current so goIndex always calls the live handler
 
   // ---- mobile paging ----
   const stepMobile = useCallback(dir => {
