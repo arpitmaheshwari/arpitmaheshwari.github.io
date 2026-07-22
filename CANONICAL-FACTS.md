@@ -62,6 +62,14 @@ for the redo; the honest arc IS the value.
 - VC diligence: usability testing with investment analysts.
 - Trader-observation counts/quotes for the Act/Review/Ignore origin: STILL UNKNOWN — do not invent.
 
+### PlanIt correction (2026-07-22 — Arpit's own account; supersedes "side project" framing)
+PlanIt (planitnow.co.uk, 2021, now deprecated) was **NOT a side project**. It was a **main client
+project**, built for the client by **leveraging the data generated from the AdTech platform**
+(the footfall/audience data). Never call it a side project, personal project, or coda again.
+Facts that stay: quietness score 1-10, the mascot, warm palette, London Underground + National
+Rail footfall data, ~1,000 monthly visitors / 250 active users (honest small scale), zero-complaints
+claim REMOVED earlier (keep removed). Surfaces: portfolio PDF (currently "Coda · Side Project" — fix).
+
 ### O2 honesty note (important)
 The launch-era O2 figures (July 2011 launch, £6m campaign, 2.6M year-one, 5★) are **O2's public facts**,
 not personal KPIs. I joined the Priority programme in **2013** (within my Equal Experts tenure, 2012–14)

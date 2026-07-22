@@ -201,7 +201,7 @@ const CASES = {
 /* ---- NDA WALK-THROUGHS (the three under-NDA projects, redacted) ---- */
 const NDA_CASES = [{
   no: "02",
-  img: "../assets/visuals/case-o2.svg",
+  img: "../assets/shots/o2-mobile-2013.png",
   tag: "Telecom · Non-NDA",
   redacted: false,
   ph: "MyO2 account dashboard + Priority Moments rewards — O2 UK mobile web",
@@ -220,7 +220,7 @@ const NDA_CASES = [{
     p: "MyO2 is a utility; Priority is a habit. Both on mobile web under a top UK brand, where small things stop being small — a tap target, a spinner, an exact billing figure lands on a stadium at once. The outcome figures are public, reported by O2 and Equal Experts. The claim is the work."
   }],
   plateNo: "2.1",
-  plateCn: "MyO2 self-service + Priority Moments rewards — mobile web",
+  plateCn: "O2 mobile web, April 2013 — via the Internet Archive; account & reward screens lived behind login",
   ledger: [{
     v: "4M+",
     l: "MyO2 users served"
