@@ -4,27 +4,40 @@
    renders on the live site. ~200 lines (was 340).
    ============================================================ */
 
-/* ----- Design tokens ----- */
+/* ----- Design tokens (see DESIGN-SYSTEM.md — single source of truth) ----- */
 :root{
   --bg:#0A0A0A;
   --bg-soft:#111111;
   --bg-card:#141414;
   --border:rgba(255,255,255,0.07);
   --border-accent:rgba(212,168,94,0.3);
+  --hairline:rgba(212,168,94,0.22);
   --ink:#F2EDE4;
   --ink-muted:rgba(242,237,228,0.62);
-  --ink-dim:rgba(242,237,228,0.6);
+  --ink-dim:rgba(242,237,228,0.62);   /* retired alias of --ink-muted */
   --gold:#D4A85E;
   --gold-light:#E8C88A;
   --gold-dark:#A07835;
   --copper:#4A6B5C;
   --copper-light:#6B8A7C;
-  --ff-display:'Newsreader','Cormorant Garamond',Georgia,serif;
-  --ff-serif:'Fraunces','Cormorant Garamond',Georgia,serif;
+  --ok:#5ED48E; --warn:#E8C88A; --err:#E0736B;   /* semantic status (wireframes) */
+  /* Newsreader is the ONE display serif; Fraunces/Cormorant were never loaded (silent Georgia fallback) */
+  --ff-display:'Newsreader',Georgia,serif;
+  --ff-serif:'Newsreader',Georgia,serif;
   --ff-sans:'IBM Plex Sans','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --ff-mono:'IBM Plex Mono','DM Mono',monospace;
   --ease-out:cubic-bezier(0.16,1,0.3,1);
+  /* Type scale (Option C) — one ramp, every element maps to one step */
+  --fs-eyebrow:12px; --fs-caption:13px; --fs-ui:14px; --fs-body:16px;
+  --fs-lead:21px; --fs-card:24px;
+  --fs-title:clamp(24px,3.2vw,31px); --fs-title-lg:clamp(28px,3.6vw,39px);
+  --fs-hero:clamp(36px,5.5vw,52px); --fs-display-xl:clamp(44px,6vw,64px);
+  --fs-metric:clamp(38px,4.4vw,48px); --fs-metric-sm:24px;
+  /* Rhythm + geometry */
+  --section-y:90px; --page-x:64px; --inner-max:1180px; --measure:62ch; --radius:4px;
 }
+@media(max-width:900px){:root{--section-y:64px;--page-x:32px}}
+@media(max-width:600px){:root{--section-y:48px;--page-x:24px}}
 
 /* ----- Reset + base ----- */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -85,7 +98,7 @@ nav.scrolled{background:rgba(10,10,10,.92);backdrop-filter:blur(16px);padding:16
 #hero{display:flex;flex-direction:column;justify-content:center;padding:104px 48px 92px;position:relative;overflow:visible}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 70% 30%,rgba(212,168,94,.06) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(212,168,94,.04) 0%,transparent 60%);pointer-events:none;z-index:0}
 .hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%)}
-.hero-headline{font-family:var(--ff-display);font-weight:300;font-size:clamp(36px,4.8vw,64px);line-height:1.12;letter-spacing:-.02em;margin-bottom:32px;max-width:none;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual}
+.hero-headline{font-family:var(--ff-display);font-weight:300;font-size:var(--fs-hero);line-height:1.12;letter-spacing:-.02em;margin-bottom:32px;max-width:none;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual}
 .hero-headline .line{display:block}
 /* Hero text visible immediately (LCP optimization), animation enhances entry */
 .hero-headline .line-inner{display:block;white-space:nowrap;opacity:0;transform:translateY(20px);animation:slideUp .5s var(--ease-out) forwards}
@@ -95,13 +108,36 @@ nav.scrolled{background:rgba(10,10,10,.92);backdrop-filter:blur(16px);padding:16
 .hero-headline em{font-style:italic;color:var(--gold)}
 
 /* ----- Section scaffolding ----- */
-.section{padding:120px 48px;border-top:1px solid rgba(212,168,94,.22)}
-.section-inner{max-width:1280px;margin:0 auto}
+.section{padding:var(--section-y) var(--page-x);border-top:1px solid var(--hairline)}
+.section-inner{max-width:var(--inner-max);margin:0 auto}
+
+/* ===== DESIGN SYSTEM — section grammar (see DESIGN-SYSTEM.md §6) =====
+   Every section, every surface: .eyebrow + .section-title. One scale, one grammar. */
+.eyebrow{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin:0;display:flex;align-items:center;gap:14px}
+.eyebrow--rule::before{content:'';width:26px;height:1px;background:var(--gold);flex:none}
+.section-title{font-family:var(--ff-display);font-weight:400;font-size:var(--fs-title);line-height:1.15;letter-spacing:-.01em;color:var(--ink);margin:14px 0 0;max-width:24ch}
+.section-title--lg{font-size:var(--fs-title-lg);line-height:1.12;letter-spacing:-.015em}
+.section-head{margin-bottom:36px}
+.section-head .section-title{max-width:28ch}
+.lead{font-family:var(--ff-display);font-weight:300;font-size:var(--fs-lead);line-height:1.4;color:var(--ink);max-width:46ch}
+.card-title{font-family:var(--ff-display);font-weight:400;font-size:var(--fs-card);line-height:1.3;letter-spacing:-.005em;color:var(--ink);margin:0}
+.metric-num{font-family:var(--ff-display);font-weight:300;font-size:var(--fs-metric);line-height:.92;letter-spacing:-.02em;color:var(--gold);font-variant-numeric:tabular-nums lining-nums}
+.u-body{font-family:var(--ff-sans);font-size:var(--fs-body);line-height:1.7;color:var(--ink-muted);max-width:var(--measure)}
+.u-ui{font-family:var(--ff-sans);font-size:var(--fs-ui);line-height:1.6;color:var(--ink-muted)}
+
+/* Governed cream 'act' — dark base, cream peak. ONLY the receipts + one-idea bands. */
+.act-cream{
+  --ink:#20180C; --ink-muted:#6E6250; --gold:#8A6423; --gold-dark:#8A6423; --gold-light:#6E4E1C;
+  --border:rgba(32,24,12,.16); --border-accent:rgba(138,100,35,.5); --hairline:rgba(32,24,12,.14);
+  --bg:#F1E8D6; --bg-card:#EAE0CA;
+  background:var(--bg); color:var(--ink); border-top:none;
+}
+.act-cream .metric-num{color:var(--ink)}
 .section-label{font-family:var(--ff-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:60px;display:flex;align-items:center;gap:16px}
 .section-label::before{content:'';width:32px;height:1px;background:var(--gold)}
 .section-numeral{display:flex;align-items:center;gap:14px;margin-bottom:40px;font-variant-numeric:tabular-nums lining-nums}
 .section-numeral::before{content:'';width:26px;height:1px;background:var(--gold);flex:none}
-.section-numeral-name{font-family:var(--ff-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:500;margin:0;font-variant-numeric:tabular-nums lining-nums}
+.section-numeral-name{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);font-weight:500;margin:0;font-variant-numeric:tabular-nums lining-nums}
 /* Editorial sidehead: label sits in a left gutter, content fills a readable measure beside it — the empty horizontal space becomes structured margin, not a void */
 .section-inner.editorial{display:grid;grid-template-columns:170px minmax(0,760px);gap:clamp(36px,5vw,72px);justify-content:center;align-items:start}
 .section-inner.editorial .section-numeral{margin:0;padding-top:6px}
@@ -115,8 +151,7 @@ a.thought-card{padding:36px;border:1px solid var(--border);border-radius:4px;bac
 a.thought-card:hover{border-color:var(--border-accent);transform:translateY(-4px)}
 a.thought-card.featured{background:var(--bg-soft)}
 .thought-tag{font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-.thought-title{font-family:var(--ff-display);font-size:22px;font-weight:400;line-height:1.35;margin-bottom:12px;letter-spacing:-0.01em;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual}
-a.thought-card.featured .thought-title{font-size:28px;letter-spacing:-0.012em}
+.thought-title{font-family:var(--ff-display);font-size:var(--fs-card);font-weight:400;line-height:1.3;margin-bottom:12px;letter-spacing:-0.005em;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual}
 .thought-excerpt{font-size:13px;color:var(--ink-muted);line-height:1.7;margin-bottom:24px;font-variant-numeric:proportional-nums lining-nums}
 .thought-meta{font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:var(--ink-dim);display:flex;align-items:center;gap:16px;font-variant-numeric:tabular-nums lining-nums}
 
@@ -173,7 +208,6 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 /* ----- Responsive: tablet (769px–1024px) ----- */
 @media(min-width:769px) and (max-width:1024px){
   nav{padding:20px 32px}
-  .section{padding:80px 32px}
   .thoughts-grid{grid-template-columns:1fr 1fr}
   #hero{padding:100px 32px 48px}
   .remote-grid{grid-template-columns:repeat(2,1fr)}
@@ -194,7 +228,6 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
   .nav-logo img{width:36px!important;height:36px!important}
   nav.scrolled{padding:14px 24px}
   .nav-cta{padding:8px 16px;font-size:11px;margin-left:auto;margin-right:16px}
-  .section{padding:60px 24px}
   #hero{padding:70px 24px 70px}
   .hero-headline{font-size:clamp(28px,6.5vw,48px);margin-bottom:8px}
   .hero-cta-row{margin-bottom:18px}
