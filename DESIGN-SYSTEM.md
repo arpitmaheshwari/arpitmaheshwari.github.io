@@ -1,9 +1,11 @@
 # Design System — arpitmaheshwari.com + the book
 
-The single source of truth for typography, color, spacing, and section layout across
-**both** properties: the classic site (dark, gold) and the interactive book (cream, ember).
-The book keeps its own *skin* (Spectral body, ember/cream palette) but shares the **same
-numeric type scale and spacing steps**, so the two read as one system, not two.
+The single source of truth for typography, color, spacing, and section layout on the
+**classic site** (dark, gold): homepage, case studies, pattern library, utility pages.
+
+**The book is out of scope.** It already has its own coherent, deliberate design system
+(Spectral body, ember/cream palette, fixed spreads) and is left as-is. This document governs
+the classic site only.
 
 > Rule of the system: **one scale, one grammar.** Every heading, every section, every metric
 > pulls from the tokens below. No inline font-sizes. No per-page invention. If a value isn't
@@ -80,9 +82,16 @@ They all map onto the ramp above.
 --gold #D4A85E   --gold-light #E8C88A   --gold-dark #A07835
 --border rgba(255,255,255,.07)   --border-accent rgba(212,168,94,.30)   --hairline rgba(212,168,94,.22)
 ```
-- **One accent:** gold. `--copper` is retired unless a semantic need is defined.
-- **No hardcoded hex** that duplicates a token (`#D4A85E`, `#5ED48E`, `#ff6464`, `#2F5D52` → tokens or a new named status token).
-- Status colors (success/warn/error for wireframes) get real tokens: `--ok #5ED48E`, `--warn #E8C88A`, `--err #E0736B`.
+- **One accent:** gold. `--copper #4A6B5C` is the **sanctioned "In production / shipped" status token** (the pattern-page "In production" badge) — a defined semantic need, kept.
+- **No hardcoded hex** that duplicates a token (`#D4A85E`, `#5ED48E`, `#ff6464`, `#2F5D52` → tokens).
+- Status colors get real tokens: `--ok #5ED48E`, `--warn #E8C88A` (caution / "watch"), `--err #E0736B` (error).
+
+### Exempt surfaces (NOT governed by the type scale)
+These are controlled surfaces that deliberately mimic other UIs; they use their own internal sizing and are **out of scope** for the ramp:
+- **Product-screenshot reconstructions** — the `.plate` / `.plM` / `.plV` device mockups (role="img"): era-honest app screens that need sub-11px micro-type to read as real.
+- **Interactive product simulations** — the `#recon-*` widgets: they simulate a product interface, not page chrome.
+- **Wireframe mock boxes** — illustrative "here's the interaction" sketches on pattern pages.
+The scale governs **page chrome** (headings, sections, body, real navigation/buttons), never a simulated screen. (Same principle as the book being its own system.)
 
 ### Cream "act" (governed — classic site)
 Cream is a **peak**, used **only twice** on the homepage (the receipts band + the one-idea band) and nowhere else unless this file adds it. It re-points tokens:
@@ -92,13 +101,9 @@ Cream is a **peak**, used **only twice** on the homepage (the receipts band + th
 ```
 A cream section uses the **same** `--fs-title` (31px) and the **same** grammar as every dark section — only the background/ink change. It must never be the only place a big title appears.
 
-### Book (second skin — same scale, own palette)
-```
-paper #F4ECDA/#EEE4CE  desk #2A1712→#170C09  ink #2C2620  ink-soft #6A6052
-ember #C0512B (primary accent, replaces gold)  ochre #CE9230  pine #2F5D52
-AA text variants: ember-ink #B04A24, ochre-ink #8F5E10
-```
-Book inherits the **numeric type scale + spacing** from §1/§5; only fonts (Spectral body) and palette differ.
+### Book — out of scope
+The book keeps its own established system (paper/ember palette, Spectral body, fixed spreads).
+Do **not** apply this document to `book/`.
 
 ## 5. Spacing, rhythm, geometry
 
@@ -155,9 +160,11 @@ Book inherits the **numeric type scale + spacing** from §1/§5; only fonts (Spe
 | `--ink-dim` | `--ink-muted` |
 | Fraunces/Cormorant | Newsreader |
 
-## 9. Rollout order
+## 9. Rollout order (classic site only)
 
-1. **Foundation** — tokens + utility classes in `styles.css`.
-2. **Flagships** — `index.html` (homepage) + the book (`book.css`, `portfolio.js`). Render + approve.
-3. **Sweep** — 6 case studies, 10 pattern pages, utility pages (hire/screen/process/resources/now/writing/404), `folio`. Each refactored to §6 grammar + §1 scale.
-4. **QA** — every page at 1280 + 375: zero horizontal overflow, one section grammar, console clean, no unloaded-font fallback.
+1. ✅ **Foundation** — tokens + utility classes in `styles.css`.
+2. ✅ **Homepage** — `index.html` on the §6 grammar + §1 scale. (Verified.)
+3. **Case studies** — the 6 files in `case-studies/`. Retire the ~40 hand-copied inline H2s → `.section-title`; case hero H1 → `--fs-hero`; hooks/standfirsts → `.lead`; stats → `.metric-num`; one content measure (62ch); one hero composition.
+4. **Patterns** — `patterns/index.html` + the 9 pattern pages. One hero composition; prose H2 (28/32 oscillation) → `.section-title`; standfirst variants A/B → one `.lead`; eyebrow color drift → one gold token; kill the double-padding main wrapper.
+5. **Utility pages** — hire/screen/process/resources/now/writing/404 (follow-up; same grammar).
+6. **QA** — every page at 1280 + 375: zero horizontal overflow, one section grammar, console clean, no unloaded-font fallback.

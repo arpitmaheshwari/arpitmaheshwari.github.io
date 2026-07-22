@@ -50,7 +50,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p22">
+<link rel="stylesheet" href="../styles.css?v=ds1">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -67,20 +67,20 @@
 </nav>
 
 <div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
-  <div style="max-width:65ch;margin:0 auto">
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
-      <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.15;color:var(--ink);margin:0;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.02em">Provenance &amp; Citations</h1>
-      <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">In production</span>
+  <div style="max-width:var(--measure);margin:0 auto">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap">
+      <h1 style="font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;line-height:1.15;color:var(--ink);margin:0;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.02em">Provenance &amp; Citations</h1>
+      <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">In production</span>
     </div>
-    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · Show your sources · Last updated June 2026</p>
-    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
+    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · Show your sources · Last updated June 2026</p>
+    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
   </div>
 </div>
 
-<main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
+<main id="main" class="section" style="background:var(--bg)"><div style="max-width:var(--measure);margin:0 auto">
 
-  <section style="margin-bottom:60px">
-    <p style="font-size:17px;color:var(--ink-muted);line-height:1.45;margin-bottom:20px;font-family:var(--ff-display);font-style:italic;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:oldstyle-nums proportional-nums">A large language model can write a fluent, confident claim about anything — that's exactly the problem. Provenance is what separates a generated sentence from evidence: grounding every claim in a cited source it retrieved (RAG), one click from the number to the document that produced it. When the stakes are real, people don't act on a well-written guess; they act on something they can open and check.</p>
+  <section style="margin-bottom:64px">
+    <p class="lead" style="margin-bottom:20px;font-style:italic;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:oldstyle-nums proportional-nums">A large language model can write a fluent, confident claim about anything — that's exactly the problem. Provenance is what separates a generated sentence from evidence: grounding every claim in a cited source it retrieved (RAG), one click from the number to the document that produced it. When the stakes are real, people don't act on a well-written guess; they act on something they can open and check.</p>
   </section>
 
   <figure style="margin:8px 0 48px;text-align:center">
@@ -88,33 +88,33 @@
   </figure>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Put the source next to the claim</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">The instinct is to keep the interface clean: show the answer, tuck the evidence behind a "details" link. But a source one click away is a source nobody opens. Put the primary citation inline, beside the number it justifies, so the evidence and the claim are read together.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">This is the difference between a system that asks for faith and one that offers collateral. A risk score that reads "72% — based on these three filings" is one a person can begin to trust; "72%" alone is a verdict they'll quietly override.</p>
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">Put the source next to the claim</h2>
+    <p class="u-body" style="margin-bottom:16px">The instinct is to keep the interface clean: show the answer, tuck the evidence behind a "details" link. But a source one click away is a source nobody opens. Put the primary citation inline, beside the number it justifies, so the evidence and the claim are read together.</p>
+    <p class="u-body" style="margin-bottom:16px">This is the difference between a system that asks for faith and one that offers collateral. A risk score that reads "72% — based on these three filings" is one a person can begin to trust; "72%" alone is a verdict they'll quietly override.</p>
   </section>
   <!-- LIVE DEMO — same demo as the book's field guide -->
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Try it — the pattern, live</h2>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Try it — the pattern, live</h2>
+    <p class="u-ui" style="margin-bottom:20px">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
     <div data-demo="trace"></div>
   </section>
 
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Let them open the original, unedited</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">A citation that can't be opened is decoration. The trail has to end in the actual artifact the model read — the filing, the ticket, the transcript — not a paraphrase of it. The moment a person can pull the source and see it themselves, the model stops being a black box and becomes a research assistant.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Heavy summarisation is the silent killer here. Compress the evidence too far and the trail goes cold; the person can't tell whether the model read the document carefully or skimmed it. Keep the path from claim to primary source short and intact.</p>
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">Let them open the original, unedited</h2>
+    <p class="u-body" style="margin-bottom:16px">A citation that can't be opened is decoration. The trail has to end in the actual artifact the model read — the filing, the ticket, the transcript — not a paraphrase of it. The moment a person can pull the source and see it themselves, the model stops being a black box and becomes a research assistant.</p>
+    <p class="u-body" style="margin-bottom:16px">Heavy summarisation is the silent killer here. Compress the evidence too far and the trail goes cold; the person can't tell whether the model read the document carefully or skimmed it. Keep the path from claim to primary source short and intact.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Count the sources, and surface the dissent</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Say how many sources back a number. "Three sources" reads very differently from "one source," and the person calibrates accordingly. A single-source claim should look more tentative than a well-corroborated one — the interface should carry that distinction.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Then surface disagreement honestly. If two sources support a conclusion and one contradicts it, show the outlier rather than averaging it away. The dissenting source is often where the real risk lives, and hiding it is how a confident-looking answer becomes an expensive one.</p>
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">Count the sources, and surface the dissent</h2>
+    <p class="u-body" style="margin-bottom:16px">Say how many sources back a number. "Three sources" reads very differently from "one source," and the person calibrates accordingly. A single-source claim should look more tentative than a well-corroborated one — the interface should carry that distinction.</p>
+    <p class="u-body" style="margin-bottom:16px">Then surface disagreement honestly. If two sources support a conclusion and one contradicts it, show the outlier rather than averaging it away. The dissenting source is often where the real risk lives, and hiding it is how a confident-looking answer becomes an expensive one.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Implementation Checklist</h2>
-    <ul style="font-size:15px;color:var(--ink-muted);line-height:1.8;padding-left:24px">
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Implementation Checklist</h2>
+    <ul class="u-body" style="padding-left:24px">
       <li style="margin-bottom:10px"><strong>Render the primary source inline</strong>, next to the claim — not behind a "details" affordance.</li>
       <li style="margin-bottom:10px"><strong>Make every citation openable:</strong> link to the real artifact, not a summary of it.</li>
       <li style="margin-bottom:10px"><strong>Show the source count</strong>, and let a single-source claim look more tentative than a corroborated one.</li>
@@ -123,11 +123,11 @@
     </ul>
   </section>
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Trade-offs by Approach</h2>
-    <div style="overflow-x:auto">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-muted);font-variant-numeric:tabular-nums lining-nums">
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Trade-offs by Approach</h2>
+    <div style="overflow-x:auto;margin:24px 0">
+      <table style="width:100%;border-collapse:collapse;font-size:var(--fs-caption);color:var(--ink-muted);font-variant-numeric:tabular-nums lining-nums">
         <thead>
-          <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Choice</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Best For</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Trade-off</th></tr>
+          <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">Choice</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">Best For</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">Trade-off</th></tr>
         </thead>
         <tbody>
           <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong>Inline citation chips</strong></td><td style="padding:10px 12px">Claims a reader will challenge on sight</td><td style="padding:10px 12px">Crowds dense layouts; needs disciplined sourcing</td></tr>
@@ -140,32 +140,32 @@
   </section>
 
 
-  <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:80px">
-    <h3 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual">See This Pattern In Action</h3>
-    <ul style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
+  <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:64px">
+    <h3 class="card-title" style="margin-bottom:16px">See This Pattern In Action</h3>
+    <ul style="font-size:var(--fs-caption);color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
       <li style="margin-bottom:12px"><strong><a href="../case-studies/vc-diligence.html" style="color:var(--gold);text-decoration:none">Technical Due Diligence</a>:</strong> every score carried a clean drill from summary to the source document, so partners would stand on it.</li>
       <li style="margin-bottom:12px"><strong><a href="../case-studies/fintech.html" style="color:var(--gold);text-decoration:none">AI-Assisted Due Diligence</a>:</strong> three sources sat beside every risk score, not buried behind it.</li>
     </ul>
   </section>
 
   <!-- NEWSLETTER SIGNUP -->
-  <section style="background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;padding:32px;margin-bottom:60px">
-    <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:12px">Get AI design patterns in your inbox</div>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
+  <section style="background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;padding:32px;margin-bottom:64px">
+    <div class="eyebrow" style="margin-bottom:12px">Get AI design patterns in your inbox</div>
+    <p class="u-ui" style="margin-bottom:20px">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
     <form action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank" style="display:flex;gap:8px;flex-wrap:wrap">
-      <input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink);font-family:var(--ff-sans);font-size:14px">
-      <button type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="padding:14px 24px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s">Subscribe</button>
+      <input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink);font-family:var(--ff-sans);font-size:var(--fs-ui)">
+      <button type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="padding:14px 24px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s">Subscribe</button>
     </form>
   </section>
 
   <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:48px">
-    <a href="./capability-contract.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / The Capability Contract →</a>
-    <a href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
+    <a href="./capability-contract.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / The Capability Contract →</a>
+    <a href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
   </div>
-<section style="max-width:880px;margin:56px auto 0;padding:0 0 8px">
+<section style="max-width:var(--measure);margin:64px auto 0;padding:0 0 8px">
     <div style="border-top:1px solid var(--border);padding-top:28px">
-      <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Limits — when NOT to use this</div>
-      <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin:0;max-width:70ch">Citation chips slow scanning — if every claim is cited with equal weight, nothing stands out and users stop clicking any of them. Reserve full provenance for claims someone must defend to a third party; summarize the rest. Provenance is a gate for decisions, not wallpaper for paragraphs.</p>
+      <div class="eyebrow" style="margin-bottom:12px">Limits — when NOT to use this</div>
+      <p class="u-body" style="margin:0">Citation chips slow scanning — if every claim is cited with equal weight, nothing stands out and users stop clicking any of them. Reserve full provenance for claims someone must defend to a third party; summarize the rest. Provenance is a gate for decisions, not wallpaper for paragraphs.</p>
     </div>
   </section>
 </div></main>

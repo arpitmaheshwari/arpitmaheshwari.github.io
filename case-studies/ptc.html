@@ -55,7 +55,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p22">
+<link rel="stylesheet" href="../styles.css?v=ds1">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -75,15 +75,15 @@
 /* Case hero — punchy, proof-forward (PoC on PTC, to roll across all cases) */
 .case-hero{padding:100px 24px 44px;background:var(--bg);border-bottom:1px solid var(--border)}
 .case-hero__in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center}
-.case-hero__kicker{font-family:var(--ff-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
-.case-hero h1{font-family:var(--ff-display);font-size:clamp(34px,4.4vw,56px);font-weight:300;line-height:1.1;color:var(--ink);margin:0 0 22px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-.02em}
-.case-hero__hook{font-family:var(--ff-display);font-size:clamp(18px,1.9vw,23px);line-height:1.5;color:var(--ink);margin:0 0 34px;max-width:48ch;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual}
+.case-hero__kicker{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
+.case-hero h1{font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;line-height:1.1;color:var(--ink);margin:0 0 22px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-.02em}
+.case-hero__hook{font-family:var(--ff-display);font-size:var(--fs-lead);font-weight:300;line-height:1.5;color:var(--ink);margin:0 0 34px;max-width:48ch;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual}
 .case-stats{display:flex;flex-wrap:wrap;gap:28px 44px}
-.case-stat b{display:block;font-family:var(--ff-display);font-weight:300;font-size:clamp(30px,3.4vw,46px);line-height:1;color:var(--gold);letter-spacing:-.01em;font-optical-sizing:auto;font-variant-numeric:tabular-nums lining-nums}
-.case-stat span{display:block;margin-top:8px;font-family:var(--ff-sans);font-size:13px;color:var(--ink-muted);line-height:1.45;max-width:20ch}
+.case-stat b{display:block;font-family:var(--ff-display);font-weight:300;font-size:var(--fs-metric);line-height:1;color:var(--gold);letter-spacing:-.01em;font-optical-sizing:auto;font-variant-numeric:tabular-nums lining-nums}
+.case-stat span{display:block;margin-top:8px;font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.45;max-width:20ch}
 .case-hero__fig{margin:0}
 .case-hero__fig img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border);box-shadow:0 30px 64px rgba(0,0,0,.5)}
-.case-hero__fig figcaption{margin-top:14px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);line-height:1.5}
+.case-hero__fig figcaption{margin-top:14px;font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);line-height:1.5}
 @media(max-width:860px){.case-hero{padding:84px 20px 28px}.case-hero__in{grid-template-columns:1fr;gap:32px}.case-stats{gap:22px 36px}}
 </style>
 <header class="case-hero">
@@ -105,7 +105,7 @@
   </div>
 </header>
 
-<main id="main" class="section" style="background:var(--bg);padding-top:56px"><div style="max-width:65ch;margin:0 auto;padding:0 24px">
+<main id="main" class="section" style="background:var(--bg);padding-top:56px"><div style="max-width:var(--measure);margin:0 auto;padding:0 24px">
 
   <!-- VITALS STRIP — the full record, for the 10-second scan -->
   <dl class="case-vitals">
@@ -126,42 +126,42 @@
   <!-- THE BEFORE — what 'redesign the UX' actually walked into -->
   <figure style="margin:8px 0 56px;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--bg-card)">
     <img src="../assets/visuals/case-ptc-before.svg" alt="Before: five disconnected learning platforms — five logins, five invoices" loading="lazy" width="1280" height="400" style="display:block;width:100%;height:auto">
-    <figcaption style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);padding:12px 16px;border-top:1px solid var(--border)">Where it started — five platforms, five logins, five lines on the invoice</figcaption>
+    <figcaption style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);padding:12px 16px;border-top:1px solid var(--border)">Where it started — five platforms, five logins, five lines on the invoice</figcaption>
   </figure>
 
   <!-- THE FORK — the decision + the stakes -->
-  <p style="font-family:var(--ff-display);font-size:clamp(22px,4vw,32px);font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">The brief said "redesign the UX." After three weeks in the call recordings, I argued the contract was the broken interface — and asked PTC to bet the project on killing four of its five products and moving the survivor off perpetual licenses.</p>
-  <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:60px">One decision · and everything it took to make it</p>
+  <p style="font-family:var(--ff-display);font-size:var(--fs-lead);font-weight:300;font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">The brief said "redesign the UX." After three weeks in the call recordings, I argued the contract was the broken interface — and asked PTC to bet the project on killing four of its five products and moving the survivor off perpetual licenses.</p>
+  <p style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:60px">One decision · and everything it took to make it</p>
 
   <!-- §01 — THE FORK -->
   <section id="the-fork" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
       The real choice: design the screens, or design the business model.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">PTC sold its software on perpetual licenses: pay once, own forever. Around it sat five learning platforms — Learning Connector, LearningExchange, Precision LMS, Digital Guides, IoTU — five URLs, five logins, five lines on an invoice. Of 550k+ registered learners, only 350k+ ever came back. The official metric counted the gap and never asked why.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">I spent three weeks inside the customer-success call recordings. Nothing was wrong with the navigation. Perpetual licenses meant no recurring revenue. No recurring revenue meant stale content. Stale content meant engineers learned on YouTube instead.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">That was the fork. I could ship the redesign the brief asked for, or argue that the contract underneath it was the thing actually failing — and that no amount of cleaner navigation would fix a product nobody had a reason to come back to.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">PTC sold its software on perpetual licenses: pay once, own forever. Around it sat five learning platforms — Learning Connector, LearningExchange, Precision LMS, Digital Guides, IoTU — five URLs, five logins, five lines on an invoice. Of 550k+ registered learners, only 350k+ ever came back. The official metric counted the gap and never asked why.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">I spent three weeks inside the customer-success call recordings. Nothing was wrong with the navigation. Perpetual licenses meant no recurring revenue. No recurring revenue meant stale content. Stale content meant engineers learned on YouTube instead.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8">That was the fork. I could ship the redesign the brief asked for, or argue that the contract underneath it was the thing actually failing — and that no amount of cleaner navigation would fix a product nobody had a reason to come back to.</p>
   </section>
 
   <!-- §02 — THE EASY PATH -->
   <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
       The safe version would have demoed beautifully and changed nothing.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The move in the brief was a cleaner skin over the same five products on perpetual licenses. It would have looked successful in a portfolio and changed nothing — a prettier version of the thing already leaving 200k+ of its registered learners inactive and pricing itself out of recurring revenue.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">So the real deliverable was never a screen. It was a political argument for killing four products and rewriting the contract — with the screens built to back it up.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">The move in the brief was a cleaner skin over the same five products on perpetual licenses. It would have looked successful in a portfolio and changed nothing — a prettier version of the thing already leaving 200k+ of its registered learners inactive and pricing itself out of recurring revenue.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8">So the real deliverable was never a screen. It was a political argument for killing four products and rewriting the contract — with the screens built to back it up.</p>
   </section>
 
   <!-- §03 — THE CALL -->
   <section id="the-call" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
       I made the call, then spent a year making the case.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The CRO had 60% of revenue sitting on perpetual licenses and said so loudly. I took the phased version to the President of PTC University, who backed it: new customers on annual subscription from Q3 2017, existing ones protected for 24 months, then migrated. The redesign took a quarter. The argument took a year.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">The CRO had 60% of revenue sitting on perpetual licenses and said so loudly. I took the phased version to the President of PTC University, who backed it: new customers on annual subscription from Q3 2017, existing ones protected for 24 months, then migrated. The redesign took a quarter. The argument took a year.</p>
     <blockquote style="margin:24px 0;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px">
-      <p style="margin:0;font-family:var(--ff-sans);font-size:18px;font-style:italic;line-height:1.6;color:var(--ink)">Twelve months on: 64% of new bookings were subscription, against 0% in Q3 2017. The grandfathered cohort held at 78% through its first migration. Perpetual was 60% of total revenue when I started. Pricing, sales, and the CFO own that shift with design — my lever was the product making continuous value visible enough that the subscription argument could win the room.</p>
+      <p style="margin:0;font-family:var(--ff-display);font-size:var(--fs-card);font-style:italic;line-height:1.6;color:var(--ink)">Twelve months on: 64% of new bookings were subscription, against 0% in Q3 2017. The grandfathered cohort held at 78% through its first migration. Perpetual was 60% of total revenue when I started. Pricing, sales, and the CFO own that shift with design — my lever was the product making continuous value visible enough that the subscription argument could win the room.</p>
     </blockquote>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Every screen after that earned its place by making the case real:</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">Every screen after that earned its place by making the case real:</p>
     <!-- PLATE — before/after reconstruction, synthetic screen contents -->
     <style>
       .plP{width:min(840px,calc(100vw - 32px));margin:36px 50% 10px;transform:translateX(-50%);display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -228,29 +228,29 @@
       </div>
     </div>
     <figcaption class="plP-caption">
-      <span style="display:block;font-family:var(--ff-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Plate 06 · Before / after — reconstruction · platform names are the public record; screen contents synthetic</span>
-      <span style="display:block;font-family:var(--ff-display);font-style:italic;font-size:13.5px;color:var(--ink-dim);line-height:1.6">The redesign delta in one look: five portals with five sign-ins became one surface where the search speaks the engineer's language and the other platforms became rows instead of logins.</span>
+      <span style="display:block;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Plate 06 · Before / after — reconstruction · platform names are the public record; screen contents synthetic</span>
+      <span style="display:block;font-family:var(--ff-display);font-style:italic;font-size:var(--fs-caption);color:var(--ink-muted);line-height:1.6">The redesign delta in one look: five portals with five sign-ins became one surface where the search speaks the engineer's language and the other platforms became rows instead of logins.</span>
     </figcaption>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">One login, or no login.</strong> With four engineers and one PM, I shipped single sign-on across all five platforms in 14 weeks and rebuilt the IA as a graph, not a tree — a learner on Precision LMS now saw <em>"engineers like you also learned on IoTU"</em> without leaving the surface. Cross-traffic became the biggest acquisition channel the under-used platforms ever had.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">Nobody searches the way marketing writes.</strong> The catalog mirrored the release calendar — <em>"Precision LMS 5.0 — New Features."</em> Engineers think in problems, not version numbers. I lost that review twice and won the third with the search-query log from logged-out users: every query was problem-shaped, zero were feature-shaped. Enrollment rose 28% the quarter after launch, against the prior four-quarter rolling baseline.</p>
-    <blockquote style="margin:24px 0;padding:28px 32px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px"><p style="margin:0;font-family:var(--ff-display);font-size:19px;font-style:italic;line-height:1.55;color:var(--ink)">Every query was problem-shaped. Zero were feature-shaped. I lost that review twice — the query log from logged-out users won the third.</p></blockquote>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">A user guide with a shipping cost.</strong> Every product shipped with a 200-page printed manual — printing, freight and warehousing cost PTC roughly $1M a year, and locked the content to a release cycle. I led the digital guidebook that replaced it: print volume fell 92% in year one, the $1M became recurring savings against the 2016 print budget, and the guide became a living surface tied to the subscription.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8"><strong style="color:var(--ink)">Translation was an architecture decision.</strong> I built the IA knowing German and Russian run 30% longer than English — short labels, shallow hierarchy, no text baked into images, 30% width buffers. Eleven locales, each WCAG AA, validated at 99% automated pass plus manual screen-reader and keyboard testing per language. The side effect: designing for accessibility made every interaction fast on the 3G handsets engineers in emerging markets actually carried. Mobile went from 4% of sessions in 2017 to 38% in 2019, across 80+ countries.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">One login, or no login.</strong> With four engineers and one PM, I shipped single sign-on across all five platforms in 14 weeks and rebuilt the IA as a graph, not a tree — a learner on Precision LMS now saw <em>"engineers like you also learned on IoTU"</em> without leaving the surface. Cross-traffic became the biggest acquisition channel the under-used platforms ever had.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">Nobody searches the way marketing writes.</strong> The catalog mirrored the release calendar — <em>"Precision LMS 5.0 — New Features."</em> Engineers think in problems, not version numbers. I lost that review twice and won the third with the search-query log from logged-out users: every query was problem-shaped, zero were feature-shaped. Enrollment rose 28% the quarter after launch, against the prior four-quarter rolling baseline.</p>
+    <blockquote style="margin:24px 0;padding:28px 32px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px"><p style="margin:0;font-family:var(--ff-display);font-size:var(--fs-card);font-style:italic;line-height:1.55;color:var(--ink)">Every query was problem-shaped. Zero were feature-shaped. I lost that review twice — the query log from logged-out users won the third.</p></blockquote>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">A user guide with a shipping cost.</strong> Every product shipped with a 200-page printed manual — printing, freight and warehousing cost PTC roughly $1M a year, and locked the content to a release cycle. I led the digital guidebook that replaced it: print volume fell 92% in year one, the $1M became recurring savings against the 2016 print budget, and the guide became a living surface tied to the subscription.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8"><strong style="color:var(--ink)">Translation was an architecture decision.</strong> I built the IA knowing German and Russian run 30% longer than English — short labels, shallow hierarchy, no text baked into images, 30% width buffers. Eleven locales, each WCAG AA, validated at 99% automated pass plus manual screen-reader and keyboard testing per language. The side effect: designing for accessibility made every interaction fast on the 3G handsets engineers in emerging markets actually carried. Mobile went from 4% of sessions in 2017 to 38% in 2019, across 80+ countries.</p>
 
     <figure style="margin:40px 0;text-align:center">
       <picture><source type="image/webp" srcset="../assets/visuals/ptc_mobile.webp"><img src="../assets/visuals/ptc_mobile.png" alt="The localized Learning Connector mobile UI" loading="lazy" width="900" height="900" style="width:100%;height:auto;border-radius:4px;border:1px solid var(--border)"></picture>
-      <figcaption style="font-family:var(--ff-sans);font-size:12px;color:var(--ink-muted);margin-top:12px">Localized Learning Path UI — designed for expansion (German)</figcaption>
+      <figcaption style="font-family:var(--ff-sans);font-size:var(--fs-caption);color:var(--ink-muted);margin-top:12px">Localized Learning Path UI — designed for expansion (German)</figcaption>
     </figure>
   </section>
 
   <!-- §04 — WHAT IT COST -->
   <section id="the-cost" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
       What it cost: I shipped the wrong homepage first.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The first unified landing screen showed all five product families to everyone, ordered alphabetically. I thought it would feel modern.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">An engineer in Pune with a Precision-only license logged in and found 80% of the surface advertising platforms she had no right to open. Session length fell 19% in week one.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Three weeks later I keyed personalization off the license: the homepage now showed only what the customer's company had bought, with everything else behind one <em>"Explore"</em> link. Session length recovered, then ran 31% above the pre-launch baseline.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">The first unified landing screen showed all five product families to everyone, ordered alphabetically. I thought it would feel modern.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">An engineer in Pune with a Precision-only license logged in and found 80% of the surface advertising platforms she had no right to open. Session length fell 19% in week one.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">Three weeks later I keyed personalization off the license: the homepage now showed only what the customer's company had bought, with everything else behind one <em>"Explore"</em> link. Session length recovered, then ran 31% above the pre-launch baseline.</p>
     <section class="recon" id="recon-ptc" role="group" aria-label="Interactive reconstruction: license-keyed personalization">
       <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration</div>
       <div class="recon-stage">
@@ -261,7 +261,7 @@
           #recon-ptc .rxp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
           #recon-ptc .rxp-tile{padding:16px 14px;background:var(--bg);border:1px solid var(--border);border-radius:4px;transition:opacity .25s,border-color .25s}
           #recon-ptc .rxp-tile b{display:block;font-family:var(--ff-display);font-weight:400;font-size:15px;color:var(--ink);margin-bottom:6px}
-          #recon-ptc .rxp-tile span{font-family:var(--ff-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)}
+          #recon-ptc .rxp-tile span{font-family:var(--ff-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted)}
           #recon-ptc.licensed .rxp-tile[data-owned="1"]{border-color:var(--gold-dark)}
           #recon-ptc.licensed .rxp-tile[data-owned="1"] span{color:var(--gold)}
           #recon-ptc.licensed .rxp-tile[data-owned="0"]{display:none}
@@ -286,88 +286,88 @@
     </section>
     <script>(function(){var r=document.getElementById('recon-ptc');if(!r)return;r.querySelectorAll('.rxp-mode').forEach(function(b){b.addEventListener('click',function(){r.querySelectorAll('.rxp-mode').forEach(function(x){x.setAttribute('aria-checked','false')});b.setAttribute('aria-checked','true');r.classList.toggle('licensed',b.dataset.mode==='license');});});})();</script>
     <blockquote style="margin:24px 0;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px">
-      <p style="margin:0;font-family:var(--ff-sans);font-size:18px;font-style:italic;line-height:1.6;color:var(--ink)">The user's contract is the most accurate filter you'll ever ship. I learned that by getting it wrong first.</p>
+      <p style="margin:0;font-family:var(--ff-display);font-size:var(--fs-card);font-style:italic;line-height:1.6;color:var(--ink)">The user's contract is the most accurate filter you'll ever ship. I learned that by getting it wrong first.</p>
     </blockquote>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">The bet carried other costs too: a 24-month grandfather promise to existing customers that I couldn't walk back, and two lost reviews before the query log won the third. I priced those in on purpose. A wrong homepage you can fix in three weeks; a redesign that quietly preserves a broken contract, you can't.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8">The bet carried other costs too: a 24-month grandfather promise to existing customers that I couldn't walk back, and two lost reviews before the query log won the third. I priced those in on purpose. A wrong homepage you can fix in three weeks; a redesign that quietly preserves a broken contract, you can't.</p>
   </section>
 
   <!-- THE RECEIPT -->
   <section id="the-miss" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:8px;line-height:1.3">The miss. Written down, as promised.</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:16px">On the accessibility work, my first pass was textbook-diligent and wrong. I loaded the interface with ARIA labels — the descriptive text screen readers speak aloud — on everything, long and thorough, convinced more description meant more help. Then I tested with real visually-impaired users and watched my diligence fail: they don't listen through sentences. They skim — jumping by headings and landmarks at speed, the way sighted users scan a page — and my verbose labels were slowing down exactly the people they were built to serve.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:16px">The fix started with admitting I'd designed from imagination instead of experience. I switched my monitor off and spent a week navigating the system by screen reader alone — then re-did the front-end code with what that week taught me: terse labels, honest landmarks, headings that carry the structure. The second pass worked because the first one had failed in front of me.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin:0">It's the cheapest lesson on this page and the one I've reused most: empathy claimed is a slide; empathy earned changes the code. Every "loop ends in front of a user" rule in <a href="../process/" style="color:var(--gold);text-decoration:none">my process</a> traces back to this miss.</p>
+    <h2 class="section-title" style="margin:0 0 8px;max-width:none;line-height:1.3">The miss. Written down, as promised.</h2>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:16px">On the accessibility work, my first pass was textbook-diligent and wrong. I loaded the interface with ARIA labels — the descriptive text screen readers speak aloud — on everything, long and thorough, convinced more description meant more help. Then I tested with real visually-impaired users and watched my diligence fail: they don't listen through sentences. They skim — jumping by headings and landmarks at speed, the way sighted users scan a page — and my verbose labels were slowing down exactly the people they were built to serve.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:16px">The fix started with admitting I'd designed from imagination instead of experience. I switched my monitor off and spent a week navigating the system by screen reader alone — then re-did the front-end code with what that week taught me: terse labels, honest landmarks, headings that carry the structure. The second pass worked because the first one had failed in front of me.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink-muted);line-height:1.8;margin:0">It's the cheapest lesson on this page and the one I've reused most: empathy claimed is a slide; empathy earned changes the code. Every "loop ends in front of a user" rule in <a href="../process/" style="color:var(--gold);text-decoration:none">my process</a> traces back to this miss.</p>
   </section>
 
   <section id="the-receipt" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:8px;line-height:1.3">The receipt.</h2>
-    <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:32px">Every number with baseline + window</p>
+    <h2 class="section-title" style="margin:0 0 8px;max-width:none;line-height:1.3">The receipt.</h2>
+    <p style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:32px">Every number with baseline + window</p>
     <div style="display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden">
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04);border-bottom:1px solid var(--border)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Platform consolidation</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">5 platforms → 1 platform · IA + SSO shipped in 14 weeks</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Platform consolidation</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">5 platforms → 1 platform · IA + SSO shipped in 14 weeks</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;border-bottom:1px solid var(--border)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Business-model shift</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">0% → 64% subscription on new bookings · Q3 2017 vs Q3 2018 · 78% grandfathered retention</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Business-model shift</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">0% → 64% subscription on new bookings · Q3 2017 vs Q3 2018 · 78% grandfathered retention</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04);border-bottom:1px solid var(--border)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Content reframe</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">Product-feature → use-case spine · 28% enrollment lift vs prior 4-quarter rolling baseline</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Content reframe</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">Product-feature → use-case spine · 28% enrollment lift vs prior 4-quarter rolling baseline</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;border-bottom:1px solid var(--border)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Sustainability</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">Print run −92% in year one · $1M / yr recurring savings vs 2016 print budget</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Sustainability</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">Print run −92% in year one · $1M / yr recurring savings vs 2016 print budget</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04);border-bottom:1px solid var(--border)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Localization</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">9 → 11 locales · added pt-BR, ko, ru · WCAG AA across all</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Localization</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">9 → 11 locales · added pt-BR, ko, ru · WCAG AA across all</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;border-bottom:1px solid var(--border)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Mobile</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">4% → 38% of sessions · 2017 → 2019 baseline · 80+ countries</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Mobile</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">4% → 38% of sessions · 2017 → 2019 baseline · 80+ countries</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04);border-bottom:1px solid var(--border)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Scale</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">550k+ registered · 350k+ active · 80+ countries</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Scale</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">550k+ registered · 350k+ active · 80+ countries</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Accessibility</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">99% automated test pass · manual a11y validation across all 11 locales</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Accessibility</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">99% automated test pass · manual a11y validation across all 11 locales</div>
       </div>
     </div>
   </section>
 
   <!-- THE PRINCIPLE -->
   <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">The principle it left me with.</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Most platform redesigns stall because the design team isn't allowed to ask the contract question sitting underneath them. Every move here — subscription, SSO, use-case content, license-keyed personalization, the living guidebook, locale-first architecture — wore UX clothing over a business-model skeleton.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">I run that check on every AI product now. When adoption stalls, <em>"make it easier to find"</em> is sometimes the answer — but <em>"who pays for this, and does paying make them use it?"</em> is what finds the real ceiling.</p>
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">The principle it left me with.</h2>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">Most platform redesigns stall because the design team isn't allowed to ask the contract question sitting underneath them. Every move here — subscription, SSO, use-case content, license-keyed personalization, the living guidebook, locale-first architecture — wore UX clothing over a business-model skeleton.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8">I run that check on every AI product now. When adoption stalls, <em>"make it easier to find"</em> is sometimes the answer — but <em>"who pays for this, and does paying make them use it?"</em> is what finds the real ceiling.</p>
   </section>
 
   <!-- MID-CASE CTA — public case, reader at peak conviction after the receipt -->
   <section style="margin:40px 0 60px;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px">
-    <p style="font-family:var(--ff-display);font-size:clamp(22px,3vw,28px);font-style:italic;line-height:1.4;color:var(--ink);margin:0 0 12px 0">This is the kind of problem I solve full-time.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.7;margin:0 0 24px 0;max-width:60ch">If your product has a gap between a right answer and an acted-on one, let's talk — 30 minutes, no pitch.</p>
+    <p style="font-family:var(--ff-display);font-size:var(--fs-lead);font-weight:300;font-style:italic;line-height:1.4;color:var(--ink);margin:0 0 12px 0">This is the kind of problem I solve full-time.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink-muted);line-height:1.7;margin:0 0 24px 0;max-width:60ch">If your product has a gap between a right answer and an acted-on one, let's talk — 30 minutes, no pitch.</p>
     <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="book-call" data-location="case-ptc-midpoint" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:0.05em;border-radius:2px;text-decoration:none;transition:background 0.3s,transform 0.2s" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Book 30 minutes <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
   </section>
 
   <!-- VOICE — named testimonial from the manager on the enterprise learning work -->
   <figure style="margin:0 0 80px;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-radius:4px">
     <svg class="icon" style="width:24px;height:24px;color:var(--gold);opacity:.55;margin-bottom:16px" aria-hidden="true"><use href="#i-quote"/></svg>
-    <blockquote style="font-family:var(--ff-display);font-size:clamp(17px,2.2vw,20px);font-style:italic;line-height:1.6;color:var(--ink);margin:0 0 20px 0">I had the pleasure of having Arpit as part of my team, where we focused on building and maintaining learning platforms for the enterprise. Arpit's skill in UI implementation and understanding of UI/UX best practices have been invaluable to the team. He has been a clear leader on implementation and when working with external development groups.</blockquote>
-    <figcaption style="border-top:1px solid var(--border);padding-top:16px"><span style="display:block;font-family:var(--ff-display);font-size:17px;color:var(--ink)">Jonathan Berkey</span><span style="display:block;font-family:var(--ff-mono);font-size:11px;letter-spacing:0.05em;color:var(--ink-muted);margin-top:4px">Product Design Leader · managed Arpit directly</span></figcaption>
+    <blockquote style="font-family:var(--ff-display);font-size:var(--fs-card);font-style:italic;line-height:1.6;color:var(--ink);margin:0 0 20px 0">I had the pleasure of having Arpit as part of my team, where we focused on building and maintaining learning platforms for the enterprise. Arpit's skill in UI implementation and understanding of UI/UX best practices have been invaluable to the team. He has been a clear leader on implementation and when working with external development groups.</blockquote>
+    <figcaption style="border-top:1px solid var(--border);padding-top:16px"><span style="display:block;font-family:var(--ff-display);font-size:var(--fs-body);color:var(--ink)">Jonathan Berkey</span><span style="display:block;font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:0.05em;color:var(--ink-muted);margin-top:4px">Product Design Leader · managed Arpit directly</span></figcaption>
   </figure>
 
-  <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin:0 0 60px 0">I write about this on <a href="https://arpitmaheshwari.substack.com" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="case-study-substack" style="color:var(--gold);text-decoration:none">The Trust Layer ↗</a></p>
+  <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7;margin:0 0 60px 0">I write about this on <a href="https://arpitmaheshwari.substack.com" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="case-study-substack" style="color:var(--gold);text-decoration:none">The Trust Layer ↗</a></p>
 
   <!-- READ NEXT -->
   <nav aria-label="Read next" style="margin:0 0 8px;padding-top:40px;border-top:1px solid var(--border)">
-    <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 20px">Read next</p>
+    <p style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 20px">Read next</p>
     <ul style="list-style:none;margin:0;padding:0;display:grid;gap:14px">
-      <li style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-dim);flex:0 0 88px">AI case</span><a href="./fintech.html" data-cta="read-next" data-location="case-ptc-readnext" style="font-family:var(--ff-display);font-size:17px;color:var(--gold);text-decoration:none;flex:1 1 240px">AI-Assisted Private Equity Investing — the contract question, one market up →</a></li>
-      <li style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-dim);flex:0 0 88px">AI case</span><a href="./vc-diligence.html" data-cta="read-next" data-location="case-ptc-readnext" style="font-family:var(--ff-display);font-size:17px;color:var(--gold);text-decoration:none;flex:1 1 240px">Technical Due Diligence Platform — designing what a system can't promise →</a></li>
-      <li style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-dim);flex:0 0 88px">Pattern</span><a href="../patterns/capability-contract.html" data-cta="read-next" data-location="case-ptc-readnext" style="font-family:var(--ff-display);font-size:17px;color:var(--gold);text-decoration:none;flex:1 1 240px">The Capability Contract — say what the system can't do →</a></li>
+      <li style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);flex:0 0 88px">AI case</span><a href="./fintech.html" data-cta="read-next" data-location="case-ptc-readnext" style="font-family:var(--ff-display);font-size:var(--fs-body);color:var(--gold);text-decoration:none;flex:1 1 240px">AI-Assisted Private Equity Investing — the contract question, one market up →</a></li>
+      <li style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);flex:0 0 88px">AI case</span><a href="./vc-diligence.html" data-cta="read-next" data-location="case-ptc-readnext" style="font-family:var(--ff-display);font-size:var(--fs-body);color:var(--gold);text-decoration:none;flex:1 1 240px">Technical Due Diligence Platform — designing what a system can't promise →</a></li>
+      <li style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);flex:0 0 88px">Pattern</span><a href="../patterns/capability-contract.html" data-cta="read-next" data-location="case-ptc-readnext" style="font-family:var(--ff-display);font-size:var(--fs-body);color:var(--gold);text-decoration:none;flex:1 1 240px">The Capability Contract — say what the system can't do →</a></li>
     </ul>
   </nav>
 

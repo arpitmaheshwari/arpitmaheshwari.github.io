@@ -50,7 +50,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p22">
+<link rel="stylesheet" href="../styles.css?v=ds1">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -67,20 +67,20 @@
 </nav>
 
 <div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
-  <div style="max-width:65ch;margin:0 auto">
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
-      <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.15;color:var(--ink);margin:0;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.02em">Calibration &amp; Track Record</h1>
-      <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">In production</span>
+  <div style="max-width:var(--measure);margin:0 auto">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap">
+      <h1 style="font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;line-height:1.15;color:var(--ink);margin:0;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.02em">Calibration &amp; Track Record</h1>
+      <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">In production</span>
     </div>
-    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · Earned trust · Last updated June 2026</p>
-    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
+    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · Earned trust · Last updated June 2026</p>
+    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
   </div>
 </div>
 
-<main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
+<main id="main" class="section" style="background:var(--bg)"><div style="max-width:var(--measure);margin:0 auto">
 
-  <section style="margin-bottom:60px">
-    <p style="font-size:17px;color:var(--ink-muted);line-height:1.45;margin-bottom:20px;font-family:var(--ff-display);font-style:italic;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:oldstyle-nums proportional-nums">A confidence number is a claim; its track record is the evidence. Calibration shows whether "80% sure" has actually been right about 80% of the time — so a person can learn exactly how hard to lean on the model, and watch that judgment improve as the history grows.</p>
+  <section style="margin-bottom:64px">
+    <p class="lead" style="margin-bottom:20px;font-style:italic;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:oldstyle-nums proportional-nums">A confidence number is a claim; its track record is the evidence. Calibration shows whether "80% sure" has actually been right about 80% of the time — so a person can learn exactly how hard to lean on the model, and watch that judgment improve as the history grows.</p>
   </section>
 
   <figure style="margin:8px 0 48px;text-align:center">
@@ -88,33 +88,33 @@
   </figure>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Show the hit rate beside the number</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">A confidence score with no history is a stranger's opinion. The same number gets believable the moment it sits next to its own record: "high confidence — right on 94% of the last 200 calls like this." Now the person isn't trusting the model's self-assessment; they're trusting its receipts.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">This is the single cheapest trust-builder in AI UX and the most often skipped. Teams ship the confidence number and never ship the thing that makes it mean something — the evidence that the confidence has been honest before.</p>
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">Show the hit rate beside the number</h2>
+    <p class="u-body" style="margin-bottom:16px">A confidence score with no history is a stranger's opinion. The same number gets believable the moment it sits next to its own record: "high confidence — right on 94% of the last 200 calls like this." Now the person isn't trusting the model's self-assessment; they're trusting its receipts.</p>
+    <p class="u-body">This is the single cheapest trust-builder in AI UX and the most often skipped. Teams ship the confidence number and never ship the thing that makes it mean something — the evidence that the confidence has been honest before.</p>
   </section>
   <!-- LIVE DEMO — same demo as the book's field guide -->
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Try it — the pattern, live</h2>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Try it — the pattern, live</h2>
+    <p class="u-ui" style="margin-bottom:20px">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
     <div data-demo="calib"></div>
   </section>
 
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Break it down by the kind of case</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">A single global accuracy figure hides the cases that matter. A model can be 90% accurate overall and reliably wrong on a specific, important slice. Calibration that's worth anything is segmented: accuracy by case type, by confidence band, by the conditions a user actually faces.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Reliability diagrams — confidence on one axis, actual hit rate on the other — make over- and under-confidence visible at a glance. The goal is a person who knows not just how sure the model is, but where its sureness can be trusted and where it can't.</p>
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">Break it down by the kind of case</h2>
+    <p class="u-body" style="margin-bottom:16px">A single global accuracy figure hides the cases that matter. A model can be 90% accurate overall and reliably wrong on a specific, important slice. Calibration that's worth anything is segmented: accuracy by case type, by confidence band, by the conditions a user actually faces.</p>
+    <p class="u-body">Reliability diagrams — confidence on one axis, actual hit rate on the other — make over- and under-confidence visible at a glance. The goal is a person who knows not just how sure the model is, but where its sureness can be trusted and where it can't.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Earn it in the open</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Track record is only persuasive if it updates honestly, in public. Let the history accumulate where the user can see it; don't quietly reset the counter every time the model is retrained. A record that resets on every release is one nobody believes.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Done right, calibration turns trust into something the model earns over time rather than demands on day one. The number stops being a claim and becomes a relationship — one the person can watch get better.</p>
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">Earn it in the open</h2>
+    <p class="u-body" style="margin-bottom:16px">Track record is only persuasive if it updates honestly, in public. Let the history accumulate where the user can see it; don't quietly reset the counter every time the model is retrained. A record that resets on every release is one nobody believes.</p>
+    <p class="u-body">Done right, calibration turns trust into something the model earns over time rather than demands on day one. The number stops being a claim and becomes a relationship — one the person can watch get better.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Implementation Checklist</h2>
-    <ul style="font-size:15px;color:var(--ink-muted);line-height:1.8;padding-left:24px">
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Implementation Checklist</h2>
+    <ul class="u-body" style="padding-left:24px">
       <li style="margin-bottom:10px">Show the model's historical hit rate beside its current confidence.</li>
       <li style="margin-bottom:10px">Segment accuracy by case type and confidence band, not one global average.</li>
       <li style="margin-bottom:10px">Use a reliability view so over/under-confidence is visible at a glance.</li>
@@ -123,11 +123,11 @@
     </ul>
   </section>
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Trade-offs by Approach</h2>
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Trade-offs by Approach</h2>
     <div style="overflow-x:auto">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-muted);font-variant-numeric:tabular-nums lining-nums">
+      <table style="width:100%;border-collapse:collapse;font-size:var(--fs-caption);color:var(--ink-muted);font-variant-numeric:tabular-nums lining-nums">
         <thead>
-          <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Choice</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Best For</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Trade-off</th></tr>
+          <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">Choice</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">Best For</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">Trade-off</th></tr>
         </thead>
         <tbody>
           <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong>Global hit rate</strong></td><td style="padding:10px 12px">A single, simple trust signal</td><td style="padding:10px 12px">Averages away the cases where the model is reliably wrong</td></tr>
@@ -140,32 +140,32 @@
   </section>
 
 
-  <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:80px">
-    <h3 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual">See This Pattern In Action</h3>
-    <ul style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
+  <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:64px">
+    <h3 class="card-title" style="margin-bottom:16px">See This Pattern In Action</h3>
+    <ul style="font-size:var(--fs-caption);color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
       <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> buyers acted on the score only once it sat beside what it had gotten right last month.</li>
       <li style="margin-bottom:12px"><strong><a href="../case-studies/fintech.html" style="color:var(--gold);text-decoration:none">AI-Assisted Due Diligence</a>:</strong> across a 90-day window and 42 deals the score proved accurate enough that analysts stopped re-checking the confident calls.</li>
     </ul>
   </section>
 
   <!-- NEWSLETTER SIGNUP -->
-  <section style="background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;padding:32px;margin-bottom:60px">
-    <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:12px">Get AI design patterns in your inbox</div>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
+  <section style="background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;padding:32px;margin-bottom:64px">
+    <div class="eyebrow" style="margin-bottom:12px">Get AI design patterns in your inbox</div>
+    <p class="u-ui" style="margin-bottom:20px">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
     <form action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank" style="display:flex;gap:8px;flex-wrap:wrap">
-      <input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink);font-family:var(--ff-sans);font-size:14px">
-      <button type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="padding:14px 24px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s">Subscribe</button>
+      <input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink);font-family:var(--ff-sans);font-size:var(--fs-ui)">
+      <button type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="padding:14px 24px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s">Subscribe</button>
     </form>
   </section>
 
   <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:48px">
-    <a href="./reversibility-safe-to-act.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / Reversibility →</a>
-    <a href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
+    <a href="./reversibility-safe-to-act.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / Reversibility →</a>
+    <a href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
   </div>
-<section style="max-width:880px;margin:56px auto 0;padding:0 0 8px">
+<section style="max-width:var(--measure);margin:64px auto 0;padding:0 0 8px">
     <div style="border-top:1px solid var(--border);padding-top:28px">
-      <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Limits — when NOT to use this</div>
-      <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin:0;max-width:70ch">A track record needs history — a young product showing three data points as a 'record' is costume jewelry. Wait until the sample is honest, and never reset the record silently when the model changes; a visible break in the line is more credible than an unbroken lie.</p>
+      <div class="eyebrow" style="margin-bottom:12px">Limits — when NOT to use this</div>
+      <p class="u-body" style="margin:0">A track record needs history — a young product showing three data points as a 'record' is costume jewelry. Wait until the sample is honest, and never reset the record silently when the model changes; a visible break in the line is more credible than an unbroken lie.</p>
     </div>
   </section>
 </div></main>

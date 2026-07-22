@@ -58,7 +58,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p22">
+<link rel="stylesheet" href="../styles.css?v=ds1">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -79,15 +79,15 @@
 .case-hero{padding:100px 24px 44px;background:var(--bg);border-bottom:1px solid var(--border)}
 .case-hero__in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center}
 .case-hero__in--solo{grid-template-columns:1fr;max-width:880px}
-.case-hero__kicker{font-family:var(--ff-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
-.case-hero h1{font-family:var(--ff-display);font-size:clamp(34px,4.4vw,56px);font-weight:300;line-height:1.1;color:var(--ink);margin:0 0 22px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-.02em}
-.case-hero__hook{font-family:var(--ff-display);font-size:clamp(18px,1.9vw,23px);line-height:1.5;color:var(--ink);margin:0 0 34px;max-width:54ch;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual}
+.case-hero__kicker{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
+.case-hero h1{font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;line-height:1.1;color:var(--ink);margin:0 0 22px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-.02em}
+.case-hero__hook{font-family:var(--ff-display);font-size:var(--fs-lead);font-weight:300;line-height:1.5;color:var(--ink);margin:0 0 34px;max-width:54ch;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual}
 .case-stats{display:flex;flex-wrap:wrap;gap:28px 44px}
-.case-stat b{display:block;font-family:var(--ff-display);font-weight:300;font-size:clamp(30px,3.4vw,46px);line-height:1;color:var(--gold);letter-spacing:-.01em;font-optical-sizing:auto;font-variant-numeric:tabular-nums lining-nums}
-.case-stat span{display:block;margin-top:8px;font-family:var(--ff-sans);font-size:13px;color:var(--ink-muted);line-height:1.45;max-width:22ch}
+.case-stat b{display:block;font-family:var(--ff-display);font-weight:300;font-size:var(--fs-metric);line-height:1;color:var(--gold);letter-spacing:-.01em;font-optical-sizing:auto;font-variant-numeric:tabular-nums lining-nums}
+.case-stat span{display:block;margin-top:8px;font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.45;max-width:22ch}
 .case-hero__fig{margin:0}
 .case-hero__fig img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border);box-shadow:0 30px 64px rgba(0,0,0,.5)}
-.case-hero__fig figcaption{margin-top:14px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);line-height:1.5}
+.case-hero__fig figcaption{margin-top:14px;font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);line-height:1.5}
 @media(max-width:860px){.case-hero{padding:84px 20px 28px}.case-hero__in{grid-template-columns:1fr;gap:32px}.case-stats{gap:22px 36px}}
 </style>
 <header class="case-hero">
@@ -105,7 +105,7 @@
   </div>
 </header>
 
-<main id="main" class="section" style="background:var(--bg);padding-top:56px"><div style="max-width:65ch;margin:0 auto;padding:0 24px">
+<main id="main" class="section" style="background:var(--bg);padding-top:56px"><div style="max-width:var(--measure);margin:0 auto;padding:0 24px">
 
   <!-- VITALS STRIP -->
   <dl class="case-vitals">
@@ -124,39 +124,39 @@
   <!-- THE BEFORE — what the firm thought it was buying -->
   <figure style="margin:8px 0 56px;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--bg-card)">
     <img src="../assets/visuals/case-vc.svg" alt="Diagram: four technical-risk signals (code quality, architecture risk, team velocity, founder credibility) feeding one auditable verdict; diligence cut from three weeks to four days." loading="lazy" width="1280" height="400" style="display:block;width:100%;height:auto">
-    <figcaption style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);padding:12px 16px;border-top:1px solid var(--border)">Four signals, one verdict a partner can stand on · 3 weeks to 4 days</figcaption>
+    <figcaption style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);padding:12px 16px;border-top:1px solid var(--border)">Four signals, one verdict a partner can stand on · 3 weeks to 4 days</figcaption>
   </figure>
 
   <!-- THE HOOK — the symptom, stated as a mystery -->
-  <p style="font-family:var(--ff-display);font-size:clamp(22px,4vw,32px);font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">A partner has four days to decide whether a startup's technology is real, and millions riding on the answer. An LLM could read the whole codebase in an afternoon — chunked and retrieved, since no context window holds a repo whole. The diligence still took three weeks. The bottleneck was never the reading.</p>
-  <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:60px">A diagnosis · symptom → wrong suspects → the real culprit</p>
+  <p style="font-family:var(--ff-display);font-size:var(--fs-lead);font-weight:300;font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">A partner has four days to decide whether a startup's technology is real, and millions riding on the answer. An LLM could read the whole codebase in an afternoon — chunked and retrieved, since no context window holds a repo whole. The diligence still took three weeks. The bottleneck was never the reading.</p>
+  <p style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:60px">A diagnosis · symptom → wrong suspects → the real culprit</p>
 
   <!-- §01 — THE SYMPTOM -->
   <section id="the-symptom" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
       The symptom: a fast model, and a verdict nobody would sign.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">VC and PE partners stake millions on a startup's technology on claims they will never personally check. They can't read the codebase. They can't reproduce the benchmark. So the deal stalls in a three-week diligence cycle while analysts assemble something a partner is willing to put their name to.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">An LLM handled the hard technical work in an afternoon: read the unstructured repos, read the design docs, score four classes of risk — code quality, architecture risk, team velocity, founder credibility. The extraction was never the problem.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">The problem was that a partner would read a clean machine verdict and still pick up the phone to re-check it by hand. The LLM produced an answer. It did not produce something anyone would stand on. That is what kept the cycle at three weeks.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">VC and PE partners stake millions on a startup's technology on claims they will never personally check. They can't read the codebase. They can't reproduce the benchmark. So the deal stalls in a three-week diligence cycle while analysts assemble something a partner is willing to put their name to.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">An LLM handled the hard technical work in an afternoon: read the unstructured repos, read the design docs, score four classes of risk — code quality, architecture risk, team velocity, founder credibility. The extraction was never the problem.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8">The problem was that a partner would read a clean machine verdict and still pick up the phone to re-check it by hand. The LLM produced an answer. It did not produce something anyone would stand on. That is what kept the cycle at three weeks.</p>
   </section>
 
   <!-- §02 — THE WRONG SUSPECTS -->
   <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
       The usual suspects: a smarter model, a higher score.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The obvious fixes all pointed at the engine. Make the model read more. Train it on more deals. Surface a single, confident risk score per company so the partner has one number to act on. Every one of those sharpens a tool the partner had already decided not to use.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">Because a partner staking millions does not distrust a number for being imprecise. They distrust it for being unaccountable. A higher-confidence score the partner still can't trace back to evidence is just a more persuasive thing to be wrong about — and the first time it's wrong on a real deal, the whole platform goes back in a drawer.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">The obvious fixes all pointed at the engine. Make the model read more. Train it on more deals. Surface a single, confident risk score per company so the partner has one number to act on. Every one of those sharpens a tool the partner had already decided not to use.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8">Because a partner staking millions does not distrust a number for being imprecise. They distrust it for being unaccountable. A higher-confidence score the partner still can't trace back to evidence is just a more persuasive thing to be wrong about — and the first time it's wrong on a real deal, the whole platform goes back in a drawer.</p>
   </section>
 
   <!-- §03 — THE REAL CULPRIT + THE MOVE -->
   <section id="the-culprit" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
       The real culprit: the verdict had no chain of evidence.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The design was tested where it would live: usability sessions with the investment analysts who'd stake their names on its output. The verdict was right. That was exactly why it was dangerous. A correct verdict the partner couldn't audit is indistinguishable, on the day of the deal, from a confident hallucination — the exact failure mode an LLM is prone to, and the one this design is built to guard against. The missing piece was never accuracy — it was provenance: grounding, a path from the generated verdict down to the cited source behind it, the repo scan, the infra audit, the interview note. Retrieval-grounded, in the language of the field: every claim traceable to the document it came from.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">So the design work sat downstream of the extraction, in the trust it had to earn. Every one of the four signals carries its own confidence and, more importantly, its own cited source. Each score maps to a next step a partner can actually take — proceed, attach a condition, send an analyst back. The one decision that organized everything: <strong style="color:var(--ink)">no verdict is reviewable until its evidence is.</strong> A partner cannot sign off until they've opened all four signals and seen the trail underneath each one.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">The design was tested where it would live: usability sessions with the investment analysts who'd stake their names on its output. The verdict was right. That was exactly why it was dangerous. A correct verdict the partner couldn't audit is indistinguishable, on the day of the deal, from a confident hallucination — the exact failure mode an LLM is prone to, and the one this design is built to guard against. The missing piece was never accuracy — it was provenance: grounding, a path from the generated verdict down to the cited source behind it, the repo scan, the infra audit, the interview note. Retrieval-grounded, in the language of the field: every claim traceable to the document it came from.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">So the design work sat downstream of the extraction, in the trust it had to earn. Every one of the four signals carries its own confidence and, more importantly, its own cited source. Each score maps to a next step a partner can actually take — proceed, attach a condition, send an analyst back. The one decision that organized everything: <strong style="color:var(--ink)">no verdict is reviewable until its evidence is.</strong> A partner cannot sign off until they've opened all four signals and seen the trail underneath each one.</p>
     <!-- PLATE — production-fidelity reconstruction, synthetic data -->
     <style>
       .plV{width:min(840px,calc(100vw - 32px));margin:36px 50% 10px;transform:translateX(-50%);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
@@ -246,35 +246,35 @@
       </div>
     </div>
     <figcaption class="plV-caption">
-      <span style="display:block;font-family:var(--ff-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Plate 02 · Diligence dossier — reconstruction · all names and figures synthetic</span>
-      <span style="display:block;font-family:var(--ff-display);font-style:italic;font-size:13.5px;color:var(--ink-dim);line-height:1.6">Redrawn from memory at production fidelity. The verdict a partner can stand on: four signals, each with a trail, and a sign-off that prices the doubt instead of rubber-stamping it.</span>
+      <span style="display:block;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Plate 02 · Diligence dossier — reconstruction · all names and figures synthetic</span>
+      <span style="display:block;font-family:var(--ff-display);font-style:italic;font-size:var(--fs-caption);color:var(--ink-muted);line-height:1.6">Redrawn from memory at production fidelity. The verdict a partner can stand on: four signals, each with a trail, and a sign-off that prices the doubt instead of rubber-stamping it.</span>
     </figcaption>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Try it — open each signal to see the evidence, then sign:</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">Try it — open each signal to see the evidence, then sign:</p>
     <section class="recon" id="recon-vc" role="group" aria-label="Interactive reconstruction: technical-risk dossier with drill-to-source and partner sign-off">
     <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA</div>
     <div class="recon-stage">
       <style>
         #recon-vc .rxv-card{max-width:520px;margin:0 auto;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:20px}
-        #recon-vc .rxv-vlabel{font-family:var(--ff-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 4px}
+        #recon-vc .rxv-vlabel{font-family:var(--ff-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 4px}
         #recon-vc .rxv-vtext{font-family:var(--ff-display);font-weight:300;font-size:19px;line-height:1.4;color:var(--ink);margin:0 0 16px}
         #recon-vc .rxv-vtext span{color:var(--gold)}
         #recon-vc .rxv-row{border-top:1px solid var(--border)}
         #recon-vc .rxv-sig{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;padding:12px 2px;font-size:13px;color:var(--ink);font-family:var(--ff-sans);transition:color .2s}
         #recon-vc .rxv-sig:hover{color:var(--gold)}
         #recon-vc .rxv-right{display:inline-flex;align-items:center;gap:10px}
-        #recon-vc .rxv-st{font-family:var(--ff-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);border:1px solid var(--border);border-radius:2px;padding:2px 7px}
+        #recon-vc .rxv-st{font-family:var(--ff-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);border:1px solid var(--border);border-radius:2px;padding:2px 7px}
         #recon-vc .rxv-st.watch{color:var(--copper);border-color:var(--copper)}
         #recon-vc .rxv-chev{font-family:var(--ff-mono);color:var(--gold);transition:transform .2s;display:inline-block}
         #recon-vc .rxv-sig[aria-expanded="true"] .rxv-chev{transform:rotate(45deg)}
         #recon-vc .rxv-trail{display:none;padding:0 2px 14px}
         #recon-vc .rxv-trail.open{display:block}
         #recon-vc .rxv-ev{font-size:12.5px;color:var(--ink-muted);line-height:1.6;margin:0 0 6px}
-        #recon-vc .rxv-cite{font-family:var(--ff-mono);font-size:10px;letter-spacing:.04em;color:var(--ink-dim);margin:0}
+        #recon-vc .rxv-cite{font-family:var(--ff-mono);font-size:10px;letter-spacing:.04em;color:var(--ink-muted);margin:0}
         #recon-vc .rxv-foot{display:flex;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:16px}
         #recon-vc .rxv-sign{padding:9px 16px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--gold-dark);border-radius:2px;color:var(--gold);transition:border-color .2s,color .2s}
-        #recon-vc .rxv-sign[disabled]{border-color:var(--border);color:var(--ink-dim);cursor:not-allowed}
+        #recon-vc .rxv-sign[disabled]{border-color:var(--border);color:var(--ink-muted);cursor:not-allowed}
         #recon-vc .rxv-sign.rxv-signed{border-color:var(--gold);color:var(--gold);cursor:default}
-        #recon-vc .rxv-hint{font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:var(--ink-dim);margin:0}
+        #recon-vc .rxv-hint{font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:var(--ink-muted);margin:0}
         #recon-vc .rxv-sig:focus-visible,#recon-vc .rxv-sign:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
       </style>
       <div class="rxv-card">
@@ -328,70 +328,70 @@
       sign.classList.add('rxv-signed');sign.textContent='Signed — conditions attached';hint.textContent='';});
   })();</script>
 
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-top:36px">That sign-off gate looks like a small interaction. It was the whole argument. It turns the LLM from an oracle you either believe or ignore into an evidence file a partner walks through, each verdict grounded in its cited source — which is the difference between a tool that sits in a drawer and one that compresses three weeks into four days. The analyst's overrides feed back to the model, so the trust runs both ways.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-top:36px">That sign-off gate looks like a small interaction. It was the whole argument. It turns the LLM from an oracle you either believe or ignore into an evidence file a partner walks through, each verdict grounded in its cited source — which is the difference between a tool that sits in a drawer and one that compresses three weeks into four days. The analyst's overrides feed back to the model, so the trust runs both ways.</p>
   </section>
 
   <!-- §04 — WHAT IT COST -->
   <section id="the-cost" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
       What it cost: I made the partner do more work, on purpose.
     </h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The honest line: the gate adds friction. A partner who just wants the number has to open all four signals before they can sign — I chose to slow the one moment everyone wanted to speed up. The first reaction was exactly what you'd expect: <em>why am I clicking through evidence when the machine already decided?</em></p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">The friction is the product. A verdict a partner clicks through is a verdict they'll defend in the investment committee; a one-tap score is one they'll quietly re-check by hand, which is how you end up back at three weeks. I priced the extra clicks in on purpose. The thing that actually compressed the cycle wasn't a faster model — it was a partner who, for the first time, didn't feel the need to verify it twice.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">The honest line: the gate adds friction. A partner who just wants the number has to open all four signals before they can sign — I chose to slow the one moment everyone wanted to speed up. The first reaction was exactly what you'd expect: <em>why am I clicking through evidence when the machine already decided?</em></p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8">The friction is the product. A verdict a partner clicks through is a verdict they'll defend in the investment committee; a one-tap score is one they'll quietly re-check by hand, which is how you end up back at three weeks. I priced the extra clicks in on purpose. The thing that actually compressed the cycle wasn't a faster model — it was a partner who, for the first time, didn't feel the need to verify it twice.</p>
   </section>
 
   <!-- THE RECEIPT -->
   <section id="the-receipt" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:8px;line-height:1.3">The receipt.</h2>
-    <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:32px">What changed, and for whom</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:32px">And the 3 wks → 4 days belongs to the whole platform — model, retrieval, pipeline, surface; the part I claim is the design that made partners willing to stand on it for live deals.</p>
+    <h2 class="section-title" style="margin:0 0 8px;max-width:none;line-height:1.3">The receipt.</h2>
+    <p style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:32px">What changed, and for whom</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:32px">And the 3 wks → 4 days belongs to the whole platform — model, retrieval, pipeline, surface; the part I claim is the design that made partners willing to stand on it for live deals.</p>
     <div style="display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden">
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04);border-bottom:1px solid var(--border)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Cycle time</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">3 weeks → 4 days per diligence cycle</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Cycle time</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">3 weeks → 4 days per diligence cycle</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;border-bottom:1px solid var(--border)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Signals scored</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">4 risk classes — code quality, architecture risk, team velocity, founder credibility — each mapped to a next step</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Signals scored</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">4 risk classes — code quality, architecture risk, team velocity, founder credibility — each mapped to a next step</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04);border-bottom:1px solid var(--border)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Provenance</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">Every claim drills from the summary down to the source signal and code-quality measure behind it</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Provenance</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">Every claim drills from the summary down to the source signal and code-quality measure behind it</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Fund types served</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">VC + PE — both, on the same dossier</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Fund types served</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">VC + PE — both, on the same dossier</div>
       </div>
     </div>
   </section>
 
   <!-- THE PRINCIPLE -->
   <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">The rule I took away.</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">The fastest way to make an expert trust a model is rarely a better model. It's giving them the receipts, and refusing to let them sign until they've read them.</p>
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">The rule I took away.</h2>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8">The fastest way to make an expert trust a model is rarely a better model. It's giving them the receipts, and refusing to let them sign until they've read them.</p>
   </section>
 
   <!-- NDA CALENDLY CTA -->
   <section style="margin:40px 0 60px;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px">
-    <p style="font-family:var(--ff-display);font-size:clamp(22px,3vw,28px);font-style:italic;line-height:1.4;color:var(--ink);margin:0 0 12px 0">The framework is the part worth walking through.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.7;margin:0 0 24px 0;max-width:60ch">Details are confidential; I'll walk through the decisions, artifacts, and numbers on a call under mutual NDA.</p>
+    <p style="font-family:var(--ff-display);font-size:var(--fs-lead);font-weight:300;font-style:italic;line-height:1.4;color:var(--ink);margin:0 0 12px 0">The framework is the part worth walking through.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink-muted);line-height:1.7;margin:0 0 24px 0;max-width:60ch">Details are confidential; I'll walk through the decisions, artifacts, and numbers on a call under mutual NDA.</p>
     <a href="../index.html#contact" data-cta="send-role" data-location="nda-case-cta" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:0.05em;border-radius:2px;text-decoration:none;transition:background 0.3s,transform 0.2s" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Send me the role <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
   </section>
 
   <!-- RELATED PATTERNS -->
   <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:60px">
-    <h3 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:16px">Design Patterns Demonstrated</h3>
-    <ul style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin:0;padding-left:24px">
+    <h3 style="font-family:var(--ff-display);font-size:var(--fs-card);font-weight:400;color:var(--ink);margin-bottom:16px">Design Patterns Demonstrated</h3>
+    <ul style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.8;margin:0;padding-left:24px">
       <li style="margin-bottom:12px"><strong><a href="../patterns/confidence-scores.html" style="color:var(--gold);text-decoration:none">Confidence Score Patterns</a>:</strong> Per-signal and per-document confidence, each one mapping to a next step a partner can take.</li>
       <li style="margin-bottom:12px"><strong><a href="../patterns/ml-explainability.html" style="color:var(--gold);text-decoration:none">ML Explainability Patterns</a>:</strong> Provenance on every claim — a clean drill from the summary down to the source signal and code-quality measure behind it.</li>
       <li><strong><a href="../patterns/human-in-loop.html" style="color:var(--gold);text-decoration:none">Human-in-Loop Patterns</a>:</strong> Analyst overrides fed back to the model; partner sign-off as real workflow, not a rubber stamp.</li>
     </ul>
   </section>
 
-  <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin:0 0 60px 0">I write about this on <a href="https://arpitmaheshwari.substack.com" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="case-study-substack" style="color:var(--gold);text-decoration:none">The Trust Layer ↗</a></p>
+  <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7;margin:0 0 60px 0">I write about this on <a href="https://arpitmaheshwari.substack.com" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="case-study-substack" style="color:var(--gold);text-decoration:none">The Trust Layer ↗</a></p>
 
   <!-- SEQUENTIAL NAVIGATION -->
-  <p style="font-family:var(--ff-display);font-style:italic;font-size:15px;color:var(--ink-dim);line-height:1.6;margin:0 0 16px">The gate priced the doubt. Next: back to where the whole argument starts paying — a business model rewritten from inside the design seat.</p>
+  <p style="font-family:var(--ff-display);font-style:italic;font-size:var(--fs-body);color:var(--ink-muted);line-height:1.6;margin:0 0 16px">The gate priced the doubt. Next: back to where the whole argument starts paying — a business model rewritten from inside the design seat.</p>
   <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:48px">
     <a href="./ptc.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Read 01 / PTC University →</a>
     <a href="../index.html#contact" data-cta="send-role" data-location="case-study-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>

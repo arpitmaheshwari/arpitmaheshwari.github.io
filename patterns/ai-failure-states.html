@@ -49,7 +49,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p22">
+<link rel="stylesheet" href="../styles.css?v=ds1">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -66,49 +66,49 @@
 </nav>
 
 <div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
-  <div style="max-width:65ch;margin:0 auto">
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
-      <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.15;color:var(--ink);margin:0;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.02em">AI Failure State Patterns</h1>
-      <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">In production</span>
+  <div style="max-width:var(--measure);margin:0 auto">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap">
+      <h1 style="font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;line-height:1.15;color:var(--ink);margin:0;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.02em">AI Failure State Patterns</h1>
+      <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">In production</span>
     </div>
-    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · <abbr tabindex="0" title="A system design approach where functionality degrades gracefully when failures occur, offering reduced but still-useful alternatives rather than failing completely" style="border-bottom:1px dotted var(--ink);cursor:help">Graceful Degradation</abbr> · Last updated June 2026</p>
-    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
+    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · <abbr tabindex="0" title="A system design approach where functionality degrades gracefully when failures occur, offering reduced but still-useful alternatives rather than failing completely" style="border-bottom:1px dotted var(--ink);cursor:help">Graceful Degradation</abbr> · Last updated June 2026</p>
+    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
   </div>
 </div>
 
-<main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
+<main id="main" class="section" style="background:var(--bg)"><div style="max-width:var(--measure);margin:0 auto">
 
-  <section style="margin-bottom:60px">
-    <p style="font-size:17px;color:var(--ink-muted);line-height:1.45;margin-bottom:20px;font-family:var(--ff-display);font-style:italic;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:oldstyle-nums proportional-nums">A failure state is not a footnote. It's where the next ten interactions are won or lost. This is sharpest with a language model, which will happily hallucinate a fluent, confident answer rather than admit it doesn't know — so the design has to make abstention, the honest "I'm not sure," the easy path. Handle your own uncertainty out loud and the user gives you another shot. Fail quietly — or fail confidently wrong — and the user leaves. So design the wrong answer before you design the right one. The five patterns below are the ones I keep reaching for.</p>
+  <section style="margin-bottom:64px">
+    <p class="lead" style="margin-bottom:20px;font-style:italic;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:oldstyle-nums proportional-nums">A failure state is not a footnote. It's where the next ten interactions are won or lost. This is sharpest with a language model, which will happily hallucinate a fluent, confident answer rather than admit it doesn't know — so the design has to make abstention, the honest "I'm not sure," the easy path. Handle your own uncertainty out loud and the user gives you another shot. Fail quietly — or fail confidently wrong — and the user leaves. So design the wrong answer before you design the right one. The five patterns below are the ones I keep reaching for.</p>
     
     <!-- Abstract UI Diagram: Failure State Comparison -->
     <div style="margin: 40px 0; padding: 40px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;">
-      <div style="font-family:var(--ff-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom: 24px; text-align:center;">Wireframe: The Honest Failure State</div>
+      <div style="font-family:var(--ff-mono); font-size:var(--fs-eyebrow); letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom: 24px; text-align:center;">Wireframe: The Honest Failure State</div>
       
       <div style="display:flex; gap:20px; align-items:stretch;">
         <!-- The Bad Way -->
-        <div style="flex:1; background: var(--bg-card); border: 1px solid rgba(255,100,100,0.2); border-radius: 6px; padding: 24px; opacity:0.8; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
-          <div style="font-family:var(--ff-mono); font-size:10px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;">Standard Error</div>
-          <div style="width:40px; height:40px; border-radius:50%; background:rgba(255,100,100,0.1); color:#ff6464; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;">✕</div>
-          <div style="font-family:var(--ff-display); font-size:16px; color:var(--ink); margin-bottom:8px; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual;">Error 500</div>
-          <div style="font-family:var(--ff-sans); font-size:12px; color:var(--ink-dim);">Something went wrong.</div>
+        <div style="flex:1; background: var(--bg-card); border: 1px solid rgba(224,115,107,0.25); border-radius: 6px; padding: 24px; opacity:0.8; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+          <div style="font-family:var(--ff-mono); font-size:var(--fs-eyebrow); color:var(--ink-muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px;">Standard Error</div>
+          <div style="width:40px; height:40px; border-radius:50%; background:rgba(224,115,107,0.12); color:var(--err); display:flex; align-items:center; justify-content:center; font-size:var(--fs-lead); margin-bottom:16px;">✕</div>
+          <div style="font-family:var(--ff-display); font-size:var(--fs-body); color:var(--ink); margin-bottom:8px; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual;">Error 500</div>
+          <div style="font-family:var(--ff-sans); font-size:var(--fs-caption); color:var(--ink-muted);">Something went wrong.</div>
         </div>
 
         <!-- The Good Way -->
         <div style="flex:1; background: var(--bg-card); border: 1px solid var(--gold); border-radius: 6px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-          <div style="font-family:var(--ff-mono); font-size:10px; color:var(--gold); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px; text-align:center;">Honest AI Fallback</div>
+          <div style="font-family:var(--ff-mono); font-size:var(--fs-eyebrow); color:var(--gold); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px; text-align:center;">Honest AI Fallback</div>
           <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:16px;">
             <div style="width:24px; height:24px; border-radius:4px; background:var(--ink-muted); opacity:0.2;"></div>
             <div>
-              <div style="font-family:var(--ff-sans); font-size:14px; color:var(--ink); font-weight:600; margin-bottom:4px;">I couldn't find a confident answer</div>
-              <div style="font-family:var(--ff-sans); font-size:12px; color:var(--ink-dim); line-height:1.5;">This query requires data outside my current training cutoff.</div>
+              <div style="font-family:var(--ff-sans); font-size:var(--fs-ui); color:var(--ink); font-weight:600; margin-bottom:4px;">I couldn't find a confident answer</div>
+              <div style="font-family:var(--ff-sans); font-size:var(--fs-caption); color:var(--ink-muted); line-height:1.5;">This query requires data outside my current training cutoff.</div>
             </div>
           </div>
           <div style="border-top:1px solid var(--border); padding-top:16px;">
-            <div style="font-family:var(--ff-mono); font-size:10px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px;">Suggested actions:</div>
+            <div style="font-family:var(--ff-mono); font-size:var(--fs-eyebrow); color:var(--ink-muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px;">Suggested actions:</div>
             <div style="display:flex; gap:8px;">
-              <div style="flex:1; text-align:center; padding:8px; border:1px solid var(--border); border-radius:4px; font-family:var(--ff-sans); font-size:11px; color:var(--ink);">Search Web</div>
-              <div style="flex:1; text-align:center; padding:8px; background:var(--ink); color:var(--bg); border-radius:4px; font-family:var(--ff-sans); font-size:11px;">Ask Expert</div>
+              <div style="flex:1; text-align:center; padding:8px; border:1px solid var(--border); border-radius:4px; font-family:var(--ff-sans); font-size:var(--fs-caption); color:var(--ink);">Search Web</div>
+              <div style="flex:1; text-align:center; padding:8px; background:var(--ink); color:var(--bg); border-radius:4px; font-family:var(--ff-sans); font-size:var(--fs-caption);">Ask Expert</div>
             </div>
           </div>
         </div>
@@ -120,70 +120,70 @@
   </section>
   <!-- LIVE DEMO — same demo as the book's field guide -->
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Try it — the pattern, live</h2>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Try it — the pattern, live</h2>
+    <p class="u-ui" style="margin-bottom:20px">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
     <div data-demo="alert"></div>
   </section>
 
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">1. The Honest "I Don't Know"</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Your model's confidence drops below the <abbr tabindex="0" title="The numeric boundary (e.g., 65%) below which the system either hides output or flags uncertainty to the user" style="border-bottom:1px dotted var(--ink);cursor:help">threshold</abbr>. Say so: "I couldn't find a confident answer. This might be because [reason]." Don't fake it. A plausible hallucination costs more than an honest blank.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px"><strong>Example language:</strong></p>
-    <ul style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">1. The Honest "I Don't Know"</h2>
+    <p class="u-body" style="margin-bottom:16px">Your model's confidence drops below the <abbr tabindex="0" title="The numeric boundary (e.g., 65%) below which the system either hides output or flags uncertainty to the user" style="border-bottom:1px dotted var(--ink);cursor:help">threshold</abbr>. Say so: "I couldn't find a confident answer. This might be because [reason]." Don't fake it. A plausible hallucination costs more than an honest blank.</p>
+    <p class="u-body" style="margin-bottom:16px"><strong>Example language:</strong></p>
+    <ul class="u-body" style="margin-bottom:16px;padding-left:24px">
       <li style="margin-bottom:8px">"I'm not confident enough in my answer. Try rephrasing your question or checking your data."</li>
       <li style="margin-bottom:8px">"This document is outside my training data. I recommend manual review."</li>
       <li style="margin-bottom:8px">"The system encountered an edge case. Please contact support with this reference ID: XYZ."</li>
     </ul>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8">It comes down to <strong>specificity</strong>. "Something went wrong" tells the user nothing. "Your query matches fewer than 3 historical examples, so I can't predict with confidence" tells them <em>why</em> — and what to change. Choose this pattern wherever the model can name the reason it fell short.</p>
+    <p class="u-body">It comes down to <strong>specificity</strong>. "Something went wrong" tells the user nothing. "Your query matches fewer than 3 historical examples, so I can't predict with confidence" tells them <em>why</em> — and what to change. Choose this pattern wherever the model can name the reason it fell short.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">2. The Graduated Fallback</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">A dead end ends the session. A ladder keeps it going. "I can't give a precise recommendation, but here are three alternatives: (A) Use the default, (B) See similar historical cases, (C) Talk to an expert." Each rung is more degraded than the last, and every rung still moves the user forward. That's <abbr tabindex="0" title="A secondary plan or option that activates when the primary solution fails, ensuring the user can still proceed" style="border-bottom:1px dotted var(--ink);cursor:help">fallback</abbr> design at scale.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px"><strong>Fallback hierarchy (best to worst):</strong></p>
-    <ol style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">2. The Graduated Fallback</h2>
+    <p class="u-body" style="margin-bottom:16px">A dead end ends the session. A ladder keeps it going. "I can't give a precise recommendation, but here are three alternatives: (A) Use the default, (B) See similar historical cases, (C) Talk to an expert." Each rung is more degraded than the last, and every rung still moves the user forward. That's <abbr tabindex="0" title="A secondary plan or option that activates when the primary solution fails, ensuring the user can still proceed" style="border-bottom:1px dotted var(--ink);cursor:help">fallback</abbr> design at scale.</p>
+    <p class="u-body" style="margin-bottom:16px"><strong>Fallback hierarchy (best to worst):</strong></p>
+    <ol class="u-body" style="margin-bottom:16px;padding-left:24px">
       <li style="margin-bottom:6px">Primary: AI recommendation (high confidence)</li>
       <li style="margin-bottom:6px">Secondary: AI recommendation (low confidence) + disclaimer</li>
       <li style="margin-bottom:6px">Tertiary: Historical baseline ("The average case similar to yours…")</li>
       <li style="margin-bottom:6px">Quaternary: Manual process ("Contact support for expert review")</li>
       <li style="margin-bottom:6px">Null: System unavailable (offline / maintenance)</li>
     </ol>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8">The user always has <em>something</em> in hand. Trust in the model can wait; the work doesn't have to. Reach for this whenever a hard failure would otherwise strand someone mid-task.</p>
+    <p class="u-body">The user always has <em>something</em> in hand. Trust in the model can wait; the work doesn't have to. Reach for this whenever a hard failure would otherwise strand someone mid-task.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">3. The Error Context Card</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">When something breaks, "Error" tells the user nothing they can use. Show a card that carries four things:</p>
-    <ul style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">3. The Error Context Card</h2>
+    <p class="u-body" style="margin-bottom:16px">When something breaks, "Error" tells the user nothing they can use. Show a card that carries four things:</p>
+    <ul class="u-body" style="margin-bottom:16px;padding-left:24px">
       <li style="margin-bottom:8px"><strong>What failed:</strong> "Data processing timed out"</li>
       <li style="margin-bottom:8px"><strong>Why it might have failed:</strong> "Your dataset is very large (500MB). Try a smaller file or contact support for batch processing."</li>
       <li style="margin-bottom:8px"><strong>What you can do:</strong> Retry, View guide, Contact support</li>
       <li style="margin-bottom:8px"><strong>Reference code:</strong> If error persists, users can reference this code with support</li>
     </ul>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8">The card turns a cryptic stop into a failure the user can act on. It respects their time and their intelligence. Use it wherever an error has a knowable cause and a next step.</p>
+    <p class="u-body">The card turns a cryptic stop into a failure the user can act on. It respects their time and their intelligence. Use it wherever an error has a knowable cause and a next step.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">4. The Confidence-Based Disclosure</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Let the interface show where confidence breaks down. High (&gt;80%): show the result plainly. Middle (50–80%): keep the result, attach a warning banner. Low (&lt;50%): hide the result and run the fallback instead.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">The system never snaps from working to broken. It gets less certain, says so as it goes, and the user watches the confidence fade in real time. Choose this when a single accuracy number hides a wide spread of certainty underneath.</p>
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">4. The Confidence-Based Disclosure</h2>
+    <p class="u-body" style="margin-bottom:16px">Let the interface show where confidence breaks down. High (&gt;80%): show the result plainly. Middle (50–80%): keep the result, attach a warning banner. Low (&lt;50%): hide the result and run the fallback instead.</p>
+    <p class="u-body" style="margin-bottom:16px">The system never snaps from working to broken. It gets less certain, says so as it goes, and the user watches the confidence fade in real time. Choose this when a single accuracy number hides a wide spread of certainty underneath.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">5. The Transparency Log</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Keep a log the user can read: "When I said X, here's what actually happened," or "Last time I was wrong about Y, here's why." A system that owns its past misses earns trust the next time it speaks up.</p>
-    <ul style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">5. The Transparency Log</h2>
+    <p class="u-body" style="margin-bottom:16px">Keep a log the user can read: "When I said X, here's what actually happened," or "Last time I was wrong about Y, here's why." A system that owns its past misses earns trust the next time it speaks up.</p>
+    <ul class="u-body" style="margin-bottom:16px;padding-left:24px">
       <li style="margin-bottom:8px">"Last week I recommended this lead with 85% confidence. You marked it low-quality. Updated confidence: 72%."</li>
       <li style="margin-bottom:8px">"I've been wrong about churn 3× this month. Recent model updates should reduce this. Accuracy now: 77% (was 71%)."</li>
       <li style="margin-bottom:8px">"This is a new product category I haven't seen before. I'll learn from this case. Current uncertainty: ±25%."</li>
     </ul>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8">The log doesn't bury the miss. It converts it into something the user watched the model learn from. People lean on systems that admit error and visibly improve. Reach for this in any product a user returns to across sessions.</p>
+    <p class="u-body">The log doesn't bury the miss. It converts it into something the user watched the model learn from. People lean on systems that admit error and visibly improve. Reach for this in any product a user returns to across sessions.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Implementation Checklist</h2>
-    <ul style="font-size:15px;color:var(--ink-muted);line-height:1.8;padding-left:24px">
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Implementation Checklist</h2>
+    <ul class="u-body" style="padding-left:24px">
       <li style="margin-bottom:10px"><strong>Identify failure modes:</strong> Write down 5–10 ways your system can fail.</li>
       <li style="margin-bottom:10px"><strong>Design each failure UI:</strong> A specific state for each, never a generic "Error 500".</li>
       <li style="margin-bottom:10px"><strong>Add a fallback:</strong> Decide what the user does when the AI can't.</li>
@@ -193,37 +193,37 @@
     </ul>
   </section>
 
-  <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:80px">
-    <h3 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual">See This Pattern In Action</h3>
-    <ul style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
+  <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:64px">
+    <h3 class="card-title" style="margin-bottom:16px">See This Pattern In Action</h3>
+    <ul style="font-size:var(--fs-caption);color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
       <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> What the screen says when the recommendation can't clear the bar.</li>
       <li style="margin-bottom:12px"><strong><a href="../case-studies/orgos.html" style="color:var(--gold);text-decoration:none">OrgOS</a>:</strong> Saying it plainly when a complex system hits its limits.</li>
     </ul>
   </section>
 
   <!-- NEWSLETTER SIGNUP -->
-  <section style="background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;padding:32px;margin-bottom:60px">
-    <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:12px">Get AI design patterns in your inbox</div>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">One pattern a month, with the tradeoffs spelled out and the templates I use.</p>
+  <section style="background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;padding:32px;margin-bottom:64px">
+    <div class="eyebrow" style="margin-bottom:12px">Get AI design patterns in your inbox</div>
+    <p class="u-ui" style="margin-bottom:20px">One pattern a month, with the tradeoffs spelled out and the templates I use.</p>
     <form action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank" style="display:flex;gap:8px;flex-wrap:wrap">
-      <input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink);font-family:var(--ff-sans);font-size:14px">
-      <button type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="padding:14px 24px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s">Subscribe</button>
+      <input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink);font-family:var(--ff-sans);font-size:var(--fs-ui)">
+      <button type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="padding:14px 24px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s">Subscribe</button>
     </form>
   </section>
 
   <section style="margin-bottom:32px;padding-top:32px;border-top:1px solid var(--border)">
-    <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:10px">Companion essay</div>
-    <a href="../writing/failure-states.html" style="font-family:var(--ff-display);font-size:18px;color:var(--gold);text-decoration:none;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual">Design the Failure State First →</a>
+    <div class="eyebrow" style="margin-bottom:10px">Companion essay</div>
+    <a href="../writing/failure-states.html" style="font-family:var(--ff-display);font-size:var(--fs-card);color:var(--gold);text-decoration:none;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual">Design the Failure State First →</a>
   </section>
 
   <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:48px">
-    <a href="./ml-explainability.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / ML Explainability →</a>
-    <a href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
+    <a href="./ml-explainability.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / ML Explainability →</a>
+    <a href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
   </div>
-<section style="max-width:880px;margin:56px auto 0;padding:0 0 8px">
+<section style="max-width:var(--measure);margin:64px auto 0;padding:0 0 8px">
     <div style="border-top:1px solid var(--border);padding-top:28px">
-      <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Limits — when NOT to use this</div>
-      <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin:0;max-width:70ch">If failure is frequent, the fix is the system, not the copy — a beautifully-worded error shown hourly is an apology habit. And over-apologizing reads as instability: past a point, the honest 'I'm not sure' should get quieter and rarer, not more charming.</p>
+      <div class="eyebrow" style="margin-bottom:12px">Limits — when NOT to use this</div>
+      <p class="u-body" style="margin:0">If failure is frequent, the fix is the system, not the copy — a beautifully-worded error shown hourly is an apology habit. And over-apologizing reads as instability: past a point, the honest 'I'm not sure' should get quieter and rarer, not more charming.</p>
     </div>
   </section>
 </div></main>

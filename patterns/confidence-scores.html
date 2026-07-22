@@ -58,7 +58,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p22">
+<link rel="stylesheet" href="../styles.css?v=ds1">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -75,44 +75,44 @@
 </nav>
 
 <div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
-  <div style="max-width:65ch;margin:0 auto">
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
-      <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.15;color:var(--ink);margin:0;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.02em">Confidence Score Patterns</h1>
-      <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">In production</span>
+  <div style="max-width:var(--measure);margin:0 auto">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap">
+      <h1 style="font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;line-height:1.15;color:var(--ink);margin:0;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.02em">Confidence Score Patterns</h1>
+      <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--bg);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap">In production</span>
     </div>
-    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · Trust Patterns · Last updated June 2026</p>
-    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
+    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">AI Design · Trust Patterns · Last updated June 2026</p>
+    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase;margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
   </div>
 </div>
 
-<main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
+<main id="main" class="section" style="background:var(--bg)"><div style="max-width:var(--measure);margin:0 auto">
 
-  <section style="margin-bottom:60px">
-    <p style="font-size:17px;color:var(--ink-muted);line-height:1.45;margin-bottom:20px;font-family:var(--ff-display);font-style:italic;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:oldstyle-nums proportional-nums">A score with no action attached is decoration. These five patterns sit at the harder problem most products never reach: not whether to show confidence, but how to make it mean something a person will move on.</p>
+  <section style="margin-bottom:64px">
+    <p class="lead" style="margin-bottom:20px;font-style:italic;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:oldstyle-nums proportional-nums">A score with no action attached is decoration. These five patterns sit at the harder problem most products never reach: not whether to show confidence, but how to make it mean something a person will move on.</p>
     <figure style="margin:40px 0;text-align:center">
       <img src="../assets/visuals/pattern-confidence.svg" alt="Confidence-score pattern: a score anchored to an act / review / ignore action, beside its own 30-day track record" loading="lazy" width="1280" height="400" style="width:100%;height:auto;border-radius:4px;border:1px solid var(--border)">
     </figure>
   </section>
   <!-- LIVE DEMO — same demo as the book's field guide -->
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Try it — the pattern, live</h2>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Try it — the pattern, live</h2>
+    <p class="u-ui" style="margin-bottom:20px">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
     <div data-demo="gauge"></div>
   </section>
 
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">1. Numeric Score with Threshold Hiding</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Show a confidence percentage (0–100%) only when it clears a <abbr tabindex="0" title="The numeric boundary (e.g., 65%) below which the system either hides output or flags uncertainty to the user" style="border-bottom:1px dotted var(--ink);cursor:help">threshold</abbr> (typically 60–70%). Below that line, say "Low confidence" or drop the number entirely.</p>
-    <ul style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">1. Numeric Score with Threshold Hiding</h2>
+    <p class="u-body" style="margin-bottom:16px">Show a confidence percentage (0–100%) only when it clears a <abbr tabindex="0" title="The numeric boundary (e.g., 65%) below which the system either hides output or flags uncertainty to the user" style="border-bottom:1px dotted var(--ink);cursor:help">threshold</abbr> (typically 60–70%). Below that line, say "Low confidence" or drop the number entirely.</p>
+    <ul class="u-body" style="margin-bottom:16px;padding-left:24px">
       <li style="margin-bottom:8px"><strong>Stops the freeze:</strong> A user never stares at a 42% score and stalls. The system says "I'm not confident enough to recommend this," and the decision moves on.</li>
       <li style="margin-bottom:8px"><strong>Trusts the expert:</strong> High confidence earns a number; low confidence becomes a "flag for review" instead.</li>
       <li style="margin-bottom:8px"><strong>Quiets the screen:</strong> Not every recommendation needs a number on it.</li>
     </ul>
     <div style="overflow-x:auto;margin:24px 0">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-muted);font-variant-numeric:tabular-nums lining-nums">
+      <table style="width:100%;border-collapse:collapse;font-size:var(--fs-caption);color:var(--ink-muted);font-variant-numeric:tabular-nums lining-nums">
         <thead>
-          <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Confidence</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Display</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">User Interpretation</th></tr>
+          <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">Confidence</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">Display</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">User Interpretation</th></tr>
         </thead>
         <tbody>
           <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px">90%+</td><td style="padding:10px 12px">"92% confident" (number + badge)</td><td style="padding:10px 12px">"I should trust this"</td></tr>
@@ -124,7 +124,7 @@
     
     <!-- Abstract UI Diagram: Confidence Badges -->
     <div style="margin: 40px 0; padding: 40px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;">
-      <div style="font-family:var(--ff-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom: 24px; text-align:center;">Wireframe: Threshold-Based Badges</div>
+      <div style="font-family:var(--ff-mono); font-size:var(--fs-eyebrow); letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom: 24px; text-align:center;">Wireframe: Threshold-Based Badges</div>
       
       <div style="display:flex; flex-direction:column; gap:16px; max-width: 400px; margin: 0 auto;">
         <!-- High Confidence -->
@@ -135,7 +135,7 @@
           </div>
           <div style="background:rgba(94, 212, 142, 0.1); border:1px solid rgba(94, 212, 142, 0.2); padding:4px 8px; border-radius:4px; display:flex; gap:6px; align-items:center;">
             <div style="width:6px; height:6px; background:#5ED48E; border-radius:50%;"></div>
-            <div style="font-family:var(--ff-mono); font-size:11px; color:#5ED48E; font-weight:600; font-variant-numeric:tabular-nums lining-nums;">92%</div>
+            <div style="font-family:var(--ff-mono); font-size:var(--fs-eyebrow); color:#5ED48E; font-weight:600; font-variant-numeric:tabular-nums lining-nums;">92%</div>
           </div>
         </div>
 
@@ -147,7 +147,7 @@
           </div>
           <div style="background:rgba(212, 168, 94, 0.1); border:1px solid rgba(212, 168, 94, 0.2); padding:4px 8px; border-radius:4px; display:flex; gap:6px; align-items:center;">
             <div style="width:6px; height:6px; background:#D4A85E; border-radius:50%;"></div>
-            <div style="font-family:var(--ff-sans); font-size:11px; color:#D4A85E; font-weight:500;">Moderate</div>
+            <div style="font-family:var(--ff-sans); font-size:var(--fs-eyebrow); color:#D4A85E; font-weight:500;">Moderate</div>
           </div>
         </div>
 
@@ -158,29 +158,29 @@
             <div style="width:100px; height:12px; background:var(--ink); border-radius:2px;"></div>
           </div>
           <div style="background:transparent; border:1px dashed var(--ink-muted); padding:4px 8px; border-radius:4px; display:flex; gap:6px; align-items:center; opacity:0.7;">
-            <div style="font-family:var(--ff-sans); font-size:11px; color:var(--ink-muted); font-style:italic;">Low confidence</div>
+            <div style="font-family:var(--ff-sans); font-size:var(--fs-eyebrow); color:var(--ink-muted); font-style:italic;">Low confidence</div>
           </div>
         </div>
       </div>
     </div>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Use when</strong> confidence varies recommendation to recommendation (ML models), the user has the expertise to override, and a false negative is expensive. <strong>Avoid when</strong> every recommendation lands at the same confidence, or the user has no domain knowledge to check the call.</p>
+    <p class="u-ui"><strong>Use when</strong> confidence varies recommendation to recommendation (ML models), the user has the expertise to override, and a false negative is expensive. <strong>Avoid when</strong> every recommendation lands at the same confidence, or the user has no domain knowledge to check the call.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">2. Color Gradient (Red → Yellow → Green)</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Map confidence onto three colors. &lt;50% = red. 50–80% = yellow. 80%+ = green. It reads instantly because the user already knows red = warning, green = go — you borrow a meaning they arrived with.</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:8px"><strong>Strengths:</strong> Scans fast down a long list; reads at a glance; carries straight into color-coded reports.</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin-bottom:8px"><strong>Weaknesses:</strong> <abbr tabindex="0" title="People with color vision deficiency who cannot distinguish certain colors, typically red and green" style="border-bottom:1px dotted var(--ink);cursor:help">Colorblind</abbr> users can't tell red from green, so color always rides with a number or an icon. Color alone misleads when "safe enough" shifts by context. And red doesn't read as danger everywhere on the map.</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Use when</strong> the workflow is bulk review, scanning beats reading, and the user is sighted and color-aware. <strong>Avoid when</strong> accessibility leads the brief, or the context that makes a score "safe" isn't on screen.</p>
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">2. Color Gradient (Red → Yellow → Green)</h2>
+    <p class="u-body" style="margin-bottom:16px">Map confidence onto three colors. &lt;50% = red. 50–80% = yellow. 80%+ = green. It reads instantly because the user already knows red = warning, green = go — you borrow a meaning they arrived with.</p>
+    <p class="u-ui" style="margin-bottom:8px"><strong>Strengths:</strong> Scans fast down a long list; reads at a glance; carries straight into color-coded reports.</p>
+    <p class="u-ui" style="margin-bottom:8px"><strong>Weaknesses:</strong> <abbr tabindex="0" title="People with color vision deficiency who cannot distinguish certain colors, typically red and green" style="border-bottom:1px dotted var(--ink);cursor:help">Colorblind</abbr> users can't tell red from green, so color always rides with a number or an icon. Color alone misleads when "safe enough" shifts by context. And red doesn't read as danger everywhere on the map.</p>
+    <p class="u-ui"><strong>Use when</strong> the workflow is bulk review, scanning beats reading, and the user is sighted and color-aware. <strong>Avoid when</strong> accessibility leads the brief, or the context that makes a score "safe" isn't on screen.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">3. Confidence Language (Qualitative Labels)</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Drop "87% confident" for "Very likely," "Likely," "Possible," or "Unlikely." For a non-technical user, words beat numbers — they already say "likely" when they mean it, so the label needs no translation.</p>
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">3. Confidence Language (Qualitative Labels)</h2>
+    <p class="u-body" style="margin-bottom:16px">Drop "87% confident" for "Very likely," "Likely," "Possible," or "Unlikely." For a non-technical user, words beat numbers — they already say "likely" when they mean it, so the label needs no translation.</p>
     <div style="overflow-x:auto;margin:24px 0">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-muted);font-variant-numeric:tabular-nums lining-nums">
+      <table style="width:100%;border-collapse:collapse;font-size:var(--fs-caption);color:var(--ink-muted);font-variant-numeric:tabular-nums lining-nums">
         <thead>
-          <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Range</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Label</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">When It Fits</th></tr>
+          <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">Range</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">Label</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">When It Fits</th></tr>
         </thead>
         <tbody>
           <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px">90%+</td><td style="padding:10px 12px">"Very likely"</td><td style="padding:10px 12px">Medical, high-stakes</td></tr>
@@ -190,26 +190,26 @@
         </tbody>
       </table>
     </div>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Strength:</strong> A non-technical user gets it on sight. <strong>Weakness:</strong> "Likely" carries different odds in different fields, so the labels need calibrating per domain.</p>
+    <p class="u-ui"><strong>Strength:</strong> A non-technical user gets it on sight. <strong>Weakness:</strong> "Likely" carries different odds in different fields, so the labels need calibrating per domain.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">4. Confidence + Reasoning (Show the "Why")</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Attach 1–3 reasons to the score — the signals the model actually leaned on. Example: "87% confident this is a quality lead. Reasons: (1) Similar to your top 10% of past leads, (2) High engagement in past campaigns, (3) Matches target industry."</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Reasons turn a bare number into a decision the user can argue with. They may still reject the call — but now they can see <em>how</em> the model got there, and reject it for a reason.</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Shines for</strong> expert users who want the model's logic in front of them — finance, healthcare, legal. <strong>Fails on</strong> mobile, where there's no room; on non-experts, who drown in it; and where the reasoning is proprietary and can't be shown.</p>
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">4. Confidence + Reasoning (Show the "Why")</h2>
+    <p class="u-body" style="margin-bottom:16px">Attach 1–3 reasons to the score — the signals the model actually leaned on. Example: "87% confident this is a quality lead. Reasons: (1) Similar to your top 10% of past leads, (2) High engagement in past campaigns, (3) Matches target industry."</p>
+    <p class="u-body" style="margin-bottom:16px">Reasons turn a bare number into a decision the user can argue with. They may still reject the call — but now they can see <em>how</em> the model got there, and reject it for a reason.</p>
+    <p class="u-ui"><strong>Shines for</strong> expert users who want the model's logic in front of them — finance, healthcare, legal. <strong>Fails on</strong> mobile, where there's no room; on non-experts, who drown in it; and where the reasoning is proprietary and can't be shown.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:28px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">5. Confidence Spectrum (Range / Distribution)</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Show confidence as a range, not a fixed point: "We're 60–80% confident this lead is qualified." The range tells the truth about uncertainty without faking <abbr tabindex="0" title="Displaying a confidence score with more decimal places (e.g., 76.32%) than the model's actual certainty warrants, misleading users about precision" style="border-bottom:1px dotted var(--ink);cursor:help">false precision</abbr>.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px">Or plot a histogram: "Past leads with similar confidence scores had a 75% conversion rate. Conversions ranged from 60% to 85%." Now the user knows what a score like this one has actually meant before.</p>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.8"><strong>Strength:</strong> Honest about uncertainty — it won't claim 1% precision when the model's real spread is ±15%. <strong>Weakness:</strong> More to render, and the user has to be taught how to read it.</p>
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none">5. Confidence Spectrum (Range / Distribution)</h2>
+    <p class="u-body" style="margin-bottom:16px">Show confidence as a range, not a fixed point: "We're 60–80% confident this lead is qualified." The range tells the truth about uncertainty without faking <abbr tabindex="0" title="Displaying a confidence score with more decimal places (e.g., 76.32%) than the model's actual certainty warrants, misleading users about precision" style="border-bottom:1px dotted var(--ink);cursor:help">false precision</abbr>.</p>
+    <p class="u-body" style="margin-bottom:16px">Or plot a histogram: "Past leads with similar confidence scores had a 75% conversion rate. Conversions ranged from 60% to 85%." Now the user knows what a score like this one has actually meant before.</p>
+    <p class="u-ui"><strong>Strength:</strong> Honest about uncertainty — it won't claim 1% precision when the model's real spread is ±15%. <strong>Weakness:</strong> More to render, and the user has to be taught how to read it.</p>
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Implementation Checklist</h2>
-    <ul style="font-size:15px;color:var(--ink-muted);line-height:1.8;padding-left:24px">
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Implementation Checklist</h2>
+    <ul class="u-body" style="padding-left:24px">
       <li style="margin-bottom:10px"><strong>Set the ranges</strong> your domain runs on (usually 50%, 70%, 90%).</li>
       <li style="margin-bottom:10px"><strong>Tie it to an action.</strong> Show what the user should <em>do</em> with the score, not just the number.</li>
       <li style="margin-bottom:10px"><strong>Show the <abbr tabindex="0" title="The alignment between predicted confidence and actual accuracy; a 70% confidence score should be correct approximately 70% of the time" style="border-bottom:1px dotted var(--ink);cursor:help">calibration</abbr>.</strong> "Previous leads with 85% confidence had 78% conversion."</li>
@@ -221,11 +221,11 @@
   </section>
 
   <section style="margin-bottom:64px">
-    <h2 style="font-family:var(--ff-display);font-size:32px;font-weight:400;color:var(--ink);margin-bottom:24px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.01em">Trade-offs by Pattern</h2>
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Trade-offs by Pattern</h2>
     <div style="overflow-x:auto">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-muted);font-variant-numeric:tabular-nums lining-nums">
+      <table style="width:100%;border-collapse:collapse;font-size:var(--fs-caption);color:var(--ink-muted);font-variant-numeric:tabular-nums lining-nums">
         <thead>
-          <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Pattern</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Best For</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase">Trade-off</th></tr>
+          <tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">Pattern</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">Best For</th><th style="text-align:left;padding:8px 12px;color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.08em;text-transform:uppercase">Trade-off</th></tr>
         </thead>
         <tbody>
           <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong>Numeric</strong></td><td style="padding:10px 12px">Expert users; finance, health</td><td style="padding:10px 12px">False precision; confuses non-experts</td></tr>
@@ -238,38 +238,38 @@
     </div>
   </section>
 
-  <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:80px">
-    <h3 style="font-family:var(--ff-display);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:16px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual">See This Pattern In Action</h3>
-    <p style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:20px">Where these patterns earned their keep:</p>
-    <ul style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
+  <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:64px">
+    <h3 class="card-title" style="margin-bottom:16px">See This Pattern In Action</h3>
+    <p style="font-size:var(--fs-caption);color:var(--ink-muted);line-height:1.8;margin-bottom:20px">Where these patterns earned their keep:</p>
+    <ul style="font-size:var(--fs-caption);color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
       <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> Scores that told media buyers what to do, not just how sure the model was.</li>
       <li style="margin-bottom:12px"><strong><a href="../case-studies/fintech.html" style="color:var(--gold);text-decoration:none">AI-Assisted Due Diligence</a>:</strong> Scores analysts could cross-examine before staking a recommendation on them.</li>
     </ul>
   </section>
 
   <!-- NEWSLETTER SIGNUP -->
-  <section style="background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;padding:32px;margin-bottom:60px">
-    <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:12px">Get AI design patterns in your inbox</div>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin-bottom:20px">One pattern a month — the tradeoffs I paid for, plus the templates I use.</p>
+  <section style="background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;padding:32px;margin-bottom:64px">
+    <div class="eyebrow" style="margin-bottom:12px">Get AI design patterns in your inbox</div>
+    <p class="u-ui" style="margin-bottom:20px">One pattern a month — the tradeoffs I paid for, plus the templates I use.</p>
     <form action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank" style="display:flex;gap:8px;flex-wrap:wrap">
-      <input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink);font-family:var(--ff-sans);font-size:14px">
-      <button type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="padding:14px 24px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s">Subscribe</button>
+      <input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink);font-family:var(--ff-sans);font-size:var(--fs-ui)">
+      <button type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="padding:14px 24px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s">Subscribe</button>
     </form>
   </section>
 
   <section style="margin-bottom:32px;padding-top:32px;border-top:1px solid var(--border)">
-    <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:10px">Companion essay</div>
-    <a href="../writing/confidence-scoring.html" style="font-family:var(--ff-display);font-size:18px;color:var(--gold);text-decoration:none;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual">How I Design Confidence Scores for AI Products →</a>
+    <div class="eyebrow" style="margin-bottom:10px">Companion essay</div>
+    <a href="../writing/confidence-scoring.html" class="card-title" style="color:var(--gold);text-decoration:none;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual">How I Design Confidence Scores for AI Products →</a>
   </section>
 
   <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:48px">
-    <a href="./ai-failure-states.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / AI Failure States →</a>
-    <a href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
+    <a href="./ai-failure-states.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / AI Failure States →</a>
+    <a href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
   </div>
-<section style="max-width:880px;margin:56px auto 0;padding:0 0 8px">
+<section style="max-width:var(--measure);margin:64px auto 0;padding:0 0 8px">
     <div style="border-top:1px solid var(--border);padding-top:28px">
-      <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Limits — when NOT to use this</div>
-      <p style="font-size:14px;color:var(--ink-muted);line-height:1.8;margin:0;max-width:70ch">Don't show a score when the user can't act differently on 62 versus 68 — a number without a decision attached is decoration that invites false precision. And never surface confidence from an uncalibrated model: score theater is worse than no score, because it teaches users to trust a liar with good posture.</p>
+      <div class="eyebrow" style="margin-bottom:12px">Limits — when NOT to use this</div>
+      <p class="u-body" style="margin:0">Don't show a score when the user can't act differently on 62 versus 68 — a number without a decision attached is decoration that invites false precision. And never surface confidence from an uncalibrated model: score theater is worse than no score, because it teaches users to trust a liar with good posture.</p>
     </div>
   </section>
 </div></main>

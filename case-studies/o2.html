@@ -55,7 +55,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p22">
+<link rel="stylesheet" href="../styles.css?v=ds1">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -76,15 +76,15 @@
 .case-hero{padding:100px 24px 44px;background:var(--bg);border-bottom:1px solid var(--border)}
 .case-hero__in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center}
 .case-hero__in--solo{grid-template-columns:1fr;max-width:880px}
-.case-hero__kicker{font-family:var(--ff-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
-.case-hero h1{font-family:var(--ff-display);font-size:clamp(34px,4.4vw,56px);font-weight:300;line-height:1.1;color:var(--ink);margin:0 0 22px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-.02em}
-.case-hero__hook{font-family:var(--ff-display);font-size:clamp(18px,1.9vw,23px);line-height:1.5;color:var(--ink);margin:0 0 34px;max-width:54ch;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual}
+.case-hero__kicker{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
+.case-hero h1{font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;line-height:1.1;color:var(--ink);margin:0 0 22px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-.02em}
+.case-hero__hook{font-family:var(--ff-display);font-size:var(--fs-lead);font-weight:300;line-height:1.5;color:var(--ink);margin:0 0 34px;max-width:54ch;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual}
 .case-stats{display:flex;flex-wrap:wrap;gap:28px 44px}
-.case-stat b{display:block;font-family:var(--ff-display);font-weight:300;font-size:clamp(30px,3.4vw,46px);line-height:1;color:var(--gold);letter-spacing:-.01em;font-optical-sizing:auto;font-variant-numeric:tabular-nums lining-nums}
-.case-stat span{display:block;margin-top:8px;font-family:var(--ff-sans);font-size:13px;color:var(--ink-muted);line-height:1.45;max-width:22ch}
+.case-stat b{display:block;font-family:var(--ff-display);font-weight:300;font-size:var(--fs-metric);line-height:1;color:var(--gold);letter-spacing:-.01em;font-optical-sizing:auto;font-variant-numeric:tabular-nums lining-nums}
+.case-stat span{display:block;margin-top:8px;font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.45;max-width:22ch}
 .case-hero__fig{margin:0}
 .case-hero__fig img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border);box-shadow:0 30px 64px rgba(0,0,0,.5)}
-.case-hero__fig figcaption{margin-top:14px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);line-height:1.5}
+.case-hero__fig figcaption{margin-top:14px;font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);line-height:1.5}
 @media(max-width:860px){.case-hero{padding:84px 20px 28px}.case-hero__in{grid-template-columns:1fr;gap:32px}.case-stats{gap:22px 36px}}
 </style>
 <header class="case-hero">
@@ -102,7 +102,7 @@
   </div>
 </header>
 
-<main id="main" class="section" style="background:var(--bg);padding-top:56px"><div style="max-width:760px;margin:0 auto;padding:0 24px">
+<main id="main" class="section" style="background:var(--bg);padding-top:56px"><div style="max-width:var(--measure);margin:0 auto;padding:0 24px">
 
   <!-- VITALS STRIP -->
   <dl class="case-vitals">
@@ -119,29 +119,29 @@
   </div>
 
   <!-- TOP THESIS — annotated-build opener -->
-  <p style="font-family:var(--ff-display);font-size:clamp(22px,4vw,32px);font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">This case is the screens. I drew every one of them, then wrote the front-end that shipped them — two O2 UK products on mobile web, at a scale where rounding errors have populations. So read it the way it was built: as decisions made on the actual interface.</p>
-  <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:60px">Designer and front-end · delivered through Equal Experts</p>
+  <p style="font-family:var(--ff-display);font-size:var(--fs-lead);font-weight:300;font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:16px">This case is the screens. I drew every one of them, then wrote the front-end that shipped them — two O2 UK products on mobile web, at a scale where rounding errors have populations. So read it the way it was built: as decisions made on the actual interface.</p>
+  <p style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:60px">Designer and front-end · delivered through Equal Experts</p>
 
   <!-- §01 — THE STAKES -->
   <section id="the-stakes" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">Two screens carried O2's whole retention story.</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">MyO2 (2014) is O2 UK's self-service app — a customer runs the entire account from it, data and usage, the bill, a tariff change, an upgrade, without dialing anyone. The math underneath it is blunt: every self-service task that lands is a contact-centre call that never happens.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">O2 Priority Moments (Priority Moments, 2013) is the other side of the same wallet — O2's loyalty programme. Rewards and offers from high-street brands — Odeon, M&amp;S, Caffè Nero — surfaced through the app and mobile web, matched to a customer by interest, behaviour, and location. O2 had launched it in July 2011 behind a £6m national campaign; by the time it reported 2.6 million registrations and a 5-star App Store rating, it was the UK's largest loyalty programme of its kind. I joined that programme in 2013, through Equal Experts, and designed and built the reward and offer screens — the same surfaces carrying that scale.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">Why it mattered to O2: in a market where customers switch carriers over price, these two screens carried the retention story. MyO2 took cost out — every account task a customer self-serves is a contact-centre call O2 never pays for. Priority Moments put a reason to stay in — a weekly reward that makes the brand feel like it gives back, not just bills. One product lowered the cost of keeping a customer; the other raised the cost of leaving. </p>
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">Two screens carried O2's whole retention story.</h2>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">MyO2 (2014) is O2 UK's self-service app — a customer runs the entire account from it, data and usage, the bill, a tariff change, an upgrade, without dialing anyone. The math underneath it is blunt: every self-service task that lands is a contact-centre call that never happens.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">O2 Priority Moments (Priority Moments, 2013) is the other side of the same wallet — O2's loyalty programme. Rewards and offers from high-street brands — Odeon, M&amp;S, Caffè Nero — surfaced through the app and mobile web, matched to a customer by interest, behaviour, and location. O2 had launched it in July 2011 behind a £6m national campaign; by the time it reported 2.6 million registrations and a 5-star App Store rating, it was the UK's largest loyalty programme of its kind. I joined that programme in 2013, through Equal Experts, and designed and built the reward and offer screens — the same surfaces carrying that scale.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8">Why it mattered to O2: in a market where customers switch carriers over price, these two screens carried the retention story. MyO2 took cost out — every account task a customer self-serves is a contact-centre call O2 never pays for. Priority Moments put a reason to stay in — a weekly reward that makes the brand feel like it gives back, not just bills. One product lowered the cost of keeping a customer; the other raised the cost of leaving. </p>
   </section>
 
   <!-- §02 — THE HARD PART -->
   <section id="the-hard-part" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">Same designer, same stack — two opposite jobs.</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The hard part wasn't drawing pretty screens. It was that the two products demanded opposite behaviour from the same person on the same stack. MyO2 is a utility — get in, do the task, get out; trust comes from a billing figure being exact and a tariff change actually sticking. Priority Moments is a habit — the screen has to make a coffee or a cinema ticket land as a small, earned win at the right moment, without drowning it in fine print, or people stop opening it.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">A correct system still goes unused if the screen doesn't earn the tap. On a utility, get the trust wrong and the customer phones the contact centre anyway — the cost you were trying to remove walks straight back in. On a loyalty surface, get the moment wrong and the reward sits unredeemed — the reason-to-stay you built never fires. So the real work lived on the screens: making the right thing feel obvious enough to act on, on the device people actually carry.</p>
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">Same designer, same stack — two opposite jobs.</h2>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">The hard part wasn't drawing pretty screens. It was that the two products demanded opposite behaviour from the same person on the same stack. MyO2 is a utility — get in, do the task, get out; trust comes from a billing figure being exact and a tariff change actually sticking. Priority Moments is a habit — the screen has to make a coffee or a cinema ticket land as a small, earned win at the right moment, without drowning it in fine print, or people stop opening it.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8">A correct system still goes unused if the screen doesn't earn the tap. On a utility, get the trust wrong and the customer phones the contact centre anyway — the cost you were trying to remove walks straight back in. On a loyalty surface, get the moment wrong and the reward sits unredeemed — the reason-to-stay you built never fires. So the real work lived on the screens: making the right thing feel obvious enough to act on, on the device people actually carry.</p>
   </section>
 
   <!-- §03 — THE ANNOTATED BUILD (recon widget lives here) -->
   <section id="the-screens" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">Read it on the screens themselves.</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Here are the two surfaces, era-honest, rebuilt so you can touch the decisions instead of reading about them. The MyO2 screen leads with the one number a customer opens the app to check — data left, days to renewal — then the bill, with paying it one tap away. No dashboard, no menu maze: the task is the screen.</p>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The Priority card does the opposite of dense. One offer, the reason it's relevant — this week, near you — and a single action. The pivotal decision lived right here: tap <em>Use offer</em> and the screen doesn't navigate away to a coupon wallet, it flips in place to the code you show at the till. Keeping redemption on the same surface is what turns a nice-looking offer into a redeemed one — the difference between a loyalty programme people browse and one they use.</p>
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">Read it on the screens themselves.</h2>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">Here are the two surfaces, era-honest, rebuilt so you can touch the decisions instead of reading about them. The MyO2 screen leads with the one number a customer opens the app to check — data left, days to renewal — then the bill, with paying it one tap away. No dashboard, no menu maze: the task is the screen.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">The Priority card does the opposite of dense. One offer, the reason it's relevant — this week, near you — and a single action. The pivotal decision lived right here: tap <em>Use offer</em> and the screen doesn't navigate away to a coupon wallet, it flips in place to the code you show at the till. Keeping redemption on the same surface is what turns a nice-looking offer into a redeemed one — the difference between a loyalty programme people browse and one they use.</p>
     <!-- PLATE — production-fidelity reconstruction, synthetic data -->
     <style>
       .plM{width:min(840px,calc(100vw - 32px));margin:36px 50% 10px;transform:translateX(-50%);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
@@ -236,11 +236,11 @@
       </div>
     </div>
     <figcaption class="plM-caption">
-      <span style="display:block;font-family:var(--ff-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Plate 05 · MyO2 + Priority — reconstruction · originals not retained; redrawn from memory, figures synthetic</span>
-      <span style="display:block;font-family:var(--ff-display);font-style:italic;font-size:13.5px;color:var(--ink-dim);line-height:1.6">The screens this case is about, redrawn at the fidelity they shipped: an exact bill, honest meters, and a reward that redeems where it lands.</span>
+      <span style="display:block;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Plate 05 · MyO2 + Priority — reconstruction · originals not retained; redrawn from memory, figures synthetic</span>
+      <span style="display:block;font-family:var(--ff-display);font-style:italic;font-size:var(--fs-caption);color:var(--ink-muted);line-height:1.6">The screens this case is about, redrawn at the fidelity they shipped: an exact bill, honest meters, and a reward that redeems where it lands.</span>
     </figcaption>
 
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:32px">Try both — switch the MyO2 tabs, then use the offer:</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:32px">Try both — switch the MyO2 tabs, then use the offer:</p>
     <section class="recon" id="recon-o2" role="group" aria-label="Era-honest recreation: MyO2 account screen and Priority offer card">
     <div class="recon-badge">Era-honest recreation — rebuilt in HTML/CSS for illustration · originals not retained</div>
     <div class="recon-stage">
@@ -258,22 +258,22 @@
         #recon-o2 .rx2-tab[aria-checked="true"]{color:var(--gold);border-bottom-color:var(--gold)}
         #recon-o2 .rx2-view{padding:16px 14px}
         #recon-o2 .rx2-big{font-family:var(--ff-display);font-weight:300;font-size:30px;color:var(--ink);margin:2px 0;font-optical-sizing:auto;font-variant-numeric:tabular-nums lining-nums}
-        #recon-o2 .rx2-sub{font-family:var(--ff-mono);font-size:10px;color:var(--ink-dim);margin:0 0 14px}
+        #recon-o2 .rx2-sub{font-family:var(--ff-mono);font-size:10px;color:var(--ink-muted);margin:0 0 14px}
         #recon-o2 .rx2-row{display:flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:10px;color:var(--ink-muted);margin-bottom:8px}
         #recon-o2 .rx2-row span:first-child{flex:0 0 36px}
         #recon-o2 .rx2-track{flex:1;height:5px;border-radius:3px;background:var(--border);position:relative;overflow:hidden}
         #recon-o2 .rx2-track i{position:absolute;top:0;left:0;bottom:0;background:var(--gold);display:block}
         #recon-o2 .rx2-pay{display:block;width:100%;padding:10px 0;background:var(--gold);border:none;border-radius:3px;color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:12px;letter-spacing:.04em}
         #recon-o2 .rx2-offer{padding:16px 14px}
-        #recon-o2 .rx2-kicker{font-family:var(--ff-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 8px}
+        #recon-o2 .rx2-kicker{font-family:var(--ff-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 8px}
         #recon-o2 .rx2-otitle{font-family:var(--ff-sans);font-weight:600;font-size:14px;line-height:1.4;color:var(--ink);margin:0 0 4px}
-        #recon-o2 .rx2-osub{font-family:var(--ff-mono);font-size:10px;color:var(--ink-dim);margin:0 0 14px}
+        #recon-o2 .rx2-osub{font-family:var(--ff-mono);font-size:10px;color:var(--ink-muted);margin:0 0 14px}
         #recon-o2 .rx2-use{display:block;width:100%;padding:10px 0;background:transparent;border:1px solid var(--gold);border-radius:3px;color:var(--gold);font-family:var(--ff-sans);font-weight:600;font-size:12px;letter-spacing:.04em;transition:background .2s,color .2s}
         #recon-o2 .rx2-use:hover{background:var(--gold);color:var(--bg)}
         #recon-o2 .rx2-codewrap{border:1px dashed var(--gold-dark);border-radius:3px;padding:12px;text-align:center}
-        #recon-o2 .rx2-codelabel{font-family:var(--ff-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 6px}
+        #recon-o2 .rx2-codelabel{font-family:var(--ff-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 6px}
         #recon-o2 .rx2-codeval{font-family:var(--ff-mono);font-size:18px;letter-spacing:.18em;color:var(--gold);margin:0}
-        #recon-o2 .rx2-label{text-align:center;font-family:var(--ff-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);margin:10px 0 0}
+        #recon-o2 .rx2-label{text-align:center;font-family:var(--ff-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin:10px 0 0}
         #recon-o2 .rx2-hide{display:none}
         @media (max-width:768px){#recon-o2 .rx2-grid{grid-template-columns:1fr;max-width:300px}}
       </style>
@@ -335,74 +335,74 @@
     var use=r.querySelector('#rx2-use'),code=r.querySelector('#rx2-code');
     use.addEventListener('click',function(){use.classList.add('rx2-hide');code.classList.remove('rx2-hide');});
   })();</script>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-top:32px">I owned both sides of every one of these surfaces — I drew the screen, then wrote the front-end that shipped it. Nothing was lost between a design file and an engineer who never saw the intent behind it; the screen a customer tapped was the screen I drew, in the code I wrote.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-top:32px">I owned both sides of every one of these surfaces — I drew the screen, then wrote the front-end that shipped it. Nothing was lost between a design file and an engineer who never saw the intent behind it; the screen a customer tapped was the screen I drew, in the code I wrote.</p>
   </section>
 
   <!-- §04 — THE HONEST LINE -->
   <section id="the-honest-line" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">What it cost: I can't hand you the original screens.</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">So the claim is narrow on purpose: the launch-era figures are O2's; the screens I owned are mine. Every screen on both products, designed and built by me.</p>
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">What it cost: I can't hand you the original screens.</h2>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8">So the claim is narrow on purpose: the launch-era figures are O2's; the screens I owned are mine. Every screen on both products, designed and built by me.</p>
   </section>
 
   <!-- THE RECEIPT -->
   <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:16px;line-height:1.3">The artifact.</h2>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.8;max-width:66ch;margin-bottom:24px">MyO2 — the self-service app four million people used to run their account without dialing anyone: recent charges, the bill, allowances, data left. Every self-service task that lands here is a contact-centre call that never happens.</p>
+    <h2 class="section-title" style="margin:0 0 16px;max-width:none;line-height:1.3">The artifact.</h2>
+    <p style="font-size:var(--fs-body);color:var(--ink-muted);line-height:1.8;max-width:66ch;margin-bottom:24px">MyO2 — the self-service app four million people used to run their account without dialing anyone: recent charges, the bill, allowances, data left. Every self-service task that lands here is a contact-centre call that never happens.</p>
     <figure style="margin:0">
       <img src="../assets/shots/o2-app-screens.png" alt="Three MyO2 self-service app screens: the account home with recent charges and bills, the minutes allowance breakdown, and the data allowance view" loading="lazy" style="width:100%;max-width:860px;height:auto;border:1px solid var(--border);border-radius:8px;background:#fff">
-      <figcaption style="margin-top:12px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim)">MyO2 self-service app · the 4M-user account area — home, allowances, data</figcaption>
+      <figcaption style="margin-top:12px;font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)">MyO2 self-service app · the 4M-user account area — home, allowances, data</figcaption>
     </figure>
   </section>
 
   <section id="the-receipt" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:8px;line-height:1.3">The receipt.</h2>
-    <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:32px">Public outcomes — O2 / Equal Experts</p>
+    <h2 class="section-title" style="margin:0 0 8px;max-width:none;line-height:1.3">The receipt.</h2>
+    <p style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:32px">Public outcomes — O2 / Equal Experts</p>
     <div style="display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden">
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04);border-bottom:1px solid var(--border)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">MyO2 · 2014</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">O2 UK self-service app · went on to serve 4M+ users · mobile web</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">MyO2 · 2014</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">O2 UK self-service app · went on to serve 4M+ users · mobile web</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;border-bottom:1px solid var(--border)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Priority Moments · 2013</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">2.6M registrations in year one · launched July 2011 behind a £6m national campaign</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Priority Moments · 2013</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">2.6M registrations in year one · launched July 2011 behind a £6m national campaign</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04);border-bottom:1px solid var(--border)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Loyalty traction</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">2.5M+ active users · only loyalty programme with a 5-star App Store rating</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Loyalty traction</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">2.5M+ active users · only loyalty programme with a 5-star App Store rating</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;border-bottom:1px solid var(--border)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Named brands</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">Odeon · M&amp;S · Caffè Nero — high-street rewards via app + mobile web</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">Named brands</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">Odeon · M&amp;S · Caffè Nero — high-street rewards via app + mobile web</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04)">
-        <div style="font-family:var(--ff-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">My role</div>
-        <div style="font-size:14px;color:var(--ink);line-height:1.6;flex:1 1 240px">Designed and built every screen · mobile web · on contract through Equal Experts</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 auto;min-width:160px">My role</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">Designed and built every screen · mobile web · on contract through Equal Experts</div>
       </div>
     </div>
   </section>
 
   <!-- THE PRINCIPLE -->
   <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
-    <h2 style="font-family:var(--ff-display);font-size:clamp(26px,3.5vw,34px);font-weight:300;color:var(--ink);margin-bottom:24px;line-height:1.3">The principle it left me with.</h2>
-    <p style="font-size:15px;color:var(--ink);line-height:1.8">A correct system still has to earn the tap. The trust isn't in the logic underneath; it's in whether the surface gives someone a reason to act on it.</p>
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">The principle it left me with.</h2>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8">A correct system still has to earn the tap. The trust isn't in the logic underneath; it's in whether the surface gives someone a reason to act on it.</p>
   </section>
 
   <!-- MID-CASE CTA — public case, reader at peak conviction after the receipt -->
   <section style="margin:40px 0 60px;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px">
-    <p style="font-family:var(--ff-display);font-size:clamp(22px,3vw,28px);font-style:italic;line-height:1.4;color:var(--ink);margin:0 0 12px 0">This is the kind of problem I solve full-time.</p>
-    <p style="font-size:15px;color:var(--ink-muted);line-height:1.7;margin:0 0 24px 0;max-width:60ch">If your product has a gap between a right answer and an acted-on one, let's talk — 30 minutes, no pitch.</p>
+    <p style="font-family:var(--ff-display);font-size:var(--fs-lead);font-weight:300;font-style:italic;line-height:1.4;color:var(--ink);margin:0 0 12px 0">This is the kind of problem I solve full-time.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink-muted);line-height:1.7;margin:0 0 24px 0;max-width:60ch">If your product has a gap between a right answer and an acted-on one, let's talk — 30 minutes, no pitch.</p>
     <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="book-call" data-location="case-o2-midpoint" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:0.05em;border-radius:2px;text-decoration:none;transition:background 0.3s,transform 0.2s" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Book 30 minutes <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
   </section>
 
-  <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin:0 0 60px 0">I write about this on <a href="https://arpitmaheshwari.substack.com" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="case-study-substack" style="color:var(--gold);text-decoration:none">The Trust Layer ↗</a></p>
+  <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7;margin:0 0 60px 0">I write about this on <a href="https://arpitmaheshwari.substack.com" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="case-study-substack" style="color:var(--gold);text-decoration:none">The Trust Layer ↗</a></p>
 
   <!-- READ NEXT -->
-  <nav aria-label="Read next" style="margin:0 0 8px;padding-top:40px;border-top:1px solid var(--border)">
-    <p style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 20px">Read next</p>
+  <nav aria-label="Read next" style="position:static;margin:0 0 8px;padding-top:40px;border-top:1px solid var(--border)">
+    <p style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 20px">Read next</p>
     <ul style="list-style:none;margin:0;padding:0;display:grid;gap:14px">
-      <li style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-dim);flex:0 0 88px">AI case</span><a href="./adtech.html" data-cta="read-next" data-location="case-o2-readnext" style="font-family:var(--ff-display);font-size:17px;color:var(--gold);text-decoration:none;flex:1 1 240px">Programmatic Advertising Platform — the same trust problem, at machine scale →</a></li>
-      <li style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-dim);flex:0 0 88px">AI case</span><a href="./fintech.html" data-cta="read-next" data-location="case-o2-readnext" style="font-family:var(--ff-display);font-size:17px;color:var(--gold);text-decoration:none;flex:1 1 240px">AI-Assisted Private Equity Investing — a correct model still has to earn the tap →</a></li>
-      <li style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-dim);flex:0 0 88px">Pattern</span><a href="../patterns/act-review-ignore.html" data-cta="read-next" data-location="case-o2-readnext" style="font-family:var(--ff-display);font-size:17px;color:var(--gold);text-decoration:none;flex:1 1 240px">The Act / Review / Ignore Rule — making the right thing obvious to act on →</a></li>
+      <li style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);flex:0 0 88px">AI case</span><a href="./adtech.html" data-cta="read-next" data-location="case-o2-readnext" style="font-family:var(--ff-display);font-size:var(--fs-body);color:var(--gold);text-decoration:none;flex:1 1 240px">Programmatic Advertising Platform — the same trust problem, at machine scale →</a></li>
+      <li style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);flex:0 0 88px">AI case</span><a href="./fintech.html" data-cta="read-next" data-location="case-o2-readnext" style="font-family:var(--ff-display);font-size:var(--fs-body);color:var(--gold);text-decoration:none;flex:1 1 240px">AI-Assisted Private Equity Investing — a correct model still has to earn the tap →</a></li>
+      <li style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline"><span style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);flex:0 0 88px">Pattern</span><a href="../patterns/act-review-ignore.html" data-cta="read-next" data-location="case-o2-readnext" style="font-family:var(--ff-display);font-size:var(--fs-body);color:var(--gold);text-decoration:none;flex:1 1 240px">The Act / Review / Ignore Rule — making the right thing obvious to act on →</a></li>
     </ul>
   </nav>
 
