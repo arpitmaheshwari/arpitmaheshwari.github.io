@@ -324,6 +324,10 @@ body {
    Plays once (persisted), respects prefers-reduced-motion.
    ============================================================ */
 .bk-openbook { perspective: 2400px; }
+/* perspective must sit on the cover's DIRECT parent (the sizer) — on .bk-openbook alone it
+   never reaches the cover, because the flat sizer between them collapses the 3D context,
+   so rotateY renders as a flat squash instead of a hinged swing. */
+.bk-openbook .bk-cover-sizer { perspective: 2400px; transform-style: preserve-3d; }
 .bk-openbook .bk-cover {
   position: absolute; inset: 0; z-index: 9; transform-origin: left center;
   backface-visibility: hidden; cursor: pointer;
