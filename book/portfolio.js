@@ -2430,7 +2430,7 @@ function App() {
     setTimeout(() => {
       setOpening(false);
       animating.current = false;
-    }, 660);
+    }, 520);
   }, [opening, go]);
   openRitualRef.current = openRitual; // keep the ref current so goIndex always calls the live handler
 

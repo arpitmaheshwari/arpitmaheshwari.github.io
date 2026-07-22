@@ -342,11 +342,14 @@ body {
 .bk-coverlift {
   position: absolute; top: 0; left: calc(50% - 310px); width: 620px; height: 880px;
   z-index: 30; pointer-events: none;
-  animation: bkCoverLift 660ms cubic-bezier(.4, 0, .2, 1) forwards;
+  animation: bkCoverFade 500ms ease forwards;
 }
 .bk-coverlift > * { position: relative !important; inset: auto !important; width: 100% !important; height: 100% !important; }
-@keyframes bkCoverLift { from { opacity: 1; transform: translateY(0) scale(1); } to { opacity: 0; transform: translateY(-24px) scale(1.035); } }
-.bk-book.is-opening .bk-spread { animation: bkSpreadReveal 400ms ease-out forwards; }
+/* TRUE cross-dissolve: cover fades OUT while the spread fades IN over the identical
+   duration + curve (opacity only, no transform). Lockstep timing is what makes it read
+   as one smooth morph instead of "pages appear, then a floating cover lingers on top." */
+@keyframes bkCoverFade { from { opacity: 1; } to { opacity: 0; } }
+.bk-book.is-opening .bk-spread { animation: bkSpreadReveal 500ms ease forwards; }
 @keyframes bkSpreadReveal { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
   .bk-coverlift { display: none; }
