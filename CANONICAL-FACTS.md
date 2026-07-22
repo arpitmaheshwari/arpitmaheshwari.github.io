@@ -202,6 +202,11 @@ accuracy IS the positioning.
 - **Team credits (added 2026-07-21):** every case names its team — AdTech "50+ distributed agile team",
   FinTech "cross-functional: engineers, data scientists, PM", VC "alongside the engineers and data
   scientists who built the model", OrgOS "four engineering streams + a PM". No solo-genius voice.
+- **Social handles (LOCKED — docs used a wrong LinkedIn until 2026-07-22):** LinkedIn =
+  linkedin.com/in/**arpitmaheshwariprofile** (NEVER "arpitmaheshwari88"). GitHub =
+  github.com/arpitmaheshwari. Substack = substack.com/@arpitmaheshwari. Designed resume/portfolio
+  show these as small gold monoline icons (not long URLs); the ATS .docx keeps the LinkedIn URL as
+  parseable text.
 - **Title honesty:** documents and site say **Design Leader — AI & Data-Intensive Products** as
   positioning; the résumé names the official employer title ("Solution Consultant") beside the
   functional one ("Design Lead — AI Products"). LinkedIn must match this story — never claim
