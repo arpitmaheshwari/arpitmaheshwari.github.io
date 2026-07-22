@@ -65,7 +65,9 @@ for the redo; the honest arc IS the value.
 ### PlanIt correction (2026-07-22 — Arpit's own account; supersedes "side project" framing)
 PlanIt (planitnow.co.uk, 2021, now deprecated) was **NOT a side project**. It was a **main client
 project**, built for the client by **leveraging the data generated from the AdTech platform**
-(the footfall/audience data). Never call it a side project, personal project, or coda again.
+(the footfall/audience data). Never call it a side project, personal project, or coda again. **Display rule (2026-07-22):**
+the fact that it was client work is TRUE and drives the framing, but do NOT print the label
+"Client project" on the PDF — the kicker reads "PlanIt · built on the AdTech platform's data · 2021".
 Facts that stay: quietness score 1-10, the mascot, warm palette, London Underground + National
 Rail footfall data, ~1,000 monthly visitors / 250 active users (honest small scale), zero-complaints
 claim REMOVED earlier (keep removed). Surfaces: portfolio PDF (currently "Coda · Side Project" — fix).
@@ -198,5 +200,7 @@ accuracy IS the positioning.
   positioning; the résumé names the official employer title ("Solution Consultant") beside the
   functional one ("Design Lead — AI Products"). LinkedIn must match this story — never claim
   "Principal" as a conferred rank anywhere.
-- **AdTech reference:** the case page notes a named reference (the client's CTO) is available on
-  request — consistent with the public Anant East testimonial.
+- **AdTech reference (display rule, updated 2026-07-22):** say only "a named reference for this work
+  is available on request." NEVER publicly identify them as "the client's CTO" or tie the reference to
+  a specific project/role in writing — Arpit's instruction. The reference exists; who they are is shared
+  privately, not printed on the resume/PDF/site.
