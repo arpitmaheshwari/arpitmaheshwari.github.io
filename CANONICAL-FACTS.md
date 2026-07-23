@@ -215,3 +215,10 @@ accuracy IS the positioning.
   is available on request." NEVER publicly identify them as "the client's CTO" or tie the reference to
   a specific project/role in writing — Arpit's instruction. The reference exists; who they are is shared
   privately, not printed on the resume/PDF/site.
+
+### OrgOS framing (2026-07-23 — Arpit's instruction)
+The moat is NOT scale/headcount ("250 run on it today" / "built for 200"). The primary point is that
+OrgOS is a **unique system that makes a radically transparent, flat, manager-less organization actually
+work** — a flat hierarchy encoded into the software itself, doing the coordination a management layer
+normally would. Lead every OrgOS mention with that; headcount is at most a secondary detail, never the
+headline. (Resume already updated; align the OrgOS case study + any homepage mention the same way.)
