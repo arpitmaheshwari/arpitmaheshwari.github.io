@@ -18,7 +18,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&display=swap" media="print" onload="this.media='all';this.onload=null">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&display=swap"></noscript>
-  <link rel="stylesheet" href="../styles.css?v=p22">
+  <link rel="stylesheet" href="../styles.css?v=ds1">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -48,50 +48,50 @@
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
-<div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
-  <div style="max-width:65ch;margin:0 auto">
-    <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin-bottom:20px">How I Design Confidence Scores for AI Products</h1>
-    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">Design Pattern · May 2026 · 8 min read</p>
+<div style="padding:104px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
+  <div style="max-width:var(--measure);margin:0 auto">
+    <h1 style="font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;line-height:1.15;letter-spacing:-0.02em;color:var(--ink);margin-bottom:20px">How I Design Confidence Scores for AI Products</h1>
+    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">Design Pattern · May 2026 · 8 min read</p>
   </div>
 </div>
 
-<main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
+<main id="main" class="section" style="background:var(--bg)"><div style="max-width:var(--measure);margin:0 auto">
 
-  <p style="font-family:var(--ff-display);font-size:clamp(18px,3vw,24px);font-style:italic;color:var(--ink);line-height:1.5;margin-bottom:40px">In 2018 I watched a media buyer look at a recommendation that was, statistically, better than her own judgment — and override it anyway. That half-second of doubt is the whole problem. It's also the only thing I was hired to design.</p>
+  <p class="lead" style="font-style:italic;margin-bottom:40px">In 2018 I watched a media buyer look at a recommendation that was, statistically, better than her own judgment — and override it anyway. That half-second of doubt is the whole problem. It's also the only thing I was hired to design.</p>
 
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">The number that said nothing</h2>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The platform had built a recommendation engine, and on paper it was very good: across more than 10,000 campaigns it was running 60% more profitable than buyer intuition. The buyers rejected it 47% of the time anyway. I sat next to one of them for an afternoon to understand why. She wasn't fighting the math. She'd glance at the recommendation, see a bare number next to a "buy" button, and quietly do what she'd already decided to do.</p>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">That afternoon reframed the whole brief for me. Media buyers are trained skeptics — they'll take data over instinct, but only when they can see which way the data is pointing and why. A system that says "buy this" and offers nothing else isn't a tool to them; it's a threat to the judgment they're paid for. So they reach for the thing that feels safer: their own call. The model wasn't being out-argued. It was being ignored.</p>
+  <h2 class="section-title" style="margin:40px 0 20px;max-width:none">The number that said nothing</h2>
+  <p class="u-body" style="margin-bottom:20px">The platform had built a recommendation engine, and on paper it was very good: across more than 10,000 campaigns it was running 60% more profitable than buyer intuition. The buyers rejected it 47% of the time anyway. I sat next to one of them for an afternoon to understand why. She wasn't fighting the math. She'd glance at the recommendation, see a bare number next to a "buy" button, and quietly do what she'd already decided to do.</p>
+  <p class="u-body" style="margin-bottom:20px">That afternoon reframed the whole brief for me. Media buyers are trained skeptics — they'll take data over instinct, but only when they can see which way the data is pointing and why. A system that says "buy this" and offers nothing else isn't a tool to them; it's a threat to the judgment they're paid for. So they reach for the thing that feels safer: their own call. The model wasn't being out-argued. It was being ignored.</p>
 
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The fix everyone reached for first was a better number — recalibrate, add a decimal, make it look more authoritative. That's the trap. The buyer didn't distrust the score because it was imprecise. She distrusted it because it arrived as a verdict with no way in. What she needed wasn't a more confident number; it was a number she could interrogate and then choose to act on. The moment I started treating the score as the start of a conversation instead of the end of one, rejection started to fall.</p>
+  <p class="u-body" style="margin-bottom:20px">The fix everyone reached for first was a better number — recalibrate, add a decimal, make it look more authoritative. That's the trap. The buyer didn't distrust the score because it was imprecise. She distrusted it because it arrived as a verdict with no way in. What she needed wasn't a more confident number; it was a number she could interrogate and then choose to act on. The moment I started treating the score as the start of a conversation instead of the end of one, rejection started to fall.</p>
 
-  <div style="padding:32px;border-left:3px solid var(--gold);margin:32px 0;background:var(--bg-card)">
-    <p style="font-family:var(--ff-display);font-style:italic;font-size:18px;line-height:1.6;color:var(--ink);margin:0"><strong>A confidence score is a contract.</strong> The model commits to a number. The user commits to acting on it. My job is to make both halves of that bargain visible — so the person can see what they're agreeing to before they agree.</p>
+  <div style="padding:24px 28px;border-left:3px solid var(--gold);margin:32px 0;background:var(--bg-card)">
+    <p style="font-family:var(--ff-display);font-weight:400;font-style:italic;font-size:var(--fs-card);line-height:1.5;color:var(--ink);margin:0"><strong>A confidence score is a contract.</strong> The model commits to a number. The user commits to acting on it. My job is to make both halves of that bargain visible — so the person can see what they're agreeing to before they agree.</p>
   </div>
 
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">What I actually changed</h2>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">The thing I'm proudest of on that project is the smallest: below a certain confidence, we stopped showing a number at all. A 42% score is worse than useless — it's an invitation to freeze. Replacing it with a plain "not confident enough to recommend — flag for review" let the buyer move on instead of staring at a figure she'd never act on. We spent the rest of the engagement on the same instinct, again and again: don't dress up uncertainty, name it, and always leave a door open for the expert to walk through and disagree.</p>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">That's the counter-intuitive part. The honest interface — the one that admits where the model is shaky — earned more trust than the optimistic one ever did. An "85% confident!" banner buys you exactly one mistake before a skeptic writes the whole system off. A score that already told you where it might be wrong survives the day it actually is.</p>
+  <h2 class="section-title" style="margin:40px 0 20px;max-width:none">What I actually changed</h2>
+  <p class="u-body" style="margin-bottom:20px">The thing I'm proudest of on that project is the smallest: below a certain confidence, we stopped showing a number at all. A 42% score is worse than useless — it's an invitation to freeze. Replacing it with a plain "not confident enough to recommend — flag for review" let the buyer move on instead of staring at a figure she'd never act on. We spent the rest of the engagement on the same instinct, again and again: don't dress up uncertainty, name it, and always leave a door open for the expert to walk through and disagree.</p>
+  <p class="u-body" style="margin-bottom:20px">That's the counter-intuitive part. The honest interface — the one that admits where the model is shaky — earned more trust than the optimistic one ever did. An "85% confident!" banner buys you exactly one mistake before a skeptic writes the whole system off. A score that already told you where it might be wrong survives the day it actually is.</p>
 
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">What I believe now</h2>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Confidence scoring isn't a data-visualization problem. It's a trust problem wearing a number's clothes. The model is rarely the bottleneck in adoption; the half-second of doubt in front of the screen is. Design for that half-second and the rest of the model's value finally gets used. Ignore it, and you've built something statistically excellent that nobody bets on.</p>
+  <h2 class="section-title" style="margin:40px 0 20px;max-width:none">What I believe now</h2>
+  <p class="u-body" style="margin-bottom:20px">Confidence scoring isn't a data-visualization problem. It's a trust problem wearing a number's clothes. The model is rarely the bottleneck in adoption; the half-second of doubt in front of the screen is. Design for that half-second and the rest of the model's value finally gets used. Ignore it, and you've built something statistically excellent that nobody bets on.</p>
 
   <div style="padding:24px 28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);margin:48px 0 8px">
-    <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:8px">The reference version</div>
-    <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin:0 0 12px">Want the playbook, not the story? The five confidence-score patterns I lean on — with the trade-offs, the do's and don'ts, and worked examples.</p>
-    <a href="../patterns/confidence-scores.html" data-cta="pattern-reference" data-location="essay-body" style="font-family:var(--ff-mono);font-size:12px;letter-spacing:0.05em;color:var(--gold);text-decoration:none">See the pattern reference: Confidence Score Patterns →</a>
+    <div class="eyebrow" style="margin-bottom:8px">The reference version</div>
+    <p class="u-ui" style="line-height:1.7;margin:0 0 12px">Want the playbook, not the story? The five confidence-score patterns I lean on — with the trade-offs, the do's and don'ts, and worked examples.</p>
+    <a href="../patterns/confidence-scores.html" data-cta="pattern-reference" data-location="essay-body" style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.05em;color:var(--gold);text-decoration:none">See the pattern reference: Confidence Score Patterns →</a>
   </div>
 
   <div style="margin-top:60px;padding-top:40px;border-top:1px solid var(--border)">
-    <p style="font-family:var(--ff-mono);font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px">Continue exploring</p>
+    <p class="eyebrow" style="margin-bottom:16px">Continue exploring</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
       <a href="./failure-states.html" style="display:block;padding:16px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);text-decoration:none;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'">
-        <div style="font-family:var(--ff-mono);font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">Next essay</div>
-        <div style="font-family:var(--ff-display);font-size:16px;color:var(--ink)">Design the Failure State First</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);color:var(--gold);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">Next essay</div>
+        <div class="card-title">Design the Failure State First</div>
       </a>
       <a href="./index.html" style="display:block;padding:16px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);text-decoration:none;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'">
-        <div style="font-family:var(--ff-mono);font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">All essays</div>
-        <div style="font-family:var(--ff-display);font-size:16px;color:var(--ink)">Back to Writing</div>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);color:var(--gold);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">All essays</div>
+        <div class="card-title">Back to Writing</div>
       </a>
     </div>
   </div>
@@ -99,8 +99,8 @@
 </div></main>
 
 <footer style="border-top:1px solid var(--border);padding:40px 48px;display:flex;align-items:center;justify-content:space-between">
-  <div class="footer-logo" style="font-family:var(--ff-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)">© 2026 Arpit Maheshwari</div>
-  <a href="../index.html" style="font-family:var(--ff-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-dim)'">← Back to Home</a>
+  <div class="footer-logo" style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted)">© 2026 Arpit Maheshwari</div>
+  <a href="../index.html" style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-muted)'">← Back to Home</a>
 </footer>
 
 <script>

@@ -91,7 +91,11 @@ These are controlled surfaces that deliberately mimic other UIs; they use their 
 - **Product-screenshot reconstructions** — the `.plate` / `.plM` / `.plV` device mockups (role="img"): era-honest app screens that need sub-11px micro-type to read as real.
 - **Interactive product simulations** — the `#recon-*` widgets: they simulate a product interface, not page chrome.
 - **Wireframe mock boxes** — illustrative "here's the interaction" sketches on pattern pages.
-The scale governs **page chrome** (headings, sections, body, real navigation/buttons), never a simulated screen. (Same principle as the book being its own system.)
+- **Decorative oversized numerals/ornament** — e.g. the 404 background "404" watermark (`.ghost`, ~clamp(220px,42vw,420px)): a design ornament, not readable heading text.
+The scale governs **page chrome** (headings, sections, body, real navigation/buttons), never a simulated screen or ornament. (Same principle as the book being its own system.)
+
+### Header clearance
+The nav is `position:fixed` (~88px tall at page top). Every page's first content band clears it — top padding ≥ 104px on desktop (matches the homepage hero). Never let an eyebrow/title tuck under the nav.
 
 ### Cream "act" (governed — classic site)
 Cream is a **peak**, used **only twice** on the homepage (the receipts band + the one-idea band) and nowhere else unless this file adds it. It re-points tokens:

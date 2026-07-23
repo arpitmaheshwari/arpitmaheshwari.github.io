@@ -20,7 +20,7 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&display=swap" media="print" onload="this.media='all';this.onload=null">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&display=swap"></noscript>
-  <link rel="stylesheet" href="../styles.css?v=p22">
+  <link rel="stylesheet" href="../styles.css?v=ds1">
 <meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/now-og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -35,52 +35,60 @@
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
-<div style="padding:80px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
-  <div style="max-width:65ch;margin:0 auto">
-    <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5.5vw,60px);font-weight:300;line-height:1.2;color:var(--ink);margin-bottom:20px">Now</h1>
-    <p style="font-size:13px;color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">Updated June 2026 · Last shipped this week</p>
+<div style="padding:104px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
+  <div style="max-width:var(--measure);margin:0 auto">
+    <h1 style="font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;line-height:1.15;color:var(--ink);margin-bottom:20px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.02em">Now</h1>
+    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">Updated June 2026 · Last shipped this week</p>
   </div>
 </div>
 
-<main id="main" class="section" style="background:var(--bg)"><div style="max-width:65ch;margin:0 auto;padding:60px 24px">
+<main id="main" class="section" style="background:var(--bg)"><div style="max-width:var(--measure);margin:0 auto">
 
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:40px">This is what I'm actively building. Updated monthly. Inspired by <a href="https://sive.rs/now" style="color:var(--gold);text-decoration:none">Derek Sivers' /now page</a>.</p>
+  <section style="margin-bottom:64px">
+    <p class="lead" style="margin:0;max-width:none">This is what I'm actively building. Updated monthly. Inspired by <a href="https://sive.rs/now" style="color:var(--gold);text-decoration:none">Derek Sivers' /now page</a>.</p>
+  </section>
 
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Current Focus</h2>
+  <section style="margin-bottom:64px">
+    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Current Focus</h2>
 
-  <h3 style="font-family:var(--ff-display);font-size:18px;font-weight:400;color:var(--ink);margin:24px 0 12px">1. AI Design Patterns Library</h3>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:16px;padding-left:0">Publishing original patterns from 15 years of shipping intelligent systems. Four core patterns live: Confidence Scores, Failure States, Explainability, Human-in-Loop. Planning to expand to 12+ patterns by end of Q2.</p>
-  <p style="font-size:13px;color:var(--ink-muted);margin-bottom:24px;">Ship rate: 1–2 patterns/month. Each pattern gets: 800–1500 words, diagrams, trade-off table, real-world examples, code snippets.</p>
+    <h3 class="card-title" style="margin:0 0 12px">1. AI Design Patterns Library</h3>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.7;margin:0 0 16px">Publishing original patterns from 15 years of shipping intelligent systems. Four core patterns live: Confidence Scores, Failure States, Explainability, Human-in-Loop. Planning to expand to 12+ patterns by end of Q2.</p>
+    <p style="font-size:var(--fs-caption);color:var(--ink-muted);margin:0 0 32px">Ship rate: 1–2 patterns/month. Each pattern gets: 800–1500 words, diagrams, trade-off table, real-world examples, code snippets.</p>
 
-  <h3 style="font-family:var(--ff-display);font-size:18px;font-weight:400;color:var(--ink);margin:24px 0 12px">2. Writing — Essays on AI Design Methodology</h3>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:16px;padding-left:0">Essays on designing the trust layer in AI products. Currently 4 published. Planning 6 more by September covering: confidence scoring frameworks, failure state recovery, explainability surface design, human-in-loop patterns.</p>
-  <p style="font-size:13px;color:var(--ink-muted);margin-bottom:24px;">Each essay: 1500–2000 words, magazine-style format, LinkedIn + email distribution.</p>
+    <h3 class="card-title" style="margin:0 0 12px">2. Writing — Essays on AI Design Methodology</h3>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.7;margin:0 0 16px">Essays on designing the trust layer in AI products. Currently 4 published. Planning 6 more by September covering: confidence scoring frameworks, failure state recovery, explainability surface design, human-in-loop patterns.</p>
+    <p style="font-size:var(--fs-caption);color:var(--ink-muted);margin:0 0 32px">Each essay: 1500–2000 words, magazine-style format, LinkedIn + email distribution.</p>
 
-  <h3 style="font-family:var(--ff-display);font-size:18px;font-weight:400;color:var(--ink);margin:24px 0 12px">3. Resources — Founder Hiring Guides & Toolkits</h3>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:16px;padding-left:0">Building public resources for founders shipping AI. Three live: AI Design Checklist (47 items), Intelligent Systems Glossary (40+ definitions), Founder Questions for Hiring (12 critical questions).</p>
-  <p style="font-size:13px;color:var(--ink-muted);margin-bottom:24px;">Goal: Help first-time AI product teams ask the right questions and ship with confidence.</p>
+    <h3 class="card-title" style="margin:0 0 12px">3. Resources — Founder Hiring Guides & Toolkits</h3>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.7;margin:0 0 16px">Building public resources for founders shipping AI. Three live: AI Design Checklist (47 items), Intelligent Systems Glossary (40+ definitions), Founder Questions for Hiring (12 critical questions).</p>
+    <p style="font-size:var(--fs-caption);color:var(--ink-muted);margin:0">Goal: Help first-time AI product teams ask the right questions and ship with confidence.</p>
+  </section>
 
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Not Doing Right Now</h2>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px">Parked (deliberate deferral, not rejection):</p>
-  <ul style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px;padding-left:24px">
-    <li><strong>Speculative redesigns of public AI products.</strong> (Cursor, Linear AI, Anthropic Console). High-quality work but long implementation time. Revisit Q3 2026.</li>
-    <li><strong>Conference talks & podcast appearances.</strong> 6–12 month lead time. Will revisit once content moat is stronger.</li>
-    <li><strong>Consulting / fractional design work.</strong> Maximizing time on leverage (patterns, writing, resource building). Actively interviewing for one founding-designer seat; not seeking fractional work.</li>
-    <li><strong>YouTube / video content.</strong> Testing appetite for video essays. If strong demand, will add 1–2 per month Q3 2026.</li>
-  </ul>
+  <section style="margin-bottom:64px">
+    <h2 class="section-title" style="margin:0 0 20px;max-width:none">Not Doing Right Now</h2>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.7;margin:0 0 20px">Parked (deliberate deferral, not rejection):</p>
+    <ul style="font-size:var(--fs-body);color:var(--ink);line-height:1.7;margin:0;padding-left:24px">
+      <li><strong>Speculative redesigns of public AI products.</strong> (Cursor, Linear AI, Anthropic Console). High-quality work but long implementation time. Revisit Q3 2026.</li>
+      <li><strong>Conference talks & podcast appearances.</strong> 6–12 month lead time. Will revisit once content moat is stronger.</li>
+      <li><strong>Consulting / fractional design work.</strong> Maximizing time on leverage (patterns, writing, resource building). Actively interviewing for one founding-designer seat; not seeking fractional work.</li>
+      <li><strong>YouTube / video content.</strong> Testing appetite for video essays. If strong demand, will add 1–2 per month Q3 2026.</li>
+    </ul>
+  </section>
 
-  <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:400;color:var(--ink);margin:40px 0 20px">Timeline & Commitments</h2>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>This month (June 2026):</strong> Shipping 2 essays + 2 patterns. Adding plain-language definitions across the case studies and patterns.</p>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>July 2026:</strong> Expand patterns library to 8 total. Publish 2 more essays. Begin "speculative redesign" experiments (1–2 high-signal products).</p>
-  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:20px"><strong>August–September 2026:</strong> Consolidate. Polish. Ship 2 more essays. Launch video experiments if demand is there. Assess founding designer inbound (goal: 4+ qualified opportunities/month).</p>
+  <section style="margin-bottom:64px">
+    <h2 class="section-title" style="margin:0 0 20px;max-width:none">Timeline & Commitments</h2>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.7;margin:0 0 20px"><strong>This month (June 2026):</strong> Shipping 2 essays + 2 patterns. Adding plain-language definitions across the case studies and patterns.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.7;margin:0 0 20px"><strong>July 2026:</strong> Expand patterns library to 8 total. Publish 2 more essays. Begin "speculative redesign" experiments (1–2 high-signal products).</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.7;margin:0"><strong>August–September 2026:</strong> Consolidate. Polish. Ship 2 more essays. Launch video experiments if demand is there. Assess founding designer inbound (goal: 4+ qualified opportunities/month).</p>
+  </section>
 
-  <p style="font-size:13px;color:var(--ink-muted);margin-top:60px;padding-top:40px;border-top:1px solid var(--border);">This page gets refreshed at the top of each month.</p>
+  <p style="font-size:var(--fs-caption);color:var(--ink-muted);margin-top:64px;padding-top:32px;border-top:1px solid var(--border);">This page gets refreshed at the top of each month.</p>
 
 </div></main>
 
 <footer style="border-top:1px solid var(--border);padding:40px 48px;display:flex;align-items:center;justify-content:space-between">
-  <div class="footer-logo" style="font-family:var(--ff-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)">© 2026 Arpit Maheshwari</div>
-  <a href="../index.html" style="font-family:var(--ff-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-dim)'">← Back to Home</a>
+  <div class="footer-logo" style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted)">© 2026 Arpit Maheshwari</div>
+  <a href="../index.html" style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-muted)'">← Back to Home</a>
 </footer>
 
 <script>
