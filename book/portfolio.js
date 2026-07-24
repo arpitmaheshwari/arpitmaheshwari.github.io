@@ -1502,7 +1502,7 @@ function buildBook(ctx) {
         [["01", "Listen", "Research the problem space in its own words, not mine. Act / Review / Ignore was born here \u2014 watching traders override a correct model."],
          ["02", "Structure", "Journeys and information architecture: what the product is, before what it looks like."],
          ["03", "Prove", "AI-assisted working HTML, not clickable pictures \u2014 tested with users, and when it survives, shipped as part of the codebase."],
-         ["04", "Land", "Visual design, brand, tone \u2014 the layer people mistake for the whole job."]
+         ["04", "Land", "Visual design, brand, tone \u2014 where PlanIt's downcast mascot lived; the layer people mistake for the whole job."]
         ].map((m, i) => /*#__PURE__*/React.createElement("div", { className: "bk-principle", key: i },
           /*#__PURE__*/React.createElement("span", { className: "bk-principle__n" }, m[0]),
           /*#__PURE__*/React.createElement("div", null,
