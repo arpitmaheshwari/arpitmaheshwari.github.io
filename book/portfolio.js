@@ -194,7 +194,7 @@ const CASES = {
       t: "The redesign took a quarter. The case for deleting four products took a year — and that was the actual design work.",
       cite: "— PTC University, project note"
     },
-    note2: "killed four products. proudest deletion of my career."
+    note2: "killed four products to ship the one that worked."
   }
 };
 
@@ -255,7 +255,7 @@ const NDA_CASES = [{
   plateCn: "explanation drawer — output traced to source documents",
   ledger: [{
     v: "60% faster",
-    l: "Per diligence pass · n=42 · 90-day window"
+    l: "Per diligence pass · 42 deals · 90-day window"
   }, {
     v: "3",
     l: "Sources behind every score"
@@ -1312,13 +1312,13 @@ function buildBook(ctx) {
       className: "bk-cover"
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-cover__imprint"
-    }, "The Trust Layer \xB7 Vol. I \xB7 MMXXVI"), /*#__PURE__*/React.createElement("div", {
+    }, "The Trust Layer \xB7 MMXXVI"), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-cover__emblem"
     }, /*#__PURE__*/React.createElement(Device, {
       on: "dark",
-      label: "Vol. I"
+      label: "The Trust Layer"
     })), /*#__PURE__*/React.createElement("h1", {
       className: "bk-cover__title"
     }, "The half-second where a person decides to ", /*#__PURE__*/React.createElement("em", null, "bet"), " on a machine."), /*#__PURE__*/React.createElement("div", {
@@ -1386,7 +1386,7 @@ function buildBook(ctx) {
         fontSize: 13,
         color: "var(--bk-ink-faint)"
       }
-    }, "First edition \xB7 set in Newsreader & Spectral \xB7 Indore, India \xB7 MMXXVI")),
+    }, "Set in Newsreader & Spectral \xB7 Indore, India \xB7 MMXXVI")),
     right: /*#__PURE__*/React.createElement("div", {
       className: "bk-reveal"
     }, /*#__PURE__*/React.createElement("div", {
@@ -1444,7 +1444,7 @@ function buildBook(ctx) {
       className: "bk-plate__no"
     }, "Frontispiece"), /*#__PURE__*/React.createElement("span", {
       className: "bk-plate__cn"
-    }, "the author, such as he is"))), /*#__PURE__*/React.createElement("p", {
+    }, "the author"))), /*#__PURE__*/React.createElement("p", {
       className: "bk-lede bk-drop",
       style: {
         marginTop: 0
@@ -1535,7 +1535,7 @@ function buildBook(ctx) {
       style: {
         margin: "22px 0 18px"
       }
-    }, "the one I'm proudest of \u2193"), /*#__PURE__*/React.createElement("div", {
+    }, "begin here \u2193"), /*#__PURE__*/React.createElement("div", {
       className: "bk-feature bk-feature--link",
       role: "button",
       tabIndex: 0,
