@@ -186,7 +186,7 @@
       var panel = h("div");
       panel.style.display = "none";
       var stat = h("div", "pd__sub");
-      stat.innerHTML = "<strong style='color:var(--gold);font-family:var(--ff-display);font-style:italic;font-size:18px'>Right 82% of the time</strong> &nbsp;·&nbsp; last 90 days · 42 deals";
+      stat.innerHTML = "<strong style='color:var(--gold);font-family:var(--ff-display);font-style:italic;font-size:18px'>Right 82% of the time</strong> &nbsp;·&nbsp; across its last 200 calls at this confidence";
       var bar = h("div", "pd__bar");
       var fill = h("i"); fill.style.width = "82%";
       bar.appendChild(fill);

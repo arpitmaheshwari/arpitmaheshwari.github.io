@@ -39,7 +39,7 @@ Use the exact metric strings below on every surface (homepage chip, case-study p
 |---|----------------|-----|-------------------------------|----------------------|
 | 1 | **PTC University — Learning Connector** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile 4%→38% (2017→2019) · 80+ countries · Role: Lead Product Designer · 2014–2019 |
 | 2 | **Telefónica MyO2 & Priority Moments** | Telecom · Non-NDA / public | **4M+** (MyO2 users) | Priority Moments **2.6M** sign-ups year one · 2.5M+ active · 5★ App Store · Role: Designer + front-end via **Equal Experts, 2012–14** |
-| 3 | **AI-Assisted Private Equity Investing** | FinTech · NDA | **60% faster** (deal screening) | n=42 · 90-day window · 3 sources behind every score · Role: Lead Product Designer |
+| 3 | **AI-Assisted Private Equity Investing** | FinTech · NDA | **60% faster** (deal screening) | measured pre- vs post-rollout · 3 sources behind every score · Role: Lead Product Designer · _(true sample: 42 deals over a 90-day window — DO NOT PUBLISH, see display rule below)_ |
 | 4 | **Programmatic Advertising Platform** | AdTech · NDA | **2 wks → 3 hrs** (campaign planning) | Act / Review / Ignore · reasoning on every call · Role: Lead Product Designer |
 | 5 | **OrgOS · Transparent Org Tooling** | Org Design · NDA | **200** (people) | 200 people · 0 managers · 8 modules · **in use by 250 people today (2026)** — the org grew past the 200 it was designed for and the coordination model held · Role: Design Lead. ("Zero managers" is the *outcome*, never the title.) |
 | 6 | **Technical Due Diligence Platform** | VC/PE · NDA | **3 wks → 4 days** (diligence cycle) | 4 signal classes scored · VC + PE · Role: Design Lead |
@@ -217,6 +217,14 @@ accuracy IS the positioning.
   is available on request." NEVER publicly identify them as "the client's CTO" or tie the reference to
   a specific project/role in writing — Arpit's instruction. The reference exists; who they are is shared
   privately, not printed on the resume/PDF/site.
+- **FinTech sample size (display rule, 2026-07-25 — Arpit's instruction):** NEVER publish "42 deals",
+  "90-day window", or "n=42" anywhere. The numbers are true and stay in this file for interview use, but
+  in print a small denominator invites "only 42?" and reads as weaker than no denominator at all. Where a
+  baseline slot needs filling (hire receipts, homepage proof-meta, case stats), use **"measured pre- vs
+  post-rollout"** — it keeps the honesty posture without handing over a number that undersells the work.
+  The sample, eval design, and baseline are offered on a call instead ("artifacts open").
+  The calibration pattern demo keeps a denominator because the pattern requires one — but it uses
+  clearly-illustrative figures ("its last 200 calls at this confidence"), never Arpit's real ones.
 
 ### OrgOS framing (2026-07-23 — Arpit's instruction)
 The moat is NOT scale/headcount ("250 run on it today" / "built for 200"). The primary point is that

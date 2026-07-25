@@ -255,7 +255,7 @@ const NDA_CASES = [{
   plateCn: "explanation drawer — output traced to source documents",
   ledger: [{
     v: "60% faster",
-    l: "Per diligence pass · 42 deals · 90-day window"
+    l: "Per diligence pass · pre/post rollout"
   }, {
     v: "3",
     l: "Sources behind every score"
@@ -483,7 +483,7 @@ const PATTERN_PAGES = {
     donts: ["Show a confidence number with no past to back it.", "Average away the cases where the model is reliably wrong.", "Reset the track record silently every time the model changes."],
     instTag: "FinTech \xB7 Due Diligence",
     inst: React.createElement(React.Fragment, null, "Ninety days and forty-two deals in, the score had been right often enough that analysts ", React.createElement("span", { className: "bk-em" }, "stopped re-checking the confident calls"), ". The history earned the trust the number alone couldn't."),
-    fig: { no: "3.7", img: "../assets/visuals/pattern-calibration.svg", label: "confidence beside its 90-day hit rate" }
+    fig: { no: "3.7", img: "../assets/visuals/pattern-calibration.svg", label: "confidence beside its own hit rate" }
   },
   undo: {
     demo: /*#__PURE__*/React.createElement(UndoDemo),
@@ -1125,7 +1125,7 @@ function CalibDemo() {
       h("span", { className: "bk-demo__chip" }, "80% sure"),
       h("button", { type: "button", className: "bk-demo__btn", onClick: () => setShow(!show), "aria-expanded": show }, show ? "hide track record" : "Show its track record ▸")),
     show && h("div", { className: "bk-demo__panel" },
-      h("div", { className: "bk-demo__stat" }, h("b", null, "Right 82% of the time"), h("span", null, " · last 90 days · 42 deals")),
+      h("div", { className: "bk-demo__stat" }, h("b", null, "Right 82% of the time"), h("span", null, " · across its last 200 calls at this confidence")),
       h("div", { className: "bk-demo__bar" }, h("span", { style: { width: "82%" } }))));
 }
 
