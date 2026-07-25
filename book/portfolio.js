@@ -111,10 +111,10 @@ const WRITING = [{
   h: "Reading the support tickets myself",
   p: "The cheapest research method nobody on the design team wants to do."
 }];
-const STATUS = ["Available · 4 weeks' notice", "Founding designer · AI", "Remote · GMT+5:30"];
+const STATUS = ["Available · 4 weeks' notice", "Product & design lead · AI", "Remote · GMT+5:30"];
 
 /* ---- CURRICULUM VITAE (the printable appendix) ---- */
-const CV_SKILLS = ["Model-Layer Design", "Data-Intensive UI", "Design Leadership", "Organizational Design", "Research & Evals", "System Architecture"];
+const CV_SKILLS = ["Model-Layer Design", "Product Definition & Roadmaps", "Data-Intensive UI", "Design Leadership", "Organizational Design", "Research & Evals", "System Architecture"];
 const CV_EXP = [{
   yr: "2019—",
   role: "Solution Consultant",
@@ -1325,7 +1325,7 @@ function buildBook(ctx) {
       className: "bk-cover__rule"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-cover__byline"
-    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Founding designer for AI products \xB7 shipped to 4M+"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "Read the classic site instead \u2192"), /*#__PURE__*/React.createElement("button", {
+    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Product & design leader for AI products \xB7 shipped to 4M+"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "Read the classic site instead \u2192"), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1),
       "aria-label": "Open the book \u2014 tap or press space"
@@ -1792,7 +1792,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "Your model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. Founding designer for AI products — also open to a staff or director trust-layer seat. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
+    }, "Your model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. Founding product & design lead for AI products — also open to a staff or director trust-layer seat. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-social",
       style: {
         marginTop: 24

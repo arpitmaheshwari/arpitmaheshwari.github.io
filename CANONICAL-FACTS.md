@@ -20,16 +20,17 @@ _Last reconciled: 2026-06-19._
 - **Brand name:** **The Trust Layer** — it is BOTH the book's title AND the Substack newsletter. Always
   capitalised as a name.
 - **Job title — use ONE of these, not a new variant each time:**
-  - In page code / structured data (schema `jobTitle`): **Design Leader — AI & Data-Intensive Products**
-  - On-page role line (under my name): **Design Leader · AI & Data-Intensive Products**
+  - In page code / structured data (schema `jobTitle`): **Product & Design Leader — AI & Data-Intensive Products**
+  - On-page role line (under my name): **Product & Design Leader · AI & Data-Intensive Products**
+  - _(Retitled from "Design Leader" on 2026-07-25 — Arpit's call: also owns product management, product definition, roadmapping. PM receipts: AdTech, FinTech + DD, OrgOS — NOT PTC.)_
   - Only exception: the `/hire/` page's browser-tab title may keep its search wording
-    "Founding Designer, AI Products" — but its on-page role line still uses the canonical above.
+    "Product & Design Leader, AI Products" — but its on-page role line still uses the canonical above.
 
 ## 2. Availability (must read identically everywhere)
 - **Available · 4 weeks' notice** (always the digit "4", never "four").
 - Fully remote from Indore, India (GMT+5:30); 4–5 hours of daily overlap with US East Coast.
-- Looking for ONE role: founding designer at an AI product company of 5–40 people, OR a staff / director
-  seat where the trust layer is the job.
+- Looking for ONE role: founding product & design lead at an AI product company of 5–40 people, OR a
+  staff / director seat where the trust layer is the job.
 
 ## 3. The six case studies — names + numbers are LOCKED
 Use the exact metric strings below on every surface (homepage chip, case-study page, the book, the résumé).
@@ -207,9 +208,10 @@ accuracy IS the positioning.
   github.com/arpitmaheshwari. Substack = substack.com/@arpitmaheshwari. Designed resume/portfolio
   show these as small gold monoline icons (not long URLs); the ATS .docx keeps the LinkedIn URL as
   parseable text.
-- **Title honesty:** documents and site say **Design Leader — AI & Data-Intensive Products** as
+- **Title honesty:** documents and site say **Product & Design Leader — AI & Data-Intensive Products** as
   positioning; the résumé names the official employer title ("Solution Consultant") beside the
-  functional one ("Design Lead — AI Products"). LinkedIn must match this story — never claim
+  functional one ("Product & Design Lead — AI Products"). PM claims carry receipts only on AdTech,
+  FinTech + DD, and OrgOS — never claim product ownership on PTC work. LinkedIn must match this story — never claim
   "Principal" as a conferred rank anywhere.
 - **AdTech reference (display rule, updated 2026-07-22):** say only "a named reference for this work
   is available on request." NEVER publicly identify them as "the client's CTO" or tie the reference to
