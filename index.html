@@ -595,8 +595,8 @@
       <p class="u-body" style="margin:0 0 28px 0">I'm looking for one seat: founding product &amp; design lead at an AI product company of 5–40 people — or a staff / director role where the trust layer is the actual job description. Fully remote from GMT+5:30 with 4–5 hours of daily US East overlap. Available — 4 weeks' notice.</p>
       <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="contact-secondary" style="display:inline-flex;align-items:center;gap:8px;padding:14px 24px;color:var(--gold);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:0.03em;border:1px solid var(--gold-dark);border-radius:2px;text-decoration:none;transition:border-color 0.3s,color 0.3s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-light)'" onmouseout="this.style.borderColor='var(--gold-dark)';this.style.color='var(--gold)'">Prefer to talk first? Book 30 minutes ↗</a>
       <p style="font-size:13px;color:var(--ink-muted);margin:14px 0 0 0">I'll arrive having already used your product.</p>
-      <p style="font-size:14px;color:var(--ink-muted);margin:18px 0 0 0">Prefer email? <a id="em-l" href="#" data-cta="email" data-location="contact" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark);padding-bottom:2px">Loading…</a></p>
-      <script>(function(){var u='maheshwari.arpit'+'88',d='gmail.com',a=u+'@'+d,e=document.getElementById('em-l');e.textContent=a;e.href='mailto:'+a+'?subject=Role%20for%20Arpit';})();</script>
+      <p style="font-size:14px;color:var(--ink-muted);margin:18px 0 0 0">Prefer email? <a id="em-l" href="#" data-cta="email" data-location="contact" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark);padding-bottom:2px">use the form or the call link</a></p>
+      <script>(function(){var e=document.getElementById('em-l');e.textContent='write to me directly \u2192';e.addEventListener('click',function(){var u='maheshwari.arpit'+'88',d='gmail.com';this.href='mailto:'+u+'@'+d;});})();</script>
       <p style="font-size:13px;color:var(--ink-muted);margin:22px 0 0 0">The skim version: <a href="./hire/" data-cta="resume" data-location="contact" style="color:var(--gold);text-decoration:none">one page — positioning, receipts, references, availability →</a></p>
       <p style="font-size:13px;color:var(--ink-muted);margin:10px 0 0 0">Running a technical screen? <a href="./screen/" data-cta="screen" data-location="contact" style="color:var(--gold);text-decoration:none">It's already answered, in writing →</a></p>
     </div>
@@ -634,12 +634,21 @@
 </footer>
 
 <script>
-// Disable scroll restoration — always start at top on reload (prevents "black page" bug
-// where users land mid-page with .reveal elements that observer hasn't seen yet)
+// Scroll policy: reloads start at top (prevents the "black page" bug where a restored
+// mid-page position outruns the .reveal observer) — but an anchored arrival (#contact,
+// #patterns…) must land on its section, so the reset only runs when there is no hash.
+// Late layout (fonts, images) can shift a deep anchor, so re-snap once after load.
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
-window.scrollTo(0, 0);
+if (location.hash) {
+  window.addEventListener('load', function () {
+    var el = document.getElementById(location.hash.slice(1));
+    if (el) el.scrollIntoView();
+  });
+} else {
+  window.scrollTo(0, 0);
+}
 
 // Nav scroll
 const nav = document.getElementById('nav');

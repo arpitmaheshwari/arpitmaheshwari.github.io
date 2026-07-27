@@ -246,3 +246,10 @@ headline. (Resume already updated; align the OrgOS case study + any homepage men
   13 useRef, 8 useCallback, 7 useEffect). Say "React beyond prototypes", never "React for
   prototypes and component scaffolds" (undersells a shipped app). Boundary that stays: he does not
   claim the backend.
+
+### Email display rule (2026-07-27 — Arpit's instruction, spam prevention)
+NEVER render maheshwari.arpit88@gmail.com as visible text or a static mailto: on any public web
+surface (site, book, llms.txt, JS headers). The pattern everywhere is click-to-compose: a label
+("write to me directly →" / "email — click to write") whose mailto: href is assembled from split
+parts INSIDE the click handler — the address never enters the served HTML or the idle DOM.
+The PDFs and the .docx keep the address in full (they are handed out deliberately).

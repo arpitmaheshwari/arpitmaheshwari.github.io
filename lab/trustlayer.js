@@ -9,7 +9,7 @@
  * and shipped in production products (under NDA). This file is the logic only —
  * the visual layer is deliberately left to you.
  *
- * @author  Arpit Maheshwari <maheshwari.arpit88@gmail.com>
+ * @author  Arpit Maheshwari — arpitmaheshwari.com
  * @license MIT
  */
 

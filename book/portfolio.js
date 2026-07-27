@@ -1858,9 +1858,10 @@ function buildBook(ctx) {
         marginBottom: 14
       }
     }, "A line about the role and the stage, or just a link — I reply within 48 hours. Prefer email? ", /*#__PURE__*/React.createElement("a", {
-      href: "mailto:maheshwari.arpit88@gmail.com?subject=Role%20for%20Arpit",
+      href: "#",
+      onClick: function (e) { var u = "maheshwari.arpit" + "88", d = "gmail.com"; e.currentTarget.href = "mailto:" + u + "@" + d + "?subject=Role%20for%20Arpit"; },
       style: { color: "var(--bk-ember-ink, #B04A24)" }
-    }, "maheshwari.arpit88@gmail.com")), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
+    }, "write to me directly \u2192")), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: { marginTop: "auto", textAlign: "center", paddingTop: 16 }
     }, "thanks for reading to the end ♥"))
