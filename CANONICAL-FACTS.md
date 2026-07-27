@@ -232,3 +232,17 @@ OrgOS is a **unique system that makes a radically transparent, flat, manager-les
 work** — a flat hierarchy encoded into the software itself, doing the coordination a management layer
 normally would. Lead every OrgOS mention with that; headcount is at most a secondary detail, never the
 headline. (Resume already updated; align the OrgOS case study + any homepage mention the same way.)
+
+### Nav IA + React claim (2026-07-27)
+- **Site nav (all classic pages):** Work · Patterns · **Lab** · Writing · How I Lead + "Read as a
+  book ↗" + CTA "Send me the role ↗". The old "Contact" nav item was REMOVED as a duplicate of the
+  CTA (both went to #contact; the CTA is visible on every viewport). Do not re-add it.
+- **Wayfinding:** inner pages mark their section with `aria-current="true"` (case-studies→Work,
+  patterns→Patterns, lab→Lab, writing→Writing); gold tint via styles.css (`?v=ds2`).
+- **View-router rule:** a URL hash always beats the remembered book preference — never let the
+  am-view=book redirect swallow #section links (this was a live bug, fixed 2026-07-27).
+- **React claim (corrected upward, with receipt):** the book edition is ~150KB of Arpit's own React
+  (measured: book/portfolio.js 120,307 B + image-slot.js 31,364 B; 53 hooks — 25 useState,
+  13 useRef, 8 useCallback, 7 useEffect). Say "React beyond prototypes", never "React for
+  prototypes and component scaffolds" (undersells a shipped app). Boundary that stays: he does not
+  claim the backend.
