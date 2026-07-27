@@ -31,7 +31,7 @@ One ordered ramp. Every text element maps to exactly one step.
 | `--fs-title` | **clamp(24px, 3.2vw, 31px)** | **SECTION TITLE — the default for every section, every surface** |
 | `--fs-title-lg` | **clamp(28px, 3.6vw, 39px)** | prominent title — chapter / act opener ONLY, never ad hoc |
 | `--fs-hero` | **clamp(36px, 5.5vw, 52px)** | hero H1 |
-| `--fs-display` | **clamp(44px, 6vw, 64px)** | cover / display maximum (book cover, rare big moments) |
+| `--fs-display-xl` | **clamp(44px, 6vw, 64px)** | cover / display maximum (book cover, rare big moments) |
 | `--fs-metric` | **clamp(38px, 4.4vw, 48px)** | stat / metric number (standard) |
 | `--fs-metric-sm` | **24px** | inline / card-level metric number |
 
@@ -43,7 +43,7 @@ They all map onto the ramp above.
 | Role | Font | Size | Weight | Line-height | Tracking | Case | Color |
 |---|---|---|---|---|---|---|---|
 | Hero H1 | Newsreader | `--fs-hero` | 300 | 1.08 | -.02em | — | ink (accent em = gold, italic) |
-| Display / cover | Newsreader | `--fs-display` | 300 | 1.1 | -.02em | — | ink |
+| Display / cover | Newsreader | `--fs-display-xl` | 300 | 1.1 | -.02em | — | ink |
 | **Section eyebrow** | IBM Plex Mono | `--fs-eyebrow` | 500 | 1.4 | .15em | UPPER | gold |
 | **Section title** | Newsreader | `--fs-title` | 400 | 1.15 | -.01em | — | ink |
 | Prominent title | Newsreader | `--fs-title-lg` | 400 | 1.12 | -.015em | — | ink |

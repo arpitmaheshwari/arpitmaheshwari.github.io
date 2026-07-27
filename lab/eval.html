@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>trustlint — Audit the Shape of an AI Answer — Arpit Maheshwari</title>
+<meta name="description" content="A deterministic linter for the trust properties of an AI answer: uncited figures, absolutes, decorative hedging, and the failure that costs most — asserting confidently with nothing to assert from. Runs entirely in your browser.">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/lab/eval.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="trustlint — Audit the Shape of an AI Answer">
+<meta property="og:description" content="A linter, not a benchmark: it checks whether an answer is shaped honestly, and says plainly that it cannot check whether the answer is true.">
+<meta property="og:url" content="https://arpitmaheshwari.com/lab/eval.html">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/lab-og.png">
+<meta property="og:image:alt" content="trustlint — audit the shape of an AI answer">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta property="og:locale" content="en_IN" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="trustlint — Audit the Shape of an AI Answer">
+<meta name="twitter:description" content="A linter, not a benchmark: it checks whether an answer is shaped honestly, not whether it is true.">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/lab-og.png">
+<meta name="twitter:image:alt" content="trustlint — audit the shape of an AI answer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" media="print" onload="this.media='all';this.onload=null">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="../styles.css?v=ds1">
+<style>
+  .lab-wrap { max-width: var(--inner-max); margin: 0 auto; padding: 0 var(--page-x); }
+  .lab-hero { padding-top: 128px; }
+  .lab-kicker { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin: 0 0 16px; }
+  .lab-lede { font-size: var(--fs-lead); line-height: 1.6; color: var(--ink-muted); max-width: var(--measure); }
+  .lab-lede strong { color: var(--ink); font-weight: 400; }
+  .lab-note { border-left: 2px solid var(--gold-dark); padding: 14px 0 14px 20px; margin: 32px 0 0; font-size: var(--fs-ui); line-height: 1.7; color: var(--ink-muted); max-width: var(--measure); }
+  .lab-note b { color: var(--ink); font-weight: 600; }
+  .lab-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .lab-links a { font-family: var(--ff-mono); font-size: var(--fs-caption); letter-spacing: 0.04em; color: var(--gold); text-decoration: none; border: 1px solid var(--gold-dark); border-radius: var(--radius); padding: 10px 16px; transition: background .15s, color .15s; }
+  .lab-links a:hover { background: var(--gold); color: var(--bg); }
+
+  /* the tool */
+  .lint-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; align-items: start; }
+  @media (max-width: 860px) { .lint-grid { grid-template-columns: 1fr; } }
+  .lint-panel { border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); padding: 22px 24px; min-width: 0; }
+  .lint-panel h3 { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 14px; }
+
+  .lint-seg { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .lint-seg button { flex: 1 1 auto; padding: 8px 10px; font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-muted); background: transparent; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: border-color .15s, color .15s, background .15s; }
+  .lint-seg button:hover { border-color: var(--gold); color: var(--ink); }
+  .lint-seg button.on { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+  .lint-seg button:focus-visible, #lint-input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* .act-cream overrides --bg-card but not --bg-soft, so a field using --bg-soft
+     would stay dark while --ink turns dark. Give the cream context its own field. */
+  .act-cream #lint-input, .act-cream .lint-panel input { background: #F7F1E4; }
+  #lint-input { width: 100%; min-height: 210px; resize: vertical; background: var(--bg-soft); color: var(--ink); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 15px; font-family: var(--ff-sans); font-size: var(--fs-ui); line-height: 1.65; }
+  .lint-hint { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); margin: 12px 0 0; }
+
+  .lint-verdict { font-family: var(--ff-display); font-style: italic; font-weight: 300; font-size: 32px; line-height: 1.15; margin-bottom: 6px; display: block; }
+  .lint-verdict.is-bad { color: var(--err); }
+  .lint-verdict.is-mid { color: var(--warn); }
+  .lint-verdict.is-good { color: var(--ok); }
+  .lint-verdict.is-empty { color: var(--ink-muted); }
+  .lint-sub { font-family: var(--ff-mono); font-size: var(--fs-caption); color: var(--ink-muted); margin: 0 0 18px; }
+
+  .lint-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 14px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 18px; }
+  .lint-stat b { display: block; font-family: var(--ff-display); font-weight: 300; font-size: var(--fs-metric-sm); color: var(--gold); line-height: 1; font-variant-numeric: tabular-nums; }
+  .lint-stat span { display: block; font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-muted); margin-top: 7px; }
+
+  .lint-findings { list-style: none; padding: 0; margin: 0; }
+  .lint-findings li { padding: 13px 0; border-bottom: 1px solid var(--border); }
+  .lint-findings li:last-child { border-bottom: none; }
+  .lint-rule { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: 0.07em; text-transform: uppercase; display: inline-block; padding: 3px 8px; border-radius: 2px; margin-bottom: 8px; }
+  .sev-high { background: rgba(224,115,107,0.14); color: var(--err); }
+  .sev-medium { background: rgba(232,200,138,0.14); color: var(--warn); }
+  .sev-low { background: rgba(242,237,228,0.09); color: var(--ink-muted); }
+  .sev-info { background: rgba(94,212,142,0.13); color: var(--ok); }
+  .lint-excerpt { display: block; font-family: var(--ff-mono); font-size: var(--fs-caption); line-height: 1.6; color: var(--ink); margin: 0 0 6px; word-break: break-word; }
+  .lint-why { display: block; font-size: var(--fs-ui); line-height: 1.6; color: var(--ink-muted); margin: 0; }
+  .lint-clean { font-size: var(--fs-ui); line-height: 1.7; color: var(--ink-muted); margin: 0; }
+
+  .rule-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px 32px; }
+  .rule-list li { font-size: var(--fs-ui); line-height: 1.65; color: var(--ink-muted); }
+  .rule-list code { font-family: var(--ff-mono); font-size: var(--fs-caption); color: var(--gold); display: block; margin-bottom: 4px; }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PFY6ME99K8');</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li><a href="../index.html#contact">Contact</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
+  <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<main id="main">
+
+  <section class="section lab-hero">
+    <div class="lab-wrap">
+      <p class="lab-kicker">The Lab · 02 · MIT licensed</p>
+      <h1 class="section-title" style="max-width:20ch">trustlint</h1>
+      <p class="lab-lede">A deterministic linter for the trust properties of an AI answer. It flags the patterns that make a fluent answer untrustworthy: <strong>figures with no source</strong>, absolutes no evidence can support, hedging used as decoration, and the expensive one — asserting confidently when there was nothing to assert from.</p>
+      <div class="lab-note">
+        <b>It cannot tell you whether the answer is true.</b> There is no model here and no retrieval — it reads text with regular expressions. That makes it a linter, not a benchmark: the same relationship ESLint has to correctness. A clean pass means the answer is <em>shaped</em> honestly, and nothing more. A tool that claimed to score truthfulness from regexes would be committing the exact sin it audits, so this one says its limit out loud and returns it in the payload.
+      </div>
+      <div class="lab-links">
+        <a href="./trustlint.js" data-cta="lab-source" data-location="eval-hero">Read the source →</a>
+        <a href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io/blob/master/lab/trustlint.js" data-cta="lab-github" data-location="eval-hero">On GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section act-cream">
+    <div class="lab-wrap">
+      <p class="eyebrow">Run it</p>
+      <h2 class="section-title">Paste an answer, or try one of these</h2>
+      <p class="lab-lede">Everything happens in this tab. Nothing you type is sent anywhere, logged, or stored — the module has no network access by construction.</p>
+
+      <div class="lint-grid">
+        <div class="lint-panel">
+          <h3>The answer</h3>
+          <div class="lint-seg" id="lint-presets" role="group" aria-label="Load an example answer">
+            <button type="button" data-preset="bad" class="on">Fluent &amp; unsourced</button>
+            <button type="button" data-preset="good">Cited &amp; bounded</button>
+            <button type="button" data-preset="hedge">Over-hedged</button>
+            <button type="button" data-preset="blank">Clear</button>
+          </div>
+          <label for="lint-input" class="lint-hint" style="margin:0 0 8px;display:block">Answer text — edit freely, it re-lints as you type</label>
+          <textarea id="lint-input" spellcheck="false" aria-describedby="lint-hint"></textarea>
+          <p class="lint-hint" id="lint-hint">Citations are recognised as [1], [cap table p.4], (source: …) or a URL.</p>
+        </div>
+
+        <div class="lint-panel" aria-live="polite">
+          <h3>The lint pass</h3>
+          <span class="lint-verdict is-empty" id="lint-verdict">—</span>
+          <p class="lint-sub" id="lint-sub">Waiting for text.</p>
+          <div class="lint-stats">
+            <div class="lint-stat"><b id="lint-claims">0</b><span>Figures</span></div>
+            <div class="lint-stat"><b id="lint-cov">—</b><span>Cited</span></div>
+            <div class="lint-stat"><b id="lint-src">0</b><span>Sources</span></div>
+          </div>
+          <ul class="lint-findings" id="lint-findings"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="lab-wrap">
+      <p class="eyebrow">The rules</p>
+      <h2 class="section-title">Seven checks, and why each one costs trust</h2>
+      <ul class="rule-list" id="rule-list"></ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="lab-wrap">
+      <p class="eyebrow">Where this came from</p>
+      <h2 class="section-title">The review I used to do by hand</h2>
+      <p style="font-size:var(--fs-body);line-height:1.7;color:var(--ink-muted);margin:0 0 18px">On the private-equity screening tool, every model output I reviewed got read for the same handful of failures — a number nobody could trace, a superlative with nothing behind it, a confident paragraph built on one thin document. That review was a habit living in my head, which meant it did not survive contact with a backlog.</p>
+      <p style="font-size:var(--fs-body);line-height:1.7;color:var(--ink-muted);margin:0 0 18px">This is that habit as a function. It is the same move as <a href="./trustlayer.html" style="color:var(--gold)">trustlayer.js</a>: take a judgement I keep making in review, and give it a failing state so it can run without me in the room.</p>
+      <div class="lab-links">
+        <a href="./index.html" data-cta="lab-home" data-location="eval-foot">← Everything in The Lab</a>
+        <a href="./trustlayer.html" data-cta="lab-trustlayer" data-location="eval-foot">trustlayer.js — the four decisions →</a>
+        <a href="../index.html#contact" data-cta="send-role" data-location="eval-foot">Send me the role ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
+  <div class="footer-note">No rights reserved — good patterns should travel</div>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">Back to top</button>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { if (nav) nav.classList.toggle('scrolled', window.scrollY > 60); });
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = navLinks.classList.toggle('nav-open'); menuBtn.setAttribute('aria-expanded', String(isOpen)); });
+  document.addEventListener('click', (e) => { if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) { navLinks.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); } });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) { navLinks.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.focus(); } });
+}
+if (localStorage.getItem('dyslexia-mode') === 'on') document.body.classList.add('dyslexia-mode');
+document.addEventListener('click', (e) => {
+  const cta = e.target.closest('[data-cta]');
+  if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' });
+});
+</script>
+
+<script type="module">
+import { lint, RULES } from './trustlint.js?v=1';
+
+const $ = (id) => document.getElementById(id);
+
+/* Synthetic answers in the shape of a diligence tool's output. No real client data. */
+const PRESETS = {
+  bad: `AlphaCorp grew revenue 47% last year and is the fastest-growing operator in the category. Margins will always improve at this scale, so the downside is limited. It probably has around 2400 enterprise customers, with churn certainly under 5%.`,
+  good: `AlphaCorp grew revenue 47% in FY24 [audited P&L, p.12]. Enterprise customer count is not stated in the documents provided, so I cannot verify it. Margin direction is unclear: the auditor's note and the board deck disagree [auditor note, p.3] [board deck, p.11].`,
+  hedge: `Revenue might possibly have grown roughly 47%, though it may be somewhat lower. The team appears to be reasonably strong and the market seems arguably attractive. Churn is probably approximately fine, I think.`,
+  blank: '',
+};
+
+const SEV_ORDER = { high: 0, medium: 1, low: 2, info: 3 };
+
+function render() {
+  const text = $('lint-input').value;
+  const r = lint(text);
+
+  const verdictCopy = {
+    'do-not-ship': ['do not ship', 'is-bad', 'A high-severity finding means a reader cannot check this answer.'],
+    'needs-review': ['needs review', 'is-mid', 'Nothing disqualifying, but a human should look before this reaches a user.'],
+    'shaped-honestly': ['shaped honestly', 'is-good', 'Shaped so a reader can check it. This says nothing about whether it is correct.'],
+    empty: ['—', 'is-empty', 'Waiting for text.'],
+  }[r.verdict];
+
+  $('lint-verdict').textContent = verdictCopy[0];
+  $('lint-verdict').className = `lint-verdict ${verdictCopy[1]}`;
+  $('lint-sub').textContent = verdictCopy[2];
+
+  $('lint-claims').textContent = r.claimSentences;
+  $('lint-cov').textContent = r.claimSentences === 0 ? '—' : `${Math.round(r.coverage * 100)}%`;
+  $('lint-src').textContent = r.sources;
+
+  if (!r.findings.length) {
+    $('lint-findings').innerHTML = r.verdict === 'empty'
+      ? '<li><p class="lint-clean">Paste an answer above, or load one of the examples.</p></li>'
+      : '<li><p class="lint-clean">No findings. Every figure carries a source, no absolutes, no decorative hedging.</p></li>';
+    return;
+  }
+
+  const sorted = [...r.findings].sort((a, b) => SEV_ORDER[a.severity] - SEV_ORDER[b.severity]);
+  $('lint-findings').innerHTML = sorted.map((f) => `
+    <li>
+      <span class="lint-rule sev-${f.severity}">${f.severity} · ${f.rule}</span>
+      <span class="lint-excerpt">“${f.excerpt.replace(/</g, '&lt;')}”</span>
+      <span class="lint-why">${f.why}</span>
+    </li>`).join('');
+}
+
+$('lint-presets').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-preset]');
+  if (!btn) return;
+  [...$('lint-presets').querySelectorAll('button')].forEach((b) => b.classList.toggle('on', b === btn));
+  $('lint-input').value = PRESETS[btn.dataset.preset];
+  render();
+});
+$('lint-input').addEventListener('input', render);
+
+$('rule-list').innerHTML = RULES.map((r) =>
+  `<li><code>${r.id} · ${r.severity}</code>${r.describe}</li>`
+).join('');
+
+$('lint-input').value = PRESETS.bad;
+render();
+</script>
+</body>
+</html>
