@@ -41,8 +41,8 @@ Use the exact metric strings below on every surface (homepage chip, case-study p
 | 2 | **Telefónica MyO2 & Priority Moments** | Telecom · Non-NDA / public | **4M+** (MyO2 users) | Priority Moments **2.6M** sign-ups year one · 2.5M+ active · 5★ App Store · Role: Designer + front-end via **Equal Experts, 2012–14** |
 | 3 | **AI-Assisted Private Equity Investing** | FinTech · NDA | **60% faster** (deal screening) | measured pre- vs post-rollout · 3 sources behind every score · Role: Lead Product Designer · _(true sample: 42 deals over a 90-day window — DO NOT PUBLISH, see display rule below)_ |
 | 4 | **Programmatic Advertising Platform** | AdTech · NDA | **2 wks → 3 hrs** (campaign planning) | Act / Review / Ignore · reasoning on every call · Role: Lead Product Designer |
-| 5 | **OrgOS · Transparent Org Tooling** | Org Design · NDA | **200** (people) | 200 people · 0 managers · 8 modules · **in use by 250 people today (2026)** — the org grew past the 200 it was designed for and the coordination model held · Role: Design Lead. ("Zero managers" is the *outcome*, never the title.) |
-| 6 | **Technical Due Diligence Platform** | VC/PE · NDA | **3 wks → 4 days** (diligence cycle) | 4 signal classes scored · VC + PE · Role: Design Lead |
+| 5 | **OrgOS · Transparent Org Tooling** | Org Design · NDA | **200** (people) | 200 people · 0 managers · 8 modules · **in use by 250 people today (2026)** — the org grew past the 200 it was designed for and the coordination model held · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25). ("Zero managers" is the *outcome*, never the title.) |
+| 6 | **Technical Due Diligence Platform** | VC/PE · NDA | **3 wks → 4 days** (diligence cycle) | 4 signal classes scored · VC + PE · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25) |
 
 **Number-writing rules:** arrow is "→" with a space each side. Never write "−60%" (use "60% faster").
 Never abbreviate to "3w → 4d" (use "3 wks → 4 days"). Lowercase "k" in "550k+".
@@ -253,3 +253,26 @@ surface (site, book, llms.txt, JS headers). The pattern everywhere is click-to-c
 ("write to me directly →" / "email — click to write") whose mailto: href is assembled from split
 parts INSIDE the click handler — the address never enters the served HTML or the idle DOM.
 The PDFs and the .docx keep the address in full (they are handed out deliberately).
+
+### Ownership blocks (2026-07-28 — answer to the convergent "how much did YOU own?" doubt)
+Every case-study page carries a 3-row Owned / Shared / Not mine strip directly under the vitals.
+The lines are the EXISTING attribution made scannable — never add a claim here that the case
+prose doesn't already make. Canonical splits:
+- **AdTech** — Owned: product definition, roadmap, end-to-end design (planner, inventory SaaS,
+  reporting), the Act/Review/Ignore rule. Shared: eval design + reasoning taxonomy w/ data
+  science. Not mine: bidding model, 50M-bids/hr infrastructure (engineering's win).
+- **FinTech** — Owned: product definition, interaction design, abstention + citation UX, the
+  launch gate. Shared: eval design + threshold tuning w/ data science. Not mine: model accuracy,
+  retrieval backend.
+- **DD (vc-diligence)** — Owned: product definition + design of the four-signal verdict surface,
+  provenance gate. Shared: signal taxonomy w/ engineers + data scientists. Not mine: the model,
+  code-analysis pipeline.
+- **OrgOS** — Owned: definition + build order of the eight modules, interaction design. Shared:
+  roadmap + delivery w/ PM + four engineering streams. Not mine: backend, data-model
+  implementation.
+- **PTC** — Owned: consolidation argument + IA, subscription-shift design work, the 4-person
+  design team. Shared: business-model decision w/ PTC leadership; delivery w/ platform
+  engineering. Not mine: LMS backend, commerce infrastructure. (NOT a PM receipt — keep design
+  framing.)
+- **O2** — Owned: every screen + the front-end code. Shared: delivery within Equal Experts.
+  Not mine: launch marketing + public launch numbers (O2's, reported as theirs).
