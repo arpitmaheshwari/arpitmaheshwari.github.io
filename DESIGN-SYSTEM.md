@@ -189,5 +189,7 @@ person's annotated argument, not an agency deliverable.
   Case-hero note style: 21px, margin 12px 0 22px (breathing room above the stats grid).
   Extended again 2026-07-29: patterns index + all 9 pattern pages (one doctrine note under the
   hero meta, e.g. "never ship the naked number", "reversibility outranks confidence") and the
-  4 lab pages (one note after the hero lede). Remaining: writing, screen, now, process, book —
-  not yet; renders first if extended.
+  4 lab pages (one note after the hero lede). Extended 2026-07-29 again: writing index + 4 essays
+  (note after the meta line, grounded in each essay's own opening — e.g. "the demo always goes
+  perfectly — that's the trap") and /screen ("I set the exam — only fair I sit it").
+  Remaining: now, process, 404, book — the book keeps its own voice; do not extend there.
