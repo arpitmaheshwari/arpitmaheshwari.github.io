@@ -276,3 +276,11 @@ prose doesn't already make. Canonical splits:
   framing.)
 - **O2** — Owned: every screen + the front-end code. Shared: delivery within Equal Experts.
   Not mine: launch marketing + public launch numbers (O2's, reported as theirs).
+
+### Process artifacts — closed, do not re-ask (Arpit confirmed, 2026-07-29)
+No original process artifacts survive from any project: no PlanIt mascot sketches, no AdTech/OrgOS
+whiteboards or module-mapping photos, no rejected-iteration screenshots (incl. the 3-option
+recommendation card from the errata story). NEVER recreate, mock up, or stage these — fabricated
+process theater is an instant credibility kill. Prose + receipt tables + ownership blocks are the
+honest ceiling for process evidence on the NDA work. The live pattern demos and The Lab remain the
+"watch me work" surfaces.
