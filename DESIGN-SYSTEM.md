@@ -184,4 +184,7 @@ person's annotated argument, not an agency deliverable.
   `aria-hidden="true"` on decorative notes; notes in animated contexts reuse the hero's
   `reveal` treatment. Current homepage set (8): hero ellipse + six-years note, try-it nudge,
   photo pen-ring + "that's me", favourite-receipt, patterns origin, lab nudge, — Arpit signature.
-- Extension to inner pages: same rules; propose renders first (Arpit decides by seeing).
+- Extended 2026-07-29 (Arpit's instruction) to the six case studies + /hire: one hero-hook note
+  per case (PTC gets a second at #the-miss), hire gets a receipts note + the — Arpit signature.
+  Case-hero note style: 21px, margin 12px 0 22px (breathing room above the stats grid).
+  Remaining surfaces (patterns, writing, lab, screen): not yet — renders first if extended.
