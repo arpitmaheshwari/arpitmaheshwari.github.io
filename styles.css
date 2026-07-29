@@ -48,6 +48,15 @@ img{display:block;max-width:100%}
 h1,h2,h3,h4,h5,h6{scroll-margin-top:80px}
 .nav-links a[aria-current]{color:var(--gold)}
 
+/* ----- Marginalia — the personality layer (Arpit's pick, 2026-07-29) -----
+   Handwritten notes + pen-drawn SVG scribbles over the design system. Rules:
+   notes state existing facts only; ≤1 note per section; gold, Caveat, ±2° tilt. */
+.hand{font-family:'Caveat',cursive;color:var(--gold);line-height:1.25;pointer-events:none;letter-spacing:0;text-transform:none}
+.hand--muted{color:var(--ink-muted)}
+.scr{position:absolute;pointer-events:none;overflow:visible}
+.scr path{fill:none;stroke:var(--gold);stroke-linecap:round;stroke-linejoin:round}
+.em-wrap{position:relative;display:inline-block}
+
 /* Focus states (a11y) */
 a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 input[type="email"]:focus-visible,input[type="text"]:focus-visible,textarea:focus-visible{background-color:rgba(212,168,94,0.05)}

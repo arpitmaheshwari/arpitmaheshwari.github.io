@@ -284,3 +284,11 @@ recommendation card from the errata story). NEVER recreate, mock up, or stage th
 process theater is an instant credibility kill. Prose + receipt tables + ownership blocks are the
 honest ceiling for process evidence on the NDA work. The live pattern demos and The Lab remain the
 "watch me work" surfaces.
+
+### Marginalia layer (2026-07-29 — supersedes the single-sign-off restraint)
+Arpit's explicit call after the Dominique Cheng reference: the site must read as a personal
+creation, not an agency site. Direction B shipped: handwritten (Caveat) fact-notes + pen-drawn
+SVG scribbles across the homepage — see DESIGN-SYSTEM.md §10 for the rules. Notes must state
+existing canon facts only ("six years watching…", "the rule a trading floor taught me",
+"hand-built, code included", "— Arpit"). This is PRESENTATION warmth — the closed-artifacts rule
+(no fabricated process evidence) still stands untouched.

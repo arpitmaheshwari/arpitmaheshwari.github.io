@@ -172,3 +172,16 @@ Do **not** apply this document to `book/`.
 4. **Patterns** — `patterns/index.html` + the 9 pattern pages. One hero composition; prose H2 (28/32 oscillation) → `.section-title`; standfirst variants A/B → one `.lead`; eyebrow color drift → one gold token; kill the double-padding main wrapper.
 5. **Utility pages** — hire/screen/process/resources/now/writing/404 (follow-up; same grammar).
 6. **QA** — every page at 1280 + 375: zero horizontal overflow, one section grammar, console clean, no unloaded-font fallback.
+
+## 10. Marginalia — the personality layer (added 2026-07-29, Arpit's pick: direction B)
+A handwritten annotation layer OVER the system, never instead of it. The site should read as one
+person's annotated argument, not an agency deliverable.
+- **Face:** Caveat 600 (Google Fonts), 20–22px body notes, 30px signature. Color `--gold`
+  (or `--ink-muted` via `.hand--muted`). Tilt ±2° max. Class: `.hand` (styles.css).
+- **Scribbles:** hand-authored SVG paths (`.scr`) — pen ellipse, arrows, ring — stroke `--gold`,
+  round caps, no fill. Never generated/filtered imagery.
+- **Rules:** every note states an existing fact (canon-traceable); ≤1 note per section;
+  `aria-hidden="true"` on decorative notes; notes in animated contexts reuse the hero's
+  `reveal` treatment. Current homepage set (8): hero ellipse + six-years note, try-it nudge,
+  photo pen-ring + "that's me", favourite-receipt, patterns origin, lab nudge, — Arpit signature.
+- Extension to inner pages: same rules; propose renders first (Arpit decides by seeing).
