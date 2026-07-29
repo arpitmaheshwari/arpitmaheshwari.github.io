@@ -25,9 +25,9 @@
 <meta name="twitter:image:alt" content="trustlint — audit the shape of an AI answer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" media="print" onload="this.media='all';this.onload=null">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap" media="print" onload="this.media='all';this.onload=null">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap"></noscript>
 <link rel="stylesheet" href="../styles.css?v=ds4">
 <style>
   .lab-wrap { max-width: var(--inner-max); margin: 0 auto; padding: 0 var(--page-x); }
@@ -106,6 +106,7 @@
       <p class="lab-kicker">The Lab · 02 · MIT licensed</p>
       <h1 class="section-title" style="max-width:20ch">trustlint</h1>
       <p class="lab-lede">A deterministic linter for the trust properties of an AI answer. It flags the patterns that make a fluent answer untrustworthy: <strong>figures with no source</strong>, absolutes no evidence can support, hedging used as decoration, and the expensive one — asserting confidently when there was nothing to assert from.</p>
+      <p class="hand" aria-hidden="true" style="font-size:21px;margin:14px 0 0;transform:rotate(-1.6deg)">it can’t judge truth, and says so up front</p>
       <div class="lab-note">
         <b>It cannot tell you whether the answer is true.</b> There is no model here and no retrieval — it reads text with regular expressions. That makes it a linter, not a benchmark: the same relationship ESLint has to correctness. A clean pass means the answer is <em>shaped</em> honestly, and nothing more. A tool that claimed to score truthfulness from regexes would be committing the exact sin it audits, so this one says its limit out loud and returns it in the payload.
       </div>
