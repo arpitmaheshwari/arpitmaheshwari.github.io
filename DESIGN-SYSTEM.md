@@ -192,4 +192,6 @@ person's annotated argument, not an agency deliverable.
   4 lab pages (one note after the hero lede). Extended 2026-07-29 again: writing index + 4 essays
   (note after the meta line, grounded in each essay's own opening — e.g. "the demo always goes
   perfectly — that's the trap") and /screen ("I set the exam — only fair I sit it").
-  Remaining: now, process, 404, book — the book keeps its own voice; do not extend there.
+  Extended 2026-07-29 (final): /now ("updated monthly — hold me to it") and /process ("smaller
+  bets, better evidence — the whole method"). Marginalia now covers every classic-site page except
+  404 and resources (skip unless asked). The book keeps its own voice — do NOT extend there.
