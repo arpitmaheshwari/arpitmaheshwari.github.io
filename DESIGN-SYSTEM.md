@@ -195,3 +195,19 @@ person's annotated argument, not an agency deliverable.
   Extended 2026-07-29 (final): /now ("updated monthly — hold me to it") and /process ("smaller
   bets, better evidence — the whole method"). Marginalia now covers every classic-site page except
   404 and resources (skip unless asked). The book keeps its own voice — do NOT extend there.
+
+## 11. Handcraft objects — v2 of the personality layer (2026-07-30, Arpit's brief:
+"more handcrafted elements to make the site look unique and original" — NOT a palette change)
+Beyond §10's handwritten notes, the site now carries hand-MADE OBJECTS on the dark identity:
+- **Stickies** (`.stick`, `.stick--purple`): paper notes with a tape mark, Caveat, rotated ±2.5°,
+  real drop shadow (the one sanctioned shadow use). Current: hero "not a theme / not a template /
+  real work"; Lab band purple "Open-source with tests".
+- **Doodle boxes** (`.doodle-box`): hand-drawn rotated frame with ☑ checklist items. Current:
+  the RECEIPT box (Problem/Approach/Evidence/Impact/What failed) beside the receipts title.
+- **Spot illustrations** (`.ai-art`): hand-authored gold line-art SVGs on case cards — billboard
+  (AdTech), cited document + check (FinTech), signal report + magnifier (DD). Illustrations
+  depict the PRODUCT CONCEPT — never fake process artifacts (closed-artifacts rule stands).
+- **Highlight marks** (`.hl-ink`): translucent gold behind a key phrase, ≤1 per screen.
+- **Marker underlines** (`.mk-ul`): squiggle SVG under select section titles.
+All decorative objects aria-hidden; homepage only so far — extend to case/hire/patterns pages
+with renders first.
