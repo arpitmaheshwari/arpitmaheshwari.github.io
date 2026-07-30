@@ -194,7 +194,7 @@ accuracy IS the positioning.
 
 ## 10. Housekeeping conventions
 - **Cache version (bump on every change so visitors see updates):** classic pages use
-  `styles.css?v=pNN` (now **p20**); book uses `book.css?v=NN` (**41**) and `portfolio.js?v=NN` (**69**).
+  `styles.css?v=pNN` (now **p20**); book uses `book.css?v=NN` (**58**) and `portfolio.js?v=NN` (**107**).
 - **Analytics:** Google Analytics ID `G-PFY6ME99K8` (same across all pages).
 - **Primary action:** the "Send me the role" form (Formspree). Calendly is the quiet secondary.
   **Email IS public** (changed 2026-07-21 after recruiter feedback — recruiters don't fill forms):
@@ -292,6 +292,16 @@ SVG scribbles across the homepage — see DESIGN-SYSTEM.md §10 for the rules. N
 existing canon facts only ("six years watching…", "the rule a trading floor taught me",
 "hand-built, code included", "— Arpit"). This is PRESENTATION warmth — the closed-artifacts rule
 (no fabricated process evidence) still stands untouched.
+
+### AdTech £69k — surface list (2026-07-31, propagated on Arpit's instruction)
+The **headline metric stays "2 wks → 3 hrs"** on every surface; **£69,000 average media-value gain per
+client** rides alongside it as the business-value companion (never replacing the headline). Live on:
+homepage proof chip + `#receipt-adtech` panel · `/hire` first receipt · `llms.txt` · book AdTech ledger
+(both the React spread and the no-script full-text edition) · case page hero stat + receipt table ·
+resume.html + make-resume.js + portfolio.html ledger (private repo — already carried it).
+The other three confirmed numbers (**45%** effort, **3x** intent / **70%** audience, **2 wks → 1 hr**
+speed to market) stay **case-page-only depth** for now — deliberate, so the scan surfaces keep one
+headline plus one money number instead of a wall of figures.
 
 ### ChatGPT design-spec fact quarantine (2026-07-30 — spec reviewed, mechanics adopted, facts rejected)
 A ChatGPT-authored design spec/mockup ("The Trust Layer" paper-first redesign) contained INVENTED

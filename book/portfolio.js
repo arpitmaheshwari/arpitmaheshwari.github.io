@@ -289,8 +289,8 @@ const NDA_CASES = [{
     v: "2 wks → 3 hrs",
     l: "Campaign planning time"
   }, {
-    v: "3",
-    l: "Actions a score maps to"
+    v: "£69k",
+    l: "Media-value gain per client"
   }, {
     v: "Why",
     l: "Reasoning on every call"
