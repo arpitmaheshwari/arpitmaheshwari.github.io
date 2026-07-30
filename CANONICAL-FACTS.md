@@ -40,7 +40,7 @@ Use the exact metric strings below on every surface (homepage chip, case-study p
 | 1 | **PTC University — Learning Connector** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile 4%→38% (2017→2019) · 80+ countries · Role: Lead Product Designer · 2014–2019 |
 | 2 | **Telefónica MyO2 & Priority Moments** | Telecom · Non-NDA / public | **4M+** (MyO2 users) | Priority Moments **2.6M** sign-ups year one · 2.5M+ active · 5★ App Store · Role: Designer + front-end via **Equal Experts, 2012–14** |
 | 3 | **AI-Assisted Private Equity Investing** | FinTech · NDA | **60% faster** (deal screening) | measured pre- vs post-rollout · 3 sources behind every score · Role: Lead Product Designer · _(true sample: 42 deals over a 90-day window — DO NOT PUBLISH, see display rule below)_ |
-| 4 | **Programmatic Advertising Platform** | AdTech · NDA | **2 wks → 3 hrs** (campaign planning) | Act / Review / Ignore · reasoning on every call · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · speed to market **2 wks → 1 hr** (search-to-dispatch → upload-to-live) · $300M media business · 50M bids/hr (engineering's infrastructure — attribute, never claim) |
+| 4 | **Programmatic Advertising Platform** | AdTech · NDA | **2 wks → 3 hrs** (campaign planning) | Act / Review / Ignore · reasoning on every call · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · $300M media business · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
 | 5 | **OrgOS · Transparent Org Tooling** | Org Design · NDA | **200** (people) | 200 people · 0 managers · 8 modules · **in use by 250 people today (2026)** — the org grew past the 200 it was designed for and the coordination model held · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25). ("Zero managers" is the *outcome*, never the title.) |
 | 6 | **Technical Due Diligence Platform** | VC/PE · NDA | **3 wks → 4 days** (diligence cycle) | 4 signal classes scored · VC + PE · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25) |
 
@@ -299,9 +299,9 @@ client** rides alongside it as the business-value companion (never replacing the
 homepage proof chip + `#receipt-adtech` panel · `/hire` first receipt · `llms.txt` · book AdTech ledger
 (both the React spread and the no-script full-text edition) · case page hero stat + receipt table ·
 resume.html + make-resume.js + portfolio.html ledger (private repo — already carried it).
-The other three confirmed numbers (**45%** effort, **3x** intent / **70%** audience, **2 wks → 1 hr**
-speed to market) stay **case-page-only depth** for now — deliberate, so the scan surfaces keep one
-headline plus one money number instead of a wall of figures.
+The other confirmed numbers (**45%** effort, **3x** intent / **70%** audience) stay **case-page-only
+depth** — deliberate, so the scan surfaces keep one headline plus one money number instead of a wall
+of figures. (3x/70% additionally rides the portfolio PDF's AdTech ledger, 2026-07-31.)
 
 ### ChatGPT design-spec fact quarantine (2026-07-30 — spec reviewed, mechanics adopted, facts rejected)
 A ChatGPT-authored design spec/mockup ("The Trust Layer" paper-first redesign) contained INVENTED
