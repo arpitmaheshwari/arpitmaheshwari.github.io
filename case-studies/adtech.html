@@ -99,8 +99,8 @@
       <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 22px;transform:rotate(-1.6deg)">the loss that taught me the whole thesis</p>
       <div class="case-stats">
         <div class="case-stat"><b>2 wks → 3 hrs</b><span>campaign planning, once traders bet on the model</span></div>
+        <div class="case-stat"><b>£69k</b><span>average media-value uplift per client</span></div>
         <div class="case-stat"><b>act · review · ignore</b><span>every score resolved to one verb — never a naked 87%</span></div>
-        <div class="case-stat"><b>Why</b><span>the exact signals named on every recommendation</span></div>
       </div>
     </div>
   </div>
@@ -168,8 +168,8 @@
     <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
       A campaign took two weeks, and a winning model nobody used was worth nothing.
     </h2>
-    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">Planning a campaign the old way meant about two weeks of media-buyers reconciling spreadsheets against their gut. The whole point of the engine was to collapse that — and it could have, except the people whose job it was to act on it didn't.</p>
-    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8"> The business had paid for an edge that sat on a screen no one bet on. Chasing more accuracy would have spent the budget on the half that already worked, while the half that was broken — trust — stayed broken.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">Planning a campaign the old way meant about two weeks of media-buyers reconciling spreadsheets against their gut — and it's worth being concrete about what those two weeks contained. The UK's outdoor-advertising supply is fragmented across hundreds of site owners, so a planner juggled disparate spreadsheets, phone calls, and FTP files just to learn what was even available. Rates were negotiated by phone tag. Proof that an ad actually ran arrived late, manually, on trust. And a small business wanting one billboard for one week was simply ignored — the manual labor cost more than the booking earned. A $300M media business, running on a workflow with a two-week speed limit.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8"> The engine was built to collapse all of that. And it could have — except the people whose job it was to act on it didn't. The business had paid for an edge that sat on a screen no one bet on. Chasing more accuracy would have spent the budget on the half that already worked, while the half that was broken — trust — stayed broken.</p>
   </section>
 
   <!-- §03 — THE MOVE -->
@@ -179,6 +179,7 @@
     </h2>
     <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px">I built three things. A confidence score that never reached the screen as a naked 87% — it resolved to one verb: act, review, or ignore; where each band starts is a product decision someone owns — revisited against real outcomes, not picked because the numbers look round. A reasoning panel that named the exact signals behind each call. And an override that logged the correction and fed it into next week's model.</p>
     <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">The override was the one decision.</strong> The safe build would have stopped at a prettier score with a tooltip — explainable, demoable, and still ignored. Giving traders a button to overrule the algorithm felt like undermining it. It was the opposite. The first time a buyer watched their own pushback sharpen the following week's calls, the relationship flipped from fighting the model to coaching it. Trust wasn't something I could design into the score; it was something they earned by being allowed to argue back.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">And the trust layer unlocked a bigger reframe: buying moments, not spots.</strong> The old brief was a place — <em>"I want a billboard on Oxford Street for a month."</em> Once buyers trusted the recommendations, the planner could ask a different question and be believed when it answered: <em>"I want to reach party-lovers on Friday nights, 9 PM to 1 AM"</em> — and audience heatmaps, not addresses, chose the sites. Brands set rules on live conditions (show the umbrella ad only when it's raining). On the supply side, media owners fed floor prices and availability in once, and the system accepted qualifying bids on its own — an always-on salesman quietly selling inventory that used to expire unsold. None of that works while humans are overriding the machine; all of it works the moment they stop.</p>
     <!-- PLATE — production-fidelity reconstruction, synthetic data -->
     <style>
       .plA{width:min(840px,calc(100vw - 32px));margin:36px 50% 10px;transform:translateX(-50%);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
@@ -378,9 +379,25 @@
         <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 200px">The reasoning</div>
         <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">Verdict without an argument → the exact signals named on every call</div>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04)">
+      <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04);border-bottom:1px solid var(--border)">
         <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 200px">The override</div>
         <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">No way to push back → corrections logged and fed into next week's model · fighting it → coaching it</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;border-bottom:1px solid var(--border)">
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 200px">Speed to market</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">2 wks → 1 hr · search-to-dispatch became upload-to-live</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04);border-bottom:1px solid var(--border)">
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 200px">Effort</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">45% reduction in time and effort to plan and book a campaign</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;border-bottom:1px solid var(--border)">
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 200px">Client value</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">£69,000 average media-value uplift per client · better targeting + yield management</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px 24px;padding:16px 20px;align-items:baseline;background:rgba(212,168,94,0.04)">
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex:0 0 200px">Performance</div>
+        <div style="font-size:var(--fs-ui);color:var(--ink);line-height:1.6;flex:1 1 240px">3x uplift in purchase intent · 70% audience uplift vs traditional bookings</div>
       </div>
     </div>
   </section>
