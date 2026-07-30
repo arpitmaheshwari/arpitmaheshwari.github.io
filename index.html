@@ -279,29 +279,86 @@
   <div class="section-inner">
     <p class="eyebrow">The receipts — four industries</p>
     <h2 class="section-title">What the design was worth.</h2>
+    <p class="hand" aria-hidden="true" style="font-size:21px;margin:-4px 0 6px;transform:rotate(-1.6deg)">numbers are easy — the receipts are hard. click one ↓</p>
     <div class="proof-grid">
-    <a href="./case-studies/adtech.html" class="proof-cell" data-cta="proof-chip" data-location="receipts-chip-1">
+    <div class="proof-cell" id="chip-adtech">
       <div class="metric-num">3&nbsp;hrs</div>
       <div class="proof-cap">Campaign planning, down from two weeks — once traders trusted the algorithm.</div>
       <div class="proof-meta">AdTech · per campaign</div>
-      <p class="hand" aria-hidden="true" style="font-size:20px;margin:8px 0 0;transform:rotate(-1.8deg)">my favourite receipt</p>
-    </a>
-    <a href="./case-studies/fintech.html" class="proof-cell" data-cta="proof-chip" data-location="receipts-chip-2">
+      <button type="button" class="rcpt-btn" data-receipt="adtech" aria-expanded="false" aria-controls="receipt-adtech" data-cta="receipt" data-location="receipts-chip-1">View receipt →</button>
+    </div>
+    <div class="proof-cell" id="chip-fintech">
       <div class="metric-num">60%</div>
       <div class="proof-cap">Faster PE deal screening, after the model learned to explain itself.</div>
       <div class="proof-meta">FinTech · pre/post rollout</div>
-    </a>
-    <a href="./case-studies/ptc.html" class="proof-cell" data-cta="proof-chip" data-location="receipts-chip-3">
+      <button type="button" class="rcpt-btn" data-receipt="fintech" aria-expanded="false" aria-controls="receipt-fintech" data-cta="receipt" data-location="receipts-chip-2">View receipt →</button>
+    </div>
+    <div class="proof-cell" id="chip-ptc">
       <div class="metric-num">$1M</div>
       <div class="proof-cap">Saved every year, once the training platform moved off printed guides.</div>
       <div class="proof-meta">EdTech · 6-qtr rolling baseline</div>
-    </a>
-    <a href="./case-studies/o2.html" class="proof-cell" data-cta="proof-chip" data-location="receipts-chip-4">
+      <button type="button" class="rcpt-btn" data-receipt="ptc" aria-expanded="false" aria-controls="receipt-ptc" data-cta="receipt" data-location="receipts-chip-3">View receipt →</button>
+    </div>
+    <div class="proof-cell" id="chip-o2">
       <div class="metric-num">4M+</div>
       <div class="proof-cap">Users on the two O2 products I drew, then shipped as code.</div>
       <div class="proof-meta">Telecom · O2 UK · publicly reported</div>
-    </a>
+      <button type="button" class="rcpt-btn" data-receipt="o2" aria-expanded="false" aria-controls="receipt-o2" data-cta="receipt" data-location="receipts-chip-4">View receipt →</button>
     </div>
+    </div>
+
+    <!-- Inline receipts — every field traceable to CANONICAL-FACTS / the case pages. -->
+    <section id="receipt-adtech" class="rcpt" hidden aria-labelledby="rcpt-h-adtech">
+      <h3 id="rcpt-h-adtech" tabindex="-1" class="rcpt-h">Receipt — campaign planning, 2 wks → 3 hrs</h3>
+      <div class="rcpt-rows">
+        <div class="rcpt-row"><div class="rcpt-l">Claim</div><div class="rcpt-v">Planning fell from two weeks to three hours, with an average media-value gain of £69,000 per client.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">Context</div><div class="rcpt-v">A programmatic out-of-home advertising platform for a $300M media business. The model beat the traders — and the traders overrode it anyway, until every score resolved to act, review, or ignore.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">My role</div><div class="rcpt-v">Owned product definition, roadmap, and end-to-end design — campaign planner, inventory SaaS, reporting — and the Act / Review / Ignore rule itself.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">How measured</div><div class="rcpt-v">Per campaign, against the ~2-week manual planning baseline.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">Not mine</div><div class="rcpt-v">The bidding model and the 50M-bids/hour infrastructure — engineering&rsquo;s win, and they own it.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">Limitation</div><div class="rcpt-v">Shipped under NDA. A named reference for this work is available on request.</div></div>
+      </div>
+      <a class="rcpt-more" href="./case-studies/adtech.html" data-cta="case" data-location="receipt-adtech">The full case →</a>
+    </section>
+
+    <section id="receipt-fintech" class="rcpt" hidden aria-labelledby="rcpt-h-fintech">
+      <h3 id="rcpt-h-fintech" tabindex="-1" class="rcpt-h">Receipt — deal screening, 60% faster</h3>
+      <div class="rcpt-rows">
+        <div class="rcpt-row"><div class="rcpt-l">Claim</div><div class="rcpt-v">Private-equity deal screening ran 60% faster once analysts stopped re-verifying the machine.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">Context</div><div class="rcpt-v">An LLM over deal documents. Accuracy was never the bottleneck — belief was; every claim had to trace to its source, with honest abstention when sources were thin.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">My role</div><div class="rcpt-v">Product definition, the interaction design, and the abstention + citation UX — including holding the launch until every claim traced to its source.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">How measured</div><div class="rcpt-v">Pre- vs post-rollout, with 3 sources beside every score.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">Not mine</div><div class="rcpt-v">The model&rsquo;s accuracy — the ML team&rsquo;s result to defend — and the retrieval backend.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">Limitation</div><div class="rcpt-v">NDA: the sample, eval design, and baseline are walked through on a call — artifacts open.</div></div>
+      </div>
+      <a class="rcpt-more" href="./case-studies/fintech.html" data-cta="case" data-location="receipt-fintech">The full case →</a>
+    </section>
+
+    <section id="receipt-ptc" class="rcpt" hidden aria-labelledby="rcpt-h-ptc">
+      <h3 id="rcpt-h-ptc" tabindex="-1" class="rcpt-h">Receipt — $1M / yr, and a business model shifted</h3>
+      <div class="rcpt-rows">
+        <div class="rcpt-row"><div class="rcpt-l">Claim</div><div class="rcpt-v">$1M saved every year off the print budget; subscriptions went 0% → 64% of new bookings in five quarters (Q3 2017 → Q3 2018).</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">Context</div><div class="rcpt-v">Five learning platforms consolidated into one — 550k+ registered, 350k+ active learners across 80+ countries.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">My role</div><div class="rcpt-v">The consolidation argument and its information architecture, the subscription-shift design work, and the 4-person design team.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">How measured</div><div class="rcpt-v">Savings vs the 2016 print budget, on a 6-quarter rolling baseline.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">What failed</div><div class="rcpt-v">My first accessibility pass made screens slower for the screen-reader users it was meant to help. I spent a week with the monitor off, then redid the front-end. <a href="./case-studies/ptc.html#the-miss" data-cta="the-miss" data-location="receipt-ptc" style="color:var(--gold);text-decoration:none">The documented miss →</a></div></div>
+        <div class="rcpt-row"><div class="rcpt-l">Limitation</div><div class="rcpt-v">None — public, non-NDA work.</div></div>
+      </div>
+      <a class="rcpt-more" href="./case-studies/ptc.html" data-cta="case" data-location="receipt-ptc">The full case →</a>
+    </section>
+
+    <section id="receipt-o2" class="rcpt" hidden aria-labelledby="rcpt-h-o2">
+      <h3 id="rcpt-h-o2" tabindex="-1" class="rcpt-h">Receipt — 4M+ users, drawn then coded</h3>
+      <div class="rcpt-rows">
+        <div class="rcpt-row"><div class="rcpt-l">Claim</div><div class="rcpt-v">MyO2 served 4M+ users; Priority Moments took 2.6M sign-ups in year one with a 5★ App Store rating.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">Context</div><div class="rcpt-v">Two O2 UK products on mobile web — every screen drawn by me, then shipped as my own front-end code.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">My role</div><div class="rcpt-v">Every screen, and the front-end code that shipped them. Delivery within the Equal Experts team.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">Attribution</div><div class="rcpt-v">The launch-era figures are O2&rsquo;s public facts, reported as theirs — I joined the Priority programme in 2013.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">Not mine</div><div class="rcpt-v">The programme&rsquo;s launch marketing and its public launch numbers.</div></div>
+        <div class="rcpt-row"><div class="rcpt-l">Limitation</div><div class="rcpt-v">None — public work, verifiable receipts.</div></div>
+      </div>
+      <a class="rcpt-more" href="./case-studies/o2.html" data-cta="case" data-location="receipt-o2">The full case →</a>
+    </section>
   </div>
 </section>
 
@@ -379,6 +436,19 @@
 .proof-cell:hover{opacity:.62}
 .proof-cap{font-family:var(--ff-sans);font-size:var(--fs-ui);line-height:1.45;color:var(--ink);font-weight:500;margin-top:16px;max-width:24ch}
 .proof-meta{font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-muted);margin-top:11px;line-height:1.4}
+/* inline receipts — the memorable interaction (canon-sourced content only) */
+.rcpt-btn{margin-top:14px;padding:9px 14px;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);background:transparent;border:1px solid var(--border-accent);border-radius:var(--radius);cursor:pointer;transition:background .15s,color .15s}
+.rcpt-btn:hover{background:var(--gold);color:var(--bg)}
+.rcpt-btn:focus-visible{outline:2px solid var(--gold-dark);outline-offset:2px}
+.rcpt-btn[aria-expanded="true"]{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.rcpt{margin-top:36px;border:1px solid var(--border-accent);border-radius:var(--radius);background:var(--bg-card);padding:26px 28px}
+.rcpt-h{font-family:var(--ff-display);font-weight:400;font-size:var(--fs-card);line-height:1.3;color:var(--ink);margin:0 0 18px}
+.rcpt-h:focus{outline:none}
+.rcpt-rows{border-top:1px solid var(--border)}
+.rcpt-row{display:flex;flex-wrap:wrap;gap:6px 24px;padding:13px 0;border-bottom:1px solid var(--border);align-items:baseline}
+.rcpt-l{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dark);flex:0 0 200px}
+.rcpt-v{font-size:var(--fs-ui);color:var(--ink);line-height:1.65;flex:1 1 240px}
+.rcpt-more{display:inline-block;margin-top:18px;font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.04em;color:var(--gold-dark);text-decoration:none;border-bottom:1px solid var(--border-accent);padding-bottom:2px}
 @media (max-width:900px){ .proof-grid{grid-template-columns:repeat(2,1fr);gap:36px 28px} }
 @media (max-width:520px){ .proof-grid{grid-template-columns:1fr} }
 /* One-idea act — Act / Review / Ignore */
@@ -539,6 +609,21 @@
 
 </div></section>
 
+<!-- The Trust Trace — the whole thesis as one authored line -->
+<section class="section" aria-label="The trust trace: a model's score meets human doubt; our design turns it into action, and action into impact" style="padding-top:48px;padding-bottom:48px">
+  <div class="section-inner">
+    <div style="display:flex;align-items:center;justify-content:center;gap:clamp(10px,2.6vw,30px);flex-wrap:wrap" aria-hidden="true">
+      <span style="text-align:center"><span style="display:block;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Score</span><span style="display:block;font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:var(--ink-muted);margin-top:4px">model output</span></span>
+      <svg class="scr" viewBox="0 0 64 20" style="position:static;width:52px;height:18px;flex:0 0 auto"><path d="M4,12 C20,7 40,13 56,9 M56,9 l-9,-3 M56,9 l-7,7" stroke-width="2"/></svg>
+      <span style="text-align:center"><span style="display:block;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Doubt</span><span style="display:block;font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:var(--ink-muted);margin-top:4px">human reality</span></span>
+      <svg class="scr" viewBox="0 0 64 20" style="position:static;width:52px;height:18px;flex:0 0 auto"><path d="M4,9 C20,14 40,6 56,11 M56,11 l-9,-2 M56,11 l-6,6" stroke-width="2"/></svg>
+      <span style="text-align:center;position:relative;padding:8px 14px"><svg class="scr" viewBox="0 0 160 64" style="left:0;top:0;width:100%;height:100%"><path d="M12,32 C14,12 66,6 106,9 C146,12 154,24 150,38 C145,55 92,60 52,57 C18,54 6,44 12,28 C18,13 64,6 104,9" stroke-width="2.2" opacity=".85"/></svg><span style="display:block;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.12em;text-transform:uppercase;color:var(--gold)">Action</span><span style="display:block;font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:var(--ink-muted);margin-top:4px">our design</span></span>
+      <svg class="scr" viewBox="0 0 64 20" style="position:static;width:52px;height:18px;flex:0 0 auto"><path d="M4,11 C20,8 40,12 56,8 M56,8 l-9,-1 M56,8 l-6,7" stroke-width="2"/></svg>
+      <span style="text-align:center"><span style="display:block;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)">Impact</span><span style="display:block;font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:var(--ink-muted);margin-top:4px">business result</span></span>
+    </div>
+  </div>
+</section>
+
 <!-- Lab — the patterns above, as tested code -->
 <section id="lab" class="section" style="padding-top:56px;padding-bottom:56px">
   <div class="section-inner">
@@ -607,12 +692,18 @@
     <div>
       <h3 class="section-title" style="margin:0 0 18px 0">One seat. Full-time. Yours to offer.</h3>
       <p class="u-body" style="margin:0 0 28px 0">I'm looking for one seat: founding product &amp; design lead at an AI product company of 5–40 people — or a staff / director role where the trust layer is the actual job description. Fully remote from GMT+5:30 with 4–5 hours of daily US East overlap. Available — 4 weeks' notice.</p>
-      <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="contact-secondary" style="display:inline-flex;align-items:center;gap:8px;padding:14px 24px;color:var(--gold);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:0.03em;border:1px solid var(--gold-dark);border-radius:2px;text-decoration:none;transition:border-color 0.3s,color 0.3s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-light)'" onmouseout="this.style.borderColor='var(--gold-dark)';this.style.color='var(--gold)'">Prefer to talk first? Book 30 minutes ↗</a>
+      <div style="margin:0 0 4px">
+        <p style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 12px">Four ways out — choose your level of commitment</p>
+        <div style="border-top:1px solid var(--border)">
+          <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="contact-exit-1" class="exit-row" style="display:flex;gap:16px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit"><span style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);color:var(--gold);flex:0 0 24px">01</span><span style="flex:1;font-size:var(--fs-ui);color:var(--ink)">Book 30 minutes — a real conversation, no pitch deck</span><span style="font-family:var(--ff-mono);font-size:var(--fs-caption);color:var(--gold)">↗</span></a>
+          <a href="./hire/" data-cta="resume" data-location="contact-exit-2" class="exit-row" style="display:flex;gap:16px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit"><span style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);color:var(--gold);flex:0 0 24px">02</span><span style="flex:1;font-size:var(--fs-ui);color:var(--ink)">The one-page hiring brief — positioning, receipts, availability</span><span style="font-family:var(--ff-mono);font-size:var(--fs-caption);color:var(--gold)">→</span></a>
+          <a href="./patterns/" data-cta="patterns" data-location="contact-exit-3" class="exit-row" style="display:flex;gap:16px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit"><span style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);color:var(--gold);flex:0 0 24px">03</span><span style="flex:1;font-size:var(--fs-ui);color:var(--ink)">The pattern library — the rule + eight patterns, citable and free</span><span style="font-family:var(--ff-mono);font-size:var(--fs-caption);color:var(--gold)">→</span></a>
+          <a href="./screen/" data-cta="screen" data-location="contact-exit-4" class="exit-row" style="display:flex;gap:16px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit"><span style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);color:var(--gold);flex:0 0 24px">04</span><span style="flex:1;font-size:var(--fs-ui);color:var(--ink)">The technical screen — already answered, in writing</span><span style="font-family:var(--ff-mono);font-size:var(--fs-caption);color:var(--gold)">→</span></a>
+        </div>
+      </div>
       <p style="font-size:13px;color:var(--ink-muted);margin:14px 0 0 0">I'll arrive having already used your product.</p>
       <p style="font-size:14px;color:var(--ink-muted);margin:18px 0 0 0">Prefer email? <a id="em-l" href="#" data-cta="email" data-location="contact" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark);padding-bottom:2px">use the form or the call link</a></p>
       <script>(function(){var e=document.getElementById('em-l');e.textContent='write to me directly \u2192';e.addEventListener('click',function(){var u='maheshwari.arpit'+'88',d='gmail.com';this.href='mailto:'+u+'@'+d;});})();</script>
-      <p style="font-size:13px;color:var(--ink-muted);margin:22px 0 0 0">The skim version: <a href="./hire/" data-cta="resume" data-location="contact" style="color:var(--gold);text-decoration:none">one page — positioning, receipts, references, availability →</a></p>
-      <p style="font-size:13px;color:var(--ink-muted);margin:10px 0 0 0">Running a technical screen? <a href="./screen/" data-cta="screen" data-location="contact" style="color:var(--gold);text-decoration:none">It's already answered, in writing →</a></p>
 
       <div style="display:flex;align-items:center;gap:16px;margin-top:36px;padding-top:24px;border-top:1px solid var(--border)">
         <img src="./arpit-maheshwari.jpg" alt="" width="56" height="56" loading="lazy" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:1px solid var(--border);flex:0 0 auto">
@@ -768,6 +859,44 @@ window.addEventListener('scroll', () => {
 
 // Dyslexia-friendly toggle with localStorage persistence
 const dyslexiaBtn = document.getElementById('dyslexiaToggle');
+// Inline receipts: one open at a time; aria-expanded mirrored; #receipt-<key> deep-links open.
+(function () {
+  var btns = document.querySelectorAll('.rcpt-btn');
+  function setOpen(key, open, focusHeading) {
+    btns.forEach(function (b) {
+      var mine = b.dataset.receipt === key;
+      var panel = document.getElementById('receipt-' + b.dataset.receipt);
+      var on = mine && open;
+      b.setAttribute('aria-expanded', String(on));
+      if (panel) panel.hidden = !on;
+      if (on && focusHeading) {
+        var h = panel.querySelector('.rcpt-h');
+        if (h) { h.focus(); panel.scrollIntoView({ block: 'nearest' }); }
+      }
+    });
+    if (open) { history.replaceState(null, '', '#receipt-' + key); }
+    else if (location.hash.indexOf('#receipt-') === 0) { history.replaceState(null, '', location.pathname + location.search); }
+  }
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      setOpen(b.dataset.receipt, b.getAttribute('aria-expanded') !== 'true', true);
+    });
+  });
+  function openFromHash(scrollTo) {
+    if (location.hash.indexOf('#receipt-') !== 0) return;
+    var key = location.hash.slice('#receipt-'.length);
+    if (!document.getElementById('receipt-' + key)) return;
+    setOpen(key, true, false);
+    if (scrollTo) {
+      var p = document.getElementById('receipt-' + key);
+      if (p) p.scrollIntoView();
+    }
+  }
+  openFromHash(false);
+  window.addEventListener('load', function () { openFromHash(true); });
+  window.addEventListener('hashchange', function () { openFromHash(true); });
+})();
+
 if (localStorage.getItem('dyslexia-mode') === 'on') {
   document.body.classList.add('dyslexia-mode');
   dyslexiaBtn.classList.add('active');

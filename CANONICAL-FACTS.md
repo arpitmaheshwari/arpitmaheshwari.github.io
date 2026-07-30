@@ -292,3 +292,15 @@ SVG scribbles across the homepage — see DESIGN-SYSTEM.md §10 for the rules. N
 existing canon facts only ("six years watching…", "the rule a trading floor taught me",
 "hand-built, code included", "— Arpit"). This is PRESENTATION warmth — the closed-artifacts rule
 (no fabricated process evidence) still stands untouched.
+
+### ChatGPT design-spec fact quarantine (2026-07-30 — spec reviewed, mechanics adopted, facts rejected)
+A ChatGPT-authored design spec/mockup ("The Trust Layer" paper-first redesign) contained INVENTED
+facts. NEVER import these, from that document or anywhere else:
+- "16 years" → canon is FIFTEEN (locked hero line)
+- "8 AI products shipped" → no basis (8 PATTERNS in production; 6 case studies)
+- "$120M ARR platform designed" → fabricated; zero basis in any source
+- Title "AI Product Designer" → canon is Product & Design Leader (2026-07-25 retitle)
+- Client LOGO walls → text names only (trademark risk; deliberate 2026-07-28 decision)
+What WAS adopted from it (2026-07-30, all content canon-sourced): homepage inline receipts
+(#receipt-adtech/-fintech/-ptc/-o2, one open at a time, deep-linkable), the Trust Trace strip
+(Score → Doubt → Action → Impact), and the four commitment-graded exit rows at contact.
