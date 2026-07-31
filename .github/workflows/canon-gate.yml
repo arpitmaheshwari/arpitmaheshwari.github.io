@@ -1,0 +1,39 @@
+name: Canon gate
+
+# Fails the build on retired terms, fabricated facts, superseded titles and malformed metric strings.
+#
+# Why this exists: on 2026-08-01 Arpit found "The Trust Layer" still printed on his book cover, a term
+# retired the day before, after eight QA passes had reported the site clean. The contrast gate cannot
+# catch a wrong WORD, so this is its counterpart. It costs seconds, not minutes — no browser needed.
+#
+# tools/canon-lint.py calibrates on BOTH axes before reporting: planted violations must be caught
+# (sensitivity) AND a file of canon-correct copy must produce zero hits (precision). The precision axis
+# exists because three separate bugs in that script each produced a confident wall of false positives.
+# A gate that cries wolf gets switched off, which is worse than no gate.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  canon:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # Needs the real work tree, not a shallow blob-less checkout: the linter uses `git ls-files`
+      # so that .gitignore'd files (e.g. prototype-paper.html) are not scanned.
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Canon / naming drift lint
+        run: python3 tools/canon-lint.py --root .
+
+      - name: Remind about the documents repo
+        if: success()
+        run: |
+          echo "::notice::Canon clean for the public site. The resume + portfolio PDFs live in the"\
+               "private folio-private repo and are NOT covered here — verify them there with pdftotext."

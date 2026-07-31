@@ -51,6 +51,23 @@ while [ $i -lt 40 ]; do
 done
 curl -sf -o /dev/null "http://localhost:$PORT/" || { echo "pre-push: local server did not start — skipping"; exit 0; }
 
+# Canon lint first — it is pure text, costs under a second, and catches the failure that actually
+# escaped review (a retired term still printed on the book cover). No reason to make you wait for
+# Chrome before hearing about a wrong word.
+if [ -f tools/canon-lint.py ]; then
+  echo "pre-push: canon lint…"
+  if ! python3 tools/canon-lint.py --root .; then
+    cat <<'MSG'
+
+pre-push: BLOCKED — a canon violation (or a broken linter) was reported above.
+
+  Fix it, or push anyway with:   SKIP_CONTRAST=1 git push
+
+MSG
+    exit 1
+  fi
+fi
+
 echo "pre-push: contrast smoke check (homepage + book cover, 1440px)…"
 python3 tools/contrast-audit.py \
   --docroot . --widths 1440 \
