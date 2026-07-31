@@ -137,7 +137,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;
 
 /* Governed cream 'act' — dark base, cream peak. ONLY the receipts + one-idea bands. */
 .act-cream{
-  --ink:#20180C; --ink-muted:#6E6250; --gold:#8A6423; --gold-dark:#8A6423; --gold-light:#6E4E1C;
+  /* gold ink darkened 8A6423 -> 7E5A14 (2026-07-31, measured). The old value gave 4.39:1 on
+     this act's cream #F1E8D6 and 4.06:1 on the card cream #EAE0CA — both under the 4.5:1 AA
+     floor for body-size text. Sized against the WORST background (the card, not the act):
+     7E5A14 = 5.14:1 on #F1E8D6, 4.77:1 on #EAE0CA. Any future gold here must clear 4.5:1 on
+     #EAE0CA, not just on #F1E8D6. (Canon's 8A6423/4.55:1 pair is correct for the DOCUMENTS'
+     cream #F4ECDA — a lighter background, so that pair stays valid there.) */
+  --ink:#20180C; --ink-muted:#6E6250; --gold:#7E5A14; --gold-dark:#7E5A14; --gold-light:#6E4E1C;
   --border:rgba(32,24,12,.16); --border-accent:rgba(138,100,35,.5); --hairline:rgba(32,24,12,.14);
   --bg:#F1E8D6; --bg-card:#EAE0CA;
   background:var(--bg); color:var(--ink); border-top:none;
