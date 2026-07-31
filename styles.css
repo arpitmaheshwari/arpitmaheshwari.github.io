@@ -105,7 +105,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;
 .nav-links li.nav-book a:hover{color:var(--gold);opacity:.78}
 .nav-cta{font-family:var(--ff-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:12px 24px;min-height:44px;display:inline-flex;align-items:center;border:1px solid var(--gold-dark);color:var(--gold);border-radius:2px;transition:background .3s,color .3s}
 .nav-cta:hover{background:var(--gold);color:var(--bg)}
-.menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:14px 10px;margin:-14px -10px}
+/* order:1 puts the hamburger visually LAST (its original position) while the DOM keeps
+   it before .nav-links, so Tab reaches the drawer it opens instead of skipping past it.
+   The order property does not affect tab order — that is the point. */
+.menu-toggle{display:none;order:1;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:14px 10px;margin:-14px -10px}
 .menu-toggle span{width:24px;height:1px;background:var(--ink);transition:transform .3s,opacity .3s}
 
 /* ----- Hero ----- */
