@@ -368,7 +368,9 @@ body {
 .bk-opencue {
   position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 11;
   font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-  color: rgba(244,236,218,0.7); pointer-events: none; transition: opacity var(--bk-ease);
+  /* full paper cream, not 0.7 alpha: measured 3.48:1 on the cloth from rendered pixels
+     (2026-08-01). Same fault as the rest of the cover — the alpha was what failed. */
+  color: var(--bk-paper); pointer-events: none; transition: opacity var(--bk-ease);
   animation: bkCue 1.8s var(--bk-ease) infinite;
 }
 .bk-openbook.is-open .bk-opencue { opacity: 0; }
@@ -768,7 +770,9 @@ body {
 .bk-m-top .name { color: var(--bk-ochre); }
 .bk-m-jump {
   display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
-  background: var(--bk-ember); border: none; padding: 7px 14px; border-radius: 20px; color: #F4ECDA;
+  /* NOT --bk-ember: cream on raw ember measured 4.01:1 behind this 10px label (2026-08-01).
+     Same darker step already used by .bk-skip. Ember stays the primary accent elsewhere. */
+  background: #A8431F; border: none; padding: 7px 14px; border-radius: 20px; color: #F4ECDA;
   font-family: var(--bk-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
 }
 .bk-m-jump svg { width: 14px; height: 14px; }

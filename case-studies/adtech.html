@@ -58,7 +58,15 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p29">
+<link rel="stylesheet" href="../styles.css?v=p30">
+
+<!-- Mockup-plate ink darkened 2026-08-01: #5C6470 -> #515863 and the stage chip
+     #C2410C -> #B63D0B. Measured from RENDERED pixels, these sat at 4.06-4.39:1 against a
+     4.5 floor. Earlier contrast checkers skipped every `.pl*` plate wholesale, so these were
+     never measured: DESIGN-SYSTEM.md exempts plates from the TYPE SCALE, which is not an
+     exemption from contrast. A product mockup arguably qualifies as "part of a picture" under
+     WCAG 1.4.3, but it is real HTML text a low-vision reader may try to read, so it is fixed
+     rather than argued. -->
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -196,16 +204,16 @@
       .plA-app{background:#F4F5F7;color:#16181D}
       .plA-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:#fff;border-bottom:1px solid #E3E6EA;flex-wrap:wrap}
       .plA-brand{font-weight:600;font-size:13px;color:#16181D}
-      .plA-camp{font-size:13px;color:#5C6470}
+      .plA-camp{font-size:13px;color:#515863}
       .plA-camp b{color:#16181D;font-weight:600}
-      .plA-stage{font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#C2410C;background:#FBEAE1;border-radius:3px;padding:3px 8px;white-space:nowrap}
+      .plA-stage{font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#B63D0B;background:#FBEAE1;border-radius:3px;padding:3px 8px;white-space:nowrap}
       .plA-body{display:grid;grid-template-columns:1.5fr 1fr;gap:0}
       @media(max-width:700px){.plA-body{grid-template-columns:1fr}}
       .plA-main{padding:18px;border-right:1px solid #E3E6EA}
       @media(max-width:700px){.plA-main{border-right:none;border-bottom:1px solid #E3E6EA}}
       .plA-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:4px}
       .plA-head b{font-size:16px;font-weight:600;color:#16181D}
-      .plA-sub{font-size:11px;color:#5C6470;margin-bottom:14px}
+      .plA-sub{font-size:11px;color:#515863;margin-bottom:14px}
       .plA-card{background:#fff;border:1px solid #E3E6EA;border-left:3px solid #E3E6EA;border-radius:6px;padding:12px 14px;margin-bottom:8px}
       .plA-card.act{border-left-color:#0E7A5F}
       .plA-card.rev{border-color:#C2410C;border-left:3px solid #7A5410;box-shadow:0 0 0 1px #C2410C inset}
@@ -215,26 +223,26 @@
       .plA-verb{font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;border-radius:3px;padding:4px 9px;white-space:nowrap;flex:0 0 auto}
       .plA-verb.act{color:#0E7A5F;background:#E6F3EE;border:1px solid #BFDFD4}
       .plA-verb.rev{color:#7A5410;background:#FCF2DC;border:1px solid #EAD9B0}
-      .plA-verb.ign{color:#5C6470;background:#EFEFEC;border:1px solid #E3E6EA}
-      .plA-conf{font-family:var(--ff-mono);font-size:10.5px;color:#5C6470;font-variant-numeric:tabular-nums}
-      .plA-reason{font-size:11px;color:#5C6470;line-height:1.55;margin:4px 0 0}
-      .plA-note{font-size:10.5px;color:#5C6470;font-style:italic;margin-top:4px}
+      .plA-verb.ign{color:#515863;background:#EFEFEC;border:1px solid #E3E6EA}
+      .plA-conf{font-family:var(--ff-mono);font-size:10.5px;color:#515863;font-variant-numeric:tabular-nums}
+      .plA-reason{font-size:11px;color:#515863;line-height:1.55;margin:4px 0 0}
+      .plA-note{font-size:10.5px;color:#515863;font-style:italic;margin-top:4px}
       .plA-btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
       .plA-apply{display:inline-block;font-size:11px;font-weight:600;color:#fff;background:#0E7A5F;border-radius:4px;padding:6px 12px}
-      .plA-quiet{display:inline-block;font-size:11px;color:#5C6470;background:#fff;border:1px solid #E3E6EA;border-radius:4px;padding:6px 12px}
+      .plA-quiet{display:inline-block;font-size:11px;color:#515863;background:#fff;border:1px solid #E3E6EA;border-radius:4px;padding:6px 12px}
       .plA-ovr{display:inline-block;font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.05em;color:#0E7A5F;background:#E6F3EE;border-radius:3px;padding:2px 6px;margin:2px 0 8px 12px}
-      .plA-foot{font-family:var(--ff-mono);font-size:10px;color:#5C6470;padding-top:10px;border-top:1px solid #E3E6EA;margin-top:4px}
+      .plA-foot{font-family:var(--ff-mono);font-size:10px;color:#515863;padding-top:10px;border-top:1px solid #E3E6EA;margin-top:4px}
       .plA-rail{padding:18px;background:#FBFBFC}
-      .plA-rl{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5C6470;margin-bottom:10px}
-      .plA-w{display:flex;align-items:center;gap:8px;font-size:11px;color:#5C6470;margin-bottom:6px}
+      .plA-rl{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#515863;margin-bottom:10px}
+      .plA-w{display:flex;align-items:center;gap:8px;font-size:11px;color:#515863;margin-bottom:6px}
       .plA-w i{height:5px;border-radius:3px;background:#C2410C;display:inline-block;flex:0 0 auto}
       .plA-board{background:#fff;border:1px solid #E3E6EA;border-radius:4px;padding:12px 14px;margin-top:16px}
-      .plA-mono{font-family:var(--ff-mono);font-size:10px;color:#5C6470;margin-bottom:8px}
-      .plA-cmp{display:flex;align-items:center;gap:8px;font-size:11px;color:#5C6470;margin-bottom:6px}
+      .plA-mono{font-family:var(--ff-mono);font-size:10px;color:#515863;margin-bottom:8px}
+      .plA-cmp{display:flex;align-items:center;gap:8px;font-size:11px;color:#515863;margin-bottom:6px}
       .plA-cmp i{height:8px;border-radius:2px;display:inline-block;flex:0 0 auto}
       .plA-cmp .m{background:#0E7A5F}
       .plA-cmp .d{background:#C6CBD2}
-      .plA-bcap{font-size:10.5px;color:#5C6470;font-style:italic;line-height:1.55;margin-top:8px}
+      .plA-bcap{font-size:10.5px;color:#515863;font-style:italic;line-height:1.55;margin-top:8px}
       .plA-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 28px;transform:translateX(-50%)}
     </style>
     <div class="plA" role="img" aria-label="Reconstructed campaign-planning interface: a queue of three model recommendations, each with a confidence score resolved to a verb — a 91 reading 'act' on a budget shift to CTV, a 73 reading 'review' on a bid-cap raise surfaced for a trader, and a 38 reading 'ignore' — plus a side panel showing the weighted signals behind the reviewed call and a small scoreboard comparing model versus desk over the trailing thirty days.">

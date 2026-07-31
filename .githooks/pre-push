@@ -1,0 +1,74 @@
+#!/bin/sh
+# Pre-push contrast smoke check.
+#
+# CI (.github/workflows/contrast-gate.yml) is the authoritative gate and audits seven pages at two
+# widths. That takes minutes, which is too slow to sit in front of every push — so this hook runs a
+# fast subset: the two surfaces that have actually regressed before (the homepage's cream acts and the
+# book's gradient cover) at one width. Roughly 40 seconds.
+#
+# Design rules, deliberately:
+#   * FAIL-OPEN on missing tooling. A push must never be blocked because Chrome or Pillow is absent
+#     on this machine — that is not a defect in the code being pushed. It warns and lets you through;
+#     CI still has the final say.
+#   * FAIL-CLOSED on an actual contrast failure. That is the whole point.
+#   * Escape hatch: SKIP_CONTRAST=1 git push
+#
+# Enabled via:  git config core.hooksPath .githooks
+
+set -u
+
+[ "${SKIP_CONTRAST:-0}" = "1" ] && { echo "pre-push: contrast check skipped (SKIP_CONTRAST=1)"; exit 0; }
+
+ROOT=$(git rev-parse --show-toplevel) || exit 0
+cd "$ROOT" || exit 0
+
+# Only bother when something that can change rendering is being pushed.
+RANGE=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+if git rev-parse --verify --quiet "origin/$RANGE" >/dev/null 2>&1; then
+  CHANGED=$(git diff --name-only "origin/$RANGE"...HEAD 2>/dev/null)
+else
+  CHANGED=$(git diff --name-only HEAD~1...HEAD 2>/dev/null)
+fi
+if [ -n "$CHANGED" ] && ! printf '%s\n' "$CHANGED" | grep -qE '\.(html|css|js)$'; then
+  echo "pre-push: no html/css/js changes — contrast check not needed"
+  exit 0
+fi
+
+command -v python3 >/dev/null 2>&1 || { echo "pre-push: python3 missing — skipping contrast check"; exit 0; }
+python3 -c 'import PIL' 2>/dev/null   || { echo "pre-push: Pillow missing (pip install pillow) — skipping contrast check"; exit 0; }
+[ -f tools/contrast-audit.py ]        || { echo "pre-push: tools/contrast-audit.py missing — skipping"; exit 0; }
+
+# Pick a free port so this never collides with a dev server already running.
+PORT=$(python3 -c 'import socket;s=socket.socket();s.bind(("127.0.0.1",0));print(s.getsockname()[1]);s.close()')
+python3 -m http.server "$PORT" --directory . >/dev/null 2>&1 &
+SRV=$!
+trap 'kill $SRV 2>/dev/null; rm -f __ca_*.html' EXIT INT TERM
+
+i=0
+while [ $i -lt 40 ]; do
+  curl -sf -o /dev/null "http://localhost:$PORT/" && break
+  i=$((i+1)); sleep 0.25
+done
+curl -sf -o /dev/null "http://localhost:$PORT/" || { echo "pre-push: local server did not start — skipping"; exit 0; }
+
+echo "pre-push: contrast smoke check (homepage + book cover, 1440px)…"
+python3 tools/contrast-audit.py \
+  --docroot . --widths 1440 \
+  --exempt '.bk-device__label, .bk-device__mark' \
+  "http://localhost:$PORT/" "http://localhost:$PORT/book/"
+STATUS=$?
+
+if [ $STATUS -ne 0 ]; then
+  cat <<'MSG'
+
+pre-push: BLOCKED — a contrast failure (or a broken checker) was detected above.
+
+  Fix it, or push anyway with:   SKIP_CONTRAST=1 git push
+  Full audit, all colour contexts: see .github/workflows/contrast-gate.yml
+
+MSG
+  exit 1
+fi
+
+echo "pre-push: contrast OK."
+exit 0

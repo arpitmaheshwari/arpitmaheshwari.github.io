@@ -150,7 +150,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;
      7E5A14 = 5.14:1 on #F1E8D6, 4.77:1 on #EAE0CA. Any future gold here must clear 4.5:1 on
      #EAE0CA, not just on #F1E8D6. (Canon's 8A6423/4.55:1 pair is correct for the DOCUMENTS'
      cream #F4ECDA — a lighter background, so that pair stays valid there.) */
-  --ink:#20180C; --ink-muted:#6E6250; --gold:#7E5A14; --gold-dark:#7E5A14; --gold-light:#6E4E1C;
+  /* ink-muted darkened 6E6250 -> 635848 (2026-08-01, measured from rendered PIXELS). The site
+     paints a global noise texture over everything (body::before, opacity .4), which darkens
+     every surface by ~1 RGB unit. 6E6250 computes 4.54:1 against the cream TOKEN but renders at
+     4.499:1 — a hairline AA failure on the most-used muted text on the site, and one no
+     style-based checker can see. Size cream colours against the rendered pixel, never the token. */
+  --ink:#20180C; --ink-muted:#635848; --gold:#7E5A14; --gold-dark:#7E5A14; --gold-light:#6E4E1C;
   --border:rgba(32,24,12,.16); --border-accent:rgba(126,90,20,.5); --hairline:rgba(32,24,12,.14);
   --bg:#F1E8D6; --bg-card:#EAE0CA;
   /* Semantic status colours MUST be redefined here. The dark-theme values (#E0736B / #E8C88A /
@@ -158,7 +163,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;
      at 2.34:1 and its severity chips at 2.10:1 (2026-07-31, measured). These variants keep the
      hue and clear 4.5:1 on BOTH creams AND on each colour's own 14%-tint chip background, which
      is the darkest surface they land on. */
-  --err:#8F4843; --warn:#6F6041; --ok:#2E6A46;
+  --err:#894540; --warn:#6D5E40; --ok:#2E6A46;   /* margin for the noise overlay, see above */
   background:var(--bg); color:var(--ink); border-top:none;
 }
 .act-cream .metric-num{color:var(--ink)}

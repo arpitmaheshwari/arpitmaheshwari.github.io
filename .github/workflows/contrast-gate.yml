@@ -1,0 +1,87 @@
+name: Contrast gate
+
+# Fails the build on any WCAG AA contrast regression, measured from RENDERED PIXELS.
+#
+# Why this gate exists: for months, style-based contrast checks reported this site "clean" while the
+# primary call-to-action on the book cover sat at 1.18:1 — invisible. Those checks read
+# `backgroundColor` and walked up the DOM, so a surface painted with a background-IMAGE (the cover's
+# gradient) fell through to an unrelated ancestor and got compared against the wrong colour. The
+# defect was only found by a human opening the page. This gate closes that loop mechanically.
+#
+# tools/contrast-audit.py plants a deliberately failing element and refuses to report anything until
+# it has confirmed it catches it, so a silently-broken checker fails the build instead of passing it.
+
+on:
+  push:
+    paths: ['**.html', '**.css', '**.js', '.github/workflows/contrast-gate.yml', 'tools/contrast-audit.py']
+  pull_request:
+    paths: ['**.html', '**.css', '**.js', '.github/workflows/contrast-gate.yml', 'tools/contrast-audit.py']
+  workflow_dispatch:
+
+jobs:
+  contrast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python -m pip install --quiet --upgrade pillow
+
+      - name: Locate Chrome
+        run: |
+          for c in google-chrome-stable google-chrome chromium-browser chromium; do
+            if command -v "$c" >/dev/null 2>&1; then
+              echo "CHROME=$(command -v "$c")" >> "$GITHUB_ENV"
+              "$c" --version
+              exit 0
+            fi
+          done
+          echo "::error::No Chrome/Chromium on the runner. Add browser-actions/setup-chrome@v1."
+          exit 1
+
+      - name: Serve the site
+        run: |
+          python3 -m http.server 8000 --directory . &
+          for i in $(seq 1 40); do
+            curl -sf -o /dev/null http://localhost:8000/ && break
+            sleep 0.25
+          done
+          curl -sf -o /dev/null http://localhost:8000/ || { echo "::error::server never came up"; exit 1; }
+
+      # Fonts come from Google Fonts over the network. If the runner cannot reach them, layout shifts
+      # and sampled rects move — so fail loudly here rather than produce a misleading green.
+      - name: Check webfonts are reachable
+        run: |
+          curl -sf -o /dev/null "https://fonts.googleapis.com/css2?family=Newsreader&display=swap" \
+            || { echo "::error::Google Fonts unreachable — results would not be trustworthy"; exit 1; }
+
+      # The page set is deliberately not "every page": each URL costs three headless renders per
+      # width. These cover every distinct colour context on the site — dark theme, cream acts, the
+      # gradient book cover, the semantic status palette, and the mockup plates. Add a URL here when
+      # a new colour context is introduced, not when a new page is.
+      - name: Contrast audit (pixel-truth, self-calibrating)
+        run: |
+          python3 tools/contrast-audit.py \
+            --docroot . \
+            --widths 1440,390 \
+            --exempt '.bk-device__label, .bk-device__mark' \
+            http://localhost:8000/ \
+            http://localhost:8000/book/ \
+            http://localhost:8000/hire/ \
+            http://localhost:8000/lab/eval.html \
+            http://localhost:8000/patterns/capability-contract.html \
+            http://localhost:8000/case-studies/adtech.html \
+            http://localhost:8000/404.html
+
+      - name: Fail if a stray wrapper file was left behind
+        if: always()
+        run: |
+          if ls __ca_*.html >/dev/null 2>&1; then
+            echo "::error::contrast-audit left wrapper files behind — its cleanup path is broken"
+            exit 1
+          fi

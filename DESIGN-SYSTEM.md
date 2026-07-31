@@ -1,4 +1,4 @@
-# Design System — arpitmaheshwari.com + the book
+# Design System — arpitmaheshwari.com + the book ("Human in the Loop")
 
 The single source of truth for typography, color, spacing, and section layout on the
 **classic site** (dark, gold): homepage, case studies, pattern library, utility pages.
@@ -85,6 +85,9 @@ They all map onto the ramp above.
 - **One accent:** gold. `--copper #4A6B5C` is the **sanctioned "In production / shipped" status token** (the pattern-page "In production" badge) — a defined semantic need, kept.
 - **No hardcoded hex** that duplicates a token (`#D4A85E`, `#5ED48E`, `#ff6464`, `#2F5D52` → tokens).
 - Status colors get real tokens: `--ok #5ED48E`, `--warn #E8C88A` (caution / "watch"), `--err #E0736B` (error).
+  **These three are DARK-THEME ONLY.** They fall to 2.1–2.3:1 on cream — `/lab/eval.html` shipped
+  "do not ship" at 2.34:1 because `.act-cream` did not re-point them. Any new theme block must
+  redefine all three; see the cream values below.
 
 ### Exempt surfaces (NOT governed by the type scale)
 These are controlled surfaces that deliberately mimic other UIs; they use their own internal sizing and are **out of scope** for the ramp:
@@ -100,14 +103,50 @@ The nav is `position:fixed` (~88px tall at page top). Every page's first content
 ### Cream "act" (governed — classic site)
 Cream is a **peak**, used **only twice** on the homepage (the receipts band + the one-idea band) and nowhere else unless this file adds it. It re-points tokens:
 ```
---bg #F1E8D6  --bg-card #EAE0CA  --ink #20180C  --ink-muted #6E6250
---gold #7E5A14 (= gold-dark on cream; 4.77:1 on the darkest card cream)  --border rgba(32,24,12,.16)
+--bg #F1E8D6  --bg-card #EAE0CA  --ink #20180C  --ink-muted #635848
+--gold #7E5A14 (= gold-dark on cream)  --border rgba(32,24,12,.16)
+--err #894540   --warn #6D5E40   --ok #2E6A46      /* cream-safe status; the dark-theme
+                                                      #E0736B/#E8C88A/#5ED48E collapse on cream */
 ```
 A cream section uses the **same** `--fs-title` (31px) and the **same** grammar as every dark section — only the background/ink change. It must never be the only place a big title appears.
 
-### Book — out of scope
+### THE MEASUREMENT RULE — size colour against rendered pixels, never against tokens
+**`body::before` paints a noise texture over the entire viewport at `opacity:.4`.** Every surface on
+this site therefore renders roughly one RGB unit darker than the token says. That is enough to matter:
+`--ink-muted #6E6250` computed **4.54:1** against the cream token and rendered at **4.499:1** — a
+hairline AA failure on the most-used muted text on the site, and one no style-based checker can see.
+Corrected to `#635848` on 2026-08-01. The cream status tokens were re-derived the same way.
+
+So, for any new or changed colour:
+1. Measure with `python3 tools/contrast-audit.py --docroot . <url>` — it samples the real pixels
+   behind each glyph and refuses to report until a planted canary proves it can fail.
+2. Size against the **darkest** surface the ink lands on (the card cream, not the act cream; a chip's
+   own tint, not the page).
+3. Leave margin. A value that computes at exactly 4.5 will render below it.
+CI enforces this on every push: `.github/workflows/contrast-gate.yml`.
+
+### Exempt surfaces (NOT governed by the type scale)
+> **Exempt from the type scale is NOT exempt from contrast.** Earlier contrast checkers skipped every
+> `.pl*` plate wholesale on the strength of this section, so the AdTech mockups were never measured —
+> they were sitting at 4.06–4.39:1 (fixed 2026-08-01: plate ink `#5C6470` → `#515863`, stage chip
+> `#C2410C` → `#B63D0B`). A product mockup can arguably claim WCAG 1.4.3's "part of a picture"
+> exemption, but it is real HTML text a low-vision reader may try to read. Measure it; fix it.
+> The only genuinely exempt text is a **logotype** (1.4.3) or text that is `aria-hidden` ornament.
+
+### Book — out of scope of the TYPE SCALE, in scope for contrast
 The book keeps its own established system (paper/ember palette, Spectral body, fixed spreads).
-Do **not** apply this document to `book/`.
+Do **not** apply this document's ramp or grammar to `book/`. It is **not** exempt from AA:
+- The cover cloth is a **gradient** (`.bk-cover`), so `background-color` is transparent and any
+  style-based checker silently mis-measures the whole surface. Its stops are set so full-opacity
+  `--bk-paper` clears 4.5:1 at the lightest point text lands on:
+  `linear-gradient(150deg, #9D513B 0%, #AD4927 55%, #8E3320 100%)`. Re-measure by pixel sampling if
+  these ever change.
+- Cover text uses **full-opacity** paper cream. Reduced alpha over the cloth is what failed AA.
+- `--bk-ember #C0512B` is too light to carry small cream text: use `#A8431F` behind labels ≤12px
+  (`.bk-skip`, `.bk-m-jump`). `--bk-ochre-ink` is ink for **cream pages only** — on the cloth it
+  measured 1.18:1 and made the cover's primary CTA invisible.
+- The AM device is a logotype and is the one 1.4.3 exemption on the page (pass
+  `--exempt '.bk-device__label, .bk-device__mark'`).
 
 ## 5. Spacing, rhythm, geometry
 
