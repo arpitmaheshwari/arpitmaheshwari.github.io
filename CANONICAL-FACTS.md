@@ -17,14 +17,31 @@ _Last reconciled: 2026-06-19._
 ## 1. Who I am (positioning)
 - **The line:** "Your model is right. Your users still won't bet on it." That half-second of doubt is the
   only thing I design. (This hero line is locked — do not edit.)
-- **Positioning phrase (2026-07-31 — Arpit's call): "human-in-the-loop design", NOT "the trust layer".**
-  "AI trust layer" is now claimed enterprise vocabulary for governance/security middleware (Salesforce's
+- **"The trust layer" is RETIRED COMPLETELY (2026-08-01 — Arpit's call). Zero occurrences, any casing,
+  any context. It is not a positioning phrase, not a brand, not a filename.**
+  "AI trust layer" is claimed enterprise vocabulary for governance/security middleware (Salesforce's
   Einstein Trust Layer, UiPath's AI Trust Layer) — a hiring manager searching or hearing that phrase
-  reads governance infrastructure, not interface design. Every job-description / specialism use of
-  "the trust layer" was replaced site-wide with **"human-in-the-loop design"**. This does NOT touch the
-  brand name below — those are proper nouns, unaffected by the collision.
-- **Brand name (unchanged):** **The Trust Layer** — it is BOTH the book's title AND the Substack
-  newsletter. Always capitalised as a name. Never rename these; only the positioning phrase changed.
+  reads governance infrastructure, not interface design.
+  - **The practice / specialism** → **"human-in-the-loop design"** (lower-case, hyphenated).
+  - **The book and the printed portfolio** → **"Human in the Loop"** (title case, a proper noun).
+    The portfolio's running header is "Human in the Loop · Selected Works"; the book's cover
+    imprint is "Human in the Loop · MMXXVI".
+  - **The newsletter** → labelled **"Human in the Loop"** on every surface.
+  - **The code module** → `lab/hitl.js` + `hitl.test.js` + `/lab/hitl.html`. The old URL
+    `/lab/trustlayer.html` survives ONLY as a silent forwarding stub, because it was published in
+    the sitemap and linked from the portfolio PDF. That stub is the single permitted appearance of
+    the old string anywhere in the repo — it renders no visible copy.
+  - `assets/og-images/book-og.png` had the old title baked into its pixels. Regenerated from
+    `_book-og.template.html`, which now exists so the next rename is a one-liner.
+  - _History, so this is not re-litigated: on 2026-07-31 only the positioning phrase was changed and
+    this file explicitly recorded the brand as "unchanged — never rename these". That instruction is
+    what made eight QA passes walk straight past the book cover, which still read "The Trust Layer"
+    in 15 places. Arpit overruled it on 2026-08-01. A term audit must grep the bare phrase, never a
+    context-qualified pattern._
+- **OPEN ACTION (Arpit, external — not doable from the repo):** the Substack publication is still
+  literally named "The Trust Layer" at arpitmaheshwari.substack.com. The site now labels every link
+  to it "Human in the Loop". Until the publication is renamed in Substack's settings, the site is
+  naming it something it is not.
 - **Job title — use ONE of these, not a new variant each time:**
   - In page code / structured data (schema `jobTitle`): **Product & Design Leader — AI & Data-Intensive Products**
   - On-page role line (under my name): **Product & Design Leader · AI & Data-Intensive Products**
@@ -178,7 +195,7 @@ Arpit's process, reframed in the site's voice from his three-layer model. All su
   turning after launch.
 - **Philosophy line (verbatim on all surfaces):** "Design is an upward spiral: every turn
   reduces risk and raises the odds of adoption. Confidence is earned in loops, not declared
-  in launches." (Ties the process to the trust-layer thesis.)
+  in launches." (Ties the process to the human-in-the-loop thesis.)
 - **The tooling fact (added 2026-07-22, Arpit's account):** prototypes are AI-assisted
   **working HTML** — not clickable pictures. They go in front of real users for usability
   testing, and when they survive, **the code ships as part of the production codebase**.
@@ -343,7 +360,8 @@ is a decision only someone with product authority gets to make.
 All copy is sourced from patterns/capability-contract.html — nothing invented.
 
 ### ChatGPT design-spec fact quarantine (2026-07-30 — spec reviewed, mechanics adopted, facts rejected)
-A ChatGPT-authored design spec/mockup ("The Trust Layer" paper-first redesign) contained INVENTED
+A ChatGPT-authored design spec/mockup (a paper-first redesign, titled with the since-retired
+"trust layer" name) contained INVENTED
 facts. NEVER import these, from that document or anywhere else:
 - "16 years" → canon is FIFTEEN (locked hero line)
 - "8 AI products shipped" → no basis (8 PATTERNS in production; 6 case studies)

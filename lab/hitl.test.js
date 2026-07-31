@@ -1,11 +1,11 @@
 /**
- * trustlayer.test.js — the tests for trustlayer.js, and a ~40-line runner.
+ * hitl.test.js — the tests for hitl.js, and a ~40-line runner.
  *
  * No test framework, because adding one to a zero-dependency library would be
  * the joke telling itself. Runs two ways, same assertions both times:
  *
- *   node lab/trustlayer.test.js          → prints results, exits non-zero on failure
- *   import { run } from './trustlayer.test.js'  → returns results for the browser
+ *   node lab/hitl.test.js          → prints results, exits non-zero on failure
+ *   import { run } from './hitl.test.js'  → returns results for the browser
  *
  * @license MIT
  */
@@ -13,7 +13,7 @@
 import {
   decide, calibrate, abstain, disclose,
   VERSION, DEFAULT_THRESHOLDS, MIN_CALIBRATION_SAMPLE,
-} from './trustlayer.js';
+} from './hitl.js';
 
 /* ------------------------------- the runner ------------------------------- */
 
@@ -315,9 +315,9 @@ test('module: exports a semver version', () => {
 /* ------------------------------- node runner ------------------------------ */
 
 const isNode = typeof process !== 'undefined' && process.versions && process.versions.node;
-if (isNode && process.argv[1] && process.argv[1].endsWith('trustlayer.test.js')) {
+if (isNode && process.argv[1] && process.argv[1].endsWith('hitl.test.js')) {
   const { total, passed, failed, results } = run();
   results.filter((r) => !r.passed).forEach((r) => console.error(`FAIL  ${r.name}\n      ${r.error}`));
-  console.log(`\ntrustlayer.js v${VERSION} — ${passed}/${total} passed${failed ? `, ${failed} failed` : ''}`);
+  console.log(`\nhitl.js v${VERSION} — ${passed}/${total} passed${failed ? `, ${failed} failed` : ''}`);
   process.exit(failed ? 1 : 0);
 }

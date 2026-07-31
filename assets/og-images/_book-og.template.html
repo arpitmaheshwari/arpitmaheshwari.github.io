@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Generator for book-og.png (1200x630). No generator existed when the book was renamed from
+     "The Trust Layer" to "Human in the Loop" (2026-08-01) and the old card had the title baked
+     into its pixels, so it had to be rebuilt by hand. Kept here so the next rename is a one-liner.
+     Rebuild:
+       chrome --headless --window-size=1200,630 --virtual-time-budget=8000 \
+         --screenshot=assets/og-images/book-og.png \
+         http://localhost:8000/assets/og-images/_book-og.template.html
+     Cloth stops match .bk-cover in book/book.css — keep them in sync. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    background:
+      radial-gradient(140% 120% at 12% 8%, rgba(255,255,255,0.06), transparent 45%),
+      linear-gradient(150deg, #9D513B 0%, #AD4927 55%, #8E3320 100%);
+  }
+  /* the cover's inset keyline */
+  body::after {
+    content: ""; position: absolute; inset: 40px;
+    border: 1.5px solid rgba(244,236,218,0.28); border-radius: 3px; pointer-events: none;
+  }
+  .pad { position: absolute; inset: 40px; padding: 62px 64px; display: flex; flex-direction: column; }
+  .imprint {
+    font-family: "IBM Plex Mono", monospace; font-size: 19px; font-weight: 500;
+    letter-spacing: 0.28em; text-transform: uppercase; color: #F4ECDA;
+  }
+  /* max-width is tuned so the line breaks after "person" — two lines, as the card has always
+     been composed. Changing the copy or the size means re-checking the break. */
+  .quote {
+    font-family: Newsreader, Georgia, serif; font-weight: 300; font-size: 60px;
+    line-height: 1.16; letter-spacing: -0.015em; color: #F4ECDA;
+    margin-top: auto; max-width: 800px;
+  }
+  .quote em { font-style: italic; }
+  .rule { width: 56px; height: 1px; background: rgba(244,236,218,0.75); margin: 30px 0 24px; }
+  .byline {
+    font-family: "IBM Plex Mono", monospace; font-size: 19px; font-weight: 500;
+    letter-spacing: 0.28em; text-transform: uppercase; color: #F4ECDA; margin-bottom: auto;
+  }
+</style>
+</head>
+<body>
+  <div class="pad">
+    <p class="imprint">Human in the Loop &middot; Vol. I &middot; MMXXVI</p>
+    <p class="quote">The half-second where a person decides to <em>bet</em> on a machine.</p>
+    <div class="rule"></div>
+    <p class="byline">Arpit Maheshwari</p>
+  </div>
+</body>
+</html>

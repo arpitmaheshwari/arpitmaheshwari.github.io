@@ -1,4 +1,4 @@
-/* book-content.jsx — content model + spread renderers for The Trust Layer.
+/* book-content.jsx — content model + spread renderers for Human in the Loop.
    Exposes window.buildBook(ctx) -> { spine:[7 spreads], sections:{cases,patterns} },
    and window.BOOK_META. ctx = { headline, go, enter }.
 
@@ -1312,13 +1312,13 @@ function buildBook(ctx) {
       className: "bk-cover"
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-cover__imprint"
-    }, "The Trust Layer \xB7 MMXXVI"), /*#__PURE__*/React.createElement("div", {
+    }, "Human in the Loop \xB7 MMXXVI"), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-cover__emblem"
     }, /*#__PURE__*/React.createElement(Device, {
       on: "dark",
-      label: "The Trust Layer"
+      label: "Human in the Loop"
     })), /*#__PURE__*/React.createElement("h1", {
       className: "bk-cover__title"
     }, "The half-second where a person decides to ", /*#__PURE__*/React.createElement("em", null, "bet"), " on a machine."), /*#__PURE__*/React.createElement("div", {
@@ -1360,7 +1360,7 @@ function buildBook(ctx) {
       style: {
         color: "var(--bk-ink-faint)"
       }
-    }, "The Trust Layer"), /*#__PURE__*/React.createElement("div", {
+    }, "Human in the Loop"), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement(Device, {
       label: "the monogram",
@@ -1675,7 +1675,7 @@ function buildBook(ctx) {
       target: "_blank",
       rel: "noopener",
       className: "bk-em"
-    }, "The Trust Layer ", Icon({ name: "external", cls: "bk-icon--sm" })), ". One idea per issue, on getting humans to act on machines. The fastest way to know how I think before you hire me."), /*#__PURE__*/React.createElement("div", {
+    }, "Human in the Loop ", Icon({ name: "external", cls: "bk-icon--sm" })), ". One idea per issue, on getting humans to act on machines. The fastest way to know how I think before you hire me."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note"
@@ -1792,7 +1792,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "Your model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. Founding product & design lead for AI products — also open to a staff or director trust-layer seat. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
+    }, "Your model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. Founding product & design lead for AI products — also open to a staff or director human-in-the-loop seat. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-social",
       style: {
         marginTop: 24
@@ -1810,7 +1810,7 @@ function buildBook(ctx) {
       href: "https://arpitmaheshwari.substack.com",
       target: "_blank",
       rel: "noopener",
-      "aria-label": "Substack — The Trust Layer"
+      "aria-label": "Substack — Human in the Loop"
     }, Icon({
       name: "rss"
     })), /*#__PURE__*/React.createElement("a", {
