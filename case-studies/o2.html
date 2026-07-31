@@ -319,7 +319,8 @@
             <div class="rx2-view rx2-hide" id="rx2-bill">
               <p class="rx2-big">£21.50</p>
               <p class="rx2-sub">due 28 March</p>
-              <button type="button" class="rx2-pay" data-cta="recon" data-location="recon-o2">Pay now</button>
+              <button type="button" class="rx2-pay" id="rx2-pay" data-cta="recon" data-location="recon-o2">Pay now</button>
+              <p class="rx2-paid rx2-hide" id="rx2-paid" role="status" style="font-family:var(--ff-mono);font-size:11px;letter-spacing:.06em;color:var(--copper);margin:10px 0 0">Paid &middot; receipt sent &mdash; no call to the contact centre</p>
             </div>
           </div>
           <div class="rx2-chin" aria-hidden="true"></div>
@@ -357,6 +358,8 @@
     });});
     var use=r.querySelector('#rx2-use'),code=r.querySelector('#rx2-code');
     use.addEventListener('click',function(){use.classList.add('rx2-hide');code.classList.remove('rx2-hide');});
+    var pay=r.querySelector('#rx2-pay'),paid=r.querySelector('#rx2-paid');
+    if(pay&&paid){pay.addEventListener('click',function(){paid.classList.remove('rx2-hide');pay.disabled=true;pay.style.opacity='.55';});}
   })();</script>
     <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-top:32px">I owned both sides of every one of these surfaces — I drew the screen, then wrote the front-end that shipped it. Nothing was lost between a design file and an engineer who never saw the intent behind it; the screen a customer tapped was the screen I drew, in the code I wrote.</p>
   </section>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
 /* View router (homepage only): the book is the front door on desktop. Phones, touch, and reduced-motion get the scannable classic site by default — no rushed mobile screener forced into the page-turn book. A no-JS crawler never runs this, so classic stays fully indexable; ?view=classic (or a prior Classic choice) always stays here. A hash (#patterns, #contact…) is explicit intent to visit a homepage section, so it always wins over a remembered book preference — otherwise every nav anchor breaks for anyone who ever opened the book. The book remains one tap away via the nav. */
-(function(){try{if(location.hash){return;}var p=new URLSearchParams(location.search);if(p.get('view')==='classic'){localStorage.setItem('am-view','classic');return;}if(p.get('view')==='book'){localStorage.setItem('am-view','book');location.replace('./book/');return;}if(localStorage.getItem('am-view')==='book'){location.replace('./book/');}}catch(e){}})();
+(function(){try{if(location.hash){return;}var p=new URLSearchParams(location.search);if(p.get('view')==='classic'){localStorage.setItem('am-view','classic');return;}if(p.get('view')==='book'){localStorage.setItem('am-view','book');location.replace('./book/');return;}if(localStorage.getItem('am-view')==='book' && !matchMedia('(pointer:coarse)').matches && innerWidth>1024){location.replace('./book/');}}catch(e){}})();
 </script>
 <title>Product &amp; Design Leader for AI Products — Arpit Maheshwari</title>
 <meta name="description" content="AI products don't fail at the model — they fail in the half-second before a person acts on it. I've designed that half-second for fifteen years.">
@@ -1034,7 +1034,7 @@ if (contactForm) {
     const succeed = () => {
       contactForm.innerHTML = '<div role="status" aria-live="polite" style="padding:24px 20px;background:var(--bg-card);border:1px solid var(--gold-dark);border-radius:4px">' +
         '<p style="font-family:var(--ff-display);font-size:22px;font-weight:300;color:var(--ink);margin:0 0 6px 0">Got it — thank you.</p>' +
-        '<p style="font-size:14px;color:var(--ink-muted);line-height:1.65;margin:0">I reply within ~48 hours. If it\'s time-sensitive, book a call just below.</p></div>';
+        '<p style="font-size:14px;color:var(--ink-muted);line-height:1.65;margin:0">I reply within ~48 hours. If it\'s time-sensitive, book a call just above.</p></div>';
     };
     const fail = () => {
       if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
@@ -1046,7 +1046,7 @@ if (contactForm) {
         err.style.cssText = 'font-size:13px;color:var(--gold);margin:12px 0 0 0';
         contactForm.appendChild(err);
       }
-      err.textContent = 'That didn\'t send — please try again, or book a call just below.';
+      err.textContent = 'That didn\'t send — please try again, or book a call just above.';
     };
     fetch(contactForm.action, { method: 'POST', body: new FormData(contactForm), headers: { 'Accept': 'application/json' } })
       .then(r => { if (r.ok) succeed(); else fail(); })
