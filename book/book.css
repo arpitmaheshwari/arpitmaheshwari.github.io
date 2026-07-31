@@ -281,9 +281,16 @@ body {
    ============================================================ */
 .bk-cover {
   width: 620px; height: 880px; border-radius: 6px 10px 10px 6px; position: relative;
+  /* Gradient stops darkened 2026-07-31 (measured by sampling rendered pixels, not computed
+     background-color — every prior audit read background-color, saw `transparent` here, and
+     silently skipped the whole cover). At the old stops, cream text on this cloth measured
+     2.1–3.6:1: the imprint, byline, skim line and the classic-site link all failed AA, and the
+     primary CTA measured 1.18:1. Stops now sized so full-opacity --bk-paper clears 4.5:1 at the
+     LIGHTEST point text lands on, with headroom for the white radial above.
+     Any future restyling of this cloth must be re-measured by pixel sampling. */
   background:
     radial-gradient(140% 120% at 12% 8%, rgba(255,255,255,0.06), transparent 45%),
-    linear-gradient(150deg, #CE6A4E 0%, var(--bk-ember) 55%, #8E3320 100%);
+    linear-gradient(150deg, #9D513B 0%, #AD4927 55%, #8E3320 100%);
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
   padding: 64px 60px 104px;
   display: flex; flex-direction: column;
@@ -298,22 +305,25 @@ body {
   content: ""; position: absolute; inset: 28px; border: 1.5px solid rgba(244,236,218,0.28); border-radius: 3px;
   pointer-events: none;
 }
-.bk-cover__imprint { font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(244,236,218,0.62); }
+.bk-cover__imprint { font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bk-paper); }
 .bk-cover__title { font-family: var(--bk-display); font-size: 46px; font-weight: 500; line-height: 1.18; margin: 0; letter-spacing: -0.01em; max-width: 12ch; }
 .bk-cover__title em { font-style: italic; }
 .bk-cover__rule { width: 56px; height: 2px; background: var(--bk-ochre); margin: 24px 0; animation: bkRuleGrow 900ms var(--bk-ease) both; }
 @keyframes bkRuleGrow { from { width: 0; } to { width: 56px; } }
-.bk-cover__byline { font-family: var(--bk-mono); font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(244,236,218,0.82); margin: 0; }
+.bk-cover__byline { font-family: var(--bk-mono); font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bk-paper); margin: 0; }
 .bk-cover__emblem { width: 72px; height: 72px; margin: 20px 0; }
 .bk-cover__open {
   margin-top: auto; display: inline-flex; align-items: center; gap: 12px;
   font-family: var(--bk-mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--bk-ochre-ink); cursor: pointer; background: none; border: none; padding: 0; white-space: nowrap;
+  /* NOT --bk-ochre-ink: that token is ink for CREAM pages (4.73:1 on cream) and measured
+     1.18:1 here on the terracotta cloth — the cover's primary CTA was effectively invisible
+     (2026-07-31). Every sibling on this cover uses paper cream; this was the odd one out. */
+  color: var(--bk-paper); cursor: pointer; background: none; border: none; padding: 0; white-space: nowrap;
 }
-.bk-cover__open .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bk-ochre); animation: bkpulse 1.8s var(--bk-ease) infinite; }
+.bk-cover__open .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bk-paper); animation: bkpulse 1.8s var(--bk-ease) infinite; }
 @keyframes bkpulse { 0%,100%{opacity:0.35; transform:scale(0.8)} 50%{opacity:1; transform:scale(1.25)} }
 /* ---- switch to the classic website ---- */
-.bk-cover__classic { display: inline-block; align-self: flex-start; margin: 16px 0 0; font-family: var(--bk-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,236,218,0.62); border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; }
+.bk-cover__classic { display: inline-block; align-self: flex-start; margin: 16px 0 0; font-family: var(--bk-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bk-paper); border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; }
 .bk-cover__classic:hover { color: #F4ECDA; border-color: rgba(244,236,218,0.5); }
 
 /* ============================================================
@@ -1055,6 +1065,8 @@ body {
 }
 .bk-device__label { font-family: var(--bk-mono); font-size: 8px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--bk-ink-faint); }
 .bk-device--on-dark .bk-device__mark { border-color: var(--bk-paper); color: var(--bk-paper); }
+/* The AM device is a logotype — WCAG 1.4.3 exempts text that is part of a logo or brand name,
+   so the reduced alpha here stays (measured 2.1:1, deliberately unfixed, 2026-07-31). */
 .bk-device--on-dark .bk-device__label { color: rgba(244,236,218,0.6); }
 
 /* ============================================================
@@ -1117,7 +1129,10 @@ body {
 .bk-skip {
   position: fixed; top: 12px; left: 12px; z-index: 100;
   transform: translateY(-150%); transition: transform var(--bk-ease);
-  background: var(--bk-ember); color: #F7F0E1; text-decoration: none;
+  /* NOT --bk-ember: ember (#C0512B) under #F7F0E1 is 4.16:1 — under the 4.5:1 floor for this
+     12px label (2026-07-31, measured). Darkened one step to 5.31:1. Scoped to the skip link so
+     ember stays the primary accent everywhere else. */
+  background: #A8431F; color: #F7F0E1; text-decoration: none;
   font-family: var(--bk-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
   padding: 11px 18px; border-radius: 6px; box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
@@ -1126,11 +1141,11 @@ body {
 /* Cover skim strip — the 10-second payload for first-time visitors */
 .bk-cover__skim {
   font-family: var(--bk-mono); font-size: 10.5px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: rgba(244,236,218,0.55); margin: 12px 0 0; line-height: 1.6;
+  text-transform: uppercase; color: var(--bk-paper); margin: 12px 0 0; line-height: 1.6;
 }
 .bk-cover__skimlink {
   display: inline-block; margin: 6px 0 14px; align-self: flex-start;
   font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.08em;
-  color: rgba(244,236,218,0.85); text-decoration: underline; text-underline-offset: 3px;
+  color: var(--bk-paper); text-decoration: underline; text-underline-offset: 3px;
 }
 .bk-cover__skimlink:hover { color: #F4ECDA; }

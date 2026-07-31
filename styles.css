@@ -153,6 +153,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;
   --ink:#20180C; --ink-muted:#6E6250; --gold:#7E5A14; --gold-dark:#7E5A14; --gold-light:#6E4E1C;
   --border:rgba(32,24,12,.16); --border-accent:rgba(126,90,20,.5); --hairline:rgba(32,24,12,.14);
   --bg:#F1E8D6; --bg-card:#EAE0CA;
+  /* Semantic status colours MUST be redefined here. The dark-theme values (#E0736B / #E8C88A /
+     #5ED48E) are tuned for #0A0A0A and collapse on cream — /lab/eval.html rendered "do not ship"
+     at 2.34:1 and its severity chips at 2.10:1 (2026-07-31, measured). These variants keep the
+     hue and clear 4.5:1 on BOTH creams AND on each colour's own 14%-tint chip background, which
+     is the darkest surface they land on. */
+  --err:#8F4843; --warn:#6F6041; --ok:#2E6A46;
   background:var(--bg); color:var(--ink); border-top:none;
 }
 .act-cream .metric-num{color:var(--ink)}
