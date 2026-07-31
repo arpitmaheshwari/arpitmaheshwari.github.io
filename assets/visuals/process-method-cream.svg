@@ -1,54 +1,90 @@
 <svg viewBox="0 0 1280 440" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pt pd">
-  <title id="pt">The method: wager, spiral, loop</title>
-  <desc id="pd">Three acts: a three-circle wager (desirable, feasible, viable); a four-move spiral — listen, structure, prove, land — repeated in loops; and an execution staircase from MVP to version n whose learnings feed back into the spiral.</desc>
+  <title id="pt">The method: every turn reduces the size of the bet</title>
+  <desc id="pd">A single line falls from the top left to the bottom right. It begins where three questions — desirable, feasible, viable — converge into one bet worth making. It then passes through four repeating moves: listen, structure, prove, land. Each move sits lower than the last, and each drops a dotted line to a baseline marked "ends in front of a real user", so the bet a stakeholder has to accept gets smaller every turn. Past a dashed marker reading "ship", the line keeps falling through smaller turns, because shipping is the first honest data and the loops do not stop.</desc>
   <rect width="1280" height="440" fill="#F4ECDA"/>
 
-  <!-- ACT I -->
-  <text x="229" y="56" text-anchor="middle" font-family="ui-monospace, 'Courier New', monospace" font-size="13" letter-spacing="3" fill="#8A6423">ACT I — THE WAGER</text>
-  <g fill="none" stroke="rgba(44,38,32,0.30)" stroke-width="1.5">
-    <circle cx="190" cy="190" r="70"/>
-    <circle cx="268" cy="190" r="70"/>
-    <circle cx="229" cy="256" r="70"/>
-  </g>
-  <text x="163" y="104" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#2C2620">Desirable</text>
-  <text x="295" y="104" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#2C2620">Feasible</text>
-  <text x="229" y="352" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#2C2620">Viable</text>
-  <circle cx="229" cy="210" r="6" fill="#8A6423"/>
-  <text x="229" y="408" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#6A6052">the overlap is the bet worth making</text>
+  <style>
+    .ttl{font-family:Georgia,'Times New Roman',serif;font-size:22px;fill:#2C2620}
+    .act{font-family:ui-monospace,'Courier New',monospace;font-size:12px;letter-spacing:2.4px;fill:#8A6423}
+    .cap{font-family:ui-monospace,'Courier New',monospace;font-size:10.5px;letter-spacing:1px;fill:#6F6350}
+    .mv{font-family:Georgia,'Times New Roman',serif;font-size:16px;fill:#2C2620}
+    .qn{font-family:Georgia,'Times New Roman',serif;font-size:15px;fill:#2C2620}
+    .quo{font-family:Georgia,'Times New Roman',serif;font-size:15px;font-style:italic;fill:#8A6423}
+    .ln{fill:none;stroke:#8A6423;stroke-width:2.4;stroke-linecap:round}
+    .thin{fill:none;stroke:#8A6423;stroke-width:1.4;stroke-linecap:round;opacity:.7}
+    .node{fill:#F4ECDA;stroke:#8A6423;stroke-width:2}
+    .dot{fill:none;stroke:#B3A98F;stroke-width:1;stroke-dasharray:2 5}
+    .ax{fill:none;stroke:#B3A98F;stroke-width:1}
+  </style>
 
-  <!-- ACT II -->
-  <text x="640" y="56" text-anchor="middle" font-family="ui-monospace, 'Courier New', monospace" font-size="13" letter-spacing="3" fill="#8A6423">ACT II — THE SPIRAL</text>
-  <circle cx="640" cy="225" r="95" fill="none" stroke="rgba(44,38,32,0.30)" stroke-width="1.5"/>
-  <path d="M 640 130 A 95 95 0 0 1 735 221" fill="none" stroke="#8A6423" stroke-width="2.5"/>
-  <path d="M 735 237 L 726 219 L 744 219 Z" fill="#8A6423"/>
-  <g font-family="Georgia, serif" font-size="19" fill="#2C2620" text-anchor="middle">
-    <text x="640" y="112">Listen</text>
-    <text x="782" y="231">Structure</text>
-    <text x="640" y="352">Prove</text>
-    <text x="500" y="231">Land</text>
-  </g>
-  <text x="640" y="220" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="23" fill="#8A6423">× n loops</text>
-  <text x="640" y="408" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#6A6052">every loop ends in front of a user</text>
+  <!-- The claim, in words, inside the picture -->
+  <text class="ttl" x="44" y="38">Every turn reduces the size of the bet.</text>
+  <text class="cap" x="44" y="59">HEIGHT = HOW BIG A BET SOMEONE ELSE HAS TO ACCEPT</text>
 
-  <!-- ACT III -->
-  <text x="1080" y="56" text-anchor="middle" font-family="ui-monospace, 'Courier New', monospace" font-size="13" letter-spacing="3" fill="#8A6423">ACT III — THE OPEN LOOP</text>
-  <g font-family="Georgia, serif" font-size="15" text-anchor="middle">
-    <rect x="905" y="285" width="72" height="40" rx="6" fill="none" stroke="#2F5D52" stroke-width="2"/>
-    <text x="941" y="310" fill="#2F5D52">MVP</text>
-    <rect x="995" y="245" width="72" height="40" rx="6" fill="none" stroke="rgba(44,38,32,0.30)" stroke-width="1.5"/>
-    <text x="1031" y="270" fill="#2C2620">V1</text>
-    <rect x="1085" y="205" width="72" height="40" rx="6" fill="none" stroke="rgba(44,38,32,0.30)" stroke-width="1.5"/>
-    <text x="1121" y="230" fill="#2C2620">V2</text>
-    <rect x="1175" y="165" width="72" height="40" rx="6" fill="none" stroke="#8F5E10" stroke-width="2" stroke-dasharray="5 4"/>
-    <text x="1211" y="190" fill="#8F5E10">V·n</text>
+  <!-- vertical axis: the one quantity this diagram measures -->
+  <path class="ax" d="M60 92 V330"/>
+  <path class="ax" d="M60 330 l-4 -10 M60 330 l4 -10"/>
+  <text class="cap" x="70" y="98">BIG</text>
+  <text class="cap" x="70" y="330">SMALL</text>
+
+  <!-- the baseline every turn has to touch -->
+  <path class="dot" d="M120 366 H1240"/>
+  <text class="cap" x="120" y="388">EVERY TURN ENDS IN FRONT OF A REAL USER — THAT IS WHAT MAKES THE NEXT BET SMALLER</text>
+
+  <!-- ============ ACT I · three questions converge into one bet ============ -->
+  <text class="act" x="120" y="88">ACT I &#183; THE WAGER</text>
+  <text class="qn" x="120" y="126">Desirable?</text>
+  <text class="qn" x="120" y="150">Feasible?</text>
+  <text class="qn" x="120" y="174">Viable?</text>
+  <path class="thin" d="M206 121 C244 121 250 136 262 142"/>
+  <path class="thin" d="M196 145 C240 145 252 145 262 146"/>
+  <path class="thin" d="M178 169 C232 169 250 156 262 150"/>
+  <circle cx="266" cy="146" r="5" fill="#8A6423"/>
+  <text class="cap" x="120" y="220">ALL THREE, OR IT DIES IN REVIEW</text>
+
+  <!-- ============ ACT II · the same four moves, each turn lower ============ -->
+  <text class="act" x="330" y="88">ACT II &#183; THE SPIRAL</text>
+  <!-- legend glyph: this is what one "turn" means -->
+  <g transform="translate(330,104)">
+    <path class="thin" d="M9 0 A 9 9 0 1 1 0 9"/>
+    <path class="thin" d="M0 9 l4 -5 M0 9 l6 3"/>
+    <text class="cap" x="24" y="12">= ONE TURN: LISTEN, STRUCTURE, PROVE, LAND</text>
   </g>
-  <g stroke="#6F6350" stroke-width="1.5" fill="none">
-    <path d="M 977 300 L 992 285"/><path d="M 1067 260 L 1082 245"/><path d="M 1157 220 L 1172 205"/>
-  </g>
-  <text x="1211" y="132" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="17" fill="#8A6423">adoption</text>
-  <path d="M 1211 165 L 1211 144" stroke="#8A6423" stroke-width="2" fill="none"/>
-  <path d="M 1205 154 L 1211 144 L 1217 154" stroke="#8A6423" stroke-width="2" fill="none" stroke-linejoin="round"/>
-  <path d="M 941 325 C 941 396, 790 396, 748 316" fill="none" stroke="#6F6350" stroke-width="1.5" stroke-dasharray="6 5"/>
-  <path d="M 755 332 L 748 316 L 764 322" fill="none" stroke="#6F6350" stroke-width="1.5" stroke-linejoin="round"/>
-  <text x="1080" y="408" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#6A6052">what users do returns as the next brief</text>
+
+  <!-- the falling line -->
+  <path class="ln" d="M266 146
+    C 300 146, 320 148, 366 152
+    C 430 158, 462 186, 512 200
+    C 566 216, 610 226, 656 242
+    C 700 258, 748 266, 786 276
+    C 852 292, 940 298, 998 304
+    C 1048 310, 1076 316, 1112 322
+    C 1152 328, 1188 332, 1208 334"/>
+  <path class="thin" d="M1208 334 l-10 -5 M1208 334 l-8 6"/>
+
+  <!-- the four moves as turns on the line, each lower than the last -->
+  <circle class="node" cx="366" cy="152" r="15"/>
+  <circle class="node" cx="512" cy="200" r="13"/>
+  <circle class="node" cx="656" cy="242" r="11"/>
+  <circle class="node" cx="786" cy="276" r="9.5"/>
+  <text class="mv" x="348" y="192">Listen</text>
+  <text class="mv" x="486" y="240">Structure</text>
+  <text class="mv" x="638" y="280">Prove</text>
+  <text class="mv" x="770" y="312">Land</text>
+  <path class="dot" d="M366 200 V366 M512 248 V366 M656 288 V366 M786 320 V366"/>
+  <text class="cap" x="330" y="344">RESEARCH IS A RHYTHM, NOT A PHASE</text>
+
+  <!-- ============ ACT III · past ship, the turns keep coming ============ -->
+  <text class="act" x="900" y="88">ACT III &#183; THE OPEN LOOP</text>
+  <path class="ax" d="M880 96 V352" stroke-dasharray="5 5"/>
+  <text class="act" x="890" y="112">SHIP</text>
+  <circle class="node" cx="998" cy="304" r="8"/>
+  <circle class="node" cx="1112" cy="322" r="7"/>
+  <path class="dot" d="M998 312 V366 M1112 329 V366"/>
+  <text class="cap" x="900" y="344">SHIPPING IS THE FIRST HONEST DATA</text>
+  <text class="cap" x="900" y="360">THE TURNS DO NOT STOP</text>
+
+  <!-- the payoff, stated rather than implied -->
+  <text class="quo" x="900" y="150">Confidence is earned in loops,</text>
+  <text class="quo" x="900" y="172">not declared in launches.</text>
 </svg>
