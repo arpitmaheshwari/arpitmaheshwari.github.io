@@ -36,7 +36,7 @@ _Last reconciled: 2026-06-19._
 - **Available · 4 weeks' notice** (always the digit "4", never "four").
 - Fully remote from Indore, India (GMT+5:30); 4–5 hours of daily overlap with US East Coast.
 - Looking for ONE role: founding product & design lead at an AI product company of 5–40 people, OR a
-  staff / director seat where the trust layer is the job.
+  staff / director seat where human-in-the-loop design is the job.
 
 ## 3. The six case studies — names + numbers are LOCKED
 Use the exact metric strings below on every surface (homepage chip, case-study page, the book, the résumé).
