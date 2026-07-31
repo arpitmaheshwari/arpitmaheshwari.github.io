@@ -328,6 +328,20 @@ room** — the deep read is the differentiator; the gate is what buys a reader f
 Rule: if a metric appears in a gate it uses the locked string ("2 wks → 3 hrs"),
 never a prose paraphrase — identical repetition is what makes the number stick.
 
+### Homepage patterns section leads with The Capability Contract (2026-07-31 — Arpit's call)
+Arpit's judgement: Act / Review / Ignore, presented as a three-tier taxonomy, "is such a silly
+rule that anybody will know it" — obvious once stated, which makes it a good rule and a weak
+reveal. It is NOT retired: it remains the foundational rule, it shipped, eight patterns hang off
+it, it is tested in `lab/trustlayer.js`, and it stays the AdTech case's origin beat and its own
+pattern page. What changed is only what the HOMEPAGE leads with.
+The `#patterns` section now headlines **The Capability Contract** (in production: AdTech + FinTech)
+— "a language model has no edges, so I draw them" — with the three clauses In scope / Declines /
+Hands back, and links out to the contract pattern, to Act / Review / Ignore as "the rule underneath
+it", and to the full library. Chosen because it is the least guessable pattern in the library:
+almost nobody publishes what their AI *can't* do as a product artifact, and writing the contract
+is a decision only someone with product authority gets to make.
+All copy is sourced from patterns/capability-contract.html — nothing invented.
+
 ### ChatGPT design-spec fact quarantine (2026-07-30 — spec reviewed, mechanics adopted, facts rejected)
 A ChatGPT-authored design spec/mockup ("The Trust Layer" paper-first redesign) contained INVENTED
 facts. NEVER import these, from that document or anywhere else:
