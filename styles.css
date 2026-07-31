@@ -326,3 +326,28 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .case-gate p{font-size:var(--fs-body);color:var(--ink);line-height:1.75;margin:0;max-width:70ch}
 .case-gate b{color:var(--gold);font-weight:400}
 @media(max-width:600px){.case-gate{padding:18px 18px}}
+
+/* "What you're hiring me to own" / "Three things I'll refuse" definition lists.
+   A hard 220px first column pushed the homepage 19px past a 320px viewport,
+   which is two-dimensional scrolling and a WCAG 1.4.10 reflow failure. */
+.lead-dl{display:grid;grid-template-columns:220px 1fr;gap:0;margin:0;border-top:1px solid var(--border)}
+@media(max-width:560px){.lead-dl{grid-template-columns:1fr}}
+
+/* nav 320 guard — at 320px the wordmark + CTA + hamburger exceeded the viewport,
+   producing 4px of two-dimensional scrolling (WCAG 1.4.10). The monogram alone
+   still identifies the site and links home. */
+@media(max-width:360px){
+  #nav{padding-left:16px;padding-right:16px;gap:8px}
+  .nav-logo span{display:none}
+  .nav-cta{padding:10px 14px;font-size:11px}
+}
+
+/* The method diagram needs the full column, not the 62ch text measure: at 595px the
+   1280-unit viewBox downscaled to 0.465 and its labels rendered at 5.6px. */
+.process-fig{margin:32px 0;width:calc(100% + 300px);margin-left:-150px;max-width:none}
+.process-fig img{width:100%;height:auto}
+/* Below ~1040px the 1280-unit viewBox downscales past the point where its labels are
+   readable (act labels drop under 11px). The three acts are stated in full prose
+   immediately below, so the diagram is hidden rather than shown illegibly — an
+   unreadable diagram is worse than no diagram. */
+@media(max-width:1040px){.process-fig{display:none}}

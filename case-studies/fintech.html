@@ -56,7 +56,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p22">
+<link rel="stylesheet" href="../styles.css?v=p25">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -67,10 +67,10 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies" aria-current="true">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
-  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
-</nav>
+  </nav>
 
 <style>
 /* Case hero — punchy, proof-forward (matches PTC) */
@@ -322,7 +322,7 @@
             <p class="rxf-claim">Top customer is 38% of recurring revenue — concentration pushes the score up.</p>
             <div class="rxf-weight"><span class="rxf-wlabel">Weight</span>
               <button type="button" class="rxf-step" data-dir="down" aria-label="Decrease weight: Q3 board pack" data-cta="recon" data-location="recon-fintech">−</button>
-              <span class="rxf-wval">3</span>
+              <span class="rxf-wval" aria-live="polite">3</span>
               <button type="button" class="rxf-step" data-dir="up" aria-label="Increase weight: Q3 board pack" data-cta="recon" data-location="recon-fintech">+</button>
             </div>
           </div>
@@ -331,7 +331,7 @@
             <p class="rxf-claim">Margins hold steady across three years; working capital reads clean.</p>
             <div class="rxf-weight"><span class="rxf-wlabel">Weight</span>
               <button type="button" class="rxf-step" data-dir="down" aria-label="Decrease weight: audited statements" data-cta="recon" data-location="recon-fintech">−</button>
-              <span class="rxf-wval">2</span>
+              <span class="rxf-wval" aria-live="polite">2</span>
               <button type="button" class="rxf-step" data-dir="up" aria-label="Increase weight: audited statements" data-cta="recon" data-location="recon-fintech">+</button>
             </div>
           </div>
@@ -341,7 +341,7 @@
             <p class="rxf-unsure">“I'm not sure about this one” — low confidence, kept visible</p>
             <div class="rxf-weight"><span class="rxf-wlabel">Weight</span>
               <button type="button" class="rxf-step" data-dir="down" aria-label="Decrease weight: founder interview" data-cta="recon" data-location="recon-fintech">−</button>
-              <span class="rxf-wval">1</span>
+              <span class="rxf-wval" aria-live="polite">1</span>
               <button type="button" class="rxf-step" data-dir="up" aria-label="Increase weight: founder interview" data-cta="recon" data-location="recon-fintech">+</button>
             </div>
           </div>
@@ -349,7 +349,7 @@
         <div class="rxf-actions">
           <button type="button" class="rxf-override" id="rxf-override" data-cta="recon" data-location="recon-fintech">Log override</button>
         </div>
-        <p class="rxf-logged">Disagreement logged — training signal</p>
+        <p class="rxf-logged" role="status">Disagreement logged — training signal</p>
       </div>
     </div>
     <div class="recon-caption">Interactive — try it</div>

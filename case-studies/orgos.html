@@ -58,7 +58,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p22">
+<link rel="stylesheet" href="../styles.css?v=p25">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -69,10 +69,10 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies" aria-current="true">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
-  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
-</nav>
+  </nav>
 
 <style>
 /* Case hero — punchy, proof-forward (matches PTC) */
@@ -275,7 +275,7 @@
       <style>
         #recon-orgos .rxo-toggle{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
         #recon-orgos .rxo-mode{padding:8px 14px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink-muted);transition:border-color .2s,color .2s}
-        #recon-orgos .rxo-mode[aria-checked="true"]{border-color:var(--gold);color:var(--gold)}
+        #recon-orgos .rxo-mode[aria-pressed="true"]{border-color:var(--gold);color:var(--gold)}
         #recon-orgos .rxo-note{min-height:18px;font-family:var(--ff-mono);font-size:11px;color:var(--copper);margin:0 0 12px}
         #recon-orgos .rxo-board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
         #recon-orgos .rxo-col{border:1px solid var(--border);border-radius:4px;background:var(--bg);padding:12px;min-height:120px}
@@ -293,9 +293,9 @@
         #recon-orgos .rxo-mode:focus-visible,#recon-orgos button.rxo-chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
         @media (max-width:768px){#recon-orgos .rxo-board{grid-template-columns:1fr}#recon-orgos .rxo-col{min-height:0}}
       </style>
-      <div class="rxo-toggle" role="radiogroup" aria-label="Transparency mode">
-        <button type="button" class="rxo-mode" role="radio" aria-checked="true" data-mode="on" data-cta="recon" data-location="recon-orgos">Transparency: on</button>
-        <button type="button" class="rxo-mode" role="radio" aria-checked="false" data-mode="off" data-cta="recon" data-location="recon-orgos">off</button>
+      <div class="rxo-toggle" role="group" aria-label="Transparency mode">
+        <button type="button" class="rxo-mode" aria-pressed="true" data-mode="on" data-cta="recon" data-location="recon-orgos">Transparency: on</button>
+        <button type="button" class="rxo-mode" aria-pressed="false" data-mode="off" data-cta="recon" data-location="recon-orgos">off</button>
       </div>
       <p class="rxo-note" id="rxo-note" role="status" aria-live="polite"></p>
       <div class="rxo-board">
@@ -320,8 +320,8 @@
   </section>
   <script>(function(){var r=document.getElementById('recon-orgos');if(!r)return;
     r.querySelectorAll('.rxo-mode').forEach(function(b){b.addEventListener('click',function(){
-      r.querySelectorAll('.rxo-mode').forEach(function(x){x.setAttribute('aria-checked','false')});
-      b.setAttribute('aria-checked','true');
+      r.querySelectorAll('.rxo-mode').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
       r.classList.toggle('rxo-locked',b.dataset.mode==='off');
     });});
     var note=r.querySelector('#rxo-note'),com=r.querySelector('#rxo-col-committed'),t;

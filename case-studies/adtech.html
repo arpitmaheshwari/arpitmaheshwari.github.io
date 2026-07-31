@@ -58,7 +58,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p22">
+<link rel="stylesheet" href="../styles.css?v=p25">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -69,10 +69,10 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies" aria-current="true">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
-  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
-</nav>
+  </nav>
 
 <style>
 /* Case hero — punchy, proof-forward (matches PTC) */
@@ -314,13 +314,13 @@
         #recon-adtech .rxa-card.overridden .rxa-logged{display:block}
         #recon-adtech .rxa-presets{display:flex;gap:8px;justify-content:center;margin:0 0 18px;flex-wrap:wrap}
         #recon-adtech .rxa-preset{padding:8px 14px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink-muted);transition:border-color .2s,color .2s}
-        #recon-adtech .rxa-preset[aria-checked="true"]{border-color:var(--gold);color:var(--gold)}
+        #recon-adtech .rxa-preset[aria-pressed="true"]{border-color:var(--gold);color:var(--gold)}
         #recon-adtech .rxa-preset:focus-visible,#recon-adtech .rxa-why:focus-visible,#recon-adtech .rxa-override:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
       </style>
-      <div class="rxa-presets" role="radiogroup" aria-label="Confidence-to-action mapping" aria-controls="rxa-card">
-        <button type="button" class="rxa-preset" role="radio" aria-checked="true" data-score="92" data-verb="act" data-cta="recon" data-location="recon-adtech">High confidence</button>
-        <button type="button" class="rxa-preset" role="radio" aria-checked="false" data-score="74" data-verb="review" data-cta="recon" data-location="recon-adtech">Medium</button>
-        <button type="button" class="rxa-preset" role="radio" aria-checked="false" data-score="41" data-verb="ignore" data-cta="recon" data-location="recon-adtech">Low</button>
+      <div class="rxa-presets" role="group" aria-label="Confidence-to-action mapping">
+        <button type="button" class="rxa-preset" aria-pressed="true" data-score="92" data-verb="act" data-cta="recon" data-location="recon-adtech">High confidence</button>
+        <button type="button" class="rxa-preset" aria-pressed="false" data-score="74" data-verb="review" data-cta="recon" data-location="recon-adtech">Medium</button>
+        <button type="button" class="rxa-preset" aria-pressed="false" data-score="41" data-verb="ignore" data-cta="recon" data-location="recon-adtech">Low</button>
       </div>
       <div class="rxa-card act" id="rxa-card">
         <div class="rxa-top">
@@ -328,17 +328,17 @@
           <span class="rxa-verb v-act" id="rxa-verb">ACT</span>
         </div>
         <p class="rxa-rec">Shift evening budget toward Channel B — stronger projected reach this week.</p>
-        <p class="rxa-score">model confidence <span id="rxa-score" aria-live="polite">92</span> · the verb is the interface, not the number</p>
+        <p class="rxa-score" aria-live="polite" aria-atomic="true">model confidence <span id="rxa-score">92</span> · the verb is the interface, not the number</p>
         <button type="button" class="rxa-why" id="rxa-why" aria-expanded="false" aria-controls="rxa-panel">Why this call</button>
         <div class="rxa-panel" id="rxa-panel">
-          <div class="rxa-sig"><span class="rxa-bar"><i style="transform:scaleX(.85)"></i></span> 30-day channel performance</div>
-          <div class="rxa-sig"><span class="rxa-bar"><i style="transform:scaleX(.6)"></i></span> Audience overlap with target segment</div>
-          <div class="rxa-sig"><span class="rxa-bar"><i style="transform:scaleX(.35)"></i></span> Inventory price trend</div>
+          <div class="rxa-sig"><span class="rxa-bar" aria-hidden="true"><i style="transform:scaleX(.85)"></i></span> 30-day channel performance<span class="visually-hidden"> — weight 85%</span></div>
+          <div class="rxa-sig"><span class="rxa-bar" aria-hidden="true"><i style="transform:scaleX(.6)"></i></span> Audience overlap with target segment<span class="visually-hidden"> — weight 60%</span></div>
+          <div class="rxa-sig"><span class="rxa-bar" aria-hidden="true"><i style="transform:scaleX(.35)"></i></span> Inventory price trend<span class="visually-hidden"> — weight 35%</span></div>
         </div>
         <div class="rxa-actions">
           <button type="button" class="rxa-override" id="rxa-override" data-cta="recon" data-location="recon-adtech">Override this call</button>
         </div>
-        <p class="rxa-logged">Overridden — logged · feeds next week's model</p>
+        <p class="rxa-logged" role="status">Overridden — logged · feeds next week's model</p>
       </div>
     </div>
     <div class="recon-caption">Interactive — try it</div>
@@ -346,8 +346,8 @@
   <script>(function(){var r=document.getElementById('recon-adtech');if(!r)return;
     var card=r.querySelector('#rxa-card'),verb=r.querySelector('#rxa-verb'),score=r.querySelector('#rxa-score');
     r.querySelectorAll('.rxa-preset').forEach(function(b){b.addEventListener('click',function(){
-      r.querySelectorAll('.rxa-preset').forEach(function(x){x.setAttribute('aria-checked','false')});
-      b.setAttribute('aria-checked','true');
+      r.querySelectorAll('.rxa-preset').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
       var v=b.dataset.verb; score.textContent=b.dataset.score;
       verb.textContent=v.toUpperCase(); verb.className='rxa-verb'+(v==='act'?' v-act':v==='review'?' v-review':'');
       card.className='rxa-card '+v;
