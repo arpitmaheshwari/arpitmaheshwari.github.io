@@ -16,9 +16,15 @@ _Last reconciled: 2026-06-19._
 
 ## 1. Who I am (positioning)
 - **The line:** "Your model is right. Your users still won't bet on it." That half-second of doubt is the
-  only thing I design — the **trust layer** between people and algorithms. (This hero line is locked — do not edit.)
-- **Brand name:** **The Trust Layer** — it is BOTH the book's title AND the Substack newsletter. Always
-  capitalised as a name.
+  only thing I design. (This hero line is locked — do not edit.)
+- **Positioning phrase (2026-07-31 — Arpit's call): "human-in-the-loop design", NOT "the trust layer".**
+  "AI trust layer" is now claimed enterprise vocabulary for governance/security middleware (Salesforce's
+  Einstein Trust Layer, UiPath's AI Trust Layer) — a hiring manager searching or hearing that phrase
+  reads governance infrastructure, not interface design. Every job-description / specialism use of
+  "the trust layer" was replaced site-wide with **"human-in-the-loop design"**. This does NOT touch the
+  brand name below — those are proper nouns, unaffected by the collision.
+- **Brand name (unchanged):** **The Trust Layer** — it is BOTH the book's title AND the Substack
+  newsletter. Always capitalised as a name. Never rename these; only the positioning phrase changed.
 - **Job title — use ONE of these, not a new variant each time:**
   - In page code / structured data (schema `jobTitle`): **Product & Design Leader — AI & Data-Intensive Products**
   - On-page role line (under my name): **Product & Design Leader · AI & Data-Intensive Products**
