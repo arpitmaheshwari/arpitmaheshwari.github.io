@@ -53,6 +53,10 @@ h1,h2,h3,h4,h5,h6{scroll-margin-top:80px}
    notes state existing facts only; ≤1 note per section; gold, Caveat, ±2° tilt. */
 .hand{font-family:'Caveat',cursive;color:var(--gold);line-height:1.25;pointer-events:none;letter-spacing:0;text-transform:none}
 .hand--muted{color:var(--ink-muted)}
+/* Every <svg class="scr"> MUST carry the preserveAspectRatio="none" ATTRIBUTE (it is not a CSS
+   property). These scribbles are sized as a % of the element they mark, so the SVG default
+   (xMidYMid meet) letterboxes the path: the ink renders narrower than its box and the circle
+   reads as a strike-through through the words. Found in review 2026-07-31. */
 .scr{position:absolute;pointer-events:none;overflow:visible}
 .scr path{fill:none;stroke:var(--gold);stroke-linecap:round;stroke-linejoin:round}
 .em-wrap{position:relative;display:inline-block}
@@ -137,8 +141,14 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;
 
 /* Governed cream 'act' — dark base, cream peak. ONLY the receipts + one-idea bands. */
 .act-cream{
-  --ink:#20180C; --ink-muted:#6E6250; --gold:#8A6423; --gold-dark:#8A6423; --gold-light:#6E4E1C;
-  --border:rgba(32,24,12,.16); --border-accent:rgba(138,100,35,.5); --hairline:rgba(32,24,12,.14);
+  /* gold ink darkened 8A6423 -> 7E5A14 (2026-07-31, measured). The old value gave 4.39:1 on
+     this act's cream #F1E8D6 and 4.06:1 on the card cream #EAE0CA — both under the 4.5:1 AA
+     floor for body-size text. Sized against the WORST background (the card, not the act):
+     7E5A14 = 5.14:1 on #F1E8D6, 4.77:1 on #EAE0CA. Any future gold here must clear 4.5:1 on
+     #EAE0CA, not just on #F1E8D6. (Canon's 8A6423/4.55:1 pair is correct for the DOCUMENTS'
+     cream #F4ECDA — a lighter background, so that pair stays valid there.) */
+  --ink:#20180C; --ink-muted:#6E6250; --gold:#7E5A14; --gold-dark:#7E5A14; --gold-light:#6E4E1C;
+  --border:rgba(32,24,12,.16); --border-accent:rgba(126,90,20,.5); --hairline:rgba(32,24,12,.14);
   --bg:#F1E8D6; --bg-card:#EAE0CA;
   background:var(--bg); color:var(--ink); border-top:none;
 }
