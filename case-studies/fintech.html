@@ -56,7 +56,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p21">
+<link rel="stylesheet" href="../styles.css?v=p22">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -133,21 +133,8 @@
     <div style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.6;flex:1 1 240px">The model&rsquo;s accuracy — the ML team&rsquo;s result to defend — and the retrieval backend.</div>
   </div>
   </div>
-  <style>
-  /* Screening-gate summary. Browsing data shows the chance of leaving is highest at
-     the very start and falls thereafter, so a reader either bails in seconds or
-     commits — two populations, opposite needs. This block is the skimmer's whole
-     experience AND a pre-organised schema that measurably improves what a committed
-     reader retains from the prose below. It states the outcome, the constraint and
-     my specific role; nothing below is deleted to make room for it. */
-  .case-gate{margin:26px 0 8px;padding:22px 26px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px}
-  .case-gate .cg-l{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
-  .case-gate p{font-size:var(--fs-body);color:var(--ink);line-height:1.75;margin:0;max-width:70ch}
-  .case-gate b{color:var(--gold);font-weight:400}
-  @media(max-width:600px){.case-gate{padding:18px 18px}}
-  </style>
   <section class="case-gate" aria-label="Summary of this case study">
-    <p class="cg-l">The short version &middot; 60 seconds</p>
+    <p class="cg-l">The short version</p>
     <p>An LLM already scored deal risk accurately. What was missing was not precision but belief. I held the launch until every generated claim could name its source and the model could say <b>&ldquo;I&rsquo;m not sure&rdquo;</b> instead of bluffing. Screening ran <b>60% faster</b>, because analysts stopped re-verifying the machine. I owned product definition, the abstention and citation UX, and the launch gate; the model's accuracy is the ML team's result to defend.</p>
   </section>
 
@@ -188,7 +175,7 @@
     <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">The first structural call was rejecting the chatbot.</strong> A conversational interface invites open-ended generation — exactly the behavior an investment decision can't tolerate. Instead the system runs as an agentic architecture with strict operational boundaries: specialized components playing as an orchestra, not a single improvising soloist. The job was to move the experience from <em>conversation</em> — exploratory, creative, unaccountable — to <em>conviction</em>: structured, auditable, evidence-based.</p>
     <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">So I built an &ldquo;explain this score&rdquo; surface that grounds the model in its evidence.</strong> An analyst could pull any rating apart into the signals behind it, challenge the weighting, and watch the score answer back — and every signal came stapled to the exact document it was retrieved from, so no claim floated free of a source. I held the release until the model could survive that — the call the whole project hung on, and the one that delayed it.</p>
     <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">Three things were non-negotiable:</strong> a cited source behind each generated number, a visible "I'm not sure about this one" state where the model abstains instead of bluffing a confident answer it can't ground, and a logged override when the analyst disagreed. The abstention state mattered most — an LLM's worst failure is a fluent, wrong claim, and I'd rather it say nothing than hallucinate. The override drew the longest argument — logging disagreement felt exposing. What it actually built was institutional memory: every expert correction captured as structured data the system learns from, so the platform slowly comes to reflect how <em>this firm</em> thinks, not just what a generic model knows. A commodity model can be rented by any competitor; an accumulated record of the firm's own judgment can't.</p>
-    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">The abstention threshold was a design argument, not just a statistical one.</strong> The design followed the model's own signals directly: every generated claim carried a per-claim confidence, and where it ran low, that claim rendered as the on-screen "I'm not sure about this one" — a signal that had lived only in evaluation dashboards turned into a state the analyst could see and act on. Setting that threshold was a design argument as much as a statistical one. Pitch it too eager and the tool cries uncertainty on claims it could defend, and analysts learn to skim past the abstentions; too shy, and one fluent, wrong claim undoes the trust the tool has earned. The threshold has to fail toward humility — the cheaper mistake.</p>
+    <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">The abstention threshold was a design argument, not just a statistical one.</strong> The design followed the model's own signals directly: every generated claim carried a per-claim confidence, and where it ran low, that claim rendered as the on-screen "I'm not sure about this one" — a signal that had lived only in evaluation dashboards turned into a state the analyst could see and act on. Pitching it is the whole difficulty. Pitch it too eager and the tool cries uncertainty on claims it could defend, and analysts learn to skim past the abstentions; too shy, and one fluent, wrong claim undoes the trust the tool has earned. The threshold has to fail toward humility — the cheaper mistake.</p>
     <p style="font-size:var(--fs-body);color:var(--ink);line-height:1.8;margin-bottom:20px"><strong style="color:var(--ink)">Trust also had to be cheap to enter.</strong> The deal flow's raw material lived in email — decks, spreadsheets, forwarded introductions — and analysts weren't going to re-key it into a system. So the platform meets them inside Outlook: tag an email, drag an attachment into the side panel, get an instant <em>"Received, thanks"</em> while agents stitch the unstructured pile into a deal profile in the background — and a prequalification score surfaces back in the inbox, where the prioritization decision actually happens. The same discipline went at the fuzziest judgment in the pipeline: management quality, traditionally pure gut feel, rendered as a scorecard that synthesizes leadership tenure, employee sentiment, and filed financial history into one timeline set against industry norms — a quantifiable proxy where there used to be a hunch, with every input traceable.</p>
     <!-- PLATE — production-fidelity reconstruction, synthetic data -->
     <style>
