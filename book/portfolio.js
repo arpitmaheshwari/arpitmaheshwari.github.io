@@ -2227,6 +2227,18 @@ function App() {
   const bookRef = useRef(null);
   const zoomCount = useRef(0);
   const reduce = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // ---- analytics (added 2026-08-01: the book previously had none at all) ----
+  // maxSpineRef tracks the deepest SPINE spread reached this visit, independent of the reader
+  // wandering into a section deck and back — "how far into the book did they get" should not
+  // reset just because they detoured through the case-study section.
+  const maxSpineRef = useRef(0);
+  const openedAtRef = useRef(Date.now());
+  const lastFiredRef = useRef(null); // dedupe: persist() can be called with an unchanged loc
+  const track = (name, params) => {
+    try {
+      if (typeof gtag === "function") gtag("event", name, params || {});
+    } catch (e) {}
+  };
   const persist = l => {
     localStorage.setItem("bk-loc", JSON.stringify(l));
     try {
@@ -2239,6 +2251,18 @@ function App() {
       if (b) lbl = l.deck === "spine" ? (b.spine[l.i] && b.spine[l.i].runheadR) || "Cover" : (b.sections[l.deck] && b.sections[l.deck].items[l.i] && b.sections[l.deck].items[l.i].crumb) || "";
       var live = document.getElementById("bk-live");
       if (live && lbl) live.textContent = lbl;
+      var key = l.deck + "-" + l.i;
+      if (b && key !== lastFiredRef.current) {
+        lastFiredRef.current = key;
+        if (l.deck === "spine") maxSpineRef.current = Math.max(maxSpineRef.current, l.i);
+        var spineTotal = b.spine ? b.spine.length : 0;
+        track("book_navigate", {
+          deck: l.deck,
+          spread: l.i,
+          label: lbl,
+          spine_progress_pct: spineTotal ? Math.round(maxSpineRef.current / (spineTotal - 1) * 100) : 0
+        });
+      }
     } catch (e) {}
   };
 
@@ -2284,6 +2308,41 @@ function App() {
   // restore mobile page from saved spread on mount
   useEffect(() => {
     setMLeaf(firstPageOf(locRef.current.deck, locRef.current.i));
+  }, []);
+
+  // ---- analytics: one view event on mount, one depth beacon on the way out ----
+  useEffect(() => {
+    const l = locRef.current;
+    maxSpineRef.current = l.deck === "spine" ? l.i : 0;
+    track("book_view", {
+      entry_deck: l.deck,
+      entry_spread: l.i,
+      entry_via: window.location.hash ? "deep_link" : "cover"
+    });
+    const sendDepth = () => {
+      try {
+        var b = bookRef.current;
+        var spineTotal = b && b.spine ? b.spine.length : 0;
+        // gtag('config', ..., {transport_type:'beacon'}) makes this fire-and-forget on unload —
+        // regular fetch/XHR calls get cancelled by the browser mid-navigation, which is exactly
+        // when this event matters most.
+        track("book_depth", {
+          max_spread: maxSpineRef.current,
+          spine_total: spineTotal,
+          spine_progress_pct: spineTotal ? Math.round(maxSpineRef.current / (spineTotal - 1) * 100) : 0,
+          seconds: Math.round((Date.now() - openedAtRef.current) / 1000)
+        });
+      } catch (e) {}
+    };
+    const onVis = () => {
+      if (document.visibilityState === "hidden") sendDepth();
+    };
+    document.addEventListener("visibilitychange", onVis);
+    window.addEventListener("pagehide", sendDepth);
+    return () => {
+      document.removeEventListener("visibilitychange", onVis);
+      window.removeEventListener("pagehide", sendDepth);
+    };
   }, []);
 
   // ---- depth change: zoom into / out of a section ----
