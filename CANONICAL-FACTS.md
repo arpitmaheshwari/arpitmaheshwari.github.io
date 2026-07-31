@@ -154,7 +154,7 @@ team's vs. mine) appears ONCE per case, stated as ownership of the boundary ("Th
 accuracy is their result to defend; the acting-on-it is mine") — never twice, never as a
 disclaimer, never in consecutive paragraphs.
 
-**Banned repetitions:** "the trust layer is the product" and generic restatements of the hero
+**Banned repetitions:** "human-in-the-loop design is the product" (and the retired "the trust layer is the product") and generic restatements of the hero
 thesis may appear on the homepage and ONE case (AdTech) only. Each other page closes on its
 own beat.
 

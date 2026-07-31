@@ -1835,7 +1835,7 @@ function buildBook(ctx) {
       target: "_blank",
       rel: "noopener",
       style: { color: "var(--bk-ember-ink, #B04A24)" }
-    }, "book 30 minutes \u2197")), /*#__PURE__*/React.createElement("p", { style: { marginTop: 14, fontSize: 12.5, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "I design the trust layer of AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
+    }, "book 30 minutes \u2197")), /*#__PURE__*/React.createElement("p", { style: { marginTop: 14, fontSize: 12.5, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "I do human-in-the-loop design for AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement(Device, {
       label: "fin.",
