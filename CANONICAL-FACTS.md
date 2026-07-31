@@ -311,6 +311,17 @@ The other confirmed numbers (**45%** effort, **3x** intent / **70%** audience) s
 depth** — deliberate, so the scan surfaces keep one headline plus one money number instead of a wall
 of figures. (3x/70% additionally rides the portfolio PDF's AdTech ledger, 2026-07-31.)
 
+### Screening-gate summaries on case studies (2026-07-31)
+Every case page opens with a `.case-gate` block — "The short version · N seconds" —
+before the jump-nav. It must contain three things and nothing else: the **outcome
+number in its exact canonical string**, the **constraint**, and **his specific role
+including what was NOT his**. 75-90 words. Built from that page's own section
+headings, so a skimmer gets the whole argument and a committed reader gets a schema
+that improves what they retain from the prose below. **No prose was deleted to make
+room** — the deep read is the differentiator; the gate is what buys a reader for it.
+Rule: if a metric appears in a gate it uses the locked string ("2 wks → 3 hrs"),
+never a prose paraphrase — identical repetition is what makes the number stick.
+
 ### ChatGPT design-spec fact quarantine (2026-07-30 — spec reviewed, mechanics adopted, facts rejected)
 A ChatGPT-authored design spec/mockup ("The Trust Layer" paper-first redesign) contained INVENTED
 facts. NEVER import these, from that document or anywhere else:
