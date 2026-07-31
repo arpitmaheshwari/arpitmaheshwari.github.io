@@ -101,7 +101,7 @@ The nav is `position:fixed` (~88px tall at page top). Every page's first content
 Cream is a **peak**, used **only twice** on the homepage (the receipts band + the one-idea band) and nowhere else unless this file adds it. It re-points tokens:
 ```
 --bg #F1E8D6  --bg-card #EAE0CA  --ink #20180C  --ink-muted #6E6250
---gold #8A6423 (= gold-dark on cream)  --border rgba(32,24,12,.16)
+--gold #7E5A14 (= gold-dark on cream; 4.77:1 on the darkest card cream)  --border rgba(32,24,12,.16)
 ```
 A cream section uses the **same** `--fs-title` (31px) and the **same** grammar as every dark section — only the background/ink change. It must never be the only place a big title appears.
 
@@ -207,7 +207,6 @@ Beyond §10's handwritten notes, the site now carries hand-MADE OBJECTS on the d
 - **Spot illustrations** (`.ai-art`): hand-authored gold line-art SVGs on case cards — billboard
   (AdTech), cited document + check (FinTech), signal report + magnifier (DD). Illustrations
   depict the PRODUCT CONCEPT — never fake process artifacts (closed-artifacts rule stands).
-- **Highlight marks** (`.hl-ink`): translucent gold behind a key phrase, ≤1 per screen.
 - **Marker underlines** (`.mk-ul`): squiggle SVG under select section titles.
 All decorative objects aria-hidden; homepage only so far — extend to case/hire/patterns pages
 with renders first.

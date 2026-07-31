@@ -100,7 +100,7 @@ Use real names + titles, verbatim quotes. Current placements:
 - **Ryan Kershner** — UX Design Leader, managed Arpit directly _(homepage + /hire)_
 - **Katie Alterio** — Product Designer _(homepage)_
 - **Jonathan Berkey** — Product Design Leader, managed Arpit directly _(PTC case page)_
-- **Sanjesh Ananda** — Software Engineering Leader _(spare; previously on /hire)_
+- **Sanjesh Ananda** — Software Engineering Leader _(homepage + AdTech case, added to homepage 2026-07-31 — the only ENGINEERING voice; answers the "can a designer ship?" doubt that the three design voices cannot)_
 
 ## 6. The two views (intentional — not a mistake)
 - **Book** (`/book/`) — the human front door. Warm "printed-paper" identity: terracotta `#C0512B` +
@@ -109,6 +109,14 @@ Use real names + titles, verbatim quotes. Current placements:
   near-black `#0A0A0A` + gold `#D4A85E`, Fraunces/Inter Tight type.
 - They look different **on purpose**. Both must tell the **same facts** (this file) in their own voice.
 - **Accessible text tokens (2026-07-22 — measured, not vibes; all body-size text ≥4.5:1):**
+  **ERRATA (2026-07-31):** the claim below that "the classic site's tokens already pass" was
+  **FALSE for the cream acts.** A full audit (12 pages, 1,004 text nodes, translucent backgrounds
+  composited) found **43 failures**: gold `#8A6423` measured **4.39:1** on the act cream `#F1E8D6`
+  and **4.06:1** on the card cream `#EAE0CA` — both under the 4.5:1 body floor. Fixed by darkening
+  the cream-act gold to **`#7E5A14`** (5.14:1 / 4.77:1). Any future cream gold must clear 4.5:1
+  against **`#EAE0CA`** (the darkest cream), not just the act background. Also note `--ink-muted
+  #6E6250` passes on that card by only 0.04 (4.542:1) — it breaks if the card ever darkens.
+  The `#8A6423` / 4.55:1 pair below remains CORRECT for the documents' lighter cream `#F4ECDA`.
   Book: `--bk-ember-ink #B04A24` and `--bk-ochre-ink #8F5E10` for body-size text; the original
   ember/ochre stay for backgrounds and large display (≥24px) only. Documents (PDF + resume):
   captions/dim `#6F6350` (4.99:1), gold kickers/dates `#8A6423` (4.55:1) on cream `#F4ECDA`.
@@ -194,7 +202,7 @@ accuracy IS the positioning.
 
 ## 10. Housekeeping conventions
 - **Cache version (bump on every change so visitors see updates):** classic pages use
-  `styles.css?v=pNN` (now **p20**); book uses `book.css?v=NN` (**58**) and `portfolio.js?v=NN` (**107**).
+  `styles.css?v=pNN` (now **p21**); book uses `book.css?v=NN` (**58**) and `portfolio.js?v=NN` (**107**).
 - **Analytics:** Google Analytics ID `G-PFY6ME99K8` (same across all pages).
 - **Primary action:** the "Send me the role" form (Formspree). Calendly is the quiet secondary.
   **Email IS public** (changed 2026-07-21 after recruiter feedback — recruiters don't fill forms):
