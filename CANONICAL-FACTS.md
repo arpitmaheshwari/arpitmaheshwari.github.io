@@ -315,6 +315,14 @@ prose doesn't already make. Canonical splits:
   design team. Shared: business-model decision w/ PTC leadership; delivery w/ platform
   engineering. Not mine: LMS backend, commerce infrastructure. (NOT a PM receipt — keep design
   framing.)
+  **The subscription MECHANISM (Arpit's own account, 2026-08-01 — supersedes any narrower
+  phrasing):** the 0% → 64% shift ran on a product-led, free-to-premium funnel — free tutorials
+  and trainings were the acquisition layer; experiencing them converted learners to paid premium
+  subscriptions. Arpit designed that free-to-paid experience. This makes "product-led growth /
+  freemium funnel" an HONEST claim on any surface (resume, site, interviews), scoped as: the
+  funnel design was his; commercial packaging/pricing stayed with PTC leadership. Earlier notes
+  attributing the whole shift to "pricing and sales" recorded the number's ownership, not the
+  mechanism, and undersold the design contribution.
 - **O2** — Owned: every screen + the front-end code. Shared: delivery within Equal Experts.
   Not mine: launch marketing + public launch numbers (O2's, reported as theirs).
 

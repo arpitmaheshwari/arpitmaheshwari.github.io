@@ -117,8 +117,8 @@ const STATUS = ["Available · 4 weeks' notice", "Product & design lead · AI", "
 const CV_SKILLS = ["Model-Layer Design", "Product Definition & Roadmaps", "Data-Intensive UI", "Design Leadership", "Organizational Design", "Research & Evals", "System Architecture"];
 const CV_EXP = [{
   yr: "2019—",
-  role: "Solution Consultant",
-  org: "Sahaj AI · AI products for AdTech, HRTech & Private Equity"
+  role: "Product & Design Lead — AI Products",
+  org: "Sahaj AI · AdTech, HRTech & Private Equity"
 }, {
   yr: "2014–19",
   role: "Lead Product Designer",
@@ -167,7 +167,7 @@ const CASES = {
     title: CF.get("ptc").title,
     standfirst: "Five platforms, one survivor. The redesign took a quarter — the case for killing four products took a year. That was the design work.",
     meta: cfMeta("ptc"),
-    context: "The brief said “redesign the UX.” Three weeks in the customer-success recordings said the navigation was fine — so I made the call that the contract was the broken interface: kill four of five learning platforms (LearningExchange, Precision LMS, Digital Guides, IoTU) and move the survivor off perpetual, pay-once-own-forever licenses.",
+    context: "The brief said “redesign the UX.” Three weeks in the customer-success recordings said the navigation was fine — so I made the call that the contract was the broken interface: kill four of five learning platforms (LearningExchange, Precision LMS, Digital Guides, IoTU) and move the survivor off perpetual licenses — onto a product-led funnel where free tutorials and trainings converted learners to premium subscriptions.",
     fig1: {
       no: "1.1",
       label: "before — five disconnected platforms, five sign-in screens"
@@ -1567,7 +1567,7 @@ function buildBook(ctx) {
       }
     }, "A Field", /*#__PURE__*/React.createElement("br", null), "Guide to", /*#__PURE__*/React.createElement("br", null), "Trust"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body bk-drop"
-    }, "Everything here ran in production, failed somewhere specific, and came back stronger. The tradeoffs are written down because I paid for them once — so you don’t have to."), /*#__PURE__*/React.createElement("div", {
+    }, "A design system for trusting and governing AI agents. Everything here ran in production, failed somewhere specific, and came back stronger — the tradeoffs are written down because I paid for them once, so you don’t have to."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
         marginTop: 22
