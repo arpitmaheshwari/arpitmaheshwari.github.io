@@ -136,6 +136,19 @@ f.onload = function () {
   var d = f.contentDocument, w = f.contentWindow;
   if (__CANARY__) { var s = d.createElement('div'); s.innerHTML = __CANARY_HTML__;
                     d.body.appendChild(s.firstChild); }
+  // Pin scroll-reveal elements to their SETTLED state in BOTH passes. Waiting for the fade is
+  // unreliable — the reveal is triggered by a JS-added class, so at the moment we check,
+  // getAnimations() is often still empty and we sample a half-faded element. On CI that surfaced
+  // as a gold button measured at 33-61% opacity (1.91:1 and 3.89:1) whose settled value is 9.01:1.
+  // Pinning removes the timing dependency instead of racing it. Note this deliberately does NOT
+  // set `transition:none` globally — that stopped the gold background painting at all.
+  if (__FORCE_VISIBLE__) {
+    var fv = d.createElement('style');
+    fv.textContent = __FORCE_VISIBLE__ +
+      '{opacity:1!important;transform:none!important;visibility:visible!important;' +
+      'transition-property:none!important}';
+    d.head.appendChild(fv);
+  }
   if (__HIDE__)   { var st = d.createElement('style'); st.textContent = __HIDE_CSS__;
                     d.head.appendChild(st); }
   // Wait for webfonts before measuring. Font metrics differ between macOS and Linux runners; if
@@ -191,7 +204,8 @@ f.onload = function () {
 </script>
 """
 
-def build_wrapper(url, w, h, *, canary=False, hide=False, exempt=None, settle=1400):
+def build_wrapper(url, w, h, *, canary=False, hide=False, exempt=None, settle=1400,
+                  force_visible=None):
     return (WRAPPER
             .replace("__URL__", html.escape(url, quote=True))
             .replace("__W__", str(w)).replace("__H__", str(h))
@@ -199,12 +213,14 @@ def build_wrapper(url, w, h, *, canary=False, hide=False, exempt=None, settle=14
             .replace("__CANARY_HTML__", json.dumps(CANARY_HTML))
             .replace("__HIDE__", "true" if hide else "false")
             .replace("__HIDE_CSS__", json.dumps(HIDE_TEXT_CSS))
+            .replace("__FORCE_VISIBLE__", json.dumps(force_visible) if force_visible else "null")
             .replace("__EXEMPT__", json.dumps(exempt) if exempt else "null")
             .replace("__SETTLE__", str(settle)))
 
 DOCROOT = None   # set from --docroot; the directory served at the URL origin's root.
 
-def run_pass(url, w, h, *, canary=False, hide=False, exempt=None, png=None):
+def run_pass(url, w, h, *, canary=False, hide=False, exempt=None, png=None,
+             force_visible=None):
     """Run one measurement pass. Returns parsed data, True (for screenshots), or None on failure.
 
     The wrapper is written into DOCROOT and fetched over http from the SAME ORIGIN as the target, so
@@ -217,7 +233,8 @@ def run_pass(url, w, h, *, canary=False, hide=False, exempt=None, png=None):
     os.close(fd)
     try:
         with open(path, "w", encoding="utf-8") as fh:
-            fh.write(build_wrapper(url, w, h, canary=canary, hide=hide, exempt=exempt))
+            fh.write(build_wrapper(url, w, h, canary=canary, hide=hide, exempt=exempt,
+                                   force_visible=force_visible))
         wrapper_url = origin + "/" + os.path.basename(path)
         args = ["--virtual-time-budget=9000", f"--window-size={w},{h}"]
         args += [f"--screenshot={png}"] if png else ["--dump-dom"]
@@ -235,21 +252,22 @@ def run_pass(url, w, h, *, canary=False, hide=False, exempt=None, png=None):
 
 # ---------------------------------------------------------------------- audit
 
-def audit(url, width, exempt=None, canary=False):
+def audit(url, width, exempt=None, canary=False, force_visible=None):
     """Measure one URL at one width. Returns (rows, truncated_bool) or (None, False) on failure."""
     from PIL import Image
-    probe = run_pass(url, width, 900, exempt=exempt, canary=canary)
+    probe = run_pass(url, width, 900, exempt=exempt, canary=canary, force_visible=force_visible)
     if not probe:
         return None, False
     full = min(max(int(probe["h"]) + 40, 900), MAX_PAGE_PX)
     truncated = int(probe["h"]) + 40 > MAX_PAGE_PX
 
-    data = run_pass(url, width, full, exempt=exempt, canary=canary)
+    data = run_pass(url, width, full, exempt=exempt, canary=canary, force_visible=force_visible)
     if not data:
         return None, truncated
     with tempfile.TemporaryDirectory() as td:
         png = os.path.join(td, "bg.png")
-        if not run_pass(url, width, full, canary=canary, hide=True, exempt=exempt, png=png):
+        if not run_pass(url, width, full, canary=canary, hide=True, exempt=exempt, png=png,
+                        force_visible=force_visible):
             return None, truncated
         im = Image.open(png).convert("RGB")
         sx = im.width / float(width)
@@ -280,8 +298,8 @@ def audit(url, width, exempt=None, canary=False):
 
 # ---------------------------------------------------------------- calibration
 
-def selftest(url, width):
-    rows, _ = audit(url, width, canary=True)
+def selftest(url, width, force_visible=None):
+    rows, _ = audit(url, width, canary=True, force_visible=force_visible)
     if rows is None:
         return False, "could not instrument the page at all (is it served same-origin over http?)"
     hits = [r for r in rows if r["text"].startswith(CANARY_TEXT[:18])]
@@ -303,6 +321,10 @@ def main():
     ap.add_argument("--docroot", default=os.getcwd(),
                     help="directory served at the URL origin root (default: cwd). The wrapper is "
                          "written here so it is same-origin with the pages under test.")
+    ap.add_argument("--force-visible", default=None, metavar="SELECTOR",
+                    help="CSS selector for scroll-reveal elements, pinned to their settled visible "
+                         "state before measuring (e.g. '.reveal'). Removes the timing race against "
+                         "a JS-triggered fade, which otherwise yields false failures on slow runners.")
     ap.add_argument("--selftest", action="store_true", help="run calibration only, then exit")
     ap.add_argument("--no-selftest", action="store_true",
                     help="skip calibration (a green result then proves nothing)")
@@ -314,7 +336,7 @@ def main():
         sys.exit(f"contrast-audit: --docroot is not a directory: {DOCROOT}")
 
     if not a.no_selftest:
-        ok, msg = selftest(a.urls[0], widths[0])
+        ok, msg = selftest(a.urls[0], widths[0], force_visible=a.force_visible)
         print(f"[calibration] {'PASS' if ok else 'FAIL'} — {msg}")
         if not ok:
             print("\nRefusing to report results. An instrument that cannot fail is not evidence.")
@@ -329,7 +351,8 @@ def main():
         measured = 0
         bad, exempt_bad, notes = [], [], []
         for width in widths:
-            rows, truncated = audit(url, width, exempt=a.exempt)
+            rows, truncated = audit(url, width, exempt=a.exempt,
+                                    force_visible=a.force_visible)
             if rows is None:
                 notes.append(f"@{width}px could not be measured")
                 continue

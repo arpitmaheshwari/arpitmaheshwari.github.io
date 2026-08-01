@@ -84,6 +84,7 @@ echo "pre-push: contrast smoke check (homepage + book cover, 1440px)…"
 python3 tools/contrast-audit.py \
   --docroot . --widths 1440 \
   --exempt '.bk-device__label, .bk-device__mark' \
+  --force-visible '.reveal' \
   "http://localhost:$PORT/" "http://localhost:$PORT/book/"
 STATUS=$?
 
