@@ -102,9 +102,25 @@ def find_chrome():
 
 CHROME = os.environ.get("CHROME") or find_chrome()
 
+IN_CI = os.environ.get("GITHUB_ACTIONS") == "true"
+
+def gh(level, msg):
+    """Emit a GitHub workflow annotation. These are readable via the PUBLIC check-runs
+    annotations API, unlike run LOGS which require admin rights on the repo — so when this gate
+    fails on CI, the reason is diagnosable from outside without a token. Learned the hard way:
+    the first two CI failures of this gate reported nothing but 'exit code 1'."""
+    if not IN_CI:
+        return
+    one_line = str(msg).replace("\r", "").replace("\n", "%0A")
+    print(f"::{level}::{one_line}", flush=True)
+
 def chrome(args, timeout=90):
     return subprocess.run(
         [CHROME, "--headless", "--disable-gpu", "--no-sandbox", "--hide-scrollbars",
+         # --disable-dev-shm-usage: standard CI hardening. Chrome writes shared memory to /dev/shm,
+         # which is small on many CI images; without this it can crash mid-render and return a
+         # blank or partial screenshot, which this tool would then measure as garbage.
+         "--disable-dev-shm-usage",
          "--force-device-scale-factor=1"] + args,
         capture_output=True, text=True, timeout=timeout)
 
@@ -281,6 +297,8 @@ def main():
         print(f"[calibration] {'PASS' if ok else 'FAIL'} — {msg}")
         if not ok:
             print("\nRefusing to report results. An instrument that cannot fail is not evidence.")
+            gh("error", f"contrast-audit CALIBRATION FAILED — {msg}. No contrast results were "
+                        f"produced; the instrument itself is broken in this environment.")
             sys.exit(1)
         if a.selftest:
             sys.exit(0)
@@ -301,9 +319,23 @@ def main():
                 notes.append(f"@{width}px page taller than {MAX_PAGE_PX}px — bottom NOT measured")
         failures += len(bad)
         print(f"\n{url}  —  {measured} text nodes measured at {widths}")
+        if measured == 0:
+            gh("error", f"contrast-audit measured ZERO text nodes on {url} — the page did not "
+                        f"render or could not be instrumented in this environment. Notes: "
+                        f"{'; '.join(notes) or 'none'}")
         for r in bad:
             print(f"  FAIL {r['ratio']:5.2f}/{r['need']}  {r['size']:>6}px  "
                   f"{r['fg']} on {r['bg']}  @{r['width']}px  {r['text']!r}")
+        # Surface each failure as an annotation so a CI failure is diagnosable without log access.
+        # Capped: annotations are rate-limited per run and a wall of them buries the signal.
+        for r in bad[:15]:
+            gh("error", f"CONTRAST {r['ratio']:.2f}:1 (needs {r['need']}) — {r['size']}px "
+                        f"{r['fg']} on {r['bg']} @{r['width']}px — {url} — text: {r['text']!r}")
+        if len(bad) > 15:
+            gh("error", f"...and {len(bad) - 15} further contrast failures on {url} "
+                        f"(see the step log for the full list).")
+        for n in notes:
+            gh("warning", f"contrast-audit on {url}: {n}")
         for r in exempt_bad:
             print(f"  exempt {r['ratio']:5.2f}  @{r['width']}px  {r['text']!r}  "
                   f"(declared 1.4.3-exempt — confirm that is true)")
