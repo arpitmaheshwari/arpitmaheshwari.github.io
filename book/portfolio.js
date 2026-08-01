@@ -147,14 +147,26 @@ const CV_EDU = [{
 }];
 
 /* ---- CASE STUDY (PTC — non-NDA, shown in full) ------ */
+/* ---- locked facts come from data/case-facts.js (loaded before this file) --------------
+   Title, tag, role/meta, metrics and the provenance caption are NOT written here any more:
+   they are read from the single source so the book and the classic case pages cannot drift
+   apart again. Narrative prose below stays local to the book on purpose — that is its voice,
+   and prose was never what went stale. See data/case-facts.js for the full reasoning. */
+var CF = (typeof window !== 'undefined' && window.CASE_FACTS) || null;
+if (!CF) {
+  throw new Error('portfolio.js: data/case-facts.js must load before portfolio.js — ' +
+                  'refusing to render case studies with missing facts.');
+}
+var cfMeta = function (k) { return CF.get(k).meta.map(function (p) { return [p[0], p[1]]; }); };
+
 const CASES = {
   ptc: {
     key: "ptc",
     no: "01",
-    tag: "EdTech · Non-NDA",
-    title: "PTC\u00A0University — Learning Connector",
+    tag: CF.get("ptc").tag,
+    title: CF.get("ptc").title,
     standfirst: "Five platforms, one survivor. The redesign took a quarter — the case for killing four products took a year. That was the design work.",
-    meta: [["Role", "Lead Product Designer"], ["Span", "2014–2019 · the CX team I built"], ["Surface", "Web LMS · 11 languages"], ["Result", "Shipped · in production"]],
+    meta: cfMeta("ptc"),
     context: "The brief said “redesign the UX.” Three weeks in the customer-success recordings said the navigation was fine — so I made the call that the contract was the broken interface: kill four of five learning platforms (LearningExchange, Precision LMS, Digital Guides, IoTU) and move the survivor off perpetual, pay-once-own-forever licenses.",
     fig1: {
       no: "1.1",
@@ -177,22 +189,7 @@ const CASES = {
       no: "1.2",
       label: "after — one skill graph, one shell, eleven languages"
     },
-    outcome: [{
-      v: "$1M",
-      l: "Saved per year — print + shipping"
-    }, {
-      v: "5\u21921",
-      l: "Platforms consolidated"
-    }, {
-      v: "9→11",
-      l: "Languages, one pipeline"
-    }, {
-      v: "550k+",
-      l: "Registered · 350k+ active"
-    }, {
-      v: "0% → 64%",
-      l: "Subscription share of new bookings · Q3 2017 → Q3 2018"
-    }],
+    outcome: CF.metrics("ptc"),
     quote: {
       t: "The redesign took a quarter. The case for deleting four products took a year — and that was the actual design work.",
       cite: "— PTC University, project note"
@@ -205,12 +202,12 @@ const CASES = {
 const NDA_CASES = [{
   no: "02",
   img: "../assets/shots/o2-app-screens.png",
-  tag: "Telecom · Non-NDA",
+  tag: CF.get("o2").tag,
   redacted: false,
   ph: "MyO2 account dashboard + Priority Moments rewards — O2 UK mobile web",
-  title: "Telefónica MyO2 & Priority Moments",
+  title: CF.get("o2").title,
   standfirst: "Drawn by me, then coded by me — every screen of two O2 UK products on mobile web, at a scale where rounding errors have populations.",
-  meta: [["Role", "Designer + Front-end"], ["Team", "Equal Experts squad · O2 UK"], ["Status", "Shipped · public"]],
+  meta: cfMeta("o2"),
   context: "The one move: own both sides of the handoff — draw every screen, then code the front-end that ships it, so nothing is lost in translation. The cost of that scale: a rounding error has a population. The proof isn't sign-ups; it's the 2.5M who came back.",
   moves: [{
     h: "MyO2 — the whole account, alone",
@@ -222,27 +219,18 @@ const NDA_CASES = [{
     h: "Same designer, same stack, opposite job",
     p: "MyO2 is a utility; Priority is a habit. Both on mobile web under a top UK brand, where small things stop being small — a tap target, a spinner, an exact billing figure lands on a stadium at once. The outcome figures are public, reported by O2 and Equal Experts. The claim is the work."
   }],
-  plateNo: "2.1",
-  plateCn: "MyO2 self-service app — the 4M-user account area: bills, allowances, data",
-  ledger: [{
-    v: "4M+",
-    l: "MyO2 users served"
-  }, {
-    v: "2.6M",
-    l: "Priority sign-ups · yr 1"
-  }, {
-    v: "5★",
-    l: "Priority App Store rating"
-  }],
+  plateNo: CF.get("o2").plateNo,
+  plateCn: CF.get("o2").provenance,
+  ledger: CF.metrics("o2"),
   note: "designed every screen, then built it — mobile web",
   stamp: { t: "5★ APP", v: "ok" }
 }, {
   no: "03",
   img: "../assets/shots/fintech-screening.png",
-  tag: "FinTech · NDA",
-  title: "AI-Assisted Private Equity Investing",
+  tag: CF.get("fintech").tag,
+  title: CF.get("fintech").title,
   standfirst: "I held the release until the LLM could defend its own scores. Then screening sped up 60%.",
-  meta: [["Role", "Lead Product Designer"], ["Team", "Engineers · data scientists · PM"], ["Surface", "AI for private-equity investing"], ["Status", "Shipped · under NDA"]],
+  meta: cfMeta("fintech"),
   context: "An LLM read the deal docs and scored the risk. I held the launch until it grounded every claim in a cited source (retrieval) and abstained on thin cases — a confident hallucination nobody signs is dead on arrival. I owned product definition, the abstention and citation UX, and the launch gate; the model's accuracy is the ML team's result to defend. The 60% is analysts no longer re-verifying by hand.",
   moves: [{
     h: "Explain before the verdict",
@@ -254,27 +242,18 @@ const NDA_CASES = [{
     h: "Disagreement on record",
     p: "A logged override when the analyst disagreed — fed the next eval."
   }],
-  plateNo: "3.1",
-  plateCn: "AlphaDeals product UI, shown under its own name \u00B7 synthetic data \u00B7 client identity under NDA",
-  ledger: [{
-    v: "60% faster",
-    l: "Per diligence pass · pre/post rollout"
-  }, {
-    v: "3",
-    l: "Sources behind every score"
-  }, {
-    v: "Lead",
-    l: "Analysts now open with it"
-  }],
+  plateNo: CF.get("fintech").plateNo,
+  plateCn: CF.get("fintech").provenance,
+  ledger: CF.metrics("fintech"),
   note: "trust = the model declining to bluff",
   stamp: { t: "Trusted", v: "r" }
 }, {
   no: "04",
   img: "../assets/shots/adtech-planner.png",
-  tag: "AdTech · NDA",
-  title: "Programmatic Advertising Platform",
+  tag: CF.get("adtech").tag,
+  title: CF.get("adtech").title,
   standfirst: "The algorithm beat the traders, and they played their hunches anyway. A missing interface, not a bad model.",
-  meta: [["Role", "Lead Product Designer"], ["Team", "50+ distributed agile team"], ["Surface", "DSP recommendation UI"], ["Status", "Shipped · under NDA"]],
+  meta: cfMeta("adtech"),
   context: "The engine beat the buyers; adoption sat near zero. I left the model and rebuilt the interface around it. Once traders acted on it: 45% less time and effort to plan and book a campaign, and 3x uplift in purchase intent with 70% audience uplift against traditional bookings.",
   moves: [{
     h: "A score tied to one action",
@@ -286,27 +265,18 @@ const NDA_CASES = [{
     h: "An override that teaches",
     p: "The override logged the correction and fed next week's model. Watching their pushback land flipped fighting into coaching."
   }],
-  plateNo: "4.1",
-  plateCn: "White-labelled reconstruction \u00B7 synthetic data \u00B7 bound by NDA",
-  ledger: [{
-    v: "2 wks → 3 hrs",
-    l: "Campaign planning time"
-  }, {
-    v: "£69k",
-    l: "Media-value gain per client"
-  }, {
-    v: "Why",
-    l: "Reasoning on every call"
-  }],
+  plateNo: CF.get("adtech").plateNo,
+  plateCn: CF.get("adtech").provenance,
+  ledger: CF.metrics("adtech"),
   note: "software did the speed; design did the acting-on-it",
   stamp: { t: "Shipped", v: "" }
 }, {
   no: "05",
   img: "../assets/visuals/case-orgos.svg",
-  tag: "Org Design · NDA",
-  title: "OrgOS · Transparent Org Tooling",
+  tag: CF.get("orgos").tag,
+  title: CF.get("orgos").title,
   standfirst: "Two hundred people. No managers. Eight modules doing the job of an org chart — coordination that never smuggles a boss back in.",
-  meta: [["Role", "Product & Design Lead"], ["Team", "4 engineering streams + a PM"], ["Surface", "Internal operating system"], ["Status", "Shipped · under NDA"]],
+  meta: cfMeta("orgos"),
   context: "The decision: refuse every feature with a manager hiding inside it. Transparency coordinates — salaries, finances, assignments, open to all — but holds only to forty; at two hundred the hallway stops scaling. Assignment, approval, escalation were each a boss in disguise.",
   moves: [{
     h: "Read access is the feature",
@@ -318,27 +288,18 @@ const NDA_CASES = [{
     h: "Eight modules, one grammar",
     p: "Staffing, comp, OKRs, onboarding all spoke one object model, so the org could rebuild its own process with nobody in the room."
   }],
-  plateNo: "5.1",
-  plateCn: "Schematic, not a screenshot — the real screens stay under NDA",
-  ledger: [{
-    v: "250",
-    l: "On it today · designed for 200"
-  }, {
-    v: "0",
-    l: "Managers in the loop"
-  }, {
-    v: "8",
-    l: "Modules, one grammar"
-  }],
+  plateNo: CF.get("orgos").plateNo,
+  plateCn: CF.get("orgos").provenance,
+  ledger: CF.metrics("orgos"),
   note: "the org's numbers, the founders' philosophy — my tooling held at scale",
   stamp: { t: "0 Managers", v: "ok" }
 }, {
   no: "06",
   img: "../assets/visuals/case-vc.svg",
-  tag: "VC/PE · NDA",
-  title: "Technical Due Diligence Platform",
+  tag: CF.get("vc-diligence").tag,
+  title: CF.get("vc-diligence").title,
   standfirst: "Partners bet millions on claims they'll never check. An LLM extracted the evidence; the design made them stand on it.",
-  meta: [["Role", "Product & Design Lead"], ["Team", "Model engineers · data scientists"], ["Surface", "Technical-DD platform · VC + PE"], ["Status", "Shipped · under NDA"]],
+  meta: cfMeta("vc-diligence"),
   context: "An LLM read the code and docs. No verdict ships without a cited source (retrieval) — unaudited, it's a confident hallucination.",
   moves: [{
     h: "Score at the signal level",
@@ -350,18 +311,9 @@ const NDA_CASES = [{
     h: "Dissent on record",
     p: "Analyst overrides fed back into the model; partner sign-off was real workflow, not a rubber stamp."
   }],
-  plateNo: "6.1",
-  plateCn: "Schematic, not a screenshot — the real screens stay under NDA",
-  ledger: [{
-    v: "3 wks → 4 days",
-    l: "Diligence cycle time"
-  }, {
-    v: "VC + PE",
-    l: "Both fund types served"
-  }, {
-    v: "4",
-    l: "Signal classes scored"
-  }],
+  plateNo: CF.get("vc-diligence").plateNo,
+  plateCn: CF.get("vc-diligence").provenance,
+  ledger: CF.metrics("vc-diligence"),
   note: "made the model's verdict auditable enough to bet on",
   stamp: { t: "4-Day DD", v: "" }
 }];

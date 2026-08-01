@@ -439,9 +439,13 @@
 </div>
 
 <!-- React production builds — no in-browser Babel; JSX pre-compiled into portfolio.js -->
+<!-- The locked case facts, shared with the classic pages via tools/case-sync-check.py.
+     Must load BEFORE portfolio.js, which throws rather than render a case with missing
+     facts. Plain script, no build step — this site ships as static files on purpose. -->
+<script src="../data/case-facts.js?v=1"></script>
 <script defer src="./vendor/react.production.min.js"></script>
 <script defer src="./vendor/react-dom.production.min.js"></script>
 <script src="monograph-icons.js" defer></script>
-<script src="portfolio.js?v=112" defer></script>
+<script src="portfolio.js?v=113" defer></script>
 </body>
 </html>

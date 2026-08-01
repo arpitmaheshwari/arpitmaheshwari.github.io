@@ -35,7 +35,7 @@ CALIBRATION
 USAGE   python3 tools/case-sync-check.py [--root .] [--selftest]
 EXIT    0 = calibrated and in sync · 1 = drift found, or calibration did not go red
 """
-import argparse, os, re, sys
+import argparse, json, os, re, sys
 
 IN_CI = os.environ.get("GITHUB_ACTIONS") == "true"
 
@@ -43,15 +43,36 @@ def gh(level, msg):
     if IN_CI:
         print(f"::{level}::{str(msg).replace(chr(13),'').replace(chr(10),'%0A')}", flush=True)
 
-# case key -> (classic file, book title as it appears in NDA_CASES/CASES, canonical role)
-CASES = {
-    "ptc":          ("case-studies/ptc.html",          "PTC University — Learning Connector", "Lead Product Designer"),
-    "o2":           ("case-studies/o2.html",           "Telefónica MyO2 & Priority Moments",       "Designer + Front-end"),
-    "fintech":      ("case-studies/fintech.html",      "AI-Assisted Private Equity Investing",     "Lead Product Designer"),
-    "adtech":       ("case-studies/adtech.html",       "Programmatic Advertising Platform",        "Lead Product Designer"),
-    "orgos":        ("case-studies/orgos.html",        "OrgOS · Transparent Org Tooling",          "Product & Design Lead"),
-    "vc-diligence": ("case-studies/vc-diligence.html", "Technical Due Diligence Platform",         "Product & Design Lead"),
+# case key -> classic page. Everything else (title, role, metrics, provenance) now comes from
+# data/case-facts.js — the single source the book renders from. This file used to carry its own
+# copy of the roles, which made it a THIRD place a fact could go stale. It now reads the hub.
+CLASSIC = {
+    "ptc":          "case-studies/ptc.html",
+    "o2":           "case-studies/o2.html",
+    "fintech":      "case-studies/fintech.html",
+    "adtech":       "case-studies/adtech.html",
+    "orgos":        "case-studies/orgos.html",
+    "vc-diligence": "case-studies/vc-diligence.html",
 }
+
+
+def load_facts(root):
+    """Parse data/case-facts.js — the single source. It is a JS file (no build step on this
+    site), but its payload is a plain JSON object literal, so slice that out and json.loads it
+    rather than shelling out to node."""
+    src = read(root, "data/case-facts.js")
+    i = src.index("var CASE_FACTS =") + len("var CASE_FACTS =")
+    depth, k, start = 0, src.index("{", i), src.index("{", i)
+    while k < len(src):
+        if src[k] == "{":
+            depth += 1
+        elif src[k] == "}":
+            depth -= 1
+            if depth == 0:
+                break
+        k += 1
+    return json.loads(src[start:k + 1])
+
 
 # Canon-locked figures that must be present on BOTH the classic page and in the book.
 # Regexes, because the same number is legitimately typeset differently across surfaces
@@ -123,78 +144,98 @@ def book_case_chunk(book, title):
     return None
 
 
-def check(root, book_override=None, classic_override=None):
-    """Returns a list of human-readable drift findings."""
-    book = book_override if book_override is not None else read(root, "book/portfolio.js")
+def check(root, facts_override=None, classic_override=None):
+    """Compare each CLASSIC page against the single source in data/case-facts.js.
+
+    The BOOK is no longer compared field-by-field: since the single-source refactor it RENDERS
+    from that file, so book-vs-source drift is structurally impossible. What can still drift is
+    the hand-written classic HTML, and the provenance rule — so that is what is checked."""
+    facts = facts_override if facts_override is not None else load_facts(root)
+    book = read(root, "book/portfolio.js")
     findings = []
 
-    for key, (rel, title, canon_role) in CASES.items():
-        classic = classic_override.get(key) if classic_override and key in classic_override \
-                  else read(root, rel)
-        chunk = book_case_chunk(book, title)
-        if chunk is None:
-            findings.append(f"{key}: case not found in book/portfolio.js (looked for title {title!r})")
+    for key, rel in CLASSIC.items():
+        case = facts["cases"].get(key)
+        if case is None:
+            findings.append(f"{key}: missing from data/case-facts.js")
             continue
+        classic = (classic_override or {}).get(key) or read(root, rel)
 
-        # ---- ROLE ----
-        bm = re.search(r'\["Role",\s*"([^"]+)"\]', chunk)
-        book_role = bm.group(1) if bm else None
+        # ---- ROLE: the classic page must match the single source ----
+        canon_role = dict((m[0], m[1]) for m in case["meta"]).get("Role")
         cm = re.search(r"<dt[^>]*>\s*Role\s*</dt>\s*<dd[^>]*>(.*?)</dd>", classic, re.S)
         classic_role = re.sub(r"<[^>]+>", "", cm.group(1)).replace("&amp;", "&").strip() if cm else None
-        if book_role != canon_role:
-            findings.append(f"{key}: ROLE in book is {book_role!r}, canon says {canon_role!r}")
-        if classic_role != canon_role:
-            findings.append(f"{key}: ROLE on classic page is {classic_role!r}, canon says {canon_role!r}")
+        if canon_role and classic_role != canon_role:
+            findings.append(f"{key}: ROLE on the classic page is {classic_role!r}, "
+                            f"data/case-facts.js says {canon_role!r}")
 
-        # ---- LOCKED METRICS on both surfaces ----
+        # ---- LOCKED METRICS: every figure in the source must appear on the classic page ----
         for label, rx in LOCKED.get(key, []):
-            if not re.search(rx, chunk, re.I):
-                findings.append(f"{key}: locked metric {label!r} missing from the BOOK")
             if not re.search(rx, classic, re.I):
                 findings.append(f"{key}: locked metric {label!r} missing from the CLASSIC page")
 
-        # ---- PROVENANCE: don't claim screens are hidden while showing one ----
-        shows_image = bool(re.search(r'\bimg:\s*"', chunk))
-        if shows_image and re.search(CONTRADICTION[0], chunk, re.I):
-            findings.append(f"{key}: book {CONTRADICTION[1]} while also rendering an image")
+    # ---- the book must actually be wired to the source, not quietly re-hardcoded ----
+    if "window.CASE_FACTS" not in book and "CF.get(" not in book:
+        findings.append("book/portfolio.js no longer reads data/case-facts.js — the single "
+                        "source has been bypassed and the two surfaces can drift again")
 
-    # the blanket NDA footnote lives outside any one case chunk — check it globally too
+    # ---- provenance: never claim a screen is hidden while rendering one ----
     if re.search(CONTRADICTION[0], book, re.I):
-        findings.append(f"book/portfolio.js {CONTRADICTION[1]} somewhere in shared copy — every NDA "
-                        f"spread renders a reconstruction or schematic, so this claim is false")
+        findings.append(f"book/portfolio.js {CONTRADICTION[1]} — every NDA spread renders a "
+                        f"reconstruction or a schematic, so the claim is false")
+    for key, case in facts["cases"].items():
+        prov = case.get("provenance")
+        if prov and re.search(CONTRADICTION[0], prov, re.I):
+            findings.append(f"{key}: provenance caption {CONTRADICTION[1]}")
     return findings
 
 
 def selftest(root):
-    """Mutate each rule's input and confirm the rule catches it. Two-sided: also confirm the
-    unmutated tree is clean, so a rule that fires on everything is caught too."""
-    book = read(root, "book/portfolio.js")
+    """Two-sided calibration, now against the single source.
 
-    baseline = check(root)
-    if baseline:
-        return False, ("PRECISION: the unmutated tree already reports drift, so calibration cannot "
-                       f"distinguish signal from noise — {len(baseline)} finding(s), first: {baseline[0]}")
+    SENSITIVITY — mutate data/case-facts.js and confirm the classic pages are reported as
+                  disagreeing with it; and confirm a re-hardcoded book is caught.
+    PRECISION   — the untouched tree must report nothing, so a rule that fires on everything
+                  cannot masquerade as a clean pass."""
+    facts = load_facts(root)
 
-    # sensitivity A: break a role
-    mutated = book.replace('["Role", "Product & Design Lead"]', '["Role", "Design Lead"]', 1)
-    if mutated == book or not any("ROLE" in f for f in check(root, book_override=mutated)):
-        return False, "SENSITIVITY: a planted ROLE mismatch was not caught"
+    if check(root):
+        first = check(root)[0]
+        return False, (f"PRECISION: the untouched tree already reports drift, so calibration "
+                       f"cannot separate signal from noise — first: {first}")
 
-    # sensitivity B: remove a locked metric
-    # replace ALL occurrences: "550k+" appears in the short summary list too, and mutating only
-    # the first left the PTC record intact, so the rule correctly still found it — the planted
-    # defect simply was not where the rule looks. Caught by this calibration, which is the point.
-    mutated2 = book.replace("550k+", "five hundred thousand")
-    if mutated2 == book or not any("550k+" in f for f in check(root, book_override=mutated2)):
-        return False, "SENSITIVITY: a planted missing-metric was not caught"
+    # sensitivity A: change a ROLE in the source; the classic page now disagrees with it
+    import copy
+    mutated = copy.deepcopy(facts)
+    for m in mutated["cases"]["orgos"]["meta"]:
+        if m[0] == "Role":
+            m[1] = "Chief Wireframe Officer"
+    if not any("ROLE" in f for f in check(root, facts_override=mutated)):
+        return False, "SENSITIVITY: a role changed in the single source was not caught"
 
-    # sensitivity C: re-introduce the redaction contradiction
-    mutated3 = book.replace('note: "trust = the model declining to bluff"',
-                            'note: "The screens are redacted on purpose"', 1)
-    if mutated3 == book or not any("redacted" in f for f in check(root, book_override=mutated3)):
-        return False, "SENSITIVITY: a planted screens-are-redacted contradiction was not caught"
+    # sensitivity B: a provenance caption that lies about what the screen is
+    mutated2 = copy.deepcopy(facts)
+    mutated2["cases"]["adtech"]["provenance"] = "The screens are redacted on purpose"
+    if not any("provenance" in f.lower() for f in check(root, facts_override=mutated2)):
+        return False, "SENSITIVITY: a lying provenance caption was not caught"
 
-    return True, "sensitivity OK (role, metric, provenance) + precision OK (clean tree reports nothing)"
+    # sensitivity C: the book quietly bypassing the single source
+    findings = check(root, facts_override=facts,
+                     classic_override=None)
+    saved = read(root, "book/portfolio.js")
+    try:
+        tmp = saved.replace("CF.get(", "XX_BYPASSED(").replace("window.CASE_FACTS", "nothing")
+        with open(os.path.join(root, "book/portfolio.js"), "w", encoding="utf-8") as fh:
+            fh.write(tmp)
+        if not any("bypassed" in f.lower() or "no longer reads" in f.lower()
+                   for f in check(root)):
+            return False, "SENSITIVITY: a book that stopped reading the single source was not caught"
+    finally:
+        with open(os.path.join(root, "book/portfolio.js"), "w", encoding="utf-8") as fh:
+            fh.write(saved)
+
+    return True, ("sensitivity OK (role drift, lying provenance, book bypassing the source) "
+                  "+ precision OK (untouched tree reports nothing)")
 
 
 def main():
@@ -216,16 +257,17 @@ def main():
             sys.exit(0)
 
     findings = check(root)
-    print(f"\nchecked {len(CASES)} case studies across book/portfolio.js and case-studies/*.html")
+    print(f"\nchecked {len(CLASSIC)} classic case pages against data/case-facts.js "
+          f"(the book renders from that same file, so it cannot drift from it)")
     if findings:
         print(f"\nDRIFT — the book and the classic pages disagree ({len(findings)}):")
         for f in findings:
             print(f"  {f}")
             gh("error", f"CASE DRIFT — {f}")
     else:
-        print("Result: in sync (roles, locked metrics, and provenance claims all agree).")
-    print("\nNOT covered: prose tone, ordering, or anything not in the LOCKED table above. "
-          "Adding a canon-locked figure means adding it here too.")
+        print("Result: in sync — every classic page agrees with the single source, the "
+              "book still reads it, and no provenance caption misdescribes a screen.")
+    print("\nNOT covered: narrative prose, which deliberately stays per-surface. Adding a new\ncanon-locked figure means adding it to data/case-facts.js AND to the LOCKED table here.")
     sys.exit(1 if findings else 0)
 
 

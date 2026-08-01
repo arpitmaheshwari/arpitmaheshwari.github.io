@@ -217,6 +217,16 @@ has a shareable URL (#deck-index).
 an existing surface, never beside it. The remaining gaps are evidence, not architecture:
 process video, named quotes for the AI metrics, LinkedIn parity, domain email.
 
+**Case facts have ONE home (2026-08-01).** `data/case-facts.js` is the single source for every
+locked case fact: title, tag, role/meta, the metric ledger, and the provenance caption. The book
+RENDERS from it at runtime (loaded before `portfolio.js`, which throws rather than render a case
+with missing facts), so book-vs-source drift is now structurally impossible. The classic pages
+under `case-studies/` are hand-written static HTML and cannot read it without introducing a build
+step — this site ships as static files on purpose — so they are held to it mechanically instead:
+`tools/case-sync-check.py` fails CI and the pre-push hook when a classic page disagrees. Narrative
+prose deliberately stays per-surface; prose was never what went stale. **To change a locked fact:
+edit `data/case-facts.js`, then let the gate name the classic page that still disagrees.**
+
 **Provenance captions (locked wording):** AdTech screens = "white-labelled" (true — client
 brand removed). FinTech screens = "AlphaDeals product UI, shown under its own name · synthetic
 data · client identity under NDA" (the product brand is public via Arpit's own materials;
