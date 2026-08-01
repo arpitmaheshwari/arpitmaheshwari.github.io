@@ -2406,6 +2406,16 @@ function App() {
       };
       setLoc(nl);
       persist(nl);
+      // On mobile the visible flat page is driven by mLeaf, not loc — this branch updated loc/the
+      // URL hash but never mLeaf, so tapping "Open" on the cover silently changed the hash while the
+      // screen kept showing the cover. Every real tap looked like nothing happened (2026-08-01,
+      // found by Playwright: locator.click() succeeded, hash advanced, but .bk-m-page kept
+      // rendering .bk-m-page--cover). changeLevel already does this correctly for section
+      // enter/exit; this was the one caller of the instant-jump path that didn't.
+      if (mobileRef.current) {
+        setMDir(target > l.i ? 1 : -1);
+        setMLeaf(firstPageOf(nl.deck, nl.i));
+      }
       setTimeout(() => {
         animating.current = false;
       }, 280);

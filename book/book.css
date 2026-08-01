@@ -843,7 +843,15 @@ body {
 .bk-m-tap { display: none; }
 
 /* mobile cover + type tightening */
-.bk-mobile .bk-cover { width: 100%; height: 100%; border-radius: 0; padding: 52px 38px; }
+/* bottom padding raised 52px -> 128px: .bk-m-nav is a fixed 86px-tall bar pinned to the bottom of
+   .bk-m-stage, and this cover fills 100% of that same stage — so with 52px of padding the
+   flex-bottom-aligned .bk-cover__open button's own vertical centre landed 1.5px INSIDE the nav's
+   hit-testable area. Every real tap on "Open — 6 AI case studies inside", across its entire width,
+   was captured by the invisible nav bar instead of the button underneath it (2026-08-01, found by
+   Playwright's actionability check — it refuses to click an element it detects is occluded, which
+   is exactly what was happening to every real user's thumb). 128px clears the 86px bar with margin
+   to spare. If .bk-m-nav's height ever changes, re-measure via getBoundingClientRect and adjust. */
+.bk-mobile .bk-cover { width: 100%; height: 100%; border-radius: 0; padding: 52px 38px 128px; }
 .bk-mobile .bk-cover__title { font-size: clamp(28px, 8.5vw, 40px); }
 .bk-mobile .bk-cover__byline { font-size: 11px; }
 .bk-mobile .bk-title--xl { font-size: clamp(44px, 13vw, 58px); }
