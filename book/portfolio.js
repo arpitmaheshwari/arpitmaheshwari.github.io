@@ -194,7 +194,8 @@ const CASES = {
       t: "The redesign took a quarter. The case for deleting four products took a year — and that was the actual design work.",
       cite: "— PTC University, project note"
     },
-    note2: "killed four products to ship the one that worked."
+    note2: "killed four products to ship the one that worked.",
+    boundary: "I had a year and a direct line to the executives who owned the P&L. The same argument made in a single quarter, without that access, loses."
   }
 };
 
@@ -223,6 +224,7 @@ const NDA_CASES = [{
   plateCn: CF.get("o2").provenance,
   ledger: CF.metrics("o2"),
   note: "designed every screen, then built it — mobile web",
+  boundary: "Consumer scale from 2013 doesn’t transfer to enterprise AI on its own.",
   stamp: { t: "5★ APP", v: "ok" }
 }, {
   no: "03",
@@ -246,6 +248,7 @@ const NDA_CASES = [{
   plateCn: CF.get("fintech").provenance,
   ledger: CF.metrics("fintech"),
   note: "trust = the model declining to bluff",
+  boundary: "Weeks of delay bought explainability, and that trade only pays when the user is an expert paid to doubt the answer. For a low-stakes decision nobody audits, holding the launch would have been wrong.",
   stamp: { t: "Trusted", v: "r" }
 }, {
   no: "04",
@@ -269,6 +272,7 @@ const NDA_CASES = [{
   plateCn: CF.get("adtech").provenance,
   ledger: CF.metrics("adtech"),
   note: "software did the speed; design did the acting-on-it",
+  boundary: "The model was already accurate — the gap I closed was trust, not accuracy. If your model is genuinely wrong, no interface will save it; that’s an upstream fix.",
   stamp: { t: "Shipped", v: "" }
 }, {
   no: "05",
@@ -292,6 +296,7 @@ const NDA_CASES = [{
   plateCn: CF.get("orgos").provenance,
   ledger: CF.metrics("orgos"),
   note: "the org's numbers, the founders' philosophy — my tooling held at scale",
+  boundary: "This ran inside a company that already believed in radical transparency, with no management layer defending its own existence. In a conventional hierarchy it fails on politics long before it fails on product.",
   stamp: { t: "0 Managers", v: "ok" }
 }, {
   no: "06",
@@ -315,6 +320,7 @@ const NDA_CASES = [{
   plateCn: CF.get("vc-diligence").provenance,
   ledger: CF.metrics("vc-diligence"),
   note: "made the model's verdict auditable enough to bet on",
+  boundary: "Deliberate friction survives only when the person clicking is personally accountable for the verdict. A user with no downside routes around it.",
   stamp: { t: "4-Day DD", v: "" }
 }];
 const PATTERN_PAGES = {
@@ -862,7 +868,31 @@ function caseSpreadB(c) {
       style: {
         marginTop: 16
       }
-    }, c.note2))
+    }, c.note2), c.boundary && /*#__PURE__*/React.createElement("div", {
+      className: "bk-boundary",
+      style: {
+        marginTop: 14,
+        paddingTop: 8,
+        borderTop: "1px solid var(--bk-rule)"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        display: "block",
+        fontFamily: "var(--bk-mono)",
+        fontSize: 9.5,
+        letterSpacing: ".12em",
+        textTransform: "uppercase",
+        color: "var(--bk-ember-deep)",
+        marginBottom: 5
+      }
+    }, "Where this wouldn’t transfer"), /*#__PURE__*/React.createElement("p", {
+      style: {
+        margin: 0,
+        fontSize: 12,
+        lineHeight: 1.55,
+        color: "var(--bk-ink-soft)"
+      }
+    }, c.boundary)))
   };
 }
 
@@ -939,7 +969,31 @@ function caseWalk(c) {
       style: {
         marginTop: 16
       }
-    }, c.note), c.redacted !== false ? /*#__PURE__*/React.createElement("p", {
+    }, c.note), c.boundary && /*#__PURE__*/React.createElement("div", {
+      className: "bk-boundary",
+      style: {
+        marginTop: 14,
+        paddingTop: 8,
+        borderTop: "1px solid var(--bk-rule)"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        display: "block",
+        fontFamily: "var(--bk-mono)",
+        fontSize: 9.5,
+        letterSpacing: ".12em",
+        textTransform: "uppercase",
+        color: "var(--bk-ember-deep)",
+        marginBottom: 5
+      }
+    }, "Where this wouldn’t transfer"), /*#__PURE__*/React.createElement("p", {
+      style: {
+        margin: 0,
+        fontSize: 12,
+        lineHeight: 1.55,
+        color: "var(--bk-ink-soft)"
+      }
+    }, c.boundary)), c.redacted !== false ? /*#__PURE__*/React.createElement("p", {
       className: "bk-nda-foot",
       style: {
         marginTop: 14,

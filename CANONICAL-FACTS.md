@@ -389,3 +389,36 @@ facts. NEVER import these, from that document or anywhere else:
 What WAS adopted from it (2026-07-30, all content canon-sourced): homepage inline receipts
 (#receipt-adtech/-fintech/-ptc/-o2, one open at a time, deep-linkable), the Trust Trace strip
 (Score → Doubt → Action → Impact), and the four commitment-graded exit rows at contact.
+
+### The boundary statements — one per case (2026-08-02, LOCKED phrasing per surface)
+Every case study now carries a "Where this wouldn't transfer" beat: the condition the result
+depended on, and where it would NOT hold. This exists because the site argues that AI should
+state its confidence honestly and abstain rather than guess — a portfolio that never scopes its
+own claims contradicts its own thesis. These are scoping judgements, NOT new facts; each is
+derived from what that case already admits, and nothing here may introduce a number.
+
+- **AdTech** — the model was already accurate; the gap closed was trust, not accuracy. If a
+  model is genuinely wrong, no interface saves it (upstream fix).
+- **FinTech** — holding a launch to build explainability only pays when the user is an expert
+  paid to doubt the answer; wrong bet for a low-stakes decision nobody audits.
+- **VC diligence** — deliberate friction survives only when the person clicking is personally
+  accountable for the verdict; a user with no downside routes around it.
+- **OrgOS** — ran inside a company that already believed in radical transparency with no
+  management layer defending itself; in a conventional hierarchy it fails on politics first.
+- **PTC** — had a year and a direct line to the executives who owned the P&L; the same argument
+  in one quarter without that access loses. Design was necessary, never sufficient.
+- **O2** — launch figures are O2's public record, not his attribution; 2013 consumer scale does
+  not transfer to enterprise AI on its own.
+
+WHERE THEY LIVE: all six classic case pages (block after the receipt, before the principle);
+all six book case spreads (after the margin note). The 13-page portfolio PDF cannot fit six —
+five of seven case pages have <40px of slack, measured — so it carries ONE synthesis statement
+on the Method page instead, pointing to the site. The RESUME deliberately carries none:
+"what could prove me wrong" in a bullet reads as hedging in a six-second scan.
+
+### TCS (Tata Consultancy Services, Sep 2010 – Dec 2012) — no facts on record
+Canon holds ZERO outcome facts for this role: no metrics, no named clients, no measured result.
+The resume therefore states it as a dated header line only ("mobile for Fortune 500 banking &
+pharmaceutical clients"), with NO achievement bullet — matching how /hire and the book already
+list it. Do not write an achievement bullet for TCS unless Arpit supplies a real, measured
+outcome. The dated header MUST stay: 2010 is what anchors the locked "fifteen years" span.
