@@ -214,11 +214,19 @@
 .hd-preset span{font-family:var(--ff-mono);font-size:10px;color:var(--gold);margin-right:11px;flex:0 0 auto}
 .hd-preset::after{content:"→";margin-left:auto;padding-left:12px;color:var(--gold);opacity:.45;transition:opacity .2s,transform .2s;flex:0 0 auto}
 .hd-preset:hover::after{opacity:1;transform:translateX(2px)}
-.hd-free{margin-top:14px}
+/* Explicit submit button added 2026-08-01: this field had NO visible affordance and relied only
+   on implicit Enter-submission. That's an invisible mechanism on a site whose whole thesis is
+   "don't make people trust something they can't see" — and it's untestable via keyboard-only
+   automation in a way that made a real defect indistinguishable from a tooling artifact. A visible
+   button removes the ambiguity for every user, keyboard or not, without changing Enter's behavior. */
+.hd-free{margin-top:14px;display:flex;align-items:flex-end;gap:10px}
 .hd-free input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.hd-free input{width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--ink);font-family:var(--ff-display);font-style:italic;font-size:15px;padding:9px 2px}
+.hd-free input{flex:1 1 auto;min-width:0;width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--ink);font-family:var(--ff-display);font-style:italic;font-size:15px;padding:9px 2px}
 .hd-free input::placeholder{color:var(--ink-dim)}
 .hd-free input:focus{border-color:var(--gold)}
+.hd-free-submit{flex:0 0 auto;background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--gold);font-family:var(--ff-mono);font-size:16px;line-height:1;padding:9px 4px;cursor:pointer;opacity:.75;transition:opacity .2s,transform .2s}
+.hd-free-submit:hover{opacity:1;transform:translateX(2px)}
+.hd-free-submit:focus-visible{outline:2px solid var(--gold);outline-offset:2px;opacity:1}
 .hd-kicker{font-family:var(--ff-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 8px}
 .hd-said{font-family:var(--ff-display);font-style:italic;font-size:15px;color:var(--ink-muted);margin:0;line-height:1.4}
 .hd-rule{width:44px;height:2px;background:var(--gold);opacity:.5;margin:16px 0}
@@ -270,7 +278,7 @@
           <a href="./case-studies/adtech.html" class="hd-preset" data-i="2"><span>03</span>They override the model every time.</a>
           <a href="./patterns/act-review-ignore.html" class="hd-preset" data-i="3"><span>04</span>Nobody trusts the score.</a>
         </div>
-        <form class="hd-free" id="hd-free"><input type="text" id="hd-free-input" placeholder="…or say it in your own words" aria-label="Describe where your AI product loses people"></form>
+        <form class="hd-free" id="hd-free"><input type="text" id="hd-free-input" placeholder="…or say it in your own words" aria-label="Describe where your AI product loses people"><button type="submit" class="hd-free-submit" aria-label="Submit">→</button></form>
       </div>
       <div id="hd-answer" hidden aria-live="polite">
         <p class="hd-kicker">You said</p>
