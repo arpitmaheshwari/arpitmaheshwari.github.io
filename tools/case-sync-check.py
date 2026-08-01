@@ -144,6 +144,96 @@ def book_case_chunk(book, title):
     return None
 
 
+# Which canon table row (by its "#" column) corresponds to which case key.
+CANON_ROW = {"1": "ptc", "2": "o2", "3": "fintech", "4": "adtech", "5": "orgos", "6": "vc-diligence"}
+
+
+def _norm(t):
+    """Compare meaning, not typography: collapse whitespace incl. non-breaking spaces, strip
+    markdown bold, and normalise the dash/quote variants that differ between a markdown table
+    and a rendered page."""
+    t = re.sub(r"\*\*", "", t)
+    t = t.replace("\u00a0", " ").replace("\u2011", "-")
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def parse_canon(root):
+    """Pull the locked case table out of CANONICAL-FACTS.md §3.
+
+    Canon is prose written for a human, so its cells carry editorial annotations
+    ("Role: X (per PM-receipts retitle, 2026-07-25)"). Only the unambiguous parts are compared:
+    the canonical NAME, the ROLE phrase, the HEADLINE metric, and the TAG. Everything else in
+    those cells is commentary and is deliberately not machine-checked — inventing a parser for
+    free prose would produce exactly the confident false positives this repo keeps getting
+    burned by."""
+    md = read(root, "CANONICAL-FACTS.md")
+    out = {}
+    for line in md.split("\n"):
+        m = re.match(r"^\|\s*([1-6])\s*\|", line)
+        if not m:
+            continue
+        key = CANON_ROW[m.group(1)]
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 5:
+            continue
+        role = re.search(r"Role:\s*([^·|]+)", cells[4])
+        role_txt = role.group(1) if role else None
+        if role_txt:
+            # drop trailing editorial annotation: "(per PM-receipts retitle, …)", "via Equal Experts…"
+            role_txt = re.split(r"\s*\(|\s+via\s+", role_txt)[0]
+        # the headline metric is the bolded run in the 4th cell
+        head = re.search(r"\*\*(.+?)\*\*", cells[3])
+        out[key] = {
+            "title": _norm(cells[1]),
+            "tag": _norm(cells[2]),
+            "role": _norm(role_txt) if role_txt else None,
+            "headline": _norm(head.group(1)) if head else None,
+        }
+    return out
+
+
+def check_against_canon(root, facts):
+    """CANONICAL-FACTS.md is the ultimate authority; data/case-facts.js must not drift from it.
+
+    Without this, the single source could be edited to say anything and every downstream gate
+    would happily agree with it — one confident, self-consistent, wrong answer on every surface."""
+    findings = []
+    canon = parse_canon(root)
+    if len(canon) != 6:
+        findings.append(f"canon: parsed {len(canon)} case rows from CANONICAL-FACTS §3, expected 6 "
+                        f"— the locked table's shape changed and this check has gone blind")
+        return findings
+
+    for key, c in canon.items():
+        f = facts["cases"].get(key)
+        if f is None:
+            findings.append(f"{key}: in CANONICAL-FACTS but missing from data/case-facts.js")
+            continue
+
+        if _norm(f["title"]) != c["title"]:
+            findings.append(f"{key}: TITLE is {_norm(f['title'])!r} in data/case-facts.js, "
+                            f"CANONICAL-FACTS says {c['title']!r}")
+
+        # canon's tag may carry extra qualifiers ("· full case", "/ public"); require the source's
+        # tag to be contained in canon's, not identical to it
+        if _norm(f["tag"]).lower() not in c["tag"].lower():
+            findings.append(f"{key}: TAG is {_norm(f['tag'])!r} in data/case-facts.js, "
+                            f"not found within CANONICAL-FACTS' {c['tag']!r}")
+
+        src_role = dict((m[0], m[1]) for m in f["meta"]).get("Role")
+        if c["role"] and src_role:
+            if _norm(src_role).lower() != c["role"].lower():
+                findings.append(f"{key}: ROLE is {_norm(src_role)!r} in data/case-facts.js, "
+                                f"CANONICAL-FACTS says {c['role']!r}")
+
+        if c["headline"]:
+            metrics_blob = _norm(" ".join(v + " " + l for v, l in f["metrics"]))
+            if c["headline"].lower() not in metrics_blob.lower():
+                findings.append(f"{key}: canon's HEADLINE metric {c['headline']!r} does not appear "
+                                f"in data/case-facts.js metrics")
+    return findings
+
+
 def check(root, facts_override=None, classic_override=None):
     """Compare each CLASSIC page against the single source in data/case-facts.js.
 
@@ -153,6 +243,9 @@ def check(root, facts_override=None, classic_override=None):
     facts = facts_override if facts_override is not None else load_facts(root)
     book = read(root, "book/portfolio.js")
     findings = []
+
+    # canon outranks the single source; if they disagree, canon is right
+    findings += check_against_canon(root, facts)
 
     for key, rel in CLASSIC.items():
         case = facts["cases"].get(key)
@@ -213,6 +306,19 @@ def selftest(root):
     if not any("ROLE" in f for f in check(root, facts_override=mutated)):
         return False, "SENSITIVITY: a role changed in the single source was not caught"
 
+    # sensitivity B2: the single source contradicting CANONICAL-FACTS, which outranks it
+    mutatedC = copy.deepcopy(facts)
+    mutatedC["cases"]["adtech"]["title"] = "Programmatic Advertising Platform (rebranded)"
+    if not any("TITLE" in f and "CANONICAL-FACTS" in f for f in check(root, facts_override=mutatedC)):
+        return False, "SENSITIVITY: a source title contradicting CANONICAL-FACTS was not caught"
+
+    mutatedD = copy.deepcopy(facts)
+    for m in mutatedD["cases"]["fintech"]["meta"]:
+        if m[0] == "Role":
+            m[1] = "Consultant"
+    if not any("ROLE" in f and "CANONICAL-FACTS" in f for f in check(root, facts_override=mutatedD)):
+        return False, "SENSITIVITY: a source role contradicting CANONICAL-FACTS was not caught"
+
     # sensitivity B: a provenance caption that lies about what the screen is
     mutated2 = copy.deepcopy(facts)
     mutated2["cases"]["adtech"]["provenance"] = "The screens are redacted on purpose"
@@ -234,7 +340,8 @@ def selftest(root):
         with open(os.path.join(root, "book/portfolio.js"), "w", encoding="utf-8") as fh:
             fh.write(saved)
 
-    return True, ("sensitivity OK (role drift, lying provenance, book bypassing the source) "
+    return True, ("sensitivity OK (classic drift, canon-vs-source title + role, lying "
+                  "provenance, book bypassing the source) "
                   "+ precision OK (untouched tree reports nothing)")
 
 

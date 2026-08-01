@@ -63,8 +63,8 @@
       ],
       "metrics": [
         [
-          "$1M",
-          "Saved per year — print + shipping"
+          "$1M / yr",
+          "Saved on print + shipping"
         ],
         [
           "5→1",
