@@ -296,7 +296,11 @@
         #recon-fintech .rxf-bar i{position:absolute;inset:0;background:var(--gold);transform-origin:left;display:block}
         #recon-fintech .rxf-sig.low .rxf-bar i{background:var(--ink-muted)}
         #recon-fintech .rxf-claim{font-size:12.5px;color:var(--ink-muted);line-height:1.6;margin:0 0 10px}
-        #recon-fintech .rxf-unsure{font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:var(--copper);margin:0 0 10px}
+        /* --warn, not --copper: this is the model's own low-confidence hedge, i.e. caution, and
+           DESIGN-SYSTEM.md reserves --copper for "In production / shipped". --copper also sat at
+           3.35:1 here. Only reachable with the Explain drawer open, so the contrast gate cannot
+           see it — measured by hand in the opened state. */
+        #recon-fintech .rxf-unsure{font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:var(--warn);margin:0 0 10px}
         #recon-fintech .rxf-weight{display:flex;align-items:center;gap:10px}
         #recon-fintech .rxf-wlabel{font-family:var(--ff-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted)}
         #recon-fintech .rxf-step{width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink-muted);font-size:14px;line-height:1;transition:border-color .2s,color .2s}
@@ -305,7 +309,10 @@
         #recon-fintech .rxf-actions{margin-top:14px}
         #recon-fintech .rxf-override{padding:8px 14px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--border);border-radius:2px;color:var(--ink-muted);transition:border-color .2s,color .2s}
         #recon-fintech .rxf-override:hover{border-color:var(--gold-dark);color:var(--gold)}
-        #recon-fintech .rxf-logged{display:none;font-family:var(--ff-mono);font-size:11px;color:var(--copper);margin:12px 0 0}
+        /* --ok, not --copper: this is the confirmation that the override was recorded, not a
+           warning. --copper also sat at 3.35:1. display:none until .overridden, so the contrast
+           gate cannot see it either — measured by hand in the overridden state. */
+        #recon-fintech .rxf-logged{display:none;font-family:var(--ff-mono);font-size:11px;color:var(--ok);margin:12px 0 0}
         #recon-fintech .rxf-card.overridden .rxf-logged{display:block}
         #recon-fintech .rxf-explain:focus-visible,#recon-fintech .rxf-step:focus-visible,#recon-fintech .rxf-override:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
       </style>

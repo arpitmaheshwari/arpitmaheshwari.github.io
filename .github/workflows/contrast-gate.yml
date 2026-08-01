@@ -75,16 +75,38 @@ jobs:
       #   orgos    .plO  — a pale-teal board surface; its own light palette, unrelated to .plM
       # Both verified 0 failures at BOTH widths before being added here.
       #
-      # DELIBERATELY STILL ABSENT — case-studies/vc-diligence.html. It carries a context nothing
-      # else covers (semantic status tokens as TEXT on a dark card) and SHOULD be here, but it
-      # cannot be added yet: at 390px its .plV diligence-dossier plate lays out ~450px wide inside
-      # a 390px viewport and is visibly clipped mid-word ("repo scan ·", "commit history · releas…").
-      # The audit reports that as nine contrast failures because it samples the clipped edge pixels
-      # — the reading is a symptom, the layout is the bug. Adding the URL now would just pin CI red
-      # against a defect this gate is not the right tool to describe. Fix the responsive layout,
-      # then add the URL. Tracked separately; do not "fix" those nine colours, they are not broken.
-      # Residual risk, stated rather than hidden: fintech's .rxf-conf shares vc's colour context,
-      # so that context is currently UNCOVERED in CI until vc-diligence can be added.
+      # 2026-08-02 (later the same day) — vc-diligence.html is now IN the list. It was held out
+      # because its .plV plate laid out ~450px wide inside a 390px viewport and was clipped
+      # mid-word, which the audit reported as nine contrast failures sampled off the clipped edge.
+      # That was correctly read as a symptom: the nine "colours" were never broken. Root cause was
+      # a grid blowout — `grid-template-columns:1fr` cannot shrink a track below its item's
+      # min-content, and the nowrap source chips put that at ~450px, so .plV's overflow:hidden ate
+      # the difference. Fixed with minmax(0,1fr) plus letting the signal rows stack under 700px.
+      # The nine readings disappeared with the layout, exactly as predicted; desktop is unchanged
+      # (verified by a zero-pixel image diff of the full page at 1440 before vs after).
+      #   vc-diligence  .plV / .rxv  — semantic status tokens as TEXT on a dark card
+      # Verified 0 failures at BOTH widths before being added here.
+      #
+      # 2026-08-02 — fintech.html is now IN the list, and the note that used to sit here was wrong.
+      # It claimed fintech still measured 3.32:1 on 'Medium confidence'. That reading was taken from
+      # a working tree one commit behind master: 3629aa2 had already repointed .rxf-conf to --warn.
+      # Re-measured on the merged tree, that element is 12.31:1. Correcting rather than deleting,
+      # because the lesson is the reusable part — measure the tree you are actually shipping.
+      #
+      # The same check did find two REAL failures on fintech that this gate structurally cannot see,
+      # both --copper (#4A6B5C, 3.35:1) and both reachable only through an interaction:
+      #   .rxf-unsure  "I'm not sure about this one"     — only inside the opened Explain drawer
+      #   .rxf-logged  "Disagreement logged"             — display:none until Log override is clicked
+      # Repointed to --warn (12.31:1) and --ok (10.64:1), verified by driving the real controls and
+      # measuring the revealed state by hand. The audit's own summary line says it: state not
+      # reachable on load is NOT measured. So fintech's green here covers its load state only.
+      #   fintech  .rxf  — semantic status tokens as TEXT on a dark card
+      # Verified 0 failures at BOTH widths before being added here.
+      #
+      # STILL UNCOVERED, stated rather than hidden: every interaction-only style on every page in
+      # this list — open drawers, expanded panels, hover and focus states. Two of the three defects
+      # found on fintech lived exactly there, so this is not a hypothetical gap. A green run means
+      # "clean as first painted", never "clean".
       - name: Contrast audit (pixel-truth, self-calibrating)
         run: |
           python3 tools/contrast-audit.py \
@@ -100,6 +122,8 @@ jobs:
             http://localhost:8000/case-studies/adtech.html \
             http://localhost:8000/case-studies/o2.html \
             http://localhost:8000/case-studies/orgos.html \
+            http://localhost:8000/case-studies/vc-diligence.html \
+            http://localhost:8000/case-studies/fintech.html \
             http://localhost:8000/404.html
 
       - name: Fail if a stray wrapper file was left behind

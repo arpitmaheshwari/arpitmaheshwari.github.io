@@ -194,9 +194,12 @@
       .plV-deal b{color:#16181D;font-weight:600}
       .plV-elapsed{font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#4C3FA0;background:#ECEAF8;border-radius:3px;padding:3px 8px;white-space:nowrap}
       .plV-body{display:grid;grid-template-columns:1.5fr 1fr;gap:0}
-      @media(max-width:700px){.plV-body{grid-template-columns:1fr}}
+      /* minmax(0,·), not 1fr: a 1fr track cannot shrink below its item's min-content, and the nowrap
+         source chips push that to ~450px — the track then overflowed the 358px plate and .plV's
+         overflow:hidden clipped the signal rows mid-word at 390px. */
+      @media(max-width:700px){.plV-body{grid-template-columns:minmax(0,1fr)}}
       .plV-main{padding:18px;border-right:1px solid #E3E6EA}
-      @media(max-width:700px){.plV-main{border-right:none;border-bottom:1px solid #E3E6EA}}
+      @media(max-width:700px){.plV-main{border-right:none;border-bottom:1px solid #E3E6EA;min-width:0}}
       .plV-vlab{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#515863;margin-bottom:4px}
       .plV-verdict{font-family:var(--ff-display);font-weight:300;font-size:26px;line-height:1.25;color:#16181D;margin-bottom:4px}
       .plV-verdict em{font-style:normal;color:#7A5410}
@@ -210,8 +213,19 @@
       .plV-st.watch{color:#7A5410;background:#FCF2DC}
       .plV-conf{font-family:var(--ff-mono);font-size:10.5px;color:#515863;flex:0 0 auto;font-variant-numeric:tabular-nums}
       .plV-src{font-family:var(--ff-mono);font-size:10px;color:#4C3FA0;background:#ECEAF8;border-radius:3px;padding:3px 7px;white-space:nowrap;flex:0 0 auto}
+      /* One signal row needs ~450px to sit on a single line. Below 700px let it stack instead:
+         name on its own line, status/confidence/source chips wrapping beneath it. */
+      @media(max-width:700px){
+        .plV-sig{flex-wrap:wrap;align-items:flex-start;row-gap:8px}
+        .plV-sname{flex:1 1 100%}
+        /* The longest source chip is 228px and, being flex:0 0 auto + nowrap, could neither shrink
+           nor wrap — at 320px it crossed its card's right padding. max-width caps it to the row and
+           white-space lets it wrap. At 390px it still fits on one line, so nothing changes there. */
+        .plV-src{white-space:normal;max-width:100%}
+      }
       .plV-foot{font-family:var(--ff-mono);font-size:10px;color:#515863;padding-top:10px;border-top:1px solid #E3E6EA;margin-top:4px}
       .plV-rail{padding:18px;background:#FBFBFC}
+      @media(max-width:700px){.plV-rail{min-width:0}}
       .plV-rl{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#515863;margin-bottom:10px}
       .plV-quote{background:#fff;border:1px solid #E3E6EA;border-left:3px solid #4C3FA0;border-radius:4px;padding:12px 14px;font-size:12.5px;line-height:1.6;color:#16181D;font-style:italic}
       .plV-quote mark{background:#FDF0C9;font-style:italic}
