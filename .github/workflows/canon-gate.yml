@@ -32,6 +32,13 @@ jobs:
       - name: Canon / naming drift lint
         run: python3 tools/canon-lint.py --root .
 
+      # The book and the classic case pages tell the same six stories twice, by hand. This fails
+      # the build when they drift apart on a role, a locked metric, or a provenance claim — the
+      # failure mode that put a stale job title and a false "screens are redacted" line in the
+      # book while the classic pages were correct (2026-08-01).
+      - name: Case-study sync (book vs classic)
+        run: python3 tools/case-sync-check.py --root .
+
       - name: Remind about the documents repo
         if: success()
         run: |

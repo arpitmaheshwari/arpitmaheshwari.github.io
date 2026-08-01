@@ -189,6 +189,9 @@ const CASES = {
     }, {
       v: "550k+",
       l: "Registered · 350k+ active"
+    }, {
+      v: "0% → 64%",
+      l: "Subscription share of new bookings · Q3 2017 → Q3 2018"
     }],
     quote: {
       t: "The redesign took a quarter. The case for deleting four products took a year — and that was the actual design work.",
@@ -240,7 +243,7 @@ const NDA_CASES = [{
   title: "AI-Assisted Private Equity Investing",
   standfirst: "I held the release until the LLM could defend its own scores. Then screening sped up 60%.",
   meta: [["Role", "Lead Product Designer"], ["Team", "Engineers · data scientists · PM"], ["Surface", "AI for private-equity investing"], ["Status", "Shipped · under NDA"]],
-  context: "An LLM read the deal docs and scored the risk. I held the launch until it grounded every claim in a cited source (retrieval) and abstained on thin cases — a confident hallucination nobody signs is dead on arrival.",
+  context: "An LLM read the deal docs and scored the risk. I held the launch until it grounded every claim in a cited source (retrieval) and abstained on thin cases — a confident hallucination nobody signs is dead on arrival. I owned product definition, the abstention and citation UX, and the launch gate; the model's accuracy is the ML team's result to defend. The 60% is analysts no longer re-verifying by hand.",
   moves: [{
     h: "Explain before the verdict",
     p: "An “explain this score” surface: pull a rating into its signals, challenge the weighting, watch it answer — sources beside the number."
@@ -252,7 +255,7 @@ const NDA_CASES = [{
     p: "A logged override when the analyst disagreed — fed the next eval."
   }],
   plateNo: "3.1",
-  plateCn: "explanation drawer — output traced to source documents",
+  plateCn: "AlphaDeals product UI, shown under its own name \u00B7 synthetic data \u00B7 client identity under NDA",
   ledger: [{
     v: "60% faster",
     l: "Per diligence pass · pre/post rollout"
@@ -272,7 +275,7 @@ const NDA_CASES = [{
   title: "Programmatic Advertising Platform",
   standfirst: "The algorithm beat the traders, and they played their hunches anyway. A missing interface, not a bad model.",
   meta: [["Role", "Lead Product Designer"], ["Team", "50+ distributed agile team"], ["Surface", "DSP recommendation UI"], ["Status", "Shipped · under NDA"]],
-  context: "The engine beat the buyers; adoption sat near zero. I left the model and rebuilt the interface around it.",
+  context: "The engine beat the buyers; adoption sat near zero. I left the model and rebuilt the interface around it. Once traders acted on it: 45% less time and effort to plan and book a campaign, and 3x uplift in purchase intent with 70% audience uplift against traditional bookings.",
   moves: [{
     h: "A score tied to one action",
     p: "Each recommendation resolved to one verb — act, review, or ignore — never a naked 87% on the screen."
@@ -284,7 +287,7 @@ const NDA_CASES = [{
     p: "The override logged the correction and fed next week's model. Watching their pushback land flipped fighting into coaching."
   }],
   plateNo: "4.1",
-  plateCn: "recommendation card — confidence score, reasoning, override",
+  plateCn: "White-labelled reconstruction \u00B7 synthetic data \u00B7 bound by NDA",
   ledger: [{
     v: "2 wks → 3 hrs",
     l: "Campaign planning time"
@@ -303,7 +306,7 @@ const NDA_CASES = [{
   tag: "Org Design · NDA",
   title: "OrgOS · Transparent Org Tooling",
   standfirst: "Two hundred people. No managers. Eight modules doing the job of an org chart — coordination that never smuggles a boss back in.",
-  meta: [["Role", "Design Lead"], ["Team", "4 engineering streams + a PM"], ["Surface", "Internal operating system"], ["Status", "Shipped · under NDA"]],
+  meta: [["Role", "Product & Design Lead"], ["Team", "4 engineering streams + a PM"], ["Surface", "Internal operating system"], ["Status", "Shipped · under NDA"]],
   context: "The decision: refuse every feature with a manager hiding inside it. Transparency coordinates — salaries, finances, assignments, open to all — but holds only to forty; at two hundred the hallway stops scaling. Assignment, approval, escalation were each a boss in disguise.",
   moves: [{
     h: "Read access is the feature",
@@ -316,7 +319,7 @@ const NDA_CASES = [{
     p: "Staffing, comp, OKRs, onboarding all spoke one object model, so the org could rebuild its own process with nobody in the room."
   }],
   plateNo: "5.1",
-  plateCn: "eight modules sharing one object model",
+  plateCn: "Schematic, not a screenshot — the real screens stay under NDA",
   ledger: [{
     v: "250",
     l: "On it today · designed for 200"
@@ -335,7 +338,7 @@ const NDA_CASES = [{
   tag: "VC/PE · NDA",
   title: "Technical Due Diligence Platform",
   standfirst: "Partners bet millions on claims they'll never check. An LLM extracted the evidence; the design made them stand on it.",
-  meta: [["Role", "Design Lead"], ["Team", "Model engineers · data scientists"], ["Surface", "Technical-DD platform · VC + PE"], ["Status", "Shipped · under NDA"]],
+  meta: [["Role", "Product & Design Lead"], ["Team", "Model engineers · data scientists"], ["Surface", "Technical-DD platform · VC + PE"], ["Status", "Shipped · under NDA"]],
   context: "An LLM read the code and docs. No verdict ships without a cited source (retrieval) — unaudited, it's a confident hallucination.",
   moves: [{
     h: "Score at the signal level",
@@ -348,7 +351,7 @@ const NDA_CASES = [{
     p: "Analyst overrides fed back into the model; partner sign-off was real workflow, not a rubber stamp."
   }],
   plateNo: "6.1",
-  plateCn: "technical-risk dossier — each score traced to its signals",
+  plateCn: "Schematic, not a screenshot — the real screens stay under NDA",
   ledger: [{
     v: "3 wks → 4 days",
     l: "Diligence cycle time"
@@ -993,7 +996,7 @@ function caseWalk(c) {
         fontStyle: "italic",
         color: "var(--bk-ink-faint)"
       }
-    }, "The screens are redacted on purpose — full case under NDA. The moves, outcomes and principles are public; I'll walk through the artifacts and numbers on a call under mutual NDA.") : null)
+    }, "What you see is a reconstruction or a schematic, never a client's live screen: names and figures on it are synthetic and the client is unnamed. The moves, outcomes and principles are public; I'll walk through the real artifacts and numbers on a call under mutual NDA.") : null)
   };
 }
 

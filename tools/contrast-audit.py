@@ -164,7 +164,28 @@ f.onload = function () {
     });
     document.title = 'CA:' + JSON.stringify({ h: d.documentElement.scrollHeight, els: out });
   };
-  var go = function () { setTimeout(collect, __SETTLE__); };
+  // Wait for every running CSS transition/animation to FINISH before measuring, then settle.
+  // Without this the tool races the page: on a slower CI runner it sampled a scroll-reveal gold
+  // button mid-fade (~61% opacity over a dark page) and reported 3.89:1 against its dark label —
+  // the settled value is 9.01:1. Three false failures on a page that was never wrong.
+  // getAnimations() is the precise instrument here: it waits for the real end state instead of
+  // suppressing animation (an earlier attempt to just force `transition:none` stopped the gold
+  // background painting at all, turning three false failures into a different false failure).
+  // Capped, because an infinite animation — the cover's pulsing dot — never resolves.
+  var settleThen = function () {
+    var pending = [];
+    try {
+      pending = (d.getAnimations ? d.getAnimations() : []).map(function (an) {
+        return an.finished.catch(function () {});
+      });
+    } catch (e) {}
+    var done = false;
+    var fire = function () { if (!done) { done = true; setTimeout(collect, __SETTLE__); } };
+    if (pending.length) { Promise.all(pending).then(fire, fire); }
+    setTimeout(fire, 3000);   // hard cap: infinite/looping animations must not hang the run
+    if (!pending.length) fire();
+  };
+  var go = function () { settleThen(); };
   if (d.fonts && d.fonts.ready) { d.fonts.ready.then(go, go); } else { go(); }
 };
 </script>

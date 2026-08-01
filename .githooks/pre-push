@@ -68,6 +68,18 @@ MSG
   fi
 fi
 
+# Book/classic case drift — pure text, sub-second, and catches stale duplicated facts.
+if [ -f tools/case-sync-check.py ]; then
+  echo "pre-push: case-study sync (book vs classic)…"
+  if ! python3 tools/case-sync-check.py --root .; then
+    echo ""
+    echo "pre-push: BLOCKED — the book and the classic case pages disagree (see above)."
+    echo "  Fix it, or push anyway with:   SKIP_CONTRAST=1 git push"
+    echo ""
+    exit 1
+  fi
+fi
+
 echo "pre-push: contrast smoke check (homepage + book cover, 1440px)…"
 python3 tools/contrast-audit.py \
   --docroot . --widths 1440 \
