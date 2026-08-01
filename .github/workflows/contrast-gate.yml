@@ -64,6 +64,27 @@ jobs:
       # width. These cover every distinct colour context on the site — dark theme, cream acts, the
       # gradient book cover, the semantic status palette, and the mockup plates. Add a URL here when
       # a new colour context is introduced, not when a new page is.
+      #
+      # 2026-08-02 — this list was GREEN while five case pages carried 18 AA failures between them.
+      # The policy above was right; the enumeration was wrong. adtech.html was standing in for "a
+      # case study", but a case study is not one colour context — each recon/plate carries its own
+      # palette, and adtech happens to use none of the three that were broken. Added below, each
+      # for the context it uniquely contributes (NOT because it is another case page):
+      #   o2       .plM  — a WHITE phone mockup embedded in a dark page, plus a copper app bar
+      #                    whose inherited text colour was never re-stated (3.35:1)
+      #   orgos    .plO  — a pale-teal board surface; its own light palette, unrelated to .plM
+      # Both verified 0 failures at BOTH widths before being added here.
+      #
+      # DELIBERATELY STILL ABSENT — case-studies/vc-diligence.html. It carries a context nothing
+      # else covers (semantic status tokens as TEXT on a dark card) and SHOULD be here, but it
+      # cannot be added yet: at 390px its .plV diligence-dossier plate lays out ~450px wide inside
+      # a 390px viewport and is visibly clipped mid-word ("repo scan ·", "commit history · releas…").
+      # The audit reports that as nine contrast failures because it samples the clipped edge pixels
+      # — the reading is a symptom, the layout is the bug. Adding the URL now would just pin CI red
+      # against a defect this gate is not the right tool to describe. Fix the responsive layout,
+      # then add the URL. Tracked separately; do not "fix" those nine colours, they are not broken.
+      # Residual risk, stated rather than hidden: fintech's .rxf-conf shares vc's colour context,
+      # so that context is currently UNCOVERED in CI until vc-diligence can be added.
       - name: Contrast audit (pixel-truth, self-calibrating)
         run: |
           python3 tools/contrast-audit.py \
@@ -77,6 +98,8 @@ jobs:
             http://localhost:8000/lab/eval.html \
             http://localhost:8000/patterns/capability-contract.html \
             http://localhost:8000/case-studies/adtech.html \
+            http://localhost:8000/case-studies/o2.html \
+            http://localhost:8000/case-studies/orgos.html \
             http://localhost:8000/404.html
 
       - name: Fail if a stray wrapper file was left behind
