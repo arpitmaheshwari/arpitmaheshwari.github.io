@@ -185,7 +185,20 @@ f.onload = function () {
   // suppressing animation (an earlier attempt to just force `transition:none` stopped the gold
   // background painting at all, turning three false failures into a different false failure).
   // Capped, because an infinite animation — the cover's pulsing dot — never resolves.
+  // Jump every CSS animation straight to its end state before measuring. This is the general
+  // form of the problem: the hero CTA is not `.reveal` at all — it is `.hero-cta-row` carrying an
+  // inline `opacity:0; animation: reveal .4s ... .35s forwards`. A selector-based pin can never
+  // enumerate every such element; finish() needs no selector and covers keyframe animations AND
+  // transitions. Infinite animations (the book cover's pulsing dot) throw on finish() — skipped.
+  var finishAll = function () {
+    try {
+      (d.getAnimations ? d.getAnimations() : []).forEach(function (an) {
+        try { an.finish(); } catch (e) { /* infinite / unresolved — leave it running */ }
+      });
+    } catch (e) {}
+  };
   var settleThen = function () {
+    finishAll();
     var pending = [];
     try {
       pending = (d.getAnimations ? d.getAnimations() : []).map(function (an) {
@@ -193,7 +206,11 @@ f.onload = function () {
       });
     } catch (e) {}
     var done = false;
-    var fire = function () { if (!done) { done = true; setTimeout(collect, __SETTLE__); } };
+    var fire = function () {
+      if (done) return;
+      done = true;
+      setTimeout(function () { finishAll(); collect(); }, __SETTLE__);
+    };
     if (pending.length) { Promise.all(pending).then(fire, fire); }
     setTimeout(fire, 3000);   // hard cap: infinite/looping animations must not hang the run
     if (!pending.length) fire();
