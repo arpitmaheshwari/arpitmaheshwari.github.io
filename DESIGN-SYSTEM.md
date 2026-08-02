@@ -181,6 +181,14 @@ usage, not by taste — a 4px grid constraint applied to the measured distributi
 - **< 4px** — optical nudges (hairline offsets, baseline corrections). Not rhythm.
 - **> 80px** — structural values: the nav clearance DESIGN-SYSTEM requires at >=104px, hero
   bands, section-scale padding. Snapping these would break documented constraints.
+
+**The grid applies to every surface (2026-08-03).** The book uses the same px grid — reusing it
+costs 0.97px average movement versus 0.67px for a book-specific 11-step grid, and one grid
+across all surfaces is a stronger property than two locally-optimal ones. The PRINT documents
+use a **0.5mm grid** (their own unit system); before it, the resume had 22 distinct mm values
+serving 31 declarations — 1.95mm, 2.05mm, 1.55mm, essentially one arbitrary value each.
+`tools/inline-style-check.py` enforces all three.
+
 --section-y: 90px  (desktop)   64px (tablet ≤900)   48px (mobile ≤600)
 --page-x: 64px (desktop)   32px (tablet)   24px (mobile)
 --inner-max: 1180px            --measure: 62ch (body reading width)

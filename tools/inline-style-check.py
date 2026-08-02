@@ -42,7 +42,11 @@ def off_scale_spacing(root):
     """Spacing values that are neither on the 4px grid nor a documented exception.
     Exceptions, by design: <4px optical nudges, >80px structural values (the nav clearance
     DESIGN-SYSTEM requires at >=104px, hero bands), 0, and non-px units."""
-    pats = ['*.html','*/index.html','case-studies/*.html','patterns/*.html','lab/*.html','styles.css']
+    # The BOOK is a separate visual system but shares the px grid — one grid across every
+    # surface is a stronger property than two locally-optimal ones. The PRINT documents use mm
+    # and get their own 0.5mm grid (see below).
+    pats = ['*.html','*/index.html','case-studies/*.html','patterns/*.html','lab/*.html',
+            'styles.css','book/book.css','book/index.html']
     files = sorted({p for pat in pats for p in glob.glob(os.path.join(root, pat))})
     bad = collections.Counter(); where = collections.defaultdict(set)
     for f in files:
@@ -52,6 +56,23 @@ def off_scale_spacing(root):
                 v = int(tok)
                 if v == 0 or v < 4 or v > 80 or v in SPACE_SCALE: continue
                 bad[v] += 1; where[v].add(os.path.relpath(f, root))
+    # book/portfolio.js — React style objects, unitless numbers
+    jsf = os.path.join(root, 'book', 'portfolio.js')
+    if os.path.exists(jsf):
+        s = open(jsf, encoding='utf-8').read()
+        for m in re.finditer(r'(?:margin|marginTop|marginBottom|marginLeft|marginRight|padding'
+                             r'|paddingTop|paddingBottom|gap)\s*:\s*(\d+)', s):
+            v = int(m.group(1))
+            if v == 0 or v < 4 or v > 80 or v in SPACE_SCALE: continue
+            bad[v] += 1; where[v].add('book/portfolio.js')
+    # print documents — 0.5mm grid; <1mm are hairlines and exempt
+    for f in sorted(glob.glob(os.path.join(root, 'portfolio-sources', '*.html'))):
+        s = open(f, encoding='utf-8').read()
+        for m in re.finditer(SPACE_PROPS + r'\s*:\s*([^;"}]+)', s):
+            for tok in re.findall(r'(?<![\w.-])([\d.]+)mm', m.group(1)):
+                v = float(tok)
+                if v < 1.0 or abs(v*2 - round(v*2)) < 1e-9: continue
+                bad[f'{v:g}mm'] += 1; where[f'{v:g}mm'].add(os.path.relpath(f, root))
     return bad, where
 
 def signatures(root):
@@ -122,9 +143,10 @@ def main():
               'named class is used CONSISTENTLY (see tools/type-consistency-check.md for that).')
         return 0
     if bad:
-        print(f'\n{sum(bad.values())} spacing value(s) off the --space grid (4·8·12·16·20·24·32·40·48·64·80):')
+        print(f'\n{sum(bad.values())} spacing value(s) off grid (px: 4·8·12·16·20·24·32·40·48·64·80 · print: 0.5mm steps):')
         for v, n in bad.most_common():
-            print(f'  {n:4}×  {v}px   in: {", ".join(sorted(bwhere[v])[:4])}')
+            unit = '' if isinstance(v, str) else 'px'
+            print(f'  {n:4}×  {v}{unit}   in: {", ".join(sorted(bwhere[v])[:4])}')
         print('\nSnap to the nearest step. <4px optical nudges and >80px structural values are')
         print('already exempt — a value in between needs a reason.')
     if not over:

@@ -812,7 +812,7 @@ function caseSpreadA(c) {
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
-        marginTop: 18
+        marginTop: 16
       }
     }, c.note1))
   };
@@ -871,7 +871,7 @@ function caseSpreadB(c) {
     }, c.note2), c.boundary && /*#__PURE__*/React.createElement("div", {
       className: "bk-boundary",
       style: {
-        marginTop: 14,
+        marginTop: 12,
         paddingTop: 8,
         borderTop: "1px solid var(--bk-rule)"
       }
@@ -883,7 +883,7 @@ function caseSpreadB(c) {
         letterSpacing: ".12em",
         textTransform: "uppercase",
         color: "var(--bk-ember-deep)",
-        marginBottom: 5
+        marginBottom: 4
       }
     }, "Where this wouldn’t transfer"), /*#__PURE__*/React.createElement("p", {
       style: {
@@ -972,7 +972,7 @@ function caseWalk(c) {
     }, c.note), c.boundary && /*#__PURE__*/React.createElement("div", {
       className: "bk-boundary",
       style: {
-        marginTop: 14,
+        marginTop: 12,
         paddingTop: 8,
         borderTop: "1px solid var(--bk-rule)"
       }
@@ -984,7 +984,7 @@ function caseWalk(c) {
         letterSpacing: ".12em",
         textTransform: "uppercase",
         color: "var(--bk-ember-deep)",
-        marginBottom: 5
+        marginBottom: 4
       }
     }, "Where this wouldn’t transfer"), /*#__PURE__*/React.createElement("p", {
       style: {
@@ -996,7 +996,7 @@ function caseWalk(c) {
     }, c.boundary)), c.redacted !== false ? /*#__PURE__*/React.createElement("p", {
       className: "bk-nda-foot",
       style: {
-        marginTop: 14,
+        marginTop: 12,
         fontSize: 11.5,
         lineHeight: 1.5,
         fontStyle: "italic",
@@ -1174,7 +1174,7 @@ function patternSpread(p) {
     }, p.def), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
-        marginTop: 18
+        marginTop: 16
       }
     }, p.note)),
     right: /*#__PURE__*/React.createElement("div", {
@@ -1374,7 +1374,7 @@ function buildBook(ctx) {
     }), /*#__PURE__*/React.createElement(Device, {
       label: "the monogram",
       style: {
-        marginBottom: 22
+        marginBottom: 20
       }
     }), /*#__PURE__*/React.createElement("h1", {
       className: "bk-title bk-title--l",
@@ -1384,7 +1384,7 @@ function buildBook(ctx) {
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-lede",
       style: {
-        marginTop: 18,
+        marginTop: 16,
         maxWidth: "30ch"
       }
     }, "Fifteen years, five industries, the same half-second: the model surfaces something true, and the person at the screen pauses — not because the model is wrong, but because they don’t know how to bet on it yet. This book is everything I’ve worked out about that pause."), /*#__PURE__*/React.createElement("div", {
@@ -1422,7 +1422,7 @@ function buildBook(ctx) {
     }, tc.pg)))), /*#__PURE__*/React.createElement("div", {
       className: "bk-note bk-note--r",
       style: {
-        marginTop: 26
+        marginTop: 24
       }
     }, "arrows, \u2190 \u2192 keys, or swipe to turn \u2014 open an item to go deeper \u2197"))
   }, /* 2 · How I Lead (front matter) */
@@ -1438,7 +1438,7 @@ function buildBook(ctx) {
       className: "bk-kicker"
     }, "How I lead"), /*#__PURE__*/React.createElement("div", {
       className: "bk-plate bk-tape",
-      style: { marginTop: 14, marginBottom: 32 }
+      style: { marginTop: 12, marginBottom: 32 }
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-plate__img",
       style: { aspectRatio: "1 / 1", maxWidth: 220 }
@@ -1463,13 +1463,13 @@ function buildBook(ctx) {
     }, "what the system admits it doesn't know"), "."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
-        marginTop: 22
+        marginTop: 20
       }
     }, "the miss, written down: my first accessibility pass buried screen-reader users in verbose ARIA labels — a usability study showed they skim, not listen. A week with the monitor off, then I recoded it."), /*#__PURE__*/React.createElement("div", {
       className: "bk-coffee",
       "aria-hidden": "true",
       style: {
-        marginTop: 34
+        marginTop: 32
       }
     })),
     right: /*#__PURE__*/React.createElement("div", {
@@ -1478,7 +1478,7 @@ function buildBook(ctx) {
       className: "bk-kicker"
     }, "Principles"), /*#__PURE__*/React.createElement("div", {
       style: {
-        marginTop: 14
+        marginTop: 12
       }
     }, PRINCIPLES.map((p, i) => /*#__PURE__*/React.createElement("div", {
       className: "bk-principle",
@@ -1495,7 +1495,7 @@ function buildBook(ctx) {
     folioR: "v",
     left: /*#__PURE__*/React.createElement("div", { className: "bk-reveal" },
       /*#__PURE__*/React.createElement("div", { className: "bk-kicker" }, "The Method"),
-      /*#__PURE__*/React.createElement("p", { className: "bk-lede bk-drop", style: { marginTop: 14 } },
+      /*#__PURE__*/React.createElement("p", { className: "bk-lede bk-drop", style: { marginTop: 12 } },
         "Every product is a series of bets someone else has to accept. The process isn\u2019t a ritual for making screens \u2014 it\u2019s a machine for making each bet ",
         /*#__PURE__*/React.createElement("span", { className: "bk-mark" }, "smaller, better-evidenced, and easier to say yes to"), "."),
       /*#__PURE__*/React.createElement("img", {
@@ -1507,7 +1507,7 @@ function buildBook(ctx) {
         "the same shape on every project, whatever the industry")),
     right: /*#__PURE__*/React.createElement("div", { className: "bk-reveal" },
       /*#__PURE__*/React.createElement("div", { className: "bk-kicker" }, "The four moves of the spiral"),
-      /*#__PURE__*/React.createElement("div", { style: { marginTop: 14 } },
+      /*#__PURE__*/React.createElement("div", { style: { marginTop: 12 } },
         [["01", "Listen", "User research and requirement gathering, in the problem space's own words. Act / Review / Ignore was born here \u2014 watching traders override a correct model."],
          ["02", "Structure", "Journey maps, service blueprints, information architecture: what the product is, before what it looks like."],
          ["03", "Prove", "AI-assisted working HTML, not clickable pictures \u2014 usability-tested, and when it survives, shipped as part of the codebase."],
@@ -1598,7 +1598,7 @@ function buildBook(ctx) {
     })), /*#__PURE__*/React.createElement("div", {
       className: "bk-note bk-note--r",
       style: {
-        marginTop: 22
+        marginTop: 20
       }
     }, "four are redacted — the logos are just shy."))
   }, /* 4 · CHAPTER III — A FIELD GUIDE TO TRUST (hub) */
@@ -1624,12 +1624,12 @@ function buildBook(ctx) {
     }, "A design system for trusting and governing AI agents. Everything here ran in production, failed somewhere specific, and came back stronger — the tradeoffs are written down because I paid for them once, so you don’t have to."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
-        marginTop: 22
+        marginTop: 20
       }
     }, "open a pattern to go a level deeper \u2197"), /*#__PURE__*/React.createElement(Device, {
       label: "prior art: PAIR \u00B7 HAX \u2014 this is the production-side report",
       style: {
-        marginTop: 30
+        marginTop: 32
       }
     })),
     right: /*#__PURE__*/React.createElement("div", {
@@ -1695,7 +1695,7 @@ function buildBook(ctx) {
       className: "bk-kicker"
     }, "Selected pieces"), /*#__PURE__*/React.createElement("div", {
       style: {
-        marginTop: 14
+        marginTop: 12
       }
     }, WRITING.map((w, i) => /*#__PURE__*/React.createElement("div", {
       className: "bk-writing",
@@ -1743,7 +1743,7 @@ function buildBook(ctx) {
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
-        marginTop: 18
+        marginTop: 16
       }
     }, "the rest travels by walk-through.")),
     right: /*#__PURE__*/React.createElement("div", {
@@ -1844,12 +1844,12 @@ function buildBook(ctx) {
       target: "_blank",
       rel: "noopener",
       style: { color: "var(--bk-ember-ink, #B04A24)" }
-    }, "book 30 minutes \u2197")), /*#__PURE__*/React.createElement("p", { style: { marginTop: 14, fontSize: 12.5, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "I do human-in-the-loop design for AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
+    }, "book 30 minutes \u2197")), /*#__PURE__*/React.createElement("p", { style: { marginTop: 12, fontSize: 12.5, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "I do human-in-the-loop design for AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement(Device, {
       label: "fin.",
       style: {
-        marginBottom: 14
+        marginBottom: 12
       }
     })),
     right: /*#__PURE__*/React.createElement("div", {
@@ -1864,7 +1864,7 @@ function buildBook(ctx) {
     }, "Send me", /*#__PURE__*/React.createElement("br", null), "the role."), /*#__PURE__*/React.createElement("p", {
       className: "bk-body",
       style: {
-        marginBottom: 14
+        marginBottom: 12
       }
     }, "A line about the role and the stage, or just a link — I reply within 48 hours. Prefer email? ", /*#__PURE__*/React.createElement("a", {
       href: "#",
