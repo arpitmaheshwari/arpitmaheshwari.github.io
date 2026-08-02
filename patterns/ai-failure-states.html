@@ -49,7 +49,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p37">
+<link rel="stylesheet" href="../styles.css?v=p39">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -69,11 +69,11 @@
   <div style="max-width:var(--measure);margin:0 auto">
     <div class="meta-row">
       <h1 class="t-hero" style="margin:0; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual">AI Failure State Patterns</h1>
-      <span class="lbl-badge-ink" style="padding:6px 12px; border-radius:4px; background-color:var(--copper); white-space:nowrap">In production</span>
+      <span class="lbl-badge-ink" style="padding:4px 12px; border-radius:4px; background-color:var(--copper); white-space:nowrap">In production</span>
     </div>
     <p class="lbl-cap">AI Design · <abbr tabindex="0" title="A system design approach where functionality degrades gracefully when failures occur, offering reduced but still-useful alternatives rather than failing completely" style="border-bottom:1px dotted var(--ink);cursor:help">Graceful Degradation</abbr> · Last updated June 2026</p>
     <p class="lbl-cap" style="margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
-    <p class="hand" aria-hidden="true" style="font-size:21px;margin:14px 0 0;transform:rotate(-1.6deg)">nothing ships without its failure state — house rule</p>
+    <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 0;transform:rotate(-1.6deg)">nothing ships without its failure state — house rule</p>
   </div>
 </div>
 
@@ -144,11 +144,11 @@
     <p class="u-body" style="margin-bottom:16px">A dead end ends the session. A ladder keeps it going. "I can't give a precise recommendation, but here are three alternatives: (A) Use the default, (B) See similar historical cases, (C) Talk to an expert." Each rung is more degraded than the last, and every rung still moves the user forward. That's <abbr tabindex="0" title="A secondary plan or option that activates when the primary solution fails, ensuring the user can still proceed" style="border-bottom:1px dotted var(--ink);cursor:help">fallback</abbr> design at scale.</p>
     <p class="u-body" style="margin-bottom:16px"><strong>Fallback hierarchy (best to worst):</strong></p>
     <ol class="u-body" style="margin-bottom:16px;padding-left:24px">
-      <li style="margin-bottom:6px">Primary: AI recommendation (high confidence)</li>
-      <li style="margin-bottom:6px">Secondary: AI recommendation (low confidence) + disclaimer</li>
-      <li style="margin-bottom:6px">Tertiary: Historical baseline ("The average case similar to yours…")</li>
-      <li style="margin-bottom:6px">Quaternary: Manual process ("Contact support for expert review")</li>
-      <li style="margin-bottom:6px">Null: System unavailable (offline / maintenance)</li>
+      <li style="margin-bottom:4px">Primary: AI recommendation (high confidence)</li>
+      <li style="margin-bottom:4px">Secondary: AI recommendation (low confidence) + disclaimer</li>
+      <li style="margin-bottom:4px">Tertiary: Historical baseline ("The average case similar to yours…")</li>
+      <li style="margin-bottom:4px">Quaternary: Manual process ("Contact support for expert review")</li>
+      <li style="margin-bottom:4px">Null: System unavailable (offline / maintenance)</li>
     </ol>
     <p class="u-body">The user always has <em>something</em> in hand. Trust in the model can wait; the work doesn't have to. Reach for this whenever a hard failure would otherwise strand someone mid-task.</p>
   </section>
@@ -185,12 +185,12 @@
   <section style="margin-bottom:64px">
     <h2 class="section-title" style="margin:0 0 24px;max-width:none">Implementation Checklist</h2>
     <ul class="u-body" style="padding-left:24px">
-      <li style="margin-bottom:10px"><strong>Identify failure modes:</strong> Write down 5–10 ways your system can fail.</li>
-      <li style="margin-bottom:10px"><strong>Design each failure UI:</strong> A specific state for each, never a generic "Error 500".</li>
-      <li style="margin-bottom:10px"><strong>Add a fallback:</strong> Decide what the user does when the AI can't.</li>
-      <li style="margin-bottom:10px"><strong>User-test failures:</strong> Put people in front of the error states. Do they follow? Do they know the next move?</li>
-      <li style="margin-bottom:10px"><strong>Monitor failure rates:</strong> Watch which errors get hit most. Fix the common ones first.</li>
-      <li style="margin-bottom:10px"><strong>Transparency-first language:</strong> Plain words, no jargon.</li>
+      <li style="margin-bottom:8px"><strong>Identify failure modes:</strong> Write down 5–10 ways your system can fail.</li>
+      <li style="margin-bottom:8px"><strong>Design each failure UI:</strong> A specific state for each, never a generic "Error 500".</li>
+      <li style="margin-bottom:8px"><strong>Add a fallback:</strong> Decide what the user does when the AI can't.</li>
+      <li style="margin-bottom:8px"><strong>User-test failures:</strong> Put people in front of the error states. Do they follow? Do they know the next move?</li>
+      <li style="margin-bottom:8px"><strong>Monitor failure rates:</strong> Watch which errors get hit most. Fix the common ones first.</li>
+      <li style="margin-bottom:8px"><strong>Transparency-first language:</strong> Plain words, no jargon.</li>
     </ul>
   </section>
 
@@ -213,7 +213,7 @@
   </section>
 
   <section style="margin-bottom:32px;padding-top:32px;border-top:1px solid var(--border)">
-    <div class="eyebrow" style="margin-bottom:10px">Companion essay</div>
+    <div class="eyebrow" style="margin-bottom:8px">Companion essay</div>
     <a href="../writing/failure-states.html" style="font-family:var(--ff-display);font-size:var(--fs-card);color:var(--gold);text-decoration:none;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual">Design the Failure State First →</a>
   </section>
 
@@ -222,7 +222,7 @@
     <a class="lbl-badge-gold btn-a-ghost" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="background:transparent; text-decoration:none; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
   </div>
 <section class="measure-t">
-    <div style="border-top:1px solid var(--border);padding-top:28px">
+    <div style="border-top:1px solid var(--border);padding-top:24px">
       <div class="eyebrow" style="margin-bottom:12px">Limits — when NOT to use this</div>
       <p class="u-body" style="margin:0">If failure is frequent, the fix is the system, not the copy — a beautifully-worded error shown hourly is an apology habit. And over-apologizing reads as instability: past a point, the honest 'I'm not sure' should get quieter and rarer, not more charming.</p>
     </div>

@@ -34,6 +34,26 @@ LAYOUT = ['display','flex','flex-wrap','flex-direction','align-items','justify-c
           'border-left','max-width','width']
 DEFAULT_THRESHOLD = 4
 
+
+SPACE_SCALE = {4,8,12,16,20,24,32,40,48,64,80}
+SPACE_PROPS = r'(?:margin|padding|gap|row-gap|column-gap)(?:-(?:top|right|bottom|left))?'
+
+def off_scale_spacing(root):
+    """Spacing values that are neither on the 4px grid nor a documented exception.
+    Exceptions, by design: <4px optical nudges, >80px structural values (the nav clearance
+    DESIGN-SYSTEM requires at >=104px, hero bands), 0, and non-px units."""
+    pats = ['*.html','*/index.html','case-studies/*.html','patterns/*.html','lab/*.html','styles.css']
+    files = sorted({p for pat in pats for p in glob.glob(os.path.join(root, pat))})
+    bad = collections.Counter(); where = collections.defaultdict(set)
+    for f in files:
+        s = open(f, encoding='utf-8').read()
+        for m in re.finditer(SPACE_PROPS + r'\s*:\s*([^;"}]+)', s):
+            for tok in re.findall(r'(?<![\w.-])(\d+)px', m.group(1)):
+                v = int(tok)
+                if v == 0 or v < 4 or v > 80 or v in SPACE_SCALE: continue
+                bad[v] += 1; where[v].add(os.path.relpath(f, root))
+    return bad, where
+
 def signatures(root):
     # portfolio-sources/ is a SEPARATE private repo checked out inside this one. Its print
     # documents carry the same debt, so they are scanned when present and skipped when not.
@@ -95,11 +115,21 @@ def main():
     over = sorted(((n, k) for k, n in sig.items() if n >= a.threshold), reverse=True)
     total = sum(sig.values())
     print(f'scanned {nfiles} HTML files · {total} inline signatures (type 2+ props, layout 3+ props)')
-    if not over:
-        print(f'\nResult: clean — no type OR layout component is duplicated {a.threshold}+ times inline.')
+    bad, bwhere = off_scale_spacing(root)
+    if not over and not bad:
+        print('\nResult: clean — no duplicated component, no off-grid spacing.')
         print('NOT covered: single-use inline styles (fine), page <style> blocks, and whether a '
               'named class is used CONSISTENTLY (see tools/type-consistency-check.md for that).')
         return 0
+    if bad:
+        print(f'\n{sum(bad.values())} spacing value(s) off the --space grid (4·8·12·16·20·24·32·40·48·64·80):')
+        for v, n in bad.most_common():
+            print(f'  {n:4}×  {v}px   in: {", ".join(sorted(bwhere[v])[:4])}')
+        print('\nSnap to the nearest step. <4px optical nudges and >80px structural values are')
+        print('already exempt — a value in between needs a reason.')
+    if not over:
+        print(f'\nResult: {sum(bad.values())} off-grid spacing value(s).')
+        return 1
     print(f'\n{len(over)} type treatment(s) duplicated {a.threshold}+ times — each is an unnamed component:\n')
     for n, k in over:
         print(f'  {n:4}×  {k}')

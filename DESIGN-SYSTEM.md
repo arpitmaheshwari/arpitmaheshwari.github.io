@@ -167,14 +167,20 @@ Do **not** apply this document's ramp or grammar to `book/`. It is **not** exemp
 ## 5. Spacing, rhythm, geometry
 
 ```
---space: 2 4 6 8 10 12 14 16 18 20 24 28 32 40 48 56 64 80   (px — declared in styles.css as --space-*)
-CORRECTED 2026-08-02. This line previously advertised a 9-step scale (4·8·12·16·24·32·48·64·90)
-that the site never followed and that `--space` was never even declared for. Measured reality:
-3,080 spacing declarations across 49 distinct values, half of them off that list — including
-10px (288x), 20px (208x) and 14px (197x), none of which were on it. A design-system doc that
-describes a system nobody implements is worse than no doc, so the token now records what the
-site IS. Narrowing 18 steps toward 9 is a REDESIGN of every vertical rhythm, not a refactor —
-it is a deliberate open decision, not an oversight.
+--space: 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 64 · 80   (declared in styles.css as --space-*)
+
+A true 4px grid, 11 steps, ENFORCED by tools/inline-style-check.py. History worth keeping: this
+line used to advertise a 9-step scale that `--space` was never even declared for, so 3,080
+spacing declarations grew across 49 literal values with nothing to reference — half of them off
+the advertised list, including 10px (288 uses) and 20px (208). On 2026-08-03 the 49 values were
+snapped onto this grid: 899 changes, average movement 1.28px, maximum 8px, page heights moved
+-0.8% on average. The scale was chosen by minimising weighted visual displacement across actual
+usage, not by taste — a 4px grid constraint applied to the measured distribution.
+
+**Two documented exemptions, both enforced by the gate:**
+- **< 4px** — optical nudges (hairline offsets, baseline corrections). Not rhythm.
+- **> 80px** — structural values: the nav clearance DESIGN-SYSTEM requires at >=104px, hero
+  bands, section-scale padding. Snapping these would break documented constraints.
 --section-y: 90px  (desktop)   64px (tablet ≤900)   48px (mobile ≤600)
 --page-x: 64px (desktop)   32px (tablet)   24px (mobile)
 --inner-max: 1180px            --measure: 62ch (body reading width)

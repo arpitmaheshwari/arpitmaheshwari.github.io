@@ -50,7 +50,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p37">
+<link rel="stylesheet" href="../styles.css?v=p38">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -70,11 +70,11 @@
   <div style="max-width:var(--measure);margin:0 auto">
     <div class="meta-row">
       <h1 class="t-hero" style="margin:0; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual">Human-in-the-Loop Patterns</h1>
-      <span class="lbl-badge-ink" style="padding:6px 12px; border-radius:4px; background-color:var(--copper); white-space:nowrap">In production</span>
+      <span class="lbl-badge-ink" style="padding:4px 12px; border-radius:4px; background-color:var(--copper); white-space:nowrap">In production</span>
     </div>
     <p class="lbl-cap">AI Design · Collaborative Workflows · Last updated June 2026</p>
     <p class="lbl-cap" style="margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
-    <p class="hand" aria-hidden="true" style="font-size:21px;margin:14px 0 0;transform:rotate(-1.6deg)">the override is data, not defiance</p>
+    <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 0;transform:rotate(-1.6deg)">the override is data, not defiance</p>
   </div>
 </div>
 
@@ -104,9 +104,9 @@
         <div style="margin-bottom:20px;">
           <div style="font-family:var(--ff-sans); font-size:12px; color:var(--ink); font-weight:600; margin-bottom:8px;">Reason for override</div>
           <div class="chip-row">
-            <div style="padding:6px 12px; border:1px solid var(--border); border-radius:16px; font-family:var(--ff-sans); font-size:11px; color:var(--ink);">Missing context</div>
-            <div style="padding:6px 12px; background:var(--ink); color:var(--bg); border-radius:16px; font-family:var(--ff-sans); font-size:11px;">Recent market shift</div>
-            <div style="padding:6px 12px; border:1px solid var(--border); border-radius:16px; font-family:var(--ff-sans); font-size:11px; color:var(--ink);">Client relationship</div>
+            <div style="padding:4px 12px; border:1px solid var(--border); border-radius:16px; font-family:var(--ff-sans); font-size:11px; color:var(--ink);">Missing context</div>
+            <div style="padding:4px 12px; background:var(--ink); color:var(--bg); border-radius:16px; font-family:var(--ff-sans); font-size:11px;">Recent market shift</div>
+            <div style="padding:4px 12px; border:1px solid var(--border); border-radius:16px; font-family:var(--ff-sans); font-size:11px; color:var(--ink);">Client relationship</div>
           </div>
         </div>
 
@@ -158,10 +158,10 @@
           <tr style="border-bottom:1px solid var(--border)"><th class="lbl-ink" style="text-align:left; padding:8px 12px">Confidence</th><th class="lbl-ink" style="text-align:left; padding:8px 12px">Action</th><th class="lbl-ink" style="text-align:left; padding:8px 12px">Speed</th></tr>
         </thead>
         <tbody>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px">90%+</td><td style="padding:10px 12px">Auto-approve</td><td style="padding:10px 12px">Instant</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px">70–89%</td><td style="padding:10px 12px">Queue for analyst review</td><td style="padding:10px 12px">1–4 hours</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px">50–69%</td><td style="padding:10px 12px">Queue for senior review</td><td style="padding:10px 12px">4–24 hours</td></tr>
-          <tr><td style="padding:10px 12px">&lt;50%</td><td style="padding:10px 12px">Reject or request more data</td><td style="padding:10px 12px">N/A</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:8px 12px">90%+</td><td style="padding:8px 12px">Auto-approve</td><td style="padding:8px 12px">Instant</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:8px 12px">70–89%</td><td style="padding:8px 12px">Queue for analyst review</td><td style="padding:8px 12px">1–4 hours</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:8px 12px">50–69%</td><td style="padding:8px 12px">Queue for senior review</td><td style="padding:8px 12px">4–24 hours</td></tr>
+          <tr><td style="padding:8px 12px">&lt;50%</td><td style="padding:8px 12px">Reject or request more data</td><td style="padding:8px 12px">N/A</td></tr>
         </tbody>
       </table>
     </div>
@@ -178,12 +178,12 @@
   <section style="margin-bottom:64px">
     <h2 class="section-title" style="margin:0 0 24px;max-width:none">Implementation Checklist</h2>
     <ul class="u-body" style="padding-left:24px">
-      <li style="margin-bottom:10px"><strong>Name the human's role:</strong> verifier who approves or rejects, editor who modifies, or expert who overrides with a reason?</li>
-      <li style="margin-bottom:10px"><strong>Draw the decision boundary:</strong> what does the model decide alone, what needs a review, what needs an expert?</li>
-      <li style="margin-bottom:10px"><strong>Log every decision:</strong> the recommendation, the human's call, the confidence, the reasoning.</li>
-      <li style="margin-bottom:10px"><strong>Read the divergence:</strong> weekly, see where humans override; monthly, find the patterns; quarterly, ship the fixes and <abbr tabindex="0" title="To update and improve a machine learning model by feeding it new data from user corrections and feedback" style="border-bottom:1px dotted var(--ink);cursor:help">retrain</abbr>.</li>
-      <li style="margin-bottom:10px"><strong>Close the loop out loud:</strong> tell users "Your feedback improved accuracy by X%."</li>
-      <li style="margin-bottom:10px"><strong>Guard against <abbr tabindex="0" title="Cognitive overload and decreased decision quality that occurs when users must make too many approval decisions in succession" style="border-bottom:1px dotted var(--ink);cursor:help">approval fatigue</abbr>:</strong> don't make a person rubber-stamp 100 low-risk items a day.</li>
+      <li style="margin-bottom:8px"><strong>Name the human's role:</strong> verifier who approves or rejects, editor who modifies, or expert who overrides with a reason?</li>
+      <li style="margin-bottom:8px"><strong>Draw the decision boundary:</strong> what does the model decide alone, what needs a review, what needs an expert?</li>
+      <li style="margin-bottom:8px"><strong>Log every decision:</strong> the recommendation, the human's call, the confidence, the reasoning.</li>
+      <li style="margin-bottom:8px"><strong>Read the divergence:</strong> weekly, see where humans override; monthly, find the patterns; quarterly, ship the fixes and <abbr tabindex="0" title="To update and improve a machine learning model by feeding it new data from user corrections and feedback" style="border-bottom:1px dotted var(--ink);cursor:help">retrain</abbr>.</li>
+      <li style="margin-bottom:8px"><strong>Close the loop out loud:</strong> tell users "Your feedback improved accuracy by X%."</li>
+      <li style="margin-bottom:8px"><strong>Guard against <abbr tabindex="0" title="Cognitive overload and decreased decision quality that occurs when users must make too many approval decisions in succession" style="border-bottom:1px dotted var(--ink);cursor:help">approval fatigue</abbr>:</strong> don't make a person rubber-stamp 100 low-risk items a day.</li>
     </ul>
   </section>
 
@@ -195,10 +195,10 @@
           <tr style="border-bottom:1px solid var(--border)"><th class="lbl-ink" style="text-align:left; padding:8px 12px">Approach</th><th class="lbl-ink" style="text-align:left; padding:8px 12px">Speed</th><th class="lbl-ink" style="text-align:left; padding:8px 12px">Trust</th><th class="lbl-ink" style="text-align:left; padding:8px 12px">Best For</th></tr>
         </thead>
         <tbody>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong>Full automation</strong></td><td style="padding:10px 12px">Instant</td><td style="padding:10px 12px">Low</td><td style="padding:10px 12px">Low-stakes, internal</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong>Approve/Reject</strong></td><td style="padding:10px 12px">Fast</td><td style="padding:10px 12px">High</td><td style="padding:10px 12px">High-volume, moderate-stakes</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong>Editable</strong></td><td style="padding:10px 12px">Medium</td><td style="padding:10px 12px">Very high</td><td style="padding:10px 12px">Creative, personalization</td></tr>
-          <tr><td style="padding:10px 12px"><strong>Expert review</strong></td><td style="padding:10px 12px">Slow</td><td style="padding:10px 12px">Very high</td><td style="padding:10px 12px">Critical decisions</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:8px 12px"><strong>Full automation</strong></td><td style="padding:8px 12px">Instant</td><td style="padding:8px 12px">Low</td><td style="padding:8px 12px">Low-stakes, internal</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:8px 12px"><strong>Approve/Reject</strong></td><td style="padding:8px 12px">Fast</td><td style="padding:8px 12px">High</td><td style="padding:8px 12px">High-volume, moderate-stakes</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:8px 12px"><strong>Editable</strong></td><td style="padding:8px 12px">Medium</td><td style="padding:8px 12px">Very high</td><td style="padding:8px 12px">Creative, personalization</td></tr>
+          <tr><td style="padding:8px 12px"><strong>Expert review</strong></td><td style="padding:8px 12px">Slow</td><td style="padding:8px 12px">Very high</td><td style="padding:8px 12px">Critical decisions</td></tr>
         </tbody>
       </table>
     </div>
@@ -233,7 +233,7 @@
     <a class="lbl-badge-gold btn-a-ghost" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="background:transparent; text-decoration:none; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
   </div>
 <section class="measure-t">
-    <div style="border-top:1px solid var(--border);padding-top:28px">
+    <div style="border-top:1px solid var(--border);padding-top:24px">
       <div class="eyebrow" style="margin-bottom:12px">Limits — when NOT to use this</div>
       <p class="u-body" style="margin:0">Watch the override rate: near zero means the loop is theater and the human is a rubber stamp — retire the review step or raise its stakes. Under volume pressure, review queues decay into approve-all; if you can't staff the loop honestly, narrow what enters it instead of pretending.</p>
     </div>

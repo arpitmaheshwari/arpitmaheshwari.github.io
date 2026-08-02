@@ -28,34 +28,34 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap" media="print" onload="this.media='all';this.onload=null">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap"></noscript>
-<link rel="stylesheet" href="../styles.css?v=p39">
+<link rel="stylesheet" href="../styles.css?v=p41">
 <style>
   .lab-wrap { max-width: var(--inner-max); margin: 0 auto; padding: 0 var(--page-x); }
   .lab-hero { padding-top: 128px; }
   .lab-kicker { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin: 0 0 16px; }
   .lab-lede { font-size: var(--fs-lead); line-height: 1.6; color: var(--ink-muted); max-width: var(--measure); }
   .lab-lede strong { color: var(--ink); font-weight: 400; }
-  .lab-note { border-left: 2px solid var(--gold-dark); padding: 14px 0 14px 20px; margin: 32px 0 0; font-size: var(--fs-ui); line-height: 1.7; color: var(--ink-muted); max-width: var(--measure); }
+  .lab-note { border-left: 2px solid var(--gold-dark); padding: 12px 0 12px 20px; margin: 32px 0 0; font-size: var(--fs-ui); line-height: 1.7; color: var(--ink-muted); max-width: var(--measure); }
   .lab-note b { color: var(--ink); font-weight: 600; }
   .lab-body { font-size: var(--fs-body); line-height: 1.7; color: var(--ink-muted); max-width: var(--measure); }
-  .lab-body p { margin: 0 0 18px; }
+  .lab-body p { margin: 0 0 16px; }
   .lab-body p:last-child { margin-bottom: 0; }
   .lab-body code { font-family: var(--ff-mono); font-size: 0.9em; color: var(--gold); }
 
   /* artifact cards */
-  .lab-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%),1fr)); gap: 20px; margin-top: 36px; }
-  .lab-card { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); padding: 26px 26px 24px; text-decoration: none; transition: border-color .18s var(--ease-out), transform .18s var(--ease-out); }
+  .lab-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%),1fr)); gap: 20px; margin-top: 32px; }
+  .lab-card { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); padding: 24px 24px 24px; text-decoration: none; transition: border-color .18s var(--ease-out), transform .18s var(--ease-out); }
   .lab-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
   .lab-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-  .lab-num { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .12em; color: var(--gold); margin: 0 0 14px; }
-  .lab-card h3 { font-family: var(--ff-mono); font-size: var(--fs-ui); font-weight: 500; color: var(--ink); margin: 0 0 10px; letter-spacing: .01em; }
-  .lab-card p { font-size: var(--fs-ui); line-height: 1.65; color: var(--ink-muted); margin: 0 0 18px; flex: 1; }
-  .lab-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; }
-  .lab-tags span { font-family: var(--ff-mono); font-size: var(--fs-micro); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); border: 1px solid var(--border); border-radius: 2px; padding: 4px 7px; }
+  .lab-num { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .12em; color: var(--gold); margin: 0 0 12px; }
+  .lab-card h3 { font-family: var(--ff-mono); font-size: var(--fs-ui); font-weight: 500; color: var(--ink); margin: 0 0 8px; letter-spacing: .01em; }
+  .lab-card p { font-size: var(--fs-ui); line-height: 1.65; color: var(--ink-muted); margin: 0 0 16px; flex: 1; }
+  .lab-tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 16px; }
+  .lab-tags span { font-family: var(--ff-mono); font-size: var(--fs-micro); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); border: 1px solid var(--border); border-radius: 2px; padding: 4px 8px; }
   .lab-go { font-family: var(--ff-mono); font-size: var(--fs-caption); color: var(--gold); letter-spacing: .03em; }
 
-  .lab-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-  .lab-links a { font-family: var(--ff-mono); font-size: var(--fs-caption); letter-spacing: .04em; color: var(--gold); text-decoration: none; border: 1px solid var(--gold-dark); border-radius: var(--radius); padding: 10px 16px; transition: background .15s, color .15s; }
+  .lab-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .lab-links a { font-family: var(--ff-mono); font-size: var(--fs-caption); letter-spacing: .04em; color: var(--gold); text-decoration: none; border: 1px solid var(--gold-dark); border-radius: var(--radius); padding: 8px 16px; transition: background .15s, color .15s; }
   .lab-links a:hover { background: var(--gold); color: var(--bg); }
 
   @media (prefers-reduced-motion: reduce) {
@@ -83,7 +83,7 @@
       <p class="lab-kicker">The Lab</p>
       <h1 class="section-title" style="max-width:26ch">Where the code is the deliverable</h1>
       <p class="lab-lede">Everywhere else on this site, code is a means: the pages, the demos, the documents. Here it is the thing itself. Three artifacts, all MIT licensed, all running in the open — because <strong>a designer claiming to ship code should hand you some</strong> rather than describe the experience of having done so.</p>
-      <p class="hand" aria-hidden="true" style="font-size:21px;margin:14px 0 0;transform:rotate(-1.6deg)">no rights reserved — take what works</p>
+      <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 0;transform:rotate(-1.6deg)">no rights reserved — take what works</p>
       <div class="lab-note">
         <b>Where the line sits.</b> I ship the front-end of what I design, in the PR under my name, with senior engineers reviewing. These artifacts are pure functions by choice, not by ceiling — logic any stack can adopt and any test can pin down; the stateful counterpart is <a href="../book/" style="color:var(--gold)">the book edition</a> of this site, ~150KB of my own React. What I don't claim is the backend. That is the honest boundary, and it is the same one I give on <a href="../screen/" style="color:var(--gold)">the technical screen</a>.
       </div>

@@ -50,7 +50,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p37">
+<link rel="stylesheet" href="../styles.css?v=p39">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -70,11 +70,11 @@
   <div style="max-width:var(--measure);margin:0 auto">
     <div class="meta-row">
       <h1 class="t-hero" style="margin:0; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual">The Capability Contract</h1>
-      <span class="lbl-badge-ink" style="padding:6px 12px; border-radius:4px; background-color:var(--copper); white-space:nowrap">In production</span>
+      <span class="lbl-badge-ink" style="padding:4px 12px; border-radius:4px; background-color:var(--copper); white-space:nowrap">In production</span>
     </div>
     <p class="lbl-cap">AI Design · Scope &amp; limits · Last updated June 2026</p>
     <p class="lbl-cap" style="margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
-    <p class="hand" aria-hidden="true" style="font-size:21px;margin:14px 0 0;transform:rotate(-1.6deg)">say what the system can’t do — out loud</p>
+    <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 0;transform:rotate(-1.6deg)">say what the system can’t do — out loud</p>
   </div>
 </div>
 
@@ -118,11 +118,11 @@
   <section style="margin-bottom:64px">
     <h2 class="section-title" style="margin:0 0 24px;max-width:none">Implementation Checklist</h2>
     <ul class="u-body" style="padding-left:24px">
-      <li style="margin-bottom:10px"><strong>Write the contract before launch:</strong> what it's for, where it taps out, what it hands back.</li>
-      <li style="margin-bottom:10px"><strong>State limits in the interface,</strong> at the point of use — not only in the docs.</li>
-      <li style="margin-bottom:10px"><strong>Make out-of-scope a clean hand-off to a human,</strong> not a silent confident guess.</li>
-      <li style="margin-bottom:10px"><strong>Be specific:</strong> name a boundary a person can plan around.</li>
-      <li style="margin-bottom:10px"><strong>Revisit the contract</strong> every time the model's scope actually changes.</li>
+      <li style="margin-bottom:8px"><strong>Write the contract before launch:</strong> what it's for, where it taps out, what it hands back.</li>
+      <li style="margin-bottom:8px"><strong>State limits in the interface,</strong> at the point of use — not only in the docs.</li>
+      <li style="margin-bottom:8px"><strong>Make out-of-scope a clean hand-off to a human,</strong> not a silent confident guess.</li>
+      <li style="margin-bottom:8px"><strong>Be specific:</strong> name a boundary a person can plan around.</li>
+      <li style="margin-bottom:8px"><strong>Revisit the contract</strong> every time the model's scope actually changes.</li>
     </ul>
   </section>
 
@@ -131,8 +131,8 @@
     <div class="eyebrow" style="margin-bottom:12px">The Template — Copy It Into Your PRD</div>
     <p class="u-body" style="margin-bottom:20px">A capability contract is a one-pager the whole team signs before launch. Fill in the brackets; delete nothing without deciding it.</p>
     <div style="position:relative">
-      <button class="lbl-eyebrow-500" id="copyContractBtn" data-cta="copy-template" data-location="pattern-template" style="position:absolute; top:12px; right:12px; padding:6px 14px; background:var(--bg); border:1px solid var(--gold-dark); border-radius:2px; cursor:pointer; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='var(--bg)';this.style.color='var(--gold)'">Copy</button>
-      <pre id="contractTemplate" style="background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:28px 24px;margin:0;font-family:var(--ff-mono);font-size:var(--fs-caption);line-height:1.8;color:var(--ink-muted);overflow-x:auto">CAPABILITY CONTRACT — [product / feature]
+      <button class="lbl-eyebrow-500" id="copyContractBtn" data-cta="copy-template" data-location="pattern-template" style="position:absolute; top:12px; right:12px; padding:4px 12px; background:var(--bg); border:1px solid var(--gold-dark); border-radius:2px; cursor:pointer; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='var(--bg)';this.style.color='var(--gold)'">Copy</button>
+      <pre id="contractTemplate" style="background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:24px 24px;margin:0;font-family:var(--ff-mono);font-size:var(--fs-caption);line-height:1.8;color:var(--ink-muted);overflow-x:auto">CAPABILITY CONTRACT — [product / feature]
 Owner: [name] · Review date: [quarterly]
 
 IN SCOPE — this system is for:
@@ -176,7 +176,7 @@ WHAT WE TELL THE USER — in the interface, not the docs:
     <a class="lbl-badge-gold btn-a-ghost" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="background:transparent; text-decoration:none; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
   </div>
 <section class="measure-t">
-    <div style="border-top:1px solid var(--border);padding-top:28px">
+    <div style="border-top:1px solid var(--border);padding-top:24px">
       <div class="eyebrow" style="margin-bottom:12px">Limits — when NOT to use this</div>
       <p class="u-body" style="margin:0">A contract on every screen reads as a product unsure of itself — state the boundary once, where the user first meets the capability, not as a recurring disclaimer. And never write a contract you don't enforce: a stated limit the system quietly exceeds burns more trust than no statement at all.</p>
     </div>

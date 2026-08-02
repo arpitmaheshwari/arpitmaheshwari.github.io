@@ -28,7 +28,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap" media="print" onload="this.media='all';this.onload=null">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap"></noscript>
-<link rel="stylesheet" href="../styles.css?v=p38">
+<link rel="stylesheet" href="../styles.css?v=p40">
 <style>
   .lab-wrap { max-width: var(--inner-max); margin: 0 auto; padding: 0 var(--page-x); }
   .lab-hero { padding-top: 128px; }
@@ -37,28 +37,28 @@
   .lab-lede strong { color: var(--ink); font-weight: 400; }
 
   /* honest-scope note — the boundary this artifact does not cross */
-  .lab-note { border-left: 2px solid var(--gold-dark); padding: 14px 0 14px 20px; margin: 32px 0 0; font-size: var(--fs-ui); line-height: 1.7; color: var(--ink-muted); max-width: var(--measure); }
+  .lab-note { border-left: 2px solid var(--gold-dark); padding: 12px 0 12px 20px; margin: 32px 0 0; font-size: var(--fs-ui); line-height: 1.7; color: var(--ink-muted); max-width: var(--measure); }
   .lab-note b { color: var(--ink); font-weight: 600; }
 
-  pre.lab-code { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; overflow-x: auto; margin: 0; }
+  pre.lab-code { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; overflow-x: auto; margin: 0; }
   pre.lab-code code { font-family: var(--ff-mono); font-size: var(--fs-caption); line-height: 1.75; color: var(--ink); white-space: pre; }
   .lab-code .c { color: var(--ink-muted); }
   .lab-code .k { color: var(--gold); }
 
-  .lab-fn { border-top: 1px solid var(--border); padding-top: 36px; margin-top: 48px; }
+  .lab-fn { border-top: 1px solid var(--border); padding-top: 32px; margin-top: 48px; }
   .lab-fn:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
-  .lab-fn h3 { font-family: var(--ff-mono); font-size: var(--fs-ui); font-weight: 500; color: var(--gold); margin: 0 0 6px; letter-spacing: .02em; }
-  .lab-fn .lab-pat { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 14px; }
-  .lab-fn p { font-size: var(--fs-body); line-height: 1.7; color: var(--ink-muted); max-width: var(--measure); margin: 0 0 18px; }
+  .lab-fn h3 { font-family: var(--ff-mono); font-size: var(--fs-ui); font-weight: 500; color: var(--gold); margin: 0 0 4px; letter-spacing: .02em; }
+  .lab-fn .lab-pat { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 12px; }
+  .lab-fn p { font-size: var(--fs-body); line-height: 1.7; color: var(--ink-muted); max-width: var(--measure); margin: 0 0 16px; }
   .lab-fn p strong { color: var(--ink); font-weight: 400; }
 
   /* playground */
   .lab-play { display: grid; grid-template-columns: minmax(240px, 320px) 1fr; gap: 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); margin-top: 24px; overflow: hidden; }
-  .lab-controls { padding: 22px 24px; border-right: 1px solid var(--border); }
-  .lab-out { padding: 22px 24px; min-width: 0; }
+  .lab-controls { padding: 20px 24px; border-right: 1px solid var(--border); }
+  .lab-out { padding: 20px 24px; min-width: 0; }
   @media (max-width: 720px) { .lab-play { grid-template-columns: 1fr; } .lab-controls { border-right: none; border-bottom: 1px solid var(--border); } }
 
-  .lab-ctl { margin-bottom: 18px; }
+  .lab-ctl { margin-bottom: 16px; }
   .lab-ctl:last-child { margin-bottom: 0; }
 .lab-ctl label.t-sans-ui-reset { display:inline; font-family:var(--ff-sans); font-size:var(--fs-ui); letter-spacing:0; text-transform:none; color:var(--ink) }  /* inline checkbox label — a different component from the section label above; page rule outranks the utility class */
     .lab-ctl label { display: block; font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 8px; }
@@ -66,26 +66,26 @@
   .lab-ctl input[type="range"] { width: 100%; accent-color: var(--gold); }
   /* same trap as eval.html: --bg-soft is not remapped by .act-cream */
   .act-cream .lab-ctl input[type="number"] { background: #F7F1E4; }
-  .lab-ctl input[type="number"] { width: 88px; background: var(--bg-soft); color: var(--ink); border: 1px solid var(--border); border-radius: var(--radius); padding: 7px 9px; font-family: var(--ff-mono); font-size: var(--fs-caption); }
+  .lab-ctl input[type="number"] { width: 88px; background: var(--bg-soft); color: var(--ink); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 8px; font-family: var(--ff-mono); font-size: var(--fs-caption); }
   .lab-ctl input[type="checkbox"] { accent-color: var(--gold); width: 15px; height: 15px; vertical-align: -2px; }
-  .lab-ctl .lab-inline { display: flex; align-items: center; gap: 9px; font-size: var(--fs-ui); color: var(--ink); }
+  .lab-ctl .lab-inline { display: flex; align-items: center; gap: 8px; font-size: var(--fs-ui); color: var(--ink); }
   .lab-ctl input:focus-visible, .lab-seg button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
-  .lab-seg { display: flex; flex-wrap: wrap; gap: 6px; }
-  .lab-seg button { flex: 1 1 auto; padding: 8px 10px; font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); background: transparent; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: border-color .15s, color .15s, background .15s; }
+  .lab-seg { display: flex; flex-wrap: wrap; gap: 4px; }
+  .lab-seg button { flex: 1 1 auto; padding: 8px 8px; font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); background: transparent; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: border-color .15s, color .15s, background .15s; }
   .lab-seg button:hover { border-color: var(--gold); color: var(--ink); }
   .lab-seg button.on { background: var(--gold); color: var(--bg); border-color: var(--gold); }
 
-  .lab-verb { font-family: var(--ff-display); font-style: italic; font-weight: 300; font-size: 34px; line-height: 1.1; color: var(--gold); display: block; margin-bottom: 10px; }
+  .lab-verb { font-family: var(--ff-display); font-style: italic; font-weight: 300; font-size: 34px; line-height: 1.1; color: var(--gold); display: block; margin-bottom: 8px; }
   .lab-verb.is-ok { color: var(--ok); }
   .lab-verb.is-warn { color: var(--warn); }
   .lab-verb.is-err { color: var(--err); }
   .lab-explain { font-size: var(--fs-ui); line-height: 1.65; color: var(--ink-muted); margin: 0 0 16px; }
-  .lab-json { font-family: var(--ff-mono); font-size: var(--fs-caption); line-height: 1.7; color: var(--ink-muted); white-space: pre-wrap; word-break: break-word; margin: 0; padding-top: 14px; border-top: 1px solid var(--border); }
+  .lab-json { font-family: var(--ff-mono); font-size: var(--fs-caption); line-height: 1.7; color: var(--ink-muted); white-space: pre-wrap; word-break: break-word; margin: 0; padding-top: 12px; border-top: 1px solid var(--border); }
   .lab-json b { color: var(--ink); font-weight: 500; }
 
   /* reliability chart */
-  .lab-bins { display: flex; align-items: flex-end; gap: 4px; height: 132px; margin: 4px 0 10px; }
+  .lab-bins { display: flex; align-items: flex-end; gap: 4px; height: 132px; margin: 4px 0 8px; }
   /* Grouped, not stacked: in a reliability diagram the two bars must be
      directly comparable, so equal height has to mean "honest". */
   .lab-bin { flex: 1; display: flex; flex-direction: row; align-items: flex-end; gap: 2px; height: 100%; min-width: 0; }
@@ -93,13 +93,13 @@
   .lab-bin .lab-conf { background: var(--border-accent); }
   .lab-bin .lab-acc { background: var(--gold); }
   .lab-bin.is-empty { opacity: 0.28; }
-  .lab-legend { display: flex; gap: 18px; font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); }
-  .lab-legend span { display: flex; align-items: center; gap: 7px; }
+  .lab-legend { display: flex; gap: 16px; font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); }
+  .lab-legend span { display: flex; align-items: center; gap: 8px; }
   .lab-legend i { width: 11px; height: 11px; border-radius: 2px; display: block; }
 
-  .lab-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(96px,100%),1fr)); gap: 16px; padding-top: 14px; border-top: 1px solid var(--border); margin-top: 12px; }
+  .lab-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(96px,100%),1fr)); gap: 16px; padding-top: 12px; border-top: 1px solid var(--border); margin-top: 12px; }
   .lab-metric b { display: block; font-family: var(--ff-display); font-weight: 300; font-size: var(--fs-metric-sm); color: var(--gold); line-height: 1; font-variant-numeric: tabular-nums; }
-  .lab-metric span { display: block; font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-top: 7px; }
+  .lab-metric span { display: block; font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-top: 8px; }
 
   /* tests */
   .lab-testhead { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
@@ -108,14 +108,14 @@
   .lab-tallynote { font-family: var(--ff-mono); font-size: var(--fs-caption); color: var(--ink-muted); }
   .lab-tests { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 32px; }
   @media (max-width: 720px) { .lab-tests { columns: 1; } }
-  .lab-tests li { font-family: var(--ff-mono); font-size: var(--fs-caption); line-height: 1.5; color: var(--ink-muted); padding: 5px 0 5px 22px; position: relative; break-inside: avoid; }
+  .lab-tests li { font-family: var(--ff-mono); font-size: var(--fs-caption); line-height: 1.5; color: var(--ink-muted); padding: 4px 0 4px 20px; position: relative; break-inside: avoid; }
   .lab-tests li::before { content: '✓'; position: absolute; left: 0; color: var(--ok); }
   .lab-tests li.is-fail { color: var(--err); }
   .lab-tests li.is-fail::before { content: '✕'; color: var(--err); }
   .lab-tests .lab-err { display: block; color: var(--err); padding-top: 3px; }
 
-  .lab-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-  .lab-links a { font-family: var(--ff-mono); font-size: var(--fs-caption); letter-spacing: .04em; color: var(--gold); text-decoration: none; border: 1px solid var(--gold-dark); border-radius: var(--radius); padding: 10px 16px; transition: background .15s, color .15s; }
+  .lab-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .lab-links a { font-family: var(--ff-mono); font-size: var(--fs-caption); letter-spacing: .04em; color: var(--gold); text-decoration: none; border: 1px solid var(--gold-dark); border-radius: var(--radius); padding: 8px 16px; transition: background .15s, color .15s; }
   .lab-links a:hover { background: var(--gold); color: var(--bg); }
   .lab-nojs { font-family: var(--ff-mono); font-size: var(--fs-caption); color: var(--warn); }
 </style>
@@ -140,7 +140,7 @@
       <p class="lab-kicker">The Lab · 01 · MIT licensed</p>
       <h1 class="section-title" style="max-width:20ch">hitl.js</h1>
       <p class="lab-lede">The rules I argue for in design reviews, written as functions so they can be <strong>tested instead of debated</strong>. Four decisions that sit between a model and a person: which verb a score becomes, whether its confidence has earned belief, when to say nothing at all, and what to show while it thinks.</p>
-      <p class="hand" aria-hidden="true" style="font-size:21px;margin:14px 0 0;transform:rotate(-1.6deg)">the tests run right on this page — check them</p>
+      <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 0;transform:rotate(-1.6deg)">the tests run right on this page — check them</p>
       <div class="lab-note">
         <b>What this is not.</b> It is not a UI kit and not a model. There is no network call, no DOM, no state, no framework — four pure functions and their tests. I own the decision logic and the interface; whether the model is right is the ML team's result to defend. The visual layer is deliberately left to you, because the verb matters more than the chip it ships in.
       </div>
@@ -301,7 +301,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
     <div class="lab-wrap">
       <p class="eyebrow">Proof</p>
       <h2 class="section-title">The tests, running now, in your browser</h2>
-      <p class="lab-lede" style="margin-bottom:28px">The same file runs under Node with <code class="t-code">node lab/hitl.test.js</code> and exits non-zero on failure. There is no test framework, because adding a dependency to a zero-dependency library would be the joke telling itself — the runner is about forty lines at the top of the file.</p>
+      <p class="lab-lede" style="margin-bottom:24px">The same file runs under Node with <code class="t-code">node lab/hitl.test.js</code> and exits non-zero on failure. There is no test framework, because adding a dependency to a zero-dependency library would be the joke telling itself — the runner is about forty lines at the top of the file.</p>
       <div class="lab-testhead">
         <span class="lab-tally" id="t-tally">…</span>
         <span class="lab-tallynote" id="t-note">running</span>
@@ -315,8 +315,8 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
     <div class="lab-wrap">
       <p class="eyebrow">Why this exists</p>
       <h2 class="section-title">A rule you can run beats a rule you can argue with</h2>
-      <p class="t-body-muted" style="margin:0 0 18px">Every one of these decisions used to be a slide. "Don't show a naked confidence score." "Fail toward humility." "Reversibility outranks confidence." Reasonable people nodded, and then shipped the naked number anyway, because a principle has no failing state.</p>
-      <p class="t-body-muted" style="margin:0 0 18px">Written as functions, the same rules get a failing state. <code class="t-code">decide()</code> reports <code class="t-code">review-without-reasons</code> as a violation rather than a suggestion. <code class="t-code">calibrate()</code> returns <code class="t-code">insufficient-data</code> instead of a flattering number. That is the whole argument for this file existing: human-in-the-loop design is a set of decisions, and decisions can be tested.</p>
+      <p class="t-body-muted" style="margin:0 0 16px">Every one of these decisions used to be a slide. "Don't show a naked confidence score." "Fail toward humility." "Reversibility outranks confidence." Reasonable people nodded, and then shipped the naked number anyway, because a principle has no failing state.</p>
+      <p class="t-body-muted" style="margin:0 0 16px">Written as functions, the same rules get a failing state. <code class="t-code">decide()</code> reports <code class="t-code">review-without-reasons</code> as a violation rather than a suggestion. <code class="t-code">calibrate()</code> returns <code class="t-code">insufficient-data</code> instead of a flattering number. That is the whole argument for this file existing: human-in-the-loop design is a set of decisions, and decisions can be tested.</p>
       <p class="t-body-muted" style="margin:0">The eight patterns these come from are documented, with live demos, in <a href="../patterns/" style="color:var(--gold)">the pattern library</a> — and each one is running in a production product. This is their logic, extracted and made checkable.</p>
       <div class="lab-links">
         <a href="./index.html" data-cta="lab-home" data-location="hitl-foot">← Everything in The Lab</a>

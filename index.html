@@ -145,7 +145,7 @@
   gtag('js', new Date());
   gtag('config', 'G-PFY6ME99K8');
 </script>
-<link rel="stylesheet" href="./styles.css?v=p39">
+<link rel="stylesheet" href="./styles.css?v=p41">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -188,8 +188,8 @@
 /* Hero "half-second" live demo — a confidence score resolving into an action */
 .hero-demo{flex:0 1 448px;align-self:center;opacity:0;transform:translateY(20px);animation:reveal .5s var(--ease-out) .5s forwards}
 .hd-tag{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-.hd-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:24px 24px 22px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
-.hd-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
+.hd-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:24px 24px 20px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.hd-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
 .hd-name{font-family:var(--ff-mono);font-size:11px;letter-spacing:.04em;color:var(--ink-muted)}
 .hd-score{font-family:var(--ff-display);font-weight:300;font-size:46px;line-height:.9;color:var(--ink);font-optical-sizing:auto;font-variant-numeric:tabular-nums lining-nums}
 .hd-track{height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
@@ -197,21 +197,21 @@
 .hd-fill.band-act{background:var(--copper-light)}
 .hd-fill.band-review{background:var(--gold)}
 .hd-fill.band-ignore{background:var(--ink-muted)}
-.hd-scale{display:flex;justify-content:space-between;margin-top:9px;font-family:var(--ff-mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim)}
+.hd-scale{display:flex;justify-content:space-between;margin-top:8px;font-family:var(--ff-mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim)}
 .hd-scale span{transition:color .3s,opacity .3s;opacity:.6}
 .hd-scale span.on{color:var(--ink);opacity:1}
-.hd-verdict{margin-top:18px;font-family:var(--ff-sans);font-weight:600;font-size:18px;line-height:1.1;color:var(--gold);display:flex;align-items:center}
+.hd-verdict{margin-top:16px;font-family:var(--ff-sans);font-weight:600;font-size:18px;line-height:1.1;color:var(--gold);display:flex;align-items:center}
 .hd-verdict.band-act{color:var(--copper-light)}
 .hd-verdict.band-review{color:var(--gold)}
 .hd-verdict.band-ignore{color:var(--ink-muted)}
-.hd-reason{margin-top:7px;font-size:12.5px;color:var(--ink-muted);line-height:1.5;min-height:40px}
-.hd-foot{margin-top:14px;font-family:var(--ff-display);font-style:italic;font-size:13.5px;color:var(--ink-dim);line-height:1.5}
-.hd-diag-q{font-family:var(--ff-display);font-weight:300;font-size:21px;line-height:1.3;color:var(--ink);margin:0 0 18px;letter-spacing:-.01em}
-.hd-presets{display:flex;flex-direction:column;gap:10px}
-.hd-preset{display:flex;align-items:center;text-align:left;background:transparent;border:1px solid var(--border);border-radius:8px;padding:13px 15px;color:var(--ink);font-family:var(--ff-sans);font-size:14px;line-height:1.35;text-decoration:none;cursor:pointer;transition:border-color .2s,color .2s,background .2s,transform .2s}
+.hd-reason{margin-top:8px;font-size:12.5px;color:var(--ink-muted);line-height:1.5;min-height:40px}
+.hd-foot{margin-top:12px;font-family:var(--ff-display);font-style:italic;font-size:13.5px;color:var(--ink-dim);line-height:1.5}
+.hd-diag-q{font-family:var(--ff-display);font-weight:300;font-size:21px;line-height:1.3;color:var(--ink);margin:0 0 16px;letter-spacing:-.01em}
+.hd-presets{display:flex;flex-direction:column;gap:8px}
+.hd-preset{display:flex;align-items:center;text-align:left;background:transparent;border:1px solid var(--border);border-radius:8px;padding:12px 16px;color:var(--ink);font-family:var(--ff-sans);font-size:14px;line-height:1.35;text-decoration:none;cursor:pointer;transition:border-color .2s,color .2s,background .2s,transform .2s}
 .hd-preset:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .hd-preset:hover{border-color:var(--gold);background:rgba(212,168,94,.06);transform:translateX(3px);outline:none}
-.hd-preset span{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--gold);margin-right:11px;flex:0 0 auto}
+.hd-preset span{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--gold);margin-right:12px;flex:0 0 auto}
 .hd-preset::after{content:"→";margin-left:auto;padding-left:12px;color:var(--gold);opacity:.45;transition:opacity .2s,transform .2s;flex:0 0 auto}
 .hd-preset:hover::after{opacity:1;transform:translateX(2px)}
 /* Explicit submit button added 2026-08-01: this field had NO visible affordance and relied only
@@ -219,12 +219,12 @@
    "don't make people trust something they can't see" — and it's untestable via keyboard-only
    automation in a way that made a real defect indistinguishable from a tooling artifact. A visible
    button removes the ambiguity for every user, keyboard or not, without changing Enter's behavior. */
-.hd-free{margin-top:14px;display:flex;align-items:flex-end;gap:10px}
+.hd-free{margin-top:12px;display:flex;align-items:flex-end;gap:8px}
 .hd-free input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.hd-free input{flex:1 1 auto;min-width:0;width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--ink);font-family:var(--ff-display);font-style:italic;font-size:15px;padding:9px 2px}
+.hd-free input{flex:1 1 auto;min-width:0;width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--ink);font-family:var(--ff-display);font-style:italic;font-size:15px;padding:8px 2px}
 .hd-free input::placeholder{color:var(--ink-dim)}
 .hd-free input:focus{border-color:var(--gold)}
-.hd-free-submit{flex:0 0 auto;background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--gold);font-family:var(--ff-mono);font-size:16px;line-height:1;padding:9px 4px;cursor:pointer;opacity:.75;transition:opacity .2s,transform .2s}
+.hd-free-submit{flex:0 0 auto;background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--gold);font-family:var(--ff-mono);font-size:16px;line-height:1;padding:8px 4px;cursor:pointer;opacity:.75;transition:opacity .2s,transform .2s}
 .hd-free-submit:hover{opacity:1;transform:translateX(2px)}
 .hd-free-submit:focus-visible{outline:2px solid var(--gold);outline-offset:2px;opacity:1}
 .hd-kicker{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 8px}
@@ -232,7 +232,7 @@
 .hd-rule{width:44px;height:2px;background:var(--gold);opacity:.5;margin:16px 0}
 .hd-reframe{font-family:var(--ff-display);font-weight:300;font-size:clamp(21px,2.3vw,26px);line-height:1.28;color:var(--ink);margin:0 0 24px;letter-spacing:-.01em}
 .hd-reframe em{font-style:italic;color:var(--gold)}
-.hd-case-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:13px;letter-spacing:.02em;border-radius:2px;text-decoration:none;transition:background .3s,transform .2s}
+.hd-case-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:13px;letter-spacing:.02em;border-radius:2px;text-decoration:none;transition:background .3s,transform .2s}
 .hd-case-btn:hover{background:var(--gold-light);transform:translateY(-2px)}
 .hd-reset{display:block;background:none;border:none;color:var(--ink-dim);font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;padding:0;margin-top:16px;transition:color .2s}
 .hd-reset:hover{color:var(--gold)}
@@ -247,22 +247,22 @@
   <div class="hero-grid-lines" aria-hidden="true" style="z-index:1;"></div>
   <div style="position:relative; z-index:2; display:flex; gap:clamp(32px,4vw,64px); align-items:center; flex-wrap:wrap; width:100%; max-width:1280px; margin:0 auto; justify-content:space-between;">
   <div style="flex:1 1 520px; min-width:0; max-width:640px;">
-  <p class="hero-eyebrow lbl-eyebrow" style="margin:0 0 18px 0">Product &amp; Design Leader · AI &amp; Data-Intensive Products</p>
+  <p class="hero-eyebrow lbl-eyebrow" style="margin:0 0 16px 0">Product &amp; Design Leader · AI &amp; Data-Intensive Products</p>
   <h1 class="hero-headline">
     <span class="line"><span class="line-inner">Your model is right.</span></span>
     <span class="line"><span class="line-inner">Your users still</span></span>
     <span class="line"><span class="line-inner"><em>won't bet on it.</em></span></span>
   </h1>
-  <p style="font-family:var(--ff-display); font-size:var(--fs-lead); font-style:italic; color:var(--ink); line-height:1.4; margin:14px 0 32px; max-width:46ch; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual; opacity:0; transform:translateY(20px); animation:reveal .4s var(--ease-out) .3s forwards;">
+  <p style="font-family:var(--ff-display); font-size:var(--fs-lead); font-style:italic; color:var(--ink); line-height:1.4; margin:12px 0 32px; max-width:46ch; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual; opacity:0; transform:translateY(20px); animation:reveal .4s var(--ease-out) .3s forwards;">
     The half-second of doubt is the only thing I design. Fifteen years, five industries, one problem.
   </p>
 
   <div class="hero-cta-row" style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;opacity:0;transform:translateY(20px);animation:reveal .4s var(--ease-out) .35s forwards">
     <a href="#contact" data-cta="send-role" data-location="hero" style="display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:.03em;border-radius:2px;transition:background 0.3s,transform 0.2s;text-decoration:none;white-space:nowrap" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Send me the role <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-    <a href="#featured-case-studies" data-cta="see-work" data-location="hero" style="display:inline-flex;align-items:center;gap:6px;padding:15px 24px;color:var(--ink-muted);font-family:var(--ff-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--border);border-radius:2px;transition:border-color 0.3s,color 0.3s;text-decoration:none;white-space:nowrap" onmouseover="this.style.borderColor='var(--border-accent)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--ink-muted)'">See selected work <svg class="icon" style="width:11px;height:11px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    <a href="#featured-case-studies" data-cta="see-work" data-location="hero" style="display:inline-flex;align-items:center;gap:4px;padding:16px 24px;color:var(--ink-muted);font-family:var(--ff-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--border);border-radius:2px;transition:border-color 0.3s,color 0.3s;text-decoration:none;white-space:nowrap" onmouseover="this.style.borderColor='var(--border-accent)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--ink-muted)'">See selected work <svg class="icon" style="width:11px;height:11px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
   </div>
 
-  <div style="display:flex;align-items:center;gap:14px;margin:26px 0 0;opacity:0;animation:reveal .4s var(--ease-out) .45s forwards">
+  <div style="display:flex;align-items:center;gap:12px;margin:24px 0 0;opacity:0;animation:reveal .4s var(--ease-out) .45s forwards">
     <img src="./arpit-maheshwari.jpg" alt="Arpit Maheshwari" width="56" height="56" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:1px solid var(--border);flex:0 0 auto">
   <p class="hero-cred" style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.04em;color:var(--ink-muted);line-height:1.9;margin:0;max-width:52ch">Shipped for <span style="color:var(--ink)">Telefónica O2</span> — 4M+ users &nbsp;·&nbsp; <span style="color:var(--ink)">PTC</span> — NASA, Boeing, Toyota &amp; Airbus among clientele &nbsp;·&nbsp; AI products since 2019</p>
   </div>
@@ -297,10 +297,10 @@
 <section class="section act-cream proof-act">
   <div class="section-inner">
     <p class="eyebrow">The receipts — four industries</p>
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:28px;flex-wrap:wrap">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap">
       <div>
         <h2 class="section-title mk-ul">What the design was worth.<svg viewBox="0 0 240 12" aria-hidden="true"><path d="M4,8 C40,3 90,10 140,5 C180,2 216,9 236,5"/></svg></h2>
-        <p class="hand" aria-hidden="true" style="font-size:21px;margin:14px 0 6px;transform:rotate(-1.6deg)">numbers are easy — the receipts are hard. click one ↓</p>
+        <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 4px;transform:rotate(-1.6deg)">numbers are easy — the receipts are hard. click one ↓</p>
       </div>
       <div class="doodle-box" aria-hidden="true" style="flex:0 0 auto;margin-top:4px">
         <span class="db-t">Receipt</span>
@@ -398,8 +398,8 @@
         <img src="./arpit-maheshwari.jpg" alt="Arpit Maheshwari, design leader" width="116" height="116" loading="lazy" style="width:116px;height:116px;border-radius:50%;object-fit:cover;border:1px solid var(--border);flex:0 0 auto" />
         <div style="flex:1 1 340px;min-width:0">
           <h3 class="section-title" style="margin-top:0">Arpit Maheshwari</h3>
-          <p class="u-body" style="margin:14px 0 18px">By Friday of week one I've read your evals and sat in on your customer calls; by launch, the interface I drew is the code I shipped. Fully remote from Indore — 4–5 working hours shared with US East every day.</p>
-          <p class="lead" style="margin:0 0 18px">I read the model at the eval layer. I shape what gets measured. I ship the front-end.</p>
+          <p class="u-body" style="margin:12px 0 16px">By Friday of week one I've read your evals and sat in on your customer calls; by launch, the interface I drew is the code I shipped. Fully remote from Indore — 4–5 working hours shared with US East every day.</p>
+          <p class="lead" style="margin:0 0 16px">I read the model at the eval layer. I shape what gets measured. I ship the front-end.</p>
           <p class="u-body" style="margin:0 0 20px">On my first accessibility project I spent a week with my monitor switched off, navigating by screen-reader — designing for someone who isn't you starts by becoming them. <a href="./case-studies/ptc.html#the-miss" data-cta="the-miss" data-location="who-youd-hire" style="color:var(--gold);text-decoration:none">That project started as my documented miss →</a></p>
           <p style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);line-height:1.6;margin:0"><span style="color:var(--gold)">Fully remote</span> &nbsp;·&nbsp; GMT+5:30 · US-East overlap</p>
         </div>
@@ -415,14 +415,14 @@
 <section class="section" aria-label="The trust trace: a model's score meets human doubt; our design turns it into action, and action into impact" style="padding-top:48px;padding-bottom:48px">
   <div class="section-inner">
     <p class="eyebrow">How to read the six cases below</p>
-    <h2 class="section-title" style="margin:0 0 10px">Every one of them runs the same four beats.</h2>
-    <p class="u-body" style="margin:0 0 34px;max-width:60ch">A model produces a score. A person doubts it. The design turns that doubt into an action they&rsquo;re willing to take &mdash; and the action shows up in the business. The cases differ in industry and stakes; the shape never changes.</p>
-    <div style="display:flex;align-items:center;justify-content:center;gap:clamp(10px,2.6vw,30px);flex-wrap:wrap" aria-hidden="true">
+    <h2 class="section-title" style="margin:0 0 8px">Every one of them runs the same four beats.</h2>
+    <p class="u-body" style="margin:0 0 32px;max-width:60ch">A model produces a score. A person doubts it. The design turns that doubt into an action they&rsquo;re willing to take &mdash; and the action shows up in the business. The cases differ in industry and stakes; the shape never changes.</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:clamp(8px,2.6vw,32px);flex-wrap:wrap" aria-hidden="true">
       <span style="text-align:center"><span class="lbl-ink-400" style="display:block">Score</span><span class="lbl-micro" style="display:block; margin-top:4px">model output</span></span>
       <svg class="scr" preserveAspectRatio="none" viewBox="0 0 64 20" style="position:static;width:52px;height:18px;flex:0 0 auto"><path d="M4,12 C20,7 40,13 56,9 M56,9 l-9,-3 M56,9 l-7,7" stroke-width="2"/></svg>
       <span style="text-align:center"><span class="lbl-ink-400" style="display:block">Doubt</span><span class="lbl-micro" style="display:block; margin-top:4px">human reality</span></span>
       <svg class="scr" preserveAspectRatio="none" viewBox="0 0 64 20" style="position:static;width:52px;height:18px;flex:0 0 auto"><path d="M4,9 C20,14 40,6 56,11 M56,11 l-9,-2 M56,11 l-6,6" stroke-width="2"/></svg>
-      <span style="text-align:center;position:relative;padding:17px 27px"><svg class="scr" preserveAspectRatio="none" viewBox="0 0 160 64" style="left:0;top:0;width:100%;height:100%"><path d="M12,32 C14,12 66,6 106,9 C146,12 154,24 150,38 C145,55 92,60 52,57 C18,54 6,44 12,28 C18,13 64,6 104,9" stroke-width="2.2" opacity=".85"/></svg><span class="lbl-eyebrow" style="display:block">Action</span><span class="lbl-micro" style="display:block; margin-top:4px">our design</span></span>
+      <span style="text-align:center;position:relative;padding:16px 24px"><svg class="scr" preserveAspectRatio="none" viewBox="0 0 160 64" style="left:0;top:0;width:100%;height:100%"><path d="M12,32 C14,12 66,6 106,9 C146,12 154,24 150,38 C145,55 92,60 52,57 C18,54 6,44 12,28 C18,13 64,6 104,9" stroke-width="2.2" opacity=".85"/></svg><span class="lbl-eyebrow" style="display:block">Action</span><span class="lbl-micro" style="display:block; margin-top:4px">our design</span></span>
       <svg class="scr" preserveAspectRatio="none" viewBox="0 0 64 20" style="position:static;width:52px;height:18px;flex:0 0 auto"><path d="M4,11 C20,8 40,12 56,8 M56,8 l-9,-1 M56,8 l-6,7" stroke-width="2"/></svg>
       <span style="text-align:center"><span class="lbl-ink-400" style="display:block">Impact</span><span class="lbl-micro" style="display:block; margin-top:4px">business result</span></span>
     </div>
@@ -434,7 +434,7 @@
     <h2 class="section-numeral-name">Selected Work</h2>
   </div>
   <h2 class="section-title" style="margin-top:0">The AI work is the headline. The rest is the range under it.</h2>
-  <p class="u-body" style="margin:18px 0 44px">Six products, one job running through all of them: get a professional to trust a system enough to act on it. The first three are AI &mdash; two of them LLMs reading unstructured documents. Two of the rest are public &mdash; PTC and O2 &mdash; which means you can check them yourself; OrgOS is under NDA. Where a client is under NDA I walk the real artifacts and numbers on a call.</p>
+  <p class="u-body" style="margin:16px 0 40px">Six products, one job running through all of them: get a professional to trust a system enough to act on it. The first three are AI &mdash; two of them LLMs reading unstructured documents. Two of the rest are public &mdash; PTC and O2 &mdash; which means you can check them yourself; OrgOS is under NDA. Where a client is under NDA I walk the real artifacts and numbers on a call.</p>
 
   <div class="ai-cases">
     <a href="./case-studies/adtech.html" class="ai-case reveal" data-cta="case" data-location="work-ai-1">
@@ -493,7 +493,7 @@
     </a>
   </div>
 
-  <p style="margin:6px 0 0 0"><a class="lbl-eyebrow" href="#contact" data-cta="send-role" data-location="nda-walkthrough" style="text-decoration:none; border-bottom:1px solid var(--gold-dark); padding-bottom:3px; transition:border-color .2s">Request a walk-through →</a></p>
+  <p style="margin:4px 0 0 0"><a class="lbl-eyebrow" href="#contact" data-cta="send-role" data-location="nda-walkthrough" style="text-decoration:none; border-bottom:1px solid var(--gold-dark); padding-bottom:3px; transition:border-color .2s">Request a walk-through →</a></p>
 
 </div></section>
 
@@ -504,65 +504,65 @@
 /* ===== Homepage LAYOUT helpers only — all type comes from the system
    (.eyebrow / .section-title / .card-title / .metric-num / .lead in styles.css) ===== */
 /* Proof (cream act) */
-.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(24px,3vw,44px);max-width:var(--inner-max);margin-top:44px}
+.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(24px,3vw,40px);max-width:var(--inner-max);margin-top:40px}
 .proof-cell{display:flex;flex-direction:column;align-items:flex-start;border-top:2px solid var(--ink);padding-top:20px;text-decoration:none;color:inherit;transition:opacity .25s}
 .proof-cell:hover{opacity:.62}
 .proof-cap{font-family:var(--ff-sans);font-size:var(--fs-ui);line-height:1.45;color:var(--ink);font-weight:500;margin-top:16px;max-width:24ch}
-.proof-meta{padding-bottom:14px;font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-top:11px;line-height:1.4}
+.proof-meta{padding-bottom:12px;font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-top:12px;line-height:1.4}
 /* inline receipts — the memorable interaction (canon-sourced content only) */
-.rcpt-btn{margin-top:auto;padding:9px 14px;border-color:var(--gold-dark)!important;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);background:transparent;border:1px solid var(--border-accent);border-radius:var(--radius);cursor:pointer;transition:background .15s,color .15s}
+.rcpt-btn{margin-top:auto;padding:8px 12px;border-color:var(--gold-dark)!important;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);background:transparent;border:1px solid var(--border-accent);border-radius:var(--radius);cursor:pointer;transition:background .15s,color .15s}
 .rcpt-btn:hover{background:var(--gold);color:var(--bg)}
 .rcpt-btn:focus-visible{outline:2px solid var(--gold-dark);outline-offset:2px}
 .rcpt-btn[aria-expanded="true"]{background:var(--gold);color:var(--bg);border-color:var(--gold)}
-.rcpt{margin-top:36px;border:1px solid var(--border-accent);border-radius:var(--radius);background:var(--bg-card);padding:26px 28px}
-.rcpt-h{font-family:var(--ff-display);font-weight:400;font-size:var(--fs-card);line-height:1.3;color:var(--ink);margin:0 0 18px}
+.rcpt{margin-top:32px;border:1px solid var(--border-accent);border-radius:var(--radius);background:var(--bg-card);padding:24px 24px}
+.rcpt-h{font-family:var(--ff-display);font-weight:400;font-size:var(--fs-card);line-height:1.3;color:var(--ink);margin:0 0 16px}
 .rcpt-h:focus{outline:none}
 .rcpt-rows{border-top:1px solid var(--border)}
-.rcpt-row{display:flex;flex-wrap:wrap;gap:6px 24px;padding:13px 0;border-bottom:1px solid var(--border);align-items:baseline}
+.rcpt-row{display:flex;flex-wrap:wrap;gap:4px 24px;padding:12px 0;border-bottom:1px solid var(--border);align-items:baseline}
 .rcpt-l{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dark);flex:0 0 200px}
 .rcpt-v{font-size:var(--fs-ui);color:var(--ink);line-height:1.65;flex:1 1 240px}
 /* handcraft objects — stickies, doodles, highlights (density pass, 2026-07-30) */
-.stick{position:relative;background:#F6EFD9;color:#161310;font-family:'Caveat',cursive;font-size:19px;line-height:1.3;box-shadow:0 10px 26px rgba(0,0,0,.38);padding:14px 18px;transform:rotate(2.2deg)}
+.stick{position:relative;background:#F6EFD9;color:#161310;font-family:'Caveat',cursive;font-size:19px;line-height:1.3;box-shadow:0 10px 26px rgba(0,0,0,.38);padding:12px 16px;transform:rotate(2.2deg)}
 .stick::before{content:'';position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-2.5deg);width:46px;height:14px;background:rgba(216,206,182,.85)}
 .stick u{text-decoration-thickness:2px;text-underline-offset:2px}
 .stick--kraft{background:#E0CFA8;transform:rotate(-1.6deg)}
-.doodle-box{border:2px solid var(--gold);padding:14px 20px;display:inline-block;transform:rotate(-1.6deg);position:relative;background:rgba(212,168,94,.04)}
+.doodle-box{border:2px solid var(--gold);padding:12px 20px;display:inline-block;transform:rotate(-1.6deg);position:relative;background:rgba(212,168,94,.04)}
 .doodle-box .db-t{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px}
-.doodle-box .db-i{font-family:'Caveat',cursive;font-size:17.5px;color:var(--ink);display:flex;gap:9px;align-items:center;line-height:1.45}
+.doodle-box .db-i{font-family:'Caveat',cursive;font-size:17.5px;color:var(--ink);display:flex;gap:8px;align-items:center;line-height:1.45}
 .doodle-box .db-i::before{content:'☑';font-size:12px;color:var(--gold)}
-.beats{display:flex;align-items:center;gap:6px;margin:18px 0 7px}
+.beats{display:flex;align-items:center;gap:4px;margin:16px 0 8px}
 .beat{flex:1;height:3px;background:rgba(212,168,94,.16);border-radius:2px}
 .beat.on{background:var(--gold);height:5px}
-.ai-case .beat-lbl{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 18px;flex:0 0 auto}
+.ai-case .beat-lbl{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 16px;flex:0 0 auto}
 .beat-lbl b{color:var(--gold);font-weight:500}
 .mk-ul{position:relative;display:inline-block}
 .mk-ul svg{position:absolute;left:-2%;bottom:-12px;width:104%;height:12px;overflow:visible}
 .mk-ul svg path{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;opacity:.75}
-.rcpt-more{display:inline-block;margin-top:18px;font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.04em;color:var(--gold-dark);text-decoration:none;border-bottom:1px solid var(--border-accent);padding-bottom:2px}
-@media (max-width:900px){ .proof-grid{grid-template-columns:repeat(2,1fr);gap:36px 28px} }
+.rcpt-more{display:inline-block;margin-top:16px;font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.04em;color:var(--gold-dark);text-decoration:none;border-bottom:1px solid var(--border-accent);padding-bottom:2px}
+@media (max-width:900px){ .proof-grid{grid-template-columns:repeat(2,1fr);gap:32px 24px} }
 @media (max-width:520px){ .proof-grid{grid-template-columns:1fr} }
 /* One-idea act — Act / Review / Ignore */
-.idea-sub{font-family:var(--ff-sans);font-size:var(--fs-body);line-height:1.7;color:var(--ink-muted);max-width:52ch;margin:18px 0 44px}
+.idea-sub{font-family:var(--ff-sans);font-size:var(--fs-body);line-height:1.7;color:var(--ink-muted);max-width:52ch;margin:16px 0 40px}
 .verbs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);max-width:1000px;margin:0 0 40px}
-.verb{border-top:2px solid var(--ink);padding-top:18px}
-.verb-tier{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.verb{border-top:2px solid var(--ink);padding-top:16px}
+.verb-tier{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
 .verb-word{font-family:var(--ff-display);font-weight:300;font-size:var(--fs-card);line-height:.98;letter-spacing:-.02em;color:var(--ink)}
-.verb-desc{font-family:var(--ff-sans);font-size:var(--fs-ui);line-height:1.55;color:var(--ink-muted);margin-top:14px;max-width:26ch}
-.idea-links{display:flex;gap:28px;flex-wrap:wrap;align-items:center}
+.verb-desc{font-family:var(--ff-sans);font-size:var(--fs-ui);line-height:1.55;color:var(--ink-muted);margin-top:12px;max-width:26ch}
+.idea-links{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
 .idea-link{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--border-accent);padding-bottom:3px;transition:border-color .2s}
 .idea-link:hover{border-color:var(--gold)}
-@media (max-width:640px){ .verbs{grid-template-columns:1fr;gap:28px} }
+@media (max-width:640px){ .verbs{grid-template-columns:1fr;gap:24px} }
 /* Selected Work — 3 AI headliners + range strip */
-.ai-cases{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:36px}
-.ai-case{text-decoration:none;color:inherit;display:flex;flex-direction:column;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;transition:border-color .3s,transform .3s}
+.ai-cases{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px}
+.ai-case{text-decoration:none;color:inherit;display:flex;flex-direction:column;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:border-color .3s,transform .3s}
 .ai-case:hover{border-color:var(--border-accent);transform:translateY(-4px)}
-.ai-case-head{display:flex;justify-content:space-between;align-items:baseline;min-height:46px;border-bottom:1px solid var(--gold-dark);padding-bottom:14px;margin-bottom:16px;gap:10px}
+.ai-case-head{display:flex;justify-content:space-between;align-items:baseline;min-height:46px;border-bottom:1px solid var(--gold-dark);padding-bottom:12px;margin-bottom:16px;gap:8px}
 .ai-case-kick{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
 .ai-case-num{font-family:var(--ff-display);font-size:var(--fs-metric-sm);font-weight:300;color:var(--gold);line-height:1;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums lining-nums}
 .ai-case .card-title{margin:0 0 8px}
 .ai-case>p{font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.6;margin:0 0 16px;flex:1}
 .ai-case .walk{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
-.range-strip{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:baseline;padding-top:22px;border-top:1px solid var(--border);margin-bottom:26px}
+.range-strip{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:baseline;padding-top:20px;border-top:1px solid var(--border);margin-bottom:24px}
 .range-strip .lbl{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-muted)}
 .range-strip a{font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--ink);text-decoration:none;border-bottom:1px solid var(--border-accent);padding-bottom:2px;transition:border-color .2s}
 .range-strip a:hover{border-color:var(--gold)}
@@ -581,7 +581,7 @@
   <div class="section-inner">
     <p class="eyebrow">The contract behind every screen I ship</p>
     <h2 class="section-title">A language model has no edges. So I draw them.</h2>
-    <p class="idea-sub" style="margin-bottom:14px">Ask one anything and it answers &mdash; fluently, in or out of its depth. That is the whole danger: a user&rsquo;s trust does not erode slowly, it dies in a single confident wrong answer. And most products bury their scope in a terms-of-service page and hope nobody tests it.</p>
+    <p class="idea-sub" style="margin-bottom:12px">Ask one anything and it answers &mdash; fluently, in or out of its depth. That is the whole danger: a user&rsquo;s trust does not erode slowly, it dies in a single confident wrong answer. And most products bury their scope in a terms-of-service page and hope nobody tests it.</p>
     <p class="idea-sub">So before launch I write a <em>capability contract</em> &mdash; a one-pager the whole team signs. What the system is for, stated narrowly. Where it taps out, named specifically enough that a person can plan around it. And what it hands back to a human when it does. Then it goes in the interface, at the point of use, where the work actually happens.</p>
     <div class="verbs">
       <div class="verb">
@@ -600,7 +600,7 @@
         <div class="verb-desc">A visible route to a person, designed with the care of the happy path. Never a silent, confident guess.</div>
       </div>
     </div>
-    <p class="idea-sub" style="margin:0 0 34px;max-width:58ch"><em>An honest &ldquo;I don&rsquo;t handle that&rdquo; is not a weakness. It is the thing that makes &ldquo;I do handle this&rdquo; believable.</em> A model that knows its own edges reads as a colleague; one that answers everything reads as a slot machine. Two rules I hold to: state the boundary <em>once</em>, where the user first meets the capability &mdash; a disclaimer on every screen reads as a product unsure of itself. And never write a contract you don&rsquo;t enforce, because a stated limit the system quietly exceeds burns more trust than saying nothing at all.</p>
+    <p class="idea-sub" style="margin:0 0 32px;max-width:58ch"><em>An honest &ldquo;I don&rsquo;t handle that&rdquo; is not a weakness. It is the thing that makes &ldquo;I do handle this&rdquo; believable.</em> A model that knows its own edges reads as a colleague; one that answers everything reads as a slot machine. Two rules I hold to: state the boundary <em>once</em>, where the user first meets the capability &mdash; a disclaimer on every screen reads as a product unsure of itself. And never write a contract you don&rsquo;t enforce, because a stated limit the system quietly exceeds burns more trust than saying nothing at all.</p>
     <div class="idea-links">
       <a href="./patterns/capability-contract.html" class="idea-link" data-cta="patterns-rule" data-location="idea-contract">Read the pattern &rarr;</a>
       <a href="./patterns/act-review-ignore.html" class="idea-link" data-cta="patterns-ari" data-location="idea-contract">The rule underneath it &mdash; Act / Review / Ignore &rarr;</a>
@@ -617,16 +617,16 @@
   <div class="section-body">
 
   <!-- Block A — Behavioral opener -->
-  <div style="max-width:780px;margin:40px auto 72px auto" class="reveal">
+  <div style="max-width:780px;margin:40px auto 64px auto" class="reveal">
     <h3 class="section-title" style="margin-top:0;line-height:1.32;max-width:40ch">
       Hire me and week one looks like this: I'm reading eval results before opening a design file, sitting silent on customer calls, and writing the diagnosis nobody assigned. By week two we're arguing productively.
     </h3>
   </div>
 
   <!-- Block A2 (promoted errata) — WHEN I'VE BEEN WRONG -->
-  <div style="max-width:880px;margin:0 auto 72px auto" class="reveal reveal-delay-1">
+  <div style="max-width:880px;margin:0 auto 64px auto" class="reveal reveal-delay-1">
     <div class="errata-block">
-      <p class="lbl-eyebrow" style="margin:0 0 18px 0">The errata — a time I was wrong</p>
+      <p class="lbl-eyebrow" style="margin:0 0 16px 0">The errata — a time I was wrong</p>
       <div style="display:flex;gap:clamp(20px,3.4vw,40px);align-items:flex-start;flex-wrap:wrap">
         <div style="flex:1 1 320px;min-width:0">
           <p style="font-family:var(--ff-display);font-weight:300;font-size:var(--fs-lead);line-height:1.6;color:var(--ink);margin:0 0 16px">
@@ -666,7 +666,7 @@
   </div>
 
   <!-- Block B — WHAT I OWN -->
-  <div style="max-width:880px;margin:0 auto 72px auto" class="reveal reveal-delay-1">
+  <div style="max-width:880px;margin:0 auto 64px auto" class="reveal reveal-delay-1">
     <p class="lbl-meta" style="margin:0 0 24px 0">What you're hiring me to own</p>
     <dl class="lead-dl">
       <dt>Human-in-the-loop design</dt>
@@ -681,7 +681,7 @@
   </div>
 
   <!-- Block C — HOW I PARTNER -->
-  <div style="max-width:880px;margin:0 auto 72px auto" class="reveal reveal-delay-2">
+  <div style="max-width:880px;margin:0 auto 64px auto" class="reveal reveal-delay-2">
     <p class="lbl-meta" style="margin:0 0 24px 0">How I work with engineering, product, and customers</p>
     <dl class="lead-dl">
       <dt>With engineering</dt>
@@ -696,7 +696,7 @@
   </div>
 
   <!-- Block E — WHAT I WON'T DO -->
-  <div style="max-width:880px;margin:0 auto 72px auto" class="reveal">
+  <div style="max-width:880px;margin:0 auto 64px auto" class="reveal">
     <p class="lbl-meta" style="margin:0 0 24px 0">Three things I'll refuse</p>
     <ul style="list-style:none;padding:0;margin:0;border-top:1px solid var(--border)">
       <li class="t-body-plain" style="padding:20px 0; border-bottom:1px solid var(--border)">Letting a score reach a user with no verb and no reasons attached. On the private-equity product I held the release until every claim could name its source and the model could say &ldquo;I&rsquo;m not sure&rdquo; out loud. It shipped weeks late, on purpose, and that is the call I would make again.</li>
@@ -711,27 +711,27 @@
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:20px">
 
       <figure class="card-col" style="background:var(--bg-card)">
-        <svg class="icon" style="width:22px;height:22px;color:var(--gold);opacity:.55;margin-bottom:14px" aria-hidden="true"><use href="#i-quote"/></svg>
+        <svg class="icon" style="width:22px;height:22px;color:var(--gold);opacity:.55;margin-bottom:12px" aria-hidden="true"><use href="#i-quote"/></svg>
         <blockquote class="t-serif-body" style="margin:0 0 20px 0; flex:1">Over the past four years at Talon, Arpit has been instrumental in shaping four distinct products from the ground up. His user-focused designs are remarkably intuitive yet adept at handling complex workflows… If you need a designer who excels at combining strategic vision with practical execution, Arpit is the person to call.</blockquote>
-        <figcaption style="border-top:1px solid var(--border);padding-top:14px"><span class="t-serif-16" style="display:block">Anant East</span><span class="lbl-eyebrow-tight" style="display:block; margin-top:4px">CTO at Talon Outdoor</span></figcaption>
+        <figcaption style="border-top:1px solid var(--border);padding-top:12px"><span class="t-serif-16" style="display:block">Anant East</span><span class="lbl-eyebrow-tight" style="display:block; margin-top:4px">CTO at Talon Outdoor</span></figcaption>
       </figure>
 
       <figure class="card-col" style="background:var(--bg-card)">
-        <svg class="icon" style="width:22px;height:22px;color:var(--gold);opacity:.55;margin-bottom:14px" aria-hidden="true"><use href="#i-quote"/></svg>
+        <svg class="icon" style="width:22px;height:22px;color:var(--gold);opacity:.55;margin-bottom:12px" aria-hidden="true"><use href="#i-quote"/></svg>
         <blockquote class="t-serif-body" style="margin:0 0 20px 0; flex:1">Arpit has worked with me for years and I value his honesty and hard work. He's been an integral part of my staff… involved in all facets of the team, from design to development to hiring and onboarding of new members.</blockquote>
-        <figcaption style="border-top:1px solid var(--border);padding-top:14px"><span class="t-serif-16" style="display:block">Ryan Kershner</span><span class="lbl-eyebrow-tight" style="display:block; margin-top:4px">UX Design Leader · managed Arpit directly</span></figcaption>
+        <figcaption style="border-top:1px solid var(--border);padding-top:12px"><span class="t-serif-16" style="display:block">Ryan Kershner</span><span class="lbl-eyebrow-tight" style="display:block; margin-top:4px">UX Design Leader · managed Arpit directly</span></figcaption>
       </figure>
 
       <figure class="card-col" style="background:var(--bg-card)">
-        <svg class="icon" style="width:22px;height:22px;color:var(--gold);opacity:.55;margin-bottom:14px" aria-hidden="true"><use href="#i-quote"/></svg>
+        <svg class="icon" style="width:22px;height:22px;color:var(--gold);opacity:.55;margin-bottom:12px" aria-hidden="true"><use href="#i-quote"/></svg>
         <blockquote class="t-serif-body" style="margin:0 0 20px 0; flex:1">Arpit teams up with designers very well, not only does he flawlessly execute the UI implementations but he pushes back on design decisions using his UX expertise… I'd recommend Arpit to any team looking to improve their final product.</blockquote>
-        <figcaption style="border-top:1px solid var(--border);padding-top:14px"><span class="t-serif-16" style="display:block">Katie Alterio</span><span class="lbl-eyebrow-tight" style="display:block; margin-top:4px">Product Designer · same team</span></figcaption>
+        <figcaption style="border-top:1px solid var(--border);padding-top:12px"><span class="t-serif-16" style="display:block">Katie Alterio</span><span class="lbl-eyebrow-tight" style="display:block; margin-top:4px">Product Designer · same team</span></figcaption>
       </figure>
 
       <figure class="card-col" style="background:var(--bg-card)">
-        <svg class="icon" style="width:22px;height:22px;color:var(--gold);opacity:.55;margin-bottom:14px" aria-hidden="true"><use href="#i-quote"></use></svg>
+        <svg class="icon" style="width:22px;height:22px;color:var(--gold);opacity:.55;margin-bottom:12px" aria-hidden="true"><use href="#i-quote"></use></svg>
         <blockquote class="t-serif-body" style="margin:0 0 20px 0; flex:1">Arpit consistently demonstrated exceptional speed, creativity, and attention to detail&hellip; What stood out most was his ability to present multiple design options along with clear pros and cons, which made it much easier for different stakeholders to make informed decisions and align quickly.</blockquote>
-        <figcaption style="border-top:1px solid var(--border);padding-top:14px"><span class="t-serif-16" style="display:block">Sanjesh Ananda</span><span class="lbl-eyebrow-tight" style="display:block; margin-top:4px">Software Engineering Leader &middot; built the AdTech platform with Arpit</span></figcaption>
+        <figcaption style="border-top:1px solid var(--border);padding-top:12px"><span class="t-serif-16" style="display:block">Sanjesh Ananda</span><span class="lbl-eyebrow-tight" style="display:block; margin-top:4px">Software Engineering Leader &middot; built the AdTech platform with Arpit</span></figcaption>
       </figure>
 
     </div>
@@ -743,18 +743,18 @@
 <!-- The Trust Trace — the whole thesis as one authored line -->
 
 <!-- Lab — the patterns above, as tested code -->
-<section id="lab" class="section" style="padding-top:56px;padding-bottom:56px">
+<section id="lab" class="section" style="padding-top:48px;padding-bottom:48px">
   <div class="section-inner">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;border:1px solid var(--border-accent);border-radius:var(--radius);background:var(--bg-card);padding:32px 36px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;border:1px solid var(--border-accent);border-radius:var(--radius);background:var(--bg-card);padding:32px 32px">
       <div style="flex:1 1 420px;min-width:0">
         <p class="eyebrow" style="margin:0 0 12px 0">Proof, not philosophy</p>
         <h2 class="section-title" style="margin:0 0 12px 0">The same rules, as running code</h2>
         <p class="u-body" style="margin:0;color:var(--ink-muted)">Four of these patterns ship as <span style="font-family:var(--ff-mono);font-size:var(--fs-ui);color:var(--gold)">hitl.js</span> — a zero-dependency module with the calibration math included, and 42 tests that run in your browser. Plus a linter for the shape of an AI answer, and an honest teardown of how this site is built.</p>
       </div>
-      <div class="stick stick--kraft" style="flex:0 0 auto;max-width:230px;padding:18px 22px">
+      <div class="stick stick--kraft" style="flex:0 0 auto;max-width:230px;padding:16px 20px">
         <p style="margin:0">Open-source <u>with tests.</u><br>See how I think,<br>not just what I ship.</p>
-        <div style="font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;color:#3F3A33;margin-top:10px">0 dependencies · 42 tests · MIT</div>
-        <a href="lab/" data-cta="lab-band" data-location="homepage" style="font-family:var(--ff-mono);font-size:12px;letter-spacing:.08em;color:#161310;text-decoration:underline;text-underline-offset:3px;display:inline-block;margin-top:10px">→ THE LAB</a>
+        <div style="font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;color:#3F3A33;margin-top:8px">0 dependencies · 42 tests · MIT</div>
+        <a href="lab/" data-cta="lab-band" data-location="homepage" style="font-family:var(--ff-mono);font-size:12px;letter-spacing:.08em;color:#161310;text-decoration:underline;text-underline-offset:3px;display:inline-block;margin-top:8px">→ THE LAB</a>
       </div>
     </div>
   </div>
@@ -767,8 +767,8 @@
   </div>
   <div class="section-body">
   <div style="max-width:760px;margin:0" class="reveal">
-    <h3 class="section-title" style="margin-top:0;line-height:1.32;max-width:40ch;margin-bottom:28px">Every product is a series of bets someone else has to accept. The method exists to make each bet smaller, better-evidenced, and easier to say yes to.</h3>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:20px;margin:0 0 28px 0">
+    <h3 class="section-title" style="margin-top:0;line-height:1.32;max-width:40ch;margin-bottom:24px">Every product is a series of bets someone else has to accept. The method exists to make each bet smaller, better-evidenced, and easier to say yes to.</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:20px;margin:0 0 24px 0">
       <div style="border-left:2px solid var(--gold-dark);padding-left:16px">
         <div class="lbl-micro-eyebrow" style="margin-bottom:8px">Act I · The wager</div>
         <p class="t-ui-muted-165" style="margin:0">Desirable · feasible · viable — the overlap is the bet worth making. At PTC: four of five products killed to fund the one that worked.</p>
@@ -791,7 +791,7 @@
   <div class="section-numeral">
     <h2 class="section-numeral-name">Writing</h2>
   </div>
-  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:60px;margin-top:48px">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:64px;margin-top:48px">
     <p class="u-body" style="margin:0;max-width:48ch">Three recent pieces from <a class="t-em-gold" href="https://arpitmaheshwari.substack.com" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="thoughts-header" style="text-decoration:none">Human in the Loop</a>, my newsletter on making AI products people actually act on.</p>
     <a class="lbl-eyebrow" href="https://arpitmaheshwari.substack.com/archive" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="thoughts-header-archive" style="text-decoration:none; border-bottom:1px solid var(--gold-dark); padding-bottom:3px; white-space:nowrap; transition:border-color .2s">More on Human in the Loop →</a>
   </div>
@@ -806,38 +806,38 @@
   <div class="section-numeral">
     <h2 class="section-numeral-name">Contact</h2>
   </div>
-  <div class="contact-grid reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(36px,5vw,64px);align-items:start;margin-top:40px">
+  <div class="contact-grid reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(32px,5vw,64px);align-items:start;margin-top:40px">
     <div>
-      <h3 class="section-title" style="margin:0 0 18px 0">One seat. Full-time. Yours to offer.</h3>
-      <p class="u-body" style="margin:0 0 28px 0">I'm looking for one seat: founding product &amp; design lead at an AI product company of 5–40 people — or a staff / director role where human-in-the-loop design is the actual job description. Fully remote from GMT+5:30 with 4–5 hours of daily US East overlap. Available — 4 weeks' notice.</p>
+      <h3 class="section-title" style="margin:0 0 16px 0">One seat. Full-time. Yours to offer.</h3>
+      <p class="u-body" style="margin:0 0 24px 0">I'm looking for one seat: founding product &amp; design lead at an AI product company of 5–40 people — or a staff / director role where human-in-the-loop design is the actual job description. Fully remote from GMT+5:30 with 4–5 hours of daily US East overlap. Available — 4 weeks' notice.</p>
       <div style="margin:0 0 4px">
-        <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="contact-primary" style="display:inline-flex;align-items:center;gap:10px;padding:16px 30px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:.03em;border-radius:2px;text-decoration:none;transition:background .3s,transform .2s" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Book 30 minutes <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-        <p style="font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7;margin:18px 0 0">A real conversation, no pitch deck. If you would rather read first: the <a href="./hire/" data-cta="resume" data-location="contact-quiet" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark)">one-page hiring brief</a>, the <a href="./patterns/" data-cta="patterns" data-location="contact-quiet" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark)">pattern library</a>, or my <a href="./screen/" data-cta="screen" data-location="contact-quiet" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark)">technical screen, already answered</a>.</p>
+        <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="contact-primary" style="display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:var(--gold);color:var(--bg);font-family:var(--ff-sans);font-weight:600;font-size:14px;letter-spacing:.03em;border-radius:2px;text-decoration:none;transition:background .3s,transform .2s" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Book 30 minutes <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        <p style="font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7;margin:16px 0 0">A real conversation, no pitch deck. If you would rather read first: the <a href="./hire/" data-cta="resume" data-location="contact-quiet" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark)">one-page hiring brief</a>, the <a href="./patterns/" data-cta="patterns" data-location="contact-quiet" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark)">pattern library</a>, or my <a href="./screen/" data-cta="screen" data-location="contact-quiet" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark)">technical screen, already answered</a>.</p>
       </div>
-      <p style="font-size:14px;color:var(--ink-muted);margin:18px 0 0 0">Prefer email? <a id="em-l" href="#" data-cta="email" data-location="contact" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark);padding-bottom:2px">use the form or the call link</a></p>
+      <p style="font-size:14px;color:var(--ink-muted);margin:16px 0 0 0">Prefer email? <a id="em-l" href="#" data-cta="email" data-location="contact" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark);padding-bottom:2px">use the form or the call link</a></p>
       <script>(function(){var e=document.getElementById('em-l');e.textContent='write to me directly \u2192';e.addEventListener('click',function(){var u='maheshwari.arpit'+'88',d='gmail.com';this.href='mailto:'+u+'@'+d;});})();</script>
 
-      <div style="display:flex;align-items:center;gap:16px;margin-top:36px;padding-top:24px;border-top:1px solid var(--border)">
+      <div style="display:flex;align-items:center;gap:16px;margin-top:32px;padding-top:24px;border-top:1px solid var(--border)">
         <img src="./arpit-maheshwari.jpg" alt="" width="56" height="56" loading="lazy" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:1px solid var(--border);flex:0 0 auto">
-        <p style="font-family:var(--ff-display);font-style:italic;font-size:16px;line-height:1.55;color:var(--ink-muted);margin:0;max-width:42ch">No portfolio survives the first real week on the job. This one is just here to earn it.<span class="hand" style="display:block;font-size:30px;margin-top:6px;transform:rotate(-2deg)">— Arpit</span></p>
+        <p style="font-family:var(--ff-display);font-style:italic;font-size:16px;line-height:1.55;color:var(--ink-muted);margin:0;max-width:42ch">No portfolio survives the first real week on the job. This one is just here to earn it.<span class="hand" style="display:block;font-size:30px;margin-top:4px;transform:rotate(-2deg)">— Arpit</span></p>
       </div>
     </div>
     <div>
       <form id="contact-form" action="https://formspree.io/f/xpqednyy" method="POST" style="display:flex;flex-direction:column;gap:12px">
         <input type="hidden" name="_subject" value="Hiring Arpit Maheshwari — role inquiry">
         <label for="contact-email" class="visually-hidden">Your email</label>
-        <input class="t-sans-ui-ink" type="email" id="contact-email" name="email" required placeholder="you@company.com" style="padding:14px 16px; background:var(--bg-card); border:1px solid var(--border); border-radius:2px">
+        <input class="t-sans-ui-ink" type="email" id="contact-email" name="email" required placeholder="you@company.com" style="padding:12px 16px; background:var(--bg-card); border:1px solid var(--border); border-radius:2px">
         <label for="contact-role" class="visually-hidden">Link to the role or your company (optional)</label>
-        <input class="t-sans-ui-ink" type="text" id="contact-role" name="role" placeholder="Link to the role or your company (optional)" style="padding:14px 16px; background:var(--bg-card); border:1px solid var(--border); border-radius:2px">
+        <input class="t-sans-ui-ink" type="text" id="contact-role" name="role" placeholder="Link to the role or your company (optional)" style="padding:12px 16px; background:var(--bg-card); border:1px solid var(--border); border-radius:2px">
         <label for="contact-message" class="visually-hidden">A line about the role you're hiring for and the stage you're at</label>
-        <textarea class="t-sans-ui-ink" id="contact-message" name="message" rows="3" placeholder="The role you're hiring for, and the stage you're at" style="padding:14px 16px; background:var(--bg-card); border:1px solid var(--border); border-radius:2px; resize:vertical"></textarea>
-        <button class="btn-label" type="submit" data-cta="send-role" data-location="contact-primary" style="display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:18px 36px; background:var(--gold); border:none; border-radius:2px; cursor:pointer; transition:background 0.3s,transform 0.2s" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Send me the role <svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+        <textarea class="t-sans-ui-ink" id="contact-message" name="message" rows="3" placeholder="The role you're hiring for, and the stage you're at" style="padding:12px 16px; background:var(--bg-card); border:1px solid var(--border); border-radius:2px; resize:vertical"></textarea>
+        <button class="btn-label" type="submit" data-cta="send-role" data-location="contact-primary" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:16px 32px; background:var(--gold); border:none; border-radius:2px; cursor:pointer; transition:background 0.3s,transform 0.2s" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Send me the role <svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
       </form>
-      <p style="font-size:13px;color:var(--ink-muted);margin:14px 0 0 0">I reply within ~48 hours.</p>
-      <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin:22px 0 0 0">Not hiring but building something in AI? The <a href="#patterns" style="color:var(--gold);text-decoration:none">patterns library</a> and the <a href="./resources/ai-design-checklist.html" style="color:var(--gold);text-decoration:none">founder checklist</a> are free — take them.</p>
+      <p style="font-size:13px;color:var(--ink-muted);margin:12px 0 0 0">I reply within ~48 hours.</p>
+      <p style="font-size:14px;color:var(--ink-muted);line-height:1.7;margin:20px 0 0 0">Not hiring but building something in AI? The <a href="#patterns" style="color:var(--gold);text-decoration:none">patterns library</a> and the <a href="./resources/ai-design-checklist.html" style="color:var(--gold);text-decoration:none">founder checklist</a> are free — take them.</p>
     </div>
   </div>
-  <div style="margin-top:56px;padding-top:32px;border-top:1px solid var(--border);display:flex;gap:24px;justify-content:center;flex-wrap:wrap">
+  <div style="margin-top:48px;padding-top:32px;border-top:1px solid var(--border);display:flex;gap:24px;justify-content:center;flex-wrap:wrap">
     <a class="row-ic-sm" href="https://linkedin.com/in/arpitmaheshwariprofile" target="_blank" rel="noopener noreferrer" data-cta="linkedin" data-location="contact-footer" style="font-family:var(--ff-mono); font-size:var(--fs-eyebrow); letter-spacing:.08em; text-transform:uppercase; color:var(--ink-dim); transition:color 0.2s; text-decoration:none" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-dim)'"><svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-linkedin"/></svg> LinkedIn</a>
     <a class="row-ic-sm" href="https://x.com/arp_maheshwari" target="_blank" rel="noopener noreferrer" data-cta="twitter" data-location="contact-footer" style="font-family:var(--ff-mono); font-size:var(--fs-eyebrow); letter-spacing:.08em; text-transform:uppercase; color:var(--ink-dim); transition:color 0.2s; text-decoration:none" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-dim)'"><svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-external"/></svg> X / Twitter</a>
   </div>
@@ -1054,7 +1054,7 @@ if (contactForm) {
     if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: 'send-role', location: 'contact-submit' });
     const succeed = () => {
       contactForm.innerHTML = '<div role="status" aria-live="polite" style="padding:24px 20px;background:var(--bg-card);border:1px solid var(--gold-dark);border-radius:4px">' +
-        '<p style="font-family:var(--ff-display);font-size:22px;font-weight:300;color:var(--ink);margin:0 0 6px 0">Got it — thank you.</p>' +
+        '<p style="font-family:var(--ff-display);font-size:22px;font-weight:300;color:var(--ink);margin:0 0 4px 0">Got it — thank you.</p>' +
         '<p style="font-size:14px;color:var(--ink-muted);line-height:1.65;margin:0">I reply within ~48 hours. If it\'s time-sensitive, book a call just above.</p></div>';
     };
     const fail = () => {

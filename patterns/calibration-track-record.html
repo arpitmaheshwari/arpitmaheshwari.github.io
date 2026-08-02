@@ -50,7 +50,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p37">
+<link rel="stylesheet" href="../styles.css?v=p39">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -70,11 +70,11 @@
   <div style="max-width:var(--measure);margin:0 auto">
     <div class="meta-row">
       <h1 class="t-hero" style="margin:0; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual">Calibration &amp; Track Record</h1>
-      <span class="lbl-badge-ink" style="padding:6px 12px; border-radius:4px; background-color:var(--copper); white-space:nowrap">In production</span>
+      <span class="lbl-badge-ink" style="padding:4px 12px; border-radius:4px; background-color:var(--copper); white-space:nowrap">In production</span>
     </div>
     <p class="lbl-cap">AI Design · Earned trust · Last updated June 2026</p>
     <p class="lbl-cap" style="margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
-    <p class="hand" aria-hidden="true" style="font-size:21px;margin:14px 0 0;transform:rotate(-1.6deg)">confidence with a memory</p>
+    <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 0;transform:rotate(-1.6deg)">confidence with a memory</p>
   </div>
 </div>
 
@@ -116,11 +116,11 @@
   <section style="margin-bottom:64px">
     <h2 class="section-title" style="margin:0 0 24px;max-width:none">Implementation Checklist</h2>
     <ul class="u-body" style="padding-left:24px">
-      <li style="margin-bottom:10px">Show the model's historical hit rate beside its current confidence.</li>
-      <li style="margin-bottom:10px">Segment accuracy by case type and confidence band, not one global average.</li>
-      <li style="margin-bottom:10px">Use a reliability view so over/under-confidence is visible at a glance.</li>
-      <li style="margin-bottom:10px">Let the history accumulate in the open; don't silently reset on retrain.</li>
-      <li style="margin-bottom:10px">Check: can a user tell where the model's confidence can be trusted, and where not?</li>
+      <li style="margin-bottom:8px">Show the model's historical hit rate beside its current confidence.</li>
+      <li style="margin-bottom:8px">Segment accuracy by case type and confidence band, not one global average.</li>
+      <li style="margin-bottom:8px">Use a reliability view so over/under-confidence is visible at a glance.</li>
+      <li style="margin-bottom:8px">Let the history accumulate in the open; don't silently reset on retrain.</li>
+      <li style="margin-bottom:8px">Check: can a user tell where the model's confidence can be trusted, and where not?</li>
     </ul>
   </section>
   <section style="margin-bottom:64px">
@@ -131,10 +131,10 @@
           <tr style="border-bottom:1px solid var(--border)"><th class="lbl-ink" style="text-align:left; padding:8px 12px">Choice</th><th class="lbl-ink" style="text-align:left; padding:8px 12px">Best For</th><th class="lbl-ink" style="text-align:left; padding:8px 12px">Trade-off</th></tr>
         </thead>
         <tbody>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong>Global hit rate</strong></td><td style="padding:10px 12px">A single, simple trust signal</td><td style="padding:10px 12px">Averages away the cases where the model is reliably wrong</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong>Per-case-type record</strong></td><td style="padding:10px 12px">Experts who know the domain's segments</td><td style="padding:10px 12px">More to render; needs enough history per segment</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong>Rolling window (30–90d)</strong></td><td style="padding:10px 12px">Models that retrain often</td><td style="padding:10px 12px">Short windows swing; long ones hide recent drift</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 12px"><strong>Persistent across retrains</strong></td><td style="padding:10px 12px">Long-term trust; the record is the product</td><td style="padding:10px 12px">A bad release is visible to everyone — by design</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:8px 12px"><strong>Global hit rate</strong></td><td style="padding:8px 12px">A single, simple trust signal</td><td style="padding:8px 12px">Averages away the cases where the model is reliably wrong</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:8px 12px"><strong>Per-case-type record</strong></td><td style="padding:8px 12px">Experts who know the domain's segments</td><td style="padding:8px 12px">More to render; needs enough history per segment</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:8px 12px"><strong>Rolling window (30–90d)</strong></td><td style="padding:8px 12px">Models that retrain often</td><td style="padding:8px 12px">Short windows swing; long ones hide recent drift</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:8px 12px"><strong>Persistent across retrains</strong></td><td style="padding:8px 12px">Long-term trust; the record is the product</td><td style="padding:8px 12px">A bad release is visible to everyone — by design</td></tr>
         </tbody>
       </table>
     </div>
@@ -164,7 +164,7 @@
     <a class="lbl-badge-gold btn-a-ghost" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="background:transparent; text-decoration:none; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
   </div>
 <section class="measure-t">
-    <div style="border-top:1px solid var(--border);padding-top:28px">
+    <div style="border-top:1px solid var(--border);padding-top:24px">
       <div class="eyebrow" style="margin-bottom:12px">Limits — when NOT to use this</div>
       <p class="u-body" style="margin:0">A track record needs history — a young product showing three data points as a 'record' is costume jewelry. Wait until the sample is honest, and never reset the record silently when the model changes; a visible break in the line is more credible than an unbroken lie.</p>
     </div>

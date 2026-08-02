@@ -70,7 +70,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p39">
+<link rel="stylesheet" href="../styles.css?v=p41">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -91,7 +91,7 @@
     <p class="eyebrow" style="margin:0 0 20px 0">The Field Guide to Trust</p>
     <h1 class="t-hero" style="margin:0 0 20px 0; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual">AI design patterns that ran in production</h1>
     <p class="lead" style="font-style:italic;margin:0 0 20px 0;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:oldstyle-nums proportional-nums">A design system for trusting and governing AI agents. Everything in it ran in production, failed somewhere specific, and came back stronger — the tradeoffs are written down because I paid for them once already.</p>
-    <p class="hand" aria-hidden="true" style="font-size:21px;margin:14px 0 0;transform:rotate(-1.6deg)">shipped, broke, fixed — in that order</p>
+    <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 0;transform:rotate(-1.6deg)">shipped, broke, fixed — in that order</p>
     <p class="lbl-cap" style="margin:0">Library v1.1 · the rule + 8 patterns · last updated June 2026 · free to use, attribution appreciated</p>
   </div>
 </div>
@@ -100,7 +100,7 @@
 
   <a href="./act-review-ignore.html" style="display:block;padding:32px;border:1px solid var(--gold-dark);border-left:3px solid var(--gold);border-radius:4px;background:rgba(212,168,94,0.04);text-decoration:none;color:inherit;margin-bottom:24px;transition:border-color 0.3s,transform 0.3s" onmouseover="this.style.borderColor='var(--gold)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--gold-dark)';this.style.borderLeftColor='var(--gold)';this.style.transform='translateY(0)'">
     <img class="framed-blk" src="../assets/visuals/pattern-act-review-ignore.svg" alt="" loading="lazy" width="1280" height="400" style="height:auto">
-    <div class="eyebrow" style="margin-bottom:14px">The rule the patterns serve</div>
+    <div class="eyebrow" style="margin-bottom:12px">The rule the patterns serve</div>
     <h2 class="section-title" style="margin:0 0 12px 0">The Act / Review / Ignore rule</h2>
     <p class="t-ui-muted-175" style="margin:0 0 16px 0; max-width:var(--measure)">One score, one action. An unexplained 87% is a shrug with decimals — it tells the user how the model feels and nothing about what to do. Every confidence surface I ship resolves to exactly one of three verbs: act, review, or ignore.</p>
     <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
@@ -109,8 +109,8 @@
     </div>
   </a>
 
-  <a href="../lab/hitl.html" data-cta="lab-from-patterns" data-location="patterns-index" style="display:block;padding:26px 28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);text-decoration:none;color:inherit;margin-bottom:60px;transition:border-color .25s">
-    <div class="eyebrow" style="margin-bottom:14px">The same rules, as running code</div>
+  <a href="../lab/hitl.html" data-cta="lab-from-patterns" data-location="patterns-index" style="display:block;padding:24px 24px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);text-decoration:none;color:inherit;margin-bottom:64px;transition:border-color .25s">
+    <div class="eyebrow" style="margin-bottom:12px">The same rules, as running code</div>
     <h2 class="section-title" style="margin:0 0 12px 0">hitl.js</h2>
     <p class="t-ui-muted-175" style="margin:0 0 16px 0; max-width:var(--measure)">Four of these patterns exist as a zero-dependency JavaScript module, so the decisions can be tested instead of debated: which verb a score becomes, whether its confidence has earned belief (Brier score, expected calibration error), when to refuse to answer, and what to show while the model thinks. Forty-two assertions, running in your browser.</p>
     <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
@@ -119,7 +119,7 @@
     </div>
   </a>
 
-  <div class="philosophy-cards" style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:60px">
+  <div class="philosophy-cards" style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:64px">
     <a class="card-p28" href="./confidence-scores.html" style="background:var(--bg-card); transition:border-color 0.3s,transform 0.3s; text-decoration:none; color:inherit" onmouseover="this.style.borderColor='var(--border-accent)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
       <img class="framed-blk" src="../assets/visuals/pattern-confidence.svg" alt="" loading="lazy" width="1280" height="400" style="height:auto">
       <h2 class="card-title" style="margin-bottom:12px">Confidence Score Patterns</h2>
@@ -171,15 +171,15 @@
   </div>
 
   <section style="padding:32px;background:var(--bg-card);border:1px solid var(--border);border-radius:4px;margin-bottom:24px">
-    <div style="border:1px solid var(--border);border-radius:4px;padding:24px 28px;margin:0 0 40px 0">
-    <div class="eyebrow" style="margin-bottom:14px">Prior art, named</div>
+    <div style="border:1px solid var(--border);border-radius:4px;padding:24px 24px;margin:0 0 40px 0">
+    <div class="eyebrow" style="margin-bottom:12px">Prior art, named</div>
     <p class="t-ui-muted-loose" style="margin:0 0 12px 0; max-width:var(--measure)">Google's <a href="https://pair.withgoogle.com/guidebook/" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none">PAIR guidebook</a> and Microsoft's <a href="https://www.microsoft.com/en-us/haxtoolkit/" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none">HAX toolkit</a> map this territory from the research side — read them; they're excellent, and several patterns here have cousins there. This library doesn't compete with the lab. It's the production-side report: what those guidelines don't tell you about week three, when users have stopped reading the explanation chips and started gaming the confidence threshold.</p>
     <p class="t-ui-muted-loose" style="margin:0; max-width:var(--measure)">What's distinctly mine: the <b style="color:var(--ink)">Act / Review / Ignore rule</b> — a score never reaches the screen without resolving to a verb; abstention treated as a shippable feature, not an error state; the override captured as structured data the system learns from; and every pattern here priced by a product that actually shipped. Each page also says when <i>not</i> to use the pattern — the discipline that separates a reference from a sales pitch.</p>
   </div>
   <div class="eyebrow" style="margin-bottom:16px">Cite this library</div>
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
       <p id="citeLine" style="font-family:var(--ff-mono);font-size:var(--fs-caption);line-height:1.8;color:var(--ink);margin:0;flex:1;min-width:260px">Maheshwari, A. (2026). <em>A Field Guide to Trust: AI Design Patterns.</em> arpitmaheshwari.com/patterns/.</p>
-      <button class="lbl-eyebrow-500" id="copyCiteBtn" data-cta="copy-citation" data-location="patterns-index" style="padding:6px 14px; background:transparent; border:1px solid var(--gold-dark); border-radius:2px; cursor:pointer; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Copy</button>
+      <button class="lbl-eyebrow-500" id="copyCiteBtn" data-cta="copy-citation" data-location="patterns-index" style="padding:4px 12px; background:transparent; border:1px solid var(--gold-dark); border-radius:2px; cursor:pointer; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Copy</button>
     </div>
     <p class="t-ui-muted" style="margin:20px 0 0 0">Prefer it as a book? The same patterns run as live demos in the <a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="patterns-cite" style="color:var(--gold);text-decoration:none">field guide</a> →</p>
   </section>
