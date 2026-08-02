@@ -50,7 +50,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p30">
+<link rel="stylesheet" href="../styles.css?v=p33">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -60,7 +60,7 @@
 </svg>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span class="nav-name">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns" aria-current="true">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
@@ -69,11 +69,11 @@
 <div style="padding:104px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
   <div style="max-width:var(--measure);margin:0 auto">
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap">
-      <h1 style="font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;line-height:1.15;color:var(--ink);margin:0;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.02em">The Capability Contract</h1>
-      <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">In production</span>
+      <h1 class="t-hero" style="margin:0; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual">The Capability Contract</h1>
+      <span class="lbl-badge-ink" style="padding:6px 12px; border-radius:4px; background-color:var(--copper); white-space:nowrap">In production</span>
     </div>
-    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:.08em;text-transform:uppercase">AI Design · Scope &amp; limits · Last updated June 2026</p>
-    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:.08em;text-transform:uppercase;margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
+    <p class="lbl-cap">AI Design · Scope &amp; limits · Last updated June 2026</p>
+    <p class="lbl-cap" style="margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
     <p class="hand" aria-hidden="true" style="font-size:21px;margin:14px 0 0;transform:rotate(-1.6deg)">say what the system can’t do — out loud</p>
   </div>
 </div>
@@ -131,7 +131,7 @@
     <div class="eyebrow" style="margin-bottom:12px">The Template — Copy It Into Your PRD</div>
     <p class="u-body" style="margin-bottom:20px">A capability contract is a one-pager the whole team signs before launch. Fill in the brackets; delete nothing without deciding it.</p>
     <div style="position:relative">
-      <button id="copyContractBtn" data-cta="copy-template" data-location="pattern-template" style="position:absolute;top:12px;right:12px;padding:6px 14px;background:var(--bg);border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='var(--bg)';this.style.color='var(--gold)'">Copy</button>
+      <button class="lbl-eyebrow-500" id="copyContractBtn" data-cta="copy-template" data-location="pattern-template" style="position:absolute; top:12px; right:12px; padding:6px 14px; background:var(--bg); border:1px solid var(--gold-dark); border-radius:2px; cursor:pointer; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='var(--bg)';this.style.color='var(--gold)'">Copy</button>
       <pre id="contractTemplate" style="background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:28px 24px;margin:0;font-family:var(--ff-mono);font-size:var(--fs-caption);line-height:1.8;color:var(--ink-muted);overflow-x:auto">CAPABILITY CONTRACT — [product / feature]
 Owner: [name] · Review date: [quarterly]
 
@@ -155,7 +155,7 @@ WHAT WE TELL THE USER — in the interface, not the docs:
 
   <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:64px">
     <h3 class="card-title" style="margin-bottom:16px">See This Pattern In Action</h3>
-    <ul style="font-size:var(--fs-caption);color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
+    <ul class="t-cap-loose" style="margin-bottom:16px; padding-left:24px">
       <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> every call resolved to act, review, or ignore — "ignore" was the model admitting it had nothing worth saying.</li>
       <li style="margin-bottom:12px"><strong><a href="../case-studies/fintech.html" style="color:var(--gold);text-decoration:none">AI-Assisted Due Diligence</a>:</strong> the model declared the deals it wouldn't score, up front, instead of bluffing through them.</li>
     </ul>
@@ -166,14 +166,14 @@ WHAT WE TELL THE USER — in the interface, not the docs:
     <div class="eyebrow" style="margin-bottom:12px">Get AI design patterns in your inbox</div>
     <p class="u-ui" style="margin-bottom:20px">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
     <form action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank" style="display:flex;gap:8px;flex-wrap:wrap">
-      <input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink);font-family:var(--ff-sans);font-size:var(--fs-ui)">
-      <button type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="padding:14px 24px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s">Subscribe</button>
+      <input class="t-sans-ui" type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1; min-width:200px; padding:14px 16px; background:var(--bg); border:1px solid var(--border); border-radius:2px">
+      <button class="lbl-eyebrow-500" type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="padding:14px 24px; background:transparent; border:1px solid var(--gold-dark); border-radius:2px; cursor:pointer; transition:background 0.3s,color 0.3s">Subscribe</button>
     </form>
   </section>
 
   <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:48px">
-    <a href="./calibration-track-record.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / Calibration &amp; Track Record →</a>
-    <a href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
+    <a class="lbl-badge-bg" href="./calibration-track-record.html" style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; background:var(--gold); border-radius:2px; text-decoration:none; transition:background 0.3s" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / Calibration &amp; Track Record →</a>
+    <a class="lbl-badge-gold" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; background:transparent; border:1px solid var(--gold-dark); border-radius:2px; text-decoration:none; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
   </div>
 <section style="max-width:var(--measure);margin:64px auto 0;padding:0 0 8px">
     <div style="border-top:1px solid var(--border);padding-top:28px">

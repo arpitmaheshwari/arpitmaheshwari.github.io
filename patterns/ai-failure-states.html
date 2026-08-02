@@ -49,7 +49,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p30">
+<link rel="stylesheet" href="../styles.css?v=p33">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -59,7 +59,7 @@
 </svg>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span class="nav-name">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns" aria-current="true">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
@@ -68,11 +68,11 @@
 <div style="padding:104px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
   <div style="max-width:var(--measure);margin:0 auto">
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap">
-      <h1 style="font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;line-height:1.15;color:var(--ink);margin:0;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.02em">AI Failure State Patterns</h1>
-      <span style="padding:6px 12px;border-radius:4px;background-color:var(--copper);color:var(--ink);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">In production</span>
+      <h1 class="t-hero" style="margin:0; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual">AI Failure State Patterns</h1>
+      <span class="lbl-badge-ink" style="padding:6px 12px; border-radius:4px; background-color:var(--copper); white-space:nowrap">In production</span>
     </div>
-    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:.08em;text-transform:uppercase">AI Design · <abbr tabindex="0" title="A system design approach where functionality degrades gracefully when failures occur, offering reduced but still-useful alternatives rather than failing completely" style="border-bottom:1px dotted var(--ink);cursor:help">Graceful Degradation</abbr> · Last updated June 2026</p>
-    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:.08em;text-transform:uppercase;margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
+    <p class="lbl-cap">AI Design · <abbr tabindex="0" title="A system design approach where functionality degrades gracefully when failures occur, offering reduced but still-useful alternatives rather than failing completely" style="border-bottom:1px dotted var(--ink);cursor:help">Graceful Degradation</abbr> · Last updated June 2026</p>
+    <p class="lbl-cap" style="margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
     <p class="hand" aria-hidden="true" style="font-size:21px;margin:14px 0 0;transform:rotate(-1.6deg)">nothing ships without its failure state — house rule</p>
   </div>
 </div>
@@ -84,12 +84,12 @@
     
     <!-- Abstract UI Diagram: Failure State Comparison -->
     <div style="margin: 40px 0; padding: 40px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;">
-      <div style="font-family:var(--ff-mono); font-size:var(--fs-eyebrow); letter-spacing:.15em; text-transform:uppercase; color:var(--gold); margin-bottom: 24px; text-align:center;">Wireframe: The Honest Failure State</div>
+      <div class="lbl-eyebrow" style="margin-bottom:24px; text-align:center">Wireframe: The Honest Failure State</div>
       
       <div style="display:flex; gap:20px; align-items:stretch;">
         <!-- The Bad Way -->
         <div style="flex:1; background: var(--bg-card); border: 1px solid rgba(224,115,107,0.25); border-radius: 6px; padding: 24px; opacity:0.8; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
-          <div style="font-family:var(--ff-mono); font-size:var(--fs-eyebrow); color:var(--ink-muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:16px;">Standard Error</div>
+          <div class="lbl-meta" style="margin-bottom:16px">Standard Error</div>
           <div style="width:40px; height:40px; border-radius:50%; background:rgba(224,115,107,0.12); color:var(--err); display:flex; align-items:center; justify-content:center; font-size:var(--fs-lead); margin-bottom:16px;">✕</div>
           <div style="font-family:var(--ff-display); font-size:var(--fs-body); color:var(--ink); margin-bottom:8px; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual;">Error 500</div>
           <div style="font-family:var(--ff-sans); font-size:var(--fs-caption); color:var(--ink-muted);">Something went wrong.</div>
@@ -97,7 +97,7 @@
 
         <!-- The Good Way -->
         <div style="flex:1; background: var(--bg-card); border: 1px solid var(--gold); border-radius: 6px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-          <div style="font-family:var(--ff-mono); font-size:var(--fs-eyebrow); color:var(--gold); text-transform:uppercase; letter-spacing:.15em; margin-bottom:16px; text-align:center;">Honest AI Fallback</div>
+          <div class="lbl-eyebrow" style="margin-bottom:16px; text-align:center">Honest AI Fallback</div>
           <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:16px;">
             <div style="width:24px; height:24px; border-radius:4px; background:var(--ink-muted); opacity:0.2;"></div>
             <div>
@@ -106,7 +106,7 @@
             </div>
           </div>
           <div style="border-top:1px solid var(--border); padding-top:16px;">
-            <div style="font-family:var(--ff-mono); font-size:var(--fs-eyebrow); color:var(--ink-muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:12px;">Suggested actions:</div>
+            <div class="lbl-meta" style="margin-bottom:12px">Suggested actions:</div>
             <div style="display:flex; gap:8px;">
               <div style="flex:1; text-align:center; padding:8px; border:1px solid var(--border); border-radius:4px; font-family:var(--ff-sans); font-size:var(--fs-caption); color:var(--ink);">Search Web</div>
               <div style="flex:1; text-align:center; padding:8px; background:var(--ink); color:var(--bg); border-radius:4px; font-family:var(--ff-sans); font-size:var(--fs-caption);">Ask Expert</div>
@@ -196,7 +196,7 @@
 
   <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:64px">
     <h3 class="card-title" style="margin-bottom:16px">See This Pattern In Action</h3>
-    <ul style="font-size:var(--fs-caption);color:var(--ink-muted);line-height:1.8;margin-bottom:16px;padding-left:24px">
+    <ul class="t-cap-loose" style="margin-bottom:16px; padding-left:24px">
       <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> What the screen says when the recommendation can't clear the bar.</li>
       <li style="margin-bottom:12px"><strong><a href="../case-studies/orgos.html" style="color:var(--gold);text-decoration:none">OrgOS</a>:</strong> Saying it plainly when a complex system hits its limits.</li>
     </ul>
@@ -207,8 +207,8 @@
     <div class="eyebrow" style="margin-bottom:12px">Get AI design patterns in your inbox</div>
     <p class="u-ui" style="margin-bottom:20px">One pattern a month, with the tradeoffs spelled out and the templates I use.</p>
     <form action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank" style="display:flex;gap:8px;flex-wrap:wrap">
-      <input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink);font-family:var(--ff-sans);font-size:var(--fs-ui)">
-      <button type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="padding:14px 24px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s">Subscribe</button>
+      <input class="t-sans-ui" type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1; min-width:200px; padding:14px 16px; background:var(--bg); border:1px solid var(--border); border-radius:2px">
+      <button class="lbl-eyebrow-500" type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="padding:14px 24px; background:transparent; border:1px solid var(--gold-dark); border-radius:2px; cursor:pointer; transition:background 0.3s,color 0.3s">Subscribe</button>
     </form>
   </section>
 
@@ -218,8 +218,8 @@
   </section>
 
   <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:48px">
-    <a href="./ml-explainability.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / ML Explainability →</a>
-    <a href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background 0.3s,color 0.3s;font-weight:600" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
+    <a class="lbl-badge-bg" href="./ml-explainability.html" style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; background:var(--gold); border-radius:2px; text-decoration:none; transition:background 0.3s" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / ML Explainability →</a>
+    <a class="lbl-badge-gold" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; background:transparent; border:1px solid var(--gold-dark); border-radius:2px; text-decoration:none; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
   </div>
 <section style="max-width:var(--measure);margin:64px auto 0;padding:0 0 8px">
     <div style="border-top:1px solid var(--border);padding-top:28px">

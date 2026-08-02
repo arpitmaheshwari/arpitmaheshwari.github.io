@@ -70,7 +70,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p32">
+<link rel="stylesheet" href="../styles.css?v=p35">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -80,7 +80,7 @@
 </svg>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span class="nav-name">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns" aria-current="true">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
@@ -89,10 +89,10 @@
 <div style="padding:90px var(--page-x) 48px;background:var(--bg)">
   <div style="max-width:var(--inner-max);margin:0 auto">
     <p class="eyebrow" style="margin:0 0 20px 0">The Field Guide to Trust</p>
-    <h1 style="font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;line-height:1.15;color:var(--ink);margin:0 0 20px 0;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-0.02em">AI design patterns that ran in production</h1>
+    <h1 class="t-hero" style="margin:0 0 20px 0; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual">AI design patterns that ran in production</h1>
     <p class="lead" style="font-style:italic;margin:0 0 20px 0;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:oldstyle-nums proportional-nums">A design system for trusting and governing AI agents. Everything in it ran in production, failed somewhere specific, and came back stronger — the tradeoffs are written down because I paid for them once already.</p>
     <p class="hand" aria-hidden="true" style="font-size:21px;margin:14px 0 0;transform:rotate(-1.6deg)">shipped, broke, fixed — in that order</p>
-    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:.08em;text-transform:uppercase;margin:0">Library v1.1 · the rule + 8 patterns · last updated June 2026 · free to use, attribution appreciated</p>
+    <p class="lbl-cap" style="margin:0">Library v1.1 · the rule + 8 patterns · last updated June 2026 · free to use, attribution appreciated</p>
   </div>
 </div>
 
@@ -104,8 +104,8 @@
     <h2 class="section-title" style="margin:0 0 12px 0">The Act / Review / Ignore rule</h2>
     <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.75;margin:0 0 16px 0;max-width:var(--measure)">One score, one action. An unexplained 87% is a shrug with decimals — it tells the user how the model feels and nothing about what to do. Every confidence surface I ship resolves to exactly one of three verbs: act, review, or ignore.</p>
     <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
-      <span style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;color:var(--gold)">Read the rule →</span>
-      <span style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)">June 2026 · from AdTech + FinTech + VC</span>
+      <span class="lbl-eyebrow">Read the rule →</span>
+      <span class="lbl-cap">June 2026 · from AdTech + FinTech + VC</span>
     </div>
   </a>
 
@@ -114,8 +114,8 @@
     <h2 class="section-title" style="margin:0 0 12px 0">hitl.js</h2>
     <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.75;margin:0 0 16px 0;max-width:var(--measure)">Four of these patterns exist as a zero-dependency JavaScript module, so the decisions can be tested instead of debated: which verb a score becomes, whether its confidence has earned belief (Brier score, expected calibration error), when to refuse to answer, and what to show while the model thinks. Forty-two assertions, running in your browser.</p>
     <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
-      <span style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;color:var(--gold)">Read it, run it, break it →</span>
-      <span style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)">The Lab · MIT licensed</span>
+      <span class="lbl-eyebrow">Read it, run it, break it →</span>
+      <span class="lbl-cap">The Lab · MIT licensed</span>
     </div>
   </a>
 
@@ -123,65 +123,65 @@
     <a href="./confidence-scores.html" style="padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);transition:border-color 0.3s,transform 0.3s;text-decoration:none;color:inherit;display:block" onmouseover="this.style.borderColor='var(--border-accent)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
       <img src="../assets/visuals/pattern-confidence.svg" alt="" loading="lazy" width="1280" height="400" style="width:100%;height:auto;border-radius:3px;border:1px solid var(--border);margin-bottom:16px;display:block">
       <h2 class="card-title" style="margin-bottom:12px">Confidence Score Patterns</h2>
-      <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7;margin-bottom:16px">Five ways to put a number on certainty — numeric, color, language, composite — and when each one earns or burns trust.</p>
-      <div style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)">May 2026 · from AdTech + FinTech</div>
+      <p class="t-ui-muted" style="margin-bottom:16px">Five ways to put a number on certainty — numeric, color, language, composite — and when each one earns or burns trust.</p>
+      <div class="lbl-cap">May 2026 · from AdTech + FinTech</div>
     </a>
     <a href="./ai-failure-states.html" style="padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);transition:border-color 0.3s,transform 0.3s;text-decoration:none;color:inherit;display:block" onmouseover="this.style.borderColor='var(--border-accent)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
       <img src="../assets/visuals/pattern-failure.svg" alt="" loading="lazy" width="1280" height="400" style="width:100%;height:auto;border-radius:3px;border:1px solid var(--border);margin-bottom:16px;display:block">
       <h2 class="card-title" style="margin-bottom:12px">AI Failure States</h2>
-      <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7;margin-bottom:16px">What the screen says when the model can't deliver, and how saying it honestly keeps users from leaving.</p>
-      <div style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)">May 2026 · from AdTech + Org Design</div>
+      <p class="t-ui-muted" style="margin-bottom:16px">What the screen says when the model can't deliver, and how saying it honestly keeps users from leaving.</p>
+      <div class="lbl-cap">May 2026 · from AdTech + Org Design</div>
     </a>
     <a href="./ml-explainability.html" style="padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);transition:border-color 0.3s,transform 0.3s;text-decoration:none;color:inherit;display:block" onmouseover="this.style.borderColor='var(--border-accent)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
       <img src="../assets/visuals/pattern-explainability.svg" alt="" loading="lazy" width="1280" height="400" style="width:100%;height:auto;border-radius:3px;border:1px solid var(--border);margin-bottom:16px;display:block">
       <h2 class="card-title" style="margin-bottom:12px">ML Explainability</h2>
-      <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7;margin-bottom:16px">Showing non-technical people why the machine decided, at a depth they can use without a stats degree.</p>
-      <div style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)">May 2026 · from FinTech + AdTech</div>
+      <p class="t-ui-muted" style="margin-bottom:16px">Showing non-technical people why the machine decided, at a depth they can use without a stats degree.</p>
+      <div class="lbl-cap">May 2026 · from FinTech + AdTech</div>
     </a>
     <a href="./human-in-loop.html" style="padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);transition:border-color 0.3s,transform 0.3s;text-decoration:none;color:inherit;display:block" onmouseover="this.style.borderColor='var(--border-accent)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
       <img src="../assets/visuals/pattern-loop.svg" alt="" loading="lazy" width="1280" height="400" style="width:100%;height:auto;border-radius:3px;border:1px solid var(--border);margin-bottom:16px;display:block">
       <h2 class="card-title" style="margin-bottom:12px">Human-in-Loop Patterns</h2>
-      <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7;margin-bottom:16px">Keeping the person in command when the stakes outgrow the model's confidence.</p>
-      <div style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)">May 2026 · from FinTech + AdTech + Org Design</div>
+      <p class="t-ui-muted" style="margin-bottom:16px">Keeping the person in command when the stakes outgrow the model's confidence.</p>
+      <div class="lbl-cap">May 2026 · from FinTech + AdTech + Org Design</div>
     </a>
     <a href="./provenance-citations.html" style="padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);transition:border-color 0.3s,transform 0.3s;text-decoration:none;color:inherit;display:block" onmouseover="this.style.borderColor='var(--border-accent)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
       <img src="../assets/visuals/pattern-provenance.svg" alt="" loading="lazy" width="1280" height="400" style="width:100%;height:auto;border-radius:3px;border:1px solid var(--border);margin-bottom:16px;display:block">
       <h2 class="card-title" style="margin-bottom:12px">Provenance &amp; Citations</h2>
-      <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7;margin-bottom:16px">Tracing every AI claim back to the exact source — so a person acts on what they can open, not a summary.</p>
-      <div style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)">June 2026 · from VC + FinTech</div>
+      <p class="t-ui-muted" style="margin-bottom:16px">Tracing every AI claim back to the exact source — so a person acts on what they can open, not a summary.</p>
+      <div class="lbl-cap">June 2026 · from VC + FinTech</div>
     </a>
     <a href="./capability-contract.html" style="padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);transition:border-color 0.3s,transform 0.3s;text-decoration:none;color:inherit;display:block" onmouseover="this.style.borderColor='var(--border-accent)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
       <img src="../assets/visuals/pattern-capability.svg" alt="" loading="lazy" width="1280" height="400" style="width:100%;height:auto;border-radius:3px;border:1px solid var(--border);margin-bottom:16px;display:block">
       <h2 class="card-title" style="margin-bottom:12px">The Capability Contract</h2>
-      <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7;margin-bottom:16px">Saying what the system can't do, up front — the honest "no" that makes the confident answer believable.</p>
-      <div style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)">June 2026 · from AdTech + FinTech</div>
+      <p class="t-ui-muted" style="margin-bottom:16px">Saying what the system can't do, up front — the honest "no" that makes the confident answer believable.</p>
+      <div class="lbl-cap">June 2026 · from AdTech + FinTech</div>
     </a>
     <a href="./calibration-track-record.html" style="padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);transition:border-color 0.3s,transform 0.3s;text-decoration:none;color:inherit;display:block" onmouseover="this.style.borderColor='var(--border-accent)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
       <img src="../assets/visuals/pattern-calibration.svg" alt="" loading="lazy" width="1280" height="400" style="width:100%;height:auto;border-radius:3px;border:1px solid var(--border);margin-bottom:16px;display:block">
       <h2 class="card-title" style="margin-bottom:12px">Calibration &amp; Track Record</h2>
-      <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7;margin-bottom:16px">Showing whether the confidence has actually been right before, so trust is earned, not assumed.</p>
-      <div style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)">June 2026 · from AdTech + FinTech</div>
+      <p class="t-ui-muted" style="margin-bottom:16px">Showing whether the confidence has actually been right before, so trust is earned, not assumed.</p>
+      <div class="lbl-cap">June 2026 · from AdTech + FinTech</div>
     </a>
     <a href="./reversibility-safe-to-act.html" style="padding:28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);transition:border-color 0.3s,transform 0.3s;text-decoration:none;color:inherit;display:block" onmouseover="this.style.borderColor='var(--border-accent)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">
       <img src="../assets/visuals/pattern-reversibility.svg" alt="" loading="lazy" width="1280" height="400" style="width:100%;height:auto;border-radius:3px;border:1px solid var(--border);margin-bottom:16px;display:block">
       <h2 class="card-title" style="margin-bottom:12px">Reversibility</h2>
-      <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7;margin-bottom:16px">Making the model's suggestion cheap to walk back, so people dare to act on it.</p>
-      <div style="font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)">June 2026 · from EdTech + AdTech</div>
+      <p class="t-ui-muted" style="margin-bottom:16px">Making the model's suggestion cheap to walk back, so people dare to act on it.</p>
+      <div class="lbl-cap">June 2026 · from EdTech + AdTech</div>
     </a>
   </div>
 
   <section style="padding:32px;background:var(--bg-card);border:1px solid var(--border);border-radius:4px;margin-bottom:24px">
     <div style="border:1px solid var(--border);border-radius:4px;padding:24px 28px;margin:0 0 40px 0">
     <div class="eyebrow" style="margin-bottom:14px">Prior art, named</div>
-    <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.8;margin:0 0 12px 0;max-width:var(--measure)">Google's <a href="https://pair.withgoogle.com/guidebook/" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none">PAIR guidebook</a> and Microsoft's <a href="https://www.microsoft.com/en-us/haxtoolkit/" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none">HAX toolkit</a> map this territory from the research side — read them; they're excellent, and several patterns here have cousins there. This library doesn't compete with the lab. It's the production-side report: what those guidelines don't tell you about week three, when users have stopped reading the explanation chips and started gaming the confidence threshold.</p>
-    <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.8;margin:0;max-width:var(--measure)">What's distinctly mine: the <b style="color:var(--ink)">Act / Review / Ignore rule</b> — a score never reaches the screen without resolving to a verb; abstention treated as a shippable feature, not an error state; the override captured as structured data the system learns from; and every pattern here priced by a product that actually shipped. Each page also says when <i>not</i> to use the pattern — the discipline that separates a reference from a sales pitch.</p>
+    <p class="t-ui-muted-loose" style="margin:0 0 12px 0; max-width:var(--measure)">Google's <a href="https://pair.withgoogle.com/guidebook/" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none">PAIR guidebook</a> and Microsoft's <a href="https://www.microsoft.com/en-us/haxtoolkit/" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none">HAX toolkit</a> map this territory from the research side — read them; they're excellent, and several patterns here have cousins there. This library doesn't compete with the lab. It's the production-side report: what those guidelines don't tell you about week three, when users have stopped reading the explanation chips and started gaming the confidence threshold.</p>
+    <p class="t-ui-muted-loose" style="margin:0; max-width:var(--measure)">What's distinctly mine: the <b style="color:var(--ink)">Act / Review / Ignore rule</b> — a score never reaches the screen without resolving to a verb; abstention treated as a shippable feature, not an error state; the override captured as structured data the system learns from; and every pattern here priced by a product that actually shipped. Each page also says when <i>not</i> to use the pattern — the discipline that separates a reference from a sales pitch.</p>
   </div>
   <div class="eyebrow" style="margin-bottom:16px">Cite this library</div>
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
       <p id="citeLine" style="font-family:var(--ff-mono);font-size:var(--fs-caption);line-height:1.8;color:var(--ink);margin:0;flex:1;min-width:260px">Maheshwari, A. (2026). <em>A Field Guide to Trust: AI Design Patterns.</em> arpitmaheshwari.com/patterns/.</p>
-      <button id="copyCiteBtn" data-cta="copy-citation" data-location="patterns-index" style="padding:6px 14px;background:transparent;border:1px solid var(--gold-dark);color:var(--gold);font-family:var(--ff-mono);font-weight:500;font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Copy</button>
+      <button class="lbl-eyebrow-500" id="copyCiteBtn" data-cta="copy-citation" data-location="patterns-index" style="padding:6px 14px; background:transparent; border:1px solid var(--gold-dark); border-radius:2px; cursor:pointer; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Copy</button>
     </div>
-    <p style="font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7;margin:20px 0 0 0">Prefer it as a book? The same patterns run as live demos in the <a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="patterns-cite" style="color:var(--gold);text-decoration:none">field guide</a> →</p>
+    <p class="t-ui-muted" style="margin:20px 0 0 0">Prefer it as a book? The same patterns run as live demos in the <a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="patterns-cite" style="color:var(--gold);text-decoration:none">field guide</a> →</p>
   </section>
 
 </div></main>

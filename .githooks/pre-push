@@ -106,6 +106,26 @@ MSG
   fi
 fi
 
+# STRUCTURE, not correctness. Added 2026-08-02 after the site was found to hold 2,095 inline
+# style attributes whose type declarations duplicated each other 562 times — every duplicate an
+# independent fork, several already drifted. Canon-lint, contrast, case-sync and asset-load all
+# passed throughout: they check whether a page is RIGHT, never whether it is STRUCTURED.
+if [ -f tools/inline-style-check.py ]; then
+  echo "pre-push: inline-style check (is a repeated component still unnamed?)…"
+  if ! python3 tools/inline-style-check.py --root .; then
+    cat <<'MSG'
+
+pre-push: BLOCKED — a type treatment is duplicated inline instead of being a class.
+
+  Add it to styles.css and put the class on the elements. Repeated inline styles are how
+  this site ended up with one mono label spelled 16 different ways.
+  Or push anyway with:   SKIP_CONTRAST=1 git push
+
+MSG
+    exit 1
+  fi
+fi
+
 echo "pre-push: contrast smoke check (homepage + book cover, 1440px)…"
 python3 tools/contrast-audit.py \
   --docroot . --widths 1440 \

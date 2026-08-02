@@ -387,3 +387,65 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
   a{color:#111!important;text-decoration:underline}
   .reveal{opacity:1!important;transform:none!important}
 }
+
+/* ============================================================================
+   TYPE COMPONENTS — extracted 2026-08-02 from 471 duplicated inline styles.
+
+   WHY: the site had 2,095 inline style attributes. Every repeated one was an
+   independent fork of the same component, and several had silently drifted —
+   two identically-classed <dl>s rendering differently, 16 spellings of one
+   mono label, a <th> bold only because that is the UA default. Correctness
+   gates (canon, contrast, case-sync) cannot see that; only structure prevents it.
+
+   Each class below reproduces the inline declarations EXACTLY, so extraction
+   changed no pixels (verified: full-page diff over 28 pages).
+
+   RULE: a repeated component gets a class here. Never inline styles per instance.
+   ============================================================================ */
+/* prose */
+.t-body{font-size:var(--fs-body);color:var(--ink);line-height:1.8}
+.t-body-17{font-size:var(--fs-body);color:var(--ink);line-height:1.7}
+.t-body-muted{font-size:var(--fs-body);color:var(--ink-muted);line-height:1.7}
+.t-ui{font-size:var(--fs-ui);color:var(--ink);line-height:1.6}
+.t-ui-muted{font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.7}
+.t-ui-muted-loose{font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.8}
+.t-sans-ui{font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--ink)}
+.t-cap{font-size:var(--fs-caption);color:var(--ink-muted)}
+.t-cap-loose{font-size:var(--fs-caption);color:var(--ink-muted);line-height:1.8}
+/* display */
+.t-hero{font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;letter-spacing:-0.02em;color:var(--ink);line-height:1.15}
+.t-standfirst{font-family:var(--ff-display);font-size:var(--fs-lead);font-weight:300;font-style:italic;color:var(--ink);line-height:1.4}
+/* mono labels — the three sanctioned tracks (DESIGN-SYSTEM §3): .15em eyebrow,
+   .08em caption/meta, .1em nav/button/badge. Colour varies by surface, tracking does not. */
+.lbl-eyebrow{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.lbl-eyebrow-500{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.lbl-meta{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)}
+.lbl-ink{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.lbl-cap{font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)}
+.lbl-cap-plain{font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;color:var(--ink-muted)}
+.lbl-badge-bg{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--bg)}
+.lbl-badge-gold{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.lbl-badge-ink{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+/* the wordmark beside the logo, previously an unnamed span in 27 files */
+.nav-name{font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px}
+
+/* round 2 — the next 16 repeated signatures (82 more elements) */
+.btn-label{font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:600;letter-spacing:.05em;color:var(--bg)}
+.t-ui-muted-tight{font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.6}
+.t-quote{font-family:var(--ff-display);font-size:var(--fs-card);font-style:italic;color:var(--ink);line-height:1.6}
+.t-ui-175{font-size:var(--fs-ui);color:var(--ink);line-height:1.75}
+.t-quote-sm{font-family:var(--ff-display);font-size:var(--fs-body);font-style:italic;color:var(--ink-muted);line-height:1.6}
+.lbl-pill-bg{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--bg)}
+.lbl-pill-gold{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+/* 0.9em is RELATIVE on purpose — inline code sits inside text of varying size (a 21px lead
+   paragraph and a 16px body paragraph both host it). Substituting the fixed --fs-ui token here
+   shrank it inside lead text; caught by the pixel diff, reverted. Do not "tokenise" this one. */
+.t-code{font-family:var(--ff-mono);font-size:0.9em;color:var(--gold)}
+.t-quote-cap{font-family:var(--ff-display);font-size:var(--fs-caption);font-style:italic;color:var(--ink-muted);line-height:1.6}
+.t-card-title{font-family:var(--ff-display);font-size:var(--fs-card);font-weight:400;color:var(--ink)}
+.lbl-micro{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.06em;color:var(--ink-muted)}
+.t-serif-body{font-family:var(--ff-display);font-size:var(--fs-body);color:var(--ink);line-height:1.75}
+.t-serif-16{font-family:var(--ff-display);font-size:var(--fs-body);color:var(--ink)}
+.lbl-eyebrow-tight{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.04em;color:var(--ink-muted)}
+.lbl-micro-eyebrow{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.t-sans-ui-muted{font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.8}

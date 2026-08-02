@@ -194,6 +194,26 @@ Do **not** apply this document's ramp or grammar to `book/`. It is **not** exemp
 - Cream acts use the same block with `class="section act-cream"`.
 - Prominent openers (a page hero-adjacent chapter head) may use `.section-title--lg` (39px) — sparingly.
 
+## 7. Components live in styles.css — never inline (added 2026-08-02)
+
+The site had **2,095 inline `style` attributes**; the type declarations inside them duplicated
+each other **562 times**. Every duplicate is an independent fork, and several had silently
+drifted — two identically-classed `<dl>`s rendering differently, one mono label spelled sixteen
+ways, a `<th>` bold only because that is the browser default. None of the correctness gates
+could see it: they check whether a page is RIGHT, never whether it is STRUCTURED.
+
+**The rule: a type treatment used more than three times is a class in `styles.css`.** Layout
+that is genuinely per-instance (margin, grid placement) may stay inline; type may not.
+
+37 components were extracted (`.t-*` prose and display, `.lbl-*` mono labels, `.nav-name`,
+`.btn-label`). Enforced by `tools/inline-style-check.py`, which fails the push when a signature
+recurs 4+ times inline.
+
+**One documented exception:** `.t-code` keeps `font-size:0.9em` because inline code sits inside
+text of varying size. Substituting the fixed `--fs-ui` token shrank it inside lead paragraphs —
+caught by pixel diff, reverted. Relative sizing is sometimes the correct answer; tokenise by
+role, not reflexively.
+
 ## 7. Components (consolidated)
 
 - **Button** — one spec: `--ff-mono`, `--fs-eyebrow`, weight 500, .1em, UPPER, padding 14px/28px, `--radius`. Primary = gold fill / bg text; secondary = gold text / `--border-accent` outline. (Retire the sans-vs-mono, 3-padding, 2-radius drift.)

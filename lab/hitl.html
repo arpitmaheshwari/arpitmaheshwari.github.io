@@ -28,7 +28,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap" media="print" onload="this.media='all';this.onload=null">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap"></noscript>
-<link rel="stylesheet" href="../styles.css?v=p30">
+<link rel="stylesheet" href="../styles.css?v=p33">
 <style>
   .lab-wrap { max-width: var(--inner-max); margin: 0 auto; padding: 0 var(--page-x); }
   .lab-hero { padding-top: 128px; }
@@ -125,7 +125,7 @@
 <a href="#main" class="skip-link">Skip to content</a>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span class="nav-name">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../lab/" aria-current="true">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
@@ -176,7 +176,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
     <div class="lab-wrap">
       <p class="eyebrow">The four decisions</p>
       <h2 class="section-title">Every control below runs the real module</h2>
-      <p class="lab-lede" style="margin-bottom:40px">Nothing here is mocked. The page imports <code style="font-family:var(--ff-mono);font-size:0.9em;color:var(--gold)">hitl.js</code> and calls it as you move the inputs, so what you read is what the function returns.</p>
+      <p class="lab-lede" style="margin-bottom:40px">Nothing here is mocked. The page imports <code class="t-code">hitl.js</code> and calls it as you move the inputs, so what you read is what the function returns.</p>
 
       <!-- decide -->
       <div class="lab-fn">
@@ -300,7 +300,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
     <div class="lab-wrap">
       <p class="eyebrow">Proof</p>
       <h2 class="section-title">The tests, running now, in your browser</h2>
-      <p class="lab-lede" style="margin-bottom:28px">The same file runs under Node with <code style="font-family:var(--ff-mono);font-size:0.9em;color:var(--gold)">node lab/hitl.test.js</code> and exits non-zero on failure. There is no test framework, because adding a dependency to a zero-dependency library would be the joke telling itself — the runner is about forty lines at the top of the file.</p>
+      <p class="lab-lede" style="margin-bottom:28px">The same file runs under Node with <code class="t-code">node lab/hitl.test.js</code> and exits non-zero on failure. There is no test framework, because adding a dependency to a zero-dependency library would be the joke telling itself — the runner is about forty lines at the top of the file.</p>
       <div class="lab-testhead">
         <span class="lab-tally" id="t-tally">…</span>
         <span class="lab-tallynote" id="t-note">running</span>
@@ -314,9 +314,9 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
     <div class="lab-wrap">
       <p class="eyebrow">Why this exists</p>
       <h2 class="section-title">A rule you can run beats a rule you can argue with</h2>
-      <p style="font-size:var(--fs-body);line-height:1.7;color:var(--ink-muted);margin:0 0 18px">Every one of these decisions used to be a slide. "Don't show a naked confidence score." "Fail toward humility." "Reversibility outranks confidence." Reasonable people nodded, and then shipped the naked number anyway, because a principle has no failing state.</p>
-      <p style="font-size:var(--fs-body);line-height:1.7;color:var(--ink-muted);margin:0 0 18px">Written as functions, the same rules get a failing state. <code style="font-family:var(--ff-mono);font-size:0.9em;color:var(--gold)">decide()</code> reports <code style="font-family:var(--ff-mono);font-size:0.9em;color:var(--gold)">review-without-reasons</code> as a violation rather than a suggestion. <code style="font-family:var(--ff-mono);font-size:0.9em;color:var(--gold)">calibrate()</code> returns <code style="font-family:var(--ff-mono);font-size:0.9em;color:var(--gold)">insufficient-data</code> instead of a flattering number. That is the whole argument for this file existing: human-in-the-loop design is a set of decisions, and decisions can be tested.</p>
-      <p style="font-size:var(--fs-body);line-height:1.7;color:var(--ink-muted);margin:0">The eight patterns these come from are documented, with live demos, in <a href="../patterns/" style="color:var(--gold)">the pattern library</a> — and each one is running in a production product. This is their logic, extracted and made checkable.</p>
+      <p class="t-body-muted" style="margin:0 0 18px">Every one of these decisions used to be a slide. "Don't show a naked confidence score." "Fail toward humility." "Reversibility outranks confidence." Reasonable people nodded, and then shipped the naked number anyway, because a principle has no failing state.</p>
+      <p class="t-body-muted" style="margin:0 0 18px">Written as functions, the same rules get a failing state. <code class="t-code">decide()</code> reports <code class="t-code">review-without-reasons</code> as a violation rather than a suggestion. <code class="t-code">calibrate()</code> returns <code class="t-code">insufficient-data</code> instead of a flattering number. That is the whole argument for this file existing: human-in-the-loop design is a set of decisions, and decisions can be tested.</p>
+      <p class="t-body-muted" style="margin:0">The eight patterns these come from are documented, with live demos, in <a href="../patterns/" style="color:var(--gold)">the pattern library</a> — and each one is running in a production product. This is their logic, extracted and made checkable.</p>
       <div class="lab-links">
         <a href="./index.html" data-cta="lab-home" data-location="hitl-foot">← Everything in The Lab</a>
         <a href="./eval.html" data-cta="lab-eval" data-location="hitl-foot">trustlint — audit an AI answer →</a>
