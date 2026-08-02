@@ -13,9 +13,9 @@ name: Contrast gate
 
 on:
   push:
-    paths: ['**.html', '**.css', '**.js', '.github/workflows/contrast-gate.yml', 'tools/contrast-audit.py']
+    paths: ['**.html', '**.css', '**.js', '**.svg', '.github/workflows/contrast-gate.yml', 'tools/contrast-audit.py', 'tools/asset-load-check.py']
   pull_request:
-    paths: ['**.html', '**.css', '**.js', '.github/workflows/contrast-gate.yml', 'tools/contrast-audit.py']
+    paths: ['**.html', '**.css', '**.js', '**.svg', '.github/workflows/contrast-gate.yml', 'tools/contrast-audit.py', 'tools/asset-load-check.py']
   workflow_dispatch:
 
 jobs:
@@ -85,6 +85,51 @@ jobs:
       # then add the URL. Tracked separately; do not "fix" those nine colours, they are not broken.
       # Residual risk, stated rather than hidden: fintech's .rxf-conf shares vc's colour context,
       # so that context is currently UNCOVERED in CI until vc-diligence can be added.
+      # Added 2026-08-02. The /process method diagram had been a BROKEN IMAGE on the live site:
+      # a literal angle-bracket tag inside a CSS comment made the SVG invalid XML, and an SVG
+      # loaded through an img element must be valid XML or the browser refuses to paint it.
+      # naturalWidth was 0. Every gate here checked text, agreement or colour; none asked whether
+      # the picture loaded at all. Unlike the contrast list below, this one SHOULD enumerate every
+      # page — the check is cheap and a broken asset is page-specific, not context-specific.
+      - name: Asset load check (SVG validity + every image actually paints)
+        run: |
+          python3 tools/asset-load-check.py --docroot . \
+            http://localhost:8000/ \
+            http://localhost:8000/book/ \
+            http://localhost:8000/folio/ \
+            http://localhost:8000/hire/ \
+            http://localhost:8000/lab/ \
+            http://localhost:8000/now/ \
+            http://localhost:8000/patterns/ \
+            http://localhost:8000/process/ \
+            http://localhost:8000/resources/ \
+            http://localhost:8000/screen/ \
+            http://localhost:8000/writing/ \
+            http://localhost:8000/404.html \
+            http://localhost:8000/case-studies/adtech.html \
+            http://localhost:8000/case-studies/fintech.html \
+            http://localhost:8000/case-studies/o2.html \
+            http://localhost:8000/case-studies/orgos.html \
+            http://localhost:8000/case-studies/ptc.html \
+            http://localhost:8000/case-studies/vc-diligence.html \
+            http://localhost:8000/patterns/act-review-ignore.html \
+            http://localhost:8000/patterns/ai-failure-states.html \
+            http://localhost:8000/patterns/calibration-track-record.html \
+            http://localhost:8000/patterns/capability-contract.html \
+            http://localhost:8000/patterns/confidence-scores.html \
+            http://localhost:8000/patterns/human-in-loop.html \
+            http://localhost:8000/patterns/ml-explainability.html \
+            http://localhost:8000/patterns/provenance-citations.html \
+            http://localhost:8000/patterns/reversibility-safe-to-act.html
+
+      - name: Fail if asset-load-check left a wrapper behind
+        if: always()
+        run: |
+          if ls __al_*.html >/dev/null 2>&1 || ls __al_canary_*.svg >/dev/null 2>&1; then
+            echo "::error::asset-load-check left temp files behind — its cleanup path is broken"
+            exit 1
+          fi
+
       - name: Contrast audit (pixel-truth, self-calibrating)
         run: |
           python3 tools/contrast-audit.py \

@@ -459,3 +459,29 @@ revenue dip after the 2015 launch, unlike Autodesk's sharp dip.** Scope honestly
 is about PTC corporate (CAD/PLM), NOT PTC University; use it only as company-wide context
 around the University's own 0% → 64%. The "after Adobe" ranking is QUARANTINED until a source
 that actually says it appears.
+
+### The gates, and the one that was missing (2026-08-02)
+Four mechanical gates now guard the site. Each one exists because something specific escaped:
+- **canon-lint** — a retired term ("trust layer") shipped on the book cover.
+- **case-sync-check** — the book silently went stale against the classic case pages.
+- **contrast-audit** — the book cover's CTA sat at 1.18:1 because style-based checks read the
+  wrong ancestor for a gradient surface.
+- **asset-load-check (NEW)** — the /process method diagram had been a BROKEN IMAGE on the live
+  site. `assets/visuals/process-method.svg` carried a literal angle-bracket tag inside a CSS
+  comment in its `<style>` block; that parses as markup, making the file invalid XML, and an
+  SVG loaded through an `img` element must be valid XML or the browser refuses to paint it.
+  naturalWidth was 0.
+
+**The lesson worth keeping:** every gate before this one checked TEXT, CROSS-SURFACE AGREEMENT
+or COLOUR. Not one asked whether a visual asset loaded at all. A broken asset also hides its
+own second defect — because that SVG never rendered, its internal label collisions had never
+been seen by anyone either.
+
+**Two rules that follow, both now enforced:**
+1. Never write a literal angle-bracket tag anywhere inside an SVG `<style>` block, even in a
+   comment. The three process-method SVGs carry this warning in-file.
+2. The pre-push hook and CI must trigger on `.svg` changes, not just html/css/js. Before
+   2026-08-02 an SVG-only push skipped every gate — which is exactly how this reached prod.
+
+Verified the way this repo requires: the gate was watched going RED against the real restored
+defect (exit 1) and GREEN once fixed (exit 0), not merely reasoned about.

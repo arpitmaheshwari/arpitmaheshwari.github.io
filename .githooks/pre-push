@@ -29,8 +29,11 @@ if git rev-parse --verify --quiet "origin/$RANGE" >/dev/null 2>&1; then
 else
   CHANGED=$(git diff --name-only HEAD~1...HEAD 2>/dev/null)
 fi
-if [ -n "$CHANGED" ] && ! printf '%s\n' "$CHANGED" | grep -qE '\.(html|css|js)$'; then
-  echo "pre-push: no html/css/js changes — contrast check not needed"
+# svg/png/jpg are in this list deliberately. On 2026-08-02 a broken SVG shipped and sat live
+# on /process; had someone pushed an SVG-only change, the old html|css|js filter would have
+# skipped every gate and waved it straight through.
+if [ -n "$CHANGED" ] && ! printf '%s\n' "$CHANGED" | grep -qE '\.(html|css|js|svg|png|jpe?g|webp)$'; then
+  echo "pre-push: no renderable changes — visual checks not needed"
   exit 0
 fi
 
@@ -76,6 +79,29 @@ if [ -f tools/case-sync-check.py ]; then
     echo "pre-push: BLOCKED — the book and the classic case pages disagree (see above)."
     echo "  Fix it, or push anyway with:   SKIP_CONTRAST=1 git push"
     echo ""
+    exit 1
+  fi
+fi
+
+# Do every asset actually PAINT? Added 2026-08-02, after the /process method diagram was found
+# to have been a broken image on the live site: a literal angle-bracket tag inside a CSS comment
+# made the SVG invalid XML, and an SVG loaded through an img element must be valid XML. Every
+# other gate here checks text, agreement or colour — none of them asked whether the picture
+# loaded. The static half costs milliseconds and catches that exact root cause across the whole
+# tree; the runtime half re-checks the two pages that carry the most diagrams.
+if [ -f tools/asset-load-check.py ]; then
+  echo "pre-push: asset load check (SVG validity + images actually painting)…"
+  if ! python3 tools/asset-load-check.py --docroot . --no-selftest \
+        "http://localhost:$PORT/" "http://localhost:$PORT/process/"; then
+    cat <<'MSG'
+
+pre-push: BLOCKED — a broken asset was detected above.
+
+  An SVG that fails XML parsing renders as a BROKEN IMAGE when loaded via an img tag.
+  Most common cause: a literal angle-bracket tag inside the SVG's <style> block, even in
+  a comment. Fix it, or push anyway with:   SKIP_CONTRAST=1 git push
+
+MSG
     exit 1
   fi
 fi
