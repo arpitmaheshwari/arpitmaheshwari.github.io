@@ -60,7 +60,7 @@ Use the exact metric strings below on every surface (homepage chip, case-study p
 
 | # | Canonical name | Tag | Headline metric (exact string) | Other locked numbers |
 |---|----------------|-----|-------------------------------|----------------------|
-| 1 | **PTC University — Learning Connector** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile 4%→38% (2017→2019) · 80+ countries · Role: Lead Product Designer · 2014–2019 |
+| 1 | **PTC University — Learning Connector** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile 4%→38% (2017→2019) · 80+ countries · Role: Product & Design Lead (retitled 2026-08-02, PM receipt) · 2014–2019 |
 | 2 | **Telefónica MyO2 & Priority Moments** | Telecom · Non-NDA / public | **4M+** (MyO2 users) | Priority Moments **2.6M** sign-ups year one · 2.5M+ active · 5★ App Store · Role: Designer + front-end via **Equal Experts, 2012–14** |
 | 3 | **AI-Assisted Private Equity Investing** | FinTech · NDA | **60% faster** (deal screening) | measured pre- vs post-rollout · 3 sources behind every score · Role: Lead Product Designer · _(true sample: 42 deals over a 90-day window — DO NOT PUBLISH, see display rule below)_ |
 | 4 | **Programmatic Advertising Platform** | AdTech · NDA | **2 wks → 3 hrs** (campaign planning) | Act / Review / Ignore · reasoning on every call · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · $300M media business · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
@@ -313,8 +313,9 @@ prose doesn't already make. Canonical splits:
   implementation.
 - **PTC** — Owned: consolidation argument + IA, subscription-shift design work, the 4-person
   design team. Shared: business-model decision w/ PTC leadership; delivery w/ platform
-  engineering. Not mine: LMS backend, commerce infrastructure. (NOT a PM receipt — keep design
-  framing.)
+  engineering. Not mine: LMS backend, commerce infrastructure. (2026-08-02: the "NOT a PM
+  receipt" note that stood here is SUPERSEDED — see the dated PTC-is-a-PM-receipt entry below;
+  he drove definition, roadmap, consolidation and sunsets, leadership ratified.)
   **The subscription MECHANISM (Arpit's own account, 2026-08-01 — supersedes any narrower
   phrasing):** the 0% → 64% shift ran on a product-led, free-to-premium funnel — free tutorials
   and trainings were the acquisition layer; experiencing them converted learners to paid premium
@@ -422,3 +423,39 @@ The resume therefore states it as a dated header line only ("mobile for Fortune 
 pharmaceutical clients"), with NO achievement bullet — matching how /hire and the book already
 list it. Do not write an achievement bullet for TCS unless Arpit supplies a real, measured
 outcome. The dated header MUST stay: 2010 is what anchors the locked "fifteen years" span.
+
+### PTC IS a PM receipt (Arpit's own account, 2026-08-02 — SUPERSEDES the "NOT a PM receipt" note)
+The 2026-07-25 pass excluded PTC from the PM-receipts retitle. Arpit has now corrected that
+first-hand, with the same scoping discipline as the PLG entry:
+- **Ownership of the consolidation decision:** he DROVE it — built the case, defined what
+  survives, sequenced the sunsets; PTC leadership's role was ratification. (The old "Shared:
+  business-model decision w/ PTC leadership" recorded the ratification, not the driving.)
+- **PM activities owned:** product definition of Learning Connector; the release roadmap —
+  **quarterly, 2016–2019**; the 5→1 portfolio consolidation strategy; sunset management of the
+  four legacy platforms.
+- **Title:** the PTC seat is now **Product & Design Lead** (was "Lead Product Designer"),
+  matching the DD/OrgOS convention. Locked in data/case-facts.js; every surface renders or is
+  gated against that file.
+
+### PTC migration + sunset receipts (2026-08-02, Arpit's account — NEW LOCKED FACTS)
+- **150k active users migrated** onto Learning Connector over **24 months**, from the multiple
+  legacy platforms. The consolidated platform ended up holding the 550k+ registered / 350k+
+  active — so the existing locked numbers remain attached to Learning Connector honestly;
+  **150k is the migration receipt** (users actually moved with their data), not a replacement
+  for 550k+.
+- **A single platform's full switch-off took six months.** Do NOT generalize to "each sunset
+  took six months" — the confirmed fact is one platform (the four followed their own clocks
+  inside the 24-month window).
+- **Learning Connector is still live** at learningconnector.ptc.com under its own name —
+  verified HTTP 200 on 2026-08-02, page title "PTC Learning Connector". A 2014–2019 product
+  still in production in 2026 is a citable longevity receipt.
+
+### PTC industry-context claim — what is and is NOT sourced (2026-08-02)
+Arpit proposed "second best subscription transition after Adobe." His source
+(charlenelower.medium.com, "Transition to SaaS with case studies of Autodesk and PTC") does
+NOT say that — it never mentions Adobe. What it DOES support, and what surfaces may say,
+cited: **PTC's company-wide subscription transition is documented as unusually smooth — no
+revenue dip after the 2015 launch, unlike Autodesk's sharp dip.** Scope honestly: the article
+is about PTC corporate (CAD/PLM), NOT PTC University; use it only as company-wide context
+around the University's own 0% → 64%. The "after Adobe" ranking is QUARANTINED until a source
+that actually says it appears.

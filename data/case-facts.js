@@ -46,7 +46,7 @@
       "meta": [
         [
           "Role",
-          "Lead Product Designer"
+          "Product & Design Lead"
         ],
         [
           "Span",

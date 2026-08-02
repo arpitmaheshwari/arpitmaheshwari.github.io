@@ -121,7 +121,7 @@ const CV_EXP = [{
   org: "Sahaj AI · AdTech, HRTech & Private Equity"
 }, {
   yr: "2014–19",
-  role: "Lead Product Designer",
+  role: "Product & Design Lead",
   org: "PTC Inc. · PTC University — Learning Connector · 550k+ registered, 350k+ active · NASA, Apple, Boeing, Airbus & more"
 }, {
   yr: "2012–14",
@@ -183,7 +183,7 @@ const CASES = {
       p: "Built knowing German and Russian run 30% longer: short labels, shallow hierarchy, no text in images."
     }, {
       h: "A switch-off ladder",
-      p: "Sequenced the four shutdowns so each VP watched users land softly before the portal went dark."
+      p: "Sequenced the four shutdowns — 150k active learners migrated over 24 months — so each VP watched users land softly before the portal went dark."
     }],
     fig2: {
       no: "1.2",
