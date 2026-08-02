@@ -345,6 +345,8 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
    A hard 220px first column pushed the homepage 19px past a 320px viewport,
    which is two-dimensional scrolling and a WCAG 1.4.10 reflow failure. */
 .lead-dl{display:grid;grid-template-columns:220px 1fr;gap:0;margin:0;border-top:1px solid var(--border)}
+.lead-dl dt{padding:20px 24px 20px 0;font-family:var(--ff-display);font-size:var(--fs-lead);font-weight:400;color:var(--gold);border-bottom:1px solid var(--border)}
+.lead-dl dd{padding:20px 0;font-size:var(--fs-body);color:var(--ink);line-height:1.7;border-bottom:1px solid var(--border);margin:0}
 @media(max-width:560px){.lead-dl{grid-template-columns:1fr}}
 
 /* nav 320 guard — at 320px the wordmark + CTA + hamburger exceeded the viewport,
