@@ -25,6 +25,13 @@ import argparse, collections, glob, os, re, sys
 
 TYPE = ['font-family','font-size','font-weight','font-style','letter-spacing',
         'text-transform','color','line-height']
+# Layout duplication is the same disease: 263 elements repeated the receipt row, the button and
+# the card inline before they were extracted (2026-08-02). A layout signature needs 3+ properties
+# to count as a component — two properties is usually a genuine one-off nudge.
+LAYOUT = ['display','flex','flex-wrap','flex-direction','align-items','justify-content','gap',
+          'grid-template-columns','margin','margin-top','margin-bottom','margin-left',
+          'margin-right','padding','border','border-radius','border-top','border-bottom',
+          'border-left','max-width','width']
 DEFAULT_THRESHOLD = 4
 
 def signatures(root):
@@ -42,7 +49,13 @@ def signatures(root):
                 mm = re.search(r'(?:^|;)\s*' + p + r'\s*:\s*([^;]+)', d)
                 if mm: props.append(f'{p}:{mm.group(1).strip()}')
             if len(props) >= 2:
-                k = ';'.join(props); sig[k] += 1; where[k].add(os.path.relpath(f, root))
+                k = 'TYPE ' + ';'.join(props); sig[k] += 1; where[k].add(os.path.relpath(f, root))
+            lay = []
+            for p in LAYOUT:
+                mm = re.search(r'(?:^|;)\s*' + re.escape(p) + r'\s*:\s*([^;]+)', d)
+                if mm: lay.append(f'{p}:{mm.group(1).strip()}')
+            if len(lay) >= 3:
+                k = 'LAYOUT ' + ';'.join(lay); sig[k] += 1; where[k].add(os.path.relpath(f, root))
     return sig, where, len(files)
 
 def calibrate(root, threshold):
@@ -81,9 +94,9 @@ def main():
     sig, where, nfiles = signatures(root)
     over = sorted(((n, k) for k, n in sig.items() if n >= a.threshold), reverse=True)
     total = sum(sig.values())
-    print(f'scanned {nfiles} HTML files · {total} inline styles carry 2+ type declarations')
+    print(f'scanned {nfiles} HTML files · {total} inline signatures (type 2+ props, layout 3+ props)')
     if not over:
-        print(f'\nResult: clean — no type treatment is duplicated {a.threshold}+ times inline.')
+        print(f'\nResult: clean — no type OR layout component is duplicated {a.threshold}+ times inline.')
         print('NOT covered: single-use inline styles (fine), page <style> blocks, and whether a '
               'named class is used CONSISTENTLY (see tools/type-consistency-check.md for that).')
         return 0

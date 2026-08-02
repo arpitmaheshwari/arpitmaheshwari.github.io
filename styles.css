@@ -31,6 +31,14 @@
   /* --fs-micro (2026-08-02): the site already had a tier BELOW eyebrow — dense meta like
      vitals labels, jump nav, footer notes — but it was never named, so it grew four
      values (9.5/10/10.5/11px). Named once, collapsed to one. */
+  /* Spacing steps (defined 2026-08-02). DESIGN-SYSTEM §5 has referenced --space since it was
+     written, but it was never actually declared — so 3,080 spacing declarations grew across 49
+     literal values with nothing to reference. These are the steps MEASURED in use (15+ times
+     each); they are what the site is, not an aspiration it never met. Snap new work to them. */
+  --space-2:2px;  --space-4:4px;  --space-6:6px;  --space-8:8px;  --space-10:10px;
+  --space-12:12px; --space-14:14px; --space-16:16px; --space-18:18px; --space-20:20px;
+  --space-24:24px; --space-28:28px; --space-32:32px; --space-40:40px; --space-48:48px;
+  --space-56:56px; --space-64:64px; --space-80:80px;
   --fs-micro:11px;
   --fs-eyebrow:12px; --fs-caption:13px; --fs-ui:14px; --fs-body:16px;
   --fs-lead:21px; --fs-card:24px;
@@ -464,3 +472,37 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .lbl-cap-bold{font-family:var(--ff-mono);font-size:var(--fs-caption);font-weight:600;color:var(--ink)}
 .t-metric{font-family:var(--ff-display);font-size:var(--fs-metric);font-weight:300;color:var(--gold);line-height:1}
 .t-serif-body-plain{font-family:var(--ff-display);font-size:var(--fs-body);color:var(--ink)}
+
+/* ============================================================================
+   LAYOUT COMPONENTS — extracted 2026-08-02 from 263 duplicated inline styles.
+   Same rule as the type components above: a repeated component gets a class.
+   These names describe the ROLE (receipt row, action button, boundary note),
+   because that is what a future edit is looking for.
+   ============================================================================ */
+.row-ic{display:flex;align-items:center;gap:12px}
+.row-ic-sm{display:flex;align-items:center;gap:8px}
+.rcpt-r{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 24px;padding:16px 20px;border-bottom:1px solid var(--border)}
+.rcpt-r-tight{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 24px;padding:13px 20px;border-bottom:1px solid var(--border)}
+.rcpt-r-last{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 24px;padding:16px 20px}
+.rcpt-r-tight-last{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 24px;padding:13px 20px}
+.rcpt-box{display:grid;gap:0;grid-template-columns:1fr;border:1px solid var(--border);border-radius:4px}
+.btn-a{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:2px}
+.btn-a-ghost{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border:1px solid var(--gold-dark);border-radius:2px}
+.btn-b{padding:14px 24px;border:1px solid var(--gold-dark);border-radius:2px}
+.btn-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:48px}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px}
+.meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:20px}
+.card-gold{margin-bottom:64px;padding:32px;border:1px solid rgba(212,168,94,0.1);border-radius:4px}
+.card-p28{display:block;padding:28px;border:1px solid var(--border);border-radius:4px}
+.card-p32{display:block;padding:32px;border:1px solid var(--border);border-radius:4px}
+.card-seg{flex:1;padding:14px 16px;border:1px solid var(--border);border-radius:2px}
+.framed{border:1px solid var(--border);border-radius:4px;width:100%}
+.framed-blk{display:block;margin-bottom:16px;border:1px solid var(--border);border-radius:3px;width:100%}
+.framed-tight{margin:20px 0 0;border:1px solid var(--border);border-radius:4px}
+.note-gold{margin:40px 0 60px;padding:32px;border:1px solid var(--border);border-radius:4px;border-left:3px solid var(--gold)}
+.note-gold-b{margin-bottom:80px;padding:24px 28px;border:1px solid var(--border);border-radius:4px;border-left:3px solid var(--gold)}
+.measure-c{margin:0 auto;padding:0 24px;max-width:var(--measure)}
+.measure-t{margin:64px auto 0;padding:0 0 8px;max-width:var(--measure)}
+.card-wire{margin:40px 0;padding:40px;border:1px solid var(--border);border-radius:8px}
+.pullq{margin:24px 0;padding:32px;border:1px solid var(--border);border-radius:4px;border-left:3px solid var(--gold)}
+.card-col{display:flex;flex-direction:column;margin:0;padding:28px;border:1px solid var(--border);border-radius:4px}

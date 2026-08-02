@@ -167,7 +167,14 @@ Do **not** apply this document's ramp or grammar to `book/`. It is **not** exemp
 ## 5. Spacing, rhythm, geometry
 
 ```
---space: 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 90   (px steps — snap all margins/padding/gap to these)
+--space: 2 4 6 8 10 12 14 16 18 20 24 28 32 40 48 56 64 80   (px — declared in styles.css as --space-*)
+CORRECTED 2026-08-02. This line previously advertised a 9-step scale (4·8·12·16·24·32·48·64·90)
+that the site never followed and that `--space` was never even declared for. Measured reality:
+3,080 spacing declarations across 49 distinct values, half of them off that list — including
+10px (288x), 20px (208x) and 14px (197x), none of which were on it. A design-system doc that
+describes a system nobody implements is worse than no doc, so the token now records what the
+site IS. Narrowing 18 steps toward 9 is a REDESIGN of every vertical rhythm, not a refactor —
+it is a deliberate open decision, not an oversight.
 --section-y: 90px  (desktop)   64px (tablet ≤900)   48px (mobile ≤600)
 --page-x: 64px (desktop)   32px (tablet)   24px (mobile)
 --inner-max: 1180px            --measure: 62ch (body reading width)
@@ -175,7 +182,8 @@ Do **not** apply this document's ramp or grammar to `book/`. It is **not** exemp
 ```
 - **One section rhythm** (`--section-y`). Retire the 120/96/64 mix and the identity-strip's inline 64.
 - **One heading bottom-margin rule:** eyebrow→title 14px; title→body 18px; title→grid 36px.
-- Retire the 6/8/12/…/60px margin scatter — snap to `--space`.
+- Snap new margins/padding/gap to a `--space-*` token. Values outside the 18 steps need a
+  reason (nav clearance 104px, negative offsets, one-off hero rhythm) — not a fresh literal.
 - Reading measures: body 62ch; no more 20/760px/1000px page-to-page jumps.
 
 ## 6. Section grammar (the core fix)

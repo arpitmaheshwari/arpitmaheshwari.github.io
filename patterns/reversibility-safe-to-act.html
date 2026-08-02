@@ -50,7 +50,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p34">
+<link rel="stylesheet" href="../styles.css?v=p37">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -60,7 +60,7 @@
 </svg>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <div class="nav-logo"><a class="row-ic" href="../index.html" style="text-decoration:none; color:inherit"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span class="nav-name">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns" aria-current="true">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
@@ -68,7 +68,7 @@
 
 <div style="padding:104px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
   <div style="max-width:var(--measure);margin:0 auto">
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap">
+    <div class="meta-row">
       <h1 class="t-hero" style="margin:0; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual">Reversibility</h1>
       <span class="lbl-badge-ink" style="padding:6px 12px; border-radius:4px; background-color:var(--copper); white-space:nowrap">In production</span>
     </div>
@@ -85,7 +85,7 @@
   </section>
 
   <figure style="margin:8px 0 48px;text-align:center">
-    <img src="../assets/visuals/pattern-reversibility.svg" alt="Reversibility pattern: an applied action with a visible undo, a one-click reversal, and a staged rollout with a halt control partway along its timeline" loading="lazy" width="1280" height="400" style="width:100%;height:auto;border-radius:4px;border:1px solid var(--border)">
+    <img class="framed" src="../assets/visuals/pattern-reversibility.svg" alt="Reversibility pattern: an applied action with a visible undo, a one-click reversal, and a staged rollout with a halt control partway along its timeline" loading="lazy" width="1280" height="400" style="height:auto">
   </figure>
 
   <section style="margin-bottom:64px">
@@ -141,7 +141,7 @@
   </section>
 
 
-  <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:64px">
+  <section class="card-gold" style="background:rgba(212,168,94,0.03)">
     <h3 class="card-title" style="margin-bottom:16px">See This Pattern In Action</h3>
     <ul class="t-cap-loose" style="margin-bottom:16px; padding-left:24px">
       <li style="margin-bottom:12px"><strong><a href="../case-studies/ptc.html" style="color:var(--gold);text-decoration:none">PTC University</a>:</strong> retiring four products, the shutdowns were sequenced so each team watched their users land softly — with a 24-month grace period, a migration you could halt.</li>
@@ -150,20 +150,20 @@
   </section>
 
   <!-- NEWSLETTER SIGNUP -->
-  <section style="background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;padding:32px;margin-bottom:64px">
+  <section class="card-gold" style="background:rgba(212,168,94,0.03)">
     <div class="eyebrow" style="margin-bottom:12px">Get AI design patterns in your inbox</div>
     <p class="u-ui" style="margin-bottom:20px">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
-    <form action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank" style="display:flex;gap:8px;flex-wrap:wrap">
-      <input class="t-sans-ui" type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="flex:1; min-width:200px; padding:14px 16px; background:var(--bg); border:1px solid var(--border); border-radius:2px">
-      <button class="lbl-eyebrow-500" type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="padding:14px 24px; background:transparent; border:1px solid var(--gold-dark); border-radius:2px; cursor:pointer; transition:background 0.3s,color 0.3s">Subscribe</button>
+    <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+      <input class="t-sans-ui card-seg" type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="min-width:200px; background:var(--bg)">
+      <button class="lbl-eyebrow-500 btn-b" type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="background:transparent; cursor:pointer; transition:background 0.3s,color 0.3s">Subscribe</button>
     </form>
   </section>
 
-  <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:48px">
-    <a class="lbl-badge-bg" href="./act-review-ignore.html" style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; background:var(--gold); border-radius:2px; text-decoration:none; transition:background 0.3s" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Back to the rule / Act, Review, Ignore →</a>
-    <a class="lbl-badge-gold" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px; background:transparent; border:1px solid var(--gold-dark); border-radius:2px; text-decoration:none; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
+  <div class="btn-row">
+    <a class="lbl-badge-bg btn-a" href="./act-review-ignore.html" style="background:var(--gold); text-decoration:none; transition:background 0.3s" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Back to the rule / Act, Review, Ignore →</a>
+    <a class="lbl-badge-gold btn-a-ghost" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="background:transparent; text-decoration:none; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
   </div>
-<section style="max-width:var(--measure);margin:64px auto 0;padding:0 0 8px">
+<section class="measure-t">
     <div style="border-top:1px solid var(--border);padding-top:28px">
       <div class="eyebrow" style="margin-bottom:12px">Limits — when NOT to use this</div>
       <p class="u-body" style="margin:0">In genuinely irreversible domains — payments sent, emails delivered, trades executed — a fake undo is worse than none. Sometimes friction is the correct design; make the last step deliberately heavy instead of pretending it can be unwound.</p>
