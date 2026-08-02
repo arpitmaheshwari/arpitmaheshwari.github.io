@@ -1002,7 +1002,7 @@ function caseWalk(c) {
         fontStyle: "italic",
         color: "var(--bk-ink-faint)"
       }
-    }, "What you see is a reconstruction or a schematic, never a client's live screen: names and figures on it are synthetic and the client is unnamed. The moves, outcomes and principles are public; I'll walk through the real artifacts and numbers on a call under mutual NDA.") : null)
+    }, "What you see is a reconstruction or a schematic, never a client's live screen: names and figures on it are synthetic and the client is unnamed. The moves, outcomes and principles are public; I'll walk through the real artifacts — service blueprints included — and numbers on a call under mutual NDA.") : null)
   };
 }
 

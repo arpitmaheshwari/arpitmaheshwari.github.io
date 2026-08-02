@@ -327,13 +327,14 @@ prose doesn't already make. Canonical splits:
 - **O2** — Owned: every screen + the front-end code. Shared: delivery within Equal Experts.
   Not mine: launch marketing + public launch numbers (O2's, reported as theirs).
 
-### Process artifacts — closed, do not re-ask (Arpit confirmed, 2026-07-29)
-No original process artifacts survive from any project: no PlanIt mascot sketches, no AdTech/OrgOS
+### Process artifacts — corrected 2026-08-02 (the 2026-07-29 "none survive" was too broad)
+**SERVICE BLUEPRINTS SURVIVE** — Arpit holds them for PTC, AdTech, OrgOS, VC diligence and
+FinTech. He keeps the files himself (not in any repo). Visibility rule, his call: **interview
+only** — surfaces may say the walk-through includes service blueprints, but no blueprint is ever
+published, hosted, or linked. What remains true from 2026-07-29: no PlanIt mascot sketches, no
 whiteboards or module-mapping photos, no rejected-iteration screenshots (incl. the 3-option
-recommendation card from the errata story). NEVER recreate, mock up, or stage these — fabricated
-process theater is an instant credibility kill. Prose + receipt tables + ownership blocks are the
-honest ceiling for process evidence on the NDA work. The live pattern demos and The Lab remain the
-"watch me work" surfaces.
+recommendation card). NEVER recreate, mock up, or stage those — fabricated process theater is an
+instant credibility kill. The live pattern demos and The Lab remain the "watch me work" surfaces.
 
 ### Marginalia layer (2026-07-29 — supersedes the single-sign-off restraint)
 Arpit's explicit call after the Dominique Cheng reference: the site must read as a personal
@@ -498,16 +499,19 @@ Now licensed, per his own account:
   OrgOS, O2, FinTech and VC diligence. AdTech and OrgOS are the most blueprint-shaped (a
   two-sided marketplace and an org operating system both have explicit front-stage/back-stage).
 - **Usability testing** — a STANDING part of the loop on essentially every project, not an
-  occasional event. Claim it as method. Do NOT attach participant counts: none are on record,
-  and the earlier "do not invent" rule on research counts still stands.
+  occasional event. Claim it as method. **Participant counts (Arpit, 2026-08-02): rounds of
+  ~10 was his typical size, and the PTC blind-user study specifically was ~10.** Only "~10"/
+  "about ten" may be printed, only for those two claims; every other count stays uninvented
+  (trader-observation counts remain UNKNOWN).
 - **Requirement gathering** — BOTH forms, depending on the client: PRDs/specs he owned and
   engineering built from, and backlog-native work (user stories, acceptance criteria,
   refinement with engineering). Pairs with the PTC roadmap ownership locked earlier today.
 
-**HARD SCOPING, do not breach:** canon already records (2026-07-29) that the process artifacts
-themselves — maps, blueprints, personas, whiteboards — DO NOT SURVIVE. So these methods may be
-claimed as practice and evidenced by the DECISIONS they produced, never by showing an artifact.
-Never add a "see the journey map" link, never recreate one as a placeholder.
+**SCOPING (corrected 2026-08-02):** service blueprints SURVIVE (PTC, AdTech, OrgOS, VC,
+FinTech — Arpit keeps the files; interview-only, never published). Sketches, whiteboards and
+rejected iterations still do not. So: methods are claimed as practice and evidenced by
+decisions; the NDA walk-through offer may name service blueprints; nothing is ever linked,
+hosted, or recreated as a placeholder.
 
 **The decision-a-method-changed receipt (Arpit, 2026-08-02): the PTC accessibility rewrite WAS
 the outcome of a usability study.** The verbose-ARIA approach was his own, shipped with textbook
