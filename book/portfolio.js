@@ -1465,7 +1465,7 @@ function buildBook(ctx) {
       style: {
         marginTop: 22
       }
-    }, "the miss, written down: my first accessibility pass buried screen-reader users in verbose ARIA labels — they skim, not listen. A week with the monitor off, then I recoded it."), /*#__PURE__*/React.createElement("div", {
+    }, "the miss, written down: my first accessibility pass buried screen-reader users in verbose ARIA labels — a usability study showed they skim, not listen. A week with the monitor off, then I recoded it."), /*#__PURE__*/React.createElement("div", {
       className: "bk-coffee",
       "aria-hidden": "true",
       style: {
@@ -1508,9 +1508,9 @@ function buildBook(ctx) {
     right: /*#__PURE__*/React.createElement("div", { className: "bk-reveal" },
       /*#__PURE__*/React.createElement("div", { className: "bk-kicker" }, "The four moves of the spiral"),
       /*#__PURE__*/React.createElement("div", { style: { marginTop: 14 } },
-        [["01", "Listen", "Research the problem space in its own words, not mine. Act / Review / Ignore was born here \u2014 watching traders override a correct model."],
-         ["02", "Structure", "Journeys and information architecture: what the product is, before what it looks like."],
-         ["03", "Prove", "AI-assisted working HTML, not clickable pictures \u2014 tested with users, and when it survives, shipped as part of the codebase."],
+        [["01", "Listen", "User research and requirement gathering, in the problem space's own words. Act / Review / Ignore was born here \u2014 watching traders override a correct model."],
+         ["02", "Structure", "Journey maps, service blueprints, information architecture: what the product is, before what it looks like."],
+         ["03", "Prove", "AI-assisted working HTML, not clickable pictures \u2014 usability-tested, and when it survives, shipped as part of the codebase."],
          ["04", "Land", "Visual design, brand, tone \u2014 where PlanIt's downcast mascot lived; the layer people mistake for the whole job."]
         ].map((m, i) => /*#__PURE__*/React.createElement("div", { className: "bk-principle", key: i },
           /*#__PURE__*/React.createElement("span", { className: "bk-principle__n" }, m[0]),

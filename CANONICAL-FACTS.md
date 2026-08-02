@@ -485,3 +485,36 @@ been seen by anyone either.
 
 Verified the way this repo requires: the gate was watched going RED against the real restored
 defect (exit 1) and GREEN once fixed (exit 0), not merely reasoned about.
+
+### Craft methods — the practice that was never written down (Arpit's account, 2026-08-02)
+Audited 2026-08-02: the public site had ZERO occurrences of "user research", "journey map",
+"service blueprint", "requirement" or "usability test". Six years of practice, invisible to any
+screener grepping a JD's core requirements. Front-end coding was the exception — already
+claimed across nine files and in the resume line "the interface I design is the front-end I
+ship in the PR"; do NOT add more of it, it is covered.
+
+Now licensed, per his own account:
+- **Journey mapping and service blueprinting** — practised across the engagements: PTC, AdTech,
+  OrgOS, O2, FinTech and VC diligence. AdTech and OrgOS are the most blueprint-shaped (a
+  two-sided marketplace and an org operating system both have explicit front-stage/back-stage).
+- **Usability testing** — a STANDING part of the loop on essentially every project, not an
+  occasional event. Claim it as method. Do NOT attach participant counts: none are on record,
+  and the earlier "do not invent" rule on research counts still stands.
+- **Requirement gathering** — BOTH forms, depending on the client: PRDs/specs he owned and
+  engineering built from, and backlog-native work (user stories, acceptance criteria,
+  refinement with engineering). Pairs with the PTC roadmap ownership locked earlier today.
+
+**HARD SCOPING, do not breach:** canon already records (2026-07-29) that the process artifacts
+themselves — maps, blueprints, personas, whiteboards — DO NOT SURVIVE. So these methods may be
+claimed as practice and evidenced by the DECISIONS they produced, never by showing an artifact.
+Never add a "see the journey map" link, never recreate one as a placeholder.
+
+**The decision-a-method-changed receipt (Arpit, 2026-08-02): the PTC accessibility rewrite WAS
+the outcome of a usability study.** The verbose-ARIA approach was his own, shipped with textbook
+confidence; a usability study with blind users overturned it (they skim by headings and
+landmarks, they don't listen through sentences), and the front-end was re-written from what the
+study showed. Every surface that tells the miss should NAME the method — "a usability study
+with blind users", not just "I tested" — because that is the claim a screener greps for and the
+story already proves it. Second receipt, already in canon: the AdTech live A/B that killed the
+three-option recommendation card he had argued for. Both are method-changed-the-decision
+stories; neither needs a participant count, and none may be invented.
