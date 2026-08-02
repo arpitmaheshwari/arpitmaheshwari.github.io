@@ -214,6 +214,19 @@ text of varying size. Substituting the fixed `--fs-ui` token shrank it inside le
 caught by pixel diff, reverted. Relative sizing is sometimes the correct answer; tokenise by
 role, not reflexively.
 
+**Two documented exceptions to "extract everything", both found by pixel diff:**
+1. `.t-code` keeps `font-size:0.9em` — inline code sits inside text of varying size, so a fixed
+   token shrank it inside lead paragraphs. Relative sizing is sometimes correct.
+2. A utility class (specificity 0,1,0) LOSES to a page rule like `.lab-ctl label` (0,1,1). An
+   inline style used to win that fight; the class does not. Where a page rule competes, name the
+   variant in the PAGE's stylesheet at matching specificity — do not reach back for an inline
+   style. (`/lab/hitl` checkbox labels silently reverted to mono uppercase before this was fixed.)
+
+**Print documents** (`portfolio-sources/`) have their own pt scale: `--pt-micro/cap/meta/kick/
+note/body/lead`, naming the sizes already in use 3+ times. One-offs (cover 34pt, ghost numeral
+62mm, drop cap 30pt) stay literal deliberately. `tools/inline-style-check.py` scans them too.
+
+
 ## 7. Components (consolidated)
 
 - **Button** — one spec: `--ff-mono`, `--fs-eyebrow`, weight 500, .1em, UPPER, padding 14px/28px, `--radius`. Primary = gold fill / bg text; secondary = gold text / `--border-accent` outline. (Retire the sans-vs-mono, 3-padding, 2-radius drift.)

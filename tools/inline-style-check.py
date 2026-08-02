@@ -28,7 +28,10 @@ TYPE = ['font-family','font-size','font-weight','font-style','letter-spacing',
 DEFAULT_THRESHOLD = 4
 
 def signatures(root):
-    pats = ['*.html','*/index.html','case-studies/*.html','patterns/*.html','lab/*.html']
+    # portfolio-sources/ is a SEPARATE private repo checked out inside this one. Its print
+    # documents carry the same debt, so they are scanned when present and skipped when not.
+    pats = ['*.html','*/index.html','case-studies/*.html','patterns/*.html','lab/*.html',
+            'portfolio-sources/*.html']
     files = sorted({p for pat in pats for p in glob.glob(os.path.join(root, pat))})
     sig = collections.Counter(); where = collections.defaultdict(set)
     for f in files:

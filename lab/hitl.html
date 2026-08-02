@@ -28,7 +28,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap" media="print" onload="this.media='all';this.onload=null">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap"></noscript>
-<link rel="stylesheet" href="../styles.css?v=p33">
+<link rel="stylesheet" href="../styles.css?v=p35">
 <style>
   .lab-wrap { max-width: var(--inner-max); margin: 0 auto; padding: 0 var(--page-x); }
   .lab-hero { padding-top: 128px; }
@@ -60,7 +60,8 @@
 
   .lab-ctl { margin-bottom: 18px; }
   .lab-ctl:last-child { margin-bottom: 0; }
-  .lab-ctl label { display: block; font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 8px; }
+.lab-ctl label.t-sans-ui-reset { display:inline; font-family:var(--ff-sans); font-size:var(--fs-ui); letter-spacing:0; text-transform:none; color:var(--ink) }  /* inline checkbox label — a different component from the section label above; page rule outranks the utility class */
+    .lab-ctl label { display: block; font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 8px; }
   .lab-ctl output { font-family: var(--ff-mono); font-size: var(--fs-ui); color: var(--gold); font-variant-numeric: tabular-nums; }
   .lab-ctl input[type="range"] { width: 100%; accent-color: var(--gold); }
   /* same trap as eval.html: --bg-soft is not remapped by .act-cream */
@@ -198,10 +199,10 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
               <input type="range" id="d-review" min="0" max="1" step="0.01" value="0.55">
             </div>
             <div class="lab-ctl">
-              <span class="lab-inline"><input type="checkbox" id="d-rev" checked><label for="d-rev" style="margin:0;text-transform:none;letter-spacing:0;font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--ink)">Action is reversible</label></span>
+              <span class="lab-inline"><input type="checkbox" id="d-rev" checked><label class="t-sans-ui-reset" for="d-rev" style="margin:0">Action is reversible</label></span>
             </div>
             <div class="lab-ctl">
-              <span class="lab-inline"><input type="checkbox" id="d-sig" checked><label for="d-sig" style="margin:0;text-transform:none;letter-spacing:0;font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--ink)">Signals were named</label></span>
+              <span class="lab-inline"><input type="checkbox" id="d-sig" checked><label class="t-sans-ui-reset" for="d-sig" style="margin:0">Signals were named</label></span>
             </div>
           </div>
           <div class="lab-out" aria-live="polite">
@@ -282,7 +283,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
               <input type="range" id="s-budget" min="200" max="5000" step="100" value="1000">
             </div>
             <div class="lab-ctl">
-              <span class="lab-inline"><input type="checkbox" id="s-partial"><label for="s-partial" style="margin:0;text-transform:none;letter-spacing:0;font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--ink)">A partial answer exists</label></span>
+              <span class="lab-inline"><input type="checkbox" id="s-partial"><label class="t-sans-ui-reset" for="s-partial" style="margin:0">A partial answer exists</label></span>
             </div>
           </div>
           <div class="lab-out" aria-live="polite">
