@@ -33,3 +33,36 @@ inline style attributes to zero). Inline-duplicated component styles are where d
 ## Root cause to avoid repeating
 Inline styles on repeated components = each instance is a fork waiting to drift. New repeated
 component → class in styles.css, no exceptions.
+
+---
+
+## Round 2 (2026-08-02, same day) — the census was still too narrow
+
+Arpit rejected round 1: "look at the case study pages, pattern pages, other standalone pages,
+and you will still see a lot of font patterns." He was right again. Round 1 diffed 8 selectors
+WITHIN single pages. It never looked ACROSS pages, and never at the actual disease.
+
+### What a complete audit has to measure
+1. **Static**: every inline `font-*` declaration in every HTML file. (Found: 1,231 across 28
+   files; 562 belonged to repeated signatures = unnamed components.)
+2. **Repeated inline signatures**: the same style string written N times = a component nobody
+   named. Fix by defining it once in CSS.
+3. **Cross-page rendered census, by ROLE not tag**: group every mono-uppercase label across ALL
+   pages by computed `size/weight/letter-spacing`. Found **27 treatments** for one component.
+4. **Off-scale sizes**: anything not on the token scale. Found 9.5/10/10.5/11px all in use.
+5. **Browser defaults nobody chose**: `<th>` renders bold-700 unless told otherwise — 32 labels
+   were 700 by accident, matching nothing.
+
+### The root finding
+The design system was INCOMPLETE, not merely disobeyed. The site genuinely needs a tier below
+`--fs-eyebrow` (vitals labels, jump nav, footer notes, tags). Because that tier was never
+named, it grew at four sizes simultaneously. Naming `--fs-micro: 11px` and collapsing all four
+onto it fixed more inconsistency than any amount of policing would have.
+
+Second finding: tracking. One component was spelled 16 ways (.08/.1/.12/.15em × weights
+400/500/600). DESIGN-SYSTEM §3 already sanctions exactly THREE, by role. Normalising to those
+three — plus one notation (`.15em`, never `0.15em`, so grep tells the truth) — took the
+rendered census from 27 treatments to 11, all legal.
+
+**Result: 27 → 11 treatments, 0 off-scale.** Each of the 11 is a sanctioned track at a
+sanctioned size; the spread that remains is legitimate role variety, not drift.

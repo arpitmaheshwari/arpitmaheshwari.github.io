@@ -22,6 +22,7 @@ One ordered ramp. Every text element maps to exactly one step.
 
 | Token | Value | Role |
 |---|---|---|
+| `--fs-micro` | **11px** | dense meta BELOW eyebrow (mono): vitals labels, jump nav, footer notes, tags |
 | `--fs-eyebrow` | **12px** | eyebrow / kicker / label / meta / nav / button (mono) — ONE size |
 | `--fs-caption` | **13px** | caption, secondary meta |
 | `--fs-ui` | **14px** | secondary body, UI text, card body |
@@ -56,6 +57,21 @@ They all map onto the ramp above.
 | Quote / pull-quote | Newsreader | `--fs-card` | 400 italic | 1.5 | — | — | ink |
 | Nav link | IBM Plex Mono | `--fs-eyebrow` | 500 | 1 | .1em | UPPER | ink-muted |
 | Button | IBM Plex Mono | `--fs-eyebrow` | 500 | 1 | .1em | UPPER | (see components) |
+
+### Label tracking — three sanctioned values, by role (added 2026-08-02)
+Mono uppercase labels were found rendering **16 different ways** across the site (tracking
+between .08em and .15em, weights 400/500/600) for what is visually one component. There are
+exactly three legitimate treatments, and they are the three already in the table above:
+
+| role | tracking | weight | colour |
+|---|---|---|---|
+| Section eyebrow | `.15em` | 500 | gold |
+| Caption / meta | `.08em` | 400 | ink-muted |
+| Nav link · button · badge | `.1em` | 500/600 | per component |
+
+Pick by ROLE, never by eye. Notation is `.15em`, never `0.15em` — one spelling, so a grep for
+drift returns the truth. `--fs-micro` (11px) exists because the site genuinely needs a tier
+below eyebrow; before it was named, that tier existed at 9.5/10/10.5/11px simultaneously.
 
 **Weight rule:** Newsreader headings are **400**. Reserve **300** for hero/display/metric only. Never 500/600 for headings on the classic site.
 
