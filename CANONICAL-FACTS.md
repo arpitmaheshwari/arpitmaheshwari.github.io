@@ -522,3 +522,23 @@ with blind users", not just "I tested" — because that is the claim a screener 
 story already proves it. Second receipt, already in canon: the AdTech live A/B that killed the
 three-option recommendation card he had argued for. Both are method-changed-the-decision
 stories; neither needs a participant count, and none may be invented.
+
+### The Substack name — an OPEN DEPENDENCY on Arpit (2026-08-03)
+The site calls the newsletter **"Human in the Loop"** in 15 places (homepage Writing header and
+archive link, /writing, five case-study footers, /hire, llms.txt, the book). As of 2026-08-03
+the publication's own metadata reads **"Arpit Maheshwari | Substack"** — verified by fetching
+arpitmaheshwari.substack.com and reading og:title. So those 15 references currently describe a
+brand that does not exist, and a reader who clicks lands somewhere named differently.
+
+**Arpit's decision (2026-08-03): rename the SUBSTACK, not the site.** Set the publication name
+to "Human in the Loop" in Substack settings. That makes all 15 references true at once and
+unifies three things under one name — the newsletter, the book (*Human in the Loop, Vol. I*),
+and the thesis the whole site argues.
+
+**UNTIL HE DOES IT, THE SITE IS OVERCLAIMING.** Do not treat this as resolved because it was
+decided; re-fetch og:title and confirm it reads "Human in the Loop" before calling it done. If
+he decides against renaming, the fallback is to rewrite all 15 to "my Substack" / "More on
+Substack" — the copy is ready, the decision is not reversed silently.
+
+NOTE: "Human in the Loop" as the BOOK's title and as the site's thesis phrase is INDEPENDENT of
+this and stays regardless — those uses were never in question.
