@@ -1,92 +1,77 @@
 <svg viewBox="0 0 1280 440" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pt pd">
-  <title id="pt">The method: every turn reduces the size of the bet</title>
-  <desc id="pd">A single line falls from the top left to the bottom right. It begins where three questions — desirable, feasible, viable — converge into one bet worth making. It then passes through four repeating moves: listen, structure, prove, land. Each move sits lower than the last, and each drops a dotted line to a baseline marked "ends in front of a real user", so the bet a stakeholder has to accept gets smaller every turn. Past a dashed marker reading "ship", the line keeps falling through smaller turns, because shipping is the first honest data and the loops do not stop.</desc>
+  <title id="pt">The method: every turn narrows the bet</title>
+  <desc id="pd">A wedge opens at the left, where three questions — desirable, feasible, viable — converge into one bet worth making. The gap between the wedge's upper and lower edges is how big a bet someone else still has to accept. A flat spine runs through the middle of the wedge, passing four repeating moves: listen, structure, prove, land. Each move drops a dotted line to its label, and the gap around the spine narrows steadily from one move to the next. Past a dashed marker reading "ship", the wedge keeps narrowing but never closes, because shipping is the first honest data and the turns do not stop.</desc>
   <rect width="1280" height="440" fill="#F4ECDA"/>
 
   <style>
-    /* Generic families on purpose: an SVG referenced through <img> cannot load
-       webfonts, so naming Newsreader/IBM Plex here would silently fall back. */
-    .ttl{font-family:Georgia,'Times New Roman',serif;font-size:30px;fill:#2C2620}
-    .act{font-family:ui-monospace,'Courier New',monospace;font-size:19px;letter-spacing:2.4px;fill:#8A6423}
-    .cap{font-family:ui-monospace,'Courier New',monospace;font-size:18px;letter-spacing:1px;fill:#6F6350}
-    .mv{font-family:Georgia,'Times New Roman',serif;font-size:21px;fill:#2C2620}
-    .qn{font-family:Georgia,'Times New Roman',serif;font-size:20px;fill:#2C2620}
-    .quo{font-family:Georgia,'Times New Roman',serif;font-size:20px;font-style:italic;fill:#8A6423}
-    .ln{fill:none;stroke:#8A6423;stroke-width:2.4;stroke-linecap:round}
+    .ttl{font-family:Georgia,'Times New Roman',serif;font-size:22px;fill:#2C2620}
+    .act{font-family:ui-monospace,'Courier New',monospace;font-size:12px;letter-spacing:2.4px;fill:#8A6423}
+    .cap{font-family:ui-monospace,'Courier New',monospace;font-size:10.5px;letter-spacing:1px;fill:#6F6350}
+    .mv{font-family:Georgia,'Times New Roman',serif;font-size:16px;fill:#2C2620}
+    .qn{font-family:Georgia,'Times New Roman',serif;font-size:15px;fill:#2C2620}
+    .quo{font-family:Georgia,'Times New Roman',serif;font-size:15px;font-style:italic;fill:#8A6423}
+    .edge{fill:none;stroke:#8A6423;stroke-width:1.6;stroke-linecap:round;opacity:.75}
+    .spine{fill:none;stroke:#8A6423;stroke-width:2.4;stroke-linecap:round}
     .thin{fill:none;stroke:#8A6423;stroke-width:1.4;stroke-linecap:round;opacity:.7}
     .node{fill:#F4ECDA;stroke:#8A6423;stroke-width:2}
-    .dot{fill:none;stroke:#B3A98F;stroke-width:1;stroke-dasharray:2 5}
     .ax{fill:none;stroke:#B3A98F;stroke-width:1}
   </style>
 
   <!-- The claim, in words, inside the picture -->
-  <text class="ttl" x="44" y="38">Every turn reduces the size of the bet.</text>
-  <text class="cap" x="44" y="59">HEIGHT = HOW BIG A BET SOMEONE ELSE HAS TO ACCEPT</text>
+  <text class="ttl" x="44" y="38">Every turn narrows the bet.</text>
+  <text class="cap" x="44" y="59">THE GAP = HOW BIG A BET SOMEONE ELSE STILL HAS TO ACCEPT</text>
 
-  <!-- vertical axis: the one quantity this diagram measures -->
-  <path class="ax" d="M60 92 V330"/>
-  <path class="ax" d="M60 330 l-4 -10 M60 330 l4 -10"/>
-  <text class="cap" x="70" y="98">BIG</text>
-  <text class="cap" x="70" y="330">SMALL</text>
+  <!-- the wedge: the bet, narrowing. The GAP is the quantity — not height on the page. -->
+  <path d="M266 124 C400 142,560 166,700 186 C840 202,1000 212,1208 217 L1208 223
+    C1000 218,840 220,700 234 C560 252,400 274,266 290 Z" fill="#8A6423" opacity=".11"/>
+  <path class="edge" d="M266 124 C400 142,560 166,700 186 C840 202,1000 212,1208 217"/>
+  <path class="edge" d="M266 290 C400 274,560 252,700 234 C840 220,1000 218,1208 223"/>
 
-  <!-- the baseline every turn has to touch -->
-  <path class="dot" d="M120 366 H1240"/>
-  <text class="cap" x="120" y="388">EVERY TURN ENDS IN FRONT OF A REAL USER — THAT IS WHAT MAKES THE NEXT BET SMALLER</text>
+  <!-- the spine stays flat: progress here is convergence, not decline -->
+  <path class="spine" d="M266 201 C400 202,560 203,700 206 C840 209,1000 214,1198 220"/>
+  <path class="thin" d="M1206 220 l-12 -4 M1206 220 l-12 4"/>
 
   <!-- ============ ACT I · three questions converge into one bet ============ -->
   <text class="act" x="120" y="88">ACT I &#183; THE WAGER</text>
-  <text class="qn" x="120" y="126">Desirable?</text>
-  <text class="qn" x="120" y="150">Feasible?</text>
-  <text class="qn" x="120" y="174">Viable?</text>
-  <path class="thin" d="M206 121 C244 121 250 136 262 142"/>
-  <path class="thin" d="M196 145 C240 145 252 145 262 146"/>
-  <path class="thin" d="M178 169 C232 169 250 156 262 150"/>
-  <circle cx="266" cy="146" r="5" fill="#8A6423"/>
-  <text class="cap" x="120" y="220">ALL THREE, OR IT DIES IN REVIEW</text>
+  <text class="qn" x="120" y="152">Desirable?</text>
+  <text class="qn" x="120" y="176">Feasible?</text>
+  <text class="qn" x="120" y="200">Viable?</text>
+  <path class="thin" d="M206 147 C232 147 246 178 258 194"/>
+  <path class="thin" d="M196 171 C226 171 244 188 258 198"/>
+  <path class="thin" d="M178 195 C216 195 240 200 258 202"/>
+  <circle cx="264" cy="201" r="5" fill="#8A6423"/>
+  <text class="cap" x="120" y="232">ALL THREE, OR IT DIES IN REVIEW</text>
 
-  <!-- ============ ACT II · the same four moves, each turn lower ============ -->
+  <!-- ============ ACT II · the same four moves, the gap smaller each time ============ -->
   <text class="act" x="330" y="88">ACT II &#183; THE SPIRAL</text>
-  <!-- legend glyph: this is what one "turn" means -->
-  <g transform="translate(330,104)">
+  <g transform="translate(330,96)">
     <path class="thin" d="M9 0 A 9 9 0 1 1 0 9"/>
     <path class="thin" d="M0 9 l4 -5 M0 9 l6 3"/>
     <text class="cap" x="24" y="12">= ONE TURN: LISTEN, STRUCTURE, PROVE, LAND</text>
   </g>
+  <circle class="node" cx="366" cy="202" r="9"/>
+  <circle class="node" cx="512" cy="203" r="9"/>
+  <circle class="node" cx="656" cy="205" r="9"/>
+  <circle class="node" cx="786" cy="208" r="9"/>
+  <path class="ax" d="M366 300 V214 M512 300 V215 M656 300 V217 M786 300 V220" stroke-dasharray="2 5"/>
+  <text class="mv" x="340" y="330">Listen</text>
+  <text class="mv" x="478" y="330">Structure</text>
+  <text class="mv" x="632" y="330">Prove</text>
+  <text class="mv" x="766" y="330">Land</text>
+  <text class="cap" x="330" y="360">RESEARCH IS A RHYTHM, NOT A PHASE</text>
 
-  <!-- the falling line -->
-  <path class="ln" d="M266 146
-    C 300 146, 320 148, 366 152
-    C 430 158, 462 186, 512 200
-    C 566 216, 610 226, 656 242
-    C 700 258, 748 266, 786 276
-    C 852 292, 940 298, 998 304
-    C 1048 310, 1076 316, 1112 322
-    C 1152 328, 1188 332, 1208 334"/>
-  <path class="thin" d="M1208 334 l-10 -5 M1208 334 l-8 6"/>
-
-  <!-- the four moves as turns on the line, each lower than the last -->
-  <circle class="node" cx="366" cy="152" r="15"/>
-  <circle class="node" cx="512" cy="200" r="13"/>
-  <circle class="node" cx="656" cy="242" r="11"/>
-  <circle class="node" cx="786" cy="276" r="9.5"/>
-  <text class="mv" x="348" y="192">Listen</text>
-  <text class="mv" x="486" y="240">Structure</text>
-  <text class="mv" x="638" y="280">Prove</text>
-  <text class="mv" x="770" y="312">Land</text>
-  <path class="dot" d="M366 200 V366 M512 248 V366 M656 288 V366 M786 320 V366"/>
-  <text class="cap" x="330" y="344">RESEARCH IS A RHYTHM, NOT A PHASE</text>
-
-  <!-- ============ ACT III · past ship, the turns keep coming ============ -->
+  <!-- ============ ACT III · past ship, the gap keeps closing, never to zero ============ -->
   <text class="act" x="900" y="88">ACT III &#183; THE OPEN LOOP</text>
-  <path class="ax" d="M880 96 V352" stroke-dasharray="5 5"/>
+  <path class="ax" d="M880 96 V346" stroke-dasharray="5 5"/>
   <text class="act" x="890" y="112">SHIP</text>
-  <circle class="node" cx="998" cy="304" r="8"/>
-  <circle class="node" cx="1112" cy="322" r="7"/>
-  <path class="dot" d="M998 312 V366 M1112 329 V366"/>
-  <text class="cap" x="900" y="344">SHIPPING IS THE FIRST HONEST DATA</text>
-  <text class="cap" x="900" y="360">THE TURNS DO NOT STOP</text>
+  <circle class="node" cx="998" cy="214" r="8"/>
+  <circle class="node" cx="1112" cy="218" r="8"/>
+  <text class="cap" x="900" y="360">SHIPPING IS THE FIRST HONEST DATA</text>
+  <text class="cap" x="900" y="376">THE TURNS DO NOT STOP</text>
 
   <!-- the payoff, stated rather than implied -->
-  <text class="quo" x="900" y="150">Confidence is earned in loops,</text>
-  <text class="quo" x="900" y="172">not declared in launches.</text>
+  <text class="quo" x="900" y="140">Confidence is earned in loops,</text>
+  <text class="quo" x="900" y="162">not declared in launches.</text>
+
+  <text class="cap" x="120" y="410">EVERY TURN ENDS IN FRONT OF A REAL USER — THAT IS WHAT NARROWS THE NEXT ONE</text>
 </svg>
