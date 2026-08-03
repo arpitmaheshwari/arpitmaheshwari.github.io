@@ -239,6 +239,7 @@ def main():
             return 0
 
     failures = 0
+    unmeasured = 0
 
     svg_bad, svg_n = svg_xml_errors(docroot)
     print(f"static: {svg_n} SVG file(s) parsed as XML")
@@ -253,7 +254,12 @@ def main():
         res = scan_page(url, docroot)
         if res is None or "error" in res:
             failures += 1
-            print(f"\n{url}\n  COULD NOT MEASURE — {res}")
+            unmeasured += 1
+            # Distinguish "could not look" from "asset is broken": a dead local server was
+            # reported as "1 broken asset" on 2026-08-03, sending me after a defect that
+            # did not exist.
+            print(f"\n{url}\n  COULD NOT MEASURE — no response from the page."
+                  f"\n  Is the local server running? (raw: {res})")
             gh("error", f"{url}: asset-load-check could not measure the page")
             continue
         print(f"\n{url}  —  {res['total']} image(s) checked")
@@ -268,8 +274,15 @@ def main():
     print("\nNOT covered by this gate: CSS background-image, images injected by JS after settle,")
     print("srcset/<picture> variants the browser did not choose, <video> posters, cross-origin")
     print("assets, and whether a rendered image is the CORRECT one — only that something painted.")
-    print("\nResult: " + ("clean — every asset painted." if not failures
-                          else f"{failures} broken asset(s). A broken diagram reads as broken craft."))
+    if not failures:
+        print("\nResult: clean — every asset painted.")
+    elif unmeasured == failures:
+        print(f"\nResult: INCONCLUSIVE — {unmeasured} page(s) could not be measured "
+              f"(server down?). This is NOT a broken-asset finding.")
+    else:
+        print(f"\nResult: {failures - unmeasured} broken asset(s)"
+              + (f" and {unmeasured} unmeasurable page(s)" if unmeasured else "")
+              + ". A broken diagram reads as broken craft.")
     return 1 if failures else 0
 
 if __name__ == "__main__":
