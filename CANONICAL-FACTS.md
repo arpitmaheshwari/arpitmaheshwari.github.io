@@ -556,3 +556,33 @@ the platform** — not "$300M". Two things changed and both matter:
 **Locked phrasing, use verbatim:** "a platform transacting £400M in media spend". Do NOT revert
 to "media business", do NOT write "$400M", and do NOT describe it as the client's revenue —
 that is a different (unrecorded) number and claiming it would be an overclaim.
+
+### Reference study — anteelo.com, 2026-08-04 (verdict + scope of what may be borrowed)
+Arpit shared anteelo.com: *"it has a personality, what can we learn from it."* Studied properly —
+markup fetched, page walked rendered, type measured in-browser.
+
+**What it is (factual):** a strategic-design / app-development agency. Hero is three words,
+"Ideate Design Evolve". Type is deliberately PLAIN — measured Helvetica + Poppins on white, no
+display face at all. So its personality is NOT typographic; that matters, because the instinct
+would be to copy a typeface and miss the mechanism entirely.
+
+**The three devices Arpit responded to** (he was asked; these are his picks, not my inference):
+1. **Collage artifacts.** Flat Bauhaus shapes — coral circle, blue triangle, yellow square — and a
+   PHOTOGRAPHED Game Boy, arranged on a graph-paper grid. Handmade play set against plain type.
+2. **Plain-spoken minimalism.** Three-word hero; the CTA is literally "Have a Project?" /
+   "Get in touch". Confidence expressed by saying very little.
+3. **Approachability furniture.** A full-width "Start a project →" band, rounded display face,
+   a chat widget. The page feels easy to talk to.
+He explicitly did NOT pick the colour-blocked work cards (one flat colour field per project).
+
+**The counterweight — do not import the substance.** Anteelo's evidence is thin: stock-style art,
+a client wall leaning on a Google logo, a template chat widget. Personality without receipts. Our
+site has the OPPOSITE failure mode — receipts with rationed warmth. So what is transferable is
+art-direction LANGUAGE only, never its content, its client wall, or its chat furniture (both of
+those also break our own text-names / no-fake-social-proof rules).
+
+**Scope decision (2026-08-04):** analysis only for the live site — NO palette, typography, or
+component change was approved from this study. The agreed avenue is a **light-direction
+prototype: standalone, decides-by-seeing, built to be looked at.** Do not read this entry as
+licence for a future pass to lighten the site's palette; the dark + gold editorial identity
+stands until Arpit chooses otherwise after seeing a rendered option.
