@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>404 OPTIONS — the lost-luggage ticket vs the contract's decline</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A0A;--ink:#F2EDE4;--ink-soft:rgba(242,237,228,.72);--ink-faint:rgba(242,237,228,.58);
+--rule:rgba(255,255,255,.09);--gold:#D4A85E;--gold-dark:#A07835;
+--paper:#F7F3EC;--p-ink:#1B1917;--p-soft:#544F44;--p-rule:rgba(27,25,23,.35);--stamp:#A33B25;--ok:#2E6A46;
+--ff-d:'Newsreader',serif;--ff-s:'IBM Plex Sans',sans-serif;--ff-m:'IBM Plex Mono',monospace}
+*{box-sizing:border-box}
+body{margin:0;background:#050505;color:var(--ink);font-family:var(--ff-s);line-height:1.6;padding:48px 24px}
+.lbl{max-width:1160px;margin:0 auto 16px;font-family:var(--ff-m);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.mock{max-width:1160px;margin:0 auto 96px;background:var(--bg);border:1px solid var(--rule);position:relative;overflow:hidden;padding:96px 64px;min-height:620px;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:64px;align-items:center}
+.ghost{position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-family:var(--ff-d);font-size:380px;color:rgba(242,237,228,.035);line-height:1;pointer-events:none;user-select:none}
+h1{font-family:var(--ff-d);font-size:clamp(30px,4vw,46px);font-weight:400;line-height:1.12;letter-spacing:-.02em;margin:0 0 16px;position:relative}
+h1 em{font-style:normal;color:var(--gold)}
+.sub{font-size:16.5px;color:var(--ink-soft);max-width:34em;margin:0 0 28px;position:relative}
+.exits{position:relative;font-size:14.5px;color:var(--ink-soft)}
+.exits a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark)}
+.hand{font-family:'Caveat',cursive;font-size:20px;color:var(--gold);margin:24px 0 0;position:relative}
+
+/* A — the lost-luggage claim ticket */
+.lug{background:var(--paper);color:var(--p-ink);font-family:var(--ff-m);padding:24px;position:relative;transform:rotate(1.6deg);filter:drop-shadow(0 16px 28px rgba(0,0,0,.55))}
+.lug-head{display:flex;justify-content:space-between;border-bottom:1.5px solid var(--p-ink);padding-bottom:8px;margin-bottom:12px}
+.lug-head b{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+.lug-head span{font-size:10.5px;color:var(--p-soft)}
+.lug-row{display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px dashed var(--p-rule)}
+.lug-row b{font-weight:600}
+.lug .divert{position:absolute;left:96px;top:180px;border:2.5px solid var(--stamp);color:var(--stamp);border-radius:4px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:8px 12px;transform:rotate(-9deg);opacity:.85}
+.lug-claim{font-size:11px;margin:14px 0 0;line-height:1.7}
+.lug-claim b{font-weight:600;display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--p-soft);margin-bottom:4px}
+.lug-claim a{color:#7E5A14;text-decoration:underline;text-underline-offset:3px}
+.lug-bar{height:28px;margin-top:14px;background:repeating-linear-gradient(90deg,var(--p-ink) 0 2px,transparent 2px 3px,var(--p-ink) 3px 8px,transparent 8px 12px,var(--p-ink) 12px 16px,transparent 16px 20px)}
+
+/* B — the contract's decline */
+.dec{background:var(--paper);color:var(--p-ink);font-family:var(--ff-m);padding:24px;transform:rotate(-1.2deg);filter:drop-shadow(0 16px 28px rgba(0,0,0,.55))}
+.dec-cap{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--p-soft);margin:0 0 12px;display:flex;justify-content:space-between}
+.dec-cap b{color:var(--ok);font-weight:500}
+.dec-ctr{border:1px solid rgba(27,25,23,.3);padding:12px 16px;font-size:11px;line-height:1.8;margin-bottom:14px;background:#EFE9DE}
+.dec-ctr b{font-weight:600}
+.dec-q{font-size:12px;border:1px solid var(--p-rule);padding:10px 12px;margin-bottom:12px;color:var(--p-soft)}
+.dec-a{font-size:13px;line-height:1.6;font-family:var(--ff-s)}
+.dec-a .tag{font-family:var(--ff-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;display:inline-block;padding:3px 8px;margin-bottom:8px;font-weight:600;color:var(--stamp);border:1.5px solid var(--stamp)}
+.dec-verb{display:flex;gap:8px;margin-top:14px}
+.dec-verb span{flex:1;text-align:center;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:8px 4px;border:1px dashed var(--p-rule);color:var(--p-soft)}
+.dec-verb span.on{border:2px solid var(--p-ink);color:var(--p-ink);font-weight:600;background:rgba(212,168,94,.18)}
+.dec-src{display:block;font-family:var(--ff-m);font-size:10px;color:var(--p-soft);margin-top:8px}
+@media(max-width:980px){.mock{grid-template-columns:1fr;padding:64px 24px}.ghost{font-size:220px}}
+</style>
+</head>
+<body>
+
+<p class="lbl">Option A — the Loop Air lost-luggage ticket</p>
+<div class="mock">
+  <span class="ghost" aria-hidden="true">404</span>
+  <div>
+    <h1>Your page didn&rsquo;t make <em>the connection.</em></h1>
+    <p class="sub">Loop Air regrets: the URL you booked never boarded. No pretending it did —
+      a confident guess about something that isn&rsquo;t there is how trust dies. Claim what
+      you actually came for at the counter.</p>
+    <p class="exits">← <a href="#">Back to the front door</a> &nbsp;·&nbsp; or reclaim:
+      <a href="#">the work</a> · <a href="#">the book</a> · <a href="#">the patterns</a></p>
+    <p class="hand">nothing was lost that a working link can&rsquo;t find.</p>
+  </div>
+  <div class="lug">
+    <div class="lug-head"><b>Loop Air &middot; lost &amp; found</b><span>claim ticket</span></div>
+    <div class="lug-row"><span>item</span><b>one (1) page</b></div>
+    <div class="lug-row"><span>last seen</span><b>this URL</b></div>
+    <div class="lug-row"><span>status</span><b>never existed</b></div>
+    <div class="lug-row"><span>confidence it turns up</span><b>0%</b></div>
+    <div class="divert">Diverted</div>
+    <div class="lug-claim"><b>claim instead</b>
+      the front door &rarr; <a href="#">arpitmaheshwari.com</a><br>
+      the six cases &rarr; <a href="#">/­#featured-case-studies</a><br>
+      the patterns &rarr; <a href="#">/patterns/</a></div>
+    <div class="lug-bar" aria-hidden="true"></div>
+  </div>
+</div>
+
+<p class="lbl">Option B — the capability contract&rsquo;s decline, in the wild</p>
+<div class="mock">
+  <span class="ghost" aria-hidden="true">404</span>
+  <div>
+    <h1>You just hit a <em>named limit.</em></h1>
+    <p class="sub">On the homepage there&rsquo;s a demo where a system declines honestly instead
+      of guessing. This is that pattern off the leash: you asked this site for a page it
+      doesn&rsquo;t have, and the same contract that runs the demo just caught you for real.</p>
+    <p class="exits">← <a href="#">Back to the front door</a> &nbsp;·&nbsp; hands back to:
+      <a href="#">the work</a> · <a href="#">the book</a> · <a href="#">the patterns</a></p>
+    <p class="hand">same behaviour when nobody&rsquo;s demoing. that&rsquo;s the whole point.</p>
+  </div>
+  <div class="dec">
+    <p class="dec-cap"><span>the site&rsquo;s contract &middot; enforced</span><b>signed</b></p>
+    <div class="dec-ctr"><b>It&rsquo;s for:</b> pages that exist.<br><b>It can&rsquo;t:</b> invent this one.<br><b>Hands back:</b> a route, not a guess.</div>
+    <div class="dec-q">you asked for: <b>this URL</b></div>
+    <div class="dec-a"><span class="tag">Declines</span><br>No such page — and confidence that it exists is 0%, which resolves to the third verb:
+      <span class="dec-src">every score resolves to a verb &middot; even this one</span>
+    </div>
+    <div class="dec-verb"><span>Act</span><span>Review</span><span class="on">Ignore</span></div>
+  </div>
+</div>
+
+</body>
+</html>
