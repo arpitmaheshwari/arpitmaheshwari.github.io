@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>PROCESS OBJECT — round two · the discipline, not the outcomes</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A0A;--ink:#F2EDE4;--ink-soft:rgba(242,237,228,.72);--gold:#D4A85E;
+--paper:#F7F3EC;--p-ink:#1B1917;--p-soft:#544F44;--p-rule:rgba(27,25,23,.35);--stamp:#A33B25;--ok:#2E6A46;--blue:#2F63C7;
+--ff-d:'Newsreader',serif;--ff-s:'IBM Plex Sans',sans-serif;--ff-m:'IBM Plex Mono',monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ff-s);line-height:1.6;padding:48px 24px}
+.opt{max-width:1100px;margin:0 auto 96px;display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:center}
+.opt h2{font-family:var(--ff-m);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+.opt p{font-size:15px;color:var(--ink-soft);margin:0}
+.obj{filter:drop-shadow(0 16px 28px rgba(0,0,0,.5))}
+
+/* D — the pre-flight checklist: laminated, riveted, run EVERY release */
+.chk{background:var(--paper);color:var(--p-ink);font-family:var(--ff-m);max-width:360px;padding:20px 24px 16px;transform:rotate(-1.2deg);border:4px solid #E5DCC8;border-radius:8px;position:relative}
+.chk::before{content:"";position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:#B9AE97;box-shadow:inset 0 1px 2px rgba(0,0,0,.4)}
+.chk h3{font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0;font-weight:600}
+.chk .sub{text-align:center;font-size:10px;color:var(--p-soft);margin:2px 0 12px;letter-spacing:.1em;text-transform:uppercase}
+.chk .it{display:flex;gap:8px;font-size:11.5px;padding:8px 0;border-top:1px solid rgba(27,25,23,.18);align-items:baseline}
+.chk .it b{font-weight:600}
+.chk .bx{flex:0 0 auto}
+.chk .foot{font-size:9.5px;color:var(--p-soft);text-align:center;margin-top:12px;letter-spacing:.08em;text-transform:uppercase}
+
+/* E — the traveler: the card that moves WITH the work through every station */
+.trv{background:var(--paper);color:var(--p-ink);font-family:var(--ff-m);max-width:380px;padding:16px 20px 16px;transform:rotate(1.2deg)}
+.trv h3{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 2px;font-weight:600;display:flex;justify-content:space-between}
+.trv .sub{font-size:10px;color:var(--p-soft);margin:0 0 12px;letter-spacing:.06em}
+.trv table{width:100%;border-collapse:collapse;font-size:10.5px}
+.trv th{font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:9px;color:var(--p-soft);text-align:left;padding:4px 8px;border-bottom:1.5px solid var(--p-ink)}
+.trv td{padding:4px 8px;border-bottom:1px solid rgba(27,25,23,.2)}
+.trv .sig{font-family:'Caveat',cursive;font-size:15px;color:#1B1917}
+.trv .pass2{color:var(--p-soft)}
+.trv .foot{font-size:9.5px;color:var(--p-soft);margin-top:12px;letter-spacing:.06em;text-align:center;text-transform:uppercase}
+
+/* F — the lab notebook: loops logged like experiments */
+.nb{background:linear-gradient(rgba(27,25,23,.08) 1px,transparent 1px) 0 0/100% 26px,var(--paper);color:var(--p-ink);max-width:380px;padding:20px 24px 16px 48px;transform:rotate(-.8deg);position:relative;font-family:var(--ff-m)}
+.nb::before{content:"";position:absolute;top:0;bottom:0;left:32px;width:2px;background:rgba(163,59,37,.4)}
+.nb h3{font-family:var(--ff-m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--p-soft);margin:0 0 12px}
+.nb .en{font-size:11px;line-height:26px;margin:0;color:var(--p-ink)}
+.nb .en b{font-weight:600}
+.nb .hand{font-family:'Caveat',cursive;color:#7E5A14;font-size:17px;line-height:26px}
+</style>
+</head>
+<body>
+
+<div class="opt">
+  <div>
+    <h2>Option D — the pre-flight checklist</h2>
+    <p>Pilots don't skip the walkaround on the thousandth flight. A laminated card, riveted, run before EVERY release — the items are his published rules. Says: same discipline, every time, no exceptions.</p>
+  </div>
+  <div class="obj"><div class="chk" role="img" aria-label="A laminated pre-flight style checklist: run before every release. Items: every claim carries evidence, failure state designed, baseline and window named, human can override, honest abstention path.">
+    <h3>Pre-ship checklist</h3>
+    <p class="sub">run before every release &middot; no exceptions</p>
+    <div class="it"><span class="bx">&#9745;</span><span><b>Evidence attached</b> — every claim can name its source</span></div>
+    <div class="it"><span class="bx">&#9745;</span><span><b>Failure state designed</b> — one honest sentence, minimum</span></div>
+    <div class="it"><span class="bx">&#9745;</span><span><b>Baseline named</b> — number, window, comparison</span></div>
+    <div class="it"><span class="bx">&#9745;</span><span><b>Human can override</b> — and the system survives it</span></div>
+    <div class="it"><span class="bx">&#9745;</span><span><b>Abstention path</b> — "I'm not sure," said out loud</span></div>
+    <div class="foot">a release that fails one item waits &middot; weeks if it must</div>
+  </div></div>
+</div>
+
+<div class="opt">
+  <div>
+    <h2>Option E — the traveler</h2>
+    <p>In a factory, a traveler card moves WITH the part — signed at every station, no station skippable. His stations: Listen, Structure, Prove, Land — and the card shows work goes around the loop more than once. Says: nothing ships without passing through the whole method, logged.</p>
+  </div>
+  <div class="obj"><div class="trv" role="img" aria-label="A manufacturing traveler card: the work order travels through stations Listen, Structure, Prove, Land — each signed off, with a second loop logged. No station may be skipped.">
+    <h3><span>Traveler &middot; work order</span><span>№ every-product</span></h3>
+    <p class="sub">this card travels with the work &middot; no station may be skipped</p>
+    <table>
+      <tr><th>op</th><th>station</th><th>pass</th><th>sign</th></tr>
+      <tr><td>10</td><td>Listen</td><td>loop 1</td><td class="sig">AM</td></tr>
+      <tr><td>20</td><td>Structure</td><td>loop 1</td><td class="sig">AM</td></tr>
+      <tr><td>30</td><td>Prove</td><td>loop 1</td><td class="sig">AM</td></tr>
+      <tr><td class="pass2">10</td><td class="pass2">Listen</td><td class="pass2">loop 2 — the mock was wrong</td><td class="sig">AM</td></tr>
+      <tr><td class="pass2">30</td><td class="pass2">Prove</td><td class="pass2">loop 2</td><td class="sig">AM</td></tr>
+      <tr><td>40</td><td><b>Land</b></td><td><b>shipped</b></td><td class="sig">AM</td></tr>
+    </table>
+    <p class="foot">act / review / ignore was born at station 10 — listening</p>
+  </div></div>
+</div>
+
+<div class="opt">
+  <div>
+    <h2>Option F — the lab notebook</h2>
+    <p>A scientist's notebook page: hypothesis, test, result — loops logged in order, failures kept in ink. The AdTech entries are his published story. Says: I don't guess and I don't erase; the method is written down as it runs.</p>
+  </div>
+  <div class="obj"><div class="nb" role="img" aria-label="A ruled lab-notebook page logging method loops: hypothesis, test, result — including a failed loop kept in ink.">
+    <h3>Method log &middot; AdTech</h3>
+    <p class="en"><b>loop 1 · listen.</b> Traders override a model that beats them.</p>
+    <p class="en"><b>loop 1 · structure.</b> Hypothesis: they distrust the verb, not the math.</p>
+    <p class="en"><b>loop 1 · prove.</b> Every score resolves to act / review / ignore.</p>
+    <p class="en"><b>loop 2 · prove.</b> A/B: my three-option card <u>lost</u>. Kept the data.</p>
+    <p class="en"><b>land.</b> Planning: two weeks &rarr; three hours.</p>
+    <p class="hand">the ship taught me what the mock couldn't —</p>
+  </div></div>
+</div>
+
+</body>
+</html>
