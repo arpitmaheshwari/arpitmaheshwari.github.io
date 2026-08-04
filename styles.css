@@ -535,24 +535,35 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .hkr--tear{padding-top:12px}
 .hkr--tear::before{content:"";display:block;height:8px;margin:-12px -20px 8px;background:conic-gradient(from 135deg at 50% 100%,var(--paper-2) 90deg,transparent 0) 0 0/16px 8px repeat-x}
 
-/* — the printer (proof act, cream) — */
-.hkp-wrap{max-width:420px;margin:48px auto 0;text-align:center}
-.hkp-slot{position:relative;z-index:3;background:linear-gradient(180deg,#242320,#141311);border:1px solid rgba(255,255,255,0.14);border-radius:4px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;font-family:var(--ff-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(242,237,228,0.75);text-align:left}
-.hkp-slot::after{content:"";position:absolute;left:12px;right:12px;bottom:-2px;height:4px;background:#000;border-radius:2px}
-.hkp-led{width:8px;height:8px;border-radius:50%;background:#3a3a36;transition:background .3s;flex:0 0 auto}
-.hkp-led.on{background:#E8C88A;box-shadow:0 0 8px #E8C88A}
-.hkp-feed{overflow:hidden;max-height:0;margin:0 12px;transition:max-height 2.6s cubic-bezier(.25,.6,.35,1);text-align:left}
-.hkp-feed .hkr{visibility:hidden}
-.hkp.printing .hkp-feed{max-height:560px}
-.hkp.printing .hkp-feed .hkr{visibility:visible}
-.hkp.torn .hkp-feed{max-height:0;transition:max-height .01s}
-.hkp-torn{display:none;margin:8px 12px 0;text-align:left}
-.hkp.torn .hkp-torn{display:block;transform:rotate(-2deg);filter:drop-shadow(0 16px 28px rgba(0,0,0,0.35))}
-.hkp-ctl{margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.hkp-dl{display:inline-block;margin-top:12px;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold)}
+
+/* — proof zone: chips are line items; the receipt is the TOTAL, in the scan path — */
+.proof-zone{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:48px;align-items:start}
+.proof-zone .proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.proof-zone .proof-grid,.proof-zone-rail{min-width:0}
+.proof-zone-rail{position:sticky;top:104px}
+.hkr-keep{display:block;margin:12px 0 0;padding-top:8px;border-top:1px dashed var(--paper-rule);font-family:var(--ff-mono);font-size:11px;letter-spacing:.06em;color:#7E5A14;text-decoration:underline;text-underline-offset:3px;text-align:center}
+.hkr-keep:hover{color:#5C420E}
+@media(max-width:980px){
+  /* minmax(0,1fr), NOT 1fr: a bare 1fr track's implicit minimum is min-content, and one long
+     mono caption blew the column to 396px inside a 390px viewport (measured 2026-08-04). */
+  .proof-zone{grid-template-columns:minmax(0,1fr)}
+  .proof-zone-rail{position:static;max-width:340px;margin:16px auto 0}
+  .proof-zone .proof-grid{grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))}
+}
 
 /* — Candidate Facts label (who-you'd-hire, dark) — */
-.hk-side{flex:0 1 300px;min-width:260px;margin:16px auto 0}
+/* who-grid: photo | bio prose | spec card. The card is a RAIL in the reading path, not an
+   appendix. Below 1320px the bio measure would fall under ~45ch, so the card drops beneath the
+   text and stays LEFT-ALIGNED with the prose column — aligned to the flow, never centered. */
+/* The section body is a fixed ~760px column (numeral layout), so a side-by-side rail would
+   crush the bio to ~30ch at ANY viewport — measured, not assumed. The spec card therefore always
+   follows the prose, aligned to the prose column (grid-column 2), never centered in dead space. */
+.who-grid{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px 32px;align-items:start}
+.hk-side{grid-column:2;max-width:320px;margin-top:8px}
+@media(max-width:720px){
+  .who-grid{grid-template-columns:1fr}
+  .hk-side{grid-column:1;max-width:320px}
+}
 .cf{background:var(--paper);color:var(--paper-ink);font-family:var(--ff-sans);padding:12px 16px;border:1px solid rgba(27,25,23,0.15)}
 .cf-h{font-size:26px;font-weight:600;letter-spacing:-.01em;margin:0;line-height:1.05}
 .cf-serv{font-size:12px;border-bottom:8px solid var(--paper-ink);padding:4px 0 8px;margin-bottom:4px}
@@ -563,7 +574,7 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .cf-foot{font-size:10.5px;color:var(--paper-soft);line-height:1.6;padding-top:8px;margin:0}
 
 /* — inspection slip + stamp (errata, dark) — */
-.hk-qc{display:flex;gap:clamp(24px,4vw,48px);align-items:center;flex-wrap:wrap;margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
+.hk-qc{display:flex;gap:clamp(24px,4vw,48px);align-items:flex-start;flex-wrap:wrap;margin-top:48px}
 .hk-qc-side{flex:1 1 300px;min-width:260px}
 .hk-qc-obj{flex:0 1 300px;min-width:260px;margin:0 auto}
 .qc{background:var(--paper);color:var(--paper-ink);font-family:var(--ff-mono);padding:24px 24px 64px;position:relative;border:1px solid rgba(27,25,23,0.12);overflow:hidden}
@@ -580,8 +591,10 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .qc.stamped .qc-void{opacity:0;transition:opacity .3s .1s}
 
 /* — boarding pass (contact, dark) — */
-.hk-bp-link{display:block;max-width:520px;margin:48px auto 0;text-decoration:none;transition:transform .3s}
-.hk-bp-link:hover{transform:translateY(-4px) rotate(-1.6deg)}
+.hk-bp-link{display:block;max-width:480px;margin:0;text-decoration:none;transition:transform .3s;filter:drop-shadow(0 12px 20px rgba(0,0,0,0.45))}
+.bp-cap{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.06em;color:var(--ink-muted);margin:12px 0 0}
+.hk-bp-link:hover{transform:translateY(-4px)}
+.hk-bp-link:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
 .bp{background:var(--paper);color:var(--paper-ink);display:grid;grid-template-columns:1fr 120px;font-family:var(--ff-mono)}
 .bp-main{padding:16px 20px;border-right:2px dashed var(--paper-rule)}
 .bp-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.5px solid var(--paper-ink);padding-bottom:8px;margin-bottom:12px}
