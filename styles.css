@@ -632,6 +632,31 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .env-tag{position:absolute;bottom:-28px;left:0;right:20px;text-align:center;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
 @media(max-width:1180px){.env-bundle{display:none}}
 
+/* — capability-contract demo (patterns act, cream). Colors sized for the CREAM field:
+   status greens/reds are the cream-safe tokens, never the dark-theme ones (DESIGN-SYSTEM). — */
+.idea-zone{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:64px;align-items:start}
+.idea-main{min-width:0}
+.ccd{background:#FFFDF8;border:1px solid rgba(32,24,12,0.2);box-shadow:0 16px 28px rgba(32,24,12,0.22);padding:24px;position:sticky;top:104px}
+.ccd-cap{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.14em;text-transform:uppercase;color:#635848;margin:0 0 16px;display:flex;justify-content:space-between}
+.ccd-cap b{color:#2E6A46;font-weight:500}
+.ccd-ctr{border:1px solid rgba(32,24,12,0.25);padding:12px 16px;font-family:var(--ff-mono);font-size:11px;line-height:1.7;margin-bottom:16px;background:#F1E8D6;color:#20180C}
+.ccd-ctr b{font-weight:600}
+.ccd-qs{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.ccd-q{background:none;border:1px solid #7E5A14;color:#7E5A14;font-family:var(--ff-mono);font-size:12px;padding:12px;text-align:left;letter-spacing:.02em;cursor:pointer;transition:background .2s}
+.ccd-q:hover{background:rgba(126,90,20,0.08)}
+.ccd-q:focus-visible{outline:2px solid #7E5A14;outline-offset:2px}
+.ccd-ans{min-height:96px;border-top:1px dashed rgba(32,24,12,0.35);padding-top:12px;font-size:13.5px;line-height:1.6;color:#20180C}
+.ccd-idle{font-family:var(--ff-mono);font-size:11px;color:#635848}
+.ccd-tag{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.14em;text-transform:uppercase;display:inline-block;padding:3px 8px;margin-bottom:8px;font-weight:600}
+.ccd-tag--in{color:#2E6A46;border:1.5px solid #2E6A46}
+.ccd-tag--out{color:#894540;border:1.5px solid #894540}
+.ccd-src{display:block;font-family:var(--ff-mono);font-size:10px;color:#635848;margin-top:8px}
+.ccd-note{font-family:var(--ff-mono);font-size:10px;color:#635848;letter-spacing:.06em;margin:12px 0 0;text-align:center}
+@media(max-width:1100px){
+  .idea-zone{grid-template-columns:minmax(0,1fr)}
+  .ccd{position:static;max-width:440px;margin:8px auto 0}
+}
+
 /* — boarding pass (contact, dark) — */
 .bp-row{margin-top:48px;text-align:center}
 .hk-bp-link{display:block;max-width:820px;margin:0 auto;text-decoration:none;transition:transform .3s;filter:drop-shadow(0 12px 20px rgba(0,0,0,0.45))}

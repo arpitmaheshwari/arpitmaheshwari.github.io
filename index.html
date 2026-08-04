@@ -145,7 +145,7 @@
   gtag('js', new Date());
   gtag('config', 'G-PFY6ME99K8');
 </script>
-<link rel="stylesheet" href="./styles.css?v=p46">
+<link rel="stylesheet" href="./styles.css?v=p47">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -615,6 +615,7 @@
 <!-- ACT — THE ONE IDEA (cream peak; the rule Arpit owns) -->
 <section id="patterns" class="section act-cream idea-act">
   <div class="section-inner">
+    <div class="idea-zone"><div class="idea-main">
     <p class="eyebrow">The contract behind every screen I ship</p>
     <h2 class="section-title">A language model has no edges. So I draw them.</h2>
     <p class="idea-sub" style="margin-bottom:12px">Ask one anything and it answers &mdash; fluently, in or out of its depth. That is the whole danger: a user&rsquo;s trust does not erode slowly, it dies in a single confident wrong answer. And most products bury their scope in a terms-of-service page and hope nobody tests it.</p>
@@ -641,6 +642,18 @@
       <a href="./patterns/capability-contract.html" class="idea-link" data-cta="patterns-rule" data-location="idea-contract">Read the pattern &rarr;</a>
       <a href="./patterns/act-review-ignore.html" class="idea-link" data-cta="patterns-ari" data-location="idea-contract">The rule underneath it &mdash; Act / Review / Ignore &rarr;</a>
       <a href="./patterns/" class="idea-link" data-cta="patterns-index" data-location="idea-contract">The full library &mdash; rule + 8 patterns, citable &rarr;</a>
+    </div>
+  </div>
+    <div class="ccd reveal" aria-label="Live demo: the capability contract, working">
+      <p class="ccd-cap"><span>live &mdash; the contract, working</span><b>signed</b></p>
+      <div class="ccd-ctr"><b>It&rsquo;s for:</b> scoring deal risk from the data room.<br><b>It can&rsquo;t:</b> price illiquid assets.<br><b>Hands back:</b> anything else &rarr; your analyst.</div>
+      <div class="ccd-qs">
+        <button class="ccd-q" data-k="in" type="button" data-cta="ccd-in" data-location="idea-contract">&ldquo;Score the risk on the Meridian data room&rdquo;</button>
+        <button class="ccd-q" data-k="out" type="button" data-cta="ccd-out" data-location="idea-contract">&ldquo;What&rsquo;s this vineyard actually worth?&rdquo;</button>
+        <button class="ccd-q" data-k="off" type="button" data-cta="ccd-off" data-location="idea-contract">&ldquo;Draft the LP update email&rdquo;</button>
+      </div>
+      <div class="ccd-ans" id="ccd-ans" aria-live="polite"><span class="ccd-idle">&mdash; ask it something &mdash;</span></div>
+      <p class="ccd-note">answers openly canned &mdash; the contract is the demo, not a model</p>
     </div>
   </div>
 </section>
@@ -1474,6 +1487,14 @@ if (canvas && !prefersReducedMotion) {
 <script>
 /* Hook objects: the printer (proof act) and the stamp (errata). 2026-08-04. */
 (function(){
+  var ans=document.getElementById('ccd-ans');
+  if(ans){
+    var CCD={
+      in:'<span class="ccd-tag ccd-tag--in">In scope</span><br>Meridian scores <b>0.78 &mdash; review band</b>: two revenue restatements in the data room need a human eye before this acts.<span class="ccd-src">basis: data-room docs &middot; contract line 1</span>',
+      out:'<span class="ccd-tag ccd-tag--out">Declines</span><br>I can&rsquo;t price illiquid assets &mdash; a vineyard is one. That&rsquo;s not a hedge, it&rsquo;s a named limit.<span class="ccd-src">contract line 2 &middot; routed to: your analyst</span>',
+      off:'<span class="ccd-tag ccd-tag--out">Hands back</span><br>Not my job &mdash; the contract says deal risk only. Your analyst has been looped in with the thread.<span class="ccd-src">contract line 3 &middot; handoff designed, not hoped for</span>'};
+    document.querySelectorAll('.ccd-q').forEach(function(b){b.addEventListener('click',function(){ans.innerHTML=CCD[b.getAttribute('data-k')]})});
+  }
   var go=document.getElementById('qc-go');
   if(go){
     var slip=document.getElementById('qc'),after=document.getElementById('qc-after'),held=null,fired=false;
