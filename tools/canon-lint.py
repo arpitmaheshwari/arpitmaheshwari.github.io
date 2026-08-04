@@ -101,6 +101,14 @@ SOFT_EXT = {".md"}
 
 # Paths where an occurrence is legitimate and deliberate. Each needs a stated reason.
 ALLOW = {
+    "prototypes/paper-first.html":
+        "ARCHIVED PROTOTYPE (noindex, unlinked): the ChatGPT-era paper mockup, kept as a record "
+        "of a rejected direction. It predates the 2026-08-01 term retirement; rewriting an "
+        "archive would falsify what was actually explored.",
+    "prototypes/hook-d.html":
+        "ARCHIVED PROTOTYPE (noindex, unlinked): the boarding-pass concept as first drawn, "
+        "before the Loop Air rename. Same archive rule — the shipped pass on index.html is "
+        "the corrected surface.",
     "lab/trustlayer.html":
         "forwarding stub for a URL published in the sitemap and linked from the portfolio PDF; "
         "renders no visible copy, noindex",

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>HOOK G — hold my threshold · Arpit Maheshwari</title>
+<!--
+  CONCEPT G — interactive family, round two (A's judge-a-score framing was rejected).
+  The visitor is handed the ACTUAL DESIGN OBJECT of his career: the confidence threshold.
+  Drag it and watch ten decisions re-sort between Act / Review / Ignore, with the business
+  consequence spelled out in words at every position. Nobody reads about his craft — they
+  operate it, and feel the trade-off he has spent fifteen years tuning.
+
+  Honesty rail: the ten scores are openly illustrative (labelled on the page); the CONSEQUENCE
+  copy at the extremes states only what canon supports (traders re-checking everything = the
+  two-week world; trusting everything = the overrides that killed adoption).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0A0A;--bg-soft:#111;--ink:#F2EDE4;--ink-soft:rgba(242,237,228,0.72);--ink-faint:rgba(242,237,228,0.58);
+  --rule:rgba(255,255,255,0.09);--gold:#D4A85E;--gold-dark:#A07835;
+  --ff-display:'Newsreader',Georgia,serif;--ff-sans:'IBM Plex Sans',sans-serif;--ff-mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ff-sans);line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px}
+.bar{display:flex;justify-content:space-between;align-items:baseline;padding:24px 0;border-bottom:1px solid var(--rule);flex-wrap:wrap;gap:12px}
+.bar b{font-family:var(--ff-display);font-size:20px;font-weight:500}
+.bar .flag{background:var(--gold);color:#0A0A0A;font-family:var(--ff-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;font-weight:500}
+.stage{padding:88px 0 112px}
+h1{font-family:var(--ff-display);font-size:clamp(34px,5vw,56px);font-weight:400;line-height:1.1;letter-spacing:-.025em;margin:0 0 16px}
+h1 em{font-style:normal;color:var(--gold)}
+.sub{font-size:18px;color:var(--ink-soft);max-width:38em;margin:0 0 48px}
+
+.rig{border:1px solid var(--rule);background:var(--bg-soft);padding:40px 36px 32px}
+.rig-cap{font-family:var(--ff-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 28px;display:flex;justify-content:space-between}
+/* the slider */
+.thr{position:relative;margin:0 0 8px}
+.thr input{width:100%;-webkit-appearance:none;appearance:none;height:2px;background:linear-gradient(90deg,var(--rule),var(--rule));outline-offset:6px}
+.thr input::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--gold);border:3px solid #0A0A0A;box-shadow:0 0 0 1.5px var(--gold);cursor:grab}
+.thr input::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold);border:3px solid #0A0A0A;box-shadow:0 0 0 1.5px var(--gold);cursor:grab}
+.thr-val{font-family:var(--ff-mono);font-size:13px;color:var(--gold);margin-top:6px}
+.thr-lbls{display:flex;justify-content:space-between;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px}
+/* the bins */
+.bins{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:36px 0 0}
+.bin{border:1px dashed var(--rule);padding:16px 14px;min-height:120px}
+.bin h3{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 12px;color:var(--ink-soft);display:flex;justify-content:space-between}
+.bin h3 em{font-style:normal;color:var(--gold)}
+.dots{display:flex;flex-wrap:wrap;gap:8px}
+.dot{font-family:var(--ff-mono);font-size:10.5px;padding:4px 7px;border:1px solid var(--rule);color:var(--ink-soft);border-radius:3px;transition:all .3s}
+.bin.act .dot{border-color:var(--gold-dark);color:var(--gold)}
+/* the consequence line */
+.conseq{margin:32px 0 0;padding:20px 22px;border-left:3px solid var(--gold);background:rgba(212,168,94,0.05)}
+.conseq p{margin:0;font-size:15.5px;color:var(--ink)}
+.conseq .tag{font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:6px}
+.hand{font-family:'Caveat',cursive;font-size:21px;color:var(--gold);line-height:1.25}
+.foot-note{font-family:var(--ff-mono);font-size:11px;color:var(--ink-faint);letter-spacing:.05em;margin-top:20px}
+@media(max-width:720px){.bins{grid-template-columns:1fr}.bin{min-height:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <b>Arpit Maheshwari</b>
+    <span class="flag">Hook G · hold my threshold</span>
+  </div>
+
+  <div class="stage">
+    <h1>This slider is my actual job.<em> Hold it for a minute.</em></h1>
+    <p class="sub">Every AI product I've shipped comes down to where this line sits — the
+      confidence level at which a machine is allowed to act without you. Drag it. Feel how fast
+      "safe" gets expensive and "efficient" gets reckless. Then imagine holding it steady while
+      real money moves.</p>
+
+    <div class="rig">
+      <p class="rig-cap"><span>ten decisions, one threshold</span><span>illustrative scores — the real ones live in the case studies</span></p>
+      <div class="thr">
+        <input type="range" id="thr" min="0" max="100" value="85" step="1"
+               aria-label="Confidence threshold: decisions scoring above this act automatically, the band below is reviewed by a human">
+        <div class="thr-val">threshold: <span id="tv">0.85</span></div>
+        <div class="thr-lbls"><span>0.00 — trust everything</span><span>1.00 — trust nothing</span></div>
+      </div>
+      <div class="bins">
+        <div class="bin act"><h3>Act <em id="c-act">–</em></h3><div class="dots" id="b-act"></div></div>
+        <div class="bin"><h3>Review <em id="c-rev">–</em></h3><div class="dots" id="b-rev"></div></div>
+        <div class="bin"><h3>Ignore <em id="c-ign">–</em></h3><div class="dots" id="b-ign"></div></div>
+      </div>
+      <div class="conseq"><span class="tag" id="cq-tag">at this setting</span><p id="cq"></p></div>
+      <p class="foot-note">the review band here spans 30 points below threshold; in the real products that band is tuned per decision cost — that tuning is the work.</p>
+    </div>
+    <p class="hand" style="margin-top:28px">fifteen years of judgement, one knob. careful with it.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Fixed illustrative scores — deliberately spread so every threshold position changes the story.
+  const scores=[0.97,0.93,0.88,0.81,0.74,0.66,0.58,0.49,0.37,0.22];
+  const thr=document.getElementById('thr'),tv=document.getElementById('tv'),cq=document.getElementById('cq'),tag=document.getElementById('cq-tag');
+  const bins={act:document.getElementById('b-act'),rev:document.getElementById('b-rev'),ign:document.getElementById('b-ign')};
+  const counts={act:document.getElementById('c-act'),rev:document.getElementById('c-rev'),ign:document.getElementById('c-ign')};
+  function consequence(t){
+    if(t>=0.96) return ['almost nothing may act','Everything waits for a person. This is the two-week world my AdTech client lived in — safe on paper, and it cost them the market. Traders re-checked scores that were already right.'];
+    if(t>=0.85) return ['the shipped setting, roughly','High-stakes calls act only when the evidence is strong; the murky middle goes to a human; thin evidence says so honestly. Planning fell from two weeks to three hours inside this regime.'];
+    if(t>=0.60) return ['efficient — and twitchy','More acts, fewer reviews. Fine while the model is right. The first confident miss that costs money, your users stop trusting ALL of it — I have watched adoption die exactly here.'];
+    return ['trust everything','The machine acts on evidence it should not act on. Nobody catches the misses until they are expensive. This is the setting every demo uses and no production system survives.'];
+  }
+  function render(){
+    const t=(+thr.value)/100; tv.textContent=t.toFixed(2);
+    Object.values(bins).forEach(b=>b.innerHTML='');
+    let n={act:0,rev:0,ign:0};
+    scores.forEach(s=>{
+      const k=s>=t?'act':(s>=t-0.30?'rev':'ign'); n[k]++;
+      const d=document.createElement('span');d.className='dot';d.textContent=s.toFixed(2);bins[k].appendChild(d);
+    });
+    Object.keys(n).forEach(k=>counts[k].textContent=n[k]);
+    const [g,w]=consequence(t); tag.textContent='at '+t.toFixed(2)+' — '+g; cq.textContent=w;
+  }
+  thr.addEventListener('input',render); render();
+})();
+</script>
+</body>
+</html>
