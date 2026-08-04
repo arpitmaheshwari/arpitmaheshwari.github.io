@@ -90,7 +90,7 @@ input[type="email"]:focus-visible,input[type="text"]:focus-visible,textarea:focu
 .case-card-v2:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-color:var(--border-accent)!important}
 
 /* Errata block — "a time I was wrong" given real section weight, not whispered */
-.errata-block{padding:32px 40px;border:1px solid var(--gold-dark);border-left:4px solid var(--gold);border-radius:6px;background:rgba(212,168,94,0.05)}
+.errata-block{padding:32px 40px;border:1px solid var(--gold-dark);border-left:4px solid var(--gold);border-radius:4px;background:rgba(212,168,94,0.05)}
 @media (max-width:600px){.errata-block{padding:24px 20px}}
 
 /* Icons */
@@ -311,7 +311,7 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .case-jump a:hover { color:var(--gold); border-color:var(--gold-dark); }
 
 /* Reconstruction frame — interactive, NDA-safe demos */
-.recon { margin:0 0 48px; border:1px solid var(--border); border-radius:6px; background:var(--bg-card); overflow:hidden; }
+.recon { margin:0 0 48px; border:1px solid var(--border); border-radius:4px; background:var(--bg-card); overflow:hidden; }
 .recon-badge { display:flex; align-items:center; gap:8px; padding:12px 16px; border-bottom:1px solid var(--border); font-family:var(--ff-mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-muted); }
 .recon-badge::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--gold); flex:0 0 auto; }
 .recon-stage { padding:24px 24px; }
@@ -320,13 +320,13 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 
 /* Before / after composition */
 .before-after { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:0 0 48px; }
-.before-after figure { margin:0; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:var(--bg-card); }
+.before-after figure { margin:0; border:1px solid var(--border); border-radius:4px; overflow:hidden; background:var(--bg-card); }
 .before-after figcaption { padding:8px 16px; font-family:var(--ff-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-muted); border-top:1px solid var(--border); }
 .before-after img { display:block; width:100%; height:auto; }
 
 /* Loom slot — renders ONLY when a video URL exists (no vaporware) */
 .loom-slot { display:none; }
-.loom-slot.has-video { display:block; margin:0 0 48px; border:1px solid var(--border); border-radius:6px; background:var(--bg-card); overflow:hidden; }
+.loom-slot.has-video { display:block; margin:0 0 48px; border:1px solid var(--border); border-radius:4px; background:var(--bg-card); overflow:hidden; }
 .loom-slot .loom-facade { display:flex; align-items:center; gap:16px; width:100%; padding:20px 24px; background:none; border:none; color:var(--ink); text-align:left; }
 .loom-slot .loom-facade:hover .loom-play { background:var(--gold-light); }
 .loom-play { flex:0 0 auto; width:44px; height:44px; border-radius:50%; background:var(--gold); color:var(--bg); display:flex; align-items:center; justify-content:center; font-size:16px; transition:background .2s; }
@@ -506,3 +506,100 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .card-wire{margin:40px 0;padding:40px;border:1px solid var(--border);border-radius:8px}
 .pullq{margin:24px 0;padding:32px;border:1px solid var(--border);border-radius:4px;border-left:3px solid var(--gold)}
 .card-col{display:flex;flex-direction:column;margin:0;padding:24px;border:1px solid var(--border);border-radius:4px}
+
+/* ═══ Hook objects (2026-08-04) — the "bakery box" wave ═══════════════════════
+   Physical artifacts that carry canon-true numbers: receipt printer (proof act),
+   Candidate Facts label (who-you'd-hire), inspection slip + stamp (errata),
+   boarding pass (contact). Mimic-surfaces per DESIGN-SYSTEM "Exempt surfaces":
+   own internal sizing, but contrast IS measured (audited at real pixels).
+   Paper tokens are shared by all four so the family reads as one artifact set. */
+:root{--paper:#F7F3EC;--paper-2:#FFFDF8;--paper-ink:#1B1917;--paper-soft:#544F44;--paper-rule:rgba(27,25,23,0.35);--stamp-red:#A33B25}
+.hko{filter:drop-shadow(0 16px 28px rgba(0,0,0,0.5))}
+.hko--tl{transform:rotate(-1.6deg)}
+.hko--tr{transform:rotate(1.8deg)}
+.hk-btn{font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.1em;text-transform:uppercase;color:#0A0A0A;background:var(--gold);border:none;padding:16px 24px;cursor:pointer;font-weight:600}
+.hk-btn[disabled]{opacity:.5;cursor:default}
+.hk-ghost{font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);background:transparent;border:1px solid var(--gold);padding:16px 24px;cursor:pointer;font-weight:500}
+.hk-ghost[disabled]{opacity:.5;cursor:default}
+
+/* — the shared receipt paper — */
+.hkr{background:var(--paper-2);color:var(--paper-ink);font-family:var(--ff-mono);font-size:12px;line-height:1.9;padding:20px 20px 16px;box-shadow:0 12px 24px rgba(0,0,0,0.35)}
+.hkr-h{font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0 0 2px;font-weight:500}
+.hkr-tag{text-align:center;font-size:10.5px;color:var(--paper-soft);margin:0 0 12px;letter-spacing:.06em}
+.hkr-dv{border-top:1px dashed var(--paper-rule);margin:8px 0}
+.hkr-li{display:flex;justify-content:space-between;gap:12px}
+.hkr-li b{white-space:nowrap;font-weight:500}
+.hkr-sm{display:block;color:var(--paper-soft);font-size:10.5px;line-height:1.5;margin:-3px 0 4px}
+.hkr-tot{display:flex;justify-content:space-between;font-weight:600;font-size:12.5px}
+.hkr-meta{font-size:10.5px;color:var(--paper-soft);text-align:center;margin:8px 0 0;letter-spacing:.05em}
+.hkr--tear{padding-top:12px}
+.hkr--tear::before{content:"";display:block;height:8px;margin:-12px -20px 8px;background:conic-gradient(from 135deg at 50% 100%,var(--paper-2) 90deg,transparent 0) 0 0/16px 8px repeat-x}
+
+/* — the printer (proof act, cream) — */
+.hkp-wrap{max-width:420px;margin:48px auto 0;text-align:center}
+.hkp-slot{position:relative;z-index:3;background:linear-gradient(180deg,#242320,#141311);border:1px solid rgba(255,255,255,0.14);border-radius:4px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;font-family:var(--ff-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(242,237,228,0.75);text-align:left}
+.hkp-slot::after{content:"";position:absolute;left:12px;right:12px;bottom:-2px;height:4px;background:#000;border-radius:2px}
+.hkp-led{width:8px;height:8px;border-radius:50%;background:#3a3a36;transition:background .3s;flex:0 0 auto}
+.hkp-led.on{background:#E8C88A;box-shadow:0 0 8px #E8C88A}
+.hkp-feed{overflow:hidden;max-height:0;margin:0 12px;transition:max-height 2.6s cubic-bezier(.25,.6,.35,1);text-align:left}
+.hkp-feed .hkr{visibility:hidden}
+.hkp.printing .hkp-feed{max-height:560px}
+.hkp.printing .hkp-feed .hkr{visibility:visible}
+.hkp.torn .hkp-feed{max-height:0;transition:max-height .01s}
+.hkp-torn{display:none;margin:8px 12px 0;text-align:left}
+.hkp.torn .hkp-torn{display:block;transform:rotate(-2deg);filter:drop-shadow(0 16px 28px rgba(0,0,0,0.35))}
+.hkp-ctl{margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hkp-dl{display:inline-block;margin-top:12px;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold)}
+
+/* — Candidate Facts label (who-you'd-hire, dark) — */
+.hk-side{flex:0 1 300px;min-width:260px;margin:16px auto 0}
+.cf{background:var(--paper);color:var(--paper-ink);font-family:var(--ff-sans);padding:12px 16px;border:1px solid rgba(27,25,23,0.15)}
+.cf-h{font-size:26px;font-weight:600;letter-spacing:-.01em;margin:0;line-height:1.05}
+.cf-serv{font-size:12px;border-bottom:8px solid var(--paper-ink);padding:4px 0 8px;margin-bottom:4px}
+.cf-row{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;border-bottom:1px solid rgba(27,25,23,0.25)}
+.cf-row b{font-weight:600}
+.cf-row--ind{padding-left:16px;font-size:12px}
+.cf-row--thick{border-bottom:4px solid var(--paper-ink)}
+.cf-foot{font-size:10.5px;color:var(--paper-soft);line-height:1.6;padding-top:8px;margin:0}
+
+/* — inspection slip + stamp (errata, dark) — */
+.hk-qc{display:flex;gap:clamp(24px,4vw,48px);align-items:center;flex-wrap:wrap;margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
+.hk-qc-side{flex:1 1 300px;min-width:260px}
+.hk-qc-obj{flex:0 1 300px;min-width:260px;margin:0 auto}
+.qc{background:var(--paper);color:var(--paper-ink);font-family:var(--ff-mono);padding:24px 24px 64px;position:relative;border:1px solid rgba(27,25,23,0.12);overflow:hidden}
+.qc-h{font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;margin:0;font-weight:500}
+.qc-big{font-family:var(--ff-display);font-size:40px;text-align:center;margin:4px 0 2px}
+.qc-sub{text-align:center;font-size:10.5px;color:var(--paper-soft);letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px}
+.qc-dv{border-top:1px dashed var(--paper-rule);margin:12px 0}
+.qc-chk{font-size:12px;line-height:2.1}
+.qc-chk div{display:flex;gap:8px;align-items:baseline}
+.qc-meta{font-size:10.5px;color:var(--paper-soft);text-align:center;margin:12px 0 0;letter-spacing:.05em;line-height:1.7}
+.qc-void{position:absolute;right:16px;bottom:12px;width:148px;height:44px;border:1px dashed var(--paper-rule);border-radius:4px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-soft)}
+.qc-stamp{position:absolute;right:14px;bottom:10px;border:2.5px solid var(--stamp-red);color:var(--stamp-red);border-radius:4px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:8px 12px;transform:rotate(-8deg) scale(2.4);opacity:0;pointer-events:none;transition:transform .18s cubic-bezier(.2,1.6,.4,1),opacity .12s}
+.qc.stamped .qc-stamp{transform:rotate(-8deg) scale(1);opacity:.85}
+.qc.stamped .qc-void{opacity:0;transition:opacity .3s .1s}
+
+/* — boarding pass (contact, dark) — */
+.hk-bp-link{display:block;max-width:520px;margin:48px auto 0;text-decoration:none;transition:transform .3s}
+.hk-bp-link:hover{transform:translateY(-4px) rotate(-1.6deg)}
+.bp{background:var(--paper);color:var(--paper-ink);display:grid;grid-template-columns:1fr 120px;font-family:var(--ff-mono)}
+.bp-main{padding:16px 20px;border-right:2px dashed var(--paper-rule)}
+.bp-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.5px solid var(--paper-ink);padding-bottom:8px;margin-bottom:12px}
+.bp-head b{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+.bp-head span{font-size:10.5px;color:var(--paper-soft);letter-spacing:.08em}
+.bp-route{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.bp-code{font-size:30px;font-weight:600;line-height:1}
+.bp-city{font-size:10px;color:var(--paper-soft);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
+.bp-path{flex:1;border-top:1.5px dashed var(--paper-rule);position:relative;min-width:48px}
+.bp-path::after{content:"✈";position:absolute;top:-11px;left:50%;transform:translateX(-50%);font-size:13px;background:var(--paper);padding:0 8px}
+.bp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 12px;font-size:12px}
+.bp-k{display:block;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-soft);margin-bottom:1px}
+.bp-v{font-weight:500}
+.bp-note{font-size:10.5px;color:var(--paper-soft);margin:12px 0 0;letter-spacing:.04em;line-height:1.6}
+.bp-stub{padding:16px 12px;display:flex;flex-direction:column;justify-content:space-between;font-size:10.5px}
+.bp-stub .bp-v{font-size:12.5px;margin-bottom:8px;display:block;font-weight:600}
+.bp-bar{height:28px;margin-top:8px;background:repeating-linear-gradient(90deg,var(--paper-ink) 0 2px,transparent 2px 3px,var(--paper-ink) 3px 8px,transparent 8px 12px,var(--paper-ink) 12px 16px,transparent 16px 20px)}
+@media(max-width:720px){
+  .hk-side{margin:0 auto}
+  .bp{grid-template-columns:1fr 96px}
+}
