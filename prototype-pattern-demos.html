@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>PATTERN DEMOS — three working options for the cream act</title>
+<!--
+  Interactive options, decides-by-PLAYING (open localhost:8000/prototype-pattern-demos.html).
+  Each is a candidate for the right rail of the patterns act. All copy canon-true; the
+  "assistant" in option 1 is openly canned — the contract, not the model, is the demo.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F1E8D6;--c-ink:#20180C;--c-muted:#635848;--c-gold:#7E5A14;--c-card:#EAE0CA;
+--paper:#FFFDF8;--stamp:#894540;--ok:#2E6A46;
+--ff-d:'Newsreader',serif;--ff-s:'IBM Plex Sans',sans-serif;--ff-m:'IBM Plex Mono',monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--c-ink);font-family:var(--ff-s);line-height:1.6;padding:48px 24px}
+.opt{max-width:1100px;margin:0 auto 96px;display:grid;grid-template-columns:300px 1fr;gap:48px;align-items:start}
+.opt h2{font-family:var(--ff-m);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-gold);margin:0 0 8px}
+.opt p{font-size:15px;color:var(--c-muted);margin:0}
+.demo{max-width:420px;background:var(--paper);border:1px solid rgba(32,24,12,.2);box-shadow:0 16px 28px rgba(32,24,12,.22);padding:24px}
+.d-cap{font-family:var(--ff-m);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-muted);margin:0 0 16px;display:flex;justify-content:space-between}
+.d-cap b{color:var(--ok);font-weight:500}
+button{font-family:var(--ff-m);cursor:pointer}
+
+/* 1 — capability contract, working */
+.ctr{border:1px solid rgba(32,24,12,.25);padding:12px 16px;font-family:var(--ff-m);font-size:11px;line-height:1.7;margin-bottom:16px;background:var(--cream)}
+.ctr b{font-weight:600}
+.q-row{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.q{background:none;border:1px solid var(--c-gold);color:var(--c-gold);font-size:12px;padding:12px;text-align:left;letter-spacing:.02em}
+.q[disabled]{opacity:.45}
+.ans{min-height:96px;border-top:1px dashed rgba(32,24,12,.35);padding-top:12px;font-size:13.5px;line-height:1.6}
+.ans .tag{font-family:var(--ff-m);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;display:inline-block;padding:3px 8px;margin-bottom:8px;font-weight:600}
+.ans .tag.in{color:var(--ok);border:1.5px solid var(--ok)}
+.ans .tag.out{color:var(--stamp);border:1.5px solid var(--stamp)}
+.ans .src{display:block;font-family:var(--ff-m);font-size:10px;color:var(--c-muted);margin-top:8px}
+
+/* 2 — A/R/I sorter */
+.case{font-family:var(--ff-m);font-size:12.5px;border:1px solid rgba(32,24,12,.25);padding:16px;margin-bottom:12px;background:var(--cream)}
+.case b{font-size:26px;display:block;margin-bottom:4px}
+.verbs3{display:flex;gap:8px;margin-bottom:12px}
+.verbs3 button{flex:1;border:1.5px dashed rgba(32,24,12,.4);background:none;color:var(--c-ink);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:12px 4px}
+.verbs3 button.hit{border:2px solid var(--ok);color:var(--ok);font-weight:600}
+.verbs3 button.miss{border:2px solid var(--stamp);color:var(--stamp)}
+.sorter-out{font-size:12.5px;min-height:60px;line-height:1.55}
+.sorter-out .r{font-family:var(--ff-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--c-muted)}
+
+/* 3 — reversibility */
+.danger{width:100%;background:var(--stamp);color:#FFFDF8;border:none;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:16px;font-weight:600}
+.danger[disabled]{opacity:.4}
+.undo-strip{margin-top:12px;border:1.5px solid var(--ok);padding:12px 16px;font-size:13px;display:none;align-items:center;justify-content:space-between;gap:12px}
+.undo-strip.on{display:flex}
+.undo-strip button{background:none;border:1.5px solid var(--ok);color:var(--ok);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;font-weight:600}
+.rev-out{margin-top:12px;font-size:13px;min-height:44px}
+.rev-note{font-family:var(--ff-m);font-size:10px;color:var(--c-muted);letter-spacing:.06em;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div class="opt">
+  <div>
+    <h2>Demo 1 — the capability contract, working</h2>
+    <p>The section's own one-pager, running. The contract is pinned at the top; ask it the
+    three questions and watch it act exactly as signed — including the honest decline with a
+    route to a human. The answers are openly canned: the CONTRACT is the demo, not a model.</p>
+  </div>
+  <div class="demo">
+    <p class="d-cap"><span>live — capability contract</span><b>signed</b></p>
+    <div class="ctr"><b>It's for:</b> scoring deal risk from the data room.<br><b>It can't:</b> price illiquid assets.<br><b>Hands back:</b> anything else &rarr; your analyst.</div>
+    <div class="q-row">
+      <button class="q" data-k="in" type="button">"Score the risk on the Meridian data room"</button>
+      <button class="q" data-k="out" type="button">"What's this vineyard actually worth?"</button>
+      <button class="q" data-k="off" type="button">"Draft the LP update email"</button>
+    </div>
+    <div class="ans" id="c-ans"><span style="font-family:var(--ff-m);font-size:11px;color:var(--c-muted)">— pick a question —</span></div>
+  </div>
+</div>
+
+<div class="opt">
+  <div>
+    <h2>Demo 2 — the Act / Review / Ignore sorter</h2>
+    <p>Three real-shaped cases, one score each. The visitor assigns the verb, then gets checked
+    against the shipped thresholds (act &ge; 0.85, review &ge; 0.55). Being wrong once teaches the
+    rule better than reading it.</p>
+  </div>
+  <div class="demo">
+    <p class="d-cap"><span>live — assign the verb</span><b id="s-score">0 / 3</b></p>
+    <div class="case"><b id="s-num">0.91</b><span id="s-txt">Campaign plan, clean data, high confidence.</span></div>
+    <div class="verbs3">
+      <button type="button" data-v="act">Act</button>
+      <button type="button" data-v="review">Review</button>
+      <button type="button" data-v="ignore">Ignore</button>
+    </div>
+    <div class="sorter-out" id="s-out"><span class="r">the thresholds that shipped: act &ge; 0.85 &middot; review &ge; 0.55</span></div>
+  </div>
+</div>
+
+<div class="opt">
+  <div>
+    <h2>Demo 3 — reversibility / safe-to-act</h2>
+    <p>A button nobody would dare click — made safe by design. Act first, undo window after:
+    the pattern that lets systems move fast without breaking trust. The visitor gets to feel
+    the safety net catch them.</p>
+  </div>
+  <div class="demo">
+    <p class="d-cap"><span>live — safe to act</span><b>reversible</b></p>
+    <button class="danger" id="r-go" type="button">Archive all 214 campaigns</button>
+    <div class="undo-strip" id="r-strip"><span>Archived. <b id="r-count">8</b>s to change your mind.</span><button id="r-undo" type="button">Undo</button></div>
+    <div class="rev-out" id="r-out"></div>
+    <p class="rev-note">acting is cheap when undo is designed &middot; nothing was harmed (or archived)</p>
+  </div>
+</div>
+
+<script>
+/* 1 — contract */
+(function(){
+  const out=document.getElementById('c-ans');
+  const A={
+   in:'<span class="tag in">In scope</span><br>Meridian scores <b>0.78 — review band</b>: two revenue restatements in the data room need a human eye before this acts.<span class="src">basis: data-room docs 42 &middot; contract line 1</span>',
+   out:'<span class="tag out">Declines</span><br>I can\'t price illiquid assets — a vineyard is one. That\'s not a hedge, it\'s a named limit.<span class="src">contract line 2 &middot; routed to: your analyst</span>',
+   off:'<span class="tag out">Hands back</span><br>Not my job — the contract says deal risk only. Your analyst has been looped in with the thread.<span class="src">contract line 3 &middot; handoff designed, not hoped for</span>'};
+  document.querySelectorAll('.q').forEach(b=>b.addEventListener('click',()=>{out.innerHTML=A[b.dataset.k]}));
+})();
+/* 2 — sorter */
+(function(){
+  const cases=[[0.91,'Campaign plan, clean data, high confidence.','act'],
+               [0.67,'Deal screen, two docs contradict each other.','review'],
+               [0.38,'Valuation ask, data room half-empty.','ignore']];
+  let i=0,score=0;
+  const num=document.getElementById('s-num'),txt=document.getElementById('s-txt'),
+        out=document.getElementById('s-out'),sc=document.getElementById('s-score');
+  document.querySelectorAll('.verbs3 button').forEach(b=>b.addEventListener('click',()=>{
+    const [n,t,right]=cases[i];const ok=b.dataset.v===right;if(ok)score++;
+    b.classList.add(ok?'hit':'miss');
+    out.innerHTML=(ok?'<b style="color:var(--ok)">Right.</b> ':'<b style="color:var(--stamp)">The system disagrees.</b> ')+
+      n+' resolves to <b>'+right.toUpperCase()+'</b> at the shipped thresholds.';
+    sc.textContent=score+' / 3';
+    setTimeout(()=>{i=(i+1)%cases.length;const[a,c]=[cases[i][0],cases[i][1]];num.textContent=a.toFixed(2);txt.textContent=c;
+      document.querySelectorAll('.verbs3 button').forEach(x=>x.classList.remove('hit','miss'));},1400);
+  }));
+})();
+/* 3 — reversibility */
+(function(){
+  const go=document.getElementById('r-go'),strip=document.getElementById('r-strip'),
+        cnt=document.getElementById('r-count'),out=document.getElementById('r-out');
+  let t=null,left=8;
+  go.addEventListener('click',()=>{
+    go.disabled=true;left=8;cnt.textContent=left;strip.classList.add('on');out.textContent='';
+    t=setInterval(()=>{left--;cnt.textContent=left;
+      if(left<=0){clearInterval(t);strip.classList.remove('on');
+        out.innerHTML='<b>Done — committed.</b> The window closed; the action stood. That\'s the deal: fast to act, honest about when it becomes real.';
+        go.disabled=false;go.textContent='Archive all 214 campaigns (again)';}
+    },1000);
+  });
+  document.getElementById('r-undo').addEventListener('click',()=>{
+    clearInterval(t);strip.classList.remove('on');go.disabled=false;
+    out.innerHTML='<b style="color:var(--ok)">Undone.</b> Nothing lost. You just used the pattern — acting felt safe because reversing was designed first.';
+  });
+})();
+</script>
+</body>
+</html>
