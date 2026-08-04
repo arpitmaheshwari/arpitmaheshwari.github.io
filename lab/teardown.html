@@ -97,7 +97,7 @@
       </div>
       <div class="lab-links">
         <a href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io" data-cta="lab-github" data-location="teardown-hero">The whole repository ↗</a>
-        <a href="./hitl.html" data-cta="lab-hitl" data-location="teardown-hero">hitl.js →</a>
+        <a href="./loop.html" data-cta="lab-loop" data-location="teardown-hero">loop.js →</a>
       </div>
     </div>
   </section>
@@ -189,8 +189,8 @@
       <h2 class="section-title">The gaps, before you find them</h2>
       <p class="lab-lede">A teardown that only lists strengths is a brochure. These are real, and they are the next things I would fix.</p>
       <ul class="td-gaps">
-        <li><b>There were no automated tests at all until this week.</b> The repository contained zero test files and an empty CI directory; verification was a manual checklist — every page at two widths, no overflow, console clean. <span style="color:var(--ink)">The 42 assertions behind <a href="./hitl.html" style="color:var(--gold)">hitl.js</a> are the first tests in this codebase</span>, which is a genuine gap being closed, not a strength.</li>
-        <li class="is-fixed"><b>No continuous integration.</b> Nothing ran those 42 tests on push. A <a href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io/blob/master/.github/workflows/test-lab.yml" style="color:var(--gold)">GitHub Action</a> now runs <span class="td-inline">node lab/hitl.test.js</span> on every push and pull request touching <span class="td-inline">lab/</span> — this repository's first CI job.</li>
+        <li><b>There were no automated tests at all until this week.</b> The repository contained zero test files and an empty CI directory; verification was a manual checklist — every page at two widths, no overflow, console clean. <span style="color:var(--ink)">The 42 assertions behind <a href="./loop.html" style="color:var(--gold)">loop.js</a> are the first tests in this codebase</span>, which is a genuine gap being closed, not a strength.</li>
+        <li class="is-fixed"><b>No continuous integration.</b> Nothing ran those 42 tests on push. A <a href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io/blob/master/.github/workflows/test-lab.yml" style="color:var(--gold)">GitHub Action</a> now runs <span class="td-inline">node lab/loop.test.js</span> on every push and pull request touching <span class="td-inline">lab/</span> — this repository's first CI job.</li>
         <li><b>Cache-busting is manual.</b> Version query strings are bumped by hand, which means they can be forgotten — and have been.</li>
         <li><b>Two third-party domains still gate the first paint.</b> Self-hosting the four font files would remove Google Fonts from the critical path entirely. It is on the list; it has not been done.</li>
         <li class="is-fixed"><b>A token had drifted out of sync with its own spec.</b> The design system documented <span class="td-inline">--fs-display</span> while the stylesheet defined <span class="td-inline">--fs-display-xl</span> — a rename that never reached the document. Found while writing this page, and fixed in the commit that published it.</li>

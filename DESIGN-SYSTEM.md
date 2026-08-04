@@ -242,7 +242,7 @@ role, not reflexively.
 2. A utility class (specificity 0,1,0) LOSES to a page rule like `.lab-ctl label` (0,1,1). An
    inline style used to win that fight; the class does not. Where a page rule competes, name the
    variant in the PAGE's stylesheet at matching specificity — do not reach back for an inline
-   style. (`/lab/hitl` checkbox labels silently reverted to mono uppercase before this was fixed.)
+   style. (`/lab/loop` checkbox labels silently reverted to mono uppercase before this was fixed.)
 
 **Print documents** (`portfolio-sources/`) have their own pt scale: `--pt-micro/cap/meta/kick/
 note/body/lead`, naming the sizes already in use 3+ times. One-offs (cover 34pt, ghost numeral

@@ -1,5 +1,5 @@
 /**
- * hitl.js — the decision logic behind eight trust patterns, as code.
+ * loop.js — the decision logic behind eight trust patterns, as code.
  *
  * These are the rules I argue for in design reviews, written as functions so
  * they can be tested instead of debated. Pure, synchronous, zero-dependency:

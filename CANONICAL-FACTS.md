@@ -27,7 +27,7 @@ _Last reconciled: 2026-06-19._
     The portfolio's running header is "Human in the Loop · Selected Works"; the book's cover
     imprint is "Human in the Loop · MMXXVI".
   - **The newsletter** → labelled **"Human in the Loop"** on every surface.
-  - **The code module** → `lab/hitl.js` + `hitl.test.js` + `/lab/hitl.html`. The old URL
+  - **The code module** → `lab/loop.js` + `loop.test.js` + `/lab/loop.html`. The old URL
     `/lab/trustlayer.html` survives ONLY as a silent forwarding stub, because it was published in
     the sitemap and linked from the portfolio PDF. That stub is the single permitted appearance of
     the old string anywhere in the repo — it renders no visible copy.
@@ -556,3 +556,15 @@ the platform** — not "$300M". Two things changed and both matter:
 **Locked phrasing, use verbatim:** "a platform transacting £400M in media spend". Do NOT revert
 to "media business", do NOT write "$400M", and do NOT describe it as the client's revenue —
 that is a different (unrecorded) number and claiming it would be an overclaim.
+
+
+### Module renamed: hitl.js → loop.js — 2026-08-04
+Arpit's call, and the reason matters: *"You are using the abbreviation HITL everywhere, people
+may confuse it with Hitler."* A hiring surface cannot carry an abbreviation with that misread.
+- Renamed: `lab/hitl.js` → `lab/loop.js`, `hitl.test.js` → `loop.test.js`,
+  `/lab/hitl.html` → `/lab/loop.html` (old URL kept as a noindex forwarding stub — it was
+  published in the sitemap). CI workflow updated. All 42 tests pass under the new name.
+- Copy: the boarding-pass airline is **"Loop Air"** (was "HITL Air" for one commit, never
+  pushed); the human-in-loop pattern page spells the term out in full.
+- Rule: do NOT write "HITL" on any visible surface. Spell out "human-in-the-loop", or say
+  "the loop". The module is `loop.js`; docs may mention "formerly hitl.js" for continuity.
