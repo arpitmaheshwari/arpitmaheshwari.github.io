@@ -555,15 +555,21 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 /* who-grid: photo | bio prose | spec card. The card is a RAIL in the reading path, not an
    appendix. Below 1320px the bio measure would fall under ~45ch, so the card drops beneath the
    text and stays LEFT-ALIGNED with the prose column — aligned to the flow, never centered. */
-/* The section body is a fixed ~760px column (numeral layout), so a side-by-side rail would
-   crush the bio to ~30ch at ANY viewport — measured, not assumed. The spec card therefore always
-   follows the prose, aligned to the prose column (grid-column 2), never centered in dead space. */
-.who-grid{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px 32px;align-items:start}
-.hk-side{grid-column:2;max-width:320px;margin-top:8px}
-@media(max-width:720px){
-  .who-grid{grid-template-columns:1fr}
-  .hk-side{grid-column:1;max-width:320px}
+/* editorial--rail: a GOVERNED extension of the editorial grammar (170px | 760px) for sections
+   that carry one artifact. The artifact takes a third column in what was empty right field —
+   numeral | prose | object — so the void does the section's work instead of merely existing.
+   Below 1100px the rail collapses and the object follows the prose, left-aligned to it. */
+.section-inner.editorial--rail{grid-template-columns:170px minmax(0,640px) 320px}
+.editorial--rail .rail-obj{grid-column:3;align-self:start;padding-top:4px;max-width:320px}
+@media(max-width:1100px){
+  .section-inner.editorial--rail{grid-template-columns:170px minmax(0,760px)}
+  .editorial--rail .rail-obj{grid-column:2;margin-top:8px}
 }
+@media(max-width:900px){
+  .section-inner.editorial--rail{grid-template-columns:1fr}
+  .editorial--rail .rail-obj{grid-column:1}
+}
+.who-grid{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px 32px;align-items:start}
 .cf{background:var(--paper);color:var(--paper-ink);font-family:var(--ff-sans);padding:12px 16px;border:1px solid rgba(27,25,23,0.15)}
 .cf-h{font-size:26px;font-weight:600;letter-spacing:-.01em;margin:0;line-height:1.05}
 .cf-serv{font-size:12px;border-bottom:8px solid var(--paper-ink);padding:4px 0 8px;margin-bottom:4px}
@@ -574,8 +580,8 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .cf-foot{font-size:10.5px;color:var(--paper-soft);line-height:1.6;padding-top:8px;margin:0}
 
 /* — inspection slip + stamp (errata, dark) — */
-.hk-qc{display:flex;gap:clamp(24px,4vw,48px);align-items:center;flex-wrap:wrap;margin-top:48px}
-.hk-qc-side{flex:1 1 300px;min-width:260px}
+.hk-qc{display:flex;gap:clamp(24px,4vw,48px);align-items:center;flex-wrap:wrap;margin-top:48px;justify-content:center}
+.hk-qc-side{flex:0 1 300px;min-width:240px}
 .hk-qc-obj{flex:0 1 300px;min-width:260px;margin:0 auto}
 .qc{background:var(--paper);color:var(--paper-ink);font-family:var(--ff-mono);padding:24px 24px 64px;position:relative;border:1px solid rgba(27,25,23,0.12);overflow:hidden}
 .qc-h{font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-align:center;margin:0;font-weight:500}
@@ -591,7 +597,8 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .qc.stamped .qc-void{opacity:0;transition:opacity .3s .1s}
 
 /* — boarding pass (contact, dark) — */
-.hk-bp-link{display:block;max-width:480px;margin:0;text-decoration:none;transition:transform .3s;filter:drop-shadow(0 12px 20px rgba(0,0,0,0.45))}
+.bp-row{margin-top:48px}
+.hk-bp-link{display:block;max-width:820px;margin:0;text-decoration:none;transition:transform .3s;filter:drop-shadow(0 12px 20px rgba(0,0,0,0.45))}
 .bp-cap{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.06em;color:var(--ink-muted);margin:12px 0 0}
 .hk-bp-link:hover{transform:translateY(-4px)}
 .hk-bp-link:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
@@ -613,6 +620,5 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .bp-stub .bp-v{font-size:12.5px;margin-bottom:8px;display:block;font-weight:600}
 .bp-bar{height:28px;margin-top:8px;background:repeating-linear-gradient(90deg,var(--paper-ink) 0 2px,transparent 2px 3px,var(--paper-ink) 3px 8px,transparent 8px 12px,var(--paper-ink) 12px 16px,transparent 16px 20px)}
 @media(max-width:720px){
-  .hk-side{margin:0 auto}
   .bp{grid-template-columns:1fr 96px}
 }
