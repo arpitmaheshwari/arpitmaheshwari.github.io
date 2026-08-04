@@ -657,9 +657,21 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
   .ccd{position:static;max-width:440px;margin:8px auto 0}
 }
 
-/* — case reading key: the four beats, now INSIDE Selected Work (they were a separate
-   section and the hairline made one argument look like two, 2026-08-04) — */
-.case-key{margin:0 0 48px;padding:32px 0 8px;border-top:1px dashed var(--border);border-bottom:1px dashed var(--border)}
+/* — Selected Work zone: intro + reading key LEFT, the trust trace as a VERTICAL rail RIGHT.
+   The trace is the section's own argument, so it fills the field the capped text frees —
+   designed whitespace, not leftover (the leftover version shipped for one commit, 2026-08-04). */
+.sw-zone{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:clamp(32px,5vw,80px);align-items:stretch;margin-bottom:48px}
+.sw-main{min-width:0}
+.case-key{margin:0;padding:32px 0 0;border-top:1px dashed var(--border)}
+.sw-trace{display:flex;align-items:center;justify-content:center;border-left:1px dashed var(--border);padding-left:clamp(24px,3vw,48px)}
+.sw-trace-flow{display:flex;flex-direction:column;align-items:center;gap:16px}
+.scr--down{transform:rotate(90deg);margin:8px 0}
+@media(max-width:1100px){
+  .sw-zone{grid-template-columns:minmax(0,1fr)}
+  .sw-trace{border-left:none;border-top:1px dashed var(--border);padding:24px 0 0;margin-top:8px}
+  .sw-trace-flow{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:clamp(8px,2.6vw,32px)}
+  .scr--down{transform:none;margin:0}
+}
 
 /* — boarding pass (contact, dark) — */
 .bp-row{margin-top:48px;text-align:center}
