@@ -178,7 +178,7 @@
         ],
         [
           "Surface",
-          "DSP recommendation UI"
+          "End-to-end aggregator · 5 systems"
         ],
         [
           "Status",
@@ -196,7 +196,7 @@
         ],
         [
           "Why",
-          "Reasoning on every call"
+          "Plans with visible ROI, not scores"
         ]
       ],
       "plateNo": "4.1",

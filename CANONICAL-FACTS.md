@@ -63,7 +63,7 @@ Use the exact metric strings below on every surface (homepage chip, case-study p
 | 1 | **PTC University — Learning Connector** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile 4%→38% (2017→2019) · 80+ countries · Role: Product & Design Lead (retitled 2026-08-02, PM receipt) · 2014–2019 |
 | 2 | **Telefónica MyO2 & Priority Moments** | Telecom · Non-NDA / public | **4M+** (MyO2 users) | Priority Moments **2.6M** sign-ups year one · 2.5M+ active · 5★ App Store · Role: Designer + front-end via **Equal Experts, 2012–14** |
 | 3 | **AI-Assisted Private Equity Investing** | FinTech · NDA | **60% faster** (deal screening) | measured pre- vs post-rollout · 3 sources behind every score · Role: Lead Product Designer · _(true sample: 42 deals over a 90-day window — DO NOT PUBLISH, see display rule below)_ |
-| 4 | **Programmatic Advertising Platform** | AdTech · NDA | **2 wks → 3 hrs** (campaign planning) | Act / Review / Ignore · reasoning on every call · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · £400M media spend transacted through the platform · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
+| 4 | **Programmatic Advertising Platform** | AdTech · NDA | **2 wks → 3 hrs** (campaign planning) | Recommended campaign plans with visible KPIs/ROI, easily customizable — **NO confidence scores, ever** (corrected 2026-08-05, see AdTech correction entry) · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · £400M media spend transacted through the platform · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
 | 5 | **OrgOS · Transparent Org Tooling** | Org Design · NDA | **200** (people) | 200 people · 0 managers · 8 modules · **in use by 250 people today (2026)** — the org grew past the 200 it was designed for and the coordination model held · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25). ("Zero managers" is the *outcome*, never the title.) |
 | 6 | **Technical Due Diligence Platform** | VC/PE · NDA | **3 wks → 4 days** (diligence cycle) | 4 signal classes scored · VC + PE · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25) |
 
@@ -568,3 +568,47 @@ may confuse it with Hitler."* A hiring surface cannot carry an abbreviation with
   pushed); the human-in-loop pattern page spells the term out in full.
 - Rule: do NOT write "HITL" on any visible surface. Spell out "human-in-the-loop", or say
   "the loop". The module is `loop.js`; docs may mention "formerly hitl.js" for continuity.
+
+
+### AdTech — MAJOR CORRECTION + EXPANSION, 2026-08-05 (Arpit is the source; supersedes prior narrative)
+**The false thread, removed: Act / Review / Ignore was NOT used in AdTech.** No confidence
+score was ever shown — or used. The AI's raw output suggested LISTS OF BILLBOARDS; Arpit's
+design recommended **detailed campaign plans with KPIs to measure ROI**, easily customizable by
+the trader. The adoption fight was real and stays: traders overrode the RECOMMENDED PLANS, and
+customization + visible KPIs/ROI is what earned adoption. Do not re-attach scores, verbs, or
+"never a naked 87%" to this case on any surface.
+
+**A/R/I's true origin (Arpit, 2026-08-05): a SYNTHESIS across the AI products — the pattern
+kept recurring, then got named.** Never claim a single birthplace. The rule itself stands.
+
+**Client context — REVENUE LEADS (supersedes the 2026-08-03 "media spend transacted" lock):**
+the client is **the UK's largest out-of-home advertising company — £400M annual revenue, 40%
+of the UK OOH market.** Arpit's explicit call to print despite near-identifiability (his
+testimonials name Talon). For an aggregator, gross billings ≈ media spend transacted, so the
+old phrasing was not false — but revenue now leads. Do not use both framings in one sentence.
+
+**The platform's anatomy — five systems, all Arpit's product definition + design (2019–2025):**
+1. **The aggregator** — positioned the client as a DSP: its own demand side (advertisers/
+   agencies) and supply side (media owners), replacing phone calls and Excel sheets.
+2. **The data-intelligence platform** — analyzed aggregate movement patterns to profile
+   audiences, then profiled billboards against those audiences, targeting people precisely at
+   the times they would be near a site. (Phrase as aggregate/audience-level; never as tracking
+   individuals.)
+3. **The creative management solution.**
+4. **The advertisement display reporting system.**
+5. **Free SaaS for media owners** — inventory management given away free; media owners share
+   their inventory with the aggregator in return. (This is the supply-side PLG mechanism.)
+
+**The transformation arc (the story the case now tells):** an advertising media agency became
+the market's aggregator — an adtech company running the workflow end-to-end on one platform
+instead of Excel sheets and phone calls.
+
+**Standing numbers, unchanged:** 2 wks → 3 hrs · £69k avg media-value uplift/client · 45% ·
+3x purchase intent · 70% audience uplift · 50M bids/hr (engineering's — attribute).
+
+### AdTech tenure phrasing — corrected 2026-08-05
+Arpit: *"It was not one product for five years, it was a suite of applications working together
+as a smart connected platform."* Locked phrasing: **"one connected platform, five years"** (or
+"a suite of applications working together as one connected platform"). Never "one product".
+The five systems are enumerated in the 2026-08-05 AdTech correction entry above. Case vitals
+Surface: "End-to-end aggregator · 5 systems".

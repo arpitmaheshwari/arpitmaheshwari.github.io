@@ -259,14 +259,14 @@ const NDA_CASES = [{
   meta: cfMeta("adtech"),
   context: "The engine beat the buyers; adoption sat near zero. I left the model and rebuilt the interface around it. Once traders acted on it: 45% less time and effort to plan and book a campaign, and 3x uplift in purchase intent with 70% audience uplift against traditional bookings.",
   moves: [{
-    h: "A score tied to one action",
-    p: "Each recommendation resolved to one verb — act, review, or ignore — never a naked 87% on the screen."
+    h: "A plan, not a pick",
+    p: "The model's raw output was a list of billboards. The screen turned it into a full campaign plan a trader could defend — never a bare list, never a naked score."
   }, {
-    h: "Reasons named out loud",
-    p: "A reasoning panel named the exact signals behind each call — not a tooltip, the actual argument a buyer could check like an analyst's."
+    h: "KPIs on the plan itself",
+    p: "Reach, estimated ROI, price trend — the case for the plan sat on the plan, checkable before anyone committed budget."
   }, {
-    h: "An override that teaches",
-    p: "The override logged the correction and fed next week's model. Watching their pushback land flipped fighting into coaching."
+    h: "Customization that teaches",
+    p: "Reshaping the plan took one click; every edit was logged and fed next week's recommendations. Watching their pushback land flipped fighting into coaching."
   }],
   plateNo: CF.get("adtech").plateNo,
   plateCn: CF.get("adtech").provenance,
