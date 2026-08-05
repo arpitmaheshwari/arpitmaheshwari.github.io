@@ -51,7 +51,7 @@ _Last reconciled: 2026-06-19._
 
 ## 2. Availability (must read identically everywhere)
 - **Available · 4 weeks' notice** (always the digit "4", never "four").
-- Fully remote from Indore, India (GMT+5:30); 4–5 hours of daily overlap with US East Coast.
+- Fully remote from Indore, India (GMT+5:30) — daily overlap with both US coasts. (SUPERSEDED 2026-08-04: was "4–5 hours of daily overlap with US East Coast"; Arpit works late and covers US West too. Locked phrasing: "daily overlap with both US coasts" — coast-neutral, no hour counts.)
 - Looking for ONE role: founding product & design lead at an AI product company of 5–40 people, OR a
   staff / director seat where human-in-the-loop design is the job.
 
