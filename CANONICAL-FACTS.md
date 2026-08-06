@@ -708,6 +708,27 @@ Both were built from an external review's suggestions and both were cut by Arpit
 The underlying review notes are logged, but these two executions are settled — reopening them
 needs new evidence, not another reviewer repeating the suggestion.
 
+### Pattern library — pre-correction AdTech story found and purged, 2026-08-07
+The 2026-08-05 AdTech correction (no confidence scores ever; A/R/I was a synthesis, never born
+in AdTech) was applied to the case pages and documents but NOT to `patterns/`. Four pattern
+pages still credited AdTech in their "See this pattern in action" lists with:
+scores that told buyers what to do (`confidence-scores`), acting on "the score"
+(`calibration-track-record`), "every call resolved to act, review, or ignore"
+(`capability-contract`), and "the exact signals behind every recommendation"
+(`ml-explainability`). All four rewritten to the attested story — plans with KPIs and the
+reasoning printed on the plan. A PROXIMITY tripwire now guards it (bare "confidence score" is
+legitimate on those pages; a score attached to *this client* is not).
+**Lesson:** a canon correction must sweep `patterns/` too. It is a third surface family after
+the cases and the documents, and it was missed for two days.
+
+### Lab — evidence tiers added, 2026-08-07
+The Lab is titled "proof" and shows a passing suite, which invites the fair objection that
+tests prove code behaviour, not product outcomes. It now names three tiers explicitly —
+**Implementation** (what the 42 assertions actually prove), **Usage** (the rules came from
+shipped work; the code is his re-statement, not client source), **Outcome** (a claim about a
+product, evidenced on the case with baseline and window, never by a green test). Also states
+that thresholds are defaults, not findings. Same device as "Where this wouldn't transfer".
+
 ### PlanIt — deliberate asymmetry across surfaces, 2026-08-06 (Arpit's ruling)
 An external review flagged "PDF has 7 cases, site has 6" as an inconsistency. **It is
 intentional — Arpit: "keep it as is."** PlanIt is a full case in the portfolio PDF, a bullet on

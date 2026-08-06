@@ -78,6 +78,14 @@ BANNED = [
      'the retired AdTech tenure phrasing — canon locks "one connected platform, five years"; '
      'it was a suite of applications, never one product',
      "AdTech tenure, 2026-08-05"),
+    # PROXIMITY rule, not a bare token: "confidence score" is a legitimate pattern name and
+    # appears correctly all over patterns/. What canon forbids is attaching a SCORE, or the
+    # Act/Review/Ignore verbs, to the AdTech client. Four pattern pages still did on 2026-08-07.
+    (r"Programmatic Advertising Platform</a>:</strong>[^<]{0,220}?\b(scores?|act, review, or ignore)\b",
+     'a score or the A/R/I verbs attributed to AdTech — canon: recommendations were full '
+     'campaign plans with KPIs, NO confidence scores ever, and A/R/I was a synthesis across '
+     'products, never born in AdTech',
+     "AdTech correction 2026-08-05"),
     (r"80\+\s*countr",
      'inaccurate reach figure — Arpit corrected to "20+ countries" ("safe side")',
      "PTC correction 2026-08-06"),

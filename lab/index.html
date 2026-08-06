@@ -62,6 +62,11 @@
     .lab-card { transition: none; }
     .lab-card:hover { transform: none; }
   }
+
+    .ev-tiers { margin: 16px 0 0; }
+    .ev-tiers dt { font-family: var(--ff-mono); font-size: 12px; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--gold); margin-top: 16px; }
+    .ev-tiers dd { margin: 4px 0 0; padding-left: 16px; border-left: 1px solid var(--border); }
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PFY6ME99K8');</script>
@@ -132,6 +137,32 @@
         <p>The eight patterns in <a href="../patterns/" style="color:var(--gold)">the pattern library</a> came out of production work, and for years they lived where design principles usually live: in slides, in review comments, in my head. Reasonable people agreed with all of them and then shipped the naked confidence score anyway — because a principle you can nod at costs nothing to ignore.</p>
         <p>Written as code, the same rules acquire a failing state. <code>decide()</code> reports <code>review-without-reasons</code> as a violation rather than a suggestion. <code>calibrate()</code> returns <code>insufficient-data</code> instead of a flattering number when the sample is thin. <code>trustlint</code> refuses to score truthfulness at all, and says why in its own output.</p>
         <p>That is what The Lab is for: taking judgements I keep making in review and giving them somewhere to fail, so they can run without me in the room.</p>
+
+        <!-- The evidence boundary (2026-08-07). This page is titled "proof" and shows passing
+             tests. A technically literate reader will immediately ask what the tests actually
+             prove — so answer it before they have to. Same device as "Where this wouldn't
+             transfer" on the cases: naming the ceiling of a claim is what makes the claim
+             usable. -->
+        <p class="lab-h3" style="margin-top:32px">What this proves, and what it doesn&rsquo;t</p>
+        <p>Three different things get called evidence, and only the first one lives on this page:</p>
+        <dl class="ev-tiers">
+          <dt>Implementation</dt>
+          <dd>The code does what it says. 42 assertions, run in your browser above, on the same
+              module the demos import. This is what the tests prove &mdash; nothing more.</dd>
+          <dt>Usage</dt>
+          <dd>The rules came out of shipped products, not a notebook: the verbs, the abstention,
+              the logged override and the citation gate were each argued for and built inside
+              the work in <a href="../index.html#featured-case-studies">the case studies</a>.
+              The code here is my re-statement of those decisions, not the client&rsquo;s source.</dd>
+          <dt>Outcome</dt>
+          <dd>Whether a pattern moves adoption is a claim about a product, not about a function.
+              Where I have a measured before-and-after I put it on the case, with its baseline
+              and window. A green test says nothing about it, and I won&rsquo;t let a passing
+              suite stand where a result belongs.</dd>
+        </dl>
+        <p class="lab-note">The thresholds here are defaults, not findings. Where a band starts
+           is a product decision someone owns and revisits &mdash; the rule is only that a score
+           lands on one verb, never that 0.7 is the right place to put the line.</p>
       </div>
       <div class="lab-links">
         <a href="../patterns/" data-cta="lab-patterns" data-location="lab-foot">The eight patterns, with live demos →</a>
