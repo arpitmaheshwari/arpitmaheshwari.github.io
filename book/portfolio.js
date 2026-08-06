@@ -167,7 +167,7 @@ const CASES = {
     title: CF.get("ptc").title,
     standfirst: "Five platforms, one survivor. The redesign took a quarter — the case for killing four products took a year. That was the design work.",
     meta: cfMeta("ptc"),
-    context: "The brief said “redesign the UX.” Three weeks in the customer-success recordings said the navigation was fine — so I made the call that the contract was the broken interface: kill four of five learning platforms (LearningExchange, Precision LMS, Digital Guides, IoTU) and move the survivor off perpetual licenses — onto a product-led funnel where free tutorials and trainings converted learners to premium subscriptions.",
+    context: "The brief said “redesign the UX.” Three weeks in the customer-success recordings said the navigation was fine — so I made the call that the contract was the broken interface: kill four of five learning platforms (LearningExchange, Precision LMS, Digital Guides, IoTU) and move the survivor off perpetual licenses — onto a product-led funnel where free tutorials and trainings converted learners to premium subscriptions. Research had already named the survivor: usability testing kept showing customers didn't use our product names — they called everything “PTC University.”",
     fig1: {
       no: "1.1",
       label: "before — five disconnected platforms, five sign-in screens"
@@ -209,16 +209,16 @@ const NDA_CASES = [{
   title: CF.get("o2").title,
   standfirst: "Designed with one co-designer, coded by me alone — every screen of two O2 UK products on mobile web, at a scale where rounding errors have populations.",
   meta: cfMeta("o2"),
-  context: "The one move: own both sides of the handoff — draw every screen, then code the front-end that ships it, so nothing is lost in translation. The cost of that scale: a rounding error has a population. The proof isn't sign-ups; it's the 2.5M who came back.",
+  context: "The one move: own both sides of the handoff — design every screen with a co-designer, then code alone the front-end that ships it, so nothing is lost in translation. The cost of that scale: a rounding error has a population. The proof isn't sign-ups; it's the 2.5M who came back.",
   moves: [{
     h: "MyO2 — the whole account, alone",
-    p: "O2 UK's self-service app: data and usage, the bill, a tariff change, an upgrade — the whole account without dialing anyone. The math is blunt: every self-service task that lands is a contact-centre call that never happens. It went on to serve more than four million users."
+    p: "O2 UK's self-service app: data and usage, the bill, a tariff change, an upgrade — the whole account without dialing anyone. A replatforming, not a fresh start: the legacy system made responsive — iOS, Android, Windows Phone, web — moved cautiously, millions of subscribers aboard, in step with Telefónica's brand and copy teams."
   }, {
     h: "Priority Moments — a reason to open it",
-    p: "O2's loyalty programme: rewards from Odeon, M&S, Caffè Nero, matched by interest, behaviour and location. Launched July 2011; 2.6M registrations in year one, 2.5M+ active. The launch figures are O2's record — I joined in 2013 and owned the reward and offer screens."
+    p: "O2's loyalty programme: a geolocated list of rewards near you — Odeon, M&S, Caffè Nero — every redemption a reason to stay. Launched July 2011; 2.6M registrations in year one, 2.5M+ active. The launch figures are O2's record — I joined in 2013 and owned the reward and offer screens."
   }, {
     h: "Same designer, same stack, opposite job",
-    p: "MyO2 is a utility; Priority is a habit. Both on mobile web under a top UK brand, where small things stop being small — a tap target, a spinner, an exact billing figure lands on a stadium at once. The outcome figures are public, reported by O2 and Equal Experts. The claim is the work."
+    p: "MyO2 is a utility; Priority is a habit. Both on mobile web under a top UK brand, where small things stop being small — a tap target, a spinner, an exact billing figure lands on a stadium at once. The outcome figures are public — O2's and Equal Experts' record."
   }],
   plateNo: CF.get("o2").plateNo,
   plateCn: CF.get("o2").provenance,
@@ -233,7 +233,7 @@ const NDA_CASES = [{
   title: CF.get("fintech").title,
   standfirst: "I held the release until the LLM could defend its own scores. Then screening sped up 60%.",
   meta: cfMeta("fintech"),
-  context: "An LLM read the deal docs and scored the risk. I held the launch until it grounded every claim in a cited source (retrieval) and abstained on thin cases — a confident hallucination nobody signs is dead on arrival. I owned product definition, the abstention and citation UX, and the launch gate; the model's accuracy is the ML team's result to defend. The 60% is analysts no longer re-verifying by hand. One analysis, two reading modes — a written descriptive report and a conversation for interrogating it — above a pipeline-wide scoring dashboard; analysts read differently, and the design refused to pick for them.",
+  context: "An LLM read the deal docs and scored the risk. I held the launch until every claim carried a cited source and thin cases drew an abstention — a confident hallucination nobody signs is dead on arrival. I owned product definition, the abstention and citation UX, and the launch gate; accuracy is the ML team's result to defend. One analysis, two reading modes — a written report, or a conversation that interrogates it — over a pipeline-wide scoring dashboard.",
   moves: [{
     h: "Explain before the verdict",
     p: "An “explain this score” surface: pull a rating into its signals, challenge the weighting, watch it answer — sources beside the number."
@@ -272,7 +272,7 @@ const NDA_CASES = [{
   plateCn: CF.get("adtech").provenance,
   ledger: CF.metrics("adtech"),
   note: "software did the speed; design did the acting-on-it",
-  boundary: "The model was already accurate — the gap I closed was trust, not accuracy. If your model is genuinely wrong, no interface will save it; that’s an upstream fix.",
+  boundary: "The model was already accurate; the gap was trust. A genuinely wrong model, no interface saves — that’s an upstream fix. Client leadership later published the arc: platform bookings, under 5% → 100% of UK.",
   stamp: { t: "Shipped", v: "" }
 }, {
   no: "05",
