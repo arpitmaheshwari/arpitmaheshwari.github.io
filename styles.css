@@ -724,6 +724,14 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
   .scr--down{transform:none;margin:0}
 }
 
+/* — paper diagram (case pages, 2026-08-06): the cream explainer SVGs read as pasted
+   rectangles on the dark pages (Arpit). They now join the paper-object family — tilted,
+   shadowed, captioned like an artifact pulled from the case file, not a band of foreign UI. */
+.fig-paper{margin:32px auto 8px;max-width:720px;border:none;background:none;overflow:visible;transform:rotate(-1.2deg);filter:drop-shadow(0 16px 28px rgba(0,0,0,0.5))}
+.fig-paper img{display:block;width:100%;height:auto;border:1px solid rgba(32,24,12,0.2)}
+.fig-paper figcaption{background:var(--paper);color:var(--paper-soft);border-top:1px dashed var(--paper-rule);font-family:var(--ff-mono);font-size:11px;letter-spacing:.05em;text-transform:none;padding:8px 16px}
+.fig-paper--r{transform:rotate(1.2deg)}
+
 /* — boarding pass (contact, dark) — */
 .bp-row{margin-top:48px;text-align:center}
 .hk-bp-link{display:block;max-width:820px;margin:0 auto;text-decoration:none;transition:transform .3s;filter:drop-shadow(0 12px 20px rgba(0,0,0,0.45))}

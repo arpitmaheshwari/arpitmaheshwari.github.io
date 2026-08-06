@@ -612,3 +612,24 @@ as a smart connected platform."* Locked phrasing: **"one connected platform, fiv
 "a suite of applications working together as one connected platform"). Never "one product".
 The five systems are enumerated in the 2026-08-05 AdTech correction entry above. Case vitals
 Surface: "End-to-end aggregator · 5 systems".
+
+
+### FinTech (AI-Assisted PE Investing) — EXPANSION, 2026-08-06 (Arpit is the source)
+The product had three surfaces, not one — and served ONE analysis in TWO interpretation modes:
+1. **The conversational interface** (already on record — cited claims, honest abstention).
+2. **The scoring dashboard** — a MULTI-DEAL pipeline overview, deals scored side-by-side,
+   sitting above the single-deal screen (the "Risk 62" card is the drill-down, not the whole).
+3. **The AI-generated descriptive analysis** — the system wrote a detailed narrative report of
+   the deal, scores explained in prose; the analyst reads it, then can interrogate it further
+   in conversation.
+**The design rationale (his, to print): different reading styles.** Some analysts want the
+full written argument to read and annotate; others want to interrogate. The same analysis
+served both temperaments — descriptive and conversational — instead of forcing one workflow.
+Do not invent numbers for the dashboard or report (none provided).
+
+**CORRECTION (same day): the "rejecting the chatbot" claim is RETIRED.** The published case
+said "the first structural call was rejecting the chatbot… move from conversation to
+conviction." Arpit's ruling: conversation was NEVER rejected — it was always one of the two
+modes. The claim overstated and is corrected on every surface, like AdTech's scores were.
+What stays true: the agentic architecture with strict operational boundaries (components as
+an orchestra, not one improvising soloist), citations, and honest abstention.

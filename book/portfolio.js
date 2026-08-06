@@ -233,7 +233,7 @@ const NDA_CASES = [{
   title: CF.get("fintech").title,
   standfirst: "I held the release until the LLM could defend its own scores. Then screening sped up 60%.",
   meta: cfMeta("fintech"),
-  context: "An LLM read the deal docs and scored the risk. I held the launch until it grounded every claim in a cited source (retrieval) and abstained on thin cases — a confident hallucination nobody signs is dead on arrival. I owned product definition, the abstention and citation UX, and the launch gate; the model's accuracy is the ML team's result to defend. The 60% is analysts no longer re-verifying by hand.",
+  context: "An LLM read the deal docs and scored the risk. I held the launch until it grounded every claim in a cited source (retrieval) and abstained on thin cases — a confident hallucination nobody signs is dead on arrival. I owned product definition, the abstention and citation UX, and the launch gate; the model's accuracy is the ML team's result to defend. The 60% is analysts no longer re-verifying by hand. One analysis, two reading modes — a written descriptive report and a conversation for interrogating it — above a pipeline-wide scoring dashboard; analysts read differently, and the design refused to pick for them.",
   moves: [{
     h: "Explain before the verdict",
     p: "An “explain this score” surface: pull a rating into its signals, challenge the weighting, watch it answer — sources beside the number."
