@@ -196,8 +196,12 @@
       .plP-frame{border:1px solid var(--border);border-radius:9px;overflow:hidden;box-shadow:0 22px 48px rgba(0,0,0,.4);font-family:var(--ff-sans)}
       .plP-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
       .plP-chrome i{width:8px;height:8px;border-radius:50%;background:#3A3F48;display:inline-block}
-      .plP-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:9px;letter-spacing:.09em;color:#8B93A1;text-transform:uppercase}
+      .plP-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.04em;color:#8B93A1;text-transform:none}
       .plP-app{background:#F4F5F7;color:#16181D;min-height:280px;display:flex;flex-direction:column}
+      .plP-win{border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:0 12px 24px rgba(0,0,0,.35);background:#F4F5F7}
+      .plP-winb{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:12px;font-size:12.5px;color:#16181D}
+      .plP-winb b{font-weight:600}
+      .plP-winb span{font-size:11px;color:#515863;white-space:nowrap}
       .plP-bar{padding:8px 12px;background:#fff;border-bottom:1px solid #E3E6EA;font-weight:600;font-size:12px}
       .plP-body{padding:12px 12px;flex:1}
       .plP-tile{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border:1px solid #E3E6EA;border-radius:5px;padding:8px 8px;margin-bottom:8px}
@@ -211,24 +215,18 @@
       .plP-course{background:#fff;border:1px solid #E3E6EA;border-radius:5px;padding:8px}
       .plP-course b{display:block;font-size:10px;font-weight:600;line-height:1.35}
       .plP-course small{font-size:9px;color:#515863}
-      .plP-foot{font-family:var(--ff-mono);font-size:9px;letter-spacing:.06em;color:#515863;padding:8px 12px;border-top:1px solid #E3E6EA;background:#fff;text-transform:uppercase}
+      .plP-foot{font-family:var(--ff-mono);font-size:10px;letter-spacing:.04em;color:#515863;padding:8px 12px;border-top:1px solid #E3E6EA;background:#fff;text-transform:none}
       .plP-locale{display:inline-block;font-family:var(--ff-mono);font-size:9.5px;color:#00695C;background:#E1EFEC;border-radius:3px;padding:3px 8px}
       .plP-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 40px;transform:translateX(-50%)}
     </style>
     <div class="plP" role="img" aria-label="Before and after reconstruction: five separate learning portals with five sign-ins, versus the unified Learning Connector with one problem-shaped search box, cross-platform recommendations, and an eleven-locale picker.">
-      <div class="plP-frame">
-        <div class="plP-chrome" aria-hidden="true"><i></i><i></i><i></i><span>before · one of five portals</span></div>
-        <div class="plP-app">
-          <div class="plP-bar">PTC Learning — choose your platform</div>
-          <div class="plP-body">
-            <div class="plP-tile"><span><b>Learning Connector</b><small>learningconnector.ptc.com</small></span><span class="plP-si" style="color:#fff;background:#3E5F8A">Sign in</span></div>
-            <div class="plP-tile"><span><b>LearningExchange</b><small>lx.ptc.com · separate account</small></span><span class="plP-si" style="color:#fff;background:#7A5410">Log in</span></div>
-            <div class="plP-tile"><span><b>Precision LMS</b><small>precisionlms.com · SSO not supported</small></span><span class="plP-si" style="color:#16181D;background:#E3E6EA">Member login</span></div>
-            <div class="plP-tile"><span><b>Digital Guides</b><small>guides.ptc.com</small></span><span class="plP-si" style="color:#fff;background:#8C2B2B">Access</span></div>
-            <div class="plP-tile"><span><b>IoTU</b><small>iotu.ptc.com · new window</small></span><span class="plP-si" style="color:#fff;background:#0E7A5F">Enter ↗</span></div>
-          </div>
-          <div class="plP-foot">5 URLs · 5 logins · 5 lines on the invoice</div>
-        </div>
+      <div class="plP-frame" style="border:none;box-shadow:none;overflow:visible;display:flex;flex-direction:column;gap:8px;justify-content:center">
+        <div class="plP-win" style="margin-right:24px"><div class="plP-chrome"><i></i><i></i><i></i><span>learningconnector.ptc.com</span></div><div class="plP-winb"><b>Learning Connector</b><span>Sign in</span></div></div>
+        <div class="plP-win" style="margin-left:16px;margin-right:8px"><div class="plP-chrome"><i></i><i></i><i></i><span>lx.ptc.com</span></div><div class="plP-winb"><b>LearningExchange</b><span>Log in — separate account</span></div></div>
+        <div class="plP-win" style="margin-right:32px"><div class="plP-chrome"><i></i><i></i><i></i><span>precisionlms.com</span></div><div class="plP-winb"><b>Precision LMS</b><span>Member login — SSO not supported</span></div></div>
+        <div class="plP-win" style="margin-left:24px"><div class="plP-chrome"><i></i><i></i><i></i><span>guides.ptc.com</span></div><div class="plP-winb"><b>Digital Guides</b><span>Access</span></div></div>
+        <div class="plP-win" style="margin-right:16px;margin-left:8px"><div class="plP-chrome"><i></i><i></i><i></i><span>iotu.ptc.com</span></div><div class="plP-winb"><b>IoTU</b><span>Enter — opens new window</span></div></div>
+        <div style="text-align:center;font-family:var(--ff-mono);font-size:11px;letter-spacing:.04em;color:var(--ink-muted);padding-top:4px">five products · five URLs · five logins · five lines on the invoice</div>
       </div>
       <div class="plP-frame" style="display:flex;flex-direction:column">
         <div class="plP-chrome" aria-hidden="true"><i></i><i></i><i></i><span>after · learningconnector.ptc.com — live</span></div>
@@ -236,7 +234,7 @@
       </div>
     </div>
     <figcaption class="plP-caption">
-      <span class="lbl-eyebrow" style="display:block; margin-bottom:4px">Plate 06 · Before: reconstruction (the five portals are gone from the web) · After: the REAL product, live — learningconnector.ptc.com, retrieved 6 Aug 2026</span>
+      <span style="display:block;margin-bottom:4px;font-family:var(--ff-mono);font-size:12px;letter-spacing:.04em;color:var(--gold)">Plate 06 · Before: reconstruction — the five separate sites are gone from the web · After: the real product, live — learningconnector.ptc.com, retrieved 6 Aug 2026</span>
       <span style="display:block;font-family:var(--ff-mono);font-size:var(--fs-caption);color:var(--ink-muted);line-height:1.6">The redesign delta in one look: five portals with five sign-ins became one surface where the search speaks the engineer's language and the other platforms became rows instead of logins.</span>
     </figcaption>
     <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">One login, or no login.</strong> With four engineers and one PM, I shipped single sign-on across all five platforms in 14 weeks and rebuilt the IA as a graph, not a tree — a learner on Precision LMS now saw <em>"engineers like you also learned on IoTU"</em> without leaving the surface. Cross-traffic became the biggest acquisition channel the under-used platforms ever had.</p>
