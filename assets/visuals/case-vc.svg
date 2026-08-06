@@ -1,6 +1,6 @@
 <svg viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
-  <title id="t">Technical due-diligence signals resolved into one auditable verdict.</title>
-  <desc id="d">A wide editorial line-art diagram of a VC and PE technical due-diligence dossier. On the left, four labelled horizontal signal bars score Code quality, Architecture risk, Team velocity and Founder credibility. Hairline traces carry the four signals rightward into a single circular verdict badge reading B plus, Commit. A small timeline motif notes the review compressed from three weeks to four days. Title reads Signals to auditable verdict.</desc>
+  <title id="t">Findings clear a confidence bar to become evidence-backed signals, resolved into one auditable verdict.</title>
+  <desc id="d">A wide editorial line-art diagram of a VC and PE technical due-diligence dossier. On the left, findings analyzed across sixteen dimensions; only those clearing a marked confidence bar become signals, each shown with the evidence source it was verified against, with the remainder held below the bar and kept out of the report. Traces carry the surviving signals into a single auditable verdict on the right, and a footer timeline shows the cycle cut from three weeks to four days.</desc>
 
   <!-- palette: cream F4ECDA / panel EEE4CE / ink 2C2620 / soft 6A6052 / faint 998D78 / ember C0512B / ochre CE9230 / pine 2F5D52 / hairline rgba(44,38,32,0.12) -->
   <defs>
@@ -17,52 +17,54 @@
 
   <!-- ===================== HEADER ===================== -->
   <text x="48" y="58" class="lb" font-size="14" letter-spacing="3" opacity="0.85">TECHNICAL DUE-DILIGENCE DOSSIER</text>
-  <text x="48" y="96" class="hd" font-size="34">Signals &#8594; auditable verdict</text>
+  <text x="48" y="96" class="hd" font-size="34">Evidence &#8594; signal &#8594; verdict</text>
   <line x1="48" y1="118" x2="1232" y2="118" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
 
-  <!-- ===================== LEFT: FOUR SIGNAL BARS ===================== -->
+  <!-- ===================== LEFT: SIGNALS THAT CLEARED THE BAR =====================
+       Geometry (2026-08-06): panel ENDS at 352 — footer italic baseline is 372, frame 382.
+       PROXIMITY: each evidence line must group with the signal ABOVE it, so the gap inside a
+       group (~2px) is deliberately much smaller than the gap between groups (~8px). An earlier
+       pass used 12 vs 14 and every caption read as belonging to the next signal down. -->
   <g>
-    <!-- panel behind the signal stack -->
-    <rect x="48" y="150" width="612" height="206" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
-    <text x="76" y="184" class="lb" font-size="13" letter-spacing="2">SIGNALS SCORED</text>
-
-    <!-- bar geometry: track x=76 w=420, value right-aligned at x=624 -->
-    <!-- 1. Code quality -->
-    <text x="76" y="216" class="lb" font-size="15" fill="#2C2620">Code quality</text>
-    <text x="624" y="216" class="lb" font-size="13" text-anchor="end" opacity="0.85">82</text>
-    <rect x="76" y="224" width="420" height="10" rx="5" fill="#998D78" opacity="0.30"/>
-    <rect x="76" y="224" width="344" height="10" rx="5" fill="#2F5D52"/>
-
-    <!-- 2. Architecture risk -->
-    <text x="76" y="252" class="lb" font-size="15" fill="#2C2620">Architecture risk</text>
-    <text x="624" y="252" class="lb" font-size="13" text-anchor="end" opacity="0.85">58</text>
-    <rect x="76" y="260" width="420" height="10" rx="5" fill="#998D78" opacity="0.30"/>
-    <rect x="76" y="260" width="244" height="10" rx="5" fill="#CE9230"/>
-
-    <!-- 3. Team velocity -->
-    <text x="76" y="288" class="lb" font-size="15" fill="#2C2620">Team velocity</text>
-    <text x="624" y="288" class="lb" font-size="13" text-anchor="end" opacity="0.85">76</text>
-    <rect x="76" y="296" width="420" height="10" rx="5" fill="#998D78" opacity="0.30"/>
-    <rect x="76" y="296" width="319" height="10" rx="5" fill="#2F5D52"/>
-
-    <!-- 4. Founder credibility -->
-    <text x="76" y="324" class="lb" font-size="15" fill="#2C2620">Founder credibility</text>
-    <text x="624" y="324" class="lb" font-size="13" text-anchor="end" opacity="0.85">88</text>
-    <rect x="76" y="332" width="420" height="10" rx="5" fill="#998D78" opacity="0.30"/>
-    <rect x="76" y="332" width="370" height="10" rx="5" fill="#2F5D52"/>
+    <rect x="48" y="132" width="612" height="220" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+    <text x="76" y="158" class="lb" font-size="12.5" letter-spacing="2">SIGNALS</text>
+    <text x="624" y="158" class="lb" font-size="11" text-anchor="end" opacity="0.8">16 DIMENSIONS ANALYZED</text>
+    <line x1="336" y1="166" x2="336" y2="340" stroke="#C0512B" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.9"/>
+    <text x="342" y="158" class="em" font-size="10" letter-spacing="1">CONFIDENCE BAR</text>
+    <text x="76" y="180" class="lb" font-size="14" fill="#2C2620">Signal A-14</text>
+    <text x="624" y="180" class="lb" font-size="12" text-anchor="end" opacity="0.85">0.86</text>
+    <rect x="76" y="186" width="420" height="7" rx="3.5" fill="#998D78" opacity="0.30"/>
+    <rect x="76" y="186" width="361" height="7" rx="3.5" fill="#2F5D52"/>
+    <text x="76" y="204" class="lb" font-size="10" opacity="0.85">verified against &#8212; repo scan &#183; dependency manifest</text>
+    <text x="76" y="225" class="lb" font-size="14" fill="#2C2620">Signal B-02</text>
+    <text x="624" y="225" class="lb" font-size="12" text-anchor="end" opacity="0.85">0.71</text>
+    <rect x="76" y="231" width="420" height="7" rx="3.5" fill="#998D78" opacity="0.30"/>
+    <rect x="76" y="231" width="298" height="7" rx="3.5" fill="#CE9230"/>
+    <text x="76" y="249" class="lb" font-size="10" opacity="0.85">verified against &#8212; design docs &#167;4 &#183; infra audit</text>
+    <text x="76" y="270" class="lb" font-size="14" fill="#2C2620">Signal C-09</text>
+    <text x="624" y="270" class="lb" font-size="12" text-anchor="end" opacity="0.85">0.79</text>
+    <rect x="76" y="276" width="420" height="7" rx="3.5" fill="#998D78" opacity="0.30"/>
+    <rect x="76" y="276" width="332" height="7" rx="3.5" fill="#2F5D52"/>
+    <text x="76" y="294" class="lb" font-size="10" opacity="0.85">verified against &#8212; commit history &#183; 24 months</text>
+    <text x="76" y="315" class="lb" font-size="14" fill="#2C2620">Signal D-05</text>
+    <text x="624" y="315" class="lb" font-size="12" text-anchor="end" opacity="0.85">0.68</text>
+    <rect x="76" y="321" width="420" height="7" rx="3.5" fill="#998D78" opacity="0.30"/>
+    <rect x="76" y="321" width="286" height="7" rx="3.5" fill="#CE9230"/>
+    <text x="76" y="339" class="lb" font-size="10" opacity="0.85">verified against &#8212; founder interview &#183; run 2 of 2</text>
   </g>
 
-  <!-- ===================== TRACES: four signals -> verdict ===================== -->
+  <!-- ===================== TRACES: surviving signals -> verdict ===================== -->
   <!-- bars end near x=660; badge center (1064,253) r=104, left entry ~x=952 -->
   <g stroke="#998D78" stroke-width="1.5" fill="none" opacity="0.85">
-    <path d="M 660 229 C 760 229 800 253 952 253"/>
-    <path d="M 660 265 C 770 265 810 253 952 253"/>
-    <path d="M 660 301 C 770 301 810 253 952 253"/>
-    <path d="M 660 337 C 760 337 800 253 952 253"/>
+    <path d="M 660 189 C 770 189 810 253 952 253"/>
+    <path d="M 660 234 C 770 234 810 253 952 253"/>
+    <path d="M 660 279 C 770 279 810 253 952 253"/>
+    <path d="M 660 324 C 770 324 810 253 952 253"/>
   </g>
   <!-- merge node at badge entry -->
   <circle cx="952" cy="253" r="5" fill="#F4ECDA" stroke="#998D78" stroke-width="1.5"/>
-  <text x="724" y="158" class="lb" font-size="12.5" opacity="0.85">Four signals &#8594; one verdict</text>
+  <text x="700" y="150" class="lb" font-size="12" opacity="0.85">only what cleared the bar &#8594; one verdict</text>
+  <text x="700" y="170" class="lb" font-size="10.5" opacity="0.8">12 further findings stayed below it &#8212; held out of the report</text>
 
   <!-- ===================== RIGHT: VERDICT BADGE ===================== -->
   <g>
@@ -82,7 +84,7 @@
 
   <!-- ===================== FOOTER: timeline motif ===================== -->
   <g>
-    <text x="48" y="372" class="lb" font-size="13" font-style="italic" opacity="0.9">Auditable trail&#8201;&#8212;&#8201;every grade links back to the signal that earned it.</text>
+    <text x="48" y="372" class="lb" font-size="13" font-style="italic" opacity="0.9">Auditable trail&#8201;&#8212;&#8201;every grade links back to the evidence that earned it.</text>
     <!-- 3 weeks -> 4 days timeline, right side -->
     <line x1="916" y1="368" x2="1110" y2="368" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
     <circle cx="916" cy="368" r="4.5" fill="none" stroke="#998D78" stroke-width="1.5"/>

@@ -146,7 +146,7 @@
 
   <!-- THE BEFORE — what the firm thought it was buying -->
   <figure class="fig-paper">
-    <img src="../assets/visuals/case-vc.svg" alt="Diagram: four technical-risk signals (code quality, architecture risk, team velocity, founder credibility) feeding one auditable verdict; diligence cut from three weeks to four days." loading="lazy" width="1280" height="400" style="display:block;width:100%;height:auto">
+    <img src="../assets/visuals/case-vc.svg?v=2" alt="Diagram: findings analyzed across sixteen dimensions; only those clearing a confidence bar become evidence-backed signals feeding one auditable verdict; diligence cut from three weeks to four days." loading="lazy" width="1280" height="400" style="display:block;width:100%;height:auto">
     <figcaption>Evidence-backed signals, one verdict a partner can stand on · 3 weeks to 4 days</figcaption>
   </figure>
 
@@ -160,7 +160,7 @@
       The symptom: a fast model, and a verdict nobody would sign.
     </h2>
     <p class="t-body" style="margin-bottom:20px">VC and PE partners stake millions on a startup's technology on claims they will never personally check. They can't read the codebase. They can't reproduce the benchmark. So the deal stalls in a three-week diligence cycle while analysts assemble something a partner is willing to put their name to.</p>
-    <p class="t-body" style="margin-bottom:20px">An LLM handled the hard technical work in an afternoon: read the unstructured repos, read the design docs, score four classes of risk — code quality, architecture risk, team velocity, founder credibility. The extraction was never the problem.</p>
+    <p class="t-body" style="margin-bottom:20px">An LLM handled the hard technical work in an afternoon: read the unstructured repos, read the design docs, and analyze each finding across sixteen dimensions. The extraction was never the problem.</p>
     <p class="t-body">The problem was that a partner would read a clean machine verdict and still pick up the phone to re-check it by hand. The LLM produced an answer. It did not produce something anyone would stand on. That is what kept the cycle at three weeks.</p>
   </section>
 
@@ -223,7 +223,7 @@
       .plV-cond{font-size:11px;color:#464C56;margin-top:8px}
       .plV-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 24px;transform:translateX(-50%)}
     </style>
-    <div class="plV" role="img" aria-label="Reconstructed technical-diligence dossier, partner view: verdict 'Proceed — with conditions' over the signals that crossed the confidence bar — code quality, architecture risk and team velocity marked clear, founder credibility marked watch because a deck benchmark could not be reproduced — each with a confidence figure and a source chip; an evidence rail quotes the engineer's reproduction note showing results roughly 40% below the published figure, and a partner sign-off reads 'Signed — conditions attached' with an independent benchmark required before close.">
+    <div class="plV" role="img" aria-label="Reconstructed technical-diligence dossier, partner view: verdict 'Proceed — with conditions' over the signals that crossed the confidence bar, each carrying the evidence it was verified against, with findings below the bar held out of the report — a deck benchmark could not be reproduced — each with a confidence figure and a source chip; an evidence rail quotes the engineer's reproduction note showing results roughly 40% below the published figure, and a partner sign-off reads 'Signed — conditions attached' with an independent benchmark required before close.">
       <div class="plV-chrome" aria-hidden="true"><i></i><i></i><i></i><span>technical-diligence · partner view · reconstruction</span></div>
       <div class="plV-app">
         <div class="plV-bar">
@@ -237,25 +237,25 @@
             <div class="plV-verdict">Proceed — <em>with conditions</em></div>
             <div class="plV-sub">16 dimensions analyzed · signals only at sufficient confidence · every claim drills to its source</div>
             <div class="plV-sig">
-              <span class="plV-sname">Code quality</span>
+              <span class="plV-sname">Signal A-14<small>dependency three majors behind upstream</small></span>
               <span class="plV-st clear">Clear</span><span class="plV-conf">conf 91%</span><span class="plV-src">repo scan · 214 files</span>
             </div>
             <div class="plV-sig">
-              <span class="plV-sname">Architecture risk</span>
+              <span class="plV-sname">Signal B-02<small>one job queue is the chokepoint at plan scale</small></span>
               <span class="plV-st clear">Clear</span><span class="plV-conf">conf 88%</span><span class="plV-src">design docs · §4</span>
             </div>
             <div class="plV-sig">
-              <span class="plV-sname">Team velocity</span>
+              <span class="plV-sname">Signal C-09<small>two contributors carry the commit history</small></span>
               <span class="plV-st clear">Clear</span><span class="plV-conf">conf 76%</span><span class="plV-src">commit history · release cadence</span>
             </div>
             <div class="plV-sig sel">
-              <span class="plV-sname">Founder credibility<small>benchmark in the deck could not be reproduced</small></span>
+              <span class="plV-sname">Signal D-05<small>benchmark in the deck could not be reproduced</small></span>
               <span class="plV-st watch">Watch</span><span class="plV-conf">conf 64%</span><span class="plV-src">founder interviews · reference calls</span>
             </div>
-            <div class="plV-foot">sign-off unlocks only after every signal&rsquo;s evidence trail is opened</div>
+            <div class="plV-foot">12 further findings stayed below the bar &middot; sign-off unlocks only after every signal&rsquo;s evidence trail is opened</div>
           </div>
           <div class="plV-rail">
-            <div class="plV-rl">Evidence — founder credibility</div>
+            <div class="plV-rl">Evidence — signal D-05</div>
             <div class="plV-quote">“…the throughput benchmark on p.6 of the deck could not be reproduced from the released build; observed results were <mark>~40% below the published figure</mark>…”</div>
             <div class="plV-cite">engineer's reproduction note · run 2 of 2</div>
             <span class="plV-open">Open the trail ↗</span><span class="plV-more">3 more items</span>
@@ -273,7 +273,7 @@
       <span class="t-quote-cap" style="display:block">Redrawn from memory at production fidelity. The verdict a partner can stand on: signals, each with a trail, and a sign-off that prices the doubt instead of rubber-stamping it.</span>
     </figcaption>
     <p class="t-body" style="margin-bottom:20px">Try it — open each signal to see the evidence, then sign:</p>
-    <section class="recon" id="recon-vc" role="group" aria-label="Interactive reconstruction: technical-risk dossier with drill-to-source and partner sign-off">
+    <section class="recon" id="recon-vc" role="group" aria-label="Interactive reconstruction: a partner verdict opened into the evidence-backed signals beneath it, then partner sign-off">
     <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA</div>
     <div class="recon-stage">
       <style>
@@ -304,33 +304,34 @@
         <p class="rxv-vlabel">Dossier · Company K</p>
         <p class="rxv-vtext">Technical verdict: <span>proceed with conditions</span></p>
         <div class="rxv-row">
-          <button type="button" class="rxv-sig" id="rxv-s1" aria-expanded="false" aria-controls="rxv-t1" data-cta="recon" data-location="recon-vc">Code quality <span class="rxv-right"><span class="rxv-st">clear</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
+          <button type="button" class="rxv-sig" id="rxv-s1" aria-expanded="false" aria-controls="rxv-t1" data-cta="recon" data-location="recon-vc">Signal A-14 <span class="rxv-right"><span class="rxv-st">confidence 0.86</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
           <div class="rxv-trail" id="rxv-t1">
             <p class="rxv-ev">Core modules read clean; test coverage thins around the billing paths.</p>
             <p class="rxv-cite">source: repo scan · static analysis pass 02</p>
           </div>
         </div>
         <div class="rxv-row">
-          <button type="button" class="rxv-sig" id="rxv-s2" aria-expanded="false" aria-controls="rxv-t2" data-cta="recon" data-location="recon-vc">Architecture risk <span class="rxv-right"><span class="rxv-st watch">watch</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
+          <button type="button" class="rxv-sig" id="rxv-s2" aria-expanded="false" aria-controls="rxv-t2" data-cta="recon" data-location="recon-vc">Signal B-02 <span class="rxv-right"><span class="rxv-st watch">confidence 0.71 · watch</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
           <div class="rxv-trail" id="rxv-t2">
             <p class="rxv-ev">A single job queue becomes the chokepoint well before the growth plan needs it to hold.</p>
             <p class="rxv-cite">source: design-doc review · infra audit 01</p>
           </div>
         </div>
         <div class="rxv-row">
-          <button type="button" class="rxv-sig" id="rxv-s3" aria-expanded="false" aria-controls="rxv-t3" data-cta="recon" data-location="recon-vc">Team velocity <span class="rxv-right"><span class="rxv-st">clear</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
+          <button type="button" class="rxv-sig" id="rxv-s3" aria-expanded="false" aria-controls="rxv-t3" data-cta="recon" data-location="recon-vc">Signal C-09 <span class="rxv-right"><span class="rxv-st">confidence 0.79</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
           <div class="rxv-trail" id="rxv-t3">
             <p class="rxv-ev">Merge cadence is steady, but two contributors carry most of the commit history.</p>
             <p class="rxv-cite">source: commit history · release cadence</p>
           </div>
         </div>
         <div class="rxv-row">
-          <button type="button" class="rxv-sig" id="rxv-s4" aria-expanded="false" aria-controls="rxv-t4" data-cta="recon" data-location="recon-vc">Founder credibility <span class="rxv-right"><span class="rxv-st watch">watch</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
+          <button type="button" class="rxv-sig" id="rxv-s4" aria-expanded="false" aria-controls="rxv-t4" data-cta="recon" data-location="recon-vc">Signal D-05 <span class="rxv-right"><span class="rxv-st watch">confidence 0.68 · watch</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
           <div class="rxv-trail" id="rxv-t4">
             <p class="rxv-ev">Claims in the deck match the demo; one benchmark could not be reproduced.</p>
             <p class="rxv-cite">source: founder interviews · reference calls</p>
           </div>
         </div>
+        <p class="rxv-hint" style="margin:16px 0 0;padding-top:12px;border-top:1px solid var(--border)">Analyzed across 16 dimensions · 12 further findings stayed below the confidence bar and never reached this report</p>
         <div class="rxv-foot">
           <button type="button" class="rxv-sign" id="rxv-sign" disabled title="review every signal first" data-cta="recon" data-location="recon-vc">Partner sign-off</button>
           <p class="rxv-hint" id="rxv-hint" aria-live="polite">review every signal first</p>

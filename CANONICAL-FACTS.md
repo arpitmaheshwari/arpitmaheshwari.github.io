@@ -711,10 +711,19 @@ Prose/data/mirror have been purged (`data/case-facts.js`, `book/*`, `llms.txt`, 
 the role line, the figcaption). **Arpit's ruling on the artifacts: redesign around the
 CONFIDENCE GATE** — drop named signals entirely and demonstrate the attested mechanic instead
 (a finding analyzed across 16 dimensions; it becomes a signal only on clearing a confidence
-bar; every signal carries verified evidence; no uncited verdict reaches a report). Directions
-to be rendered for his pick before anything ships.
-- Until the redesign lands, canon-lint FAILS on `assets/visuals/case-vc.svg` and
-  `case-studies/vc-diligence.html`. That red is the open work — do not allowlist it away.
+bar; every signal carries verified evidence; no uncited verdict reaches a report). **RESOLVED same day — Arpit picked Direction C, "the evidence trail"** (options rendered at
+`prototypes/vc-confidence-gate-options.html`, kept as the record).
+- **SHIPPED:** signals are anonymized IDs carrying a confidence value (Signal A-14 / B-02 /
+  C-09 / D-05) — never a named risk taxonomy. Each opens to the evidence it was verified
+  against. Every surface states the gate: "analyzed across 16 dimensions · 12 further findings
+  stayed below the confidence bar and never reached the report." Partner sign-off still unlocks
+  only after every trail is opened (attested, unchanged).
+- Rebuilt: the `recon-vc` widget, the `plV` plate rows, `assets/visuals/case-vc.svg` (now
+  "Evidence → signal → verdict", with the confidence bar drawn as a marked threshold), the
+  image alt text, the plate aria-label, the role line and the body prose.
+- The IDs and their evidence lines are ILLUSTRATIVE and captioned as a reconstruction. They
+  assert no taxonomy — that is the whole point of the redesign. Do not "improve" them into
+  category names; that is how the retired four came back.
 
 ### O2 / MyO2 — the replatforming story added, 2026-08-06 (Arpit is the source)
 Arpit: "myo2 case study is an example where we took a legacy system and made it responsive
