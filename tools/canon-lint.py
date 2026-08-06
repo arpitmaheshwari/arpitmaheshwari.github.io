@@ -57,6 +57,18 @@ BANNED = [
     (r"\bfour weeks'? notice\b",
      'availability must use the digit "4", never the word',
      "§2 availability"),
+    (r"80\+\s*countr",
+     'inaccurate reach figure — Arpit corrected to "20+ countries" ("safe side")',
+     "PTC correction 2026-08-06"),
+    (r"\bPune\b|shipped the wrong homepage|fell 19%|31% above|19%\s*(?:→|->)\s*\+?31%",
+     'the fabricated "wrong homepage first" story (Pune engineer, −19%/+31%) — authored by the '
+     '2026-05-24 session, retired. The real story: research found customers say "PTC University", '
+     'not product names',
+     "PTC story retirement 2026-08-06"),
+    (r"\bko,\s*ru\b|\bpt-BR,\s*ko\b",
+     'the invented locale list ("added pt-BR, ko, ru") — ru is Russian (retired) and locale names '
+     'are not canon; print only "9 → 11 locales"',
+     "PTC locale-list removal 2026-08-06"),
 ]
 
 # CASE_SENSITIVE rules must NOT be scanned with re.I — the first version of this file ran every
@@ -84,8 +96,9 @@ MALFORMED = [
 
 # DELIBERATELY NOT MECHANISED — canon's 'never write "−60%" (use "60% faster")' bans phrasing an
 # IMPROVEMENT as a negative percentage. Deciding that needs to know whether the number is a headline
-# claim or real directional data, and the site has three legitimate negatives ("print run −92% in year
-# one", "inventory price −8%", "sessions −19% → +31%"). A regex flagged all three. A gate that cries
+# claim or real directional data, and the site has legitimate negatives ("print run −92% in year
+# one", "inventory price −8%"; a third, "sessions −19% → +31%", was retired 2026-08-06 as a
+# fabrication and is now a BANNED rule). A regex flagged all of them. A gate that cries
 # wolf gets switched off, so this rule stays a human review item rather than a build failure.
 
 # If the left phrase appears in a file, the right one must appear in the same file.

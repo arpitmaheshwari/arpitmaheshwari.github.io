@@ -142,7 +142,7 @@
 
   <div class="case-jump" role="navigation" aria-label="Jump to section">
     <a href="#the-fork">The decision</a>
-    <a href="#the-cost">What it cost</a>
+    <a href="#the-cost">What the research found</a>
     <a href="#the-miss">The miss</a>
     <a href="#the-receipt">The receipt</a>
   </div>
@@ -253,11 +253,10 @@
   <!-- §04 — WHAT IT COST -->
   <section id="the-cost" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
     <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
-      What it cost: I shipped the wrong homepage first.
+      What the research found: nobody used our product names.
     </h2>
-    <p class="t-body" style="margin-bottom:20px">The first unified landing screen showed all five product families to everyone, ordered alphabetically. I thought it would feel modern.</p>
-    <p class="t-body" style="margin-bottom:20px">An engineer in Pune with a Precision-only license logged in and found 80% of the surface advertising platforms she had no right to open. Session length fell 19% in week one.</p>
-    <p class="t-body" style="margin-bottom:20px">Three weeks later I keyed personalization off the license: the homepage now showed only what the customer's company had bought, with everything else behind one <em>"Explore"</em> link. Session length recovered, then ran 31% above the pre-launch baseline.</p>
+    <p class="t-body" style="margin-bottom:20px">The homepage wasn't decided by taste. I ran research studies and usability testing with customers, and one pattern kept repeating: people didn't recognize the offerings by their individual product names. They called all of it, collectively, <em>"PTC University."</em></p>
+    <p class="t-body" style="margin-bottom:20px">That finding drove two decisions at once. The five properties consolidated under the one name customers already used — PTC University became the single front door instead of five product-branded sites. And the homepage was personalized, keyed to the license: each visitor saw what their company had actually bought, with everything else behind one <em>"Explore"</em> link — because a page organized by product names nobody recognized was a page organized for us, not for them.</p>
     <section class="recon" id="recon-ptc" role="group" aria-label="Interactive reconstruction: license-keyed personalization">
       <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration</div>
       <div class="recon-stage">
@@ -289,13 +288,13 @@
         </div>
         <p class="rxp-explore">Everything else folds behind one link → Explore</p>
       </div>
-      <div class="recon-caption">Tiles are illustrative — on the real product this switch took sessions −19% → +31% vs baseline</div>
+      <div class="recon-caption">Tiles are illustrative — the real homepage keyed to each company's license, under the one name customers already used</div>
     </section>
     <script>(function(){var r=document.getElementById('recon-ptc');if(!r)return;r.querySelectorAll('.rxp-mode').forEach(function(b){b.addEventListener('click',function(){r.querySelectorAll('.rxp-mode').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');r.classList.toggle('licensed',b.dataset.mode==='license');});});})();</script>
     <blockquote class="pullq" style="background:var(--bg-card)">
-      <p class="t-quote" style="margin:0">The user's contract is the most accurate filter you'll ever ship. I learned that by getting it wrong first.</p>
+      <p class="t-quote" style="margin:0">The users had already renamed the product. The research just gave us permission to catch up.</p>
     </blockquote>
-    <p class="t-body">The bet carried other costs too: a 24-month grandfather promise to existing customers that I couldn't walk back, and two lost reviews before the query log won the third. I priced those in on purpose. A wrong homepage you can fix in three weeks; a redesign that quietly preserves a broken contract, you can't.</p>
+    <p class="t-body">The bet still carried a real cost: a 24-month grandfather promise to existing customers that I couldn't walk back. I priced that in on purpose — a homepage you can revise; a redesign that quietly preserves a naming system customers don't use, you can't.</p>
   </section>
 
   <!-- THE RECEIPT -->
@@ -329,7 +328,7 @@
       </div>
       <div class="rcpt-r" style="background:rgba(212,168,94,0.04)">
         <div class="lbl-eyebrow" style="flex:0 0 200px">Localization</div>
-        <div class="t-ui" style="flex:1 1 240px">9 → 11 locales · added pt-BR, ko, ru · WCAG AA across all</div>
+        <div class="t-ui" style="flex:1 1 240px">9 → 11 locales · WCAG AA across all</div>
       </div>
       <div class="rcpt-r">
         <div class="lbl-eyebrow" style="flex:0 0 200px">Mobile</div>
@@ -337,7 +336,7 @@
       </div>
       <div class="rcpt-r" style="background:rgba(212,168,94,0.04)">
         <div class="lbl-eyebrow" style="flex:0 0 200px">Scale</div>
-        <div class="t-ui" style="flex:1 1 240px">550k+ registered · 350k+ active · 80+ countries</div>
+        <div class="t-ui" style="flex:1 1 240px">550k+ registered · 350k+ active · 20+ countries</div>
       </div>
       <div class="rcpt-r">
         <div class="lbl-eyebrow" style="flex:0 0 200px">Accessibility</div>
@@ -357,7 +356,7 @@
   <!-- WHERE THIS WOULDN'T TRANSFER — the boundary on the claim (2026-08-02) -->
   <section class="note-gold-b" style="background:var(--bg-card)">
     <p class="lbl-eyebrow" style="margin:0 0 8px">Where this wouldn’t transfer</p>
-    <p class="t-ui-175" style="margin:0; max-width:62ch">I had a year and a direct line to the executives who owned the P&amp;L. The same argument made in a single quarter, without that access, loses — the design work was necessary, but it was never sufficient.</p>
+    <p class="t-ui-175" style="margin:0; max-width:62ch">This worked because of two advantages: a full year of runway, and the executives who owned the revenue sitting in the room. Take away either one — try to make the same case in a single quarter, or without those executives listening — and it fails. Good design was necessary here, but the time and the access are what made it win.</p>
   </section>
 
   <!-- THE PRINCIPLE -->
@@ -377,8 +376,8 @@
   <!-- VOICE — named testimonial from the manager on the enterprise learning work -->
   <figure style="margin:0 0 80px;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-radius:4px">
     <svg class="icon" style="width:24px;height:24px;color:var(--gold);opacity:.55;margin-bottom:16px" aria-hidden="true"><use href="#i-quote"/></svg>
-    <blockquote class="t-quote" style="margin:0 0 20px 0">I had the pleasure of having Arpit as part of my team, where we focused on building and maintaining learning platforms for the enterprise. Arpit's skill in UI implementation and understanding of UI/UX best practices have been invaluable to the team. He has been a clear leader on implementation and when working with external development groups.</blockquote>
-    <figcaption style="border-top:1px solid var(--border);padding-top:16px"><span class="t-serif-body-plain" style="display:block">Jonathan Berkey</span><span style="display:block;font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.05em;color:var(--ink-muted);margin-top:4px">Product Design Leader · managed Arpit directly</span></figcaption>
+    <blockquote class="t-quote" style="margin:0 0 20px 0">Arpit has worked with me for years and I value his honesty and hard work. He's been an integral part of my staff… involved in all facets of the team, from design to development to hiring and onboarding of new members.</blockquote>
+    <figcaption style="border-top:1px solid var(--border);padding-top:16px"><span class="t-serif-body-plain" style="display:block">Ryan Kershner</span><span style="display:block;font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.05em;color:var(--ink-muted);margin-top:4px">UX Design Leader · managed Arpit directly</span></figcaption>
   </figure>
 
   <p class="t-ui-muted" style="margin:0 0 64px 0">I write about this on <a href="https://arpitmaheshwari.substack.com" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="case-study-substack" style="color:var(--gold);text-decoration:none">Human in the Loop ↗</a></p>

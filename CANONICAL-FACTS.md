@@ -60,7 +60,7 @@ Use the exact metric strings below on every surface (homepage chip, case-study p
 
 | # | Canonical name | Tag | Headline metric (exact string) | Other locked numbers |
 |---|----------------|-----|-------------------------------|----------------------|
-| 1 | **PTC University — Learning Connector** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile: 4% of sessions at start, grew after the responsive redesign (endpoint number RETIRED 2026-08-06 — see entry) · 80+ countries · Role: Product & Design Lead (retitled 2026-08-02, PM receipt) · 2014–2019 |
+| 1 | **PTC University — Learning Connector** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile: 4% of sessions at start, grew after the responsive redesign (endpoint number RETIRED 2026-08-06 — see entry) · **20+ countries** (corrected from "80+" 2026-08-06, Arpit: "safe side make it 20+" — never reprint 80+) · Role: Product & Design Lead (retitled 2026-08-02, PM receipt) · 2014–2019 |
 | 2 | **Telefónica MyO2 & Priority Moments** | Telecom · Non-NDA / public | **4M+** (MyO2 users) | Priority Moments **2.6M** sign-ups year one · 2.5M+ active · 5★ App Store · Role: Designer + front-end via **Equal Experts, 2012–14** |
 | 3 | **AI-Assisted Private Equity Investing** | FinTech · NDA | **60% faster** (deal screening) | measured pre- vs post-rollout · 3 sources behind every score · Role: Lead Product Designer · _(true sample: 42 deals over a 90-day window — DO NOT PUBLISH, see display rule below)_ |
 | 4 | **Programmatic Advertising Platform** | AdTech · NDA | **2 wks → 3 hrs** (campaign planning) | Recommended campaign plans with visible KPIs/ROI, easily customizable — **NO confidence scores, ever** (corrected 2026-08-05, see AdTech correction entry) · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · £400M media spend transacted through the platform · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
@@ -122,7 +122,7 @@ Use real names + titles, verbatim quotes. Current placements:
 - **Anant East** — CTO, Talon Outdoor _(homepage + /hire)_
 - **Ryan Kershner** — UX Design Leader, managed Arpit directly _(homepage + /hire)_
 - **Katie Alterio** — Product Designer _(homepage)_
-- **Jonathan Berkey** — Product Design Leader, managed Arpit directly _(PTC case page)_
+- **Jonathan Berkey** — Product Design Leader, managed Arpit directly _(currently on no surface — replaced by Kershner on the PTC case page, Arpit's call 2026-08-06; quote remains canon-valid if he wants it back)_
 - **Sanjesh Ananda** — Software Engineering Leader _(homepage + AdTech case, added to homepage 2026-07-31 — the only ENGINEERING voice; answers the "can a designer ship?" doubt that the three design voices cannot)_
 
 ## 6. The two views (intentional — not a mistake)
@@ -668,5 +668,46 @@ session rewrite — both were AUTHORED THERE and inherited into canon. Fabricate
   supported/example language.
 - **ATTESTED (Arpit, today):** mobile was 4% of sessions at the start; usage grew because the
   platform was MADE RESPONSIVE. No endpoint number may be printed until he provides one.
-- **UNDER SUSPICION, same origin, awaiting his verdict:** "80+ countries" and "99% automated
-  pass" entered in the same rewrite. Do not repeat them on new surfaces until he rules.
+- **UNDER SUSPICION, same origin — RESOLVED 2026-08-06 (see next entry):** "80+ countries"
+  corrected to **20+**; "99% automated pass" ATTESTED accurate by Arpit and kept.
+
+### PTC — the "wrong homepage" story RETIRED; the real story is research, 2026-08-06
+Arpit, on §the-cost: "That's not how it happened. I conducted research studies and usability
+testing. A pattern emerged that people don't recognize offerings by the individual product
+name but they call it PTC University."
+The trail: the Pune engineer, "session length fell 19%", "+31% above baseline", and the whole
+"I shipped the wrong homepage first" arc entered in `e20957e` (2026-05-24, the same Phase 11
+fabrication session as the 38%). "Two lost reviews before the query log won the third" entered
+in `3c706d5` (2026-06-26 structure roll) — also session-authored. ALL RETIRED; never reprint
+the −19%/+31% pair, the Pune anecdote, or the shipped-wrong-first framing.
+- **ATTESTED (Arpit):** research studies + usability testing found customers didn't recognize
+  individual product names — they collectively called it **"PTC University."** That insight
+  drove BOTH the consolidation under the PTC University name AND the license-keyed personalized
+  homepage. The section is **metric-free** by his choice (consistent with the mobile rule:
+  no number he can't stand behind).
+- **ATTESTED (Arpit):** "99% automated test pass" is accurate — keep.
+- **CORRECTED:** "80+ countries" → **"20+ countries"** ("also not an accurate number. safe
+  side make it 20+"). Swept: ptc case, index receipt, resume, make-resume.js, portfolio PDF,
+  video script.
+- **Also removed same day:** the receipt's "added pt-BR, ko, ru" locale list — `ru` is Russian
+  (retired 2026-08-06) and the 3-name list contradicts 9→11 anyway. Locale names are NOT canon;
+  print only "9 → 11 locales" unless he supplies names.
+- **Testimonial swap (his call):** Jonathan Berkey's quote replaced by Ryan Kershner's
+  (verbatim from homepage) on the PTC case page.
+- **Transfer note rewritten for plain English** (same facts: one year of runway + P&L-owning
+  executives were preconditions; design necessary but not sufficient).
+
+### O2 / MyO2 — the replatforming story added, 2026-08-06 (Arpit is the source)
+Arpit: "myo2 case study is an example where we took a legacy system and made it responsive
+across iOS android Microsoft phone and web. Telefonica has millions of active subscriber so
+transition was cautious. Also work closely with Telefonica branding marketing and copywriting
+team."
+- **ATTESTED:** MyO2 was a replatforming of a LEGACY system into one responsive build serving
+  iOS, Android, Windows Phone, and desktop web (not "mobile web" alone).
+- **ATTESTED:** millions of active subscribers on the legacy system → the transition was
+  deliberately cautious. (No rollout mechanics — staging, flags, timelines — may be invented.)
+- **ATTESTED:** close collaboration with Telefónica's branding, marketing, and copywriting
+  teams.
+- **SCOPE (his ruling, same day): MyO2 ONLY.** Priority Moments stays described as app +
+  mobile web; the joint phrase "two O2 UK products on mobile web" stays as-is. Do NOT extend
+  the responsive/replatforming framing to Priority Moments.
