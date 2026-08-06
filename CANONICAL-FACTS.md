@@ -697,6 +697,20 @@ the −19%/+31% pair, the Pune anecdote, or the shipped-wrong-first framing.
 - **Transfer note rewritten for plain English** (same facts: one year of runway + P&L-owning
   executives were preconditions; design necessary but not sufficient).
 
+### PlanIt — deliberate asymmetry across surfaces, 2026-08-06 (Arpit's ruling)
+An external review flagged "PDF has 7 cases, site has 6" as an inconsistency. **It is
+intentional — Arpit: "keep it as is."** PlanIt is a full case in the portfolio PDF, a bullet on
+the résumé, and absent from the website. The PDF is the long-form artifact and can carry it;
+the site's Selected Work stays at six. Do not "reconcile" this.
+
+### Positioning language — "design system" retired for the pattern work, 2026-08-06
+Calling the eight patterns "the design system for trusting and governing AI agents" invites an
+easy attack (a design system implies components, tokens, versioning, contribution workflow,
+adoption measurement — none of which are claimed). Locked replacement: **"a working system for
+trusting and governing AI agents — one decision grammar (Act / Review / Ignore), eight
+interaction patterns, and a tested implementation."** Swept: patterns/index.html,
+book/portfolio.js, resume, make-resume.js, portfolio PDF.
+
 ### PTC clientele — the list standardized, 2026-08-06 (Arpit is the source)
 The client names had FIVE different variants across surfaces (homepage/hire/book/resume/PDF)
 and appeared nowhere in canon. Arpit's ruling: **all five names are real and defensible.**

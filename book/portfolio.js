@@ -1621,7 +1621,7 @@ function buildBook(ctx) {
       }
     }, "A Field", /*#__PURE__*/React.createElement("br", null), "Guide to", /*#__PURE__*/React.createElement("br", null), "Trust"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body bk-drop"
-    }, "A design system for trusting and governing AI agents. Everything here ran in production, failed somewhere specific, and came back stronger — the tradeoffs are written down because I paid for them once, so you don’t have to."), /*#__PURE__*/React.createElement("div", {
+    }, "A working system for trusting and governing AI agents \u2014 one decision grammar, eight interaction patterns, and the code that implements them. Everything here ran in production, failed somewhere specific, and came back stronger — the tradeoffs are written down because I paid for them once, so you don’t have to."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
         marginTop: 20

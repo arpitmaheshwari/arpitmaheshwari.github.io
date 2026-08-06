@@ -145,7 +145,7 @@
   gtag('js', new Date());
   gtag('config', 'G-PFY6ME99K8');
 </script>
-<link rel="stylesheet" href="./styles.css?v=p58">
+<link rel="stylesheet" href="./styles.css?v=p60">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -309,24 +309,28 @@
       <div class="metric-num">3&nbsp;hrs</div>
       <div class="proof-cap">Campaign planning, down from two weeks — once traders trusted the algorithm. Worth £69k more media value per client.</div>
       <div class="proof-meta">AdTech · per campaign</div>
+      <span class="prov prov--shared">Team outcome · I owned the plan UX, not the engine</span>
       <button type="button" class="rcpt-btn" data-receipt="adtech" aria-expanded="false" aria-controls="receipt-adtech" data-cta="receipt" data-location="receipts-chip-1">What the two weeks held →</button>
     </div>
     <div class="proof-cell" id="chip-fintech">
       <div class="metric-num">60%</div>
       <div class="proof-cap">Faster PE deal screening, after the model learned to explain itself.</div>
       <div class="proof-meta">FinTech · pre/post rollout</div>
+      <span class="prov prov--shared">Team outcome · I owned the abstention + citation UX</span>
       <button type="button" class="rcpt-btn" data-receipt="fintech" aria-expanded="false" aria-controls="receipt-fintech" data-cta="receipt" data-location="receipts-chip-2">How it was measured →</button>
     </div>
     <div class="proof-cell" id="chip-ptc">
       <div class="metric-num">$1M</div>
       <div class="proof-cap">Saved every year, once the training platform moved off printed guides.</div>
       <div class="proof-meta">EdTech · vs 2016 print budget</div>
+      <span class="prov prov--shared">Team outcome · I owned the product and the sunsets</span>
       <button type="button" class="rcpt-btn" data-receipt="ptc" aria-expanded="false" aria-controls="receipt-ptc" data-cta="receipt" data-location="receipts-chip-3">Where the million went →</button>
     </div>
     <div class="proof-cell" id="chip-o2">
       <div class="metric-num">4M+</div>
       <div class="proof-cap">Users on the two O2 products I co-designed, then shipped as code.</div>
       <div class="proof-meta">Telecom · O2 UK · publicly reported</div>
+      <span class="prov prov--reported">O2's public figure · not my measurement</span>
       <button type="button" class="rcpt-btn" data-receipt="o2" aria-expanded="false" aria-controls="receipt-o2" data-cta="receipt" data-location="receipts-chip-4">Which parts were mine →</button>
     </div>
     </div><div class="proof-zone-rail reveal">
@@ -411,6 +415,21 @@
 </section>
 
 <!-- Identity strip — the person, using the editorial sidehead layout for consistency -->
+<!-- One named third party speaks BEFORE several screens of first-person claims
+     (2026-08-06). Reviewer's fair hit: the candidate testifies about himself for a long
+     time before anyone else does. Full references remain in the testimonials act. -->
+<section class="section" style="padding-top:0">
+  <div class="section-inner">
+    <figure class="early-quote">
+      <svg class="icon" style="width:20px;height:20px;color:var(--gold);opacity:.55;flex:0 0 auto" aria-hidden="true"><use href="#i-quote"/></svg>
+      <div>
+        <blockquote class="t-serif-body" style="margin:0 0 8px">Over the past four years at Talon, Arpit has been instrumental in shaping four distinct products from the ground up&hellip; If you need a designer who excels at combining strategic vision with practical execution, Arpit is the person to call.</blockquote>
+        <figcaption class="lbl-eyebrow-tight">Anant East &middot; CTO at Talon Outdoor &nbsp;&middot;&nbsp; <a href="#testimonials" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark)">three more references &rarr;</a></figcaption>
+      </div>
+    </figure>
+  </div>
+</section>
+
 <section class="section">
   <div class="section-inner editorial editorial--rail">
     <div class="section-numeral"><h2 class="section-numeral-name">Who you'd be hiring</h2></div>
@@ -542,10 +561,23 @@
 /* ===== Homepage LAYOUT helpers only — all type comes from the system
    (.eyebrow / .section-title / .card-title / .metric-num / .lead in styles.css) ===== */
 /* Proof (cream act) */
+.early-quote{display:flex;gap:16px;align-items:flex-start;max-width:var(--inner-max);
+  border-left:2px solid var(--gold-dark);padding:0 0 0 20px;margin:0}
+@media (max-width:600px){ .early-quote{gap:12px;padding-left:16px} }
 .proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(24px,3vw,40px);max-width:var(--inner-max);margin-top:40px}
 .proof-cell{display:flex;flex-direction:column;align-items:flex-start;border-top:2px solid var(--ink);padding-top:20px;text-decoration:none;color:inherit;transition:opacity .25s}
 .proof-cell:hover{opacity:.62}
 .proof-cap{font-family:var(--ff-sans);font-size:var(--fs-ui);line-height:1.45;color:var(--ink);font-weight:500;margin-top:16px;max-width:24ch}
+/* Evidence provenance (2026-08-06). A reviewer's fair hit: the receipts prove the
+   NUMBER but not WHOSE it is, and that took paragraphs to work out. The tag says it
+   before the prose does. Wording is derived from each case's Owned/Shared/Not-mine
+   ledger — never invented. */
+.prov{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-sans);font-size:12px;
+  letter-spacing:.01em;text-transform:none;padding:3px 8px;border-radius:2px;margin-top:12px;
+  border:1px solid var(--border);color:var(--ink-muted);background:rgba(255,255,255,0.02)}
+.prov::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;flex:0 0 auto}
+.prov--shared{color:var(--gold);border-color:var(--gold-dark)}
+.prov--reported{color:var(--ink-muted)}
 .proof-meta{padding-bottom:12px;font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-top:12px;line-height:1.4}
 /* inline receipts — the memorable interaction (canon-sourced content only) */
 .rcpt-btn{margin-top:auto;padding:8px 12px;border-color:var(--gold-dark)!important;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dark);background:transparent;border:1px solid var(--border-accent);border-radius:var(--radius);cursor:pointer;transition:background .15s,color .15s}
