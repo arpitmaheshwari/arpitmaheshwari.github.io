@@ -19,7 +19,7 @@ const WORK = [{
   tag: "Telecom · Non-NDA",
   title: "Telefónica MyO2 & Priority Moments",
   metric: "4M+",
-  desc: "Two O2 UK products at national scale. Every screen drawn by me, then coded by me — mobile web."
+  desc: "Two O2 UK products at national scale. Every screen co-designed, every screen coded by me — mobile web."
 }, {
   tag: "FinTech · NDA",
   title: "AI-Assisted Private Equity Investing",
@@ -207,7 +207,7 @@ const NDA_CASES = [{
   redacted: false,
   ph: "MyO2 account dashboard + Priority Moments rewards — O2 UK mobile web",
   title: CF.get("o2").title,
-  standfirst: "Drawn by me, then coded by me — every screen of two O2 UK products on mobile web, at a scale where rounding errors have populations.",
+  standfirst: "Designed with one co-designer, coded by me alone — every screen of two O2 UK products on mobile web, at a scale where rounding errors have populations.",
   meta: cfMeta("o2"),
   context: "The one move: own both sides of the handoff — draw every screen, then code the front-end that ships it, so nothing is lost in translation. The cost of that scale: a rounding error has a population. The proof isn't sign-ups; it's the 2.5M who came back.",
   moves: [{
@@ -223,7 +223,7 @@ const NDA_CASES = [{
   plateNo: CF.get("o2").plateNo,
   plateCn: CF.get("o2").provenance,
   ledger: CF.metrics("o2"),
-  note: "designed every screen, then built it — mobile web",
+  note: "co-designed every screen, then built it — mobile web",
   boundary: "Consumer scale from 2013 doesn’t transfer to enterprise AI on its own.",
   stamp: { t: "5★ APP", v: "ok" }
 }, {

@@ -61,7 +61,7 @@ Use the exact metric strings below on every surface (homepage chip, case-study p
 | # | Canonical name | Tag | Headline metric (exact string) | Other locked numbers |
 |---|----------------|-----|-------------------------------|----------------------|
 | 1 | **PTC University — Learning Connector** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile: 4% of sessions at start, grew after the responsive redesign (endpoint number RETIRED 2026-08-06 — see entry) · **20+ countries** (corrected from "80+" 2026-08-06, Arpit: "safe side make it 20+" — never reprint 80+) · Role: Product & Design Lead (retitled 2026-08-02, PM receipt) · 2014–2019 |
-| 2 | **Telefónica MyO2 & Priority Moments** | Telecom · Non-NDA / public | **4M+** (MyO2 users) | Priority Moments **2.6M** sign-ups year one · 2.5M+ active · 5★ App Store · Role: Designer + front-end via **Equal Experts, 2012–14** |
+| 2 | **Telefónica MyO2 & Priority Moments** | Telecom · Non-NDA / public | **4M+** (MyO2 users) | Priority Moments **2.6M** sign-ups year one · 2.5M+ active · 5★ App Store · Role: Designer + front-end via **Equal Experts, 2012–14** · **design was SHARED with one co-designer; ALL front-end code his (corrected 2026-08-06 — never claim solo design)** |
 | 3 | **AI-Assisted Private Equity Investing** | FinTech · NDA | **60% faster** (deal screening) | measured pre- vs post-rollout · 3 sources behind every score · Role: Lead Product Designer · _(true sample: 42 deals over a 90-day window — DO NOT PUBLISH, see display rule below)_ |
 | 4 | **Programmatic Advertising Platform** | AdTech · NDA | **2 wks → 3 hrs** (campaign planning) | Recommended campaign plans with visible KPIs/ROI, easily customizable — **NO confidence scores, ever** (corrected 2026-08-05, see AdTech correction entry) · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · £400M media spend transacted through the platform · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
 | 5 | **OrgOS · Transparent Org Tooling** | Org Design · NDA | **200** (people) | 200 people · 0 managers · 8 modules · **in use by 250 people today (2026)** — the org grew past the 200 it was designed for and the coordination model held · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25). ("Zero managers" is the *outcome*, never the title.) |
@@ -740,3 +740,12 @@ YouTube film exists. Verified live 2026-08-06.
   names; anything naming Ada/Plato/Atlas is paraphrased, never quote-edited.
 - Article corroborates existing canon: partner engaged after 2018 CTO hire; Plato MVP in
   four months; "best OOH data management platform in the UK, if not the world" (their claim).
+
+### O2 — "every screen drawn by me" corrected: design was shared, code was solo, 2026-08-06
+Arpit: "Not every screen was designed by me, I had a co-designer, but every screen was coded
+by me." The site's signature O2 line ("Every screen drawn by me, then coded by me") overclaimed
+the design half. RETIRED on all surfaces (case hero/gate/standfirst/receipt/honest-line/meta,
+homepage receipt + card + proof chip, book x5, portfolio PDF title/TOC/body).
+- **Canonical formula:** every screen designed WITH ONE CO-DESIGNER; every screen / all
+  front-end CODED BY HIM ALONE. The solo claim attaches to the CODE only.
+- The co-designer is unnamed (he hasn't named them — do not invent a name or split of work).

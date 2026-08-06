@@ -65,6 +65,10 @@ BANNED = [
      '2026-05-24 session, retired. The real story: research found customers say "PTC University", '
      'not product names',
      "PTC story retirement 2026-08-06"),
+    (r"drawn by me, then coded by me|designed and built every screen|designed and hand-coded",
+     'the retired solo-design claim — O2 design was SHARED with one co-designer; only the '
+     'code claim is solo ("every screen coded by me")',
+     "O2 co-designer correction 2026-08-06"),
     (r"\bko,\s*ru\b|\bpt-BR,\s*ko\b",
      'the invented locale list ("added pt-BR, ko, ru") — ru is Russian (retired) and locale names '
      'are not canon; print only "9 → 11 locales"',
