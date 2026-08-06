@@ -60,7 +60,7 @@ Use the exact metric strings below on every surface (homepage chip, case-study p
 
 | # | Canonical name | Tag | Headline metric (exact string) | Other locked numbers |
 |---|----------------|-----|-------------------------------|----------------------|
-| 1 | **PTC University — Learning Connector** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile 4%→38% (2017→2019) · 80+ countries · Role: Product & Design Lead (retitled 2026-08-02, PM receipt) · 2014–2019 |
+| 1 | **PTC University — Learning Connector** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile: 4% of sessions at start, grew after the responsive redesign (endpoint number RETIRED 2026-08-06 — see entry) · 80+ countries · Role: Product & Design Lead (retitled 2026-08-02, PM receipt) · 2014–2019 |
 | 2 | **Telefónica MyO2 & Priority Moments** | Telecom · Non-NDA / public | **4M+** (MyO2 users) | Priority Moments **2.6M** sign-ups year one · 2.5M+ active · 5★ App Store · Role: Designer + front-end via **Equal Experts, 2012–14** |
 | 3 | **AI-Assisted Private Equity Investing** | FinTech · NDA | **60% faster** (deal screening) | measured pre- vs post-rollout · 3 sources behind every score · Role: Lead Product Designer · _(true sample: 42 deals over a 90-day window — DO NOT PUBLISH, see display rule below)_ |
 | 4 | **Programmatic Advertising Platform** | AdTech · NDA | **2 wks → 3 hrs** (campaign planning) | Recommended campaign plans with visible KPIs/ROI, easily customizable — **NO confidence scores, ever** (corrected 2026-08-05, see AdTech correction entry) · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · £400M media spend transacted through the platform · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
@@ -657,3 +657,16 @@ a report" gate stays (unchanged, attested).
    survive). Captions must state the real provenance: URL + retrieval date. Where a real image
    genuinely cannot be recovered (dead pre-2019 portals), a reconstruction may remain but must
    say so.
+
+
+### PTC — "38% mobile" and "Russian" RETIRED as session fabrications, 2026-08-06
+Arpit: "Russian was not a supported language. The mobile usage increased because we made it
+responsive. It was 4% in the beginning, but I don't have the latest number — where did you
+get 38%?" The trail: NEITHER claim existed on the page before the 2026-05-24 "Phase 11"
+session rewrite — both were AUTHORED THERE and inherited into canon. Fabricated, not sourced.
+- **RETIRED:** the 38% endpoint, the "2017→2019" window built around it, and Russian as a
+  supported/example language.
+- **ATTESTED (Arpit, today):** mobile was 4% of sessions at the start; usage grew because the
+  platform was MADE RESPONSIVE. No endpoint number may be printed until he provides one.
+- **UNDER SUSPICION, same origin, awaiting his verdict:** "80+ countries" and "99% automated
+  pass" entered in the same rewrite. Do not repeat them on new surfaces until he rules.

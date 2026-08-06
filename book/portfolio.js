@@ -180,7 +180,7 @@ const CASES = {
       p: "Rebuilt the content model first — one skill graph every platform mapped onto — so merging was a data migration, not a turf war."
     }, {
       h: "Localisation as an architecture call",
-      p: "Built knowing German and Russian run 30% longer: short labels, shallow hierarchy, no text in images."
+      p: "Built knowing German runs ~30% longer: short labels, shallow hierarchy, no text in images."
     }, {
       h: "A switch-off ladder",
       p: "Sequenced the four shutdowns — 150k active learners migrated over 24 months — so each VP watched users land softly before the portal went dark."
