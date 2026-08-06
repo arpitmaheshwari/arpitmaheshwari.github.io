@@ -708,6 +708,23 @@ Both were built from an external review's suggestions and both were cut by Arpit
 The underlying review notes are logged, but these two executions are settled — reopening them
 needs new evidence, not another reviewer repeating the suggestion.
 
+### PROCESS RULE — a canon correction is not done until a tripwire ships with it, 2026-08-07
+Arpit asked how the retired AdTech story survived multiple QA passes. The forensics:
+1. **No enforcement shipped with the correction.** Canon was updated 2026-08-05 (709467c);
+   the lint rule that could catch a score attributed to AdTech was added 2026-08-07. For two
+   days the only thing preventing regression was memory.
+2. **The sync gate is scoped to `case-studies/` + `book/` only** — it cannot see `patterns/`.
+3. **The audit scopes I wrote excluded the files.** Both narrative audits were handed an
+   explicit surface list naming `patterns/index.html` but not `patterns/*.html`, so they
+   truthfully reported "patterns/ clean" after reading one file of ten.
+Underneath all three: `patterns/` was filed as reference material. It is a CASE-FACT SURFACE —
+nine pages, twenty links into real cases, each making a factual claim.
+**THE RULES, from now on:**
+- A correction lands in the same commit as the tripwire that enforces it. No tripwire, not done.
+- When scoping any audit, use `tools/case-surface-inventory.py` to enumerate surfaces — never
+  a hand-written list. That tool fails the build when a file makes case claims and no scope
+  owns it (calibrated: it goes red on a planted unscoped page).
+
 ### Pattern library — pre-correction AdTech story found and purged, 2026-08-07
 The 2026-08-05 AdTech correction (no confidence scores ever; A/R/I was a synthesis, never born
 in AdTech) was applied to the case pages and documents but NOT to `patterns/`. Four pattern

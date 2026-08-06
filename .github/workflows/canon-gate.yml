@@ -47,3 +47,6 @@ jobs:
 
       - name: Teardown facts are still true
         run: python3 tools/teardown-facts.py --check
+
+      - name: Every case-fact surface is owned by a scope
+        run: python3 tools/case-surface-inventory.py
