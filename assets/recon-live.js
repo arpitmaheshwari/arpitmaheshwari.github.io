@@ -32,7 +32,9 @@
     var mo = new MutationObserver(function (muts) {
       muts.forEach(function (m) {
         var el = m.target.nodeType === 3 ? m.target.parentElement : m.target;
-        if (!el || !el.classList || el.classList.contains('rl-ghost')) return;
+        if (!el || !el.classList) return;
+        if (el.closest && el.closest('.rl-clock, .rl-spark, .recon-badge')) return; /* the heartbeat is not a consequence */
+        if (el.classList.contains('rl-ghost')) return;
         if (el.closest && el.closest('button')) return; /* buttons have their own physics */
         el.classList.remove('rl-flash');
         void el.offsetWidth;
@@ -81,6 +83,43 @@
       setTimeout(function () { g.remove(); }, 450);
     }, 1900);
   }
+
+  /* The idle heartbeat (iteration 6 — "still looks like a dead image"): a widget that only
+     moves once is a still image the other 99% of the time. Running software is never fully
+     still. Two HONEST ambient signals, injected into every widget's chrome:
+       - a session clock (real elapsed time — a running clock cannot be a screenshot);
+       - a slow ECG-style trace drawing itself (aria-hidden ornament, claims no data).
+     Both die under prefers-reduced-motion (this whole file already early-returns). */
+  widgets.forEach(function (w) {
+    var badge = w.querySelector('.recon-badge');
+    if (!badge) return;
+    var clock = document.createElement('span');
+    clock.className = 'rl-clock';
+    clock.setAttribute('aria-hidden', 'true');
+    clock.textContent = 'session 0:00';
+    var spark = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    spark.setAttribute('class', 'rl-spark');
+    spark.setAttribute('viewBox', '0 0 60 14');
+    spark.setAttribute('aria-hidden', 'true');
+    var path = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', '#37B87E');
+    path.setAttribute('stroke-width', '1.2');
+    spark.appendChild(path);
+    badge.appendChild(spark);
+    badge.appendChild(clock);
+    var t0 = performance.now(), pts = [];
+    setInterval(function () {
+      var t = (performance.now() - t0) / 1000;
+      var m = Math.floor(t / 60), sec = Math.floor(t % 60);
+      clock.textContent = 'session ' + m + ':' + (sec < 10 ? '0' : '') + sec;
+      /* ECG idiom: mostly-flat line with a periodic pulse — pure ornament, drawn live */
+      var phase = t % 2.4;
+      var y = 10 - (phase < 0.18 ? 7 : phase < 0.34 ? -3 : 0) - Math.sin(t * 2.1) * 0.8;
+      pts.push(y); if (pts.length > 30) pts.shift();
+      path.setAttribute('points', pts.map(function (v, i) { return (i * 2) + ',' + v.toFixed(1); }).join(' '));
+    }, 400);
+  });
 
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
