@@ -321,12 +321,27 @@ Beyond §10's handwritten notes, the site now carries hand-MADE OBJECTS on the d
 All decorative objects aria-hidden; homepage only so far — extend to case/hire/patterns pages
 with renders first.
 
-## Interactive moments (`.recon`) — corrected 2026-08-06
-Interactive widgets are **cream islands**: the `.recon` component re-points the full token set
-(cream act values, INCLUDING the cream-safe status colors `--err #894540 / --warn #6D5E40 /
---ok #2E6A46`) so the widget sits as a light peak on the dark page. The surface itself is the
-affordance — the eye catches the cream while scrolling; no "interactive" label may be used to
-do the surface's job (the 2026-08-05 chip version was Arpit-rejected for exactly that).
-Cream remains a rationed peak: the two homepage acts + `.recon` widgets are the ONLY sanctioned
-cream contexts. Inner widget styles must use tokens, never hardcoded dark-theme hex, so the
-re-point reaches them. Styled once in styles.css — all case pages inherit.
+## Interactive moments (`.recon`) — the self-demonstrating instrument, 2026-08-06
+Three failed iterations taught the rule (chip label → cream repaint → shadow physics — all
+Arpit-rejected as cosmetic): **an embedded demo reads as an IMAGE until the visitor sees it
+being used.** So every `.recon` widget demonstrates itself once: when it first enters the
+viewport, a ghost cursor (`assets/recon-live.js`) glides to a real control and presses it —
+a genuine `.click()`, never a faked result — then fades. Reduced-motion visitors get no ghost
+and no synthetic click. The industry ships this as a product category (ghost-cursor demo
+tools); we ship it in ~90 lines.
+
+The component applies all seven Gestalt principles, deliberately:
+1. **Figure/ground** — a cream island on the dark page, its stage a DOTTED WORKSPACE canvas
+   (a tool's surface, not a document's paper).
+2. **Proximity** — controls cluster in one strip, separated from the result card.
+3. **Similarity** — every pressable is the same raised gold-rimmed key; nothing static may
+   borrow that look.
+4. **Continuity** — the ghost's path draws the line from control to consequence.
+5. **Common fate** — a MutationObserver flashes every element that changes on a press, so
+   cause and effect visibly move together.
+6. **Closure / symmetry** — badge, canvas, caption: one bounded instrument.
+7. **Common region** — control groups (`[role="group"]`) sit in their own toolbar strip.
+
+Rules: never a text label whose job is "this is interactive" (the surface + behavior must
+carry it); the ghost presses real controls only; cream re-point includes the cream-safe
+status tokens. Styled once in styles.css + one shared script — all six case pages inherit.
