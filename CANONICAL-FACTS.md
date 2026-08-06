@@ -749,3 +749,6 @@ homepage receipt + card + proof chip, book x5, portfolio PDF title/TOC/body).
 - **Canonical formula:** every screen designed WITH ONE CO-DESIGNER; every screen / all
   front-end CODED BY HIM ALONE. The solo claim attaches to the CODE only.
 - The co-designer is unnamed (he hasn't named them — do not invent a name or split of work).
+- **Same day, ATTESTED:** Priority Moments used GEOLOCATION to show a list of offers in the
+  nearby area — the mechanism behind retention and loyalty. (Narrated on the case's Priority
+  card paragraph, 2026-08-06.)
