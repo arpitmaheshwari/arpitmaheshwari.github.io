@@ -44,3 +44,6 @@ jobs:
         run: |
           echo "::notice::Canon clean for the public site. The resume + portfolio PDFs live in the"\
                "private folio-private repo and are NOT covered here — verify them there with pdftotext."
+
+      - name: Teardown facts are still true
+        run: python3 tools/teardown-facts.py --check
