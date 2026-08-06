@@ -308,7 +308,7 @@ const NDA_CASES = [{
   context: "An LLM read the code and docs. No verdict ships without a cited source (retrieval) — unaudited, it's a confident hallucination.",
   moves: [{
     h: "Score at the signal level",
-    p: "Confidence on each signal — code quality, architecture risk, team velocity, founder credibility — not one opaque verdict."
+    p: "Confidence carried per signal — a finding crossed into a signal only when the analysis cleared the confidence bar, each one holding the evidence behind it — never one opaque verdict."
   }, {
     h: "Provenance on every claim",
     p: "Each score named the signals that drove it, with a clean drill from summary to source, before a partner committed capital."
@@ -443,7 +443,7 @@ const PATTERN_PAGES = {
     dos: ["Show the model's hit rate beside its current confidence.", "Break the record down by the kind of case, not one global average.", "Let the history update in the open, so trust is earned, not assumed."],
     donts: ["Show a confidence number with no past to back it.", "Average away the cases where the model is reliably wrong.", "Reset the track record silently every time the model changes."],
     instTag: "FinTech \xB7 Due Diligence",
-    inst: React.createElement(React.Fragment, null, "Ninety days and forty-two deals in, the score had been right often enough that analysts ", React.createElement("span", { className: "bk-em" }, "stopped re-checking the confident calls"), ". The history earned the trust the number alone couldn't."),
+    inst: React.createElement(React.Fragment, null, "Once the track record was long enough to read, the score had been right often enough that analysts ", React.createElement("span", { className: "bk-em" }, "stopped re-checking the confident calls"), ". The history earned the trust the number alone couldn't."),
     fig: { no: "3.7", img: "../assets/visuals/pattern-calibration.svg", label: "confidence beside its own hit rate" }
   },
   undo: {

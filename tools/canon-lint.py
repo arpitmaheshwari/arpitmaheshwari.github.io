@@ -57,6 +57,23 @@ BANNED = [
     (r"\bfour weeks'? notice\b",
      'availability must use the digit "4", never the word',
      "§2 availability"),
+    (r"forty[-\s]two deals|ninety days and forty|\bn\s*=\s*42\b",
+     'the DO-NOT-PUBLISH FinTech sample size, spelled as words to dodge the digit rule. '
+     'The sample, baseline and eval design stay behind the NDA',
+     "§3 case 3 display rule"),
+    (r"[Ss]ignal classes|four[-\s]signal|Four signals|4 risk classes",
+     'the RETIRED 4-signal-class framing — canon locks "16 dimensions · a finding became a '
+     'signal only at sufficient confidence"',
+     "DD retirement 2026-08-06"),
+    (r"team velocity|founder credibility|code quality, architecture risk",
+     'the unattested four class names — canon: "never re-print the four class names". '
+     'NOTE: still present in assets/visuals/case-vc.svg, the plV plate and the rxv-sig '
+     'widget on vc-diligence.html — awaiting Arpit\'s ruling, see canon entry',
+     "DD retirement 2026-08-06"),
+    (r"every screen designed and built by me|screens? drawn(?: by me)?,? then coded|drawn then coded",
+     'a word-order variant of the retired solo-design claim — design was SHARED with one '
+     'co-designer; only the code claim is solo',
+     "O2 co-designer correction 2026-08-06"),
     (r"80\+\s*countr",
      'inaccurate reach figure — Arpit corrected to "20+ countries" ("safe side")',
      "PTC correction 2026-08-06"),

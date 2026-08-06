@@ -118,9 +118,13 @@
 <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
 <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
-<link rel="stylesheet" href="../styles.css?v=p57">
+<link rel="stylesheet" href="../styles.css?v=p58">
 <style>
-  .scr-wrap { max-width: var(--measure); margin: 0 auto; padding: var(--section-y) 24px; }
+  /* Top padding must CLEAR the fixed nav (86px desktop / 76px at =<768), not just apply the
+     section rhythm — --section-y is 90/64/48, so the kicker sat under the bar at every width
+     (4px at 1440, 12px at 768, 28px at 390). Same root cause as the #hero fix, 2026-08-06. */
+  .scr-wrap { max-width: var(--measure); margin: 0 auto; padding: 128px 24px var(--section-y); }
+  @media (max-width:768px){ .scr-wrap { padding-top: 104px; } }
   .scr-kicker { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin: 0 0 20px; }
   .scr-title { font-family: var(--ff-display); font-weight: 300; font-size: var(--fs-hero); line-height: 1.12; color: var(--ink); margin: 0 0 24px; letter-spacing: -0.02em; }
   .scr-stand { font-family: var(--ff-display); font-weight: 300; font-style: italic; font-size: var(--fs-lead); line-height: 1.4; color: var(--ink); margin: 0 0 64px; max-width: 46ch; }

@@ -275,8 +275,8 @@
           "Both fund types served"
         ],
         [
-          "4",
-          "Signal classes scored"
+          "16",
+          "Dimensions analyzed per finding"
         ]
       ],
       "plateNo": "6.1",
