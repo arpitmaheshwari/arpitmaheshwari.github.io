@@ -697,6 +697,17 @@ the −19%/+31% pair, the Pune anecdote, or the shipped-wrong-first framing.
 - **Transfer note rewritten for plain English** (same facts: one year of runway + P&L-owning
   executives were preconditions; design necessary but not sufficient).
 
+### Homepage — provenance tags and the early testimonial REJECTED, 2026-08-06
+Both were built from an external review's suggestions and both were cut by Arpit on sight:
+- **Per-metric provenance tags** ("Team outcome · I owned the plan UX, not the engine") —
+  his verdict: **"nothing but noise."** The chips already carry baseline + window in
+  `.proof-meta`, and each receipt already states ownership; a third label on the same object
+  was redundancy, not clarity. Do not re-propose per-metric attribution badges.
+- **A named testimonial placed above "Who you'd be hiring"** — cut. Testimonials stay in
+  their own act. Do not move one above the fold.
+The underlying review notes are logged, but these two executions are settled — reopening them
+needs new evidence, not another reviewer repeating the suggestion.
+
 ### PlanIt — deliberate asymmetry across surfaces, 2026-08-06 (Arpit's ruling)
 An external review flagged "PDF has 7 cases, site has 6" as an inconsistency. **It is
 intentional — Arpit: "keep it as is."** PlanIt is a full case in the portfolio PDF, a bullet on

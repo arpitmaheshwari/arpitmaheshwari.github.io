@@ -265,6 +265,11 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
   .nav-links a{display:block;padding:12px 16px;font-size:15px;white-space:normal}
   .nav-links.nav-open{display:flex}
   .menu-toggle{display:flex}
+  /* Once .nav-links hide, the bar holds only logo | CTA | hamburger — and space-between
+     parks the CTA in the middle of the gap (measured: left 482 in a 1000px viewport).
+     margin-left:auto groups it with the hamburger on the right. This lived only in the
+     <=768 block, so 769-1100px shipped with the CTA floating. Caught by Arpit 2026-08-06. */
+  .nav-cta{margin-left:auto;margin-right:16px}
 }
 
 /* ----- Responsive: mobile (≤768px) ----- */
