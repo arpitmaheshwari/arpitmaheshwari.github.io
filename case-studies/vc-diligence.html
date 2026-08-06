@@ -99,7 +99,7 @@
       <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 20px;transform:rotate(-1.6deg)">no source, no verdict — the whole design in five words</p>
       <div class="case-stats">
         <div class="case-stat"><b>3 wks → 4 days</b><span>diligence cycle time</span></div>
-        <div class="case-stat"><b>4</b><span>signal classes scored, each to a next step</span></div>
+        <div class="case-stat"><b>16</b><span>dimensions analyzed — a finding becomes a signal only at sufficient confidence</span></div>
         <div class="case-stat"><b>VC + PE</b><span>both fund types served</span></div>
       </div>
     </div>
@@ -134,7 +134,7 @@
   </div>
   <section class="case-gate" aria-label="Summary of this case study">
     <p class="cg-l">The short version</p>
-    <p>A partner has four days to judge whether a startup's technology is real. An LLM could read the whole codebase in an afternoon, and diligence still took three weeks — because a correct verdict nobody can audit is worth nothing on the day of the deal. So <b>no verdict is reviewable until its evidence is</b>: four signal classes, each drilling to its cited source. <b>3 wks &rarr; 4 days</b>. The model and the code-analysis pipeline were not mine.</p>
+    <p>A partner has four days to judge whether a startup's technology is real. An LLM could read the whole codebase in an afternoon, and diligence still took three weeks — because a correct verdict nobody can audit is worth nothing on the day of the deal. So <b>no verdict is reviewable until its evidence is</b>: 16 dimensions of analysis, distilled to signals only at sufficient confidence, each drilling to its cited source. <b>3 wks &rarr; 4 days</b>. The model and the code-analysis pipeline were not mine.</p>
   </section>
 
 
@@ -179,7 +179,7 @@
       The real culprit: the verdict had no chain of evidence.
     </h2>
     <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">The design was tested where it would live:</strong> usability sessions with the investment analysts who'd stake their names on its output. The verdict was right. That was exactly why it was dangerous. A correct verdict the partner couldn't audit is indistinguishable, on the day of the deal, from a confident hallucination — the exact failure mode an LLM is prone to, and the one this design is built to guard against. The missing piece was never accuracy — it was provenance: grounding, a path from the generated verdict down to the cited source behind it, the repo scan, the infra audit, the interview note. Retrieval-grounded, in the language of the field: every claim traceable to the document it came from.</p>
-    <p class="t-body" style="margin-bottom:20px">So the design work sat downstream of the extraction, in the trust it had to earn. Every one of the four signals carries its own confidence and, more importantly, its own cited source. Each score maps to a next step a partner can actually take — proceed, attach a condition, send an analyst back. Citations aren't the innovation here &mdash; in 2026 they're table stakes; the work was making them cheap enough to check that a partner actually checked them. The one decision that organized everything: <strong style="color:var(--ink)">no verdict is reviewable until its evidence is.</strong> A partner cannot sign off until they've opened all four signals and seen the trail underneath each one.</p>
+    <p class="t-body" style="margin-bottom:20px">So the design work sat downstream of the extraction, in the trust it had to earn. Every signal carries its own confidence and, more importantly, its own cited source. Each score maps to a next step a partner can actually take — proceed, attach a condition, send an analyst back. Citations aren't the innovation here &mdash; in 2026 they're table stakes; the work was making them cheap enough to check that a partner actually checked them. The one decision that organized everything: <strong style="color:var(--ink)">no verdict is reviewable until its evidence is.</strong> A partner cannot sign off until they've opened every signal and seen the trail underneath each one.</p>
     <!-- PLATE — production-fidelity reconstruction, synthetic data -->
     <style>
       .plV{width:min(840px,calc(100vw - 32px));margin:32px 50% 8px;transform:translateX(-50%);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
@@ -190,40 +190,40 @@
       .plV-app{background:#F4F5F7;color:#16181D}
       .plV-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:#fff;border-bottom:1px solid #E3E6EA}
       .plV-brand{font-weight:600;font-size:13px;color:#16181D}
-      .plV-deal{font-size:13px;color:#515863}
+      .plV-deal{font-size:13px;color:#464C56}
       .plV-deal b{color:#16181D;font-weight:600}
-      .plV-elapsed{font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#4C3FA0;background:#ECEAF8;border-radius:3px;padding:3px 8px;white-space:nowrap}
+      .plV-elapsed{font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#2E2570;background:#ECEAF8;border-radius:3px;padding:3px 8px;white-space:nowrap}
       .plV-body{display:grid;grid-template-columns:1.5fr 1fr;gap:0}
       @media(max-width:700px){.plV-body{grid-template-columns:1fr}}
       .plV-main{padding:16px;border-right:1px solid #E3E6EA}
       @media(max-width:700px){.plV-main{border-right:none;border-bottom:1px solid #E3E6EA}}
-      .plV-vlab{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#515863;margin-bottom:4px}
+      .plV-vlab{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#464C56;margin-bottom:4px}
       .plV-verdict{font-family:var(--ff-display);font-weight:300;font-size:26px;line-height:1.25;color:#16181D;margin-bottom:4px}
       .plV-verdict em{font-style:normal;color:#7A5410}
-      .plV-sub{font-size:11px;color:#515863;margin-bottom:12px}
+      .plV-sub{font-size:11px;color:#464C56;margin-bottom:12px}
       .plV-sig{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#fff;border:1px solid #E3E6EA;border-radius:6px;margin-bottom:8px}
-      .plV-sig.sel{border-color:#4C3FA0;box-shadow:0 0 0 1px #4C3FA0 inset}
+      .plV-sig.sel{border-color:#2E2570;box-shadow:0 0 0 1px #2E2570 inset}
       .plV-sname{flex:1 1 auto;min-width:0;font-size:12.5px;font-weight:600;color:#16181D}
-      .plV-sname small{display:block;font-weight:400;font-size:11px;color:#515863;margin-top:2px}
+      .plV-sname small{display:block;font-weight:400;font-size:11px;color:#464C56;margin-top:2px}
       .plV-st{font-family:var(--ff-mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:3px;flex:0 0 auto}
       .plV-st.clear{color:#0E7A5F;background:#E6F3EE}
       .plV-st.watch{color:#7A5410;background:#FCF2DC}
-      .plV-conf{font-family:var(--ff-mono);font-size:10.5px;color:#515863;flex:0 0 auto;font-variant-numeric:tabular-nums}
-      .plV-src{font-family:var(--ff-mono);font-size:10px;color:#4C3FA0;background:#ECEAF8;border-radius:3px;padding:3px 8px;white-space:nowrap;flex:0 0 auto}
-      .plV-foot{font-family:var(--ff-mono);font-size:10px;color:#515863;padding-top:8px;border-top:1px solid #E3E6EA;margin-top:4px}
+      .plV-conf{font-family:var(--ff-mono);font-size:10.5px;color:#464C56;flex:0 0 auto;font-variant-numeric:tabular-nums}
+      .plV-src{font-family:var(--ff-mono);font-size:10px;color:#2E2570;background:#ECEAF8;border-radius:3px;padding:3px 8px;white-space:nowrap;flex:0 0 auto}
+      .plV-foot{font-family:var(--ff-mono);font-size:10px;color:#464C56;padding-top:8px;border-top:1px solid #E3E6EA;margin-top:4px}
       .plV-rail{padding:16px;background:#FBFBFC}
-      .plV-rl{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#515863;margin-bottom:8px}
-      .plV-quote{background:#fff;border:1px solid #E3E6EA;border-left:3px solid #4C3FA0;border-radius:4px;padding:12px 12px;font-size:12.5px;line-height:1.6;color:#16181D;font-style:italic}
+      .plV-rl{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#464C56;margin-bottom:8px}
+      .plV-quote{background:#fff;border:1px solid #E3E6EA;border-left:3px solid #2E2570;border-radius:4px;padding:12px 12px;font-size:12.5px;line-height:1.6;color:#16181D;font-style:italic}
       .plV-quote mark{background:#FDF0C9;font-style:italic}
-      .plV-cite{font-family:var(--ff-mono);font-size:10px;color:#515863;margin:8px 0 12px}
-      .plV-open{display:inline-block;font-size:11.5px;font-weight:600;color:#fff;background:#4C3FA0;border-radius:4px;padding:8px 12px}
-      .plV-more{display:inline-block;font-size:11px;color:#4C3FA0;margin-left:8px}
+      .plV-cite{font-family:var(--ff-mono);font-size:10px;color:#464C56;margin:8px 0 12px}
+      .plV-open{display:inline-block;font-size:11.5px;font-weight:600;color:#fff;background:#2E2570;border-radius:4px;padding:8px 12px}
+      .plV-more{display:inline-block;font-size:11px;color:#2E2570;margin-left:8px}
       .plV-signoff{margin-top:16px;border-top:1px solid #E3E6EA;padding-top:12px}
       .plV-signed{display:inline-block;font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#0E7A5F;background:#E6F3EE;border:1px solid #0E7A5F;border-radius:4px;padding:8px 12px}
-      .plV-cond{font-size:11px;color:#515863;margin-top:8px}
+      .plV-cond{font-size:11px;color:#464C56;margin-top:8px}
       .plV-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 24px;transform:translateX(-50%)}
     </style>
-    <div class="plV" role="img" aria-label="Reconstructed technical-diligence dossier, partner view: verdict 'Proceed — with conditions' over four signal classes — code quality, architecture risk and team velocity marked clear, founder credibility marked watch because a deck benchmark could not be reproduced — each with a confidence figure and a source chip; an evidence rail quotes the engineer's reproduction note showing results roughly 40% below the published figure, and a partner sign-off reads 'Signed — conditions attached' with an independent benchmark required before close.">
+    <div class="plV" role="img" aria-label="Reconstructed technical-diligence dossier, partner view: verdict 'Proceed — with conditions' over the signals that crossed the confidence bar — code quality, architecture risk and team velocity marked clear, founder credibility marked watch because a deck benchmark could not be reproduced — each with a confidence figure and a source chip; an evidence rail quotes the engineer's reproduction note showing results roughly 40% below the published figure, and a partner sign-off reads 'Signed — conditions attached' with an independent benchmark required before close.">
       <div class="plV-chrome" aria-hidden="true"><i></i><i></i><i></i><span>technical-diligence · partner view · reconstruction</span></div>
       <div class="plV-app">
         <div class="plV-bar">
@@ -235,7 +235,7 @@
           <div class="plV-main">
             <div class="plV-vlab">Verdict</div>
             <div class="plV-verdict">Proceed — <em>with conditions</em></div>
-            <div class="plV-sub">4 signal classes · every claim drills to its source</div>
+            <div class="plV-sub">16 dimensions analyzed · signals only at sufficient confidence · every claim drills to its source</div>
             <div class="plV-sig">
               <span class="plV-sname">Code quality</span>
               <span class="plV-st clear">Clear</span><span class="plV-conf">conf 91%</span><span class="plV-src">repo scan · 214 files</span>
@@ -252,7 +252,7 @@
               <span class="plV-sname">Founder credibility<small>benchmark in the deck could not be reproduced</small></span>
               <span class="plV-st watch">Watch</span><span class="plV-conf">conf 64%</span><span class="plV-src">founder interviews · reference calls</span>
             </div>
-            <div class="plV-foot">sign-off unlocks only after all four evidence trails are opened</div>
+            <div class="plV-foot">sign-off unlocks only after every signal&rsquo;s evidence trail is opened</div>
           </div>
           <div class="plV-rail">
             <div class="plV-rl">Evidence — founder credibility</div>
@@ -270,7 +270,7 @@
     </div>
     <figcaption class="plV-caption">
       <span class="lbl-eyebrow" style="display:block; margin-bottom:4px">Plate 02 · Diligence dossier — reconstruction · all names and figures synthetic</span>
-      <span class="t-quote-cap" style="display:block">Redrawn from memory at production fidelity. The verdict a partner can stand on: four signals, each with a trail, and a sign-off that prices the doubt instead of rubber-stamping it.</span>
+      <span class="t-quote-cap" style="display:block">Redrawn from memory at production fidelity. The verdict a partner can stand on: signals, each with a trail, and a sign-off that prices the doubt instead of rubber-stamping it.</span>
     </figcaption>
     <p class="t-body" style="margin-bottom:20px">Try it — open each signal to see the evidence, then sign:</p>
     <section class="recon" id="recon-vc" role="group" aria-label="Interactive reconstruction: technical-risk dossier with drill-to-source and partner sign-off">
@@ -332,8 +332,8 @@
           </div>
         </div>
         <div class="rxv-foot">
-          <button type="button" class="rxv-sign" id="rxv-sign" disabled title="review all four signals first" data-cta="recon" data-location="recon-vc">Partner sign-off</button>
-          <p class="rxv-hint" id="rxv-hint" aria-live="polite">review all four signals first</p>
+          <button type="button" class="rxv-sign" id="rxv-sign" disabled title="review every signal first" data-cta="recon" data-location="recon-vc">Partner sign-off</button>
+          <p class="rxv-hint" id="rxv-hint" aria-live="polite">review every signal first</p>
         </div>
       </div>
     </div>
@@ -345,7 +345,7 @@
       var t=document.getElementById(b.getAttribute('aria-controls'));
       var open=t.classList.toggle('open');b.setAttribute('aria-expanded',String(open));
       if(!seen[b.id]){seen[b.id]=1;opened++;}
-      if(opened===4&&sign.disabled){sign.disabled=false;sign.removeAttribute('title');hint.textContent='all four signals reviewed';}
+      if(opened===4&&sign.disabled){sign.disabled=false;sign.removeAttribute('title');hint.textContent='every signal reviewed';}
     });});
     sign.addEventListener('click',function(){if(sign.classList.contains('rxv-signed'))return;
       sign.classList.add('rxv-signed');sign.textContent='Signed — conditions attached';hint.textContent='';});
@@ -359,7 +359,7 @@
     <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
       What it cost: I made the partner do more work, on purpose.
     </h2>
-    <p class="t-body" style="margin-bottom:20px">The honest line: the gate adds friction. A partner who just wants the number has to open all four signals before they can sign — I chose to slow the one moment everyone wanted to speed up. The first reaction was exactly what you'd expect: <em>why am I clicking through evidence when the machine already decided?</em></p>
+    <p class="t-body" style="margin-bottom:20px">The honest line: the gate adds friction. A partner who just wants the number has to open every signal before they can sign — I chose to slow the one moment everyone wanted to speed up. The first reaction was exactly what you'd expect: <em>why am I clicking through evidence when the machine already decided?</em></p>
     <p class="t-body">The friction is the product. A verdict a partner clicks through is a verdict they'll defend in the investment committee; a one-tap score is one they'll quietly re-check by hand, which is how you end up back at three weeks. I priced the extra clicks in on purpose. The thing that actually compressed the cycle wasn't a faster model — it was a partner who, for the first time, didn't feel the need to verify it twice.</p>
   </section>
 

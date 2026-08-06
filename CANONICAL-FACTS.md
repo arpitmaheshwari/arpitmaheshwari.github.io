@@ -65,7 +65,7 @@ Use the exact metric strings below on every surface (homepage chip, case-study p
 | 3 | **AI-Assisted Private Equity Investing** | FinTech · NDA | **60% faster** (deal screening) | measured pre- vs post-rollout · 3 sources behind every score · Role: Lead Product Designer · _(true sample: 42 deals over a 90-day window — DO NOT PUBLISH, see display rule below)_ |
 | 4 | **Programmatic Advertising Platform** | AdTech · NDA | **2 wks → 3 hrs** (campaign planning) | Recommended campaign plans with visible KPIs/ROI, easily customizable — **NO confidence scores, ever** (corrected 2026-08-05, see AdTech correction entry) · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · £400M media spend transacted through the platform · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
 | 5 | **OrgOS · Transparent Org Tooling** | Org Design · NDA | **200** (people) | 200 people · 0 managers · 8 modules · **in use by 250 people today (2026)** — the org grew past the 200 it was designed for and the coordination model held · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25). ("Zero managers" is the *outcome*, never the title.) |
-| 6 | **Technical Due Diligence Platform** | VC/PE · NDA | **3 wks → 4 days** (diligence cycle) | 4 signal classes scored · VC + PE · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25) |
+| 6 | **Technical Due Diligence Platform** | VC/PE · NDA | **3 wks → 4 days** (diligence cycle) | 16 analysis dimensions — a finding became a SIGNAL only at sufficient confidence, every signal backed by verified evidence (corrected 2026-08-06, see entry) · VC + PE · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25) |
 
 **Number-writing rules:** arrow is "→" with a space each side. Never write "−60%" (use "60% faster").
 Never abbreviate to "3w → 4d" (use "3 wks → 4 days"). Lowercase "k" in "550k+".
@@ -633,3 +633,14 @@ conviction." Arpit's ruling: conversation was NEVER rejected — it was always o
 modes. The claim overstated and is corrected on every surface, like AdTech's scores were.
 What stays true: the agentic architecture with strict operational boundaries (components as
 an orchestra, not one improvising soloist), citations, and honest abstention.
+
+
+### Due Diligence — "4 signal classes" RETIRED, 2026-08-06 (Arpit is the source)
+Arpit challenged the provenance of "4 signal classes scored — architecture, code health,
+team, delivery" (it traced to his early source documents, but he did not stand behind it) and
+gave the true mechanics: **the AI analyzed a piece of information across 16 DIMENSIONS; only
+when it had sufficient confidence did the finding count as a SIGNAL — each signal backed by
+intelligence-verified evidence.** Locked framing: "16 dimensions of analysis · a finding
+became a signal only at sufficient confidence · every signal carried verified evidence."
+Never re-print the four class names — they are not attested. The "no uncited verdict reaches
+a report" gate stays (unchanged, attested).
