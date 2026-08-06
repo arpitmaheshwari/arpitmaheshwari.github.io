@@ -21,7 +21,7 @@ on:
 jobs:
   contrast:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
@@ -93,35 +93,7 @@ jobs:
       # page — the check is cheap and a broken asset is page-specific, not context-specific.
       - name: Asset load check (SVG validity + every image actually paints)
         run: |
-          python3 tools/asset-load-check.py --docroot . \
-            http://localhost:8000/ \
-            http://localhost:8000/book/ \
-            http://localhost:8000/folio/ \
-            http://localhost:8000/hire/ \
-            http://localhost:8000/lab/ \
-            http://localhost:8000/now/ \
-            http://localhost:8000/patterns/ \
-            http://localhost:8000/process/ \
-            http://localhost:8000/resources/ \
-            http://localhost:8000/screen/ \
-            http://localhost:8000/writing/ \
-            http://localhost:8000/404.html \
-            http://localhost:8000/case-studies/adtech.html \
-            http://localhost:8000/case-studies/fintech.html \
-            http://localhost:8000/case-studies/o2.html \
-            http://localhost:8000/case-studies/orgos.html \
-            http://localhost:8000/case-studies/ptc.html \
-            http://localhost:8000/case-studies/vc-diligence.html \
-            http://localhost:8000/patterns/act-review-ignore.html \
-            http://localhost:8000/patterns/ai-failure-states.html \
-            http://localhost:8000/patterns/calibration-track-record.html \
-            http://localhost:8000/patterns/capability-contract.html \
-            http://localhost:8000/patterns/confidence-scores.html \
-            http://localhost:8000/patterns/human-in-loop.html \
-            http://localhost:8000/patterns/ml-explainability.html \
-            http://localhost:8000/patterns/provenance-citations.html \
-            http://localhost:8000/patterns/reversibility-safe-to-act.html
-
+          python3 tools/asset-load-check.py --docroot . --all
       - name: Fail if asset-load-check left a wrapper behind
         if: always()
         run: |
@@ -130,22 +102,19 @@ jobs:
             exit 1
           fi
 
-      - name: Contrast audit (pixel-truth, self-calibrating)
+      # Every shipped page, discovered from git — NOT a hand-typed list. On 2026-08-07 the
+      # list below named 9 pages, so 11 shipped pages had never been contrast-checked at all
+      # (lab/loop.html, lab/teardown.html, all 4 writing/ posts, all 3 resources/ pages).
+      # They passed when finally run, but a scope that has to be remembered stops covering
+      # whatever is added next. --all cannot fall behind the site.
+      - name: Contrast audit — every shipped page (pixel-truth, self-calibrating)
         run: |
           python3 tools/contrast-audit.py \
             --docroot . \
             --widths 1440,390 \
             --exempt '.bk-device__label, .bk-device__mark' \
             --force-visible '.reveal' \
-            http://localhost:8000/ \
-            http://localhost:8000/book/ \
-            http://localhost:8000/hire/ \
-            http://localhost:8000/lab/eval.html \
-            http://localhost:8000/patterns/capability-contract.html \
-            http://localhost:8000/case-studies/adtech.html \
-            http://localhost:8000/case-studies/o2.html \
-            http://localhost:8000/case-studies/orgos.html \
-            http://localhost:8000/404.html
+            --all
 
       - name: Fail if a stray wrapper file was left behind
         if: always()

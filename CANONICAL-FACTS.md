@@ -708,6 +708,23 @@ Both were built from an external review's suggestions and both were cut by Arpit
 The underlying review notes are logged, but these two executions are settled — reopening them
 needs new evidence, not another reviewer repeating the suggestion.
 
+### COVERAGE AUDIT — "what else isn't tested?", 2026-08-07 (Arpit's question)
+Measured rather than recalled. Findings:
+- **11 of 39 shipped pages had NEVER been contrast-checked** — the CI gate took a hand-typed
+  list of 9 URLs. Unchecked: `lab/loop.html` (the largest Lab page), `lab/teardown.html`, all
+  four `writing/` posts, all three `resources/` pages, and the two lab stubs.
+  All nine real ones were then run: **1,110 text nodes, 0 failures.** No defect — but the gap
+  was real and would have grown with every page added.
+- **The asset gate had the same shape**: 16 hand-listed pages of 39.
+- **`case-sync-check.py` covers `case-studies/` + `book/` only** — by design, but it means
+  "in sync" never meant "the whole site agrees".
+FIXED: both `contrast-audit.py` and `asset-load-check.py` now take `--all`, which enumerates
+shipped pages from `git ls-files` (excluding prototypes/, assets/, portfolio-sources/). CI uses
+`--all` for both; contrast timeout raised 25 → 45 min to fit 39 pages × 2 widths.
+**The rule this generalises:** any gate whose scope is a typed list will silently stop covering
+the site. Scope must be derived, and the derivation must fail loudly — see also
+`tools/case-surface-inventory.py`.
+
 ### PROCESS RULE — a canon correction is not done until a tripwire ships with it, 2026-08-07
 Arpit asked how the retired AdTech story survived multiple QA passes. The forensics:
 1. **No enforcement shipped with the correction.** Canon was updated 2026-08-05 (709467c);

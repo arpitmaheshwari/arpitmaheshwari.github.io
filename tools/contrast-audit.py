@@ -329,9 +329,28 @@ def selftest(url, width, force_visible=None):
 
 # ------------------------------------------------------------------------ cli
 
+def discover_pages(base="http://localhost:8000"):
+    """Every tracked .html a visitor can reach. Archives, templates and the private repo out."""
+    import subprocess
+    out = subprocess.run("git ls-files '*.html'", shell=True, capture_output=True, text=True).stdout
+    urls = []
+    for f in out.split():
+        if f.startswith(("prototypes/", "assets/", "portfolio-sources/")):
+            continue
+        urls.append(base + "/" if f == "index.html"
+                    else f"{base}/{f[:-10]}" if f.endswith("/index.html")
+                    else f"{base}/{f}")
+    return sorted(set(urls))
+
+
 def main():
     ap = argparse.ArgumentParser(description="Pixel-truth WCAG contrast audit.")
-    ap.add_argument("urls", nargs="+")
+    ap.add_argument("urls", nargs="*")
+    # Enumerate, never trust a typed list. On 2026-08-07 the CI list named 9 pages by hand, so
+    # 11 shipped pages had NEVER been contrast-checked — including lab/loop.html, the largest
+    # page in the Lab. A hand-maintained scope silently stops covering whatever gets added next.
+    ap.add_argument("--all", action="store_true",
+                    help="discover every shipped page from git and check all of them")
     ap.add_argument("--widths", default="1440,1024,768")
     ap.add_argument("--exempt", default=None,
                     help='CSS selector for WCAG 1.4.3-exempt text, e.g. ".logo, .wordmark"')
@@ -346,6 +365,11 @@ def main():
     ap.add_argument("--no-selftest", action="store_true",
                     help="skip calibration (a green result then proves nothing)")
     a = ap.parse_args()
+    if a.all:
+        a.urls = discover_pages()
+        print(f"  --all: discovered {len(a.urls)} shipped pages")
+    if not a.urls:
+        ap.error("give URLs, or use --all")
     widths = [int(w) for w in a.widths.split(",")]
     global DOCROOT
     DOCROOT = os.path.abspath(a.docroot)

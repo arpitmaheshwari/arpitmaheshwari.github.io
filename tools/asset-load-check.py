@@ -211,14 +211,33 @@ def calibrate(urls, docroot):
 
 # --------------------------------------------------------------------------- main
 
+def discover_pages(base="http://localhost:8000"):
+    import subprocess
+    out = subprocess.run("git ls-files '*.html'", shell=True, capture_output=True, text=True).stdout
+    urls = []
+    for f in out.split():
+        if f.startswith(("prototypes/", "assets/", "portfolio-sources/")):
+            continue
+        urls.append(base + "/" if f == "index.html"
+                    else f"{base}/{f[:-10]}" if f.endswith("/index.html")
+                    else f"{base}/{f}")
+    return sorted(set(urls))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("urls", nargs="*")
+    ap.add_argument("--all", action="store_true",
+                    help="discover every shipped page from git (same rationale as "
+                         "contrast-audit --all: a typed list stops covering new pages)")
     ap.add_argument("--docroot", default=os.getcwd())
     ap.add_argument("--selftest", action="store_true", help="run calibration only, then exit")
     ap.add_argument("--no-selftest", action="store_true")
     ap.add_argument("--static-only", action="store_true", help="SVG XML validity only; no browser")
     a = ap.parse_args()
+    if a.all:
+        a.urls = discover_pages()
+        print(f"  --all: discovered {len(a.urls)} shipped pages")
     docroot = os.path.abspath(a.docroot)
 
     if not a.static_only and a.urls and not CHROME:
