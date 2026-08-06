@@ -56,13 +56,13 @@
   <!-- ===================== TRACES: surviving signals -> verdict ===================== -->
   <!-- bars end near x=660; badge center (1064,253) r=104, left entry ~x=952 -->
   <g stroke="#998D78" stroke-width="1.5" fill="none" opacity="0.85">
-    <path d="M 660 189 C 770 189 810 253 952 253"/>
-    <path d="M 660 234 C 770 234 810 253 952 253"/>
-    <path d="M 660 279 C 770 279 810 253 952 253"/>
-    <path d="M 660 324 C 770 324 810 253 952 253"/>
+    <path d="M 660 189 C 770 189 810 253 956 253"/>
+    <path d="M 660 234 C 770 234 810 253 956 253"/>
+    <path d="M 660 279 C 770 279 810 253 956 253"/>
+    <path d="M 660 324 C 770 324 810 253 956 253"/>
   </g>
   <!-- merge node at badge entry -->
-  <circle cx="952" cy="253" r="5" fill="#F4ECDA" stroke="#998D78" stroke-width="1.5"/>
+  <circle cx="956" cy="253" r="4.5" fill="#F4ECDA" stroke="#998D78" stroke-width="1.5"/>
   <text x="700" y="150" class="lb" font-size="12" opacity="0.85">only what cleared the bar &#8594; one verdict</text>
   <text x="700" y="170" class="lb" font-size="10.5" opacity="0.8">12 further findings stayed below it &#8212; held out of the report</text>
 
@@ -70,16 +70,19 @@
   <g>
     <!-- outer ring -->
     <circle cx="1064" cy="253" r="104" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
-    <!-- score arc: track + value arc (ember), center (1064,253) r=88 -->
-    <path d="M 1004 329 A 88 88 0 1 1 1124 329"
+    <!-- score gauge, centre (1064,253) r=88, 270 deg open at the bottom, value 0.85.
+         Endpoints are computed from trigonometry (2026-08-06): the previous hand-written
+         endpoints sat at radius 96.8 and 84.4, so SVG solved each arc around a DIFFERENT
+         centre (track 1064,264.6 · value 1060,261.1) — neither matching the ring or the text. -->
+    <path d="M 1001.8 315.2 A 88 88 0 1 1 1126.2 315.2"
           fill="none" stroke="#998D78" stroke-width="9" stroke-linecap="round" opacity="0.4"/>
-    <path d="M 1004 329 A 88 88 0 1 1 1148 261"
+    <path d="M 1001.8 315.2 A 88 88 0 1 1 1151.7 259.9"
           fill="none" stroke="#C0512B" stroke-width="9" stroke-linecap="round"/>
-    <circle cx="1148" cy="261" r="6" fill="#F4ECDA" stroke="#C0512B" stroke-width="3"/>
+    <circle cx="1151.7" cy="259.9" r="6" fill="#F4ECDA" stroke="#C0512B" stroke-width="3"/>
     <!-- verdict readout -->
-    <text x="1064" y="206" class="lb" font-size="12" text-anchor="middle" letter-spacing="2" opacity="0.85">VERDICT</text>
-    <text x="1064" y="262" class="hd" font-size="56" text-anchor="middle">B+</text>
-    <text x="1064" y="296" class="em" font-size="18" text-anchor="middle" font-weight="600" letter-spacing="2">COMMIT</text>
+    <text x="1064" y="212" class="lb" font-size="12" text-anchor="middle" letter-spacing="2" opacity="0.85">VERDICT</text>
+    <text x="1064" y="268" class="hd" font-size="56" text-anchor="middle">B+</text>
+    <text x="1064" y="302" class="em" font-size="18" text-anchor="middle" font-weight="600" letter-spacing="2">COMMIT</text>
   </g>
 
   <!-- ===================== FOOTER: timeline motif ===================== -->

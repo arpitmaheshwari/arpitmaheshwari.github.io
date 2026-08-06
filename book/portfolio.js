@@ -300,7 +300,7 @@ const NDA_CASES = [{
   stamp: { t: "0 Managers", v: "ok" }
 }, {
   no: "06",
-  img: "../assets/visuals/case-vc.svg?v=2",
+  img: "../assets/visuals/case-vc.svg?v=3",
   tag: CF.get("vc-diligence").tag,
   title: CF.get("vc-diligence").title,
   standfirst: "Partners bet millions on claims they'll never check. An LLM extracted the evidence; the design made them stand on it.",
