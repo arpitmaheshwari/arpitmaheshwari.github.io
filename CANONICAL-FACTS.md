@@ -697,6 +697,25 @@ the −19%/+31% pair, the Pune anecdote, or the shipped-wrong-first framing.
 - **Transfer note rewritten for plain English** (same facts: one year of runway + P&L-owning
   executives were preconditions; design necessary but not sufficient).
 
+### PTC clientele — the list standardized, 2026-08-06 (Arpit is the source)
+The client names had FIVE different variants across surfaces (homepage/hire/book/resume/PDF)
+and appeared nowhere in canon. Arpit's ruling: **all five names are real and defensible.**
+- **LOCKED ORDER, every surface:** NASA, Boeing, Toyota, Airbus and Apple.
+  (Ampersand form "NASA, Boeing, Toyota, Airbus & Apple" where space is tight.)
+- Never drop a name to fit, and never reorder — an inconsistent client list reads as guessing.
+
+### VC Diligence — the four named signals REMOVED, redesign chosen, 2026-08-06
+The QA sweep found the retired four-class taxonomy was not just prose: it was the spine of the
+case's SVG diagram, its plate mockup, its widget buttons, its alt text and its aria-label.
+Prose/data/mirror have been purged (`data/case-facts.js`, `book/*`, `llms.txt`, the receipt row,
+the role line, the figcaption). **Arpit's ruling on the artifacts: redesign around the
+CONFIDENCE GATE** — drop named signals entirely and demonstrate the attested mechanic instead
+(a finding analyzed across 16 dimensions; it becomes a signal only on clearing a confidence
+bar; every signal carries verified evidence; no uncited verdict reaches a report). Directions
+to be rendered for his pick before anything ships.
+- Until the redesign lands, canon-lint FAILS on `assets/visuals/case-vc.svg` and
+  `case-studies/vc-diligence.html`. That red is the open work — do not allowlist it away.
+
 ### O2 / MyO2 — the replatforming story added, 2026-08-06 (Arpit is the source)
 Arpit: "myo2 case study is an example where we took a legacy system and made it responsive
 across iOS android Microsoft phone and web. Telefonica has millions of active subscriber so
