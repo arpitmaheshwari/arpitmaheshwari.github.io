@@ -74,6 +74,10 @@ BANNED = [
      'a word-order variant of the retired solo-design claim — design was SHARED with one '
      'co-designer; only the code claim is solo',
      "O2 co-designer correction 2026-08-06"),
+    (r"(?:years?|working) on one product\b|one product for (?:five|5) years",
+     'the retired AdTech tenure phrasing — canon locks "one connected platform, five years"; '
+     'it was a suite of applications, never one product',
+     "AdTech tenure, 2026-08-05"),
     (r"80\+\s*countr",
      'inaccurate reach figure — Arpit corrected to "20+ countries" ("safe side")',
      "PTC correction 2026-08-06"),
