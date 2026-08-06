@@ -172,7 +172,7 @@ const CASES = {
       no: "1.1",
       label: "before — five disconnected platforms, five sign-in screens"
     },
-    tension: "The cost was political, not visual: telling four executives their product was now a tab, against a CRO with 60% of revenue on perpetual. Get it wrong and you ship a prettier version of a product no one returns to.",
+    tension: "The cost was political, not visual: telling four executives their product was now a tab, against a CRO with 100% of revenue on perpetual. Get it wrong and you ship a prettier version of a product no one returns to.",
     note1: "the org chart was the real wireframe",
     decisionLede: "Three decisions did the load-bearing work:",
     moves: [{

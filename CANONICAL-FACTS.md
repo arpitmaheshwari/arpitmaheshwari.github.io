@@ -644,3 +644,16 @@ intelligence-verified evidence.** Locked framing: "16 dimensions of analysis · 
 became a signal only at sufficient confidence · every signal carried verified evidence."
 Never re-print the four class names — they are not attested. The "no uncited verdict reaches
 a report" gate stays (unchanged, attested).
+
+
+### PTC — perpetual share corrected + REAL IMAGES mandate, 2026-08-06 (Arpit is the source)
+1. **"Perpetual was 60% of total revenue when I started" is WRONG — it was 100%.** All revenue
+   was perpetual licenses at the start; the 0% → 64% subscription shift started from nothing.
+   (The case body's "CRO had 60% of revenue sitting on perpetual licenses" is superseded by
+   the same correction — use 100% / "all of it".)
+2. **PTC is NOT under NDA — use REAL images from the public web.** The reconstruction plates
+   ("screen contents synthetic") are to be replaced with real screenshots (Learning Connector
+   is live at learningconnector.ptc.com; older portals via public record/archive where they
+   survive). Captions must state the real provenance: URL + retrieval date. Where a real image
+   genuinely cannot be recovered (dead pre-2019 portals), a reconstruction may remain but must
+   say so.
