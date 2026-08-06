@@ -711,3 +711,32 @@ team."
 - **SCOPE (his ruling, same day): MyO2 ONLY.** Priority Moments stays described as app +
   mobile web; the joint phrase "two O2 UK products on mobile web" stays as-is. Do NOT extend
   the responsive/replatforming framing to Priority Moments.
+
+### AdTech — PRIMARY SOURCE acquired: the client's published case study, 2026-08-06
+Digital Bulletin, Issue 30, "An Out of Home Evolution" (July 5, 2021) — a published magazine
+feature on the client's transformation, naming the client (Talon Outdoor), the partner (Sahaj
+Software Solutions), and the platforms (Ada = data management, Plato = trading, Atlas =
+programmatic DOOH). Screenshots archived in the PRIVATE repo: `portfolio-sources/talon-article-2021/`.
+Live at digitalbulletin.com (/CaseStudies/Technology/2021/July/talon-outdoor/) and on Medium;
+YouTube film exists. Verified live 2026-08-06.
+- **HIS RULING: the site stays FULLY ANONYMIZED.** Never print Talon / Sahaj / Ada / Plato /
+  Atlas on any public surface. Consequence: the article is never linked or named on the site
+  (the link de-anonymizes in one click) — on-page attribution is "the client's leadership, in
+  a published industry case study," and the case says he'll hand the source over in
+  conversation. The article is interview ammunition and a private receipt.
+- **HIS ROLE (his words, same day):** "I designed the entire suite of a smart connected
+  platforms, along with the supporting platforms for media owner inventory, advertising
+  creative copy management, advertisement display consolidation, reporting, mobile web for ad
+  booking and others, over the five years" — all three named platforms plus the supporting
+  systems.
+- **NEW ATTRIBUTED PUBLIC METRICS (always the client's claims, NEVER his KPIs; his ruling:
+  use all, keep the existing metrics too):** 53% consideration uplift vs standard OOH
+  (Product Strategy Director) · under 5% → 100% of UK bookings through the trading platform
+  (Chief Product Officer) · "The things that would normally take us 12-18 months to build,
+  were built in six months" (Chief Transformation Officer, verbatim — contains no names) ·
+  48 sheets availability lookup: three days → 30 seconds (their example) · programmatic
+  platform revenue one month after launch · "clients only pay for confirmed impressions".
+  Quote rule: quotation marks ONLY around article sentences containing no client/platform
+  names; anything naming Ada/Plato/Atlas is paraphrased, never quote-edited.
+- Article corroborates existing canon: partner engaged after 2018 CTO hire; Plato MVP in
+  four months; "best OOH data management platform in the UK, if not the world" (their claim).
