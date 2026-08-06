@@ -321,11 +321,12 @@ Beyond §10's handwritten notes, the site now carries hand-MADE OBJECTS on the d
 All decorative objects aria-hidden; homepage only so far — extend to case/hire/patterns pages
 with renders first.
 
-## Interactive moments (`.recon`) — added 2026-08-05
-Every live/interactive artifact on a case or pattern page uses the `.recon` component, and its
-treatment is RESERVED: a **1.5px dashed gold frame + gold wash + a solid-gold "Interactive ·
-try it" chip breaking the top border**. The dashed gold frame means exactly one thing on this
-site — *you can act here*. Never apply it to a static surface, and never ship an interactive
-surface without it (Arpit's correction, 2026-08-05: widgets styled like prose cards were
-invisible while scrolling). The chip is `.recon::before`; the provenance line stays inside as
-`.recon-badge`. Styled once in styles.css — all six case pages inherit.
+## Interactive moments (`.recon`) — corrected 2026-08-06
+Interactive widgets are **cream islands**: the `.recon` component re-points the full token set
+(cream act values, INCLUDING the cream-safe status colors `--err #894540 / --warn #6D5E40 /
+--ok #2E6A46`) so the widget sits as a light peak on the dark page. The surface itself is the
+affordance — the eye catches the cream while scrolling; no "interactive" label may be used to
+do the surface's job (the 2026-08-05 chip version was Arpit-rejected for exactly that).
+Cream remains a rationed peak: the two homepage acts + `.recon` widgets are the ONLY sanctioned
+cream contexts. Inner widget styles must use tokens, never hardcoded dark-theme hex, so the
+re-point reaches them. Styled once in styles.css — all case pages inherit.
