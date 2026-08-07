@@ -1,0 +1,72 @@
+<svg viewBox="0 0 1180 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pipeline diagram: a deal document enters from Outlook, is retrieved against sources, scored, then either abstains when evidence is thin or emits a score with citations; the analyst reviews, and any override is logged back into the next evaluation.">
+  <rect width="1180" height="420" fill="#F4ECDA"/>
+  <rect x="16" y="16" width="1148" height="388" fill="none" stroke="rgba(44,38,32,0.12)"/>
+  <style>
+    .hd{font-family:Georgia,serif;fill:#2C2620}
+    .lb{font-family:'IBM Plex Sans',sans-serif;fill:#6A6052}
+    .ik{font-family:'IBM Plex Sans',sans-serif;fill:#2C2620}
+    .em{font-family:'IBM Plex Sans',sans-serif;fill:#C0512B}
+  </style>
+  <text x="44" y="52" class="lb" font-size="12" letter-spacing="3">DEAL SCREENING &#8212; EVALUATION PATH</text>
+  <text x="44" y="86" class="hd" font-size="28">A document in. A defensible score out&#8201;&#8212;&#8201;or nothing.</text>
+  <line x1="44" y1="104" x2="1136" y2="104" stroke="rgba(44,38,32,0.12)"/>
+
+  <!-- stage boxes -->
+  <g>
+    <rect x="44" y="140" width="150" height="70" rx="7" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="60" y="168" class="ik" font-size="14">Inbox</text>
+    <text x="60" y="188" class="lb" font-size="11">tag a mail, drop the deck</text>
+
+    <rect x="238" y="140" width="150" height="70" rx="7" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="254" y="168" class="ik" font-size="14">Retrieve</text>
+    <text x="254" y="188" class="lb" font-size="11">claims matched to sources</text>
+
+    <rect x="432" y="140" width="150" height="70" rx="7" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="448" y="168" class="ik" font-size="14">Score</text>
+    <text x="448" y="188" class="lb" font-size="11">risk read from the docs</text>
+
+    <!-- the gate -->
+    <path d="M 700 175 L 646 140 L 646 210 Z" fill="#F4ECDA" stroke="#C0512B" stroke-width="1.5"/>
+    <text x="626" y="128" class="em" font-size="11" letter-spacing="1" text-anchor="middle">GATE</text>
+    <text x="600" y="234" class="lb" font-size="10.5">is every claim grounded?</text>
+  </g>
+
+  <!-- arrows through the spine -->
+  <g stroke="#998D78" stroke-width="1.5" fill="none">
+    <path d="M 194 175 H 232"/><path d="M 388 175 H 426"/><path d="M 582 175 H 640"/>
+  </g>
+  <g fill="#998D78">
+    <path d="M 232 175 l -7 -4 v 8 z"/><path d="M 426 175 l -7 -4 v 8 z"/><path d="M 640 175 l -7 -4 v 8 z"/>
+  </g>
+
+  <!-- branch: abstain (up) -->
+  <path d="M 700 160 C 740 160 750 128 790 128" stroke="#C0512B" stroke-width="1.5" fill="none" stroke-dasharray="5 4"/>
+  <rect x="790" y="102" width="240" height="54" rx="7" fill="#FBF4E6" stroke="#C0512B" stroke-width="1.5"/>
+  <text x="806" y="126" class="em" font-size="13.5" font-weight="600">Abstain &#8212; &#8220;not sure about this one&#8221;</text>
+  <text x="806" y="144" class="lb" font-size="10.5">thin evidence never becomes a confident number</text>
+
+  <!-- branch: score (down) -->
+  <path d="M 700 190 C 740 190 750 226 790 226" stroke="#2F5D52" stroke-width="1.5" fill="none"/>
+  <rect x="790" y="198" width="240" height="58" rx="7" fill="#F2F7F4" stroke="#2F5D52" stroke-width="1.5"/>
+  <text x="806" y="222" class="ik" font-size="13.5" font-weight="600">Score, with its sources attached</text>
+  <text x="806" y="240" class="lb" font-size="10.5">3 sources behind every number, inline</text>
+
+  <!-- analyst + override loop -->
+  <rect x="432" y="300" width="200" height="66" rx="7" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+  <text x="448" y="326" class="ik" font-size="14">Analyst reads it</text>
+  <text x="448" y="346" class="lb" font-size="11">two modes: written report &#183; conversation</text>
+
+  <path d="M 910 256 C 910 300 800 333 636 333" stroke="#998D78" stroke-width="1.5" fill="none"/>
+  <path d="M 636 333 l 7 -4 v 8 z" fill="#998D78"/>
+
+  <rect x="140" y="300" width="200" height="66" rx="7" fill="#EEE4CE" stroke="#CE9230" stroke-width="1.5"/>
+  <text x="156" y="326" class="ik" font-size="14">Override, logged</text>
+  <text x="156" y="346" class="lb" font-size="11">structured data, not a comment box</text>
+  <path d="M 432 333 H 344" stroke="#998D78" stroke-width="1.5" fill="none"/>
+  <path d="M 344 333 l 7 -4 v 8 z" fill="#998D78"/>
+  <path d="M 240 300 C 240 252 384 232 507 216" stroke="#CE9230" stroke-width="1.5" fill="none" stroke-dasharray="5 4"/>
+  <path d="M 507 216 l -3 8 8 -1 z" fill="#CE9230"/>
+  <text x="252" y="272" class="lb" font-size="10.5" font-style="italic">the correction trains the next read</text>
+
+  <text x="44" y="392" class="lb" font-size="12" font-style="italic">The 60% was not the model getting faster &#8212; it was analysts no longer re-verifying by hand.</text>
+</svg>

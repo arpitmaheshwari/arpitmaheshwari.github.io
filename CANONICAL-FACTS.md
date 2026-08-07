@@ -708,6 +708,28 @@ Both were built from an external review's suggestions and both were cut by Arpit
 The underlying review notes are logged, but these two executions are settled — reopening them
 needs new evidence, not another reviewer repeating the suggestion.
 
+### FinTech method diagrams shipped, 2026-08-07 (Arpit picked all three)
+The reviewers' one high-value, NDA-safe ask: show the AI depth as diagrams, not prose. Three
+built from ATTESTED mechanics only — cited source per number, honest abstention, logged
+override, two reading modes over a pipeline dashboard, Outlook entry, 60% pre/post.
+No client name, no deal data, no sample size. Options kept at
+`prototypes/fintech-method-diagram-options.html`.
+- `assets/visuals/fintech-gate.svg` — the launch gate: two conditions + the failure each bought
+- `assets/visuals/fintech-pipeline.svg` — the path a document takes, abstention as a real branch
+- `assets/visuals/fintech-two-readers.svg` — one analysis, two readings, shared dashboard
+SHIPPED ON: the case page (gate under "I held the launch", two-readers beside the modes
+paragraph, pipeline before the product plate), the book's no-JS mirror (all three), and the
+portfolio PDF page 6 (gate, at 74% width).
+**NOT on the interactive book** — its spreads are fixed 880px with 4–34px headroom measured;
+a figure clips. Needs a dedicated method spread, not a squeeze. Open item.
+**NOT on the résumé** — it is text-only by design, 2pp, ATS-first.
+**TWO TRAPS HIT AND FIXED, both worth remembering:**
+1. `width:100%` on the PDF put the diagram + caption through the folio band and clipped the
+   page number off entirely. Sized to 74%. Same layout contract as the case pages.
+2. The SVGs used `ui-sans-serif, system-ui`, which resolves to macOS **San Francisco** — Chrome
+   cannot embed it and emitted **31 Type 3 fonts** (baseline 1). Switched to the self-hosted
+   `'IBM Plex Sans'`. **Never use a system-font stack in an SVG that a PDF will embed.**
+
 ### COVERAGE AUDIT — "what else isn't tested?", 2026-08-07 (Arpit's question)
 Measured rather than recalled. Findings:
 - **11 of 39 shipped pages had NEVER been contrast-checked** — the CI gate took a hand-typed

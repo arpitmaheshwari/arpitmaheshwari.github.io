@@ -172,7 +172,16 @@
     <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
       I held the launch until the score could explain itself.
     </h2>
+    <figure class="fig-paper" style="margin:8px 0 32px">
+      <img src="../assets/visuals/fintech-gate.svg?v=1" alt="Diagram: two launch conditions — every generated number carries its source, and thin evidence draws an abstention — each shown with the failure it prevents, gating the release at a cost of weeks of delay." loading="lazy" width="1180" height="360" style="display:block;width:100%;height:auto">
+      <figcaption>The two conditions I would not ship without &mdash; and the failure each one bought off</figcaption>
+    </figure>
     <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">The product served one analysis in two interpretation modes — because analysts read differently.</strong> Some want the full written argument to sit with and annotate; others want to interrogate. So the system generated a <em>descriptive</em> mode — a detailed written analysis of the deal, the scores explained in prose — and a <em>conversational</em> mode for questioning that same analysis. Neither was a free-form chatbot: underneath both runs an agentic architecture with strict operational boundaries — specialized components playing as an orchestra, not a single improvising soloist — so whichever mode an analyst chose, the answers stayed structured, auditable, evidence-based.</p>
+    <figure class="fig-paper" style="margin:8px 0 32px">
+      <img src="../assets/visuals/fintech-two-readers.svg?v=1" alt="Diagram: one analysis rendered two ways — a written report and a conversation that interrogates it — both sitting over a pipeline-wide scoring dashboard, sharing the same evidence." loading="lazy" width="1180" height="392" style="display:block;width:100%;height:auto">
+      <figcaption>One analysis, two readings &mdash; over the dashboard both readers return to</figcaption>
+    </figure>
+
     <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">Above the single deal sat the scoring dashboard.</strong> The whole pipeline scored side-by-side — the multi-deal view where screening actually starts — and any deal drills down into the per-signal breakdown, the written analysis, and the conversation. One analysis, three surfaces, no forced workflow.</p>
     <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">So I built an &ldquo;explain this score&rdquo; surface that grounds the model in its evidence.</strong> An analyst could pull any rating apart into the signals behind it, challenge the weighting, and watch the score answer back — and every signal came stapled to the exact document it was retrieved from, so no claim floated free of a source. I held the release until the model could survive that — the call the whole project hung on, and the one that delayed it.</p>
     <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">Three things were non-negotiable:</strong> a cited source behind each generated number, a visible "I'm not sure about this one" state where the model abstains instead of bluffing a confident answer it can't ground, and a logged override when the analyst disagreed. The abstention state mattered most — an LLM's worst failure is a fluent, wrong claim, and I'd rather it say nothing than hallucinate. The override drew the longest argument — logging disagreement felt exposing. What it actually built was institutional memory: every expert correction captured as structured data the system learns from, so the platform slowly comes to reflect how <em>this firm</em> thinks, not just what a generic model knows. A commodity model can be rented by any competitor; an accumulated record of the firm's own judgment can't.</p>
@@ -367,6 +376,10 @@
     ex.addEventListener('click',function(){var open=dr.classList.toggle('open');ex.setAttribute('aria-expanded',String(open));});
     r.querySelector('#rxf-override').addEventListener('click',function(){card.classList.add('overridden');});
   })();</script>
+    <figure class="fig-paper" style="margin-bottom:32px">
+      <img src="../assets/visuals/fintech-pipeline.svg?v=1" alt="Diagram: a deal document enters from the inbox, claims are retrieved and matched to sources, risk is scored, then a gate asks whether every claim is grounded — thin evidence abstains, grounded evidence emits a score with its sources attached; the analyst reads it in either mode and any override is logged back to train the next read." loading="lazy" width="1180" height="420" style="display:block;width:100%;height:auto">
+      <figcaption>The path a document takes &mdash; and the branch where the system declines to answer</figcaption>
+    </figure>
     <figure class="fig-paper">
       <img src="../assets/visuals/case-fintech.svg" alt="Diagram: a deal-risk score with an explain-this-score panel, traced back to its three source documents." loading="lazy" width="1280" height="400" style="display:block;width:100%;height:auto">
       <figcaption>The argument arrives before the verdict — every score opens onto its three sources</figcaption>
