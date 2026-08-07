@@ -954,5 +954,11 @@ have RE-PRINTED the banned figure) and "every screen drawn by me" (site says co-
 everywhere). It also asked for system-evidence diagrams that shipped this week. Reviewer was
 reading a stale copy; always fact-check a pasted review against the live files before executing.
 
-**Open (Arpit said yes, pending input/options):** two-door hero (render options first);
-"what I got wrong" rows on 2-3 more cases (misses must come from Arpit, never invented).
+**Hero — RESOLVED 2026-08-08, Arpit picked Option C (readdressed) from three rendered options.**
+The diagnostic stays as the hero rail. Its tag now reads "Building AI? — name your problem" and a
+one-line escape sits under the free-text input: "Hiring? Skip this — see the strongest work →"
+(data-cta="skip-diagnostic"). Options A (evidence rail) and B (two doors) live in
+prototypes/hero-option-{a,b}.html as archived rejected directions — do not ship them.
+
+**Open (Arpit said yes, pending his input):** "what I got wrong" rows on 2-3 more cases —
+the misses MUST come from Arpit, never invented.
