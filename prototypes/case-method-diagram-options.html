@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Method diagrams — OrgOS, PTC, O2, VC — options</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A0A;--ink:#F2EDE4;--ink-muted:rgba(242,237,228,.62);--gold:#D4A85E;--gold-dark:#A07835;
+ --ff-d:'Newsreader',serif;--ff-s:'IBM Plex Sans',sans-serif;--ff-m:'IBM Plex Mono',monospace}
+*{box-sizing:border-box}
+body{margin:0;background:#050505;color:var(--ink);font-family:var(--ff-s);line-height:1.6;padding:48px 24px 96px}
+.head{max-width:1180px;margin:0 auto 40px}
+h1{font-family:var(--ff-d);font-weight:300;font-size:32px;line-height:1.2;margin:0 0 14px}
+.head p{color:var(--ink-muted);font-size:15px;max-width:76ch;margin:0 0 8px}
+.head b{color:var(--gold);font-weight:500}
+h2.case{max-width:1180px;margin:64px auto 4px;font-family:var(--ff-d);font-weight:300;font-size:24px;color:var(--ink)}
+.lbl{max-width:1180px;margin:28px auto 6px;font-family:var(--ff-m);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.note{max-width:1180px;margin:0 auto 18px;font-size:14.5px;color:var(--ink-muted);max-width:78ch}
+figure{max-width:1180px;margin:0 auto}
+svg{display:block;width:100%;height:auto;border:1px solid rgba(255,255,255,.09);border-radius:8px}
+figcaption{margin-top:10px;font-family:var(--ff-m);font-size:12px;letter-spacing:.06em;color:var(--ink-muted)}
+.verdict{max-width:1180px;margin:10px auto 0;font-size:13.5px;color:var(--ink-muted);border-left:2px solid var(--gold-dark);padding-left:14px}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>Method diagrams for the remaining four cases</h1>
+  <p>Every element is <b>attested</b> on the case pages or in canon. Nothing invented: OrgOS shows no
+     escalation/governance mechanics beyond what shipped; O2 shows no rollout staging (canon forbids
+     inventing it); VC uses the anonymized signal IDs already live.</p>
+  <p>Pick per case — one treatment, both, or neither.</p>
+</div>
+
+<!-- ═══════════════════════ ORGOS ═══════════════════════ -->
+<h2 class="case">OrgOS — the assign&rarr;visibility reframe</h2>
+
+<p class="lbl">OrgOS · Treatment 1 — the features I said no to</p>
+<p class="note">Leads with the rejections. Three "obvious" features, each named as a manager in
+  disguise, all replaced by one mechanism. The systems-thinking story told through what was refused.</p>
+<figure>
+<svg viewBox="0 0 1180 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: three requested features — assign, approve, escalate — each crossed out and labelled as a manager wearing a different name, all replaced by one mechanism: visibility. Commitments are published in the open; you see what is open and pick it up. Eight modules — staffing, comp, OKRs, onboarding and four more — speak one object model.">
+  <rect width="1180" height="400" fill="#F4ECDA"/>
+  <rect x="16" y="16" width="1148" height="368" fill="none" stroke="rgba(44,38,32,0.12)"/>
+  <style>
+    .hd{font-family:Georgia,serif;fill:#2C2620}
+    .lb{font-family:'IBM Plex Sans',sans-serif;fill:#6A6052}
+    .ik{font-family:'IBM Plex Sans',sans-serif;fill:#2C2620}
+    .em{font-family:'IBM Plex Sans',sans-serif;fill:#C0512B}
+  </style>
+  <text x="44" y="52" class="lb" font-size="12" letter-spacing="3">THE JOB WAS SAYING NO</text>
+  <text x="44" y="86" class="hd" font-size="28">Every obvious feature was a manager wearing a different name.</text>
+  <line x1="44" y1="104" x2="1136" y2="104" stroke="rgba(44,38,32,0.12)"/>
+
+  <!-- three rejected features -->
+  <g>
+    <rect x="44" y="136" width="200" height="72" rx="7" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="64" y="166" class="ik" font-size="15">Assign</text>
+    <text x="64" y="186" class="lb" font-size="11">who does the work</text>
+    <line x1="52" y1="200" x2="236" y2="144" stroke="#C0512B" stroke-width="1.5"/>
+
+    <rect x="268" y="136" width="200" height="72" rx="7" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="288" y="166" class="ik" font-size="15">Approve</text>
+    <text x="288" y="186" class="lb" font-size="11">who may proceed</text>
+    <line x1="276" y1="200" x2="460" y2="144" stroke="#C0512B" stroke-width="1.5"/>
+
+    <rect x="492" y="136" width="200" height="72" rx="7" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="512" y="166" class="ik" font-size="15">Escalate</text>
+    <text x="512" y="186" class="lb" font-size="11">who settles it</text>
+    <line x1="500" y1="200" x2="684" y2="144" stroke="#C0512B" stroke-width="1.5"/>
+  </g>
+  <text x="44" y="234" class="em" font-size="12" font-style="italic">each one is a boss smuggled back in through the side door &#8212; refused</text>
+
+  <!-- the replacement -->
+  <rect x="760" y="128" width="376" height="106" rx="9" fill="#22201C"/>
+  <text x="782" y="158" fill="#EFE6D2" font-family="'IBM Plex Sans',sans-serif" font-size="16">Visibility instead</text>
+  <text x="782" y="182" fill="#B6A98D" font-family="'IBM Plex Sans',sans-serif" font-size="11.5">commitments, published in the open &#8212; not tasks handed down.</text>
+  <text x="782" y="200" fill="#B6A98D" font-family="'IBM Plex Sans',sans-serif" font-size="11.5">You see what&#8217;s open, and you pick it up.</text>
+  <text x="782" y="222" fill="#CE9230" font-family="'IBM Plex Sans',sans-serif" font-size="11.5">salaries, finances, assignments &#8212; open to everyone</text>
+  <path d="M 700 172 H 754" stroke="#998D78" stroke-width="1.5" fill="none"/>
+  <path d="M 754 172 l -8 -4 v 8 z" fill="#998D78"/>
+
+  <!-- the modules on one object model -->
+  <g>
+    <rect x="44" y="272" width="1092" height="30" rx="5" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="590" y="292" class="lb" font-size="12" text-anchor="middle" letter-spacing="1">ONE OBJECT MODEL &#8212; the org can rebuild its own process with nobody in the room to arbitrate</text>
+    <g>
+      <rect x="80" y="318" width="120" height="34" rx="5" fill="#F4ECDA" stroke="rgba(44,38,32,.16)"/>
+      <text x="140" y="340" class="ik" font-size="12.5" text-anchor="middle">Staffing</text>
+      <rect x="220" y="318" width="120" height="34" rx="5" fill="#F4ECDA" stroke="rgba(44,38,32,.16)"/>
+      <text x="280" y="340" class="ik" font-size="12.5" text-anchor="middle">Comp</text>
+      <rect x="360" y="318" width="120" height="34" rx="5" fill="#F4ECDA" stroke="rgba(44,38,32,.16)"/>
+      <text x="420" y="340" class="ik" font-size="12.5" text-anchor="middle">OKRs</text>
+      <rect x="500" y="318" width="120" height="34" rx="5" fill="#F4ECDA" stroke="rgba(44,38,32,.16)"/>
+      <text x="560" y="340" class="ik" font-size="12.5" text-anchor="middle">Onboarding</text>
+      <rect x="640" y="318" width="150" height="34" rx="5" fill="#F4ECDA" stroke="rgba(44,38,32,.16)" stroke-dasharray="4 3"/>
+      <text x="715" y="340" class="lb" font-size="12.5" text-anchor="middle">+ 4 more modules</text>
+    </g>
+    <g stroke="#998D78" stroke-width="1" fill="none" opacity=".55">
+      <path d="M 140 318 V 302"/><path d="M 280 318 V 302"/><path d="M 420 318 V 302"/><path d="M 560 318 V 302"/><path d="M 715 318 V 302"/>
+    </g>
+  </g>
+  <text x="860" y="340" class="lb" font-size="12" font-style="italic">designed for 200 &#183; 250 run on it today &#183; 0 managers</text>
+</svg>
+<figcaption>OrgOS T1 · the rejected features, and the one mechanism that replaced them</figcaption>
+</figure>
+<p class="verdict">Strongest at showing judgment through refusal &mdash; the "saying no" story, drawn.</p>
+
+<p class="lbl">OrgOS · Treatment 2 — one object model, eight modules</p>
+<p class="note">Leads with the architecture instead of the refusals. The object model as the base,
+  the modules on it, and the consequence — the org rebuilds its own process without an arbiter.</p>
+<figure>
+<svg viewBox="0 0 1180 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: eight modules — staffing, comp, OKRs, onboarding and four more — all sit on one shared object model, with salaries, finances and assignments open to everyone; the consequence is that two hundred people coordinate with zero managers in the loop, and the org rebuilds its own process with nobody arbitrating.">
+  <rect width="1180" height="360" fill="#F4ECDA"/>
+  <rect x="16" y="16" width="1148" height="328" fill="none" stroke="rgba(44,38,32,0.12)"/>
+  <style>
+    .hd2{font-family:Georgia,serif;fill:#2C2620}
+    .lb2{font-family:'IBM Plex Sans',sans-serif;fill:#6A6052}
+    .ik2{font-family:'IBM Plex Sans',sans-serif;fill:#2C2620}
+  </style>
+  <text x="44" y="52" class="lb2" font-size="12" letter-spacing="3">COORDINATION WITHOUT A MANAGEMENT LAYER</text>
+  <text x="44" y="86" class="hd2" font-size="28">Eight modules. One mental model. Nobody to arbitrate.</text>
+  <line x1="44" y1="104" x2="1136" y2="104" stroke="rgba(44,38,32,0.12)"/>
+
+  <!-- modules row -->
+  <g>
+    <rect x="64" y="132" width="196" height="58" rx="7" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="162" y="158" class="ik2" font-size="14" text-anchor="middle">Staffing</text>
+    <text x="162" y="177" class="lb2" font-size="10.5" text-anchor="middle">commitments, not tasks</text>
+
+    <rect x="284" y="132" width="196" height="58" rx="7" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="382" y="158" class="ik2" font-size="14" text-anchor="middle">Comp</text>
+    <text x="382" y="177" class="lb2" font-size="10.5" text-anchor="middle">salaries in the open</text>
+
+    <rect x="504" y="132" width="196" height="58" rx="7" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="602" y="158" class="ik2" font-size="14" text-anchor="middle">OKRs</text>
+    <text x="602" y="177" class="lb2" font-size="10.5" text-anchor="middle">goals visible to all</text>
+
+    <rect x="724" y="132" width="196" height="58" rx="7" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="822" y="158" class="ik2" font-size="14" text-anchor="middle">Onboarding</text>
+    <text x="822" y="177" class="lb2" font-size="10.5" text-anchor="middle">pull, don&#8217;t push</text>
+
+    <rect x="944" y="132" width="172" height="58" rx="7" fill="#EEE4CE" stroke="rgba(44,38,32,.16)" stroke-dasharray="4 3"/>
+    <text x="1030" y="164" class="lb2" font-size="12.5" text-anchor="middle">+ 4 more</text>
+  </g>
+
+  <!-- the shared model -->
+  <g stroke="#998D78" stroke-width="1.2" fill="none" opacity=".6">
+    <path d="M 162 190 V 218"/><path d="M 382 190 V 218"/><path d="M 602 190 V 218"/><path d="M 822 190 V 218"/><path d="M 1030 190 V 218"/>
+  </g>
+  <rect x="64" y="218" width="1052" height="52" rx="8" fill="#22201C"/>
+  <text x="590" y="242" fill="#EFE6D2" font-family="'IBM Plex Sans',sans-serif" font-size="14.5" text-anchor="middle">One object model</text>
+  <text x="590" y="260" fill="#B6A98D" font-family="'IBM Plex Sans',sans-serif" font-size="11.5" text-anchor="middle">every module speaks it &#8212; so the org rebuilds its own processes with nobody in the room to arbitrate</text>
+
+  <text x="64" y="308" class="lb2" font-size="12" font-style="italic">Designed for 200 people. 250 run on it today &#8212; the coordination model held past the size it was built for.</text>
+  <text x="64" y="330" class="lb2" font-size="12" font-style="italic">Zero managers is the company&#8217;s philosophy succeeding &#8212; what I own is the tooling that held when the philosophy met scale.</text>
+</svg>
+<figcaption>OrgOS T2 · the architecture: modules on one shared model</figcaption>
+</figure>
+<p class="verdict">Strongest at systems thinking. Quieter; the honesty line about ownership is carried inside the diagram.</p>
+
+<!-- ═══════════════════════ PTC ═══════════════════════ -->
+<h2 class="case">PTC — two attested stories, one treatment each</h2>
+
+<p class="lbl">PTC · The switch-off ladder</p>
+<p class="note">The migration as a sequence of decisions: one data model first, four sunsets each
+  landing softly, one research-named front door at the end. The product-strategy story.</p>
+<figure>
+<svg viewBox="0 0 1180 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: five platforms consolidate into one over 24 months. First one skill graph every platform maps onto, so merging is a data migration, not a turf war. Then four sunsets in sequence, each with its users landed before the portal goes dark. The survivor is named by research — customers called everything PTC University — with a homepage keyed to each company's licence. 150,000 active learners migrated.">
+  <rect width="1180" height="400" fill="#F4ECDA"/>
+  <rect x="16" y="16" width="1148" height="368" fill="none" stroke="rgba(44,38,32,0.12)"/>
+  <style>
+    .hd3{font-family:Georgia,serif;fill:#2C2620}
+    .lb3{font-family:'IBM Plex Sans',sans-serif;fill:#6A6052}
+    .ik3{font-family:'IBM Plex Sans',sans-serif;fill:#2C2620}
+    .em3{font-family:'IBM Plex Sans',sans-serif;fill:#C0512B}
+  </style>
+  <text x="44" y="52" class="lb3" font-size="12" letter-spacing="3">FIVE PLATFORMS &#8594; ONE &#183; 24 MONTHS &#183; 150K ACTIVE LEARNERS</text>
+  <text x="44" y="86" class="hd3" font-size="28">The switch-off ladder.</text>
+  <line x1="44" y1="104" x2="1136" y2="104" stroke="rgba(44,38,32,0.12)"/>
+
+  <!-- step 0: the data model -->
+  <rect x="44" y="130" width="270" height="76" rx="8" fill="#22201C"/>
+  <text x="66" y="158" fill="#EFE6D2" font-family="'IBM Plex Sans',sans-serif" font-size="14">First: one data model</text>
+  <text x="66" y="178" fill="#B6A98D" font-family="'IBM Plex Sans',sans-serif" font-size="11">one skill graph every platform mapped onto &#8212;</text>
+  <text x="66" y="194" fill="#B6A98D" font-family="'IBM Plex Sans',sans-serif" font-size="11">merging became a data migration, not a turf war</text>
+
+  <!-- the ladder: four sunsets -->
+  <g>
+    <rect x="360" y="130" width="168" height="48" rx="6" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="376" y="150" class="ik3" font-size="12.5">Sunset 1</text>
+    <text x="376" y="168" class="lb3" font-size="10">users landed, then dark</text>
+
+    <rect x="404" y="188" width="168" height="48" rx="6" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="420" y="208" class="ik3" font-size="12.5">Sunset 2</text>
+    <text x="420" y="226" class="lb3" font-size="10">users landed, then dark</text>
+
+    <rect x="448" y="246" width="168" height="48" rx="6" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="464" y="266" class="ik3" font-size="12.5">Sunset 3</text>
+    <text x="464" y="284" class="lb3" font-size="10">users landed, then dark</text>
+
+    <rect x="492" y="304" width="168" height="48" rx="6" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+    <text x="508" y="324" class="ik3" font-size="12.5">Sunset 4</text>
+    <text x="508" y="342" class="lb3" font-size="10">users landed, then dark</text>
+  </g>
+  <text x="360" y="378" class="em3" font-size="11.5" font-style="italic">each VP watched their users land softly before their portal went dark</text>
+
+  <!-- the survivor -->
+  <rect x="742" y="170" width="394" height="140" rx="9" fill="#F2F7F4" stroke="#2F5D52" stroke-width="1.5"/>
+  <text x="764" y="200" class="ik3" font-size="16" font-weight="600">One front door: &#8220;PTC University&#8221;</text>
+  <text x="764" y="224" class="lb3" font-size="12">named by research &#8212; usability testing kept showing</text>
+  <text x="764" y="242" class="lb3" font-size="12">customers didn&#8217;t use our product names at all</text>
+  <text x="764" y="268" class="lb3" font-size="12">homepage keyed to each company&#8217;s licence:</text>
+  <text x="764" y="286" class="lb3" font-size="12">you see what you bought, the rest behind &#8220;Explore&#8221;</text>
+
+  <g stroke="#998D78" stroke-width="1.5" fill="none">
+    <path d="M 314 168 H 354"/>
+    <path d="M 660 328 C 700 328 706 250 736 240"/>
+  </g>
+  <g fill="#998D78">
+    <path d="M 354 168 l -8 -4 v 8 z"/><path d="M 736 240 l -8 0 3 7 z"/>
+  </g>
+</svg>
+<figcaption>PTC · the switch-off ladder — data model first, four soft landings, one researched name</figcaption>
+</figure>
+<p class="verdict">The product-strategy story: sequencing, migration, and a naming decision that came from research.</p>
+
+<p class="lbl">PTC · The product-led funnel</p>
+<p class="note">The business-model story instead: how free content converted learners, moving new
+  bookings from 0% to 64% subscription in five quarters — with the ownership boundary drawn.</p>
+<figure>
+<svg viewBox="0 0 1180 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: at the start, 100% of revenue sat on perpetual licences. Free tutorials and trainings let learners experience the product; that experience converted them to premium subscriptions — moving subscription from 0% to 64% of new bookings in five quarters. Pricing and packaging stayed with PTC leadership; the funnel design was Arpit's.">
+  <rect width="1180" height="340" fill="#F4ECDA"/>
+  <rect x="16" y="16" width="1148" height="308" fill="none" stroke="rgba(44,38,32,0.12)"/>
+  <style>
+    .hd4{font-family:Georgia,serif;fill:#2C2620}
+    .lb4{font-family:'IBM Plex Sans',sans-serif;fill:#6A6052}
+    .ik4{font-family:'IBM Plex Sans',sans-serif;fill:#2C2620}
+  </style>
+  <text x="44" y="52" class="lb4" font-size="12" letter-spacing="3">THE DESIGN ARGUMENT THAT PAID THE BILLS</text>
+  <text x="44" y="86" class="hd4" font-size="28">The funnel was the product pitch.</text>
+  <line x1="44" y1="104" x2="1136" y2="104" stroke="rgba(44,38,32,0.12)"/>
+
+  <rect x="44" y="140" width="240" height="96" rx="8" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+  <text x="66" y="168" class="lb4" font-size="11" letter-spacing="2">THE START</text>
+  <text x="66" y="194" class="ik4" font-size="15">100% perpetual licences</text>
+  <text x="66" y="216" class="lb4" font-size="11.5">pay once, own forever &#8212; no recurring revenue</text>
+
+  <rect x="330" y="140" width="250" height="96" rx="8" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+  <text x="352" y="168" class="lb4" font-size="11" letter-spacing="2">THE HOOK</text>
+  <text x="352" y="194" class="ik4" font-size="15">Free tutorials &amp; trainings</text>
+  <text x="352" y="216" class="lb4" font-size="11.5">learning made visible and habitual</text>
+
+  <rect x="626" y="140" width="250" height="96" rx="8" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+  <text x="648" y="168" class="lb4" font-size="11" letter-spacing="2">THE CONVERSION</text>
+  <text x="648" y="194" class="ik4" font-size="15">Experience converts</text>
+  <text x="648" y="216" class="lb4" font-size="11.5">the funnel sells, not the sales pitch</text>
+
+  <rect x="922" y="140" width="214" height="96" rx="8" fill="#F2F7F4" stroke="#2F5D52" stroke-width="1.5"/>
+  <text x="944" y="168" class="lb4" font-size="11" letter-spacing="2">FIVE QUARTERS LATER</text>
+  <text x="944" y="198" class="ik4" font-size="20" font-weight="600">0% &#8594; 64%</text>
+  <text x="944" y="220" class="lb4" font-size="11.5">of new bookings on subscription</text>
+
+  <g stroke="#998D78" stroke-width="1.5" fill="none">
+    <path d="M 284 188 H 324"/><path d="M 580 188 H 620"/><path d="M 876 188 H 916"/>
+  </g>
+  <g fill="#998D78">
+    <path d="M 324 188 l -8 -4 v 8 z"/><path d="M 620 188 l -8 -4 v 8 z"/><path d="M 916 188 l -8 -4 v 8 z"/>
+  </g>
+
+  <text x="44" y="284" class="lb4" font-size="12" font-style="italic">Q3 2017 &#8594; Q3 2018 &#183; existing customers protected for 24 months &#183; the free-to-paid path was mine to design;</text>
+  <text x="44" y="304" class="lb4" font-size="12" font-style="italic">pricing and packaging stayed with PTC leadership.</text>
+</svg>
+<figcaption>PTC · the product-led funnel — 0% to 64% of new bookings in five quarters</figcaption>
+</figure>
+<p class="verdict">The business-model story: design as the engine of a revenue shift, boundary included.</p>
+
+<!-- ═══════════════════════ O2 ═══════════════════════ -->
+<h2 class="case">O2 — the replatforming</h2>
+
+<p class="lbl">O2 · Treatment 1 — one build, every screen they held</p>
+<p class="note">The hub: a legacy system rebuilt as one responsive build serving four surfaces. The
+  caution is stated, not staged — canon forbids inventing rollout mechanics.</p>
+<figure>
+<svg viewBox="0 0 1180 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: the legacy MyO2 system was rebuilt as one responsive build, serving iOS, Android, Windows Phone and desktop web from the same code — moved cautiously, with millions of subscribers aboard, in step with Telefónica's branding, marketing and copywriting teams.">
+  <rect width="1180" height="360" fill="#F4ECDA"/>
+  <rect x="16" y="16" width="1148" height="328" fill="none" stroke="rgba(44,38,32,0.12)"/>
+  <style>
+    .hd5{font-family:Georgia,serif;fill:#2C2620}
+    .lb5{font-family:'IBM Plex Sans',sans-serif;fill:#6A6052}
+    .ik5{font-family:'IBM Plex Sans',sans-serif;fill:#2C2620}
+  </style>
+  <text x="44" y="52" class="lb5" font-size="12" letter-spacing="3">MYO2 &#8212; A REPLATFORMING, NOT A FRESH START</text>
+  <text x="44" y="86" class="hd5" font-size="28">One legacy system. One responsive build. Every pocket it had to fit.</text>
+  <line x1="44" y1="104" x2="1136" y2="104" stroke="rgba(44,38,32,0.12)"/>
+
+  <rect x="44" y="150" width="230" height="90" rx="8" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+  <text x="66" y="180" class="lb5" font-size="11" letter-spacing="2">BEFORE</text>
+  <text x="66" y="206" class="ik5" font-size="15">The legacy system</text>
+  <text x="66" y="228" class="lb5" font-size="11.5">millions of subscribers living on it</text>
+
+  <rect x="360" y="150" width="270" height="90" rx="8" fill="#22201C"/>
+  <text x="382" y="180" fill="#EFE6D2" font-family="'IBM Plex Sans',sans-serif" font-size="15">One responsive build</text>
+  <text x="382" y="202" fill="#B6A98D" font-family="'IBM Plex Sans',sans-serif" font-size="11.5">the same code, every screen size &#8212;</text>
+  <text x="382" y="220" fill="#B6A98D" font-family="'IBM Plex Sans',sans-serif" font-size="11.5">co-designed; front-end all mine</text>
+
+  <path d="M 274 195 H 354" stroke="#998D78" stroke-width="1.5" fill="none"/>
+  <path d="M 354 195 l -8 -4 v 8 z" fill="#998D78"/>
+  <text x="314" y="172" class="lb5" font-size="10" font-style="italic" text-anchor="middle">rebuilt,</text>
+  <text x="314" y="184" class="lb5" font-size="10" font-style="italic" text-anchor="middle">cautiously</text>
+
+  <!-- four surfaces: ONE column — the 2x2 grid forced connector lines straight through
+       the left column's labels (caught on render, 2026-08-07) -->
+  <g>
+    <rect x="774" y="122" width="220" height="42" rx="6" fill="#F4ECDA" stroke="rgba(44,38,32,.16)"/>
+    <text x="884" y="148" class="ik5" font-size="13" text-anchor="middle">iOS</text>
+    <rect x="774" y="176" width="220" height="42" rx="6" fill="#F4ECDA" stroke="rgba(44,38,32,.16)"/>
+    <text x="884" y="202" class="ik5" font-size="13" text-anchor="middle">Android</text>
+    <rect x="774" y="230" width="220" height="42" rx="6" fill="#F4ECDA" stroke="rgba(44,38,32,.16)"/>
+    <text x="884" y="256" class="ik5" font-size="13" text-anchor="middle">Windows Phone</text>
+    <rect x="774" y="284" width="220" height="42" rx="6" fill="#F4ECDA" stroke="rgba(44,38,32,.16)"/>
+    <text x="884" y="310" class="ik5" font-size="13" text-anchor="middle">Desktop web</text>
+  </g>
+  <g stroke="#998D78" stroke-width="1.5" fill="none">
+    <path d="M 630 178 C 690 178 706 143 768 143"/>
+    <path d="M 630 192 C 690 192 706 197 768 197"/>
+    <path d="M 630 206 C 690 206 706 251 768 251"/>
+    <path d="M 630 220 C 690 220 706 305 768 305"/>
+  </g>
+  <g fill="#998D78">
+    <path d="M 768 143 l -8 -4 v 8 z"/><path d="M 768 197 l -8 -4 v 8 z"/>
+    <path d="M 768 251 l -8 -4 v 8 z"/><path d="M 768 305 l -8 -4 v 8 z"/>
+  </g>
+  <text x="1016" y="200" class="lb5" font-size="11" font-style="italic">the same code,</text>
+  <text x="1016" y="216" class="lb5" font-size="11" font-style="italic">four surfaces</text>
+  <text x="44" y="290" class="lb5" font-size="12" font-style="italic">Moved cautiously &#8212; you don&#8217;t switch a population&#8217;s billing screen overnight &#8212; in step with</text>
+  <text x="44" y="310" class="lb5" font-size="12" font-style="italic">Telef&#243;nica&#8217;s branding, marketing and copywriting teams, so every screen shipped speaking O2&#8217;s voice.</text>
+</svg>
+<figcaption>O2 T1 · the replatforming hub — one build, four surfaces</figcaption>
+</figure>
+<p class="verdict">The craft/engineering story, deliberately distinct from the AI thesis.</p>
+
+<p class="lbl">O2 · Treatment 2 — the same account, every screen width</p>
+<p class="note">Shows the outcome instead of the flow: four device outlines, one account screen,
+  one codebase line beneath. Quieter; closer to a craft exhibit than a system diagram.</p>
+<figure>
+<svg viewBox="0 0 1180 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: four device outlines of decreasing size — desktop web, iOS, Android, Windows Phone — each showing the same MyO2 account screen, standing on a single bar labelled one responsive build; the legacy system was rebuilt rather than replaced, with millions of subscribers aboard.">
+  <rect width="1180" height="340" fill="#F4ECDA"/>
+  <rect x="16" y="16" width="1148" height="308" fill="none" stroke="rgba(44,38,32,0.12)"/>
+  <style>
+    .hd6{font-family:Georgia,serif;fill:#2C2620}
+    .lb6{font-family:'IBM Plex Sans',sans-serif;fill:#6A6052}
+    .ik6{font-family:'IBM Plex Sans',sans-serif;fill:#2C2620}
+  </style>
+  <text x="44" y="52" class="lb6" font-size="12" letter-spacing="3">MYO2 &#8212; THE SAME ACCOUNT IN EVERY POCKET</text>
+  <text x="44" y="86" class="hd6" font-size="28">Four screens. One build.</text>
+  <line x1="44" y1="104" x2="1136" y2="104" stroke="rgba(44,38,32,0.12)"/>
+
+  <!-- devices: desktop, three phones -->
+  <g stroke="rgba(44,38,32,.35)" stroke-width="1.5" fill="#FFFFFF">
+    <rect x="80" y="136" width="300" height="120" rx="6"/>
+    <rect x="470" y="136" width="96" height="120" rx="10"/>
+    <rect x="640" y="136" width="96" height="120" rx="10"/>
+    <rect x="810" y="136" width="96" height="120" rx="10"/>
+  </g>
+  <!-- the same screen inside each: header bar + two rows -->
+  <g fill="#EEE4CE">
+    <rect x="92" y="148" width="276" height="18" rx="3"/><rect x="92" y="176" width="200" height="10" rx="2"/><rect x="92" y="194" width="240" height="10" rx="2"/>
+    <rect x="478" y="148" width="80" height="14" rx="3"/><rect x="478" y="172" width="60" height="8" rx="2"/><rect x="478" y="188" width="70" height="8" rx="2"/>
+    <rect x="648" y="148" width="80" height="14" rx="3"/><rect x="648" y="172" width="60" height="8" rx="2"/><rect x="648" y="188" width="70" height="8" rx="2"/>
+    <rect x="818" y="148" width="80" height="14" rx="3"/><rect x="818" y="172" width="60" height="8" rx="2"/><rect x="818" y="188" width="70" height="8" rx="2"/>
+  </g>
+  <g class="lb6">
+    <text x="230" y="278" class="lb6" font-size="12" text-anchor="middle">Desktop web</text>
+    <text x="518" y="278" class="lb6" font-size="12" text-anchor="middle">iOS</text>
+    <text x="688" y="278" class="lb6" font-size="12" text-anchor="middle">Android</text>
+    <text x="858" y="278" class="lb6" font-size="12" text-anchor="middle">Windows Phone</text>
+  </g>
+
+  <rect x="80" y="292" width="826" height="6" rx="3" fill="#22201C"/>
+  <text x="926" y="300" class="ik6" font-size="12.5">one responsive build</text>
+
+  <text x="978" y="180" class="lb6" font-size="12" font-style="italic">a legacy system</text>
+  <text x="978" y="198" class="lb6" font-size="12" font-style="italic">rebuilt, not replaced &#8212;</text>
+  <text x="978" y="216" class="lb6" font-size="12" font-style="italic">millions of subscribers</text>
+  <text x="978" y="234" class="lb6" font-size="12" font-style="italic">aboard throughout</text>
+</svg>
+<figcaption>O2 T2 · four screens, one build — the craft exhibit</figcaption>
+</figure>
+<p class="verdict">Simplest of all seven. Reads in two seconds; carries the least argument.</p>
+
+<!-- ═══════════════════════ VC ═══════════════════════ -->
+<h2 class="case">VC — one more: the sign-off flow</h2>
+
+<p class="lbl">VC · Partner sign-off — the friction is the product</p>
+<p class="note">Complements the shipped Evidence&rarr;signal&rarr;verdict figure: this one shows the
+  <em>last</em> step — sign-off stays locked until every signal&rsquo;s evidence has been opened.
+  Uses the anonymized signal IDs already live on the page.</p>
+<figure>
+<svg viewBox="0 0 1180 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: a partner verdict sits above three signals — A-14, B-02, C-09 — each with an evidence trail that must be opened; the sign-off control stays locked until all three trails have been read, because a verdict a partner clicks through is a verdict they will defend.">
+  <rect width="1180" height="360" fill="#F4ECDA"/>
+  <rect x="16" y="16" width="1148" height="328" fill="none" stroke="rgba(44,38,32,0.12)"/>
+  <style>
+    .hd7{font-family:Georgia,serif;fill:#2C2620}
+    .lb7{font-family:'IBM Plex Sans',sans-serif;fill:#6A6052}
+    .ik7{font-family:'IBM Plex Sans',sans-serif;fill:#2C2620}
+    .em7{font-family:'IBM Plex Sans',sans-serif;fill:#C0512B}
+    .ok7{font-family:'IBM Plex Sans',sans-serif;fill:#2F5D52}
+  </style>
+  <text x="44" y="52" class="lb7" font-size="12" letter-spacing="3">THE LAST STEP IS DELIBERATELY SLOW</text>
+  <text x="44" y="86" class="hd7" font-size="28">Sign-off stays locked until the evidence has been read.</text>
+  <line x1="44" y1="104" x2="1136" y2="104" stroke="rgba(44,38,32,0.12)"/>
+
+  <!-- verdict -->
+  <rect x="44" y="132" width="300" height="60" rx="8" fill="#EEE4CE" stroke="rgba(44,38,32,.16)"/>
+  <text x="66" y="158" class="ik7" font-size="15">Verdict: proceed, with conditions</text>
+  <text x="66" y="178" class="lb7" font-size="11.5">what the partner actually reads</text>
+
+  <!-- three signals with open-state -->
+  <g>
+    <rect x="404" y="126" width="360" height="52" rx="7" fill="#F4ECDA" stroke="rgba(44,38,32,.16)"/>
+    <text x="424" y="148" class="ik7" font-size="13.5">Signal A-14</text>
+    <text x="424" y="166" class="lb7" font-size="10.5">evidence trail &#8212; repo scan &#183; dependency manifest</text>
+    <text x="736" y="156" class="ok7" font-size="12" text-anchor="end">opened &#10003;</text>
+
+    <rect x="404" y="190" width="360" height="52" rx="7" fill="#F4ECDA" stroke="rgba(44,38,32,.16)"/>
+    <text x="424" y="212" class="ik7" font-size="13.5">Signal B-02</text>
+    <text x="424" y="230" class="lb7" font-size="10.5">evidence trail &#8212; design docs &#183; infra audit</text>
+    <text x="736" y="220" class="ok7" font-size="12" text-anchor="end">opened &#10003;</text>
+
+    <rect x="404" y="254" width="360" height="52" rx="7" fill="#FBF4E6" stroke="#C0512B" stroke-width="1.5"/>
+    <text x="424" y="276" class="ik7" font-size="13.5">Signal C-09</text>
+    <text x="424" y="294" class="lb7" font-size="10.5">evidence trail &#8212; commit history, 24 months</text>
+    <text x="736" y="284" class="em7" font-size="12" text-anchor="end">not yet opened</text>
+  </g>
+  <path d="M 344 162 C 374 162 380 152 398 152" stroke="#998D78" stroke-width="1.5" fill="none"/>
+  <path d="M 398 152 l -8 -3 v 7 z" fill="#998D78"/>
+
+  <!-- the lock -->
+  <rect x="824" y="190" width="312" height="116" rx="9" fill="#22201C"/>
+  <text x="846" y="222" fill="#EFE6D2" font-family="'IBM Plex Sans',sans-serif" font-size="15">Partner sign-off</text>
+  <text x="846" y="246" fill="#C0512B" font-family="'IBM Plex Sans',sans-serif" font-size="12.5">locked &#8212; 1 trail unread</text>
+  <text x="846" y="272" fill="#B6A98D" font-family="'IBM Plex Sans',sans-serif" font-size="11">a verdict a partner clicks through is a verdict</text>
+  <text x="846" y="288" fill="#B6A98D" font-family="'IBM Plex Sans',sans-serif" font-size="11">they&#8217;ll defend in the investment committee</text>
+  <g stroke="#998D78" stroke-width="1.2" fill="none" opacity=".6">
+    <path d="M 764 152 C 800 152 806 216 818 220"/>
+    <path d="M 764 216 C 794 216 800 232 818 238"/>
+    <path d="M 764 280 C 794 280 800 262 818 258" stroke-dasharray="4 3"/>
+  </g>
+
+  <text x="44" y="336" class="lb7" font-size="12" font-style="italic">The friction is the product &#8212; slowing the user down at exactly one moment is what let everything else go fast.</text>
+</svg>
+<figcaption>VC · the sign-off lock — deliberately slow at exactly one moment</figcaption>
+</figure>
+<p class="verdict">Pairs with the shipped confidence-gate figure: that one shows how signals earn their place; this one shows why the last click is hard.</p>
+
+</body>
+</html>
