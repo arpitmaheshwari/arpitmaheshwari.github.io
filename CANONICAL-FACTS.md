@@ -902,3 +902,26 @@ homepage receipt + card + proof chip, book x5, portfolio PDF title/TOC/body).
 - **Same day, ATTESTED:** Priority Moments used GEOLOCATION to show a list of offers in the
   nearby area — the mechanism behind retention and loyalty. (Narrated on the case's Priority
   card paragraph, 2026-08-06.)
+
+## 2026-08-07 — Method diagrams for OrgOS, PTC, O2, VC (shipped) + a PDF legibility finding
+
+Five diagrams shipped to the **case pages and the book's no-JS mirror**:
+`orgos-said-no` (the assign/approve/escalate refusal → visibility), `ptc-switch-off-ladder`,
+`ptc-funnel` (0% → 64%), `o2-replatforming` (one build, four surfaces), `vc-signoff`
+(sign-off locked until every evidence trail is opened). Every element attested; no rollout
+staging invented for O2, no governance mechanics invented for OrgOS, no VC taxonomy printed.
+
+**NOT in the portfolio PDF — measured, not assumed.** These diagrams are drawn on a 1180-unit
+viewBox for a full web column. On a 170mm A4 page their smallest labels render at **2.8–4.5pt**
+against a document minimum of 7.4pt: unreadable. The four case pages (08–11) also have only
+2–6mm of folio headroom, so a taller print redraw does not fit either. Adding them would have
+replaced readable prose with grey smudges.
+
+**Pre-existing defect, flagged not fixed (needs Arpit's ruling):** the already-shipped PDF
+figures have the same problem — `adtech-plan-not-pick` renders at **1.8pt**, `fintech-gate` at
+**3.1pt**. They were approved before this was measured. Options: redraw at print scale
+(~600-unit viewBox, roughly half as wide and twice as tall), or remove them from the PDF.
+
+**RULE (new):** a diagram bound for the PDF must be measured in **points at its rendered page
+width** before it ships, not merely checked for folio clearance. Clearing the folio band and
+being legible are two different gates.
