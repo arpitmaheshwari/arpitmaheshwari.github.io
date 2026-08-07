@@ -927,3 +927,32 @@ removed — a print figure carries its own headline, so the caption was a double
 **RULE (new):** a diagram bound for the PDF must be measured in **points at its rendered page
 width** before it ships, not merely checked for folio clearance. Clearing the folio band and
 being legible are two different gates.
+
+## 2026-08-08 — Positioning + bounded claims (ChatGPT review #4, Arpit ruled on all four)
+
+**Role positioning (SUPERSEDES "Founding / Staff / Director" as equal targets).** Canonical line:
+**"Staff / Principal or founding product-design lead — open to hands-on Director roles."**
+Rationale accepted from review: the evidence supports Staff/Principal and founding strongly;
+Director-scale people-management evidence (managing managers, budget, org design) is not on the
+record, so Director is stated as secondary and hands-on. Applies to: Classic contact, Book cover,
+Book status list, Book contact prose, portfolio PDF contact.
+
+**Bounded claims (all four reworded, Arpit's explicit pick "All four, everywhere"):**
+1. "Every one of them runs the same four beats" → the four beats are the lens for the AI cases;
+   the earlier work (PTC, O2) shows the range that led there. Never reprint the universal form.
+2. "The contract behind every screen I ship" → "the contract I write when a capability needs
+   an explicit boundary." The absolute was indefensible across 15 years of screens.
+3. Act/Review/Ignore universality ("every confidence surface … exactly one of three verbs") →
+   observed grammar, not law: outputs should resolve to an explicit next state; in shipped work
+   three verbs covered the production cases.
+4. "Three things I'll refuse" → "Three risks I won't let a team discover in production."
+   List items unchanged (each is evidence-backed); only the combative frame goes.
+
+**Review fact-check (recorded so nobody re-litigates):** review #4 quoted two claims that do NOT
+exist on the shipped site — "80+ countries" (site says 20+ everywhere; the review's own fix would
+have RE-PRINTED the banned figure) and "every screen drawn by me" (site says co-designed
+everywhere). It also asked for system-evidence diagrams that shipped this week. Reviewer was
+reading a stale copy; always fact-check a pasted review against the live files before executing.
+
+**Open (Arpit said yes, pending input/options):** two-door hero (render options first);
+"what I got wrong" rows on 2-3 more cases (misses must come from Arpit, never invented).
