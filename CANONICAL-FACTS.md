@@ -917,10 +917,12 @@ against a document minimum of 7.4pt: unreadable. The four case pages (08–11) a
 2–6mm of folio headroom, so a taller print redraw does not fit either. Adding them would have
 replaced readable prose with grey smudges.
 
-**Pre-existing defect, flagged not fixed (needs Arpit's ruling):** the already-shipped PDF
-figures have the same problem — `adtech-plan-not-pick` renders at **1.8pt**, `fintech-gate` at
-**3.1pt**. They were approved before this was measured. Options: redraw at print scale
-(~600-unit viewBox, roughly half as wide and twice as tall), or remove them from the PDF.
+**RESOLVED same day — both PDF figures redrawn for print.** `fintech-gate-print.svg` (600x134)
+and `adtech-plan-not-pick-print.svg` (600x98) replace the web drawings in the PDF only; the web
+originals stay on the case pages and in the book, where they are read at full column width.
+Measured after the swap: smallest label **8.0pt** (was 1.8 and 3.1), both figures at the full
+170mm column, both pages at 6.4mm folio clearance. The duplicated captions beneath them were
+removed — a print figure carries its own headline, so the caption was a double ending.
 
 **RULE (new):** a diagram bound for the PDF must be measured in **points at its rendered page
 width** before it ships, not merely checked for folio clearance. Clearing the folio band and
