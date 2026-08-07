@@ -79,6 +79,11 @@
 #bk-fulltext .nsb-standfirst{font-size:18px;font-style:italic;color:#3a342c}
 #bk-fulltext .nsb-lbl{text-transform:uppercase;letter-spacing:.1em;color:#97391A;font-weight:bold;margin:16px 0 4px;font-size:11px}
 #bk-fulltext .nsb-principle{font-style:italic;color:#2F5D52;font-size:16px;margin:0 0 8px}
+/* method diagrams (2026-08-07) — a class, not six copies of the same inline style;
+   the duplicate-signature gate flagged 6x LAYOUT + 6x TYPE and refused to self-calibrate. */
+#bk-fulltext .nsb-fig{margin:24px 0}
+#bk-fulltext .nsb-fig img{border:1px solid rgba(44,38,32,.16);border-radius:4px;width:100%;height:auto;display:block}
+#bk-fulltext .nsb-fig figcaption{font-size:13px;color:#6b6253;margin-top:8px}
 #bk-fulltext .nsb-inst{font-size:14px;color:#5c5346;border-left:2px solid #CE9230;padding-left:12px}
 #bk-fulltext dl.nsb-meta{display:grid;grid-template-columns:auto 1fr;gap:2px 16px;font-size:13px;margin:12px 0;color:#5c5346}
 #bk-fulltext dl.nsb-meta dt{font-weight:bold;text-transform:uppercase;letter-spacing:.06em;font-size:11px;margin:0}
@@ -201,17 +206,17 @@
 </dl>
 <p>The model worked — that was never the problem. PE analysts are paid to doubt confident numbers, and a score they couldn&#x27;t cross-examine wasn&#x27;t a tool; it was a liability they treated like one. So I held the release until it could defend its own scores — without that trust the tool was dead on arrival, however good the model.</p>
 <p>One analysis, two reading modes: a written descriptive report — the scores argued in prose — beside the conversation that interrogates it, over a pipeline-wide scoring dashboard. Analysts read differently; the design refused to pick a temperament for them.</p>
-<figure style="margin:24px 0">
-<img src="../assets/visuals/fintech-gate.svg?v=1" alt="Diagram: two launch conditions — every generated number carries its source, and thin evidence draws an abstention — each with the failure it prevents, gating the release." style="width:100%;height:auto;border:1px solid rgba(44,38,32,.16);border-radius:4px">
-<figcaption style="font-size:13px;color:#6b6253;margin-top:8px">The two conditions I would not ship without &mdash; and the failure each one bought off.</figcaption>
+<figure class="nsb-fig">
+<img src="../assets/visuals/fintech-gate.svg?v=1" alt="Diagram: two launch conditions — every generated number carries its source, and thin evidence draws an abstention — each with the failure it prevents, gating the release.">
+<figcaption>The two conditions I would not ship without &mdash; and the failure each one bought off.</figcaption>
 </figure>
-<figure style="margin:24px 0">
-<img src="../assets/visuals/fintech-pipeline.svg?v=1" alt="Diagram: a document enters from the inbox, claims are matched to sources, risk is scored, then a gate decides — thin evidence abstains, grounded evidence emits a score with its sources; the analyst reads it and any override is logged back to train the next read." style="width:100%;height:auto;border:1px solid rgba(44,38,32,.16);border-radius:4px">
-<figcaption style="font-size:13px;color:#6b6253;margin-top:8px">The path a document takes &mdash; and the branch where the system declines to answer.</figcaption>
+<figure class="nsb-fig">
+<img src="../assets/visuals/fintech-pipeline.svg?v=1" alt="Diagram: a document enters from the inbox, claims are matched to sources, risk is scored, then a gate decides — thin evidence abstains, grounded evidence emits a score with its sources; the analyst reads it and any override is logged back to train the next read.">
+<figcaption>The path a document takes &mdash; and the branch where the system declines to answer.</figcaption>
 </figure>
-<figure style="margin:24px 0">
-<img src="../assets/visuals/fintech-two-readers.svg?v=1" alt="Diagram: one analysis rendered two ways — a written report and a conversation — both over a pipeline-wide scoring dashboard, sharing the same evidence." style="width:100%;height:auto;border:1px solid rgba(44,38,32,.16);border-radius:4px">
-<figcaption style="font-size:13px;color:#6b6253;margin-top:8px">One analysis, two readings &mdash; over the dashboard both readers return to.</figcaption>
+<figure class="nsb-fig">
+<img src="../assets/visuals/fintech-two-readers.svg?v=1" alt="Diagram: one analysis rendered two ways — a written report and a conversation — both over a pipeline-wide scoring dashboard, sharing the same evidence.">
+<figcaption>One analysis, two readings &mdash; over the dashboard both readers return to.</figcaption>
 </figure>
 <h4>Explain before the verdict</h4>
 <p>An “explain this score” surface let an analyst pull any rating apart into its signals, challenge the weighting, and watch the score answer back. The three sources sat next to the number, not buried behind it.</p>
@@ -237,6 +242,18 @@
 <p>The engine outperformed the buyers, visibly, and adoption sat near zero. Its raw output was a list of billboards, handed down without arguments. A bare list asks for faith; traders deal in collateral, so they ignored it.</p>
 <h4>A plan, not a pick</h4>
 <p>The screen turned the model&#x27;s raw list into a full campaign plan a trader could defend — never a bare list, never a bare number.</p>
+<figure class="nsb-fig">
+<img src="../assets/visuals/adtech-plan-not-pick.svg?v=1" alt="Diagram: the engine produced a ranked list of billboards; the screen turned it into a full campaign plan with KPIs and reasoning attached, customisable in one click, with every edit logged into the next round.">
+<figcaption>The model didn&rsquo;t change &mdash; what it handed the trader did.</figcaption>
+</figure>
+<figure class="nsb-fig">
+<img src="../assets/visuals/adtech-brief-reframe.svg?v=1" alt="Diagram: the old brief named a place; once the plans were believed the brief could name an audience and a moment, and the system chose the sites.">
+<figcaption>What adoption unlocked &mdash; a brief that names an audience, not an address.</figcaption>
+</figure>
+<figure class="nsb-fig">
+<img src="../assets/visuals/adtech-two-sided.svg?v=1" alt="Diagram: five connected systems forming a two-sided marketplace, with the audience-intelligence platform between demand and supply.">
+<figcaption>Five systems, one connected platform &mdash; demand on one side, supply on the other.</figcaption>
+</figure>
 <h4>KPIs on the plan itself</h4>
 <p>Reach, estimated ROI, price trend — the case for the plan sat on the plan, checkable before anyone committed budget.</p>
 <h4>Customization that teaches</h4>
@@ -459,6 +476,6 @@
 <script defer src="./vendor/react.production.min.js"></script>
 <script defer src="./vendor/react-dom.production.min.js"></script>
 <script src="monograph-icons.js" defer></script>
-<script src="portfolio.js?v=127" defer></script>
+<script src="portfolio.js?v=129" defer></script>
 </body>
 </html>

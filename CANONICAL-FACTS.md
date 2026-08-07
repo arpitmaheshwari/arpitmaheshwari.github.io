@@ -708,6 +708,26 @@ Both were built from an external review's suggestions and both were cut by Arpit
 The underlying review notes are logged, but these two executions are settled — reopening them
 needs new evidence, not another reviewer repeating the suggestion.
 
+### AdTech method diagrams shipped, 2026-08-07
+Same treatment as FinTech, from attested mechanics only (plans-with-KPIs, one-click customize,
+every edit logged, the five systems, the brief reframe). No client name, no scores anywhere.
+- `assets/visuals/adtech-plan-not-pick.svg` — what the engine produced vs what the trader
+  received, with the override loop. Footer states plainly: no confidence score ever reached a
+  trader. ON: case page (under the-move), book mirror, portfolio PDF page 4 (45% width).
+- `assets/visuals/adtech-two-sided.svg` — the five systems as a two-sided marketplace with
+  audience intelligence between them. ON: case page (under the-platform), book mirror.
+- `assets/visuals/adtech-brief-reframe.svg` — "a billboard on Oxford Street" becoming "reach
+  party-lovers on Friday nights". ON: case page (at that paragraph), book mirror.
+**Three traps hit, all measured not guessed:**
+1. PDF page 4 is text-dense — at 74% the diagram overran the folio by a measured 11.9mm.
+   Sized to 45% for 4.8mm clearance. FinTech's went 74% → 68% for the same reason.
+2. A folio sweep across all 13 pages then found a PRE-EXISTING violation: the PTC plate
+   (resized 2026-08-06) put its caption 3.9mm into the folio band. Plate 45% → 41%.
+   All 13 pages now measure zero content in any folio band.
+3. Six copies of the same inline figure style in the book mirror tripped the duplicate-signature
+   gate, which correctly REFUSED to self-calibrate ("a check that cannot fail is not evidence").
+   Extracted to `.nsb-fig`. The gate was right; the fix was the one it was built to force.
+
 ### FinTech method diagrams shipped, 2026-08-07 (Arpit picked all three)
 The reviewers' one high-value, NDA-safe ask: show the AI depth as diagrams, not prose. Three
 built from ATTESTED mechanics only — cited source per number, honest abstention, logged
