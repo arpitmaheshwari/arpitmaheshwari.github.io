@@ -962,3 +962,23 @@ prototypes/hero-option-{a,b}.html as archived rejected directions — do not shi
 
 **Open (Arpit said yes, pending his input):** "what I got wrong" rows on 2-3 more cases —
 the misses MUST come from Arpit, never invented.
+
+## 2026-08-08 — Homepage scan-layer options (Krishanth/Zalzberg reference review) — Arpit's ruling: none shipped
+
+Reviewed two external portfolios on Arpit's request: sreekrishanth.in (fast-scan maker portfolio —
+face at scale, glanceable case index, no business outcomes — praised for pacing, discounted for
+having zero verifiable evidence) and shirzalzberg.com (strong third-party institutional proof —
+Forbes 30u30, talks, press — praised for warmth and external validation, discounted for illegible
+type and no scoped outcomes).
+
+Three options were rendered from the live homepage and archived as reference, per Arpit's explicit
+instruction — **NONE shipped, all three held as future reference only:**
+- `prototypes/scan-option-1-face.html` — 56px avatar chip → 150x190 grayscale portrait
+- `prototypes/scan-option-2-index.html` — six case cards → six scannable index rows (name + metric,
+  paragraphs dropped to the case pages)
+- `prototypes/scan-option-3-human.html` — S1's portrait + Anant East's letter pulled up to a
+  centered pull-quote right after the receipts, plus an "Elsewhere" line (Substack/LinkedIn/Lab)
+
+**RULE:** these three files are archived prototypes, allowlisted like every other rejected
+direction in prototypes/ — do not resurrect or ship without a fresh explicit instruction, and do
+not let canon-lint or case-sync flag them as drift.
