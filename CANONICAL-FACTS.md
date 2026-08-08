@@ -1120,3 +1120,31 @@ a single-column flow (text, then diagram as a full-width supporting figure). Ver
 One off-grid value caught by the style gate on ship (gap:28px, a leftover from the prototype
 sketch) — snapped to 24px, matching canon's "prototype CSS is a sketch" rule from the S2 shipment
 earlier today. No mobile regression at 390px (no horizontal overflow).
+
+## 2026-08-08 — case-index row misalignment (Arpit caught it, my QA missed it)
+
+**The defect:** `.ai-case{align-items:baseline}` on the S2 case-index rows (shipped earlier today).
+The left rail (`.ai-case-head`) stacks TWO lines (industry + metric); the title and
+walk-through link are each ONE line. `align-items:baseline` aligns flex items by the baseline of
+their first line — so ADTECH/title/WALK-THROUGH all snapped to one shared line, and the metric
+("2 wks -> 3 hrs") hung disconnected below it with no consistent relationship to the row's other
+elements. Visually: title reads top-heavy, metric looks orphaned, and the effect is invisible at
+1440 (where I screenshotted after shipping) but obvious at ~1024px and other widths — I never
+tested a range, I tested one width and one static look.
+
+**Why my QA missed it:** I verified row geometry (breakpoint flip, top/bottom bounds) and looked
+at ONE rendered screenshot at 1440px. I never measured whether the inner elements of a row were
+aligned to EACH OTHER, and never checked a width between the two breakpoints I did test (1440,
+390). A layout can pass every geometry check I ran and still look wrong to a human eye — this is
+exactly why Arpit's rule says look at the rendered result, not just verify measurements match
+expectations.
+
+**Fix:** `align-items:baseline` -> `align-items:center` on `.ai-case`. Verified: headCenter -
+titleCenter = 0px and walkCenter - titleCenter = 0px on EVERY one of the 6 rows, measured via
+DOM geometry, not eyeballed. Confirmed clean at 1440, ~1024, and mobile (stacked layout, untouched
+separate rule, unaffected).
+
+**RULE (new): a row/card layout must be checked at a WIDTH BETWEEN tested breakpoints, not just
+at the breakpoints themselves** — and multi-line flex children next to single-line siblings must
+use `align-items:center`, never `baseline`, unless the design specifically wants text baselines
+to match (rare, and should be a deliberate choice, not the default).
