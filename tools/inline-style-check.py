@@ -47,7 +47,12 @@ def off_scale_spacing(root):
     # and get their own 0.5mm grid (see below).
     pats = ['*.html','*/index.html','case-studies/*.html','patterns/*.html','lab/*.html',
             'styles.css','book/book.css','book/index.html']
-    files = sorted({p for pat in pats for p in glob.glob(os.path.join(root, pat))})
+    # contrast-audit.py writes its canary page to a temp file INSIDE the docroot (it must be
+    # same-origin to be instrumentable), named __ca_*.html. Running the two gates concurrently
+    # made this gate read the OTHER gate's scratch file and report a phantom 6px off-grid
+    # value — a failure in code that does not exist. Measured 2026-08-08, not assumed.
+    files = sorted({p for pat in pats for p in glob.glob(os.path.join(root, pat))
+                    if not os.path.basename(p).startswith('__ca_')})
     bad = collections.Counter(); where = collections.defaultdict(set)
     for f in files:
         s = open(f, encoding='utf-8').read()

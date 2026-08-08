@@ -1340,7 +1340,7 @@ function buildBook(ctx) {
       "aria-label": "Open the book \u2014 tap or press space"
     }, /*#__PURE__*/React.createElement("span", {
       className: "dot"
-    }), " Open \u2014 6 AI case studies inside \u2192"), /*#__PURE__*/React.createElement("span", {
+    }), " Open \u2014 6 case studies inside \u2192"), /*#__PURE__*/React.createElement("span", {
       className: "bk-cover__openhint",
       style: {
         display: "block",

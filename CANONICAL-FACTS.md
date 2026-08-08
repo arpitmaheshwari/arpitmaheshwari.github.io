@@ -982,3 +982,35 @@ instruction — **NONE shipped, all three held as future reference only:**
 **RULE:** these three files are archived prototypes, allowlisted like every other rejected
 direction in prototypes/ — do not resurrect or ship without a fresh explicit instruction, and do
 not let canon-lint or case-sync flag them as drift.
+
+## 2026-08-08 — Production-readiness QA sweep (website + book + both documents)
+
+**Bounded-claim propagation was INCOMPLETE.** The 2026-08-08 bounding pass fixed the homepage,
+book, /hire and patterns/index.html but MISSED four surfaces carrying the same universal claim:
+- `patterns/act-review-ignore.html` — the rule's OWN page, in 6 places (meta description, twitter
+  card, JSON-LD, lead paragraph, and two body sentences). Same failure class as the 2026-08-05
+  pattern-library miss: the audit named `index.html`, not `*.html`.
+- `portfolio-sources/resume.html` — "every model score and agent action resolves to one verb"
+- `portfolio-sources/portfolio.html` — "every score resolves to Act, Review, or Ignore" and
+  "every score lands on exactly one verb"
+All bounded. **RULE: a claim-bounding pass must end with a WRAP-TOLERANT regex sweep across every
+surface INCLUDING both documents — an exact-phrase grep misses line-wrapped and letter-spaced text.**
+
+**Book cover contradicted the bounded narrative.** `book/portfolio.js` said "6 AI case studies
+inside" while the site now states only the first three are AI. Corrected to "6 case studies";
+portfolio.js bumped to v=131.
+
+**Gate interference bug found and fixed.** `contrast-audit.py` writes its canary to a temp file
+INSIDE the docroot (`__ca_*.html`, required for same-origin instrumentation).
+`inline-style-check.py` was scanning it and reporting a phantom 6px off-grid failure in code that
+does not exist. Fixed by excluding `__ca_*` from the style gate's file list, then calibrated:
+temp file present -> clean; real planted 7px -> RED; restored -> clean.
+
+**Verified this pass:** all 5 static gates green (each self-calibrated); portfolio PDF 13pp and
+resume 2pp unchanged; Type 3 = 1 (the documented ghost numeral) and 0 respectively; both print
+diagrams legible at 150dpi in the real PDF; contrast 0 failures across 1,171 text nodes at
+1440/1024/768; no banned token in either document's text layer.
+
+**KNOWN OPEN (not a defect, needs Arpit's ruling):** the homepage case cards still show the
+score-doubt-action-impact tracker on PTC, O2 and OrgOS, while the section prose now says those
+cases "are read on their own terms". Prose and card labels disagree.
