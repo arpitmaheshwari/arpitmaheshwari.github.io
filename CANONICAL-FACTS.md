@@ -1014,3 +1014,29 @@ diagrams legible at 150dpi in the real PDF; contrast 0 failures across 1,171 tex
 **KNOWN OPEN (not a defect, needs Arpit's ruling):** the homepage case cards still show the
 score-doubt-action-impact tracker on PTC, O2 and OrgOS, while the section prose now says those
 cases "are read on their own terms". Prose and card labels disagree.
+
+## 2026-08-08 — Case-study section relaid out as the S2 index (Arpit's pick)
+
+`prototypes/scan-option-2-index.html` (S2, the Krishanth-derived scan layer, previously archived
+as "reviewed, none shipped") was **recalled and SHIPPED** to the homepage case section.
+
+Six cards -> six scannable rows. Left rail carries BOTH identifiers, stacked: **industry**
+(`.ai-case-kick`) above the **metric** (`.ai-case-num`) — Arpit asked explicitly for the industry
+to be kept. Case name in display type at clamp(26px,3vw,42px), walk-through right. Row direction
+flips to column at <=860px, where industry and metric sit on one line.
+
+**The per-card prose and the beat tracker are now hidden** (`.ai-case>p,.ai-case .beats,
+.ai-case .beat-lbl{display:none}`) — the paragraphs live on the case pages, where they always
+read better. **This also RESOLVES the open contradiction logged in the 2026-08-08 QA sweep:**
+the section prose said PTC and O2 "are read on their own terms" while their cards still carried
+the score-doubt-action-impact tracker. No card carries it now.
+
+**Two things the layout change broke, caught on render and fixed:**
+1. The section eyebrow read "How to read the six cases below" and the aria-label described the
+   beat notation — a reading key for a notation the index no longer displays. Reframed to
+   "The method behind the AI cases"; the four-beats statement and its flow diagram still stand.
+2. The prototype CSS was never grid-snapped (it was a quick overlay): 30/6/10/22/14px all failed
+   the spacing gate. Snapped to 32/8/12/24/16px. **RULE: a prototype's CSS is a sketch — snap it
+   to the design grid before it ships, and expect the style gate to catch it if you don't.**
+
+Rules were REWRITTEN in place, not layered as `!important` overrides. styles.css -> v=p63.
