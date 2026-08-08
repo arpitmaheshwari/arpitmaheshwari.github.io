@@ -1148,3 +1148,34 @@ separate rule, unaffected).
 at the breakpoints themselves** — and multi-line flex children next to single-line siblings must
 use `align-items:center`, never `baseline`, unless the design specifically wants text baselines
 to match (rare, and should be a deliberate choice, not the default).
+
+## 2026-08-08 — sitewide re-audit for the align-items:baseline failure class (Arpit's directive)
+
+Global rule added to ~/.claude/CLAUDE.md (rule 7, EXECUTION LESSONS): test layouts at a mid-range
+width, not just the declared breakpoints, and check INNER-element alignment inside a row, not just
+its outer bounds. Then re-audited the whole site for the exact failure mode that caused the
+case-index bug (align-items:baseline breaking when one flex child is multi-line and its siblings
+are single-line).
+
+**Method:** grepped every `align-items:baseline` occurrence sitewide (16 hits across index.html,
+styles.css, 404.html, and 4 case-study inline styles), classified each by its actual child
+structure, then rendered+measured the ones with real wrap risk.
+
+**Findings:**
+- `.rcpt-r` / `.rcpt-r-tight` / `.rcpt-r-last` / `.rcpt-r-tight-last` (styles.css, used identically
+  on all 6 case pages) — a 2-item label:value row, not 3-way mixed. Rendered at 1440/1024/900/768:
+  clean at every width, including where the value wraps to 2-3 lines. This is the correct,
+  idiomatic behavior for a definition-list-style row (label aligns to the value's first line) —
+  NOT the same failure mode as the case-index bug. No fix needed.
+- `.case-vitals` (all 6 case pages, the Role/Span/Confidentiality credits block) — dt/dd stack
+  vertically inside each column; no cross-element baseline dependency at all. Safe by construction.
+- `.lug-head` (404.html), `.plA-head`/`.plM-mlabel`/`.plP-winb`/`.plF-score` (the four case-page
+  mockup plates) — all pair short, fixed, single-line strings authored as compact UI replicas.
+  No wrap risk regardless of viewport width.
+- `.hd-top` and `.range-strip` (index.html) — **DEAD CSS**, not referenced by any element in the
+  current markup. Almost certainly orphaned when the S2 case-index shipment replaced the old case
+  cards. Flagged, not removed (out of scope for this pass — a cleanup task, not an alignment bug).
+
+**Conclusion: the case-index row was the only live instance of this failure class on the site.**
+Already fixed (align-items:center, 0px delta verified on all 6 rows). No further fixes from this
+pass.
