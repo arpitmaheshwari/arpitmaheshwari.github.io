@@ -1111,3 +1111,12 @@ rendering, not just eyeballed:**
 **Only B actually satisfies the Layout Rule.** Not shipped — awaiting Arpit's pick, but the
 evidence is unambiguous: recomposition beat both "add a filler element" attempts, consistent with
 the rule's own instruction to recompose the grid rather than insert-and-hope.
+
+## 2026-08-08 — errata-panel Option B shipped
+
+Stacked recomposition applied to index.html live: the two-column (text | diagram) layout became
+a single-column flow (text, then diagram as a full-width supporting figure). Verified: void
+415px -> 33px (measured via DOM geometry, matching the prototype's own measurement exactly).
+One off-grid value caught by the style gate on ship (gap:28px, a leftover from the prototype
+sketch) — snapped to 24px, matching canon's "prototype CSS is a sketch" rule from the S2 shipment
+earlier today. No mobile regression at 390px (no horizontal overflow).
