@@ -1040,3 +1040,74 @@ the score-doubt-action-impact tracker. No card carries it now.
    to the design grid before it ships, and expect the style gate to catch it if you don't.**
 
 Rules were REWRITTEN in place, not layered as `!important` overrides. styles.css -> v=p63.
+
+## 2026-08-08 — full 40-page QA sweep (6 dimensions, 3 breakpoints, 6 parallel audits)
+
+Dispatched 6 parallel read-only audits (core/case-studies/book/patterns/lab/resources+writing),
+each rendering real Chrome screenshots at 1440/768/375 and DOM-probing interactions rather than
+guessing from source. Cross-checked every finding before acting — two were false positives from
+the auditors' own instruments (headless Chrome clamps <500px viewports; one agent's stale
+line-citation claimed already-fixed copy was still broken) and were discarded.
+
+**Fixed (objective, mechanical):**
+- `patterns/provenance-citations.html` — 2 more unbounded "every score" claims in the VC/FinTech
+  "See This Pattern In Action" callout, missed by the earlier bounding sweep. Same failure class
+  as the 2026-08-08 QA sweep already logged above — canon's "wrap-tolerant sweep" rule evidently
+  still isn't being applied to EVERY surface on the first pass.
+- `index.html` — one surviving absolute claim: "Eval design before interface design, always."
+  → "always" removed.
+- `styles.css?v=` — was p63 on index.html but still p62 on hire/, now/, process/, screen/index.html
+  (missed when the case-index CSS shipped). Synced to p63 across all five.
+
+**Resolved — the orphaned glossary (Arpit's question, not an auditor finding):**
+`resources/intelligent-systems-glossary.html` was live, sitemap'd, and content-complete, but
+linked from NOWHERE on the site — not resources/index.html, not any nav. Zero internal links is
+a real SEO anti-pattern (Google can crawl it via the sitemap but assigns it no topical/importance
+signal, and human visitors who land on it from search have no path further into the site).
+Fixed both ends: added it as a third card on resources/index.html, AND added inline contextual
+links from the three essays that use its jargon — writing/explainability.html → #ml-explainability,
+writing/confidence-scoring.html → #confidence-layer, writing/failure-states.html →
+#distribution-shift. Added `id`+`scroll-margin-top` to those 3 `<dt>` terms for the anchors to land
+correctly under the fixed nav.
+
+**Flagged, NOT auto-fixed (judgment calls, need Arpit's eye):**
+- `case-studies/orgos.html` — the only one of six cases without a boxed `rcpt-box` outcome table;
+  it has ownership disclosure (`rcpt-r-tight`) but not the multi-row receipt the other five use.
+  May be a legitimate difference (a single NDA product with 3 clean numbers vs. multi-product
+  cases with many sub-claims) — not obviously a defect.
+- `case-studies/o2.html` — "every screen [co-designed/coded]" appears 3x in reader-facing prose
+  (hero, body, closing), beyond the structural ownership/outcome tables. Could be read as
+  intentional thesis emphasis (this case's entire pitch IS that claim) rather than padding.
+- `index.html` errata/accessibility-miss panel — MEASURED via DOM geometry: the figure column
+  ends 415px above the panel's bottom edge while the text column fills to within 33px of it.
+  A real unstructured void per Arpit's own Layout Rule, but recomposing it (taller figure? added
+  element? different alignment?) is a design call, not a mechanical fix.
+- `book/index.html` interactive edition — possible content clipping on the "Selected Work" spread
+  (last line under the page-indicator bar) — needs a manual look, auditor flagged automation-click
+  unreliability as a confound on this same page so treat both with caution until manually verified.
+- Positioning-line wording drifts in 3 phrasings across the book's two views + cover ("bet" vs
+  "believe" a machine; extra clauses in the no-JS contact section) — not a factual contradiction,
+  just unsynced wording.
+
+**RULE (reinforced, not new):** even a completed page is worthless if nothing links to it —
+after adding ANY new page, grep the whole site for its filename before considering it shipped.
+
+## 2026-08-08 — errata-panel options rendered; book wording drift resolved
+
+**Book wording ("bet" vs "believe") — SHIPPED, not a design choice.** "Bet" was already canonical
+in 3 places (interactive cover, og:image:alt, twitter:image:alt); "believe" was a lone drift in
+the no-JS mirror's own `<h1>` subhead. Fixed to match. No option render needed once the count was
+checked — it wasn't a real two-way choice.
+
+**Errata-panel void (415px measured 2026-08-08) — three options rendered, MEASURED after
+rendering, not just eyeballed:**
+- `prototypes/errata-option-a-stat.html` — adds a 2-stat companion (~10 blind users · 1 wk) under
+  the figure. Measured: still ~230px of void below the stats. Does not solve it.
+- `prototypes/errata-option-b-stacked.html` — recomposes text-then-diagram vertically instead of
+  side-by-side; diagram becomes a supporting figure under the full-width prose, not a competing
+  column. Measured: void eliminated completely.
+- `prototypes/errata-option-c-diagram.html` — adds a third "THE REWRITE" state to the diagram,
+  taller viewBox. Measured: still ~200px void. Does not solve it.
+**Only B actually satisfies the Layout Rule.** Not shipped — awaiting Arpit's pick, but the
+evidence is unambiguous: recomposition beat both "add a filler element" attempts, consistent with
+the rule's own instruction to recompose the grid rather than insert-and-hope.
