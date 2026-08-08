@@ -99,17 +99,17 @@ const WRITING = [{
   h: "The AI Fight Club",
   p: "Weaponizing Claude and Gemini for Bulletproof Products. A practical method for stress-testing AI interfaces."
 }, {
-  d: "2025 · Talk",
-  h: "Designing for the eval, not the mock",
-  p: "What changes when designers own what gets measured."
+  d: "2026 · Essay",
+  h: "The New Renaissance",
+  p: "How agentic AI is shifting knowledge work from executing tasks to exercising judgment."
 }, {
-  d: "2024 · Essay",
-  h: "Transparency as coordination",
-  p: "What a zero-manager org taught me about interface design."
+  d: "2026 · Essay",
+  h: "AI as Your Startup Cofounder",
+  p: "Treating AI as a 24/7 strategic partner — if you govern its decision-making first."
 }, {
-  d: "2024 · Field note",
-  h: "Reading the support tickets myself",
-  p: "The cheapest research method nobody on the design team wants to do."
+  d: "2026 · Essay",
+  h: "How I Forbid AI from Hallucinating",
+  p: "Forcing AI to ask before it assumes — clarifying questions before any implementation work begins."
 }];
 const STATUS = ["Available · 4 weeks' notice", "Product & design lead · AI", "Remote · GMT+5:30"];
 

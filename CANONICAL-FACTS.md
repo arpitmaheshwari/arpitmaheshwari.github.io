@@ -1179,3 +1179,32 @@ structure, then rendered+measured the ones with real wrap risk.
 **Conclusion: the case-index row was the only live instance of this failure class on the site.**
 Already fixed (align-items:center, 0px delta verified on all 6 rows). No further fixes from this
 pass.
+
+## 2026-08-09 — book "Notes & Writing" was listing fabricated Substack posts (caught, fixed)
+
+**The defect:** book/portfolio.js's WRITING array (5 entries, both book views) had only 2 of 5
+titles matching the real Substack archive (arpitmaheshwari.substack.com). Three were fabricated
+and never published: "Designing for the eval, not the mock", "Transparency as coordination",
+"Reading the support tickets myself" — no canon record, no source, invented at some point and
+shipped unverified. Meanwhile 3 REAL published posts were missing entirely: "The New
+Renaissance...", "AI as Your Startup Cofounder", "How I Forbid AI from Hallucinating".
+
+**Fix (Arpit's explicit instruction: replace with the 5 real posts):** verified all 5 real titles
++ dates via WebFetch against the live Substack archive, read each of the 3 new posts individually
+to write accurate one-line synopses (never reusing Substack's own subtitle verbatim, matching the
+book's existing custom-synopsis convention), fixed BOTH the interactive view (book/portfolio.js
+WRITING array) and the no-JS mirror (book/index.html #bk-fulltext, same list duplicated inline —
+same drift class as the earlier "bet"/"believe" wording split). portfolio.js -> v=132.
+
+**RULE (reinforced): any claim about external content (a Substack post, a press mention, a talk)
+must be verified against the live source before shipping, not just internally consistent.**
+Internal consistency (the book agreeing with itself) is not the same as truth.
+
+**Still open, flagged not fixed:** the Notes & Writing LEFT page has a real ~400px void between
+the intro paragraph and the closing note (confirmed on render, 2026-08-09) — it's the ONLY
+chapter-opener spread using a bare `bk-spacer` to bottom-pin a one-line note; every sibling
+spread (Selected Work, Field Guide to Trust) fills that space with a real content-role element
+instead. Two ways to close it: (a) Arpit supplies more real content for the left page, or
+(b) accept it as a deliberate chapter-opener convention (generous white space below a short
+intro is a normal print-book device, not automatically a defect) — needs Arpit's call, not a
+guessed fix, since (a) requires content only he can supply and (b) is a taste judgment.
