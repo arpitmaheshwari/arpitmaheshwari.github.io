@@ -1208,3 +1208,28 @@ instead. Two ways to close it: (a) Arpit supplies more real content for the left
 (b) accept it as a deliberate chapter-opener convention (generous white space below a short
 intro is a normal print-book device, not automatically a defect) — needs Arpit's call, not a
 guessed fix, since (a) requires content only he can supply and (b) is a taste judgment.
+
+## 2026-08-09 — Notes & Writing left page filled; kakkarprerna lessons applied to the Lab
+
+**Book left-page void (Arpit approved the paragraph):** added the synthesis paragraph ("A loose
+thread runs through all five...") to BOTH views (portfolio.js v=133 + no-JS mirror). It is an
+honest synthesis of the 5 verified Substack titles, not an invented claim. Gap measured
+~400px -> 266px; the page now reads intro -> thesis -> bottom-pinned note — a normal
+chapter-opener rhythm. Remaining space reads as book margin; accepted.
+
+**Lab upgrade (Arpit: "work on all four" — the kakkarprerna GitHub lessons):**
+- lab/loop.html gained a "Decisions, on the record" section using the site's rcpt-box idiom:
+  (a) "What overrides what" — a 4-row precedence ledger making the module's governance visible
+  (reversibility > confidence · insufficient data > flattering number · humility > fluency ·
+  a sentence > another rotation); (b) "Key decisions, and what each one buys" — 5 decision ->
+  rationale rows. Every row is assembled from sentences already on the page or its pattern pages;
+  nothing invented.
+- Proof section lede now splits evaluation into two named tiers: implementation proof (the
+  assertions, browser + Node CI) vs product proof (patterns ran in production, documented in the
+  pattern library / case studies) — "passing tests prove the rules hold; the case studies argue
+  the rules are worth holding."
+- lab/teardown.html left UNTOUCHED on purpose: it already implements the same lessons natively
+  ("The whole thing, in numbers" = measured evaluation; "Four choices, and what each one cost" =
+  decision->cost table). Forcing the new format onto it would be change for its own sake.
+- Two self-caught defects on ship: an orphaned "buys" (section-title max-width clamp -> unclamped)
+  and my own off-grid marginTop:14 in the book paragraph (gate caught it -> 16).

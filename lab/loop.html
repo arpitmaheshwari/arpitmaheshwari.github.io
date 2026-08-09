@@ -297,11 +297,63 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
   </section>
 
   <!-- ===================== TESTS ===================== -->
+  <!-- ===================== DECISIONS ON THE RECORD ===================== -->
+  <section class="section">
+    <div class="lab-wrap">
+      <p class="eyebrow">Decisions, on the record</p>
+      <h2 class="section-title">What overrides what</h2>
+      <p class="lab-lede" style="margin-bottom:24px">The module encodes a precedence — when two rules disagree, one is written to win. That order is the design; the functions just enforce it.</p>
+      <div class="rcpt-box" style="overflow:hidden;margin-bottom:48px">
+        <div class="rcpt-r" style="background:rgba(212,168,94,0.04)">
+          <div class="lbl-eyebrow" style="flex:0 0 220px">Reversibility &gt; confidence</div>
+          <div class="t-ui" style="flex:1 1 240px">If the action cannot be undone, the model does not get to auto-act at any score &mdash; <code class="t-code">decide()</code> demotes act to review.</div>
+        </div>
+        <div class="rcpt-r">
+          <div class="lbl-eyebrow" style="flex:0 0 220px">Insufficient data &gt; a flattering number</div>
+          <div class="t-ui" style="flex:1 1 240px">Below thirty observations <code class="t-code">calibrate()</code> refuses a verdict &mdash; a track record you cannot support is just another confident claim.</div>
+        </div>
+        <div class="rcpt-r" style="background:rgba(212,168,94,0.04)">
+          <div class="lbl-eyebrow" style="flex:0 0 220px">Humility &gt; fluency</div>
+          <div class="t-ui" style="flex:1 1 240px"><code class="t-code">abstain()</code> defaults fail toward refusal: every claim carries a source, two corroborate, a clear majority agree &mdash; or the system says what is missing instead of speaking.</div>
+        </div>
+        <div class="rcpt-r-last" style="background:transparent">
+          <div class="lbl-eyebrow" style="flex:0 0 220px">A sentence &gt; another rotation</div>
+          <div class="t-ui" style="flex:1 1 240px">Past the latency budget <code class="t-code">disclose()</code> owes the user words, not a spinner &mdash; silence indistinguishable from failure is a trust cost, not a performance one.</div>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="max-width:none">Key decisions, and what each one buys</h2>
+      <div class="rcpt-box" style="overflow:hidden">
+        <div class="rcpt-r" style="background:rgba(212,168,94,0.04)">
+          <div class="lbl-eyebrow" style="flex:0 0 220px">Zero dependencies</div>
+          <div class="t-ui" style="flex:1 1 240px">One standard ES module, no framework, no install step. Nothing here can rot when someone else publishes a breaking major.</div>
+        </div>
+        <div class="rcpt-r">
+          <div class="lbl-eyebrow" style="flex:0 0 220px">No UI shipped</div>
+          <div class="t-ui" style="flex:1 1 240px">The visual layer is deliberately left to you &mdash; the verb matters more than the chip it ships in.</div>
+        </div>
+        <div class="rcpt-r" style="background:rgba(212,168,94,0.04)">
+          <div class="lbl-eyebrow" style="flex:0 0 220px">Thresholds are options, not constants</div>
+          <div class="t-ui" style="flex:1 1 240px">Where each band starts is a product decision someone owns and revisits &mdash; the code only enforces that the decision exists.</div>
+        </div>
+        <div class="rcpt-r">
+          <div class="lbl-eyebrow" style="flex:0 0 220px">Violations, not suggestions</div>
+          <div class="t-ui" style="flex:1 1 240px"><code class="t-code">decide()</code> reports review-without-reasons as a violation. A principle has no failing state; a function does.</div>
+        </div>
+        <div class="rcpt-r-last" style="background:rgba(212,168,94,0.04)">
+          <div class="lbl-eyebrow" style="flex:0 0 220px">Tests live on the page</div>
+          <div class="t-ui" style="flex:1 1 240px">The suite runs in this browser tab and under Node in CI, exiting non-zero on failure &mdash; what you read is what the function returns.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="lab-wrap">
       <p class="eyebrow">Proof</p>
       <h2 class="section-title">The tests, running now, in your browser</h2>
       <p class="lab-lede" style="margin-bottom:24px">The same file runs under Node with <code class="t-code">node lab/loop.test.js</code> and exits non-zero on failure. There is no test framework, because adding a dependency to a zero-dependency library would be the joke telling itself — the runner is about forty lines at the top of the file.</p>
+      <p class="lab-lede" style="margin-bottom:24px">Two kinds of proof, kept separate on purpose. <strong style="color:var(--ink)">Implementation proof</strong> is below: the assertions, in this tab and under Node in CI on every push. <strong style="color:var(--ink)">Product proof</strong> lives elsewhere &mdash; each of these patterns ran in a production product, documented in <a href="../patterns/" style="color:var(--gold)">the pattern library</a> and the case studies. Passing tests prove the rules hold; the case studies argue the rules are worth holding.</p>
       <div class="lab-testhead">
         <span class="lab-tally" id="t-tally">…</span>
         <span class="lab-tallynote" id="t-note">running</span>
