@@ -146,7 +146,19 @@ SHIPPED_EXT = {".html", ".txt", ".xml", ".svg", ".js", ".css", ".json"}
 SOFT_EXT = {".md"}
 
 # Paths where an occurrence is legitimate and deliberate. Each needs a stated reason.
+_REFERENCE_CONCEPT_REASON = (
+    "ARCHIVED REFERENCE (noindex, unlinked, never shipped — see prototypes/reference-concepts/"
+    "README.md): raw output from an external design tool with no access to canon. It uses the "
+    "retired 'Trust Layer' term and other pre-canon phrasing throughout. Rewriting it would "
+    "misrepresent what the tool actually produced; the README carries the full fabrication audit."
+)
 ALLOW = {
+    "prototypes/reference-concepts/ai-product-designer/Portfolio Concepts.dc.html": _REFERENCE_CONCEPT_REASON,
+    "prototypes/reference-concepts/redesign-concept/0500.dc.html": _REFERENCE_CONCEPT_REASON,
+    "prototypes/reference-concepts/redesign-concept/Concepts.dc.html": _REFERENCE_CONCEPT_REASON,
+    "prototypes/reference-concepts/redesign-concept/The Screen.dc.html": _REFERENCE_CONCEPT_REASON,
+    "prototypes/reference-concepts/redesign-concept/The Seam.dc.html": _REFERENCE_CONCEPT_REASON,
+    "prototypes/reference-concepts/redesign-concept/The Second Pass.dc.html": _REFERENCE_CONCEPT_REASON,
     "prototypes/paper-first.html":
         "ARCHIVED PROTOTYPE (noindex, unlinked): the ChatGPT-era paper mockup, kept as a record "
         "of a rejected direction. It predates the 2026-08-01 term retirement; rewriting an "
