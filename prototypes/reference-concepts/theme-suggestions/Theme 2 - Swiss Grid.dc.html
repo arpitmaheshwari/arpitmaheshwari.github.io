@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"></link>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Expanded:wght@500;600;700&family=Spline+Sans+Mono:wght@400;500&display=swap"></link>
+<style>
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); transition: background 0.4s, color 0.4s;
+  --bg: #F2F2EF; --ink: #14161A; --ink2: #5C6167; --line: #C9CBC6; --card: #FBFBF9; --accent: #1D4ED8; --accent-ink: #1C46BF; }
+body[data-mode="dark"] { --bg: #121417; --ink: #E9EBE8; --ink2: #969CA3; --line: #2E3339; --card: #1A1D21; --accent: #4D79F0; --accent-ink: #7C9DF5; }
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { color: var(--ink); }
+@keyframes sweep { from { width: 0; } to { width: 100%; } }
+::selection { background: var(--accent); color: #fff; }
+</style>
+</helmet>
+<div data-screen-label="Swiss Grid" style="font-family: 'Archivo', sans-serif; min-height: 100vh; background: var(--bg); color: var(--ink); transition: background 0.4s, color 0.4s; font-size: 16px; line-height: 1.55;">
+  <nav style="border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--bg); z-index: 5;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 24px; height: 60px;">
+      <a href="#top" style="font-family: 'Archivo Expanded', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.02em; color: var(--ink); text-transform: uppercase;">A. Maheshwari</a>
+      <div style="display: flex; gap: 24px; font-family: 'Spline Sans Mono', monospace; font-size: 13px;">
+        <a href="#work" style="color: var(--ink2);">01 Work</a>
+        <a href="#method" style="color: var(--ink2);">02 Method</a>
+        <a href="#contact" style="color: var(--ink2);">03 Contact</a>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button onClick="{{ toggleMode }}" aria-label="Toggle dark mode" style="border: 1px solid var(--line); background: transparent; color: var(--ink); padding: 6px 12px; font-family: 'Spline Sans Mono', monospace; font-size: 12px; cursor: pointer;">{{ modeLabel }}</button>
+        <a href="https://calendly.com/arpitmaheshwari" style="background: var(--accent); color: #fff; padding: 8px 16px; font-weight: 600; font-size: 13px;" style-hover="background: var(--ink); color: var(--bg);">Book a call</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="top" style="border-bottom: 1px solid var(--line);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 80px 32px 64px; display: grid; grid-template-columns: 2fr 1fr; gap: 48px;">
+      <div>
+        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 13px; color: var(--accent-ink); margin-bottom: 24px;">PRODUCT &amp; DESIGN LEADER — AI PRODUCTS — 15 YRS — 5 INDUSTRIES</div>
+        <h1 style="font-family: 'Archivo Expanded', sans-serif; font-weight: 700; font-size: clamp(38px, 5vw, 66px); line-height: 1.02; letter-spacing: -0.01em; margin: 0; text-transform: uppercase; max-width: 16ch; text-wrap: pretty;">Right model. Hesitant human. <span style="color: var(--accent-ink);">Designed decision.</span></h1>
+        <div style="height: 4px; background: var(--accent); margin-top: 36px; animation: sweep 1s 0.3s cubic-bezier(0.2,0.8,0.2,1) both;"></div>
+      </div>
+      <div style="display: grid; gap: 16px; align-content: end; border-left: 1px solid var(--line); padding-left: 32px;">
+        <img src="https://arpitmaheshwari.com/arpit-maheshwari.jpg" alt="Arpit Maheshwari" style="width: 72px; height: 72px; object-fit: cover; filter: grayscale(1);"></img>
+        <p style="margin: 0; font-size: 15px; color: var(--ink2); text-wrap: pretty;">AI products fail in the half-second before a person acts on them. That half-second is the only thing I design.</p>
+        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: var(--ink2);">Indore, IN · remote · both US coasts daily</div>
+      </div>
+    </div>
+  </header>
+
+  <section style="border-bottom: 1px solid var(--line);">
+    <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr);">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+        <div style="padding: 32px; border-right: 1px solid var(--line); display: grid; gap: 10px; align-content: start;">
+          <div style="font-family: 'Archivo Expanded', sans-serif; font-weight: 700; font-size: 40px; line-height: 1;">{{ s.n }}</div>
+          <div style="font-size: 14px; color: var(--ink); text-wrap: pretty;">{{ s.what }}</div>
+          <div style="font-family: 'Spline Sans Mono', monospace; font-size: 11.5px; color: var(--ink2); text-transform: uppercase;">{{ s.src }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="work">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 72px 32px;">
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 48px; margin-bottom: 40px;">
+        <h2 style="font-family: 'Archivo Expanded', sans-serif; font-weight: 700; font-size: 24px; text-transform: uppercase; margin: 0;">01 — Selected work</h2>
+        <p style="margin: 0; font-size: 15px; color: var(--ink2); max-width: 62ch;">Every AI case runs the same four beats: a model produces a score, a person doubts it, the design turns doubt into an action, the action shows up in the business.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line);">
+        <sc-for list="{{ cases }}" as="c" hint-placeholder-count="4">
+          <a href="{{ c.href }}" style="background: var(--card); color: var(--ink); padding: 28px; display: grid; gap: 12px; align-content: start;" style-hover="background: var(--bg);">
+            <div style="display: flex; justify-content: space-between; font-family: 'Spline Sans Mono', monospace; font-size: 12px; color: var(--ink2);"><span>{{ c.idx }} / {{ c.tag }}</span><span style="color: var(--accent-ink);">{{ c.num }}</span></div>
+            <div style="font-family: 'Archivo Expanded', sans-serif; font-weight: 600; font-size: 19px; line-height: 1.2;">{{ c.title }}</div>
+            <div style="font-size: 14.5px; color: var(--ink2); text-wrap: pretty;">{{ c.line }}</div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="method" style="border-top: 1px solid var(--line); background: var(--card);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 72px 32px; display: grid; grid-template-columns: 1fr 2fr; gap: 48px;">
+      <h2 style="font-family: 'Archivo Expanded', sans-serif; font-weight: 700; font-size: 24px; text-transform: uppercase; margin: 0;">02 — Method</h2>
+      <div style="display: grid; gap: 0;">
+        <sc-for list="{{ rules }}" as="r" hint-placeholder-count="4">
+          <div style="display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--line);">
+            <div style="font-family: 'Spline Sans Mono', monospace; font-size: 13px; color: var(--accent-ink);">{{ r.idx }}</div>
+            <div><span style="font-weight: 600;">{{ r.t }}</span> <span style="color: var(--ink2);">{{ r.d }}</span></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" style="border-top: 1px solid var(--line);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 88px 32px; display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: end;">
+      <div>
+        <div style="font-family: 'Spline Sans Mono', monospace; font-size: 13px; color: var(--ink2); margin-bottom: 16px;">03 — CONTACT · ONE SEAT · FULL-TIME</div>
+        <h2 style="font-family: 'Archivo Expanded', sans-serif; font-weight: 700; font-size: clamp(30px, 4vw, 48px); text-transform: uppercase; line-height: 1.05; margin: 0 0 28px; max-width: 18ch;">Thirty minutes. No pitch deck.</h2>
+        <a href="https://calendly.com/arpitmaheshwari" style="display: inline-block; background: var(--accent); color: #fff; padding: 14px 30px; font-weight: 600; font-size: 16px;" style-hover="background: var(--ink); color: var(--bg);">Book a 30-minute call →</a>
+      </div>
+      <div style="display: grid; gap: 10px; font-family: 'Spline Sans Mono', monospace; font-size: 13px; justify-items: start;">
+        <a href="https://linkedin.com/in/arpitmaheshwariprofile" style="color: var(--ink2);">LinkedIn ↗</a>
+        <a href="https://x.com/arp_maheshwari" style="color: var(--ink2);">X / Twitter ↗</a>
+        <a href="https://arpitmaheshwari.substack.com" style="color: var(--ink2);">Human in the Loop ↗</a>
+        <div style="color: var(--ink2); margin-top: 12px;">© 2026 · Indore, India</div>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startDark&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { mode: this.props.startDark ? "dark" : "light" };
+  componentDidMount() { this.applyMode(); }
+  componentDidUpdate() { this.applyMode(); }
+  applyMode() { document.body.setAttribute("data-mode", this.state.mode); }
+  renderVals() {
+    return {
+      modeLabel: this.state.mode === "dark" ? "LIGHT" : "DARK",
+      toggleMode: () => this.setState(s => ({ mode: s.mode === "dark" ? "light" : "dark" })),
+      stats: [
+        { n: "3 hrs", what: "Campaign planning, down from two weeks, once traders trusted the algorithm.", src: "AdTech · per campaign" },
+        { n: "60%", what: "Faster PE deal screening after the model learned to explain itself.", src: "FinTech · pre/post" },
+        { n: "$1M", what: "Saved yearly when training moved off printed guides.", src: "EdTech · vs 2016" },
+        { n: "4M+", what: "Users on two O2 products co-designed and shipped as code.", src: "Telecom · public" },
+      ],
+      cases: [
+        { idx: "01", tag: "ADTECH", num: "2 wks → 3 hrs", title: "Programmatic Advertising Platform", line: "Traders watched the algorithm win and still played hunches. Recommendations became full campaign plans — one click to customize, every edit teaching next week's model.", href: "https://arpitmaheshwari.com/case-studies/adtech.html" },
+        { idx: "02", tag: "FINTECH", num: "60% faster", title: "AI-Assisted Private Equity Investing", line: "Analysts are paid to doubt confident numbers, so launch waited until the score could argue its own case.", href: "https://arpitmaheshwari.com/case-studies/fintech.html" },
+        { idx: "03", tag: "EDTECH", num: "$1M / yr", title: "PTC University — Learning Connector", line: "The brief said redesign the UX. The argument: the contract was the broken interface. Four of five products killed to fund the one that worked.", href: "https://arpitmaheshwari.com/case-studies/ptc.html" },
+        { idx: "04", tag: "TELECOM", num: "4M+ users", title: "Telefónica MyO2 & Priority Moments", line: "Every screen designed with one co-designer, coded by me — at a scale where rounding errors have populations.", href: "https://arpitmaheshwari.com/case-studies/o2.html" },
+      ],
+      rules: [
+        { idx: "R-01", t: "No score without a verb and its reasons.", d: "The PE release waited until the model could say “I'm not sure” out loud — weeks late, on purpose." },
+        { idx: "R-02", t: "No AI feature without a designed failure state.", d: "One honest sentence in the interface. An hour of design, not a sprint." },
+        { idx: "R-03", t: "Eval design before interface design.", d: "Week one is reading eval results and sitting silent on customer calls." },
+        { idx: "R-04", t: "No contract the system doesn't keep.", d: "A stated limit the product quietly exceeds burns more trust than saying nothing." },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

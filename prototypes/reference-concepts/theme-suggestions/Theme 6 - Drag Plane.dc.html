@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"></link>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Martian+Mono:wght@400;600&display=swap"></link>
+<style>
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); transition: background .4s, color .4s;
+  --bg: #F0EFEA; --ink: #121316; --ink2: #63645F; --line: #D3D2CA; --card: #FFFFFF; --accent: #E1462F; --accent2: #1B49E0; }
+body[data-mode="dark"] { --bg: #0B0C0D; --ink: #F0EFE9; --ink2: #8D8E88; --line: #26282A; --card: #15171A; --accent: #FF6A4D; --accent2: #6E8DFF; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { * { transition-duration: 1ms !important; } }
+::selection { background: var(--accent); color: #fff; }
+</style>
+</helmet>
+<div data-screen-label="Drag Plane" style="min-height: 100vh; background: var(--bg); color: var(--ink); font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; line-height: 1.55;">
+  <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 30; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 24px;">
+    <a href="#list" style="font-family: 'Martian Mono', monospace; font-size: 12px; font-weight: 600; color: var(--ink); letter-spacing: -0.02em; background: var(--bg); padding: 4px 8px; border-radius: 999px;">ARPIT MAHESHWARI</a>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <a href="#list" style="border: 1px solid var(--line); background: var(--bg); color: var(--ink); padding: 7px 13px; font-family: 'Martian Mono', monospace; font-size: 11px; border-radius: 999px;" style-hover="border-color: var(--accent);">LIST VIEW ↓</a>
+      <button onClick="{{ toggleMode }}" aria-label="Toggle dark mode" style="border: 1px solid var(--line); background: var(--bg); color: var(--ink); padding: 7px 13px; font-family: 'Martian Mono', monospace; font-size: 11px; cursor: pointer; border-radius: 999px;">{{ modeLabel }}</button>
+      <a href="https://calendly.com/arpitmaheshwari" style="background: var(--ink); color: var(--bg); padding: 8px 16px; font-family: 'Martian Mono', monospace; font-size: 11px; border-radius: 999px;" style-hover="background: var(--accent); color: #fff;">BOOK A CALL</a>
+    </div>
+  </nav>
+
+  <section aria-label="Draggable overview" style="height: 100vh; overflow: hidden; position: relative; touch-action: none; cursor: grab; border-bottom: 1px solid var(--line);">
+    <div aria-hidden="true" style="position: absolute; inset: -20%; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 64px 64px; opacity: 0.5;"></div>
+
+    <div ref="{{ planeRef }}" style="position: absolute; top: 80px; left: 0; width: 1400px; height: 700px; will-change: transform;">
+      <div style="position: absolute; left: 32px; top: 0px; width: 300px;">
+        <div data-tile="1" style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px 22px; transform-origin: center; will-change: transform; box-shadow: 0 18px 40px -28px rgba(0,0,0,.45);">
+          <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--ink2); margin-bottom: 10px;">THE PROBLEM</div>
+          <div style="font-weight: 600; font-size: 20px; letter-spacing: -0.02em; line-height: 1.25; text-wrap: pretty;">Your model is right. The person in front of it still hesitates.</div>
+        </div>
+      </div>
+
+      <div style="position: absolute; left: 372px; top: 8px; width: 250px;">
+        <div data-tile="1" style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px 22px; transform-origin: center; will-change: transform; box-shadow: 0 18px 40px -28px rgba(0,0,0,.45);">
+          <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--ink2); margin-bottom: 10px;">ADTECH</div>
+          <div style="font-family: 'Martian Mono', monospace; font-weight: 600; font-size: 24px; letter-spacing: -0.03em; color: var(--accent);">2 wks → 3 hrs</div>
+          <div style="font-size: 13.5px; color: var(--ink2); margin-top: 8px; text-wrap: pretty;">campaign planning, once traders trusted it</div>
+        </div>
+      </div>
+
+      <div style="position: absolute; left: 662px; top: 0px; width: 210px;">
+        <div data-tile="1" style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px 22px; transform-origin: center; will-change: transform; box-shadow: 0 18px 40px -28px rgba(0,0,0,.45);">
+          <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--ink2); margin-bottom: 10px;">15 YRS</div>
+          <div style="font-weight: 600; font-size: 16px; letter-spacing: -0.02em; line-height: 1.3; text-wrap: pretty;">Five industries. One recurring problem.</div>
+        </div>
+      </div>
+
+      <div style="position: absolute; left: 32px; top: 200px; width: 260px;">
+        <div data-tile="1" style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px 22px; transform-origin: center; will-change: transform; box-shadow: 0 18px 40px -28px rgba(0,0,0,.45);">
+          <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--ink2); margin-bottom: 10px;">FINTECH</div>
+          <div style="font-family: 'Martian Mono', monospace; font-weight: 600; font-size: 24px; letter-spacing: -0.03em; color: var(--accent2);">60% faster</div>
+          <div style="font-size: 13.5px; color: var(--ink2); margin-top: 8px; text-wrap: pretty;">deal screening, after the score explained itself</div>
+        </div>
+      </div>
+
+      <div style="position: absolute; left: 322px; top: 196px; width: 300px;">
+        <div data-tile="1" style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px 22px; transform-origin: center; will-change: transform; box-shadow: 0 18px 40px -28px rgba(0,0,0,.45);">
+          <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--ink2); margin-bottom: 10px;">THE JOB</div>
+          <div style="font-weight: 600; font-size: 20px; letter-spacing: -0.02em; line-height: 1.25; text-wrap: pretty;">I design the half-second between a confident machine and a hesitant professional.</div>
+        </div>
+      </div>
+
+      <div style="position: absolute; left: 652px; top: 205px; width: 210px;">
+        <div data-tile="1" style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px 22px; transform-origin: center; will-change: transform; box-shadow: 0 18px 40px -28px rgba(0,0,0,.45);">
+          <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--ink2); margin-bottom: 10px;">SHIPS CODE</div>
+          <div style="font-weight: 600; font-size: 16px; letter-spacing: -0.02em; line-height: 1.3; text-wrap: pretty;">The interface I draw is the PR I open.</div>
+        </div>
+      </div>
+
+      <div style="position: absolute; left: 950px; top: 40px; width: 240px;">
+        <div data-tile="1" style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px 22px; transform-origin: center; will-change: transform; box-shadow: 0 18px 40px -28px rgba(0,0,0,.45);">
+          <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--ink2); margin-bottom: 10px;">EDTECH</div>
+          <div style="font-family: 'Martian Mono', monospace; font-weight: 600; font-size: 24px; letter-spacing: -0.03em; color: var(--accent);">−$1M / yr</div>
+        </div>
+      </div>
+
+      <div style="position: absolute; left: 950px; top: 210px; width: 250px;">
+        <div data-tile="1" style="background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px 22px; transform-origin: center; will-change: transform; box-shadow: 0 18px 40px -28px rgba(0,0,0,.45);">
+          <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: var(--ink2); margin-bottom: 10px;">TELECOM</div>
+          <div style="font-family: 'Martian Mono', monospace; font-weight: 600; font-size: 24px; letter-spacing: -0.03em; color: var(--accent2);">4M+ users</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 24px; background: var(--bg); border-top: 1px solid var(--line);">
+      <p style="margin: 0; font-family: 'Martian Mono', monospace; font-size: 11px; color: var(--ink2);">DRAG TO MOVE · ARROW KEYS WORK · OR JUMP TO THE LIST</p>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="https://arpitmaheshwari.com/arpit-maheshwari.jpg" alt="Arpit Maheshwari" style="width: 34px; height: 34px; border-radius: 999px; object-fit: cover; border: 1px solid var(--line);"></img>
+        <div style="font-family: 'Martian Mono', monospace; font-size: 10.5px; color: var(--ink2); line-height: 1.7;">INDORE, IN · REMOTE<br></br>BOTH US COASTS DAILY</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="list" style="max-width: 1100px; margin: 0 auto; padding: 88px 24px 24px;">
+    <h2 style="font-weight: 800; font-size: clamp(30px, 3.6vw, 46px); letter-spacing: -0.03em; margin: 0 0 8px;">Four cases, same four beats</h2>
+    <p style="margin: 0 0 36px; color: var(--ink2); max-width: 56ch; font-size: 16.5px; text-wrap: pretty;">A model produces a score. A person doubts it. A design turns the doubt into an action. The action shows up in the business. The third beat is the job.</p>
+    <div style="display: grid; gap: 14px;">
+      <sc-for list="{{ cases }}" as="c" hint-placeholder-count="4">
+        <a href="{{ c.href }}" style="display: grid; grid-template-columns: 92px 1fr auto; gap: 24px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px 26px; color: var(--ink);" style-hover="border-color: var(--accent); transform: translateY(-2px);">
+          <span style="font-family: 'Martian Mono', monospace; font-size: 10.5px; color: var(--ink2);">{{ c.tag }}</span>
+          <span style="display: grid; gap: 5px;">
+            <span style="font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">{{ c.title }}</span>
+            <span style="font-size: 15px; color: var(--ink2); max-width: 62ch; text-wrap: pretty;">{{ c.line }}</span>
+          </span>
+          <span style="font-family: 'Martian Mono', monospace; font-weight: 600; font-size: 15px; color: var(--accent); text-align: right;">{{ c.num }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width: 1100px; margin: 0 auto; padding: 64px 24px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+      <sc-for list="{{ rules }}" as="r" hint-placeholder-count="4">
+        <div style="background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: grid; gap: 8px; align-content: start;">
+          <span style="font-family: 'Martian Mono', monospace; font-size: 10.5px; color: var(--accent2);">{{ r.n }}</span>
+          <span style="font-weight: 600; font-size: 17.5px; letter-spacing: -0.02em;">{{ r.t }}</span>
+          <span style="font-size: 15px; color: var(--ink2); text-wrap: pretty;">{{ r.d }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <footer style="max-width: 1100px; margin: 0 auto; padding: 72px 24px 104px; display: grid; gap: 22px; justify-items: start;">
+    <span style="font-family: 'Martian Mono', monospace; font-size: 11px; color: var(--ink2);">ONE SEAT · FULL-TIME · OPEN NOW</span>
+    <h2 style="font-weight: 800; font-size: clamp(32px, 4.6vw, 60px); letter-spacing: -0.04em; line-height: 1.02; margin: 0; max-width: 18ch;">Thirty minutes. No pitch deck.</h2>
+    <a href="https://calendly.com/arpitmaheshwari" style="background: var(--accent); color: #fff; padding: 15px 30px; border-radius: 999px; font-weight: 600; font-size: 16.5px;" style-hover="background: var(--ink); color: var(--bg);">Book the call →</a>
+    <div style="display: flex; gap: 20px; font-family: 'Martian Mono', monospace; font-size: 11px; padding-top: 14px;">
+      <a href="https://linkedin.com/in/arpitmaheshwariprofile" style="color: var(--ink2);">LINKEDIN</a>
+      <a href="https://x.com/arp_maheshwari" style="color: var(--ink2);">X</a>
+      <a href="https://arpitmaheshwari.substack.com" style="color: var(--ink2);">NEWSLETTER</a>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startDark&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { mode: this.props.startDark ? "dark" : "light" };
+  componentDidMount() {
+    document.body.setAttribute("data-mode", this.state.mode);
+    this.t = { x: 0, y: 0 }; this.c = { x: 0, y: 0 }; this.v = 0; this.drag = null;
+    const el = this.plane;
+    if (!el) return;
+    const host = el.parentElement;
+    host.tabIndex = 0;
+    const down = e => { this.drag = { x: e.clientX, y: e.clientY }; host.style.cursor = "grabbing"; };
+    const move = e => {
+      if (!this.drag) return;
+      this.t.x += e.clientX - this.drag.x; this.t.y += e.clientY - this.drag.y;
+      this.drag = { x: e.clientX, y: e.clientY };
+    };
+    const up = () => { this.drag = null; host.style.cursor = "grab"; };
+    const key = e => {
+      const k = { ArrowLeft: [120, 0], ArrowRight: [-120, 0], ArrowUp: [0, 120], ArrowDown: [0, -120] }[e.key];
+      if (k) { e.preventDefault(); this.t.x += k[0]; this.t.y += k[1]; }
+    };
+    host.addEventListener("pointerdown", down);
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+    host.addEventListener("keydown", key);
+    this.cleanup = () => {
+      host.removeEventListener("pointerdown", down); host.removeEventListener("keydown", key);
+      window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up);
+    };
+    const tiles = Array.from(el.querySelectorAll("[data-tile]"));
+    const loop = () => {
+      const dx = this.t.x - this.c.x, dy = this.t.y - this.c.y;
+      this.c.x += dx * 0.09; this.c.y += dy * 0.09;
+      const speed = Math.min(Math.hypot(dx, dy) / 26, 1);
+      this.v += (speed - this.v) * 0.15;
+      el.style.transform = "translate3d(" + this.c.x.toFixed(2) + "px," + this.c.y.toFixed(2) + "px,0)";
+      tiles.forEach((t, i) => {
+        const lag = 1 + (i % 4) * 0.5;
+        t.style.transform = "skewY(" + (-this.v * 2 * lag).toFixed(2) + "deg) scale(" + (1 - this.v * 0.018 * lag).toFixed(3) + ")";
+      });
+      this.raf = requestAnimationFrame(loop);
+    };
+    this.raf = requestAnimationFrame(loop);
+  }
+  componentDidUpdate() { document.body.setAttribute("data-mode", this.state.mode); }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); if (this.cleanup) this.cleanup(); }
+  renderVals() {
+    return {
+      planeRef: el => { this.plane = el; },
+      modeLabel: this.state.mode === "dark" ? "LIGHT" : "DARK",
+      toggleMode: () => this.setState(s => ({ mode: s.mode === "dark" ? "light" : "dark" })),
+      cases: [
+        { tag: "ADTECH", num: "2 wks → 3 hrs", title: "Programmatic Advertising Platform", line: "Traders watched the algorithm win and still played hunches. Recommendations became full campaign plans — one click to customize, every edit teaching next week's model.", href: "https://arpitmaheshwari.com/case-studies/adtech.html" },
+        { tag: "FINTECH", num: "60% faster", title: "AI-Assisted Private Equity Investing", line: "Analysts are paid to doubt confident numbers, so launch waited until the score could argue its own case — and say “I'm not sure” out loud.", href: "https://arpitmaheshwari.com/case-studies/fintech.html" },
+        { tag: "EDTECH", num: "−$1M / yr", title: "PTC University — Learning Connector", line: "The brief said redesign the UX. The argument: the contract was the broken interface. Four of five products killed to fund the one that worked.", href: "https://arpitmaheshwari.com/case-studies/ptc.html" },
+        { tag: "TELECOM", num: "4M+ users", title: "Telefónica MyO2 & Priority Moments", line: "Every screen designed with one co-designer, coded by me — at a scale where rounding errors have populations.", href: "https://arpitmaheshwari.com/case-studies/o2.html" },
+      ],
+      rules: [
+        { n: "R—01", t: "No score without a verb and its reasons.", d: "If the interface can't say why, it has no business asking for a decision." },
+        { n: "R—02", t: "No AI feature without a designed failure state.", d: "One honest sentence in the interface. An hour of design, not a sprint." },
+        { n: "R—03", t: "Eval results before design files.", d: "Week one: read the evals, sit silent on customer calls, write the diagnosis nobody assigned." },
+        { n: "R—04", t: "No contract the system doesn't keep.", d: "A stated limit quietly exceeded burns more trust than saying nothing at all." },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

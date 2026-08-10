@@ -1233,3 +1233,34 @@ chapter-opener rhythm. Remaining space reads as book margin; accepted.
   decision->cost table). Forcing the new format onto it would be change for its own sake.
 - Two self-caught defects on ship: an orphaned "buys" (section-title max-width clamp -> unclamped)
   and my own off-grid marginTop:14 in the book paragraph (gate caught it -> 16).
+
+## 2026-08-09 — external design concepts archived as reference (3 sets, 12 files)
+
+Arpit generated three concept sets in an external design tool and asked whether any were worth
+keeping. Rendered all 12 at 1440 and audited every factual claim against canon before judging.
+
+**Saved to `prototypes/reference-concepts/`** (noindex, unlinked, never shipped) with all renders
+in `_renders/` and a full audit in its README.
+
+**FOUR INVENTED FACTS found — the headline finding.** The tool has no access to canon, and it
+shows: "user trust after design: 0.94 · before: 0.31" (Theme 4's hero centrepiece — no such
+measurement exists), "Revenue retention 118%", "6-qtr rolling baseline" for the $1M (canon says
+vs 2016 print budget), and "output: 92%" presented as a site claim. Plus three themes writing
+"−$1M / yr" as a negative, which canon bans — Theme 3 prints "0 fabricated metrics" in the same
+ticker as its own −$1M.
+**RULE: nothing may be lifted from these files into a shipped surface without re-verifying
+against canon first.**
+
+**Genuinely correct on audit** (checked expecting failure): £69,000 media-value uplift, and
+Q3 2017 → Q3 2018 for the 0% → 64% shift.
+
+**Worth keeping regardless of visuals:** `ai-product-designer/notes/awwwards-study.md` — a survey
+of ~40 Awwwards collections concluding the award formula optimizes for juries not hiring
+managers, and that decision-level evidence / outcomes-on-surface / scannability are absent from
+that canon. Independent arrival at this site's own thesis.
+
+**Verdict:** The Seam (machine|human vertical split — the only structurally original idea, the
+layout IS the thesis) and Theme 1 Warm Gallery (safest upgrade; sharper hero line) are the two
+worth revisiting. Theme 5 is scroll-jacked, Theme 3 competes with the evidence, Theme 4 rests on
+the fabricated number. **Independent confirmation of a shipped decision: Theme 1's case index is
+near-identical to the S2 index shipped 2026-08-08.**

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Spline+Sans+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Schibsted+Grotesk:wght@400;500;600;700&family=Besley:ital,wght@0,400..900;1,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Archivo:wght@400..900&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#EAE7E0;font-family:system-ui,sans-serif}a{color:inherit;text-underline-offset:3px}a:hover{opacity:.72}button{cursor:pointer}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 12px/1.4 system-ui,sans-serif;color:rgba(0,0,0,.6);max-width:1180px}.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.07);overflow:hidden}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:24px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}@media (prefers-reduced-motion: reduce){*{transition-duration:.01ms !important;animation-duration:.01ms !important}}</style></helmet>
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Round two, studied against wallofportfolios.in/interactive — where every bio says "seasoned, passionate, AI-driven". These three demonstrate instead of claim.</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="2a" data-screen-label="2a Override">
+<div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a><span><strong>Override.</strong> — his Reversibility pattern turned on the portfolio: every decision ships with the version he killed, one toggle away. Grid-break: the decision where <em>he</em> was the rejected version.</span></div>
+<div class="dv-card" style="width:1180px">
+<div style="background:#F2F2EF;color:#131313;font-family:'Archivo',sans-serif">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 48px;border-bottom:1.5px solid #131313">
+    <div style="font:500 12px/1 'IBM Plex Mono',monospace;letter-spacing:.05em">ARPIT MAHESHWARI — PRODUCT &amp; DESIGN LEADER · AI PRODUCTS</div>
+    <div style="display:flex;gap:20px;font:500 12px/1 'IBM Plex Mono',monospace"><a href="https://arpitmaheshwari.com/hire/">1-page ↗</a><a href="https://calendly.com/arpitmaheshwari">30 min ↗</a><a href="mailto:maheshwari.arpit88@gmail.com">email ↗</a></div>
+  </div>
+  <div style="padding:54px 48px 34px">
+    <div style="font:500 13px/1.5 'IBM Plex Mono',monospace;color:#63625C;margin-bottom:20px">A PORTFOLIO WITH ITS REJECTED VERSIONS ATTACHED — REVERSIBILITY, PATTERN 08 OF 8</div>
+    <h1 style="margin:0;font-weight:900;font-size:78px;line-height:.99;letter-spacing:-.025em;max-width:1000px">Every screen I ship has a version I killed. Here are both.</h1>
+    <div style="font-weight:700;font-size:29px;line-height:1.25;letter-spacing:-.01em;margin-top:22px;color:#2A2A26">Arpit Maheshwari — 15 years on AI &amp; data-heavy products. Shipped to 4M+ users. Planning cut 2 wks → 3 hrs.</div>
+    <div style="margin-top:26px;border:1.5px solid #131313;background:#FFFFFF">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 18px;border-bottom:1px solid #131313">
+        <span style="font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.06em">DECISION 00 · THIS SITE</span>
+        <button onClick="{{ ovHero }}" style="font:600 12.5px/1 'IBM Plex Mono',monospace;background:#2149C8;color:#FFFFFF;border:none;padding:9px 13px">{{ ovHeroLabel }}</button>
+      </div>
+      <sc-if value="{{ heroOvOff }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:16px 18px;font:400 15.5px/1.6 'Archivo',sans-serif;color:#2A2A26;max-width:860px">Shipped: numbers first, adjectives never. The half-second of doubt between a model's output and a person's click is the only thing I design — and every claim on this page carries its receipt.</div>
+      </sc-if>
+      <sc-if value="{{ heroOvOn }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:16px 18px;background:#E8E7E2">
+          <div style="font:400 15.5px/1.6 'Archivo',sans-serif;color:#63625C;max-width:860px;text-decoration:line-through">"A seasoned, passionate product designer crafting delightful, AI-driven experiences. A versatile asset pushing the boundaries of innovation."</div>
+          <div style="font:500 12.5px/1.6 'IBM Plex Mono',monospace;color:#A0392B;margin-top:10px">REJECTED — 38 of the 40 tabs you'll open tonight read like this. Cost: closed in 15 seconds. Zero receipts.</div>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+  <div style="padding:0 48px 8px">
+    <div style="display:grid;grid-template-columns:200px 1fr;gap:36px;padding:30px 0;border-top:1.5px solid #131313;align-items:start">
+      <div style="font:500 12px/1.7 'IBM Plex Mono',monospace;color:#63625C">DECISION 01<br>ADTECH<br><span style="color:#131313;font-weight:600">SCORE → VERB</span></div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px">
+          <div style="font-weight:800;font-size:30px;line-height:1.08;letter-spacing:-.015em;max-width:620px">An unexplained 87% is a shrug with decimals. The score got one verb instead.</div>
+          <button onClick="{{ ovT1 }}" style="flex:none;font:600 12.5px/1 'IBM Plex Mono',monospace;background:none;color:#2149C8;border:1.5px solid #2149C8;padding:9px 13px">{{ ovBtn1 }}</button>
+        </div>
+        <sc-if value="{{ nov1 }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:24px;margin-top:18px;align-items:center">
+            <div style="border:1.5px solid #131313;background:#FFFFFF;padding:14px 16px;width:340px;flex:none"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font:600 13px/1 'Archivo',sans-serif">Run this campaign plan?</span><span style="font:700 12.5px/1 'IBM Plex Mono',monospace;background:#2F7B4F;color:#fff;padding:5px 8px">High · 92 — ACT</span></div><div style="font:400 13px/1.55 'Archivo',sans-serif;color:#2A2A26;margin-top:10px">Reach verified across 3 sources ✓ · Footfall model in season ✓ · Override one click away, feeds next week's predictions</div></div>
+            <div style="font:400 15px/1.6 'Archivo',sans-serif;color:#2A2A26;max-width:420px">Traders watched the algorithm beat them and still played hunches — until reasons were named out loud and the score resolved to one action. <span style="font-weight:800">Planning: 2 wks → 3 hrs.</span> <a href="https://arpitmaheshwari.com/case-studies/adtech.html" style="font:500 13px/1 'IBM Plex Mono',monospace">Walk-through →</a></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ ov1 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;gap:24px;margin-top:18px;align-items:center;background:#E8E7E2;padding:14px">
+            <div style="border:1.5px dashed #63625C;background:#F7F7F4;padding:14px 16px;width:340px;flex:none"><div style="font:600 13px/1 'Archivo',sans-serif;color:#63625C">Campaign plan ready</div><div style="font:400 13px/1.55 'Archivo',sans-serif;color:#63625C;margin-top:10px">Model confidence: <span style="font-weight:700">87%</span> ⓘ<br><span style="font-size:12px">(hover for methodology)</span></div></div>
+            <div style="font:400 14px/1.6 'Archivo',sans-serif;color:#63625C;max-width:420px">The rejected version: a raw percentage and a tooltip. Tells a person how the model feels, not what to do. <span style="font:500 12.5px/1.5 'IBM Plex Mono',monospace;color:#A0392B">COST: TRADERS KEPT OVERRIDING A MODEL THAT WAS BEATING THEM.</span></div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:200px 1fr;gap:36px;padding:30px 0;border-top:1px solid #C9C8C2;align-items:start">
+      <div style="font:500 12px/1.7 'IBM Plex Mono',monospace;color:#63625C">DECISION 02<br>FINTECH · PE<br><span style="color:#131313;font-weight:600">CITE OR ABSTAIN</span></div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px">
+          <div style="font-weight:800;font-size:30px;line-height:1.08;letter-spacing:-.015em;max-width:620px">I held the launch until the score could argue its own case.</div>
+          <button onClick="{{ ovT2 }}" style="flex:none;font:600 12.5px/1 'IBM Plex Mono',monospace;background:none;color:#2149C8;border:1.5px solid #2149C8;padding:9px 13px">{{ ovBtn2 }}</button>
+        </div>
+        <sc-if value="{{ nov2 }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:18px;font:400 16px/1.7 'Archivo',sans-serif;max-width:760px">"Revenue retention 118% <span style="font:500 11.5px/1 'IBM Plex Mono',monospace;background:#131313;color:#F2F2EF;padding:3px 6px;vertical-align:middle">FILING p.12</span> — churn signal thin, one quarter only <span style="font:500 11.5px/1 'IBM Plex Mono',monospace;border:1px solid #131313;padding:2px 6px;vertical-align:middle">ABSTAIN</span>" — every claim cited, honest abstention when sources run thin. Analysts stopped re-verifying the machine. <span style="font-weight:800">Screening 60% faster.</span> <a href="https://arpitmaheshwari.com/case-studies/fintech.html" style="font:500 13px/1 'IBM Plex Mono',monospace">Walk-through →</a></div>
+        </sc-if>
+        <sc-if value="{{ ov2 }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:18px;background:#E8E7E2;padding:16px;max-width:760px"><div style="font:400 16px/1.7 'Archivo',sans-serif;color:#63625C">"Overall: strong opportunity. Sources available on request."</div><div style="font:500 12.5px/1.6 'IBM Plex Mono',monospace;color:#A0392B;margin-top:8px">REJECTED — ANALYSTS GET PAID TO DOUBT CONFIDENT NUMBERS. THEY RE-AUDITED EVERY LINE; THE TOOL SAVED NOTHING.</div></div>
+        </sc-if>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:200px 1fr;gap:36px;padding:30px 0;border-top:1px solid #C9C8C2;align-items:start">
+      <div style="font:500 12px/1.7 'IBM Plex Mono',monospace;color:#63625C">DECISION 03<br>VC + PE<br><span style="color:#131313;font-weight:600">THE HONEST NO</span></div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px">
+          <div style="font-weight:800;font-size:30px;line-height:1.08;letter-spacing:-.015em;max-width:620px">The model declines to bluff — that's what makes its yes believable.</div>
+          <button onClick="{{ ovT3 }}" style="flex:none;font:600 12.5px/1 'IBM Plex Mono',monospace;background:none;color:#2149C8;border:1.5px solid #2149C8;padding:9px 13px">{{ ovBtn3 }}</button>
+        </div>
+        <sc-if value="{{ nov3 }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:18px;font:400 16px/1.7 'Archivo',sans-serif;max-width:760px">"Test coverage: <span style="font-weight:700">insufficient evidence — no verdict.</span>" Four signal classes, and nothing ships uncited. Partners lean their reputation on it. <span style="font-weight:800">Diligence: 3 wks → 4 days.</span> <a href="https://arpitmaheshwari.com/case-studies/vc-diligence.html" style="font:500 13px/1 'IBM Plex Mono',monospace">Walk-through →</a></div>
+        </sc-if>
+        <sc-if value="{{ ov3 }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:18px;background:#E8E7E2;padding:16px;max-width:760px"><div style="font:400 16px/1.7 'Archivo',sans-serif;color:#63625C">"Test coverage: 78 — probably fine."</div><div style="font:500 12.5px/1.6 'IBM Plex Mono',monospace;color:#A0392B;margin-top:8px">REJECTED — ONE BLUFF DISCOVERED COSTS THE NEXT TEN YESES. PARTNERS STAKE MILLIONS ON CLAIMS THEY'LL NEVER PERSONALLY VERIFY.</div></div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+  <div style="background:#131313;color:#F2F2EF;padding:40px 48px">
+    <div style="font:500 12px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;color:#8F8E86;margin-bottom:16px">DECISION 04 · THE ONE THAT RAN AGAINST ME — NO TOGGLE, IT'S PERMANENT</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start">
+      <div>
+        <div style="font:500 12px/1 'IBM Plex Mono',monospace;color:#A0392B;margin-bottom:10px">MINE — REJECTED</div>
+        <div style="border:1.5px dashed #63625C;padding:14px 16px"><div style="font:600 13px/1.4 'Archivo',sans-serif;color:#C9C8C2">Recommended for you — 3 options, ranked</div><div style="font:400 13px/1.6 'Archivo',sans-serif;color:#8F8E86;margin-top:8px">① Balanced plan · ② Aggressive plan · ③ Conservative plan</div></div>
+        <div style="font:400 14px/1.6 'Archivo',sans-serif;color:#C9C8C2;margin-top:12px;max-width:440px">I fought hard for choice. Engineering wanted one option — the top pick, nothing else. They won the meeting.</div>
+      </div>
+      <div>
+        <div style="font:500 12px/1 'IBM Plex Mono',monospace;color:#2F7B4F;margin-bottom:10px">THEIRS — SHIPPED, THEN MADE PERMANENT</div>
+        <div style="border:1.5px solid #F2F2EF;padding:14px 16px"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><span style="font:600 13px/1.4 'Archivo',sans-serif">Top pick: Balanced plan</span><span style="font:700 26px/1 'Archivo',sans-serif;color:#7FD6A4">2.3×</span></div><div style="font:400 13px/1.6 'Archivo',sans-serif;color:#C9C8C2;margin-top:8px">conversion vs my three-option card, next quarter's A/B</div></div>
+        <div style="font:400 14px/1.6 'Archivo',sans-serif;color:#C9C8C2;margin-top:12px;max-width:440px">Three choices froze people at the exact moment we needed them to move. Every recommendation surface I've designed since starts from that loss.</div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:38px 48px 44px">
+    <div style="font-weight:900;font-size:40px;letter-spacing:-.02em;line-height:1">All exits reversible. Pick one.</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px">
+      <a href="mailto:maheshwari.arpit88@gmail.com" style="background:#131313;color:#F2F2EF;text-decoration:none;font:700 15px/1 'Archivo',sans-serif;padding:15px 22px">Send me the role</a>
+      <a href="https://calendly.com/arpitmaheshwari" style="border:1.5px solid #131313;color:#131313;text-decoration:none;font:700 15px/1 'Archivo',sans-serif;padding:14px 22px">30 minutes first</a>
+      <a href="https://arpitmaheshwari.com/hire/" style="border:1.5px solid #131313;color:#131313;text-decoration:none;font:700 15px/1 'Archivo',sans-serif;padding:14px 22px">The 1-page skim</a>
+      <button onClick="{{ copyLink2a }}" style="border:1.5px solid #2149C8;background:none;color:#2149C8;font:700 15px/1 'Archivo',sans-serif;padding:14px 22px">{{ copyLabel2a }}</button>
+    </div>
+    <div style="font:400 12.5px/1.7 'IBM Plex Mono',monospace;color:#63625C;margin-top:20px">Not hiring? Take the free half: <a href="https://arpitmaheshwari.com/patterns/">8 patterns</a> · <a href="https://arpitmaheshwari.com/resources/ai-design-checklist.html">founder checklist</a> · <a href="https://arpitmaheshwari.com/lab/">trustlayer.js — 0 deps, 42 tests, MIT</a> · One seat: founding design lead, AI company 5–40 · remote, 4–5 hrs US-East overlap · 4 wks' notice</div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2b" data-screen-label="2b Week One">
+<div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a><span><strong>Week One</strong> — "by Friday of week one" made structural: the site is his first week at your company, Mon→Fri, each day backed by a precedent receipt. Signature: the copy-button week plan.</span></div>
+<div class="dv-card" style="width:1180px">
+<div style="background:#FBF6EE;color:#26190D;font-family:'Schibsted Grotesk',sans-serif">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 48px;border-bottom:1.5px solid #26190D">
+    <div style="font:500 12px/1 'Schibsted Grotesk',sans-serif;letter-spacing:.08em">ARPIT MAHESHWARI · PRODUCT &amp; DESIGN LEADER · AI PRODUCTS</div>
+    <div style="display:flex;gap:20px;font:500 12px/1 'Schibsted Grotesk',sans-serif;letter-spacing:.04em"><a href="https://arpitmaheshwari.com/hire/">1-PAGE ↗</a><a href="https://calendly.com/arpitmaheshwari">30 MIN ↗</a><a href="mailto:maheshwari.arpit88@gmail.com">EMAIL ↗</a></div>
+  </div>
+  <div style="padding:56px 48px 38px;border-bottom:1.5px solid #26190D">
+    <div style="font:600 13px/1 'Schibsted Grotesk',sans-serif;letter-spacing:.08em;color:#A64A24;margin-bottom:20px">THE FIRST WEEK, PRE-PLANNED IN WRITING — NOT A PROMISE, A SCHEDULE</div>
+    <h1 style="margin:0;font-family:'Newsreader',serif;font-weight:400;font-size:76px;line-height:1.04;letter-spacing:-.015em;max-width:1040px">Hire me Monday.<br><span style="font-style:italic">By Friday I've read your evals, sat your customer calls, and shipped from your repo.</span></h1>
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:24px;margin-top:30px">
+      <div style="font:500 21px/1.45 'Schibsted Grotesk',sans-serif;color:#57430E;max-width:600px">Arpit Maheshwari — 15 years, shipped to 4M+ users. This schedule has run four times; it's how planning fell from 2 weeks to 3 hours.</div>
+      <div style="display:flex;gap:10px;flex:none"><a href="mailto:maheshwari.arpit88@gmail.com" style="background:#26190D;color:#FBF6EE;text-decoration:none;font:600 15px/1 'Schibsted Grotesk',sans-serif;padding:14px 20px">Start the week</a><button onClick="{{ copyWeek }}" style="border:1.5px solid #26190D;background:none;color:#26190D;font:600 15px/1 'Schibsted Grotesk',sans-serif;padding:13px 20px">{{ copyWeekLabel }}</button></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px 1fr 330px;gap:32px;padding:30px 48px;border-bottom:1px solid #D9CDB9;align-items:start">
+    <div><div style="font-family:'Newsreader',serif;font-size:42px;line-height:1;font-weight:500">Mon</div><div style="font:600 11.5px/1.6 'Schibsted Grotesk',sans-serif;letter-spacing:.06em;color:#A64A24">EVALS BEFORE PIXELS</div></div>
+    <div style="font:400 17px/1.65 'Schibsted Grotesk',sans-serif;max-width:560px">I'm reading your eval results before opening a design file. Eval design before interface design — always. I read the model at the eval layer and shape what gets measured.</div>
+    <div style="border-left:2px solid #A64A24;padding-left:16px;font:400 13px/1.65 'Schibsted Grotesk',sans-serif;color:#57430E">PRECEDENT — AdTech: the fix wasn't a better model, it was what the score measured. <span style="font-weight:700;color:#26190D">2 wks → 3 hrs.</span> <a href="https://arpitmaheshwari.com/case-studies/adtech.html">walk-through →</a></div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px 1fr 330px;gap:32px;padding:30px 48px;border-bottom:1px solid #D9CDB9;align-items:start">
+    <div><div style="font-family:'Newsreader',serif;font-size:42px;line-height:1;font-weight:500">Tue</div><div style="font:600 11.5px/1.6 'Schibsted Grotesk',sans-serif;letter-spacing:.06em;color:#A64A24">FIVE CALLS, SILENT</div></div>
+    <div style="font:400 17px/1.65 'Schibsted Grotesk',sans-serif;max-width:560px">Five customer calls in my first week, one a week forever after — sitting silent. I read the raw support tickets myself. No AI feature ships until I've personally watched someone fail to use it.</div>
+    <div style="border-left:2px solid #A64A24;padding-left:16px;font:400 13px/1.65 'Schibsted Grotesk',sans-serif;color:#57430E">PRECEDENT — FinTech: watching analysts re-verify every machine number is what shaped the citation layer. <span style="font-weight:700;color:#26190D">Screening 60% faster.</span> <a href="https://arpitmaheshwari.com/case-studies/fintech.html">walk-through →</a></div>
+  </div>
+  <div style="padding:30px 0 30px;border-bottom:1px solid #D9CDB9">
+    <div style="margin:0 120px 0 24px;background:#FFFFFF;border:1.5px solid #26190D;padding:26px 34px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><div><span style="font-family:'Newsreader',serif;font-size:42px;line-height:1;font-weight:500">Wed</span><span style="font:600 11.5px/1 'Schibsted Grotesk',sans-serif;letter-spacing:.06em;color:#A64A24;margin-left:14px">THE DIAGNOSIS NOBODY ASSIGNED</span></div><div style="font:500 11.5px/1 'Schibsted Grotesk',sans-serif;color:#8A7A5F">MEMO · ONE PAGE · UNPROMPTED</div></div>
+      <div style="font-family:'Newsreader',serif;font-style:italic;font-size:25px;line-height:1.4;margin-top:14px;max-width:800px">"By Wednesday I'm writing the diagnosis nobody assigned — where the product loses people, in one page. By week two we're arguing productively."</div>
+      <div style="font:400 13px/1.65 'Schibsted Grotesk',sans-serif;color:#57430E;margin-top:12px">PRECEDENT — found a second product hiding in data the client already owned: PlanIt, billboard footfall → consumer crowding app, shipped in six months. <a href="https://arpitmaheshwari.com/case-studies/orgos.html">the range →</a></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px 1fr 330px;gap:32px;padding:30px 48px;border-bottom:1px solid #D9CDB9;align-items:start">
+    <div><div style="font-family:'Newsreader',serif;font-size:42px;line-height:1;font-weight:500">Thu</div><div style="font:600 11.5px/1.6 'Schibsted Grotesk',sans-serif;letter-spacing:.06em;color:#A64A24">CHEAPEST EXPERIMENT FIRST</div></div>
+    <div style="font:400 17px/1.65 'Schibsted Grotesk',sans-serif;max-width:560px">When we disagree on feasibility, the cheapest experiment goes first and settles it. I sign up for outcomes, not deliverables — and I'll contest the roadmap when the numbers contradict it.</div>
+    <div style="border-left:2px solid #A64A24;padding-left:16px;font:400 13px/1.65 'Schibsted Grotesk',sans-serif;color:#57430E">PRECEDENT — I argued for a three-option card; engineering's one-option won the meeting, and the A/B made it permanent at <span style="font-weight:700;color:#26190D">2.3× conversion</span>. Every surface since starts from that loss.</div>
+  </div>
+  <div style="display:grid;grid-template-columns:150px 1fr 330px;gap:32px;padding:30px 48px;border-bottom:1.5px solid #26190D;align-items:start">
+    <div><div style="font-family:'Newsreader',serif;font-size:42px;line-height:1;font-weight:500">Fri</div><div style="font:600 11.5px/1.6 'Schibsted Grotesk',sans-serif;letter-spacing:.06em;color:#A64A24">THE PR, COMMENTED</div></div>
+    <div style="font:400 17px/1.65 'Schibsted Grotesk',sans-serif;max-width:560px">The interface I drew is the code I ship — the front-end I own lands in the PR, commented and ready for review. By launch, no handoff gap exists because there was no handoff.</div>
+    <div style="border-left:2px solid #A64A24;padding-left:16px;font:400 13px/1.65 'Schibsted Grotesk',sans-serif;color:#57430E">PRECEDENT — O2: two products drawn, then hand-coded, <span style="font-weight:700;color:#26190D">4M+ users</span>. Today: trustlayer.js — 0 deps, 42 tests, MIT. <a href="https://arpitmaheshwari.com/lab/">read it, run it, break it →</a></div>
+  </div>
+  <div style="padding:40px 48px 46px">
+    <div style="font-family:'Newsreader',serif;font-size:44px;line-height:1.1;letter-spacing:-.01em">Week two depends on you.</div>
+    <div style="font:400 15px/1.6 'Schibsted Grotesk',sans-serif;color:#57430E;margin:12px 0 24px;max-width:640px">One seat: founding product &amp; design lead, AI company of 5–40 — or staff / director where the trust layer is the job. Remote · GMT+5:30 · 4–5 hrs daily US-East overlap · four weeks' notice.</div>
+    <div style="display:flex;flex-wrap:wrap;gap:0 36px">
+      <a href="mailto:maheshwari.arpit88@gmail.com" style="font:700 24px/2 'Schibsted Grotesk',sans-serif;text-decoration:none;border-bottom:2px solid #26190D">Send the role →</a>
+      <a href="https://calendly.com/arpitmaheshwari" style="font:700 24px/2 'Schibsted Grotesk',sans-serif;text-decoration:none;border-bottom:2px solid #26190D">Book 30 minutes →</a>
+      <a href="https://arpitmaheshwari.com/hire/" style="font:700 24px/2 'Schibsted Grotesk',sans-serif;text-decoration:none;border-bottom:2px solid #26190D">Skim one page →</a>
+      <a href="https://arpitmaheshwari.com/resources/ai-design-checklist.html" style="font:700 24px/2 'Schibsted Grotesk',sans-serif;text-decoration:none;border-bottom:2px solid #26190D">Take the checklist, free →</a>
+    </div>
+    <div style="font:400 12.5px/1.7 'Schibsted Grotesk',sans-serif;color:#8A7A5F;margin-top:22px">I'll arrive having already used your product · every pixel here hand-built, code included · <a href="https://arpitmaheshwari.com/screen/">technical screen, already answered →</a></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2c" data-screen-label="2c Symptoms">
+<div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a><span><strong>Symptoms.</strong> — the portfolio inverted: organized by where <em>your</em> AI product loses people. Four verbatim symptoms → diagnosis → pattern → receipt. His projects are the pharmacy, not the plot.</span></div>
+<div class="dv-card" style="width:1180px">
+<div style="background:#0F1F17;color:#EAF2EB;font-family:'Bricolage Grotesque',sans-serif">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 48px;border-bottom:1px solid #2C4436">
+    <div style="font:500 12px/1 'Spline Sans Mono',monospace;letter-spacing:.06em;color:#9DB3A4">ARPIT MAHESHWARI — PRODUCT &amp; DESIGN LEADER · AI PRODUCTS</div>
+    <div style="display:flex;gap:20px;font:500 12px/1 'Spline Sans Mono',monospace;color:#9DB3A4"><a href="https://arpitmaheshwari.com/hire/" style="color:#EAF2EB">1-page ↗</a><a href="https://calendly.com/arpitmaheshwari" style="color:#EAF2EB">30 min ↗</a><a href="mailto:maheshwari.arpit88@gmail.com" style="color:#EAF2EB">email ↗</a></div>
+  </div>
+  <div style="padding:56px 48px 36px">
+    <div style="font:500 13px/1.5 'Spline Sans Mono',monospace;color:#86D9A8;margin-bottom:20px">TRIAGE FOR AI PRODUCTS — RUN BY THE DESIGNER YOU'D BE HIRING</div>
+    <h1 style="margin:0;font-weight:800;font-size:80px;line-height:1;letter-spacing:-.025em;max-width:1000px">Where does your AI product lose people?</h1>
+    <div style="font-weight:600;font-size:27px;line-height:1.3;margin-top:22px;color:#C2D4C6;max-width:940px">Arpit Maheshwari — 15 years, shipped to 4M+ users. Four symptoms below; every fix shipped, every number real.</div>
+  </div>
+  <div style="padding:0 48px">
+    <button onClick="{{ symT1 }}" style="display:flex;width:100%;justify-content:space-between;align-items:baseline;gap:20px;background:none;border:none;border-top:1px solid #2C4436;padding:24px 0;text-align:left;color:#EAF2EB;font-family:'Bricolage Grotesque',sans-serif"><span style="font-weight:800;font-size:38px;letter-spacing:-.015em;line-height:1.05"><span style="color:#86D9A8;font-size:20px;vertical-align:middle;margin-right:14px;font-family:'Spline Sans Mono',monospace">01</span>"Users ignore our recommendations."</span><span style="font:400 34px/1 'Spline Sans Mono',monospace;color:#86D9A8">{{ symM1 }}</span></button>
+    <sc-if value="{{ sym1 }}" hint-placeholder-val="{{ true }}">
+      <div style="padding:0 0 28px 52px;display:grid;grid-template-columns:1fr 360px;gap:36px">
+        <div style="font:400 16px/1.7 'Bricolage Grotesque',sans-serif;color:#C2D4C6;max-width:560px">Diagnosis: the score is a feeling, not an instruction. Fix: tie it to exactly one verb — Act, Review, or Ignore — with reasons named out loud and an override that teaches next week's predictions.<div style="font:500 12.5px/2 'Spline Sans Mono',monospace;color:#86D9A8;margin-top:10px">PATTERNS: CONFIDENCE SCORES · ML EXPLAINABILITY · REVERSIBILITY</div></div>
+        <div style="border-left:2px solid #86D9A8;padding-left:16px;font:400 13.5px/1.65 'Bricolage Grotesque',sans-serif;color:#9DB3A4">SHIPPED — programmatic ad platform, 50M bids/hour. Traders went from hunches to <span style="color:#EAF2EB;font-weight:700">2 wks → 3 hrs</span> planning, +£69,000 media value per client. <a href="https://arpitmaheshwari.com/case-studies/adtech.html" style="color:#EAF2EB">walk-through →</a></div>
+      </div>
+    </sc-if>
+    <button onClick="{{ symT2 }}" style="display:flex;width:100%;justify-content:space-between;align-items:baseline;gap:20px;background:none;border:none;border-top:1px solid #2C4436;padding:24px 0;text-align:left;color:#EAF2EB;font-family:'Bricolage Grotesque',sans-serif"><span style="font-weight:800;font-size:38px;letter-spacing:-.015em;line-height:1.05"><span style="color:#86D9A8;font-size:20px;vertical-align:middle;margin-right:14px;font-family:'Spline Sans Mono',monospace">02</span>"Great accuracy, low adoption."</span><span style="font:400 34px/1 'Spline Sans Mono',monospace;color:#86D9A8">{{ symM2 }}</span></button>
+    <sc-if value="{{ sym2 }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:0 0 28px 52px;display:grid;grid-template-columns:1fr 360px;gap:36px">
+        <div style="font:400 16px/1.7 'Bricolage Grotesque',sans-serif;color:#C2D4C6;max-width:560px">Diagnosis: professionals are paid to doubt confident numbers — accuracy they can't audit is accuracy they re-verify. Fix: a cited source behind every claim, and honest abstention when sources run thin.<div style="font:500 12.5px/2 'Spline Sans Mono',monospace;color:#86D9A8;margin-top:10px">PATTERNS: PROVENANCE &amp; CITATIONS · CALIBRATION &amp; TRACK RECORD</div></div>
+        <div style="border-left:2px solid #86D9A8;padding-left:16px;font:400 13.5px/1.65 'Bricolage Grotesque',sans-serif;color:#9DB3A4">SHIPPED — PE deal screening: analysts stopped auditing the machine and started leaning on it. <span style="color:#EAF2EB;font-weight:700">60% faster</span>, pre/post rollout. <a href="https://arpitmaheshwari.com/case-studies/fintech.html" style="color:#EAF2EB">walk-through →</a></div>
+      </div>
+    </sc-if>
+    <button onClick="{{ symT3 }}" style="display:flex;width:100%;justify-content:space-between;align-items:baseline;gap:20px;background:none;border:none;border-top:1px solid #2C4436;padding:24px 0;text-align:left;color:#EAF2EB;font-family:'Bricolage Grotesque',sans-serif"><span style="font-weight:800;font-size:38px;letter-spacing:-.015em;line-height:1.05"><span style="color:#86D9A8;font-size:20px;vertical-align:middle;margin-right:14px;font-family:'Spline Sans Mono',monospace">03</span>"They override the model every time."</span><span style="font:400 34px/1 'Spline Sans Mono',monospace;color:#86D9A8">{{ symM3 }}</span></button>
+    <sc-if value="{{ sym3 }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:0 0 28px 52px;display:grid;grid-template-columns:1fr 360px;gap:36px">
+        <div style="font:400 16px/1.7 'Bricolage Grotesque',sans-serif;color:#C2D4C6;max-width:560px">Diagnosis: the override is being punished instead of harvested. Fix: make it one click, safe, and a training signal — the human stays in the loop and the loop learns.<div style="font:500 12.5px/2 'Spline Sans Mono',monospace;color:#86D9A8;margin-top:10px">PATTERNS: HUMAN-IN-THE-LOOP · REVERSIBILITY / SAFE-TO-ACT</div></div>
+        <div style="border-left:2px solid #86D9A8;padding-left:16px;font:400 13.5px/1.65 'Bricolage Grotesque',sans-serif;color:#9DB3A4">SHIPPED — the AdTech override fed the next week's predictions; overrides fell as the model earned them. Same loop now in <a href="https://arpitmaheshwari.com/lab/" style="color:#EAF2EB">trustlayer.js — 0 deps, 42 tests</a>.</div>
+      </div>
+    </sc-if>
+    <button onClick="{{ symT4 }}" style="display:flex;width:100%;justify-content:space-between;align-items:baseline;gap:20px;background:none;border:none;border-top:1px solid #2C4436;padding:24px 0;text-align:left;color:#EAF2EB;font-family:'Bricolage Grotesque',sans-serif"><span style="font-weight:800;font-size:38px;letter-spacing:-.015em;line-height:1.05"><span style="color:#86D9A8;font-size:20px;vertical-align:middle;margin-right:14px;font-family:'Spline Sans Mono',monospace">04</span>"Nobody trusts the score."</span><span style="font:400 34px/1 'Spline Sans Mono',monospace;color:#86D9A8">{{ symM4 }}</span></button>
+    <sc-if value="{{ sym4 }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:0 0 28px 52px;display:grid;grid-template-columns:1fr 360px;gap:36px">
+        <div style="font:400 16px/1.7 'Bricolage Grotesque',sans-serif;color:#C2D4C6;max-width:560px">Diagnosis: the score never fails honestly, so its confidence is noise. Fix: a designed failure state — the model declines to bluff. The honest no is what makes the yes believable.<div style="font:500 12.5px/2 'Spline Sans Mono',monospace;color:#86D9A8;margin-top:10px">PATTERNS: AI FAILURE STATES · THE CAPABILITY CONTRACT</div></div>
+        <div style="border-left:2px solid #86D9A8;padding-left:16px;font:400 13.5px/1.65 'Bricolage Grotesque',sans-serif;color:#9DB3A4">SHIPPED — VC+PE diligence: no verdict without a cited source; partners lean reputation on it. <span style="color:#EAF2EB;font-weight:700">3 wks → 4 days</span>. <a href="https://arpitmaheshwari.com/case-studies/vc-diligence.html" style="color:#EAF2EB">walk-through →</a></div>
+      </div>
+    </sc-if>
+    <div style="border-top:1px solid #2C4436;padding:22px 0 30px;font:400 13px/1.7 'Spline Sans Mono',monospace;color:#9DB3A4">THE PHARMACY — one rule (Act / Review / Ignore) + eight patterns, all in production: Confidence Scores · AI Failure States · ML Explainability · Human-in-the-Loop · Provenance &amp; Citations · The Capability Contract · Calibration &amp; Track Record · Reversibility. <a href="https://arpitmaheshwari.com/patterns/" style="color:#EAF2EB">Documented with live demos, citable, free →</a></div>
+  </div>
+  <div style="margin:0 0 0 96px;background:#EAF2EB;color:#0F1F17;padding:34px 48px 36px">
+    <div style="font:500 12px/1 'Spline Sans Mono',monospace;letter-spacing:.06em;color:#A0392B;margin-bottom:12px">THE SYMPTOM I DON'T TREAT</div>
+    <div style="font-weight:800;font-size:40px;line-height:1.05;letter-spacing:-.02em;max-width:820px">"We need someone for the brand, the campaigns, the marketing site."</div>
+    <div style="font:400 15px/1.65 'Bricolage Grotesque',sans-serif;color:#3E5246;margin-top:12px;max-width:720px">Wrong specialist — I design AI decision surfaces. Take the <a href="https://arpitmaheshwari.com/resources/ai-design-checklist.html">founder checklist</a> and the <a href="https://arpitmaheshwari.com/patterns/">patterns</a> on your way out; they're free, and good ones should travel.</div>
+  </div>
+  <div style="padding:40px 48px 46px">
+    <div style="font-weight:800;font-size:44px;line-height:1;letter-spacing:-.02em">Book the consult.<span style="color:#86D9A8"> It's the interview.</span></div>
+    <div style="font:400 15px/1.6 'Bricolage Grotesque',sans-serif;color:#9DB3A4;margin:14px 0 24px;max-width:640px">One seat: founding product &amp; design lead, AI company of 5–40 — or staff / director where the trust layer is the job. Remote · GMT+5:30 · 4–5 hrs US-East overlap · 4 weeks' notice. I'll arrive having already used your product.</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="https://calendly.com/arpitmaheshwari" style="background:#86D9A8;color:#0F1F17;text-decoration:none;font:700 15px/1 'Bricolage Grotesque',sans-serif;padding:15px 22px">30 minutes — bring your symptom</a>
+      <a href="mailto:maheshwari.arpit88@gmail.com" style="border:1px solid #4A6455;color:#EAF2EB;text-decoration:none;font:700 15px/1 'Bricolage Grotesque',sans-serif;padding:14px 22px">Send the role</a>
+      <a href="https://arpitmaheshwari.com/hire/" style="border:1px solid #4A6455;color:#EAF2EB;text-decoration:none;font:700 15px/1 'Bricolage Grotesque',sans-serif;padding:14px 22px">The 1-page skim</a>
+      <button onClick="{{ copyLink2c }}" style="border:1px solid #86D9A8;background:none;color:#86D9A8;font:700 15px/1 'Bricolage Grotesque',sans-serif;padding:14px 22px">{{ copyLabel2c }}</button>
+    </div>
+    <div style="font:400 12px/1.7 'Spline Sans Mono',monospace;color:#9DB3A4;margin-top:20px">Every pixel hand-built, code included · <a href="https://arpitmaheshwari.com/screen/" style="color:#EAF2EB">technical screen, already answered →</a></div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "build out <a class="dv-oid" href="#2a">2a</a> with all 8 decisions" · "merge <a class="dv-oid" href="#2c">2c</a>'s triage into <a class="dv-oid" href="#1a">1a</a>'s scorer" · "mobile pass on the winner"</p>
+</section>
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Three concepts, each grown from content only Arpit has. Copy verbatim from arpitmaheshwari.com + resume.</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a" data-screen-label="1a Act Review Ignore">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a><span><strong>Act / Review / Ignore</strong> — his shipped rule, run on his own candidacy. Device: three verbs partition the page. Signature: a scorer that tells the wrong manager not to hire him.</span></div>
+<div class="dv-card" style="width:1180px">
+<div style="background:#FAF8F3;color:#16130E;font-family:'Bricolage Grotesque',sans-serif">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 48px;border-bottom:1px solid #16130E">
+    <div style="font:500 12px/1 'Spline Sans Mono',monospace;letter-spacing:.06em">ARPIT MAHESHWARI — PRODUCT &amp; DESIGN LEADER · AI PRODUCTS</div>
+    <div style="display:flex;gap:22px;font:500 12px/1 'Spline Sans Mono',monospace;letter-spacing:.06em"><span style="color:#2F7B4F">ACT ↓</span><span style="color:#8A6A1C">REVIEW ↓</span><span style="color:#A0392B">IGNORE ↓</span><a href="https://arpitmaheshwari.com/hire/" style="text-decoration:underline">1-PAGE SKIM ↗</a></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 360px;gap:48px;padding:52px 48px 40px;align-items:start">
+    <div>
+      <div style="font:500 13px/1.5 'Spline Sans Mono',monospace;color:#6B6459;margin-bottom:22px">You screen 40 of these tonight. This one scores itself.</div>
+      <h1 style="margin:0;font-weight:800;font-size:84px;line-height:.98;letter-spacing:-.025em;text-wrap:balance">Arpit Maheshwari gets professionals to bet on AI.</h1>
+      <p style="max-width:560px;font:400 19px/1.55 'Bricolage Grotesque',sans-serif;color:#3E382E;margin:26px 0 0">The half-second of doubt between a model's output and a person's click — that is the only thing I design. Fifteen years, five industries, one problem.</p>
+    </div>
+    <div style="border:1.5px solid #16130E;background:#FFFFFF">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #16130E">
+        <span style="font:600 12px/1 'Spline Sans Mono',monospace;letter-spacing:.08em">CANDIDATE SCORE</span>
+        <span style="font:600 13px/1 'Spline Sans Mono',monospace;background:#2F7B4F;color:#FFFFFF;padding:6px 10px">High · 92 — ACT</span>
+      </div>
+      <div style="padding:16px 18px;display:flex;flex-direction:column;gap:10px">
+        <div style="font:400 14px/1.45 'Bricolage Grotesque',sans-serif">Signals, named out loud:</div>
+        <div style="font:400 13.5px/1.5 'Bricolage Grotesque',sans-serif;color:#3E382E">— 15 yrs owning product + design, AI since 2019<br>— shipped to 4M+ users<br>— 8 trust patterns in production, with tests<br>— the seat he wants is the seat you're filling</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
+          <a href="mailto:maheshwari.arpit88@gmail.com" style="display:block;text-align:center;background:#16130E;color:#FAF8F3;text-decoration:none;font:600 14px/1 'Bricolage Grotesque',sans-serif;padding:13px 10px">Act — send me the role</a>
+          <a href="https://calendly.com/arpitmaheshwari" style="display:block;text-align:center;border:1.5px solid #16130E;color:#16130E;text-decoration:none;font:600 14px/1 'Bricolage Grotesque',sans-serif;padding:12px 10px">Review — book 30 minutes</a>
+        </div>
+        <div style="font:400 11.5px/1.5 'Spline Sans Mono',monospace;color:#6B6459">Override always one click away: close the tab.</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:0;border-top:1px solid #16130E;border-bottom:1px solid #16130E">
+    <div style="flex:1;padding:22px 24px;border-right:1px solid #16130E"><div style="font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em">2 wks → 3 hrs</div><div style="font:400 12px/1.5 'Spline Sans Mono',monospace;color:#6B6459;margin-top:8px">campaign planning · AdTech</div></div>
+    <div style="flex:1;padding:22px 24px;border-right:1px solid #16130E"><div style="font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em">60% faster</div><div style="font:400 12px/1.5 'Spline Sans Mono',monospace;color:#6B6459;margin-top:8px">PE deal screening · FinTech</div></div>
+    <div style="flex:1;padding:22px 24px;border-right:1px solid #16130E"><div style="font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em">3 wks → 4 days</div><div style="font:400 12px/1.5 'Spline Sans Mono',monospace;color:#6B6459;margin-top:8px">technical due diligence · VC+PE</div></div>
+    <div style="flex:1;padding:22px 24px;border-right:1px solid #16130E"><div style="font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em">$1M / yr</div><div style="font:400 12px/1.5 'Spline Sans Mono',monospace;color:#6B6459;margin-top:8px">saved on print · EdTech</div></div>
+    <div style="flex:1;padding:22px 24px"><div style="font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em">4M+ users</div><div style="font:400 12px/1.5 'Spline Sans Mono',monospace;color:#6B6459;margin-top:8px">drawn, then coded · O2 UK</div></div>
+  </div>
+  <div style="padding:44px 48px 8px;display:flex;align-items:baseline;gap:18px">
+    <span style="font:600 14px/1 'Spline Sans Mono',monospace;background:#8A6A1C;color:#FFFFFF;padding:7px 12px">REVIEW</span>
+    <h2 style="margin:0;font-weight:800;font-size:34px;letter-spacing:-.02em">The evidence. Reasons on the card, not in a tooltip.</h2>
+  </div>
+  <div style="padding:20px 48px 8px">
+    <div style="display:flex;gap:28px;padding:26px 0;border-bottom:1px solid #D8D2C6;align-items:baseline">
+      <div style="font:500 12px/1.6 'Spline Sans Mono',monospace;color:#6B6459;width:120px;flex:none">01<br>ADTECH</div>
+      <div style="flex:1"><div style="font-weight:700;font-size:26px;letter-spacing:-.015em;line-height:1.15">Traders watched an algorithm beat them — and still played their own hunches.</div><div style="font:400 15px/1.55 'Bricolage Grotesque',sans-serif;color:#3E382E;margin-top:8px;max-width:600px">The fix wasn't a better model. A score tied to one action, reasons named out loud, an override that taught next week's predictions. Five years on one product, 50M bids/hour.</div></div>
+      <div style="width:220px;flex:none;text-align:right"><div style="font-weight:800;font-size:30px;line-height:1">2 wks → 3 hrs</div><a href="https://arpitmaheshwari.com/case-studies/adtech.html" style="font:500 13px/1 'Spline Sans Mono',monospace;display:inline-block;margin-top:10px">Walk-through →</a></div>
+    </div>
+    <div style="display:flex;gap:28px;padding:26px 0;border-bottom:1px solid #D8D2C6;align-items:baseline">
+      <div style="font:500 12px/1.6 'Spline Sans Mono',monospace;color:#6B6459;width:120px;flex:none">02<br>FINTECH</div>
+      <div style="flex:1"><div style="font-weight:700;font-size:26px;letter-spacing:-.015em;line-height:1.15">Analysts get paid to doubt confident numbers — so the score learned to argue its own case.</div><div style="font:400 15px/1.55 'Bricolage Grotesque',sans-serif;color:#3E382E;margin-top:8px;max-width:600px">Agentic LLM deal screening for private equity. Every claim cited, honest abstention when sources are thin. They stopped auditing it and started leaning on it.</div></div>
+      <div style="width:220px;flex:none;text-align:right"><div style="font-weight:800;font-size:30px;line-height:1">60% faster</div><a href="https://arpitmaheshwari.com/case-studies/fintech.html" style="font:500 13px/1 'Spline Sans Mono',monospace;display:inline-block;margin-top:10px">Walk-through →</a></div>
+    </div>
+    <div style="display:flex;gap:28px;padding:26px 0;align-items:baseline">
+      <div style="font:500 12px/1.6 'Spline Sans Mono',monospace;color:#6B6459;width:120px;flex:none">03<br>VC + PE</div>
+      <div style="flex:1"><div style="font-weight:700;font-size:26px;letter-spacing:-.015em;line-height:1.15">Partners stake millions on technical claims they'll never personally verify.</div><div style="font:400 15px/1.55 'Bricolage Grotesque',sans-serif;color:#3E382E;margin-top:8px;max-width:600px">An LLM reads code and documents, four signal classes scored — no verdict ships without a cited source. Getting partners to lean their reputation on it was my job.</div></div>
+      <div style="width:220px;flex:none;text-align:right"><div style="font-weight:800;font-size:30px;line-height:1">3 wks → 4 days</div><a href="https://arpitmaheshwari.com/case-studies/vc-diligence.html" style="font:500 13px/1 'Spline Sans Mono',monospace;display:inline-block;margin-top:10px">Walk-through →</a></div>
+    </div>
+    <div style="font:400 13px/1.6 'Spline Sans Mono',monospace;color:#6B6459;padding:4px 0 8px">The range underneath — <a href="https://arpitmaheshwari.com/case-studies/ptc.html">EdTech: 550k+ learners, NASA to Airbus</a> · <a href="https://arpitmaheshwari.com/case-studies/o2.html">Telecom: O2, 2.6M sign-ups yr one</a> · <a href="https://arpitmaheshwari.com/case-studies/orgos.html">Org design: a 200-person company, no managers</a></div>
+  </div>
+  <div style="margin:36px 48px 0;border:1.5px solid #16130E;background:#FFFFFF">
+    <div style="padding:20px 24px;border-bottom:1px solid #16130E;display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+      <div style="font-weight:800;font-size:24px;letter-spacing:-.015em">The rule I ship — run on this candidacy.</div>
+      <div style="font:400 12px/1.4 'Spline Sans Mono',monospace;color:#6B6459">One score. One action. No shrug with decimals.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 380px;gap:0">
+      <div style="padding:22px 24px;border-right:1px solid #16130E">
+        <div style="font:500 12px/1 'Spline Sans Mono',monospace;letter-spacing:.06em;color:#6B6459;margin-bottom:10px">YOUR TEAM</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
+          <button onClick="{{ setStage1 }}" style="{{ stageBtn1 }}">5–40 people</button>
+          <button onClick="{{ setStage2 }}" style="{{ stageBtn2 }}">40–200, design org exists</button>
+          <button onClick="{{ setStage3 }}" style="{{ stageBtn3 }}">40+, he'd be our only designer</button>
+        </div>
+        <div style="font:500 12px/1 'Spline Sans Mono',monospace;letter-spacing:.06em;color:#6B6459;margin-bottom:10px">THE JOB</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button onClick="{{ setJob1 }}" style="{{ jobBtn1 }}">Own the trust layer</button>
+          <button onClick="{{ setJob2 }}" style="{{ jobBtn2 }}">General product design</button>
+          <button onClick="{{ setJob3 }}" style="{{ jobBtn3 }}">Brand &amp; marketing site</button>
+        </div>
+      </div>
+      <div style="padding:22px 24px;background:#FAF8F3">
+        <span style="font:600 14px/1 'Spline Sans Mono',monospace;color:#FFFFFF;padding:7px 12px;display:inline-block;background:{{ vColor }}">{{ vBand }} · {{ vScore }} — {{ vVerb }}</span>
+        <div style="margin-top:14px;display:flex;flex-direction:column;gap:7px">
+          <sc-for list="{{ vReasons }}" as="r" hint-placeholder-count="3">
+            <div style="font:400 13.5px/1.5 'Bricolage Grotesque',sans-serif;color:#3E382E">— {{ r }}</div>
+          </sc-for>
+        </div>
+        <div style="font:400 11.5px/1.55 'Spline Sans Mono',monospace;color:#6B6459;margin-top:12px">{{ vNote }}</div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:18px 48px 40px;font:400 14px/1.6 'Bricolage Grotesque',sans-serif;color:#3E382E;max-width:760px"><span style="color:#6B6459;font-family:'Spline Sans Mono',monospace;font-size:12px">FROM PEOPLE WHO SHIPPED WITH ME —</span> "Instrumental in shaping four distinct products from the ground up… remarkably intuitive yet adept at handling complex workflows." <span style="color:#6B6459">— Anant East, CTO, Talon Outdoor</span></div>
+  <div style="background:#16130E;color:#FAF8F3;padding:44px 48px;margin:0">
+    <div style="display:flex;align-items:baseline;gap:18px"><span style="font:600 14px/1 'Spline Sans Mono',monospace;background:#A0392B;color:#FFFFFF;padding:7px 12px">IGNORE</span><h2 style="margin:0;font-weight:800;font-size:34px;letter-spacing:-.02em">The honest no. Don't hire me if —</h2></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;margin-top:26px">
+      <div style="font:400 15px/1.55 'Bricolage Grotesque',sans-serif;color:#D8D2C6"><span style="color:#FAF8F3;font-weight:700">You want one heroic designer past 40 people.</span> Beyond that point design is an organizational problem — one hire is the wrong answer to it.</div>
+      <div style="font:400 15px/1.55 'Bricolage Grotesque',sans-serif;color:#D8D2C6"><span style="color:#FAF8F3;font-weight:700">You'll ship AI features with no designed failure state.</span> Non-negotiable — and cheaper than it sounds: usually one honest sentence, an hour of work.</div>
+      <div style="font:400 15px/1.55 'Bricolage Grotesque',sans-serif;color:#D8D2C6"><span style="color:#FAF8F3;font-weight:700">You need a team's ops run while shipping weekly.</span> That's two jobs, done as neither. At founding stage I happily do all of it — because there is no team yet.</div>
+    </div>
+    <div style="font:400 13px/1.6 'Spline Sans Mono',monospace;color:#A29A8C;margin-top:26px">The model declines to bluff. If that's you, take the free stuff on your way out: <a href="https://arpitmaheshwari.com/patterns/" style="color:#FAF8F3">the 8-pattern library</a> · <a href="https://arpitmaheshwari.com/resources/ai-design-checklist.html" style="color:#FAF8F3">the founder checklist</a> · <a href="https://arpitmaheshwari.com/lab/" style="color:#FAF8F3">trustlayer.js — 0 deps, 42 tests, MIT</a></div>
+  </div>
+  <div style="padding:44px 48px 46px">
+    <div style="display:flex;align-items:baseline;gap:18px"><span style="font:600 14px/1 'Spline Sans Mono',monospace;background:#2F7B4F;color:#FFFFFF;padding:7px 12px">ACT</span><h2 style="margin:0;font-weight:800;font-size:34px;letter-spacing:-.02em">One seat. Full-time. Yours to offer.</h2></div>
+    <div style="font:400 15px/1.55 'Bricolage Grotesque',sans-serif;color:#3E382E;margin:14px 0 26px;max-width:640px">Founding product &amp; design lead at an AI company of 5–40 people — or staff / director where the trust layer is the job description. Remote, GMT+5:30, 4–5 hrs daily US-East overlap. Four weeks' notice.</div>
+    <div style="display:flex;flex-direction:column">
+      <a href="mailto:maheshwari.arpit88@gmail.com" style="display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-top:1px solid #16130E;text-decoration:none"><span style="font-weight:800;font-size:32px;letter-spacing:-.02em">Send me the role</span><span style="font:500 13px/1 'Spline Sans Mono',monospace;color:#6B6459">maheshwari.arpit88@gmail.com — replies in ~48h →</span></a>
+      <a href="https://calendly.com/arpitmaheshwari" style="display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-top:1px solid #16130E;text-decoration:none"><span style="font-weight:800;font-size:32px;letter-spacing:-.02em">Talk first — 30 minutes</span><span style="font:500 13px/1 'Spline Sans Mono',monospace;color:#6B6459">I'll arrive having already used your product →</span></a>
+      <a href="https://arpitmaheshwari.com/hire/" style="display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-top:1px solid #16130E;text-decoration:none"><span style="font-weight:800;font-size:32px;letter-spacing:-.02em">Skim the one-pager</span><span style="font:500 13px/1 'Spline Sans Mono',monospace;color:#6B6459">positioning, receipts, references, availability →</span></a>
+      <button onClick="{{ copyLink1a }}" style="display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-top:1px solid #16130E;border-bottom:1px solid #16130E;background:none;border-left:none;border-right:none;text-align:left;font-family:'Bricolage Grotesque',sans-serif;color:#16130E"><span style="font-weight:800;font-size:32px;letter-spacing:-.02em">Forward this to whoever decides</span><span style="font:500 13px/1 'Spline Sans Mono',monospace;color:#6B6459">{{ copyLabel1a }}</span></button>
+    </div>
+    <div style="font:400 12px/1.6 'Spline Sans Mono',monospace;color:#6B6459;margin-top:24px">Every pixel here hand-built, code included · <a href="https://arpitmaheshwari.com/screen/">running a technical screen? already answered, in writing →</a></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1b" data-screen-label="1b The Half-Second">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a><span><strong>The Half-Second</strong> — his positioning sentence made structural: a millisecond ruler dilates 0→500ms down the page. Signature: the confidence card replayed in slow motion.</span></div>
+<div class="dv-card" style="width:1180px">
+<div style="background:#0F0D0A;color:#F4F0E8;font-family:'Schibsted Grotesk',sans-serif">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 44px;border-bottom:1px solid #2E2A22">
+    <div style="font:500 12px/1 'Schibsted Grotesk',sans-serif;letter-spacing:.08em;color:#B7AE9E">ARPIT MAHESHWARI · PRODUCT &amp; DESIGN LEADER · AI PRODUCTS</div>
+    <div style="display:flex;gap:20px;font:500 12px/1 'Schibsted Grotesk',sans-serif;letter-spacing:.06em;color:#B7AE9E"><span>0ms THE OUTPUT</span><span>120ms THE DOUBT</span><span>300ms THE CHECK</span><span style="color:#E5B75A">500ms THE BET</span></div>
+  </div>
+  <div style="padding:64px 44px 40px 44px">
+    <h1 style="margin:0;font-family:'Newsreader',serif;font-weight:400;font-size:74px;line-height:1.06;letter-spacing:-.015em;max-width:980px">Your model is right.<br><span style="font-style:italic;color:#E5B75A">Your users hesitate — for half a second.</span><br>I design that half-second.</h1>
+    <div style="display:flex;justify-content:space-between;align-items:end;margin-top:36px;gap:24px">
+      <div style="font:400 19px/1.5 'Schibsted Grotesk',sans-serif;color:#B7AE9E;max-width:520px">Arpit Maheshwari — fifteen years on data-heavy products, the last six on AI where a professional's money or reputation rides on the output. Shipped to 4M+ users.</div>
+      <div style="display:flex;gap:10px;flex:none"><a href="mailto:maheshwari.arpit88@gmail.com" style="background:#F4F0E8;color:#0F0D0A;text-decoration:none;font:600 15px/1 'Schibsted Grotesk',sans-serif;padding:14px 20px">Send me the role</a><a href="https://arpitmaheshwari.com/hire/" style="border:1px solid #4A443A;color:#F4F0E8;text-decoration:none;font:600 15px/1 'Schibsted Grotesk',sans-serif;padding:13px 20px">The 1-page skim</a></div>
+    </div>
+  </div>
+  <div style="display:flex;border-top:1px solid #2E2A22">
+    <div style="width:96px;flex:none;border-right:1px solid #2E2A22;padding:28px 0 0;text-align:center"><div style="font:600 13px/1 'Schibsted Grotesk',sans-serif;color:#E5B75A;font-variant-numeric:tabular-nums">0ms</div><div style="width:1px;height:calc(100% - 40px);background:#2E2A22;margin:12px auto 0"></div></div>
+    <div style="flex:1;padding:28px 44px 36px 36px">
+      <div style="font:600 13px/1 'Schibsted Grotesk',sans-serif;letter-spacing:.08em;color:#B7AE9E;margin-bottom:18px">THE OUTPUT APPEARS — WHAT SHIPPED WHEN THEY ACTED ON IT</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 40px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #2E2A22;padding:16px 0"><span style="font-family:'Newsreader',serif;font-size:44px;line-height:1;letter-spacing:-.01em">2 wks → 3 hrs</span><span style="font:400 12.5px/1.4 'Schibsted Grotesk',sans-serif;color:#B7AE9E;text-align:right">campaign planning<br>AdTech · per campaign</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #2E2A22;padding:16px 0"><span style="font-family:'Newsreader',serif;font-size:44px;line-height:1;letter-spacing:-.01em">60% faster</span><span style="font:400 12.5px/1.4 'Schibsted Grotesk',sans-serif;color:#B7AE9E;text-align:right">PE deal screening<br>FinTech · pre/post rollout</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #2E2A22;padding:16px 0"><span style="font-family:'Newsreader',serif;font-size:44px;line-height:1;letter-spacing:-.01em">3 wks → 4 days</span><span style="font:400 12.5px/1.4 'Schibsted Grotesk',sans-serif;color:#B7AE9E;text-align:right">technical due diligence<br>VC + PE investors</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #2E2A22;padding:16px 0"><span style="font-family:'Newsreader',serif;font-size:44px;line-height:1;letter-spacing:-.01em">4M+ users</span><span style="font:400 12.5px/1.4 'Schibsted Grotesk',sans-serif;color:#B7AE9E;text-align:right">O2 UK — drawn, then coded<br>publicly reported</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;border-top:1px solid #2E2A22">
+    <div style="width:96px;flex:none;border-right:1px solid #2E2A22;padding:28px 0 0;text-align:center"><div style="font:600 13px/1 'Schibsted Grotesk',sans-serif;color:#E5B75A;font-variant-numeric:tabular-nums">120ms</div><div style="width:1px;height:calc(100% - 40px);background:#2E2A22;margin:12px auto 0"></div></div>
+    <div style="flex:1;padding:28px 44px 40px 36px">
+      <div style="font:600 13px/1 'Schibsted Grotesk',sans-serif;letter-spacing:.08em;color:#B7AE9E">THE DOUBT — THIS IS WHERE AI PRODUCTS DIE</div>
+      <div style="font-family:'Newsreader',serif;font-style:italic;font-size:30px;line-height:1.25;color:#F4F0E8;margin:14px 0 24px;max-width:720px">An unexplained 87% is a shrug with decimals. Here is the half-second, slowed 10× — what a professional checks before they bet.</div>
+      <div style="display:grid;grid-template-columns:420px 1fr;gap:36px;align-items:start">
+        <div style="background:#F4F0E8;color:#1A1610;padding:20px;border-radius:2px">
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #D8D2C6;padding-bottom:12px;transition:opacity .3s;opacity:{{ ann0op }}"><span style="font:600 13px/1 'Schibsted Grotesk',sans-serif">Screening score</span><span style="font:700 13px/1 'Schibsted Grotesk',sans-serif;background:#8A6A1C;color:#fff;padding:5px 9px">Mixed · 61 — Review</span></div>
+          <div style="padding:12px 0;border-bottom:1px solid #D8D2C6;transition:opacity .3s;opacity:{{ ann1op }}"><div style="font:600 11px/1 'Schibsted Grotesk',sans-serif;letter-spacing:.06em;color:#6B6459;margin-bottom:8px">REASONS, ON THE CARD</div><div style="font:400 13.5px/1.6 'Schibsted Grotesk',sans-serif">Revenue figures verified against filings ✓<br>Churn signal from a single quarter ⚠<br>Founder claims uncorroborated ⚠</div></div>
+          <div style="padding:12px 0;border-bottom:1px solid #D8D2C6;transition:opacity .3s;opacity:{{ ann2op }}"><div style="font:600 11px/1 'Schibsted Grotesk',sans-serif;letter-spacing:.06em;color:#6B6459;margin-bottom:8px">PROVENANCE</div><div style="font:400 13.5px/1.6 'Schibsted Grotesk',sans-serif">Every number links to its source document — <span style="text-decoration:underline">12 citations</span></div></div>
+          <div style="padding-top:14px;display:flex;gap:8px;transition:opacity .3s;opacity:{{ ann3op }}"><span style="font:600 13px/1 'Schibsted Grotesk',sans-serif;background:#1A1610;color:#F4F0E8;padding:10px 14px">Review the two flags</span><span style="font:600 13px/1 'Schibsted Grotesk',sans-serif;border:1px solid #1A1610;padding:9px 14px">Override</span></div>
+        </div>
+        <div>
+          <div style="display:flex;gap:8px;margin-bottom:18px">
+            <button onClick="{{ step0 }}" style="{{ stepBtn0 }}">0ms</button>
+            <button onClick="{{ step1 }}" style="{{ stepBtn1 }}">120ms</button>
+            <button onClick="{{ step2 }}" style="{{ stepBtn2 }}">300ms</button>
+            <button onClick="{{ step3 }}" style="{{ stepBtn3 }}">500ms</button>
+            <button onClick="{{ playHalfSecond }}" style="font:600 13px/1 'Schibsted Grotesk',sans-serif;background:#E5B75A;color:#0F0D0A;border:none;padding:10px 16px">{{ playLabel }}</button>
+          </div>
+          <div style="font:600 34px/1 'Newsreader',serif;color:#E5B75A;font-variant-numeric:tabular-nums">{{ capMs }}</div>
+          <div style="font:600 15px/1.3 'Schibsted Grotesk',sans-serif;margin:10px 0 8px">{{ capTitle }}</div>
+          <div style="font:400 15px/1.6 'Schibsted Grotesk',sans-serif;color:#B7AE9E;max-width:480px">{{ capBody }}</div>
+          <div style="font:400 12.5px/1.6 'Schibsted Grotesk',sans-serif;color:#7A7264;margin-top:16px">Pattern answering this check: <span style="color:#E5B75A">{{ capPattern }}</span> — one of <a href="https://arpitmaheshwari.com/patterns/" style="color:#F4F0E8">8 in the library</a>, all in production. Four ship as <a href="https://arpitmaheshwari.com/lab/" style="color:#F4F0E8">trustlayer.js — 0 deps, 42 tests, MIT</a>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;border-top:1px solid #2E2A22">
+    <div style="width:96px;flex:none;border-right:1px solid #2E2A22;padding:28px 0 0;text-align:center"><div style="font:600 13px/1 'Schibsted Grotesk',sans-serif;color:#E5B75A;font-variant-numeric:tabular-nums">300ms</div><div style="width:1px;height:calc(100% - 40px);background:#2E2A22;margin:12px auto 0"></div></div>
+    <div style="flex:1;padding:28px 44px 36px 36px">
+      <div style="font:600 13px/1 'Schibsted Grotesk',sans-serif;letter-spacing:.08em;color:#B7AE9E;margin-bottom:20px">THE CHECK — THREE PRODUCTS, ONE JOB: EARN THE BET</div>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div style="display:grid;grid-template-columns:110px 1fr 210px;gap:24px;padding:20px 0;border-top:1px solid #2E2A22;align-items:baseline"><div style="font:500 12px/1.5 'Schibsted Grotesk',sans-serif;color:#B7AE9E">AdTech</div><div style="font-family:'Newsreader',serif;font-size:24px;line-height:1.3">Traders checked the scoreboard, then played their hunches anyway — until the score named its reasons and the override taught the model.</div><div style="text-align:right"><span style="font:600 20px/1 'Schibsted Grotesk',sans-serif;color:#E5B75A">2 wks → 3 hrs</span><br><a href="https://arpitmaheshwari.com/case-studies/adtech.html" style="font:400 12.5px/2 'Schibsted Grotesk',sans-serif;color:#B7AE9E">walk-through →</a></div></div>
+        <div style="display:grid;grid-template-columns:110px 1fr 210px;gap:24px;padding:20px 0;border-top:1px solid #2E2A22;align-items:baseline"><div style="font:500 12px/1.5 'Schibsted Grotesk',sans-serif;color:#B7AE9E">FinTech</div><div style="font-family:'Newsreader',serif;font-size:24px;line-height:1.3">Analysts re-verified every machine number — until each claim carried its citation and the model learned to abstain when sources ran thin.</div><div style="text-align:right"><span style="font:600 20px/1 'Schibsted Grotesk',sans-serif;color:#E5B75A">60% faster</span><br><a href="https://arpitmaheshwari.com/case-studies/fintech.html" style="font:400 12.5px/2 'Schibsted Grotesk',sans-serif;color:#B7AE9E">walk-through →</a></div></div>
+        <div style="display:grid;grid-template-columns:110px 1fr 210px;gap:24px;padding:20px 0;border-top:1px solid #2E2A22;border-bottom:1px solid #2E2A22;align-items:baseline"><div style="font:500 12px/1.5 'Schibsted Grotesk',sans-serif;color:#B7AE9E">VC + PE</div><div style="font-family:'Newsreader',serif;font-size:24px;line-height:1.3">Partners wouldn't stake reputation on an extraction — until four signal classes shipped with no verdict uncited.</div><div style="text-align:right"><span style="font:600 20px/1 'Schibsted Grotesk',sans-serif;color:#E5B75A">3 wks → 4 days</span><br><a href="https://arpitmaheshwari.com/case-studies/vc-diligence.html" style="font:400 12.5px/2 'Schibsted Grotesk',sans-serif;color:#B7AE9E">walk-through →</a></div></div>
+      </div>
+      <div style="font:400 13px/1.7 'Schibsted Grotesk',sans-serif;color:#7A7264;margin-top:16px">The range underneath: <a href="https://arpitmaheshwari.com/case-studies/ptc.html" style="color:#B7AE9E">EdTech — $1M/yr saved, 550k+ learners</a> · <a href="https://arpitmaheshwari.com/case-studies/o2.html" style="color:#B7AE9E">Telecom — 4M+ users, drawn then coded</a> · <a href="https://arpitmaheshwari.com/case-studies/orgos.html" style="color:#B7AE9E">OrgOS — a 200-person company, no managers</a></div>
+    </div>
+  </div>
+  <div style="display:flex;border-top:1px solid #2E2A22">
+    <div style="width:96px;flex:none;border-right:1px solid #2E2A22;padding:28px 0 0;text-align:center"><div style="font:600 13px/1 'Schibsted Grotesk',sans-serif;color:#A0392B;font-variant-numeric:tabular-nums">480ms</div><div style="width:1px;height:calc(100% - 40px);background:#2E2A22;margin:12px auto 0"></div></div>
+    <div style="flex:1;padding:28px 44px 36px 0">
+      <div style="margin-left:-60px;background:#1A1610;border:1px solid #4A443A;padding:26px 30px;max-width:760px">
+        <div style="font:600 12px/1 'Schibsted Grotesk',sans-serif;letter-spacing:.08em;color:#A0392B;margin-bottom:12px">480ms — THE FLINCH I CAUSED ONCE</div>
+        <div style="font-family:'Newsreader',serif;font-style:italic;font-size:23px;line-height:1.4;color:#F4F0E8">I fought hard for a recommendation card with three ranked options — give people choice. Engineering wanted one. They won the meeting; the A/B made it permanent: <span style="color:#E5B75A">the single-option card converted 2.3×</span>, because three choices froze people at the exact moment we needed them to move.</div>
+        <div style="font:400 13px/1.5 'Schibsted Grotesk',sans-serif;color:#B7AE9E;margin-top:12px">Every recommendation surface I've designed since starts from that loss.</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;border-top:1px solid #2E2A22">
+    <div style="width:96px;flex:none;border-right:1px solid #2E2A22;padding:28px 0 0;text-align:center"><div style="font:600 13px/1 'Schibsted Grotesk',sans-serif;color:#E5B75A;font-variant-numeric:tabular-nums">500ms</div></div>
+    <div style="flex:1;padding:28px 44px 44px 36px">
+      <div style="font:600 13px/1 'Schibsted Grotesk',sans-serif;letter-spacing:.08em;color:#B7AE9E;margin-bottom:14px">THE BET — ONE SEAT. FULL-TIME. YOURS TO OFFER.</div>
+      <div style="font-family:'Newsreader',serif;font-size:40px;line-height:1.15;max-width:860px">Founding product &amp; design lead, AI company of 5–40 — or staff / director where the trust layer <span style="font-style:italic">is</span> the job description.</div>
+      <div style="font:400 14px/1.6 'Schibsted Grotesk',sans-serif;color:#B7AE9E;margin:16px 0 24px">Fully remote · GMT+5:30 · 4–5 hrs daily US-East overlap · four weeks' notice · I'll arrive having already used your product.</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="mailto:maheshwari.arpit88@gmail.com" style="background:#E5B75A;color:#0F0D0A;text-decoration:none;font:600 15px/1 'Schibsted Grotesk',sans-serif;padding:15px 22px">Act — send the role</a>
+        <a href="https://calendly.com/arpitmaheshwari" style="border:1px solid #4A443A;color:#F4F0E8;text-decoration:none;font:600 15px/1 'Schibsted Grotesk',sans-serif;padding:14px 22px">Review — 30 minutes first</a>
+        <a href="https://arpitmaheshwari.com/hire/" style="border:1px solid #4A443A;color:#F4F0E8;text-decoration:none;font:600 15px/1 'Schibsted Grotesk',sans-serif;padding:14px 22px">Skim — the one-pager</a>
+        <button onClick="{{ copyLink1b }}" style="border:1px solid #4A443A;background:none;color:#F4F0E8;font:600 15px/1 'Schibsted Grotesk',sans-serif;padding:14px 22px">{{ copyLabel1b }}</button>
+      </div>
+      <div style="font:400 12.5px/1.7 'Schibsted Grotesk',sans-serif;color:#7A7264;margin-top:22px">Not hiring, just building? Ignore me and take the free half: <a href="https://arpitmaheshwari.com/patterns/" style="color:#B7AE9E">patterns</a> · <a href="https://arpitmaheshwari.com/resources/ai-design-checklist.html" style="color:#B7AE9E">founder checklist</a> · <a href="https://arpitmaheshwari.com/lab/" style="color:#B7AE9E">trustlayer.js</a> · Every pixel hand-built, code included.</div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1c" data-screen-label="1c Cited">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a><span><strong>Cited.</strong> — his FinTech rule ("no verdict ships without a cited source") applied to his own resume. Device: giant claims + a citation register. Signature: the one claim with no source.</span></div>
+<div class="dv-card" style="width:1180px">
+<div style="background:#F6F1E8;color:#1A140C;font-family:'Besley',serif">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 48px;border-bottom:2px solid #1A140C">
+    <div style="font:500 12px/1 'IBM Plex Mono',monospace;letter-spacing:.05em">ARPIT MAHESHWARI — CLAIMS, WITH RECEIPTS</div>
+    <div style="display:flex;gap:20px;font:500 12px/1 'IBM Plex Mono',monospace"><a href="https://arpitmaheshwari.com/hire/">1-page ↗</a><a href="https://calendly.com/arpitmaheshwari">30 min ↗</a><span style="color:#8A8072">references ↓</span></div>
+  </div>
+  <div style="padding:56px 48px 36px">
+    <h1 style="margin:0;font-weight:800;font-size:76px;line-height:1.04;letter-spacing:-.02em;max-width:1020px">Arpit Maheshwari<button onClick="{{ cite5 }}" style="{{ cbtn5 }}">5</button> designs the trust layer<button onClick="{{ cite1 }}" style="{{ cbtn1 }}">1</button> of AI products.</h1>
+    <div style="font-weight:500;font-size:34px;line-height:1.25;letter-spacing:-.01em;margin-top:22px;color:#4A4234">Fifteen years.<button onClick="{{ cite2 }}" style="{{ cbtn2s }}">2</button> Four industries.<button onClick="{{ cite3 }}" style="{{ cbtn3s }}">3</button> Every claim on this page carries its source.<button onClick="{{ cite4 }}" style="{{ cbtn4s }}">4</button></div>
+    <div style="margin-top:34px;border:1.5px solid #1A140C;background:#FFFDF8;display:grid;grid-template-columns:44px 1fr;gap:0">
+      <div style="background:#1A140C;color:#F6F1E8;display:flex;align-items:center;justify-content:center;font:600 15px/1 'IBM Plex Mono',monospace">{{ citeNum }}</div>
+      <div style="padding:14px 18px;font:400 14px/1.65 'IBM Plex Mono',monospace;color:#3E382E">{{ citeBody }}</div>
+    </div>
+  </div>
+  <div style="padding:8px 48px 12px">
+    <div style="font:500 12px/1 'IBM Plex Mono',monospace;letter-spacing:.05em;color:#8A8072;border-bottom:2px solid #1A140C;padding-bottom:10px">CLAIMS 6–10 · EACH WITH SOURCE, BASELINE, METHOD</div>
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:40px;padding:30px 0;border-bottom:1px solid #D8CFC0;align-items:start">
+      <div style="font-weight:800;font-size:44px;line-height:1.05;letter-spacing:-.015em">Cut campaign planning from two weeks to three hours.<span style="font:600 16px/1 'IBM Plex Mono',monospace;color:#A0392B;vertical-align:super"> 6</span></div>
+      <div style="font:400 12.5px/1.7 'IBM Plex Mono',monospace;color:#3E382E"><span style="color:#A0392B">[6]</span> Source: programmatic OOH platform, £300M media business, 50M bids/hour. Method: per-campaign baseline; five years on one product. Corroboration: +£69,000 media value per client. <a href="https://arpitmaheshwari.com/case-studies/adtech.html">Walk-through →</a></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:40px;padding:30px 0;border-bottom:1px solid #D8CFC0;align-items:start">
+      <div style="font-weight:800;font-size:44px;line-height:1.05;letter-spacing:-.015em">Made PE deal screening 60% faster.<span style="font:600 16px/1 'IBM Plex Mono',monospace;color:#A0392B;vertical-align:super"> 7</span></div>
+      <div style="font:400 12.5px/1.7 'IBM Plex Mono',monospace;color:#3E382E"><span style="color:#A0392B">[7]</span> Source: agentic LLM screening platform. Method: pre/post rollout. Mechanism: a cited source behind every score; honest abstention when sources are thin — analysts stopped re-verifying the machine. <a href="https://arpitmaheshwari.com/case-studies/fintech.html">Walk-through →</a></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:40px;padding:30px 0;border-bottom:1px solid #D8CFC0;align-items:start">
+      <div style="font-weight:800;font-size:44px;line-height:1.05;letter-spacing:-.015em">Compressed technical due diligence from three weeks to four days.<span style="font:600 16px/1 'IBM Plex Mono',monospace;color:#A0392B;vertical-align:super"> 8</span></div>
+      <div style="font:400 12.5px/1.7 'IBM Plex Mono',monospace;color:#3E382E"><span style="color:#A0392B">[8]</span> Source: due-diligence platform for VC + PE; an LLM reads code and documents, four signal classes scored. Rule: no verdict ships without a cited source. <a href="https://arpitmaheshwari.com/case-studies/vc-diligence.html">Walk-through →</a></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:40px;padding:30px 0;border-bottom:1px solid #D8CFC0;align-items:start">
+      <div style="font-weight:800;font-size:44px;line-height:1.05;letter-spacing:-.015em">Saved $1M a year; took subscriptions from 0 to 64% of new bookings.<span style="font:600 16px/1 'IBM Plex Mono',monospace;color:#A0392B;vertical-align:super"> 9</span></div>
+      <div style="font:400 12.5px/1.7 'IBM Plex Mono',monospace;color:#3E382E"><span style="color:#A0392B">[9]</span> Source: PTC University. Method: 6-quarter rolling baseline; five quarters, Q3 2017 → Q3 2018. Context: 550k+ learners, 80+ countries — NASA, Boeing, Toyota, Airbus among clientele. <a href="https://arpitmaheshwari.com/case-studies/ptc.html">Walk-through →</a></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:40px;padding:30px 0;align-items:start">
+      <div style="font-weight:800;font-size:44px;line-height:1.05;letter-spacing:-.015em">Drew two products for 4M+ users — then shipped them as code.<span style="font:600 16px/1 'IBM Plex Mono',monospace;color:#A0392B;vertical-align:super"> 10</span></div>
+      <div style="font:400 12.5px/1.7 'IBM Plex Mono',monospace;color:#3E382E"><span style="color:#A0392B">[10]</span> Source: Telefónica O2 UK — MyO2 + Priority Moments; 2.6M sign-ups in year one, 5★ App Store. Figures publicly reported; joined the programme 2013. <a href="https://arpitmaheshwari.com/case-studies/o2.html">Walk-through →</a></div>
+    </div>
+  </div>
+  <div style="padding:6px 48px 40px">
+    <div style="border-top:2px solid #1A140C;padding-top:26px;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start">
+      <div>
+        <div style="font:500 12px/1 'IBM Plex Mono',monospace;letter-spacing:.05em;color:#8A8072;margin-bottom:16px">PUBLISHED, IN PRODUCTION — NOT SPECULATIVE</div>
+        <div style="font-weight:800;font-size:34px;line-height:1.1;letter-spacing:-.015em">One rule — Act / Review / Ignore — and eight patterns for trustworthy AI.<span style="font:600 14px/1 'IBM Plex Mono',monospace;color:#A0392B;vertical-align:super"> 11</span></div>
+        <div style="font:400 15.5px/1.65 'Besley',serif;color:#4A4234;margin-top:14px;max-width:620px">Confidence Scores · AI Failure States · ML Explainability · Human-in-the-Loop · Provenance &amp; Citations · The Capability Contract · Calibration &amp; Track Record · Reversibility / Safe-to-Act. Documented with live demos, citable, free — good ones should travel.</div>
+      </div>
+      <div style="font:400 12.5px/1.7 'IBM Plex Mono',monospace;color:#3E382E"><span style="color:#A0392B">[11]</span> All eight in production across the products above. Four ship as trustlayer.js — zero dependencies, calibration math included, 42 tests that run in your browser. MIT. <a href="https://arpitmaheshwari.com/patterns/">The library →</a> · <a href="https://arpitmaheshwari.com/lab/">Read it, run it, break it →</a></div>
+    </div>
+  </div>
+  <div style="margin:0 0 0 -18px;padding:40px 48px;background:#1A140C;color:#F6F1E8;transform:rotate(-.4deg);width:calc(100% - 60px)">
+    <div style="font:500 12px/1 'IBM Plex Mono',monospace;letter-spacing:.05em;color:#C7A94F;margin-bottom:14px">THE ONE CLAIM WITH NO CITATION</div>
+    <div style="font-weight:400;font-style:italic;font-size:52px;line-height:1.1;letter-spacing:-.01em">"He'll fit your team."<span style="font:600 18px/1 'IBM Plex Mono',monospace;color:#C7A94F;vertical-align:super;font-style:normal"> ✱</span></div>
+    <div style="font:400 13.5px/1.7 'IBM Plex Mono',monospace;color:#C4BBA8;margin-top:16px;max-width:640px">✱ No source exists for this one — it's the only claim here I can't cite. Thirty minutes settles it. <a href="https://calendly.com/arpitmaheshwari" style="color:#F6F1E8">Book the call →</a></div>
+  </div>
+  <div style="padding:44px 48px 46px;transform:rotate(0deg)">
+    <div style="font:500 12px/1 'IBM Plex Mono',monospace;letter-spacing:.05em;color:#8A8072;border-bottom:2px solid #1A140C;padding-bottom:10px;margin-bottom:6px">REFERENCES &amp; AVAILABLE FORMATS</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 40px">
+      <a href="https://arpitmaheshwari.com/hire/" style="display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #D8CFC0;text-decoration:none;align-items:baseline"><span style="font:600 13px/1 'IBM Plex Mono',monospace;color:#A0392B">[12]</span><span style="font-weight:700;font-size:20px">The 1-page skim — positioning, receipts, references, availability</span></a>
+      <a href="https://calendly.com/arpitmaheshwari" style="display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #D8CFC0;text-decoration:none;align-items:baseline"><span style="font:600 13px/1 'IBM Plex Mono',monospace;color:#A0392B">[13]</span><span style="font-weight:700;font-size:20px">30 minutes, calendar link — I'll have already used your product</span></a>
+      <button onClick="{{ copyAbstract1c }}" style="display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #D8CFC0;background:none;border-top:none;border-left:none;border-right:none;text-align:left;align-items:baseline;font-family:'Besley',serif;color:#1A140C"><span style="font:600 13px/1 'IBM Plex Mono',monospace;color:#A0392B">[14]</span><span style="font-weight:700;font-size:20px">{{ copyLabel1c }}</span></button>
+      <a href="mailto:maheshwari.arpit88@gmail.com" style="display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #D8CFC0;text-decoration:none;align-items:baseline"><span style="font:600 13px/1 'IBM Plex Mono',monospace;color:#A0392B">[15]</span><span style="font-weight:700;font-size:20px">Send the role — maheshwari.arpit88@gmail.com, ~48h reply</span></a>
+      <a href="https://arpitmaheshwari.com/screen/" style="display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #D8CFC0;text-decoration:none;align-items:baseline"><span style="font:600 13px/1 'IBM Plex Mono',monospace;color:#A0392B">[16]</span><span style="font-weight:700;font-size:20px">The technical screen, already answered in writing</span></a>
+      <a href="https://arpitmaheshwari.com/resources/ai-design-checklist.html" style="display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #D8CFC0;text-decoration:none;align-items:baseline"><span style="font:600 13px/1 'IBM Plex Mono',monospace;color:#A0392B">[17]</span><span style="font-weight:700;font-size:20px">Not hiring? The founder checklist + patterns are free — take them</span></a>
+    </div>
+    <div style="font:400 15px/1.65 'Besley',serif;color:#4A4234;margin-top:24px;max-width:760px">"He pushes back on design decisions using his UX expertise… I'd recommend Arpit to any team looking to improve their final product." <span style="font:400 12.5px/1 'IBM Plex Mono',monospace;color:#8A8072">— KATIE ALTERIO, PRODUCT DESIGNER, SAME TEAM. FULL REFERENCES ON REQUEST.</span></div>
+    <div style="font:400 12px/1.7 'IBM Plex Mono',monospace;color:#8A8072;margin-top:20px">One seat: founding product &amp; design lead, AI company of 5–40 — or staff/director where the trust layer is the job. Remote · GMT+5:30 · 4–5 hrs US-East overlap daily · 4 weeks' notice · Every pixel hand-built, code included.</div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "go deeper on <a class="dv-oid" href="#1a">1a</a> with a full case-study page" · "merge <a class="dv-oid" href="#1c">1c</a>'s citations into <a class="dv-oid" href="#1b">1b</a>" · "mobile pass on the winner"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { stage: 1, job: 1, step: 1, playing: false, cite: 1, copied1a: false, copied1b: false, copied1c: false, heroOv: false, ov1: false, ov2: false, ov3: false, copiedWk: false, copied2a: false, copied2c: false, symptom: 1 };
+  turn2Vals() {
+    const t = (k) => () => this.setState({ [k]: !this.state[k] });
+    const fwd2 = 'Arpit Maheshwari \u2014 product & design lead for AI products. 15 yrs, shipped to 4M+ users. Designs the trust layer: planning 2wks\u21923hrs, PE screening 60% faster, diligence 3wks\u21924days. 8 trust patterns in production. Remote, 4\u20135h US-East overlap. https://arpitmaheshwari.com';
+    const wk = 'Week one, pre-planned \u2014 Arpit Maheshwari: MON read your evals before any design file. TUE five customer calls, silent; raw support tickets. WED write the diagnosis nobody assigned. THU cheapest experiment settles the open argument. FRI the front-end ships from your repo, commented. 15 yrs; 4M+ users. https://arpitmaheshwari.com';
+    const sym = (n) => () => this.setState({ symptom: this.state.symptom === n ? 0 : n });
+    const rej = 'See the rejected version', res = '\u27f2 Restore what shipped';
+    return {
+      heroOvOn: this.state.heroOv, heroOvOff: !this.state.heroOv, ovHero: t('heroOv'),
+      ovHeroLabel: this.state.heroOv ? '\u27f2 Restore the real one' : 'Override: the template version \u2192',
+      ov1: this.state.ov1, nov1: !this.state.ov1, ovT1: t('ov1'), ovBtn1: this.state.ov1 ? res : rej,
+      ov2: this.state.ov2, nov2: !this.state.ov2, ovT2: t('ov2'), ovBtn2: this.state.ov2 ? res : rej,
+      ov3: this.state.ov3, nov3: !this.state.ov3, ovT3: t('ov3'), ovBtn3: this.state.ov3 ? res : rej,
+      copyWeek: () => this.copy('copiedWk', wk), copyWeekLabel: this.state.copiedWk ? 'Copied \u2014 paste it in Slack \u2713' : 'Copy the week-one plan',
+      copyLink2a: () => this.copy('copied2a', fwd2), copyLabel2a: this.state.copied2a ? 'Copied \u2713' : 'Forward \u2014 copy the pitch',
+      copyLink2c: () => this.copy('copied2c', fwd2), copyLabel2c: this.state.copied2c ? 'Copied \u2713' : 'Forward this',
+      sym1: this.state.symptom === 1, sym2: this.state.symptom === 2, sym3: this.state.symptom === 3, sym4: this.state.symptom === 4,
+      symT1: sym(1), symT2: sym(2), symT3: sym(3), symT4: sym(4),
+      symM1: this.state.symptom === 1 ? '\u2212' : '+', symM2: this.state.symptom === 2 ? '\u2212' : '+', symM3: this.state.symptom === 3 ? '\u2212' : '+', symM4: this.state.symptom === 4 ? '\u2212' : '+'
+    };
+  }
+  verdict() {
+    const { stage, job } = this.state;
+    if (job === 3) return { verb: 'IGNORE', score: 18, band: 'Low', color: '#A0392B', reasons: ['Wrong tool: he designs AI decision surfaces, not campaigns.', 'The honest no is what makes the yes believable.'], note: 'The model declines to bluff. Take the free patterns on your way out.' };
+    if (stage === 3) return { verb: 'IGNORE', score: 23, band: 'Low', color: '#A0392B', reasons: ['He refuses to be the only designer past 40 people — his words, in writing.', 'Past that point design is an organizational problem, not one heroic hire.'], note: 'Hire two, or hire a manager. Then call.' };
+    if (stage === 1 && job === 1) return { verb: 'ACT', score: 92, band: 'High', color: '#2F7B4F', reasons: ['The seat he wants is the seat you\u2019re filling: founding design lead, 5\u201340 people.', '15 yrs product + design; shipped to 4M+ users.', '8 trust patterns already in production \u2014 with tests.'], note: 'Safe to run. Override: close the tab.' };
+    if (stage === 2 && job === 1) return { verb: 'ACT', score: 88, band: 'High', color: '#2F7B4F', reasons: ['Staff / director where the trust layer is the job description \u2014 his named target.', 'He reads evals before opening a design file, and ships the front-end in the PR.'], note: 'Safe to run. Bring your evals to the call.' };
+    return { verb: 'REVIEW', score: 61, band: 'Mixed', color: '#8A6A1C', reasons: ['Range is real \u2014 EdTech, Telecom, org design underneath the AI work.', 'But he\u2019ll contest the roadmap when the numbers contradict it. Never auto-run a hire.'], note: 'Reasons on the card, not in a tooltip. 30 minutes settles it.' };
+  }
+  chip(active, dark) {
+    return "font:500 13px/1 'Spline Sans Mono',monospace;padding:10px 14px;border:1.5px solid #16130E;background:" + (active ? '#16130E' : 'transparent') + ';color:' + (active ? '#FAF8F3' : '#16130E');
+  }
+  stepBtn(n) {
+    const active = this.state.step === n;
+    return "font:600 13px/1 'Schibsted Grotesk',sans-serif;padding:10px 14px;border:1px solid " + (active ? '#E5B75A' : '#4A443A') + ';background:' + (active ? 'rgba(229,183,90,.14)' : 'transparent') + ';color:' + (active ? '#E5B75A' : '#B7AE9E') + ';font-variant-numeric:tabular-nums';
+  }
+  cbtn(n, small) {
+    const active = this.state.cite === n;
+    return 'font:600 ' + (small ? '15px' : '20px') + "/1 'IBM Plex Mono',monospace;vertical-align:super;margin-left:4px;padding:2px 7px;border:1.5px solid #A0392B;background:" + (active ? '#A0392B' : 'transparent') + ';color:' + (active ? '#F6F1E8' : '#A0392B') + ';border-radius:3px';
+  }
+  copy(key, text) {
+    try { navigator.clipboard.writeText(text); } catch (e) {}
+    this.setState({ [key]: true });
+    clearTimeout(this['t_' + key]);
+    this['t_' + key] = setTimeout(() => this.setState({ [key]: false }), 2200);
+  }
+  playHalfSecond = () => {
+    if (this.state.playing) return;
+    clearInterval(this.playTimer);
+    this.setState({ step: 0, playing: true });
+    let s = 0;
+    this.playTimer = setInterval(() => {
+      s += 1;
+      if (s > 3) { clearInterval(this.playTimer); this.setState({ playing: false }); return; }
+      this.setState({ step: s });
+    }, 1300);
+  };
+  componentWillUnmount() { clearInterval(this.playTimer); }
+  renderVals() {
+    const v = this.verdict();
+    const steps = [
+      { ms: 't = 0 ms', title: 'The model answers.', body: 'A score lands: Mixed \u00b7 61. On its own, an unexplained number is a shrug with decimals \u2014 it tells a person how the model feels, not what to do.', pattern: 'Confidence Scores' },
+      { ms: 't = 120 ms', title: 'The reasons, out loud.', body: 'First check: can it argue its own case? Signals named on the card itself \u2014 never buried in a tooltip \u2014 including the two flags that earned the 61.', pattern: 'ML Explainability' },
+      { ms: 't = 300 ms', title: 'The receipts.', body: 'Second check: where did the numbers come from? Every figure links to its source document. Analysts stopped re-verifying the machine once it showed its work.', pattern: 'Provenance & Citations' },
+      { ms: 't = 500 ms', title: 'The bet.', body: 'The score resolves to exactly one verb \u2014 Review. Mixed scores never auto-run, and the override is one click away, feeding next week\u2019s predictions.', pattern: 'Reversibility / Safe-to-Act' }
+    ];
+    const st = steps[this.state.step];
+    const cites = {
+      1: 'The half-second between a model\u2019s output and a person\u2019s decision to act on it. Where AI products are won or lost. Eight patterns for it, all in production \u2014 arpitmaheshwari.com/patterns.',
+      2: 'Resume, two pages, dates inclusive: TCS \u201910 \u2192 Equal Experts (O2 UK) \u2192 PTC University \u2192 Sahaj AI, 2019\u2013present. AI and LLM products the last six years.',
+      3: 'AdTech \u00b7 FinTech (PE screening, VC + PE diligence) \u00b7 EdTech \u00b7 Telecom. Receipts below \u2014 each with source, baseline, and method.',
+      4: 'House rule, borrowed from his own FinTech platform: no verdict ships without a cited source. Applied here to the candidate himself.',
+      5: 'Product & Design Leader \u00b7 AI Products. Indore, India \u2014 fully remote, GMT+5:30, 4\u20135 hrs daily US-East overlap. Available on four weeks\u2019 notice.'
+    };
+    const fwd = 'Arpit Maheshwari \u2014 product & design lead for AI products. 15 yrs, shipped to 4M+ users. Designs the trust layer: campaign planning 2wks\u21923hrs, PE screening 60% faster, diligence 3wks\u21924days, $1M/yr saved. 8 trust patterns in production. Remote, 4\u20135h US-East overlap. https://arpitmaheshwari.com';
+    return {
+      ...this.turn2Vals(),
+      vVerb: v.verb, vScore: v.score, vBand: v.band, vColor: v.color, vReasons: v.reasons, vNote: v.note,
+      setStage1: () => this.setState({ stage: 1 }), setStage2: () => this.setState({ stage: 2 }), setStage3: () => this.setState({ stage: 3 }),
+      setJob1: () => this.setState({ job: 1 }), setJob2: () => this.setState({ job: 2 }), setJob3: () => this.setState({ job: 3 }),
+      stageBtn1: this.chip(this.state.stage === 1), stageBtn2: this.chip(this.state.stage === 2), stageBtn3: this.chip(this.state.stage === 3),
+      jobBtn1: this.chip(this.state.job === 1), jobBtn2: this.chip(this.state.job === 2), jobBtn3: this.chip(this.state.job === 3),
+      step0: () => this.setState({ step: 0, playing: false }), step1: () => this.setState({ step: 1, playing: false }), step2: () => this.setState({ step: 2, playing: false }), step3: () => this.setState({ step: 3, playing: false }),
+      stepBtn0: this.stepBtn(0), stepBtn1: this.stepBtn(1), stepBtn2: this.stepBtn(2), stepBtn3: this.stepBtn(3),
+      playHalfSecond: this.playHalfSecond, playLabel: this.state.playing ? 'playing\u2026' : '\u25b8 Play the half-second, 10\u00d7 slower',
+      capMs: st.ms, capTitle: st.title, capBody: st.body, capPattern: st.pattern,
+      ann0op: this.state.step === 0 ? 1 : 0.45, ann1op: this.state.step === 1 ? 1 : 0.45, ann2op: this.state.step === 2 ? 1 : 0.45, ann3op: this.state.step === 3 ? 1 : 0.45,
+      cite1: () => this.setState({ cite: 1 }), cite2: () => this.setState({ cite: 2 }), cite3: () => this.setState({ cite: 3 }), cite4: () => this.setState({ cite: 4 }), cite5: () => this.setState({ cite: 5 }),
+      cbtn1: this.cbtn(1, false), cbtn5: this.cbtn(5, false), cbtn2s: this.cbtn(2, true), cbtn3s: this.cbtn(3, true), cbtn4s: this.cbtn(4, true),
+      citeNum: this.state.cite, citeBody: cites[this.state.cite],
+      copyLink1a: () => this.copy('copied1a', fwd), copyLabel1a: this.state.copied1a ? 'copied \u2014 paste it in Slack \u2713' : 'copies a 3-line pitch + link \u2192',
+      copyLink1b: () => this.copy('copied1b', fwd), copyLabel1b: this.state.copied1b ? 'Copied \u2713' : 'Forward \u2014 copy the pitch',
+      copyAbstract1c: () => this.copy('copied1c', fwd), copyLabel1c: this.state.copied1c ? 'Abstract copied \u2014 paste it in Slack \u2713' : 'The forwardable abstract \u2014 3 lines + link, one click'
+    };
+  }
+}
+</script>
+</body>
+</html>
