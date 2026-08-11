@@ -380,7 +380,12 @@ def main():
     if allowed:
         print(f"\nALLOWLISTED ({len(allowed)} hits, each with a stated reason):")
         for path in sorted({h[0] for h in allowed}):
-            print(f"  {path} — {ALLOW[path]}")
+            if path in ALLOW:
+                print(f"  {path} — {ALLOW[path]}")
+        archive_paths = sorted({h[0] for h in allowed if h[0] not in ALLOW})
+        if archive_paths:
+            print(f"  + {len(archive_paths)} more under RULE_ARCHIVE_EXEMPT prefixes (dated "
+                  f"prototype snapshots, tenure rules only — see tools/canon-lint.py)")
 
     print("\nNOT covered by this gate: the resume/portfolio PDFs and .docx live in the private "
           "folio-private repo and are not checked out here. Verify them there with pdftotext.")
