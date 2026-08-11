@@ -1420,3 +1420,40 @@ og:image is now distinct with no shared files and no fallback to the personal ph
 internal href across ~44 pages resolves; the book's page-turn navigation and hamburger menu both
 verified via real DOM-state JS probes, not visual guesses; the case-study prev/next sequence
 forms one complete 6-node cycle.
+
+## 2026-08-10 — SAME bug class found in a shared rule: .rcpt-r baseline alignment, 4 fixes needed
+
+A layout-agent re-check (after correcting two earlier agent failures — one worked in the wrong
+directory, one described a plan instead of doing the work) found the exact bug class from the
+case-index fix earlier this session, in a DIFFERENT, widely-shared rule: `.rcpt-r`/`.rcpt-r-last`/
+`.rcpt-r-tight`/`.rcpt-r-tight-last` (styles.css:542-545) — `align-items:baseline` on a label:value
+row where the value can wrap to more lines than the label.
+
+**This contradicts something I verified myself earlier in this session** ("rendered rcpt-r at
+1440/1024/900/768... clean at every width... the correct idiomatic behavior"). That check was
+real but narrow — it happened to test rows where the wrap didn't create enough of a line-count
+mismatch to expose the defect. It proved one instance was fine, not that the pattern is safe.
+lab/loop.html's NEW "Decisions, on the record" table (added this session) has short 1-line labels
+next to 2-3 line descriptions, which exposes it plainly: measured 21px and 10px label/value
+center-offset on several rows at 1024px, visually confirmed (label rides high, dead space below
+it before the row's border). Same defect independently reproduced on case-studies/o2.html (768px,
+22px offset) and fintech.html (1024px, 33px offset, the worst instance found).
+
+**Fix:** `align-items:baseline` -> `align-items:center` on all 4 rcpt-r variants. Verified: every
+row's label/value center-delta is now exactly 0px, measured on lab/loop.html (9 rows), o2.html
+(768px, 8 rows), fintech.html (1024px, 7 rows), vc-diligence.html (1440px, 7 rows), adtech.html
+(1440px, 22 rows) — the 33px-offset row included. All gates re-run clean.
+
+**RULE (reinforced): a fix applied to ONE component (.ai-case) does not mean a SHARED failure
+mode is fixed everywhere it appears.** `align-items:baseline` next to a wrappable multi-line
+sibling is now a known sitewide risk pattern — grep for it before trusting a "looks fine" read on
+any row/label component, and don't stop checking after the first instance passes.
+
+Confirmed still open, untouched per instruction: case-studies/vc-diligence.html's .plV plate
+clips at 390px (documented, tracked separately, not a color/alignment bug — a responsive-layout
+fix, out of scope here).
+
+Also confirmed clean, independently re-verified: index.html's .ai-case rows hold at 0.01px
+delta across 1440/1024/768/390 with no regression; patterns/index.html's Act/Review/Ignore demo
+image is 92% fill, not a dead-space bug (an agent's own screenshot tool had rendered at a
+distorting internal scale — caught via DOM measurement before it was reported as a finding).
