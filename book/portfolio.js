@@ -1387,7 +1387,7 @@ function buildBook(ctx) {
         marginTop: 16,
         maxWidth: "30ch"
       }
-    }, "Fifteen years, five industries, the same half-second: the model surfaces something true, and the person at the screen pauses — not because the model is wrong, but because they don’t know how to bet on it yet. This book is everything I’ve worked out about that pause."), /*#__PURE__*/React.createElement("div", {
+    }, "Sixteen years, five industries, the same half-second: the model surfaces something true, and the person at the screen pauses — not because the model is wrong, but because they don’t know how to bet on it yet. This book is everything I’ve worked out about that pause."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-body",
@@ -1539,7 +1539,7 @@ function buildBook(ctx) {
       }
     }, "Selected", /*#__PURE__*/React.createElement("br", null), "Work"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body bk-drop"
-    }, "Every brief opened with “improve the UX.” Every diagnosis ended somewhere else. Fifteen years of this work mostly lives behind NDAs; the six here are the shape of all of it — two told in full, four as decision walkthroughs."), /*#__PURE__*/React.createElement("div", {
+    }, "Every brief opened with “improve the UX.” Every diagnosis ended somewhere else. Sixteen years of this work mostly lives behind NDAs; the six here are the shape of all of it — two told in full, four as decision walkthroughs."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
         margin: "22px 0 18px"

@@ -39,8 +39,8 @@ BANNED = [
      'the retired term. Practice = "human-in-the-loop design"; book/portfolio/newsletter = '
      '"Human in the Loop"; module = hitl.js',
      "§1 retired completely 2026-08-01"),
-    (r"\b16 years\b|\bsixteen years\b",
-     'fabricated tenure — canon locks FIFTEEN years',
+    (r"\b15 years\b|\bfifteen years\b|\b15 yrs\b",
+     'stale tenure — canon locks SIXTEEN years as of 2026-08-10 (career start Sep 2010)',
      "§1 the line is locked"),
     (r"\$120M",
      'fabricated revenue figure with zero basis anywhere in canon',
@@ -136,8 +136,8 @@ MALFORMED = [
 
 # If the left phrase appears in a file, the right one must appear in the same file.
 PAIRED = [
-    (r"years, five industries", r"[Ff]ifteen years",
-     'the "five industries" line must carry "Fifteen years"', "§1 the line is locked"),
+    (r"years, five industries", r"[Ss]ixteen years",
+     'the "five industries" line must carry "Sixteen years"', "§1 the line is locked"),
 ]
 
 # Shipped = what a visitor or a crawler reads. Errors here fail the build.
@@ -188,6 +188,17 @@ ALLOW = {
         "comment recounts the same failure",
 }
 SKIP_DIRS = {".git", "node_modules", ".claude", "portfolio-sources", ".requirements"}
+
+# Narrow, per-RULE archive exemption — deliberately NOT the whole-file ALLOW dict, which would
+# exempt an archived file from every rule and hide real regressions in it.
+# Keyed by the rule's exact pattern; a hit is downgraded to "allowed" only under these prefixes.
+# The tenure rule is the case that needs this: prototypes/ holds dated snapshots of the site taken
+# while the locked number really was fifteen. Rewriting a snapshot would falsify what was explored
+# (same principle as the paper-first / hook-d / reference-concepts entries in ALLOW).
+RULE_ARCHIVE_EXEMPT = {
+    r"\b15 years\b|\bfifteen years\b|\b15 yrs\b": ("prototypes/",),
+    r"years, five industries": ("prototypes/",),   # the PAIRED tenure rule, same reason
+}
 
 
 def walk(root):
@@ -250,9 +261,11 @@ def scan(root, extra=None):
             source = lines if severity == "error" and (pattern, why, ref) in [
                 (p2, w2, r2) for p2, w2, r2 in BANNED] else dec_lines
             for i, line in enumerate(source, 1):
+                archive_exempt = any(
+                    rel.startswith(pfx) for pfx in RULE_ARCHIVE_EXEMPT.get(pattern, ()))
                 for m in re.finditer(pattern, line, flags):
                     hit = (rel, i, m.group(0).strip(), why, ref)
-                    if allowlisted:
+                    if allowlisted or archive_exempt:
                         allowed.append(hit)
                     elif soft or severity == "warn":
                         warnings.append(hit)
@@ -262,14 +275,20 @@ def scan(root, extra=None):
         for left, right, why, ref in PAIRED:
             if re.search(left, text) and not re.search(right, text):
                 hit = (rel, 0, f"missing companion for /{left}/", why, ref)
-                (warnings if soft else errors).append(hit)
+                # Same archive carve-out as RULE_ARCHIVE_EXEMPT: the tenure pairing asserts what is
+                # true NOW, so a dated snapshot under prototypes/ legitimately fails it.
+                if allowlisted or any(rel.startswith(p)
+                                      for p in RULE_ARCHIVE_EXEMPT.get(left, ())):
+                    allowed.append(hit)
+                else:
+                    (warnings if soft else errors).append(hit)
     return errors, warnings, allowed
 
 
 # Sensitivity canaries — MUST be caught.
 CANARIES = [
     ("__canon_canary_a.html", "<p>Fifteen years… the trust layer between people and AI.</p>"),
-    ("__canon_canary_b.html", "<p>16 years shipping, and a $120M ARR platform.</p>"),
+    ("__canon_canary_b.html", "<p>15 years shipping, and a $120M ARR platform.</p>"),
 ]
 
 # Precision canary — MUST produce ZERO hits. This is the second calibration axis, added after three
@@ -278,7 +297,7 @@ CANARIES = [
 # go red says nothing about whether it goes red for the RIGHT reasons — a gate that cries wolf is a
 # gate that gets switched off, which is strictly worse than no gate at all.
 CLEAN_CANARY = ("__canon_canary_ok.html", """<!doctype html><html><body>
-<p>Fifteen years, five industries, one problem. Available &middot; 4 weeks' notice.</p>
+<p>Sixteen years, five industries, one problem. Available &middot; 4 weeks' notice.</p>
 <p>Campaign planning 2 wks &rarr; 3 hrs. Deal screening 60% faster. Diligence 3 wks &rarr; 4 days.</p>
 <p>550k+ registered learners &middot; subscription 0% &rarr; 64% of new bookings &middot; $1M / yr.</p>
 <p>Print run &minus;92% in year one. Product &amp; Design Leader. Human in the Loop.</p>

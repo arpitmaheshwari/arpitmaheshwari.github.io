@@ -1264,3 +1264,33 @@ layout IS the thesis) and Theme 1 Warm Gallery (safest upgrade; sharper hero lin
 worth revisiting. Theme 5 is scroll-jacked, Theme 3 competes with the evidence, Theme 4 rests on
 the fabricated number. **Independent confirmation of a shipped decision: Theme 1's case index is
 near-identical to the S2 index shipped 2026-08-08.**
+
+## 2026-08-10 — TENURE CHANGED: fifteen → SIXTEEN years (Arpit's call, chosen over 3 alternatives)
+
+Career start Sep 2010, so sixteen years completes ~Sep 2026. Arpit chose to update every surface
+now rather than wait or switch to a date-anchored "since 2010" formulation.
+
+**Updated (24 replacements across 6 files):** index.html (10), book/index.html (7), hire/index.html
+(3), book/portfolio.js (2), now/index.html (1), portfolio-sources/resume.html (1) — plus
+**llms.txt**, which my first grep MISSED because I only searched .html/.js/.md. The linter caught
+it. **RULE: a sitewide copy sweep must include llms.txt, humans.txt, robots.txt and sitemap.xml —
+`git ls-files | grep -v` the known extensions to enumerate what else ships.**
+
+**canon-lint changes — the guard now protects the NEW number:**
+- The banned pattern flipped from `16 years|sixteen years` to `15 years|fifteen years|15 yrs`
+  (reason: "stale tenure"). The rule's job was always to stop tenure drift; it now guards the
+  current truth instead of the old one.
+- The PAIRED rule `years, five industries` → now requires "Sixteen years".
+- Both canaries updated: the sensitivity canary plants "15 years", the precision canary (correct
+  copy) now reads "Sixteen years". Calibration re-verified — it catches $120m, 15 years, fifteen
+  years, trust layer, with zero false positives.
+- **NEW MECHANISM — `RULE_ARCHIVE_EXEMPT`:** a narrow, per-RULE path exemption, deliberately NOT
+  the whole-file ALLOW dict (which exempts a file from EVERY rule and would hide real regressions).
+  Only the two tenure rules are exempted, only under `prototypes/`. Dated snapshots there really
+  were taken when the number was fifteen; rewriting them would falsify what was explored — same
+  principle as paper-first / hook-d / reference-concepts.
+- Calibrated after the change: planted a stale "Fifteen years" in the LIVE homepage → 1 error;
+  removed → 0 errors. The archive carve-out does not blunt the guard on shipped surfaces.
+
+**Archives deliberately NOT updated:** everything under `prototypes/` and `.requirements/` still
+says fifteen. They are snapshots, not claims.
