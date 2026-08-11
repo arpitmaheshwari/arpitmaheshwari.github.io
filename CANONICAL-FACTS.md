@@ -1383,3 +1383,40 @@ again, not to lint pixel content). Calibrated: deleted a card -> red; restored -
 accent line, the book's gradient cover) were NOT run through the generic template — forcing them
 through a 4-field template would flatten nuance the hand-built originals have. They stay as
 hand-built until/unless the template grows support for that.
+
+## 2026-08-10 — exploratory audit (nav/layout/content/design) found 4 real defects, fixed
+
+Dispatched 4 parallel audits after the OG-generator work. Two agents initially failed to deliver
+(one worked in the wrong directory and correctly refused to fabricate findings rather than guess;
+one described a plan instead of doing the work) — both caught and re-dispatched correctly rather
+than trusted. Real findings from the other passes, all verified independently before fixing:
+
+1. **9 patterns/*.html pages had og:image but NO twitter:image** — a summary_large_image Twitter
+   card with no image tag can render with no preview on X (unlike LinkedIn/Facebook, which fall
+   back to og:image). Only patterns/index.html had one. Fixed: twitter:image + twitter:image:alt
+   added to all 9, sourced from each page's own already-correct og:image filename + description.
+2. **assets/og-images/*.html was never in scope for tools/inline-style-check.py** — its glob list
+   (`*.html`, `*/index.html`, etc.) does not recurse into `assets/og-images/`, so the brand-new
+   `_card.template.html` shipped with 2 off-grid values (84px, 22px) that the gate would have
+   caught had it been reachable. Fixed the gate (added `assets/og-images/*.html` to both glob
+   lists in the file) AND the values (84->80, 22->24).
+3. **Closing that gate gap immediately surfaced a SECOND, pre-existing violation**: the older
+   `_book-og.template.html` (predates this session) had 2 off-grid values of its own (62px,
+   30px) that had simply never been checked before. Fixed (62->64, 30->32) and regenerated
+   book-og.png from the corrected template — visually confirmed unchanged in appearance.
+4. **Minor, not fixed — resources/index.html and now/index.html's aria-current mapping script**
+   references nav labels "Resources" and "Now" that don't exist in the actual nav bar (only Work/
+   Patterns/Lab/Writing/How I Lead). The code silently no-ops; those two pages just never get an
+   aria-current highlight. Inert, not broken — logged for a future pass, not acted on.
+
+All 14 regenerated OG cards + book-og.png re-verified visually after the grid fixes (rendered a
+contact sheet, confirmed no visual regression). Gates re-run clean: canon-lint 0 errors/283
+allowed, inline-style-check 0 duplicates/0 off-grid, generate-og-cards --check 14/14 present.
+
+**Everything else audited came back clean**, independently re-verified (not just re-trusting
+canon's own claims): fresh tenure sweep (decoded data-URIs, bare-token grep, PDF/.docx text
+extraction) found zero remaining "fifteen"/"15 yr" on any shipped surface; every pattern page's
+og:image is now distinct with no shared files and no fallback to the personal photo; every
+internal href across ~44 pages resolves; the book's page-turn navigation and hamburger menu both
+verified via real DOM-state JS probes, not visual guesses; the case-study prev/next sequence
+forms one complete 6-node cycle.

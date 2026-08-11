@@ -46,6 +46,7 @@ def off_scale_spacing(root):
     # surface is a stronger property than two locally-optimal ones. The PRINT documents use mm
     # and get their own 0.5mm grid (see below).
     pats = ['*.html','*/index.html','case-studies/*.html','patterns/*.html','lab/*.html',
+            'assets/og-images/*.html',
             'styles.css','book/book.css','book/index.html']
     # contrast-audit.py writes its canary page to a temp file INSIDE the docroot (it must be
     # same-origin to be instrumentable), named __ca_*.html. Running the two gates concurrently
@@ -84,6 +85,7 @@ def signatures(root):
     # portfolio-sources/ is a SEPARATE private repo checked out inside this one. Its print
     # documents carry the same debt, so they are scanned when present and skipped when not.
     pats = ['*.html','*/index.html','case-studies/*.html','patterns/*.html','lab/*.html',
+            'assets/og-images/*.html',
             'portfolio-sources/*.html']
     files = sorted({p for pat in pats for p in glob.glob(os.path.join(root, pat))})
     sig = collections.Counter(); where = collections.defaultdict(set)
