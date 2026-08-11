@@ -334,7 +334,12 @@ def discover_pages(base="http://localhost:8000"):
     import subprocess
     out = subprocess.run("git ls-files '*.html'", shell=True, capture_output=True, text=True).stdout
     urls = []
-    for f in out.split():
+    # .split() breaks on any filename containing a space (e.g. prototypes/reference-concepts/
+    # "Theme 1 - Warm Gallery.dc.html") — it shreds ONE path into several fake single-word
+    # "files" ('1', '-', 'Warm', ...) that pass the prototypes/ exclusion (only the FIRST
+    # fragment starts with "prototypes/"), so they get audited as real pages and 404.
+    # Measured 2026-08-11: this is what actually broke CI run 31526918220 ("localhost:8000/1").
+    for f in out.splitlines():
         if f.startswith(("prototypes/", "assets/", "portfolio-sources/")):
             continue
         urls.append(base + "/" if f == "index.html"

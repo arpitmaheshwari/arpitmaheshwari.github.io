@@ -215,7 +215,9 @@ def discover_pages(base="http://localhost:8000"):
     import subprocess
     out = subprocess.run("git ls-files '*.html'", shell=True, capture_output=True, text=True).stdout
     urls = []
-    for f in out.split():
+    # .split() breaks on any filename containing a space — see tools/contrast-audit.py's
+    # discover_pages for the full story (same copy-pasted bug, found there 2026-08-11).
+    for f in out.splitlines():
         if f.startswith(("prototypes/", "assets/", "portfolio-sources/")):
             continue
         urls.append(base + "/" if f == "index.html"
