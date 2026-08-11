@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Generic OG-card generator (1200x630). Reads kicker/title/subtitle/byline from the URL query
+     string so ONE file renders every card — see tools/generate-og-cards.py for the registry and
+     the render loop. Do not hand-edit a -og.png again; that is how 4 of these went stale and 4
+     more went missing entirely with no one noticing (2026-08-10 audit, see CANONICAL-FACTS.md).
+
+     Rebuild a single card by hand for testing:
+       chrome --headless --window-size=1200,630 --virtual-time-budget=4000 \
+         --screenshot=out.png \
+         "http://localhost:8000/assets/og-images/_card.template.html?kicker=DESIGN+PATTERN&title=Title+Here&subtitle=Subtitle+here&byline=Arpit+Maheshwari+%C2%B7+Essay"
+
+     Geometry measured from the two known-correct cards (home-og.png, vc-diligence-og.png) on
+     2026-08-10: left margin 84px, rule at y~120 (3px thick, 40px wide, gold), kicker baseline
+     ~150, title starting ~263. Colors are the site's own tokens (styles.css), not re-guessed. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    background: #0A0A0A; /* --bg */
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+  .pad {
+    position: absolute; inset: 0;
+    padding: 120px 84px 84px;
+    display: flex; flex-direction: column;
+  }
+  .rule { width: 40px; height: 3px; background: #D4A85E; margin-bottom: 20px; } /* --gold */
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase; color: #D4A85E;
+    margin-bottom: 24px;
+  }
+  .title {
+    font-family: Newsreader, Georgia, serif; font-weight: 300; font-size: 56px;
+    line-height: 1.18; letter-spacing: -0.01em; color: #F2EDE4; /* --ink */
+    max-width: 920px;
+  }
+  .subtitle {
+    font-family: 'IBM Plex Sans', sans-serif; font-size: 25px; font-weight: 400;
+    color: #D4A85E; margin-top: 22px; max-width: 900px;
+  }
+  .byline {
+    font-family: 'IBM Plex Sans', sans-serif; font-size: 19px;
+    color: rgba(242,237,228,0.62); /* --ink-muted */
+    margin-top: auto;
+  }
+</style>
+</head>
+<body>
+  <div class="pad">
+    <div class="rule"></div>
+    <p class="kicker" id="kicker"></p>
+    <p class="title" id="title"></p>
+    <p class="subtitle" id="subtitle"></p>
+    <p class="byline" id="byline"></p>
+  </div>
+  <script>
+    // Read from the query string, not innerHTML injection of raw params — textContent only,
+    // so a stray "&" or "<" in a title can never break the layout or inject markup.
+    const q = new URLSearchParams(location.search);
+    for (const id of ["kicker","title","subtitle","byline"]) {
+      document.getElementById(id).textContent = q.get(id) || "";
+    }
+  </script>
+</body>
+</html>

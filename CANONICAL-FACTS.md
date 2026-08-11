@@ -1340,3 +1340,46 @@ rewrite is about to drive traffic.
 this same class of bug bit before* ("the old card had the title baked into its pixels, so it had to
 be rebuilt by hand"). Fixing these properly means building a card generator; hand-editing PNGs
 would repeat the mistake. **Arpit's call — logged, not actioned.**
+
+## 2026-08-10 — OG card generator built; CI Chrome-availability bug fixed
+
+**contrast-gate.yml was failing on every run** — its own "Locate Chrome" step had no installer,
+just a bare search that fell through to an error message literally NAMING the missing fix
+("Add browser-actions/setup-chrome@v1") without applying it. Confirmed no sibling workflow
+(canon-gate.yml, test-lab.yml) needs Chrome, so this was the only broken one. Fixed: added
+browser-actions/setup-chrome@v2 (the @v1 the error message named is stale; v2 is current), and
+because that action exposes a `chrome-path` OUTPUT rather than a fixed PATH binary name (per its
+own README), the Locate-Chrome step now falls back to that output instead of guessing a command.
+
+**OG card generator built** (`tools/generate-og-cards.py` + `assets/og-images/_card.template.html`)
+— one parametrized template (kicker/title/subtitle/byline via URL query string, textContent only,
+never innerHTML) replaces per-card hand-pixel-editing. Geometry measured from the two known-correct
+existing cards (home-og.png, vc-diligence-og.png), colors are the site's own tokens.
+
+**Auditing before building it found 13 real defects, not the original 4** — all invisible to
+every text gate:
+- 4 patterns/*.html cards rendered nearly BLANK (act-review-ignore, ai-failure-states,
+  confidence-scores, ml-explainability) — tiny centered text only, none of the kicker/title/
+  subtitle/byline system.
+- 4 more pattern pages (capability-contract, calibration-track-record, provenance-citations,
+  reversibility-safe-to-act) had **no dedicated card at all** — their og:image fell back to
+  `arpit-maheshwari.jpg`, a personal photo, as the share image.
+- `patterns/human-in-loop.html` was silently reusing `writing/human-in-loop.html`'s card,
+  captioned "Essay" — a pattern page mislabeling itself when shared.
+- `patterns/index.html` itself used the broken act-review-ignore-og.png as its own card.
+- The 4 already-known stale/banned-fact cards (checklist 47->53, fintech n=42/90days banned,
+  writing-index "trust layer" retired term, glossary 40+->15).
+
+All 14 regenerated, each field traced to the target page's own <meta og:title>/<og:description> —
+nothing invented. All 6 previously-broken pattern pages rewired to their new, distinct filenames
+(verified: 9 pattern pages + index now each reference exactly one correct card, no duplicates).
+
+**Wired into CI**: `tools/generate-og-cards.py --check` added to contrast-gate.yml, right after
+the asset-load-check step (presence + size only — a pixel diff would false-positive on font-load
+nondeterminism across runners; this exists to catch a card going missing or reverting to a stub
+again, not to lint pixel content). Calibrated: deleted a card -> red; restored -> clean.
+
+**Deliberately untouched**: the 11 already-correct cards with bespoke styling (home's italic gold
+accent line, the book's gradient cover) were NOT run through the generic template — forcing them
+through a 4-field template would flatten nuance the hand-built originals have. They stay as
+hand-built until/unless the template grows support for that.
