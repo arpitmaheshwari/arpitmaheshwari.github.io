@@ -1294,3 +1294,49 @@ it. **RULE: a sitewide copy sweep must include llms.txt, humans.txt, robots.txt 
 
 **Archives deliberately NOT updated:** everything under `prototypes/` and `.requirements/` still
 says fifteen. They are snapshots, not claims.
+
+## 2026-08-10 — exploratory sweep for stale tenure: FIVE more hits the linter could not see
+
+The canon-lint pass reported clean after the 15→16 change. It was clean *for what it can read*.
+A 7-layer exploratory pass found five more, each invisible to a text gate for a different reason:
+
+1. **`portfolio-sources/make-resume.js`** — the .docx GENERATOR still said "Fifteen years", and the
+   shipped `Arpit-Maheshwari-Resume.docx` on disk carried it. canon-lint never sees this: SKIP_DIRS
+   excludes `portfolio-sources/`. **This is the file that goes to ATS portals.** Fixed + regenerated.
+2. **`Arpit-Maheshwari-Resume.pdf`** — same reason. Rebuilt from the corrected HTML.
+3. **`index.html` — the downloadable receipt (.txt)** is a percent-encoded `data:` URI:
+   `TOTAL%3A%2015%20yrs`. Every literal grep for "15 yrs" missed it because the space is `%20`.
+   Found only by DECODING every data: URI on the site and searching the decoded text.
+4. **`index.html:740` — "years of service: fifteen"** — REVERSED word order. Every sweep I ran used
+   the pattern `fifteen years`; this text is `years ... fifteen`. Found by grepping the bare token
+   `fifteen` alone, which is exactly what canon's own "grep the BARE token" rule already says to do.
+5. **`llms.txt`** (caught in the earlier pass) — a shipped surface outside .html/.js/.md.
+
+**NEW RULES:**
+- **Decode before you grep.** A `data:` URI, a URL-encoded href, or any escaped string can hide a
+  banned token from every literal search. Decode all data: URIs and re-search the decoded text.
+- **Grep the bare token, never the phrase.** `fifteen`, not `fifteen years` — word order is not
+  guaranteed. (canon already said this for term audits; it applies to NUMBERS too.)
+- **A generator is a surface.** Any script that BUILDS a shipped artifact (make-resume.js, the OG
+  template) must be swept, and every artifact it produces must be REGENERATED, not assumed current.
+- **canon-lint's SKIP_DIRS is a blind spot by design** — portfolio-sources/ holds the résumé, PDF
+  and .docx sources and is never linted. Sweep it by hand on every canon change.
+
+## 2026-08-10 — OG SHARE CARDS: four stale/banned facts baked into PNGs (NOT FIXED — needs a call)
+
+Found by building a contact sheet of all 25 cards and LOOKING at them. No text gate can read a PNG.
+These render every time a link is shared on LinkedIn/Slack/X — relevant NOW, since the LinkedIn
+rewrite is about to drive traffic.
+
+| Card | Baked-in text | Reality |
+|---|---|---|
+| `ai-design-checklist-og.png` | "**47** Things to Check Before Shipping AI" | the live page says **53** |
+| `fintech-og.png` | "60% faster screening · **n=42** · **90 days**" | **both explicitly banned** by Arpit's own 2026-07-25 display rule: "NEVER publish '42 deals', '90-day window', or 'n=42' anywhere" |
+| `writing-index-og.png` | "The **trust layer** between algorithms and users" | retired term (§1, retired 2026-08-01) |
+| `intelligent-systems-glossary-og.png` | "**40+** core terms" | the page has exactly **15** |
+
+**Why this is not a quick fix:** there is NO generator for 24 of the 25 cards — only
+`_book-og.template.html` exists, and its own header comment records that it was written *because
+this same class of bug bit before* ("the old card had the title baked into its pixels, so it had to
+be rebuilt by hand"). Fixing these properly means building a card generator; hand-editing PNGs
+would repeat the mistake. **Arpit's call — logged, not actioned.**
