@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>EMBER — full homepage · direction D, accessible</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap">
+<style>
+/* ============ EMBER — direction D, built accessible ============
+   Energy from heat: gradient fields, angled seams, layered depth.
+   WCAG 2.2 AA throughout: every accent >=7:1 on the dark fields (measured),
+   muted ink >=6:1, focus visible everywhere, reduced-motion honoured,
+   colour never the only carrier, landmarks + heading order intact. */
+:root{
+  --bg0:#120B14; --bg1:#1B1320; --card:#241830; --line:rgba(245,237,230,.16);
+  --ink:#F5EDE6; --mut:rgba(245,237,230,.76); --dim:rgba(245,237,230,.62);
+  --ember:#FF8A5C; --violet:#E86BFF; --amber:#FFC46B; --rose:#FF7AA8;
+  --cream:#EFE7D2; --cream-ink:#221C10; --cream-mut:#5D5442; --cream-red:#A93A24;
+  --serif:'Newsreader',Georgia,serif; --sans:'IBM Plex Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace; --hand:'Caveat',cursive;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg0);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--amber);color:var(--bg0);padding:12px 20px;font-weight:600;z-index:100}
+.skip:focus{left:16px;top:12px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+.k{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.hand{font-family:var(--hand);font-weight:600}
+h1,h2,h3{font-family:var(--serif);font-weight:300;letter-spacing:-.015em}
+.grad{background:linear-gradient(92deg,var(--ember),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:14px 28px;font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;transition:transform .2s}
+.pill:hover{transform:translateY(-2px)}
+.pill-hot{background:linear-gradient(92deg,var(--ember),var(--violet));color:#1A0D08;font-weight:600}
+.pill-line{border:1.5px solid rgba(255,138,92,.55);color:var(--ink)}
+.pill-line:hover{border-color:var(--ember)}
+@media (prefers-reduced-motion:reduce){.pill{transition:none}.pill:hover{transform:none}}
+.seam{height:110px;clip-path:polygon(0 62%,100% 8%,100% 100%,0 100%);margin-top:-60px;position:relative;z-index:1}
+.seam-up{clip-path:polygon(0 8%,100% 62%,100% 100%,0 100%)}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:60;background:rgba(18,11,20,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;padding:15px 0}
+.logo{font-family:var(--serif);font-size:20px}
+nav ul{display:flex;gap:26px;align-items:center;list-style:none}
+nav a.nl{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);padding:8px 2px}
+nav a.nl:hover{color:var(--ember)}
+nav .pill{padding:11px 22px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;padding:96px 0 150px}
+.hero .field{position:absolute;inset:0;background:
+  radial-gradient(1000px 520px at 90% -12%, rgba(255,106,61,.5), transparent 62%),
+  radial-gradient(760px 560px at -8% 112%, rgba(155,75,255,.4), transparent 62%),
+  linear-gradient(160deg,#1E1022 0%,#120B14 55%,#190D10 100%)}
+.hero .in{position:relative;z-index:2}
+.hero .k{color:var(--ember)}
+.hero h1{font-size:clamp(52px,7.2vw,106px);line-height:1.01;margin:26px 0 26px;max-width:13ch}
+.hero h1 .grad{font-style:italic}
+.hero .sub{font-size:clamp(16px,1.6vw,19px);color:var(--mut);max-width:52ch;line-height:1.75}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+.hero .cred{margin-top:42px;font-family:var(--mono);font-size:12.5px;color:var(--dim);line-height:2.1;max-width:62ch}
+.hero .cred b{color:var(--ink);font-weight:500}
+.hero .note{position:absolute;right:6%;bottom:16%;color:var(--amber);font-size:23px;transform:rotate(-3deg);z-index:2}
+@media (max-width:900px){.hero .note{display:none}}
+
+/* ---------- receipts band ---------- */
+.receipts{background:var(--bg1);position:relative;padding:0 0 84px}
+.receipts .seam{background:var(--bg1)}
+.receipts .k{color:var(--violet)}
+.receipts h2{font-size:clamp(30px,3.6vw,48px);margin:12px 0 6px}
+.receipts .hand{color:var(--amber);font-size:22px;display:inline-block;transform:rotate(-1.5deg)}
+.rrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+.rcell{background:var(--card);border-radius:10px;padding:26px 24px;border-top:3px solid var(--rc)}
+.rcell b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(30px,3vw,46px);line-height:1;color:var(--rc)}
+.rcell span{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);line-height:1.9;margin-top:12px}
+.rc1{--rc:var(--ember)} .rc2{--rc:var(--violet)} .rc3{--rc:var(--amber)} .rc4{--rc:var(--rose)}
+.rfoot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:22px;font-family:var(--mono);font-size:12px;color:var(--dim)}
+.rfoot b{color:var(--ink);font-weight:500;letter-spacing:.1em}
+.rfoot a{color:var(--amber);text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- who ---------- */
+.who{padding:96px 0 88px}
+.who .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+.who .k{color:var(--ember)}
+.who h2{font-size:clamp(28px,3vw,42px);margin:12px 0 20px;line-height:1.15}
+.who p{color:var(--mut);max-width:56ch;margin-bottom:14px}
+.who p a{color:var(--amber);text-decoration:underline;text-underline-offset:3px}
+.who .meta{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:18px}
+.facts{background:var(--cream);color:var(--cream-ink);border-radius:12px;padding:28px;box-shadow:0 30px 60px rgba(0,0,0,.5);transform:rotate(1.2deg)}
+@media (prefers-reduced-motion:reduce){.facts{transform:none}}
+.facts h3{font-family:var(--sans);font-weight:600;font-size:20px;letter-spacing:0}
+.facts .fs{font-size:12px;color:var(--cream-mut);border-bottom:2px solid var(--cream-ink);padding:6px 0 10px;margin-bottom:6px}
+.facts dl{font-size:14px}
+.facts .fr{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid rgba(34,28,16,.18)}
+.facts .fr dt{font-weight:600}
+.facts .fr dd{font-family:var(--mono);font-size:13px}
+.facts .warn{font-size:11.5px;color:var(--cream-mut);margin-top:12px;line-height:1.6}
+.facts .warn b{color:var(--cream-ink)}
+
+/* ---------- case lanes ---------- */
+.work{background:var(--bg1);padding:0 0 96px;position:relative}
+.work .seam{background:var(--bg1)}
+.work .k{color:var(--amber)}
+.work h2{font-size:clamp(32px,4vw,54px);line-height:1.12;margin:12px 0 14px;max-width:22ch}
+.work .lede{color:var(--mut);max-width:64ch;line-height:1.75}
+.lanes{margin-top:52px;display:flex;flex-direction:column;gap:16px}
+.lane{position:relative;display:grid;grid-template-columns:210px minmax(0,1fr) auto;gap:32px;align-items:center;padding:26px 30px;border-radius:6px;background:linear-gradient(94deg,var(--lt),transparent 70%);transform:skewX(-3deg);border-left:3px solid var(--lc);transition:background .25s}
+.lane>*{transform:skewX(3deg)}
+.lane:hover{background:linear-gradient(94deg,var(--lt),var(--lt))}
+@media (prefers-reduced-motion:reduce){.lane{transform:none;transition:none}.lane>*{transform:none}}
+.lane .m{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.2vw,32px);color:var(--lc);line-height:1.05}
+.lane .m span{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-top:8px}
+.lane h3{font-size:clamp(22px,2.2vw,30px);font-weight:400}
+.lane p{font-size:13.5px;color:var(--mut);margin-top:6px;max-width:60ch;line-height:1.65}
+.lane .go{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+.lane:hover .go,.lane:focus-within .go{color:var(--lc)}
+.l1{--lc:var(--ember);--lt:rgba(255,138,92,.12)}
+.l2{--lc:var(--violet);--lt:rgba(232,107,255,.10)}
+.l3{--lc:var(--amber);--lt:rgba(255,196,107,.10)}
+.l4{--lc:var(--rose);--lt:rgba(255,122,168,.10)}
+.l5{--lc:var(--violet);--lt:rgba(232,107,255,.08)}
+.l6{--lc:var(--ember);--lt:rgba(255,138,92,.08)}
+@media (max-width:860px){.lane{grid-template-columns:1fr;gap:12px}}
+
+/* ---------- contract ---------- */
+.contract{padding:96px 0}
+.contract .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:start}
+.contract .k{color:var(--violet)}
+.contract h2{font-size:clamp(28px,3.2vw,44px);margin:12px 0 18px;line-height:1.12}
+.contract p{color:var(--mut);margin-bottom:14px;max-width:56ch}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+.col{border-top:3px solid var(--cc);padding-top:14px}
+.col .ck{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cc)}
+.col h3{font-size:20px;margin:6px 0 6px;font-weight:400;font-style:italic}
+.col p{font-size:13px;color:var(--mut);line-height:1.6}
+.co1{--cc:var(--amber)} .co2{--cc:var(--violet)} .co3{--cc:var(--ember)}
+.demo{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px;position:relative;overflow:hidden}
+.demo::after{content:"";position:absolute;right:-70px;top:-70px;width:190px;height:190px;border-radius:999px;background:radial-gradient(circle,rgba(232,107,255,.3),transparent 70%)}
+.demo .dk{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.demo .dk b{color:var(--amber);font-weight:500}
+.demo .box{background:var(--bg0);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-top:16px;font-family:var(--mono);font-size:12.5px;line-height:1.9;color:var(--mut)}
+.demo .box b{color:var(--ink);font-weight:500}
+.demo .q{border:1px solid rgba(255,196,107,.5);border-radius:8px;padding:12px 16px;margin-top:10px;font-family:var(--mono);font-size:12.5px;color:var(--amber)}
+
+/* ---------- lead band ---------- */
+.lead{background:var(--bg1);padding:0 0 90px;position:relative}
+.lead .seam{background:var(--bg1)}
+.lead .k{color:var(--ember)}
+.lead h2{font-size:clamp(26px,3vw,40px);max-width:34ch;line-height:1.2;margin:12px 0 44px}
+.memos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.memo{background:var(--card);border-radius:10px;padding:24px;border-top:3px solid var(--mc)}
+.memo .mk{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mc)}
+.memo h3{font-size:19px;font-weight:400;margin:10px 0 8px}
+.memo p{font-size:13.5px;color:var(--mut);line-height:1.65}
+.m1{--mc:var(--ember)} .m2{--mc:var(--violet)} .m3{--mc:var(--amber)}
+.errata{margin-top:26px;border:1.5px dashed var(--rose);border-radius:10px;padding:18px 24px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;max-width:960px}
+.errata .ek{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);border:1.5px solid var(--rose);border-radius:4px;padding:5px 12px;transform:rotate(-3deg)}
+@media (prefers-reduced-motion:reduce){.errata .ek{transform:none}}
+.errata p{font-size:14px;color:var(--mut);max-width:66ch}
+.errata a{color:var(--amber);text-decoration:underline;text-underline-offset:3px}
+.quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:44px}
+.qt{background:var(--card);border-radius:10px;padding:24px 26px}
+.qt blockquote{font-family:var(--serif);font-style:italic;font-size:16.5px;line-height:1.6;color:var(--ink)}
+.qt figcaption{margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--mut)}
+.qt figcaption b{color:var(--amber);font-weight:500;display:block;font-family:var(--sans);font-size:13.5px;letter-spacing:0}
+
+/* ---------- lab + process ---------- */
+.labrow{padding:92px 0}
+.labrow .k{color:var(--amber)}
+.labrow h2{font-size:clamp(28px,3.2vw,44px);margin:12px 0 40px}
+.lab3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.labc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px}
+.labc .lk{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--violet)}
+.labc b{display:block;font-family:var(--serif);font-weight:400;font-size:30px;margin:10px 0 6px;color:var(--ink)}
+.labc p{font-size:13.5px;color:var(--mut);line-height:1.65}
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
+.act .ak{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ember)}
+.act h3{font-size:19px;font-weight:400;font-style:italic;margin:8px 0 8px}
+.act p{font-size:13.5px;color:var(--mut);line-height:1.65}
+
+/* ---------- closer ---------- */
+.close{position:relative;overflow:hidden;padding:120px 0 100px}
+.close .field{position:absolute;inset:0;background:
+  radial-gradient(900px 520px at 8% -10%, rgba(155,75,255,.42), transparent 62%),
+  radial-gradient(800px 520px at 105% 108%, rgba(255,106,61,.45), transparent 62%),
+  linear-gradient(200deg,#1E1022 0%,#120B14 60%)}
+.close .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center}
+.close .k{color:var(--ember)}
+.close h2{font-size:clamp(38px,4.8vw,64px);line-height:1.03;margin:14px 0 20px}
+.close h2 .grad{font-style:italic}
+.close .sub{color:var(--mut);max-width:46ch;line-height:1.75}
+.close .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.close .sig{margin-top:34px;color:var(--amber);font-size:26px}
+.pass{background:var(--cream);color:var(--cream-ink);border-radius:8px;padding:24px 26px;font-family:var(--mono);box-shadow:0 30px 64px rgba(0,0,0,.55);transform:rotate(1.4deg)}
+@media (prefers-reduced-motion:reduce){.pass{transform:none}}
+.pass .pk{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:.16em;color:var(--cream-mut)}
+.pass .pr{display:flex;justify-content:space-between;align-items:center;margin:14px 0}
+.pass .pc{font-family:var(--serif);font-size:44px}
+.pass .arr{color:var(--cream-red);font-size:20px}
+.pass .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px dashed rgba(34,28,16,.3);padding-top:14px;font-size:10.5px;color:var(--cream-mut)}
+.pass .grid b{display:block;font-size:12.5px;font-weight:500;color:var(--cream-ink);margin-top:2px}
+.pass .stamp{display:inline-block;margin-top:16px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-red);border:2px solid var(--cream-red);border-radius:4px;padding:5px 12px;transform:rotate(-3deg)}
+@media (prefers-reduced-motion:reduce){.pass .stamp{transform:none}}
+.pass .bar{margin-top:16px;height:36px;background:repeating-linear-gradient(90deg,var(--cream-ink),var(--cream-ink) 2px,transparent 2px,transparent 5px)}
+footer{border-top:1px solid var(--line);padding:28px 0;font-family:var(--mono);font-size:12px;color:var(--dim)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+@media (max-width:1000px){
+  .rrow{grid-template-columns:repeat(2,1fr)} .who .wrap{grid-template-columns:1fr}
+  .contract .wrap{grid-template-columns:1fr} .memos{grid-template-columns:1fr}
+  .quotes{grid-template-columns:1fr} .lab3{grid-template-columns:1fr}
+  .acts{grid-template-columns:1fr} .close .wrap{grid-template-columns:1fr}
+}
+@media (max-width:640px){ .rrow{grid-template-columns:1fr} nav a.nl{display:none} .cols{grid-template-columns:1fr} .logo{font-size:16px;white-space:nowrap} nav ul{gap:10px} nav .pill{padding:8px 12px;font-size:10.5px;letter-spacing:.06em;white-space:nowrap} .wrap{padding:0 16px} }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="#">Arpit Maheshwari</a>
+    <nav aria-label="Primary"><ul>
+      <li><a class="nl" href="#work">Work</a></li>
+      <li><a class="nl" href="#patterns">Patterns</a></li>
+      <li><a class="nl" href="#lead">How I Lead</a></li>
+      <li><a class="nl" href="#">Writing</a></li>
+      <li><a class="pill pill-hot" href="#contact">Send me the role →</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="h-hero">
+  <div class="field" aria-hidden="true"></div>
+  <div class="wrap in">
+    <p class="k">Product &amp; Design Leader · AI &amp; Data-Intensive Products</p>
+    <h1 id="h-hero">Your model is right. Your users still <span class="grad">won't bet on it.</span></h1>
+    <p class="sub">The half-second of doubt is the only thing I design. Sixteen years, five industries, one problem — and the receipts for all of it.</p>
+    <div class="ctas">
+      <a class="pill pill-hot" href="#contact">Send me the role →</a>
+      <a class="pill pill-line" href="#work">See selected work</a>
+    </div>
+    <p class="cred">Shipped for <b>Telefónica O2</b> — 4M+ users · <b>PTC</b> — NASA, Boeing, Toyota, Airbus &amp; Apple among clientele · AI products since 2019</p>
+  </div>
+  <p class="hand note" aria-hidden="true">the numbers below carry their baselines ↓</p>
+</section>
+
+<!-- ============ RECEIPTS ============ -->
+<section class="receipts" aria-labelledby="h-receipts">
+  <div class="seam" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="k">The receipts — four industries, baselines included</p>
+    <h2 id="h-receipts">What changed when they trusted the machine.</h2>
+    <span class="hand" aria-hidden="true">numbers are easy — the receipts are hard ↓</span>
+    <div class="rrow">
+      <div class="rcell rc1"><b>3 hrs</b><span>campaign planning, down from two weeks · AdTech · per campaign · +£69k media value/client</span></div>
+      <div class="rcell rc2"><b>60%</b><span>faster PE deal screening · FinTech · pre/post rollout</span></div>
+      <div class="rcell rc3"><b>$1M / yr</b><span>saved off the print budget · EdTech · vs 2016 baseline</span></div>
+      <div class="rcell rc4"><b>4M+</b><span>users on two O2 products · Telecom · O2 UK · publicly reported</span></div>
+    </div>
+    <div class="rfoot"><b>TOTAL — 16 YRS · 1 PROBLEM</b><span>baselines included · sources on request · <a href="#">keep it: download the receipt (.txt)</a></span></div>
+  </div>
+</section>
+
+<!-- ============ WHO ============ -->
+<section class="who" aria-labelledby="h-who">
+  <div class="wrap">
+    <div>
+      <p class="k">Who you'd be hiring</p>
+      <h2 id="h-who">By Friday of week one I've read your evals and sat in on your customer calls; by launch, the interface I drew is the code I shipped.</h2>
+      <p>I read the model at the eval layer. I shape what gets measured. I ship the front-end.</p>
+      <p>On my first accessibility project I spent a week with my monitor switched off, navigating by screen-reader — designing for someone who isn't you starts by becoming them. <a href="#">That project started as my documented miss →</a></p>
+      <p class="meta">Fully remote · GMT+5:30 · both US coasts, daily</p>
+    </div>
+    <div class="facts" role="group" aria-label="Candidate facts summary">
+      <h3>Candidate Facts</h3>
+      <p class="fs">Serving size: 30 minutes · Servings: 1 seat</p>
+      <dl>
+        <div class="fr"><dt>Experience</dt><dd>16 yrs</dd></div>
+        <div class="fr"><dt>Industries</dt><dd>5</dd></div>
+        <div class="fr"><dt>Patterns in production</dt><dd>8</dd></div>
+        <div class="fr"><dt>Users shipped</dt><dd>4M+ · public</dd></div>
+        <div class="fr"><dt>Fabricated metrics</dt><dd>0 g</dd></div>
+      </dl>
+      <p class="warn"><b>Allergen notice:</b> contains one documented failure — disclosed in full in the PTC case. <b>Contains no:</b> logo walls, invented baselines, confident guesses.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="work" id="work" aria-labelledby="h-work">
+  <div class="seam seam-up" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="k">Selected work — six products, one job</p>
+    <h2 id="h-work">The AI work is the headline. The rest is the range under it.</h2>
+    <p class="lede">Get a professional to trust a system enough to act on it. The first three are AI — two of them LLMs reading unstructured documents. Two of the rest are public, so you can check them yourself; where a client is under NDA I walk the real artifacts on a call.</p>
+    <div class="lanes">
+      <a class="lane l1" href="#"><div class="m">2 wks → 3 hrs<span>AdTech · NDA</span></div><div><h3>Programmatic Advertising Platform</h3><p>Traders watched an algorithm beat them and played their hunches anyway. The fix was letting them argue back — plans they could reshape in one click, every edit teaching next week.</p></div><span class="go">Walk-through →</span></a>
+      <a class="lane l2" href="#"><div class="m">60% faster<span>FinTech · NDA</span></div><div><h3>AI-Assisted Private Equity Investing</h3><p>Analysts get paid to doubt confident numbers. So it shipped already able to name a source for every claim, and to say &ldquo;I'm not sure&rdquo; instead of bluffing.</p></div><span class="go">Walk-through →</span></a>
+      <a class="lane l3" href="#"><div class="m">3 wks → 4 days<span>VC &amp; PE · NDA</span></div><div><h3>Technical Due Diligence Platform</h3><p>Partners stake millions on claims they'll never personally verify. So I made them do more work: sign-off stays locked until every signal's evidence has been opened.</p></div><span class="go">Walk-through →</span></a>
+      <a class="lane l4" href="#"><div class="m">$1M / yr<span>EdTech · Public</span></div><div><h3>PTC University — Learning Connector</h3><p>The brief said redesign the UX. I argued the contract was the broken interface, and asked PTC to kill four of its five products. Public numbers, full case — miss included.</p></div><span class="go">Walk-through →</span></a>
+      <a class="lane l5" href="#"><div class="m">4M+<span>Telecom · Public</span></div><div><h3>Telefónica MyO2 &amp; Priority Moments</h3><p>Every screen designed with one co-designer, every screen coded by me — two O2 UK products on mobile web, at a scale where rounding errors have populations.</p></div><span class="go">Walk-through →</span></a>
+      <a class="lane l6" href="#"><div class="m">0 managers<span>Org Design · NDA</span></div><div><h3>OrgOS · Transparent Org Tooling</h3><p>Two hundred people, no managers. Eight modules doing an org chart's job — coordination that doesn't smuggle a boss back in through the side door.</p></div><span class="go">Walk-through →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTRACT ============ -->
+<section class="contract" id="patterns" aria-labelledby="h-contract">
+  <div class="wrap">
+    <div>
+      <p class="k">The contract I write when a capability needs a boundary</p>
+      <h2 id="h-contract">A language model has no edges. So I draw them.</h2>
+      <p>Ask one anything and it answers — fluently, in or out of its depth. A user's trust does not erode slowly; it dies in a single confident wrong answer. So before launch I write a capability contract — a one-pager the whole team signs — and it goes in the interface, at the point of use.</p>
+      <div class="cols">
+        <div class="col co1"><p class="ck">In scope</p><h3>It's for</h3><p>The job stated narrowly — &ldquo;score deal risk from the data room,&rdquo; not &ldquo;analyse documents.&rdquo;</p></div>
+        <div class="col co2"><p class="ck">Declines</p><h3>It can't</h3><p>A named limit, not a hedge. &ldquo;I can't price illiquid assets&rdquo; — never &ldquo;results may vary.&rdquo;</p></div>
+        <div class="col co3"><p class="ck">Hands back</p><h3>Ask a human</h3><p>A visible route to a person, designed with the care of the happy path. Never a silent, confident guess.</p></div>
+      </div>
+    </div>
+    <div class="demo" role="group" aria-label="The capability contract, working demo">
+      <div class="dk"><span>live — the contract, working</span><b>signed</b></div>
+      <div class="box"><b>It's for:</b> scoring deal risk from the data room.<br><b>It can't:</b> price illiquid assets.<br><b>Hands back:</b> anything else → your analyst.</div>
+      <div class="q">&ldquo;Score the risk on the Meridian data room&rdquo;</div>
+      <div class="q">&ldquo;What's this vineyard actually worth?&rdquo;</div>
+      <div class="q">&ldquo;Draft the LP update email&rdquo;</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEAD ============ -->
+<section class="lead" id="lead" aria-labelledby="h-lead">
+  <div class="seam" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="k">How I lead — come argue with me</p>
+    <h2 id="h-lead">Week one: I'm reading your evals and sitting silent on customer calls. By week two we're arguing productively.</h2>
+    <div class="memos">
+      <div class="memo m1"><p class="mk">With engineering</p><h3>Eval design before interface design</h3><p>The front-end I own ships in the PR — commented and ready for review. When we disagree on feasibility, the cheapest experiment goes first and settles it.</p></div>
+      <div class="memo m2"><p class="mk">With product / founder</p><h3>Outcomes, not deliverables</h3><p>I'll contest the roadmap when the numbers contradict it. The design doc is mine to write; the spec is yours.</p></div>
+      <div class="memo m3"><p class="mk">With customers</p><h3>Five calls in week one</h3><p>One a week forever after, and I read the raw support tickets myself. No AI feature ships until I've personally watched someone fail to use it.</p></div>
+    </div>
+    <div class="errata">
+      <span class="ek">Errata</span>
+      <p>My first accessibility pass buried screen-reader users in verbose labels. I spent a week with the monitor off, navigating by screen reader, then rewrote the front-end. <a href="#">The full account, in the PTC case →</a></p>
+    </div>
+    <div class="quotes">
+      <figure class="qt"><blockquote>&ldquo;Over the past four years at Talon, Arpit has been instrumental in shaping four distinct products from the ground up… If you need a designer who excels at combining strategic vision with practical execution, Arpit is the person to call.&rdquo;</blockquote><figcaption><b>Anant East</b>CTO at Talon Outdoor</figcaption></figure>
+      <figure class="qt"><blockquote>&ldquo;Arpit consistently demonstrated exceptional speed, creativity, and attention to detail… his ability to present multiple design options along with clear pros and cons made it much easier for stakeholders to align quickly.&rdquo;</blockquote><figcaption><b>Sanjesh Ananda</b>Software Engineering Leader · built the AdTech platform with Arpit</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LAB + PROCESS ============ -->
+<section class="labrow" aria-labelledby="h-lab">
+  <div class="wrap">
+    <p class="k">Proof, not philosophy</p>
+    <h2 id="h-lab">The same rules, as running code.</h2>
+    <div class="lab3">
+      <a class="labc" href="#"><p class="lk">loop.js</p><b>42 / 42 tests</b><p>The decision logic behind four trust patterns as tested functions. Zero dependencies, MIT — running in your browser.</p></a>
+      <a class="labc" href="#"><p class="lk">trustlint</p><b>7 rules</b><p>A deterministic linter for the shape of an AI answer — runs in your tab, no network.</p></a>
+      <a class="labc" href="#"><p class="lk">This site, torn down</p><b>0 build steps</b><p>How the thing you're reading is built, measured rather than described — gaps included.</p></a>
+    </div>
+    <div class="acts">
+      <div class="act"><p class="ak">Act I · The wager</p><h3>Is this bet worth anyone's doubt?</h3><p>Desirable · feasible · viable — the overlap is the bet worth making. At PTC: four of five products killed to fund the one that worked.</p></div>
+      <div class="act"><p class="ak">Act II · The spiral</p><h3>Listen → Structure → Prove → Land</h3><p>In loops — and every loop ends in front of a user. Act / Review / Ignore was named after the same pattern kept recurring across the AI work.</p></div>
+      <div class="act"><p class="ak">Act III · The open loop</p><h3>Shipping is the first honest data.</h3><p>I argued for a three-option card; the A/B made the one-option version permanent — the ship taught me what the mock couldn't.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSER ============ -->
+<section class="close" id="contact" aria-labelledby="h-close">
+  <div class="field" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <p class="k">Contact — available · 4 weeks' notice</p>
+      <h2 id="h-close">One seat. Full-time. <span class="grad">Yours to offer.</span></h2>
+      <p class="sub">Staff / Principal product designer or founding product-design lead at an AI product company — open to hands-on Director roles. Fully remote, GMT+5:30, daily overlap with both US coasts.</p>
+      <div class="ctas">
+        <a class="pill pill-hot" href="#">Send me the role →</a>
+        <a class="pill pill-line" href="#">Book 30 minutes</a>
+      </div>
+      <p class="sig hand">— Arpit</p>
+    </div>
+    <div class="pass" role="group" aria-label="Boarding pass: one full-time seat, boarding is a 30-minute call">
+      <div class="pk"><span>LOOP AIR — BOARDING PASS</span><span>remote · non-stop</span></div>
+      <div class="pr"><span class="pc">IND</span><span class="arr" aria-hidden="true">✈</span><span class="pc">YOU</span></div>
+      <div class="grid">
+        <div>PASSENGER<b>Maheshwari / A</b></div><div>CLASS<b>Full-time</b></div><div>SEAT<b>1 of 1</b></div>
+        <div>CARRY-ON<b>16 yrs · receipts</b></div><div>STATUS<b>Boarding now</b></div><div>GATE<b>30-min call</b></div>
+      </div>
+      <span class="stamp">Cleared · no fabricated metrics</span>
+      <div class="bar" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Arpit Maheshwari · Indore, India</span>
+    <span>no copyright — design is for all</span>
+  </div>
+</footer>
+
+</body>
+</html>

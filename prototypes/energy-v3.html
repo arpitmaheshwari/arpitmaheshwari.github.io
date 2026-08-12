@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>DIRECTION PROTOTYPE — Energy v3 · the evidence desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap">
+<style>
+/* ============ ENERGY V3 — "the evidence desk" ============
+   Not Sahaj's palette. The energy system is Arpit's own printed-ephemera world,
+   promoted from props to architecture: paper as full scenes, ink as identity
+   (stamp red / ledger blue / marker gold), stamps, tabs, tilt, margin notes. */
+:root{
+  --bg:#0A0A0A; --bg2:#101010; --ink:#F2EDE4; --ink-mut:rgba(242,237,228,.66); --ink-dim:rgba(242,237,228,.4);
+  --paper:#EFE7D2; --paper-2:#E7DCBF; --manila:#E9DFC4; --paper-ink:#221C10; --paper-mut:#5D5442;
+  --red:#C2452D; --red-l:#E06A4F;          /* stamp ink */
+  --blue:#2F4E93; --blue-l:#8FAEE8;        /* ledger ink */
+  --gold:#D4A85E; --gold-d:#7E5A14;        /* marker */
+  --hair:rgba(242,237,228,.14); --phair:rgba(34,28,16,.22);
+  --serif:'Newsreader',Georgia,serif; --sans:'IBM Plex Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace; --hand:'Caveat',cursive;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+.k{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.hand{font-family:var(--hand);font-weight:600}
+h1,h2,h3{font-family:var(--serif);font-weight:300;letter-spacing:-.01em}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 30px;background:var(--gold);color:var(--bg);font-family:var(--sans);font-weight:600;font-size:14px;border-radius:2px;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-ghost{background:transparent;border:1px solid var(--hair);color:var(--ink-mut);font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+/* rubber stamp */
+.stamp{display:inline-block;font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;padding:5px 12px;border:2px solid currentColor;border-radius:3px;transform:rotate(-4deg);opacity:.92}
+.st-red{color:var(--red)} .st-blue{color:var(--blue)} .st-gold{color:var(--gold-d)}
+.dark .st-red{color:var(--red-l)} .dark .st-blue{color:var(--blue-l)} .dark .st-gold{color:var(--gold)}
+/* hand-drawn circle annotation */
+.circled{position:relative;display:inline-block}
+.circled svg{position:absolute;inset:-14px -20px;width:calc(100% + 40px);height:calc(100% + 28px);pointer-events:none}
+.circled svg path{fill:none;stroke:var(--red-l);stroke-width:2.5;stroke-linecap:round}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:60;background:rgba(10,10,10,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--hair)}
+.hd{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+.logo{font-family:var(--serif);font-size:20px;color:var(--ink)}
+nav{display:flex;gap:28px;align-items:center}
+nav a.nl{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mut)}
+nav a.nl:hover{color:var(--gold)}
+nav .btn{padding:11px 22px}
+
+/* ---------- hero: the desk ---------- */
+.hero{position:relative;overflow:hidden;padding:88px 0 104px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);gap:64px;align-items:center}
+.hero .k{color:var(--gold)}
+.hero h1{font-size:clamp(46px,5.6vw,78px);line-height:1.04;margin:20px 0 24px}
+.hero h1 .u{position:relative;white-space:nowrap}
+.hero h1 .u svg{position:absolute;left:0;right:0;bottom:-10px;width:100%;height:14px}
+.hero h1 .u svg path{fill:none;stroke:var(--red-l);stroke-width:3;stroke-linecap:round}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,1.8vw,22px);color:var(--ink-mut);max-width:44ch;line-height:1.5}
+.hero .note{margin-top:14px;color:var(--red-l);font-size:22px;transform:rotate(-2deg);display:inline-block}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:32px}
+.cred{margin-top:36px;font-family:var(--mono);font-size:12.5px;color:var(--ink-dim);line-height:2;max-width:56ch}
+.cred b{color:var(--ink-mut);font-weight:500}
+/* the desk collage — his real artifacts, scattered */
+.desk{position:relative;min-height:480px}
+.art{position:absolute;background:var(--paper);color:var(--paper-ink);border-radius:3px;box-shadow:0 18px 44px rgba(0,0,0,.5)}
+.a-receipt{width:280px;padding:20px 22px;right:24px;top:0;transform:rotate(2.5deg);font-family:var(--mono)}
+.a-receipt .rh{text-align:center;font-size:13px;letter-spacing:.12em;font-weight:500}
+.a-receipt .rt{text-align:center;font-size:10px;color:var(--paper-mut);letter-spacing:.06em;margin-bottom:10px}
+.a-receipt .dv{border-top:1px dashed var(--phair);margin:10px 0}
+.a-receipt .li{display:flex;justify-content:space-between;font-size:11.5px;padding:3px 0}
+.a-receipt .li b{font-weight:500}
+.a-receipt .sm{font-size:9.5px;color:var(--paper-mut)}
+.a-receipt .tot{display:flex;justify-content:space-between;font-size:12px;font-weight:500;margin-top:8px}
+.a-qc{width:210px;padding:18px;left:6px;top:150px;transform:rotate(-5deg);text-align:center}
+.a-qc .qk{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--paper-mut)}
+.a-qc .qn{font-family:var(--serif);font-size:40px;margin:6px 0}
+.a-qc .ql{font-family:var(--mono);font-size:9.5px;text-align:left;line-height:1.9;color:var(--paper-ink)}
+.a-qc .stamp{margin-top:10px;transform:rotate(-7deg)}
+.a-pass{width:300px;padding:16px 18px;right:60px;bottom:-10px;transform:rotate(-2deg);font-family:var(--mono)}
+.a-pass .pk{display:flex;justify-content:space-between;font-size:9.5px;letter-spacing:.14em;color:var(--paper-mut)}
+.a-pass .pr{display:flex;justify-content:space-between;align-items:center;margin:8px 0}
+.a-pass .pc{font-family:var(--serif);font-size:34px;font-weight:400}
+.a-pass .arr{color:var(--red);font-size:18px}
+.a-pass .pf{border-top:1px dashed var(--phair);padding-top:8px;font-size:9.5px;color:var(--paper-mut);letter-spacing:.05em}
+.a-tag{left:104px;top:36px;transform:rotate(-8deg);background:transparent;box-shadow:none}
+.desk .hand-note{position:absolute;left:18px;bottom:64px;color:var(--gold);font-size:21px;transform:rotate(-4deg);max-width:170px;line-height:1.2}
+.desk .hand-arrow{position:absolute;left:150px;bottom:110px;width:70px;height:40px}
+.desk .hand-arrow path{fill:none;stroke:var(--gold);stroke-width:2.5;stroke-linecap:round}
+
+/* ---------- ledger band (paper scene) ---------- */
+.ledger{background:var(--paper);color:var(--paper-ink);position:relative;
+  background-image:repeating-linear-gradient(transparent,transparent 35px,rgba(47,78,147,.16) 35px,rgba(47,78,147,.16) 36px);
+  border-top:6px solid var(--red);padding:72px 0 80px}
+.ledger .k{color:var(--red)}
+.ledger h2{font-size:clamp(30px,3.4vw,46px);margin:10px 0 6px}
+.ledger .hand{color:var(--red);font-size:22px;transform:rotate(-1.5deg);display:inline-block}
+.led-rows{margin-top:40px;border-top:2px solid var(--paper-ink)}
+.led-row{display:grid;grid-template-columns:44px minmax(180px,340px) 1fr auto;gap:24px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--phair)}
+.led-row .no{font-family:var(--mono);font-size:12px;color:var(--paper-mut)}
+.led-row .amt{font-family:var(--serif);font-weight:600;font-size:clamp(30px,3vw,44px);line-height:1}
+.led-red .amt{color:var(--red)} .led-blue .amt{color:var(--blue)} .led-gold .amt{color:var(--gold-d)}
+.led-row .what{font-size:15px;color:var(--paper-ink);line-height:1.55;max-width:56ch}
+.led-row .what span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--paper-mut);margin-top:4px}
+.led-row .stamp{justify-self:end}
+.led-foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:16px;font-family:var(--mono);font-size:12px;color:var(--paper-mut)}
+.led-foot b{color:var(--paper-ink);font-weight:500;letter-spacing:.08em}
+
+/* ---------- case files (dark scene) ---------- */
+.files{padding:104px 0}
+.files .k{color:var(--gold)}
+.files h2{font-size:clamp(34px,4vw,56px);margin:12px 0 12px;max-width:20ch}
+.files .lede{color:var(--ink-mut);max-width:62ch;line-height:1.7}
+.file-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px}
+.file{position:relative;transition:transform .25s}
+.file:hover{transform:translateY(-6px) rotate(0deg) !important}
+.file:nth-child(odd){transform:rotate(-.7deg)}
+.file:nth-child(even){transform:rotate(.6deg)}
+.file .tab{position:absolute;top:-15px;left:18px;background:var(--manila);color:var(--paper-mut);font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:5px 16px 3px;border-radius:6px 6px 0 0;border:1px solid var(--phair);border-bottom:none}
+.file .body{background:var(--manila);color:var(--paper-ink);border-radius:3px 10px 10px 10px;padding:26px 24px 22px;box-shadow:0 16px 36px rgba(0,0,0,.45);min-height:296px;display:flex;flex-direction:column;border:1px solid rgba(34,28,16,.12)}
+.file .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.file .amt{font-family:var(--serif);font-weight:600;font-size:clamp(28px,2.4vw,38px);line-height:1;margin:14px 0 10px}
+.f-red .amt{color:var(--red)} .f-blue .amt{color:var(--blue)} .f-gold .amt{color:var(--gold-d)}
+.file h3{font-size:21px;line-height:1.25;font-weight:400;margin-bottom:8px}
+.file p{font-size:13.5px;line-height:1.6;color:#4A4232;flex:1}
+.file .go{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;margin-top:16px;color:var(--paper-ink);font-weight:500}
+.file:hover .go{color:var(--red)}
+.file .clip{position:absolute;right:22px;top:-9px;width:26px;height:44px;border:3px solid #9A9280;border-radius:12px 12px 4px 4px;border-bottom:none;opacity:.85}
+
+/* ---------- patterns: the card catalog (dark) ---------- */
+.catalog{padding:96px 0;border-top:1px solid var(--hair)}
+.catalog .head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.catalog .k{color:var(--gold)}
+.catalog h2{font-size:clamp(30px,3.4vw,46px);margin-top:10px}
+.catalog .hand{color:var(--gold);font-size:22px;transform:rotate(-2deg)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.idx{background:var(--paper);color:var(--paper-ink);border-radius:3px;padding:16px 18px 14px;box-shadow:0 10px 22px rgba(0,0,0,.4);position:relative;transition:transform .2s}
+.idx::before{content:"";position:absolute;left:0;right:0;top:26px;height:1px;background:var(--red);opacity:.5}
+.idx:hover{transform:translateY(-4px) rotate(-1deg)}
+.idx .no{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--red)}
+.idx h3{font-family:var(--mono);font-weight:500;font-size:13.5px;letter-spacing:.02em;margin:12px 0 6px;line-height:1.4}
+.idx p{font-size:12px;line-height:1.55;color:var(--paper-mut)}
+.rulecard{grid-column:span 2;background:var(--bg2);border:1px solid var(--gold-d);color:var(--ink);border-radius:3px;padding:22px 24px;position:relative}
+.rulecard .k{color:var(--gold);font-size:11px}
+.rulecard h3{font-size:24px;margin:8px 0 8px;font-weight:400}
+.rulecard p{font-size:13.5px;color:var(--ink-mut);line-height:1.6;max-width:52ch}
+.rulecard .stamp{position:absolute;right:20px;top:18px;transform:rotate(6deg)}
+
+/* ---------- memos: how I lead (paper scene) ---------- */
+.memos{background:var(--paper-2);color:var(--paper-ink);padding:88px 0 96px;border-top:6px solid var(--blue)}
+.memos .k{color:var(--blue)}
+.memos h2{font-size:clamp(28px,3.2vw,44px);max-width:30ch;line-height:1.2;margin:12px 0 44px}
+.memo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.memo{background:#FBF6E9;border:1px solid var(--phair);border-radius:3px;padding:24px;box-shadow:0 12px 28px rgba(34,28,16,.18);position:relative}
+.memo:nth-child(1){transform:rotate(-.8deg)} .memo:nth-child(2){transform:rotate(.5deg)} .memo:nth-child(3){transform:rotate(-.4deg)}
+.memo .mk{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);border-bottom:1px dashed var(--phair);padding-bottom:10px;margin-bottom:14px}
+.memo h3{font-size:19px;font-weight:400;margin-bottom:8px}
+.memo p{font-size:13.5px;line-height:1.65;color:#4A4232}
+.errata2{margin-top:32px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;background:transparent;border:2px dashed var(--red);border-radius:3px;padding:18px 24px;max-width:920px}
+.errata2 .stamp{flex:0 0 auto}
+.errata2 p{font-size:14px;color:var(--paper-ink);max-width:64ch}
+.errata2 a{text-decoration:underline;font-weight:600}
+
+/* ---------- closer (dark) ---------- */
+.close{padding:104px 0 96px;position:relative;overflow:hidden}
+.close .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center}
+.close .k{color:var(--gold)}
+.close h2{font-size:clamp(38px,4.6vw,64px);line-height:1.04;margin:14px 0 18px}
+.close .sub{color:var(--ink-mut);max-width:44ch;line-height:1.7}
+.close .sig{margin-top:32px;color:var(--gold);font-size:26px}
+.close .hand-note{color:var(--red-l);font-size:21px;display:inline-block;transform:rotate(-2deg);margin-top:18px}
+.pass2{background:var(--paper);color:var(--paper-ink);border-radius:6px;padding:22px 24px;font-family:var(--mono);box-shadow:0 24px 56px rgba(0,0,0,.55);transform:rotate(1.2deg)}
+.pass2 .pk{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.16em;color:var(--paper-mut)}
+.pass2 .pr{display:flex;justify-content:space-between;align-items:center;margin:14px 0}
+.pass2 .pc{font-family:var(--serif);font-size:44px}
+.pass2 .arr{color:var(--red);font-size:22px}
+.pass2 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px dashed var(--phair);padding-top:12px;font-size:10px}
+.pass2 .grid b{display:block;font-size:12px;font-weight:500;margin-top:2px}
+.pass2 .stamp{margin-top:14px}
+.pass2 .bar{margin-top:14px;height:34px;background:repeating-linear-gradient(90deg,var(--paper-ink),var(--paper-ink) 2px,transparent 2px,transparent 5px)}
+footer{border-top:1px solid var(--hair);padding:28px 0;font-family:var(--mono);font-size:12px;color:var(--ink-dim)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+@media (max-width:1080px){
+  .hero .wrap{grid-template-columns:1fr}.desk{min-height:430px;max-width:560px}
+  .file-grid{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:repeat(2,1fr)}
+  .rulecard{grid-column:span 2}.memo-row{grid-template-columns:1fr}
+  .close .wrap{grid-template-columns:1fr}
+}
+@media (max-width:680px){
+  .file-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.rulecard{grid-column:span 1}
+  .led-row{grid-template-columns:32px 1fr;grid-template-rows:auto auto}
+  .led-row .what{grid-column:2}.led-row .stamp{grid-column:2;justify-self:start}
+  nav a.nl{display:none}
+}
+</style>
+</head>
+<body>
+
+<header><div class="wrap hd">
+  <a class="logo" href="#">Arpit Maheshwari</a>
+  <nav>
+    <a class="nl" href="#work">Work</a><a class="nl" href="#patterns">Patterns</a>
+    <a class="nl" href="#lead">How I Lead</a><a class="nl" href="#">Writing</a>
+    <a class="btn" href="#contact">Send me the role →</a>
+  </nav>
+</div></header>
+
+<!-- ============ HERO: the evidence desk ============ -->
+<section class="hero dark">
+  <div class="wrap">
+    <div>
+      <p class="k">Product &amp; Design Leader · AI &amp; Data-Intensive Products</p>
+      <h1>Your model is right. Your users still <span class="u"><em>won't bet on it.</em><svg viewBox="0 0 300 14" preserveAspectRatio="none"><path d="M4,9 C60,4 140,12 200,6 C240,3 280,9 296,6"/></svg></span></h1>
+      <p class="sub">The half-second of doubt is the only thing I design. Sixteen years, five industries, one problem.</p>
+      <br><span class="hand note">— and I brought the receipts ↓</span>
+      <div class="hero-ctas">
+        <a class="btn" href="#contact">Send me the role →</a>
+        <a class="btn btn-ghost" href="#work">Open the case files</a>
+      </div>
+      <p class="cred">Shipped for <b>Telefónica O2</b> — 4M+ users · <b>PTC</b> — NASA, Boeing, Toyota, Airbus &amp; Apple among clientele · AI products since 2019</p>
+    </div>
+    <div class="desk" aria-hidden="true">
+      <span class="stamp st-red a-tag art">Evidence · not adjectives</span>
+      <div class="art a-receipt">
+        <p class="rh">A. MAHESHWARI</p>
+        <p class="rt">product &amp; design leader · est. 2010</p>
+        <div class="dv"></div>
+        <div class="li"><span>campaign planning</span><b>2 wks → 3 hrs</b></div>
+        <p class="sm">adtech · per campaign</p>
+        <div class="li"><span>pe deal screening</span><b>60% faster</b></div>
+        <p class="sm">fintech · pre/post rollout</p>
+        <div class="li"><span>print budget</span><b>−$1M / yr</b></div>
+        <p class="sm">edtech · vs 2016 baseline</p>
+        <div class="li"><span>users shipped</span><b>4M+</b></div>
+        <p class="sm">telecom · o2 uk · public</p>
+        <div class="dv"></div>
+        <div class="tot"><span>TOTAL</span><span>16 yrs · 1 problem</span></div>
+      </div>
+      <div class="art a-qc">
+        <p class="qk">QUALITY CONTROL</p>
+        <p class="qn">№ 15</p>
+        <p class="ql">☑ every number carries a baseline<br>☑ abstains when evidence is thin<br>☑ 8 patterns in production<br>☐ replaced by the machine</p>
+        <span class="stamp st-red">Human passed</span>
+      </div>
+      <div class="art a-pass">
+        <div class="pk"><span>LOOP AIR</span><span>remote · non-stop</span></div>
+        <div class="pr"><span class="pc">IND</span><span class="arr">✈</span><span class="pc">YOU</span></div>
+        <div class="pf">seat 1 of 1 · full-time · boarding = a 30-min call</div>
+      </div>
+      <span class="hand hand-note">the artifacts are real — scroll ↓</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEDGER: the receipts as a full scene ============ -->
+<section class="ledger">
+  <div class="wrap">
+    <p class="k">The receipts — four industries, baselines included</p>
+    <h2>What changed when they trusted the machine.</h2>
+    <span class="hand">numbers are easy — the receipts are hard. click one ↓</span>
+    <div class="led-rows">
+      <div class="led-row led-red">
+        <span class="no">01</span>
+        <span class="amt">3 hrs</span>
+        <span class="what">Campaign planning, down from two weeks — once traders trusted the algorithm. Worth £69k more media value per client.<span>AdTech · per campaign</span></span>
+        <span class="stamp st-red">NDA · walk-through</span>
+      </div>
+      <div class="led-row led-blue">
+        <span class="no">02</span>
+        <span class="amt">60%</span>
+        <span class="what">Faster PE deal screening, after the model learned to explain itself.<span>FinTech · pre/post rollout</span></span>
+        <span class="stamp st-red">NDA · walk-through</span>
+      </div>
+      <div class="led-row led-gold">
+        <span class="no">03</span>
+        <span class="amt">$1M / yr</span>
+        <span class="what">Saved every year, once the training platform moved off printed guides.<span>EdTech · vs 2016 print budget</span></span>
+        <span class="stamp st-blue">Public record</span>
+      </div>
+      <div class="led-row led-blue">
+        <span class="no">04</span>
+        <span class="amt">4M+</span>
+        <span class="what">Users on the two O2 products I co-designed, then shipped as code.<span>Telecom · O2 UK · publicly reported</span></span>
+        <span class="stamp st-blue">Public record</span>
+      </div>
+    </div>
+    <div class="led-foot"><b>TOTAL — 16 YRS · 1 PROBLEM</b><span>baselines included · sources on request · keep it: download the receipt (.txt)</span></div>
+  </div>
+</section>
+
+<!-- ============ CASE FILES ============ -->
+<section class="files dark" id="work">
+  <div class="wrap">
+    <p class="k">Selected work — six case files</p>
+    <h2>The AI work is the headline. The rest is the range under it.</h2>
+    <p class="lede">One job runs through all six: get a professional to trust a system enough to act on it. Two files are public — check them yourself. Where a client is under NDA, I walk the real artifacts on a call.</p>
+    <div class="file-grid">
+      <a class="file f-red" href="#"><span class="tab">AdTech · 2019–25</span><span class="clip"></span>
+        <div class="body"><div class="top"><span class="stamp st-red">NDA</span></div>
+          <span class="amt">2 wks → 3 hrs</span><h3>Programmatic Advertising Platform</h3>
+          <p>Traders watched an algorithm beat them and played their hunches anyway. The fix was letting them argue back — plans they could reshape in one click, every edit teaching next week.</p>
+          <span class="go">Open the file →</span></div></a>
+      <a class="file f-blue" href="#"><span class="tab">FinTech · 2025</span><span class="clip"></span>
+        <div class="body"><div class="top"><span class="stamp st-red">NDA</span></div>
+          <span class="amt">60% faster</span><h3>AI-Assisted Private Equity Investing</h3>
+          <p>Analysts get paid to doubt confident numbers. So it shipped already able to name a source for every claim, and to say &ldquo;I'm not sure&rdquo; instead of bluffing.</p>
+          <span class="go">Open the file →</span></div></a>
+      <a class="file f-gold" href="#"><span class="tab">VC &amp; PE · 2025</span><span class="clip"></span>
+        <div class="body"><div class="top"><span class="stamp st-red">NDA</span></div>
+          <span class="amt">3 wks → 4 days</span><h3>Technical Due Diligence Platform</h3>
+          <p>Partners stake millions on claims they'll never personally verify. So I made them do more work: sign-off stays locked until every signal's evidence has been opened.</p>
+          <span class="go">Open the file →</span></div></a>
+      <a class="file f-gold" href="#"><span class="tab">EdTech · 2014–19</span><span class="clip"></span>
+        <div class="body"><div class="top"><span class="stamp st-blue">Public</span></div>
+          <span class="amt">$1M / yr</span><h3>PTC University — Learning Connector</h3>
+          <p>The brief said redesign the UX. I argued the contract was the broken interface, and asked PTC to kill four of its five products. Public numbers, full case — miss included.</p>
+          <span class="go">Open the file →</span></div></a>
+      <a class="file f-blue" href="#"><span class="tab">Telecom · 2012–14</span><span class="clip"></span>
+        <div class="body"><div class="top"><span class="stamp st-blue">Public</span></div>
+          <span class="amt">4M+</span><h3>Telefónica MyO2 &amp; Priority Moments</h3>
+          <p>Every screen designed with one co-designer, every screen coded by me — two O2 UK products on mobile web, at a scale where rounding errors have populations.</p>
+          <span class="go">Open the file →</span></div></a>
+      <a class="file f-red" href="#"><span class="tab">Org Design · 2025</span><span class="clip"></span>
+        <div class="body"><div class="top"><span class="stamp st-red">NDA</span></div>
+          <span class="amt">0 managers</span><h3>OrgOS · Transparent Org Tooling</h3>
+          <p>Two hundred people, no managers. Eight modules doing an org chart's job — coordination that doesn't smuggle a boss back in through the side door.</p>
+          <span class="go">Open the file →</span></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PATTERNS: the card catalog ============ -->
+<section class="catalog dark" id="patterns">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="k">The field guide to trust — free, citable</p><h2>Eight patterns, filed and indexed.</h2></div>
+      <span class="hand">shipped, broke, fixed — in that order</span>
+    </div>
+    <div class="cards">
+      <div class="rulecard"><span class="stamp st-gold">The rule</span>
+        <p class="k">The rule the patterns serve</p><h3>Act / Review / Ignore</h3>
+        <p>An unexplained 87% is a shrug with decimals. Every AI score resolves to an explicit verb before it reaches the screen — four of these patterns ship as loop.js: 42 tests, zero dependencies, running in your browser.</p></div>
+      <a class="idx" href="#"><span class="no">CARD 01</span><h3>Confidence Scores</h3><p>Five ways to put a number on certainty — and when each earns or burns trust.</p></a>
+      <a class="idx" href="#"><span class="no">CARD 02</span><h3>Failure States</h3><p>What the screen says when the model can't deliver.</p></a>
+      <a class="idx" href="#"><span class="no">CARD 03</span><h3>Explainability</h3><p>Why the machine decided — at a depth a person can use.</p></a>
+      <a class="idx" href="#"><span class="no">CARD 04</span><h3>Human-in-the-Loop</h3><p>The person stays in command when stakes outgrow the model.</p></a>
+      <a class="idx" href="#"><span class="no">CARD 05</span><h3>Provenance &amp; Citations</h3><p>Every claim traces to a source the reader can open.</p></a>
+      <a class="idx" href="#"><span class="no">CARD 06</span><h3>Capability Contract</h3><p>The honest &ldquo;no&rdquo; that makes the confident answer believable.</p></a>
+      <a class="idx" href="#"><span class="no">CARD 07</span><h3>Calibration &amp; Track Record</h3><p>Has &ldquo;80% sure&rdquo; actually been right 80% of the time?</p></a>
+      <a class="idx" href="#"><span class="no">CARD 08</span><h3>Reversibility</h3><p>Cheap to walk back, so people dare to act at all.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEMOS: how I lead ============ -->
+<section class="memos" id="lead">
+  <div class="wrap">
+    <p class="k">How I lead — come argue with me</p>
+    <h2>Week one: I'm reading your evals and sitting silent on customer calls. By week two we're arguing productively.</h2>
+    <div class="memo-row">
+      <div class="memo"><p class="mk">Memo 01 · with engineering</p><h3>Eval design before interface design</h3><p>The front-end I own ships in the PR — commented and ready for review. When we disagree on feasibility, the cheapest experiment goes first and settles it.</p></div>
+      <div class="memo"><p class="mk">Memo 02 · with product / founder</p><h3>Outcomes, not deliverables</h3><p>I'll contest the roadmap when the numbers contradict it. The design doc is mine to write; the spec is yours.</p></div>
+      <div class="memo"><p class="mk">Memo 03 · with customers</p><h3>Five calls in week one</h3><p>One a week forever after, and I read the raw support tickets myself. No AI feature ships until I've personally watched someone fail to use it.</p></div>
+    </div>
+    <div class="errata2">
+      <span class="stamp st-red">Errata</span>
+      <p>My first accessibility pass buried screen-reader users in verbose labels. I spent a week with the monitor off, navigating by screen reader, then rewrote the front-end. <a href="#">The full account, in the PTC case →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSER ============ -->
+<section class="close dark" id="contact">
+  <div class="wrap">
+    <div>
+      <p class="k">Contact — available · 4 weeks' notice</p>
+      <h2>One seat. Full-time. Yours to offer.</h2>
+      <p class="sub">Staff / Principal product designer or founding product-design lead at an AI product company — open to hands-on Director roles. Fully remote, GMT+5:30, daily overlap with both US coasts.</p>
+      <div class="hero-ctas">
+        <a class="btn" href="#">Send me the role →</a>
+        <a class="btn btn-ghost" href="#">Book 30 minutes</a>
+      </div>
+      <span class="hand hand-note">no pitch deck. a real conversation.</span>
+      <p class="sig hand">— Arpit</p>
+    </div>
+    <div class="pass2" aria-hidden="true">
+      <div class="pk"><span>LOOP AIR — BOARDING PASS</span><span>remote · non-stop</span></div>
+      <div class="pr"><span class="pc">IND</span><span class="arr">✈</span><span class="pc">YOU</span></div>
+      <div class="grid">
+        <div>PASSENGER<b>Maheshwari / A</b></div>
+        <div>CLASS<b>Full-time</b></div>
+        <div>SEAT<b>1 of 1</b></div>
+        <div>CARRY-ON<b>16 yrs · receipts</b></div>
+        <div>STATUS<b>Boarding now</b></div>
+        <div>GATE<b>30-min call</b></div>
+      </div>
+      <span class="stamp st-red">Cleared · no fabricated metrics</span>
+      <div class="bar"></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <span>Arpit Maheshwari · Indore, India</span>
+  <span>no copyright — design is for all</span>
+</div></footer>
+
+</body>
+</html>

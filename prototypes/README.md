@@ -25,6 +25,23 @@ are `noindex`, unlinked, and outside the sitemap. None is a shipping surface.
 Branch twins: `origin/prototype/light-direction`, `origin/prototype/hook` hold the same files
 with their full commit history.
 
+## The energy explorations (2026-08-13) — "the layout is a monologue; bring the vibe"
+
+Brief: sections, swim lanes and layout read as dull; reference shared was a Sahaj Applied
+Research page. Four rounds, three rejections, one pick — the rejections are the record.
+
+| File | Study | Outcome |
+|---|---|---|
+| *(branch `energy-redesign`, commit 5855b90 — index.html edits, no standalone file)* | **energy-1**: accent family + colour-coded lanes + indigo scene changes layered onto the existing skeleton | **Rejected** ("looks worse"). Finding: decorating the old skeleton is not energy; the layout itself was the problem. |
+| `energy-v2.html` | **energy-2**: light-first reimagining — cream canvas, navy hero, solid-colour case mosaic, pill everything | **Rejected** ("a cheap copy of sahaj.ai"). Finding: it wore the reference's actual wardrobe (their navy/coral/mustard/pills/blobs). Take the *mechanics* of a reference, never its skin. |
+| `energy-v3.html` | **energy-3**: "the evidence desk" — the site's own printed-ephemera props (receipt, QC slip, stamps, manila case files) promoted to architecture | **Rejected** ("tunnelled vision — go back to the drafting board"). Finding: amplifying what the site already was is still one idea deep; exploration has to precede execution. |
+| `drafting-board.html` | **energy-4a**: four from-scratch directions side by side — A Broadsheet (typographic violence) · B Signal (acid voltage, live instrument) · C Gallery (monumental plates) · D Ember (heat: gradient fields, angled seams) | **Arpit picked D**, with web accessibility as a hard requirement. |
+| `energy-d-full.html` | **energy-4b**: EMBER, the full homepage in direction D — every section, WCAG 2.2 AA built in (palette pre-computed ≥7:1, focus rings, reduced-motion, skip link, landmarks) | **Built and verified** (contrast 0 failures calibrated, real-viewport 375px check). Decision on porting vs. keeping production: pending. |
+
+Process lesson this round burned in: one idea per attempt is tunnel vision by process —
+the drafting board (plural, genuinely distinct directions, rendered) comes FIRST.
+
+
 ## The hook concepts (bakery-box mechanism: the frame is witty, the real work completes it)
 
 | File | Concept | Outcome |
