@@ -39,7 +39,7 @@ const WORK = [{
   tag: "VC/PE · NDA",
   title: "Technical Due Diligence Platform",
   metric: "3 wks → 4 days",
-  desc: "Partners stake millions on claims they can't verify. Extracting the signals was the model's job; trusting it was theirs."
+  desc: "Partners stake millions on claims they can't verify. So sign-off stays locked until the evidence is read."
 }];
 const PRINCIPLES = [{
   h: "What gets measured is a design decision.",
