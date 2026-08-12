@@ -24,7 +24,7 @@ const WORK = [{
   tag: "FinTech · NDA",
   title: "AI-Assisted Private Equity Investing",
   metric: "60% faster",
-  desc: "Analysts are paid to doubt confident numbers, so I held the launch until the score could explain itself."
+  desc: "Analysts are paid to doubt confident numbers, so the score shipped already able to explain itself."
 }, {
   tag: "AdTech · NDA",
   title: "Programmatic Advertising Platform",
@@ -231,9 +231,9 @@ const NDA_CASES = [{
   img: "../assets/shots/fintech-screening.png",
   tag: CF.get("fintech").tag,
   title: CF.get("fintech").title,
-  standfirst: "I held the release until the LLM could defend its own scores. Then screening sped up 60%.",
+  standfirst: "The LLM shipped already able to defend its own scores. Then screening sped up 60%.",
   meta: cfMeta("fintech"),
-  context: "An LLM read the deal docs and scored the risk. I held the launch until every claim carried a cited source and thin cases drew an abstention — a confident hallucination nobody signs is dead on arrival. I owned product definition, the abstention and citation UX, and the launch gate; accuracy is the ML team's result to defend. One analysis, two reading modes — a written report, or a conversation that interrogates it — over a pipeline-wide scoring dashboard.",
+  context: "An LLM read the deal docs and scored the risk. The first release already carried a cited source on every claim, and an abstention on thin cases — a confident hallucination nobody signs is dead on arrival. I owned product definition and the abstention and citation UX; accuracy is the ML team's result to defend. One analysis, two reading modes — a written report, or a conversation that interrogates it — over a pipeline-wide scoring dashboard.",
   moves: [{
     h: "Explain before the verdict",
     p: "An “explain this score” surface: pull a rating into its signals, challenge the weighting, watch it answer — sources beside the number."
@@ -248,7 +248,7 @@ const NDA_CASES = [{
   plateCn: CF.get("fintech").provenance,
   ledger: CF.metrics("fintech"),
   note: "trust = the model declining to bluff",
-  boundary: "Weeks of delay bought explainability, and that trade only pays when the user is an expert paid to doubt the answer. For a low-stakes decision nobody audits, holding the launch would have been wrong.",
+  boundary: "Those weeks bought explainability, and that trade only pays when the user is an expert paid to doubt the answer. For a low-stakes decision nobody audits, spending them would have been wrong.",
   stamp: { t: "Trusted", v: "r" }
 }, {
   no: "04",

@@ -93,8 +93,8 @@
     <div>
       <p class="case-hero__kicker">FinTech · AI-Assisted Private Equity · NDA</p>
       <h1>AI-Assisted Private Equity Investing</h1>
-      <p class="case-hero__hook">An LLM read the deal documents and scored the risk — but analysts get paid to doubt confident numbers, so I held the launch until every claim could name its source. Then they stopped auditing the model and started betting on it.</p>
-      <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 20px;transform:rotate(-1.6deg)">I held the launch until it could say ‘I’m not sure’</p>
+      <p class="case-hero__hook">An LLM read the deal documents and scored the risk — but analysts get paid to doubt confident numbers. So it shipped already able to name a source for every claim, and to say “I’m not sure” instead of bluffing. Then they stopped auditing the model and started betting on it.</p>
+      <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 20px;transform:rotate(-1.6deg)">it shipped already knowing how to say ‘I’m not sure’</p>
       <div class="case-stats">
         <div class="case-stat"><b>60% faster</b><span>deal screening · pre/post rollout</span></div>
         <div class="case-stat"><b>3</b><span>sources sat beside every score, not behind it</span></div>
@@ -122,7 +122,7 @@
   <div class="framed-tight" style="overflow:hidden">
   <div class="rcpt-r-tight" style="background:rgba(212,168,94,0.04)">
     <div class="lbl-eyebrow" style="flex:0 0 200px">Owned</div>
-    <div class="t-ui" style="flex:1 1 240px">Product definition, the interaction design, and the abstention + citation UX — including holding the launch until every claim traced to its source.</div>
+    <div class="t-ui" style="flex:1 1 240px">Product definition, the interaction design, and the abstention + citation UX — built before the first release, so every claim traced to its source on day one.</div>
   </div>
   <div class="rcpt-r-tight">
     <div class="lbl-eyebrow" style="flex:0 0 200px">Shared</div>
@@ -135,7 +135,7 @@
   </div>
   <section class="case-gate" aria-label="Summary of this case study">
     <p class="cg-l">The short version</p>
-    <p>An LLM already scored deal risk accurately. What was missing was not precision but belief. I held the launch until every generated claim could name its source and the model could say <b>&ldquo;I&rsquo;m not sure&rdquo;</b> instead of bluffing. Screening ran <b>60% faster</b>, because analysts stopped re-verifying the machine. I owned product definition, the abstention and citation UX, and the launch gate; the model's accuracy is the ML team's result to defend.</p>
+    <p>An LLM already scored deal risk accurately. What was missing was not precision but belief. The first release already carried a source behind every generated claim, and an <b>&ldquo;I&rsquo;m not sure&rdquo;</b> state instead of a bluff. Screening ran <b>60% faster</b>, because analysts stopped re-verifying the machine. I owned product definition and the abstention and citation UX; the model's accuracy is the ML team's result to defend.</p>
   </section>
 
 
@@ -146,7 +146,7 @@
   </div>
 
   <!-- THE MYTH — the reframe that runs the whole case -->
-  <p class="t-standfirst" style="margin-bottom:16px">A large language model already read the deal documents and scored the risk accurately. What was missing was belief, not precision. So I held the launch until every claim the model generated could point back to the source it came from — for readers whose whole profession is cross-examination.</p>
+  <p class="t-standfirst" style="margin-bottom:16px">A large language model already read the deal documents and scored the risk accurately. What was missing was belief, not precision. So the work was making every claim the model generated point back to the source it came from, before the first release — for readers whose whole profession is cross-examination.</p>
   <p class="lbl-cap" style="margin-bottom:64px">One reframe · accuracy was solved, trust wasn't</p>
 
   <!-- §01 — THE MYTH -->
@@ -170,7 +170,7 @@
   <!-- §03 — THE MOVE -->
   <section id="the-move" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
     <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
-      I held the launch until the score could explain itself.
+      The score could explain itself on the day it shipped.
     </h2>
     <figure class="fig-paper" style="margin:8px 0 32px">
       <img src="../assets/visuals/fintech-gate.svg?v=1" alt="Diagram: two launch conditions — every generated number carries its source, and thin evidence draws an abstention — each shown with the failure it prevents, gating the release at a cost of weeks of delay." loading="lazy" width="1180" height="360" style="display:block;width:100%;height:auto">
@@ -183,7 +183,7 @@
     </figure>
 
     <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">Above the single deal sat the scoring dashboard.</strong> The whole pipeline scored side-by-side — the multi-deal view where screening actually starts — and any deal drills down into the per-signal breakdown, the written analysis, and the conversation. One analysis, three surfaces, no forced workflow.</p>
-    <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">So I built an &ldquo;explain this score&rdquo; surface that grounds the model in its evidence.</strong> An analyst could pull any rating apart into the signals behind it, challenge the weighting, and watch the score answer back — and every signal came stapled to the exact document it was retrieved from, so no claim floated free of a source. I held the release until the model could survive that — the call the whole project hung on, and the one that delayed it.</p>
+    <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">So I built an &ldquo;explain this score&rdquo; surface that grounds the model in its evidence.</strong> An analyst could pull any rating apart into the signals behind it, challenge the weighting, and watch the score answer back — and every signal came stapled to the exact document it was retrieved from, so no claim floated free of a source. Making the model survive that, before release rather than after, is the argument the whole project hung on — and the reason it took the weeks it did.</p>
     <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">Three things were non-negotiable:</strong> a cited source behind each generated number, a visible "I'm not sure about this one" state where the model abstains instead of bluffing a confident answer it can't ground, and a logged override when the analyst disagreed. The abstention state mattered most — an LLM's worst failure is a fluent, wrong claim, and I'd rather it say nothing than hallucinate. The override drew the longest argument — logging disagreement felt exposing. What it actually built was institutional memory: every expert correction captured as structured data the system learns from, so the platform slowly comes to reflect how <em>this firm</em> thinks, not just what a generic model knows. A commodity model can be rented by any competitor; an accumulated record of the firm's own judgment can't.</p>
     <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">The abstention threshold was a design argument, not just a statistical one.</strong> The design followed the model's own signals directly: every generated claim carried a per-claim confidence, and where it ran low, that claim rendered as the on-screen "I'm not sure about this one" — a signal that had lived only in evaluation dashboards turned into a state the analyst could see and act on. Pitching it is the whole difficulty. Pitch it too eager and the tool cries uncertainty on claims it could defend, and analysts learn to skim past the abstentions; too shy, and one fluent, wrong claim undoes the trust the tool has earned. The threshold has to fail toward humility — the cheaper mistake.</p>
     <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">Trust also had to be cheap to enter.</strong> The deal flow's raw material lived in email — decks, spreadsheets, forwarded introductions — and analysts weren't going to re-key it into a system. So the platform meets them inside Outlook: tag an email, drag an attachment into the side panel, get an instant <em>"Received, thanks"</em> while agents stitch the unstructured pile into a deal profile in the background — and a prequalification score surfaces back in the inbox, where the prioritization decision actually happens. The same discipline went at the fuzziest judgment in the pipeline: management quality, traditionally pure gut feel, rendered as a scorecard that synthesizes leadership tenure, employee sentiment, and filed financial history into one timeline set against industry norms — a quantifiable proxy where there used to be a hunch, with every input traceable.</p>
@@ -389,9 +389,9 @@
   <!-- §04 — WHAT IT COST -->
   <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
     <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
-      What holding the launch cost.
+      What building it first cost.
     </h2>
-    <p class="t-body" style="margin-bottom:20px">Holding the release wasn't free. The accurate LLM sat finished while I built the surface that could defend it — the retrieval that tied each claim to a source, the abstention state, the override — weeks the team could feel, against a model that already worked. The honest version is that I chose to ship later on purpose, because shipping a correct score nobody acted on would have been the more expensive mistake.</p>
+    <p class="t-body" style="margin-bottom:20px">Building it first wasn't free. The accurate LLM sat finished while I built the surface that could defend it — the retrieval that tied each claim to a source, the abstention state, the override — weeks the team could feel, against a model that already worked. Waiting was the product owner's call as much as mine; what I own is the argument for it, because shipping a correct score nobody acted on would have been the more expensive mistake.</p>
     <blockquote class="pullq" style="background:var(--bg-card)">
       <p class="t-quote" style="margin:0">Accuracy gets you a correct number. It doesn't get you a decision. The gap between the two is the whole job — and it's made of trust, not math.</p>
     </blockquote>
@@ -425,7 +425,7 @@
   <!-- WHERE THIS WOULDN'T TRANSFER — the boundary on the claim (2026-08-02) -->
   <section class="note-gold-b" style="background:var(--bg-card)">
     <p class="lbl-eyebrow" style="margin:0 0 8px">Where this wouldn’t transfer</p>
-    <p class="t-ui-175" style="margin:0; max-width:62ch">Weeks of delay bought explainability, and that trade only pays when the user is an expert with a reputation riding on the answer. For a low-stakes, high-volume decision nobody audits, holding the launch would have been the wrong call.</p>
+    <p class="t-ui-175" style="margin:0; max-width:62ch">Those weeks bought explainability, and that trade only pays when the user is an expert with a reputation riding on the answer. For a low-stakes, high-volume decision nobody audits, spending them would have been the wrong call.</p>
   </section>
 
   <!-- THE PRINCIPLE -->
