@@ -342,6 +342,20 @@ def discover_pages(base="http://localhost:8000"):
     for f in out.splitlines():
         if f.startswith(("prototypes/", "assets/", "portfolio-sources/")):
             continue
+        # Meta-refresh redirect stubs (lab/hitl.html, lab/trustlayer.html) have no real
+        # content to audit — and auditing one is actively harmful: this tool loads the
+        # target in a same-origin iframe and samples it after a fixed settle delay, so the
+        # stub's own <meta http-equiv="refresh"> can navigate the iframe to its destination
+        # DURING that window. The result is destination-page text (measured 2026-08-13:
+        # loop.html's calibration demo — "600ms", "Was right", "Underconfident") reported
+        # under the STUB's URL, intermittently, because it's a timing race against the
+        # stub's own navigation. CI run #49 failed on exactly this. Skip stubs outright.
+        try:
+            with open(f, encoding="utf-8", errors="ignore") as fh:
+                if 'http-equiv="refresh"' in fh.read():
+                    continue
+        except OSError:
+            pass
         urls.append(base + "/" if f == "index.html"
                     else f"{base}/{f[:-10]}" if f.endswith("/index.html")
                     else f"{base}/{f}")

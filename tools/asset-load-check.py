@@ -220,6 +220,16 @@ def discover_pages(base="http://localhost:8000"):
     for f in out.splitlines():
         if f.startswith(("prototypes/", "assets/", "portfolio-sources/")):
             continue
+        # Meta-refresh redirect stubs (lab/hitl.html, lab/trustlayer.html) carry no images —
+        # nothing for this gate to check. Kept in sync with contrast-audit.py's discover_pages,
+        # which excludes them for a sharper reason (a race against the stub's own navigation
+        # was reporting the DESTINATION page's content under the stub's URL — see there).
+        try:
+            with open(f, encoding="utf-8", errors="ignore") as fh:
+                if 'http-equiv="refresh"' in fh.read():
+                    continue
+        except OSError:
+            pass
         urls.append(base + "/" if f == "index.html"
                     else f"{base}/{f[:-10]}" if f.endswith("/index.html")
                     else f"{base}/{f}")
