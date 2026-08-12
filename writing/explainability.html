@@ -40,67 +40,67 @@
   }
   </script>
 </head>
-<body>
+<body class="p-writing-explainability">
 <a href="#main" class="skip-link">Skip to content</a>
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-logo"><a href="../index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span style="font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px;">Arpit Maheshwari</span></a></div>
+  <div class="nav-logo"><a class="xi-writing-explainability-001" href="../index.html"><img class="xi-writing-explainability-002" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="xi-writing-explainability-003">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts" aria-current="true">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
   </nav>
 
-<div style="padding:104px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
-  <div style="max-width:var(--measure);margin:0 auto">
-    <h1 style="font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;line-height:1.15;letter-spacing:-0.02em;color:var(--ink);margin-bottom:20px">The Explainability Layer: Making AI Legible</h1>
-    <p style="font-size:var(--fs-caption);color:var(--ink-muted);font-family:var(--ff-mono);letter-spacing:0.08em;text-transform:uppercase">Framework · May 2026 · 7 min read</p>
-    <p class="hand" aria-hidden="true" style="font-size:21px;margin:14px 0 0;transform:rotate(-1.6deg)">everything here answers one word: why</p>
+<div class="xi-writing-explainability-004">
+  <div class="xi-writing-explainability-005">
+    <h1 class="xi-writing-explainability-006">The Explainability Layer: Making AI Legible</h1>
+    <p class="xi-writing-explainability-007">Framework · May 2026 · 7 min read</p>
+    <p class="hand xi-writing-explainability-008" aria-hidden="true">everything here answers one word: why</p>
   </div>
 </div>
 
-<main id="main" class="section" style="background:var(--bg)"><div style="max-width:var(--measure);margin:0 auto">
+<main id="main" class="section xi-writing-explainability-009"><div class="xi-writing-explainability-005">
 
-  <p class="lead" style="font-style:italic;margin-bottom:40px">"Your algorithm says this trade is risky. I need to know why." The model had an answer — 72% — and no way to defend it. She overrode it. Three weeks later the trade lost $2.1M. The model had been right. The interface just couldn't say so.</p>
+  <p class="lead xi-writing-explainability-010">"Your algorithm says this trade is risky. I need to know why." The model had an answer — 72% — and no way to defend it. She overrode it. Three weeks later the trade lost $2.1M. The model had been right. The interface just couldn't say so.</p>
 
-  <h2 class="section-title" style="max-width:none;margin:48px 0 24px">The question the system couldn't answer</h2>
-  <p class="u-body" style="margin-bottom:20px">In 2021 a compliance officer put that question to me directly, and I didn't have a good answer. The risk model flagged a trade at 72%. She wasn't refusing to listen — she was doing her job, which is to never sign off on something she can't explain to an auditor. The system gave her a number and a recommendation and nothing in between. So she did the only defensible thing and waved the model away. The trade went through unsupervised. Three weeks later it cost the firm $2.1M.</p>
-  <p class="u-body" style="margin-bottom:20px">Here's the part that stayed with me: the model wasn't wrong. It had caught the risk. The failure was entirely on the interface — nobody had designed the layer that turns a score into a reason. And a score without a reason is, to an expert who's accountable for the decision, just noise with a confident font.</p>
+  <h2 class="section-title xi-writing-explainability-011">The question the system couldn't answer</h2>
+  <p class="u-body xi-writing-explainability-012">In 2021 a compliance officer put that question to me directly, and I didn't have a good answer. The risk model flagged a trade at 72%. She wasn't refusing to listen — she was doing her job, which is to never sign off on something she can't explain to an auditor. The system gave her a number and a recommendation and nothing in between. So she did the only defensible thing and waved the model away. The trade went through unsupervised. Three weeks later it cost the firm $2.1M.</p>
+  <p class="u-body xi-writing-explainability-012">Here's the part that stayed with me: the model wasn't wrong. It had caught the risk. The failure was entirely on the interface — nobody had designed the layer that turns a score into a reason. And a score without a reason is, to an expert who's accountable for the decision, just noise with a confident font.</p>
 
-  <h2 class="section-title" style="max-width:none;margin:48px 0 24px">What she actually needed</h2>
-  <p class="u-body" style="margin-bottom:20px">I used to think <a href="../resources/intelligent-systems-glossary.html#ml-explainability" style="color:var(--gold);text-decoration:none">explainability</a> meant exposing the machinery — model weights, feature vectors, the architecture. It doesn't. The compliance officer didn't want a lecture on the model. She wanted an answer to one human question: <em>why this, and not that?</em> When I rebuilt the surface, that's the only question I designed around. The recommendation moved down the page. The reasoning moved up: this counterparty has six failed trades in eighteen months; their average position is $500K; this one is $2M, twice their normal appetite. Suddenly she wasn't being asked to trust a number. She was being handed a case she could check, argue with, and put her name next to.</p>
+  <h2 class="section-title xi-writing-explainability-011">What she actually needed</h2>
+  <p class="u-body xi-writing-explainability-012">I used to think <a class="xi-writing-explainability-013" href="../resources/intelligent-systems-glossary.html#ml-explainability">explainability</a> meant exposing the machinery — model weights, feature vectors, the architecture. It doesn't. The compliance officer didn't want a lecture on the model. She wanted an answer to one human question: <em>why this, and not that?</em> When I rebuilt the surface, that's the only question I designed around. The recommendation moved down the page. The reasoning moved up: this counterparty has six failed trades in eighteen months; their average position is $500K; this one is $2M, twice their normal appetite. Suddenly she wasn't being asked to trust a number. She was being handed a case she could check, argue with, and put her name next to.</p>
 
-  <div style="padding:32px;border-left:3px solid var(--gold);margin:32px 0;background:var(--bg-card)">
-    <p class="lead" style="font-style:italic;margin:0"><strong>Explainability isn't a data-science problem. It's a design problem.</strong> You can ship the best model in the world; if the person on the hook for the decision can't see why it decided, they won't use it — and they'll be right not to.</p>
+  <div class="xi-writing-explainability-014">
+    <p class="lead xi-writing-explainability-015"><strong>Explainability isn't a data-science problem. It's a design problem.</strong> You can ship the best model in the world; if the person on the hook for the decision can't see why it decided, they won't use it — and they'll be right not to.</p>
   </div>
 
-  <h2 class="section-title" style="max-width:none;margin:48px 0 24px">Why I design the explanation first</h2>
-  <p class="u-body" style="margin-bottom:20px">The most useful habit I took from that engagement is to design the explanation surface <em>before</em> the model is finished. It sounds backwards, but it does something quietly powerful: when the interface has to show <em>why</em>, the model is forced to produce reasons a person can actually read — not just an output, but the handful of signals behind it, and the boundary at which the answer would flip. Demand legibility from the UI and you end up demanding it from the model too.</p>
-  <p class="u-body" style="margin-bottom:20px">The sophisticated systems rarely fail because the math is wrong. They fail at the explanation layer, in front of a person who has to be accountable for what they approve. Interpretability is the bridge between a model that's correct and a model anyone is willing to act on. Most teams build the model and bolt the bridge on later. I'd rather build the bridge first and let it shape the model.</p>
+  <h2 class="section-title xi-writing-explainability-011">Why I design the explanation first</h2>
+  <p class="u-body xi-writing-explainability-012">The most useful habit I took from that engagement is to design the explanation surface <em>before</em> the model is finished. It sounds backwards, but it does something quietly powerful: when the interface has to show <em>why</em>, the model is forced to produce reasons a person can actually read — not just an output, but the handful of signals behind it, and the boundary at which the answer would flip. Demand legibility from the UI and you end up demanding it from the model too.</p>
+  <p class="u-body xi-writing-explainability-012">The sophisticated systems rarely fail because the math is wrong. They fail at the explanation layer, in front of a person who has to be accountable for what they approve. Interpretability is the bridge between a model that's correct and a model anyone is willing to act on. Most teams build the model and bolt the bridge on later. I'd rather build the bridge first and let it shape the model.</p>
 
-  <div style="padding:24px 28px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);margin:48px 0 8px">
-    <div class="eyebrow" style="margin-bottom:8px">The reference version</div>
-    <p class="u-ui" style="margin:0 0 12px">Want the playbook, not the story? The ML-explainability patterns I design from — provenance, feature importance, counterfactuals — with the do's, don'ts, and worked examples.</p>
-    <a href="../patterns/ml-explainability.html" data-cta="pattern-reference" data-location="essay-body" style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:0.05em;color:var(--gold);text-decoration:none">See the pattern reference: ML Explainability Patterns →</a>
+  <div class="xi-writing-explainability-016">
+    <div class="eyebrow xi-writing-explainability-017">The reference version</div>
+    <p class="u-ui xi-writing-explainability-018">Want the playbook, not the story? The ML-explainability patterns I design from — provenance, feature importance, counterfactuals — with the do's, don'ts, and worked examples.</p>
+    <a class="xi-writing-explainability-019" href="../patterns/ml-explainability.html" data-cta="pattern-reference" data-location="essay-body">See the pattern reference: ML Explainability Patterns →</a>
   </div>
 
-  <div style="margin-top:60px;padding-top:40px;border-top:1px solid var(--border)">
-    <p class="eyebrow" style="margin-bottom:16px">Continue exploring</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-      <a href="./human-in-loop.html" style="display:block;padding:16px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);text-decoration:none;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'" data-cta="next-essay" data-location="essay-footer">
-        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);color:var(--gold);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">Next essay</div>
-        <div style="font-family:var(--ff-display);font-size:var(--fs-card);color:var(--ink)">Human-in-the-Loop</div>
+  <div class="xi-writing-explainability-020">
+    <p class="eyebrow xi-writing-explainability-021">Continue exploring</p>
+    <div class="xi-writing-explainability-022">
+      <a class="xi-writing-explainability-023 hv-writing-explainability-1" href="./human-in-loop.html" data-cta="next-essay" data-location="essay-footer">
+        <div class="xi-writing-explainability-024">Next essay</div>
+        <div class="xi-writing-explainability-025">Human-in-the-Loop</div>
       </a>
-      <a href="./index.html" style="display:block;padding:16px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);text-decoration:none;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--border-accent)'" onmouseout="this.style.borderColor='var(--border)'" data-cta="back-to-writing" data-location="essay-footer">
-        <div style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);color:var(--gold);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">All essays</div>
-        <div style="font-family:var(--ff-display);font-size:var(--fs-card);color:var(--ink)">Back to Writing</div>
+      <a class="xi-writing-explainability-023 hv-writing-explainability-1" href="./index.html" data-cta="back-to-writing" data-location="essay-footer">
+        <div class="xi-writing-explainability-024">All essays</div>
+        <div class="xi-writing-explainability-025">Back to Writing</div>
       </a>
     </div>
   </div>
 
 </div></main>
 
-<footer style="border-top:1px solid var(--border);padding:40px 48px;display:flex;align-items:center;justify-content:space-between">
-  <div class="footer-logo" style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted)">© 2026 Arpit Maheshwari</div>
-  <a href="../index.html" style="font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ink-muted)'">← Back to Home</a>
+<footer class="xi-writing-explainability-026">
+  <div class="footer-logo xi-writing-explainability-027">© 2026 Arpit Maheshwari</div>
+  <a class="xi-writing-explainability-028 hv-writing-explainability-2" href="../index.html">← Back to Home</a>
 </footer>
 
 <script>

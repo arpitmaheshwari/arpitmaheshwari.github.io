@@ -61,7 +61,11 @@ CANARY_HTML = (
     "background:#777777;color:#8A8A8A;font-size:14px;font-weight:400;padding:6px'>"
     + CANARY_TEXT + "</div>"
 )
-HIDE_TEXT_CSS = ("*{color:transparent!important;text-shadow:none!important;"
+# ":root *" not "*": the hide rule must WIN ties against class-level color:..!important
+# (the theme-swap extraction moved inline colors into single-class !important rules, which
+# beat a zero-specificity hide rule — text polluted its own background samples and six
+# phantom contrast failures appeared on elements that render identically; measured 2026-08-13).
+HIDE_TEXT_CSS = (":root *{color:transparent!important;text-shadow:none!important;"
                  "text-decoration-color:transparent!important;caret-color:transparent!important}")
 
 # --------------------------------------------------------------------- colour

@@ -29,53 +29,15 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap" media="print" onload="this.media='all';this.onload=null">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap"></noscript>
 <link rel="stylesheet" href="../styles.css?v=p62">
-<style>
-  .lab-wrap { max-width: var(--inner-max); margin: 0 auto; padding: 0 var(--page-x); }
-  .lab-hero { padding-top: 128px; }
-  .lab-kicker { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin: 0 0 16px; }
-  .lab-lede { font-size: var(--fs-lead); line-height: 1.6; color: var(--ink-muted); max-width: var(--measure); }
-  .lab-lede strong { color: var(--ink); font-weight: 400; }
-  .lab-note { border-left: 2px solid var(--gold-dark); padding: 12px 0 12px 20px; margin: 32px 0 0; font-size: var(--fs-ui); line-height: 1.7; color: var(--ink-muted); max-width: var(--measure); }
-  .lab-note b { color: var(--ink); font-weight: 600; }
-  .lab-body { font-size: var(--fs-body); line-height: 1.7; color: var(--ink-muted); max-width: var(--measure); }
-  .lab-body p { margin: 0 0 16px; }
-  .lab-body p:last-child { margin-bottom: 0; }
-  .lab-body code { font-family: var(--ff-mono); font-size: 0.9em; color: var(--gold); }
 
-  /* artifact cards */
-  .lab-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px,100%),1fr)); gap: 20px; margin-top: 32px; }
-  .lab-card { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); padding: 24px 24px 24px; text-decoration: none; transition: border-color .18s var(--ease-out), transform .18s var(--ease-out); }
-  .lab-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
-  .lab-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-  .lab-num { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .12em; color: var(--gold); margin: 0 0 12px; }
-  .lab-card h3 { font-family: var(--ff-mono); font-size: var(--fs-ui); font-weight: 500; color: var(--ink); margin: 0 0 8px; letter-spacing: .01em; }
-  .lab-card p { font-size: var(--fs-ui); line-height: 1.65; color: var(--ink-muted); margin: 0 0 16px; flex: 1; }
-  .lab-tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 16px; }
-  .lab-tags span { font-family: var(--ff-mono); font-size: var(--fs-micro); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); border: 1px solid var(--border); border-radius: 2px; padding: 4px 8px; }
-  .lab-go { font-family: var(--ff-mono); font-size: var(--fs-caption); color: var(--gold); letter-spacing: .03em; }
-
-  .lab-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-  .lab-links a { font-family: var(--ff-mono); font-size: var(--fs-caption); letter-spacing: .04em; color: var(--gold); text-decoration: none; border: 1px solid var(--gold-dark); border-radius: var(--radius); padding: 8px 16px; transition: background .15s, color .15s; }
-  .lab-links a:hover { background: var(--gold); color: var(--bg); }
-
-  @media (prefers-reduced-motion: reduce) {
-    .lab-card { transition: none; }
-    .lab-card:hover { transform: none; }
-  }
-
-    .ev-tiers { margin: 16px 0 0; }
-    .ev-tiers dt { font-family: var(--ff-mono); font-size: 12px; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--gold); margin-top: 16px; }
-    .ev-tiers dd { margin: 4px 0 0; padding-left: 16px; border-left: 1px solid var(--border); }
-</style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PFY6ME99K8');</script>
 </head>
-<body>
+<body class="p-lab">
 <a href="#main" class="skip-link">Skip to content</a>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-logo"><a class="row-ic" href="../index.html" style="text-decoration:none; color:inherit"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <div class="nav-logo"><a class="row-ic xi-lab-001" href="../index.html"><img class="xi-lab-002" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../lab/" aria-current="true">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
@@ -86,11 +48,11 @@
   <section class="section lab-hero">
     <div class="lab-wrap">
       <p class="lab-kicker">The Lab</p>
-      <h1 class="section-title" style="max-width:26ch">Where the code is the deliverable</h1>
+      <h1 class="section-title xi-lab-003">Where the code is the deliverable</h1>
       <p class="lab-lede">Everywhere else on this site, code is a means: the pages, the demos, the documents. Here it is the thing itself. Three artifacts, all MIT licensed, all running in the open — because <strong>a designer claiming to ship code should hand you some</strong> rather than describe the experience of having done so.</p>
-      <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 0;transform:rotate(-1.6deg)">no rights reserved — take what works</p>
+      <p class="hand xi-lab-004" aria-hidden="true">no rights reserved — take what works</p>
       <div class="lab-note">
-        <b>Where the line sits.</b> I ship the front-end of what I design, in the PR under my name, with senior engineers reviewing. These artifacts are pure functions by choice, not by ceiling — logic any stack can adopt and any test can pin down; the stateful counterpart is <a href="../book/" style="color:var(--gold)">the book edition</a> of this site, ~150KB of my own React. What I don't claim is the backend. That is the honest boundary, and it is the same one I give on <a href="../screen/" style="color:var(--gold)">the technical screen</a>.
+        <b>Where the line sits.</b> I ship the front-end of what I design, in the PR under my name, with senior engineers reviewing. These artifacts are pure functions by choice, not by ceiling — logic any stack can adopt and any test can pin down; the stateful counterpart is <a class="xi-lab-005" href="../book/">the book edition</a> of this site, ~150KB of my own React. What I don't claim is the backend. That is the honest boundary, and it is the same one I give on <a class="xi-lab-005" href="../screen/">the technical screen</a>.
       </div>
     </div>
   </section>
@@ -98,7 +60,7 @@
   <section class="section act-cream">
     <div class="lab-wrap">
       <p class="eyebrow">Three artifacts</p>
-      <h2 class="section-title" style="max-width:24ch">Open any one of them and read it</h2>
+      <h2 class="section-title xi-lab-006">Open any one of them and read it</h2>
       <div class="lab-cards">
 
         <a class="lab-card" href="./loop.html" data-cta="lab-card" data-location="lab-index">
@@ -134,7 +96,7 @@
       <p class="eyebrow">Why a lab at all</p>
       <h2 class="section-title">A principle with no failing state is a preference</h2>
       <div class="lab-body">
-        <p>The eight patterns in <a href="../patterns/" style="color:var(--gold)">the pattern library</a> came out of production work, and for years they lived where design principles usually live: in slides, in review comments, in my head. Reasonable people agreed with all of them and then shipped the naked confidence score anyway — because a principle you can nod at costs nothing to ignore.</p>
+        <p>The eight patterns in <a class="xi-lab-005" href="../patterns/">the pattern library</a> came out of production work, and for years they lived where design principles usually live: in slides, in review comments, in my head. Reasonable people agreed with all of them and then shipped the naked confidence score anyway — because a principle you can nod at costs nothing to ignore.</p>
         <p>Written as code, the same rules acquire a failing state. <code>decide()</code> reports <code>review-without-reasons</code> as a violation rather than a suggestion. <code>calibrate()</code> returns <code>insufficient-data</code> instead of a flattering number when the sample is thin. <code>trustlint</code> refuses to score truthfulness at all, and says why in its own output.</p>
         <p>That is what The Lab is for: taking judgements I keep making in review and giving them somewhere to fail, so they can run without me in the room.</p>
 
@@ -143,7 +105,7 @@
              prove — so answer it before they have to. Same device as "Where this wouldn't
              transfer" on the cases: naming the ceiling of a claim is what makes the claim
              usable. -->
-        <p class="lab-h3" style="margin-top:32px">What this proves, and what it doesn&rsquo;t</p>
+        <p class="lab-h3 xi-lab-007">What this proves, and what it doesn&rsquo;t</p>
         <p>Three different things get called evidence, and only the first one lives on this page:</p>
         <dl class="ev-tiers">
           <dt>Implementation</dt>
