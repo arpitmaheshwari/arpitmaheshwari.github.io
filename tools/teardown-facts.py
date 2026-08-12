@@ -50,6 +50,18 @@ if '--check' in sys.argv:
         for label,needle in checks:
             if needle.replace('&nbsp;',' ') not in page:
                 bad.append(f"{path}: {label} — reality is {needle}, page does not say it")
+        # CONTRADICTION check (added 2026-08-12). The presence checks above only ask
+        # "does the right number appear SOMEWHERE" — so a WRONG copy of the same number
+        # elsewhere on the page stays green, because the correct one in the table
+        # satisfies the needle. That is exactly how "a 22KB stylesheet" survived in this
+        # page's <meta description> for five weeks after the visible table was corrected
+        # to 60.5 KB — the 170%-wrong figure the docstring above says was already fixed,
+        # still being served to Google and every social share. Scan for EVERY claim of
+        # the stylesheet's size and require each one to match reality.
+        for m in re.finditer(r'(\d[\d.]*)\s*KB stylesheet', page):
+            if m.group(1) != str(facts['stylesheet_kb']):
+                bad.append(f"{path}: contradictory stylesheet size — page says "
+                           f"{m.group(1)} KB, reality is {facts['stylesheet_kb']} KB")
     print("\n".join(f"  STALE — {b}" for b in bad) if bad else "  every published teardown number matches a fresh measurement.")
     print("Result:", "STALE — re-run without --check and update the pages." if bad else "clean.")
     sys.exit(1 if bad else 0)
