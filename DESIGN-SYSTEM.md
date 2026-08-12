@@ -280,7 +280,7 @@ note/body/lead`, naming the sizes already in use 3+ times. One-offs (cover 34pt,
 2. ✅ **Homepage** — `index.html` on the §6 grammar + §1 scale. (Verified.)
 3. **Case studies** — the 6 files in `case-studies/`. Retire the ~40 hand-copied inline H2s → `.section-title`; case hero H1 → `--fs-hero`; hooks/standfirsts → `.lead`; stats → `.metric-num`; one content measure (62ch); one hero composition.
 4. **Patterns** — `patterns/index.html` + the 9 pattern pages. One hero composition; prose H2 (28/32 oscillation) → `.section-title`; standfirst variants A/B → one `.lead`; eyebrow color drift → one gold token; kill the double-padding main wrapper.
-5. **Utility pages** — hire/screen/process/resources/now/writing/404 (follow-up; same grammar).
+5. **Utility pages** — hire/screen/process/resources/writing/404 (follow-up; same grammar).
 6. **QA** — every page at 1280 + 375: zero horizontal overflow, one section grammar, console clean, no unloaded-font fallback.
 
 ## 10. Marginalia — the personality layer (added 2026-07-29, Arpit's pick: direction B)

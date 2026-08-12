@@ -255,7 +255,7 @@ const NDA_CASES = [{
   img: "../assets/shots/adtech-planner.png",
   tag: CF.get("adtech").tag,
   title: CF.get("adtech").title,
-  standfirst: "The algorithm beat the traders, and they played their hunches anyway. A missing interface, not a bad model.",
+  standfirst: "The algorithm beat the traders, and they ignored it — until they could argue back. Every edit taught next week's calls.",
   meta: cfMeta("adtech"),
   context: "The engine beat the buyers; adoption sat near zero. I left the model and rebuilt the interface around it. Once traders acted on it: 45% less time and effort to plan and book a campaign, and 3x uplift in purchase intent with 70% audience uplift against traditional bookings.",
   moves: [{
@@ -303,7 +303,7 @@ const NDA_CASES = [{
   img: "../assets/visuals/case-vc.svg?v=3",
   tag: CF.get("vc-diligence").tag,
   title: CF.get("vc-diligence").title,
-  standfirst: "Partners bet millions on claims they'll never check. An LLM extracted the evidence; the design made them stand on it.",
+  standfirst: "Partners bet millions on claims they'll never check. So the design made them work: no sign-off until the evidence is read.",
   meta: cfMeta("vc-diligence"),
   context: "An LLM read the code and docs. No verdict ships without a cited source (retrieval) — unaudited, it's a confident hallucination.",
   moves: [{
