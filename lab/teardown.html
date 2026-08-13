@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How This Site Is Built — A Teardown — Arpit Maheshwari</title>
-<meta name="description" content="An honest engineering teardown of arpitmaheshwari.com: no build step, no framework on the classic site, two third-party domains, a 308.9 KB stylesheet, one type scale — and the things that are still missing.">
+<meta name="description" content="An honest engineering teardown of arpitmaheshwari.com: no build step, no framework on the classic site, two third-party domains, a 309.3 KB stylesheet, one type scale — and the things that are still missing.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="canonical" href="https://arpitmaheshwari.com/lab/teardown.html">
@@ -72,7 +72,7 @@
           <thead><tr><th>What</th><th>Measured</th><th>How</th></tr></thead>
           <tbody>
             <tr><td>Hand-written HTML pages</td><td><b>39</b></td><td><span class="td-inline">find . -name "*.html"</span>, excluding the book and print sources</td></tr>
-            <tr><td>Stylesheet, entire site</td><td><b>308.9 KB</b></td><td><span class="td-inline">stat -f "%z" styles.css</span> → 316,320 bytes, unminified</td></tr>
+            <tr><td>Stylesheet, entire site</td><td><b>309.3 KB</b></td><td><span class="td-inline">stat -f "%z" styles.css</span> → 316,693 bytes, unminified</td></tr>
             <tr><td>Runtime dependencies, classic site</td><td><b>0</b></td><td>No root <span class="td-inline">package.json</span>, no <span class="td-inline">node_modules</span>, no bundler config</td></tr>
             <tr><td>Third-party domains serving code</td><td><b>2</b></td><td>Google Fonts and Google Analytics. Nothing else is fetched.</td></tr>
             <tr><td>Interactive pattern demos</td><td><b>9</b></td><td>All in <span class="td-inline">patterns/demos.js</span> — 234 lines, 12.9 KB</td></tr>

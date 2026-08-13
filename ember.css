@@ -1274,7 +1274,12 @@ html[data-theme="ember"] body.p-home p.contract-links{
   max-width:none!important;width:auto!important;
   display:flex;flex-wrap:wrap;gap:12px 32px}
 html[data-theme="ember"] body.p-home p.contract-links a{
-  display:inline-block;white-space:nowrap;margin-right:0}
+  display:inline-block;margin-right:0}
+/* nowrap only where the line actually fits. Applied unconditionally it made
+   the whole contract section 397px wide inside a 390px viewport and scrolled
+   the homepage sideways by 23px — a desktop fix that broke the phone. */
+@media (min-width:700px){
+  html[data-theme="ember"] body.p-home p.contract-links a{white-space:nowrap}}
 
 /* 2. The credentials line was capped at 465px, which stranded "2019" alone on a
       third line. Widened to the hero copy measure, and the year bound to its
@@ -1331,3 +1336,54 @@ html[data-theme="ember"] body.p-home #thoughts .wr-more a:hover{border-bottom-co
 html[data-theme="ember"] body.p-home #thoughts .thoughts-grid{margin-top:48px}
 /* the 12px inline-sized icon in the card meta, declared as a class */
 html[data-theme="ember"] .icon-xs{width:12px;height:12px}
+
+/* PHONE: plate internals have fixed track widths, so at 390px the fintech and
+   vc plates pushed their content past the edge (measured right=413 and 491).
+   Give the plate its own horizontal scroll rather than letting it drag the
+   page sideways — wide content scrolls inside its own container. */
+@media (max-width:700px){
+  html[data-theme="ember"] body[class*="p-case-studies"] .measure-c
+    :is(.plA,.plF,.plM,.plO,.plP,.plV){
+    overflow-x:auto!important;-webkit-overflow-scrolling:touch}
+}
+/* 404: the decorative ghost numeral is absolutely positioned and centred by a
+   transform, which put its edge 3px past the viewport at 390px. */
+html[data-theme="ember"] body.p-404 .ghost{max-width:calc(100vw - 32px)}
+
+/* ================================================================
+   LOPSIDED WHITESPACE — the reading column was capped narrower than its
+   container and then left-aligned inside it, so every unused pixel piled up
+   on ONE side: 457px on /lab/, 593px on /patterns/, 209px on the homepage.
+   The containers were already centred; the text inside them was not. Capped
+   text now centres within the space it occupies. Guarded by
+   tools/balance-check.py, which ignores genuine two-column bands (prose
+   beside an artifact) and only fails on space with nothing in it.
+   ================================================================ */
+/* descendant, not child: on /patterns/ the prose sits inside an <a> card and on
+   /lab/teardown/ inside nested sections, so a child selector missed both.
+   Where the text is NOT capped this is a no-op — auto margins only do work
+   when there is leftover width to distribute. */
+html[data-theme="ember"] :is(.lab-wrap,.section-inner) :is(p,h1,h2,h3,dl,ul,ol,.lab-note,.lab-body){
+  margin-left:auto;margin-right:auto}
+/* homepage: every section EXCEPT the hero, whose left-aligned column is a
+   deliberate pairing with the diagnostic card on its right. */
+html[data-theme="ember"] body.p-home main > section:not(.hero) .wrap > :is(p,h2,h3),
+html[data-theme="ember"] body.p-home main > section:not(.hero) .wrap > div > :is(p,h2,h3){
+  margin-left:auto;margin-right:auto}
+
+/* /lab/ ran TWO prose measures in one column — .lab-lede at 781px and
+   .t-body-muted at 1052px — so the column's edge moved as you read down it and
+   the leftover space swapped sides. One measure for body text; wide artifacts
+   (code, demos, tables) are exempt because they are not prose. */
+html[data-theme="ember"] .lab-wrap :is(p,dl,ul,ol):not(:has(pre)):not(.lab-note){
+  max-width:781px}
+
+/* the "Prefer email?" line under the contact form — restored 2026-08-13 after the
+   homepage rebuild dropped #em-l, which both crashed the page script (TypeError,
+   stopping every script after it) and removed the public email — a canon
+   requirement (recruiters don't fill forms). */
+html[data-theme="ember"] body.p-home .contact-alt{
+  font-size:14px;color:var(--ink-muted);margin:16px 0 0}
+html[data-theme="ember"] body.p-home .contact-alt a{color:var(--link);text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb, var(--link) 45%, transparent);padding-bottom:2px}
+html[data-theme="ember"] body.p-home .contact-alt a:hover{color:var(--link-hover)}
