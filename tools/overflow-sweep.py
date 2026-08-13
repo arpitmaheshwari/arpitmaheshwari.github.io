@@ -11,7 +11,7 @@ PAGES=sys.argv[2:] or [str(p) for p in sorted(pathlib.Path('.').rglob('*.html'))
     if not any(x.startswith('.') or x in ('prototypes','portfolio-sources','node_modules')
                     for x in p.parts) and not p.name.startswith('_')]
 PROBE="""<!doctype html><html><body><script>
-const f=document.createElement('iframe');f.src='http://localhost:8000/%s';
+const f=document.createElement('iframe');f.src='http://localhost:8000/%s?cb='+Date.now();
 f.style.cssText='width:%dpx;height:900px;border:0';document.body.appendChild(f);
 f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
  const vw=d.documentElement.clientWidth,bad=[];
@@ -34,7 +34,17 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
     ml:cs.marginLeft,tf:cs.transform==='none'?'':'T'});}});
  // keep only outermost offenders
  const out=bad.filter((b,i)=>!bad.some((o,j)=>j<i&&o.l<=b.l&&o.r>=b.r));
- document.title='R:'+JSON.stringify({vw,ox:d.documentElement.scrollWidth-vw,bad:out.slice(0,6)});
+ // COLLISION WITH THE SECTION BOUNDARY. A decoration that doubles as spacing
+ // (the old diagonal seam did) leaves text 1px off the edge the day it is
+ // removed — which is exactly what happened, on three sections, unnoticed.
+ // Space must be declared, so a section whose first ink hugs its own top fails.
+ const tight=[];
+ d.querySelectorAll('main > section').forEach(sec=>{
+  const sr=sec.getBoundingClientRect(); if(sr.height<80)return;
+  const f=sec.querySelector('p,h1,h2,h3,li'); if(!f)return;
+  const fr=f.getBoundingClientRect(); const gap=Math.round(fr.top-sr.top);
+  if(gap<32&&fr.height>0) tight.push({sec:(sec.id||(sec.className+'').split(' ')[0]||'section'),gap});});
+ document.title='R:'+JSON.stringify({vw,ox:d.documentElement.scrollWidth-vw,bad:out.slice(0,6),tight:tight.slice(0,5)});
 }catch(e){document.title='R:{"err":"'+String(e).slice(0,90)+'"}'}},2600);};
 </script></body></html>"""
 fails=0
@@ -49,9 +59,10 @@ for pg in PAGES:
     except Exception as e: d={"err":str(e)[:80]}
     finally:
         if os.path.exists("__ov.html"): os.unlink("__ov.html")
-    if d.get("err") or d.get("bad") or d.get("ox",0)>2:
+    if d.get("err") or d.get("bad") or d.get("tight") or d.get("ox",0)>2:
         fails+=1; print(f"FAIL {pg} @{W}px  ox={d.get('ox')}  {d.get('err','')}")
         for b in d.get("bad",[]): print(f"       {b['c']:38} left={b['l']:>6} right={b['r']:>6} w={b['w']:>5} ml={b['ml']} {b['tf']}")
+        for t in d.get("tight",[]): print(f"       section '{t['sec']}' — first text only {t['gap']}px from its own top edge")
     else: print(f"ok   {pg}")
 print(f"\n{fails} page(s) with content escaping the viewport at {W}px.")
 sys.exit(1 if fails else 0)

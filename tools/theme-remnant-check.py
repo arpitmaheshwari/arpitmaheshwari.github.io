@@ -24,7 +24,7 @@ EXEMPT_ANCESTORS = ["fig-paper","recon","pass","plate","paper","mock","artifact"
 
 PROBE = """<!doctype html><html><body><script>
 const RET=%s, EX=%s;
-const f=document.createElement('iframe');f.src='http://localhost:8000/%s';
+const f=document.createElement('iframe');f.src='http://localhost:8000/%s?cb='+Date.now();
 f.style.cssText='width:1280px;height:900px;border:0';document.body.appendChild(f);
 f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
  const hex=c=>{const m=(c||'').match(/[\\d.]+/g); if(!m||m.length<3)return null;

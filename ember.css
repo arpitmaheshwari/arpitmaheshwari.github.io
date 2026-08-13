@@ -1251,3 +1251,83 @@ html[data-theme="ember"] body.p-home :is(.seam,.seam-up)::after{
    --goldA-dk #C98F3F  the dim/border variant
    ================================================================ */
 html[data-theme="ember"]{--goldA:#FFC46B;--goldA-dk:#C98F3F}
+
+/* The retired wedge was 110px tall and doubled as the section's top spacing —
+   removing it left seam-bearing sections with padding-top:0 and their first
+   line of text 1px off the boundary (measured on receipts, work, how-i-lead).
+   The seam now carries that space explicitly, matching the 96px top rhythm of
+   every section that never had one. Space is declared, not inherited from a
+   decoration's height. */
+html[data-theme="ember"] body.p-home :is(.seam,.seam-up){margin-bottom:96px}
+
+/* --- three fixes from review, each measured before and after ---------------- */
+
+/* 1. The pattern links sat in a 386px box inside an 875px parent, so both long
+      links wrapped to two lines for no reason. Give them the width that was
+      already there. */
+/* The cap was a fractional 386.4px — a character-based prose measure inherited
+   from the typography layer. These are navigation links, not prose: a reading
+   measure has no business sizing them, and it forced two of them onto a second
+   line inside an 875px parent. Declared on the component, at a specificity that
+   beats the typography rule. */
+html[data-theme="ember"] body.p-home p.contract-links{
+  max-width:none!important;width:auto!important;
+  display:flex;flex-wrap:wrap;gap:12px 32px}
+html[data-theme="ember"] body.p-home p.contract-links a{
+  display:inline-block;white-space:nowrap;margin-right:0}
+
+/* 2. The credentials line was capped at 465px, which stranded "2019" alone on a
+      third line. Widened to the hero copy measure, and the year bound to its
+      phrase so it can never orphan again at another width. */
+html[data-theme="ember"] body.p-home .hero .cred{max-width:600px}
+
+/* 3. The wordmark was amber while the monogram beside it is the ember→violet
+      gradient — two different brand colours touching. The name is not an
+      accent; it takes the primary ink and lets the mark carry the colour. */
+html[data-theme="ember"] .nav-name{color:var(--ink)}
+
+/* Plates were forced to the full 1040px breakout even when their content is
+   narrower — the O2 phone plate used 640px of a 1040px box and left a 399px
+   void hard against its right edge. A box wider than its content is leftover
+   space, not designed space. Plates now take their content's width and stay
+   centred on the reading spine; only genuinely wide artifacts reach 1040. */
+/* NOTE the .measure-c in the selector: the breakout rule above uses :is(),
+   which takes the specificity of its MOST specific argument (.measure-c figure).
+   Without matching that, this rule loses despite being later and !important. */
+html[data-theme="ember"] body[class*="p-case-studies"] .measure-c :is(.plA,.plF,.plM,.plO,.plP,.plV){
+  /* fit-content collapsed them to 328px — the stage tracks are minmax(0,…)
+     and gave up all their width. Size to the stage's natural extent instead
+     (3 × 250px + gaps ≈ 780) so the box matches its content and the leftover
+     space becomes a symmetric margin, not a void on one side. */
+  /* max-content, not fit-content: fit-content collapsed the minmax(0,…)
+     tracks to 328px, and a fixed 800px left an identical 159px void on
+     every plate (their content caps at ~641). max-content sizes the box
+     to what the plate actually draws, then the breakout centres it. */
+  width:max-content!important;max-width:min(1040px,calc(100vw - 48px))!important}
+@media (max-width:1100px){
+  html[data-theme="ember"] body[class*="p-case-studies"] .measure-c :is(.plA,.plF,.plM,.plO,.plP,.plV){
+    width:100%!important}
+}
+
+/* The plate stages left-aligned their tracks inside the box, so whatever width
+   the content did not use piled up on ONE side (measured 159px right, 1px
+   left). Centre the tracks: leftover space becomes a symmetric margin around
+   the artifact instead of a void hard against its right edge. */
+html[data-theme="ember"] body[class*="p-case-studies"] .measure-c
+  :is(.plA,.plF,.plM,.plO,.plP,.plV) > :is([class$="-stage"],[class$="-body"],[class$="-grid"]){
+  justify-content:center!important}
+
+/* --- Writing section on the standard grammar ------------------------------
+   The heading was a classic-theme numeral pattern (.section-numeral) that no
+   other homepage section uses, and its aria-labelledby pointed at an id that
+   did not exist. Now eyebrow + h2 + lede like every other section. */
+html[data-theme="ember"] body.p-home #thoughts .wr-more{margin-top:16px}
+html[data-theme="ember"] body.p-home #thoughts .wr-more a{
+  font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--heat);white-space:nowrap;
+  border-bottom:1px solid color-mix(in srgb, var(--heat) 45%, transparent);
+  padding-bottom:3px;text-decoration:none}
+html[data-theme="ember"] body.p-home #thoughts .wr-more a:hover{border-bottom-color:var(--heat)}
+html[data-theme="ember"] body.p-home #thoughts .thoughts-grid{margin-top:48px}
+/* the 12px inline-sized icon in the card meta, declared as a class */
+html[data-theme="ember"] .icon-xs{width:12px;height:12px}
