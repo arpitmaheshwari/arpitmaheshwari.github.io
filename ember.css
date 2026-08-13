@@ -819,7 +819,7 @@ html[data-theme="ember"] body.p-home .lanes .lane{
   html[data-theme="ember"] body.p-home .lanes .lane,
   html[data-theme="ember"] body.p-home .lanes .lane > *{transform:none}
 }
-html[data-theme="ember"] body.p-home .lanes .lane .go{margin-left:6px} /* optical skew correction, deliberately off-grid */
+html[data-theme="ember"] body.p-home .lanes .lane .go{margin-left:0} /* single-axis lanes: .go shares the left axis, no skew to correct */
 
 /* --- T2.9 · demo card carried an orphaned top:104px from the classic
    layout. (The hero eyebrow alignment half of this finding is NOT applied:
@@ -934,7 +934,7 @@ html[data-theme="ember"] :is(.btn-a-ghost,.btn-b){border-radius:999px;border-col
 html[data-theme="ember"] .card-seg{border-radius:8px}
 /* two deltas from the verification pass: submit sat 4px shorter than the nav
    pill (40 vs 44), and .ccd still carried a 32px top margin after top:auto */
-html[data-theme="ember"] body.p-home .form-slot button[type="submit"]{padding:14px 24px!important}
+html[data-theme="ember"] body.p-home .form-slot button[type="submit"]{padding:16px 24px!important}
 html[data-theme="ember"] body.p-home .demo-slot .ccd{margin-top:0}
 
 /* ================================================================
@@ -1083,3 +1083,90 @@ html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]
   the card resolves in a different font than the paragraph it wraps, so both
   64ch (126px dead) and calc(54ch + 64px) (94px dead) overshot. 54ch of prose
   measures 456px; + 2x32 padding = 520. */
+
+/* ================================================================
+   SCAN PATH + NEGATIVE SPACE + LINK COLOUR
+   Measured 2026-08-13, at 1440:
+   · lane had TWO reading axes 242px apart (metric 177 / title 419) and
+     402px of dead right — six lanes = twelve horizontal saccades to read
+     a list. Collapse to ONE axis: the eye drops straight down.
+   · every one of the 37 paragraphs on a case page was 475px wide inside an
+     1100px container: 442px (40%) dead right, on every paragraph. A capped
+     column in a wide container is a decision about the leftover space —
+     so narrow the READING SPINE and let objects break out of it instead.
+   · links were amber, i.e. the retired gold. Violet is the other end of the
+     signature gradient: unmistakably Ember, 7.1:1 on the base and 6.3:1 on
+     card fill, and distinct from the amber focus ring (which stays amber
+     precisely so focus never reads as "just a link").
+   ================================================================ */
+
+/* --- 1 · lanes on a single axis --- */
+html[data-theme="ember"] body.p-home .lanes .lane{
+  grid-template-columns:minmax(0,1fr);
+  grid-template-areas:"head" "title" "go";
+  row-gap:8px;padding:24px 32px}
+html[data-theme="ember"] body.p-home .lanes .lane .ai-case-head,
+html[data-theme="ember"] body.p-home .lanes .lane > div:first-child{align-self:start}
+html[data-theme="ember"] body.p-home .lanes .lane .m{
+  display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
+  font-size:clamp(22px,2vw,30px);line-height:1.1}
+html[data-theme="ember"] body.p-home .lanes .lane .m span{
+  margin-top:0;font-size:11.5px;letter-spacing:.14em}
+html[data-theme="ember"] body.p-home .lanes .lane h3{margin-top:4px}
+html[data-theme="ember"] body.p-home .lanes .lane p{max-width:72ch}
+
+/* --- 2 · the reading spine, with objects breaking out of it --- */
+html[data-theme="ember"] body[class*="p-case-studies"] .measure-c{
+  max-width:704px;margin-left:auto;margin-right:auto;padding:0 24px}
+html[data-theme="ember"] body[class*="p-case-studies"] .measure-c :is(p,h2,h3,li,blockquote){
+  max-width:none}
+/* objects that earn the full width break the spine, centred on it */
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plF,.plM,.plO,.plP,.plV,
+  .plA-caption,.plF-caption,.plM-caption,.plO-caption,.plP-caption,.plV-caption,
+  .case-vitals,.recon,.recon-stage,figure){
+  width:min(1040px,calc(100vw - 48px));max-width:none;
+  margin-left:50%;margin-right:0;transform:translateX(-50%)}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-hero__in{max-width:1040px}
+@media (max-width:1100px){
+  html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plF,.plM,.plO,.plP,.plV,
+    .plA-caption,.plF-caption,.plM-caption,.plO-caption,.plP-caption,.plV-caption,
+    .case-vitals,.recon,.recon-stage,figure){
+    width:100%;margin-left:0;transform:none}
+}
+/* the boundary/gate cards now match the spine rather than floating inside it */
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.note-gold,.note-gold-b,.case-gate,.framed,.rcpt-box,.framed-tight){
+  max-width:none}
+
+/* --- 3 · links: violet, not the retired gold --- */
+html[data-theme="ember"]{--link:#E86BFF;--link-hover:#F2A3FF}
+html[data-theme="ember"] :is(main,footer) a:not(.pill):not(.btn-a):not(.btn-a-ghost):not(.lane):not(.labc):not(.hd-preset):not(.rcpt-btn):not(.hk-btn):not(.card-p28):not(.card-p32):not(.nav-cta):not(.hd-case-btn){
+  color:var(--link)}
+html[data-theme="ember"] :is(main,footer) a:not(.pill):not(.btn-a):not(.btn-a-ghost):not(.lane):hover{
+  color:var(--link-hover)}
+html[data-theme="ember"] body.p-hire :is(.hire-avail,.hire-contact) a{color:var(--link)!important}
+html[data-theme="ember"] .rfoot a,
+html[data-theme="ember"] .who p a,
+html[data-theme="ember"] .errata a,
+html[data-theme="ember"] .contract-links a{color:var(--link)}
+/* the single-axis lane left 548px dead on its right (the hook caps at 72ch
+   inside a 1172px card). Cap the LIST to a reading width and centre it: the
+   leftover space becomes symmetric page margin — read as intentional — instead
+   of a void inside every card. */
+html[data-theme="ember"] body.p-home .lanes{max-width:860px;margin-left:auto;margin-right:auto}
+html[data-theme="ember"] body.p-home .work .lede,
+html[data-theme="ember"] body.p-home .work h2,
+html[data-theme="ember"] body.p-home .work .k{max-width:860px;margin-left:auto;margin-right:auto}
+/* Writing section — restored to the homepage (my prototype rebuild had dropped
+   it while the nav still linked to #thoughts). Ember card grammar, purple heat
+   matching the /writing/ page it leads to. */
+html[data-theme="ember"] body.p-home #thoughts{--heat:#A96BFF}
+html[data-theme="ember"] body.p-home .thoughts-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px;margin-top:32px}
+html[data-theme="ember"] body.p-home .thoughts-grid > *{
+  background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--heat);
+  border-radius:0 12px 12px 0;padding:24px}
+html[data-theme="ember"] body.p-home .thoughts-grid > *:hover{border-color:var(--border-accent);border-left-color:var(--heat)}
+html[data-theme="ember"] body.p-home .thought-tag{color:var(--heat)}
+html[data-theme="ember"] body.p-home .thought-title{font-size:20px;line-height:1.25;margin:8px 0}
+html[data-theme="ember"] body.p-home .thought-excerpt{color:var(--ink-muted);font-size:14px;line-height:1.65}
+html[data-theme="ember"] body.p-home .thought-meta{color:var(--ink-dim);margin-top:16px}
