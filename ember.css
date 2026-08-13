@@ -1434,6 +1434,13 @@ html[data-theme="ember"] .lab-wrap .lab-cards{
   margin-left:50%;margin-right:0;transform:translateX(-50%)}
 @media (max-width:1160px){
   html[data-theme="ember"] .lab-wrap .lab-cards{width:100%;margin-left:0;transform:none}}
-/* section rhythm: lab sections join the sitewide 96px top cadence */
-html[data-theme="ember"] :is([class*="p-lab"]) main .section .lab-wrap{padding-top:96px}
-html[data-theme="ember"] :is([class*="p-lab"]) main .section:first-child .lab-wrap{padding-top:0}
+/* Section rhythm — measured, not assumed. The first attempt ADDED 96px on top
+   of the padding lab sections already carried, ballooning ink-to-ink gaps to
+   424/302px against the homepage's ~180-250. Sections keep their own padding;
+   the oversized boundaries are brought DOWN to the house cadence. */
+html[data-theme="ember"] [class*="p-lab"] main > section.section{padding-top:88px;padding-bottom:88px}
+html[data-theme="ember"] [class*="p-lab"] main > section.section:first-of-type{padding-top:96px}
+/* the hero's closing note carried ~150px of leftover internal space that made
+   the first boundary half again larger than the second — equalized here */
+html[data-theme="ember"] [class*="p-lab"] main > section.section:first-of-type .lab-note{margin-bottom:0}
+html[data-theme="ember"] [class*="p-lab"] .lab-cards{margin-bottom:0}
