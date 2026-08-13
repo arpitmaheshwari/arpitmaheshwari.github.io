@@ -936,3 +936,45 @@ html[data-theme="ember"] .card-seg{border-radius:8px}
    pill (40 vs 44), and .ccd still carried a 32px top margin after top:auto */
 html[data-theme="ember"] body.p-home .form-slot button[type="submit"]{padding:14px 24px!important}
 html[data-theme="ember"] body.p-home .demo-slot .ccd{margin-top:0}
+
+/* ================================================================
+   PLATE CENTERING — REGRESSION I CAUSED, NOW REVERTED
+   Every reconstruction plate and caption centres itself with the same
+   trick: width:min(840px,…) · margin:… 50% … · transform:translateX(-50%).
+   My earlier rule set margin-left:0 and max-width:640px but LEFT THE
+   TRANSFORM IN PLACE, so each plate slid half its own width to the left —
+   off the viewport on PTC, and the whole case column read as left-shifted.
+   The T1.1 "fix" then named .plB/.plC, which do not exist; the real classes
+   are plA plF plM plO plP plV. Restore the classic centering, bounded by the
+   CONTAINER (100%) rather than the viewport so the wider Ember column can
+   never push a plate off-screen.
+   ================================================================ */
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plF,.plM,.plO,.plP,.plV){
+  width:min(840px,100%);max-width:none;margin:32px 50% 8px;transform:translateX(-50%)}
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA-caption,.plF-caption,.plM-caption,.plO-caption,.plP-caption,.plV-caption){
+  width:min(840px,100%);max-width:none;margin:0 50% 24px;transform:translateX(-50%)}
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.recon,.recon-stage){
+  max-width:none;margin-left:auto;margin-right:auto}
+@media (max-width:900px){
+  html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plF,.plM,.plO,.plP,.plV,
+    .plA-caption,.plF-caption,.plM-caption,.plO-caption,.plP-caption,.plV-caption){
+    width:100%;margin-left:0;margin-right:0;transform:none}
+}
+
+/* --- NEGATIVE SPACE · the boundary notes ---
+   .note-gold / .note-gold-b span the full 1052px column while their prose is
+   capped at 60–62ch by an !important rule (styles.css:1855/1857) — so ~40% of
+   each card was empty on the right. Cap the CARD to its content instead of
+   letting it stretch. Same treatment the .framed cards already have. --- */
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.note-gold,.note-gold-b){
+  max-width:60ch}  /* 76ch still left 182px (25%) dead; the prose is pinned at
+                      62ch !important, so the card is sized to text + padding */
+
+/* --- FOOTER · text was touching the frame edges --- */
+html[data-theme="ember"] footer{padding:40px 48px;gap:24px}
+html[data-theme="ember"] body.p-home footer{
+  max-width:1240px;margin:0 auto;padding-left:40px;padding-right:40px}
+@media (max-width:640px){
+  html[data-theme="ember"] footer{padding:32px 20px;flex-wrap:wrap}
+  html[data-theme="ember"] body.p-home footer{padding-left:20px;padding-right:20px}
+}
