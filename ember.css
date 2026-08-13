@@ -712,3 +712,43 @@ html[data-theme="ember"] body[class*="p-case-studies"] .case-hero__in{max-width:
 html[data-theme="ember"] body[class*="p-case-studies"] .measure-c :is(p,h2,h3,li,blockquote){max-width:66ch}
 html[data-theme="ember"] body[class*="p-case-studies"] :is(.framed,.framed-tight,.case-vitals,.t-quote) :is(p,h2,h3,li,div,dd,dt,blockquote){max-width:none}
 html[data-theme="ember"] body[class*="p-case-studies"] .framed{max-width:76ch}
+
+/* GESTALT · PROXIMITY — the walk-through CTA sat in its own right-hand column.
+   Measured: only 32px from the text BLOCK, but the prose wraps at 62ch, so the
+   real distance from the last word to the link was ~200px of void and the two
+   read as unrelated objects. The CTA now joins the text group: same column,
+   directly under the hook, so one lane = one visual unit. */
+/* the lane has THREE children: metric, one wrapper holding <h3>+<p>, and .go.
+   A three-row template left a phantom empty 'desc' row (measured 74px between
+   hook and CTA). Two rows match the real DOM. */
+html[data-theme="ember"] body.p-home .lanes .lane{
+  grid-template-columns:210px minmax(0,1fr);
+  grid-template-areas:"head title" "head go"}
+html[data-theme="ember"] body.p-home .lanes .lane .go{
+  grid-area:go;justify-self:start;margin-top:14px;color:var(--lc);
+  border-bottom:1px solid color-mix(in srgb, var(--lc) 45%, transparent);padding-bottom:2px}
+html[data-theme="ember"] body.p-home .lanes .lane:hover .go{
+  border-bottom-color:var(--lc)}
+@media (max-width:860px){
+  html[data-theme="ember"] body.p-home .lanes .lane{
+    grid-template-columns:1fr;grid-template-areas:"head" "title" "go"}
+}
+/* rows were centring their content, adding ~56px of slack between the hook and
+   its CTA (measured 78px total). Hug the content; keep the metric column
+   optically centred against the whole lane. */
+html[data-theme="ember"] body.p-home .lanes .lane{align-items:start}
+html[data-theme="ember"] body.p-home .lanes .lane .ai-case-head,
+html[data-theme="ember"] body.p-home .lanes .lane > div:first-child{align-self:center}
+html[data-theme="ember"] body.p-home .lanes .lane .go{margin-top:10px}
+
+/* MOBILE MENU — the prototype's `nav ul{display:flex}` (specificity 0,3,2 once
+   scoped) outranked classic's @media(max-width:1100px){.nav-links{display:none}}
+   (0,1,0), so the drawer was permanently open: the toggle fired correctly
+   (class + aria both flipped, measured) but nothing ever hid. Restore the
+   drawer behaviour at the classic breakpoint. */
+@media (max-width:1100px){
+  html[data-theme="ember"] body.p-home .nav-links{
+    display:none;flex-direction:column;align-items:stretch;position:fixed;top:64px;left:0;right:0;
+    background:rgba(18,11,20,.97);padding:32px 24px;gap:24px;border-bottom:1px solid var(--border);z-index:99}
+  html[data-theme="ember"] body.p-home .nav-links.nav-open{display:flex}
+}
