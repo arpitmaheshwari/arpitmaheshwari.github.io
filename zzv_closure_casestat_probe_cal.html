@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>probe</title>
+<style>html,body{margin:0;padding:0;background:#fff}#f{border:0;display:block}</style>
+</head><body>
+<iframe id="f" src="/case-studies/adtech.html"></iframe>
+<pre id="out">PENDING</pre>
+<script>
+const W = parseInt(new URLSearchParams(location.search).get('w') || '1440', 10);
+const f = document.getElementById('f');
+f.style.width = W + 'px';
+f.style.height = '2400px';
+
+function lineBoxes(el){
+  // measure the real ink rects of each rendered line inside el
+  const r = document.createRange();
+  const tn = [];
+  const walk = d => { for (const n of d.childNodes){ if(n.nodeType===3) tn.push(n); else if(n.nodeType===1) walk(n); } };
+  walk(el);
+  const rects = [];
+  for (const n of tn){
+    r.selectNodeContents(n);
+    for (const rc of r.getClientRects()) rects.push({t:+rc.top.toFixed(2), l:+rc.left.toFixed(2), rt:+rc.right.toFixed(2), w:+rc.width.toFixed(2), h:+rc.height.toFixed(2)});
+  }
+  // group by top
+  const groups = [];
+  rects.sort((a,b)=>a.t-b.t || a.l-b.l);
+  for (const rc of rects){
+    const g = groups.find(g=>Math.abs(g.top-rc.t)<3);
+    if(g){ g.left=Math.min(g.left,rc.l); g.right=Math.max(g.right,rc.rt); }
+    else groups.push({top:rc.t,left:rc.l,right:rc.rt});
+  }
+  return groups.map(g=>({top:+g.top.toFixed(2), left:+g.left.toFixed(2), right:+g.right.toFixed(2), width:+(g.right-g.left).toFixed(2)}));
+}
+
+f.onload = async () => {
+  const d = f.contentDocument, w = f.contentWindow;
+  try { await d.fonts.ready; } catch(e){}
+  await new Promise(r=>setTimeout(r,900));
+  try { await d.fonts.ready; } catch(e){}
+  await new Promise(r=>setTimeout(r,400)); if(location.search.includes("cal=1")){const st=d.createElement("style");st.textContent=".case-stat span{max-width:none !important}";d.head.appendChild(st);await new Promise(r=>setTimeout(r,300));}
+
+  const out = {viewport:{w:w.innerWidth,h:w.innerHeight}, theme:d.documentElement.getAttribute('data-theme'), bodyClass:d.body.className};
+  const wrap = d.querySelector('.case-stats');
+  if(!wrap){ document.getElementById('out').textContent = 'NO .case-stats'; return; }
+  const wr = wrap.getBoundingClientRect();
+  const wcs = w.getComputedStyle(wrap);
+  out.caseStats = {width:+wr.width.toFixed(2), height:+wr.height.toFixed(2), display:wcs.display,
+                   gridTemplateColumns:wcs.gridTemplateColumns, gap:wcs.gap, flexWrap:wcs.flexWrap};
+
+  // ch reference: real advance of "0" in the span's font
+  out.cards = [];
+  d.querySelectorAll('.case-stat').forEach((card,i)=>{
+    const cr = card.getBoundingClientRect();
+    const ccs = w.getComputedStyle(card);
+    const sp = card.querySelector('span');
+    const b  = card.querySelector('b');
+    const sr = sp.getBoundingClientRect();
+    const br = b.getBoundingClientRect();
+    const scs = w.getComputedStyle(sp);
+
+    // measure 1ch empirically in the span's exact font
+    const probe = d.createElement('span');
+    probe.textContent = '0'.repeat(22);
+    probe.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;letter-spacing:0;'
+      + 'font-family:'+scs.fontFamily+';font-size:'+scs.fontSize+';font-weight:'+scs.fontWeight
+      + ';text-transform:none';
+    d.body.appendChild(probe);
+    const ch22 = probe.getBoundingClientRect().width;
+    probe.remove();
+
+    const padL = parseFloat(ccs.paddingLeft), padR = parseFloat(ccs.paddingRight);
+    const padT = parseFloat(ccs.paddingTop), padB = parseFloat(ccs.paddingBottom);
+    const bT = parseFloat(ccs.borderTopWidth), bB = parseFloat(ccs.borderBottomWidth);
+    const bL = parseFloat(ccs.borderLeftWidth), bR = parseFloat(ccs.borderRightWidth);
+    const contentW = cr.width - padL - padR - bL - bR;
+
+    const lines = lineBoxes(sp);
+    const inkRight = lines.length ? Math.max(...lines.map(l=>l.right)) : sr.left;
+    const contentRight = cr.right - padR - bR;
+    const lh = parseFloat(scs.lineHeight);
+
+    // natural content height of the card (what it would be if not stretched)
+    const naturalH = bT + bB + padT + padB + br.height + parseFloat(scs.marginTop) + sr.height;
+
+    out.cards.push({
+      i, text: sp.textContent.trim().slice(0,60),
+      cardW:+cr.width.toFixed(2), cardH:+cr.height.toFixed(2),
+      cardTop:+cr.top.toFixed(2), cardLeft:+cr.left.toFixed(2),
+      border:{t:bT,r:bR,b:bB,l:bL}, pad:{t:padT,r:padR,b:padB,l:padL},
+      contentW:+contentW.toFixed(2),
+      font:scs.fontFamily+' / '+scs.fontSize+' / ls '+scs.letterSpacing+' / lh '+scs.lineHeight+' / tt '+scs.textTransform,
+      spanMaxWidthComputed: scs.maxWidth,
+      ch22_measured:+ch22.toFixed(2),
+      spanBoxW:+sr.width.toFixed(2), spanBoxH:+sr.height.toFixed(2),
+      spanScrollW: sp.scrollWidth,
+      nLines: +(sr.height/lh).toFixed(2), lineHeightPx: lh,
+      lines,
+      inkRightGapFromCardContentRight: +(contentRight - inkRight).toFixed(2),
+      boxRightGapFromCardContentRight: +(contentRight - sr.right).toFixed(2),
+      pctEmptyRight_box: +(((contentW - sr.width)/contentW)*100).toFixed(2),
+      pctEmptyRight_ink: +(((contentRight - inkRight)/contentW)*100).toFixed(2),
+      bH:+br.height.toFixed(2),
+      naturalH:+naturalH.toFixed(2),
+      deadSpaceBelow: +(cr.height - naturalH).toFixed(2)
+    });
+  });
+  document.getElementById('out').textContent = 'RESULT:' + JSON.stringify(out,null,1);
+};
+</script>
+</body></html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>vv probe</title>
+<style>html,body{margin:0;padding:0}#f{width:1440px;height:24000px;border:0;display:block}</style>
+</head><body>
+<iframe id="f" src="/case-studies/ptc.html"></iframe>
+<pre id="out">PENDING</pre>
+<script>
+function textWidth(el){
+  // width of the actual glyph run, not the box
+  var r=document.createRange(); r.selectNodeContents(el);
+  var rects=r.getClientRects(); var w=0;
+  for(var i=0;i<rects.length;i++){ w=Math.max(w,rects[i].width); }
+  return w;
+}
+function measure(doc){
+  var dl=doc.querySelector('.case-vitals');
+  if(!dl) return {ERROR:'no .case-vitals'};
+  var win=doc.defaultView;
+  var cs=win.getComputedStyle(dl);
+  var mc=doc.querySelector('.measure-c');
+  var kids=[].slice.call(dl.children);
+  var out={
+    theme: doc.documentElement.getAttribute('data-theme'),
+    layoutWidth: doc.documentElement.clientWidth,
+    innerWidth: win.innerWidth,
+    dl_display: cs.display,
+    dl_flexWrap: cs.flexWrap,
+    dl_rowGap: cs.rowGap, dl_colGap: cs.columnGap,
+    dl_padding: cs.paddingTop+' '+cs.paddingRight+' '+cs.paddingBottom+' '+cs.paddingLeft,
+    dl_borderLeft: cs.borderLeftWidth, dl_borderRight: cs.borderRightWidth,
+    dl_rect: rect(dl),
+    measureC_rect: mc?rect(mc):null,
+    measureC_maxWidth: mc?win.getComputedStyle(mc).maxWidth:null,
+    childCount: kids.length,
+    cells: kids.map(function(k,i){
+      var ks=win.getComputedStyle(k);
+      var dd=k.querySelector('dd'), dt=k.querySelector('dt');
+      return {
+        i:i+1,
+        label: dt?dt.textContent.trim():null,
+        value: dd?dd.textContent.trim():null,
+        x:+rect(k).x.toFixed(2), y:+rect(k).y.toFixed(2),
+        w:+rect(k).width.toFixed(2), h:+rect(k).height.toFixed(2),
+        right:+(rect(k).x+rect(k).width).toFixed(2),
+        flex: ks.flexGrow+' '+ks.flexShrink+' '+ks.flexBasis,
+        minWidth: ks.minWidth,
+        padding: ks.paddingLeft+'/'+ks.paddingRight,
+        borderRight: ks.borderRightWidth+' '+ks.borderRightStyle+' '+ks.borderRightColor,
+        borderRightEdgeX: +(rect(k).x+rect(k).width).toFixed(2),
+        dd_w: dd?+rect(dd).width.toFixed(2):null,
+        dd_textW: dd?+textWidth(dd).toFixed(2):null,
+        dt_textW: dt?+textWidth(dt).toFixed(2):null
+      };
+    })
+  };
+  // derived: gap-to-text asymmetry around each divider
+  out.dividers=[];
+  for(var i=0;i<kids.length-1;i++){
+    var a=kids[i], b=kids[i+1];
+    var ra=rect(a), rb=rect(b);
+    if(Math.abs(ra.y-rb.y)>2) continue; // different rows
+    var asDt=a.querySelector('dt'), asDd=a.querySelector('dd');
+    var leftTextRight = Math.max(
+       asDt?rect(asDt).x+textWidth(asDt):0,
+       asDd?rect(asDd).x+textWidth(asDd):0);
+    var bsDt=b.querySelector('dt');
+    var rightTextLeft = bsDt?rect(bsDt).x:rb.x;
+    var dividerX = ra.x+ra.width; // right border-box edge of a
+    out.dividers.push({
+      between:(i+1)+'-'+(i+2),
+      dividerX:+dividerX.toFixed(2),
+      gapToLeftText:+(dividerX-leftTextRight).toFixed(2),
+      gapToRightText:+(rightTextLeft-dividerX).toFixed(2)
+    });
+  }
+  return out;
+}
+function rect(e){var r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height};}
+var f=document.getElementById('f');
+f.onload=function(){
+  setTimeout(function(){
+    var doc=f.contentDocument;
+    var res={};
+    res.EMBER=measure(doc);
+    // now strip the ember theme -> classic baseline, same DOM, same page
+    doc.documentElement.setAttribute('data-theme','classic');
+    void doc.body.offsetHeight;
+    res.CLASSIC_SAMEDOM=measure(doc);
+    doc.documentElement.setAttribute('data-theme','ember');
+    document.getElementById('out').textContent=JSON.stringify(res,null,1);
+    document.title='DONE';
+  },1200);
+};
+</script>
+</body></html>

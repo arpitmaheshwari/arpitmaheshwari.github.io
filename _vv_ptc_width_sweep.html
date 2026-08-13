@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>sweep</title>
+<style>html,body{margin:0}iframe{border:0;height:22000px;display:block}</style></head><body>
+<pre id="out">PENDING</pre>
+<script>
+var WIDTHS=[900,1024,1100,1180,1280,1366,1440,1600,1920];
+var results=[];
+function step(i){
+  if(i>=WIDTHS.length){
+    document.getElementById('out').textContent=JSON.stringify(results,null,1);
+    document.title='DONE'; return;
+  }
+  var w=WIDTHS[i];
+  var f=document.createElement('iframe');
+  f.style.width=w+'px';
+  f.src='/case-studies/ptc.html?w='+w;
+  f.onload=function(){
+    setTimeout(function(){
+      var d=f.contentDocument;
+      var dl=d.querySelector('.case-vitals');
+      var kids=[].slice.call(dl.children);
+      var rows={};
+      kids.forEach(function(k){
+        var r=k.getBoundingClientRect();
+        var key=Math.round(r.y);
+        (rows[key]=rows[key]||[]).push({w:+r.width.toFixed(1),right:+(r.x+r.width).toFixed(1)});
+      });
+      var keys=Object.keys(rows).map(Number).sort(function(a,b){return a-b;});
+      var dlr=dl.getBoundingClientRect();
+      var cs=f.contentWindow.getComputedStyle(dl);
+      var contentRight=dlr.x+dlr.width-parseFloat(cs.borderRightWidth)-parseFloat(cs.paddingRight);
+      // last cell of the FIRST row: does its border-right land on the content edge?
+      var firstRow=rows[keys[0]];
+      var lastOfFirst=firstRow[firstRow.length-1];
+      var lastRow=rows[keys[keys.length-1]];
+      results.push({
+        layoutW:w,
+        rowCount:keys.length,
+        perRow:keys.map(function(k){return rows[k].length;}),
+        cellW:keys.map(function(k){return rows[k].map(function(c){return c.w;});}),
+        strayDividerOnRow1: Math.abs(lastOfFirst.right-contentRight)<1.5 && keys.length>1,
+        lastRowCells:lastRow.length,
+        widestToNarrowestRatio:+(Math.max.apply(null,kids.map(function(k){return k.getBoundingClientRect().width;}))/Math.min.apply(null,kids.map(function(k){return k.getBoundingClientRect().width;}))).toFixed(2)
+      });
+      f.remove();
+      step(i+1);
+    },900);
+  };
+  document.body.appendChild(f);
+}
+step(0);
+</script></body></html>

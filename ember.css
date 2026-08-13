@@ -752,3 +752,187 @@ html[data-theme="ember"] body.p-home .lanes .lane .go{margin-top:10px}
     background:rgba(18,11,20,.97);padding:32px 24px;gap:24px;border-bottom:1px solid var(--border);z-index:99}
   html[data-theme="ember"] body.p-home .nav-links.nav-open{display:flex}
 }
+
+/* ================================================================
+   GESTALT PASS — 52 measured findings, independently re-verified,
+   deduplicated to component-level fixes. Full plan + evidence:
+   workflow wf_c6f0cf1b-6c2.
+   Framing: ember.css only scopes p-home and p-case-studies; the other
+   six page groups run classic CSS under Ember tokens. ~25 of the 52
+   findings are that one gap — these are the interim patch, NOT the
+   port (task #5).
+   ================================================================ */
+
+/* --- T1.1 · plate captions amputated at the window edge (126px lost at
+   1440, 131px of 358 at 390). Must sit AFTER ember.css:706 [class^="pl"]
+   — equal specificity, order decides. --- */
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plB,.plC,.plA-caption,.plB-caption,.plC-caption){
+  margin-right:0;transform:none;width:auto}
+
+/* --- T1.2 · /lab/loop.html demo inputs at 1.03:1 — the numbers driving
+   abstain() were invisible --- */
+html[data-theme="ember"] body.p-lab-loop .lab-ctl input[type="number"],
+html[data-theme="ember"] body.p-lab-loop .act-cream .lab-ctl input[type="number"]{
+  background:var(--bg-soft);color:var(--ink);border:1px solid var(--border)}
+
+/* --- T1.3 · /hire → /screen handoff link was styled identically to prose
+   (zero delta on all five properties) while LinkedIn/GitHub got gold --- */
+html[data-theme="ember"] body.p-hire :is(.hire-avail,.hire-contact) a{color:var(--amber)!important}
+html[data-theme="ember"] body.p-hire :is(.hire-avail,.hire-contact) a:hover{
+  text-decoration:underline;text-underline-offset:3px}
+
+/* --- T1.4 · "In production" badge 2.01:1, nine uses sitewide --- */
+html[data-theme="ember"] .lbl-badge-ink{color:var(--cta-ink)}
+
+/* --- T1.5 · /writing/ Substack cards: fill identical to page ground
+   (1.000:1) and the hover never fired (border shorthand !important) --- */
+html[data-theme="ember"] body.p-writing .xi-writing-020{
+  background:var(--bg-card)!important;padding:24px 32px!important;
+  transition:border-color .25s var(--ease-out),transform .25s var(--ease-out)!important}
+html[data-theme="ember"] body.p-writing .xi-writing-020:hover{
+  border-color:var(--border-accent)!important;transform:translateY(-4px)}
+
+/* --- T2.6 · contact submit was the only CTA not in the Ember language
+   (flat amber slab reading as disabled, on the terminal action).
+   .xi-home-098 sets bg/radius/padding !important — must match it. --- */
+html[data-theme="ember"] body.p-home .form-slot button[type="submit"]{
+  background:var(--g-hot)!important;border-radius:999px!important;
+  color:var(--cta-ink)!important;padding:12px 24px!important}
+html[data-theme="ember"] body.p-home .form-slot :is(input,textarea){border-radius:8px!important}
+
+/* --- T2.7 · receipts act: 43.7px button stagger, body leading leaking
+   into h2, note crowding. Verified together, shipped together. --- */
+html[data-theme="ember"] body.p-home :is(.receipts,.labrow) h2{line-height:1.12}
+html[data-theme="ember"] body.p-home .receipts .hand{margin-top:24px}
+html[data-theme="ember"] body.p-home .receipts .rrow{margin-top:20px}
+html[data-theme="ember"] body.p-home .rcell span{margin-bottom:16px}
+html[data-theme="ember"] body.p-home .rcell .rcpt-btn{margin-top:auto}
+
+/* --- T2.8 · work lanes had no right edge (36% of each lane dissolved into
+   the band) and the skew left a 12.3px staircase at 390 --- */
+html[data-theme="ember"] body.p-home .lanes .lane{
+  background:linear-gradient(94deg,var(--lt),transparent 70%),rgba(245,237,230,.035);
+  border-top:1px solid rgba(245,237,230,.10);
+  border-right:1px solid rgba(245,237,230,.10);
+  border-bottom:1px solid rgba(245,237,230,.10)}
+@media (max-width:860px){
+  html[data-theme="ember"] body.p-home .lanes .lane,
+  html[data-theme="ember"] body.p-home .lanes .lane > *{transform:none}
+}
+html[data-theme="ember"] body.p-home .lanes .lane .go{margin-left:6px} /* optical skew correction, deliberately off-grid */
+
+/* --- T2.9 · demo card carried an orphaned top:104px from the classic
+   layout. (The hero eyebrow alignment half of this finding is NOT applied:
+   it trades two 74px slivers for one 148px void — see report.) --- */
+html[data-theme="ember"] body.p-home .demo-slot .ccd{top:auto}
+
+/* --- T3.10 · .case-stat span: a 22ch cap re-resolved in 11.5px mono left
+   half of every stat card empty --- */
+html[data-theme="ember"] body[class*="p-case-studies"] .case-stat span{max-width:none}
+
+/* --- T3.11 · .rcpt-box was byte-identical to .framed-tight in classic;
+   Ember promoted one to a rail-card and left the other bare --- */
+html[data-theme="ember"] body[class*="p-case-studies"] .rcpt-box{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-left:3px solid var(--heat);border-radius:0 12px 12px 0;padding:8px 24px}
+
+/* --- T3.12 · quote cards drawn twice: my rule hit both parent and child,
+   giving two identical 3px rails 24px apart --- */
+html[data-theme="ember"] body[class*="p-case-studies"] :is(figure,blockquote) .t-quote{
+  background:none;border:0;border-radius:0;padding:0;max-width:none}
+
+/* --- T3.13 · .case-vitals: a 32px column-gap turned a contiguous strip
+   into floating rules and stranded the 6th cell. Grid neutralises the
+   classic flex:1 1 160px that survives Ember. --- */
+html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:0}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals > div{
+  padding:20px 24px;border-right:1px solid var(--border)}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals > div:nth-child(3n),
+html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals > div:last-child{border-right:0}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals > div:nth-child(n+4){
+  border-top:1px solid var(--border)}
+@media (max-width:640px){
+  html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals{grid-template-columns:1fr}
+  html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals > div{border-right:0}
+  html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals > div + div{border-top:1px solid var(--border)}
+}
+
+/* --- T3.14 · one heat per case: leftover gold rails sat 26px from heat
+   rails on identical cards --- */
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.case-gate,.note-gold,.note-gold-b,.pullq){
+  border-left-color:var(--heat)}
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.case-gate .cg-l,.case-gate b){color:var(--heat)}
+html[data-theme="ember"] body[class*="p-case-studies"] blockquote[class*="xi-case-studies-"]{
+  border-left:3px solid var(--heat)!important}
+
+/* --- T3.15/16 · .case-jump glued to the wrong card (8px above / 48px
+   below); .case-gate 37% empty --- */
+html[data-theme="ember"] body[class*="p-case-studies"] .case-gate{margin-bottom:40px;max-width:688px}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-jump{margin:0 0 24px}
+
+/* --- T4.18 · /screen/ mono roles destroyed by a :where() rule (0
+   specificity) — needs REAL specificity, not later order --- */
+html[data-theme="ember"] body.p-screen .scr-q p.scr-num{
+  font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;
+  color:var(--amber);margin:0 0 8px}
+html[data-theme="ember"] body.p-screen .scr-q p.scr-receipt{
+  font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;
+  line-height:1.7;color:var(--ink-dim);margin:24px 0 0}
+
+/* --- T4.19/20 · lab output tiers collapsed; one chart series below the
+   WCAG floor (2.79:1) --- */
+html[data-theme="ember"] body.p-lab-loop .lab-fn .lab-explain{
+  font-size:var(--fs-ui);line-height:1.65;max-width:none}
+html[data-theme="ember"] body.p-lab-loop .lab-fn .lab-json{
+  font-size:var(--fs-caption);line-height:1.7;max-width:none;margin:0}
+html[data-theme="ember"] body.p-lab-loop .lab-bin .lab-conf,
+html[data-theme="ember"] body.p-lab-loop .lab-legend i.xi-lab-loop-008{background:var(--violet)!important}
+
+/* --- T4.21 · patterns: metadata unpinned, wireframe greys 12x apart,
+   gold card not closing evenly --- */
+html[data-theme="ember"] body.p-patterns .card-p28{display:flex;flex-direction:column}
+html[data-theme="ember"] body.p-patterns .card-p28 .lbl-cap{margin-top:auto}
+html[data-theme="ember"] .card-wire .row-ic > div:first-child{background:rgba(245,237,230,.14);opacity:1}
+html[data-theme="ember"] .card-wire .row-ic > div + div{background:rgba(245,237,230,.30)}
+html[data-theme="ember"] .card-gold{
+  background:var(--bg-card);border-color:var(--border);
+  border-left:3px solid var(--amber);border-radius:0 4px 4px 0}
+html[data-theme="ember"] .card-gold > :last-child,
+html[data-theme="ember"] .card-gold > :last-child > :last-child{margin-bottom:0}
+
+/* --- T4.22 · a box inside an identical box (51% empty, borders 33px
+   apart). Deleting the redundant frame rather than building a grid around
+   emptiness — flagged as my call, reversible. --- */
+html[data-theme="ember"] body.p-patterns .xi-patterns-023{
+  border:0!important;padding:0!important;margin:0 0 32px!important}
+
+/* --- T4.23 · writing/resources one-liners. Using .1em (not the plan's
+   .06em, which breaks the .15em eyebrow token) — measured below. --- */
+html[data-theme="ember"] body.p-resources .card-p32 > p:last-child{margin-bottom:0!important}
+html[data-theme="ember"] body.p-writing .card-p32 p,
+html[data-theme="ember"] body.p-resources .card-p32 p{max-width:54ch!important}
+html[data-theme="ember"] body.p-writing .lead{max-width:46ch!important}
+html[data-theme="ember"] body.p-writing header.xi-writing-003{border-bottom:0!important}
+@media (max-width:600px){
+  html[data-theme="ember"] body.p-writing .xi-writing-018{letter-spacing:.1em}
+}
+
+/* --- T4.24 · hire/screen remainder. .hand carries margin !important, so
+   clearance comes from the FOLLOWING sibling; .xi-hire-005 forces the span
+   colour, so the PARENT is muted instead. --- */
+html[data-theme="ember"] body.p-hire .hand + .hire-receipts,
+html[data-theme="ember"] body.p-screen .hand + .scr-q{margin-top:24px}
+html[data-theme="ember"] body.p-hire .hire-receipt{display:flex;flex-direction:column}
+html[data-theme="ember"] body.p-hire .hire-receipt small{margin-top:auto;padding-top:8px}
+html[data-theme="ember"] body.p-hire .hire-cred{color:var(--ink-dim)}
+
+/* --- T4.25 · control shape language. NOT applying the plan's
+   `.btn-a{border:1px solid transparent}`: it adds 2px to every .btn-a
+   sitewide, which is a regression risk across nav/hero/case CTAs. --- */
+html[data-theme="ember"] :is(.btn-a-ghost,.btn-b){border-radius:999px;border-color:var(--border-accent)}
+html[data-theme="ember"] .card-seg{border-radius:8px}
+/* two deltas from the verification pass: submit sat 4px shorter than the nav
+   pill (40 vs 44), and .ccd still carried a 32px top margin after top:auto */
+html[data-theme="ember"] body.p-home .form-slot button[type="submit"]{padding:14px 24px!important}
+html[data-theme="ember"] body.p-home .demo-slot .ccd{margin-top:0}
