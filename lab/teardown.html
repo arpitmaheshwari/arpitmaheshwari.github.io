@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How This Site Is Built — A Teardown — Arpit Maheshwari</title>
-<meta name="description" content="An honest engineering teardown of arpitmaheshwari.com: no build step, no framework on the classic site, two third-party domains, a 307.5 KB stylesheet, one type scale — and the things that are still missing.">
+<meta name="description" content="An honest engineering teardown of arpitmaheshwari.com: no build step, no framework on the classic site, two third-party domains, a 308.9 KB stylesheet, one type scale — and the things that are still missing.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="canonical" href="https://arpitmaheshwari.com/lab/teardown.html">
@@ -57,7 +57,7 @@
       </div>
       <div class="lab-links">
         <a href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io" data-cta="lab-github" data-location="teardown-hero">The whole repository ↗</a>
-        <a href="./loop.html" data-cta="lab-loop" data-location="teardown-hero">loop.js →</a>
+        <a href="./loop.html" data-cta="lab-loop" data-location="teardown-hero">loop.js →</a>
       </div>
     </div>
   </section>
@@ -72,7 +72,7 @@
           <thead><tr><th>What</th><th>Measured</th><th>How</th></tr></thead>
           <tbody>
             <tr><td>Hand-written HTML pages</td><td><b>39</b></td><td><span class="td-inline">find . -name "*.html"</span>, excluding the book and print sources</td></tr>
-            <tr><td>Stylesheet, entire site</td><td><b>307.5 KB</b></td><td><span class="td-inline">stat -f "%z" styles.css</span> → 314,864 bytes, unminified</td></tr>
+            <tr><td>Stylesheet, entire site</td><td><b>308.9 KB</b></td><td><span class="td-inline">stat -f "%z" styles.css</span> → 316,320 bytes, unminified</td></tr>
             <tr><td>Runtime dependencies, classic site</td><td><b>0</b></td><td>No root <span class="td-inline">package.json</span>, no <span class="td-inline">node_modules</span>, no bundler config</td></tr>
             <tr><td>Third-party domains serving code</td><td><b>2</b></td><td>Google Fonts and Google Analytics. Nothing else is fetched.</td></tr>
             <tr><td>Interactive pattern demos</td><td><b>9</b></td><td>All in <span class="td-inline">patterns/demos.js</span> — 234 lines, 12.9 KB</td></tr>
@@ -157,7 +157,7 @@
       </ul>
       <div class="lab-links">
         <a href="./index.html" data-cta="lab-home" data-location="teardown-foot">← Everything in The Lab</a>
-        <a href="../screen/" data-cta="lab-screen" data-location="teardown-foot">The technical screen, pre-answered →</a>
+        <a href="../screen/" data-cta="lab-screen" data-location="teardown-foot">The technical screen, pre-answered →</a>
         <a href="../index.html#contact" data-cta="send-role" data-location="teardown-foot">Send me the role ↗</a>
       </div>
     </div>

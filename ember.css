@@ -1100,13 +1100,28 @@ html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]
      precisely so focus never reads as "just a link").
    ================================================================ */
 
-/* --- 1 · lanes on a single axis --- */
+/* --- 1 · lanes: one reading axis on the left, the action parked top-right ---
+   The text keeps a single left axis (no sideways saccade). The CTA no longer
+   costs its own row: it rides the metric row at the right edge, so every lane
+   loses ~34px of height and gains a second, constant anchor the eye can find
+   without re-scanning. Anchoring to the metric row (fixed height) — not the
+   title (variable) — keeps all six CTAs on a predictable line. */
 html[data-theme="ember"] body.p-home .lanes .lane{
-  grid-template-columns:minmax(0,1fr);
-  grid-template-areas:"head" "title" "go";
-  row-gap:8px;padding:24px 32px}
+  grid-template-columns:minmax(0,1fr) auto;
+  grid-template-areas:"head go" "title title";
+  column-gap:24px;row-gap:8px;padding:24px 32px}
+html[data-theme="ember"] body.p-home .lanes .lane .go{
+  justify-self:end;align-self:center;margin-top:0;white-space:nowrap}
 html[data-theme="ember"] body.p-home .lanes .lane .ai-case-head,
 html[data-theme="ember"] body.p-home .lanes .lane > div:first-child{align-self:start}
+/* phone: no room for a right-hand column — stack, action last */
+@media (max-width:640px){
+  html[data-theme="ember"] body.p-home .lanes .lane{
+    grid-template-columns:minmax(0,1fr);
+    grid-template-areas:"head" "title" "go"}
+  html[data-theme="ember"] body.p-home .lanes .lane .go{
+    justify-self:start;margin-top:8px}
+}
 html[data-theme="ember"] body.p-home .lanes .lane .m{
   display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
   font-size:clamp(22px,2vw,30px);line-height:1.1}
@@ -1120,19 +1135,32 @@ html[data-theme="ember"] body[class*="p-case-studies"] .measure-c{
   max-width:704px;margin-left:auto;margin-right:auto;padding:0 24px}
 html[data-theme="ember"] body[class*="p-case-studies"] .measure-c :is(p,h2,h3,li,blockquote){
   max-width:none}
-/* objects that earn the full width break the spine, centred on it */
+/* Objects that earn the full width break the spine, centred on it.
+   THIS BREAKOUT NEEDS BOTH margin-left AND transform TO LAND TOGETHER. The
+   extracted per-page classes (.xi-*) carry `margin:… !important`, which killed
+   margin-left while transform still applied — throwing figures 520px off the
+   left edge on every case study. Both declarations are !important so the pair
+   can never half-apply again. Guarded by tools/overflow-sweep.py. */
 html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plF,.plM,.plO,.plP,.plV,
   .plA-caption,.plF-caption,.plM-caption,.plO-caption,.plP-caption,.plV-caption,
-  .case-vitals,.recon,.recon-stage,figure){
-  width:min(1040px,calc(100vw - 48px));max-width:none;
-  margin-left:50%;margin-right:0;transform:translateX(-50%)}
+  .case-vitals,.recon,.recon-stage,.measure-c figure){
+  width:min(1040px,calc(100vw - 48px))!important;max-width:none!important;
+  margin-left:50%!important;margin-right:0!important;transform:translateX(-50%)!important}
+/* the hero figure lives OUTSIDE the spine — it is already full-bleed, so the
+   breakout would shove it off the right edge (measured left=624 right=1664). */
 html[data-theme="ember"] body[class*="p-case-studies"] .case-hero__in{max-width:1040px}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-hero figure{
+  width:100%!important;margin-left:0!important;margin-right:0!important;transform:none!important}
 @media (max-width:1100px){
   html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plF,.plM,.plO,.plP,.plV,
     .plA-caption,.plF-caption,.plM-caption,.plO-caption,.plP-caption,.plV-caption,
-    .case-vitals,.recon,.recon-stage,figure){
-    width:100%;margin-left:0;transform:none}
+    .case-vitals,.recon,.recon-stage,.measure-c figure){
+    width:100%!important;margin-left:0!important;transform:none!important}
 }
+/* the quote's rule was sitting ON the text — the extraction stripped the
+   padding that used to hold it off. Declare it here, on the component. */
+html[data-theme="ember"] body[class*="p-case-studies"] blockquote.t-quote,
+html[data-theme="ember"] blockquote.t-quote{padding-left:24px}
 /* the boundary/gate cards now match the spine rather than floating inside it */
 html[data-theme="ember"] body[class*="p-case-studies"] :is(.note-gold,.note-gold-b,.case-gate,.framed,.rcpt-box,.framed-tight){
   max-width:none}
@@ -1159,14 +1187,67 @@ html[data-theme="ember"] body.p-home .work .k{max-width:860px;margin-left:auto;m
 /* Writing section — restored to the homepage (my prototype rebuild had dropped
    it while the nav still linked to #thoughts). Ember card grammar, purple heat
    matching the /writing/ page it leads to. */
-html[data-theme="ember"] body.p-home #thoughts{--heat:#A96BFF}
+/* --heat was #A96BFF: 4.99:1 on the card — a number that passes AA and still
+   reads badly at 11px. Canon's checked violet is #E86BFF (7.1:1). Same purple
+   identity, +42% contrast, and it is already the link colour sitewide. */
+html[data-theme="ember"] body.p-home #thoughts{--heat:#E86BFF}
 html[data-theme="ember"] body.p-home .thoughts-grid{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px;margin-top:32px}
 html[data-theme="ember"] body.p-home .thoughts-grid > *{
   background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--heat);
   border-radius:0 12px 12px 0;padding:24px}
 html[data-theme="ember"] body.p-home .thoughts-grid > *:hover{border-color:var(--border-accent);border-left-color:var(--heat)}
-html[data-theme="ember"] body.p-home .thought-tag{color:var(--heat)}
-html[data-theme="ember"] body.p-home .thought-title{font-size:20px;line-height:1.25;margin:8px 0}
-html[data-theme="ember"] body.p-home .thought-excerpt{color:var(--ink-muted);font-size:14px;line-height:1.65}
-html[data-theme="ember"] body.p-home .thought-meta{color:var(--ink-dim);margin-top:16px}
+/* Ink hierarchy: the TITLE is what you read, so it gets the highest-contrast
+   ink (cream, not a chromatic hue at weight 300). Colour is reserved for the
+   tag and the rail — labels, not body. Every value declared on this card, on
+   this card's own background, so no page-level selector fills one in. */
+html[data-theme="ember"] body.p-home .thought-tag{
+  color:var(--heat);font-size:11.5px;font-weight:500;letter-spacing:.12em}
+html[data-theme="ember"] body.p-home .thought-title{
+  color:var(--ink);font-weight:400;font-size:20px;line-height:1.25;margin:8px 0}
+html[data-theme="ember"] body.p-home .thoughts-grid > *:hover .thought-title{color:var(--heat)}
+html[data-theme="ember"] body.p-home .thought-excerpt{
+  color:rgba(245,237,230,.84);font-size:14px;line-height:1.65}
+html[data-theme="ember"] body.p-home .thought-meta{
+  color:rgba(245,237,230,.74);font-size:11.5px;margin-top:16px}
+
+/* ================================================================
+   SECTION SEAMS — the diagonal wedge is retired.
+   It was a 110px slab with a shallow clip-path pulled up by -60px, so it
+   sliced across whatever sat above it (it cut through the standfirst on the
+   home hero) and read as a rendering glitch rather than a decision.
+   Replaced with a seam that carries information: a hairline in the section's
+   own heat colour, fading out at both ends, over a soft wash. Sections now
+   separate by tone and hue, and nothing overlaps content.
+   ================================================================ */
+html[data-theme="ember"] body.p-home .seam,
+html[data-theme="ember"] body.p-home .seam-up{
+  height:1px;margin:0;clip-path:none;position:relative;z-index:0;overflow:visible;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--heat, #FF8A5C) 55%, transparent) 18%,
+    color-mix(in srgb, var(--heat, #FF8A5C) 55%, transparent) 82%,
+    transparent 100%)}
+/* the wash: a wide, very low-opacity bloom above the line, so the boundary
+   reads as a fade rather than an edge. Sits behind content, never over it. */
+html[data-theme="ember"] body.p-home :is(.seam,.seam-up)::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:120px;pointer-events:none;
+  background:linear-gradient(to top,
+    color-mix(in srgb, var(--heat, #FF8A5C) 9%, transparent), transparent);
+  z-index:-1}
+@media (prefers-reduced-motion:reduce){
+  html[data-theme="ember"] body.p-home :is(.seam,.seam-up)::after{height:64px}}
+
+/* ================================================================
+   RETIRED CLASSIC PALETTE — the gold that Ember never reached.
+   styles.css hard-coded #D4A85E (and #7E5A14) inside extracted per-page
+   classes carrying !important, so no ember rule could outrank them: badges,
+   card-gold panels and the "Send me the role" ghost button on 10 inner pages
+   still rendered in the old theme. Both are now tokens; Ember redefines them
+   once, here, and every instance follows. Guarded by
+   tools/theme-remnant-check.py, which fails on any retired colour that is
+   actually painted under Ember.
+   --goldA    #FFC46B  amber, 11.3:1 on the ember ground (canon)
+   --goldA-dk #C98F3F  the dim/border variant
+   ================================================================ */
+html[data-theme="ember"]{--goldA:#FFC46B;--goldA-dk:#C98F3F}

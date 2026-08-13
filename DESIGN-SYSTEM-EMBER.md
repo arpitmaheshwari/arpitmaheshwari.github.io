@@ -182,3 +182,36 @@ gradient below 32px); shipped as inline SVG (header), `favicon.svg` + `favicon.i
 - OG share cards — regenerate only as a follow-up decision, not in this port.
 - Copy, canon, and every number — content is theme-independent by definition.
 - The spacing grid and the gate suite — both themes answer to the same instruments.
+
+## Retired-palette tokens (added 2026-08-13)
+
+`styles.css` hard-coded the classic gold (`#D4A85E`, `#7E5A14`) inside extracted
+per-page classes carrying `!important`. No Ember rule could outrank them, so ten
+inner pages still rendered old-theme badges, cards and ghost buttons long after
+the port was called complete. Both are now tokens:
+
+| Token | Classic | Ember | Contrast on ember ground |
+|---|---|---|---|
+| `--goldA` | `#D4A85E` | `#FFC46B` | 11.3:1 |
+| `--goldA-dk` | `#7E5A14` | `#C98F3F` | border/dim variant only |
+
+**Rule: a colour that both themes need is a token, never a literal.** A literal in
+the shared stylesheet is a remnant waiting to happen.
+
+### Section heat
+`#thoughts` used `--heat:#A96BFF`, which measured **4.99:1 at 11px** — legal by the
+number, unreadable in practice. Ember section heat must come from the checked
+canon set (`--ember` 8.0, `--violet` 7.1, `--amber` 11.3, `--rose` 7.6). Card
+titles take `--ink`; colour is for labels and rails, not for the thing you read.
+
+## Gates that guard this file
+
+| Gate | Fails when | Calibration |
+|---|---|---|
+| `tools/overflow-sweep.py` | any element escapes the viewport at 1440/1024/768/390 | plants a −400px margin, requires red |
+| `tools/theme-remnant-check.py` | any element PAINTS a retired classic colour under Ember | plants `#515863` on `h1`, requires red |
+
+Both read rendered geometry and rendered colour, not CSS source — a component the
+port never reached cannot hide from them. Scrollable containers (`overflow-x:auto`)
+are exempt from the overflow sweep; `overflow:hidden` is **not**, because clipped
+content is unreachable content.

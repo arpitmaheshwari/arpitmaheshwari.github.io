@@ -1,0 +1,27 @@
+<!doctype html><html><body><script>
+const f=document.createElement('iframe');f.src='http://localhost:8000/resources/intelligent-systems-glossary.html';
+f.style.cssText='width:1440px;height:900px;border:0';document.body.appendChild(f);
+f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
+ const vw=d.documentElement.clientWidth,bad=[];
+ d.querySelectorAll('body *').forEach(el=>{const cs=w.getComputedStyle(el);
+  if(cs.position==='fixed'||cs.display==='none'||cs.visibility==='hidden')return;
+  const r=el.getBoundingClientRect(); if(r.width<8||r.height<4)return;
+  // Content inside a deliberately scrollable box (code blocks, wide tables) is
+  // ALLOWED to be wider than the viewport — that is the correct pattern, not a
+  // defect. Only flag it if it also escapes that box's own visible bounds.
+  let sc=el.parentElement, clipped=false;
+  while(sc&&sc!==d.body){const o=w.getComputedStyle(sc);
+   // ONLY auto/scroll earns the exemption. `hidden` means the content is clipped
+   // away and unreachable — that is a defect, not a scrolling affordance.
+   if(/(auto|scroll)/.test(o.overflowX)){const sr=sc.getBoundingClientRect();
+    if(sr.left>=-2&&sr.right<=vw+2){clipped=true;} break;} sc=sc.parentElement;}
+  if(clipped)return;
+  if(r.left<-2||r.right>vw+2){
+   bad.push({c:(el.tagName+'.'+((el.className+'').trim().split(/\s+/)[0]||'')).slice(0,40),
+    l:Math.round(r.left),r:Math.round(r.right),w:Math.round(r.width),
+    ml:cs.marginLeft,tf:cs.transform==='none'?'':'T'});}});
+ // keep only outermost offenders
+ const out=bad.filter((b,i)=>!bad.some((o,j)=>j<i&&o.l<=b.l&&o.r>=b.r));
+ document.title='R:'+JSON.stringify({vw,ox:d.documentElement.scrollWidth-vw,bad:out.slice(0,6)});
+}catch(e){document.title='R:{"err":"'+String(e).slice(0,90)+'"}'}},2600);};
+</script></body></html>
