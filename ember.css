@@ -240,7 +240,15 @@ html[data-theme="ember"] body.p-home{
   --serif:'Newsreader',Georgia,serif; --sans:'IBM Plex Sans',sans-serif;
   --mono:'IBM Plex Mono',monospace; --hand:'Caveat',cursive;
 }
-html[data-theme="ember"] body.p-home *{margin:0;padding:0;box-sizing:border-box}
+/* The prototype shipped a blanket *{margin:0;padding:0}. Scoped to body.p-home *
+   it outranks EVERY single-class rule, so each classic artifact spliced into this
+   page (QC slip, receipt panels, contact form) silently lost its padding — the QC
+   slip's absolutely-positioned sign-off box then overlapped its own checklist.
+   Keep the typographic margin reset the prototype relies on; drop the padding
+   blanket so components keep the padding they declare. (2026-08-13, measured.) */
+html[data-theme="ember"] body.p-home *{box-sizing:border-box}
+html[data-theme="ember"] body.p-home :is(h1,h2,h3,h4,h5,h6,p,figure,blockquote,dl,dd,dt,ul,ol){margin:0}
+html[data-theme="ember"] body.p-home :is(ul,ol):where(.hd-presets,.lanes,.rrow){padding:0}
 html[data-theme="ember"] body.p-home{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html[data-theme="ember"] body.p-home{scroll-behavior:auto}}
 html[data-theme="ember"] body.p-home{background:var(--bg0);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65}
@@ -570,4 +578,32 @@ html[data-theme="ember"] body.p-home .rcpt-more{
 @media (max-width:640px){
   html[data-theme="ember"] body.p-home .rcpt-row{grid-template-columns:1fr;gap:4px}
   html[data-theme="ember"] body.p-home .rcpt{padding:22px 20px}
+}
+
+/* ---------- EMBER HOMEPAGE · class-name collisions with the classic sheet ----------
+   The prototype names its sections .lead/.work/.close etc. Classic already owns
+   .lead as a TYPOGRAPHY class (font + max-width:46ch), so <section class="lead">
+   inherited a 534px reading measure: the memo cards rendered 144px wide and the
+   two letters 218px. Measured 2026-08-13 by walking the memo's ancestor chain.
+   Six names collide (.wrap .k .hand .lead .lede .m) — reset what the prototype
+   does not declare, on the homepage only. */
+html[data-theme="ember"] body.p-home main > section{max-width:none;width:auto}
+html[data-theme="ember"] body.p-home section.lead{
+  font-family:var(--sans);font-size:16px;font-weight:400;line-height:1.65;color:var(--ink)}
+html[data-theme="ember"] body.p-home .lanes .m{max-width:none;font-weight:400}
+html[data-theme="ember"] body.p-home .work .lede{max-width:64ch}
+/* the stamp cluster was flung to the page edges by the classic flex (justify-content
+   :center on a full-width row): ~500px of dead gap between the button and the slip.
+   Pair them as one object with designed space between. */
+html[data-theme="ember"] body.p-home .qc-slot .hk-qc{
+  justify-content:flex-start;gap:clamp(32px,5vw,80px);max-width:840px;margin-top:40px}
+html[data-theme="ember"] body.p-home .qc-slot .hk-qc-side{flex:0 1 320px}
+html[data-theme="ember"] body.p-home .qc-slot .hk-qc-obj{flex:0 0 300px;margin:0}
+/* at 390 the hero CTA's gradient sits in its violet half under the dark ink
+   (measured 3.51:1); flip to a solid ember fill on narrow screens where the
+   gradient has no room to read anyway */
+@media (max-width:640px){
+  /* beats the earlier [data-cta=send-role][data-location=hero] rule, which carries
+     !important from the classic-DOM era and was forcing the gradient back on */
+  html[data-theme="ember"] body.p-home .hero .pill-hot{background:#FFB08E!important;color:#1A0D08!important}
 }
