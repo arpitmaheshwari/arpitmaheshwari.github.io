@@ -47,7 +47,10 @@ def off_scale_spacing(root):
     # and get their own 0.5mm grid (see below).
     pats = ['*.html','*/index.html','case-studies/*.html','patterns/*.html','lab/*.html',
             'assets/og-images/*.html',
-            'styles.css','book/book.css','book/index.html']
+            'styles.css','ember.css','book/book.css','book/index.html']
+    # ember.css added 2026-08-13: the second design system was invisible to this gate
+    # for its whole first day, so ~90 off-grid values landed unseen. A gate that cannot
+    # see a stylesheet cannot govern it.
     # contrast-audit.py writes its canary page to a temp file INSIDE the docroot (it must be
     # same-origin to be instrumentable), named __ca_*.html. Running the two gates concurrently
     # made this gate read the OTHER gate's scratch file and report a phantom 6px off-grid

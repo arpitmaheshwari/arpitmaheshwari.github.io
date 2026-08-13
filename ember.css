@@ -525,3 +525,49 @@ html[data-theme="ember"] body.p-home .nav-cta{padding:11px 22px;line-height:1;wh
   html[data-theme="ember"] body.p-home .qc-stamp{transform:none;max-width:100%}
   html[data-theme="ember"] body.p-home .qc{max-width:100%}
 }
+
+/* ---------- EMBER HOMEPAGE · hero fits the viewport; receipts get their rhythm ----------
+   Measured 2026-08-13 at 1200x785: hero was 942px tall against 708px of usable
+   height (viewport minus the 77px sticky nav) — it overflowed by 234px, so the
+   credentials line and the CTAs sat below the fold on a laptop. The h1 clamp now
+   answers to viewport HEIGHT as well as width, and the band padding is fluid. */
+html[data-theme="ember"] body.p-home .hero{
+  /* #nav is position:FIXED (styles.css:108), so it reserves no flow space — the
+     hero starts at viewport top and must pay for the nav itself. Measured: the
+     kicker sat 23px UNDER the nav before this. --navh covers the 93px bar plus
+     air; the hero then fills exactly one viewport. */
+  --navh:93px;
+  padding:calc(var(--navh) + clamp(24px,4vh,56px)) 0 clamp(48px,8vh,120px);
+  min-height:100svh;display:flex;align-items:center}
+@media (max-width:900px){html[data-theme="ember"] body.p-home .hero{--navh:76px}}
+html[data-theme="ember"] body.p-home .hero h1{
+  font-size:clamp(38px,min(7.2vw,9.2vh),106px);max-width:16ch;
+  margin:clamp(14px,2.2vh,26px) 0 clamp(14px,2.2vh,26px)}
+html[data-theme="ember"] body.p-home .hero .cred{margin-top:clamp(20px,3.4vh,42px);line-height:1.9}
+html[data-theme="ember"] body.p-home .hero .ctas{margin-top:clamp(20px,3.2vh,36px)}
+@media (max-width:1040px){
+  html[data-theme="ember"] body.p-home .hero{min-height:0;display:block}
+}
+
+/* the inline receipt panels use .rcpt-row / .rcpt-l / .rcpt-v — NOT the .rcpt-r*
+   names I first wrote, so under Ember they inherited zero padding and read as one
+   solid block. Real class names, real rhythm. */
+html[data-theme="ember"] body.p-home .rcpt{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px 30px;margin-top:16px}
+html[data-theme="ember"] body.p-home .rcpt-h{font-family:var(--serif);font-weight:400;font-size:22px;line-height:1.3;margin:0 0 18px;color:var(--ink)}
+html[data-theme="ember"] body.p-home .rcpt-rows{display:flex;flex-direction:column}
+html[data-theme="ember"] body.p-home .rcpt-row{
+  display:grid;grid-template-columns:132px minmax(0,1fr);gap:24px;align-items:baseline;
+  padding:14px 0;border-bottom:1px solid var(--line)}
+html[data-theme="ember"] body.p-home .rcpt-row:last-of-type{border-bottom:none}
+html[data-theme="ember"] body.p-home .rcpt-l{
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  line-height:1.8;color:var(--dim)}
+html[data-theme="ember"] body.p-home .rcpt-v{font-size:14.5px;line-height:1.75;color:var(--mut)}
+html[data-theme="ember"] body.p-home .rcpt-more{
+  display:inline-block;margin-top:18px;font-family:var(--mono);font-size:11.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--amber);
+  text-decoration:underline;text-underline-offset:3px}
+@media (max-width:640px){
+  html[data-theme="ember"] body.p-home .rcpt-row{grid-template-columns:1fr;gap:4px}
+  html[data-theme="ember"] body.p-home .rcpt{padding:22px 20px}
+}
