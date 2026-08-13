@@ -1367,9 +1367,14 @@ html[data-theme="ember"] :is(.lab-wrap,.section-inner) :is(p,h1,h2,h3,dl,ul,ol,.
   margin-left:auto;margin-right:auto}
 /* homepage: every section EXCEPT the hero, whose left-aligned column is a
    deliberate pairing with the diagnostic card on its right. */
-html[data-theme="ember"] body.p-home main > section:not(.hero) .wrap > :is(p,h2,h3),
-html[data-theme="ember"] body.p-home main > section:not(.hero) .wrap > div > :is(p,h2,h3){
+/* Auto-centring applies ONLY to a single-column band, where a capped element
+   floats in the full page width. Inside a grid COLUMN (who, patterns) the same
+   rule gave eyebrow/body/headline three different left edges (measured
+   254/186/140 in one column) — in a column, everything sits flush left. */
+html[data-theme="ember"] body.p-home main > section:not(.hero) .wrap > :is(p,h2,h3){
   margin-left:auto;margin-right:auto}
+html[data-theme="ember"] body.p-home main > section:not(.hero) .wrap > div > :is(p,h2,h3){
+  margin-left:0;margin-right:0}
 
 /* /lab/ ran TWO prose measures in one column — .lab-lede at 781px and
    .t-body-muted at 1052px — so the column's edge moved as you read down it and
