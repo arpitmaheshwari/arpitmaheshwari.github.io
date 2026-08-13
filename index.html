@@ -745,9 +745,9 @@ if (contactForm) {
     if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
     if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: 'send-role', location: 'contact-submit' });
     const succeed = () => {
-      contactForm.innerHTML = '<div role="status" aria-live="polite" style="padding:24px 20px;background:var(--bg-card);border:1px solid var(--gold-dark);border-radius:4px">' +
-        '<p style="font-family:var(--ff-display);font-size:22px;font-weight:300;color:var(--ink);margin:0 0 4px 0">Got it — thank you.</p>' +
-        '<p style="font-size:14px;color:var(--ink-muted);line-height:1.65;margin:0">I reply within ~48 hours. If it\'s time-sensitive, book a call just above.</p></div>';
+      contactForm.innerHTML = '<div role="status" aria-live="polite" class="form-ok">' +
+        '<p class="form-ok-h">Got it — thank you.</p>' +
+        '<p class="form-ok-p">I reply within ~48 hours. If it\'s time-sensitive, book a call just above.</p></div>';
     };
     const fail = () => {
       if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }

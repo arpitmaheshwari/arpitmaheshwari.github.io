@@ -518,3 +518,10 @@ html[data-theme="ember"] body.p-home .hd-diag > a:hover{color:var(--amber)}
 /* nav CTA: the prototype pill sizing, not the classic block */
 html[data-theme="ember"] body.p-home .nav-cta{padding:11px 22px;line-height:1;white-space:nowrap;
   color:#1A0D08;font-weight:600}  /* dark ink on the hot gradient: cream measured 2.21:1 */
+@media (max-width:640px){
+  /* the QC slip is a rotated cream artifact — its rotated box overflowed the
+     viewport by 23px at 390 (measured in a real viewport, not headless) */
+  html[data-theme="ember"] body.p-home .qc-slot{overflow:hidden;padding:0 4px}
+  html[data-theme="ember"] body.p-home .qc-stamp{transform:none;max-width:100%}
+  html[data-theme="ember"] body.p-home .qc{max-width:100%}
+}
