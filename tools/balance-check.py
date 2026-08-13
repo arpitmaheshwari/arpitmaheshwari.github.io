@@ -45,9 +45,18 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
      && o.r.top<pr.bottom-4 && o.r.bottom>pr.top+4
      && (o.r.left>=pr.right+24 || o.r.right<=pr.left-24));});
  if(lonely.length<3){document.title='R:{"skip":1,"paired":'+(ps.length-lonely.length)+'}';return;}
- const L=med(lonely.map(p=>Math.round(p.getBoundingClientRect().left)));
- const R=med(lonely.map(p=>Math.round(vw-p.getBoundingClientRect().right)));
- document.title='R:'+JSON.stringify({vw,n:lonely.length,left:L,right:R,skew:Math.abs(L-R)});
+ // THE READING COLUMN IS THE DOMINANT AXIS, not a blind median. A demo widget's
+ // right-hand list (7 items at x=757 on lab/eval) once outvoted the prose and
+ // produced a phantom skew — the page's actual column was dead centre. Cluster
+ // left edges (12px bins), take the largest cluster as the column, and judge
+ // balance for THAT column only; off-axis items are compositions.
+ const bins={};
+ lonely.forEach(p=>{const l=Math.round(p.getBoundingClientRect().left/12)*12;(bins[l]=bins[l]||[]).push(p);});
+ const col=Object.values(bins).sort((a,b)=>b.length-a.length)[0];
+ if(col.length<3){document.title='R:{"skip":1,"paired":0}';return;}
+ const L=med(col.map(p=>Math.round(p.getBoundingClientRect().left)));
+ const R=med(col.map(p=>Math.round(vw-p.getBoundingClientRect().right)));
+ document.title='R:'+JSON.stringify({vw,n:col.length,left:L,right:R,skew:Math.abs(L-R)});
 }catch(e){document.title='R:{"err":"'+String(e).slice(0,80)+'"}'}},2800);};
 </script></body></html>"""
 

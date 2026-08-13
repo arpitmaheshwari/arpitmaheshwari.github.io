@@ -1417,3 +1417,23 @@ html[data-theme="ember"] .ba-table td{
 html[data-theme="ember"] .ba-table td:nth-child(2){color:rgba(245,237,230,.62)}
 html[data-theme="ember"] .ba-table td:nth-child(3){color:var(--ink)}
 html[data-theme="ember"] .ba-table td:first-child{font-weight:600;min-width:180px}
+
+/* ================================================================
+   /lab/ — ONE READING AXIS (2026-08-14)
+   The balance pass centred each capped element as a block; different widths
+   (781/613/453) meant eyebrow, body and title each started at a different x —
+   three axes measured at 330 / 424 / 494. Balanced is not aligned: the column
+   is capped ONCE and every text element sits flush to its left edge.
+   ================================================================ */
+html[data-theme="ember"] .lab-wrap{max-width:781px;margin-left:auto;margin-right:auto}
+html[data-theme="ember"] .lab-wrap :is(p,h1,h2,h3,dl,ul,ol,.lab-note,.lab-body){
+  margin-left:0;margin-right:0;max-width:none}
+/* the artifact cards earn more width than prose: break out of the spine, centred */
+html[data-theme="ember"] .lab-wrap .lab-cards{
+  width:min(1100px,calc(100vw - 48px));max-width:none;
+  margin-left:50%;margin-right:0;transform:translateX(-50%)}
+@media (max-width:1160px){
+  html[data-theme="ember"] .lab-wrap .lab-cards{width:100%;margin-left:0;transform:none}}
+/* section rhythm: lab sections join the sitewide 96px top cadence */
+html[data-theme="ember"] :is([class*="p-lab"]) main .section .lab-wrap{padding-top:96px}
+html[data-theme="ember"] :is([class*="p-lab"]) main .section:first-child .lab-wrap{padding-top:0}
