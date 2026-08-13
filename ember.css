@@ -607,3 +607,108 @@ html[data-theme="ember"] body.p-home .qc-slot .hk-qc-obj{flex:0 0 300px;margin:0
      !important from the classic-DOM era and was forcing the gradient back on */
   html[data-theme="ember"] body.p-home .hero .pill-hot{background:#FFB08E!important;color:#1A0D08!important}
 }
+
+/* ================================================================
+   EMBER · CASE STUDIES — the prototype grammar applied to the case
+   page's own components. Each case carries one heat as its identity
+   (matching its lane on the homepage). The client-product
+   reconstructions (.plA/.plB/.pl*, .recon, .rx*) are period artifacts
+   and are deliberately NOT reskinned — same rule as the cream objects.
+   ================================================================ */
+html[data-theme="ember"] body[class*="p-case-studies"]{--heat:var(--ember);--heat2:#FFB08E}
+html[data-theme="ember"] body.p-case-studies-adtech{--heat:#FF6A3D;--heat2:#FFB08E}
+html[data-theme="ember"] body.p-case-studies-fintech{--heat:#C64BFF;--heat2:#E86BFF}
+html[data-theme="ember"] body.p-case-studies-vc-diligence{--heat:#FFC46B;--heat2:#FFE0A8}
+html[data-theme="ember"] body.p-case-studies-ptc{--heat:#FF5FA2;--heat2:#FF9DC6}
+html[data-theme="ember"] body.p-case-studies-o2{--heat:#A96BFF;--heat2:#E86BFF}
+html[data-theme="ember"] body.p-case-studies-orgos{--heat:#FF8A5C;--heat2:#FFC46B}
+
+/* --- hero: the gradient field, tinted by the case's heat --- */
+html[data-theme="ember"] body[class*="p-case-studies"] .case-hero{
+  position:relative;overflow:hidden;background:transparent;
+  padding:calc(93px + clamp(24px,4vh,56px)) 0 clamp(48px,8vh,96px)}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;background:
+    radial-gradient(900px 460px at 88% -14%, color-mix(in srgb, var(--heat) 42%, transparent), transparent 62%),
+    radial-gradient(700px 500px at -6% 112%, rgba(155,75,255,.34), transparent 62%),
+    linear-gradient(160deg,#1E1022 0%,#120B14 58%,#190D10 100%)}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-hero__in{position:relative;z-index:1}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-hero__kicker{color:var(--heat)}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-hero h1{
+  font-size:clamp(38px,min(6vw,8.4vh),82px);line-height:1.04;margin:20px 0 20px}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-hero__hook{
+  font-size:clamp(16px,1.5vw,19px);line-height:1.7;color:var(--ink-muted);max-width:60ch}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-hero .hand{color:var(--amber)}
+
+/* --- the stat row: heat-coded cards, the homepage receipts language --- */
+html[data-theme="ember"] body[class*="p-case-studies"] .case-stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px;margin-top:32px}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-stat{
+  background:var(--bg-card);border:none;border-top:3px solid var(--heat);
+  border-radius:10px;padding:20px}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-stat b{
+  display:block;font-family:var(--ff-display);font-weight:400;
+  font-size:clamp(24px,2.4vw,34px);line-height:1.1;color:var(--heat)}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-stat span{
+  display:block;margin-top:8px;font-family:var(--ff-mono);font-size:11.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);line-height:1.8}
+
+/* --- vitals: a quiet card strip, not a bare dl --- */
+html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+  padding:20px 24px;gap:24px 32px}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals dt{
+  font-family:var(--ff-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim)}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals dd{color:var(--ink);margin-top:4px}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals .gold{color:var(--heat)}
+
+/* --- ownership + receipt blocks: bordered cards with the label column --- */
+html[data-theme="ember"] body[class*="p-case-studies"] .framed-tight,
+html[data-theme="ember"] body[class*="p-case-studies"] .framed{
+  background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--heat);
+  border-radius:0 12px 12px 0;padding:8px 24px}
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.rcpt-r,.rcpt-r-tight,.rcpt-r-last,.rcpt-r-tight-last){
+  display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;align-items:baseline;
+  padding:14px 0;border-bottom:1px solid var(--border)}
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.rcpt-r-last,.rcpt-r-tight-last){border-bottom:none}
+html[data-theme="ember"] body[class*="p-case-studies"] .lbl-eyebrow{color:var(--ink-dim);line-height:1.8}
+@media (max-width:640px){
+  html[data-theme="ember"] body[class*="p-case-studies"] :is(.rcpt-r,.rcpt-r-tight,.rcpt-r-last,.rcpt-r-tight-last){
+    grid-template-columns:1fr;gap:4px}
+}
+
+/* --- section rhythm: alternating bands with one angled seam --- */
+html[data-theme="ember"] body[class*="p-case-studies"] main > section:nth-of-type(even){
+  background:var(--bg-soft);position:relative}
+html[data-theme="ember"] body[class*="p-case-studies"] main > section:nth-of-type(even)::before{
+  content:"";position:absolute;left:0;right:0;top:-56px;height:56px;background:var(--bg-soft);
+  clip-path:polygon(0 100%,100% 0,100% 100%,0 100%);pointer-events:none}
+
+/* --- pull quotes: the heat rail --- */
+html[data-theme="ember"] body[class*="p-case-studies"] .t-quote,
+html[data-theme="ember"] body[class*="p-case-studies"] blockquote{
+  border-left:3px solid var(--heat);background:var(--bg-card);
+  border-radius:0 10px 10px 0;padding:20px 24px}
+
+/* --- CTAs --- */
+html[data-theme="ember"] body[class*="p-case-studies"] .btn-a,
+html[data-theme="ember"] body[class*="p-case-studies"] .lbl-pill-bg,
+html[data-theme="ember"] body[class*="p-case-studies"] .btn-label{
+  border-radius:999px;background:linear-gradient(92deg,var(--heat),var(--heat2))!important;color:#1A0D08!important}
+/* .measure-c caps the whole case body at 595px — right for prose, wrong for the
+   card components, which sat centred in a narrow column with dead space either
+   side. Widen the container; give the PROSE its measure back explicitly; pin the
+   client-product reconstructions to their original width so widening the column
+   cannot distort a period artifact. */
+html[data-theme="ember"] body[class*="p-case-studies"] .measure-c{max-width:1100px;padding:0 24px}
+html[data-theme="ember"] body[class*="p-case-studies"] .measure-c > :is(p,h2,h3,ul,ol,blockquote,.t-quote),
+html[data-theme="ember"] body[class*="p-case-studies"] .measure-c > div > :is(p,h2,h3){max-width:66ch}
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plB,.plC,.recon,.recon-stage,[class^="pl"],[class*=" pl"]){
+  max-width:640px;margin-left:0}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-hero__in{max-width:1100px;padding:0 24px;margin:0 auto}
+/* widening the container cost the prose its reading measure (body copy ran to
+   ~1050px). Cap the TEXT wherever it sits in the flow; inside cards let the
+   card's own width govern so no card carries a dead right-hand column. */
+html[data-theme="ember"] body[class*="p-case-studies"] .measure-c :is(p,h2,h3,li,blockquote){max-width:66ch}
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.framed,.framed-tight,.case-vitals,.t-quote) :is(p,h2,h3,li,div,dd,dt,blockquote){max-width:none}
+html[data-theme="ember"] body[class*="p-case-studies"] .framed{max-width:76ch}
