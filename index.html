@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="ember">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +46,7 @@
 <meta name="twitter:site" content="@arp_maheshwari">
 <meta name="twitter:creator" content="@arp_maheshwari">
 <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-<link rel="icon" type="image/svg+xml" href="./assets/logo.svg">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="./assets/favicon.png">
 <link rel="shortcut icon" href="./assets/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -146,6 +146,7 @@
   gtag('config', 'G-PFY6ME99K8');
 </script>
 <link rel="stylesheet" href="./styles.css?v=p64">
+<link rel="stylesheet" href="./ember.css?v=e1">
 </head>
 <body class="p-home">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -175,7 +176,6 @@
   <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
   <symbol id="i-quote" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></symbol>
 </svg>
-
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a class="row-ic xi-home-002" href="./index.html"><img class="xi-home-003" src="./assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -185,33 +185,21 @@
 
 <main id="main">
 
-<section class="xi-home-004" id="hero">
-  <canvas class="xi-home-005" id="hero-canvas" aria-hidden="true"></canvas>
-  <div class="hero-bg xi-home-006" aria-hidden="true"></div>
-  <div class="hero-grid-lines xi-home-006" aria-hidden="true"></div>
-  <div class="xi-home-007">
-  <div class="xi-home-008">
-  <p class="hero-eyebrow lbl-eyebrow xi-home-009">Product &amp; Design Leader · AI &amp; Data-Intensive Products</p>
-  <h1 class="hero-headline">
-    <span class="line"><span class="line-inner">Your model is right.</span></span>
-    <span class="line"><span class="line-inner">Your users still</span></span>
-    <span class="line"><span class="line-inner"><em>won't bet on it.</em></span></span>
-  </h1>
-  <p class="xi-home-010">
-    The half-second of doubt is the only thing I design. Sixteen years, five industries, one problem.
-  </p>
-
-  <div class="hero-cta-row xi-home-011">
-    <a class="xi-home-012 hv-home-1" href="#contact" data-cta="send-role" data-location="hero">Send me the role <svg class="icon xi-home-013" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-    <a class="xi-home-014 hv-home-2" href="#featured-case-studies" data-cta="see-work" data-location="hero">See selected work <svg class="icon xi-home-015" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-  </div>
-
-  <div class="xi-home-016">
-    <img class="xi-home-017" src="./arpit-maheshwari.jpg" alt="Arpit Maheshwari" width="56" height="56">
-  <p class="hero-cred xi-home-018">Shipped for <span class="xi-home-019">Telefónica O2</span> — 4M+ users &nbsp;·&nbsp; <span class="xi-home-019">PTC</span> — NASA, Boeing, Toyota, Airbus &amp; Apple among clientele &nbsp;·&nbsp; AI products since 2019</p>
-  </div>
-  </div>
-  <div class="hero-demo reveal xi-home-004" role="group" aria-label="Try it: where does your AI product lose people?">
+<!-- ============ HERO — prototype layout, live diagnostic kept ============ -->
+<section class="hero" aria-labelledby="h-hero">
+  <div class="field" aria-hidden="true"></div>
+  <div class="wrap in hero-split">
+    <div class="hero-copy">
+      <p class="k">Product &amp; Design Leader · AI &amp; Data-Intensive Products</p>
+      <h1 id="h-hero">Your model is right. Your users still <span class="grad">won't bet on it.</span></h1>
+      <p class="sub">The half-second of doubt is the only thing I design. Sixteen years, five industries, one problem — and the receipts for all of it.</p>
+      <div class="ctas">
+        <a class="pill pill-hot" href="#contact" data-cta="send-role" data-location="hero">Send me the role →</a>
+        <a class="pill pill-line" href="#work" data-cta="see-work" data-location="hero">See selected work</a>
+      </div>
+      <p class="cred">Shipped for <b>Telefónica O2</b> — 4M+ users · <b>PTC</b> — NASA, Boeing, Toyota, Airbus &amp; Apple among clientele · AI products since 2019</p>
+    </div>
+    <div class="hero-widget"><div class="hero-demo reveal xi-home-004" role="group" aria-label="Try it: where does your AI product lose people?">
     <div class="hd-tag">Building AI? &mdash; name your problem</div>
     <div class="hd-card">
       <div id="hd-diag">
@@ -234,70 +222,23 @@
         <button type="button" class="hd-reset" id="hd-reset">↩ try another</button>
       </div>
     </div>
-  </div>
+  </div></div>
   </div>
 </section>
 
-<!-- ACT — THE RECEIPTS (cream peak; proof as the loudest thing on the page) -->
-<section class="section act-cream proof-act">
-  <div class="section-inner">
-    <p class="eyebrow">The receipts — four industries</p>
-    <div class="xi-home-022">
-      <div>
-        <h2 class="section-title mk-ul">What changed when they trusted the machine.<svg viewBox="0 0 240 12" aria-hidden="true"><path d="M4,8 C40,3 90,10 140,5 C180,2 216,9 236,5"/></svg></h2>
-        <p class="hand xi-home-023" aria-hidden="true">numbers are easy — the receipts are hard. click one ↓</p>
-      </div>
-      
+<!-- ============ RECEIPTS ============ -->
+<section class="receipts" aria-labelledby="h-receipts">
+  <div class="seam" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="k">The receipts — four industries, baselines included</p>
+    <h2 id="h-receipts">What changed when they trusted the machine.</h2>
+    <span class="hand" aria-hidden="true">numbers are easy — the receipts are hard. click one ↓</span>
+    <div class="rrow">
+      <div class="rcell rc1" id="chip-adtech"><b>3 hrs</b><span>campaign planning, down from two weeks · AdTech · per campaign · +£69k media value/client</span><button type="button" class="rcpt-btn" data-receipt="adtech" aria-expanded="false" aria-controls="receipt-adtech" data-cta="receipt" data-location="receipts-chip-1">What the two weeks held →</button></div>
+      <div class="rcell rc2" id="chip-fintech"><b>60%</b><span>faster PE deal screening · FinTech · pre/post rollout</span><button type="button" class="rcpt-btn" data-receipt="fintech" aria-expanded="false" aria-controls="receipt-fintech" data-cta="receipt" data-location="receipts-chip-2">How it was measured →</button></div>
+      <div class="rcell rc3" id="chip-ptc"><b>$1M / yr</b><span>saved off the print budget · EdTech · vs 2016 baseline</span><button type="button" class="rcpt-btn" data-receipt="ptc" aria-expanded="false" aria-controls="receipt-ptc" data-cta="receipt" data-location="receipts-chip-3">Where the million went →</button></div>
+      <div class="rcell rc4" id="chip-o2"><b>4M+</b><span>users on two O2 products · Telecom · O2 UK · publicly reported</span><button type="button" class="rcpt-btn" data-receipt="o2" aria-expanded="false" aria-controls="receipt-o2" data-cta="receipt" data-location="receipts-chip-4">Which parts were mine →</button></div>
     </div>
-    <div class="proof-zone"><div class="proof-grid">
-    <div class="proof-cell" id="chip-adtech">
-      <div class="metric-num">3&nbsp;hrs</div>
-      <div class="proof-cap">Campaign planning, down from two weeks — once traders trusted the algorithm. Worth £69k more media value per client.</div>
-      <div class="proof-meta">AdTech · per campaign</div>
-      <button type="button" class="rcpt-btn" data-receipt="adtech" aria-expanded="false" aria-controls="receipt-adtech" data-cta="receipt" data-location="receipts-chip-1">What the two weeks held →</button>
-    </div>
-    <div class="proof-cell" id="chip-fintech">
-      <div class="metric-num">60%</div>
-      <div class="proof-cap">Faster PE deal screening, after the model learned to explain itself.</div>
-      <div class="proof-meta">FinTech · pre/post rollout</div>
-      <button type="button" class="rcpt-btn" data-receipt="fintech" aria-expanded="false" aria-controls="receipt-fintech" data-cta="receipt" data-location="receipts-chip-2">How it was measured →</button>
-    </div>
-    <div class="proof-cell" id="chip-ptc">
-      <div class="metric-num">$1M</div>
-      <div class="proof-cap">Saved every year, once the training platform moved off printed guides.</div>
-      <div class="proof-meta">EdTech · vs 2016 print budget</div>
-      <button type="button" class="rcpt-btn" data-receipt="ptc" aria-expanded="false" aria-controls="receipt-ptc" data-cta="receipt" data-location="receipts-chip-3">Where the million went →</button>
-    </div>
-    <div class="proof-cell" id="chip-o2">
-      <div class="metric-num">4M+</div>
-      <div class="proof-cap">Users on the two O2 products I co-designed, then shipped as code.</div>
-      <div class="proof-meta">Telecom · O2 UK · publicly reported</div>
-      <button type="button" class="rcpt-btn" data-receipt="o2" aria-expanded="false" aria-controls="receipt-o2" data-cta="receipt" data-location="receipts-chip-4">Which parts were mine →</button>
-    </div>
-    </div><div class="proof-zone-rail reveal">
-        <div class="hko hko--tr">
-          <div class="hkr" aria-label="A till receipt totalling the four numbers on the left">
-            <p class="hkr-h">A. Maheshwari</p>
-            <p class="hkr-tag">product &amp; design leader &middot; est. 2010</p>
-            <div class="hkr-dv"></div>
-            <div class="hkr-li"><span>campaign planning</span><b>2 wks &rarr; 3 hrs</b></div>
-            <span class="hkr-sm">adtech &middot; per campaign &middot; +&pound;69k media value/client</span>
-            <div class="hkr-li"><span>pe deal screening</span><b>60% faster</b></div>
-            <span class="hkr-sm">fintech &middot; pre/post rollout</span>
-            <div class="hkr-li"><span>print training budget</span><b>&minus;$1M / yr</b></div>
-            <span class="hkr-sm">edtech &middot; vs 2016 print budget</span>
-            <div class="hkr-li"><span>users shipped</span><b>4M+</b></div>
-            <span class="hkr-sm">telecom &middot; o2 uk &middot; publicly reported</span>
-            <div class="hkr-dv"></div>
-            <div class="hkr-tot"><span>TOTAL</span><span>16 yrs &middot; 1 problem</span></div>
-            <p class="hkr-meta">baselines included &middot; sources on request</p>
-            <a class="hkr-keep" href="data:text/plain;charset=utf-8,A.%20MAHESHWARI%20%E2%80%94%20RECEIPT%0Aproduct%20%26%20design%20leader%20%C2%B7%20est.%202010%0A%0Acampaign%20planning%20%20%20%20%202%20wks%20-%3E%203%20hrs%20%20(adtech%20%C2%B7%20per%20campaign%20%C2%B7%20%2B%C2%A369k%20media%20value%2Fclient)%0Ape%20deal%20screening%20%20%20%20%2060%25%20faster%20%20%20%20%20%20(fintech%20%C2%B7%20pre%2Fpost%20rollout)%0Aprint%20training%20budget%20-%241M%20%2F%20yr%20%20%20%20%20%20%20(edtech%20%C2%B7%20vs%202016%20print%20budget)%0Ausers%20shipped%20%20%20%20%20%20%20%20%204M%2B%20%20%20%20%20%20%20%20%20%20%20%20(telecom%20%C2%B7%20o2%20uk%20%C2%B7%20publicly%20reported)%0A%0ATOTAL%3A%2016%20yrs%20%C2%B7%201%20problem%0Abaselines%20included%20%C2%B7%20sources%3A%20arpitmaheshwari.com" download="receipt-arpit-maheshwari.txt" data-cta="download-receipt" data-location="proof-act">keep it &mdash; download the receipt (.txt)</a>
-          </div>
-        </div>
-        
-      </div></div>
-
-    <!-- Inline receipts — every field traceable to CANONICAL-FACTS / the case pages. -->
     <section id="receipt-adtech" class="rcpt" hidden aria-labelledby="rcpt-h-adtech">
       <h3 id="rcpt-h-adtech" tabindex="-1" class="rcpt-h">Receipt — campaign planning, 2 wks → 3 hrs</h3>
       <div class="rcpt-rows">
@@ -312,8 +253,7 @@
     
     
 </section>
-
-    <section id="receipt-fintech" class="rcpt" hidden aria-labelledby="rcpt-h-fintech">
+<section id="receipt-fintech" class="rcpt" hidden aria-labelledby="rcpt-h-fintech">
       <h3 id="rcpt-h-fintech" tabindex="-1" class="rcpt-h">Receipt — deal screening, 60% faster</h3>
       <div class="rcpt-rows">
         <div class="rcpt-row"><div class="rcpt-l">Claim</div><div class="rcpt-v">Private-equity deal screening ran 60% faster once analysts stopped re-verifying the machine.</div></div>
@@ -325,8 +265,7 @@
       </div>
       <a class="rcpt-more" href="./case-studies/fintech.html" data-cta="case" data-location="receipt-fintech">The full case →</a>
     </section>
-
-    <section id="receipt-ptc" class="rcpt" hidden aria-labelledby="rcpt-h-ptc">
+<section id="receipt-ptc" class="rcpt" hidden aria-labelledby="rcpt-h-ptc">
       <h3 id="rcpt-h-ptc" tabindex="-1" class="rcpt-h">Receipt — $1M / yr, and a business model shifted</h3>
       <div class="rcpt-rows">
         <div class="rcpt-row"><div class="rcpt-l">Claim</div><div class="rcpt-v">$1M saved every year off the print budget; subscriptions went 0% → 64% of new bookings in a year (Q3 2017 → Q3 2018).</div></div>
@@ -338,8 +277,7 @@
       </div>
       <a class="rcpt-more" href="./case-studies/ptc.html" data-cta="case" data-location="receipt-ptc">The full case →</a>
     </section>
-
-    <section id="receipt-o2" class="rcpt" hidden aria-labelledby="rcpt-h-o2">
+<section id="receipt-o2" class="rcpt" hidden aria-labelledby="rcpt-h-o2">
       <h3 id="rcpt-h-o2" tabindex="-1" class="rcpt-h">Receipt — 4M+ users, co-designed then coded</h3>
       <div class="rcpt-rows">
         <div class="rcpt-row"><div class="rcpt-l">Claim</div><div class="rcpt-v">MyO2 served 4M+ users; Priority Moments took 2.6M sign-ups in year one with a 5★ App Store rating.</div></div>
@@ -351,176 +289,69 @@
       </div>
       <a class="rcpt-more" href="./case-studies/o2.html" data-cta="case" data-location="receipt-o2">The full case →</a>
     </section>
-  </div>
-    
-</section>
-
-<!-- Identity strip — the person, using the editorial sidehead layout for consistency -->
-<section class="section">
-  <div class="section-inner editorial editorial--rail">
-    <div class="section-numeral"><h2 class="section-numeral-name">Who you'd be hiring</h2></div>
-    <div class="section-body reveal">
-      <div class="who-grid">
-        <img class="xi-home-025" src="./arpit-maheshwari.jpg" alt="Arpit Maheshwari, design leader" width="116" height="116" loading="lazy" />
-        <div class="xi-home-026">
-          <h3 class="section-title xi-home-027">Arpit Maheshwari</h3>
-          <p class="u-body xi-home-028">By Friday of week one I've read your evals and sat in on your customer calls; by launch, the interface I drew is the code I shipped.</p>
-          <p class="lead xi-home-029">I read the model at the eval layer. I shape what gets measured. I ship the front-end.</p>
-          <p class="u-body xi-home-030">On my first accessibility project I spent a week with my monitor switched off, navigating by screen-reader — designing for someone who isn't you starts by becoming them. <a class="xi-home-024" href="./case-studies/ptc.html#the-miss" data-cta="the-miss" data-location="who-youd-hire">That project started as my documented miss →</a></p>
-          <p class="xi-home-031"><span class="xi-home-032">Fully remote</span> &nbsp;·&nbsp; GMT+5:30 · both US coasts, daily</p>
-        </div>
-        
-      </div>
-    </div>
-    <div class="rail-obj hko hko--tr reveal">
-          <div class="cf" role="img" aria-label="A nutrition-facts style label: Candidate Facts. Experience 16 years, industries 5, patterns in production 8 under one rule, users shipped 4 million plus publicly reported, fabricated metrics zero. Contains one documented failure, disclosed in the PTC case.">
-            <p class="cf-h">Candidate Facts</p>
-            <div class="cf-serv">Serving size: 30 minutes &middot; Servings: 1 seat</div>
-            <div class="cf-row cf-row--thick"><span><b>Experience</b></span><span><b>16 yrs</b></span></div>
-            <div class="cf-row"><span><b>Industries</b></span><span>5</span></div>
-            <div class="cf-row"><span><b>Patterns in production</b></span><span>8</span></div>
-            <div class="cf-row cf-row--ind"><span>Act / Review / Ignore</span><span>1 rule</span></div>
-            <div class="cf-row"><span><b>Users shipped</b></span><span>4M+</span></div>
-            <div class="cf-row cf-row--ind"><span>publicly reported &middot; O2 UK</span><span>100%</span></div>
-            <div class="cf-row cf-row--thick"><span><b>Fabricated metrics</b></span><span><b>0 g</b></span></div>
-            <p class="cf-foot"><b>Allergen notice:</b> contains one documented failure &mdash; disclosed in full in the PTC case. <b>Contains no:</b> logo walls, invented baselines, confident guesses.</p>
-          </div>
-        </div>
+    <div class="rfoot"><b>TOTAL — 16 YRS · 1 PROBLEM</b><span>baselines included · sources on request · <a href="data:text/plain;charset=utf-8,A.%20MAHESHWARI%20%E2%80%94%20RECEIPT" download="receipt-arpit-maheshwari.txt" data-cta="download-receipt" data-location="proof-act">keep it: download the receipt (.txt)</a></span></div>
   </div>
 </section>
 
-
-<!-- ===== Currently / momentum signal: subsumed into hero availability line per restructure v2 ===== -->
-
-<!-- ===== SELECTED WORK ===== -->
-
-
-<section id="featured-case-studies" class="section xi-home-033"><div class="section-inner">
-  <div class="section-numeral">
-    <h2 class="section-numeral-name">Selected Work</h2>
-  </div>
-  <div class="sw-zone"><div class="sw-main"><h2 class="section-title xi-home-027">The AI work is the headline. The rest is the range under it.</h2>
-  <p class="u-body xi-home-034">Six products, one job running through all of them: get a professional to trust a system enough to act on it. The first three are AI &mdash; two of them LLMs reading unstructured documents. Two of the rest are public &mdash; PTC and O2 &mdash; which means you can check them yourself; OrgOS is under NDA. Where a client is under NDA I walk the real artifacts and numbers on a call.</p>
-  <div class="case-key" role="group" aria-label="The method behind the AI cases: a model's score meets human doubt and the design turns it into action; the earlier cases show the range that led there">
-    <p class="eyebrow">The method behind the AI cases</p>
-    <h3 class="section-title xi-home-035">The AI cases run on the same four beats.</h3>
-    <p class="u-body xi-home-036">A model produces a score, a person doubts it, and the design turns that doubt into an action they&rsquo;re willing to take &mdash; an action that shows up in the business. PTC and O2 predate the pattern &mdash; product strategy and craft at consumer scale &mdash; and are read on their own terms.</p>
-    
-  </div></div>
-  <div class="sw-trace">
-    <div class="sw-trace-flow" aria-hidden="true">
-      <span class="xi-home-037"><span class="lbl-ink-400 xi-home-038">Score</span><span class="lbl-micro xi-home-039">model output</span></span>
-      <svg class="scr scr--down xi-home-040" preserveAspectRatio="none" viewBox="0 0 64 20"><path d="M4,12 C20,7 40,13 56,9 M56,9 l-9,-3 M56,9 l-7,7" stroke-width="2"/></svg>
-      <span class="xi-home-037"><span class="lbl-ink-400 xi-home-038">Doubt</span><span class="lbl-micro xi-home-039">human reality</span></span>
-      <svg class="scr scr--down xi-home-040" preserveAspectRatio="none" viewBox="0 0 64 20"><path d="M4,9 C20,14 40,6 56,11 M56,11 l-9,-2 M56,11 l-6,6" stroke-width="2"/></svg>
-      <span class="xi-home-041"><svg class="scr xi-home-042" preserveAspectRatio="none" viewBox="0 0 160 64"><path d="M12,32 C14,12 66,6 106,9 C146,12 154,24 150,38 C145,55 92,60 52,57 C18,54 6,44 12,28 C18,13 64,6 104,9" stroke-width="2.2" opacity=".85"/></svg><span class="lbl-eyebrow xi-home-038">Action</span><span class="lbl-micro xi-home-039">our design</span></span>
-      <svg class="scr scr--down xi-home-040" preserveAspectRatio="none" viewBox="0 0 64 20"><path d="M4,11 C20,8 40,12 56,8 M56,8 l-9,-1 M56,8 l-6,7" stroke-width="2"/></svg>
-      <span class="xi-home-037"><span class="lbl-ink-400 xi-home-038">Impact</span><span class="lbl-micro xi-home-039">business result</span></span>
+<!-- ============ WHO ============ -->
+<section class="who" aria-labelledby="h-who">
+  <div class="wrap">
+    <div>
+      <p class="k">Who you'd be hiring</p>
+      <h2 id="h-who">By Friday of week one I've read your evals and sat in on your customer calls; by launch, the interface I drew is the code I shipped.</h2>
+      <p>I read the model at the eval layer. I shape what gets measured. I ship the front-end.</p>
+      <p>On my first accessibility project I spent a week with my monitor switched off, navigating by screen-reader — designing for someone who isn't you starts by becoming them. <a href="./case-studies/ptc.html#the-miss">That project started as my documented miss →</a></p>
+      <p class="meta">Fully remote · GMT+5:30 · both US coasts, daily</p>
     </div>
-  </div></div>
-
-  <div class="ai-cases">
-    <a href="./case-studies/adtech.html" class="ai-case reveal" data-cta="case" data-location="work-ai-1">
-      <div class="ai-case-head"><span class="ai-case-kick">AdTech</span><span class="ai-case-num">2 wks &rarr; 3 hrs</span></div>
-      <div class="beats" aria-hidden="true"><span class="beat"></span><span class="beat on"></span><span class="beat on"></span><span class="beat"></span></div>
-      <p class="beat-lbl" aria-hidden="true">score &middot; <b>doubt</b> &middot; <b>action</b> &middot; impact</p>
-      <p class="visually-hidden">Beats: doubt, action. The action beat is always mine.</p>
-      <h3 class="card-title">Programmatic Advertising Platform</h3>
-      <p>Traders watched an algorithm beat them on the scoreboard and still played their own hunches. The fix wasn't a better model &mdash; it was recommendations that arrived as full campaign plans, KPIs visible, one click to customize, every edit teaching next week's recommendations.</p>
-      <span class="walk">Walk-through &rarr;</span>
-    </a>
-    <a href="./case-studies/fintech.html" class="ai-case reveal reveal-delay-1" data-cta="case" data-location="work-ai-2">
-      <div class="ai-case-head"><span class="ai-case-kick">FinTech</span><span class="ai-case-num">60% faster</span></div>
-      <div class="beats" aria-hidden="true"><span class="beat on"></span><span class="beat"></span><span class="beat on"></span><span class="beat"></span></div>
-      <p class="beat-lbl" aria-hidden="true"><b>score</b> &middot; doubt &middot; <b>action</b> &middot; impact</p>
-      <p class="visually-hidden">Beats: score, action. The action beat is always mine.</p>
-      <h3 class="card-title">AI-Assisted Private Equity Investing</h3>
-      <p>Analysts get paid to doubt confident numbers, so the score learned to argue its own case before it shipped, not after. Once it could, they stopped auditing it and started leaning on it.</p>
-      <span class="walk">Walk-through &rarr;</span>
-    </a>
-    <a href="./case-studies/vc-diligence.html" class="ai-case reveal reveal-delay-2" data-cta="case" data-location="work-ai-3">
-      <div class="ai-case-head"><span class="ai-case-kick">VC &amp; PE</span><span class="ai-case-num">3 wks &rarr; 4 days</span></div>
-      <div class="beats" aria-hidden="true"><span class="beat on"></span><span class="beat"></span><span class="beat on"></span><span class="beat"></span></div>
-      <p class="beat-lbl" aria-hidden="true"><b>score</b> &middot; doubt &middot; <b>action</b> &middot; impact</p>
-      <p class="visually-hidden">Beats: score, action. The action beat is always mine.</p>
-      <h3 class="card-title">Technical Due Diligence Platform</h3>
-      <p>Partners stake millions on technical claims they'll never personally verify. So I made them do more work: sign-off stays locked until every signal's evidence has been opened.</p>
-      <span class="walk">Walk-through &rarr;</span>
-    </a>
-    <a href="./case-studies/ptc.html" class="ai-case reveal" data-cta="case" data-location="work-range-ptc">
-      <div class="ai-case-head"><span class="ai-case-kick">EdTech &middot; public</span><span class="ai-case-num">$1M / yr</span></div>
-      <div class="beats" aria-hidden="true"><span class="beat"></span><span class="beat"></span><span class="beat on"></span><span class="beat on"></span></div>
-      <p class="beat-lbl" aria-hidden="true">score &middot; doubt &middot; <b>action</b> &middot; <b>impact</b></p>
-      <p class="visually-hidden">Beats: action, impact. The action beat is always mine.</p>
-      <h3 class="card-title">PTC University &mdash; Learning Connector</h3>
-      <p>The brief said redesign the UX. I argued the contract was the broken interface, and asked PTC to kill four of its five products. Public numbers, full case &mdash; including the accessibility miss I got wrong first.</p>
-      <span class="walk">Walk-through &rarr;</span>
-    </a>
-    <a href="./case-studies/o2.html" class="ai-case reveal reveal-delay-1" data-cta="case" data-location="work-range-o2">
-      <div class="ai-case-head"><span class="ai-case-kick">Telecom &middot; public</span><span class="ai-case-num">4M+</span></div>
-      <div class="beats" aria-hidden="true"><span class="beat"></span><span class="beat"></span><span class="beat on"></span><span class="beat"></span></div>
-      <p class="beat-lbl" aria-hidden="true">score &middot; doubt &middot; <b>action</b> &middot; impact</p>
-      <p class="visually-hidden">Beats: action. The action beat is always mine.</p>
-      <h3 class="card-title">Telef&oacute;nica MyO2 &amp; Priority Moments</h3>
-      <p>Every screen designed with one co-designer, every screen coded by me &mdash; two O2 UK products on mobile web, at a scale where rounding errors have populations.</p>
-      <span class="walk">Walk-through &rarr;</span>
-    </a>
-    <a href="./case-studies/orgos.html" class="ai-case reveal reveal-delay-2" data-cta="case" data-location="work-range-orgos">
-      <div class="ai-case-head"><span class="ai-case-kick">Org design</span><span class="ai-case-num">0 managers</span></div>
-      <div class="beats" aria-hidden="true"><span class="beat"></span><span class="beat on"></span><span class="beat on"></span><span class="beat"></span></div>
-      <p class="beat-lbl" aria-hidden="true">score &middot; <b>doubt</b> &middot; <b>action</b> &middot; impact</p>
-      <p class="visually-hidden">Beats: doubt, action. The action beat is always mine.</p>
-      <h3 class="card-title">OrgOS &middot; Transparent Org Tooling</h3>
-      <p>Two hundred people, no managers. Eight modules doing an org chart's job &mdash; coordination that doesn't smuggle a boss back in through the side door.</p>
-      <span class="walk">Walk-through &rarr;</span>
-    </a>
-  </div>
-
-  <p class="xi-home-043"><a class="lbl-eyebrow xi-home-044" href="#contact" data-cta="send-role" data-location="nda-walkthrough">Request a walk-through →</a></p>
-
-</div></section>
-
-
-
-
-
-<!-- ===== Manifesto: collapsed into How I Work per restructure v2 ===== -->
-<!-- 5 imperatives → pull quote at top of How I Work · 3 evidence-led principles → compact callouts inside How I Work -->
-
-
-<!-- ACT — THE ONE IDEA (cream peak; the rule Arpit owns) -->
-<section id="patterns" class="section act-cream idea-act">
-  <div class="section-inner">
-    <div class="idea-zone"><div class="idea-main">
-    <p class="eyebrow">The contract I write when a capability needs a boundary</p>
-    <h2 class="section-title">A language model has no edges. So I draw them.</h2>
-    <p class="idea-sub xi-home-045">Ask one anything and it answers &mdash; fluently, in or out of its depth. That is the whole danger: a user&rsquo;s trust does not erode slowly, it dies in a single confident wrong answer. And most products bury their scope in a terms-of-service page and hope nobody tests it.</p>
-    <p class="idea-sub">So before launch I write a <em>capability contract</em> &mdash; a one-pager the whole team signs. What the system is for, stated narrowly. Where it taps out, named specifically enough that a person can plan around it. And what it hands back to a human when it does. Then it goes in the interface, at the point of use, where the work actually happens.</p>
-    <div class="verbs">
-      <div class="verb">
-        <div class="verb-tier">In scope</div>
-        <div class="verb-word">It&rsquo;s for</div>
-        <div class="verb-desc">The job stated narrowly &mdash; &ldquo;score deal risk from the data room,&rdquo; not &ldquo;analyse documents.&rdquo;</div>
-      </div>
-      <div class="verb">
-        <div class="verb-tier">Declines</div>
-        <div class="verb-word">It can&rsquo;t</div>
-        <div class="verb-desc">A named limit, not a hedge. &ldquo;I can&rsquo;t price illiquid assets&rdquo; &mdash; never &ldquo;results may vary.&rdquo;</div>
-      </div>
-      <div class="verb">
-        <div class="verb-tier">Hands back</div>
-        <div class="verb-word">Ask a human</div>
-        <div class="verb-desc">A visible route to a person, designed with the care of the happy path. Never a silent, confident guess.</div>
-      </div>
-    </div>
-    <p class="idea-sub xi-home-046"><em>An honest &ldquo;I don&rsquo;t handle that&rdquo; is not a weakness. It is the thing that makes &ldquo;I do handle this&rdquo; believable.</em> A model that knows its own edges reads as a colleague; one that answers everything reads as a slot machine. Two rules I hold to: state the boundary <em>once</em>, where the user first meets the capability &mdash; a disclaimer on every screen reads as a product unsure of itself. And never write a contract you don&rsquo;t enforce, because a stated limit the system quietly exceeds burns more trust than saying nothing at all.</p>
-    <div class="idea-links">
-      <a href="./patterns/capability-contract.html" class="idea-link" data-cta="patterns-rule" data-location="idea-contract">Read the pattern &rarr;</a>
-      <a href="./patterns/act-review-ignore.html" class="idea-link" data-cta="patterns-ari" data-location="idea-contract">The rule underneath it &mdash; Act / Review / Ignore &rarr;</a>
-      <a href="./patterns/" class="idea-link" data-cta="patterns-index" data-location="idea-contract">The full library &mdash; rule + 8 patterns, citable &rarr;</a>
+    <div class="facts" role="group" aria-label="Candidate facts summary">
+      <h3>Candidate Facts</h3>
+      <p class="fs">Serving size: 30 minutes · Servings: 1 seat</p>
+      <dl>
+        <div class="fr"><dt>Experience</dt><dd>16 yrs</dd></div>
+        <div class="fr"><dt>Industries</dt><dd>5</dd></div>
+        <div class="fr"><dt>Patterns in production</dt><dd>8</dd></div>
+        <div class="fr"><dt>Act / Review / Ignore</dt><dd>1 rule</dd></div>
+        <div class="fr"><dt>Users shipped</dt><dd>4M+ · public</dd></div>
+        <div class="fr"><dt>Fabricated metrics</dt><dd>0 g</dd></div>
+      </dl>
+      <p class="warn"><b>Allergen notice:</b> contains one documented failure — disclosed in full in the PTC case. <b>Contains no:</b> logo walls, invented baselines, confident guesses.</p>
     </div>
   </div>
-    <div class="ccd reveal" aria-label="Live demo: the capability contract, working">
+</section>
+
+<!-- ============ WORK — the skewed lanes ============ -->
+<section class="work" id="work" aria-labelledby="h-work">
+  <div class="seam seam-up" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="k">Selected work — six products, one job</p>
+    <h2 id="h-work">The AI work is the headline. The rest is the range under it.</h2>
+    <p class="lede">Get a professional to trust a system enough to act on it. The first three are AI — two of them LLMs reading unstructured documents. Two of the rest are public, so you can check them yourself; where a client is under NDA I walk the real artifacts on a call.</p>
+    <div class="lanes">
+      <a class="lane l1" href="./case-studies/adtech.html" data-cta="case" data-location="work-ai-1"><div class="m">2 wks → 3 hrs<span>AdTech · NDA</span></div><div><h3>Programmatic Advertising Platform</h3><p>Traders watched an algorithm beat them and played their hunches anyway. The fix was letting them argue back — plans they could reshape in one click, every edit teaching next week.</p></div><span class="go">Walk-through →</span></a>
+      <a class="lane l2" href="./case-studies/fintech.html" data-cta="case" data-location="work-ai-2"><div class="m">60% faster<span>FinTech · NDA</span></div><div><h3>AI-Assisted Private Equity Investing</h3><p>Analysts get paid to doubt confident numbers. So it shipped already able to name a source for every claim, and to say &ldquo;I'm not sure&rdquo; instead of bluffing.</p></div><span class="go">Walk-through →</span></a>
+      <a class="lane l3" href="./case-studies/vc-diligence.html" data-cta="case" data-location="work-ai-3"><div class="m">3 wks → 4 days<span>VC &amp; PE · NDA</span></div><div><h3>Technical Due Diligence Platform</h3><p>Partners stake millions on claims they'll never personally verify. So I made them do more work: sign-off stays locked until every signal's evidence has been opened.</p></div><span class="go">Walk-through →</span></a>
+      <a class="lane l4" href="./case-studies/ptc.html" data-cta="case" data-location="work-range-ptc"><div class="m">$1M / yr<span>EdTech · Public</span></div><div><h3>PTC University — Learning Connector</h3><p>The brief said redesign the UX. I argued the contract was the broken interface, and asked PTC to kill four of its five products. Public numbers, full case — miss included.</p></div><span class="go">Walk-through →</span></a>
+      <a class="lane l5" href="./case-studies/o2.html" data-cta="case" data-location="work-range-o2"><div class="m">4M+<span>Telecom · Public</span></div><div><h3>Telefónica MyO2 &amp; Priority Moments</h3><p>Every screen designed with one co-designer, every screen coded by me — two O2 UK products on mobile web, at a scale where rounding errors have populations.</p></div><span class="go">Walk-through →</span></a>
+      <a class="lane l6" href="./case-studies/orgos.html" data-cta="case" data-location="work-range-orgos"><div class="m">0 managers<span>Org Design · NDA</span></div><div><h3>OrgOS · Transparent Org Tooling</h3><p>Two hundred people, no managers. Eight modules doing an org chart's job — coordination that doesn't smuggle a boss back in through the side door.</p></div><span class="go">Walk-through →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTRACT — live demo kept ============ -->
+<section class="contract" id="patterns" aria-labelledby="h-contract">
+  <div class="wrap">
+    <div>
+      <p class="k">The contract I write when a capability needs a boundary</p>
+      <h2 id="h-contract">A language model has no edges. So I draw them.</h2>
+      <p>Ask one anything and it answers — fluently, in or out of its depth. A user's trust does not erode slowly; it dies in a single confident wrong answer. So before launch I write a capability contract — a one-pager the whole team signs — and it goes in the interface, at the point of use.</p>
+      <div class="cols">
+        <div class="col co1"><p class="ck">In scope</p><h3>It's for</h3><p>The job stated narrowly — &ldquo;score deal risk from the data room,&rdquo; not &ldquo;analyse documents.&rdquo;</p></div>
+        <div class="col co2"><p class="ck">Declines</p><h3>It can't</h3><p>A named limit, not a hedge. &ldquo;I can't price illiquid assets&rdquo; — never &ldquo;results may vary.&rdquo;</p></div>
+        <div class="col co3"><p class="ck">Hands back</p><h3>Ask a human</h3><p>A visible route to a person, designed with the care of the happy path. Never a silent, confident guess.</p></div>
+      </div>
+      <p class="contract-links"><a href="./patterns/capability-contract.html">Read the pattern →</a> <a href="./patterns/act-review-ignore.html">The rule underneath it — Act / Review / Ignore →</a> <a href="./patterns/">The full library — rule + 8 patterns, citable →</a></p>
+    </div>
+    <div class="demo-slot"><div class="ccd reveal" aria-label="Live demo: the capability contract, working">
       <p class="ccd-cap"><span>live &mdash; the contract, working</span><b>signed</b></p>
       <div class="ccd-ctr"><b>It&rsquo;s for:</b> scoring deal risk from the data room.<br><b>It can&rsquo;t:</b> price illiquid assets.<br><b>Hands back:</b> anything else &rarr; your analyst.</div>
       <div class="ccd-qs">
@@ -530,66 +361,26 @@
       </div>
       <div class="ccd-ans" id="ccd-ans" aria-live="polite"><span class="ccd-idle">&mdash; ask it something &mdash;</span></div>
       <p class="ccd-note">answers openly canned &mdash; the contract is the demo, not a model</p>
-    </div>
+    </div></div>
   </div>
 </section>
 
-<!-- ===== HOW I LEAD ===== -->
-<section id="how-i-lead" class="section" ><div class="section-inner editorial">
-  <div class="section-numeral">
-    <h2 class="section-numeral-name">How I Lead</h2>
-  </div>
-  <div class="section-body">
-
-  <!-- Block A — Behavioral opener -->
-  <div class="reveal xi-home-047">
-    <h3 class="section-title xi-home-048">
-      Hire me and week one looks like this: I'm reading eval results before opening a design file, sitting silent on customer calls, and writing the diagnosis nobody assigned. By week two we're arguing productively.
-    </h3>
-  </div>
-
-  <!-- Block A2 (promoted errata) — WHEN I'VE BEEN WRONG -->
-  <div class="reveal reveal-delay-1 xi-home-049">
-    <div class="errata-block">
-      <p class="lbl-eyebrow xi-home-009">The errata — a time I was wrong</p>
-      <div class="xi-home-050">
-        <div class="xi-home-051">
-          <p class="xi-home-052">
-            My first accessibility pass was textbook-diligent and wrong. I loaded the interface with long, descriptive ARIA labels &mdash; the text a screen reader speaks aloud &mdash; convinced that more description meant more help.
-          </p>
-          <p class="xi-home-053">
-            Then I ran a usability study with about ten blind users and watched my diligence fail. They don&rsquo;t listen through sentences. They <em>skim</em> &mdash; jumping by headings and landmarks at speed, the way you scan a page with your eyes. My careful labels were slowing down the exact people they were built to serve.
-          </p>
-          <p class="xi-home-054">
-            So I switched my monitor off for a week and navigated by screen reader alone, then re-wrote the front-end with what that week taught me: terse labels, honest landmarks, headings that carry the structure. <a class="xi-home-024" href="./case-studies/ptc.html#the-miss" data-cta="the-miss" data-location="errata">The full account, in the PTC case &rarr;</a>
-          </p>
-        </div>
-        <figure class="xi-home-055">
-          <svg class="xi-home-056" viewBox="0 0 300 108" role="img" aria-label="Diagram: my first pass forced a screen-reader user to listen through three long labels in sequence; real users jump between short headings instead, reaching the same place in a fraction of the steps.">
-            <g fill="none" stroke="#D4A85E" stroke-width="1.4" stroke-linecap="round">
-              <text x="0" y="10" fill="#D4A85E" stroke="none" font-family="IBM Plex Mono, monospace" font-size="8.5" letter-spacing="1.4">MY FIRST PASS</text>
-              <rect x="0" y="20" width="128" height="15" rx="2" opacity=".75"/>
-              <rect x="0" y="42" width="128" height="15" rx="2" opacity=".75"/>
-              <rect x="0" y="64" width="128" height="15" rx="2" opacity=".75"/>
-              <path d="M6 27 H120 M6 49 H120 M6 71 H120" stroke-width="3" opacity=".28"/>
-              <path d="M64 35 C74 38 74 39 64 42 M64 57 C74 60 74 61 64 64" stroke-width="1.2"/>
-              <text x="0" y="96" fill="#D4A85E" stroke="none" font-family="IBM Plex Mono, monospace" font-size="8.5" opacity=".8">every word, in order</text>
-              <text x="168" y="10" fill="#D4A85E" stroke="none" font-family="IBM Plex Mono, monospace" font-size="8.5" letter-spacing="1.4">HOW THEY READ</text>
-              <rect x="168" y="20" width="46" height="15" rx="2"/>
-              <rect x="168" y="42" width="46" height="15" rx="2"/>
-              <rect x="168" y="64" width="46" height="15" rx="2"/>
-              <path d="M226 27 C252 30 252 46 228 49 M226 49 C252 52 252 68 228 71" stroke-width="1.6"/>
-              <path d="M228 49 l7 -4 M228 49 l6 5 M228 71 l7 -4 M228 71 l6 5"/>
-              <text x="168" y="96" fill="#D4A85E" stroke="none" font-family="IBM Plex Mono, monospace" font-size="8.5" opacity=".8">heading to heading</text>
-              <path d="M150 18 V104" stroke-width=".8" opacity=".3" stroke-dasharray="3 4"/>
-            </g>
-          </svg>
-          <figcaption class="xi-home-057">More description was not more help &mdash; it was more to sit through. The reading behaviour I had designed against; not a recovered artifact, the originals were never kept.</figcaption>
-        </figure>
-      </div>
-      
+<!-- ============ LEAD ============ -->
+<section class="lead" id="how-i-lead" aria-labelledby="h-lead">
+  <div class="seam" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="k">How I lead — come argue with me</p>
+    <h2 id="h-lead">Week one: I'm reading your evals and sitting silent on customer calls. By week two we're arguing productively.</h2>
+    <div class="memos">
+      <div class="memo m1"><p class="mk">With engineering</p><h3>Eval design before interface design</h3><p>The front-end I own ships in the PR — commented and ready for review. When we disagree on feasibility, the cheapest experiment goes first and settles it.</p></div>
+      <div class="memo m2"><p class="mk">With product / founder</p><h3>Outcomes, not deliverables</h3><p>I'll contest the roadmap when the numbers contradict it. The design doc is mine to write; the spec is yours.</p></div>
+      <div class="memo m3"><p class="mk">With customers</p><h3>Five calls in week one</h3><p>One a week forever after, and I read the raw support tickets myself. No AI feature ships until I've personally watched someone fail to use it.</p></div>
     </div>
-      <div class="hk-qc reveal">
+    <div class="errata">
+      <span class="ek">Errata</span>
+      <p>My first accessibility pass buried screen-reader users in verbose labels. I spent a week with the monitor off, navigating by screen reader, then rewrote the front-end. <a href="./case-studies/ptc.html#the-miss">The full account, in the PTC case →</a></p>
+    </div>
+    <div class="qc-slot"><div class="hk-qc reveal">
         <div class="hk-qc-side">
           <p class="hand xi-home-058" aria-hidden="true">the machine filled in this slip. it can&rsquo;t sign it.</p>
           
@@ -615,185 +406,79 @@
             <div class="qc-stamp" aria-hidden="true">Human passed</div>
           </div>
         </div>
-      </div>
-  </div>
-
-  <!-- Block B — WHAT I OWN -->
-  <div class="reveal reveal-delay-1 xi-home-049">
-    <p class="lbl-meta xi-home-060">What you're hiring me to own</p>
-    <dl class="lead-dl">
-      <dt>Human-in-the-loop design</dt>
-      <dd>The exact pixels where a person decides the model deserves their click, or doesn't.</dd>
-
-      <dt>The design language</dt>
-      <dd>A component system the next designer can run without me in the room, because it's documented, not memorized.</dd>
-
-      <dt>The ML/UX contract</dt>
-      <dd>A written promise between the model team and the user: here's what this system can do, here's where it taps out.</dd>
-    </dl>
-  </div>
-
-  <!-- Block C — HOW I PARTNER -->
-  <div class="reveal reveal-delay-2 xi-home-049">
-    <p class="lbl-meta xi-home-060">How I work with engineering, product, and customers</p>
-    <dl class="lead-dl">
-      <dt>With engineering</dt>
-      <dd>Eval design before interface design. The front-end I own ships in the PR — commented and ready for review. When we disagree on feasibility, the cheapest experiment goes first and settles it.</dd>
-
-      <dt>With product / founder</dt>
-      <dd>I'll contest the roadmap when the numbers contradict it, and I sign up for outcomes rather than deliverables. The design doc is mine to write; the spec is yours.</dd>
-
-      <dt>With customers</dt>
-      <dd>Five calls in my first week, one a week forever after, and I read the raw support tickets myself. No AI feature ships until I've personally watched someone fail to use it.</dd>
-    </dl>
-  </div>
-
-  <!-- Block E — WHAT I WON'T DO -->
-  <div class="reveal xi-home-049">
-    <p class="lbl-meta xi-home-060">Three risks I won't let a team discover in production</p>
-    <ul class="xi-home-061">
-      <li class="t-body-plain xi-home-062"><b>No score without a verb and its reasons.</b> On the PE tool the model could say &ldquo;I&rsquo;m not sure&rdquo; out loud in its first release &mdash; the weeks that took were spent before launch, on purpose.</li>
-      <li class="t-body-plain xi-home-062"><b>No AI feature without a designed failure state.</b> Usually one honest sentence in the interface &mdash; an hour of design, not a sprint.</li>
-      <li class="t-body-plain xi-home-062"><b>No doing two jobs as neither.</b> At founding stage I do all of it, happily; once a team exists, its ops and weekly shipping split &mdash; or both rot.</li>
-    </ul>
-  </div>
-
-  <!-- Block F — VOICES (named testimonials) -->
-  <div class="reveal xi-home-063">
-    <p class="lbl-meta xi-home-060">From the people who've shipped with me</p>
-      <div class="env-bundle" aria-hidden="true">
-        <div class="env e1"><span class="env-flap"></span><span class="env-name">A. East &middot; CTO</span></div>
-        <div class="env e2"><span class="env-flap"></span><span class="env-name">R. Kershner</span></div>
-        <div class="env e3"><span class="env-flap"></span><span class="env-name">K. Alterio</span></div>
-        <div class="env e4"><span class="env-flap"></span><span class="env-name">to: whoever&rsquo;s hiring</span></div>
-        <span class="env-twine"></span>
-        <span class="env-tag">4 letters &middot; verbatim</span>
-      </div>
-    <div class="xi-home-064">
-
-      <figure class="card-col xi-home-065">
-        <svg class="icon xi-home-066" aria-hidden="true"><use href="#i-quote"/></svg>
-        <blockquote class="t-serif-body xi-home-067">Over the past four years at Talon, Arpit has been instrumental in shaping four distinct products from the ground up. His user-focused designs are remarkably intuitive yet adept at handling complex workflows… If you need a designer who excels at combining strategic vision with practical execution, Arpit is the person to call.</blockquote>
-        <figcaption class="xi-home-068"><span class="t-serif-16 xi-home-038">Anant East</span><span class="lbl-eyebrow-tight xi-home-039">CTO at Talon Outdoor</span></figcaption>
-      </figure>
-
-      <figure class="card-col xi-home-065">
-        <svg class="icon xi-home-066" aria-hidden="true"><use href="#i-quote"/></svg>
-        <blockquote class="t-serif-body xi-home-067">Arpit has worked with me for years and I value his honesty and hard work. He's been an integral part of my staff… involved in all facets of the team, from design to development to hiring and onboarding of new members.</blockquote>
-        <figcaption class="xi-home-068"><span class="t-serif-16 xi-home-038">Ryan Kershner</span><span class="lbl-eyebrow-tight xi-home-039">UX Design Leader · managed Arpit directly</span></figcaption>
-      </figure>
-
-      <figure class="card-col xi-home-065">
-        <svg class="icon xi-home-066" aria-hidden="true"><use href="#i-quote"/></svg>
-        <blockquote class="t-serif-body xi-home-067">Arpit teams up with designers very well, not only does he flawlessly execute the UI implementations but he pushes back on design decisions using his UX expertise… I'd recommend Arpit to any team looking to improve their final product.</blockquote>
-        <figcaption class="xi-home-068"><span class="t-serif-16 xi-home-038">Katie Alterio</span><span class="lbl-eyebrow-tight xi-home-039">Product Designer · same team</span></figcaption>
-      </figure>
-
-      <figure class="card-col xi-home-065">
-        <svg class="icon xi-home-066" aria-hidden="true"><use href="#i-quote"></use></svg>
-        <blockquote class="t-serif-body xi-home-067">Arpit consistently demonstrated exceptional speed, creativity, and attention to detail&hellip; What stood out most was his ability to present multiple design options along with clear pros and cons, which made it much easier for different stakeholders to make informed decisions and align quickly.</blockquote>
-        <figcaption class="xi-home-068"><span class="t-serif-16 xi-home-038">Sanjesh Ananda</span><span class="lbl-eyebrow-tight xi-home-039">Software Engineering Leader &middot; built the AdTech platform with Arpit</span></figcaption>
-      </figure>
-
-    </div>
-  </div>
-  </div>
-
-</div></section>
-
-<!-- The Trust Trace — the whole thesis as one authored line -->
-
-<!-- Lab — the patterns above, as tested code -->
-<section id="lab" class="section xi-home-069">
-  <div class="section-inner">
-    <div class="xi-home-070">
-      <div class="xi-home-071">
-        <p class="eyebrow xi-home-072">Proof, not philosophy</p>
-        <h2 class="section-title xi-home-072">The same rules, as running code</h2>
-        <p class="u-body xi-home-073">Four of these patterns ship as <span class="xi-home-074">loop.js</span> — a zero-dependency module with the calibration math included, and 42 tests that run in your browser. Plus a linter for the shape of an AI answer, and an honest teardown of how this site is built.</p>
-      </div>
-      <a class="spec-tag hko hko--tr" href="lab/" data-cta="lab-band" data-location="homepage" aria-label="Specimen tag for the lab: live code, 42 of 42 tests passing, zero dependencies, MIT licensed. Opens the lab.">
-        <span class="spec-hole" aria-hidden="true"></span>
-        <span class="spec-cap" aria-hidden="true">specimen &middot; live code</span>
-        <span class="spec-name" aria-hidden="true">the lab</span>
-        <span class="spec-row" aria-hidden="true"><span>tests</span><b>42 / 42</b></span>
-        <span class="spec-row" aria-hidden="true"><span>dependencies</span><b>0</b></span>
-        <span class="spec-row" aria-hidden="true"><span>licence</span><b>MIT</b></span>
-        <span class="spec-foot" aria-hidden="true">handle with keyboard &rarr;</span>
-      </a>
+      </div></div>
+    <div class="quotes">
+      <figure class="qt"><blockquote>&ldquo;Over the past four years at Talon, Arpit has been instrumental in shaping four distinct products from the ground up… If you need a designer who excels at combining strategic vision with practical execution, Arpit is the person to call.&rdquo;</blockquote><figcaption><b>Anant East</b>CTO at Talon Outdoor</figcaption></figure>
+      <figure class="qt"><blockquote>&ldquo;Arpit consistently demonstrated exceptional speed, creativity, and attention to detail… his ability to present multiple design options along with clear pros and cons made it much easier for stakeholders to align quickly.&rdquo;</blockquote><figcaption><b>Sanjesh Ananda</b>Software Engineering Leader · built the AdTech platform with Arpit</figcaption></figure>
     </div>
   </div>
 </section>
 
-<!-- Process — compact band linking to /process/ -->
-<section id="process" class="section" ><div class="section-inner editorial editorial--rail">
-  <div class="section-numeral">
-    <h2 class="section-numeral-name">Process</h2>
-  </div>
-  <div class="section-body">
-  <div class="reveal xi-home-075">
-    <h3 class="section-title xi-home-076">Every product is a series of bets someone else has to accept. The method exists to make each bet smaller, better-evidenced, and easier to say yes to.</h3>
-    <div class="xi-home-077">
-      <div class="xi-home-078">
-        <div class="lbl-micro-eyebrow xi-home-079">Act I · The wager</div>
-        <p class="t-ui-muted-165 xi-home-080">Desirable · feasible · viable — the overlap is the bet worth making. At PTC: four of five products killed to fund the one that worked.</p>
-      </div>
-      <div class="xi-home-078">
-        <div class="lbl-micro-eyebrow xi-home-079">Act II · The spiral</div>
-        <p class="t-ui-muted-165 xi-home-080">Listen → Structure → Prove → Land, in loops. Act / Review / Ignore wasn't born in one product — it was named after the same pattern kept recurring across the AI work.</p>
-      </div>
-      <div class="xi-home-078">
-        <div class="lbl-micro-eyebrow xi-home-079">Act III · The open loop</div>
-        <p class="t-ui-muted-165 xi-home-080">Shipping is the first honest data. I argued for a three-option card; the A/B made the one-option version permanent — the ship taught me what the mock couldn't.</p>
-      </div>
+<!-- ============ LAB + PROCESS ============ -->
+<section class="labrow" id="lab" aria-labelledby="h-lab">
+  <div class="wrap">
+    <p class="k">Proof, not philosophy</p>
+    <h2 id="h-lab">The same rules, as running code.</h2>
+    <div class="lab3">
+      <a class="labc" href="./lab/loop.html"><p class="lk">loop.js</p><b>42 / 42 tests</b><p>The decision logic behind four trust patterns as tested functions. Zero dependencies, MIT — running in your browser.</p></a>
+      <a class="labc" href="./lab/eval.html"><p class="lk">trustlint</p><b>7 rules</b><p>A deterministic linter for the shape of an AI answer — runs in your tab, no network.</p></a>
+      <a class="labc" href="./lab/teardown.html"><p class="lk">This site, torn down</p><b>0 build steps</b><p>How the thing you're reading is built, measured rather than described — gaps included.</p></a>
     </div>
-    <a class="lbl-eyebrow xi-home-081" href="./process/" data-cta="process" data-location="process-band">The full method, with the diagram →</a>
-  </div>
-  </div>
-  <div class="rail-obj hko hko--tl reveal">
-    <div class="psc" role="img" aria-label="A laminated pre-ship checklist, run before every release with no exceptions: evidence attached to every claim, failure state designed, baseline and window named, human can override, honest abstention path. A release that fails one item waits.">
-      <p class="psc-h">Pre-ship checklist</p>
-      <p class="psc-sub">run before every release &middot; no exceptions</p>
-      <div class="psc-it"><span>&#9745;</span><span><b>Evidence attached</b> &mdash; every claim can name its source</span></div>
-      <div class="psc-it"><span>&#9745;</span><span><b>Failure state designed</b> &mdash; one honest sentence, minimum</span></div>
-      <div class="psc-it"><span>&#9745;</span><span><b>Baseline named</b> &mdash; number, window, comparison</span></div>
-      <div class="psc-it"><span>&#9745;</span><span><b>Human can override</b> &mdash; and the system survives it</span></div>
-      <div class="psc-it"><span>&#9745;</span><span><b>Abstention path</b> &mdash; &ldquo;I&rsquo;m not sure,&rdquo; said out loud</span></div>
-      <p class="psc-foot">a release that fails one item waits &middot; weeks if it must</p>
+    <div class="acts">
+      <div class="act"><p class="ak">Act I · The wager</p><h3>Is this bet worth anyone's doubt?</h3><p>Desirable · feasible · viable — the overlap is the bet worth making. At PTC: four of five products killed to fund the one that worked.</p></div>
+      <div class="act"><p class="ak">Act II · The spiral</p><h3>Listen → Structure → Prove → Land</h3><p>In loops — and every loop ends in front of a user. Act / Review / Ignore was named after the same pattern kept recurring across the AI work.</p></div>
+      <div class="act"><p class="ak">Act III · The open loop</p><h3>Shipping is the first honest data.</h3><p>I argued for a three-option card; the A/B made the one-option version permanent — the ship taught me what the mock couldn't.</p></div>
     </div>
+    <p class="contract-links"><a href="./process/">The full method, with the diagram →</a> <a href="./lab/">Everything in The Lab →</a></p>
   </div>
-</div></section>
+</section>
 
-<section id="thoughts" class="section"><div class="section-inner">
-  <div class="section-numeral">
-    <h2 class="section-numeral-name">Writing</h2>
-  </div>
-  <div class="xi-home-082">
-    <p class="u-body xi-home-083">Three recent pieces from <a class="t-em-gold xi-home-084" href="https://arpitmaheshwari.substack.com" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="thoughts-header">Human in the Loop</a>, my newsletter on making AI products people actually act on.</p>
-    <a class="lbl-eyebrow xi-home-085" href="https://arpitmaheshwari.substack.com/archive" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="thoughts-header-archive">More on Human in the Loop →</a>
-  </div>
-  <div class="thoughts-grid">
-    <a href="https://arpitmaheshwari.substack.com/p/the-agentic-mvp-why-your-next-launch" target="_blank" rel="noopener noreferrer" data-cta="article" data-location="thoughts-card-1" class="thought-card featured reveal"><div class="thought-tag">AI · Founders · Launch</div><h3 class="thought-title">The Agentic MVP: Why Your Next Launch Will Be Lovable, Not Just Viable</h3><p class="thought-excerpt">Every founder knows the pit in their stomach on Launch Day. How the rise of agentic systems is rewriting what "minimum viable" means — and why lovability is now the bar.</p><div class="thought-meta"><span><svg class="icon xi-home-021" aria-hidden="true"><use href="#i-book"/></svg> Human in the Loop</span><span>May 20, 2026</span></div></a>
-    <a href="https://arpitmaheshwari.substack.com/p/the-ai-fight-club-weaponizing-claude" target="_blank" rel="noopener noreferrer" data-cta="article" data-location="thoughts-card-2" class="thought-card reveal reveal-delay-1"><div class="thought-tag">AI · Product · Evals</div><h3 class="thought-title">The AI Fight Club: Weaponizing Claude and Gemini for Bulletproof Products</h3><p class="thought-excerpt">Pitting AI systems against each other to strengthen product robustness. A practical method for stress-testing your AI features before users do it for you.</p><div class="thought-meta"><span><svg class="icon xi-home-021" aria-hidden="true"><use href="#i-book"/></svg> Human in the Loop</span><span>May 17, 2026</span></div></a>
-    <a href="https://arpitmaheshwari.substack.com/p/the-new-renaissance-how-ai-is-transforming-us-from-software-operators-to-digital-artisans" target="_blank" rel="noopener noreferrer" data-cta="article" data-location="thoughts-card-3" class="thought-card reveal reveal-delay-2"><div class="thought-tag">AI · Digital Entrepreneurship · Product</div><h3 class="thought-title">The New Renaissance: How AI is Transforming Us from Software Operators to Digital Artisans</h3><p class="thought-excerpt">Ushering in a new era of digital entrepreneurship. How AI is changing what it means to build, and what designers must understand about the tools reshaping the industry.</p><div class="thought-meta"><span><svg class="icon xi-home-021" aria-hidden="true"><use href="#i-book"/></svg> Human in the Loop</span><span>May 5, 2026</span></div></a>
-  </div>
-</div></section>
-
-<section id="contact" class="section"><div class="section-inner">
-  <div class="section-numeral">
-    <h2 class="section-numeral-name">Contact</h2>
-  </div>
-  <div class="contact-grid reveal xi-home-086">
+<!-- ============ CLOSER — live form kept ============ -->
+<section class="close" id="contact" aria-labelledby="h-close">
+  <div class="field" aria-hidden="true"></div>
+  <div class="wrap">
     <div>
-      <h3 class="section-title xi-home-009">One seat. Full-time. Yours to offer.</h3>
-      <p class="u-body xi-home-060">Staff / Principal product designer or founding product-design lead at an AI product company — open to hands-on Director roles. Available — 4 weeks' notice.</p>
-      <div class="xi-home-087">
-        
-        
-        <p class="xi-home-088">A real conversation, no pitch deck. If you would rather read first: the <a class="xi-home-089" href="./hire/" data-cta="resume" data-location="contact-quiet">one-page hiring brief</a>, the <a class="xi-home-089" href="./patterns/" data-cta="patterns" data-location="contact-quiet">pattern library</a>, or my <a class="xi-home-089" href="./screen/" data-cta="screen" data-location="contact-quiet">technical screen, already answered</a>.</p>
+      <p class="k">Contact — available · 4 weeks' notice</p>
+      <h2 id="h-close">One seat. Full-time. <span class="grad">Yours to offer.</span></h2>
+      <p class="sub">Staff / Principal product designer or founding product-design lead at an AI product company — open to hands-on Director roles. Fully remote, GMT+5:30, daily overlap with both US coasts.</p>
+      <p class="sub">A real conversation, no pitch deck. If you would rather read first: the <a href="./hire/">one-page hiring brief</a>, the <a href="./patterns/">pattern library</a>, or my <a href="./screen/">technical screen, already answered</a>.</p>
+      <div class="form-slot"><form class="xi-home-095" id="contact-form" action="https://formspree.io/f/xpqednyy" method="POST">
+        <input type="hidden" name="_subject" value="Hiring Arpit Maheshwari — role inquiry">
+        <label for="contact-email" class="visually-hidden">Your email</label>
+        <input class="t-sans-ui-ink xi-home-096" type="email" id="contact-email" name="email" required placeholder="you@company.com">
+        <label for="contact-role" class="visually-hidden">Link to the role or your company (optional)</label>
+        <input class="t-sans-ui-ink xi-home-096" type="text" id="contact-role" name="role" placeholder="Link to the role or your company (optional)">
+        <label for="contact-message" class="visually-hidden">A line about the role you're hiring for and the stage you're at</label>
+        <textarea class="t-sans-ui-ink xi-home-097" id="contact-message" name="message" rows="3" placeholder="The role you're hiring for, and the stage you're at"></textarea>
+        <button class="btn-label xi-home-098 hv-home-1" type="submit" data-cta="send-role" data-location="contact-primary">Send me the role <svg class="icon xi-home-099" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+      </form></div>
+      <p class="sig hand">— Arpit</p>
+    </div>
+    <div class="pass" role="group" aria-label="Boarding pass: one full-time seat, boarding is a 30-minute call">
+      <div class="pk"><span>LOOP AIR — BOARDING PASS</span><span>remote · non-stop</span></div>
+      <div class="pr"><span class="pc">IND</span><span class="arr" aria-hidden="true">✈</span><span class="pc">YOU</span></div>
+      <div class="grid">
+        <div>PASSENGER<b>Maheshwari / A</b></div><div>CLASS<b>Full-time</b></div><div>SEAT<b>1 of 1</b></div>
+        <div>CARRY-ON<b>16 yrs · receipts</b></div><div>STATUS<b>Boarding now</b></div><div>GATE<b>30-min call</b></div>
       </div>
-      <p class="xi-home-090">Prefer email? <a class="xi-home-091" id="em-l" href="#" data-cta="email" data-location="contact">use the form or the call link</a></p>
-      <script>(function(){var e=document.getElementById('em-l');e.textContent='write to me directly \u2192';e.addEventListener('click',function(){var u='maheshwari.arpit'+'88',d='gmail.com';this.href='mailto:'+u+'@'+d;});})();</script>
+      <span class="stamp">Cleared · no fabricated metrics</span>
+      <div class="bar" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
+  <button class="dyslexia-toggle" id="dyslexiaToggle" aria-pressed="false" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+    <span>Dyslexia-friendly</span>
+  </button>
+  <div class="footer-note">Patterns are free — good ones should travel. Client work stays confidential.</div>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon xi-home-099" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+</footer>
+<script>(function(){var e=document.getElementById('em-l');e.textContent='write to me directly \u2192';e.addEventListener('click',function(){var u='maheshwari.arpit'+'88',d='gmail.com';this.href='mailto:'+u+'@'+d;});})();</script>
 
       <div class="xi-home-092">
         <img class="xi-home-017" src="./arpit-maheshwari.jpg" alt="" width="56" height="56" loading="lazy">
@@ -1368,5 +1053,6 @@ if (canvas && !prefersReducedMotion) {
   }
 })();
 </script>
+
 </body>
 </html>
