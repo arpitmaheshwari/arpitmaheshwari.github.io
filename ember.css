@@ -1384,7 +1384,9 @@ html[data-theme="ember"] .lab-wrap :is(p,dl,ul,ol):not(:has(pre)):not(.lab-note)
    requirement (recruiters don't fill forms). */
 html[data-theme="ember"] body.p-home .contact-alt{
   font-size:14px;color:var(--ink-muted);margin:16px 0 0}
-html[data-theme="ember"] body.p-home .contact-alt a{color:var(--link);text-decoration:none;
+html[data-theme="ember"] body.p-home .contact-alt a{
+  font-family:var(--ff-mono);font-size:11.5px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--link);text-decoration:none;
   border-bottom:1px solid color-mix(in srgb, var(--link) 45%, transparent);padding-bottom:2px}
 html[data-theme="ember"] body.p-home .contact-alt a:hover{color:var(--link-hover)}
 
@@ -1444,3 +1446,19 @@ html[data-theme="ember"] [class*="p-lab"] main > section.section:first-of-type{p
    the first boundary half again larger than the second — equalized here */
 html[data-theme="ember"] [class*="p-lab"] main > section.section:first-of-type .lab-note{margin-bottom:0}
 html[data-theme="ember"] [class*="p-lab"] .lab-cards{margin-bottom:0}
+
+/* /lab/ foot links join the sitewide CTA grammar (they were 13px lowercase with
+   a GOLD hairline under violet text — every colour a legal token, which is
+   exactly why the colour gate passed them; the grammar was the defect). */
+html[data-theme="ember"] .lab-links a{
+  font-family:var(--ff-mono);font-size:11.5px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--link);text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb, var(--link) 45%, transparent);padding-bottom:2px}
+html[data-theme="ember"] .lab-links a:hover{color:var(--link-hover);border-bottom-color:var(--link)}
+
+/* Three near-miss CTA grammars found by tools/cta-grammar-check.py — 12px/1.8
+   tracking on /process, 12px lowercase on /hire, 13px on /screen. Same job,
+   three dialects. One voice: */
+html[data-theme="ember"] :is([class*="p-hire"],[class*="p-process"],[class*="p-screen"]) main
+  :is(.btn-row,.proc-links,.cta-row,p,div) > a:not([class*="btn"]):not(.pill):not(.card-p28):not(.card-p32){
+  font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}

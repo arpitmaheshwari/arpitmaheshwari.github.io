@@ -153,6 +153,15 @@ jobs:
         run: |
           for W in 1440 1024 768; do python3 tools/overflow-sweep.py $W; done
 
+      # 2026-08-14: third defect in the same blind spot (Writing heading, lab foot
+      # links, contact email line) — an element doing the SAME JOB styled from a
+      # different era. Colour and geometry gates pass it; only a component DIFF sees
+      # it. This gate collects every standalone arrow-CTA sitewide, finds the dominant
+      # grammar signature, and fails outliers. Inline links inside prose are exempt.
+      - name: CTA grammar check — every standalone arrow-CTA speaks one grammar
+        run: |
+          python3 tools/cta-grammar-check.py
+
       - name: Theme remnant check — no retired classic palette painted under Ember
         run: |
           python3 tools/theme-remnant-check.py
