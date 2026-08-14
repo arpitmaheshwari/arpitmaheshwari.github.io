@@ -1665,3 +1665,18 @@ html[data-theme="ember"] body.p-home #how-i-lead h2{font-size:44px;line-height:1
   html[data-theme="ember"] body[class*="p-patterns"] .section-inner > div:not(.philosophy-cards) > :is(p,h2,h3){
     max-width:none}
 }
+
+/* ============================================================================
+   TAP TARGETS — WCAG 2.5.8 (AA) requires 24x24 CSS px for a pointer target.
+   The case-study jump nav measured 22px tall (padding 0 0 2px) on six pages:
+   a standalone nav row, on a phone, two pixels short. Inline links inside a
+   sentence are exempt from 2.5.8 and are deliberately NOT touched here.
+   ============================================================================ */
+html[data-theme="ember"] .case-jump a{
+  padding:8px 0;min-height:24px;display:inline-flex;align-items:center}
+@media (max-width:640px){
+  /* phones get a comfortable target, not merely a legal one */
+  html[data-theme="ember"] .case-jump{gap:4px 20px}
+  /* 12px (grid) + the 20px line box = 44px, the comfortable phone target */
+  html[data-theme="ember"] .case-jump a{padding:12px 0;min-height:44px}
+}

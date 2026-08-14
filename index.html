@@ -145,7 +145,7 @@
   gtag('config', 'G-PFY6ME99K8');
 </script>
 <link rel="stylesheet" href="./styles.css?v=p64">
-<link rel="stylesheet" href="./ember.css?v=e52">
+<link rel="stylesheet" href="./ember.css?v=e54">
 </head>
 <body class="p-home">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -437,7 +437,7 @@
         <textarea class="t-sans-ui-ink xi-home-097" id="contact-message" name="message" rows="3" placeholder="The role you're hiring for, and the stage you're at"></textarea>
         <button class="btn-label xi-home-098 hv-home-1" type="submit" data-cta="send-role" data-location="contact-primary">Send me the role <svg class="icon xi-home-099" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
       </form></div>
-      <p class="contact-alt">Prefer email? <a id="em-l" href="#" data-cta="email" data-location="contact">write to me directly</a> · <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="contact">or book 30 minutes</a></p>
+      <p class="contact-alt">Prefer email? <a id="em-l" href="#contact" data-cta="email" data-location="contact">write to me directly</a> · <a href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="contact">or book 30 minutes</a></p>
       <p class="sig hand">— Arpit</p>
     </div>
     <div class="pass" role="group" aria-label="Boarding pass: one full-time seat, boarding is a 30-minute call">
@@ -464,7 +464,13 @@
   <div class="footer-note">Patterns are free — good ones should travel. Client work stays confidential.</div>
   <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon xi-home-099" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
 </footer>
-<script>(function(){var e=document.getElementById('em-l');e.textContent='write to me directly \u2192';e.addEventListener('click',function(){var u='maheshwari.arpit'+'88',d='gmail.com';this.href='mailto:'+u+'@'+d;});})();</script>
+<script>(function(){var e=document.getElementById('em-l');if(!e)return;
+var u='maheshwari.arpit'+'88',d='gmail.com';
+e.textContent='write to me directly \u2192';
+/* set the destination ON LOAD: with it only on click, the link was href="#" for
+   keyboard activation, "copy link address", middle-click and assistive tech.
+   The address is still assembled here rather than printed in the served HTML. */
+e.href='mailto:'+u+'@'+d;})();</script>
 <script>
 // Scroll policy: reloads start at top (prevents the "black page" bug where a restored
 // mid-page position outruns the .reveal observer) — but an anchored arrival (#contact,
