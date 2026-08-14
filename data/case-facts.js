@@ -166,7 +166,7 @@
       "no": "04",
       "key": "adtech",
       "title": "Programmatic Advertising Platform",
-      "tag": "AdTech · NDA",
+      "tag": "AdTech · Named client",
       "meta": [
         [
           "Role",
@@ -182,7 +182,7 @@
         ],
         [
           "Status",
-          "Shipped · under NDA"
+          "Shipped · named client, publicly documented"
         ]
       ],
       "metrics": [
@@ -200,7 +200,7 @@
         ]
       ],
       "plateNo": "4.1",
-      "provenance": "White-labelled reconstruction · synthetic data · bound by NDA"
+      "provenance": "Reconstruction · synthetic data · client named, public record on the page"
     },
     "orgos": {
       "no": "05",

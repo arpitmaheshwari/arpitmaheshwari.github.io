@@ -63,7 +63,7 @@ Use the exact metric strings below on every surface (homepage chip, case-study p
 | 1 | **PTC University — Learning Connector** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile: 4% of sessions at start, grew after the responsive redesign (endpoint number RETIRED 2026-08-06 — see entry) · **20+ countries** (corrected from "80+" 2026-08-06, Arpit: "safe side make it 20+" — never reprint 80+) · Role: Product & Design Lead (retitled 2026-08-02, PM receipt) · 2014–2019 |
 | 2 | **Telefónica MyO2 & Priority Moments** | Telecom · Non-NDA / public | **4M+** (MyO2 users) | Priority Moments **2.6M** sign-ups year one · 2.5M+ active · 5★ App Store · Role: Designer + front-end via **Equal Experts, 2012–14** · **design was SHARED with one co-designer; ALL front-end code his (corrected 2026-08-06 — never claim solo design)** |
 | 3 | **AI-Assisted Private Equity Investing** | FinTech · NDA | **60% faster** (deal screening) | measured pre- vs post-rollout · 3 sources behind every score · Role: Lead Product Designer · _(true sample: 42 deals over a 90-day window — DO NOT PUBLISH, see display rule below)_ |
-| 4 | **Programmatic Advertising Platform** | AdTech · NDA | **2 wks → 3 hrs** (campaign planning) | Recommended campaign plans with visible KPIs/ROI, easily customizable — **NO confidence scores, ever** (corrected 2026-08-05, see AdTech correction entry) · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · £400M media spend transacted through the platform · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
+| 4 | **Programmatic Advertising Platform** | AdTech · Named client | **2 wks → 3 hrs** (campaign planning) | Recommended campaign plans with visible KPIs/ROI, easily customizable — **NO confidence scores, ever** (corrected 2026-08-05, see AdTech correction entry) · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · £400M media spend transacted through the platform · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
 | 5 | **OrgOS · Transparent Org Tooling** | Org Design · NDA | **200** (people) | 200 people · 0 managers · 8 modules · **in use by 250 people today (2026)** — the org grew past the 200 it was designed for and the coordination model held · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25). ("Zero managers" is the *outcome*, never the title.) |
 | 6 | **Technical Due Diligence Platform** | VC/PE · NDA | **3 wks → 4 days** (diligence cycle) | 16 analysis dimensions — a finding became a SIGNAL only at sufficient confidence, every signal backed by verified evidence (corrected 2026-08-06, see entry) · VC + PE · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25) |
 
@@ -1469,3 +1469,20 @@ The card meta on the homepage reads "Substack" (the platform, which is true) ins
 keep it. The prior OPEN ACTION asking Arpit to rename the Substack is void; nothing is owed.
 Reason it matters beyond tidiness: a reader who clicked landed somewhere named differently, which
 is the one thing this site cannot afford — it argues that provenance accuracy IS the positioning.
+
+
+### AdTech case is NAMED and LIVE — 2026-08-14 (Arpit's call; supersedes every "adtech · NDA" display rule)
+**The named version ships at `case-studies/adtech.html`.** The anonymous version is kept, unlinked
+and noindexed, at `case-studies/adtech-anonymous.html` as a backup only. `talon.html` is a
+redirect stub.
+**TITLE RULE (Arpit, 2026-08-14): work-first.** No client name and no product names in the
+title/h1/og surfaces — the h1 is "Two weeks to three hours: rebuilding the world's oldest ad
+medium as software." The client (Talon Outdoor) and products (Plato/Ada/Atlas) are named in the
+BODY, with the public record (Digital Bulletin feature + film, launch press, live product pages,
+all link-verified). Tag is now "AdTech · Named client"; status "Shipped · named client, publicly
+documented"; provenance "Reconstruction · synthetic data · client named, public record on the page".
+The "named reference available on request" display rule STANDS unchanged.
+**Still anonymous on purpose:** the book edition and the portfolio/resume PDFs — print artifacts
+Arpit hands over himself; renaming them is a separate decision not yet made.
+**The NDA lines in the OTHER cases (FinTech, VC, OrgOS) are untouched — those clients remain
+under NDA. Only adtech changed.**

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ember">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programmatic Advertising Platform — Arpit Maheshwari</title>
+<meta name="description" content="Case study: how I turned an algorithm’s raw output into full campaign plans with KPIs attached — so media buyers acted on it instead of overriding it.">
+<meta name="robots" content="noindex">
+<!-- BACKUP (2026-08-14): the anonymous version of the AdTech case, kept per Arpit
+     in case the named version ever has to come down. NOT linked from anywhere,
+     NOT in the sitemap. The live case is case-studies/adtech.html (named client). -->
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/case-studies/adtech.html">
+<!-- canonical points at the LIVE named case on purpose -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Programmatic Advertising — Case Study | Arpit Maheshwari">
+<meta property="og:description" content="How I designed for trust when algorithms recommend the counterintuitive.">
+<meta property="og:url" content="https://arpitmaheshwari.com/case-studies/adtech.html">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/adtech-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Programmatic Advertising — Case Study">
+<meta name="twitter:description" content="Plans with KPIs attached, not naked recommendations.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<noscript></noscript>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Programmatic Advertising Platform",
+  "description":"Case study on designing algorithmic recommendation interfaces for media buyer adoption.",
+  "author":{"@type":"Person","name":"Arpit Maheshwari"},
+  "datePublished":"2026-01-15",
+  "dateModified":"2026-05-24"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://arpitmaheshwari.com/"},
+    {"@type":"ListItem","position":2,"name":"Work","item":"https://arpitmaheshwari.com/#featured-case-studies"},
+    {"@type":"ListItem","position":3,"name":"Programmatic Advertising Platform","item":"https://arpitmaheshwari.com/case-studies/adtech.html"}
+  ]
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PFY6ME99K8');
+</script>
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../styles.css?v=p62">
+<link rel="stylesheet" href="../ember.css?v=e55">
+
+<!-- Mockup-plate ink darkened 2026-08-01: #5C6470 -> #515863 and the stage chip
+     #C2410C -> #B63D0B. Measured from RENDERED pixels, these sat at 4.06-4.39:1 against a
+     4.5 floor. Earlier contrast checkers skipped every `.pl*` plate wholesale, so these were
+     never measured: DESIGN-SYSTEM.md exempts plates from the TYPE SCALE, which is not an
+     exemption from contrast. A product mockup arguably qualifies as "part of a picture" under
+     WCAG 1.4.3, but it is real HTML text a low-vision reader may try to read, so it is fixed
+     rather than argued. -->
+</head>
+<body class="p-case-studies-adtech">
+<a href="#main" class="skip-link">Skip to content</a>
+<svg class="xi-case-studies-adtech-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></symbol>
+  <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+</svg>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a class="row-ic xi-case-studies-adtech-002" href="../index.html"><img class="xi-case-studies-adtech-003" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies" aria-current="true">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
+  <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
+  </nav>
+
+
+<header class="case-hero xi-case-studies-adtech-004">
+  <div class="case-hero__in case-hero__in--solo">
+    <div>
+      <p class="case-hero__kicker">AdTech · Programmatic · NDA</p>
+      <h1>Programmatic Advertising Platform</h1>
+      <p class="case-hero__hook">Traders watched an algorithm beat them and played their hunches anyway. The fix wasn't a better model — it was letting them argue back: plans they could reshape in one click, every edit teaching next week's recommendations.</p>
+      <p class="hand xi-case-studies-adtech-005" aria-hidden="true">they stopped fighting the model the day it started listening</p>
+      <div class="case-stats">
+        <div class="case-stat"><b>2 wks → 3 hrs</b><span>campaign planning, once traders bet on the model</span></div>
+        <div class="case-stat"><b>£69k</b><span>average media-value uplift per client</span></div>
+        <div class="case-stat"><b>plans, not picks</b><span>every recommendation a full campaign plan — KPIs attached, one click to customize</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="main" class="section xi-case-studies-adtech-006"><div class="measure-c">
+
+  <!-- META · LOCKED PHASE 11E -->
+  <p class="lbl-eyebrow xi-case-studies-adtech-007">AdTech · Programmatic Advertising Platform · 2019–2025</p>
+
+  <!-- VITALS STRIP -->
+  <dl class="case-vitals">
+    <div><dt>Role</dt><dd>Lead Product Designer</dd></div>
+    <div><dt>Team</dt><dd>50+ distributed agile team — engineering, data science, product</dd></div>
+    <div><dt>Span</dt><dd>2019–2025</dd></div>
+    <div><dt>Surface</dt><dd>End-to-end aggregator · 5 systems</dd></div>
+    <div><dt>Planning</dt><dd class="gold">2 wks → 3 hrs</dd></div>
+    <div><dt>Status</dt><dd>Shipped · under NDA — a named reference for this work is available on request</dd></div>
+  </dl>
+
+  <!-- OWNERSHIP — the honest split, scannable -->
+  <div class="framed-tight xi-case-studies-adtech-008">
+  <div class="rcpt-r-tight xi-case-studies-adtech-009">
+    <div class="lbl-eyebrow xi-case-studies-adtech-010">Owned</div>
+    <div class="t-ui xi-case-studies-adtech-011">Product definition, roadmap, and end-to-end design — the aggregator platform: campaign planner, audience intelligence, creative management, display reporting, and the free inventory SaaS for media owners — and the recommended-plan format itself.</div>
+  </div>
+  <div class="rcpt-r-tight">
+    <div class="lbl-eyebrow xi-case-studies-adtech-010">Shared</div>
+    <div class="t-ui xi-case-studies-adtech-011">The audience-intelligence models behind the plans, with data science.</div>
+  </div>
+  <div class="rcpt-r-tight xi-case-studies-adtech-009">
+    <div class="lbl-meta xi-case-studies-adtech-010">Not mine</div>
+    <div class="t-ui-muted-tight xi-case-studies-adtech-011">The bidding model and the 50M-bids/hour infrastructure — engineering&rsquo;s win, and they own it.</div>
+  </div>
+  <!-- the reading of this ledger — why the split above scopes the headline metric.
+       Folded INTO the frame (2026-08-06): as its own boxed note it stacked three cards
+       in a row with the gate below. One object, one closing line. -->
+  <div class="rcpt-r-tight-last">
+    <div class="lbl-eyebrow xi-case-studies-adtech-010">Scoping the trophy</div>
+    <div class="t-ui-muted-tight xi-case-studies-adtech-011">Collapsing two weeks into three hours is what software does to phone calls — the engineers own that. The design problem was the part that wasn't automatic: getting traders to act on what the system recommended instead of overriding it. That's the number this case is actually about. The research behind it wasn't abstract either: campaign planners, media sellers, and creative agencies, interviewed across the market — their pain points, in their words, became the platform's feature map.</div>
+  </div>
+  </div>
+
+  <section class="case-gate" aria-label="Summary of this case study">
+    <p class="cg-l">The short version</p>
+    <p>An engine that beat the traders, ignored anyway. My read was wrong first — I spent two weeks trying to make the model smarter. The fix was the screen between it and the trader: instead of a raw list of billboards, the system recommended a <b>full campaign plan</b> — KPIs to measure ROI attached, one click to customize — and every override fed next week's recommendations. Planning fell <b>2 wks &rarr; 3 hrs</b>, worth <b>£69k</b> more media value per client. I owned product definition, roadmap and design; the bidding model and the 50M-bids/hour infrastructure were engineering's.</p>
+  </section>
+
+
+  <div class="case-jump" role="navigation" aria-label="Jump to section">
+    <a href="#the-myth">The myth</a>
+    <a href="#the-move">The move</a>
+    <a href="#the-platform">The platform</a>
+    <a href="#the-receipt">The receipt</a>
+  </div>
+
+  <!-- THE MYTH — the counter-intuitive claim that reframes everything -->
+  <p class="t-standfirst xi-case-studies-adtech-012">The model was right. That was the problem. A correct answer nobody acts on is worth exactly nothing, and no amount of extra accuracy was going to close that gap.</p>
+  <p class="lbl-cap xi-case-studies-adtech-013">One wrong diagnosis · and the interface that fixed it</p>
+
+  <!-- §01 — THE MYTH -->
+  <section class="xi-case-studies-adtech-014" id="the-myth">
+    <h2 class="section-title xi-case-studies-adtech-015">
+      Everyone assumed the model was the problem. The model was the one thing working.
+    </h2>
+    <p class="t-body xi-case-studies-adtech-016">In programmatic advertising, an engine decides where the budget goes — which channels, which audiences, which hour. This one outperformed the buyers, and visibly so. The scoreboard wasn't subtle about it. The lift is the data-science team's result, measured by them — their number to defend, and they can. Adoption sat near zero anyway. What I own is what happened next: calls that were right and ignored became calls acted on.</p>
+    <p class="t-body xi-case-studies-adtech-016">I got this wrong first. My opening read matched the room's: retrain the model, make it smarter, and surely the traders would come around. I spent two weeks chasing that before I admitted it was the wrong suspect. The model didn't need to be more right. It needed to stop handing down verdicts without arguments.</p>
+    <blockquote class="xi-case-studies-adtech-017"><p class="xi-case-studies-adtech-018">I spent two weeks chasing the wrong suspect. The model didn't need to be more right — it needed to give the traders something to bet on.</p></blockquote>
+    <p class="t-body">The traders weren't being stubborn. They were being rational — the model never gave them anything to bet on. A bare number asks for faith. Traders deal in collateral, not faith, so they ignored it.</p>
+  </section>
+
+  <!-- §02 — THE STAKES -->
+  <section class="xi-case-studies-adtech-019">
+    <h2 class="section-title xi-case-studies-adtech-015">
+      A campaign took two weeks, and a winning model nobody used was worth nothing.
+    </h2>
+    <p class="t-body xi-case-studies-adtech-016">Planning a campaign the old way meant about two weeks of media-buyers reconciling spreadsheets against their gut — and it's worth being concrete about what those two weeks contained. The UK's outdoor-advertising supply is fragmented across hundreds of site owners, so a planner juggled disparate spreadsheets, phone calls, and FTP files just to learn what was even available. Rates were negotiated by phone tag. Proof that an ad actually ran arrived late, manually, on trust. And a small business wanting one billboard for one week was simply ignored — the manual labor cost more than the booking earned. The UK's largest out-of-home advertising company — £400M in annual revenue, 40% of the UK market — running on a workflow with a two-week speed limit.</p>
+    <p class="t-body"> The engine was built to collapse all of that. And it could have — except the people whose job it was to act on it didn't. The business had paid for an edge that sat on a screen no one bet on. Chasing more accuracy would have spent the budget on the half that already worked, while the half that was broken — trust — stayed broken.</p>
+  </section>
+
+  <!-- §03 — THE MOVE -->
+  <section class="xi-case-studies-adtech-014" id="the-move">
+    <h2 class="section-title xi-case-studies-adtech-015">
+      So I stopped touching the model and rebuilt the screen between it and the trader.
+    </h2>
+    <figure class="fig-paper xi-case-studies-adtech-020">
+      <img class="xi-case-studies-adtech-021" src="../assets/visuals/adtech-plan-not-pick.svg?v=1" alt="Diagram: the engine produced a ranked list of billboards; the screen turned it into a full campaign plan with its KPIs and reasoning attached, customisable in one click, with every edit logged into the next round of recommendations." loading="lazy" width="1180" height="400">
+      <figcaption>The model didn&rsquo;t change &mdash; what it handed the trader did</figcaption>
+    </figure>
+
+    <p class="t-body xi-case-studies-adtech-016"><strong class="xi-case-studies-adtech-022">I built three things.</strong> A recommendation that arrived as a <em>plan</em>, not a pick — the model's raw output was a list of billboards; the screen turned it into a full campaign plan a trader could defend. KPIs on the plan itself, so the ROI case was visible before anyone committed budget. And customization that took one click — because a plan you can adjust is a plan you'll own, and every adjustment was logged and fed into next week's recommendations.</p>
+    <p class="t-body xi-case-studies-adtech-016"><strong class="xi-case-studies-adtech-022">Customization was the one decision.</strong> The safe build would have stopped at a prettier recommendation list — explainable, demoable, and still ignored. Letting traders reshape the machine's plan felt like undermining it. It was the opposite. The first time a buyer watched their own pushback sharpen the following week's calls, the relationship flipped from fighting the model to coaching it. Trust wasn't something I could design into the score; it was something they earned by being allowed to argue back.</p>
+    <p class="t-body xi-case-studies-adtech-016"><strong class="xi-case-studies-adtech-022">And human-in-the-loop design unlocked a bigger reframe: buying moments, not spots.</strong> The old brief was a place — <em>"I want a billboard on Oxford Street for a month."</em> Once buyers trusted the recommendations, the planner could ask a different question and be believed when it answered: <em>"I want to reach party-lovers on Friday nights, 9 PM to 1 AM"</em> — and audience heatmaps, not addresses, chose the sites. Brands set rules on live conditions (show the umbrella ad only when it's raining). On the supply side, media owners fed floor prices and availability in once, and the system accepted qualifying bids on its own — an always-on salesman quietly selling inventory that used to expire unsold. None of that works while humans are overriding the machine; all of it works the moment they stop.</p>
+    <figure class="fig-paper xi-case-studies-adtech-020">
+      <img class="xi-case-studies-adtech-021" src="../assets/visuals/adtech-brief-reframe.svg?v=1" alt="Diagram: the old brief named a place — a billboard on Oxford Street for a month. Once the plans were believed, the brief could name an audience and a moment — reach party-lovers on Friday nights, 9 PM to 1 AM — and the system chose the sites." loading="lazy" width="1180" height="320">
+      <figcaption>What adoption unlocked &mdash; a brief that names an audience, not an address</figcaption>
+    </figure>
+
+    <!-- PLATE — production-fidelity reconstruction, synthetic data -->
+    
+    <div class="plA" role="img" aria-label="Reconstructed campaign-planning interface: a recommended campaign plan of three components, each carrying its own KPIs — reach, estimated ROI, price trend — with one-click customization, plus a side panel naming the signals behind the plan and a small scoreboard comparing model versus desk over the trailing thirty days.">
+      <div class="plA-chrome" aria-hidden="true"><i></i><i></i><i></i><span>campaign-planner · trader desk · reconstruction</span></div>
+      <div class="plA-app">
+        <div class="plA-bar">
+          <span class="plA-brand">Campaign Planner</span>
+          <span class="plA-camp">Campaign: <b>Q3 Retail — Northside</b></span>
+          <span class="plA-stage">Planning · 3 hrs elapsed</span>
+        </div>
+        <div class="plA-body">
+          <div class="plA-main">
+            <div class="plA-head"><b>Recommended plan</b></div>
+            <div class="plA-sub">a full plan, not a list of sites — KPIs attached, every component customizable</div>
+            <div class="plA-card act">
+              <div class="plA-ctop"><span class="plA-rec">CTV, evenings — 12% of budget</span><span class="plA-conf">reach 1.2M</span><span class="plA-verb act">est. ROI 2.4x</span></div>
+              <p class="plA-reason">30-day channel performance ↑ · audience overlap 64% · inventory price −8%</p>
+              <div class="plA-btns"><span class="plA-apply">Accept</span><span class="plA-quiet">Customize &amp; log</span></div>
+            </div>
+            <span class="plA-ovr">✓ trader customized Friday's plan → fed to next week's recommendations</span>
+            <div class="plA-card rev">
+              <div class="plA-ctop"><span class="plA-rec">Roadside D6 cluster — segment K-31</span><span class="plA-conf">reach 640k</span><span class="plA-verb rev">cpm −8%</span></div>
+              <p class="plA-reason">pricing conflict between panels 12 and 14 — flagged</p>
+              <p class="plA-note">trader input requested; never auto-committed</p>
+            </div>
+            <div class="plA-card ign">
+              <div class="plA-ctop"><span class="plA-rec">Creative rotation — weekly</span><span class="plA-conf">3 sets</span><span class="plA-verb ign">auto-schedule</span></div>
+              <p class="plA-reason">served from the creative-management library</p>
+            </div>
+            <div class="plA-foot">plan KPIs are commitments, revisited against outcomes</div>
+          </div>
+          <div class="plA-rail">
+            <div class="plA-rl">Why this plan — segment K-31</div>
+            <div class="plA-w"><i class="xi-case-studies-adtech-023"></i>30-day channel perf</div>
+            <div class="plA-w"><i class="xi-case-studies-adtech-024"></i>Audience overlap</div>
+            <div class="plA-w"><i class="xi-case-studies-adtech-025"></i>Inventory price trend</div>
+            <div class="plA-board">
+              <div class="plA-rl xi-case-studies-adtech-026">The scoreboard</div>
+              <div class="plA-mono">model vs desk · trailing 30d</div>
+              <div class="plA-cmp"><i class="m xi-case-studies-adtech-027"></i>model</div>
+              <div class="plA-cmp"><i class="d xi-case-studies-adtech-028"></i>desk</div>
+              <div class="plA-bcap">what changed wasn't the model — it was what happened to its calls</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <figcaption class="plA-caption">
+      <span class="lbl-eyebrow xi-case-studies-adtech-029">Plate 03 · Campaign planning — reconstruction · all names and figures synthetic</span>
+      <span class="t-quote-cap xi-case-studies-adtech-030">Redrawn from memory at production fidelity. A plan instead of a list, the KPIs on the card, and customization the model learns from — the screen that turned right-and-ignored into right-and-acted-on.</span>
+    </figcaption>
+
+    <p class="t-body xi-case-studies-adtech-007">The whole case fits in one card. Pick a planning priority and watch the plan re-shape — then open the reasoning, then customize it:</p>
+    <section class="recon" id="recon-adtech" role="group" aria-label="Interactive reconstruction: a recommended campaign plan that re-shapes by priority, with visible KPIs and one-click customization">
+    <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA · figures synthetic</div>
+    <div class="recon-stage">
+      
+      <div class="rxa-presets" role="group" aria-label="Planning priority">
+        <button type="button" class="rxa-preset" aria-pressed="true" data-k="reach" data-cta="recon" data-location="recon-adtech">Reach-first</button>
+        <button type="button" class="rxa-preset" aria-pressed="false" data-k="roi" data-cta="recon" data-location="recon-adtech">ROI-first</button>
+        <button type="button" class="rxa-preset" aria-pressed="false" data-k="cap" data-cta="recon" data-location="recon-adtech">Budget-capped</button>
+      </div>
+      <div class="rxa-card hot" id="rxa-card">
+        <div class="rxa-top">
+          <span class="rxa-kicker">Recommended plan · Campaign 7</span>
+        </div>
+        <p class="rxa-rec" id="rxa-rec">Evening CTV + roadside D6 cluster — weighted for maximum audience.</p>
+        <div class="rxa-kpis" aria-live="polite" aria-atomic="true">
+          <span class="rxa-kpi">reach <b id="rxa-k1">1.8M</b></span>
+          <span class="rxa-kpi">est. ROI <b id="rxa-k2">2.1x</b></span>
+          <span class="rxa-kpi">spend <b id="rxa-k3">100%</b></span>
+        </div>
+        <button type="button" class="rxa-why" id="rxa-why" aria-expanded="false" aria-controls="rxa-panel">Why this plan</button>
+        <div class="rxa-panel" id="rxa-panel">
+          <div class="rxa-sig"><span class="rxa-bar" aria-hidden="true"><i class="xi-case-studies-adtech-031"></i></span> Audience fit — movement patterns near sites<span class="visually-hidden"> — weight 85%</span></div>
+          <div class="rxa-sig"><span class="rxa-bar" aria-hidden="true"><i class="xi-case-studies-adtech-032"></i></span> 30-day site performance<span class="visually-hidden"> — weight 60%</span></div>
+          <div class="rxa-sig"><span class="rxa-bar" aria-hidden="true"><i class="xi-case-studies-adtech-033"></i></span> Inventory price trend<span class="visually-hidden"> — weight 35%</span></div>
+        </div>
+        <div class="rxa-actions">
+          <button type="button" class="rxa-override" id="rxa-override" data-cta="recon" data-location="recon-adtech">Customize this plan</button>
+        </div>
+        <p class="rxa-logged" role="status">Customized — logged · feeds next week's recommendations</p>
+      </div>
+    </div>
+    <div class="recon-caption">Keyboard-friendly · nothing you click here leaves the page</div>
+  </section>
+  <script>(function(){var r=document.getElementById('recon-adtech');if(!r)return;
+    var P={reach:['Evening CTV + roadside D6 cluster — weighted for maximum audience.','1.8M','2.1x','100%'],
+           roi:['Roadside D6 only, peak commute windows — weighted for return.','1.1M','3.2x','86%'],
+           cap:['CTV evenings, capped — the plan that fits the budget, stated plainly.','0.9M','2.6x','70%']};
+    var rec=r.querySelector('#rxa-rec'),k1=r.querySelector('#rxa-k1'),k2=r.querySelector('#rxa-k2'),k3=r.querySelector('#rxa-k3'),card=r.querySelector('#rxa-card');
+    r.querySelectorAll('.rxa-preset').forEach(function(b){b.addEventListener('click',function(){
+      r.querySelectorAll('.rxa-preset').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      var p=P[b.dataset.k];rec.textContent=p[0];k1.textContent=p[1];k2.textContent=p[2];k3.textContent=p[3];
+      card.classList.remove('customized');
+    });});
+    var why=r.querySelector('#rxa-why'),panel=r.querySelector('#rxa-panel');
+    why.addEventListener('click',function(){var open=panel.classList.toggle('open');why.setAttribute('aria-expanded',String(open));});
+    r.querySelector('#rxa-override').addEventListener('click',function(){card.classList.add('customized');});
+  })();</script>
+  </section>
+
+  <!-- §03B — THE PLATFORM (added 2026-08-05, Arpit's expansion: the transformation story) -->
+  <section class="xi-case-studies-adtech-014" id="the-platform">
+    <h2 class="section-title xi-case-studies-adtech-015">
+      The bigger story: a media agency became the market's aggregator.
+    </h2>
+    <figure class="fig-paper xi-case-studies-adtech-020">
+      <img class="xi-case-studies-adtech-021" src="../assets/visuals/adtech-two-sided.svg?v=1" alt="Diagram: five connected systems forming a two-sided marketplace — planner, creative library and proof-of-play reporting on the demand side, free inventory software on the supply side, and the audience-intelligence platform between them." loading="lazy" width="1180" height="420">
+      <figcaption>Five systems, one connected platform &mdash; demand on one side, supply on the other</figcaption>
+    </figure>
+
+    <p class="t-body xi-case-studies-adtech-016">The campaign planner is the part of this case with the famous number, but it was one system of five. Over six years the engagement moved the client from an advertising media agency running on Excel sheets and phone calls to an adtech company — the market's aggregator, positioned as a DSP with its own demand side and its own supply side, the workflow end-to-end on one platform. I owned product definition, the roadmap, and the design across all five:</p>
+    <div class="framed-tight xi-case-studies-adtech-034">
+      <div class="rcpt-r-tight xi-case-studies-adtech-009">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">The aggregator</div>
+        <div class="t-ui xi-case-studies-adtech-011">The DSP itself — demand side for advertisers and agencies, supply side for media owners, replacing the phone-and-spreadsheet market with one marketplace.</div>
+      </div>
+      <div class="rcpt-r-tight">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">Audience intelligence</div>
+        <div class="t-ui xi-case-studies-adtech-011">A data platform that analyzed aggregate movement patterns to profile audiences, then profiled every billboard against them — so a campaign reached the right people at the hours they were actually near a site.</div>
+      </div>
+      <div class="rcpt-r-tight xi-case-studies-adtech-009">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">Creative management</div>
+        <div class="t-ui xi-case-studies-adtech-011">One library for the creative itself — versioned, scheduled, and served to the right screens.</div>
+      </div>
+      <div class="rcpt-r-tight">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">Display reporting</div>
+        <div class="t-ui xi-case-studies-adtech-011">Proof-of-play reporting — evidence that an ad actually ran, replacing the late, manual, on-trust version.</div>
+      </div>
+      <div class="rcpt-r-tight-last xi-case-studies-adtech-009">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">Inventory SaaS — free</div>
+        <div class="t-ui xi-case-studies-adtech-011">Media owners got inventory-management software for nothing; in return their inventory flowed into the aggregator. The supply side recruited itself — the giveaway was the growth loop.</div>
+      </div>
+    </div>
+    <p class="t-body">Each system feeds the next: the free SaaS brings the supply, the intelligence platform prices and profiles it, the planner turns it into plans a trader will act on, creative management fills the screens, and reporting closes the loop with proof. That end-to-end loop — not any single screen — is what turned a two-week phone workflow into a three-hour one, at the company that now leads the UK market.</p>
+  </section>
+
+  <!-- §04 — THE RECEIPT -->
+  <section class="xi-case-studies-adtech-014" id="the-receipt">
+    <h2 class="section-title xi-case-studies-adtech-035">The receipt.</h2>
+    <p class="lbl-cap xi-case-studies-adtech-007">Same model, before and after human-in-the-loop design</p>
+    <div class="rcpt-box xi-case-studies-adtech-008">
+      <div class="rcpt-r xi-case-studies-adtech-009">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">Campaign planning</div>
+        <div class="t-ui xi-case-studies-adtech-011">~2 weeks → 3 hours · once traders bet on the model</div>
+      </div>
+      <div class="rcpt-r">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">Adoption</div>
+        <div class="t-ui xi-case-studies-adtech-011">Near-zero on a winning model → buyers acting on the calls</div>
+      </div>
+      <div class="rcpt-r xi-case-studies-adtech-009">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">The plan</div>
+        <div class="t-ui xi-case-studies-adtech-011">A raw list of billboards → a full campaign plan with KPIs to measure ROI</div>
+      </div>
+      <div class="rcpt-r">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">The reasoning</div>
+        <div class="t-ui xi-case-studies-adtech-011">Verdict without an argument → the reasons and KPIs on the plan itself</div>
+      </div>
+      <div class="rcpt-r xi-case-studies-adtech-009">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">The override</div>
+        <div class="t-ui xi-case-studies-adtech-011">Take it or leave it → one-click customization, logged and fed into next week's recommendations · fighting it → coaching it</div>
+      </div>
+      <div class="rcpt-r">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">Effort</div>
+        <div class="t-ui xi-case-studies-adtech-011">45% reduction in time and effort to plan and book a campaign</div>
+      </div>
+      <div class="rcpt-r xi-case-studies-adtech-009">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">Client value</div>
+        <div class="t-ui xi-case-studies-adtech-011">£69,000 average media-value uplift per client · better targeting + yield management</div>
+      </div>
+      <div class="rcpt-r-last">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">Performance</div>
+        <div class="t-ui xi-case-studies-adtech-011">3x uplift in purchase intent · 70% audience uplift vs traditional bookings</div>
+      </div>
+    </div>
+
+    <p class="lbl-cap xi-case-studies-adtech-036">From the public record — the client's leadership, in a published industry case study. Their claims, attributed; not my KPIs.</p>
+    <div class="rcpt-box xi-case-studies-adtech-008">
+      <div class="rcpt-r xi-case-studies-adtech-009">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">Consideration</div>
+        <div class="t-ui xi-case-studies-adtech-011">53% uplift vs standard OOH campaigns — measured through the audience platform, per their Product Strategy Director</div>
+      </div>
+      <div class="rcpt-r">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">Adoption at scale</div>
+        <div class="t-ui xi-case-studies-adtech-011">Under 5% → 100% of the client's UK bookings running through the trading platform, per their Chief Product Officer</div>
+      </div>
+      <div class="rcpt-r xi-case-studies-adtech-009">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">Availability lookup</div>
+        <div class="t-ui xi-case-studies-adtech-011">Finding 48 sheets in a city for a given month: three days of work → 30 seconds, their example</div>
+      </div>
+      <div class="rcpt-r">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">Build speed</div>
+        <div class="t-ui xi-case-studies-adtech-011">"The things that would normally take us 12-18 months to build, were built in six months" — their Chief Transformation Officer · the programmatic platform took revenue a month after launch</div>
+      </div>
+      <div class="rcpt-r-last">
+        <div class="lbl-eyebrow xi-case-studies-adtech-010">The trust posture</div>
+        <div class="t-ui xi-case-studies-adtech-011">Built so "clients only pay for confirmed impressions" — transparency as the product, not a feature</div>
+      </div>
+    </div>
+    <p class="t-ui-muted xi-case-studies-adtech-037">The client stays unnamed here by my choice, so the source isn't linked — the article, the publication, and the film exist in public, and I'll hand them over in any conversation.</p>
+  </section>
+
+  <!-- §05 — THE HONEST LINE -->
+  <section class="xi-case-studies-adtech-019">
+    <h2 class="section-title xi-case-studies-adtech-015">
+      What it took to admit: the smartest thing on the screen wasn't the model.
+    </h2>
+    <blockquote class="pullq xi-case-studies-adtech-038">
+      <p class="t-quote xi-case-studies-adtech-039">The model never changed. The humans finally bet on it.</p>
+    </blockquote>
+    <p class="t-body">"Make the model smarter" is the answer that protects the data-science team and the budget. "They don't trust it" points the finger at the interface — which was the actual ceiling.</p>
+  </section>
+
+  <!-- WHERE THIS WOULDN'T TRANSFER — the boundary on the claim (2026-08-02) -->
+  <section class="note-gold-b xi-case-studies-adtech-038">
+    <p class="lbl-eyebrow xi-case-studies-adtech-040">Where this wouldn’t transfer</p>
+    <p class="t-ui-175 xi-case-studies-adtech-041">The model was already accurate — the gap I closed was trust, not accuracy. If your model is genuinely wrong, no interface will save it; that’s an upstream fix, and I’d tell you so before taking the brief.</p>
+  </section>
+
+  <!-- §06 — THE PRINCIPLE -->
+  <section class="xi-case-studies-adtech-019">
+    <h2 class="section-title xi-case-studies-adtech-015">The principle it left me with.</h2>
+    <p class="t-body xi-case-studies-adtech-016">When a model is right and nobody acts on it, the problem is almost never accuracy. It's that the model hands down a verdict and keeps its reasoning to itself. Human-in-the-loop design — a verb instead of a number, the reasons named, and a way to argue back that the model actually listens to — is what converts a correct answer into an acted-on one.</p>
+  </section>
+
+  <!-- NDA CALENDLY CTA — locked phase 11E -->
+  <section class="note-gold xi-case-studies-adtech-038">
+    <p class="t-standfirst xi-case-studies-adtech-042">Want to know more about this work?</p>
+    <p class="t-body-muted xi-case-studies-adtech-043">Details are confidential; I'll walk through the artifacts — the service blueprint included — and numbers on a call under mutual NDA.</p>
+    <a class="btn-label btn-a xi-case-studies-adtech-044 hv-case-studies-adtech-1" href="../index.html#contact" data-cta="send-role" data-location="nda-case-cta">Send me the role <svg class="icon xi-case-studies-adtech-045" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+  </section>
+
+  <!-- VOICE — named testimonial from an engineering partner on this work -->
+  <figure class="xi-case-studies-adtech-046">
+    <svg class="icon xi-case-studies-adtech-047" aria-hidden="true"><use href="#i-quote"/></svg>
+    <blockquote class="t-quote xi-case-studies-adtech-048">Arpit consistently demonstrated exceptional speed, creativity, and attention to detail… What stood out most was his ability to present multiple design options along with clear pros and cons, which made it much easier for different stakeholders to make informed decisions and align quickly. I highly recommend Arpit and would be delighted to work with him again.</blockquote>
+    <figcaption class="xi-case-studies-adtech-049"><span class="t-serif-body-plain xi-case-studies-adtech-030">Sanjesh Ananda</span><span class="xi-case-studies-adtech-050">Software Engineering Leader · worked with Arpit on this platform</span></figcaption>
+  </figure>
+
+
+  <!-- RELATED PATTERNS -->
+  <section class="xi-case-studies-adtech-051">
+    <h3 class="t-card-title xi-case-studies-adtech-012">Design Patterns Used in This Case</h3>
+    <p class="t-ui-muted-loose xi-case-studies-adtech-016">The trust lessons here fed the pattern library — this case contributed to patterns now used across multiple AI products:</p>
+    <ul class="t-ui-muted-loose xi-case-studies-adtech-052">
+      <li class="xi-case-studies-adtech-053"><strong><a class="xi-case-studies-adtech-054" href="../patterns/human-in-loop.html">Human-in-Loop Patterns</a>:</strong> the machine proposes, the person disposes — here, a recommended plan the trader could accept, customize, or replace, with every edit feeding the next round.</li>
+      <li class="xi-case-studies-adtech-053"><strong><a class="xi-case-studies-adtech-054" href="../patterns/reversibility-safe-to-act.html">Reversibility / Safe-to-Act</a>:</strong> accepting a recommended plan was cheap to reverse — customization and re-planning cost one click, which is why traders were willing to act at all.</li>
+      
+      <li class="xi-case-studies-adtech-053"><strong><a class="xi-case-studies-adtech-054" href="../patterns/ml-explainability.html">ML Explainability Patterns</a>:</strong> The reasoning surfaces and feature importance visualizations that buyers used to understand algorithm decisions directly informed the explainability patterns library.</li>
+    </ul>
+  </section>
+
+  <p class="t-ui-muted xi-case-studies-adtech-055">I write about this in <a class="xi-case-studies-adtech-054" href="https://arpitmaheshwari.substack.com" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="case-study-substack">my newsletter ↗</a></p>
+
+  <!-- SEQUENTIAL NAVIGATION -->
+  <p class="t-quote-sm xi-case-studies-adtech-056">The trust problem was solved here. Next: the same discipline with millions staked on a single verdict — provenance as a gate a partner will sign.</p>
+  <div class="btn-row xi-case-studies-adtech-057">
+    <a class="lbl-pill-bg btn-a xi-case-studies-adtech-058 hv-case-studies-adtech-2" href="./fintech.html">Next case study →</a>
+    <a class="lbl-pill-gold btn-a-ghost xi-case-studies-adtech-059 hv-case-studies-adtech-3" href="../index.html#contact" data-cta="send-role" data-location="case-study-bottom">Send me the role ↗</a>
+  </div>
+</div></main>
+
+<footer>
+  <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
+  <button class="dyslexia-toggle" id="dyslexiaToggle" aria-pressed="false" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+    <span>Dyslexia-friendly</span>
+  </button>
+  <div class="footer-note">No copyright · Design is for all</div>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon xi-case-studies-adtech-060" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+</footer>
+
+<script>
+// Dyslexia toggle
+const toggle = document.getElementById('dyslexiaToggle');
+if (toggle) {
+  const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on';
+  if (isDyslexic) {
+    document.body.classList.add('dyslexia-mode');
+    toggle.setAttribute('aria-pressed', 'true');
+  }
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dyslexia-mode');
+    const isOn = document.body.classList.contains('dyslexia-mode');
+    toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+    localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off');
+  });
+}
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Mobile menu (consolidated handler with aria-expanded + Escape support)
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close drawer when clicking outside it
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close drawer on Escape key + return focus to hamburger
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+
+  // Close drawer when any link OR the reading toggle inside it is clicked
+  navLinks.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+// GA4 event tracking
+document.addEventListener('click', (e) => {
+  const cta = e.target.closest('[data-cta]');
+  if (cta && typeof gtag === 'function') {
+    gtag('event', 'cta_click', {
+      cta_type: cta.dataset.cta,
+      location: cta.dataset.location || 'unknown',
+      href: cta.getAttribute('href') || ''
+    });
+  }
+});
+
+// Scroll depth — fires once per threshold (25/50/75/100)
+const scrollDepthHits = new Set();
+function trackScrollDepth() {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (docHeight <= 0) return;
+  const pct = Math.min(100, Math.floor((window.scrollY / docHeight) * 100));
+  [25, 50, 75, 100].forEach(threshold => {
+    if (pct >= threshold && !scrollDepthHits.has(threshold)) {
+      scrollDepthHits.add(threshold);
+      if (typeof gtag === 'function') gtag('event', 'scroll_depth', { percent: threshold });
+    }
+  });
+}
+window.addEventListener('scroll', trackScrollDepth, { passive: true });
+
+// Section visibility — fires once per section when 50% in viewport
+const sectionViewObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.viewed) {
+      entry.target.dataset.viewed = '1';
+      if (typeof gtag === 'function') {
+        gtag('event', 'section_view', { section_id: entry.target.id });
+      }
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s));
+</script>
+
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script src="../assets/recon-live.js" defer></script>
+</body>
+</html>
