@@ -1606,3 +1606,62 @@ html[data-theme="ember"] [class*="p-hire"] .hire-wrap :is(p,li){margin-left:auto
    and no text is cut, so it is logged rather than chased further. Next person:
    the cells carry padding !important from the extraction, so the constraint is
    probably a min-content width on a column, not the padding. */
+
+/* ============================================================================
+   ONE AXIS PER SECTION (2026-08-14) — the last habitat of "balanced ≠ aligned"
+   #how-i-lead's heading carries a ch-based max-width, so the auto-centring rule
+   centred it: eyebrow at x=140, heading at x=395, a 255px indent inside one
+   stack. Three other sections had body text drifting 24-27px off their eyebrow
+   for the same reason. An eyebrow, its headline and its body are ONE object and
+   share one left edge; only whole sections get centred, never their parts.
+   ============================================================================ */
+html[data-theme="ember"] body.p-home main > section:not(.hero) .wrap > :is(p,h2,h3),
+html[data-theme="ember"] body.p-home main > section:not(.hero) .wrap > div > :is(p,h2,h3){
+  margin-left:0!important;margin-right:0!important}
+/* the heading also ran 40px/1.20 against the 44px/1.12 its siblings use */
+html[data-theme="ember"] body.p-home #how-i-lead h2{font-size:44px;line-height:1.12}
+@media (max-width:640px){
+  html[data-theme="ember"] body.p-home #how-i-lead h2{font-size:30px}}
+
+/* ============================================================================
+   /patterns/ FEATURE CARDS — my call, per Arpit "you decide".
+   The two lead cards are 1180px wide while their content used ~430px, leaving
+   683px of void on the right. I am NOT narrowing them: they are the page's
+   two feature objects (the rule, and the rule as running code) and their width
+   is what marks them as bigger than the eight pattern cards below.
+   Instead the space gets a content role — the card becomes two columns: the
+   argument on the left at a reading measure, its provenance and CTA on the
+   right rail. Same principle as the case-study plates: fill designed space
+   with content, do not shrink the object to hide the gap.
+   ============================================================================ */
+@media (min-width:900px){
+  /* !important: the extracted class sets display:block!important */
+  html[data-theme="ember"] body[class*="p-patterns"] .section-inner > a:has(> p){
+    display:grid!important;grid-template-columns:minmax(0,1fr) 300px;
+    column-gap:64px;align-items:start}
+  html[data-theme="ember"] body[class*="p-patterns"] .section-inner > a:has(> p)
+    > :is(.eyebrow,.section-title,.t-ui-muted-175,p){grid-column:1}
+  /* the CTA + date/provenance row becomes the right rail, top-aligned */
+  /* grid-row 1/-1 spans EVERY row so the rail sits beside the whole text stack.
+     `2 / span 3` put it below the prose (measured railTop 592px inside the card)
+     because the two cards do not have the same number of children. */
+  html[data-theme="ember"] body[class*="p-patterns"] .section-inner > a:has(> p)
+    /* `1 / -1` spans only the EXPLICIT grid, which is one row here (all rows are
+       implicit), so the rail was 251px tall in a 511px card. span 20 covers any
+       child count these two cards will ever have. */
+    > :last-child{grid-column:2;grid-row:1 / span 20;align-self:stretch;
+    border-left:1px solid var(--border);padding-left:24px;
+    display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+  html[data-theme="ember"] body[class*="p-patterns"] .section-inner > a:has(> p)
+    > :is(.section-title,.t-ui-muted-175){max-width:none}
+}
+/* /patterns/ prose blocks (not cards): the text was capped at ~430px inside a
+   1112px band, so the leftover sat entirely on the right. Cap the BLOCK to a
+   reading measure and centre the block — the leftover becomes a symmetric
+   margin. Same reading-spine pattern the case studies use. */
+@media (min-width:900px){
+  html[data-theme="ember"] body[class*="p-patterns"] .section-inner > div:not(.philosophy-cards):not([class*="grid"]){
+    max-width:760px;margin-left:auto;margin-right:auto}
+  html[data-theme="ember"] body[class*="p-patterns"] .section-inner > div:not(.philosophy-cards) > :is(p,h2,h3){
+    max-width:none}
+}
