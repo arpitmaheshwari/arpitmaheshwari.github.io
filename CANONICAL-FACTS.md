@@ -1486,3 +1486,15 @@ The "named reference available on request" display rule STANDS unchanged.
 Arpit hands over himself; renaming them is a separate decision not yet made.
 **The NDA lines in the OTHER cases (FinTech, VC, OrgOS) are untouched — those clients remain
 under NDA. Only adtech changed.**
+
+### Talon design system + Claude port — NEW FACTS from Arpit, 2026-08-15
+Source: Arpit directly, in-session. No numbers were given, so none may be printed.
+1. **Arpit introduced a new design system at Talon.** It gave the products a modern look and
+   scaled across the product line, making all the products read as one platform family
+   (Plato, Ada, Atlas et al. stopped looking like separate tools).
+2. **The design system was later ported into Claude** (Anthropic's AI assistant): encoding the
+   system's rules made front-end development faster and more precise with fewer bugs, and
+   empowered Talon's developers to prototype with Claude themselves.
+Display rules: no invented metric for "fewer bugs" or "faster" — qualitative only until Arpit
+supplies numbers. The design-system-retired-language rule of 2026-08-06 applies to the PATTERNS
+page only; this Talon system is a real component design system and may be called one.
