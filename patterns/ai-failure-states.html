@@ -51,7 +51,7 @@
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../styles.css?v=p62">
-<link rel="stylesheet" href="../ember.css?v=e94">
+<link rel="stylesheet" href="../ember.css?v=e96">
 </head>
 <body class="p-patterns-ai-failure-states">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -118,7 +118,91 @@
       </div>
     </div>
     <figure class="xi-patterns-ai-failure-states-034">
-      <img class="framed xi-patterns-ai-failure-states-035" src="../assets/visuals/pattern-failure.svg" alt="Failure-state pattern: a graceful low-confidence state where the model declines to bluff and offers a recovery path" loading="lazy" width="1280" height="400">
+      <svg data-art="A" class="framed xi-patterns-ai-failure-states-035" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">Failure States pattern</title>
+  <desc id="dsc">A wide cream editorial banner. On the left, a UI card in a graceful low-confidence state where the model declines to bluff and admits uncertainty. On the right, clear recovery actions: try another source, or ask a human.</desc>
+
+  <rect x="0" y="0" width="1280" height="400" fill="var(--art-bg, #F4ECDA)"/>
+
+  <!-- ============ LEFT: heading block ============ -->
+  <text x="64" y="120" font-family="'Source Serif 4', Georgia, serif" font-size="52" font-weight="700" fill="var(--art-ink, #2C2620)">Failure States</text>
+  <text x="66" y="158" font-family="'Source Sans 3', system-ui, sans-serif" font-size="22" fill="var(--art-mut, #6A6052)">Design the wrong-answer screen first.</text>
+
+  <!-- accent rule under subtitle -->
+  <rect x="66" y="180" width="300" height="3" rx="1.5" fill="var(--art-heat, #C0512B)"/>
+
+  <!-- small low-confidence badge under heading -->
+  <g font-family="'Source Sans 3', system-ui, sans-serif">
+    <rect x="66" y="226" width="232" height="46" rx="23" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1.5"/>
+    <circle cx="92" cy="249" r="9" fill="none" stroke="var(--art-gold, #CE9230)" stroke-width="2.5"/>
+    <path d="M92 244 v6" stroke="var(--art-gold, #CE9230)" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="92" cy="254" r="1.6" fill="var(--art-gold, #CE9230)"/>
+    <text x="112" y="255" font-size="18" fill="var(--art-mut, #6A6052)">Not confident enough</text>
+  </g>
+
+  <!-- arrow from card toward recovery, spanning the middle -->
+  <g stroke="var(--art-heat, #C0512B)" stroke-width="2.5" fill="none">
+    <path d="M664 200 H792" stroke-dasharray="2 9" stroke-linecap="round"/>
+    <path d="M786 192 l12 8 l-12 8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ============ CENTER-LEFT: low-confidence UI card ============ -->
+  <g>
+    <!-- card body -->
+    <rect x="382" y="84" width="282" height="232" rx="16" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1.5"/>
+
+    <!-- card title bar -->
+    <text x="408" y="124" font-family="'Source Sans 3', system-ui, sans-serif" font-size="17" fill="var(--art-label, #998D78)">Your question</text>
+    <line x1="408" y1="140" x2="638" y2="140" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1.5"/>
+
+    <!-- model "I'm not sure" face / signal -->
+    <circle cx="431" cy="186" r="22" fill="none" stroke="var(--art-gold, #CE9230)" stroke-width="3"/>
+    <path d="M431 174 v8" stroke="var(--art-gold, #CE9230)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="431" cy="194" r="2.2" fill="var(--art-gold, #CE9230)"/>
+
+    <!-- the honest message -->
+    <text x="470" y="180" font-family="'Source Serif 4', Georgia, serif" font-size="24" font-weight="700" fill="var(--art-ink, #2C2620)">I'm not sure</text>
+    <text x="470" y="206" font-family="'Source Sans 3', system-ui, sans-serif" font-size="16" fill="var(--art-mut, #6A6052)">about this one.</text>
+
+    <!-- declining-to-bluff: low confidence meter -->
+    <text x="408" y="248" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="var(--art-label, #998D78)">Confidence</text>
+    <rect x="408" y="258" width="230" height="10" rx="5" fill="var(--art-bg, #F4ECDA)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <rect x="408" y="258" width="64" height="10" rx="5" fill="var(--art-gold, #CE9230)"/>
+    <text x="610" y="252" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="var(--art-mut, #6A6052)" text-anchor="end">Low</text>
+
+    <!-- faint suppressed "answer" lines — the bluff it chose NOT to give -->
+    <line x1="408" y1="288" x2="560" y2="288" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="6" stroke-linecap="round"/>
+    <line x1="408" y1="302" x2="500" y2="302" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- ============ RIGHT: recovery affordances ============ -->
+  <g font-family="'Source Sans 3', system-ui, sans-serif">
+    <text x="822" y="120" font-family="'Source Serif 4', Georgia, serif" font-size="22" font-weight="700" fill="var(--art-ink, #2C2620)">What now?</text>
+
+    <!-- option 1: try another source -->
+    <rect x="822" y="146" width="394" height="68" rx="14" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1.5"/>
+    <g stroke="var(--art-good, #2F5D52)" stroke-width="2.5" fill="none">
+      <path d="M858 180 a16 16 0 1 1 -0.01 0" />
+      <path d="M848 173 l8 5 l-3 9" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="894" y="176" font-size="19" font-weight="600" fill="var(--art-ink, #2C2620)">Try another source</text>
+    <text x="894" y="198" font-size="15" fill="var(--art-mut, #6A6052)">Search a different reference</text>
+
+    <!-- option 2: ask a human (primary, ember) -->
+    <rect x="822" y="226" width="394" height="68" rx="14" fill="var(--art-card, #EEE4CE)" stroke="var(--art-heat, #C0512B)" stroke-width="2"/>
+    <g stroke="var(--art-heat, #C0512B)" stroke-width="2.5" fill="none">
+      <circle cx="858" cy="252" r="8"/>
+      <path d="M845 276 a13 13 0 0 1 26 0" stroke-linecap="round"/>
+    </g>
+    <text x="894" y="256" font-size="19" font-weight="600" fill="var(--art-heat, #C0512B)">Ask a human</text>
+    <text x="894" y="278" font-size="15" fill="var(--art-mut, #6A6052)">Route to a person who knows</text>
+  </g>
+
+  <!-- baseline hairline grounding the banner -->
+  <line x1="64" y1="350" x2="1216" y2="350" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1.5"/>
+  <text x="64" y="376" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="var(--art-label, #998D78)">A graceful unknown beats a confident wrong answer.</text>
+</svg>
+
     </figure>
   </section>
 

@@ -52,7 +52,7 @@
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../styles.css?v=p62">
-<link rel="stylesheet" href="../ember.css?v=e94">
+<link rel="stylesheet" href="../ember.css?v=e96">
 </head>
 <body class="p-patterns-calibration-track-record">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -92,7 +92,103 @@
   </div>
 
   <figure class="xi-patterns-calibration-track-record-014">
-    <img class="framed xi-patterns-calibration-track-record-015" src="../assets/visuals/pattern-calibration.svg" alt="Calibration pattern: a stated confidence beside a predicted-versus-actual reliability plot and a per-case-type accuracy breakdown that exposes the weaker slice" loading="lazy" width="1280" height="400">
+    <svg data-art="A" class="framed xi-patterns-calibration-track-record-015" style="width:100%;height:auto;display:block" viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+  <title id="t">Calibration &amp; Track Record pattern</title>
+  <desc id="d">A stated confidence beside a calibration plot of predicted-versus-actual accuracy and a per-case-type accuracy breakdown that exposes the weaker slice.</desc>
+  <rect x="0" y="0" width="1280" height="400" fill="var(--art-bg, #F4ECDA)"/>
+
+  <!-- Title block -->
+  <text x="36" y="74" font-family="'Source Serif 4', Georgia, serif" font-size="40" font-weight="600" fill="var(--art-ink, #2C2620)">Calibration &amp; Track Record</text>
+  <text x="36" y="106" font-family="'Source Sans 3', system-ui, sans-serif" font-size="19" fill="var(--art-mut, #6A6052)">Is the confidence actually right? Show the receipts.</text>
+  <line x1="36" y1="126" x2="1244" y2="126" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+
+  <!-- ===== LEFT: Stated confidence ===== -->
+  <g transform="translate(40,150)">
+    <rect x="0" y="0" width="386" height="214" rx="10" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="var(--art-label, #998D78)">CONFIDENCE</text>
+
+    <!-- big stated number -->
+    <text x="193" y="138" text-anchor="middle" font-family="'Source Serif 4', Georgia, serif" font-size="92" font-weight="600" fill="var(--art-ink, #2C2620)">94%</text>
+
+    <!-- High pill -->
+    <rect x="143" y="158" width="100" height="32" rx="16" fill="var(--art-good, #2F5D52)"/>
+    <text x="193" y="180" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="16" font-weight="600" fill="var(--art-bg, #F4ECDA)">High</text>
+
+    <text x="193" y="74" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="var(--art-label, #998D78)">stated confidence</text>
+  </g>
+
+  <!-- connector -->
+  <path d="M 434 257 H 480" fill="none" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="2"/>
+  <path d="M 474 251 L 482 257 L 474 263 Z" fill="var(--art-label, #998D78)"/>
+
+  <!-- ===== MIDDLE: Calibration plot ===== -->
+  <g transform="translate(490,150)">
+    <rect x="0" y="0" width="386" height="214" rx="10" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="var(--art-label, #998D78)">RELIABILITY</text>
+
+    <!-- plot area: square from (64,54) to (204,194) -> 140x140 -->
+    <rect x="64" y="54" width="140" height="140" fill="var(--art-bg, #F4ECDA)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+
+    <!-- axes -->
+    <line x1="64" y1="194" x2="204" y2="194" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <line x1="64" y1="54" x2="64" y2="194" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+
+    <!-- perfect calibration diagonal (dotted) bottom-left to top-right -->
+    <line x1="64" y1="194" x2="204" y2="54" stroke="var(--art-arrow, #998D78)" stroke-width="1.5" stroke-dasharray="3 4"/>
+
+    <!-- predicted-vs-actual dots sitting close to the diagonal -->
+    <circle cx="84" cy="178" r="5" fill="var(--art-heat, #C0512B)"/>
+    <circle cx="112" cy="148" r="5" fill="var(--art-heat, #C0512B)"/>
+    <circle cx="138" cy="124" r="5" fill="var(--art-heat, #C0512B)"/>
+    <circle cx="166" cy="90" r="5" fill="var(--art-heat, #C0512B)"/>
+    <circle cx="190" cy="66" r="5" fill="var(--art-heat, #C0512B)"/>
+
+    <!-- axis hints -->
+    <text x="134" y="212" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" fill="var(--art-label, #998D78)">predicted</text>
+    <text x="54" y="128" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" fill="var(--art-label, #998D78)" transform="rotate(-90 54 128)">actual</text>
+
+    <!-- legend / read-out on the right -->
+    <line x1="244" y1="62" x2="268" y2="62" stroke="var(--art-arrow, #998D78)" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <text x="278" y="67" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="var(--art-mut, #6A6052)">perfect</text>
+
+    <circle cx="256" cy="92" r="5" fill="var(--art-heat, #C0512B)"/>
+    <text x="278" y="97" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="var(--art-mut, #6A6052)">observed</text>
+
+    <text x="244" y="142" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="var(--art-ink, #2C2620)">Tracks the line:</text>
+    <text x="244" y="166" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="var(--art-ink, #2C2620)">confidence <tspan font-weight="600" fill="var(--art-good, #2F5D52)">earns</tspan></text>
+    <text x="244" y="186" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="var(--art-ink, #2C2620)">its trust.</text>
+  </g>
+
+  <!-- connector -->
+  <path d="M 884 257 H 930" fill="none" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="2"/>
+  <path d="M 924 251 L 932 257 L 924 263 Z" fill="var(--art-label, #998D78)"/>
+
+  <!-- ===== RIGHT: Accuracy by case type ===== -->
+  <g transform="translate(940,150)">
+    <rect x="0" y="0" width="304" height="214" rx="10" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <text x="22" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="var(--art-label, #998D78)">BY CASE TYPE</text>
+
+    <!-- Type A 96% -->
+    <text x="22" y="76" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="var(--art-ink, #2C2620)">Type A</text>
+    <rect x="22" y="84" width="216" height="14" rx="7" fill="var(--art-bg, #F4ECDA)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <rect x="22" y="84" width="207" height="14" rx="7" fill="var(--art-good, #2F5D52)"/>
+    <text x="282" y="96" text-anchor="end" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" font-weight="600" fill="var(--art-good, #2F5D52)">96%</text>
+
+    <!-- Type B 91% -->
+    <text x="22" y="128" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="var(--art-ink, #2C2620)">Type B</text>
+    <rect x="22" y="136" width="216" height="14" rx="7" fill="var(--art-bg, #F4ECDA)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <rect x="22" y="136" width="197" height="14" rx="7" fill="var(--art-good, #2F5D52)"/>
+    <text x="282" y="148" text-anchor="end" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" font-weight="600" fill="var(--art-good, #2F5D52)">91%</text>
+
+    <!-- Type C 72% (weaker, surfaced) -->
+    <text x="22" y="180" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="var(--art-ink, #2C2620)">Type C</text>
+    <circle cx="72" cy="175" r="5" fill="var(--art-gold, #CE9230)"/>
+    <rect x="22" y="188" width="216" height="14" rx="7" fill="var(--art-bg, #F4ECDA)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <rect x="22" y="188" width="156" height="14" rx="7" fill="var(--art-gold, #CE9230)"/>
+    <text x="282" y="200" text-anchor="end" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" font-weight="600" fill="var(--art-gold, #CE9230)">72%</text>
+  </g>
+</svg>
+
   </figure>
 
   <section class="xi-patterns-calibration-track-record-012">
