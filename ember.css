@@ -1122,10 +1122,10 @@ html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]
    eye scans straight down. CTA stays in the content column's reading axis. */
 html[data-theme="ember"] body.p-home .lanes .lane{
   grid-template-columns:168px minmax(0,1fr);
-  grid-template-areas:"head title" "head go";
+  grid-template-areas:"head title";
   column-gap:48px;row-gap:8px;padding:24px 32px}
-html[data-theme="ember"] body.p-home .lanes .lane .go{
-  grid-area:go;justify-self:end;align-self:end;margin-top:8px;white-space:nowrap}
+/* CTA removed 2026-08-15 (Arpit): the whole row is the link; hover carries the
+   affordance (bg tint + border heat already defined on .lane:hover) */
 html[data-theme="ember"] body.p-home .lanes .lane .m{
   display:block;font-size:clamp(19px,1.7vw,24px);align-self:start!important}
 html[data-theme="ember"] body.p-home .lanes .lane>div{align-self:start!important}
