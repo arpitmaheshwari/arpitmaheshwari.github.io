@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ember">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F2 · The Anomaly — AdTech case rewrite</title>
+<meta name="robots" content="noindex">
+<!-- FRAMEWORK SAMPLE 2 of 3 (2026-08-14): "THE ANOMALY" — a mystery the reader solves
+     alongside me. Loewenstein's information gap sustained to the reframe; a docket
+     card up top is the skimmer's escape hatch (Evnin's constraint honoured without
+     giving up transportation). Suspect #1 is my own wrong diagnosis — the failure
+     beat moved to the front. All facts from CANONICAL-FACTS.md. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<link rel="stylesheet" href="/styles.css?v=p62">
+<link rel="stylesheet" href="/ember.css?v=e57">
+<style>
+.fw-tag{position:fixed;top:12px;right:12px;z-index:99;font-family:var(--ff-label);font-size:11.5px;
+  font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#120B14;background:#E86BFF;
+  padding:8px 12px;border-radius:6px}
+/* the docket: a sealed-file summary the skimmer may open; the reader may ignore */
+.docket{border:1px dashed rgba(255,196,107,.5);border-radius:8px;margin:32px 0;background:rgba(27,19,32,.5)}
+.docket summary{cursor:pointer;list-style:none;padding:16px 24px;font-family:var(--ff-label);
+  font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#FFC46B}
+.docket summary::before{content:"⊕ ";color:#FFC46B}
+.docket[open] summary::before{content:"⊖ "}
+.docket div{padding:0 24px 20px;font-size:15px;line-height:1.65;color:rgba(245,237,230,.84)}
+/* the suspect board */
+.suspects{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px;margin:32px 0}
+.suspect{border:1px solid rgba(245,237,230,.14);border-radius:8px;padding:20px;background:rgba(27,19,32,.6);position:relative}
+.suspect .s-no{font-family:var(--ff-label);font-weight:600;font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:#FF7AA8;display:block;margin-bottom:8px}
+.suspect h3{font-family:var(--ff-display);font-weight:400;font-size:19px;margin-bottom:8px;color:#F5EDE6}
+.suspect p{font-size:14px;line-height:1.6;color:rgba(245,237,230,.76)}
+.suspect .cleared{position:absolute;top:14px;right:14px;font-family:var(--ff-label);font-weight:600;
+  font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#7FCF9E;border:1px solid rgba(127,207,158,.5);
+  border-radius:4px;padding:3px 8px;transform:rotate(4deg)}
+.suspect.guilty .cleared{color:#FF7AA8;border-color:rgba(255,122,168,.55)}
+.turn{border-left:3px solid #E86BFF;padding:24px 32px;margin:48px 0;background:rgba(232,107,255,.06);border-radius:0 8px 8px 0}
+.turn p{font-family:var(--ff-display);font-weight:300;font-size:24px;line-height:1.4;color:#F5EDE6}
+.turn p em{color:#E86BFF}
+</style>
+</head>
+<body class="p-case-studies-adtech">
+<div class="fw-tag" aria-hidden="true">Framework 2 · The Anomaly</div>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="case-hero">
+  <div class="case-hero__in case-hero__in--solo">
+    <div>
+      <p class="case-hero__kicker">AdTech · named client · a mystery, with the answer sealed up top</p>
+      <h1>Every week the machine beat the traders. Every week they ignored it. Nobody could say why.</h1>
+      <p class="case-hero__hook">The scoreboard wasn't subtle: the recommendation engine outperformed the human buyers, visibly, repeatedly. Adoption stayed near zero. The company had paid for an edge nobody would use — and the obvious explanations were all wrong, including mine. This is the case as it actually unfolded, wrong turns kept in. If you'd rather have the answer now, it's sealed in the docket below.</p>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="section"><div class="measure-c">
+
+  <p class="lbl-eyebrow">AdTech · Named client · 2019–2025 · Lead Product Designer, 50+ distributed team</p>
+
+  <details class="docket">
+    <summary>The docket — verdict and numbers, for readers in a hurry</summary>
+    <div>The traders were rational; the interface was asking them to bet on a bare number. Once recommendations arrived as full campaign plans — KPIs printed on them, one-click customization, every override feeding next week's calls — adoption followed. Planning fell <b>2 weeks → 3 hours</b>; <b>£69k</b> average media-value uplift per client (mine to defend). The client's CPO, on the record: UK bookings through the platform went <b>&lt;5% → 100%</b> in about a year. The client is named, with a magazine feature and film, on <a href="/case-studies/adtech.html#public-record">the live case</a>.</div>
+  </details>
+
+  <!-- THE SUSPECTS — the failure beat leads -->
+  <section id="suspects">
+    <h2 class="section-title">Three suspects. I arrested the wrong one first.</h2>
+    <div class="suspects">
+      <div class="suspect">
+        <span class="s-no">Suspect 01 · my arrest</span><span class="cleared">Cleared</span>
+        <h3>The model isn't good enough</h3>
+        <p>The room's theory and mine. I spent two weeks trying to make the engine smarter before the scoreboard shamed me out of it: the model already beat the desk. Accuracy was the one thing not wrong.</p>
+      </div>
+      <div class="suspect">
+        <span class="s-no">Suspect 02 · the room's fallback</span><span class="cleared">Cleared</span>
+        <h3>Traders resist change</h3>
+        <p>Comforting, unfalsifiable, and wrong. These were people paid to find edges. Watch them work — I did, across planners, sellers and creative agencies — and they adopt anything that helps them win. They weren't resisting change. They were resisting <em>faith</em>.</p>
+      </div>
+      <div class="suspect guilty">
+        <span class="s-no">Suspect 03</span><span class="cleared">Guilty</span>
+        <h3>The interface demands trust it never earned</h3>
+        <p>A naked recommendation asks a trader to stake their number on a stranger's word. No sources, no stakes, no way to argue back. Rational people decline that bet every time — and they did.</p>
+      </div>
+    </div>
+    <p class="t-body">The evidence that cleared the first two suspects came from the field: sitting with campaign planners juggling spreadsheets, phone tag and FTP files across hundreds of site owners; with media sellers watching unsold weeks expire worthless; with a £400M company — 40% of the UK's out-of-home market — running on a two-week speed limit. Nobody in that ecosystem had room for faith. Everybody had room for a better bet.</p>
+  </section>
+
+  <!-- THE TURN — the peak -->
+  <div class="turn">
+    <p>So I stopped interrogating the model and searched the handover instead. The question was never <em>"how do we make it more right?"</em> It was <em>"what would a trader need on the table before staking their own number on it?"</em></p>
+  </div>
+
+  <!-- THE MECHANISM -->
+  <section id="mechanism">
+    <h2 class="section-title">The mechanism: a plan you can argue with.</h2>
+    <p class="t-body">Three moves, shipped as one screen. The model's raw output — a ranked list of billboards — became a <b>full campaign plan</b>: reach, budget, formats, locations. The <b>KPIs it would be judged on were printed on the plan itself</b>, so the ROI case stood in the open before anyone committed budget. And <b>customization took one click</b> — every adjustment logged and fed into the following week's recommendations, so pushing back on the machine visibly made it sharper.</p>
+    <figure class="fig-paper">
+      <img src="../assets/visuals/adtech-plan-not-pick.svg?v=1" alt="Diagram: the engine produced a ranked list of billboards; the screen turned it into a full campaign plan with its KPIs and reasoning attached, customisable in one click, with every edit logged into the next round of recommendations." loading="lazy" width="1180" height="400">
+      <figcaption>The murder weapon, so to speak: the handover. The model on the left never changed. Everything to its right did.</figcaption>
+    </figure>
+    <p class="t-body">The first time a buyer watched their own override sharpen the next week's calls, the relationship flipped — from fighting the machine to coaching it. Trust wasn't a feeling I designed into a score. It was collateral the system posted, week after week, until betting on it was the rational move.</p>
+  </section>
+
+  <!-- THE AFTERMATH -->
+  <section id="aftermath">
+    <h2 class="section-title">The aftermath, in two ledgers.</h2>
+    <p class="t-body"><b>Measured inside the engagement — mine to defend:</b> campaign planning <b>2 weeks → 3 hours</b> once traders bet on the model · <b>£69,000</b> average media-value uplift per client · <b>45%</b> less time-and-effort to plan and book · <b>3×</b> purchase-intent and <b>70%</b> audience uplift over traditional bookings.</p>
+    <p class="t-body"><b>On the public record — the client's leaders, to the press:</b> UK bookings through the trading platform <b>under 5% → 100%</b> in about a year; an availability search that took three days now takes 30 seconds; audience-optimised campaigns <b>+53%</b> consideration. Their words, quoted and linked from <a href="/case-studies/adtech.html#public-record">the live case</a> — never re-badged as mine. The bidding model and its 50M-bids-per-hour infrastructure are engineering's win, and they own it.</p>
+    <p class="t-body">And once the plans were believed, the brief itself changed species — from <em>"a billboard on Oxford Street for a month"</em> to <em>"reach party-lovers on Friday nights, 9&nbsp;PM to 1&nbsp;AM."</em> Trust didn't just speed the old workflow up. It made a better question askable.</p>
+    <figure class="fig-paper">
+      <img src="../assets/visuals/adtech-brief-reframe.svg?v=1" alt="Diagram: the old brief named a place — a billboard on Oxford Street for a month. Once the plans were believed, the brief could name an audience and a moment — reach party-lovers on Friday nights, 9 PM to 1 AM — and the system chose the sites." loading="lazy" width="1180" height="320">
+      <figcaption>What the confession bought: briefs that name audiences and moments, not addresses.</figcaption>
+    </figure>
+  </section>
+
+  <!-- CASE CLOSED -->
+  <section id="closed">
+    <h2 class="section-title">Case closed. What I keep from it.</h2>
+    <p class="t-body">The expensive mistake in AI products is almost never the model — it's the handover. I now examine the trust layer <em>before</em> anyone spends a sprint on accuracy, and I budget for the two weeks I once wasted arresting the wrong suspect. The mechanism transfers only where the user is an expert who is <em>accountable</em> for the output; hand the same argue-back loop to a casual consumer and you collect noise, not coaching. And it cannot launder a weak model — it can only surface a strong one.</p>
+    <p class="t-body">A named reference for this work is available on request.</p>
+  </section>
+
+  <div class="btn-row">
+    <a class="lbl-badge-gold btn-a-ghost" href="/index.html#contact">Send me the role&nbsp;↗</a>
+  </div>
+
+</div></main>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ember">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F3 · The Argument — AdTech case rewrite</title>
+<meta name="robots" content="noindex">
+<!-- FRAMEWORK SAMPLE 3 of 3 (2026-08-14): "THE ARGUMENT" — the case as proof of one
+     stealable principle. Under this framework each of the six cases proves a
+     DIFFERENT principle; the portfolio becomes a system of ideas. House rule for
+     this framework: no paragraph without a person, a number, or an object in it.
+     All facts from CANONICAL-FACTS.md. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<link rel="stylesheet" href="/styles.css?v=p62">
+<link rel="stylesheet" href="/ember.css?v=e57">
+<style>
+.fw-tag{position:fixed;top:12px;right:12px;z-index:99;font-family:var(--ff-label);font-size:11.5px;
+  font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#120B14;background:#FFC46B;
+  padding:8px 12px;border-radius:6px}
+/* the thesis plate: the one sentence this case exists to prove */
+.thesis{border:1px solid rgba(255,196,107,.4);border-radius:12px;padding:40px;margin:40px 0;
+  background:linear-gradient(160deg,rgba(255,196,107,.07),rgba(232,107,255,.05));text-align:center}
+.thesis .t-l{font-family:var(--ff-label);font-weight:600;font-size:11.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:#FFC46B;display:block;margin-bottom:16px}
+.thesis p{font-family:var(--ff-display);font-weight:300;font-size:clamp(24px,3vw,34px);
+  line-height:1.25;letter-spacing:-.01em;color:#F5EDE6;max-width:24ch;margin:0 auto}
+.thesis p em{font-style:italic;color:#E86BFF}
+/* the trust loop — NEW diagram, canonical mechanism only */
+.loop{margin:32px 0;border:1px solid rgba(245,237,230,.14);border-radius:12px;padding:32px;
+  background:rgba(27,19,32,.6);overflow-x:auto}
+.loop svg{display:block;min-width:640px;width:100%;height:auto}
+.loop text{font-family:var(--ff-sans);font-size:13px;fill:#F5EDE6}
+.loop .lt{font-weight:600}
+.loop .lm{fill:rgba(245,237,230,.62);font-size:11px}
+.loop .arr{stroke:rgba(245,237,230,.45);stroke-width:1.5;fill:none;marker-end:url(#ah)}
+.loop .hot{stroke:#E86BFF}
+.loop rect{fill:rgba(18,11,20,.8);stroke:rgba(245,237,230,.2);rx:8}
+.loop .r-hot{stroke:#E86BFF}
+.loop figcaption{font-family:var(--ff-sans);font-size:12px;color:rgba(245,237,230,.62);margin-top:16px;line-height:1.6}
+.counter{border-left:3px solid #FF7AA8;padding:20px 28px;margin:32px 0;background:rgba(255,122,168,.05);border-radius:0 8px 8px 0}
+.counter .c-l{font-family:var(--ff-label);font-weight:600;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:#FF7AA8;display:block;margin-bottom:8px}
+</style>
+</head>
+<body class="p-case-studies-adtech">
+<div class="fw-tag" aria-hidden="true">Framework 3 · The Argument</div>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="case-hero">
+  <div class="case-hero__in case-hero__in--solo">
+    <div>
+      <p class="case-hero__kicker">AdTech · named client · one case, one stealable principle</p>
+      <h1>Accuracy is table stakes. Trust is a mechanism — and you can design it.</h1>
+      <p class="case-hero__hook">Every AI team I've met believes adoption follows accuracy. This case is five years of evidence that it doesn't — from inside the UK's largest out-of-home advertising company, where a model that beat its human traders sat unused until the interface started posting collateral. Steal the principle; the receipts are attached.</p>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="section"><div class="measure-c">
+
+  <p class="lbl-eyebrow">AdTech · Named client · 2019–2025 · Lead Product Designer, 50+ distributed team</p>
+
+  <div class="thesis">
+    <span class="t-l">The principle this case proves</span>
+    <p>Users don't adopt the most accurate system. They adopt the one that <em>lets them argue back.</em></p>
+  </div>
+
+  <div class="case-jump" role="navigation" aria-label="Jump to section">
+    <a href="#stakes">The stakes</a>
+    <a href="#test">The test</a>
+    <a href="#mechanism">The mechanism</a>
+    <a href="#evidence">The evidence</a>
+    <a href="#breaks">Where it breaks</a>
+  </div>
+
+  <!-- STAKES -->
+  <section id="stakes">
+    <h2 class="section-title">What believing the opposite was costing.</h2>
+    <p class="t-body">The client — £400M in revenue, 40% of the UK's out-of-home market — had built a recommendation engine that beat its own traders on a public scoreboard. The house belief was the industry's belief: make it more accurate and adoption will come. So the model got better, and the traders kept planning campaigns the old way: two weeks of spreadsheets and phone tag across hundreds of site owners, per campaign. An edge the company had already paid for sat on a screen nobody would stake their number on. I believed the house theory too — I spent my first two weeks trying to sharpen the model before the scoreboard shamed me out of it. That failed fortnight is the reason this page exists.</p>
+  </section>
+
+  <!-- THE TEST -->
+  <section id="test">
+    <h2 class="section-title">The test: give the traders standing to disagree.</h2>
+    <p class="t-body">If the principle is right, adoption should move without touching the model at all. That was the bet. The recommendation became a <b>full campaign plan</b> — reach, budget, formats, locations — with <b>its KPIs printed on it</b>, so the ROI case stood in the open before budget moved. And disagreement became a control instead of a betrayal: <b>one-click customization, every override logged and fed into the following week's recommendations</b>. The trader's pushback visibly made the machine sharper — which is what arguing back means.</p>
+    <figure class="loop">
+      <svg viewBox="0 0 720 220" role="img" aria-label="The trust loop: the model recommends a plan; the trader customizes it; the override is logged; next week's recommendation is sharper; trust compounds and overrides fall.">
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="rgba(245,237,230,.45)"/></marker></defs>
+        <rect x="20" y="70" width="150" height="64"/>
+        <text x="95" y="98" text-anchor="middle" class="lt">Model recommends</text>
+        <text x="95" y="116" text-anchor="middle" class="lm">a full plan, KPIs attached</text>
+        <rect x="210" y="70" width="150" height="64"/>
+        <text x="285" y="98" text-anchor="middle" class="lt">Trader argues back</text>
+        <text x="285" y="116" text-anchor="middle" class="lm">one-click customization</text>
+        <rect x="400" y="70" width="150" height="64"/>
+        <text x="475" y="98" text-anchor="middle" class="lt">Override logged</text>
+        <text x="475" y="116" text-anchor="middle" class="lm">fed to next week's calls</text>
+        <rect x="590" y="70" width="110" height="64" class="r-hot"/>
+        <text x="645" y="98" text-anchor="middle" class="lt">Trust</text>
+        <text x="645" y="116" text-anchor="middle" class="lm">compounds</text>
+        <path class="arr" d="M170 102 L206 102"/>
+        <path class="arr" d="M360 102 L396 102"/>
+        <path class="arr" d="M550 102 L586 102"/>
+        <path class="arr hot" d="M645 134 L645 176 L95 176 L95 138"/>
+        <text x="370" y="196" text-anchor="middle" class="lm">the loop: every disagreement makes next week's recommendation harder to disagree with</text>
+      </svg>
+      <figcaption>New diagram, mechanism only — no invented specifics. The loop is the principle: disagreement is fuel, not friction. A system that punishes pushback never earns a second bet.</figcaption>
+    </figure>
+    <div class="counter">
+      <span class="c-l">The strongest objection, kept in</span>
+      <p class="t-body">"Letting traders reshape the machine's plan undermines the machine." That was the room's position, and it is the reasonable one. It is also backwards: an unchallengeable system doesn't read as authoritative, it reads as unaccountable — and experts decline to stake their name on the unaccountable. The objection dissolved the first time a buyer watched their own override sharpen the following week's plan.</p>
+    </div>
+  </section>
+
+  <!-- MECHANISM -->
+  <section id="mechanism">
+    <h2 class="section-title">The principle, compounding through the platform.</h2>
+    <p class="t-body">Once plans were believed, the brief changed species: from <em>"a billboard on Oxford Street for a month"</em> to <em>"reach party-lovers on Friday nights, 9&nbsp;PM to 1&nbsp;AM"</em> — audiences and moments, not addresses. The same argue-back logic shaped the supply side: media owners got inventory software free, and their availability flowed into the aggregator in return — supply arriving without a phone call, on terms the owners themselves controlled. Argue-back, both sides of the market.</p>
+    <figure class="fig-paper">
+      <img src="../assets/visuals/adtech-brief-reframe.svg?v=1" alt="Diagram: the old brief named a place — a billboard on Oxford Street for a month. Once the plans were believed, the brief could name an audience and a moment — reach party-lovers on Friday nights, 9 PM to 1 AM — and the system chose the sites." loading="lazy" width="1180" height="320">
+      <figcaption>What the principle bought at market scale: a brief that names an audience, not an address.</figcaption>
+    </figure>
+  </section>
+
+  <!-- EVIDENCE -->
+  <section id="evidence">
+    <h2 class="section-title">Falsifiable evidence, in two ledgers.</h2>
+    <p class="t-body"><b>Mine to defend in the room:</b> campaign planning <b>2 weeks → 3 hours</b> once traders bet on the model · <b>£69,000</b> average media-value uplift per client · <b>45%</b> less time-and-effort to plan and book · <b>3×</b> purchase intent and <b>70%</b> audience uplift vs traditional bookings.</p>
+    <p class="t-body"><b>On the public record, in the client's own voice:</b> UK bookings through the trading platform went from <b>under 5% to 100%</b> in about a year (their CPO); a three-day availability search now takes 30 seconds; audience-optimised campaigns carry <b>+53%</b> consideration (their product director). The client and platforms are named, with a magazine feature and film, on <a href="/case-studies/adtech.html#public-record">the live case</a>. The bidding model and its 50M-bids-per-hour infrastructure are engineering's — attributed, never claimed.</p>
+  </section>
+
+  <!-- WHERE IT BREAKS -->
+  <section id="breaks">
+    <h2 class="section-title">Where the principle breaks.</h2>
+    <p class="t-body">Argue-back needs an <em>accountable expert</em> on the other side — a trader with a number against their name, an analyst signing an IC memo. Casual users generate noise, not coaching; a feedback loop trained on noise degrades. And the principle cannot rescue a weak model: collateral only works when the house can pay. If either condition fails in your product, this case argues against copying it — which is exactly what a principle worth stealing should do.</p>
+    <p class="t-body">A named reference for this work is available on request.</p>
+  </section>
+
+  <div class="btn-row">
+    <a class="lbl-badge-gold btn-a-ghost" href="/index.html#contact">Send me the role&nbsp;↗</a>
+  </div>
+
+</div></main>
+</body>
+</html>
