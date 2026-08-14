@@ -1745,7 +1745,7 @@ html[data-theme="ember"] .loopfig figcaption{
    because the journey is longer than a lone number; nowrap keeps it one line.
    ============================================================================ */
 html[data-theme="ember"] body.p-home #chip-adtech b{
-  font-size:clamp(24px,2.2vw,31px);letter-spacing:-.01em;white-space:nowrap}
+  letter-spacing:-.01em;white-space:nowrap}
 /* the visible pair lives in a span INSIDE b; .rcell span (11.5px mono uppercase,
    the descriptor rule) was capturing it — the bug Arpit rejected. Redeclare. */
 html[data-theme="ember"] body.p-home .rcell b>span{
@@ -1818,8 +1818,13 @@ html[data-theme="ember"] .lback{flex-basis:100%;font-size:11.5px;color:#E86BFF;
   border-top:1px dashed rgba(232,107,255,.4);padding-top:12px;margin-top:4px}
 @media (max-width:560px){html[data-theme="ember"] .larr{display:none}}
 /* #voices joins the homepage section cadence (it was born with zero padding —
-   exactly the boundary-collision defect the overflow gate checks for) */
+   exactly the boundary-collision defect the overflow gate checks for).
+   2026-08-15: it was ALSO born outside the section type grammar — h2 at browser
+   size, kicker with no accent, lede undimmed. Declared here to match siblings. */
 html[data-theme="ember"] body.p-home .voices{padding:96px 0;background:var(--bg-soft)}
+html[data-theme="ember"] body.p-home .voices .k{color:var(--violet)}
+html[data-theme="ember"] body.p-home .voices h2{font-size:clamp(28px,3.2vw,44px);line-height:1.12;margin:12px 0 16px}
+html[data-theme="ember"] body.p-home .voices .lede{color:rgba(245,237,230,.76);max-width:70ch;margin-bottom:40px}
 
 /* product-page link cards (replacing the two business-video embeds) */
 html[data-theme="ember"] .prod-links{display:grid;
