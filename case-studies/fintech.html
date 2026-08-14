@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI-Assisted Private Equity Investing — Arpit Maheshwari</title>
+<title>Provenance Is the Product — a Private Equity AI Case Study — Arpit Maheshwari</title>
 <meta name="description" content="Case study: How I designed explainability-first UX for PE analysts to trust an LLM's deal-risk analysis — grounded in cited sources, with abstention over hallucination — in high-stakes decisions.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
@@ -76,9 +76,9 @@
 <header class="case-hero">
   <div class="case-hero__in case-hero__in--solo">
     <div>
-      <p class="case-hero__kicker">FinTech · AI-Assisted Private Equity · NDA</p>
-      <h1>AI-Assisted Private Equity Investing</h1>
-      <p class="case-hero__hook">An LLM read the deal documents and scored the risk — but analysts get paid to doubt confident numbers. So it shipped already able to name a source for every claim, and to say “I’m not sure” instead of bluffing. Then they stopped auditing the model and started betting on it.</p>
+      <p class="case-hero__kicker">FinTech · AI-assisted private equity · one case, one stealable principle</p>
+      <h1>For expert skeptics, provenance is the product.</h1>
+      <p class="case-hero__hook">Private-equity analysts get paid to doubt confident numbers — a score they can't cross-examine is a smooth pitch with no references, and experts walk past smooth pitches. So this product refused to launch as a naked score: from day one, every claim carried its source, and thin evidence drew an honest “I’m not sure.” Screening ran 60% faster — because the machine came with references.</p>
       <p class="hand xi-case-studies-fintech-004" aria-hidden="true">it shipped already knowing how to say ‘I’m not sure’</p>
       <div class="case-stats">
         <div class="case-stat"><b>60% faster</b><span>deal screening · pre/post rollout</span></div>
@@ -118,26 +118,28 @@
     <div class="t-ui-muted-tight xi-case-studies-fintech-011">The model&rsquo;s accuracy — the ML team&rsquo;s result to defend — and the retrieval backend.</div>
   </div>
   </div>
-  <section class="case-gate" aria-label="Summary of this case study">
-    <p class="cg-l">The short version</p>
-    <p>An LLM already scored deal risk accurately. What was missing was not precision but belief. The first release already carried a source behind every generated claim, and an <b>&ldquo;I&rsquo;m not sure&rdquo;</b> state instead of a bluff. Screening ran <b>60% faster</b>, because analysts stopped re-verifying the machine. I owned product definition and the abstention and citation UX; the model's accuracy is the ML team's result to defend.</p>
-  </section>
+  <div class="thesis">
+    <span class="t-l">The principle this case proves</span>
+    <p>A score is a claim. Experts don't buy claims — they buy claims <em>with references.</em></p>
+  </div>
 
 
   <div class="case-jump" role="navigation" aria-label="Jump to section">
-    <a href="#the-myth">The reframe</a>
-    <a href="#the-move">The move</a>
-    <a href="#the-receipt">The receipt</a>
+    <a href="#stakes">The stakes</a>
+    <a href="#test">The test</a>
+    <a href="#the-move">The mechanism</a>
+    <a href="#the-receipt">The evidence</a>
+    <a href="#breaks">Where it breaks</a>
   </div>
 
   <!-- THE MYTH — the reframe that runs the whole case -->
-  <p class="t-standfirst xi-case-studies-fintech-012">A large language model already read the deal documents and scored the risk accurately. What was missing was belief, not precision. So the work was making every claim the model generated point back to the source it came from, before the first release — for readers whose whole profession is cross-examination.</p>
-  <p class="lbl-cap xi-case-studies-fintech-013">One reframe · accuracy was solved, trust wasn't</p>
+  <p class="t-standfirst xi-case-studies-fintech-012">The house belief: get the score accurate enough and the analysts will use it. The score was accurate. The analysts audited it by hand anyway — because a number with no sources isn't evidence, it's homework.</p>
+  <p class="lbl-cap xi-case-studies-fintech-013">One principle · proven in the room where doubt is the job</p>
 
   <!-- §01 — THE MYTH -->
-  <section class="xi-case-studies-fintech-014" id="the-myth">
+  <section class="xi-case-studies-fintech-014" id="stakes">
     <h2 class="section-title xi-case-studies-fintech-015">
-      Accuracy was never the bottleneck. Trust was.
+      The stakes: an accurate score that added work instead of removing it.
     </h2>
     <p class="t-body xi-case-studies-fintech-016">Doubt is the job here, and these analysts are very good at it. A score they couldn't cross-examine wasn't a tool — it was a liability with a UI, and they treated it like one. It didn't help that the number came out of a large language model reading messy deal documents: the same technology that, pushed too far, will invent a confident answer it can't back up.</p>
     <p class="t-body xi-case-studies-fintech-016">The LLM scored deal risk accurately — reading board packs, statements and interview notes the way a junior analyst would. That part was never in question. What was missing sat on the screen: every score read the same whether the model was ninety percent confident or fifty percent guessing, and nothing on screen told you whether a claim was pulled from a real document or quietly made up. With no way to check the reasoning, analysts built parallel scorecards and let the AI rank as a sanity check at best.</p>
@@ -145,9 +147,9 @@
   </section>
 
   <!-- §02 — THE STAKES -->
-  <section class="xi-case-studies-fintech-017">
+  <section class="xi-case-studies-fintech-017" id="test">
     <h2 class="section-title xi-case-studies-fintech-015">
-      A score nobody trusts is a screen nobody opens.
+      The test: if the principle holds, belief should move without touching accuracy.
     </h2>
     <p class="t-body">An analyst won't stake a recommendation on a number they can't defend to the investment committee — so an unexplainable score, however accurate, becomes one more thing to audit by hand. The model added work instead of removing it.</p>
   </section>
@@ -155,7 +157,7 @@
   <!-- §03 — THE MOVE -->
   <section class="xi-case-studies-fintech-014" id="the-move">
     <h2 class="section-title xi-case-studies-fintech-015">
-      The score could explain itself on the day it shipped.
+      The mechanism: references beside the number, and an honest &ldquo;I&rsquo;m not sure.&rdquo;
     </h2>
     <figure class="fig-paper xi-case-studies-fintech-018">
       <img class="xi-case-studies-fintech-019" src="../assets/visuals/fintech-gate.svg?v=1" alt="Diagram: two launch conditions — every generated number carries its source, and thin evidence draws an abstention — each shown with the failure it prevents, gating the release at a cost of weeks of delay." loading="lazy" width="1180" height="360">
@@ -298,11 +300,15 @@
     </figure>
   </section>
 
-  <!-- §04 — WHAT IT COST -->
-  <section class="xi-case-studies-fintech-017">
+  <!-- §04 — WHAT IT COST · the objection kept in -->
+  <section class="xi-case-studies-fintech-017" id="cost">
     <h2 class="section-title xi-case-studies-fintech-015">
-      What building it first cost.
+      What holding the principle cost — and the objection it had to survive.
     </h2>
+    <div class="counter">
+      <span class="c-l">The strongest objection, kept in</span>
+      <p class="t-body">&ldquo;Ship the score now, add citations later — provenance is polish.&rdquo; Reasonable, budget-shaped, and wrong for this room: with expert skeptics you get exactly one first impression, and a bluffing tool never earns a second audit. The product-owner call was to perfect it before the release — provenance went in as a launch condition, not a fast-follow.</p>
+    </div>
     <p class="t-body xi-case-studies-fintech-016">Building it first wasn't free. The accurate LLM sat finished while I built the surface that could defend it — the retrieval that tied each claim to a source, the abstention state, the override — weeks the team could feel, against a model that already worked. Waiting was the product owner's call as much as mine; what I own is the argument for it, because shipping a correct score nobody acted on would have been the more expensive mistake.</p>
     <blockquote class="pullq xi-case-studies-fintech-031">
       <p class="t-quote xi-case-studies-fintech-032">Accuracy gets you a correct number. It doesn't get you a decision. The gap between the two is the whole job — and it's made of trust, not math.</p>
@@ -311,7 +317,7 @@
 
   <!-- THE RECEIPT -->
   <section class="xi-case-studies-fintech-014" id="the-receipt">
-    <h2 class="section-title xi-case-studies-fintech-033">The receipt.</h2>
+    <h2 class="section-title xi-case-studies-fintech-033">Falsifiable evidence.</h2>
     <p class="lbl-cap xi-case-studies-fintech-006">Interrogation turned into reliance · every number with its window</p>
     <p class="t-body xi-case-studies-fintech-006">Screening ran 60% faster, and analysts went from ignoring the model to leading their deal memos with it. The LLM didn't get more accurate — they could finally trace every claim to its cited source and see where its confidence came from. What the NDA keeps off this page — the sample, the eval design, the baseline, who ran the count — I walk through on a call, artifacts open.</p>
     <div class="rcpt-box xi-case-studies-fintech-008">
@@ -340,10 +346,10 @@
     <p class="t-ui-175 xi-case-studies-fintech-035">Those weeks bought explainability, and that trade only pays when the user is an expert with a reputation riding on the answer. For a low-stakes, high-volume decision nobody audits, spending them would have been the wrong call.</p>
   </section>
 
-  <!-- THE PRINCIPLE -->
-  <section class="xi-case-studies-fintech-017">
-    <h2 class="section-title xi-case-studies-fintech-015">What this one taught me.</h2>
-    <p class="t-body">To an expert, a score they can't interrogate is a smooth pitch with no references — and experts walk past smooth pitches.</p>
+  <!-- WHERE THE PRINCIPLE BREAKS -->
+  <section class="xi-case-studies-fintech-017" id="breaks">
+    <h2 class="section-title xi-case-studies-fintech-015">Where the principle breaks.</h2>
+    <p class="t-body">Provenance-first assumes the reader will actually open the references — true of analysts whose names go on the memo, untrue of users grazing a feed. It also taxes latency and retrieval cost on every claim; in a product where a wrong answer is cheap, that tax buys nothing. And citations cannot save a model that's guessing: a source beside a wrong number just makes the error easier to find — which is the point, and which some rooms don't want. If your users don't doubt for a living, this case argues against copying it.</p>
   </section>
 
   <!-- NDA CALENDLY CTA — locked phase 11E -->

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OrgOS · Transparent Org Tooling — Arpit Maheshwari</title>
+<title>The Tool Is the Org Design — a Zero-Managers Case Study — Arpit Maheshwari</title>
 <meta name="description" content="Case study: designing an operating system for radically transparent organisations — open finances, peer-set salaries, zero managers. 200-person team.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
@@ -78,9 +78,9 @@
 <header class="case-hero">
   <div class="case-hero__in case-hero__in--solo">
     <div>
-      <p class="case-hero__kicker">Org Design · NDA</p>
-      <h1>OrgOS · Transparent Org Tooling</h1>
-      <p class="case-hero__hook">Two hundred people, no managers. Eight modules doing the job of an org chart — coordination that doesn't smuggle a boss back in through the side door.</p>
+      <p class="case-hero__kicker">Org design · 200 people, zero managers · one case, one stealable principle</p>
+      <h1>In a company with no managers, the tool is the org design.</h1>
+      <p class="case-hero__hook">Two hundred people, no managers, and eight modules doing the job of an org chart. Every design decision here was an organizational decision wearing interface clothes — and the trap in every feature request was a boss trying to smuggle itself back in through the side door. Coordination had to be pulled, never pushed.</p>
       <p class="hand xi-case-studies-orgos-004" aria-hidden="true">‘zero managers’ is the outcome — never the pitch</p>
       <div class="case-stats">
         <div class="case-stat"><b>200</b><span>people coordinating, self-serve</span></div>
@@ -120,25 +120,26 @@
     <div class="t-ui-muted-tight xi-case-studies-orgos-010">The backend and the data model&rsquo;s implementation.</div>
   </div>
   </div>
-  <section class="case-gate" aria-label="Summary of this case study">
-    <p class="cg-l">The short version</p>
-    <p>A company of two hundred with no managers, where transparency did the coordinating — until the hallway stopped scaling. Every obvious feature (assign, approve, escalate) was a manager wearing a different name, so the job was <b>saying no</b> to each one. I replaced assignment with visibility: commitments, not tasks, across <b>8 modules</b> on one object model, for <b>200 people</b> with <b>0 managers</b> in the loop. I owned the module definition and interaction design; the backend was not mine.</p>
-  </section>
+  <div class="thesis">
+    <span class="t-l">The principle this case proves</span>
+    <p>When the user base and the org chart are the same people, every design call is an <em>org-design call.</em></p>
+  </div>
 
 
   <div class="case-jump" role="navigation" aria-label="Jump to section">
-    <a href="#the-myth">The myth</a>
-    <a href="#the-move">The move</a>
-    <a href="#the-principle">The principle</a>
+    <a href="#stakes">The stakes</a>
+    <a href="#test">The test</a>
+    <a href="#the-receipt">The evidence</a>
+    <a href="#breaks">Where it breaks</a>
   </div>
 
   <!-- THE HOOK — the counter-intuitive claim that reframes the problem -->
   <p class="t-standfirst xi-case-studies-orgos-011">Everyone wanted to hear that a 200-person company runs with zero managers. The harder truth: transparency was already doing the managers' job — and at 200 people it had quietly started to fail.</p>
   <p class="lbl-cap xi-case-studies-orgos-012">Transparency worked · scaling it was the problem</p>
   <!-- §01 — THE MYTH + THE STAKES -->
-  <section class="xi-case-studies-orgos-013" id="the-myth">
+  <section class="xi-case-studies-orgos-013" id="stakes">
     <h2 class="section-title xi-case-studies-orgos-014">
-      Transparency did the managers' job — until two hundred people broke it.
+      The stakes: transparency did the managers' job — until two hundred people broke it.
     </h2>
     <p class="xi-case-studies-orgos-015">The whole thing runs on transparency: salaries, finances, project assignments, reviews — open to everyone. That holds at forty. At two hundred, the hallway stops scaling. What lives in one person's head stays there, and the org grows a quiet hierarchy to route around the gap.</p>
     <p class="t-body xi-case-studies-orgos-016">The ask said design tooling for a 200-person company with no management layer. The actual ask was narrower and harder: coordination with nobody standing above anybody. Every obvious feature — task assignment, approval flows, escalation paths — quietly appoints somebody the router.</p>
@@ -146,9 +147,9 @@
   </section>
 
   <!-- §02 — THE HARD PART -->
-  <section class="xi-case-studies-orgos-017">
+  <section class="xi-case-studies-orgos-017" id="test">
     <h2 class="section-title xi-case-studies-orgos-014">
-      The safe features all had a manager hiding inside them.
+      The test: every safe feature had a manager hiding inside it — the design work was refusing them.
     </h2>
     <p class="t-body xi-case-studies-orgos-016">Every coordination tool ships the same defaults: assign the task, route it for approval, escalate when it stalls. Each one quietly puts somebody above somebody else. Build them and the org chart grows back overnight — just rendered in software instead of titles. The thing that made the company itself would have died in the tooling meant to support it.</p>
     <p class="t-body">So the real deliverable was never a feature list. It was a coordination model that could carry two hundred people without ever electing a router — and the discipline to refuse every feature that smuggled one back in.</p>
@@ -287,8 +288,8 @@
   </section>
 
   <!-- THE RECEIPT — the outcome the design had to earn -->
-  <section class="xi-case-studies-orgos-017">
-    <h2 class="section-title xi-case-studies-orgos-014">The receipt.</h2>
+  <section class="xi-case-studies-orgos-017" id="the-receipt">
+    <h2 class="section-title xi-case-studies-orgos-014">Falsifiable evidence.</h2>
     <div class="xi-case-studies-orgos-025">
       <div><b class="t-metric xi-case-studies-orgos-026">250</b><span class="t-sans-ui-tight xi-case-studies-orgos-027">people run on it today — up from the 200 it was designed for</span></div>
       <div><b class="t-metric xi-case-studies-orgos-026">0</b><span class="t-sans-ui-tight xi-case-studies-orgos-027">managers in the loop — the outcome, not the mandate</span></div>
@@ -302,6 +303,11 @@
       What it cost: transparency only coordinates if people trust it enough to act.
     </h2>
     <p class="t-body">A board nobody trusts is just a prettier inbox. The design wasn't done when the screens shipped. It was done when people trusted them enough to commit — unasked. Coordination is a trust problem between people — the same problem I design for everywhere else, here just without a model in the loop.</p>
+  </section>
+
+  <section class="xi-case-studies-orgos-016" id="breaks">
+    <h2 class="section-title xi-case-studies-orgos-014">Where the principle breaks.</h2>
+    <p class="t-body">This only holds where the org has genuinely committed to self-management — the tool can't create that commitment, only carry it. Two hundred people was near the ceiling: pull-based coordination leans on everyone reading the same surfaces, and that thins as headcount grows. And in a company that HAS managers, forcing manager-shaped work through managerless tooling doesn't remove hierarchy — it hides it, which is worse. The principle is for orgs that mean it.</p>
   </section>
 
   <!-- NDA CALENDLY CTA — locked phase 11E -->
