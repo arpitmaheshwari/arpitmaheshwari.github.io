@@ -1680,3 +1680,22 @@ html[data-theme="ember"] .case-jump a{
   /* 12px (grid) + the 20px line box = 44px, the comfortable phone target */
   html[data-theme="ember"] .case-jump a{padding:12px 0;min-height:44px}
 }
+
+/* ============================================================================
+   CASE-STUDY LABEL ROLES — the last monospace holdouts (2026-08-14)
+   Found while readying talon.html for the swap, but every case study has them:
+   the jump nav (7 links), figure captions, and testimonial attributions were
+   still set in monospace at a tracking that belongs to mono, not sans.
+   House label grammar is Source Sans 3 / 12px / .08em / 600 — matched exactly
+   so a reader cannot tell which page a label came from.
+   ============================================================================ */
+html[data-theme="ember"] body[class*="p-case-studies"] :is(
+  .case-jump a,
+  .fig-paper figcaption,
+  figure figcaption > span:last-child,
+  .ba-table th){
+  font-family:var(--ff-label)!important;letter-spacing:.08em!important}
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.case-jump a,.ba-table th){
+  font-size:12px;font-weight:600}
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.fig-paper figcaption,
+  figure figcaption > span:last-child){font-size:12px;font-weight:400;text-transform:none}
