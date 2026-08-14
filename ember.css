@@ -1798,3 +1798,20 @@ html[data-theme="ember"] body[class*="p-case-studies"] .measure-c .vid-grid{
   html[data-theme="ember"] body[class*="p-case-studies"] .measure-c .vid-grid{
     width:100%;margin-left:0;transform:none}
 }
+
+/* the trust loop as wrapping HTML chips — the SVG version forced a 640px
+   min-width, which is a horizontal scrollbar on every phone. Chips wrap. */
+html[data-theme="ember"] .loop-steps{display:flex;flex-wrap:wrap;align-items:stretch;gap:12px}
+html[data-theme="ember"] .lstep{flex:1 1 140px;min-width:140px;background:rgba(18,11,20,.8);
+  border:1px solid rgba(245,237,230,.2);border-radius:8px;padding:12px 16px}
+html[data-theme="ember"] .lstep b{display:block;font-family:var(--ff-sans);font-weight:600;
+  font-size:13px;color:var(--ink);margin-bottom:4px}
+html[data-theme="ember"] .lstep span{font-size:11.5px;color:rgba(245,237,230,.62);line-height:1.5}
+html[data-theme="ember"] .lstep-hot{border-color:#E86BFF}
+html[data-theme="ember"] .larr{align-self:center;color:rgba(245,237,230,.45);font-size:16px}
+html[data-theme="ember"] .lback{flex-basis:100%;font-size:11.5px;color:#E86BFF;
+  border-top:1px dashed rgba(232,107,255,.4);padding-top:12px;margin-top:4px}
+@media (max-width:560px){html[data-theme="ember"] .larr{display:none}}
+/* #voices joins the homepage section cadence (it was born with zero padding —
+   exactly the boundary-collision defect the overflow gate checks for) */
+html[data-theme="ember"] body.p-home .voices{padding:96px 0;background:var(--bg-soft)}
