@@ -1467,3 +1467,24 @@ html[data-theme="ember"] .lab-links a:hover{color:var(--link-hover);border-botto
 html[data-theme="ember"] :is([class*="p-hire"],[class*="p-process"],[class*="p-screen"]) main
   :is(.btn-row,.proc-links,.cta-row,p,div) > a:not([class*="btn"]):not(.pill):not(.card-p28):not(.card-p32){
   font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+
+/* ================================================================
+   SIMILARITY PASS (Playwright Gestalt audit, 2026-08-14)
+   Four classes rendered at arbitrary different sizes/weights for the SAME
+   role. Cause in every case: a relative size (em) or an inherited alpha, so
+   the component's look depended on where it was dropped rather than on what
+   it is. A component declares its own type.
+   ================================================================ */
+/* inline code: was 18.9 / 14.4 / 12.6px on one page — 1.05em of whatever
+   paragraph it landed in. One token, one size. */
+html[data-theme="ember"] :is(.t-code,.td-inline){font-size:13px!important;line-height:1.5}
+/* the handwriting annotation: 22px/600 on home, 21px/400 on hire. One voice.
+   !important because per-page extracted classes (.xi-*) set these inline-derived
+   sizes with !important — the component must out-declare them. */
+html[data-theme="ember"] .hand{font-size:22px!important;font-weight:600!important}
+/* the sign-off is a DIFFERENT component that happens to share the hand face —
+   it declares its own size rather than inheriting a one-off override. */
+html[data-theme="ember"] .sig.hand{font-size:26px!important;font-weight:600!important}
+/* the pattern-link row: one instance inherited 0.76 alpha ink, the other full */
+html[data-theme="ember"] .contract-links,
+html[data-theme="ember"] p.contract-links{color:var(--ink)!important}
