@@ -1827,3 +1827,44 @@ html[data-theme="ember"] .prod-links a:hover{border-color:var(--border-accent)}
 html[data-theme="ember"] .prod-links b{display:block;font-family:var(--ff-label);font-weight:600;
   font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--link);margin-bottom:8px}
 html[data-theme="ember"] .prod-links span{font-size:13.5px;line-height:1.6;color:rgba(245,237,230,.72)}
+
+/* ============================================================================
+   FRAMED ROWS — the tint must reach the frame's edges (2026-08-14)
+   The frame owned the horizontal padding (8px 24px) while the rows had none,
+   so every tinted row stopped 27px short on the left and 25px on the right —
+   a band floating inside its own container instead of striping it. And 8px of
+   vertical frame padding left the first row's text almost touching the border.
+   Ownership flips: the FRAME holds no inset, each ROW holds its own 24px, and
+   the frame clips so the tint can't square off its rounded corners.
+   Used on 7 pages, so this fixes the component everywhere at once.
+   ============================================================================ */
+html[data-theme="ember"] :is(.framed-tight,.framed){padding:0!important;overflow:hidden}
+html[data-theme="ember"] :is(.rcpt-r-tight,.rcpt-r-tight-last,.rcpt-r){
+  padding:20px 24px!important;margin:0!important}
+@media (max-width:640px){
+  html[data-theme="ember"] :is(.rcpt-r-tight,.rcpt-r-tight-last,.rcpt-r){padding:16px!important}
+}
+
+/* ============================================================================
+   MENU BUTTON — a mark, not three bars (2026-08-14)
+   The bars now sit in a bordered tap target that meets 44px, carry the ember
+   gradient, and cross into an X on open. Motion is transform-only (compositor)
+   and respects prefers-reduced-motion.
+   ============================================================================ */
+html[data-theme="ember"] .menu-toggle{
+  width:44px;height:44px;align-items:center;justify-content:center;gap:0;
+  border:1px solid var(--border);border-radius:10px;background:var(--bg-card);
+  padding:0;margin:0;position:relative;transition:border-color .2s,background .2s}
+html[data-theme="ember"] .menu-toggle:hover{border-color:var(--border-accent)}
+html[data-theme="ember"] .menu-toggle span{
+  position:absolute;left:13px;width:18px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--ember),var(--violet));
+  transition:transform .28s cubic-bezier(.2,.9,.3,1),opacity .18s}
+html[data-theme="ember"] .menu-toggle span:nth-child(1){transform:translateY(-6px)}
+html[data-theme="ember"] .menu-toggle span:nth-child(3){transform:translateY(6px)}
+html[data-theme="ember"] .menu-toggle[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg)}
+html[data-theme="ember"] .menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+html[data-theme="ember"] .menu-toggle[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg)}
+@media (prefers-reduced-motion:reduce){
+  html[data-theme="ember"] .menu-toggle span{transition:none}
+}
