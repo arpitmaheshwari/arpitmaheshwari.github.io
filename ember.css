@@ -1488,3 +1488,26 @@ html[data-theme="ember"] .sig.hand{font-size:26px!important;font-weight:600!impo
 /* the pattern-link row: one instance inherited 0.76 alpha ink, the other full */
 html[data-theme="ember"] .contract-links,
 html[data-theme="ember"] p.contract-links{color:var(--ink)!important}
+
+/* ================================================================
+   GESTALT AUDIT FIXES (Playwright, 2026-08-14) — Arpit's calls
+   ================================================================ */
+/* CLOSURE — NOT A DEFECT, recorded so it is not "fixed" again. The audit read
+   .ccd as clipping 70px (clientHeight 508 vs scrollHeight 578). Measured: the
+   last child sits 41px INSIDE the card; the 70px is exactly the decorative
+   ::after glow (190px tall at bottom:-70px). A pseudo-element counts toward
+   scrollHeight, so a card clipping its own decoration looks identical to a card
+   cropping content. overflow:hidden here is doing precisely its job. */
+
+/* PROXIMITY — a heading sat 12px under its eyebrow but 27-40px above its own
+   body, so Gestalt read it as belonging to the label above rather than
+   introducing the content below. Arpit's call: TIGHTEN below (keep the
+   eyebrow-heading pairing, close the gap to the body). !important because the
+   40px came from a page-level rule that outranks a section-scoped one. */
+html[data-theme="ember"] body.p-home main > section :is(h2,h3){margin-bottom:16px!important}
+html[data-theme="ember"] body.p-home main > section :is(h2,h3) + *{margin-top:0!important}
+html[data-theme="ember"] [class*="p-lab"] .lab-wrap :is(h1,h2){margin-bottom:16px!important}
+html[data-theme="ember"] [class*="p-lab"] .lab-wrap :is(h1,h2) + *{margin-top:0!important}
+/* /hire/ headings live in .hire-wrap, outside the p-home and p-lab scopes */
+html[data-theme="ember"] [class*="p-hire"] main :is(h2,h3){margin-bottom:16px!important}
+html[data-theme="ember"] [class*="p-hire"] main :is(h2,h3) + *{margin-top:0!important}
