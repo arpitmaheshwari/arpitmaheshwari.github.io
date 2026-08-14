@@ -145,7 +145,7 @@
   gtag('config', 'G-PFY6ME99K8');
 </script>
 <link rel="stylesheet" href="./styles.css?v=p64">
-<link rel="stylesheet" href="./ember.css?v=e76">
+<link rel="stylesheet" href="./ember.css?v=e85">
 </head>
 <body class="p-home">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -240,6 +240,7 @@
     </div>
     <section id="receipt-adtech" class="rcpt" hidden aria-labelledby="rcpt-h-adtech">
       <h3 id="rcpt-h-adtech" tabindex="-1" class="rcpt-h">Receipt — campaign planning, 2 wks → 3 hrs</h3>
+      <button type="button" class="rcpt-close" data-close="adtech" aria-label="Close receipt">Close &#10005;</button>
       <div class="rcpt-rows">
         <div class="rcpt-row"><div class="rcpt-l">Claim</div><div class="rcpt-v">Planning fell from two weeks to three hours, with an average media-value gain of £69,000 per client.</div></div>
         <div class="rcpt-row"><div class="rcpt-l">Context</div><div class="rcpt-v">The UK's largest out-of-home advertising company — £400M annual revenue, 40% of the UK market. The model beat the traders — and they overrode its recommendations anyway, until each one arrived as a full campaign plan with KPIs attached and one-click customization.</div></div>
@@ -254,6 +255,7 @@
 </section>
 <section id="receipt-fintech" class="rcpt" hidden aria-labelledby="rcpt-h-fintech">
       <h3 id="rcpt-h-fintech" tabindex="-1" class="rcpt-h">Receipt — deal screening, 60% faster</h3>
+      <button type="button" class="rcpt-close" data-close="fintech" aria-label="Close receipt">Close &#10005;</button>
       <div class="rcpt-rows">
         <div class="rcpt-row"><div class="rcpt-l">Claim</div><div class="rcpt-v">Private-equity deal screening ran 60% faster once analysts stopped re-verifying the machine.</div></div>
         <div class="rcpt-row"><div class="rcpt-l">Context</div><div class="rcpt-v">An LLM over deal documents. Accuracy was never the bottleneck — belief was; every claim had to trace to its source, with honest abstention when sources were thin.</div></div>
@@ -266,6 +268,7 @@
     </section>
 <section id="receipt-ptc" class="rcpt" hidden aria-labelledby="rcpt-h-ptc">
       <h3 id="rcpt-h-ptc" tabindex="-1" class="rcpt-h">Receipt — $1M / yr, and a business model shifted</h3>
+      <button type="button" class="rcpt-close" data-close="ptc" aria-label="Close receipt">Close &#10005;</button>
       <div class="rcpt-rows">
         <div class="rcpt-row"><div class="rcpt-l">Claim</div><div class="rcpt-v">$1M saved every year off the print budget; subscriptions went 0% → 64% of new bookings in a year (Q3 2017 → Q3 2018).</div></div>
         <div class="rcpt-row"><div class="rcpt-l">Context</div><div class="rcpt-v">Five learning platforms consolidated into one — 550k+ registered, 350k+ active learners across 20+ countries.</div></div>
@@ -278,6 +281,7 @@
     </section>
 <section id="receipt-o2" class="rcpt" hidden aria-labelledby="rcpt-h-o2">
       <h3 id="rcpt-h-o2" tabindex="-1" class="rcpt-h">Receipt — 4M+ users, co-designed then coded</h3>
+      <button type="button" class="rcpt-close" data-close="o2" aria-label="Close receipt">Close &#10005;</button>
       <div class="rcpt-rows">
         <div class="rcpt-row"><div class="rcpt-l">Claim</div><div class="rcpt-v">MyO2 served 4M+ users; Priority Moments took 2.6M sign-ups in year one with a 5★ App Store rating.</div></div>
         <div class="rcpt-row"><div class="rcpt-l">Context</div><div class="rcpt-v">Two O2 UK products on mobile web — every screen designed with one co-designer, then shipped as my own front-end code.</div></div>
@@ -458,8 +462,7 @@
         <div>PASSENGER<b>Maheshwari / A</b></div><div>CLASS<b>Full-time</b></div><div>SEAT<b>1 of 1</b></div>
         <div>CARRY-ON<b>16 yrs · receipts</b></div><div>STATUS<b>Boarding now</b></div><div>GATE<b>30-min call</b></div>
       </div>
-      <span class="stamp">Nothing to declare but the receipts</span>
-      <div class="bar" aria-hidden="true"></div>
+            <div class="bar" aria-hidden="true"></div>
     </div>
   </div>
 </section>
@@ -631,6 +634,14 @@ const dyslexiaBtn = document.getElementById('dyslexiaToggle');
       if (p) p.scrollIntoView();
     }
   }
+  document.querySelectorAll('.rcpt-close').forEach(function (c) {
+    c.addEventListener('click', function () {
+      var key = c.dataset.close;
+      setOpen(key, false, false);
+      var chip = document.querySelector('.rcpt-btn[data-receipt="' + key + '"]');
+      if (chip) chip.focus();
+    });
+  });
   openFromHash(false);
   window.addEventListener('load', function () { openFromHash(true); });
   window.addEventListener('hashchange', function () { openFromHash(true); });

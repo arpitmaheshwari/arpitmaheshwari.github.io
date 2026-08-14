@@ -329,7 +329,7 @@ html[data-theme="ember"] body.p-home .work{background:var(--bg1);padding:0 0 96p
 html[data-theme="ember"] body.p-home .work .seam{background:var(--bg1)}
 html[data-theme="ember"] body.p-home .work .k{color:var(--amber)}
 html[data-theme="ember"] body.p-home .work h2{font-size:clamp(32px,4vw,54px);line-height:1.12;margin:12px 0 16px;max-width:22ch}
-html[data-theme="ember"] body.p-home .work .lede{color:var(--mut);max-width:64ch;line-height:1.75}
+html[data-theme="ember"] body.p-home .work .lede{color:var(--mut);line-height:1.75}
 html[data-theme="ember"] body.p-home .lanes{margin-top:48px;display:flex;flex-direction:column;gap:16px}
 html[data-theme="ember"] body.p-home .lane{position:relative;display:grid;grid-template-columns:210px minmax(0,1fr) auto;gap:32px;align-items:center;padding:24px 32px;border-radius:8px;background:linear-gradient(94deg,var(--lt),transparent 70%);transform:skewX(-3deg);border-left:3px solid var(--lc);transition:background .25s}
 html[data-theme="ember"] body.p-home .lane>*{transform:skewX(3deg)}
@@ -571,10 +571,20 @@ html[data-theme="ember"] body.p-home .rcpt-l{
   font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
   line-height:1.8;color:var(--dim)}
 html[data-theme="ember"] body.p-home .rcpt-v{font-size:14.5px;line-height:1.75;color:var(--mut)}
+html[data-theme="ember"] body.p-home .rcpt{position:relative}
+html[data-theme="ember"] body.p-home .rcpt-h{padding-right:110px} /* corner reserved for .rcpt-close */
+html[data-theme="ember"] body.p-home .rcpt-close{
+  position:absolute;top:20px;right:20px;min-width:44px;min-height:44px;
+  font-family:var(--ff-label);font-weight:600;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-dim);background:none;
+  border:1px solid var(--border);border-radius:8px;padding:0 14px;cursor:pointer}
+html[data-theme="ember"] body.p-home .rcpt-close:hover{color:var(--ink);border-color:var(--border-accent)}
 html[data-theme="ember"] body.p-home .rcpt-more{
   display:inline-block;margin-top:16px;font-family:var(--mono);font-size:11.5px;
   letter-spacing:.12em;text-transform:uppercase;color:var(--amber);
-  text-decoration:underline;text-underline-offset:3px}
+  text-decoration:underline;text-underline-offset:3px;
+  border-bottom:none;padding-bottom:0} /* classic drew a border-bottom AND ember drew
+  text-decoration — two underlines. One voice: the text-decoration. */
 @media (max-width:640px){
   html[data-theme="ember"] body.p-home .rcpt-row{grid-template-columns:1fr;gap:4px}
   html[data-theme="ember"] body.p-home .rcpt{padding:20px 20px}
@@ -591,7 +601,7 @@ html[data-theme="ember"] body.p-home main > section{max-width:none;width:auto}
 html[data-theme="ember"] body.p-home section.lead{
   font-family:var(--sans);font-size:16px;font-weight:400;line-height:1.65;color:var(--ink)}
 html[data-theme="ember"] body.p-home .lanes .m{max-width:none;font-weight:400}
-html[data-theme="ember"] body.p-home .work .lede{max-width:64ch}
+html[data-theme="ember"] body.p-home .work .lede{max-width:none}
 /* the stamp cluster was flung to the page edges by the classic flex (justify-content
    :center on a full-width row): ~500px of dead gap between the button and the slip.
    Pair them as one object with designed space between. */
@@ -1108,8 +1118,11 @@ html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]
    title (variable) — keeps all six CTAs on a predictable line. */
 html[data-theme="ember"] body.p-home .lanes .lane{
   grid-template-columns:minmax(0,1fr) auto;
-  grid-template-areas:"head go" "title title";
-  column-gap:24px;row-gap:8px;padding:24px 32px}
+  grid-template-areas:"head head" "title go";
+  column-gap:48px;row-gap:8px;padding:24px 32px}
+/* the CTA lives IN the description band (right, centered) — the band to the
+   right of the capped paragraph gets the action instead of staying a void
+   (balance gate: 309px one-sided under the old "head go" placement) */
 html[data-theme="ember"] body.p-home .lanes .lane .go{
   justify-self:end;align-self:center;margin-top:0;white-space:nowrap}
 html[data-theme="ember"] body.p-home .lanes .lane .ai-case-head,
@@ -1181,9 +1194,13 @@ html[data-theme="ember"] .contract-links a{color:var(--link)}
    leftover space becomes symmetric page margin — read as intentional — instead
    of a void inside every card. */
 html[data-theme="ember"] body.p-home .lanes{max-width:860px;margin-left:auto;margin-right:auto}
+/* the section is ONE 860px object — the wrap narrows, so eyebrow, headline,
+   lede and lanes all share the same centred column (the per-part centering I
+   tried first is exactly what the one-object rule at line ~1630 forbids) */
+html[data-theme="ember"] body.p-home .work .wrap{max-width:860px}
 html[data-theme="ember"] body.p-home .work .lede,
 html[data-theme="ember"] body.p-home .work h2,
-html[data-theme="ember"] body.p-home .work .k{max-width:860px;margin-left:auto;margin-right:auto}
+html[data-theme="ember"] body.p-home .work .k{max-width:none}
 /* Writing section — restored to the homepage (my prototype rebuild had dropped
    it while the nav still linked to #thoughts). Ember card grammar, purple heat
    matching the /writing/ page it leads to. */
@@ -1821,10 +1838,14 @@ html[data-theme="ember"] .lback{flex-basis:100%;font-size:11.5px;color:#E86BFF;
    exactly the boundary-collision defect the overflow gate checks for).
    2026-08-15: it was ALSO born outside the section type grammar — h2 at browser
    size, kicker with no accent, lede undimmed. Declared here to match siblings. */
-html[data-theme="ember"] body.p-home .voices{padding:96px 0;background:var(--bg-soft)}
+/* Second-half act rhythm (2026-08-15): lead and voices sat on the SAME soft
+   band, then lab and thoughts both sat on base — alternation died after the
+   fold. Voices returns to base; #lab takes the band, restoring band/base/band. */
+html[data-theme="ember"] body.p-home .voices{padding:96px 0;background:none}
+html[data-theme="ember"] body.p-home #lab{background:var(--bg-soft)}
 html[data-theme="ember"] body.p-home .voices .k{color:var(--violet)}
 html[data-theme="ember"] body.p-home .voices h2{font-size:clamp(28px,3.2vw,44px);line-height:1.12;margin:12px 0 16px}
-html[data-theme="ember"] body.p-home .voices .lede{color:rgba(245,237,230,.76);max-width:70ch;margin-bottom:40px}
+html[data-theme="ember"] body.p-home .voices .lede{color:rgba(245,237,230,.76);margin-bottom:40px}
 
 /* product-page link cards (replacing the two business-video embeds) */
 html[data-theme="ember"] .prod-links{display:grid;
@@ -1877,4 +1898,41 @@ html[data-theme="ember"] .menu-toggle[aria-expanded="true"] span:nth-child(2){op
 html[data-theme="ember"] .menu-toggle[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg)}
 @media (prefers-reduced-motion:reduce){
   html[data-theme="ember"] .menu-toggle span{transition:none}
+}
+
+/* ============================================================================
+   PATTERNS HUB — the two feature cards held a 431px paragraph against an
+   844px void (balance gate RED, 683px one-sided). Recomposed: the meta/CTA
+   block becomes a right rail with a role; the prose gets a real measure.
+   ============================================================================ */
+html[data-theme="ember"] body[class*="p-patterns"] :is(.xi-patterns-012,.xi-patterns-018){
+  display:grid;grid-template-columns:minmax(0,66ch) 300px;justify-content:space-between;
+  column-gap:56px;align-items:start;
+  grid-template-areas:"img img" "eye eye" "ttl ttl" "body meta"}
+html[data-theme="ember"] body[class*="p-patterns"] :is(.xi-patterns-012,.xi-patterns-018) .framed-blk{grid-area:img}
+html[data-theme="ember"] body[class*="p-patterns"] :is(.xi-patterns-012,.xi-patterns-018) .eyebrow{grid-area:eye}
+html[data-theme="ember"] body[class*="p-patterns"] :is(.xi-patterns-012,.xi-patterns-018) .section-title{grid-area:ttl}
+html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-016{
+  grid-area:body;max-width:none!important}
+html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-017{
+  grid-area:meta;align-self:center;display:flex;flex-direction:column;gap:8px;
+  border-left:1px solid var(--border);padding-left:24px}
+@media (max-width:900px){
+  html[data-theme="ember"] body[class*="p-patterns"] :is(.xi-patterns-012,.xi-patterns-018){
+    grid-template-columns:1fr}
+  html[data-theme="ember"] body[class*="p-patterns"] :is(.xi-patterns-016,.xi-patterns-017){grid-column:1}
+  html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-017{border-left:none;padding-left:0}
+}
+
+/* patterns colophon — prior-art prose left, citation rail right (was three
+   lonely 431px paragraphs against an 846px void; balance gate RED) */
+html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022{
+  display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:56px;align-items:start}
+html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-023{grid-column:1;grid-row:1/span 3}
+html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-023 p{max-width:none!important}
+html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022>:is(.xi-patterns-021,.xi-patterns-028,.xi-patterns-031){grid-column:2}
+html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022 .xi-patterns-029{max-width:none!important}
+@media (max-width:900px){
+  html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022{grid-template-columns:1fr}
+  html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022>*{grid-column:1!important;grid-row:auto!important}
 }
