@@ -1,0 +1,93 @@
+/* ============================================================================
+   SELF-HOSTED TYPE — Stack 1, "the superfamily" (Arpit's pick, 2026-08-14)
+   ----------------------------------------------------------------------------
+   Display + body are Source Serif 4 and Source Sans 3: drawn by the same team
+   to share proportions, so a headline and its paragraph read as one voice
+   rather than two typefaces introduced to each other. Mono is JetBrains Mono,
+   used for CODE ONLY — the previous stack had monospace carrying 34 labels,
+   eyebrows and CTAs per page, which is the least scannable arrangement
+   available. Caveat stays for the handwritten annotation, its one real job.
+
+   WHY SELF-HOSTED (Arpit's call): no third-party request on first paint, no
+   dependency on fonts.googleapis.com being reachable, and the teardown page
+   can honestly claim one third-party domain instead of two.
+
+   Latin subsets only — this is an English-language site. Variable files carry
+   their weight RANGE in the filename (300_600), static files a single weight.
+   font-display:swap: text paints immediately in the fallback and re-renders,
+   which is the right trade for a reading site.
+
+   Shipping weight: ~247 KB for the four faces a typical page uses
+   (serif roman + sans roman + sans 600 + mono), not the full directory.
+   ============================================================================ */
+
+/* ---------- DISPLAY / SERIF — headlines, pull quotes, big numbers ---------- */
+@font-face{
+  font-family:'Source Serif 4';
+  font-style:normal;
+  font-weight:300 600;
+  font-display:swap;
+  src:url('/assets/fonts-web/source-serif-4-normal-300_600.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Source Serif 4';
+  font-style:italic;
+  font-weight:300 600;
+  font-display:swap;
+  src:url('/assets/fonts-web/source-serif-4-italic-300_600.woff2') format('woff2');
+}
+
+/* ---------- SANS — body copy, UI, and every label the mono used to carry ---- */
+@font-face{
+  font-family:'Source Sans 3';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url('/assets/fonts-web/source-sans-3-normal-400.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Source Sans 3';
+  font-style:normal;
+  font-weight:600;
+  font-display:swap;
+  src:url('/assets/fonts-web/source-sans-3-normal-600.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Source Sans 3';
+  font-style:italic;
+  font-weight:400;
+  font-display:swap;
+  src:url('/assets/fonts-web/source-sans-3-italic-400.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Source Sans 3';
+  font-style:italic;
+  font-weight:600;
+  font-display:swap;
+  src:url('/assets/fonts-web/source-sans-3-italic-600.woff2') format('woff2');
+}
+
+/* ---------- MONO — code, and only code ------------------------------------- */
+@font-face{
+  font-family:'JetBrains Mono';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url('/assets/fonts-web/jetbrains-mono-normal-400.woff2') format('woff2');
+}
+@font-face{
+  font-family:'JetBrains Mono';
+  font-style:normal;
+  font-weight:500;
+  font-display:swap;
+  src:url('/assets/fonts-web/jetbrains-mono-normal-500.woff2') format('woff2');
+}
+
+/* ---------- HAND — the margin annotation, one role, one weight ------------- */
+@font-face{
+  font-family:'Caveat';
+  font-style:normal;
+  font-weight:600;
+  font-display:swap;
+  src:url('/assets/fonts-web/caveat-normal-600.woff2') format('woff2');
+}

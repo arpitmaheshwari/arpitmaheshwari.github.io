@@ -237,8 +237,8 @@ html[data-theme="ember"] body.p-home{
   --ink:#F5EDE6; --mut:rgba(245,237,230,.76); --dim:rgba(245,237,230,.62);
   --ember:#FF8A5C; --violet:#E86BFF; --amber:#FFC46B; --rose:#FF7AA8;
   --cream:#EFE7D2; --cream-ink:#221C10; --cream-mut:#5D5442; --cream-red:#A93A24;
-  --serif:'Newsreader',Georgia,serif; --sans:'IBM Plex Sans',sans-serif;
-  --mono:'IBM Plex Mono',monospace; --hand:'Caveat',cursive;
+  --serif:var(--ff-display),Georgia,serif; --sans:var(--ff-sans);
+  --mono:var(--ff-mono),monospace; --hand:'Caveat',cursive;
 }
 /* The prototype shipped a blanket *{margin:0;padding:0}. Scoped to body.p-home *
    it outranks EVERY single-class rule, so each classic artifact spliced into this
@@ -650,7 +650,7 @@ html[data-theme="ember"] body[class*="p-case-studies"] .case-stat b{
   display:block;font-family:var(--ff-display);font-weight:400;
   font-size:clamp(24px,2.4vw,34px);line-height:1.1;color:var(--heat)}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-stat span{
-  display:block;margin-top:8px;font-family:var(--ff-mono);font-size:11.5px;
+  display:block;margin-top:8px;font-family:var(--ff-label);font-size:11.5px;
   letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);line-height:1.8}
 
 /* --- vitals: a quiet card strip, not a bare dl --- */
@@ -658,7 +658,7 @@ html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals{
   background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
   padding:20px 24px;gap:24px 32px}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals dt{
-  font-family:var(--ff-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim)}
+  font-family:var(--ff-label);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim)}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals dd{color:var(--ink);margin-top:4px}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals .gold{color:var(--heat)}
 
@@ -874,10 +874,10 @@ html[data-theme="ember"] body[class*="p-case-studies"] .case-jump{margin:0 0 24p
 /* --- T4.18 · /screen/ mono roles destroyed by a :where() rule (0
    specificity) — needs REAL specificity, not later order --- */
 html[data-theme="ember"] body.p-screen .scr-q p.scr-num{
-  font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;
+  font-family:var(--ff-label);font-size:var(--fs-eyebrow);letter-spacing:.15em;
   color:var(--amber);margin:0 0 8px}
 html[data-theme="ember"] body.p-screen .scr-q p.scr-receipt{
-  font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;
+  font-family:var(--ff-label);font-size:var(--fs-caption);letter-spacing:.08em;
   line-height:1.7;color:var(--ink-dim);margin:24px 0 0}
 
 /* --- T4.19/20 · lab output tiers collapsed; one chart series below the
@@ -1328,7 +1328,7 @@ html[data-theme="ember"] body[class*="p-case-studies"] .measure-c
    did not exist. Now eyebrow + h2 + lede like every other section. */
 html[data-theme="ember"] body.p-home #thoughts .wr-more{margin-top:16px}
 html[data-theme="ember"] body.p-home #thoughts .wr-more a{
-  font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.12em;
+  font-family:var(--ff-label);font-size:11.5px;letter-spacing:.12em;
   text-transform:uppercase;color:var(--heat);white-space:nowrap;
   border-bottom:1px solid color-mix(in srgb, var(--heat) 45%, transparent);
   padding-bottom:3px;text-decoration:none}
@@ -1390,7 +1390,7 @@ html[data-theme="ember"] .lab-wrap :is(p,dl,ul,ol):not(:has(pre)):not(.lab-note)
 html[data-theme="ember"] body.p-home .contact-alt{
   font-size:14px;color:var(--ink-muted);margin:16px 0 0}
 html[data-theme="ember"] body.p-home .contact-alt a{
-  font-family:var(--ff-mono);font-size:11.5px;font-weight:500;letter-spacing:.12em;
+  font-family:var(--ff-label);font-size:11.5px;font-weight:500;letter-spacing:.12em;
   text-transform:uppercase;color:var(--link);text-decoration:none;
   border-bottom:1px solid color-mix(in srgb, var(--link) 45%, transparent);padding-bottom:2px}
 html[data-theme="ember"] body.p-home .contact-alt a:hover{color:var(--link-hover)}
@@ -1417,7 +1417,7 @@ html[data-theme="ember"] .ba-wrap{overflow-x:auto;-webkit-overflow-scrolling:tou
 html[data-theme="ember"] .ba-table{width:100%;min-width:640px;border-collapse:collapse;
   font-size:14px;line-height:1.5}
 html[data-theme="ember"] .ba-table th{
-  font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+  font-family:var(--ff-label);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--ember);text-align:left;padding:12px 16px;border-bottom:1px solid var(--border-accent)}
 html[data-theme="ember"] .ba-table td{
   padding:12px 16px;border-bottom:1px solid var(--border);color:var(--ink);vertical-align:top}
@@ -1456,7 +1456,7 @@ html[data-theme="ember"] [class*="p-lab"] .lab-cards{margin-bottom:0}
    a GOLD hairline under violet text — every colour a legal token, which is
    exactly why the colour gate passed them; the grammar was the defect). */
 html[data-theme="ember"] .lab-links a{
-  font-family:var(--ff-mono);font-size:11.5px;font-weight:500;letter-spacing:.12em;
+  font-family:var(--ff-label);font-size:11.5px;font-weight:500;letter-spacing:.12em;
   text-transform:uppercase;color:var(--link);text-decoration:none;
   border-bottom:1px solid color-mix(in srgb, var(--link) 45%, transparent);padding-bottom:2px}
 html[data-theme="ember"] .lab-links a:hover{color:var(--link-hover);border-bottom-color:var(--link)}
@@ -1466,7 +1466,7 @@ html[data-theme="ember"] .lab-links a:hover{color:var(--link-hover);border-botto
    three dialects. One voice: */
 html[data-theme="ember"] :is([class*="p-hire"],[class*="p-process"],[class*="p-screen"]) main
   :is(.btn-row,.proc-links,.cta-row,p,div) > a:not([class*="btn"]):not(.pill):not(.card-p28):not(.card-p32){
-  font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+  font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
 
 /* ================================================================
    SIMILARITY PASS (Playwright Gestalt audit, 2026-08-14)
@@ -1511,3 +1511,98 @@ html[data-theme="ember"] [class*="p-lab"] .lab-wrap :is(h1,h2) + *{margin-top:0!
 /* /hire/ headings live in .hire-wrap, outside the p-home and p-lab scopes */
 html[data-theme="ember"] [class*="p-hire"] main :is(h2,h3){margin-bottom:16px!important}
 html[data-theme="ember"] [class*="p-hire"] main :is(h2,h3) + *{margin-top:0!important}
+
+/* ============================================================================
+   TYPE — Stack 1 role corrections (2026-08-14)
+   Monospace now means CODE. Labels, eyebrows, CTAs and meta lines take the
+   label face: same size, same tracking, but a humanist sans at 600 instead of
+   a fixed-width face — the change that makes 34 elements a page scannable.
+   Tracking drops from .12-.15em to .08em: uppercase sans needs less letter-
+   spacing than uppercase mono to breathe, and more than it needs looks shouted.
+   ============================================================================ */
+html[data-theme="ember"] :is(.k,.eyebrow,.lbl-eyebrow,.ck,.mk,.lab-kicker,.opt-n,
+  .thought-tag,.case-hero__kicker,.lbl-cap,.lbl-meta,.lbl-badge-bg,.lbl-badge-gold,
+  .go,.lab-go,.rcpt-btn,.contract-links a,.wr-more a,.contact-alt a,.lab-links a){
+  font-family:var(--ff-label);font-weight:600;letter-spacing:.08em}
+/* code keeps the mono, and keeps its own tracking */
+html[data-theme="ember"] :is(code,pre,.t-code,.td-inline,.lab-code,.plA-stage,.plF-stage){
+  font-family:var(--ff-mono);letter-spacing:0}
+
+/* Label roles move to the sans; the RECEIPT FAMILY keeps monospace on purpose.
+   .rcpt-l / .rcell spans / .rfoot / .fr / .stamp / the boarding pass are a
+   printed-docket metaphor — fixed-width IS the point there, the way a till
+   receipt or a boarding pass is set. Flattening those would cost meaning to
+   satisfy a rule, the same mistake as flattening the semantic hues.
+   !important: these classes carry per-page extracted rules that outrank a
+   plain component selector. */
+html[data-theme="ember"] body.p-home :is(.k,.go,.ck,.mk,.ek,.lk,.ak,.meta,
+  .rcpt-btn,.rcpt-more,.ccd-q,.ccd-idle,.ccd-note,.thought-tag,.lede,.errata-l){
+  font-family:var(--ff-label)!important;font-weight:600;letter-spacing:.08em}
+/* body-sized label text should not be semibold — only the uppercase micro-labels are */
+html[data-theme="ember"] body.p-home :is(.meta,.ccd-q,.ccd-idle,.ccd-note,.lede){
+  font-weight:400;letter-spacing:0}
+
+/* the remaining label classes on inner pages — same treatment, same exemptions */
+html[data-theme="ember"] :is(.cg-l,.lbl-pill-bg,.lbl-pill-gold,.lbl-eyebrow-500,
+  .hire-role,.hire-print-note,.lab-num,.ev-tiers dt,figcaption .lbl-eyebrow){
+  font-family:var(--ff-label)!important;font-weight:600;letter-spacing:.08em}
+/* /hire/ prose ran to 90 characters a line — past the comfortable 45-75 band */
+html[data-theme="ember"] [class*="p-hire"] .hire-wrap :is(p,li){max-width:70ch}
+/* case-study prose at 82 characters: pull the spine in to the reading band */
+html[data-theme="ember"] body[class*="p-case-studies"] .measure-c{max-width:680px}
+
+/* ============================================================================
+   PAPER GROUNDS KEEP A PAPER GOLD — regression fixed 2026-08-14
+   The ember gold tokens (--goldA #FFC46B / --goldA-dk #C98F3F) are correct on
+   the dark ground and WRONG on the light plate mockups: #C98F3F measures
+   2.52:1 on the cream #FCF2DC used inside the reconstructions — 22 contrast
+   failures across five case studies, all introduced by my own tokenisation
+   earlier today. A token that changes with the theme must also change with the
+   GROUND it lands on. Inside any paper artifact the gold reverts to the dark
+   values that were legal there all along:
+     --goldA-dk #7A5410 → 6.08:1 on cream, 6.77:1 on white
+     --goldA    #7E5A14 → 5.62:1 on cream, 6.25:1 on white
+   ============================================================================ */
+html[data-theme="ember"] :is(.plA,.plF,.plM,.plO,.plP,.plV,.fig-paper,.recon,
+  .pass,.plA-app,.plF-app,.plM-app,.plO-app,.plP-app,.plV-app,[class*="-paper"]){
+  --goldA:#7E5A14; --goldA-dk:#7A5410; --gold:#7E5A14; --gold-dark:#7A5410;
+}
+
+/* One tracking for every CTA. The type change left three components on the old
+   .12em (correct for uppercase MONO, too loose for uppercase sans) and /hire/'s
+   primary CTA still on the mono face. Caught by tools/cta-grammar-check.py. */
+html[data-theme="ember"] :is(.wr-more a,.contact-alt a,.lab-links a,.contract-links a,
+  .go,.rcpt-btn,.rcpt-more,.lbl-badge-bg,.lbl-badge-gold,.btn-a,.btn-a-ghost,.nav-cta,.pill){
+  font-family:var(--ff-label)!important;letter-spacing:.08em!important}
+/* /hire/ footer links carry no class of their own — the label rules could not
+   reach them. (Found because the CTA gate kept failing while I kept measuring
+   the NAV button and calling it fixed: two elements, same text, same page.) */
+html[data-theme="ember"] [class*="p-hire"] .hire-foot a{
+  font-family:var(--ff-label)!important;letter-spacing:.08em!important}
+
+/* Phone safety: a long unbreakable token (a URL, a code identifier) pushed
+   patterns/ml-explainability 4px past the edge with no single offending box —
+   the classic signature of a word that cannot wrap. */
+@media (max-width:640px){
+  html[data-theme="ember"] main :is(p,li,dd,dt,h1,h2,h3,figcaption){overflow-wrap:break-word}
+}
+/* /hire/ prose was capped at 70ch but left aligned in a wider band, so the cap
+   I added for line length created a 215px void on its right. Capped text in a
+   single-column band centres — the same rule the rest of the site follows. */
+html[data-theme="ember"] [class*="p-hire"] .hire-wrap :is(p,li){margin-left:auto;margin-right:auto}
+/* A wide comparison table on patterns/ml-explainability pushes 4px past the
+   edge at 390. `display:block` on <table> was tried and made it WORSE (broke
+   two other pages' tables), so the table keeps its display and the cells wrap
+   instead — measured, not assumed. */
+@media (max-width:640px){
+  html[data-theme="ember"] main table{table-layout:fixed;width:100%}
+  html[data-theme="ember"] main :is(td,th){overflow-wrap:break-word;word-break:break-word}
+}
+
+/* OPEN, 5px: patterns/ml-explainability's comparison table runs 5px past 390px.
+   Tried and REJECTED, each re-measured: display:block on the table (broke two
+   other pages' tables), table-layout:fixed + word-break (no change), reduced
+   cell padding (no change). The 5px does not scroll the page in a real browser
+   and no text is cut, so it is logged rather than chased further. Next person:
+   the cells carry padding !important from the extraction, so the constraint is
+   probably a min-content width on a column, not the padding. */

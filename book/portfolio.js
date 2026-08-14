@@ -1684,7 +1684,7 @@ function buildBook(ctx) {
       target: "_blank",
       rel: "noopener",
       className: "bk-em"
-    }, "Human in the Loop ", Icon({ name: "external", cls: "bk-icon--sm" })), ". One idea per issue, on getting humans to act on machines. The fastest way to know how I think before you hire me."), /*#__PURE__*/React.createElement("p", {
+    }, "my newsletter on Substack ", Icon({ name: "external", cls: "bk-icon--sm" })), ". One idea per issue, on getting humans to act on machines. The fastest way to know how I think before you hire me."), /*#__PURE__*/React.createElement("p", {
       className: "bk-body",
       style: { marginTop: 16 }
     }, "A loose thread runs through all five: what happens when a system that behaves like a colleague still needs to be governed like software \u2014 the confidence to let it act, and the discipline to check it did."), /*#__PURE__*/React.createElement("div", {
@@ -1822,7 +1822,7 @@ function buildBook(ctx) {
       href: "https://arpitmaheshwari.substack.com",
       target: "_blank",
       rel: "noopener",
-      "aria-label": "Substack — Human in the Loop"
+      "aria-label": "My newsletter on Substack"
     }, Icon({
       name: "rss"
     })), /*#__PURE__*/React.createElement("a", {

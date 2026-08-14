@@ -26,7 +26,7 @@ _Last reconciled: 2026-06-19._
   - **The book and the printed portfolio** → **"Human in the Loop"** (title case, a proper noun).
     The portfolio's running header is "Human in the Loop · Selected Works"; the book's cover
     imprint is "Human in the Loop · MMXXVI".
-  - **The newsletter** → labelled **"Human in the Loop"** on every surface.
+  - **The newsletter** → NOT NAMED on any surface (Arpit, 2026-08-14: the Substack has no name and will not be given one). Every reference is a plain CTA — "my newsletter on Substack", "Read the newsletter →". Do not reintroduce a publication name.
   - **The code module** → `lab/loop.js` + `loop.test.js` + `/lab/loop.html`. The old URL
     `/lab/trustlayer.html` survives ONLY as a silent forwarding stub, because it was published in
     the sitemap and linked from the portfolio PDF. That stub is the single permitted appearance of
@@ -1457,3 +1457,15 @@ Also confirmed clean, independently re-verified: index.html's .ai-case rows hold
 delta across 1440/1024/768/390 with no regression; patterns/index.html's Act/Review/Ignore demo
 image is 92% fill, not a dead-space bug (an agent's own screenshot tool had rendered at a
 distorting internal scale — caught via DOM measurement before it was reported as a finding).
+
+### The Substack name — CLOSED, 2026-08-14 (supersedes the 2026-08-03 open dependency)
+**Arpit: the blog has no name and is not getting one.** The site had labelled it "Human in the
+Loop" in 13 places across 11 pages while the publication's own og:title read "Arpit Maheshwari |
+Substack" — verified live again on 2026-08-14. That was a brand that did not exist, printed as
+fact. All 13 references are now plain calls to action naming no publication:
+"my newsletter on Substack", "Read the newsletter →", "I write about this in my newsletter ↗".
+The card meta on the homepage reads "Substack" (the platform, which is true) instead of a title.
+**"Human in the Loop" remains the BOOK's title** — book/, its OG cards, and llms.txt's book line
+keep it. The prior OPEN ACTION asking Arpit to rename the Substack is void; nothing is owed.
+Reason it matters beyond tidiness: a reader who clicked landed somewhere named differently, which
+is the one thing this site cannot afford — it argues that provenance accuracy IS the positioning.
