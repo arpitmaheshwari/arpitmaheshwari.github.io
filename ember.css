@@ -1738,17 +1738,22 @@ html[data-theme="ember"] .loopfig figcaption{
 
 /* ============================================================================
    RECEIPT CHIP — show the TRANSITION, not just the endpoint (2026-08-14)
-   "3 hrs" alone means nothing; the whole claim is the distance travelled. The
-   baseline is deliberately subordinate — small, dim, struck-through-adjacent —
-   so the outcome keeps its visual weight while the reader sees what it beat.
-   Sized so the pair still fits the 224px cell at 1024, where a full-size
-   "2 wks → 3 hrs" would have overflowed (measured before writing this).
+   "3 hrs" alone means nothing; the whole claim is the distance travelled.
+   Arpit's pick (2026-08-15, option B of four rendered): ONE voice, one line —
+   the pair at a single size with the ember arrow as the only color, so it
+   reads as a single fact. The chip's b is clamped smaller than its siblings
+   because the journey is longer than a lone number; nowrap keeps it one line.
    ============================================================================ */
-html[data-theme="ember"] body.p-home .rcell b .was{
-  font-style:normal;font-size:.42em;font-weight:400;color:rgba(245,237,230,.5);
-  letter-spacing:0;vertical-align:middle}
+html[data-theme="ember"] body.p-home #chip-adtech b{
+  font-size:clamp(24px,2.2vw,31px);letter-spacing:-.01em;white-space:nowrap}
+/* the visible pair lives in a span INSIDE b; .rcell span (11.5px mono uppercase,
+   the descriptor rule) was capturing it — the bug Arpit rejected. Redeclare. */
+html[data-theme="ember"] body.p-home .rcell b>span{
+  display:inline;font-family:inherit;font-size:inherit;font-weight:inherit;
+  letter-spacing:inherit;text-transform:none;color:inherit;margin:0}
+html[data-theme="ember"] body.p-home .rcell b .was{font-style:normal}
 html[data-theme="ember"] body.p-home .rcell b .to{
-  font-style:normal;font-size:.42em;color:var(--ember);margin:0 .35em;vertical-align:middle}
+  font-style:normal;color:var(--ember);margin:0 .3em;font-size:.85em}
 
 /* ============================================================================
    TESTIMONIALS — four VANTAGE POINTS, not four compliments (2026-08-14)

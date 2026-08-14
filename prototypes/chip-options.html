@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ember">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receipt chip — 4 restyle options</title><meta name="robots" content="noindex">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<link rel="stylesheet" href="/styles.css?v=p62">
+<link rel="stylesheet" href="/ember.css?v=e75">
+<style>
+body{padding:48px;background:#120B14}
+.opt-grid{display:grid;grid-template-columns:repeat(2,minmax(300px,480px));gap:40px}
+.opt-tag{font-family:var(--ff-label);font-size:12px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:#FFC46B;margin:0 0 12px}
+.opt-note{font-family:var(--ff-sans);font-size:12.5px;color:rgba(245,237,230,.6);margin-top:10px;line-height:1.5}
+/* replicate the real cell frame */
+.cell{background:rgba(27,19,32,.7);border:1px solid rgba(245,237,230,.14);border-top:3px solid #FF8A5C;
+  border-radius:0 0 10px 10px;padding:22px 24px;max-width:280px}
+.cell .desc{display:block;font-family:var(--ff-label);font-size:11.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(245,237,230,.62);margin-top:10px;line-height:1.7}
+.cell b{display:block;font-family:var(--ff-display);font-weight:400;font-size:40px;line-height:1;color:#F5EDE6}
+/* A — current, for reference */
+.a .was{font-style:normal;font-size:.42em;font-weight:400;color:rgba(245,237,230,.5);vertical-align:middle}
+.a .to{font-style:normal;font-size:.42em;color:#FF8A5C;margin:0 .35em;vertical-align:middle}
+/* B — one size, one line, ember arrow */
+.b b{font-size:31px;letter-spacing:-.01em;white-space:nowrap}
+.b .to{font-style:normal;color:#FF8A5C;margin:0 .3em;font-size:.85em}
+/* C — struck baseline as eyebrow above the number */
+.c .was{display:block;font-style:normal;font-family:var(--ff-label);font-weight:600;font-size:11.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,230,.45);
+  text-decoration:line-through;text-decoration-color:#FF8A5C;text-decoration-thickness:1.5px;margin-bottom:8px}
+.c .to{display:none}
+/* D — big number + "was 2 wks" chip after */
+.d b{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.d .was{font-style:normal;font-family:var(--ff-label);font-weight:600;font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:#FF8A5C;border:1px solid rgba(255,138,92,.45);border-radius:999px;
+  padding:4px 10px;white-space:nowrap}
+.d .was::before{content:"was "}
+.d .to{display:none}
+</style>
+</head>
+<body class="p-home">
+<div class="opt-grid">
+  <div><p class="opt-tag">A · current (for reference)</p>
+    <div class="cell a"><b><i class="was">2 wks</i><i class="to">→</i>3 hrs</b><span class="desc">campaign planning · AdTech · measured in the work</span></div>
+    <p class="opt-note">Three sizes in one line; the baseline floats mid-height.</p></div>
+  <div><p class="opt-tag">B · one voice, one line</p>
+    <div class="cell b"><b>2 wks<i class="to">→</i>3 hrs</b><span class="desc">campaign planning · AdTech · measured in the work</span></div>
+    <p class="opt-note">The whole journey at one size — the arrow is the only color. Reads as a single fact.</p></div>
+  <div><p class="opt-tag">C · struck baseline above</p>
+    <div class="cell c"><b><i class="was">2 wks</i>3 hrs</b><span class="desc">campaign planning · AdTech · measured in the work</span></div>
+    <p class="opt-note">The old number is crossed out above; the outcome keeps full weight below.</p></div>
+  <div><p class="opt-tag">D · outcome + "was" pill</p>
+    <div class="cell d"><b>3 hrs<i class="was">2 wks</i></b><span class="desc">campaign planning · AdTech · measured in the work</span></div>
+    <p class="opt-note">Outcome dominates; the baseline is a small labeled pill beside it.</p></div>
+</div>
+</body></html>
