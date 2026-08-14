@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="ember">
 <head>
+<meta name="robots" content="noindex">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reversibility: Make Acting on the Model Safe to Try</title>
@@ -71,7 +72,7 @@
 <div class="xi-patterns-reversibility-safe-to-act-004">
   <div class="xi-patterns-reversibility-safe-to-act-005">
     <div class="meta-row">
-      <h1 class="t-hero xi-patterns-reversibility-safe-to-act-006">Reversibility: Cheap to Undo Is Cheap to Adopt</h1>
+      <h1 class="t-hero xi-patterns-reversibility-safe-to-act-006">Reversibility</h1>
       <span class="lbl-badge-ink xi-patterns-reversibility-safe-to-act-007">In production</span>
     </div>
     <p class="lbl-cap">AI Design · Safe to act · Last updated June 2026</p>
@@ -85,11 +86,6 @@
   <section class="xi-patterns-reversibility-safe-to-act-012">
     <p class="lead xi-patterns-reversibility-safe-to-act-013">Adoption often stalls not because the model is wrong, but because acting on it feels risky. Make the action cheap to undo — one click to reverse, a clear path back, no permanent damage — and people will try the recommendation they'd otherwise ignore. Reversibility buys you the first action; accuracy keeps the rest.</p>
   </section>
-
-  <div class="thesis">
-    <span class="t-l">The principle this page proves</span>
-    <p>People don&rsquo;t act when the model is right. They act when being wrong is <em>cheap</em>.</p>
-  </div>
 
   <figure class="xi-patterns-reversibility-safe-to-act-014">
     <img class="framed xi-patterns-reversibility-safe-to-act-015" src="../assets/visuals/pattern-reversibility.svg" alt="Reversibility pattern: an applied action with a visible undo, a one-click reversal, and a staged rollout with a halt control partway along its timeline" loading="lazy" width="1280" height="400">
@@ -120,13 +116,8 @@
     <p class="u-body">A migration you can stop beats a leap you can't take back. The same principle scales from a single undo button to a company-wide rollout: keep a hand on the brake, in view, the whole way down.</p>
   </section>
 
-  <div class="counter">
-    <span class="c-l">The strongest objection, kept in</span>
-    <p class="u-body">&ldquo;Undo is an engineering luxury we&rsquo;ll add later.&rdquo; Reversibility is not a convenience feature &mdash; it is the price of the first yes. If acting on your product&rsquo;s suggestion can&rsquo;t be walked back, you have priced the trial run beyond what a rational professional will pay, and no amount of model accuracy buys it back.</p>
-  </div>
-
   <section class="xi-patterns-reversibility-safe-to-act-012">
-    <h2 class="section-title xi-patterns-reversibility-safe-to-act-018">Ship it: the checklist.</h2>
+    <h2 class="section-title xi-patterns-reversibility-safe-to-act-018">Implementation Checklist</h2>
     <ul class="u-body xi-patterns-reversibility-safe-to-act-020">
       <li class="xi-patterns-reversibility-safe-to-act-021"><strong>Make acting on a recommendation one click to reverse.</strong></li>
       <li class="xi-patterns-reversibility-safe-to-act-021"><strong>Show the path back before the person commits</strong>, not after a mistake.</li>
@@ -154,10 +145,10 @@
 
 
   <section class="card-gold xi-patterns-reversibility-safe-to-act-027">
-    <h3 class="card-title xi-patterns-reversibility-safe-to-act-017">Where this pattern earned its keep</h3>
+    <h3 class="card-title xi-patterns-reversibility-safe-to-act-017">See This Pattern In Action</h3>
     <ul class="t-cap-loose xi-patterns-reversibility-safe-to-act-028">
       <li class="xi-patterns-reversibility-safe-to-act-029"><strong><a class="xi-patterns-reversibility-safe-to-act-009" href="../case-studies/ptc.html">PTC University</a>:</strong> retiring four products, the shutdowns were sequenced so each team watched their users land softly — with a 24-month grace period, a migration you could halt.</li>
-      <li class="xi-patterns-reversibility-safe-to-act-029"><strong><a class="xi-patterns-reversibility-safe-to-act-009" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> a one-click override that cost nothing to walk back is what got buyers to act on the algorithm at all.</li>
+      <li class="xi-patterns-reversibility-safe-to-act-029"><strong><a class="xi-patterns-reversibility-safe-to-act-009" href="../case-studies/adtech.html">Programmatic Advertising Platform</a>:</strong> a one-click override that cost nothing to walk back is what got buyers to act on the algorithm at all.</li>
     </ul>
   </section>
 
@@ -171,17 +162,16 @@
     </form>
   </section>
 
-  <section class="measure-t">
-    <div class="xi-patterns-reversibility-safe-to-act-034">
-      <div class="eyebrow xi-patterns-reversibility-safe-to-act-029">Where this breaks — do not use it here</div>
-      <p class="u-body xi-patterns-reversibility-safe-to-act-035">In genuinely irreversible domains — payments sent, emails delivered, trades executed — a fake undo is worse than none. Sometimes friction is the correct design; make the last step deliberately heavy instead of pretending it can be unwound.</p>
-    </div>
-  </section>
-
   <div class="btn-row">
     <a class="lbl-badge-bg btn-a xi-patterns-reversibility-safe-to-act-032 hv-patterns-reversibility-safe-to-act-1" href="./act-review-ignore.html">Back to the rule / Act, Review, Ignore →</a>
     <a class="lbl-badge-gold btn-a-ghost xi-patterns-reversibility-safe-to-act-033 hv-patterns-reversibility-safe-to-act-2" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom">Send me the role ↗</a>
   </div>
+<section class="measure-t">
+    <div class="xi-patterns-reversibility-safe-to-act-034">
+      <div class="eyebrow xi-patterns-reversibility-safe-to-act-029">Limits — when NOT to use this</div>
+      <p class="u-body xi-patterns-reversibility-safe-to-act-035">In genuinely irreversible domains — payments sent, emails delivered, trades executed — a fake undo is worse than none. Sometimes friction is the correct design; make the last step deliberately heavy instead of pretending it can be unwound.</p>
+    </div>
+  </section>
 </div></main>
 
 <footer>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="ember">
 <head>
+<meta name="robots" content="noindex">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Confidence Scores: 5 UI Patterns</title>
@@ -79,7 +80,7 @@
 <div class="xi-patterns-confidence-scores-004">
   <div class="xi-patterns-confidence-scores-005">
     <div class="meta-row">
-      <h1 class="t-hero xi-patterns-confidence-scores-006">Confidence Scores That End in a Verb</h1>
+      <h1 class="t-hero xi-patterns-confidence-scores-006">Confidence Score Patterns</h1>
       <span class="lbl-badge-ink xi-patterns-confidence-scores-007">In production</span>
     </div>
     <p class="lbl-cap">AI Design · Trust Patterns · Last updated June 2026</p>
@@ -91,12 +92,7 @@
 <main id="main" class="section xi-patterns-confidence-scores-011"><div class="xi-patterns-confidence-scores-005">
 
   <section class="xi-patterns-confidence-scores-012">
-    <p class="lead xi-patterns-confidence-scores-013">I watched traders at the UK&rsquo;s largest out-of-home advertiser override a model that beat them on a public scoreboard, week after week. The number wasn&rsquo;t the problem &mdash; the number was excellent. The problem was that 87% is not an instruction. These five patterns are the ways I&rsquo;ve made a score resolve into something a professional will actually move on &mdash; each with the trade-off I paid to learn.</p>
-
-    <div class="thesis">
-      <span class="t-l">The principle this page proves</span>
-      <p>An unexplained 87% is a shrug with decimals. A score earns its pixels only when it resolves to a <em>verb</em>.</p>
-    </div>
+    <p class="lead xi-patterns-confidence-scores-013">A score with no action attached is decoration. These five patterns sit at the harder problem most products never reach: not whether to show confidence, but how to make it mean something a person will move on.</p>
     <figure class="xi-patterns-confidence-scores-014">
       <img class="framed xi-patterns-confidence-scores-015" src="../assets/visuals/pattern-confidence.svg" alt="Confidence-score pattern: a score anchored to an act / review / ignore action, beside its own 30-day track record" loading="lazy" width="1280" height="400">
     </figure>
@@ -201,11 +197,6 @@
     <p class="u-ui"><strong>Strength:</strong> A non-technical user gets it on sight. <strong>Weakness:</strong> "Likely" carries different odds in different fields, so the labels need calibrating per domain.</p>
   </section>
 
-  <div class="counter">
-    <span class="c-l">The strongest objection, kept in</span>
-    <p class="u-body">&ldquo;Showing low confidence makes the product look weak.&rdquo; Backwards, in every deployment I&rsquo;ve shipped: the product that says &ldquo;I&rsquo;m not sure&rdquo; is the one experts stop double-checking. In the private-equity screening tool, low-confidence claims were flagged as abstentions rather than bluffed &mdash; and analysts went from ignoring the model to leading their deal memos with it. Confidence you can&rsquo;t doubt is confidence you can&rsquo;t trust.</p>
-  </div>
-
   <section class="xi-patterns-confidence-scores-012">
     <h2 class="section-title xi-patterns-confidence-scores-018">4. Confidence + Reasoning (Show the "Why")</h2>
     <p class="u-body xi-patterns-confidence-scores-019">Attach 1–3 reasons to the score — the signals the model actually leaned on. Example: "87% confident this is a quality lead. Reasons: (1) Similar to your top 10% of past leads, (2) High engagement in past campaigns, (3) Matches target industry."</p>
@@ -221,7 +212,7 @@
   </section>
 
   <section class="xi-patterns-confidence-scores-012">
-    <h2 class="section-title xi-patterns-confidence-scores-016">Ship it: the checklist.</h2>
+    <h2 class="section-title xi-patterns-confidence-scores-016">Implementation Checklist</h2>
     <ul class="u-body xi-patterns-confidence-scores-044">
       <li class="xi-patterns-confidence-scores-022"><strong>Set the ranges</strong> your domain runs on (usually 50%, 70%, 90%).</li>
       <li class="xi-patterns-confidence-scores-022"><strong>Tie it to an action.</strong> Show what the user should <em>do</em> with the score, not just the number.</li>
@@ -234,7 +225,7 @@
   </section>
 
   <section class="xi-patterns-confidence-scores-012">
-    <h2 class="section-title xi-patterns-confidence-scores-016">Every pattern charges rent: the trade-offs.</h2>
+    <h2 class="section-title xi-patterns-confidence-scores-016">Trade-offs by Pattern</h2>
     <div class="xi-patterns-confidence-scores-045">
       <table class="t-cap xi-patterns-confidence-scores-024">
         <thead>
@@ -252,10 +243,11 @@
   </section>
 
   <section class="card-gold xi-patterns-confidence-scores-046">
-    <h3 class="card-title xi-patterns-confidence-scores-019">Where these patterns earned their keep</h3>
-        <ul class="t-cap-loose xi-patterns-confidence-scores-021">
-      <li class="xi-patterns-confidence-scores-047"><strong><a class="xi-patterns-confidence-scores-009" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> the recommendation arrived as a full campaign plan with its KPIs attached, so a buyer judged the case in front of them rather than a bare number.</li>
-      <li class="xi-patterns-confidence-scores-047"><strong><a class="xi-patterns-confidence-scores-009" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> Scores analysts could cross-examine before staking a recommendation on them.</li>
+    <h3 class="card-title xi-patterns-confidence-scores-019">See This Pattern In Action</h3>
+    <p class="t-cap-loose xi-patterns-confidence-scores-017">Where these patterns earned their keep:</p>
+    <ul class="t-cap-loose xi-patterns-confidence-scores-021">
+      <li class="xi-patterns-confidence-scores-047"><strong><a class="xi-patterns-confidence-scores-009" href="../case-studies/adtech.html">Programmatic Advertising Platform</a>:</strong> the recommendation arrived as a full campaign plan with its KPIs attached, so a buyer judged the case in front of them rather than a bare number.</li>
+      <li class="xi-patterns-confidence-scores-047"><strong><a class="xi-patterns-confidence-scores-009" href="../case-studies/fintech.html">AI-Assisted Due Diligence</a>:</strong> Scores analysts could cross-examine before staking a recommendation on them.</li>
     </ul>
   </section>
 
@@ -274,17 +266,16 @@
     <a href="../writing/confidence-scoring.html" class="card-title xi-patterns-confidence-scores-051">How I Design Confidence Scores for AI Products →</a>
   </section>
 
-  <section class="measure-t">
-    <div class="xi-patterns-confidence-scores-054">
-      <div class="eyebrow xi-patterns-confidence-scores-047">Where this breaks — do not use it here</div>
-      <p class="u-body xi-patterns-confidence-scores-055">Don't show a score when the user can't act differently on 62 versus 68 — a number without a decision attached is decoration that invites false precision. And never surface confidence from an uncalibrated model: score theater is worse than no score, because it teaches users to trust a liar with good posture.</p>
-    </div>
-  </section>
-
   <div class="btn-row">
     <a class="lbl-badge-bg btn-a xi-patterns-confidence-scores-052 hv-patterns-confidence-scores-1" href="./ai-failure-states.html">Next pattern / AI Failure States →</a>
     <a class="lbl-badge-gold btn-a-ghost xi-patterns-confidence-scores-053 hv-patterns-confidence-scores-2" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom">Send me the role ↗</a>
   </div>
+<section class="measure-t">
+    <div class="xi-patterns-confidence-scores-054">
+      <div class="eyebrow xi-patterns-confidence-scores-047">Limits — when NOT to use this</div>
+      <p class="u-body xi-patterns-confidence-scores-055">Don't show a score when the user can't act differently on 62 versus 68 — a number without a decision attached is decoration that invites false precision. And never surface confidence from an uncalibrated model: score theater is worse than no score, because it teaches users to trust a liar with good posture.</p>
+    </div>
+  </section>
 </div></main>
 
 <footer>

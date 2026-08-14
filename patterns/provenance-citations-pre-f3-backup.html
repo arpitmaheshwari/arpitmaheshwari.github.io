@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="ember">
 <head>
+<meta name="robots" content="noindex">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Provenance &amp; Citations: Show the Sources Behind the Answer</title>
@@ -86,11 +87,6 @@
     <p class="lead xi-patterns-provenance-citations-013">A large language model can write a fluent, confident claim about anything — that's exactly the problem. Provenance is what separates a generated sentence from evidence: grounding every claim in a cited source it retrieved (RAG), one click from the number to the document that produced it. When the stakes are real, people don't act on a well-written guess; they act on something they can open and check.</p>
   </section>
 
-  <div class="thesis">
-    <span class="t-l">The principle this page proves</span>
-    <p>A claim with its source beside it is <em>evidence</em>. The same claim without one is prose.</p>
-  </div>
-
   <figure class="xi-patterns-provenance-citations-014">
     <img class="framed xi-patterns-provenance-citations-015" src="../assets/visuals/pattern-provenance.svg" alt="Provenance pattern: a claim linked to its three cited sources — one flagged as dissenting — with the original source document open to the cited passage" loading="lazy" width="1280" height="400">
   </figure>
@@ -120,13 +116,8 @@
     <p class="u-body xi-patterns-provenance-citations-017">Then surface disagreement honestly. If two sources support a conclusion and one contradicts it, show the outlier rather than averaging it away. The dissenting source is often where the real risk lives, and hiding it is how a confident-looking answer becomes an expensive one.</p>
   </section>
 
-  <div class="counter">
-    <span class="c-l">The strongest objection, kept in</span>
-    <p class="u-body">&ldquo;Citations clutter the interface and slow the reading.&rdquo; In the diligence platform the sign-off stayed locked until the evidence had actually been opened &mdash; and cycles still fell from three weeks to four days. The clutter objection assumes reading speed is the bottleneck. It isn&rsquo;t: re-verification is, and a claim that carries its source kills the re-verification loop entirely.</p>
-  </div>
-
   <section class="xi-patterns-provenance-citations-012">
-    <h2 class="section-title xi-patterns-provenance-citations-018">Ship it: the checklist.</h2>
+    <h2 class="section-title xi-patterns-provenance-citations-018">Implementation Checklist</h2>
     <ul class="u-body xi-patterns-provenance-citations-020">
       <li class="xi-patterns-provenance-citations-021"><strong>Render the primary source inline</strong>, next to the claim — not behind a "details" affordance.</li>
       <li class="xi-patterns-provenance-citations-021"><strong>Make every citation openable:</strong> link to the real artifact, not a summary of it.</li>
@@ -154,10 +145,10 @@
 
 
   <section class="card-gold xi-patterns-provenance-citations-027">
-    <h3 class="card-title xi-patterns-provenance-citations-017">Where this pattern earned its keep</h3>
+    <h3 class="card-title xi-patterns-provenance-citations-017">See This Pattern In Action</h3>
     <ul class="t-cap-loose xi-patterns-provenance-citations-028">
       <li class="xi-patterns-provenance-citations-029"><strong><a class="xi-patterns-provenance-citations-009" href="../case-studies/vc-diligence.html">Technical Due Diligence</a>:</strong> a score had to carry a clean drill from summary to the source document before a partner would stand on it.</li>
-      <li class="xi-patterns-provenance-citations-029"><strong><a class="xi-patterns-provenance-citations-009" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> sources sat beside the risk score, not buried behind it.</li>
+      <li class="xi-patterns-provenance-citations-029"><strong><a class="xi-patterns-provenance-citations-009" href="../case-studies/fintech.html">AI-Assisted Due Diligence</a>:</strong> sources sat beside the risk score, not buried behind it.</li>
     </ul>
   </section>
 
@@ -171,17 +162,16 @@
     </form>
   </section>
 
-  <section class="measure-t">
-    <div class="xi-patterns-provenance-citations-034">
-      <div class="eyebrow xi-patterns-provenance-citations-029">Where this breaks — do not use it here</div>
-      <p class="u-body xi-patterns-provenance-citations-035">Citation chips slow scanning — if every claim is cited with equal weight, nothing stands out and users stop clicking any of them. Reserve full provenance for claims someone must defend to a third party; summarize the rest. Provenance is a gate for decisions, not wallpaper for paragraphs.</p>
-    </div>
-  </section>
-
   <div class="btn-row">
     <a class="lbl-badge-bg btn-a xi-patterns-provenance-citations-032 hv-patterns-provenance-citations-1" href="./capability-contract.html">Next pattern / The Capability Contract →</a>
     <a class="lbl-badge-gold btn-a-ghost xi-patterns-provenance-citations-033 hv-patterns-provenance-citations-2" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom">Send me the role ↗</a>
   </div>
+<section class="measure-t">
+    <div class="xi-patterns-provenance-citations-034">
+      <div class="eyebrow xi-patterns-provenance-citations-029">Limits — when NOT to use this</div>
+      <p class="u-body xi-patterns-provenance-citations-035">Citation chips slow scanning — if every claim is cited with equal weight, nothing stands out and users stop clicking any of them. Reserve full provenance for claims someone must defend to a third party; summarize the rest. Provenance is a gate for decisions, not wallpaper for paragraphs.</p>
+    </div>
+  </section>
 </div></main>
 
 <footer>

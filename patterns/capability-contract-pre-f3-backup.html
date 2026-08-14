@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="ember">
 <head>
+<meta name="robots" content="noindex">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Capability Contract: Say What the System Can't Do</title>
@@ -86,11 +87,6 @@
     <p class="lead xi-patterns-capability-contract-013">A large language model has no natural edges — ask it anything and it will produce a fluent answer, in or out of its depth. A capability contract draws those edges for it: here's what this system is for, here's where it taps out, and here's what it hands back to a human. Set it before the first use — not after the first complaint. The limits of a generative model, named plainly up front, are what make the rest of it believable.</p>
   </section>
 
-  <div class="thesis">
-    <span class="t-l">The principle this page proves</span>
-    <p>The honest &ldquo;no&rdquo; is what makes the confident answer <em>believable</em>.</p>
-  </div>
-
   <section class="xi-patterns-capability-contract-012">
     <figure class="xi-patterns-capability-contract-014">
       <img class="framed xi-patterns-capability-contract-015" src="../assets/visuals/pattern-capability.svg" alt="Capability-contract pattern: an in-scope checklist, an out-of-scope list that routes onward, and a clean hand-off to a human specialist" loading="lazy" width="1280" height="400">
@@ -122,13 +118,8 @@
     <p class="u-body">Specificity also disciplines the team building the thing. Writing the contract forces an honest conversation about what the model actually does well — and that conversation, more than any feature, is what keeps the product trustworthy as it grows.</p>
   </section>
 
-  <div class="counter">
-    <span class="c-l">The strongest objection, kept in</span>
-    <p class="u-body">&ldquo;Listing what the system can&rsquo;t do reads like a disclaimer &mdash; it will spook buyers.&rdquo; A system with no stated edges gets tested at its weakest point by every new user, and fails there in public. The contract routes those moments to a person instead of a hallucination &mdash; which is why the systems that state their limits are the ones that survive their first bad week.</p>
-  </div>
-
   <section class="xi-patterns-capability-contract-012">
-    <h2 class="section-title xi-patterns-capability-contract-018">Ship it: the checklist.</h2>
+    <h2 class="section-title xi-patterns-capability-contract-018">Implementation Checklist</h2>
     <ul class="u-body xi-patterns-capability-contract-020">
       <li class="xi-patterns-capability-contract-021"><strong>Write the contract before launch:</strong> what it's for, where it taps out, what it hands back.</li>
       <li class="xi-patterns-capability-contract-021"><strong>State limits in the interface,</strong> at the point of use — not only in the docs.</li>
@@ -166,10 +157,10 @@ WHAT WE TELL THE USER — in the interface, not the docs:
   </section>
 
   <section class="card-gold xi-patterns-capability-contract-026">
-    <h3 class="card-title xi-patterns-capability-contract-017">Where this pattern earned its keep</h3>
+    <h3 class="card-title xi-patterns-capability-contract-017">See This Pattern In Action</h3>
     <ul class="t-cap-loose xi-patterns-capability-contract-027">
-      <li class="xi-patterns-capability-contract-022"><strong><a class="xi-patterns-capability-contract-009" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> the planner stated what it could and could not price — unsold inventory it could flag as risk, outcomes it would not promise.</li>
-      <li class="xi-patterns-capability-contract-022"><strong><a class="xi-patterns-capability-contract-009" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> the model declared the deals it wouldn't score, up front, instead of bluffing through them.</li>
+      <li class="xi-patterns-capability-contract-022"><strong><a class="xi-patterns-capability-contract-009" href="../case-studies/adtech.html">Programmatic Advertising Platform</a>:</strong> the planner stated what it could and could not price — unsold inventory it could flag as risk, outcomes it would not promise.</li>
+      <li class="xi-patterns-capability-contract-022"><strong><a class="xi-patterns-capability-contract-009" href="../case-studies/fintech.html">AI-Assisted Due Diligence</a>:</strong> the model declared the deals it wouldn't score, up front, instead of bluffing through them.</li>
     </ul>
   </section>
 
@@ -183,17 +174,16 @@ WHAT WE TELL THE USER — in the interface, not the docs:
     </form>
   </section>
 
-  <section class="measure-t">
-    <div class="xi-patterns-capability-contract-032">
-      <div class="eyebrow xi-patterns-capability-contract-022">Where this breaks — do not use it here</div>
-      <p class="u-body xi-patterns-capability-contract-033">A contract on every screen reads as a product unsure of itself — state the boundary once, where the user first meets the capability, not as a recurring disclaimer. And never write a contract you don't enforce: a stated limit the system quietly exceeds burns more trust than no statement at all.</p>
-    </div>
-  </section>
-
   <div class="btn-row">
     <a class="lbl-badge-bg btn-a xi-patterns-capability-contract-030 hv-patterns-capability-contract-2" href="./calibration-track-record.html">Next pattern / Calibration &amp; Track Record →</a>
     <a class="lbl-badge-gold btn-a-ghost xi-patterns-capability-contract-031 hv-patterns-capability-contract-1" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom">Send me the role ↗</a>
   </div>
+<section class="measure-t">
+    <div class="xi-patterns-capability-contract-032">
+      <div class="eyebrow xi-patterns-capability-contract-022">Limits — when NOT to use this</div>
+      <p class="u-body xi-patterns-capability-contract-033">A contract on every screen reads as a product unsure of itself — state the boundary once, where the user first meets the capability, not as a recurring disclaimer. And never write a contract you don't enforce: a stated limit the system quietly exceeds burns more trust than no statement at all.</p>
+    </div>
+  </section>
 </div></main>
 
 <footer>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="ember">
 <head>
+<meta name="robots" content="noindex">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>loop.js — Trust Decisions as Testable Code — Arpit Maheshwari</title>
@@ -62,13 +63,6 @@
       </div>
     </div>
   </section>
-
-  <section class="section"><div class="lab-wrap">
-  <div class="thesis">
-    <span class="t-l">The principle this artifact proves</span>
-    <p>A design opinion becomes <em>falsifiable</em> the day it compiles.</p>
-  </div>
-  </div></section>
 
   <!-- ===================== INSTALL ===================== -->
   <section class="section">
@@ -284,10 +278,6 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
   <section class="section">
     <div class="lab-wrap">
       <p class="eyebrow">Why this exists</p>
-      <div class="counter">
-        <span class="c-l">The strongest objection, kept in</span>
-        <p>&ldquo;It&rsquo;s a hundred lines of if-statements.&rdquo; Exactly &mdash; and that is the entire point. The same decisions usually live in a slide deck where they can only be believed or ignored. Here they are versioned, testable, and able to fail loudly. The day a threshold is wrong, a test goes red &mdash; a deck has never once done that.</p>
-      </div>
       <h2 class="section-title">A rule you can run beats a rule you can argue with</h2>
       <p class="t-body-muted xi-lab-loop-019">Every one of these decisions used to be a slide. "Don't show a naked confidence score." "Fail toward humility." "Reversibility outranks confidence." Reasonable people nodded, and then shipped the naked number anyway, because a principle has no failing state.</p>
       <p class="t-body-muted xi-lab-loop-019">Written as functions, the same rules get a failing state. <code class="t-code">decide()</code> reports <code class="t-code">review-without-reasons</code> as a violation rather than a suggestion. <code class="t-code">calibrate()</code> returns <code class="t-code">insufficient-data</code> instead of a flattering number. That is the whole argument for this file existing: human-in-the-loop design is a set of decisions, and decisions can be tested.</p>

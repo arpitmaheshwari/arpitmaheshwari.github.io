@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="ember">
 <head>
+<meta name="robots" content="noindex">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Failure States: Graceful Error UX Patterns</title>
@@ -70,7 +71,7 @@
 <div class="xi-patterns-ai-failure-states-004">
   <div class="xi-patterns-ai-failure-states-005">
     <div class="meta-row">
-      <h1 class="t-hero xi-patterns-ai-failure-states-006">AI Failure States: Where the Next Ten Interactions Are Won</h1>
+      <h1 class="t-hero xi-patterns-ai-failure-states-006">AI Failure State Patterns</h1>
       <span class="lbl-badge-ink xi-patterns-ai-failure-states-007">In production</span>
     </div>
     <p class="lbl-cap">AI Design · <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="A system design approach where functionality degrades gracefully when failures occur, offering reduced but still-useful alternatives rather than failing completely">Graceful Degradation</abbr> · Last updated June 2026</p>
@@ -121,11 +122,6 @@
       <img class="framed xi-patterns-ai-failure-states-035" src="../assets/visuals/pattern-failure.svg" alt="Failure-state pattern: a graceful low-confidence state where the model declines to bluff and offers a recovery path" loading="lazy" width="1280" height="400">
     </figure>
   </section>
-
-  <div class="thesis">
-    <span class="t-l">The principle this page proves</span>
-    <p>Users forgive a model for being wrong. They never forgive it for <em>bluffing</em>.</p>
-  </div>
   <!-- LIVE DEMO — same demo as the book's field guide -->
   <section class="xi-patterns-ai-failure-states-013">
     <h2 class="section-title xi-patterns-ai-failure-states-036">Try it — the pattern, live</h2>
@@ -189,13 +185,8 @@
     <p class="u-body">The log doesn't bury the miss. It converts it into something the user watched the model learn from. People lean on systems that admit error and visibly improve. Reach for this in any product a user returns to across sessions.</p>
   </section>
 
-  <div class="counter">
-    <span class="c-l">The strongest objection, kept in</span>
-    <p class="u-body">&ldquo;A model that admits failure looks weaker than one that always answers.&rdquo; The private-equity screening tool shipped able to say &ldquo;I&rsquo;m not sure&rdquo; &mdash; abstention as a feature, not an error state &mdash; and that is the product analysts went from ignoring to leading their deal memos with. The always-answering model is the one they quietly stopped believing.</p>
-  </div>
-
   <section class="xi-patterns-ai-failure-states-013">
-    <h2 class="section-title xi-patterns-ai-failure-states-036">Ship it: the checklist.</h2>
+    <h2 class="section-title xi-patterns-ai-failure-states-036">Implementation Checklist</h2>
     <ul class="u-body xi-patterns-ai-failure-states-042">
       <li class="xi-patterns-ai-failure-states-040"><strong>Identify failure modes:</strong> Write down 5–10 ways your system can fail.</li>
       <li class="xi-patterns-ai-failure-states-040"><strong>Design each failure UI:</strong> A specific state for each, never a generic "Error 500".</li>
@@ -207,9 +198,9 @@
   </section>
 
   <section class="card-gold xi-patterns-ai-failure-states-043">
-    <h3 class="card-title xi-patterns-ai-failure-states-019">Where this pattern earned its keep</h3>
+    <h3 class="card-title xi-patterns-ai-failure-states-019">See This Pattern In Action</h3>
     <ul class="t-cap-loose xi-patterns-ai-failure-states-039">
-      <li class="xi-patterns-ai-failure-states-030"><strong><a class="xi-patterns-ai-failure-states-010" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> What the screen says when the recommendation can't clear the bar.</li>
+      <li class="xi-patterns-ai-failure-states-030"><strong><a class="xi-patterns-ai-failure-states-010" href="../case-studies/adtech.html">Programmatic Advertising Platform</a>:</strong> What the screen says when the recommendation can't clear the bar.</li>
       <li class="xi-patterns-ai-failure-states-030"><strong><a class="xi-patterns-ai-failure-states-010" href="../case-studies/orgos.html">OrgOS</a>:</strong> Saying it plainly when a complex system hits its limits.</li>
     </ul>
   </section>
@@ -229,17 +220,16 @@
     <a class="xi-patterns-ai-failure-states-047" href="../writing/failure-states.html">Design the Failure State First →</a>
   </section>
 
-  <section class="measure-t">
-    <div class="xi-patterns-ai-failure-states-050">
-      <div class="eyebrow xi-patterns-ai-failure-states-030">Where this breaks — do not use it here</div>
-      <p class="u-body xi-patterns-ai-failure-states-051">If failure is frequent, the fix is the system, not the copy — a beautifully-worded error shown hourly is an apology habit. And over-apologizing reads as instability: past a point, the honest 'I'm not sure' should get quieter and rarer, not more charming.</p>
-    </div>
-  </section>
-
   <div class="btn-row">
     <a class="lbl-badge-bg btn-a xi-patterns-ai-failure-states-048 hv-patterns-ai-failure-states-1" href="./ml-explainability.html">Next pattern / ML Explainability →</a>
     <a class="lbl-badge-gold btn-a-ghost xi-patterns-ai-failure-states-049 hv-patterns-ai-failure-states-2" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom">Send me the role ↗</a>
   </div>
+<section class="measure-t">
+    <div class="xi-patterns-ai-failure-states-050">
+      <div class="eyebrow xi-patterns-ai-failure-states-030">Limits — when NOT to use this</div>
+      <p class="u-body xi-patterns-ai-failure-states-051">If failure is frequent, the fix is the system, not the copy — a beautifully-worded error shown hourly is an apology habit. And over-apologizing reads as instability: past a point, the honest 'I'm not sure' should get quieter and rarer, not more charming.</p>
+    </div>
+  </section>
 </div></main>
 
 <footer>

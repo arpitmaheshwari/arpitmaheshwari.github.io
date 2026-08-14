@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="ember">
 <head>
+<meta name="robots" content="noindex">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Human-in-Loop Patterns: Approve/Reject/Override</title>
@@ -71,7 +72,7 @@
 <div class="xi-patterns-human-in-loop-004">
   <div class="xi-patterns-human-in-loop-005">
     <div class="meta-row">
-      <h1 class="t-hero xi-patterns-human-in-loop-006">Human-in-the-Loop: The Override Is Training Data</h1>
+      <h1 class="t-hero xi-patterns-human-in-loop-006">Human-in-the-Loop Patterns</h1>
       <span class="lbl-badge-ink xi-patterns-human-in-loop-007">In production</span>
     </div>
     <p class="lbl-cap">AI Design · Collaborative Workflows · Last updated June 2026</p>
@@ -122,11 +123,6 @@
       <img class="framed xi-patterns-human-in-loop-032" src="../assets/visuals/pattern-loop.svg" alt="Human-in-the-loop pattern: the model suggests, the human overrides, and the correction feeds the next result" loading="lazy" width="1280" height="400">
     </figure>
   </section>
-
-  <div class="thesis">
-    <span class="t-l">The principle this page proves</span>
-    <p>An override is not defiance. It is the training data the next version <em>needs</em>.</p>
-  </div>
   <!-- LIVE DEMO — same demo as the book's field guide -->
   <section class="xi-patterns-human-in-loop-012">
     <h2 class="section-title xi-patterns-human-in-loop-033">Try it — the pattern, live</h2>
@@ -182,13 +178,8 @@
     <p class="u-body xi-patterns-human-in-loop-036"><strong>The loop pays off:</strong> the model sharpens, the user trusts it more, the trust buys more feedback, and the feedback sharpens it again.</p>
   </section>
 
-  <div class="counter">
-    <span class="c-l">The strongest objection, kept in</span>
-    <p class="u-body">&ldquo;Letting users overrule the model undermines it.&rdquo; That was the room&rsquo;s position at the UK&rsquo;s largest out-of-home advertiser, and it dissolved the first time a buyer watched their own override sharpen the following week&rsquo;s recommendations. An unchallengeable system doesn&rsquo;t read as authoritative &mdash; it reads as unaccountable, and experts decline to stake their name on the unaccountable.</p>
-  </div>
-
   <section class="xi-patterns-human-in-loop-012">
-    <h2 class="section-title xi-patterns-human-in-loop-033">Ship it: the checklist.</h2>
+    <h2 class="section-title xi-patterns-human-in-loop-033">Implementation Checklist</h2>
     <ul class="u-body xi-patterns-human-in-loop-043">
       <li class="xi-patterns-human-in-loop-044"><strong>Name the human's role:</strong> verifier who approves or rejects, editor who modifies, or expert who overrides with a reason?</li>
       <li class="xi-patterns-human-in-loop-044"><strong>Draw the decision boundary:</strong> what does the model decide alone, what needs a review, what needs an expert?</li>
@@ -217,10 +208,10 @@
   </section>
 
   <section class="card-gold xi-patterns-human-in-loop-046">
-    <h3 class="card-title xi-patterns-human-in-loop-035">Where this pattern earned its keep</h3>
+    <h3 class="card-title xi-patterns-human-in-loop-035">See This Pattern In Action</h3>
     <ul class="t-cap-loose xi-patterns-human-in-loop-047">
-      <li class="xi-patterns-human-in-loop-048"><strong><a class="xi-patterns-human-in-loop-009" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> analysts read the model's scores and override them with domain expertise.</li>
-      <li class="xi-patterns-human-in-loop-048"><strong><a class="xi-patterns-human-in-loop-009" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> media buyers approve or reject the algorithm's calls, and the rejections train the next ones.</li>
+      <li class="xi-patterns-human-in-loop-048"><strong><a class="xi-patterns-human-in-loop-009" href="../case-studies/fintech.html">AI-Assisted Due Diligence</a>:</strong> analysts read the model's scores and override them with domain expertise.</li>
+      <li class="xi-patterns-human-in-loop-048"><strong><a class="xi-patterns-human-in-loop-009" href="../case-studies/adtech.html">Programmatic Advertising Platform</a>:</strong> media buyers approve or reject the algorithm's calls, and the rejections train the next ones.</li>
       <li class="xi-patterns-human-in-loop-048"><strong><a class="xi-patterns-human-in-loop-009" href="../case-studies/orgos.html">OrgOS</a>:</strong> peer review and feedback loops running at the scale of a whole company.</li>
     </ul>
   </section>
@@ -240,17 +231,16 @@
     <a href="../writing/human-in-loop.html" class="card-title xi-patterns-human-in-loop-052">Human-in-the-Loop: When to Ask, When to Override →</a>
   </section>
 
-  <section class="measure-t">
-    <div class="xi-patterns-human-in-loop-055">
-      <div class="eyebrow xi-patterns-human-in-loop-048">Where this breaks — do not use it here</div>
-      <p class="u-body xi-patterns-human-in-loop-056">Watch the override rate: near zero means the loop is theater and the human is a rubber stamp — retire the review step or raise its stakes. Under volume pressure, review queues decay into approve-all; if you can't staff the loop honestly, narrow what enters it instead of pretending.</p>
-    </div>
-  </section>
-
   <div class="btn-row">
     <a class="lbl-badge-bg btn-a xi-patterns-human-in-loop-053 hv-patterns-human-in-loop-1" href="./provenance-citations.html">Next pattern / Provenance &amp; Citations →</a>
     <a class="lbl-badge-gold btn-a-ghost xi-patterns-human-in-loop-054 hv-patterns-human-in-loop-2" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom">Send me the role ↗</a>
   </div>
+<section class="measure-t">
+    <div class="xi-patterns-human-in-loop-055">
+      <div class="eyebrow xi-patterns-human-in-loop-048">Limits — when NOT to use this</div>
+      <p class="u-body xi-patterns-human-in-loop-056">Watch the override rate: near zero means the loop is theater and the human is a rubber stamp — retire the review step or raise its stakes. Under volume pressure, review queues decay into approve-all; if you can't staff the loop honestly, narrow what enters it instead of pretending.</p>
+    </div>
+  </section>
 </div></main>
 
 <footer>
