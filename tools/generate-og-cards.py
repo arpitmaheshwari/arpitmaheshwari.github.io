@@ -46,13 +46,13 @@ REG = [
     # --- the 4 blank/broken pattern cards (source: each page's own og:title/og:description) ---
     ("act-review-ignore-og.png", "AI DESIGN PATTERNS", "The Act / Review / Ignore Rule",
      "An unexplained 87% is a shrug with decimals.", "Arpit Maheshwari · Pattern Library"),
-    ("ai-failure-states-og.png", "AI DESIGN PATTERNS", "AI Failure State Patterns",
+    ("ai-failure-states-og.png", "AI DESIGN PATTERNS", "AI Failure States: Where the Next Ten Interactions Are Won",
      "Five patterns for communicating AI uncertainty without breaking user trust.",
      "Arpit Maheshwari · Pattern Library"),
-    ("confidence-scores-og.png", "AI DESIGN PATTERNS", "Confidence Score Patterns",
+    ("confidence-scores-og.png", "AI DESIGN PATTERNS", "Confidence Scores That End in a Verb",
      "How to design interfaces that help users trust algorithmic recommendations.",
      "Arpit Maheshwari · Pattern Library"),
-    ("ml-explainability-og.png", "AI DESIGN PATTERNS", "ML Explainability Patterns",
+    ("ml-explainability-og.png", "AI DESIGN PATTERNS", "ML Explainability: Reasons on the Card, Not in a Tooltip",
      "Patterns for showing a person why the machine decided, at a depth they can use.",
      "Arpit Maheshwari · Pattern Library"),
 
@@ -65,11 +65,11 @@ REG = [
      "Arpit Maheshwari · Pattern Library"),
     ("provenance-citations-og.png", "AI DESIGN PATTERNS", "Provenance & Citations",
      "Tracing an AI output back to the evidence behind it.", "Arpit Maheshwari · Pattern Library"),
-    ("reversibility-safe-to-act-og.png", "AI DESIGN PATTERNS", "Reversibility / Safe-to-Act",
+    ("reversibility-safe-to-act-og.png", "AI DESIGN PATTERNS", "Reversibility: Cheap to Undo Is Cheap to Adopt",
      "Make the model's suggestion cheap to walk back.", "Arpit Maheshwari · Pattern Library"),
 
     # --- the pattern page silently reusing the WRITING ESSAY'S card (own meta exists, unused) ---
-    ("human-in-loop-pattern-og.png", "AI DESIGN PATTERNS", "Human-in-the-Loop Patterns",
+    ("human-in-loop-pattern-og.png", "AI DESIGN PATTERNS", "Human-in-the-Loop: The Override Is Training Data",
      "Five patterns for designing systems where humans and AI work together iteratively.",
      "Arpit Maheshwari · Pattern Library"),
 
@@ -85,12 +85,23 @@ REG = [
     # Loop" (canon §1, "trust layer" retired 2026-08-01); the glossary's real entry count (15).
     ("ai-design-checklist-og.png", "CHECKLIST · SHIPPING", "53 Things to Check Before Shipping AI",
      "Happy-path demo ≠ production ready", "Arpit Maheshwari · Resource"),
-    ("fintech-og.png", "FINTECH · NDA", "AI-Assisted Private Equity Investing",
+    ("fintech-og.png", "FINTECH · PRIVATE EQUITY", "Deal-Screening AI That Cites Its Sources",
      "60% faster screening · measured pre- vs post-rollout", "Arpit Maheshwari · Case Study"),
     ("writing-index-og.png", "WRITING · ESSAYS", "Essays on AI Design",
      "Human in the Loop: notes on designing between people and algorithms", "Arpit Maheshwari · Essay"),
     ("intelligent-systems-glossary-og.png", "REFERENCE · GLOSSARY", "Intelligent Systems Glossary",
      "15 core terms for designing AI products", "Arpit Maheshwari · Resource"),
+    # --- case cards (2026-08-15): the F3 hook titles; adtech names Talon ---
+    ("adtech-og.png", "ADTECH · TALON OUTDOOR · NAMED", "An Ad Agency Became the Market\u2019s Aggregator",
+     "Five systems, one platform \u2014 planning 2 wks \u2192 3 hrs once traders could argue back.", "Arpit Maheshwari \u00b7 Case Study"),
+    ("ptc-og.png", "EDTECH · PTC · PUBLIC", "The Redesign That Asked PTC to Kill Four Products",
+     "Five platforms to one \u00b7 $1M/yr saved \u00b7 subscription 0% \u2192 64% of new bookings.", "Arpit Maheshwari \u00b7 Case Study"),
+    ("o2-og.png", "TELECOM · O2 UK · PUBLIC", "Two O2 UK Products, Four Million People",
+     "At 4M+ users a correct system still has to earn the tap.", "Arpit Maheshwari \u00b7 Case Study"),
+    ("orgos-og.png", "ORG DESIGN · NDA", "The Software That Replaced the Org Chart",
+     "200 people, zero managers, eight modules doing an org chart\u2019s job.", "Arpit Maheshwari \u00b7 Case Study"),
+    ("vc-diligence-og.png", "VC/PE · NDA", "Due Diligence You Can\u2019t Rubber-Stamp",
+     "The right friction: sign-off locked until the evidence is opened \u00b7 3 wks \u2192 4 days.", "Arpit Maheshwari \u00b7 Case Study"),
 ]
 
 
