@@ -2039,6 +2039,10 @@ html[data-theme="ember"] body.p-home .thought-tag{grid-column:2;grid-row:1}
    classic palette on a site that had moved on. Attribute ≠ theme.
    ============================================================================ */
 html[data-theme="ember"] body.p-404{background:var(--bg);color:var(--ink)}
+/* the page was built as a standalone card with no nav; now that it carries the
+   house nav and footer it needs the same top offset every other page has */
+html[data-theme="ember"] body.p-404 .wrap{padding-top:120px}
+html[data-theme="ember"] body.p-404 footer{margin-top:64px}
 html[data-theme="ember"] body.p-404 .ghost{color:rgba(245,237,230,.04);font-family:var(--serif)}
 html[data-theme="ember"] body.p-404 .kick{font-family:var(--ff-label);font-weight:600;font-size:12px;
   letter-spacing:.08em;text-transform:uppercase;color:var(--ember)}

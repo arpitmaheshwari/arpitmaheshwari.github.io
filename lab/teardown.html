@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f1">
 <noscript></noscript>
 <link rel="stylesheet" href="../styles.css?v=p62">
-<link rel="stylesheet" href="../ember.css?v=e117">
+<link rel="stylesheet" href="../ember.css?v=e123">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PFY6ME99K8');</script>
@@ -77,14 +77,14 @@
         <table class="td-table">
           <thead><tr><th>What</th><th>Measured</th><th>How</th></tr></thead>
           <tbody>
-            <tr><td>Hand-written HTML pages</td><td><b>59</b></td><td><span class="td-inline">find . -name "*.html"</span>, excluding the book and print sources</td></tr>
-            <tr><td>Stylesheet, entire site</td><td><b>309.8 KB</b></td><td><span class="td-inline">stat -f "%z" styles.css</span> → 317,254 bytes, unminified</td></tr>
+            <tr><td>Hand-written HTML pages</td><td><b>60</b></td><td><span class="td-inline">find . -name "*.html"</span>, excluding the book and print sources</td></tr>
+            <tr><td>Stylesheet, entire site</td><td><b>312.0 KB</b></td><td><span class="td-inline">stat -f "%z" styles.css</span> → 319,472 bytes, unminified</td></tr>
             <tr><td>Runtime dependencies, classic site</td><td><b>0</b></td><td>No root <span class="td-inline">package.json</span>, no <span class="td-inline">node_modules</span>, no bundler config</td></tr>
             <tr><td>Third-party domains serving code</td><td><b>2</b></td><td>Google Analytics and Microsoft Clarity (heatmaps, added 2026-08-15; honours Do-Not-Track). Attention measurement (scroll depth, section dwell) is first-party: <span class="td-inline">attention.js</span>, 120 lines, no network of its own. Both load async and gate nothing on first paint. Google Fonts left on 2026-08-14 when the nine font files moved to this origin.</td></tr>
             <tr><td>Interactive pattern demos</td><td><b>9</b></td><td>All in <span class="td-inline">patterns/demos.js</span> — 234 lines, 12.9 KB</td></tr>
             <tr><td>Its imports, requires, fetches</td><td><b>0</b></td><td><span class="td-inline">grep -nE "import |require\(|fetch\("</span> → no matches</td></tr>
             <tr><td>Open Graph share cards</td><td><b>30</b></td><td>All exactly 1200×630, verified with <span class="td-inline">sips -g pixelWidth</span></td></tr>
-            <tr><td>Pages carrying a skip link</td><td><b>52</b></td><td><span class="td-inline">grep -rl skip-link</span></td></tr>
+            <tr><td>Pages carrying a skip link</td><td><b>54</b></td><td><span class="td-inline">grep -rl skip-link</span></td></tr>
             <tr><td>Build steps between edit and deploy</td><td><b>0</b></td><td>Commit to <span class="td-inline">master</span>; GitHub Pages serves the files as written</td></tr>
           </tbody>
         </table>

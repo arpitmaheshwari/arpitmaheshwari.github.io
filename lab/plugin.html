@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ember">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The design system, as a Claude plugin — The Lab</title>
+<meta name="description" content="An installable Claude plugin encoding this site’s design system and its ten ship gates — the public version of the practice used at Talon and Sahaj, where the plugins are confidential.">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/lab/plugin.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The design system, as a Claude plugin">
+<meta property="og:description" content="No build step, no framework on the classic site, one third-party domain, one type scale — and an honest list of what is still missing.">
+<meta property="og:url" content="https://arpitmaheshwari.com/lab/teardown.html">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/plugin-og.png">
+<meta property="og:image:alt" content="How this site is built — a teardown">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta property="og:locale" content="en_IN" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The design system, as a Claude plugin">
+<meta name="twitter:description" content="No build step, no framework on the classic site, one third-party domain — and what is still missing.">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/plugin-og.png">
+<meta name="twitter:image:alt" content="How this site is built — a teardown">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<noscript></noscript>
+<link rel="stylesheet" href="../styles.css?v=p62">
+<link rel="stylesheet" href="../ember.css?v=e123">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PFY6ME99K8');</script>
+</head>
+<body class="p-lab-plugin">
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a class="row-ic xi-lab-plugin-001" href="../index.html"><img class="xi-lab-plugin-002" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../lab/" aria-current="true">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
+  <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
+  </nav>
+
+<main id="main">
+  <section class="section">
+    <div class="lab-wrap">
+      <p class="eyebrow">The Lab · 04 · MIT licensed</p>
+      <h1 class="section-title">The design system, as a Claude plugin</h1>
+      <p class="lab-lede">An installable plugin that teaches Claude this site&rsquo;s design system and the ten checks that decide whether a change may ship. Install it and the model produces work that is already on-system, instead of work someone has to correct afterwards.</p>
+      <p class="hand" aria-hidden="true">the rules, in a form a machine can hold</p>
+      <div class="lab-note">
+        <b>Why this exists in public.</b> The AdTech case says I unified six products under one design system at Talon, then encoded it as a Claude plugin and shipped it across the engineering org &mdash; and built a second for Sahaj. Both are client-confidential, so that claim has no artifact behind it. This is the same practice on a system I own, so the claim can be inspected instead of believed.
+      </div>
+      <div class="lab-links">
+        <a href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io/tree/master/plugin" data-cta="lab-github" data-location="plugin-hero">Read the plugin&nbsp;&#8599;</a>
+        <a href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io/blob/master/plugin/skills/ember-design-system/SKILL.md" data-cta="lab-source" data-location="plugin-hero">The design-system skill&nbsp;&rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section act-cream">
+    <div class="lab-wrap">
+      <p class="eyebrow">Install</p>
+      <h2 class="section-title">Two commands.</h2>
+      <pre class="lab-code"><code>/plugin marketplace add arpitmaheshwari/arpitmaheshwari.github.io
+/plugin install ember-design-system</code></pre>
+      <p class="lab-body">Then ask for a component. The model already knows the four heats and what each one means, that mono is for code and never for labels, that spacing lives on an 8px-derived grid, and that a capped column inside a wider container is a defect rather than a style.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="lab-wrap">
+      <p class="eyebrow">What it encodes</p>
+      <h2 class="section-title">Two skills: the system, and the floor it has to clear.</h2>
+      <div class="lab-body">
+        <p><b>ember-design-system</b> &mdash; the tokens with their measured contrast ratios, one type scale, the spacing grid, and the component grammar. Crucially it carries the rules that are <em>not</em> visible in the values: heat is semantic and never decorative; a component declares its own ink on its own ground rather than inheriting and hoping; never state a contrast ratio you have not measured on rendered pixels, because gradient text and translucent tints both lie to style-based checks.</p>
+        <p><b>ship-gates</b> &mdash; the ten checks, each with the real defect that caused it to exist, and the discipline that makes a green result mean anything: plant a defect, watch the check go red, then trust it. Refuse to report on zero measurements. Treat an impossible reading as your instrument breaking, not the product.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section act-cream">
+    <div class="lab-wrap">
+      <p class="eyebrow">The argument</p>
+      <h2 class="section-title">A system nobody can apply consistently isn&rsquo;t a system.</h2>
+      <div class="lab-body">
+        <p>A design system that lives only in a component library gets applied by whoever remembers it, at the moment they remember it. Encoded as rules a machine reads, it gets applied every time &mdash; and when it is wrong, it is wrong visibly and in one place, which is the only kind of wrong you can actually fix.</p>
+        <p>That is the same argument the pattern library makes about AI: the value is not the model, it is what the interface between the machine and the person is willing to encode and admit. This plugin is that argument turned on my own work.</p>
+      </div>
+      <div class="lab-links">
+        <a href="./" data-cta="lab-index" data-location="plugin-footer">Everything in The Lab&nbsp;&rarr;</a>
+        <a href="../case-studies/adtech.html" data-cta="case" data-location="plugin-footer">The case this comes from&nbsp;&rarr;</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
+  <div class="footer-note">No rights reserved — good patterns should travel</div>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">Back to top</button>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { if (nav) nav.classList.toggle('scrolled', window.scrollY > 60); });
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = navLinks.classList.toggle('nav-open'); menuBtn.setAttribute('aria-expanded', String(isOpen)); });
+  document.addEventListener('click', (e) => { if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) { navLinks.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); } });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) { navLinks.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.focus(); } });
+}
+if (localStorage.getItem('dyslexia-mode') === 'on') document.body.classList.add('dyslexia-mode');
+document.addEventListener('click', (e) => {
+  const cta = e.target.closest('[data-cta]');
+  if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' });
+});
+</script>
+<script defer src="../attention.js?v=a1"></script>
+<script defer src="../clarity.js?v=c1"></script>
+</body>
+</html>

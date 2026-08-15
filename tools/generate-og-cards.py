@@ -102,6 +102,11 @@ REG = [
      "200 people, zero managers, eight modules doing an org chart\u2019s job.", "Arpit Maheshwari \u00b7 Case Study"),
     ("vc-diligence-og.png", "VC/PE · NDA", "Due Diligence You Can\u2019t Rubber-Stamp",
      "The right friction: sign-off locked until the evidence is opened \u00b7 3 wks \u2192 4 days.", "Arpit Maheshwari \u00b7 Case Study"),
+    ("planit-og.png", "CONSUMER · PLANIT · 2021", "The App People Broke on Purpose",
+     "A transit app that optimised for breathing room \u2014 and an error state users went looking for.",
+     "Arpit Maheshwari \u00b7 Case Study"),
+    ("plugin-og.png", "THE LAB · 04 · MIT", "The Design System, as a Claude Plugin",
+     "Tokens, type scale, spacing grid and ten ship gates \u2014 installable.", "Arpit Maheshwari \u00b7 The Lab"),
 ]
 
 
