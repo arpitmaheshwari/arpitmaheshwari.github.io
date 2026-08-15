@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="ember">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,12 +20,11 @@
 <meta name="twitter:description" content="How to design failure states that maintain trust when algorithms fail.">
 <meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/ai-failure-states-og.png">
 <meta name="twitter:image:alt" content="How to design failure states that maintain trust when algorithms fail.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0A0A'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='300' fill='%23D4A85E'%3EAM%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap" media="print" onload="this.media='all';this.onload=null">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap"></noscript>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<noscript></noscript>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TechArticle","headline":"AI Failure State Patterns","description":"Design patterns for communicating AI uncertainty and failure to users.","author":{"@type":"Person","name":"Arpit Maheshwari"},"datePublished":"2026-05-09","dateModified":"2026-05-24"}
 </script>
@@ -48,187 +47,283 @@
   gtag('config', 'G-PFY6ME99K8');
 </script>
 <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
-<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../styles.css?v=p62">
+<link rel="stylesheet" href="../ember.css?v=e109">
 </head>
-<body>
+<body class="p-patterns-ai-failure-states">
 <a href="#main" class="skip-link">Skip to content</a>
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<svg class="xi-patterns-ai-failure-states-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
   <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
 </svg>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-logo"><a class="row-ic" href="../index.html" style="text-decoration:none; color:inherit"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <div class="nav-logo"><a class="row-ic xi-patterns-ai-failure-states-002" href="../index.html"><img class="xi-patterns-ai-failure-states-003" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns" aria-current="true">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
   </nav>
 
-<div style="padding:104px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
-  <div style="max-width:var(--measure);margin:0 auto">
+<div class="xi-patterns-ai-failure-states-004">
+  <div class="xi-patterns-ai-failure-states-005">
     <div class="meta-row">
-      <h1 class="t-hero" style="margin:0; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual">AI Failure State Patterns</h1>
-      <span class="lbl-badge-ink" style="padding:4px 12px; border-radius:4px; background-color:var(--copper); white-space:nowrap">In production</span>
+      <h1 class="t-hero xi-patterns-ai-failure-states-006">AI Failure States: Where the Next Ten Interactions Are Won</h1>
+      <span class="lbl-badge-ink xi-patterns-ai-failure-states-007">In production</span>
     </div>
-    <p class="lbl-cap">AI Design · <abbr tabindex="0" title="A system design approach where functionality degrades gracefully when failures occur, offering reduced but still-useful alternatives rather than failing completely" style="border-bottom:1px dotted var(--ink);cursor:help">Graceful Degradation</abbr> · Last updated June 2026</p>
-    <p class="lbl-cap" style="margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
-    <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 0;transform:rotate(-1.6deg)">nothing ships without its failure state — house rule</p>
+    <p class="lbl-cap">AI Design · <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="A system design approach where functionality degrades gracefully when failures occur, offering reduced but still-useful alternatives rather than failing completely">Graceful Degradation</abbr> · Last updated June 2026</p>
+    <p class="lbl-cap xi-patterns-ai-failure-states-009">Part of <a class="xi-patterns-ai-failure-states-010" href="./">A Field Guide to Trust</a> · updated June 2026</p>
+    <p class="hand xi-patterns-ai-failure-states-011" aria-hidden="true">nothing ships without its failure state — house rule</p>
   </div>
 </div>
 
-<main id="main" class="section" style="background:var(--bg)"><div style="max-width:var(--measure);margin:0 auto">
+<main id="main" class="section xi-patterns-ai-failure-states-012"><div class="xi-patterns-ai-failure-states-005">
 
-  <section style="margin-bottom:64px">
-    <p class="lead" style="margin-bottom:20px;font-style:italic;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:oldstyle-nums proportional-nums">A failure state is not a footnote. It's where the next ten interactions are won or lost. This is sharpest with a language model, which will happily hallucinate a fluent, confident answer rather than admit it doesn't know — so the design has to make abstention, the honest "I'm not sure," the easy path. Handle your own uncertainty out loud and the user gives you another shot. Fail quietly — or fail confidently wrong — and the user leaves. So design the wrong answer before you design the right one. The five patterns below are the ones I keep reaching for.</p>
+  <section class="xi-patterns-ai-failure-states-013">
+    <p class="lead xi-patterns-ai-failure-states-014">A failure state is not a footnote. It's where the next ten interactions are won or lost. This is sharpest with a language model, which will happily hallucinate a fluent, confident answer rather than admit it doesn't know — so the design has to make abstention, the honest "I'm not sure," the easy path. Handle your own uncertainty out loud and the user gives you another shot. Fail quietly — or fail confidently wrong — and the user leaves. So design the wrong answer before you design the right one. The five patterns below are the ones I keep reaching for.</p>
     
     <!-- Abstract UI Diagram: Failure State Comparison -->
-    <div class="card-wire" style="background:var(--bg-soft)">
-      <div class="lbl-eyebrow" style="margin-bottom:24px; text-align:center">Wireframe: The Honest Failure State</div>
+    <div class="card-wire xi-patterns-ai-failure-states-015">
+      <div class="lbl-eyebrow xi-patterns-ai-failure-states-016">Wireframe: The Honest Failure State</div>
       
-      <div style="display:flex; gap:20px; align-items:stretch;">
+      <div class="xi-patterns-ai-failure-states-017">
         <!-- The Bad Way -->
-        <div style="flex:1; background: var(--bg-card); border: 1px solid rgba(224,115,107,0.25); border-radius: 6px; padding: 24px; opacity:0.8; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
-          <div class="lbl-meta" style="margin-bottom:16px">Standard Error</div>
-          <div style="width:40px; height:40px; border-radius:50%; background:rgba(224,115,107,0.12); color:var(--err); display:flex; align-items:center; justify-content:center; font-size:var(--fs-lead); margin-bottom:16px;">✕</div>
-          <div class="t-serif-body-plain" style="margin-bottom:8px; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual">Error 500</div>
-          <div style="font-family:var(--ff-sans); font-size:var(--fs-caption); color:var(--ink-muted);">Something went wrong.</div>
+        <div class="xi-patterns-ai-failure-states-018">
+          <div class="lbl-meta xi-patterns-ai-failure-states-019">Standard Error</div>
+          <div class="xi-patterns-ai-failure-states-020">✕</div>
+          <div class="t-serif-body-plain xi-patterns-ai-failure-states-021">Error 500</div>
+          <div class="xi-patterns-ai-failure-states-022">Something went wrong.</div>
         </div>
 
         <!-- The Good Way -->
-        <div style="flex:1; background: var(--bg-card); border: 1px solid var(--gold); border-radius: 6px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-          <div class="lbl-eyebrow" style="margin-bottom:16px; text-align:center">Honest AI Fallback</div>
-          <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:16px;">
-            <div style="width:24px; height:24px; border-radius:4px; background:var(--ink-muted); opacity:0.2;"></div>
+        <div class="xi-patterns-ai-failure-states-023">
+          <div class="lbl-eyebrow xi-patterns-ai-failure-states-024">Honest AI Fallback</div>
+          <div class="xi-patterns-ai-failure-states-025">
+            <div class="xi-patterns-ai-failure-states-026"></div>
             <div>
-              <div style="font-family:var(--ff-sans); font-size:var(--fs-ui); color:var(--ink); font-weight:600; margin-bottom:4px;">I couldn't find a confident answer</div>
-              <div style="font-family:var(--ff-sans); font-size:var(--fs-caption); color:var(--ink-muted); line-height:1.5;">This query requires data outside my current training cutoff.</div>
+              <div class="xi-patterns-ai-failure-states-027">I couldn't find a confident answer</div>
+              <div class="xi-patterns-ai-failure-states-028">This query requires data outside my current training cutoff.</div>
             </div>
           </div>
-          <div style="border-top:1px solid var(--border); padding-top:16px;">
-            <div class="lbl-meta" style="margin-bottom:12px">Suggested actions:</div>
-            <div style="display:flex; gap:8px;">
-              <div style="flex:1; text-align:center; padding:8px; border:1px solid var(--border); border-radius:4px; font-family:var(--ff-sans); font-size:var(--fs-caption); color:var(--ink);">Search Web</div>
-              <div style="flex:1; text-align:center; padding:8px; background:var(--ink); color:var(--bg); border-radius:4px; font-family:var(--ff-sans); font-size:var(--fs-caption);">Ask Expert</div>
+          <div class="xi-patterns-ai-failure-states-029">
+            <div class="lbl-meta xi-patterns-ai-failure-states-030">Suggested actions:</div>
+            <div class="xi-patterns-ai-failure-states-031">
+              <div class="xi-patterns-ai-failure-states-032">Search Web</div>
+              <div class="xi-patterns-ai-failure-states-033">Ask Expert</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <figure style="margin:40px 0;text-align:center">
-      <img class="framed" src="../assets/visuals/pattern-failure.svg" alt="Failure-state pattern: a graceful low-confidence state where the model declines to bluff and offers a recovery path" loading="lazy" width="1280" height="400" style="height:auto">
+    <figure class="xi-patterns-ai-failure-states-034">
+      <svg data-art="A" class="framed xi-patterns-ai-failure-states-035" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">Failure States pattern</title>
+  <desc id="dsc">A wide cream editorial banner. On the left, a UI card in a graceful low-confidence state where the model declines to bluff and admits uncertainty. On the right, clear recovery actions: try another source, or ask a human.</desc>
+
+  <rect x="0" y="0" width="1280" height="400" fill="var(--art-bg, #F4ECDA)"/>
+
+  <!-- ============ LEFT: heading block ============ -->
+  <text x="64" y="120" font-family="'Source Serif 4', Georgia, serif" font-size="52" font-weight="700" fill="var(--art-ink, #2C2620)">Failure States</text>
+  <text x="66" y="158" font-family="'Source Sans 3', system-ui, sans-serif" font-size="22" fill="var(--art-mut, #6A6052)">Design the wrong-answer screen first.</text>
+
+  <!-- accent rule under subtitle -->
+  <rect x="66" y="180" width="300" height="3" rx="1.5" fill="var(--art-heat, #C0512B)"/>
+
+  <!-- small low-confidence badge under heading -->
+  <g font-family="'Source Sans 3', system-ui, sans-serif">
+    <rect x="66" y="226" width="232" height="46" rx="23" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1.5"/>
+    <circle cx="92" cy="249" r="9" fill="none" stroke="var(--art-gold, #CE9230)" stroke-width="2.5"/>
+    <path d="M92 244 v6" stroke="var(--art-gold, #CE9230)" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="92" cy="254" r="1.6" fill="var(--art-gold, #CE9230)"/>
+    <text x="112" y="255" font-size="18" fill="var(--art-mut, #6A6052)">Not confident enough</text>
+  </g>
+
+  <!-- arrow from card toward recovery, spanning the middle -->
+  <g stroke="var(--art-heat, #C0512B)" stroke-width="2.5" fill="none">
+    <path d="M664 200 H792" stroke-dasharray="2 9" stroke-linecap="round"/>
+    <path d="M786 192 l12 8 l-12 8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ============ CENTER-LEFT: low-confidence UI card ============ -->
+  <g>
+    <!-- card body -->
+    <rect x="382" y="84" width="282" height="232" rx="16" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1.5"/>
+
+    <!-- card title bar -->
+    <text x="408" y="124" font-family="'Source Sans 3', system-ui, sans-serif" font-size="17" fill="var(--art-label, #998D78)">Your question</text>
+    <line x1="408" y1="140" x2="638" y2="140" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1.5"/>
+
+    <!-- model "I'm not sure" face / signal -->
+    <circle cx="431" cy="186" r="22" fill="none" stroke="var(--art-gold, #CE9230)" stroke-width="3"/>
+    <path d="M431 174 v8" stroke="var(--art-gold, #CE9230)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="431" cy="194" r="2.2" fill="var(--art-gold, #CE9230)"/>
+
+    <!-- the honest message -->
+    <text x="470" y="180" font-family="'Source Serif 4', Georgia, serif" font-size="24" font-weight="700" fill="var(--art-ink, #2C2620)">I'm not sure</text>
+    <text x="470" y="206" font-family="'Source Sans 3', system-ui, sans-serif" font-size="16" fill="var(--art-mut, #6A6052)">about this one.</text>
+
+    <!-- declining-to-bluff: low confidence meter -->
+    <text x="408" y="248" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="var(--art-label, #998D78)">Confidence</text>
+    <rect x="408" y="258" width="230" height="10" rx="5" fill="var(--art-bg, #F4ECDA)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <rect x="408" y="258" width="64" height="10" rx="5" fill="var(--art-gold, #CE9230)"/>
+    <text x="610" y="252" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="var(--art-mut, #6A6052)" text-anchor="end">Low</text>
+
+    <!-- faint suppressed "answer" lines — the bluff it chose NOT to give -->
+    <line x1="408" y1="288" x2="560" y2="288" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="6" stroke-linecap="round"/>
+    <line x1="408" y1="302" x2="500" y2="302" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- ============ RIGHT: recovery affordances ============ -->
+  <g font-family="'Source Sans 3', system-ui, sans-serif">
+    <text x="822" y="120" font-family="'Source Serif 4', Georgia, serif" font-size="22" font-weight="700" fill="var(--art-ink, #2C2620)">What now?</text>
+
+    <!-- option 1: try another source -->
+    <rect x="822" y="146" width="394" height="68" rx="14" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1.5"/>
+    <g stroke="var(--art-good, #2F5D52)" stroke-width="2.5" fill="none">
+      <path d="M858 180 a16 16 0 1 1 -0.01 0" />
+      <path d="M848 173 l8 5 l-3 9" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="894" y="176" font-size="19" font-weight="600" fill="var(--art-ink, #2C2620)">Try another source</text>
+    <text x="894" y="198" font-size="15" fill="var(--art-mut, #6A6052)">Search a different reference</text>
+
+    <!-- option 2: ask a human (primary, ember) -->
+    <rect x="822" y="226" width="394" height="68" rx="14" fill="var(--art-card, #EEE4CE)" stroke="var(--art-heat, #C0512B)" stroke-width="2"/>
+    <g stroke="var(--art-heat, #C0512B)" stroke-width="2.5" fill="none">
+      <circle cx="858" cy="252" r="8"/>
+      <path d="M845 276 a13 13 0 0 1 26 0" stroke-linecap="round"/>
+    </g>
+    <text x="894" y="256" font-size="19" font-weight="600" fill="var(--art-heat, #C0512B)">Ask a human</text>
+    <text x="894" y="278" font-size="15" fill="var(--art-mut, #6A6052)">Route to a person who knows</text>
+  </g>
+
+  <!-- baseline hairline grounding the banner -->
+  <line x1="64" y1="350" x2="1216" y2="350" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1.5"/>
+  <text x="64" y="376" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="var(--art-label, #998D78)">A graceful unknown beats a confident wrong answer.</text>
+</svg>
+
     </figure>
   </section>
+
+  <div class="thesis">
+    <span class="t-l">The principle this page proves</span>
+    <p>Users forgive a model for being wrong. They never forgive it for <em>bluffing</em>.</p>
+  </div>
   <!-- LIVE DEMO — same demo as the book's field guide -->
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Try it — the pattern, live</h2>
-    <p class="u-ui" style="margin-bottom:20px">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+  <section class="xi-patterns-ai-failure-states-013">
+    <h2 class="section-title xi-patterns-ai-failure-states-036">Try it — the pattern, live</h2>
+    <p class="u-ui xi-patterns-ai-failure-states-037">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
     <div data-demo="alert"></div>
   </section>
 
 
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 16px;max-width:none">1. The Honest "I Don't Know"</h2>
-    <p class="u-body" style="margin-bottom:16px">Your model's confidence drops below the <abbr tabindex="0" title="The numeric boundary (e.g., 65%) below which the system either hides output or flags uncertainty to the user" style="border-bottom:1px dotted var(--ink);cursor:help">threshold</abbr>. Say so: "I couldn't find a confident answer. This might be because [reason]." Don't fake it. A plausible hallucination costs more than an honest blank.</p>
-    <p class="u-body" style="margin-bottom:16px"><strong>Example language:</strong></p>
-    <ul class="u-body" style="margin-bottom:16px;padding-left:24px">
-      <li style="margin-bottom:8px">"I'm not confident enough in my answer. Try rephrasing your question or checking your data."</li>
-      <li style="margin-bottom:8px">"This document is outside my training data. I recommend manual review."</li>
-      <li style="margin-bottom:8px">"The system encountered an edge case. Please contact support with this reference ID: XYZ."</li>
+  <section class="xi-patterns-ai-failure-states-013">
+    <h2 class="section-title xi-patterns-ai-failure-states-038">1. The Honest "I Don't Know"</h2>
+    <p class="u-body xi-patterns-ai-failure-states-019">Your model's confidence drops below the <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="The numeric boundary (e.g., 65%) below which the system either hides output or flags uncertainty to the user">threshold</abbr>. Say so: "I couldn't find a confident answer. This might be because [reason]." Don't fake it. A plausible hallucination costs more than an honest blank.</p>
+    <p class="u-body xi-patterns-ai-failure-states-019"><strong>Example language:</strong></p>
+    <ul class="u-body xi-patterns-ai-failure-states-039">
+      <li class="xi-patterns-ai-failure-states-040">"I'm not confident enough in my answer. Try rephrasing your question or checking your data."</li>
+      <li class="xi-patterns-ai-failure-states-040">"This document is outside my training data. I recommend manual review."</li>
+      <li class="xi-patterns-ai-failure-states-040">"The system encountered an edge case. Please contact support with this reference ID: XYZ."</li>
     </ul>
     <p class="u-body">It comes down to <strong>specificity</strong>. "Something went wrong" tells the user nothing. "Your query matches fewer than 3 historical examples, so I can't predict with confidence" tells them <em>why</em> — and what to change. Choose this pattern wherever the model can name the reason it fell short.</p>
   </section>
 
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 16px;max-width:none">2. The Graduated Fallback</h2>
-    <p class="u-body" style="margin-bottom:16px">A dead end ends the session. A ladder keeps it going. "I can't give a precise recommendation, but here are three alternatives: (A) Use the default, (B) See similar historical cases, (C) Talk to an expert." Each rung is more degraded than the last, and every rung still moves the user forward. That's <abbr tabindex="0" title="A secondary plan or option that activates when the primary solution fails, ensuring the user can still proceed" style="border-bottom:1px dotted var(--ink);cursor:help">fallback</abbr> design at scale.</p>
-    <p class="u-body" style="margin-bottom:16px"><strong>Fallback hierarchy (best to worst):</strong></p>
-    <ol class="u-body" style="margin-bottom:16px;padding-left:24px">
-      <li style="margin-bottom:4px">Primary: AI recommendation (high confidence)</li>
-      <li style="margin-bottom:4px">Secondary: AI recommendation (low confidence) + disclaimer</li>
-      <li style="margin-bottom:4px">Tertiary: Historical baseline ("The average case similar to yours…")</li>
-      <li style="margin-bottom:4px">Quaternary: Manual process ("Contact support for expert review")</li>
-      <li style="margin-bottom:4px">Null: System unavailable (offline / maintenance)</li>
+  <section class="xi-patterns-ai-failure-states-013">
+    <h2 class="section-title xi-patterns-ai-failure-states-038">2. The Graduated Fallback</h2>
+    <p class="u-body xi-patterns-ai-failure-states-019">A dead end ends the session. A ladder keeps it going. "I can't give a precise recommendation, but here are three alternatives: (A) Use the default, (B) See similar historical cases, (C) Talk to an expert." Each rung is more degraded than the last, and every rung still moves the user forward. That's <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="A secondary plan or option that activates when the primary solution fails, ensuring the user can still proceed">fallback</abbr> design at scale.</p>
+    <p class="u-body xi-patterns-ai-failure-states-019"><strong>Fallback hierarchy (best to worst):</strong></p>
+    <ol class="u-body xi-patterns-ai-failure-states-039">
+      <li class="xi-patterns-ai-failure-states-041">Primary: AI recommendation (high confidence)</li>
+      <li class="xi-patterns-ai-failure-states-041">Secondary: AI recommendation (low confidence) + disclaimer</li>
+      <li class="xi-patterns-ai-failure-states-041">Tertiary: Historical baseline ("The average case similar to yours…")</li>
+      <li class="xi-patterns-ai-failure-states-041">Quaternary: Manual process ("Contact support for expert review")</li>
+      <li class="xi-patterns-ai-failure-states-041">Null: System unavailable (offline / maintenance)</li>
     </ol>
     <p class="u-body">The user always has <em>something</em> in hand. Trust in the model can wait; the work doesn't have to. Reach for this whenever a hard failure would otherwise strand someone mid-task.</p>
   </section>
 
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 16px;max-width:none">3. The Error Context Card</h2>
-    <p class="u-body" style="margin-bottom:16px">When something breaks, "Error" tells the user nothing they can use. Show a card that carries four things:</p>
-    <ul class="u-body" style="margin-bottom:16px;padding-left:24px">
-      <li style="margin-bottom:8px"><strong>What failed:</strong> "Data processing timed out"</li>
-      <li style="margin-bottom:8px"><strong>Why it might have failed:</strong> "Your dataset is very large (500MB). Try a smaller file or contact support for batch processing."</li>
-      <li style="margin-bottom:8px"><strong>What you can do:</strong> Retry, View guide, Contact support</li>
-      <li style="margin-bottom:8px"><strong>Reference code:</strong> If error persists, users can reference this code with support</li>
+  <section class="xi-patterns-ai-failure-states-013">
+    <h2 class="section-title xi-patterns-ai-failure-states-038">3. The Error Context Card</h2>
+    <p class="u-body xi-patterns-ai-failure-states-019">When something breaks, "Error" tells the user nothing they can use. Show a card that carries four things:</p>
+    <ul class="u-body xi-patterns-ai-failure-states-039">
+      <li class="xi-patterns-ai-failure-states-040"><strong>What failed:</strong> "Data processing timed out"</li>
+      <li class="xi-patterns-ai-failure-states-040"><strong>Why it might have failed:</strong> "Your dataset is very large (500MB). Try a smaller file or contact support for batch processing."</li>
+      <li class="xi-patterns-ai-failure-states-040"><strong>What you can do:</strong> Retry, View guide, Contact support</li>
+      <li class="xi-patterns-ai-failure-states-040"><strong>Reference code:</strong> If error persists, users can reference this code with support</li>
     </ul>
     <p class="u-body">The card turns a cryptic stop into a failure the user can act on. It respects their time and their intelligence. Use it wherever an error has a knowable cause and a next step.</p>
   </section>
 
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 16px;max-width:none">4. The Confidence-Based Disclosure</h2>
-    <p class="u-body" style="margin-bottom:16px">Let the interface show where confidence breaks down. High (&gt;80%): show the result plainly. Middle (50–80%): keep the result, attach a warning banner. Low (&lt;50%): hide the result and run the fallback instead.</p>
-    <p class="u-body" style="margin-bottom:16px">The system never snaps from working to broken. It gets less certain, says so as it goes, and the user watches the confidence fade in real time. Choose this when a single accuracy number hides a wide spread of certainty underneath.</p>
+  <section class="xi-patterns-ai-failure-states-013">
+    <h2 class="section-title xi-patterns-ai-failure-states-038">4. The Confidence-Based Disclosure</h2>
+    <p class="u-body xi-patterns-ai-failure-states-019">Let the interface show where confidence breaks down. High (&gt;80%): show the result plainly. Middle (50–80%): keep the result, attach a warning banner. Low (&lt;50%): hide the result and run the fallback instead.</p>
+    <p class="u-body xi-patterns-ai-failure-states-019">The system never snaps from working to broken. It gets less certain, says so as it goes, and the user watches the confidence fade in real time. Choose this when a single accuracy number hides a wide spread of certainty underneath.</p>
   </section>
 
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 16px;max-width:none">5. The Transparency Log</h2>
-    <p class="u-body" style="margin-bottom:16px">Keep a log the user can read: "When I said X, here's what actually happened," or "Last time I was wrong about Y, here's why." A system that owns its past misses earns trust the next time it speaks up.</p>
-    <ul class="u-body" style="margin-bottom:16px;padding-left:24px">
-      <li style="margin-bottom:8px">"Last week I recommended this lead with 85% confidence. You marked it low-quality. Updated confidence: 72%."</li>
-      <li style="margin-bottom:8px">"I've been wrong about churn 3× this month. Recent model updates should reduce this. Accuracy now: 77% (was 71%)."</li>
-      <li style="margin-bottom:8px">"This is a new product category I haven't seen before. I'll learn from this case. Current uncertainty: ±25%."</li>
+  <section class="xi-patterns-ai-failure-states-013">
+    <h2 class="section-title xi-patterns-ai-failure-states-038">5. The Transparency Log</h2>
+    <p class="u-body xi-patterns-ai-failure-states-019">Keep a log the user can read: "When I said X, here's what actually happened," or "Last time I was wrong about Y, here's why." A system that owns its past misses earns trust the next time it speaks up.</p>
+    <ul class="u-body xi-patterns-ai-failure-states-039">
+      <li class="xi-patterns-ai-failure-states-040">"Last week I recommended this lead with 85% confidence. You marked it low-quality. Updated confidence: 72%."</li>
+      <li class="xi-patterns-ai-failure-states-040">"I've been wrong about churn 3× this month. Recent model updates should reduce this. Accuracy now: 77% (was 71%)."</li>
+      <li class="xi-patterns-ai-failure-states-040">"This is a new product category I haven't seen before. I'll learn from this case. Current uncertainty: ±25%."</li>
     </ul>
     <p class="u-body">The log doesn't bury the miss. It converts it into something the user watched the model learn from. People lean on systems that admit error and visibly improve. Reach for this in any product a user returns to across sessions.</p>
   </section>
 
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Implementation Checklist</h2>
-    <ul class="u-body" style="padding-left:24px">
-      <li style="margin-bottom:8px"><strong>Identify failure modes:</strong> Write down 5–10 ways your system can fail.</li>
-      <li style="margin-bottom:8px"><strong>Design each failure UI:</strong> A specific state for each, never a generic "Error 500".</li>
-      <li style="margin-bottom:8px"><strong>Add a fallback:</strong> Decide what the user does when the AI can't.</li>
-      <li style="margin-bottom:8px"><strong>User-test failures:</strong> Put people in front of the error states. Do they follow? Do they know the next move?</li>
-      <li style="margin-bottom:8px"><strong>Monitor failure rates:</strong> Watch which errors get hit most. Fix the common ones first.</li>
-      <li style="margin-bottom:8px"><strong>Transparency-first language:</strong> Plain words, no jargon.</li>
+  <div class="counter">
+    <span class="c-l">The strongest objection, kept in</span>
+    <p class="u-body">&ldquo;A model that admits failure looks weaker than one that always answers.&rdquo; The private-equity screening tool shipped able to say &ldquo;I&rsquo;m not sure&rdquo; &mdash; abstention as a feature, not an error state &mdash; and that is the product analysts went from ignoring to leading their deal memos with. The always-answering model is the one they quietly stopped believing.</p>
+  </div>
+
+  <section class="xi-patterns-ai-failure-states-013">
+    <h2 class="section-title xi-patterns-ai-failure-states-036">Ship it: the checklist.</h2>
+    <ul class="u-body xi-patterns-ai-failure-states-042">
+      <li class="xi-patterns-ai-failure-states-040"><strong>Identify failure modes:</strong> Write down 5–10 ways your system can fail.</li>
+      <li class="xi-patterns-ai-failure-states-040"><strong>Design each failure UI:</strong> A specific state for each, never a generic "Error 500".</li>
+      <li class="xi-patterns-ai-failure-states-040"><strong>Add a fallback:</strong> Decide what the user does when the AI can't.</li>
+      <li class="xi-patterns-ai-failure-states-040"><strong>User-test failures:</strong> Put people in front of the error states. Do they follow? Do they know the next move?</li>
+      <li class="xi-patterns-ai-failure-states-040"><strong>Monitor failure rates:</strong> Watch which errors get hit most. Fix the common ones first.</li>
+      <li class="xi-patterns-ai-failure-states-040"><strong>Transparency-first language:</strong> Plain words, no jargon.</li>
     </ul>
   </section>
 
-  <section class="card-gold" style="background:rgba(212,168,94,0.03)">
-    <h3 class="card-title" style="margin-bottom:16px">See This Pattern In Action</h3>
-    <ul class="t-cap-loose" style="margin-bottom:16px; padding-left:24px">
-      <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> What the screen says when the recommendation can't clear the bar.</li>
-      <li style="margin-bottom:12px"><strong><a href="../case-studies/orgos.html" style="color:var(--gold);text-decoration:none">OrgOS</a>:</strong> Saying it plainly when a complex system hits its limits.</li>
+  <section class="card-gold xi-patterns-ai-failure-states-043">
+    <h3 class="card-title xi-patterns-ai-failure-states-019">Where this pattern earned its keep</h3>
+    <ul class="t-cap-loose xi-patterns-ai-failure-states-039">
+      <li class="xi-patterns-ai-failure-states-030"><strong><a class="xi-patterns-ai-failure-states-010" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> What the screen says when the recommendation can't clear the bar.</li>
+      <li class="xi-patterns-ai-failure-states-030"><strong><a class="xi-patterns-ai-failure-states-010" href="../case-studies/orgos.html">OrgOS</a>:</strong> Saying it plainly when a complex system hits its limits.</li>
     </ul>
   </section>
 
   <!-- NEWSLETTER SIGNUP -->
-  <section class="card-gold" style="background:rgba(212,168,94,0.03)">
-    <div class="eyebrow" style="margin-bottom:12px">Get AI design patterns in your inbox</div>
-    <p class="u-ui" style="margin-bottom:20px">One pattern a month, with the tradeoffs spelled out and the templates I use.</p>
+  <section class="card-gold xi-patterns-ai-failure-states-043">
+    <div class="eyebrow xi-patterns-ai-failure-states-030">Get AI design patterns in your inbox</div>
+    <p class="u-ui xi-patterns-ai-failure-states-037">One pattern a month, with the tradeoffs spelled out and the templates I use.</p>
     <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
-      <input class="t-sans-ui card-seg" type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="min-width:200px; background:var(--bg)">
-      <button class="lbl-eyebrow-500 btn-b" type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="background:transparent; cursor:pointer; transition:background 0.3s,color 0.3s">Subscribe</button>
+      <input class="t-sans-ui card-seg xi-patterns-ai-failure-states-044" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
+      <button class="lbl-eyebrow-500 btn-b xi-patterns-ai-failure-states-045" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
     </form>
   </section>
 
-  <section style="margin-bottom:32px;padding-top:32px;border-top:1px solid var(--border)">
-    <div class="eyebrow" style="margin-bottom:8px">Companion essay</div>
-    <a href="../writing/failure-states.html" style="font-family:var(--ff-display);font-size:var(--fs-card);color:var(--gold);text-decoration:none;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual">Design the Failure State First →</a>
+  <section class="xi-patterns-ai-failure-states-046">
+    <div class="eyebrow xi-patterns-ai-failure-states-040">Companion essay</div>
+    <a class="xi-patterns-ai-failure-states-047" href="../writing/failure-states.html">Design the Failure State First →</a>
+  </section>
+
+  <section class="measure-t">
+    <div class="xi-patterns-ai-failure-states-050">
+      <div class="eyebrow xi-patterns-ai-failure-states-030">Where this breaks — do not use it here</div>
+      <p class="u-body xi-patterns-ai-failure-states-051">If failure is frequent, the fix is the system, not the copy — a beautifully-worded error shown hourly is an apology habit. And over-apologizing reads as instability: past a point, the honest 'I'm not sure' should get quieter and rarer, not more charming.</p>
+    </div>
   </section>
 
   <div class="btn-row">
-    <a class="lbl-badge-bg btn-a" href="./ml-explainability.html" style="background:var(--gold); text-decoration:none; transition:background 0.3s" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / ML Explainability →</a>
-    <a class="lbl-badge-gold btn-a-ghost" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="background:transparent; text-decoration:none; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
+    <a class="lbl-badge-bg btn-a xi-patterns-ai-failure-states-048 hv-patterns-ai-failure-states-1" href="./ml-explainability.html">Next pattern / ML Explainability →</a>
+    <a class="lbl-badge-gold btn-a-ghost xi-patterns-ai-failure-states-049 hv-patterns-ai-failure-states-2" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom">Send me the role ↗</a>
   </div>
-<section class="measure-t">
-    <div style="border-top:1px solid var(--border);padding-top:24px">
-      <div class="eyebrow" style="margin-bottom:12px">Limits — when NOT to use this</div>
-      <p class="u-body" style="margin:0">If failure is frequent, the fix is the system, not the copy — a beautifully-worded error shown hourly is an apology habit. And over-apologizing reads as instability: past a point, the honest 'I'm not sure' should get quieter and rarer, not more charming.</p>
-    </div>
-  </section>
 </div></main>
 
 <footer>
@@ -238,7 +333,7 @@
     <span>Dyslexia-friendly</span>
   </button>
   <div class="footer-note">No copyright · Design is for all</div>
-  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon xi-patterns-ai-failure-states-052" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
 </footer>
 
 <script>

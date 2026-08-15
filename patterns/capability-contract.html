@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="ember">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,12 +21,11 @@
 <meta name="twitter:description" content="Say what the model can't do, before it fails at it.">
 <meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/capability-contract-og.png">
 <meta name="twitter:image:alt" content="Say what the model can't do, before it fails at it.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0A0A'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='300' fill='%23D4A85E'%3EAM%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap" media="print" onload="this.media='all';this.onload=null">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap"></noscript>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<noscript></noscript>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TechArticle","headline":"The Capability Contract","description":"An AI design pattern for stating a model's scope and limits up front so the rest of the product earns belief.","author":{"@type":"Person","name":"Arpit Maheshwari"},"datePublished":"2026-06-19","dateModified":"2026-06-19"}
 </script>
@@ -49,92 +48,182 @@
   gtag('config', 'G-PFY6ME99K8');
 </script>
 <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
-<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../styles.css?v=p62">
+<link rel="stylesheet" href="../ember.css?v=e109">
 </head>
-<body>
+<body class="p-patterns-capability-contract">
 <a href="#main" class="skip-link">Skip to content</a>
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<svg class="xi-patterns-capability-contract-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
   <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
 </svg>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-logo"><a class="row-ic" href="../index.html" style="text-decoration:none; color:inherit"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <div class="nav-logo"><a class="row-ic xi-patterns-capability-contract-002" href="../index.html"><img class="xi-patterns-capability-contract-003" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns" aria-current="true">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
   </nav>
 
-<div style="padding:104px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
-  <div style="max-width:var(--measure);margin:0 auto">
+<div class="xi-patterns-capability-contract-004">
+  <div class="xi-patterns-capability-contract-005">
     <div class="meta-row">
-      <h1 class="t-hero" style="margin:0; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual">The Capability Contract</h1>
-      <span class="lbl-badge-ink" style="padding:4px 12px; border-radius:4px; background-color:var(--copper); white-space:nowrap">In production</span>
+      <h1 class="t-hero xi-patterns-capability-contract-006">The Capability Contract</h1>
+      <span class="lbl-badge-ink xi-patterns-capability-contract-007">In production</span>
     </div>
     <p class="lbl-cap">AI Design · Scope &amp; limits · Last updated June 2026</p>
-    <p class="lbl-cap" style="margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
-    <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 0;transform:rotate(-1.6deg)">say what the system can’t do — out loud</p>
+    <p class="lbl-cap xi-patterns-capability-contract-008">Part of <a class="xi-patterns-capability-contract-009" href="./">A Field Guide to Trust</a> · updated June 2026</p>
+    <p class="hand xi-patterns-capability-contract-010" aria-hidden="true">say what the system can’t do — out loud</p>
   </div>
 </div>
 
-<main id="main" class="section" style="background:var(--bg)"><div style="max-width:var(--measure);margin:0 auto">
+<main id="main" class="section xi-patterns-capability-contract-011"><div class="xi-patterns-capability-contract-005">
 
-  <section style="margin-bottom:64px">
-    <p class="lead" style="margin-bottom:20px;font-style:italic;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:oldstyle-nums proportional-nums">A large language model has no natural edges — ask it anything and it will produce a fluent answer, in or out of its depth. A capability contract draws those edges for it: here's what this system is for, here's where it taps out, and here's what it hands back to a human. Set it before the first use — not after the first complaint. The limits of a generative model, named plainly up front, are what make the rest of it believable.</p>
+  <section class="xi-patterns-capability-contract-012">
+    <p class="lead xi-patterns-capability-contract-013">A large language model has no natural edges — ask it anything and it will produce a fluent answer, in or out of its depth. A capability contract draws those edges for it: here's what this system is for, here's where it taps out, and here's what it hands back to a human. Set it before the first use — not after the first complaint. The limits of a generative model, named plainly up front, are what make the rest of it believable.</p>
   </section>
 
-  <section style="margin-bottom:64px">
-    <figure style="margin:0;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--bg-card)">
-      <img class="framed" src="../assets/visuals/pattern-capability.svg" alt="Capability-contract pattern: an in-scope checklist, an out-of-scope list that routes onward, and a clean hand-off to a human specialist" loading="lazy" width="1280" height="400" style="height:auto">
+  <div class="thesis">
+    <span class="t-l">The principle this page proves</span>
+    <p>The honest &ldquo;no&rdquo; is what makes the confident answer <em>believable</em>.</p>
+  </div>
+
+  <section class="xi-patterns-capability-contract-012">
+    <figure class="xi-patterns-capability-contract-014">
+      <svg data-art="A" class="framed xi-patterns-capability-contract-015" style="width:100%;height:auto;display:block" viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+  <title id="t">The Capability Contract pattern</title>
+  <desc id="d">An AI capability contract: an in-scope checklist, an out-of-scope list that routes onward, and a clean hand-off to a human specialist.</desc>
+  <rect x="0" y="0" width="1280" height="400" fill="var(--art-bg, #F4ECDA)"/>
+
+  <!-- Title block -->
+  <text x="36" y="74" font-family="'Source Serif 4', Georgia, serif" font-size="40" font-weight="600" fill="var(--art-ink, #2C2620)">The Capability Contract</text>
+  <text x="36" y="106" font-family="'Source Sans 3', system-ui, sans-serif" font-size="19" fill="var(--art-mut, #6A6052)">What it does, where it taps out &#8212; stated up front.</text>
+  <line x1="36" y1="126" x2="1244" y2="126" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+
+  <!-- ===== LEFT: In scope ===== -->
+  <g transform="translate(40,150)">
+    <rect x="0" y="0" width="430" height="214" rx="10" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="var(--art-label, #998D78)">IN SCOPE</text>
+
+    <!-- Row 1 -->
+    <rect x="24" y="60" width="382" height="44" rx="7" fill="var(--art-bg, #F4ECDA)" stroke="var(--art-good, #2F5D52)" stroke-width="1.5"/>
+    <circle cx="50" cy="82" r="11" fill="var(--art-good, #2F5D52)"/>
+    <path d="M 45 82 L 49 86 L 56 78" fill="none" stroke="var(--art-bg, #F4ECDA)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="74" y="88" font-family="'Source Sans 3', system-ui, sans-serif" font-size="17" font-weight="600" fill="var(--art-ink, #2C2620)">Score standard deals</text>
+
+    <!-- Row 2 -->
+    <rect x="24" y="116" width="382" height="44" rx="7" fill="var(--art-bg, #F4ECDA)" stroke="var(--art-good, #2F5D52)" stroke-width="1.5"/>
+    <circle cx="50" cy="138" r="11" fill="var(--art-good, #2F5D52)"/>
+    <path d="M 45 138 L 49 142 L 56 134" fill="none" stroke="var(--art-bg, #F4ECDA)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="74" y="144" font-family="'Source Sans 3', system-ui, sans-serif" font-size="17" font-weight="600" fill="var(--art-ink, #2C2620)">Price liquid assets</text>
+
+    <text x="24" y="192" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="var(--art-label, #998D78)">Confident &#8212; handled end to end.</text>
+  </g>
+
+  <!-- connector -->
+  <path d="M 478 257 H 524" fill="none" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="2"/>
+  <path d="M 518 251 L 526 257 L 518 263 Z" fill="var(--art-label, #998D78)"/>
+
+  <!-- ===== MIDDLE: Out of scope ===== -->
+  <g transform="translate(534,150)">
+    <rect x="0" y="0" width="386" height="214" rx="10" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="var(--art-label, #998D78)">OUT OF SCOPE</text>
+
+    <!-- Row 1 -->
+    <rect x="24" y="60" width="338" height="44" rx="7" fill="var(--art-bg, #F4ECDA)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <circle cx="48" cy="82" r="8" fill="none" stroke="var(--art-arrow, #998D78)" stroke-width="1.5"/>
+    <line x1="44" y1="82" x2="52" y2="82" stroke="var(--art-arrow, #998D78)" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="68" y="88" font-family="'Source Sans 3', system-ui, sans-serif" font-size="17" fill="var(--art-mut, #6A6052)">Illiquid assets</text>
+    <path d="M 312 82 H 336" fill="none" stroke="var(--art-gold, #CE9230)" stroke-width="2"/>
+    <path d="M 332 76 L 340 82 L 332 88 Z" fill="var(--art-gold, #CE9230)"/>
+
+    <!-- Row 2 -->
+    <rect x="24" y="116" width="338" height="44" rx="7" fill="var(--art-bg, #F4ECDA)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <circle cx="48" cy="138" r="8" fill="none" stroke="var(--art-arrow, #998D78)" stroke-width="1.5"/>
+    <line x1="44" y1="138" x2="52" y2="138" stroke="var(--art-arrow, #998D78)" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="68" y="144" font-family="'Source Sans 3', system-ui, sans-serif" font-size="17" fill="var(--art-mut, #6A6052)">Novel structures</text>
+    <path d="M 312 138 H 336" fill="none" stroke="var(--art-gold, #CE9230)" stroke-width="2"/>
+    <path d="M 332 132 L 340 138 L 332 144 Z" fill="var(--art-gold, #CE9230)"/>
+
+    <text x="24" y="192" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="var(--art-gold, #CE9230)">hand to a human</text>
+  </g>
+
+  <!-- connector -->
+  <path d="M 928 257 H 974" fill="none" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="2"/>
+  <path d="M 968 251 L 976 257 L 968 263 Z" fill="var(--art-label, #998D78)"/>
+
+  <!-- ===== RIGHT: Hand-off ===== -->
+  <g transform="translate(984,150)">
+    <rect x="0" y="0" width="260" height="214" rx="10" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <text x="22" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="var(--art-label, #998D78)">HAND-OFF</text>
+
+    <!-- routed hand-off card -->
+    <rect x="22" y="58" width="216" height="118" rx="8" fill="var(--art-bg, #F4ECDA)" stroke="var(--art-good, #2F5D52)" stroke-width="1.5"/>
+
+    <!-- person glyph: head + shoulders -->
+    <circle cx="130" cy="98" r="18" fill="var(--art-good, #2F5D52)"/>
+    <path d="M 100 146 A 30 30 0 0 1 160 146 Z" fill="var(--art-good, #2F5D52)"/>
+
+    <text x="130" y="170" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" font-weight="600" fill="var(--art-ink, #2C2620)">Routed to a specialist</text>
+
+    <text x="130" y="200" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="var(--art-mut, #6A6052)">Re-routed, not abandoned.</text>
+  </g>
+</svg>
+
     </figure>
   </section>
 
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 16px;max-width:none">Declare the edges in the interface</h2>
-    <p class="u-body" style="margin-bottom:16px">Most products bury scope in a terms-of-service page and hope. Then the model gets a question outside its competence, answers anyway, and a user's trust dies in a single confident wrong answer. The fix is to state the boundary where the work happens — in the interface, at the moment of use.</p>
+  <section class="xi-patterns-capability-contract-012">
+    <h2 class="section-title xi-patterns-capability-contract-016">Declare the edges in the interface</h2>
+    <p class="u-body xi-patterns-capability-contract-017">Most products bury scope in a terms-of-service page and hope. Then the model gets a question outside its competence, answers anyway, and a user's trust dies in a single confident wrong answer. The fix is to state the boundary where the work happens — in the interface, at the moment of use.</p>
     <p class="u-body">An honest "I don't handle that" is not a weakness; it's the thing that makes the "I do handle this" believable. A model that knows its own edges reads as a colleague, not a slot machine.</p>
   </section>
   <!-- LIVE DEMO — same demo as the book's field guide -->
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Try it — the pattern, live</h2>
-    <p class="u-ui" style="margin-bottom:20px">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+  <section class="xi-patterns-capability-contract-012">
+    <h2 class="section-title xi-patterns-capability-contract-018">Try it — the pattern, live</h2>
+    <p class="u-ui xi-patterns-capability-contract-019">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
     <div data-demo="bounds"></div>
   </section>
 
 
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 16px;max-width:none">Hand off; don't fake it</h2>
-    <p class="u-body" style="margin-bottom:16px">When a request leaves the model's competence, the right move is a clean hand-off to a human — visibly, not silently. The worst pattern is graceful-looking degradation: the model keeps answering, in the same confident tone, well past the point where it knows anything.</p>
+  <section class="xi-patterns-capability-contract-012">
+    <h2 class="section-title xi-patterns-capability-contract-016">Hand off; don't fake it</h2>
+    <p class="u-body xi-patterns-capability-contract-017">When a request leaves the model's competence, the right move is a clean hand-off to a human — visibly, not silently. The worst pattern is graceful-looking degradation: the model keeps answering, in the same confident tone, well past the point where it knows anything.</p>
     <p class="u-body">Design the hand-off as a first-class path, with the same care as the happy path. The person should feel routed, not abandoned — "this one needs a specialist, here's how to reach one," not a shrug.</p>
   </section>
 
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 16px;max-width:none">Specific beats vague</h2>
-    <p class="u-body" style="margin-bottom:16px">"Results may vary" protects no one and informs no one. A real capability contract is specific: "I can't price illiquid assets," "I don't read handwriting," "I'm trained through 2024." Specific limits are the ones a person can actually plan around.</p>
+  <section class="xi-patterns-capability-contract-012">
+    <h2 class="section-title xi-patterns-capability-contract-016">Specific beats vague</h2>
+    <p class="u-body xi-patterns-capability-contract-017">"Results may vary" protects no one and informs no one. A real capability contract is specific: "I can't price illiquid assets," "I don't read handwriting," "I'm trained through 2024." Specific limits are the ones a person can actually plan around.</p>
     <p class="u-body">Specificity also disciplines the team building the thing. Writing the contract forces an honest conversation about what the model actually does well — and that conversation, more than any feature, is what keeps the product trustworthy as it grows.</p>
   </section>
 
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Implementation Checklist</h2>
-    <ul class="u-body" style="padding-left:24px">
-      <li style="margin-bottom:8px"><strong>Write the contract before launch:</strong> what it's for, where it taps out, what it hands back.</li>
-      <li style="margin-bottom:8px"><strong>State limits in the interface,</strong> at the point of use — not only in the docs.</li>
-      <li style="margin-bottom:8px"><strong>Make out-of-scope a clean hand-off to a human,</strong> not a silent confident guess.</li>
-      <li style="margin-bottom:8px"><strong>Be specific:</strong> name a boundary a person can plan around.</li>
-      <li style="margin-bottom:8px"><strong>Revisit the contract</strong> every time the model's scope actually changes.</li>
+  <div class="counter">
+    <span class="c-l">The strongest objection, kept in</span>
+    <p class="u-body">&ldquo;Listing what the system can&rsquo;t do reads like a disclaimer &mdash; it will spook buyers.&rdquo; A system with no stated edges gets tested at its weakest point by every new user, and fails there in public. The contract routes those moments to a person instead of a hallucination &mdash; which is why the systems that state their limits are the ones that survive their first bad week.</p>
+  </div>
+
+  <section class="xi-patterns-capability-contract-012">
+    <h2 class="section-title xi-patterns-capability-contract-018">Ship it: the checklist.</h2>
+    <ul class="u-body xi-patterns-capability-contract-020">
+      <li class="xi-patterns-capability-contract-021"><strong>Write the contract before launch:</strong> what it's for, where it taps out, what it hands back.</li>
+      <li class="xi-patterns-capability-contract-021"><strong>State limits in the interface,</strong> at the point of use — not only in the docs.</li>
+      <li class="xi-patterns-capability-contract-021"><strong>Make out-of-scope a clean hand-off to a human,</strong> not a silent confident guess.</li>
+      <li class="xi-patterns-capability-contract-021"><strong>Be specific:</strong> name a boundary a person can plan around.</li>
+      <li class="xi-patterns-capability-contract-021"><strong>Revisit the contract</strong> every time the model's scope actually changes.</li>
     </ul>
   </section>
 
   <!-- THE TEMPLATE -->
-  <section style="margin-bottom:64px">
-    <div class="eyebrow" style="margin-bottom:12px">The Template — Copy It Into Your PRD</div>
-    <p class="u-body" style="margin-bottom:20px">A capability contract is a one-pager the whole team signs before launch. Fill in the brackets; delete nothing without deciding it.</p>
-    <div style="position:relative">
-      <button class="lbl-eyebrow-500" id="copyContractBtn" data-cta="copy-template" data-location="pattern-template" style="position:absolute; top:12px; right:12px; padding:4px 12px; background:var(--bg); border:1px solid var(--gold-dark); border-radius:2px; cursor:pointer; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='var(--bg)';this.style.color='var(--gold)'">Copy</button>
-      <pre id="contractTemplate" style="background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:24px 24px;margin:0;font-family:var(--ff-mono);font-size:var(--fs-caption);line-height:1.8;color:var(--ink-muted);overflow-x:auto">CAPABILITY CONTRACT — [product / feature]
+  <section class="xi-patterns-capability-contract-012">
+    <div class="eyebrow xi-patterns-capability-contract-022">The Template — Copy It Into Your PRD</div>
+    <p class="u-body xi-patterns-capability-contract-019">A capability contract is a one-pager the whole team signs before launch. Fill in the brackets; delete nothing without deciding it.</p>
+    <div class="xi-patterns-capability-contract-023">
+      <button class="lbl-eyebrow-500 xi-patterns-capability-contract-024 hv-patterns-capability-contract-1" id="copyContractBtn" data-cta="copy-template" data-location="pattern-template">Copy</button>
+      <pre class="xi-patterns-capability-contract-025" id="contractTemplate">CAPABILITY CONTRACT — [product / feature]
 Owner: [name] · Review date: [quarterly]
 
 IN SCOPE — this system is for:
@@ -155,34 +244,35 @@ WHAT WE TELL THE USER — in the interface, not the docs:
     </div>
   </section>
 
-  <section class="card-gold" style="background:rgba(212,168,94,0.03)">
-    <h3 class="card-title" style="margin-bottom:16px">See This Pattern In Action</h3>
-    <ul class="t-cap-loose" style="margin-bottom:16px; padding-left:24px">
-      <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> the planner stated what it could and could not price — unsold inventory it could flag as risk, outcomes it would not promise.</li>
-      <li style="margin-bottom:12px"><strong><a href="../case-studies/fintech.html" style="color:var(--gold);text-decoration:none">AI-Assisted Due Diligence</a>:</strong> the model declared the deals it wouldn't score, up front, instead of bluffing through them.</li>
+  <section class="card-gold xi-patterns-capability-contract-026">
+    <h3 class="card-title xi-patterns-capability-contract-017">Where this pattern earned its keep</h3>
+    <ul class="t-cap-loose xi-patterns-capability-contract-027">
+      <li class="xi-patterns-capability-contract-022"><strong><a class="xi-patterns-capability-contract-009" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> the planner stated what it could and could not price — unsold inventory it could flag as risk, outcomes it would not promise.</li>
+      <li class="xi-patterns-capability-contract-022"><strong><a class="xi-patterns-capability-contract-009" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> the model declared the deals it wouldn't score, up front, instead of bluffing through them.</li>
     </ul>
   </section>
 
   <!-- NEWSLETTER SIGNUP -->
-  <section class="card-gold" style="background:rgba(212,168,94,0.03)">
-    <div class="eyebrow" style="margin-bottom:12px">Get AI design patterns in your inbox</div>
-    <p class="u-ui" style="margin-bottom:20px">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
+  <section class="card-gold xi-patterns-capability-contract-026">
+    <div class="eyebrow xi-patterns-capability-contract-022">Get AI design patterns in your inbox</div>
+    <p class="u-ui xi-patterns-capability-contract-019">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
     <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
-      <input class="t-sans-ui card-seg" type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="min-width:200px; background:var(--bg)">
-      <button class="lbl-eyebrow-500 btn-b" type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="background:transparent; cursor:pointer; transition:background 0.3s,color 0.3s">Subscribe</button>
+      <input class="t-sans-ui card-seg xi-patterns-capability-contract-028" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
+      <button class="lbl-eyebrow-500 btn-b xi-patterns-capability-contract-029" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
     </form>
   </section>
 
-  <div class="btn-row">
-    <a class="lbl-badge-bg btn-a" href="./calibration-track-record.html" style="background:var(--gold); text-decoration:none; transition:background 0.3s" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next pattern / Calibration &amp; Track Record →</a>
-    <a class="lbl-badge-gold btn-a-ghost" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="background:transparent; text-decoration:none; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
-  </div>
-<section class="measure-t">
-    <div style="border-top:1px solid var(--border);padding-top:24px">
-      <div class="eyebrow" style="margin-bottom:12px">Limits — when NOT to use this</div>
-      <p class="u-body" style="margin:0">A contract on every screen reads as a product unsure of itself — state the boundary once, where the user first meets the capability, not as a recurring disclaimer. And never write a contract you don't enforce: a stated limit the system quietly exceeds burns more trust than no statement at all.</p>
+  <section class="measure-t">
+    <div class="xi-patterns-capability-contract-032">
+      <div class="eyebrow xi-patterns-capability-contract-022">Where this breaks — do not use it here</div>
+      <p class="u-body xi-patterns-capability-contract-033">A contract on every screen reads as a product unsure of itself — state the boundary once, where the user first meets the capability, not as a recurring disclaimer. And never write a contract you don't enforce: a stated limit the system quietly exceeds burns more trust than no statement at all.</p>
     </div>
   </section>
+
+  <div class="btn-row">
+    <a class="lbl-badge-bg btn-a xi-patterns-capability-contract-030 hv-patterns-capability-contract-2" href="./calibration-track-record.html">Next pattern / Calibration &amp; Track Record →</a>
+    <a class="lbl-badge-gold btn-a-ghost xi-patterns-capability-contract-031 hv-patterns-capability-contract-1" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom">Send me the role ↗</a>
+  </div>
 </div></main>
 
 <footer>
@@ -192,7 +282,7 @@ WHAT WE TELL THE USER — in the interface, not the docs:
     <span>Dyslexia-friendly</span>
   </button>
   <div class="footer-note">No copyright · Design is for all</div>
-  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon xi-patterns-capability-contract-034" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
 </footer>
 
 <script>

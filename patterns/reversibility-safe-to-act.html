@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="ember">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,12 +21,11 @@
 <meta name="twitter:description" content="Reversibility buys the first action; accuracy keeps the rest.">
 <meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/reversibility-safe-to-act-og.png">
 <meta name="twitter:image:alt" content="Reversibility buys the first action; accuracy keeps the rest.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0A0A'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='300' fill='%23D4A85E'%3EAM%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap" media="print" onload="this.media='all';this.onload=null">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap"></noscript>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<noscript></noscript>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TechArticle","headline":"Reversibility / Safe-to-Act","description":"An AI design pattern — make acting on a recommendation cheap to undo, so people dare to try the model's suggestion.","author":{"@type":"Person","name":"Arpit Maheshwari"},"datePublished":"2026-06-19","dateModified":"2026-06-19"}
 </script>
@@ -49,128 +48,237 @@
   gtag('config', 'G-PFY6ME99K8');
 </script>
 <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
-<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../styles.css?v=p62">
+<link rel="stylesheet" href="../ember.css?v=e109">
 </head>
-<body>
+<body class="p-patterns-reversibility-safe-to-act">
 <a href="#main" class="skip-link">Skip to content</a>
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<svg class="xi-patterns-reversibility-safe-to-act-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
   <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
 </svg>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-logo"><a class="row-ic" href="../index.html" style="text-decoration:none; color:inherit"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <div class="nav-logo"><a class="row-ic xi-patterns-reversibility-safe-to-act-002" href="../index.html"><img class="xi-patterns-reversibility-safe-to-act-003" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns" aria-current="true">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
   </nav>
 
-<div style="padding:104px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)">
-  <div style="max-width:var(--measure);margin:0 auto">
+<div class="xi-patterns-reversibility-safe-to-act-004">
+  <div class="xi-patterns-reversibility-safe-to-act-005">
     <div class="meta-row">
-      <h1 class="t-hero" style="margin:0; font-optical-sizing:auto; font-variant-ligatures:common-ligatures contextual">Reversibility</h1>
-      <span class="lbl-badge-ink" style="padding:4px 12px; border-radius:4px; background-color:var(--copper); white-space:nowrap">In production</span>
+      <h1 class="t-hero xi-patterns-reversibility-safe-to-act-006">Reversibility: Cheap to Undo Is Cheap to Adopt</h1>
+      <span class="lbl-badge-ink xi-patterns-reversibility-safe-to-act-007">In production</span>
     </div>
     <p class="lbl-cap">AI Design · Safe to act · Last updated June 2026</p>
-    <p class="lbl-cap" style="margin-top:8px">Part of <a href="./" style="color:var(--gold);text-decoration:none">A Field Guide to Trust</a> · updated June 2026</p>
-    <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 0;transform:rotate(-1.6deg)">reversibility outranks confidence</p>
+    <p class="lbl-cap xi-patterns-reversibility-safe-to-act-008">Part of <a class="xi-patterns-reversibility-safe-to-act-009" href="./">A Field Guide to Trust</a> · updated June 2026</p>
+    <p class="hand xi-patterns-reversibility-safe-to-act-010" aria-hidden="true">reversibility outranks confidence</p>
   </div>
 </div>
 
-<main id="main" class="section" style="background:var(--bg)"><div style="max-width:var(--measure);margin:0 auto">
+<main id="main" class="section xi-patterns-reversibility-safe-to-act-011"><div class="xi-patterns-reversibility-safe-to-act-005">
 
-  <section style="margin-bottom:64px">
-    <p class="lead" style="margin-bottom:20px;font-style:italic;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;font-variant-numeric:oldstyle-nums proportional-nums">Adoption often stalls not because the model is wrong, but because acting on it feels risky. Make the action cheap to undo — one click to reverse, a clear path back, no permanent damage — and people will try the recommendation they'd otherwise ignore. Reversibility buys you the first action; accuracy keeps the rest.</p>
+  <section class="xi-patterns-reversibility-safe-to-act-012">
+    <p class="lead xi-patterns-reversibility-safe-to-act-013">Adoption often stalls not because the model is wrong, but because acting on it feels risky. Make the action cheap to undo — one click to reverse, a clear path back, no permanent damage — and people will try the recommendation they'd otherwise ignore. Reversibility buys you the first action; accuracy keeps the rest.</p>
   </section>
 
-  <figure style="margin:8px 0 48px;text-align:center">
-    <img class="framed" src="../assets/visuals/pattern-reversibility.svg" alt="Reversibility pattern: an applied action with a visible undo, a one-click reversal, and a staged rollout with a halt control partway along its timeline" loading="lazy" width="1280" height="400" style="height:auto">
+  <div class="thesis">
+    <span class="t-l">The principle this page proves</span>
+    <p>People don&rsquo;t act when the model is right. They act when being wrong is <em>cheap</em>.</p>
+  </div>
+
+  <figure class="xi-patterns-reversibility-safe-to-act-014">
+    <svg data-art="A" class="framed xi-patterns-reversibility-safe-to-act-015" style="width:100%;height:auto;display:block" viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+  <title id="t">Reversibility pattern</title>
+  <desc id="d">An applied action with a visible undo, a one-click reversal restoring the prior state, and a staged rollout with a halt control partway along its timeline.</desc>
+  <rect x="0" y="0" width="1280" height="400" fill="var(--art-bg, #F4ECDA)"/>
+
+  <!-- Title block -->
+  <text x="36" y="74" font-family="'Source Serif 4', Georgia, serif" font-size="40" font-weight="600" fill="var(--art-ink, #2C2620)">Reversibility</text>
+  <text x="36" y="106" font-family="'Source Sans 3', system-ui, sans-serif" font-size="19" fill="var(--art-mut, #6A6052)">Cheap to undo &#8212; so people dare to act.</text>
+  <line x1="36" y1="126" x2="1244" y2="126" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+
+  <!-- ===== LEFT: ACT &#8212; applied action with visible undo ===== -->
+  <g transform="translate(40,150)">
+    <rect x="0" y="0" width="392" height="214" rx="10" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="var(--art-label, #998D78)">ACT</text>
+
+    <!-- applied card -->
+    <rect x="24" y="56" width="344" height="118" rx="9" fill="var(--art-bg, #F4ECDA)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+
+    <!-- status dot + applied label -->
+    <circle cx="48" cy="86" r="6" fill="var(--art-good, #2F5D52)"/>
+    <text x="64" y="91" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.5" fill="var(--art-good, #2F5D52)">APPLIED</text>
+
+    <!-- action title -->
+    <text x="40" y="124" font-family="'Source Serif 4', Georgia, serif" font-size="22" font-weight="600" fill="var(--art-ink, #2C2620)">Reallocate budget</text>
+
+    <!-- Undo control, shown up front -->
+    <rect x="40" y="138" width="100" height="30" rx="15" fill="var(--art-bg, #F4ECDA)" stroke="var(--art-heat, #C0512B)" stroke-width="1.5"/>
+    <!-- undo glyph (clean rotate-counter-clockwise), fully contained within the pill -->
+    <g transform="translate(49,143) scale(0.8)" fill="none" stroke="var(--art-heat, #C0512B)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 14 4 9l5-5"/>
+      <path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H9"/>
+    </g>
+    <text x="80" y="158" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" font-weight="600" fill="var(--art-heat, #C0512B)">Undo</text>
+
+    <!-- reassurance caption -->
+    <text x="24" y="200" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="var(--art-mut, #6A6052)">Exit shown before you commit.</text>
+  </g>
+
+  <!-- connector: labelled "one click" -->
+  <path d="M 440 257 H 486" fill="none" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="2"/>
+  <path d="M 480 251 L 488 257 L 480 263 Z" fill="var(--art-label, #998D78)"/>
+  <text x="463" y="247" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="12" fill="var(--art-label, #998D78)">one click</text>
+
+  <!-- ===== MIDDLE: ONE CLICK BACK &#8212; reversal restoring prior state ===== -->
+  <g transform="translate(496,150)">
+    <rect x="0" y="0" width="338" height="214" rx="10" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="var(--art-label, #998D78)">ONE CLICK BACK</text>
+
+    <!-- large counter-clockwise undo arrow (ember) centered -->
+    <g transform="translate(169,118)">
+      <!-- arc sweeping counter-clockwise, ~300deg -->
+      <path d="M 28 -14 A 36 36 0 1 0 36 8" fill="none" stroke="var(--art-heat, #C0512B)" stroke-width="6" stroke-linecap="round"/>
+      <!-- arrowhead at the start (top), pointing back -->
+      <path d="M 28 -28 L 30 -10 L 13 -16 Z" fill="var(--art-heat, #C0512B)"/>
+    </g>
+
+    <!-- restored line -->
+    <text x="169" y="194" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="16" fill="var(--art-ink, #2C2620)">Restored &#8212; <tspan font-weight="600" fill="var(--art-good, #2F5D52)">no damage</tspan></text>
+  </g>
+
+  <!-- connector -->
+  <path d="M 842 257 H 888" fill="none" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="2"/>
+  <path d="M 882 251 L 890 257 L 882 263 Z" fill="var(--art-label, #998D78)"/>
+
+  <!-- ===== RIGHT: STAGED ROLLOUT &#8212; timeline with halt control ===== -->
+  <g transform="translate(898,150)">
+    <rect x="0" y="0" width="346" height="214" rx="10" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="1.5" fill="var(--art-label, #998D78)">STAGED ROLLOUT</text>
+
+    <!-- timeline baseline -->
+    <line x1="40" y1="108" x2="306" y2="108" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="2"/>
+
+    <!-- completed segment (green) up to the halt -->
+    <line x1="40" y1="108" x2="157" y2="108" stroke="var(--art-good, #2F5D52)" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- phase ticks (4) -->
+    <circle cx="40" cy="108" r="6" fill="var(--art-good, #2F5D52)"/>
+    <text x="40" y="138" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="12" fill="var(--art-mut, #6A6052)">P1</text>
+
+    <circle cx="129" cy="108" r="6" fill="var(--art-good, #2F5D52)"/>
+    <text x="129" y="138" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="12" fill="var(--art-mut, #6A6052)">P2</text>
+
+    <circle cx="217" cy="108" r="6" fill="var(--art-bg, #F4ECDA)" stroke="var(--art-arrow, #998D78)" stroke-width="2"/>
+    <text x="217" y="138" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="12" fill="var(--art-label, #998D78)">P3</text>
+
+    <circle cx="306" cy="108" r="6" fill="var(--art-bg, #F4ECDA)" stroke="var(--art-arrow, #998D78)" stroke-width="2"/>
+    <text x="306" y="138" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="12" fill="var(--art-label, #998D78)">P4</text>
+
+    <!-- halt / pause control partway along (ochre) -->
+    <circle cx="157" cy="108" r="15" fill="var(--art-bg, #F4ECDA)" stroke="var(--art-gold, #CE9230)" stroke-width="2"/>
+    <rect x="152" y="101.5" width="4" height="13" rx="1.5" fill="var(--art-gold, #CE9230)"/>
+    <rect x="158" y="101.5" width="4" height="13" rx="1.5" fill="var(--art-gold, #CE9230)"/>
+
+    <!-- faint caption -->
+    <text x="24" y="190" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="var(--art-label, #998D78)">halt mid-flight &#183; 24-mo grace</text>
+  </g>
+</svg>
+
   </figure>
 
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 16px;max-width:none">Make the action one click to walk back</h2>
-    <p class="u-body" style="margin-bottom:16px">People don't refuse the model because they've judged it wrong; they refuse because acting feels like a commitment they can't unwind. The cure is rarely a better model — it's a cheaper undo. When reversing costs nothing, the bar to trying the suggestion drops to almost zero.</p>
+  <section class="xi-patterns-reversibility-safe-to-act-012">
+    <h2 class="section-title xi-patterns-reversibility-safe-to-act-016">Make the action one click to walk back</h2>
+    <p class="u-body xi-patterns-reversibility-safe-to-act-017">People don't refuse the model because they've judged it wrong; they refuse because acting feels like a commitment they can't unwind. The cure is rarely a better model — it's a cheaper undo. When reversing costs nothing, the bar to trying the suggestion drops to almost zero.</p>
     <p class="u-body">This reframes the whole adoption problem. You're not asking the user to bet that the model is right; you're asking them to try something they can instantly take back. That's a far smaller ask — and it's the one that actually gets the first action.</p>
   </section>
   <!-- LIVE DEMO — same demo as the book's field guide -->
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Try it — the pattern, live</h2>
-    <p class="u-ui" style="margin-bottom:20px">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+  <section class="xi-patterns-reversibility-safe-to-act-012">
+    <h2 class="section-title xi-patterns-reversibility-safe-to-act-018">Try it — the pattern, live</h2>
+    <p class="u-ui xi-patterns-reversibility-safe-to-act-019">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
     <div data-demo="undo"></div>
   </section>
 
 
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 16px;max-width:none">Show the way back before they commit</h2>
-    <p class="u-body" style="margin-bottom:16px">Reversibility only works if the person can see it before they act. An undo they discover after a mistake is reassurance arriving too late. Show the exit up front — "you can change this anytime" — so the safety is part of the decision, not a consolation afterward.</p>
+  <section class="xi-patterns-reversibility-safe-to-act-012">
+    <h2 class="section-title xi-patterns-reversibility-safe-to-act-016">Show the way back before they commit</h2>
+    <p class="u-body xi-patterns-reversibility-safe-to-act-017">Reversibility only works if the person can see it before they act. An undo they discover after a mistake is reassurance arriving too late. Show the exit up front — "you can change this anytime" — so the safety is part of the decision, not a consolation afterward.</p>
     <p class="u-body">The visible path back does quiet work on confidence. It signals that the product expects people to explore, correct, and adjust — that acting on the model is a conversation, not a verdict they're stuck with.</p>
   </section>
 
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 16px;max-width:none">Stage it, so you can stop it</h2>
-    <p class="u-body" style="margin-bottom:16px">For changes too big to undo with one click, the equivalent of reversibility is a staged rollout you can halt. Sequence the change so its effects are visible early and reversible mid-flight, and protect the people affected with a grace period rather than a hard cutover.</p>
+  <section class="xi-patterns-reversibility-safe-to-act-012">
+    <h2 class="section-title xi-patterns-reversibility-safe-to-act-016">Stage it, so you can stop it</h2>
+    <p class="u-body xi-patterns-reversibility-safe-to-act-017">For changes too big to undo with one click, the equivalent of reversibility is a staged rollout you can halt. Sequence the change so its effects are visible early and reversible mid-flight, and protect the people affected with a grace period rather than a hard cutover.</p>
     <p class="u-body">A migration you can stop beats a leap you can't take back. The same principle scales from a single undo button to a company-wide rollout: keep a hand on the brake, in view, the whole way down.</p>
   </section>
 
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Implementation Checklist</h2>
-    <ul class="u-body" style="padding-left:24px">
-      <li style="margin-bottom:8px"><strong>Make acting on a recommendation one click to reverse.</strong></li>
-      <li style="margin-bottom:8px"><strong>Show the path back before the person commits</strong>, not after a mistake.</li>
-      <li style="margin-bottom:8px"><strong>For irreversible changes, stage the rollout</strong> so it can be halted mid-flight.</li>
-      <li style="margin-bottom:8px"><strong>Protect affected users with a grace period</strong>, not a hard cutover.</li>
-      <li style="margin-bottom:8px"><strong>Measure first-action rate, not just accuracy</strong> — reversibility moves the former.</li>
+  <div class="counter">
+    <span class="c-l">The strongest objection, kept in</span>
+    <p class="u-body">&ldquo;Undo is an engineering luxury we&rsquo;ll add later.&rdquo; Reversibility is not a convenience feature &mdash; it is the price of the first yes. If acting on your product&rsquo;s suggestion can&rsquo;t be walked back, you have priced the trial run beyond what a rational professional will pay, and no amount of model accuracy buys it back.</p>
+  </div>
+
+  <section class="xi-patterns-reversibility-safe-to-act-012">
+    <h2 class="section-title xi-patterns-reversibility-safe-to-act-018">Ship it: the checklist.</h2>
+    <ul class="u-body xi-patterns-reversibility-safe-to-act-020">
+      <li class="xi-patterns-reversibility-safe-to-act-021"><strong>Make acting on a recommendation one click to reverse.</strong></li>
+      <li class="xi-patterns-reversibility-safe-to-act-021"><strong>Show the path back before the person commits</strong>, not after a mistake.</li>
+      <li class="xi-patterns-reversibility-safe-to-act-021"><strong>For irreversible changes, stage the rollout</strong> so it can be halted mid-flight.</li>
+      <li class="xi-patterns-reversibility-safe-to-act-021"><strong>Protect affected users with a grace period</strong>, not a hard cutover.</li>
+      <li class="xi-patterns-reversibility-safe-to-act-021"><strong>Measure first-action rate, not just accuracy</strong> — reversibility moves the former.</li>
     </ul>
   </section>
-  <section style="margin-bottom:64px">
-    <h2 class="section-title" style="margin:0 0 24px;max-width:none">Trade-offs by Approach</h2>
-    <div style="overflow-x:auto">
-      <table class="t-cap" style="width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums lining-nums">
+  <section class="xi-patterns-reversibility-safe-to-act-012">
+    <h2 class="section-title xi-patterns-reversibility-safe-to-act-018">Trade-offs by Approach</h2>
+    <div class="xi-patterns-reversibility-safe-to-act-022">
+      <table class="t-cap xi-patterns-reversibility-safe-to-act-023">
         <thead>
-          <tr style="border-bottom:1px solid var(--border)"><th class="lbl-ink" style="text-align:left; padding:8px 12px">Choice</th><th class="lbl-ink" style="text-align:left; padding:8px 12px">Best For</th><th class="lbl-ink" style="text-align:left; padding:8px 12px">Trade-off</th></tr>
+          <tr class="xi-patterns-reversibility-safe-to-act-024"><th class="lbl-ink xi-patterns-reversibility-safe-to-act-025">Choice</th><th class="lbl-ink xi-patterns-reversibility-safe-to-act-025">Best For</th><th class="lbl-ink xi-patterns-reversibility-safe-to-act-025">Trade-off</th></tr>
         </thead>
         <tbody>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:8px 12px"><strong>One-click undo</strong></td><td style="padding:8px 12px">Frequent, low-cost actions</td><td style="padding:8px 12px">Needs true reversal underneath, not a cosmetic toast</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:8px 12px"><strong>Grace window (undo for 30s)</strong></td><td style="padding:8px 12px">Sends, posts, purchases</td><td style="padding:8px 12px">Delays the action; a window that's too short is theater</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:8px 12px"><strong>Staged rollout / halt</strong></td><td style="padding:8px 12px">Big, systemic changes</td><td style="padding:8px 12px">Slower to full effect; needs progress visibility</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:8px 12px"><strong>Preview before commit</strong></td><td style="padding:8px 12px">First-time or high-stakes acts</td><td style="padding:8px 12px">Adds a step; friction where trust is already high</td></tr>
+          <tr class="xi-patterns-reversibility-safe-to-act-024"><td class="xi-patterns-reversibility-safe-to-act-026"><strong>One-click undo</strong></td><td class="xi-patterns-reversibility-safe-to-act-026">Frequent, low-cost actions</td><td class="xi-patterns-reversibility-safe-to-act-026">Needs true reversal underneath, not a cosmetic toast</td></tr>
+          <tr class="xi-patterns-reversibility-safe-to-act-024"><td class="xi-patterns-reversibility-safe-to-act-026"><strong>Grace window (undo for 30s)</strong></td><td class="xi-patterns-reversibility-safe-to-act-026">Sends, posts, purchases</td><td class="xi-patterns-reversibility-safe-to-act-026">Delays the action; a window that's too short is theater</td></tr>
+          <tr class="xi-patterns-reversibility-safe-to-act-024"><td class="xi-patterns-reversibility-safe-to-act-026"><strong>Staged rollout / halt</strong></td><td class="xi-patterns-reversibility-safe-to-act-026">Big, systemic changes</td><td class="xi-patterns-reversibility-safe-to-act-026">Slower to full effect; needs progress visibility</td></tr>
+          <tr class="xi-patterns-reversibility-safe-to-act-024"><td class="xi-patterns-reversibility-safe-to-act-026"><strong>Preview before commit</strong></td><td class="xi-patterns-reversibility-safe-to-act-026">First-time or high-stakes acts</td><td class="xi-patterns-reversibility-safe-to-act-026">Adds a step; friction where trust is already high</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
 
-  <section class="card-gold" style="background:rgba(212,168,94,0.03)">
-    <h3 class="card-title" style="margin-bottom:16px">See This Pattern In Action</h3>
-    <ul class="t-cap-loose" style="margin-bottom:16px; padding-left:24px">
-      <li style="margin-bottom:12px"><strong><a href="../case-studies/ptc.html" style="color:var(--gold);text-decoration:none">PTC University</a>:</strong> retiring four products, the shutdowns were sequenced so each team watched their users land softly — with a 24-month grace period, a migration you could halt.</li>
-      <li style="margin-bottom:12px"><strong><a href="../case-studies/adtech.html" style="color:var(--gold);text-decoration:none">Programmatic Advertising Platform</a>:</strong> a one-click override that cost nothing to walk back is what got buyers to act on the algorithm at all.</li>
+  <section class="card-gold xi-patterns-reversibility-safe-to-act-027">
+    <h3 class="card-title xi-patterns-reversibility-safe-to-act-017">Where this pattern earned its keep</h3>
+    <ul class="t-cap-loose xi-patterns-reversibility-safe-to-act-028">
+      <li class="xi-patterns-reversibility-safe-to-act-029"><strong><a class="xi-patterns-reversibility-safe-to-act-009" href="../case-studies/ptc.html">PTC University</a>:</strong> retiring four products, the shutdowns were sequenced so each team watched their users land softly — with a 24-month grace period, a migration you could halt.</li>
+      <li class="xi-patterns-reversibility-safe-to-act-029"><strong><a class="xi-patterns-reversibility-safe-to-act-009" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> a one-click override that cost nothing to walk back is what got buyers to act on the algorithm at all.</li>
     </ul>
   </section>
 
   <!-- NEWSLETTER SIGNUP -->
-  <section class="card-gold" style="background:rgba(212,168,94,0.03)">
-    <div class="eyebrow" style="margin-bottom:12px">Get AI design patterns in your inbox</div>
-    <p class="u-ui" style="margin-bottom:20px">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
+  <section class="card-gold xi-patterns-reversibility-safe-to-act-027">
+    <div class="eyebrow xi-patterns-reversibility-safe-to-act-029">Get AI design patterns in your inbox</div>
+    <p class="u-ui xi-patterns-reversibility-safe-to-act-019">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
     <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
-      <input class="t-sans-ui card-seg" type="email" name="email" required placeholder="you@company.com" aria-label="Email address" style="min-width:200px; background:var(--bg)">
-      <button class="lbl-eyebrow-500 btn-b" type="submit" data-cta="newsletter" data-location="pattern-newsletter" style="background:transparent; cursor:pointer; transition:background 0.3s,color 0.3s">Subscribe</button>
+      <input class="t-sans-ui card-seg xi-patterns-reversibility-safe-to-act-030" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
+      <button class="lbl-eyebrow-500 btn-b xi-patterns-reversibility-safe-to-act-031" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
     </form>
   </section>
 
-  <div class="btn-row">
-    <a class="lbl-badge-bg btn-a" href="./act-review-ignore.html" style="background:var(--gold); text-decoration:none; transition:background 0.3s" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Back to the rule / Act, Review, Ignore →</a>
-    <a class="lbl-badge-gold btn-a-ghost" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom" style="background:transparent; text-decoration:none; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
-  </div>
-<section class="measure-t">
-    <div style="border-top:1px solid var(--border);padding-top:24px">
-      <div class="eyebrow" style="margin-bottom:12px">Limits — when NOT to use this</div>
-      <p class="u-body" style="margin:0">In genuinely irreversible domains — payments sent, emails delivered, trades executed — a fake undo is worse than none. Sometimes friction is the correct design; make the last step deliberately heavy instead of pretending it can be unwound.</p>
+  <section class="measure-t">
+    <div class="xi-patterns-reversibility-safe-to-act-034">
+      <div class="eyebrow xi-patterns-reversibility-safe-to-act-029">Where this breaks — do not use it here</div>
+      <p class="u-body xi-patterns-reversibility-safe-to-act-035">In genuinely irreversible domains — payments sent, emails delivered, trades executed — a fake undo is worse than none. Sometimes friction is the correct design; make the last step deliberately heavy instead of pretending it can be unwound.</p>
     </div>
   </section>
+
+  <div class="btn-row">
+    <a class="lbl-badge-bg btn-a xi-patterns-reversibility-safe-to-act-032 hv-patterns-reversibility-safe-to-act-1" href="./act-review-ignore.html">Back to the rule / Act, Review, Ignore →</a>
+    <a class="lbl-badge-gold btn-a-ghost xi-patterns-reversibility-safe-to-act-033 hv-patterns-reversibility-safe-to-act-2" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom">Send me the role ↗</a>
+  </div>
 </div></main>
 
 <footer>
@@ -180,7 +288,7 @@
     <span>Dyslexia-friendly</span>
   </button>
   <div class="footer-note">No copyright · Design is for all</div>
-  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon xi-patterns-reversibility-safe-to-act-036" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
 </footer>
 
 <script>

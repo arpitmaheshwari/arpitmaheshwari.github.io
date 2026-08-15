@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ember">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML Explainability: Why the Algorithm Decided</title>
+<meta name="description" content="ML explainability UX patterns. Designing the &quot;why&quot; surface so a non-technical person can act on an algorithmic decision without a stats degree.">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/patterns/ml-explainability.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ML Explainability Patterns | Arpit Maheshwari">
+<meta property="og:description" content="Patterns for showing a person why the machine decided, at a depth they can use.">
+<meta property="og:url" content="https://arpitmaheshwari.com/patterns/ml-explainability.html">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/ml-explainability-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ML Explainability Patterns">
+<meta name="twitter:description" content="Five patterns for turning model logic into something a person can read and act on.">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/ml-explainability-og.png">
+<meta name="twitter:image:alt" content="Five patterns for turning model logic into something a person can read and act on.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<noscript></noscript>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","headline":"ML Explainability Patterns","description":"Design patterns for explaining machine learning decisions to users.","author":{"@type":"Person","name":"Arpit Maheshwari"},"datePublished":"2026-05-09","dateModified":"2026-05-24"}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://arpitmaheshwari.com/"},
+    {"@type":"ListItem","position":2,"name":"Patterns","item":"https://arpitmaheshwari.com/#patterns"},
+    {"@type":"ListItem","position":3,"name":"ML Explainability: Why the Algorithm Decided","item":"https://arpitmaheshwari.com/patterns/ml-explainability.html"}
+  ]
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PFY6ME99K8');
+</script>
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../styles.css?v=p62">
+<link rel="stylesheet" href="../ember.css?v=e109">
+</head>
+<body class="p-patterns-ml-explainability">
+<a href="#main" class="skip-link">Skip to content</a>
+<svg class="xi-patterns-ml-explainability-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+</svg>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a class="row-ic xi-patterns-ml-explainability-002" href="../index.html"><img class="xi-patterns-ml-explainability-003" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns" aria-current="true">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
+  <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
+  </nav>
+
+<div class="xi-patterns-ml-explainability-004">
+  <div class="xi-patterns-ml-explainability-005">
+    <div class="meta-row">
+      <h1 class="t-hero xi-patterns-ml-explainability-006">ML Explainability Patterns</h1>
+      <span class="lbl-badge-ink xi-patterns-ml-explainability-007">In production</span>
+    </div>
+    <p class="lbl-cap">AI Design · Showing the Why · Last updated June 2026</p>
+    <p class="lbl-cap xi-patterns-ml-explainability-008">Part of <a class="xi-patterns-ml-explainability-009" href="./">A Field Guide to Trust</a> · updated June 2026</p>
+    <p class="hand xi-patterns-ml-explainability-010" aria-hidden="true">reasons on the card, not in a tooltip</p>
+  </div>
+</div>
+
+<main id="main" class="section xi-patterns-ml-explainability-011"><div class="xi-patterns-ml-explainability-005">
+
+  <section class="xi-patterns-ml-explainability-012">
+    <p class="lead xi-patterns-ml-explainability-013">A recommendation you can trace back to evidence is one you'll stand behind. One you can't is one you'll override — and then you rebuild your own process beside it. These patterns show a person why the machine decided. Not the full math, not the model internals. Just enough of the reasoning to act on it without a stats degree.</p>
+    
+    <!-- Abstract UI Diagram: Feature Importance -->
+    <div class="card-wire xi-patterns-ml-explainability-014">
+      <div class="lbl-eyebrow xi-patterns-ml-explainability-015">Wireframe: Feature Importance</div>
+      
+      <div class="xi-patterns-ml-explainability-016">
+        <div class="lbl-meta xi-patterns-ml-explainability-017">Key Decision Drivers</div>
+        
+        <div class="xi-patterns-ml-explainability-018">
+          <!-- Feature 1 -->
+          <div>
+            <div class="xi-patterns-ml-explainability-019">
+              <div class="t-sans-ui">Historical Default Rate (Industry)</div>
+              <div class="lbl-cap-bold xi-patterns-ml-explainability-020">45%</div>
+            </div>
+            <div class="xi-patterns-ml-explainability-021">
+              <div class="xi-patterns-ml-explainability-022"></div>
+            </div>
+          </div>
+          
+          <!-- Feature 2 -->
+          <div>
+            <div class="xi-patterns-ml-explainability-019">
+              <div class="t-sans-ui">Customer Concentration > 40%</div>
+              <div class="lbl-cap-bold xi-patterns-ml-explainability-020">30%</div>
+            </div>
+            <div class="xi-patterns-ml-explainability-021">
+              <div class="xi-patterns-ml-explainability-023"></div>
+            </div>
+          </div>
+
+          <!-- Feature 3 -->
+          <div>
+            <div class="xi-patterns-ml-explainability-019">
+              <div class="t-sans-ui">Liquidity Ratio < 1.0</div>
+              <div class="lbl-cap-bold xi-patterns-ml-explainability-020">15%</div>
+            </div>
+            <div class="xi-patterns-ml-explainability-021">
+              <div class="xi-patterns-ml-explainability-024"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <figure class="xi-patterns-ml-explainability-025">
+      <img class="framed xi-patterns-ml-explainability-026" src="../assets/visuals/pattern-explainability.svg" alt="Explainability pattern: a model output traced back to the inputs that drove it, with an I-disagree action" loading="lazy" width="1280" height="400">
+    </figure>
+  </section>
+  <!-- LIVE DEMO — same demo as the book's field guide -->
+  <section class="xi-patterns-ml-explainability-012">
+    <h2 class="section-title xi-patterns-ml-explainability-027">Try it — the pattern, live</h2>
+    <p class="u-ui xi-patterns-ml-explainability-028">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+    <div data-demo="branch"></div>
+  </section>
+
+
+  <section class="xi-patterns-ml-explainability-012">
+    <h2 class="section-title xi-patterns-ml-explainability-029">1. Feature Importance (What Mattered Most)</h2>
+    <p class="u-body xi-patterns-ml-explainability-017">Name the top 3–5 features that drove the call, ranked. "This lead scored high because: (1) 85% match on job title [importance: 45%], (2) Company size in target range [importance: 30%], (3) Recent activity on site [importance: 15%]." The person reads three reasons, not a black box.</p>
+    <p class="u-ui xi-patterns-ml-explainability-030"><strong>Strengths:</strong> Cheap to build. The user can check the work. Repeated exposure trains their intuition.</p>
+    <p class="u-ui"><strong>Weaknesses:</strong> It hides <abbr class="xi-patterns-ml-explainability-031" tabindex="0" title="How changes in one input variable affect the impact of another input variable on the decision—for example, job title and industry may interact, making both more important together than separately">feature interactions</abbr>. When features are correlated, the ranking lies.</p>
+  </section>
+
+  <section class="xi-patterns-ml-explainability-012">
+    <h2 class="section-title xi-patterns-ml-explainability-029">2. Counterfactual Reasoning ("What If")</h2>
+    <p class="u-body xi-patterns-ml-explainability-017">Show the one input that flips the call. "The system rated this lead high-value. Change [one thing] and it drops to medium-value." Or: "You're 3 steps away from the next tier. Here's what closes the gap."</p>
+    <p class="u-body xi-patterns-ml-explainability-017">A <abbr class="xi-patterns-ml-explainability-031" tabindex="0" title="A hypothetical scenario showing what would change if one input variable were different, revealing causal relationships and decision boundaries">counterfactual</abbr> lands because the person reads it as a causal story, not a verdict. The decision stops feeling fixed. They know exactly what lever to pull.</p>
+    <p class="u-ui"><strong>Choose it when the user can act:</strong> sales (close a deal), education (lift a score), recommendations (steer toward better picks).</p>
+  </section>
+
+  <section class="xi-patterns-ml-explainability-012">
+    <h2 class="section-title xi-patterns-ml-explainability-029">3. Comparative Explanation ("How It Compares")</h2>
+    <p class="u-body xi-patterns-ml-explainability-017">Set the pick against its rivals. "I recommended Option A. It beats Option B on [dimension 1] and loses to it on [dimension 2]."</p>
+    <p class="u-body">A person reads a comparison faster than an absolute score. The trade-off is right there: Option A is riskier with more upside, Option B is the safe call.</p>
+  </section>
+
+  <section class="xi-patterns-ml-explainability-012">
+    <h2 class="section-title xi-patterns-ml-explainability-029">4. Reasoning Path ("Step by Step")</h2>
+    <p class="u-body xi-patterns-ml-explainability-017">Walk the chain in order. "To predict conversion, I checked industry (SaaS), then company size (50–200), then engagement (high), then landed on 73%."</p>
+    <p class="u-body xi-patterns-ml-explainability-017">It reads the way a human analyst would talk through the case. The person follows the branch, step by step.</p>
+    <p class="u-ui"><strong>Works for:</strong> <abbr class="xi-patterns-ml-explainability-031" tabindex="0" title="Machine learning models like decision trees, random forests, and gradient boosting that split data into interpretable branches, making decisions traceable step-by-step">tree-based models</abbr>, decision trees, rule-based systems — anything with a real path to trace. <strong>Breaks for:</strong> <abbr class="xi-patterns-ml-explainability-031" tabindex="0" title="Deep learning models with multiple layers of interconnected nodes whose decision logic is mathematically complex and not easily interpretable by humans">neural networks</abbr>. There's no path to show, and inventing one is hand-waving with a UI.</p>
+  </section>
+
+  <section class="xi-patterns-ml-explainability-012">
+    <h2 class="section-title xi-patterns-ml-explainability-029">5. Confidence + Uncertainty Bands</h2>
+    <p class="u-body xi-patterns-ml-explainability-017">Ship the prediction with its range. "Predicted revenue: $45K (±$15K). Past errors put the real number between $30K–$60K."</p>
+    <p class="u-body">A band is an honest surface. It says: the model's best guess is $45K, it isn't 100% sure, and here's the spread it usually misses by. This one doesn't explain <em>why</em> — it tells the person <em>how hard to lean</em>.</p>
+  </section>
+
+  <section class="xi-patterns-ml-explainability-012">
+    <h2 class="section-title xi-patterns-ml-explainability-027">Implementation Checklist</h2>
+    <ul class="u-body xi-patterns-ml-explainability-032">
+      <li class="xi-patterns-ml-explainability-030"><strong>Pick the explanation type</strong> from the domain — feature importance, counterfactual, or comparative.</li>
+      <li class="xi-patterns-ml-explainability-030"><strong>Compute it:</strong> tree models give you importance for free; neural networks need <abbr class="xi-patterns-ml-explainability-031" tabindex="0" title="LIME (Local Interpretable Model-agnostic Explanations) and SHAP (SHapley Additive exPlanations) are mathematical methods that explain neural network predictions by attributing each decision to individual input features">LIME/SHAP</abbr>; rule-based systems trace the rules.</li>
+      <li class="xi-patterns-ml-explainability-030"><strong>Say it in plain words:</strong> "Feature X has importance 0.34" becomes "Job title was the strongest signal — 34% of the decision."</li>
+      <li class="xi-patterns-ml-explainability-030"><strong>Watch a real user read it:</strong> can they say <em>why</em> the model decided? Do they lean on it more after?</li>
+      <li class="xi-patterns-ml-explainability-030"><strong>Don't fake it:</strong> if you can't follow the model's logic, don't write a story that pretends you can.</li>
+      <li class="xi-patterns-ml-explainability-030"><strong><abbr class="xi-patterns-ml-explainability-031" tabindex="0" title="A design pattern where complex information is hidden initially to reduce cognitive load, then revealed on user action to avoid overwhelming them">Progressive disclosure</abbr>:</strong> top 3 features by default, the rest one click away.</li>
+    </ul>
+  </section>
+
+  <section class="xi-patterns-ml-explainability-012">
+    <h2 class="section-title xi-patterns-ml-explainability-027">Trade-offs: Accuracy vs. Understandability</h2>
+    <div class="xi-patterns-ml-explainability-033">
+      <table class="t-cap xi-patterns-ml-explainability-034">
+        <thead>
+          <tr class="xi-patterns-ml-explainability-035"><th class="lbl-ink xi-patterns-ml-explainability-036">Method</th><th class="lbl-ink xi-patterns-ml-explainability-036">Accuracy</th><th class="lbl-ink xi-patterns-ml-explainability-036">Understandability</th><th class="lbl-ink xi-patterns-ml-explainability-036">Best For</th></tr>
+        </thead>
+        <tbody>
+          <tr class="xi-patterns-ml-explainability-035"><td class="xi-patterns-ml-explainability-037"><strong>Feature Importance</strong></td><td class="xi-patterns-ml-explainability-037">70%</td><td class="xi-patterns-ml-explainability-037">90%</td><td class="xi-patterns-ml-explainability-037">Expert users</td></tr>
+          <tr class="xi-patterns-ml-explainability-035"><td class="xi-patterns-ml-explainability-037"><strong>Counterfactual</strong></td><td class="xi-patterns-ml-explainability-037">80%</td><td class="xi-patterns-ml-explainability-037">85%</td><td class="xi-patterns-ml-explainability-037">Action-oriented users</td></tr>
+          <tr class="xi-patterns-ml-explainability-035"><td class="xi-patterns-ml-explainability-037"><strong>Comparative</strong></td><td class="xi-patterns-ml-explainability-037">90%</td><td class="xi-patterns-ml-explainability-037">80%</td><td class="xi-patterns-ml-explainability-037">Choice / trade-off scenarios</td></tr>
+          <tr class="xi-patterns-ml-explainability-035"><td class="xi-patterns-ml-explainability-037"><strong>Reasoning Path</strong></td><td class="xi-patterns-ml-explainability-037">100%*</td><td class="xi-patterns-ml-explainability-037">70%</td><td class="xi-patterns-ml-explainability-037">Compliance / critical decisions</td></tr>
+          <tr><td class="xi-patterns-ml-explainability-037"><strong>Full network details</strong></td><td class="xi-patterns-ml-explainability-037">100%</td><td class="xi-patterns-ml-explainability-037">5%</td><td class="xi-patterns-ml-explainability-037">Required by law / research only</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="xi-patterns-ml-explainability-038">*If tree-based.</p>
+  </section>
+
+  <section class="card-gold xi-patterns-ml-explainability-039">
+    <h3 class="card-title xi-patterns-ml-explainability-017">See This Pattern In Action</h3>
+    <ul class="t-cap-loose xi-patterns-ml-explainability-040">
+      <li class="xi-patterns-ml-explainability-041"><strong><a class="xi-patterns-ml-explainability-009" href="../case-studies/fintech.html">AI-Assisted Due Diligence</a>:</strong> the surface that let analysts pull a score apart and see why the model ranked a deal.</li>
+      <li class="xi-patterns-ml-explainability-041"><strong><a class="xi-patterns-ml-explainability-009" href="../case-studies/adtech.html">Programmatic Advertising Platform</a>:</strong> the reasoning printed on the plan itself — which audiences, which environments, what trade-off against the brief.</li>
+    </ul>
+  </section>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section class="card-gold xi-patterns-ml-explainability-039">
+    <div class="eyebrow xi-patterns-ml-explainability-041">Get AI design patterns in your inbox</div>
+    <p class="u-ui xi-patterns-ml-explainability-028">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
+    <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+      <input class="t-sans-ui card-seg xi-patterns-ml-explainability-042" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
+      <button class="lbl-eyebrow-500 btn-b xi-patterns-ml-explainability-043" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
+    </form>
+  </section>
+
+  <section class="xi-patterns-ml-explainability-044">
+    <div class="eyebrow xi-patterns-ml-explainability-041">Companion essay</div>
+    <a class="xi-patterns-ml-explainability-045" href="../writing/explainability.html">The Explainability Layer: Making AI Legible →</a>
+  </section>
+
+  <div class="btn-row">
+    <a class="lbl-badge-bg btn-a xi-patterns-ml-explainability-046 hv-patterns-ml-explainability-1" href="./human-in-loop.html">Next pattern / Human-in-Loop →</a>
+    <a class="lbl-badge-gold btn-a-ghost xi-patterns-ml-explainability-047 hv-patterns-ml-explainability-2" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom">Send me the role ↗</a>
+  </div>
+<section class="measure-t">
+    <div class="xi-patterns-ml-explainability-048">
+      <div class="eyebrow xi-patterns-ml-explainability-041">Limits — when NOT to use this</div>
+      <p class="u-body xi-patterns-ml-explainability-049">Reasons the user can't verify or act on become noise — by week three, unread explanation chips are pixels. Rotate to showing reasons only when they'd change the decision (low confidence, high stakes, disagreement), not on every card. Explaining everything equally is the same as explaining nothing.</p>
+    </div>
+  </section>
+</div></main>
+
+<footer>
+  <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
+  <button class="dyslexia-toggle" id="dyslexiaToggle" aria-pressed="false" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+    <span>Dyslexia-friendly</span>
+  </button>
+  <div class="footer-note">No copyright · Design is for all</div>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon xi-patterns-ml-explainability-050" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+</footer>
+
+<script>
+const toggle = document.getElementById('dyslexiaToggle');
+if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on'; if (isDyslexic) { document.body.classList.add('dyslexia-mode'); toggle.setAttribute('aria-pressed', 'true'); } toggle.addEventListener('click', () => { document.body.classList.toggle('dyslexia-mode'); const isOn = document.body.classList.contains('dyslexia-mode'); toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false'); localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off'); }); }
+document.addEventListener('click', (e) => { const cta = e.target.closest('[data-cta]'); if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' }); });
+
+// Scroll depth — fires once per threshold (25/50/75/100)
+const scrollDepthHits = new Set();
+function trackScrollDepth() {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (docHeight <= 0) return;
+  const pct = Math.min(100, Math.floor((window.scrollY / docHeight) * 100));
+  [25, 50, 75, 100].forEach(threshold => {
+    if (pct >= threshold && !scrollDepthHits.has(threshold)) {
+      scrollDepthHits.add(threshold);
+      if (typeof gtag === 'function') gtag('event', 'scroll_depth', { percent: threshold });
+    }
+  });
+}
+window.addEventListener('scroll', trackScrollDepth, { passive: true });
+
+// Section visibility — fires once per section when 50% in viewport
+const sectionViewObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.viewed) {
+      entry.target.dataset.viewed = '1';
+      if (typeof gtag === 'function') {
+        gtag('event', 'section_view', { section_id: entry.target.id });
+      }
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s));
+</script>
+
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script src="./demos.js?v=2" defer></script>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ember">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical Due Diligence Platform — Arpit Maheshwari</title>
+<meta name="description" content="Case study: LLM-powered technical due diligence for VC and PE firms. An LLM read the code and docs and extracted the evidence; the design grounded every verdict in a cited source so partners would stand on it. Cycles 3 weeks to 4 days.">
+<meta name="robots" content="noindex">
+<!-- PRE-F3 BACKUP (2026-08-14): narrative before the framework rewrite. Unlinked. -->
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/case-studies/vc-diligence.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Technical Due Diligence Platform — Case Study | Arpit Maheshwari">
+<meta property="og:description" content="The model extracted the evidence; the design made partners willing to stand on it. Diligence cycles 3 weeks → 4 days.">
+<meta property="og:url" content="https://arpitmaheshwari.com/case-studies/vc-diligence.html">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/vc-diligence-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Technical Due Diligence Platform — Case Study">
+<meta name="twitter:description" content="Partners bet millions on claims they can't personally check. The design made them willing to stand on the model's extraction.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<noscript></noscript>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Technical Due Diligence Platform",
+  "description":"Case study on designing AI-powered technical due-diligence for venture-capital and private-equity firms.",
+  "author":{"@type":"Person","name":"Arpit Maheshwari"},
+  "datePublished":"2026-03-15",
+  "dateModified":"2026-05-24"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://arpitmaheshwari.com/"},
+    {"@type":"ListItem","position":2,"name":"Work","item":"https://arpitmaheshwari.com/#featured-case-studies"},
+    {"@type":"ListItem","position":3,"name":"Technical Due Diligence Platform","item":"https://arpitmaheshwari.com/case-studies/vc-diligence.html"}
+  ]
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PFY6ME99K8');
+</script>
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../styles.css?v=p62">
+<link rel="stylesheet" href="../ember.css?v=e109">
+</head>
+<body class="p-case-studies-vc-diligence">
+<a href="#main" class="skip-link">Skip to content</a>
+<svg class="xi-case-studies-vc-diligence-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+</svg>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a class="row-ic xi-case-studies-vc-diligence-002" href="../index.html"><img class="xi-case-studies-vc-diligence-003" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies" aria-current="true">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
+  <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
+  </nav>
+
+
+<header class="case-hero">
+  <div class="case-hero__in case-hero__in--solo">
+    <div>
+      <p class="case-hero__kicker">VC &amp; PE · Technical Due Diligence · NDA</p>
+      <h1>Technical Due Diligence Platform</h1>
+      <p class="case-hero__hook">Partners stake millions on technical claims they'll never personally verify. So I made them do more work, on purpose — sign-off stays locked until every signal's evidence has been opened. The friction was the product, and it cut three-week cycles to four days.</p>
+      <p class="hand xi-case-studies-vc-diligence-004" aria-hidden="true">no source, no verdict — the whole design in five words</p>
+      <div class="case-stats">
+        <div class="case-stat"><b>3 wks → 4 days</b><span>diligence cycle time</span></div>
+        <div class="case-stat"><b>16</b><span>dimensions analyzed — a finding becomes a signal only at sufficient confidence</span></div>
+        <div class="case-stat"><b>VC + PE</b><span>both fund types served</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="section xi-case-studies-vc-diligence-005"><div class="measure-c">
+
+  <!-- VITALS STRIP -->
+  <dl class="case-vitals">
+    <div><dt>Role</dt><dd>Product &amp; Design Lead</dd></div>
+    <div><dt>Team</dt><dd>Alongside the engineers and data scientists who built the model</dd></div>
+    <div><dt>Surface</dt><dd>Technical-DD platform · VC + PE</dd></div>
+    <div><dt>Cycle</dt><dd class="gold">3 wks → 4 days</dd></div>
+    <div><dt>Status</dt><dd>Shipped · under NDA</dd></div>
+  </dl>
+
+  <!-- OWNERSHIP — the honest split, scannable -->
+  <div class="framed-tight xi-case-studies-vc-diligence-006">
+  <div class="rcpt-r-tight xi-case-studies-vc-diligence-007">
+    <div class="lbl-eyebrow xi-case-studies-vc-diligence-008">Owned</div>
+    <div class="t-ui xi-case-studies-vc-diligence-009">Product definition and design of the verdict surface, and the provenance gate — no verdict ships without a cited source.</div>
+  </div>
+  <div class="rcpt-r-tight">
+    <div class="lbl-eyebrow xi-case-studies-vc-diligence-008">Shared</div>
+    <div class="t-ui xi-case-studies-vc-diligence-009">What counted as sufficient confidence, with the engineers and data scientists who built the model.</div>
+  </div>
+  <div class="rcpt-r-tight-last xi-case-studies-vc-diligence-007">
+    <div class="lbl-meta xi-case-studies-vc-diligence-008">Not mine</div>
+    <div class="t-ui-muted-tight xi-case-studies-vc-diligence-009">The model itself and the code-analysis pipeline.</div>
+  </div>
+  </div>
+  <section class="case-gate" aria-label="Summary of this case study">
+    <p class="cg-l">The short version</p>
+    <p>A partner has four days to judge whether a startup's technology is real. An LLM could read the whole codebase in an afternoon, and diligence still took three weeks — because a correct verdict nobody can audit is worth nothing on the day of the deal. So <b>no verdict is reviewable until its evidence is</b>: 16 dimensions of analysis, distilled to signals only at sufficient confidence, each drilling to its cited source. <b>3 wks &rarr; 4 days</b>. The model and the code-analysis pipeline were not mine.</p>
+  </section>
+
+
+  <div class="case-jump" role="navigation" aria-label="Jump to section">
+    <a href="#the-symptom">The symptom</a>
+    <a href="#the-culprit">The real culprit</a>
+    <a href="#the-receipt">The receipt</a>
+  </div>
+
+  <!-- THE BEFORE — what the firm thought it was buying -->
+  <figure class="fig-paper">
+    <img class="xi-case-studies-vc-diligence-010" src="../assets/visuals/case-vc.svg?v=3" alt="Diagram: findings analyzed across sixteen dimensions; only those clearing a confidence bar become evidence-backed signals feeding one auditable verdict; diligence cut from three weeks to four days." loading="lazy" width="1280" height="400">
+    <figcaption>Evidence-backed signals, one verdict a partner can stand on · 3 weeks to 4 days</figcaption>
+  </figure>
+
+  <!-- THE HOOK — the symptom, stated as a mystery -->
+  <p class="t-standfirst xi-case-studies-vc-diligence-011">A partner has four days to decide whether a startup's technology is real, and millions riding on the answer. An LLM could read the whole codebase in an afternoon — chunked and retrieved, since no context window holds a repo whole. The diligence still took three weeks. The bottleneck was never the reading.</p>
+  <p class="lbl-cap xi-case-studies-vc-diligence-012">A diagnosis · symptom → wrong suspects → the real culprit</p>
+
+  <!-- §01 — THE SYMPTOM -->
+  <section class="xi-case-studies-vc-diligence-013" id="the-symptom">
+    <h2 class="section-title xi-case-studies-vc-diligence-014">
+      The symptom: a fast model, and a verdict nobody would sign.
+    </h2>
+    <p class="t-body xi-case-studies-vc-diligence-015">VC and PE partners stake millions on a startup's technology on claims they will never personally check. They can't read the codebase. They can't reproduce the benchmark. So the deal stalls in a three-week diligence cycle while analysts assemble something a partner is willing to put their name to.</p>
+    <p class="t-body xi-case-studies-vc-diligence-015">An LLM handled the hard technical work in an afternoon: read the unstructured repos, read the design docs, and analyze each finding across sixteen dimensions. The extraction was never the problem.</p>
+    <p class="t-body">The problem was that a partner would read a clean machine verdict and still pick up the phone to re-check it by hand. The LLM produced an answer. It did not produce something anyone would stand on. That is what kept the cycle at three weeks.</p>
+  </section>
+
+  <!-- §02 — THE WRONG SUSPECTS -->
+  <section class="xi-case-studies-vc-diligence-016">
+    <h2 class="section-title xi-case-studies-vc-diligence-014">
+      The usual suspects: a smarter model, a higher score.
+    </h2>
+    <p class="t-body xi-case-studies-vc-diligence-015">The obvious fixes all pointed at the engine. Make the model read more. Train it on more deals. Surface a single, confident risk score per company so the partner has one number to act on. Every one of those sharpens a tool the partner had already decided not to use.</p>
+    <p class="t-body">Because a partner staking millions does not distrust a number for being imprecise. They distrust it for being unaccountable. A higher-confidence score the partner still can't trace back to evidence is just a more persuasive thing to be wrong about — and the first time it's wrong on a real deal, the whole platform goes back in a drawer.</p>
+  </section>
+
+  <!-- §03 — THE REAL CULPRIT + THE MOVE -->
+  <section class="xi-case-studies-vc-diligence-013" id="the-culprit">
+    <h2 class="section-title xi-case-studies-vc-diligence-014">
+      The real culprit: the verdict had no chain of evidence.
+    </h2>
+    <p class="t-body xi-case-studies-vc-diligence-015"><strong class="xi-case-studies-vc-diligence-017">The design was tested where it would live:</strong> usability sessions with the investment analysts who'd stake their names on its output. The verdict was right. That was exactly why it was dangerous. A correct verdict the partner couldn't audit is indistinguishable, on the day of the deal, from a confident hallucination — the exact failure mode an LLM is prone to, and the one this design is built to guard against. The missing piece was never accuracy — it was provenance: grounding, a path from the generated verdict down to the cited source behind it, the repo scan, the infra audit, the interview note. Retrieval-grounded, in the language of the field: every claim traceable to the document it came from.</p>
+    <p class="t-body xi-case-studies-vc-diligence-015">So the design work sat downstream of the extraction, in the trust it had to earn. Every signal carries its own confidence and, more importantly, its own cited source. Each score maps to a next step a partner can actually take — proceed, attach a condition, send an analyst back. Citations aren't the innovation here &mdash; in 2026 they're table stakes; the work was making them cheap enough to check that a partner actually checked them. The one decision that organized everything: <strong class="xi-case-studies-vc-diligence-017">no verdict is reviewable until its evidence is.</strong> A partner cannot sign off until they've opened every signal and seen the trail underneath each one.</p>
+    <!-- PLATE — production-fidelity reconstruction, synthetic data -->
+    
+    <div class="plV" role="img" aria-label="Reconstructed technical-diligence dossier, partner view: verdict 'Proceed — with conditions' over the signals that crossed the confidence bar, each carrying the evidence it was verified against, with findings below the bar held out of the report — a deck benchmark could not be reproduced — each with a confidence figure and a source chip; an evidence rail quotes the engineer's reproduction note showing results roughly 40% below the published figure, and a partner sign-off reads 'Signed — conditions attached' with an independent benchmark required before close.">
+      <div class="plV-chrome" aria-hidden="true"><i></i><i></i><i></i><span>technical-diligence · partner view · reconstruction</span></div>
+      <div class="plV-app">
+        <div class="plV-bar">
+          <span class="plV-brand">Diligence Dossier</span>
+          <span class="plV-deal">Deal: <b>Project Ridgeline</b> · Series B</span>
+          <span class="plV-elapsed">4 days elapsed</span>
+        </div>
+        <div class="plV-body">
+          <div class="plV-main">
+            <div class="plV-vlab">Verdict</div>
+            <div class="plV-verdict">Proceed — <em>with conditions</em></div>
+            <div class="plV-sub">16 dimensions analyzed · signals only at sufficient confidence · every claim drills to its source</div>
+            <div class="plV-sig">
+              <span class="plV-sname">Signal A-14<small>dependency three majors behind upstream</small></span>
+              <span class="plV-st clear">Clear</span><span class="plV-conf">conf 91%</span><span class="plV-src">repo scan · 214 files</span>
+            </div>
+            <div class="plV-sig">
+              <span class="plV-sname">Signal B-02<small>one job queue is the chokepoint at plan scale</small></span>
+              <span class="plV-st clear">Clear</span><span class="plV-conf">conf 88%</span><span class="plV-src">design docs · §4</span>
+            </div>
+            <div class="plV-sig">
+              <span class="plV-sname">Signal C-09<small>two contributors carry the commit history</small></span>
+              <span class="plV-st clear">Clear</span><span class="plV-conf">conf 76%</span><span class="plV-src">commit history · release cadence</span>
+            </div>
+            <div class="plV-sig sel">
+              <span class="plV-sname">Signal D-05<small>benchmark in the deck could not be reproduced</small></span>
+              <span class="plV-st watch">Watch</span><span class="plV-conf">conf 64%</span><span class="plV-src">founder interviews · reference calls</span>
+            </div>
+            <div class="plV-foot">12 further findings stayed below the bar &middot; sign-off unlocks only after every signal&rsquo;s evidence trail is opened</div>
+          </div>
+          <div class="plV-rail">
+            <div class="plV-rl">Evidence — signal D-05</div>
+            <div class="plV-quote">“…the throughput benchmark on p.6 of the deck could not be reproduced from the released build; observed results were <mark>~40% below the published figure</mark>…”</div>
+            <div class="plV-cite">engineer's reproduction note · run 2 of 2</div>
+            <span class="plV-open">Open the trail ↗</span><span class="plV-more">3 more items</span>
+            <div class="plV-signoff">
+              <div class="plV-rl">Partner sign-off</div>
+              <span class="plV-signed">Signed — conditions attached</span>
+              <div class="plV-cond">condition: independent benchmark before close</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <figcaption class="plV-caption">
+      <span class="lbl-eyebrow xi-case-studies-vc-diligence-018">Plate 02 · Diligence dossier — reconstruction · all names and figures synthetic</span>
+      <span class="t-quote-cap xi-case-studies-vc-diligence-019">Redrawn from memory at production fidelity. The verdict a partner can stand on: signals, each with a trail, and a sign-off that prices the doubt instead of rubber-stamping it.</span>
+    </figcaption>
+    <p class="t-body xi-case-studies-vc-diligence-015">Try it — open each signal to see the evidence, then sign:</p>
+    <section class="recon" id="recon-vc" role="group" aria-label="Interactive reconstruction: a partner verdict opened into the evidence-backed signals beneath it, then partner sign-off">
+    <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA</div>
+    <div class="recon-stage">
+      
+      <div class="rxv-card">
+        <p class="rxv-vlabel">Dossier · Company K</p>
+        <p class="rxv-vtext">Technical verdict: <span>proceed with conditions</span></p>
+        <div class="rxv-row">
+          <button type="button" class="rxv-sig" id="rxv-s1" aria-expanded="false" aria-controls="rxv-t1" data-cta="recon" data-location="recon-vc">Signal A-14 <span class="rxv-right"><span class="rxv-st">confidence 0.86</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
+          <div class="rxv-trail" id="rxv-t1">
+            <p class="rxv-ev">Core modules read clean; test coverage thins around the billing paths.</p>
+            <p class="rxv-cite">source: repo scan · static analysis pass 02</p>
+          </div>
+        </div>
+        <div class="rxv-row">
+          <button type="button" class="rxv-sig" id="rxv-s2" aria-expanded="false" aria-controls="rxv-t2" data-cta="recon" data-location="recon-vc">Signal B-02 <span class="rxv-right"><span class="rxv-st watch">confidence 0.71 · watch</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
+          <div class="rxv-trail" id="rxv-t2">
+            <p class="rxv-ev">A single job queue becomes the chokepoint well before the growth plan needs it to hold.</p>
+            <p class="rxv-cite">source: design-doc review · infra audit 01</p>
+          </div>
+        </div>
+        <div class="rxv-row">
+          <button type="button" class="rxv-sig" id="rxv-s3" aria-expanded="false" aria-controls="rxv-t3" data-cta="recon" data-location="recon-vc">Signal C-09 <span class="rxv-right"><span class="rxv-st">confidence 0.79</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
+          <div class="rxv-trail" id="rxv-t3">
+            <p class="rxv-ev">Merge cadence is steady, but two contributors carry most of the commit history.</p>
+            <p class="rxv-cite">source: commit history · release cadence</p>
+          </div>
+        </div>
+        <div class="rxv-row">
+          <button type="button" class="rxv-sig" id="rxv-s4" aria-expanded="false" aria-controls="rxv-t4" data-cta="recon" data-location="recon-vc">Signal D-05 <span class="rxv-right"><span class="rxv-st watch">confidence 0.68 · watch</span><span class="rxv-chev" aria-hidden="true">+</span></span></button>
+          <div class="rxv-trail" id="rxv-t4">
+            <p class="rxv-ev">Claims in the deck match the demo; one benchmark could not be reproduced.</p>
+            <p class="rxv-cite">source: founder interviews · reference calls</p>
+          </div>
+        </div>
+        <p class="rxv-hint xi-case-studies-vc-diligence-020">Analyzed across 16 dimensions · 12 further findings stayed below the confidence bar and never reached this report</p>
+        <div class="rxv-foot">
+          <button type="button" class="rxv-sign" id="rxv-sign" disabled title="review every signal first" data-cta="recon" data-location="recon-vc">Partner sign-off</button>
+          <p class="rxv-hint" id="rxv-hint" aria-live="polite">review every signal first</p>
+        </div>
+      </div>
+    </div>
+    <div class="recon-caption">Keyboard-friendly · nothing you click here leaves the page</div>
+  </section>
+  <script>(function(){var r=document.getElementById('recon-vc');if(!r)return;
+    var opened=0,seen={},sign=r.querySelector('#rxv-sign'),hint=r.querySelector('#rxv-hint');
+    r.querySelectorAll('.rxv-sig').forEach(function(b){b.addEventListener('click',function(){
+      var t=document.getElementById(b.getAttribute('aria-controls'));
+      var open=t.classList.toggle('open');b.setAttribute('aria-expanded',String(open));
+      if(!seen[b.id]){seen[b.id]=1;opened++;}
+      if(opened===4&&sign.disabled){sign.disabled=false;sign.removeAttribute('title');hint.textContent='every signal reviewed';}
+    });});
+    sign.addEventListener('click',function(){if(sign.classList.contains('rxv-signed'))return;
+      sign.classList.add('rxv-signed');sign.textContent='Signed — conditions attached';hint.textContent='';});
+  })();</script>
+
+    <p class="t-body xi-case-studies-vc-diligence-021">That sign-off gate looks like a small interaction. It was the whole argument. It turns the LLM from an oracle you either believe or ignore into an evidence file a partner walks through, each verdict grounded in its cited source — which is the difference between a tool that sits in a drawer and one that compresses three weeks into four days. The analyst's overrides feed back to the model, so the trust runs both ways.</p>
+  </section>
+
+  <!-- §04 — WHAT IT COST -->
+  <section class="xi-case-studies-vc-diligence-013" id="the-cost">
+    <h2 class="section-title xi-case-studies-vc-diligence-014">
+      What it cost: I made the partner do more work, on purpose.
+    </h2>
+    <figure class="fig-paper xi-case-studies-vc-diligence-022">
+      <img class="xi-case-studies-vc-diligence-010" src="../assets/visuals/vc-signoff.svg?v=1" alt="Diagram: a partner verdict over three signals, two with their evidence trails opened and one not yet opened, with the sign-off control locked until every trail has been read." loading="lazy" width="1180" height="360">
+      <figcaption>Sign-off stays locked until the evidence has been read</figcaption>
+    </figure>
+
+    <p class="t-body xi-case-studies-vc-diligence-015">The honest line: the gate adds friction. A partner who just wants the number has to open every signal before they can sign — I chose to slow the one moment everyone wanted to speed up. The first reaction was exactly what you'd expect: <em>why am I clicking through evidence when the machine already decided?</em></p>
+    <p class="t-body">The friction is the product. A verdict a partner clicks through is a verdict they'll defend in the investment committee; a one-tap score is one they'll quietly re-check by hand, which is how you end up back at three weeks. I priced the extra clicks in on purpose. The thing that actually compressed the cycle wasn't a faster model — it was a partner who, for the first time, didn't feel the need to verify it twice.</p>
+  </section>
+
+  <!-- THE RECEIPT -->
+  <section class="xi-case-studies-vc-diligence-013" id="the-receipt">
+    <h2 class="section-title xi-case-studies-vc-diligence-023">The receipt.</h2>
+    <p class="lbl-cap xi-case-studies-vc-diligence-024">What changed, and for whom</p>
+    <p class="t-body xi-case-studies-vc-diligence-024">And the 3 wks → 4 days belongs to the whole platform — model, retrieval, pipeline, surface; the part I claim is the design that made partners willing to stand on it for live deals.</p>
+    <div class="rcpt-box xi-case-studies-vc-diligence-006">
+      <div class="rcpt-r xi-case-studies-vc-diligence-007">
+        <div class="lbl-eyebrow xi-case-studies-vc-diligence-008">Cycle time</div>
+        <div class="t-ui xi-case-studies-vc-diligence-009">3 weeks → 4 days per diligence cycle</div>
+      </div>
+      <div class="rcpt-r">
+        <div class="lbl-eyebrow xi-case-studies-vc-diligence-008">Signals scored</div>
+        <div class="t-ui xi-case-studies-vc-diligence-009">16 analysis dimensions — a finding became a signal only at sufficient confidence, each one mapped to a next step</div>
+      </div>
+      <div class="rcpt-r xi-case-studies-vc-diligence-007">
+        <div class="lbl-eyebrow xi-case-studies-vc-diligence-008">Provenance</div>
+        <div class="t-ui xi-case-studies-vc-diligence-009">Every claim drills from the summary down to the source signal and code-quality measure behind it</div>
+      </div>
+      <div class="rcpt-r-last">
+        <div class="lbl-eyebrow xi-case-studies-vc-diligence-008">Fund types served</div>
+        <div class="t-ui xi-case-studies-vc-diligence-009">VC + PE — both, on the same dossier</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE THIS WOULDN'T TRANSFER — the boundary on the claim (2026-08-02) -->
+  <section class="note-gold-b xi-case-studies-vc-diligence-025">
+    <p class="lbl-eyebrow xi-case-studies-vc-diligence-026">Where this wouldn’t transfer</p>
+    <p class="t-ui-175 xi-case-studies-vc-diligence-027">Deliberate friction survives only when the person clicking is personally accountable for the verdict. Give the same evidence gate to a user with no downside and they’ll route around it — the friction has to buy them something they actually need.</p>
+  </section>
+
+  <!-- THE PRINCIPLE -->
+  <section class="xi-case-studies-vc-diligence-016">
+    <h2 class="section-title xi-case-studies-vc-diligence-014">The rule I took away.</h2>
+    <p class="t-body">The fastest way to make an expert trust a model is rarely a better model. It's giving them the receipts, and refusing to let them sign until they've read them.</p>
+  </section>
+
+  <!-- NDA CALENDLY CTA -->
+  <section class="note-gold xi-case-studies-vc-diligence-025">
+    <p class="t-standfirst xi-case-studies-vc-diligence-028">The framework is the part worth walking through.</p>
+    <p class="t-body-muted xi-case-studies-vc-diligence-029">Details are confidential; I'll walk through the decisions, artifacts — the service blueprint included — and numbers on a call under mutual NDA.</p>
+    <a class="btn-label btn-a xi-case-studies-vc-diligence-030 hv-case-studies-vc-diligence-1" href="../index.html#contact" data-cta="send-role" data-location="nda-case-cta">Send me the role <svg class="icon xi-case-studies-vc-diligence-031" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+  </section>
+
+  <!-- RELATED PATTERNS -->
+  <section class="xi-case-studies-vc-diligence-032">
+    <h3 class="t-card-title xi-case-studies-vc-diligence-011">Design Patterns Demonstrated</h3>
+    <ul class="t-ui-muted-loose xi-case-studies-vc-diligence-033">
+      <li class="xi-case-studies-vc-diligence-034"><strong><a class="xi-case-studies-vc-diligence-035" href="../patterns/confidence-scores.html">Confidence Score Patterns</a>:</strong> Per-signal and per-document confidence, each one mapping to a next step a partner can take.</li>
+      <li class="xi-case-studies-vc-diligence-034"><strong><a class="xi-case-studies-vc-diligence-035" href="../patterns/ml-explainability.html">ML Explainability Patterns</a>:</strong> Provenance on every claim — a clean drill from the summary down to the source signal and code-quality measure behind it.</li>
+      <li><strong><a class="xi-case-studies-vc-diligence-035" href="../patterns/human-in-loop.html">Human-in-Loop Patterns</a>:</strong> Analyst overrides fed back to the model; partner sign-off as real workflow, not a rubber stamp.</li>
+    </ul>
+  </section>
+
+  <p class="t-ui-muted xi-case-studies-vc-diligence-036">I write about this in <a class="xi-case-studies-vc-diligence-035" href="https://arpitmaheshwari.substack.com" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="case-study-substack">my newsletter ↗</a></p>
+
+  <!-- SEQUENTIAL NAVIGATION -->
+  <p class="t-quote-sm xi-case-studies-vc-diligence-037">The gate priced the doubt. Next: back to where the whole argument starts paying — a business model rewritten from inside the design seat.</p>
+  <div class="btn-row xi-case-studies-vc-diligence-038">
+    <a class="lbl-pill-bg btn-a xi-case-studies-vc-diligence-039 hv-case-studies-vc-diligence-2" href="./ptc.html">Next case study →</a>
+    <a class="lbl-pill-gold btn-a-ghost xi-case-studies-vc-diligence-040 hv-case-studies-vc-diligence-3" href="../index.html#contact" data-cta="send-role" data-location="case-study-bottom">Send me the role ↗</a>
+  </div>
+</div></main>
+
+<footer>
+  <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
+  <button class="dyslexia-toggle" id="dyslexiaToggle" aria-pressed="false" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+    <span>Dyslexia-friendly</span>
+  </button>
+  <div class="footer-note">No copyright · Design is for all</div>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon xi-case-studies-vc-diligence-041" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+</footer>
+
+<script>
+// Dyslexia toggle
+const toggle = document.getElementById('dyslexiaToggle');
+if (toggle) {
+  const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on';
+  if (isDyslexic) {
+    document.body.classList.add('dyslexia-mode');
+    toggle.setAttribute('aria-pressed', 'true');
+  }
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dyslexia-mode');
+    const isOn = document.body.classList.contains('dyslexia-mode');
+    toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+    localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off');
+  });
+}
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Mobile menu
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+  navLinks.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+</script>
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script src="../assets/recon-live.js" defer></script>
+</body>
+</html>

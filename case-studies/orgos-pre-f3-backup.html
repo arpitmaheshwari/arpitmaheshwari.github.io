@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ember">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OrgOS · Transparent Org Tooling — Arpit Maheshwari</title>
+<meta name="description" content="Case study: designing an operating system for radically transparent organisations — open finances, peer-set salaries, zero managers. 200-person team.">
+<meta name="robots" content="noindex">
+<!-- PRE-F3 BACKUP (2026-08-14): narrative before the framework rewrite. Unlinked. -->
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/case-studies/orgos.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OrgOS · Transparent Org Tooling | Arpit Maheshwari">
+<meta property="og:description" content="Designing transparent operations across 8 interconnected modules for an organization with zero hierarchy and open salaries.">
+<meta property="og:url" content="https://arpitmaheshwari.com/case-studies/orgos.html">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/orgos-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OrgOS · Transparent Org Tooling">
+<meta name="twitter:description" content="Radical transparency as the coordination mechanism for a 200-person org with zero managers.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<noscript></noscript>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"OrgOS · Transparent Org Tooling",
+  "description":"Case study on designing a unified platform for transparent, decentralized operations across sales, finance, people, and projects.",
+  "author":{"@type":"Person","name":"Arpit Maheshwari"},
+  "datePublished":"2026-01-15",
+  "dateModified":"2026-05-24"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://arpitmaheshwari.com/"},
+    {"@type":"ListItem","position":2,"name":"Work","item":"https://arpitmaheshwari.com/#featured-case-studies"},
+    {"@type":"ListItem","position":3,"name":"OrgOS · Transparent Org Tooling","item":"https://arpitmaheshwari.com/case-studies/orgos.html"}
+  ]
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PFY6ME99K8');
+</script>
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../styles.css?v=p62">
+<link rel="stylesheet" href="../ember.css?v=e109">
+</head>
+<body class="p-case-studies-orgos">
+<a href="#main" class="skip-link">Skip to content</a>
+<svg class="xi-case-studies-orgos-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+</svg>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a class="row-ic xi-case-studies-orgos-002" href="../index.html"><img class="xi-case-studies-orgos-003" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies" aria-current="true">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
+  <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
+  </nav>
+
+
+<header class="case-hero">
+  <div class="case-hero__in case-hero__in--solo">
+    <div>
+      <p class="case-hero__kicker">Org Design · NDA</p>
+      <h1>OrgOS · Transparent Org Tooling</h1>
+      <p class="case-hero__hook">Two hundred people, no managers. Eight modules doing the job of an org chart — coordination that doesn't smuggle a boss back in through the side door.</p>
+      <p class="hand xi-case-studies-orgos-004" aria-hidden="true">‘zero managers’ is the outcome — never the pitch</p>
+      <div class="case-stats">
+        <div class="case-stat"><b>200</b><span>people coordinating, self-serve</span></div>
+        <div class="case-stat"><b>0</b><span>managers in the loop</span></div>
+        <div class="case-stat"><b>8</b><span>modules · one object model</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="section xi-case-studies-orgos-005"><div class="measure-c">
+
+  <!-- META · LOCKED PHASE 11E -->
+  <p class="lbl-eyebrow xi-case-studies-orgos-006">Product Strategy · Enterprise SaaS · Organizational Design · 2025</p>
+
+  <!-- VITALS STRIP -->
+  <dl class="case-vitals">
+    <div><dt>Role</dt><dd>Product &amp; Design Lead</dd></div>
+    <div><dt>Team</dt><dd>Four engineering streams + a PM</dd></div>
+    <div><dt>Surface</dt><dd>Internal operating system</dd></div>
+    <div><dt>Org</dt><dd class="gold">200 people · 0 managers · 8 modules</dd></div>
+    <div><dt>Status</dt><dd>Shipped · under NDA</dd></div>
+  </dl>
+
+  <!-- OWNERSHIP — the honest split, scannable -->
+  <div class="framed-tight xi-case-studies-orgos-007">
+  <div class="rcpt-r-tight xi-case-studies-orgos-008">
+    <div class="lbl-eyebrow xi-case-studies-orgos-009">Owned</div>
+    <div class="t-ui xi-case-studies-orgos-010">The definition and build order of the eight modules, and the interaction design across them.</div>
+  </div>
+  <div class="rcpt-r-tight">
+    <div class="lbl-eyebrow xi-case-studies-orgos-009">Shared</div>
+    <div class="t-ui xi-case-studies-orgos-010">Roadmap and delivery, with the PM and four engineering streams.</div>
+  </div>
+  <div class="rcpt-r-tight-last xi-case-studies-orgos-008">
+    <div class="lbl-meta xi-case-studies-orgos-009">Not mine</div>
+    <div class="t-ui-muted-tight xi-case-studies-orgos-010">The backend and the data model&rsquo;s implementation.</div>
+  </div>
+  </div>
+  <section class="case-gate" aria-label="Summary of this case study">
+    <p class="cg-l">The short version</p>
+    <p>A company of two hundred with no managers, where transparency did the coordinating — until the hallway stopped scaling. Every obvious feature (assign, approve, escalate) was a manager wearing a different name, so the job was <b>saying no</b> to each one. I replaced assignment with visibility: commitments, not tasks, across <b>8 modules</b> on one object model, for <b>200 people</b> with <b>0 managers</b> in the loop. I owned the module definition and interaction design; the backend was not mine.</p>
+  </section>
+
+
+  <div class="case-jump" role="navigation" aria-label="Jump to section">
+    <a href="#the-myth">The myth</a>
+    <a href="#the-move">The move</a>
+    <a href="#the-principle">The principle</a>
+  </div>
+
+  <!-- THE HOOK — the counter-intuitive claim that reframes the problem -->
+  <p class="t-standfirst xi-case-studies-orgos-011">Everyone wanted to hear that a 200-person company runs with zero managers. The harder truth: transparency was already doing the managers' job — and at 200 people it had quietly started to fail.</p>
+  <p class="lbl-cap xi-case-studies-orgos-012">Transparency worked · scaling it was the problem</p>
+  <!-- §01 — THE MYTH + THE STAKES -->
+  <section class="xi-case-studies-orgos-013" id="the-myth">
+    <h2 class="section-title xi-case-studies-orgos-014">
+      Transparency did the managers' job — until two hundred people broke it.
+    </h2>
+    <p class="xi-case-studies-orgos-015">The whole thing runs on transparency: salaries, finances, project assignments, reviews — open to everyone. That holds at forty. At two hundred, the hallway stops scaling. What lives in one person's head stays there, and the org grows a quiet hierarchy to route around the gap.</p>
+    <p class="t-body xi-case-studies-orgos-016">The ask said design tooling for a 200-person company with no management layer. The actual ask was narrower and harder: coordination with nobody standing above anybody. Every obvious feature — task assignment, approval flows, escalation paths — quietly appoints somebody the router.</p>
+    <p class="t-body">Here the user base and the org structure were the same two hundred humans. So every design decision was an organizational one — there was no other kind. Get a screen wrong and you don't ship a bug; you reintroduce the boss the whole company was built to do without.</p>
+  </section>
+
+  <!-- §02 — THE HARD PART -->
+  <section class="xi-case-studies-orgos-017">
+    <h2 class="section-title xi-case-studies-orgos-014">
+      The safe features all had a manager hiding inside them.
+    </h2>
+    <p class="t-body xi-case-studies-orgos-016">Every coordination tool ships the same defaults: assign the task, route it for approval, escalate when it stalls. Each one quietly puts somebody above somebody else. Build them and the org chart grows back overnight — just rendered in software instead of titles. The thing that made the company itself would have died in the tooling meant to support it.</p>
+    <p class="t-body">So the real deliverable was never a feature list. It was a coordination model that could carry two hundred people without ever electing a router — and the discipline to refuse every feature that smuggled one back in.</p>
+  </section>
+
+  <!-- §03 — THE MOVE + THE ONE DECISION -->
+  <section class="xi-case-studies-orgos-013" id="the-move">
+    <h2 class="section-title xi-case-studies-orgos-014">
+      I made transparency do the coordinating — pull, not push.
+    </h2>
+    <figure class="fig-paper xi-case-studies-orgos-018">
+      <img class="xi-case-studies-orgos-019" src="../assets/visuals/orgos-said-no.svg?v=1" alt="Diagram: three requested features — assign, approve, escalate — each struck through as a manager wearing a different name, replaced by one mechanism: visibility, with commitments published in the open. Eight modules speak one object model." loading="lazy" width="1180" height="400">
+      <figcaption>The features I said no to &mdash; and the one mechanism that replaced them</figcaption>
+    </figure>
+
+    <p class="t-body xi-case-studies-orgos-016">The one decision: replace assignment with visibility. Who's on what, who's blocked, who decides — visible to everyone, always. Pull, not push. Commitments, not assignments. Nobody hands you work; you see what's open and you pick it up. Eight modules — staffing, comp, OKRs, onboarding — all spoke one object model, so the org could rebuild its own process with nobody in the room to arbitrate.</p>
+    <!-- PLATE — production-fidelity reconstruction, synthetic data -->
+    
+    <div class="plO" role="img" aria-label="Reconstructed commitments board from the internal tool: three columns — open asks anyone can pick up, work people committed to themselves with a note that nobody assigned it, and decisions made in the open — under an app bar reading 200 people, 0 managers. All names are synthetic initials.">
+      <div class="plO-chrome" aria-hidden="true"><i></i><i></i><i></i><span>orgos · commitments · reconstruction</span></div>
+      <div class="plO-app">
+        <div class="plO-bar">
+          <span class="plO-brand">OrgOS</span>
+          <span class="plO-tabs"><span class="plO-tab on">Commitments</span><span class="plO-tab">Staffing</span><span class="plO-tab">Comp</span><span class="plO-tab">OKRs</span></span>
+          <span class="plO-count">200 people · 0 managers</span>
+        </div>
+        <div class="plO-body">
+          <div>
+            <div class="plO-colh"><b>Open asks</b> · anyone can pick up</div>
+            <div class="plO-card">
+              <div class="plO-ct">Q3 onboarding revamp — needs a writer</div>
+              <div class="plO-cx">Draft the new first-week guide; platform docs are stale</div>
+              <div class="plO-cf">needs: 1 person · visible to all</div>
+            </div>
+            <div class="plO-card">
+              <div class="plO-ct">Comp band review — data pass</div>
+              <div class="plO-cx">Pull the anonymised band data before the open session</div>
+              <div class="plO-cf">needs: 1 person · visible to all</div>
+            </div>
+            <div class="plO-card">
+              <div class="plO-ct">Retro facilitator — platform team</div>
+              <div class="plO-cx">Outside voice preferred; runbook attached</div>
+              <div class="plO-cf">needs: 1 person · visible to all</div>
+            </div>
+          </div>
+          <div>
+            <div class="plO-colh"><b>Committed</b> · self-assigned</div>
+            <div class="plO-card">
+              <div class="plO-ct">Onboarding object model — merge staffing fields</div>
+              <div class="plO-cx">Unblocks two other asks once the fields align</div>
+              <span class="plO-pick">nobody assigned this — RK picked it up</span>
+              <div class="plO-cf"><span class="plO-av">RK</span>committed by RK · Tue</div>
+            </div>
+            <div class="plO-card">
+              <div class="plO-ct">Quarterly comp letter template</div>
+              <div class="plO-cx">Plain-language version, same numbers everyone sees</div>
+              <div class="plO-cf"><span class="plO-av">MT</span>committed by MT · Wed</div>
+            </div>
+          </div>
+          <div>
+            <div class="plO-colh"><b>Decided</b> · in the open</div>
+            <div class="plO-card">
+              <div class="plO-ct">New pairing policy</div>
+              <div class="plO-cx">Decided by the people it affects · 14 voices</div>
+              <div class="plO-cf"><span class="plO-av">AS</span><span class="plO-dec">Decision doc public</span></div>
+            </div>
+            <div class="plO-card">
+              <div class="plO-ct">Travel budget</div>
+              <div class="plO-cx">Thresholds agreed in the open thread</div>
+              <div class="plO-cf"><span class="plO-dec">Decision doc public</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="plO-foot">who's on what, who's blocked, who decides — visible to everyone, always · pull, not push</div>
+      </div>
+    </div>
+    <figcaption class="plO-caption">
+      <span class="lbl-eyebrow xi-case-studies-orgos-020">Plate 04 · Commitments board — reconstruction · all names synthetic</span>
+      <span class="t-quote-cap xi-case-studies-orgos-021">Redrawn from memory at production fidelity. Coordination without a router: you see what's open, you pick it up — and the org chart never grows back.</span>
+    </figcaption>
+
+    <p class="t-body xi-case-studies-orgos-006">The board above is what it looked like; the one below is the same surface, live — flip transparency off and watch the coordination go with it. An open ask sits there until someone chooses it. That switch is the whole argument in one control.</p>
+
+  <!-- VISUAL HERO — interactive reconstruction -->
+  <section class="recon" id="recon-orgos" role="group" aria-label="Interactive reconstruction: commitments board with transparency toggle">
+    <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA</div>
+    <div class="recon-stage">
+      
+      <div class="rxo-toggle" role="group" aria-label="Transparency mode">
+        <button type="button" class="rxo-mode" aria-pressed="true" data-mode="on" data-cta="recon" data-location="recon-orgos">Transparency: on</button>
+        <button type="button" class="rxo-mode" aria-pressed="false" data-mode="off" data-cta="recon" data-location="recon-orgos">off</button>
+      </div>
+      <p class="rxo-note" id="rxo-note" role="status" aria-live="polite"></p>
+      <div class="rxo-board">
+        <div class="rxo-col" id="rxo-col-open">
+          <p class="rxo-colh">Open asks</p>
+          <button type="button" class="rxo-chip rxo-ask" data-cta="recon" data-location="recon-orgos"><b>Refactor onboarding flow — needs 2</b><span class="rxo-meta"><span class="rxo-own">RK</span> asked by</span><span class="rxo-lock" aria-hidden="true">🔒</span></button>
+          <button type="button" class="rxo-chip rxo-ask" data-cta="recon" data-location="recon-orgos"><b>Draft Q3 pricing note — needs 1</b><span class="rxo-meta"><span class="rxo-own">MT</span> asked by</span><span class="rxo-lock" aria-hidden="true">🔒</span></button>
+          <button type="button" class="rxo-chip rxo-ask" data-cta="recon" data-location="recon-orgos"><b>Translate help docs — needs 1</b><span class="rxo-meta"><span class="rxo-own">JL</span> asked by</span><span class="rxo-lock" aria-hidden="true">🔒</span></button>
+        </div>
+        <div class="rxo-col" id="rxo-col-committed">
+          <p class="rxo-colh">Committed</p>
+          <div class="rxo-chip"><b>Ship invoice templates</b><span class="rxo-meta"><span class="rxo-own">AS</span> committed</span><span class="rxo-lock" aria-hidden="true">🔒</span></div>
+          <div class="rxo-chip"><b>Rotate on-call schedule</b><span class="rxo-meta"><span class="rxo-own">PD</span> committed</span><span class="rxo-lock" aria-hidden="true">🔒</span></div>
+        </div>
+        <div class="rxo-col" id="rxo-col-blocked">
+          <p class="rxo-colh">Blocked</p>
+          <div class="rxo-chip"><b>Vendor contract review</b><span class="rxo-meta"><span class="rxo-own">KV</span> waiting on legal</span><span class="rxo-lock" aria-hidden="true">🔒</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="recon-caption">Keyboard-friendly · nothing you click here leaves the page</div>
+  </section>
+  <script>(function(){var r=document.getElementById('recon-orgos');if(!r)return;
+    r.querySelectorAll('.rxo-mode').forEach(function(b){b.addEventListener('click',function(){
+      r.querySelectorAll('.rxo-mode').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      r.classList.toggle('rxo-locked',b.dataset.mode==='off');
+    });});
+    var note=r.querySelector('#rxo-note'),com=r.querySelector('#rxo-col-committed'),t;
+    r.querySelectorAll('.rxo-ask').forEach(function(b){b.addEventListener('click',function(){
+      if(b.disabled)return;
+      com.appendChild(b);b.disabled=true;b.classList.add('rxo-moved');
+      note.textContent='you committed — nobody assigned you';
+      clearTimeout(t);t=setTimeout(function(){note.textContent='';},2000);
+    });});
+  })();</script>
+
+  </section>
+
+  <!-- §04 — THE HONEST LINE + THE PRINCIPLE -->
+  <!-- WHERE THIS WOULDN'T TRANSFER — the boundary on the claim (2026-08-02) -->
+  <section class="note-gold-b xi-case-studies-orgos-022">
+    <p class="lbl-eyebrow xi-case-studies-orgos-023">Where this wouldn’t transfer</p>
+    <p class="t-ui-175 xi-case-studies-orgos-024">This ran inside a company that already believed in radical transparency and had no management layer defending its own existence. Drop the same design into a conventional hierarchy and it fails on politics long before it fails on product.</p>
+  </section>
+
+  <!-- THE RECEIPT — the outcome the design had to earn -->
+  <section class="xi-case-studies-orgos-017">
+    <h2 class="section-title xi-case-studies-orgos-014">The receipt.</h2>
+    <div class="xi-case-studies-orgos-025">
+      <div><b class="t-metric xi-case-studies-orgos-026">250</b><span class="t-sans-ui-tight xi-case-studies-orgos-027">people run on it today — up from the 200 it was designed for</span></div>
+      <div><b class="t-metric xi-case-studies-orgos-026">0</b><span class="t-sans-ui-tight xi-case-studies-orgos-027">managers in the loop — the outcome, not the mandate</span></div>
+      <div><b class="t-metric xi-case-studies-orgos-026">8</b><span class="t-sans-ui-tight xi-case-studies-orgos-027">modules · one object model</span></div>
+    </div>
+    <p class="t-body">The test of a coordination model isn't the day it ships — it's the day the org outgrows the number it was designed for. The company has since grown to 250 people across a far more diverse set of teams, and they still run on it. The hallway that stopped scaling at two hundred didn't come back. Scoping the credit: zero managers is the founders' philosophy succeeding, and these numbers belong to the org. What I own is narrower and harder to fake — the tooling held when the philosophy met scale.</p>
+  </section>
+
+  <section class="xi-case-studies-orgos-013" id="the-principle">
+    <h2 class="section-title xi-case-studies-orgos-014">
+      What it cost: transparency only coordinates if people trust it enough to act.
+    </h2>
+    <p class="t-body">A board nobody trusts is just a prettier inbox. The design wasn't done when the screens shipped. It was done when people trusted them enough to commit — unasked. Coordination is a trust problem between people — the same problem I design for everywhere else, here just without a model in the loop.</p>
+  </section>
+
+  <!-- NDA CALENDLY CTA — locked phase 11E -->
+  <section class="note-gold xi-case-studies-orgos-022">
+    <p class="t-standfirst xi-case-studies-orgos-028">The interesting part is how transparency replaced the org chart.</p>
+    <p class="t-body-muted xi-case-studies-orgos-029">Out of respect for the client's confidentiality, the artifacts stay off the public page. Details are confidential; I'll walk through the artifacts — the service blueprint included — and numbers on a call under mutual NDA.</p>
+    <a class="btn-label btn-a xi-case-studies-orgos-030 hv-case-studies-orgos-1" href="../index.html#contact" data-cta="send-role" data-location="nda-case-cta">Send me the role <svg class="icon xi-case-studies-orgos-031" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+  </section>
+
+  <!-- CREDITS — role, span, ownership; NDA as respect for confidentiality -->
+  <dl class="case-vitals xi-case-studies-orgos-012">
+    <div><dt>Role</dt><dd>Product &amp; Design Lead · owned the coordination model end to end</dd></div>
+    <div><dt>Span</dt><dd>8 modules · one object model</dd></div>
+    <div><dt>What I owned</dt><dd>Refusing assignment, approval and escalation — three times over</dd></div>
+    <div><dt>Confidentiality</dt><dd class="gold">Shipped · under NDA — artifacts shared on a call</dd></div>
+  </dl>
+
+
+  <!-- RELATED PATTERNS -->
+  <section class="xi-case-studies-orgos-032">
+    <h3 class="t-card-title xi-case-studies-orgos-011">Design Patterns Demonstrated</h3>
+    <p class="t-ui-muted-loose xi-case-studies-orgos-016">This project is a detailed case study in designing for human-in-the-loop decision-making at scaled organizational settings:</p>
+    <ul class="t-ui-muted-loose xi-case-studies-orgos-033">
+      <li class="xi-case-studies-orgos-034"><strong><a class="xi-case-studies-orgos-035" href="../patterns/human-in-loop.html">Human-in-Loop Patterns</a>:</strong> Decentralized peer leveling, transparent company salary setting, and collaborative project prioritization bidding workflows.</li>
+    </ul>
+  </section>
+
+  <!-- FOOTER ACTION CTA -->
+  
+
+  <!-- SEQUENTIAL NAVIGATION -->
+  <p class="t-quote-sm xi-case-studies-orgos-036">Coordination without a model. Next: the highest-stakes version of the same bet — an LLM reading codebases for partners who sign in millions.</p>
+  <div class="btn-row xi-case-studies-orgos-037">
+    <a class="lbl-pill-bg btn-a xi-case-studies-orgos-038 hv-case-studies-orgos-2" href="./vc-diligence.html">Next case study →</a>
+    <a class="lbl-pill-gold btn-a-ghost xi-case-studies-orgos-039 hv-case-studies-orgos-3" href="../index.html#contact" data-cta="send-role" data-location="case-study-bottom">Send me the role ↗</a>
+  </div>
+</div></main>
+
+<footer>
+  <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
+  <button class="dyslexia-toggle" id="dyslexiaToggle" aria-pressed="false" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+    <span>Dyslexia-friendly</span>
+  </button>
+  <div class="footer-note">No copyright · Design is for all</div>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon xi-case-studies-orgos-040" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+</footer>
+
+<script>
+// Dyslexia toggle
+const toggle = document.getElementById('dyslexiaToggle');
+if (toggle) {
+  const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on';
+  if (isDyslexic) {
+    document.body.classList.add('dyslexia-mode');
+    toggle.setAttribute('aria-pressed', 'true');
+  }
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dyslexia-mode');
+    const isOn = document.body.classList.contains('dyslexia-mode');
+    toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+    localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off');
+  });
+}
+
+// Reading Mode toggle
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Mobile menu (consolidated handler with aria-expanded + Escape support)
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close drawer when clicking outside it
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close drawer on Escape key + return focus to hamburger
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+
+  // Close drawer when any link OR the reading toggle inside it is clicked
+  navLinks.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+// GA4 event tracking
+document.addEventListener('click', (e) => {
+  const cta = e.target.closest('[data-cta]');
+  if (cta && typeof gtag === 'function') {
+    gtag('event', 'cta_click', {
+      cta_type: cta.dataset.cta,
+      location: cta.dataset.location || 'unknown',
+      href: cta.getAttribute('href') || ''
+    });
+  }
+});
+
+// Scroll depth — fires once per threshold (25/50/75/100)
+const scrollDepthHits = new Set();
+function trackScrollDepth() {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (docHeight <= 0) return;
+  const pct = Math.min(100, Math.floor((window.scrollY / docHeight) * 100));
+  [25, 50, 75, 100].forEach(threshold => {
+    if (pct >= threshold && !scrollDepthHits.has(threshold)) {
+      scrollDepthHits.add(threshold);
+      if (typeof gtag === 'function') gtag('event', 'scroll_depth', { percent: threshold });
+    }
+  });
+}
+window.addEventListener('scroll', trackScrollDepth, { passive: true });
+
+// Section visibility — fires once per section when 50% in viewport
+const sectionViewObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.viewed) {
+      entry.target.dataset.viewed = '1';
+      if (typeof gtag === 'function') {
+        gtag('event', 'section_view', { section_id: entry.target.id });
+      }
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s));
+</script>
+
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script src="../assets/recon-live.js" defer></script>
+</body>
+</html>

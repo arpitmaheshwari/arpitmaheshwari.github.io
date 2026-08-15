@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="ember">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,106 +7,12 @@
 <meta name="description" content="The page you asked for doesn't exist — and this one won't pretend otherwise. Loop Air's lost-and-found counter: a 404 that demonstrates the AI failure-state pattern it's named after.">
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://arpitmaheshwari.com/">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0A0A'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='300' fill='%23D4A85E'%3EAM%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500&display=swap">
-<style>
-  :root{
-    --bg:#0A0A0A; --ink:#F2EDE4; --ink-muted:rgba(242,237,228,0.62);
-    --gold:#D4A85E; --gold-light:#E8C88A;
-    --gold-dark:#A07835; --border:rgba(255,255,255,0.07);
-    --paper:#F7F3EC; --p-ink:#1B1917; --p-soft:#544F44; --p-rule:rgba(27,25,23,0.35);
-    --stamp-red:#A33B25;
-    --ff-display:'Newsreader',Georgia,serif; --ff-sans:'IBM Plex Sans',system-ui,sans-serif;
-    --ff-mono:'IBM Plex Mono',ui-monospace,monospace;
-    /* Type scale — aligned to the shared ramp (see DESIGN-SYSTEM.md §1) */
-    --fs-eyebrow:12px; --fs-caption:13px; --fs-ui:14px; --fs-body:16px;
-    --fs-lead:21px; --fs-hero:clamp(36px,5.5vw,52px);
-    --radius:4px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{font-size:16px;overflow-x:hidden}
-  body{background:var(--bg);color:var(--ink);font-family:var(--ff-sans);line-height:1.7;
-    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-  /* Two-zone composition: message left, the claim ticket filling the right field.
-     Whitespace is designed, not left over (LAYOUT RULE, 2026-08-04). */
-  .wrap{min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:64px;
-    align-items:center;max-width:1080px;margin:0 auto;padding:64px 32px 40px;position:relative}
-
-  /* ghost numeral behind the message — the same device as the portfolio chapter marks */
-  .ghost{position:absolute;top:50%;left:50%;transform:translate(-50%,-58%);
-    font-family:var(--ff-display);font-weight:300;font-size:clamp(220px,42vw,420px);
-    line-height:1;color:transparent;-webkit-text-stroke:1px rgba(212,168,94,0.13);
-    text-stroke:1px rgba(212,168,94,0.13);pointer-events:none;user-select:none;z-index:0;white-space:nowrap}
-
-  .content{position:relative;z-index:1}
-  .kick{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:500;letter-spacing:.15em;
-    text-transform:uppercase;color:var(--gold);margin-bottom:20px}
-  h1{font-family:var(--ff-display);font-weight:300;font-size:var(--fs-hero);
-    line-height:1.12;letter-spacing:-0.02em;margin-bottom:20px}
-  h1 em{font-style:italic;color:var(--gold)}
-  .lede{font-family:var(--ff-display);font-weight:300;font-size:var(--fs-lead);color:var(--ink);
-    line-height:1.5;max-width:44ch;margin-bottom:24px}
-
-  .actions{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;margin-top:4px}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--gold);
-    color:var(--bg);font-family:var(--ff-mono);font-weight:500;font-size:var(--fs-eyebrow);
-    letter-spacing:.1em;text-transform:uppercase;border-radius:var(--radius);text-decoration:none;
-    transition:background .25s,transform .2s}
-  .btn:hover{background:var(--gold-light);transform:translateY(-2px)}
-  .inline-links{font-size:var(--fs-ui);color:var(--ink-muted)}
-  .inline-links a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark);
-    padding-bottom:1px;transition:color .2s,border-color .2s}
-  .inline-links a:hover{color:var(--gold-light);border-color:var(--gold-light)}
-  .hand{font-family:'Caveat',cursive;font-size:20px;color:var(--gold);margin-top:24px}
-
-  .meta-note{margin-top:32px;padding-top:20px;border-top:1px solid var(--border);
-    font-size:var(--fs-caption);color:var(--ink-muted);line-height:1.8;max-width:54ch}
-  .meta-note a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-dark);
-    padding-bottom:1px}
-  .meta-note a:hover{color:var(--gold-light)}
-
-  /* ── the claim ticket ─────────────────────────────────────────── */
-  .lug{position:relative;z-index:1;background:var(--paper);color:var(--p-ink);
-    font-family:var(--ff-mono);padding:24px;transform:rotate(1.6deg);
-    filter:drop-shadow(0 16px 28px rgba(0,0,0,0.55))}
-  .lug-head{display:flex;justify-content:space-between;align-items:baseline;
-    border-bottom:1.5px solid var(--p-ink);padding-bottom:8px;margin-bottom:12px}
-  .lug-head b{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
-  .lug-head span{font-size:10.5px;color:var(--p-soft)}
-  .lug-row{display:flex;justify-content:space-between;gap:12px;font-size:12px;padding:8px 0;
-    border-bottom:1px dashed var(--p-rule)}
-  .lug-row b{font-weight:600;text-align:right}
-  .lug-row--last{border-bottom:none}
-  /* the confidence row keeps the old page's honest settle — a flicker of false hope, then ~0 */
-  .lug-meter{height:3px;background:rgba(27,25,23,0.12);border-radius:2px;overflow:hidden;margin:8px 0 0}
-  .lug-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-dark),var(--gold));
-    border-radius:2px;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
-  .divert{position:absolute;left:96px;top:188px;border:2.5px solid var(--stamp-red);
-    color:var(--stamp-red);border-radius:4px;font-size:13px;letter-spacing:.16em;
-    text-transform:uppercase;font-weight:600;padding:8px 12px;transform:rotate(-9deg);opacity:.85}
-  .lug-claim{font-size:11px;margin:16px 0 0;line-height:1.8}
-  .lug-claim b{font-weight:600;display:block;font-size:10px;letter-spacing:.12em;
-    text-transform:uppercase;color:var(--p-soft);margin-bottom:4px}
-  .lug-claim .rt{text-decoration:underline;text-underline-offset:3px;color:#7E5A14}
-  .lug-bar{height:28px;margin-top:16px;background:repeating-linear-gradient(90deg,
-    var(--p-ink) 0 2px,transparent 2px 3px,var(--p-ink) 3px 8px,transparent 8px 12px,
-    var(--p-ink) 12px 16px,transparent 16px 20px)}
-
-  footer{position:relative;z-index:1;text-align:left;max-width:1080px;margin:0 auto;
-    padding:0 32px 32px;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);color:var(--ink-muted);
-    letter-spacing:.08em;text-transform:uppercase}
-
-  @media (max-width:900px){
-    .wrap{grid-template-columns:1fr;gap:48px;align-items:start;padding-top:48px}
-    .lug{max-width:360px;margin:0 auto}
-  }
-  @media (prefers-reduced-motion:reduce){.lug-fill{transition:none}}
-</style>
+<link rel="stylesheet" href="/styles.css?v=p62">
+<link rel="stylesheet" href="/ember.css?v=e109">
 </head>
-<body>
+<body class="p-404">
 <div class="wrap">
   <div class="ghost" aria-hidden="true">404</div>
   <div class="content" role="main">

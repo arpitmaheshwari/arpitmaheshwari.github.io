@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="ember">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,11 +23,10 @@
 <meta name="twitter:description" content="The questions a CTO asks an AI-product designer in the first call — answered in writing, with receipts.">
 <meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/screen-og.png">
 <meta name="twitter:image:alt" content="The technical screen, pre-answered — Arpit Maheshwari">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap" media="print" onload="this.media='all';this.onload=null">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap"></noscript>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<noscript></noscript>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -116,52 +115,17 @@
   gtag('config', 'G-PFY6ME99K8');
 </script>
 <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
-<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="stylesheet" href="../styles.css?v=p64">
-<style>
-  /* Top padding must CLEAR the fixed nav (86px desktop / 76px at =<768), not just apply the
-     section rhythm — --section-y is 90/64/48, so the kicker sat under the bar at every width
-     (4px at 1440, 12px at 768, 28px at 390). Same root cause as the #hero fix, 2026-08-06. */
-  .scr-wrap { max-width: var(--measure); margin: 0 auto; padding: 128px 24px var(--section-y); }
-  @media (max-width:768px){ .scr-wrap { padding-top: 104px; } }
-  .scr-kicker { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin: 0 0 20px; }
-  .scr-title { font-family: var(--ff-display); font-weight: 300; font-size: var(--fs-hero); line-height: 1.12; color: var(--ink); margin: 0 0 24px; letter-spacing: -0.02em; }
-  .scr-stand { font-family: var(--ff-display); font-weight: 300; font-style: italic; font-size: var(--fs-lead); line-height: 1.4; color: var(--ink); margin: 0 0 64px; max-width: 46ch; }
-  .scr-q { margin: 0 0 64px; padding-top: 32px; border-top: 1px solid var(--border); }
-  .scr-num { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; }
-  .scr-q h2 { font-family: var(--ff-display); font-weight: 400; font-size: var(--fs-title); line-height: 1.2; color: var(--ink); margin: 0 0 16px; letter-spacing: -0.01em; }
-  .scr-q p { font-family: var(--ff-sans); font-size: var(--fs-body); line-height: 1.7; color: var(--ink-muted); margin: 0 0 16px; }
-  .scr-q p a { color: var(--gold); text-decoration: none; }
-  .scr-q p a:hover { text-decoration: underline; text-underline-offset: 3px; }
-  .scr-receipt { font-family: var(--ff-mono); font-size: var(--fs-caption); letter-spacing: .08em; color: var(--ink-muted); margin: 16px 0 0; }
-  .scr-receipt a { color: var(--gold); text-decoration: none; }
-  .scr-receipt a:hover { text-decoration: underline; text-underline-offset: 3px; }
-  .scr-close { margin-top: 8px; padding: 32px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
-  .scr-close-line { font-family: var(--ff-display); font-weight: 400; font-size: var(--fs-title); line-height: 1.3; color: var(--ink); margin: 0 0 24px; letter-spacing: -0.01em; }
-  .scr-cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-  .scr-after { font-family: var(--ff-mono); font-size: var(--fs-caption); letter-spacing: .08em; line-height: 1.9; color: var(--ink-muted); margin: 24px 0 0; }
-  .scr-after a { color: var(--gold); text-decoration: none; }
-  .scr-after a:hover { text-decoration: underline; text-underline-offset: 3px; }
-  .scr-print-note { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); letter-spacing: .08em; color: var(--ink-muted); margin-top: 24px; }
-  @media print {
-    nav, .nav-cta, .menu-toggle, footer, .scr-print-note, .skip-link { display: none !important; }
-    body { background: #fff !important; color: #111 !important; }
-    .scr-wrap { padding: 0; max-width: 100%; }
-    .scr-title, .scr-stand, .scr-q h2, .scr-q p, .scr-close-line { color: #111 !important; }
-    .scr-kicker, .scr-q p a, .scr-receipt a, .scr-after a { color: #8a6320 !important; }
-    .scr-num, .scr-receipt, .scr-after { color: #555 !important; }
-    .scr-close { background: #fff !important; border-color: #ddd !important; }
-    .scr-q { border-color: #ddd !important; page-break-inside: avoid; }
-    a { text-decoration: none; }
-  }
-</style>
+<link rel="stylesheet" href="../ember.css?v=e109">
+
 </head>
-<body>
+<body class="p-screen">
 <a href="#main" class="skip-link">Skip to content</a>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-logo"><a class="row-ic" href="../index.html" style="text-decoration:none; color:inherit"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <div class="nav-logo"><a class="row-ic xi-screen-001" href="../index.html"><img class="xi-screen-002" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
@@ -172,7 +136,7 @@
   <p class="scr-kicker">Hiring · Before the first call</p>
   <h1 class="scr-title">The technical screen, pre-answered.</h1>
   <p class="scr-stand">I wrote an interview guide for founders hiring their first AI designer. Only fair I sit the exam too — here are my answers to the questions that actually decide a screen, in writing, so our first call can be about your product instead.</p>
-  <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 0;transform:rotate(-1.6deg)">I set the exam — only fair I sit it</p>
+  <p class="hand xi-screen-003" aria-hidden="true">I set the exam — only fair I sit it</p>
 
   <!-- 01 -->
   <section class="scr-q">
@@ -247,10 +211,10 @@
   <div class="scr-close">
     <p class="scr-close-line">That's the screen. The call can be about your product.</p>
     <div class="scr-cta-row">
-      <a class="lbl-badge-bg btn-a" href="../index.html#contact" data-cta="send-role" data-location="screen-close" style="background:var(--gold); transition:background 0.3s,transform 0.2s; text-decoration:none; white-space:nowrap" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Send me the role →</a>
-      <a class="lbl-badge-gold btn-a-ghost" href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="screen-close" style="text-decoration:none; transition:border-color 0.3s,color 0.3s; white-space:nowrap" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--gold-dark)'">Book 30 minutes ↗</a>
+      <a class="lbl-badge-bg btn-a xi-screen-004 hv-screen-1" href="../index.html#contact" data-cta="send-role" data-location="screen-close">Send me the role →</a>
+      <a class="lbl-badge-gold btn-a-ghost xi-screen-005 hv-screen-2" href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="screen-close">Book 30 minutes ↗</a>
     </div>
-    <p class="scr-after">The 12 questions I give founders to ask <em>any</em> AI-design candidate: <a href="../resources/founder-questions.html">the hiring guide →</a><br>My one-page summary: <a href="../hire/">/hire →</a></p>
+    <p class="scr-after">The 12 questions I give founders to ask <em>any</em> AI-design candidate: <a href="../resources/founder-questions.html">the hiring guide →</a><br>My one-page summary: <a href="../hire/">/hire →</a></p>
   </div>
 
   <p class="scr-print-note">Print this page (⌘P) to take the answers into the call.</p>

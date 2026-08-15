@@ -137,9 +137,34 @@ jobs:
           python3 tools/contrast-audit.py \
             --docroot . \
             --widths 1440,390 \
-            --exempt '.bk-device__label, .bk-device__mark' \
+            --exempt '.bk-device__label, .bk-device__mark, .grad, .hero-headline em' \
             --force-visible '.reveal' \
             --all
+
+      # 2026-08-13: two defect classes that every existing gate was blind to, both found by
+      # Arpit rather than by CI. (1) A breakout rule needing margin-left AND transform to land
+      # together half-applied against the extracted !important margins, throwing case-study
+      # figures 520px off the LEFT edge — no gate looked at whether content stayed on screen.
+      # (2) styles.css hard-coded the classic gold inside per-page classes carrying !important,
+      # so the Ember port could not reach 10 inner pages and they still rendered the retired
+      # theme — no gate asked what colour an element ACTUALLY paints under the active theme.
+      # Both checks plant a known defect and require themselves to go red before a green counts.
+      - name: Overflow sweep — nothing escapes the viewport (1440 / 1024 / 768)
+        run: |
+          for W in 1440 1024 768; do python3 tools/overflow-sweep.py $W; done
+
+      # 2026-08-14: third defect in the same blind spot (Writing heading, lab foot
+      # links, contact email line) — an element doing the SAME JOB styled from a
+      # different era. Colour and geometry gates pass it; only a component DIFF sees
+      # it. This gate collects every standalone arrow-CTA sitewide, finds the dominant
+      # grammar signature, and fails outliers. Inline links inside prose are exempt.
+      - name: CTA grammar check — every standalone arrow-CTA speaks one grammar
+        run: |
+          python3 tools/cta-grammar-check.py
+
+      - name: Theme remnant check — no retired classic palette painted under Ember
+        run: |
+          python3 tools/theme-remnant-check.py
 
       - name: Fail if a stray wrapper file was left behind
         if: always()

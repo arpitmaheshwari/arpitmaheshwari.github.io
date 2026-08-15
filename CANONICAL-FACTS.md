@@ -26,7 +26,7 @@ _Last reconciled: 2026-06-19._
   - **The book and the printed portfolio** → **"Human in the Loop"** (title case, a proper noun).
     The portfolio's running header is "Human in the Loop · Selected Works"; the book's cover
     imprint is "Human in the Loop · MMXXVI".
-  - **The newsletter** → labelled **"Human in the Loop"** on every surface.
+  - **The newsletter** → NOT NAMED on any surface (Arpit, 2026-08-14: the Substack has no name and will not be given one). Every reference is a plain CTA — "my newsletter on Substack", "Read the newsletter →". Do not reintroduce a publication name.
   - **The code module** → `lab/loop.js` + `loop.test.js` + `/lab/loop.html`. The old URL
     `/lab/trustlayer.html` survives ONLY as a silent forwarding stub, because it was published in
     the sitemap and linked from the portfolio PDF. That stub is the single permitted appearance of
@@ -60,12 +60,12 @@ Use the exact metric strings below on every surface (homepage chip, case-study p
 
 | # | Canonical name | Tag | Headline metric (exact string) | Other locked numbers |
 |---|----------------|-----|-------------------------------|----------------------|
-| 1 | **PTC University — Learning Connector** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile: 4% of sessions at start, grew after the responsive redesign (endpoint number RETIRED 2026-08-06 — see entry) · **20+ countries** (corrected from "80+" 2026-08-06, Arpit: "safe side make it 20+" — never reprint 80+) · Role: Product & Design Lead (retitled 2026-08-02, PM receipt) · 2014–2019 |
-| 2 | **Telefónica MyO2 & Priority Moments** | Telecom · Non-NDA / public | **4M+** (MyO2 users) | Priority Moments **2.6M** sign-ups year one · 2.5M+ active · 5★ App Store · Role: Designer + front-end via **Equal Experts, 2012–14** · **design was SHARED with one co-designer; ALL front-end code his (corrected 2026-08-06 — never claim solo design)** |
-| 3 | **AI-Assisted Private Equity Investing** | FinTech · NDA | **60% faster** (deal screening) | measured pre- vs post-rollout · 3 sources behind every score · Role: Lead Product Designer · _(true sample: 42 deals over a 90-day window — DO NOT PUBLISH, see display rule below)_ |
-| 4 | **Programmatic Advertising Platform** | AdTech · NDA | **2 wks → 3 hrs** (campaign planning) | Recommended campaign plans with visible KPIs/ROI, easily customizable — **NO confidence scores, ever** (corrected 2026-08-05, see AdTech correction entry) · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · £400M media spend transacted through the platform · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
-| 5 | **OrgOS · Transparent Org Tooling** | Org Design · NDA | **200** (people) | 200 people · 0 managers · 8 modules · **in use by 250 people today (2026)** — the org grew past the 200 it was designed for and the coordination model held · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25). ("Zero managers" is the *outcome*, never the title.) |
-| 6 | **Technical Due Diligence Platform** | VC/PE · NDA | **3 wks → 4 days** (diligence cycle) | 16 analysis dimensions — a finding became a SIGNAL only at sufficient confidence, every signal backed by verified evidence (corrected 2026-08-06, see entry) · VC + PE · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25) |
+| 1 | **The Redesign That Asked PTC to Kill Four Products** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile: 4% of sessions at start, grew after the responsive redesign (endpoint number RETIRED 2026-08-06 — see entry) · **20+ countries** (corrected from "80+" 2026-08-06, Arpit: "safe side make it 20+" — never reprint 80+) · Role: Product & Design Lead (retitled 2026-08-02, PM receipt) · 2014–2019 |
+| 2 | **Two O2 UK Products, Four Million People** | Telecom · Non-NDA / public | **4M+** (MyO2 users) | Priority Moments **2.6M** sign-ups year one · 2.5M+ active · 5★ App Store · Role: Designer + front-end via **Equal Experts, 2012–14** · **design was SHARED with one co-designer; ALL front-end code his (corrected 2026-08-06 — never claim solo design)** |
+| 3 | **Deal-Screening AI That Cites Its Sources** | FinTech · NDA | **60% faster** (deal screening) | measured pre- vs post-rollout · 3 sources behind every score · Role: Lead Product Designer · _(true sample: 42 deals over a 90-day window — DO NOT PUBLISH, see display rule below)_ |
+| 4 | **An Ad Agency Became the Market’s Aggregator** | AdTech · Named client | **2 wks → 3 hrs** (campaign planning) | Recommended campaign plans with visible KPIs/ROI, easily customizable — **NO confidence scores, ever** (corrected 2026-08-05, see AdTech correction entry) · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · £400M media spend transacted through the platform · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
+| 5 | **The Software That Replaced the Org Chart** | Org Design · NDA | **200** (people) | 200 people · 0 managers · 8 modules · **in use by 250 people today (2026)** — the org grew past the 200 it was designed for and the coordination model held · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25). ("Zero managers" is the *outcome*, never the title.) |
+| 6 | **Due Diligence You Can’t Rubber-Stamp** | VC/PE · NDA | **3 wks → 4 days** (diligence cycle) | 16 analysis dimensions — a finding became a SIGNAL only at sufficient confidence, every signal backed by verified evidence (corrected 2026-08-06, see entry) · VC + PE · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25) |
 
 **Number-writing rules:** arrow is "→" with a space each side. Never write "−60%" (use "60% faster").
 Never abbreviate to "3w → 4d" (use "3 wks → 4 days"). Lowercase "k" in "550k+".
@@ -1457,3 +1457,60 @@ Also confirmed clean, independently re-verified: index.html's .ai-case rows hold
 delta across 1440/1024/768/390 with no regression; patterns/index.html's Act/Review/Ignore demo
 image is 92% fill, not a dead-space bug (an agent's own screenshot tool had rendered at a
 distorting internal scale — caught via DOM measurement before it was reported as a finding).
+
+### The Substack name — CLOSED, 2026-08-14 (supersedes the 2026-08-03 open dependency)
+**Arpit: the blog has no name and is not getting one.** The site had labelled it "Human in the
+Loop" in 13 places across 11 pages while the publication's own og:title read "Arpit Maheshwari |
+Substack" — verified live again on 2026-08-14. That was a brand that did not exist, printed as
+fact. All 13 references are now plain calls to action naming no publication:
+"my newsletter on Substack", "Read the newsletter →", "I write about this in my newsletter ↗".
+The card meta on the homepage reads "Substack" (the platform, which is true) instead of a title.
+**"Human in the Loop" remains the BOOK's title** — book/, its OG cards, and llms.txt's book line
+keep it. The prior OPEN ACTION asking Arpit to rename the Substack is void; nothing is owed.
+Reason it matters beyond tidiness: a reader who clicked landed somewhere named differently, which
+is the one thing this site cannot afford — it argues that provenance accuracy IS the positioning.
+
+
+### AdTech case is NAMED and LIVE — 2026-08-14 (Arpit's call; supersedes every "adtech · NDA" display rule)
+**The named version ships at `case-studies/adtech.html`.** The anonymous version is kept, unlinked
+and noindexed, at `case-studies/adtech-anonymous.html` as a backup only. `talon.html` is a
+redirect stub.
+**TITLE RULE (Arpit, 2026-08-14): work-first.** No client name and no product names in the
+title/h1/og surfaces — the h1 is "Two weeks to three hours: rebuilding the world's oldest ad
+medium as software." The client (Talon Outdoor) and products (Plato/Ada/Atlas) are named in the
+BODY, with the public record (Digital Bulletin feature + film, launch press, live product pages,
+all link-verified). Tag is now "AdTech · Named client"; status "Shipped · named client, publicly
+documented"; provenance "Reconstruction · synthetic data · client named, public record on the page".
+The "named reference available on request" display rule STANDS unchanged.
+**Still anonymous on purpose:** the book edition and the portfolio/resume PDFs — print artifacts
+Arpit hands over himself; renaming them is a separate decision not yet made.
+**The NDA lines in the OTHER cases (FinTech, VC, OrgOS) are untouched — those clients remain
+under NDA. Only adtech changed.**
+
+### Talon design system + Claude port — NEW FACTS from Arpit, 2026-08-15
+Source: Arpit directly, in-session. No numbers were given, so none may be printed.
+1. **Arpit introduced a new design system at Talon.** It gave the products a modern look and
+   scaled across the product line, making all the products read as one platform family
+   (Plato, Ada, Atlas et al. stopped looking like separate tools).
+2. **The design system was later ported into Claude** (Anthropic's AI assistant): encoding the
+   system's rules made front-end development faster and more precise with fewer bugs, and
+   empowered Talon's developers to prototype with Claude themselves.
+Display rules: no invented metric for "fewer bugs" or "faster" — qualitative only until Arpit
+supplies numbers. The design-system-retired-language rule of 2026-08-06 applies to the PATTERNS
+page only; this Talon system is a real component design system and may be called one.
+
+
+### Case display titles renamed — 2026-08-15 (Arpit's directive: identifiable + intriguing)
+The six cases' display titles are now transformation hooks, one per case, used consistently on the
+homepage lanes, case-facts.js, the book, and the portfolio PDF's AdTech entry:
+1. The Redesign That Asked PTC to Kill Four Products (was: PTC University — Learning Connector)
+2. Two O2 UK Products, Four Million People (was: Telefónica MyO2 & Priority Moments)
+3. Deal-Screening AI That Cites Its Sources (was: AI-Assisted Private Equity Investing)
+4. An Ad Agency Became the Market's Aggregator (was: Programmatic Advertising Platform)
+5. The Software That Replaced the Org Chart (was: OrgOS · Transparent Org Tooling)
+6. Due Diligence You Can't Rubber-Stamp (was: Technical Due Diligence Platform)
+The old names remain valid as product/engagement descriptors in body copy; the HOOK is the title.
+Same date: the book (portfolio.js WORK/PATTERNS + noscript fulltext) and both documents
+(portfolio.html, resume.html + make-resume.js docx) synced to the F3 narratives — Talon named,
+five systems, design system + Claude, pattern theses. Resume page-1 fit paid for by shortening
+the PlanIt bullet (Arpit's pick over dropping the design-system bullet).

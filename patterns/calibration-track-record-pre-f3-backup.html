@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ember">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calibration &amp; Track Record: Confidence That Earns Its Trust</title>
+<meta name="description" content="An AI design pattern — show whether the model's confidence has actually been right before, so people learn how hard to lean and trust is earned, not assumed.">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/patterns/calibration-track-record.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Calibration &amp; Track Record | Arpit Maheshwari">
+<meta property="og:description" content="Showing whether &quot;80% sure&quot; has actually been right 80% of the time — confidence with a memory.">
+<meta property="og:url" content="https://arpitmaheshwari.com/patterns/calibration-track-record.html">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/calibration-track-record-og.png">
+<meta property="og:image:width" content="926">
+<meta property="og:image:height" content="1273">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calibration &amp; Track Record">
+<meta name="twitter:description" content="Confidence that shows its receipts.">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/calibration-track-record-og.png">
+<meta name="twitter:image:alt" content="Confidence that shows its receipts.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<noscript></noscript>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","headline":"Calibration & Track Record","description":"An AI design pattern — show whether the model's confidence has actually been right before, so people learn how hard to lean and trust is earned, not assumed.","author":{"@type":"Person","name":"Arpit Maheshwari"},"datePublished":"2026-06-19","dateModified":"2026-06-19"}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://arpitmaheshwari.com/"},
+    {"@type":"ListItem","position":2,"name":"Patterns","item":"https://arpitmaheshwari.com/#patterns"},
+    {"@type":"ListItem","position":3,"name":"Calibration & Track Record","item":"https://arpitmaheshwari.com/patterns/calibration-track-record.html"}
+  ]
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PFY6ME99K8');
+</script>
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../styles.css?v=p62">
+<link rel="stylesheet" href="../ember.css?v=e109">
+</head>
+<body class="p-patterns-calibration-track-record">
+<a href="#main" class="skip-link">Skip to content</a>
+<svg class="xi-patterns-calibration-track-record-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+</svg>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a class="row-ic xi-patterns-calibration-track-record-002" href="../index.html"><img class="xi-patterns-calibration-track-record-003" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns" aria-current="true">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
+  <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
+  </nav>
+
+<div class="xi-patterns-calibration-track-record-004">
+  <div class="xi-patterns-calibration-track-record-005">
+    <div class="meta-row">
+      <h1 class="t-hero xi-patterns-calibration-track-record-006">Calibration &amp; Track Record</h1>
+      <span class="lbl-badge-ink xi-patterns-calibration-track-record-007">In production</span>
+    </div>
+    <p class="lbl-cap">AI Design · Earned trust · Last updated June 2026</p>
+    <p class="lbl-cap xi-patterns-calibration-track-record-008">Part of <a class="xi-patterns-calibration-track-record-009" href="./">A Field Guide to Trust</a> · updated June 2026</p>
+    <p class="hand xi-patterns-calibration-track-record-010" aria-hidden="true">confidence with a memory</p>
+  </div>
+</div>
+
+<main id="main" class="section xi-patterns-calibration-track-record-011"><div class="xi-patterns-calibration-track-record-005">
+
+  <section class="xi-patterns-calibration-track-record-012">
+    <p class="lead xi-patterns-calibration-track-record-013">A confidence number is a claim; its track record is the evidence. Calibration shows whether "80% sure" has actually been right about 80% of the time — so a person can learn exactly how hard to lean on the model, and watch that judgment improve as the history grows.</p>
+  </section>
+
+  <figure class="xi-patterns-calibration-track-record-014">
+    <img class="framed xi-patterns-calibration-track-record-015" src="../assets/visuals/pattern-calibration.svg" alt="Calibration pattern: a stated confidence beside a predicted-versus-actual reliability plot and a per-case-type accuracy breakdown that exposes the weaker slice" loading="lazy" width="1280" height="400">
+  </figure>
+
+  <section class="xi-patterns-calibration-track-record-012">
+    <h2 class="section-title xi-patterns-calibration-track-record-016">Show the hit rate beside the number</h2>
+    <p class="u-body xi-patterns-calibration-track-record-017">A confidence score with no history is a stranger's opinion. The same number gets believable the moment it sits next to its own record: "high confidence — right on 94% of the last 200 calls like this." Now the person isn't trusting the model's self-assessment; they're trusting its receipts.</p>
+    <p class="u-body">This is the single cheapest trust-builder in AI UX and the most often skipped. Teams ship the confidence number and never ship the thing that makes it mean something — the evidence that the confidence has been honest before.</p>
+  </section>
+  <!-- LIVE DEMO — same demo as the book's field guide -->
+  <section class="xi-patterns-calibration-track-record-012">
+    <h2 class="section-title xi-patterns-calibration-track-record-018">Try it — the pattern, live</h2>
+    <p class="u-ui xi-patterns-calibration-track-record-019">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+    <div data-demo="calib"></div>
+  </section>
+
+
+  <section class="xi-patterns-calibration-track-record-012">
+    <h2 class="section-title xi-patterns-calibration-track-record-016">Break it down by the kind of case</h2>
+    <p class="u-body xi-patterns-calibration-track-record-017">A single global accuracy figure hides the cases that matter. A model can be 90% accurate overall and reliably wrong on a specific, important slice. Calibration that's worth anything is segmented: accuracy by case type, by confidence band, by the conditions a user actually faces.</p>
+    <p class="u-body">Reliability diagrams — confidence on one axis, actual hit rate on the other — make over- and under-confidence visible at a glance. The goal is a person who knows not just how sure the model is, but where its sureness can be trusted and where it can't.</p>
+  </section>
+
+  <section class="xi-patterns-calibration-track-record-012">
+    <h2 class="section-title xi-patterns-calibration-track-record-016">Earn it in the open</h2>
+    <p class="u-body xi-patterns-calibration-track-record-017">Track record is only persuasive if it updates honestly, in public. Let the history accumulate where the user can see it; don't quietly reset the counter every time the model is retrained. A record that resets on every release is one nobody believes.</p>
+    <p class="u-body">Done right, calibration turns trust into something the model earns over time rather than demands on day one. The number stops being a claim and becomes a relationship — one the person can watch get better.</p>
+  </section>
+
+  <section class="xi-patterns-calibration-track-record-012">
+    <h2 class="section-title xi-patterns-calibration-track-record-018">Implementation Checklist</h2>
+    <ul class="u-body xi-patterns-calibration-track-record-020">
+      <li class="xi-patterns-calibration-track-record-021">Show the model's historical hit rate beside its current confidence.</li>
+      <li class="xi-patterns-calibration-track-record-021">Segment accuracy by case type and confidence band, not one global average.</li>
+      <li class="xi-patterns-calibration-track-record-021">Use a reliability view so over/under-confidence is visible at a glance.</li>
+      <li class="xi-patterns-calibration-track-record-021">Let the history accumulate in the open; don't silently reset on retrain.</li>
+      <li class="xi-patterns-calibration-track-record-021">Check: can a user tell where the model's confidence can be trusted, and where not?</li>
+    </ul>
+  </section>
+  <section class="xi-patterns-calibration-track-record-012">
+    <h2 class="section-title xi-patterns-calibration-track-record-018">Trade-offs by Approach</h2>
+    <div class="xi-patterns-calibration-track-record-022">
+      <table class="t-cap xi-patterns-calibration-track-record-023">
+        <thead>
+          <tr class="xi-patterns-calibration-track-record-024"><th class="lbl-ink xi-patterns-calibration-track-record-025">Choice</th><th class="lbl-ink xi-patterns-calibration-track-record-025">Best For</th><th class="lbl-ink xi-patterns-calibration-track-record-025">Trade-off</th></tr>
+        </thead>
+        <tbody>
+          <tr class="xi-patterns-calibration-track-record-024"><td class="xi-patterns-calibration-track-record-026"><strong>Global hit rate</strong></td><td class="xi-patterns-calibration-track-record-026">A single, simple trust signal</td><td class="xi-patterns-calibration-track-record-026">Averages away the cases where the model is reliably wrong</td></tr>
+          <tr class="xi-patterns-calibration-track-record-024"><td class="xi-patterns-calibration-track-record-026"><strong>Per-case-type record</strong></td><td class="xi-patterns-calibration-track-record-026">Experts who know the domain's segments</td><td class="xi-patterns-calibration-track-record-026">More to render; needs enough history per segment</td></tr>
+          <tr class="xi-patterns-calibration-track-record-024"><td class="xi-patterns-calibration-track-record-026"><strong>Rolling window (30–90d)</strong></td><td class="xi-patterns-calibration-track-record-026">Models that retrain often</td><td class="xi-patterns-calibration-track-record-026">Short windows swing; long ones hide recent drift</td></tr>
+          <tr class="xi-patterns-calibration-track-record-024"><td class="xi-patterns-calibration-track-record-026"><strong>Persistent across retrains</strong></td><td class="xi-patterns-calibration-track-record-026">Long-term trust; the record is the product</td><td class="xi-patterns-calibration-track-record-026">A bad release is visible to everyone — by design</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <section class="card-gold xi-patterns-calibration-track-record-027">
+    <h3 class="card-title xi-patterns-calibration-track-record-017">See This Pattern In Action</h3>
+    <ul class="t-cap-loose xi-patterns-calibration-track-record-028">
+      <li class="xi-patterns-calibration-track-record-029"><strong><a class="xi-patterns-calibration-track-record-009" href="../case-studies/adtech.html">Programmatic Advertising Platform</a>:</strong> buyers acted on a recommended plan only once its projected KPIs sat beside what the last campaigns had actually returned.</li>
+      <li class="xi-patterns-calibration-track-record-029"><strong><a class="xi-patterns-calibration-track-record-009" href="../case-studies/fintech.html">AI-Assisted Due Diligence</a>:</strong> the score proved accurate enough, over enough deals, that analysts stopped re-checking the confident calls.</li>
+    </ul>
+  </section>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section class="card-gold xi-patterns-calibration-track-record-027">
+    <div class="eyebrow xi-patterns-calibration-track-record-029">Get AI design patterns in your inbox</div>
+    <p class="u-ui xi-patterns-calibration-track-record-019">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
+    <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+      <input class="t-sans-ui card-seg xi-patterns-calibration-track-record-030" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
+      <button class="lbl-eyebrow-500 btn-b xi-patterns-calibration-track-record-031" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
+    </form>
+  </section>
+
+  <div class="btn-row">
+    <a class="lbl-badge-bg btn-a xi-patterns-calibration-track-record-032 hv-patterns-calibration-track-record-1" href="./reversibility-safe-to-act.html">Next pattern / Reversibility →</a>
+    <a class="lbl-badge-gold btn-a-ghost xi-patterns-calibration-track-record-033 hv-patterns-calibration-track-record-2" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom">Send me the role ↗</a>
+  </div>
+<section class="measure-t">
+    <div class="xi-patterns-calibration-track-record-034">
+      <div class="eyebrow xi-patterns-calibration-track-record-029">Limits — when NOT to use this</div>
+      <p class="u-body xi-patterns-calibration-track-record-035">A track record needs history — a young product showing three data points as a 'record' is costume jewelry. Wait until the sample is honest, and never reset the record silently when the model changes; a visible break in the line is more credible than an unbroken lie.</p>
+    </div>
+  </section>
+</div></main>
+
+<footer>
+  <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
+  <button class="dyslexia-toggle" id="dyslexiaToggle" aria-pressed="false" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+    <span>Dyslexia-friendly</span>
+  </button>
+  <div class="footer-note">No copyright · Design is for all</div>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon xi-patterns-calibration-track-record-036" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+</footer>
+
+<script>
+const toggle = document.getElementById('dyslexiaToggle');
+if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on'; if (isDyslexic) { document.body.classList.add('dyslexia-mode'); toggle.setAttribute('aria-pressed', 'true'); } toggle.addEventListener('click', () => { document.body.classList.toggle('dyslexia-mode'); const isOn = document.body.classList.contains('dyslexia-mode'); toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false'); localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off'); }); }
+document.addEventListener('click', (e) => { const cta = e.target.closest('[data-cta]'); if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' }); });
+
+// Scroll depth — fires once per threshold (25/50/75/100)
+const scrollDepthHits = new Set();
+function trackScrollDepth() {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (docHeight <= 0) return;
+  const pct = Math.min(100, Math.floor((window.scrollY / docHeight) * 100));
+  [25, 50, 75, 100].forEach(threshold => {
+    if (pct >= threshold && !scrollDepthHits.has(threshold)) {
+      scrollDepthHits.add(threshold);
+      if (typeof gtag === 'function') gtag('event', 'scroll_depth', { percent: threshold });
+    }
+  });
+}
+window.addEventListener('scroll', trackScrollDepth, { passive: true });
+
+// Section visibility — fires once per section when 50% in viewport
+const sectionViewObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.viewed) {
+      entry.target.dataset.viewed = '1';
+      if (typeof gtag === 'function') {
+        gtag('event', 'section_view', { section_id: entry.target.id });
+      }
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s));
+</script>
+
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script src="./demos.js?v=2" defer></script>
+</body>
+</html>

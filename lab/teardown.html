@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="ember">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How This Site Is Built — A Teardown — Arpit Maheshwari</title>
-<meta name="description" content="An honest engineering teardown of arpitmaheshwari.com: no build step, no framework on the classic site, two third-party domains, a 60.5 KB stylesheet, one type scale — and the things that are still missing.">
+<meta name="description" content="An honest engineering teardown of arpitmaheshwari.com: no build step, no framework on the classic site, one third-party domain, a 309.8 KB stylesheet, one type scale — and the things that are still missing.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="canonical" href="https://arpitmaheshwari.com/lab/teardown.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How This Site Is Built — A Teardown">
-<meta property="og:description" content="No build step, no framework on the classic site, two third-party domains, one type scale — and an honest list of what is still missing.">
+<meta property="og:description" content="No build step, no framework on the classic site, one third-party domain, one type scale — and an honest list of what is still missing.">
 <meta property="og:url" content="https://arpitmaheshwari.com/lab/teardown.html">
 <meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/lab-og.png">
 <meta property="og:image:alt" content="How this site is built — a teardown">
@@ -20,65 +20,24 @@
 <meta property="og:locale" content="en_IN" />
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="How This Site Is Built — A Teardown">
-<meta name="twitter:description" content="No build step, no framework on the classic site, two third-party domains — and what is still missing.">
+<meta name="twitter:description" content="No build step, no framework on the classic site, one third-party domain — and what is still missing.">
 <meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/lab-og.png">
 <meta name="twitter:image:alt" content="How this site is built — a teardown">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap" media="print" onload="this.media='all';this.onload=null">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap"></noscript>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<noscript></noscript>
 <link rel="stylesheet" href="../styles.css?v=p62">
-<style>
-  .lab-wrap { max-width: var(--inner-max); margin: 0 auto; padding: 0 var(--page-x); }
-  .lab-hero { padding-top: 128px; }
-  .lab-kicker { font-family: var(--ff-mono); font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin: 0 0 16px; }
-  .lab-lede { font-size: var(--fs-lead); line-height: 1.6; color: var(--ink-muted); max-width: var(--measure); }
-  .lab-lede strong { color: var(--ink); font-weight: 400; }
-  .lab-note { border-left: 2px solid var(--gold-dark); padding: 12px 0 12px 20px; margin: 32px 0 0; font-size: var(--fs-ui); line-height: 1.7; color: var(--ink-muted); max-width: var(--measure); }
-  .lab-note b { color: var(--ink); font-weight: 600; }
-  .lab-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-  .lab-links a { font-family: var(--ff-mono); font-size: var(--fs-caption); letter-spacing: .04em; color: var(--gold); text-decoration: none; border: 1px solid var(--gold-dark); border-radius: var(--radius); padding: 8px 16px; transition: background .15s, color .15s; }
-  .lab-links a:hover { background: var(--gold); color: var(--bg); }
-  .lab-body { font-size: var(--fs-body); line-height: 1.7; color: var(--ink-muted); max-width: var(--measure); }
-  .lab-body strong { color: var(--ink); font-weight: 400; }
-  .lab-body p { margin: 0 0 16px; }
-  .lab-body p:last-child { margin-bottom: 0; }
-  .lab-body code, .td-inline { font-family: var(--ff-mono); font-size: 0.9em; color: var(--gold); }
+<link rel="stylesheet" href="../ember.css?v=e109">
 
-  /* measured-facts table */
-  .td-scroll { overflow-x: auto; margin-top: 24px; }
-  table.td-table { width: 100%; border-collapse: collapse; min-width: 520px; }
-  .td-table th { text-align: left; font-family: var(--ff-mono); font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); padding: 0 20px 12px 0; border-bottom: 1px solid var(--border); }
-  .td-table td { padding: 12px 20px 12px 0; border-bottom: 1px solid var(--border); font-size: var(--fs-ui); line-height: 1.6; color: var(--ink-muted); vertical-align: top; }
-  .td-table td:first-child { color: var(--ink); }
-  .td-table td b { font-family: var(--ff-mono); color: var(--gold); font-weight: 500; font-variant-numeric: tabular-nums; }
-
-  pre.lab-code { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; overflow-x: auto; margin: 24px 0 0; }
-  pre.lab-code code { font-family: var(--ff-mono); font-size: var(--fs-caption); line-height: 1.75; color: var(--ink); white-space: pre; }
-  .lab-code .c { color: var(--ink-muted); }
-  .lab-code .k { color: var(--gold); }
-
-  .td-block { border-top: 1px solid var(--border); padding-top: 32px; margin-top: 40px; }
-  .td-block:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
-  .td-block h3 { font-family: var(--ff-display); font-weight: 400; font-size: var(--fs-card); line-height: 1.3; color: var(--ink); margin: 0 0 12px; }
-
-  /* the honest gaps list */
-  .td-gaps { list-style: none; padding: 0; margin: 24px 0 0; }
-  .td-gaps li { padding: 16px 0 16px 32px; border-bottom: 1px solid var(--border); position: relative; font-size: var(--fs-ui); line-height: 1.65; color: var(--ink-muted); max-width: var(--measure); }
-  .td-gaps li:last-child { border-bottom: none; }
-  .td-gaps li::before { content: '—'; position: absolute; left: 0; color: var(--err); font-family: var(--ff-mono); }
-  .td-gaps li.is-fixed::before { content: '✓'; color: var(--ok); }
-  .td-gaps b { color: var(--ink); font-weight: 600; }
-</style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PFY6ME99K8');</script>
 </head>
-<body>
+<body class="p-lab-teardown">
 <a href="#main" class="skip-link">Skip to content</a>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-logo"><a class="row-ic" href="../index.html" style="text-decoration:none; color:inherit"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <div class="nav-logo"><a class="row-ic xi-lab-teardown-001" href="../index.html"><img class="xi-lab-teardown-002" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../lab/" aria-current="true">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
@@ -89,18 +48,25 @@
   <section class="section lab-hero">
     <div class="lab-wrap">
       <p class="lab-kicker">The Lab · 03 · Teardown</p>
-      <h1 class="section-title" style="max-width:24ch">How this site is built</h1>
+      <h1 class="section-title xi-lab-teardown-003">How this site is built</h1>
       <p class="lab-lede">A designer's portfolio is a strange artifact: it is the one deliverable where the medium is also the sample. So here is the build, measured rather than described — <strong>what it costs, what it depends on, and what is still missing</strong>.</p>
-      <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 0;transform:rotate(-1.6deg)">measured, not estimated — every number</p>
+      <p class="hand xi-lab-teardown-004" aria-hidden="true">measured, not estimated — every number</p>
       <div class="lab-note">
         <b>Every number on this page was measured, not estimated.</b> The commands are printed beside the results so you can run them against the repository yourself. Where something is unmeasured, it says so.
       </div>
       <div class="lab-links">
         <a href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io" data-cta="lab-github" data-location="teardown-hero">The whole repository ↗</a>
-        <a href="./loop.html" data-cta="lab-loop" data-location="teardown-hero">loop.js →</a>
+        <a href="./loop.html" data-cta="lab-loop" data-location="teardown-hero">loop.js →</a>
       </div>
     </div>
   </section>
+
+  <section class="section"><div class="lab-wrap">
+  <div class="thesis">
+    <span class="t-l">The principle this artifact proves</span>
+    <p>A site that argues for evidence must be willing to be <em>inspected</em> itself.</p>
+  </div>
+  </div></section>
 
   <!-- ===================== THE NUMBERS ===================== -->
   <section class="section act-cream">
@@ -111,14 +77,14 @@
         <table class="td-table">
           <thead><tr><th>What</th><th>Measured</th><th>How</th></tr></thead>
           <tbody>
-            <tr><td>Hand-written HTML pages</td><td><b>39</b></td><td><span class="td-inline">find . -name "*.html"</span>, excluding the book and print sources</td></tr>
-            <tr><td>Stylesheet, entire site</td><td><b>60.5 KB</b></td><td><span class="td-inline">stat -f "%z" styles.css</span> → 61,907 bytes, unminified</td></tr>
+            <tr><td>Hand-written HTML pages</td><td><b>40</b></td><td><span class="td-inline">find . -name "*.html"</span>, excluding the book and print sources</td></tr>
+            <tr><td>Stylesheet, entire site</td><td><b>309.8 KB</b></td><td><span class="td-inline">stat -f "%z" styles.css</span> → 317,254 bytes, unminified</td></tr>
             <tr><td>Runtime dependencies, classic site</td><td><b>0</b></td><td>No root <span class="td-inline">package.json</span>, no <span class="td-inline">node_modules</span>, no bundler config</td></tr>
             <tr><td>Third-party domains serving code</td><td><b>2</b></td><td>Google Fonts and Google Analytics. Nothing else is fetched.</td></tr>
             <tr><td>Interactive pattern demos</td><td><b>9</b></td><td>All in <span class="td-inline">patterns/demos.js</span> — 234 lines, 12.9 KB</td></tr>
             <tr><td>Its imports, requires, fetches</td><td><b>0</b></td><td><span class="td-inline">grep -nE "import |require\(|fetch\("</span> → no matches</td></tr>
             <tr><td>Open Graph share cards</td><td><b>30</b></td><td>All exactly 1200×630, verified with <span class="td-inline">sips -g pixelWidth</span></td></tr>
-            <tr><td>Pages carrying a skip link</td><td><b>33</b></td><td><span class="td-inline">grep -rl skip-link</span></td></tr>
+            <tr><td>Pages carrying a skip link</td><td><b>34</b></td><td><span class="td-inline">grep -rl skip-link</span></td></tr>
             <tr><td>Build steps between edit and deploy</td><td><b>0</b></td><td>Commit to <span class="td-inline">master</span>; GitHub Pages serves the files as written</td></tr>
           </tbody>
         </table>
@@ -132,7 +98,7 @@
       <p class="eyebrow">Decisions</p>
       <h2 class="section-title">Four choices, and what each one cost</h2>
 
-      <div class="td-block" style="margin-top:32px">
+      <div class="td-block xi-lab-teardown-005">
         <h3>No build step, and therefore no build to break</h3>
         <div class="lab-body">
           <p>There is no bundler, no transpiler, no CI pipeline. A file I edit is the file the browser receives. The benefit is that this site cannot rot: no dependency will publish a breaking major, and nothing in it needs a lockfile to reproduce in three years.</p>
@@ -141,16 +107,15 @@
       </div>
 
       <div class="td-block">
-        <h3>Fonts load without blocking the first paint</h3>
+        <h3>Fonts are served from this origin, not a third party</h3>
         <div class="lab-body">
-          <p>Two <span class="td-inline">preconnect</span> hints warm the connections, a <span class="td-inline">preload as="style"</span> starts the stylesheet early, and then the real stylesheet is declared for the <em>print</em> medium and promoted to all media on load — so it downloads without blocking rendering. A <span class="td-inline">&lt;noscript&gt;</span> copy keeps it working with JavaScript off.</p>
+          <p>Nine <span class="td-inline">woff2</span> files, latin subsets only, preloaded for the two faces that gate the first paint. No <span class="td-inline">preconnect</span>, no Google Fonts, no request leaving this domain for type. <span class="td-inline">font-display:swap</span> paints text immediately in the fallback and re-renders when the face arrives.</p>
         </div>
-        <pre class="lab-code"><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
-&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
-&lt;link rel="preload"  as="style" href="…&amp;display=swap"&gt;
-&lt;link rel="stylesheet" href="…&amp;display=swap"
-      <span class="k">media</span>=<span class="c">"print"</span> <span class="k">onload</span>=<span class="c">"this.media='all';this.onload=null"</span>&gt;
-&lt;noscript&gt;&lt;link rel="stylesheet" href="…&amp;display=swap"&gt;&lt;/noscript&gt;</code></pre>
+        <pre class="lab-code"><code>&lt;link rel="preload" as="font" type="font/woff2" crossorigin
+      href="/assets/fonts-web/source-sans-3-normal-400.woff2"&gt;
+&lt;link rel="preload" as="font" type="font/woff2" crossorigin
+      href="/assets/fonts-web/source-serif-4-normal-300_600.woff2"&gt;
+&lt;link rel="stylesheet" href="/fonts.css"&gt;</code></pre>
       </div>
 
       <div class="td-block">
@@ -176,7 +141,7 @@
       <p class="eyebrow">One honest exception</p>
       <h2 class="section-title">The book view does use React</h2>
       <div class="lab-body">
-        <p>"Zero dependencies" is true of the classic site you are reading and false of <a href="../book/" style="color:var(--gold)">the book edition</a>, which is a React application — around 120 KB of my own code plus React and React DOM, <strong>self-hosted from the repository rather than a CDN</strong>, so the page still has no third-party runtime.</p>
+        <p>"Zero dependencies" is true of the classic site you are reading and false of <a class="xi-lab-teardown-006" href="../book/">the book edition</a>, which is a React application — around 120 KB of my own code plus React and React DOM, <strong>self-hosted from the repository rather than a CDN</strong>, so the page still has no third-party runtime.</p>
         <p>Two views of one portfolio, built two ways, was a deliberate exercise: the classic site proves I can work without a framework, and the book proves I can work with one. It also means I have opinions about both that came from shipping, not reading.</p>
       </div>
     </div>
@@ -186,18 +151,22 @@
   <section class="section act-cream">
     <div class="lab-wrap">
       <p class="eyebrow">What's missing</p>
+      <div class="counter">
+        <span class="c-l">The strongest objection, kept in</span>
+        <p>&ldquo;A hand-built static site doesn&rsquo;t prove you can ship a modern stack.&rdquo; The book edition of this same site runs React &mdash; the stack shows up where the job needs it and stays out where it doesn&rsquo;t. That allocation, not the absence of a framework, is the decision on display here.</p>
+      </div>
       <h2 class="section-title">The gaps, before you find them</h2>
       <p class="lab-lede">A teardown that only lists strengths is a brochure. These are real, and they are the next things I would fix.</p>
       <ul class="td-gaps">
-        <li><b>There were no automated tests at all until this week.</b> The repository contained zero test files and an empty CI directory; verification was a manual checklist — every page at two widths, no overflow, console clean. <span style="color:var(--ink)">The 42 assertions behind <a href="./loop.html" style="color:var(--gold)">loop.js</a> are the first tests in this codebase</span>, which is a genuine gap being closed, not a strength.</li>
-        <li class="is-fixed"><b>No continuous integration.</b> Nothing ran those 42 tests on push. A <a href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io/blob/master/.github/workflows/test-lab.yml" style="color:var(--gold)">GitHub Action</a> now runs <span class="td-inline">node lab/loop.test.js</span> on every push and pull request touching <span class="td-inline">lab/</span> — this repository's first CI job.</li>
+        <li><b>There were no automated tests at all until this week.</b> The repository contained zero test files and an empty CI directory; verification was a manual checklist — every page at two widths, no overflow, console clean. <span class="xi-lab-teardown-007">The 42 assertions behind <a class="xi-lab-teardown-006" href="./loop.html">loop.js</a> are the first tests in this codebase</span>, which is a genuine gap being closed, not a strength.</li>
+        <li class="is-fixed"><b>No continuous integration.</b> Nothing ran those 42 tests on push. A <a class="xi-lab-teardown-006" href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io/blob/master/.github/workflows/test-lab.yml">GitHub Action</a> now runs <span class="td-inline">node lab/loop.test.js</span> on every push and pull request touching <span class="td-inline">lab/</span> — this repository's first CI job.</li>
         <li><b>Cache-busting is manual.</b> Version query strings are bumped by hand, which means they can be forgotten — and have been.</li>
-        <li><b>Two third-party domains still gate the first paint.</b> Self-hosting the four font files would remove Google Fonts from the critical path entirely. It is on the list; it has not been done.</li>
+        <li class="is-fixed"><b>Two third-party domains gated the first paint.</b> Fixed 2026-08-14: all nine font files are now served from this origin, Google Fonts is gone from the critical path, and one third-party domain remains (analytics). The type stack changed with it — Source Serif 4 and Source Sans 3, a superfamily, replacing a mix that had monospace carrying 34 labels a page.</li>
         <li class="is-fixed"><b>A token had drifted out of sync with its own spec.</b> The design system documented <span class="td-inline">--fs-display</span> while the stylesheet defined <span class="td-inline">--fs-display-xl</span> — a rename that never reached the document. Found while writing this page, and fixed in the commit that published it.</li>
       </ul>
       <div class="lab-links">
         <a href="./index.html" data-cta="lab-home" data-location="teardown-foot">← Everything in The Lab</a>
-        <a href="../screen/" data-cta="lab-screen" data-location="teardown-foot">The technical screen, pre-answered →</a>
+        <a href="../screen/" data-cta="lab-screen" data-location="teardown-foot">The technical screen, pre-answered →</a>
         <a href="../index.html#contact" data-cta="send-role" data-location="teardown-foot">Send me the role ↗</a>
       </div>
     </div>

@@ -1,33 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="ember">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI-Assisted Private Equity Investing — Arpit Maheshwari</title>
+<title>Provenance Is the Product — a Private Equity AI Case Study — Arpit Maheshwari</title>
 <meta name="description" content="Case study: How I designed explainability-first UX for PE analysts to trust an LLM's deal-risk analysis — grounded in cited sources, with abstention over hallucination — in high-stakes decisions.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="canonical" href="https://arpitmaheshwari.com/case-studies/fintech.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AI-Assisted Private Equity Investing — Case Study | Arpit Maheshwari">
-<meta property="og:description" content="Designing for expert skepticism in high-stakes financial decisions.">
+<meta property="og:title" content="Deal-Screening AI That Cites Its Sources — Private Equity Case Study">
+<meta property="og:description" content="A score is a claim; experts buy claims with references. Deal screening 60% faster once every number carried its source and thin evidence drew an honest abstention.">
 <meta property="og:url" content="https://arpitmaheshwari.com/case-studies/fintech.html">
 <meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/fintech-og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Arpit Maheshwari Portfolio">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0A0A'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='300' fill='%23D4A85E'%3EAM%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap" media="print" onload="this.media='all';this.onload=null">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Lexend:wght@400&family=Caveat:wght@600&display=swap"></noscript>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<noscript></noscript>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"Article",
-  "headline":"AI-Assisted Private Equity Investing Platform",
+  "headline":"Deal-Screening AI That Cites Its Sources",
   "description":"Case study on designing AI-assisted analysis interfaces for expert skepticism and high-stakes decisions.",
   "author":{"@type":"Person","name":"Arpit Maheshwari"},
   "datePublished":"2025-06-30",
@@ -53,48 +52,34 @@
   gtag('config', 'G-PFY6ME99K8');
 </script>
 <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
-<link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../styles.css?v=p62">
+<link rel="stylesheet" href="../ember.css?v=e109">
 </head>
-<body>
+<body class="p-case-studies-fintech">
 <a href="#main" class="skip-link">Skip to content</a>
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<svg class="xi-case-studies-fintech-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
   <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
 </svg>
 
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-logo"><a class="row-ic" href="../index.html" style="text-decoration:none; color:inherit"><img src="../assets/logo.svg" alt="Arpit Maheshwari Logo" style="width:40px;height:40px;"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <div class="nav-logo"><a class="row-ic xi-case-studies-fintech-002" href="../index.html"><img class="xi-case-studies-fintech-003" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies" aria-current="true">Work</a></li><li><a href="../index.html#patterns">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
   <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
   </nav>
 
-<style>
-/* Case hero — punchy, proof-forward (matches PTC) */
-.case-hero{padding:100px 24px 40px;background:var(--bg);border-bottom:1px solid var(--border)}
-.case-hero__in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,64px);align-items:center}
-.case-hero__in--solo{grid-template-columns:1fr;max-width:880px}
-.case-hero__kicker{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin:0 0 16px}
-.case-hero h1{font-family:var(--ff-display);font-size:var(--fs-hero);font-weight:300;line-height:1.1;color:var(--ink);margin:0 0 20px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual;letter-spacing:-.02em}
-.case-hero__hook{font-family:var(--ff-display);font-size:var(--fs-lead);font-weight:300;line-height:1.5;color:var(--ink);margin:0 0 32px;max-width:54ch;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual}
-.case-stats{display:flex;flex-wrap:wrap;gap:24px 40px}
-.case-stat b{display:block;font-family:var(--ff-display);font-weight:300;font-size:var(--fs-metric);line-height:1;color:var(--gold);letter-spacing:-.01em;font-optical-sizing:auto;font-variant-numeric:tabular-nums lining-nums}
-.case-stat span{display:block;margin-top:8px;font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.45;max-width:22ch}
-.case-hero__fig{margin:0}
-.case-hero__fig img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border);box-shadow:0 30px 64px rgba(0,0,0,.5)}
-.case-hero__fig figcaption{margin-top:12px;font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);line-height:1.5}
-@media(max-width:860px){.case-hero{padding:84px 20px 24px}.case-hero__in{grid-template-columns:1fr;gap:32px}.case-stats{gap:20px 32px}}
-</style>
+
 <header class="case-hero">
   <div class="case-hero__in case-hero__in--solo">
     <div>
-      <p class="case-hero__kicker">FinTech · AI-Assisted Private Equity · NDA</p>
-      <h1>AI-Assisted Private Equity Investing</h1>
-      <p class="case-hero__hook">An LLM read the deal documents and scored the risk — but analysts get paid to doubt confident numbers. So it shipped already able to name a source for every claim, and to say “I’m not sure” instead of bluffing. Then they stopped auditing the model and started betting on it.</p>
-      <p class="hand" aria-hidden="true" style="font-size:21px;margin:12px 0 20px;transform:rotate(-1.6deg)">it shipped already knowing how to say ‘I’m not sure’</p>
+      <p class="case-hero__kicker">FinTech · AI-assisted private equity · one case, one stealable principle</p>
+      <h1>For expert skeptics, provenance is the product.</h1>
+      <p class="case-hero__hook">Private-equity analysts get paid to doubt confident numbers — a score they can't cross-examine is a smooth pitch with no references, and experts walk past smooth pitches. So this product refused to launch as a naked score: from day one, every claim carried its source, and thin evidence drew an honest “I’m not sure.” Screening ran 60% faster — because the machine came with references.</p>
+      <p class="hand xi-case-studies-fintech-004" aria-hidden="true">it shipped already knowing how to say ‘I’m not sure’</p>
       <div class="case-stats">
         <div class="case-stat"><b>60% faster</b><span>deal screening · pre/post rollout</span></div>
         <div class="case-stat"><b>3</b><span>sources sat beside every score, not behind it</span></div>
@@ -104,134 +89,177 @@
   </div>
 </header>
 
-<main id="main" class="section" style="background:var(--bg);padding-top:48px"><div class="measure-c">
+<main id="main" class="section xi-case-studies-fintech-005"><div class="measure-c">
 
   <!-- META · LOCKED PHASE 11E -->
-  <p class="lbl-eyebrow" style="margin-bottom:32px">FinTech · AI-Assisted Private Equity Investing · 2025</p>
+  <p class="lbl-eyebrow xi-case-studies-fintech-006">FinTech · AI-Assisted Private Equity Investing · 2025</p>
 
   <!-- VITALS STRIP -->
   <dl class="case-vitals">
     <div><dt>Role</dt><dd>Lead Product Designer</dd></div>
     <div><dt>Team</dt><dd>Cross-functional — engineers, data scientists, PM</dd></div>
     <div><dt>Surface</dt><dd>LLM over deal docs for PE investing</dd></div>
-    <div><dt>Screening</dt><dd class="gold">60% faster <span style="display:block;font-family:var(--ff-mono);font-size:var(--fs-caption);font-weight:400;letter-spacing:.04em;color:var(--ink-muted);margin-top:4px">measured pre- vs post-rollout</span></dd></div>
+    <div><dt>Screening</dt><dd class="gold">60% faster <span class="xi-case-studies-fintech-007">measured pre- vs post-rollout</span></dd></div>
     <div><dt>Status</dt><dd>Shipped · under NDA</dd></div>
   </dl>
 
   <!-- OWNERSHIP — the honest split, scannable -->
-  <div class="framed-tight" style="overflow:hidden">
-  <div class="rcpt-r-tight" style="background:rgba(212,168,94,0.04)">
-    <div class="lbl-eyebrow" style="flex:0 0 200px">Owned</div>
-    <div class="t-ui" style="flex:1 1 240px">Product definition, the interaction design, and the abstention + citation UX — built before the first release, so every claim traced to its source on day one.</div>
+  <div class="framed-tight xi-case-studies-fintech-008">
+  <div class="rcpt-r-tight xi-case-studies-fintech-009">
+    <div class="lbl-eyebrow xi-case-studies-fintech-010">Owned</div>
+    <div class="t-ui xi-case-studies-fintech-011">Product definition, the interaction design, and the abstention + citation UX — built before the first release, so every claim traced to its source on day one.</div>
   </div>
   <div class="rcpt-r-tight">
-    <div class="lbl-eyebrow" style="flex:0 0 200px">Shared</div>
-    <div class="t-ui" style="flex:1 1 240px">Eval design and threshold tuning, with the data-science team.</div>
+    <div class="lbl-eyebrow xi-case-studies-fintech-010">Shared</div>
+    <div class="t-ui xi-case-studies-fintech-011">Eval design and threshold tuning, with the data-science team.</div>
   </div>
-  <div class="rcpt-r-tight-last" style="background:rgba(212,168,94,0.04)">
-    <div class="lbl-meta" style="flex:0 0 200px">Not mine</div>
-    <div class="t-ui-muted-tight" style="flex:1 1 240px">The model&rsquo;s accuracy — the ML team&rsquo;s result to defend — and the retrieval backend.</div>
+  <div class="rcpt-r-tight-last xi-case-studies-fintech-009">
+    <div class="lbl-meta xi-case-studies-fintech-010">Not mine</div>
+    <div class="t-ui-muted-tight xi-case-studies-fintech-011">The model&rsquo;s accuracy — the ML team&rsquo;s result to defend — and the retrieval backend.</div>
   </div>
   </div>
-  <section class="case-gate" aria-label="Summary of this case study">
-    <p class="cg-l">The short version</p>
-    <p>An LLM already scored deal risk accurately. What was missing was not precision but belief. The first release already carried a source behind every generated claim, and an <b>&ldquo;I&rsquo;m not sure&rdquo;</b> state instead of a bluff. Screening ran <b>60% faster</b>, because analysts stopped re-verifying the machine. I owned product definition and the abstention and citation UX; the model's accuracy is the ML team's result to defend.</p>
-  </section>
+  <div class="thesis">
+    <span class="t-l">The principle this case proves</span>
+    <p>A score is a claim. Experts don't buy claims — they buy claims <em>with references.</em></p>
+  </div>
 
 
   <div class="case-jump" role="navigation" aria-label="Jump to section">
-    <a href="#the-myth">The reframe</a>
-    <a href="#the-move">The move</a>
-    <a href="#the-receipt">The receipt</a>
+    <a href="#stakes">The stakes</a>
+    <a href="#test">The test</a>
+    <a href="#the-move">The mechanism</a>
+    <a href="#the-receipt">The evidence</a>
+    <a href="#breaks">Where it breaks</a>
   </div>
 
   <!-- THE MYTH — the reframe that runs the whole case -->
-  <p class="t-standfirst" style="margin-bottom:16px">A large language model already read the deal documents and scored the risk accurately. What was missing was belief, not precision. So the work was making every claim the model generated point back to the source it came from, before the first release — for readers whose whole profession is cross-examination.</p>
-  <p class="lbl-cap" style="margin-bottom:64px">One reframe · accuracy was solved, trust wasn't</p>
+  <p class="t-standfirst xi-case-studies-fintech-012">The house belief: get the score accurate enough and the analysts will use it. The score was accurate. The analysts audited it by hand anyway — because a number with no sources isn't evidence, it's homework.</p>
+  <p class="lbl-cap xi-case-studies-fintech-013">One principle · proven in the room where doubt is the job</p>
 
   <!-- §01 — THE MYTH -->
-  <section id="the-myth" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
-      Accuracy was never the bottleneck. Trust was.
+  <section class="xi-case-studies-fintech-014" id="stakes">
+    <h2 class="section-title xi-case-studies-fintech-015">
+      The stakes: an accurate score that added work instead of removing it.
     </h2>
-    <p class="t-body" style="margin-bottom:20px">Doubt is the job here, and these analysts are very good at it. A score they couldn't cross-examine wasn't a tool — it was a liability with a UI, and they treated it like one. It didn't help that the number came out of a large language model reading messy deal documents: the same technology that, pushed too far, will invent a confident answer it can't back up.</p>
-    <p class="t-body" style="margin-bottom:20px">The LLM scored deal risk accurately — reading board packs, statements and interview notes the way a junior analyst would. That part was never in question. What was missing sat on the screen: every score read the same whether the model was ninety percent confident or fifty percent guessing, and nothing on screen told you whether a claim was pulled from a real document or quietly made up. With no way to check the reasoning, analysts built parallel scorecards and let the AI rank as a sanity check at best.</p>
-    <p class="t-body">The scoring accuracy is the ML team's work and their measurement to defend; what I own is everything that made an accurate score acted on — the evidence beside the number, the abstention state, the override that got logged instead of lost. So the work was never to make the model more accurate. It was to make a correct score survive cross-examination by the most skeptical reader in the building — to tie every generated claim back to the document it came from — and to hold the launch until it could.</p>
+    <p class="t-body xi-case-studies-fintech-016">Doubt is the job here, and these analysts are very good at it. A score they couldn't cross-examine wasn't a tool — it was a liability with a UI, and they treated it like one. It didn't help that the number came out of a large language model reading messy deal documents: the same technology that, pushed too far, will invent a confident answer it can't back up.</p>
+    <p class="t-body xi-case-studies-fintech-016">The LLM read board packs, statements and interview notes like a junior analyst, and scored deal risk accurately. But on screen, a ninety-percent-confident score looked identical to a fifty-percent guess, and nothing said whether a claim came from a real document or was quietly made up. So analysts built parallel scorecards by hand and demoted the AI to sanity check.</p>
+    <p class="t-body">The accuracy is the ML team's result to defend. Mine is everything that made an accurate score acted on: the evidence beside the number, the abstention state, the override logged instead of lost. The job was to make a correct score survive cross-examination by the most skeptical reader in the building — and to hold the launch until it could.</p>
   </section>
 
   <!-- §02 — THE STAKES -->
-  <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
-    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
-      A score nobody trusts is a screen nobody opens.
+  <section class="xi-case-studies-fintech-017" id="test">
+    <h2 class="section-title xi-case-studies-fintech-015">
+      The test: if the principle holds, belief should move without touching accuracy.
     </h2>
     <p class="t-body">An analyst won't stake a recommendation on a number they can't defend to the investment committee — so an unexplainable score, however accurate, becomes one more thing to audit by hand. The model added work instead of removing it.</p>
   </section>
 
   <!-- §03 — THE MOVE -->
-  <section id="the-move" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
-      The score could explain itself on the day it shipped.
+  <section class="xi-case-studies-fintech-014" id="the-move">
+    <h2 class="section-title xi-case-studies-fintech-015">
+      The mechanism: references beside the number, and an honest &ldquo;I&rsquo;m not sure.&rdquo;
     </h2>
-    <figure class="fig-paper" style="margin:8px 0 32px">
-      <img src="../assets/visuals/fintech-gate.svg?v=1" alt="Diagram: two launch conditions — every generated number carries its source, and thin evidence draws an abstention — each shown with the failure it prevents, gating the release at a cost of weeks of delay." loading="lazy" width="1180" height="360" style="display:block;width:100%;height:auto">
+    <figure class="fig-paper xi-case-studies-fintech-018">
+      <svg class="xi-case-studies-fintech-019" role="img" aria-label="Diagram: two launch conditions — every generated number carries its source, and thin evidence draws an abstention — each shown with the failure it prevents, gating the release at a cost of weeks of delay." style="width:100%;height:auto;display:block" viewBox="0 0 1180 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Launch gate diagram: two conditions — every claim carries a cited source, and thin evidence draws an abstention — each shown with the failure it prevents, gating the release.">
+  <rect width="1180" height="360" fill="#F5EDE6"/><rect x="0" y="0" width="1180" height="8" fill="#FF8A5C"/>
+  <rect x="16" y="16" width="1148" height="328" fill="none" stroke="rgba(36,24,48,0.12)"/>
+  <style>
+    .hd2{font-family:Georgia,serif;fill:#241830}
+    .lb2{font-family:'IBM Plex Sans',sans-serif;fill:rgba(36,24,48,.65)}
+    .ik2{font-family:'IBM Plex Sans',sans-serif;fill:#241830}
+    .em2{font-family:'IBM Plex Sans',sans-serif;fill:#B84A1F}
+  </style>
+  <text x="44" y="52" class="lb2" font-size="12" letter-spacing="3">THE RELEASE I HELD</text>
+  <text x="44" y="86" class="hd2" font-size="28">Two conditions, and the failure each one bought off.</text>
+  <line x1="44" y1="104" x2="1136" y2="104" stroke="rgba(36,24,48,0.12)"/>
+
+  <!-- condition 1 -->
+  <rect x="44" y="132" width="470" height="104" rx="8" fill="#EFE3D7" stroke="rgba(36,24,48,.16)"/>
+  <text x="66" y="160" class="lb2" font-size="11" letter-spacing="2">CONDITION 01</text>
+  <text x="66" y="186" class="ik2" font-size="16">Every generated number carries its source</text>
+  <text x="66" y="212" class="lb2" font-size="12">3 sources behind a score, inline &#8212; not in a tooltip</text>
+  <text x="66" y="228" class="em2" font-size="11.5">prevents: a confident figure nobody can check on deal day</text>
+
+  <!-- condition 2 -->
+  <rect x="544" y="132" width="592" height="104" rx="8" fill="#EFE3D7" stroke="rgba(36,24,48,.16)"/>
+  <text x="566" y="160" class="lb2" font-size="11" letter-spacing="2">CONDITION 02</text>
+  <text x="566" y="186" class="ik2" font-size="16">Thin evidence draws an abstention</text>
+  <text x="566" y="212" class="lb2" font-size="12">a visible &#8220;I&#8217;m not sure about this one&#8221;</text>
+  <text x="566" y="228" class="em2" font-size="11.5">prevents: a fluent hallucination entering a capital decision</text>
+
+  <!-- gate bar -->
+  <rect x="44" y="264" width="1092" height="46" rx="6" fill="#241830"/>
+  <text x="66" y="292" fill="#EFE3D7" font-family="'IBM Plex Sans',sans-serif" font-size="14">Ship</text>
+  <text x="120" y="292" fill="rgba(36,24,48,.35)" font-family="'IBM Plex Sans',sans-serif" font-size="12.5">&#8212; only once both are true. Until then the model was accurate and unusable.</text>
+  <text x="1116" y="292" fill="#9A6A14" font-family="'IBM Plex Sans',sans-serif" font-size="12.5" text-anchor="end">cost: weeks of delay</text>
+
+  <!-- vertical connectors -->
+  <g stroke="rgba(36,24,48,.4)" stroke-width="1.5" fill="none">
+    <path d="M 279 236 V 264"/><path d="M 779 236 V 264"/>
+  </g>
+  <text x="44" y="336" class="lb2" font-size="12" font-style="italic">The trade only pays when the reader is an expert paid to doubt the answer. For a low-stakes call nobody audits, holding the launch would have been wrong.</text>
+</svg>
+
       <figcaption>The two conditions I would not ship without &mdash; and the failure each one bought off</figcaption>
     </figure>
-    <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">The product served one analysis in two interpretation modes — because analysts read differently.</strong> Some want the full written argument to sit with and annotate; others want to interrogate. So the system generated a <em>descriptive</em> mode — a detailed written analysis of the deal, the scores explained in prose — and a <em>conversational</em> mode for questioning that same analysis. Neither was a free-form chatbot: underneath both runs an agentic architecture with strict operational boundaries — specialized components playing as an orchestra, not a single improvising soloist — so whichever mode an analyst chose, the answers stayed structured, auditable, evidence-based.</p>
-    <figure class="fig-paper" style="margin:8px 0 32px">
-      <img src="../assets/visuals/fintech-two-readers.svg?v=1" alt="Diagram: one analysis rendered two ways — a written report and a conversation that interrogates it — both sitting over a pipeline-wide scoring dashboard, sharing the same evidence." loading="lazy" width="1180" height="392" style="display:block;width:100%;height:auto">
+    <p class="t-body xi-case-studies-fintech-016"><strong class="xi-case-studies-fintech-020">The product served one analysis in two interpretation modes — because analysts read differently.</strong> Some want the full written argument to sit with and annotate; others want to interrogate. So the system generated a <em>descriptive</em> mode — a detailed written analysis of the deal, the scores explained in prose — and a <em>conversational</em> mode for questioning that same analysis. Neither was a free-form chatbot: underneath both runs an agentic architecture with strict operational boundaries — specialized components playing as an orchestra, not a single improvising soloist — so whichever mode an analyst chose, the answers stayed structured, auditable, evidence-based.</p>
+    <figure class="fig-paper xi-case-studies-fintech-018">
+      <svg data-art="A" class="xi-case-studies-fintech-019" role="img" aria-label="Diagram: one analysis rendered two ways — a written report and a conversation that interrogates it — both sitting over a pipeline-wide scoring dashboard, sharing the same evidence." style="width:100%;height:auto;display:block" viewBox="0 0 1180 392" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: one underlying analysis rendered two ways — a written descriptive report and a conversational interrogation — both sitting over a pipeline-wide scoring dashboard, with citations shared by both.">
+  <rect width="1180" height="392" fill="var(--art-bg, #F4ECDA)"/>
+  <rect x="16" y="16" width="1148" height="360" fill="none" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)"/>
+  <style>
+    .hd3{font-family:Georgia,serif;fill:var(--art-ink, #2C2620)}
+    .lb3{font-family:'IBM Plex Sans',sans-serif;fill:var(--art-mut, #6A6052)}
+    .ik3{font-family:'IBM Plex Sans',sans-serif;fill:var(--art-ink, #2C2620)}
+  </style>
+  <text x="44" y="52" class="lb3" font-size="12" letter-spacing="3">ONE ANALYSIS, TWO READERS</text>
+  <text x="44" y="86" class="hd3" font-size="28">The design refused to pick a temperament for them.</text>
+  <line x1="44" y1="104" x2="1136" y2="104" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)"/>
+
+  <!-- the single analysis -->
+  <rect x="452" y="126" width="276" height="52" rx="7" fill="var(--art-ink2, #22201C)"/>
+  <text x="590" y="148" fill="var(--art-card3, #EFE6D2)" font-family="'IBM Plex Sans',sans-serif" font-size="14" text-anchor="middle">One analysis</text>
+  <text x="590" y="166" fill="var(--art-dim, #B6A98D)" font-family="'IBM Plex Sans',sans-serif" font-size="11" text-anchor="middle">scored, cited, abstaining where thin</text>
+
+  <!-- two renderings -->
+  <rect x="96" y="204" width="418" height="72" rx="7" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),.16)"/>
+  <text x="118" y="230" class="ik3" font-size="15">A written report</text>
+  <text x="118" y="250" class="lb3" font-size="11.5">the scores argued in prose &#8212; for the reader who wants</text>
+  <text x="118" y="266" class="lb3" font-size="11.5">the case made once, in order</text>
+
+  <rect x="666" y="204" width="418" height="72" rx="7" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),.16)"/>
+  <text x="688" y="230" class="ik3" font-size="15">A conversation</text>
+  <text x="688" y="250" class="lb3" font-size="11.5">interrogate any line &#8212; for the reader who arrives</text>
+  <text x="688" y="266" class="lb3" font-size="11.5">with one question and no patience</text>
+
+  <g stroke="var(--art-arrow, #998D78)" stroke-width="1.5" fill="none">
+    <path d="M 500 178 C 420 178 360 190 305 204"/>
+    <path d="M 680 178 C 760 178 820 190 875 204"/>
+  </g>
+  <path d="M 305 204 l 1 -8 6 5 z" fill="var(--art-label, #998D78)"/>
+  <path d="M 875 204 l -6 -3 -1 8 z" fill="var(--art-label, #998D78)"/>
+
+  <!-- the shared surface BOTH modes sit over — full width, as the base -->
+  <rect x="96" y="292" width="988" height="46" rx="7" fill="var(--art-bg, #F4ECDA)" stroke="rgba(var(--art-line-rgb, 44,38,32),.16)" stroke-dasharray="4 4"/>
+  <text x="118" y="320" class="ik3" font-size="13.5">Pipeline dashboard</text>
+  <text x="240" y="320" class="lb3" font-size="11.5">every live deal in one view &#8212; the surface both readers return to</text>
+  <g stroke="var(--art-arrow, #998D78)" stroke-width="1.5" fill="none" opacity=".6">
+    <path d="M 305 276 V 292"/><path d="M 875 276 V 292"/>
+  </g>
+
+  <text x="44" y="366" class="lb3" font-size="12" font-style="italic">Same evidence underneath both. Citations travel with the claim, whichever way it is read.</text>
+</svg>
+
       <figcaption>One analysis, two readings &mdash; over the dashboard both readers return to</figcaption>
     </figure>
 
-    <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">Above the single deal sat the scoring dashboard.</strong> The whole pipeline scored side-by-side — the multi-deal view where screening actually starts — and any deal drills down into the per-signal breakdown, the written analysis, and the conversation. One analysis, three surfaces, no forced workflow.</p>
-    <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">So I built an &ldquo;explain this score&rdquo; surface that grounds the model in its evidence.</strong> An analyst could pull any rating apart into the signals behind it, challenge the weighting, and watch the score answer back — and every signal came stapled to the exact document it was retrieved from, so no claim floated free of a source. Making the model survive that, before release rather than after, is the argument the whole project hung on — and the reason it took the weeks it did.</p>
-    <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">Three things were non-negotiable:</strong> a cited source behind each generated number, a visible "I'm not sure about this one" state where the model abstains instead of bluffing a confident answer it can't ground, and a logged override when the analyst disagreed. The abstention state mattered most — an LLM's worst failure is a fluent, wrong claim, and I'd rather it say nothing than hallucinate. The override drew the longest argument — logging disagreement felt exposing. What it actually built was institutional memory: every expert correction captured as structured data the system learns from, so the platform slowly comes to reflect how <em>this firm</em> thinks, not just what a generic model knows. A commodity model can be rented by any competitor; an accumulated record of the firm's own judgment can't.</p>
-    <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">The abstention threshold was a design argument, not just a statistical one.</strong> The design followed the model's own signals directly: every generated claim carried a per-claim confidence, and where it ran low, that claim rendered as the on-screen "I'm not sure about this one" — a signal that had lived only in evaluation dashboards turned into a state the analyst could see and act on. Pitching it is the whole difficulty. Pitch it too eager and the tool cries uncertainty on claims it could defend, and analysts learn to skim past the abstentions; too shy, and one fluent, wrong claim undoes the trust the tool has earned. The threshold has to fail toward humility — the cheaper mistake.</p>
-    <p class="t-body" style="margin-bottom:20px"><strong style="color:var(--ink)">Trust also had to be cheap to enter.</strong> The deal flow's raw material lived in email — decks, spreadsheets, forwarded introductions — and analysts weren't going to re-key it into a system. So the platform meets them inside Outlook: tag an email, drag an attachment into the side panel, get an instant <em>"Received, thanks"</em> while agents stitch the unstructured pile into a deal profile in the background — and a prequalification score surfaces back in the inbox, where the prioritization decision actually happens. The same discipline went at the fuzziest judgment in the pipeline: management quality, traditionally pure gut feel, rendered as a scorecard that synthesizes leadership tenure, employee sentiment, and filed financial history into one timeline set against industry norms — a quantifiable proxy where there used to be a hunch, with every input traceable.</p>
+    <p class="t-body xi-case-studies-fintech-016"><strong class="xi-case-studies-fintech-020">Above the single deal sat the scoring dashboard.</strong> The whole pipeline scored side-by-side — the multi-deal view where screening actually starts — and any deal drills down into the per-signal breakdown, the written analysis, and the conversation. One analysis, three surfaces, no forced workflow.</p>
+    <p class="t-body xi-case-studies-fintech-016"><strong class="xi-case-studies-fintech-020">So I built an &ldquo;explain this score&rdquo; surface that grounds the model in its evidence.</strong> An analyst could pull any rating apart into the signals behind it, challenge the weighting, and watch the score answer back — and every signal came stapled to the exact document it was retrieved from, so no claim floated free of a source. Making the model survive that, before release rather than after, is the argument the whole project hung on — and the reason it took the weeks it did.</p>
+    <p class="t-body xi-case-studies-fintech-016"><strong class="xi-case-studies-fintech-020">Three things were non-negotiable:</strong> a cited source behind every generated number; a visible &ldquo;I'm not sure about this one&rdquo; where the model abstains instead of bluffing — an LLM's worst failure is a fluent wrong claim; and a logged override when the analyst disagreed. The override drew the longest fight: logging disagreement felt exposing. It was actually the moat. Every correction became structured data the system learns from, so the platform comes to reflect how <em>this firm</em> thinks. A rented model any competitor can rent too; a record of the firm's own judgment, nobody can.</p>
+    <p class="t-body xi-case-studies-fintech-016"><strong class="xi-case-studies-fintech-020">The abstention threshold was a design argument, not just a statistical one.</strong> Every claim carried its own confidence; run low, and it rendered as &ldquo;I'm not sure about this one&rdquo; — a signal promoted from the eval dashboard to a state the analyst can act on. The pitch is the whole difficulty: too eager and analysts learn to skim past the crying wolf; too shy and one fluent wrong claim burns the trust bank. The threshold fails toward humility — the cheaper mistake.</p>
+    <p class="t-body xi-case-studies-fintech-016"><strong class="xi-case-studies-fintech-020">Trust also had to be cheap to enter.</strong> Deal flow lives in email — decks, spreadsheets, forwarded intros — and no analyst re-keys email into a system. So the platform meets them inside Outlook: tag a message, drag an attachment, get <em>&ldquo;Received, thanks&rdquo;</em> while agents stitch the pile into a deal profile — and the prequalification score surfaces back in the inbox, where prioritization actually happens. The fuzziest judgment got the same discipline: management quality — pure gut feel, traditionally — became a scorecard of leadership tenure, employee sentiment and filed financials on one timeline, every input traceable.</p>
     <!-- PLATE — production-fidelity reconstruction, synthetic data -->
-    <style>
-      .plF{width:min(840px,calc(100vw - 32px));margin:32px 50% 8px;transform:translateX(-50%);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
-      .plF *{box-sizing:border-box}
-      .plF-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
-      .plF-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
-      .plF-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8B93A1}
-      .plF-app{background:#F4F5F7;color:#16181D}
-      .plF-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:#fff;border-bottom:1px solid #E3E6EA}
-      .plF-brand{font-weight:600;font-size:13px;color:#16181D}
-      .plF-deal{font-size:13px;color:#515863}
-      .plF-deal b{color:#16181D;font-weight:600}
-      .plF-stage{font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#0E6E56;background:#E4F1EC;border-radius:3px;padding:3px 8px}
-      .plF-body{display:grid;grid-template-columns:1.5fr 1fr;gap:0}
-      @media(max-width:700px){.plF-body{grid-template-columns:1fr}}
-      .plF-main{padding:16px;border-right:1px solid #E3E6EA}
-      @media(max-width:700px){.plF-main{border-right:none;border-bottom:1px solid #E3E6EA}}
-      .plF-score{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
-      .plF-score b{font-size:40px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
-      .plF-verb{font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7A5410;background:#FCF2DC;border:1px solid #EAD9B0;border-radius:3px;padding:4px 8px}
-      .plF-sub{font-size:11px;color:#515863;margin-bottom:12px}
-      .plF-sig{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#fff;border:1px solid #E3E6EA;border-radius:6px;margin-bottom:8px}
-      .plF-sig.sel{border-color:#0E6E56;box-shadow:0 0 0 1px #0E6E56 inset}
-      .plF-sig.abst{border-style:dashed;background:#FAFAF8}
-      .plF-sname{flex:1 1 auto;min-width:0;font-size:12.5px;font-weight:600;color:#16181D}
-      .plF-sname small{display:block;font-weight:400;font-size:11px;color:#515863;margin-top:2px}
-      .plF-risk{font-family:var(--ff-mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:3px;flex:0 0 auto}
-      .plF-risk.hi{color:#8C2B2B;background:#F9E8E8}
-      .plF-risk.md{color:#7A5410;background:#FCF2DC}
-      .plF-conf{font-family:var(--ff-mono);font-size:10.5px;color:#515863;flex:0 0 auto;font-variant-numeric:tabular-nums}
-      .plF-src{font-family:var(--ff-mono);font-size:10px;color:#0E6E56;background:#E4F1EC;border-radius:3px;padding:3px 8px;white-space:nowrap;flex:0 0 auto}
-      .plF-ovr{display:inline-block;font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.05em;color:#0E7A5F;background:#E6F3EE;border-radius:3px;padding:2px 4px;margin:2px 0 8px 12px}
-      .plF-foot{font-family:var(--ff-mono);font-size:10px;color:#515863;padding-top:8px;border-top:1px solid #E3E6EA;margin-top:4px}
-      .plF-rail{padding:16px;background:#FBFBFC}
-      .plF-rl{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#515863;margin-bottom:8px}
-      .plF-quote{background:#fff;border:1px solid #E3E6EA;border-left:3px solid #0E6E56;border-radius:4px;padding:12px 12px;font-size:12.5px;line-height:1.6;color:#16181D;font-style:italic}
-      .plF-quote mark{background:#FDF0C9;font-style:italic}
-      .plF-cite{font-family:var(--ff-mono);font-size:10px;color:#515863;margin:8px 0 12px}
-      .plF-open{display:inline-block;font-size:11.5px;font-weight:600;color:#fff;background:#0E6E56;border-radius:4px;padding:8px 12px}
-      .plF-more{display:inline-block;font-size:11px;color:#0E6E56;margin-left:8px}
-      .plF-weights{margin-top:16px;border-top:1px solid #E3E6EA;padding-top:12px}
-      .plF-w{display:flex;align-items:center;gap:8px;font-size:11px;color:#515863;margin-bottom:4px}
-      .plF-w i{height:5px;border-radius:3px;background:#0E6E56;display:inline-block}
-      .plF-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 24px;transform:translateX(-50%)}
-    </style>
+    
     <div class="plF" role="img" aria-label="Reconstructed deal-screening interface: a composite risk score of 6.8 resolved to 'review first', four scored signals each citing their source document, one abstained claim reading 'I'm not sure about this one', and an evidence panel quoting the cited board pack.">
       <div class="plF-chrome" aria-hidden="true"><i></i><i></i><i></i><span>deal-screening · internal build · reconstruction</span></div>
       <div class="plF-app">
@@ -259,7 +287,7 @@
             </div>
             <div class="plF-sig abst">
               <span class="plF-sname">Mid-market cohort churn<small>“I'm not sure about this one” — figure couldn't be matched against the raw export</small></span>
-              <span class="plF-conf">abstained</span><span class="plF-src" style="color:#515863;background:#EFEFEC">→ analyst queue</span>
+              <span class="plF-conf">abstained</span><span class="plF-src xi-case-studies-fintech-021">→ analyst queue</span>
             </div>
             <div class="plF-foot">3 sources attached to every scored claim · abstentions route to a human, never to a guess</div>
           </div>
@@ -270,55 +298,25 @@
             <span class="plF-open">Open source document ↗</span><span class="plF-more">2 more sources</span>
             <div class="plF-weights">
               <div class="plF-rl">Why this score</div>
-              <div class="plF-w"><i style="width:64%"></i>Revenue concentration</div>
-              <div class="plF-w"><i style="width:41%"></i>Founder dependency</div>
-              <div class="plF-w"><i style="width:33%"></i>Churn trend</div>
+              <div class="plF-w"><i class="xi-case-studies-fintech-022"></i>Revenue concentration</div>
+              <div class="plF-w"><i class="xi-case-studies-fintech-023"></i>Founder dependency</div>
+              <div class="plF-w"><i class="xi-case-studies-fintech-024"></i>Churn trend</div>
             </div>
           </div>
         </div>
       </div>
     </div>
     <figcaption class="plF-caption">
-      <span class="lbl-eyebrow" style="display:block; margin-bottom:4px">Plate 01 · Deal screening — reconstruction · all names and figures synthetic</span>
-      <span class="t-quote-cap" style="display:block">Redrawn from memory at production fidelity — the client's pixels stay theirs. This is the surface the case describes: a verb instead of a naked score, reasons with the evidence beside them, and the honest “I'm not sure.”</span>
+      <span class="lbl-eyebrow xi-case-studies-fintech-025">Plate 01 · Deal screening — reconstruction · all names and figures synthetic</span>
+      <span class="t-quote-cap xi-case-studies-fintech-026">Redrawn from memory at production fidelity — the client's pixels stay theirs. This is the surface the case describes: a verb instead of a naked score, reasons with the evidence beside them, and the honest “I'm not sure.”</span>
     </figcaption>
 
-    <p class="t-body" style="margin-bottom:24px">Pull a score apart and challenge it below — the signals, their cited sources, their weights, and the score answering back:</p>
+    <p class="t-body xi-case-studies-fintech-027">Pull a score apart and challenge it below — the signals, their 3 cited sources, their weights, and the score answering back:</p>
   <!-- VISUAL — interactive reconstruction -->
   <section class="recon" id="recon-fintech" role="group" aria-label="Interactive reconstruction: explain-this-score drawer with adjustable signal weights">
     <div class="recon-badge">Reconstruction — anonymized, rebuilt from memory for illustration · client under NDA</div>
     <div class="recon-stage">
-      <style>
-        #recon-fintech .rxf-card{max-width:520px;margin:0 auto;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:20px}
-        #recon-fintech .rxf-deal{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
-        #recon-fintech .rxf-name{font-family:var(--ff-display);font-weight:400;font-size:17px;color:var(--ink)}
-        #recon-fintech .rxf-risk{font-family:var(--ff-mono);font-size:12px;color:var(--ink-muted)}
-        #recon-fintech .rxf-risk b{font-size:15px;font-weight:500;color:var(--gold)}
-        #recon-fintech .rxf-conf{font-family:var(--ff-mono);font-size:10px;letter-spacing:.02em;text-transform:none;color:var(--warn);border:1px solid var(--border);border-radius:2px;padding:3px 8px}
-        #recon-fintech .rxf-explain{background:none;border:none;padding:0;color:var(--gold);text-decoration:underline;text-underline-offset:3px}
-        #recon-fintech .rxf-drawer{display:none;margin-top:16px;border-top:1px solid var(--border);padding-top:16px}
-        #recon-fintech .rxf-drawer.open{display:block}
-        #recon-fintech .rxf-sig{border:1px solid var(--border);border-radius:4px;padding:12px;margin-bottom:8px}
-        #recon-fintech .rxf-sig.low{border-style:dashed;opacity:.85}
-        #recon-fintech .rxf-sigtop{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap}
-        #recon-fintech .rxf-doc{font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:none;color:var(--ink-muted)}
-        #recon-fintech .rxf-bar{flex:0 0 80px;height:5px;border-radius:3px;background:var(--border);position:relative;overflow:hidden}
-        #recon-fintech .rxf-bar i{position:absolute;inset:0;background:var(--gold);transform-origin:left;display:block}
-        #recon-fintech .rxf-sig.low .rxf-bar i{background:var(--ink-muted)}
-        #recon-fintech .rxf-claim{font-size:12.5px;color:var(--ink-muted);line-height:1.6;margin:0 0 8px}
-        #recon-fintech .rxf-unsure{font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:var(--copper);margin:0 0 8px}
-        #recon-fintech .rxf-weight{display:flex;align-items:center;gap:8px}
-        #recon-fintech .rxf-wlabel{font-family:var(--ff-mono);font-size:9px;letter-spacing:.02em;text-transform:none;color:var(--ink-muted)}
-        #recon-fintech .rxf-step{width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink-muted);line-height:1;transition:border-color .2s,color .2s}
-        #recon-fintech .rxf-step:hover{border-color:var(--gold-dark);color:var(--gold)}
-        #recon-fintech .rxf-wval{font-family:var(--ff-mono);font-size:13px;color:var(--ink);min-width:14px;text-align:center}
-        #recon-fintech .rxf-actions{margin-top:12px}
-        #recon-fintech .rxf-override{padding:8px 12px;background:transparent;border:1px solid var(--border);border-radius:2px;color:var(--ink-muted);transition:border-color .2s,color .2s}
-        #recon-fintech .rxf-override:hover{border-color:var(--gold-dark);color:var(--gold)}
-        #recon-fintech .rxf-logged{display:none;font-family:var(--ff-mono);font-size:11px;color:var(--copper);margin:12px 0 0}
-        #recon-fintech .rxf-card.overridden .rxf-logged{display:block}
-        #recon-fintech .rxf-explain:focus-visible,#recon-fintech .rxf-step:focus-visible,#recon-fintech .rxf-override:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-      </style>
+      
       <div class="rxf-card" id="rxf-card">
         <div class="rxf-deal">
           <span class="rxf-name">Deal Atlas-7</span>
@@ -328,7 +326,7 @@
         <button type="button" class="rxf-explain" id="rxf-explain" aria-expanded="false" aria-controls="rxf-drawer" data-cta="recon" data-location="recon-fintech">Explain this score</button>
         <div class="rxf-drawer" id="rxf-drawer">
           <div class="rxf-sig" data-risk="76">
-            <div class="rxf-sigtop"><span class="rxf-doc">Q3 board pack · p.12</span><span class="rxf-bar" aria-hidden="true"><i style="transform:scaleX(.82)"></i></span></div>
+            <div class="rxf-sigtop"><span class="rxf-doc">Q3 board pack · p.12</span><span class="rxf-bar" aria-hidden="true"><i class="xi-case-studies-fintech-028"></i></span></div>
             <p class="rxf-claim">Top customer is 38% of recurring revenue — concentration pushes the score up.</p>
             <div class="rxf-weight"><span class="rxf-wlabel">Weight</span>
               <button type="button" class="rxf-step" data-dir="down" aria-label="Decrease weight: Q3 board pack" data-cta="recon" data-location="recon-fintech">−</button>
@@ -337,7 +335,7 @@
             </div>
           </div>
           <div class="rxf-sig" data-risk="52">
-            <div class="rxf-sigtop"><span class="rxf-doc">Audited statements · FY24</span><span class="rxf-bar" aria-hidden="true"><i style="transform:scaleX(.65)"></i></span></div>
+            <div class="rxf-sigtop"><span class="rxf-doc">Audited statements · FY24</span><span class="rxf-bar" aria-hidden="true"><i class="xi-case-studies-fintech-029"></i></span></div>
             <p class="rxf-claim">Margins hold steady across three years; working capital reads clean.</p>
             <div class="rxf-weight"><span class="rxf-wlabel">Weight</span>
               <button type="button" class="rxf-step" data-dir="down" aria-label="Decrease weight: audited statements" data-cta="recon" data-location="recon-fintech">−</button>
@@ -346,7 +344,7 @@
             </div>
           </div>
           <div class="rxf-sig low" data-risk="40">
-            <div class="rxf-sigtop"><span class="rxf-doc">Founder interview · note 07</span><span class="rxf-bar" aria-hidden="true"><i style="transform:scaleX(.28)"></i></span></div>
+            <div class="rxf-sigtop"><span class="rxf-doc">Founder interview · note 07</span><span class="rxf-bar" aria-hidden="true"><i class="xi-case-studies-fintech-030"></i></span></div>
             <p class="rxf-claim">Churn figure couldn't be matched against the raw export.</p>
             <p class="rxf-unsure">“I'm not sure about this one” — low confidence, kept visible</p>
             <div class="rxf-weight"><span class="rxf-wlabel">Weight</span>
@@ -376,89 +374,284 @@
     ex.addEventListener('click',function(){var open=dr.classList.toggle('open');ex.setAttribute('aria-expanded',String(open));});
     r.querySelector('#rxf-override').addEventListener('click',function(){card.classList.add('overridden');});
   })();</script>
-    <figure class="fig-paper" style="margin-bottom:32px">
-      <img src="../assets/visuals/fintech-pipeline.svg?v=1" alt="Diagram: a deal document enters from the inbox, claims are retrieved and matched to sources, risk is scored, then a gate asks whether every claim is grounded — thin evidence abstains, grounded evidence emits a score with its sources attached; the analyst reads it in either mode and any override is logged back to train the next read." loading="lazy" width="1180" height="420" style="display:block;width:100%;height:auto">
+    <figure class="fig-paper xi-case-studies-fintech-006">
+      <svg data-art="A" class="xi-case-studies-fintech-019" role="img" aria-label="Diagram: a deal document enters from the inbox, claims are retrieved and matched to sources, risk is scored, then a gate asks whether every claim is grounded — thin evidence abstains, grounded evidence emits a score with its sources attached; the analyst reads it in either mode and any override is logged back to train the next read." style="width:100%;height:auto;display:block" viewBox="0 0 1180 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pipeline diagram: a deal document enters from Outlook, is retrieved against sources, scored, then either abstains when evidence is thin or emits a score with citations; the analyst reviews, and any override is logged back into the next evaluation.">
+  <rect width="1180" height="420" fill="var(--art-bg, #F4ECDA)"/>
+  <rect x="16" y="16" width="1148" height="388" fill="none" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)"/>
+  <style>
+    .hd{font-family:Georgia,serif;fill:var(--art-ink, #2C2620)}
+    .lb{font-family:'IBM Plex Sans',sans-serif;fill:var(--art-mut, #6A6052)}
+    .ik{font-family:'IBM Plex Sans',sans-serif;fill:var(--art-ink, #2C2620)}
+    .em{font-family:'IBM Plex Sans',sans-serif;fill:var(--art-heat, #C0512B)}
+  </style>
+  <text x="44" y="52" class="lb" font-size="12" letter-spacing="3">DEAL SCREENING &#8212; EVALUATION PATH</text>
+  <text x="44" y="86" class="hd" font-size="28">A document in. A defensible score out&#8201;&#8212;&#8201;or nothing.</text>
+  <line x1="44" y1="104" x2="1136" y2="104" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)"/>
+
+  <!-- stage boxes -->
+  <g>
+    <rect x="44" y="140" width="150" height="70" rx="7" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),.16)"/>
+    <text x="60" y="168" class="ik" font-size="14">Inbox</text>
+    <text x="60" y="188" class="lb" font-size="11">tag a mail, drop the deck</text>
+
+    <rect x="238" y="140" width="150" height="70" rx="7" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),.16)"/>
+    <text x="254" y="168" class="ik" font-size="14">Retrieve</text>
+    <text x="254" y="188" class="lb" font-size="11">claims matched to sources</text>
+
+    <rect x="432" y="140" width="150" height="70" rx="7" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),.16)"/>
+    <text x="448" y="168" class="ik" font-size="14">Score</text>
+    <text x="448" y="188" class="lb" font-size="11">risk read from the docs</text>
+
+    <!-- the gate -->
+    <path d="M 700 175 L 646 140 L 646 210 Z" fill="var(--art-bg, #F4ECDA)" stroke="var(--art-heat, #C0512B)" stroke-width="1.5"/>
+    <text x="626" y="128" class="em" font-size="11" letter-spacing="1" text-anchor="middle">GATE</text>
+    <text x="600" y="234" class="lb" font-size="10.5">is every claim grounded?</text>
+  </g>
+
+  <!-- arrows through the spine -->
+  <g stroke="var(--art-arrow, #998D78)" stroke-width="1.5" fill="none">
+    <path d="M 194 175 H 232"/><path d="M 388 175 H 426"/><path d="M 582 175 H 640"/>
+  </g>
+  <g fill="var(--art-label, #998D78)">
+    <path d="M 232 175 l -7 -4 v 8 z"/><path d="M 426 175 l -7 -4 v 8 z"/><path d="M 640 175 l -7 -4 v 8 z"/>
+  </g>
+
+  <!-- branch: abstain (up) -->
+  <path d="M 700 160 C 740 160 750 128 790 128" stroke="var(--art-heat, #C0512B)" stroke-width="1.5" fill="none" stroke-dasharray="5 4"/>
+  <rect x="790" y="102" width="240" height="54" rx="7" fill="var(--art-card2, #FBF4E6)" stroke="var(--art-heat, #C0512B)" stroke-width="1.5"/>
+  <text x="806" y="126" class="em" font-size="13.5" font-weight="600">Abstain &#8212; &#8220;not sure about this one&#8221;</text>
+  <text x="806" y="144" class="lb" font-size="10.5">thin evidence never becomes a confident number</text>
+
+  <!-- branch: score (down) -->
+  <path d="M 700 190 C 740 190 750 226 790 226" stroke="var(--art-good, #2F5D52)" stroke-width="1.5" fill="none"/>
+  <rect x="790" y="198" width="240" height="58" rx="7" fill="var(--art-cardgood, #F2F7F4)" stroke="var(--art-good, #2F5D52)" stroke-width="1.5"/>
+  <text x="806" y="222" class="ik" font-size="13.5" font-weight="600">Score, with its sources attached</text>
+  <text x="806" y="240" class="lb" font-size="10.5">3 sources behind every number, inline</text>
+
+  <!-- analyst + override loop -->
+  <rect x="432" y="300" width="200" height="66" rx="7" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),.16)"/>
+  <text x="448" y="326" class="ik" font-size="14">Analyst reads it</text>
+  <text x="448" y="346" class="lb" font-size="11">two modes: written report &#183; conversation</text>
+
+  <path d="M 910 256 C 910 300 800 333 636 333" stroke="var(--art-arrow, #998D78)" stroke-width="1.5" fill="none"/>
+  <path d="M 636 333 l 7 -4 v 8 z" fill="var(--art-label, #998D78)"/>
+
+  <rect x="140" y="300" width="200" height="66" rx="7" fill="var(--art-card, #EEE4CE)" stroke="var(--art-gold, #CE9230)" stroke-width="1.5"/>
+  <text x="156" y="326" class="ik" font-size="14">Override, logged</text>
+  <text x="156" y="346" class="lb" font-size="11">structured data, not a comment box</text>
+  <path d="M 432 333 H 344" stroke="var(--art-arrow, #998D78)" stroke-width="1.5" fill="none"/>
+  <path d="M 344 333 l 7 -4 v 8 z" fill="var(--art-label, #998D78)"/>
+  <path d="M 240 300 C 240 252 384 232 507 216" stroke="var(--art-gold, #CE9230)" stroke-width="1.5" fill="none" stroke-dasharray="5 4"/>
+  <path d="M 507 216 l -3 8 8 -1 z" fill="var(--art-gold, #CE9230)"/>
+  <text x="252" y="272" class="lb" font-size="10.5" font-style="italic">the correction trains the next read</text>
+
+  <text x="44" y="392" class="lb" font-size="12" font-style="italic">The 60% was not the model getting faster &#8212; it was analysts no longer re-verifying by hand.</text>
+</svg>
+
       <figcaption>The path a document takes &mdash; and the branch where the system declines to answer</figcaption>
     </figure>
     <figure class="fig-paper">
-      <img src="../assets/visuals/case-fintech.svg" alt="Diagram: a deal-risk score with an explain-this-score panel, traced back to its three source documents." loading="lazy" width="1280" height="400" style="display:block;width:100%;height:auto">
+      <svg data-art="A" class="xi-case-studies-fintech-019" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="t d">
+  <title id="t">FinTech deal risk: explain before the verdict</title>
+  <desc id="d">A wide left-to-right diagram on cream paper. Three source documents on the left — Financials, Market data and Diligence notes — each traced by a thin line into a central circular deal-risk score reading 62. From the score a line leads to a panel on the right titled "Explain this score", listing three weighted factors with bars: revenue concentration, market volatility and management tenure.</desc>
+
+  <!-- palette: bg var(--art-bg, #F4ECDA) / panel var(--art-card, #EEE4CE) / ink var(--art-ink, #2C2620) / soft var(--art-mut, #6A6052) / faint #998D78 / ember var(--art-heat, #C0512B) / ochre var(--art-gold, #CE9230) / pine var(--art-good, #2F5D52) / hairline rgba(var(--art-line-rgb, 44,38,32),0.12) -->
+
+  <rect x="0" y="0" width="1280" height="400" fill="var(--art-bg, #F4ECDA)"/>
+
+  <!-- top hairline + title row -->
+  <line x1="36" y1="62" x2="1244" y2="62" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+  <text x="36" y="44" font-family="'Source Serif 4', Georgia, serif" font-size="30" fill="var(--art-ink, #2C2620)">Explain before the verdict</text>
+  <text x="1244" y="44" text-anchor="end" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="3" fill="var(--art-label, #998D78)">FINTECH · DEAL RISK</text>
+
+  <!-- ================= LEFT: three source documents ================= -->
+  <g stroke="var(--art-mut, #6A6052)" stroke-width="1.5" fill="none" stroke-linejoin="round">
+    <!-- doc 1: Financials -->
+    <g transform="translate(48,108)">
+      <path d="M0 0 H78 L100 22 V96 H0 Z" fill="var(--art-card, #EEE4CE)"/>
+      <path d="M78 0 V22 H100"/>
+      <line x1="14" y1="44" x2="84" y2="44" stroke="var(--art-arrow, #998D78)"/>
+      <line x1="14" y1="60" x2="84" y2="60" stroke="var(--art-arrow, #998D78)"/>
+      <line x1="14" y1="76" x2="62" y2="76" stroke="var(--art-arrow, #998D78)"/>
+    </g>
+    <!-- doc 2: Market data -->
+    <g transform="translate(48,228)">
+      <path d="M0 0 H78 L100 22 V96 H0 Z" fill="var(--art-card, #EEE4CE)"/>
+      <path d="M78 0 V22 H100"/>
+      <polyline points="16,80 32,62 48,70 64,50 80,58 92,46" stroke="var(--art-arrow, #998D78)"/>
+    </g>
+  </g>
+
+  <!-- doc 3: Diligence notes (placed in lower-left, completing the trio) -->
+  <g stroke="var(--art-mut, #6A6052)" stroke-width="1.5" fill="none" stroke-linejoin="round">
+    <g transform="translate(208,168)">
+      <path d="M0 0 H78 L100 22 V96 H0 Z" fill="var(--art-card, #EEE4CE)"/>
+      <path d="M78 0 V22 H100"/>
+      <line x1="14" y1="44" x2="84" y2="44" stroke="var(--art-arrow, #998D78)"/>
+      <line x1="14" y1="60" x2="84" y2="60" stroke="var(--art-arrow, #998D78)"/>
+      <line x1="14" y1="76" x2="68" y2="76" stroke="var(--art-arrow, #998D78)"/>
+    </g>
+  </g>
+
+  <!-- source labels -->
+  <g font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="var(--art-label, #998D78)">
+    <text x="48" y="100">Financials</text>
+    <text x="48" y="220">Market data</text>
+    <text x="208" y="160">Diligence notes</text>
+  </g>
+
+  <!-- ================= traced connector lines doc -> score ================= -->
+  <!-- score ring left edge ~ (522,200) -->
+  <g fill="none" stroke="var(--art-heat, #C0512B)" stroke-width="1.6" stroke-linecap="round">
+    <path d="M148 156 C 320 156, 380 196, 519 196"/>
+    <path d="M148 276 C 320 276, 380 204, 519 204"/>
+    <path d="M308 216 C 400 230, 440 210, 519 202"/>
+  </g>
+  <g fill="var(--art-heat, #C0512B)">
+    <circle cx="519" cy="196" r="3.5"/>
+    <circle cx="519" cy="204" r="3.5"/>
+    <circle cx="519" cy="202" r="3.5"/>
+  </g>
+  <g fill="var(--art-bg, #F4ECDA)" stroke="var(--art-heat, #C0512B)" stroke-width="1.6">
+    <circle cx="148" cy="156" r="3.5"/>
+    <circle cx="148" cy="276" r="3.5"/>
+    <circle cx="308" cy="216" r="3.5"/>
+  </g>
+
+  <!-- ================= CENTER: circular deal-RISK score ================= -->
+  <g transform="translate(636,200)">
+    <text x="0" y="-112" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="3" fill="var(--art-label, #998D78)">DEAL</text>
+    <!-- faint track -->
+    <circle r="92" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="12"/>
+    <!-- score arc ~62% sweep, ember, from top clockwise -->
+    <circle r="92" fill="none" stroke="var(--art-heat, #C0512B)" stroke-width="12" stroke-linecap="round"
+            stroke-dasharray="358 220" transform="rotate(-90)"/>
+    <text x="0" y="14" text-anchor="middle" font-family="'Source Serif 4', Georgia, serif" font-size="66" fill="var(--art-ink, #2C2620)">62</text>
+    <text x="0" y="46" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" letter-spacing="2" fill="var(--art-mut, #6A6052)">RISK SCORE</text>
+  </g>
+
+  <!-- link from score to explain panel -->
+  <line x1="728" y1="200" x2="852" y2="200" stroke="var(--art-arrow, #998D78)" stroke-width="1.6"/>
+  <circle cx="728" cy="200" r="3.5" fill="var(--art-label, #998D78)"/>
+
+  <!-- ================= RIGHT: Explain this score panel ================= -->
+  <g transform="translate(852,96)">
+    <rect x="0" y="0" width="392" height="208" rx="10" fill="var(--art-card, #EEE4CE)" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1.5"/>
+    <text x="26" y="40" font-family="'Source Serif 4', Georgia, serif" font-size="22" fill="var(--art-ink, #2C2620)">Explain this score</text>
+    <line x1="26" y1="54" x2="366" y2="54" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+
+    <g font-family="'Source Sans 3', system-ui, sans-serif" font-size="16">
+      <!-- factor 1 -->
+      <circle cx="34" cy="86" r="4" fill="var(--art-heat, #C0512B)"/>
+      <text x="50" y="91" fill="var(--art-ink, #2C2620)">Revenue concentration</text>
+      <text x="366" y="91" text-anchor="end" fill="var(--art-mut, #6A6052)">+34%</text>
+      <rect x="26" y="102" width="340" height="8" rx="4" fill="var(--art-bg, #F4ECDA)"/>
+      <rect x="26" y="102" width="238" height="8" rx="4" fill="var(--art-heat, #C0512B)"/>
+
+      <!-- factor 2 -->
+      <circle cx="34" cy="140" r="4" fill="var(--art-gold, #CE9230)"/>
+      <text x="50" y="145" fill="var(--art-ink, #2C2620)">Market volatility</text>
+      <text x="366" y="145" text-anchor="end" fill="var(--art-mut, #6A6052)">+19%</text>
+      <rect x="26" y="156" width="340" height="8" rx="4" fill="var(--art-bg, #F4ECDA)"/>
+      <rect x="26" y="156" width="150" height="8" rx="4" fill="var(--art-gold, #CE9230)"/>
+
+      <!-- factor 3 -->
+      <circle cx="34" cy="194" r="4" fill="var(--art-good, #2F5D52)"/>
+      <text x="50" y="199" fill="var(--art-ink, #2C2620)">Management tenure</text>
+      <text x="366" y="199" text-anchor="end" fill="var(--art-mut, #6A6052)">-9%</text>
+      <rect x="26" y="210" width="340" height="8" rx="4" fill="var(--art-bg, #F4ECDA)"/>
+      <rect x="26" y="210" width="78" height="8" rx="4" fill="var(--art-good, #2F5D52)"/>
+    </g>
+  </g>
+
+  <!-- bottom hairline + process labels -->
+  <line x1="36" y1="344" x2="1244" y2="344" stroke="rgba(var(--art-line-rgb, 44,38,32),0.12)" stroke-width="1"/>
+  <text x="36" y="372" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="var(--art-label, #998D78)">Sources traced</text>
+  <text x="636" y="372" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="var(--art-label, #998D78)">Verdict scored</text>
+  <text x="1244" y="372" text-anchor="end" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="var(--art-label, #998D78)">Reasons shown</text>
+</svg>
+
       <figcaption>The argument arrives before the verdict — every score opens onto its three sources</figcaption>
     </figure>
   </section>
 
-  <!-- §04 — WHAT IT COST -->
-  <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
-    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">
-      What building it first cost.
+  <!-- §04 — WHAT IT COST · the objection kept in -->
+  <section class="xi-case-studies-fintech-017" id="cost">
+    <h2 class="section-title xi-case-studies-fintech-015">
+      What holding the principle cost — and the objection it had to survive.
     </h2>
-    <p class="t-body" style="margin-bottom:20px">Building it first wasn't free. The accurate LLM sat finished while I built the surface that could defend it — the retrieval that tied each claim to a source, the abstention state, the override — weeks the team could feel, against a model that already worked. Waiting was the product owner's call as much as mine; what I own is the argument for it, because shipping a correct score nobody acted on would have been the more expensive mistake.</p>
-    <blockquote class="pullq" style="background:var(--bg-card)">
-      <p class="t-quote" style="margin:0">Accuracy gets you a correct number. It doesn't get you a decision. The gap between the two is the whole job — and it's made of trust, not math.</p>
+    <div class="counter">
+      <span class="c-l">The strongest objection, kept in</span>
+      <p class="t-body">&ldquo;Ship the score now, add citations later — provenance is polish.&rdquo; Reasonable, budget-shaped, and wrong for this room: with expert skeptics you get exactly one first impression, and a bluffing tool never earns a second audit. The product-owner call was to perfect it before the release — provenance went in as a launch condition, not a fast-follow.</p>
+    </div>
+    <p class="t-body xi-case-studies-fintech-016">Building it first wasn't free. The accurate LLM sat finished while I built the surface that could defend it — the retrieval that tied each claim to a source, the abstention state, the override — weeks the team could feel, against a model that already worked. Waiting was the product owner's call as much as mine; what I own is the argument for it, because shipping a correct score nobody acted on would have been the more expensive mistake.</p>
+    <blockquote class="pullq xi-case-studies-fintech-031">
+      <p class="t-quote xi-case-studies-fintech-032">Accuracy gets you a correct number. It doesn't get you a decision. The gap between the two is the whole job — and it's made of trust, not math.</p>
     </blockquote>
   </section>
 
   <!-- THE RECEIPT -->
-  <section id="the-receipt" style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border);scroll-margin-top:80px">
-    <h2 class="section-title" style="margin:0 0 8px;max-width:none;line-height:1.3">The receipt.</h2>
-    <p class="lbl-cap" style="margin-bottom:32px">Interrogation turned into reliance · every number with its window</p>
-    <p class="t-body" style="margin-bottom:32px">Screening ran 60% faster, and analysts went from ignoring the model to leading their deal memos with it. The LLM didn't get more accurate — they could finally trace every claim to its cited source and see where its confidence came from. What the NDA keeps off this page — the sample, the eval design, the baseline, who ran the count — I walk through on a call, artifacts open.</p>
-    <div class="rcpt-box" style="overflow:hidden">
-      <div class="rcpt-r" style="background:rgba(212,168,94,0.04)">
-        <div class="lbl-eyebrow" style="flex:0 0 200px">Screening speed</div>
-        <div class="t-ui" style="flex:1 1 240px">60% faster deal screening · pre/post rollout</div>
+  <section class="xi-case-studies-fintech-014" id="the-receipt">
+    <h2 class="section-title xi-case-studies-fintech-033">Falsifiable evidence — 60% faster, and the skeptics now open with the score.</h2>
+    <p class="lbl-cap xi-case-studies-fintech-006">Interrogation turned into reliance · every number with its window</p>
+    <p class="t-body xi-case-studies-fintech-006">Screening ran 60% faster, and analysts went from ignoring the model to leading their deal memos with it. The LLM didn't get more accurate — they could finally trace every claim to its cited source and see where its confidence came from. What the NDA keeps off this page — the sample, the eval design, the baseline, who ran the count — I walk through on a call, artifacts open.</p>
+    <div class="rcpt-box xi-case-studies-fintech-008">
+      <div class="rcpt-r xi-case-studies-fintech-009">
+        <div class="lbl-eyebrow xi-case-studies-fintech-010">Screening speed</div>
+        <div class="t-ui xi-case-studies-fintech-011">60% faster deal screening · pre/post rollout</div>
       </div>
       <div class="rcpt-r">
-        <div class="lbl-eyebrow" style="flex:0 0 200px">Adoption</div>
-        <div class="t-ui" style="flex:1 1 240px">From ignoring the model to leading the deal memo with it · lead analysts now open with the score</div>
+        <div class="lbl-eyebrow xi-case-studies-fintech-010">Adoption</div>
+        <div class="t-ui xi-case-studies-fintech-011">From ignoring the model to leading the deal memo with it · lead analysts now open with the score</div>
       </div>
-      <div class="rcpt-r" style="background:rgba(212,168,94,0.04)">
-        <div class="lbl-eyebrow" style="flex:0 0 200px">Explainability</div>
-        <div class="t-ui" style="flex:1 1 240px">3 cited sources sat beside every score, not behind it · every claim grounded, low-confidence claims flagged as abstention</div>
+      <div class="rcpt-r xi-case-studies-fintech-009">
+        <div class="lbl-eyebrow xi-case-studies-fintech-010">Explainability</div>
+        <div class="t-ui xi-case-studies-fintech-011">3 cited sources sat beside every score, not behind it · every claim grounded, low-confidence claims flagged as abstention</div>
       </div>
       <div class="rcpt-r-last">
-        <div class="lbl-eyebrow" style="flex:0 0 200px">Override loop</div>
-        <div class="t-ui" style="flex:1 1 240px">Logged disagreement became a training signal the model learned from</div>
+        <div class="lbl-eyebrow xi-case-studies-fintech-010">Override loop</div>
+        <div class="t-ui xi-case-studies-fintech-011">Logged disagreement became a training signal the model learned from</div>
       </div>
     </div>
   </section>
 
   <!-- WHERE THIS WOULDN'T TRANSFER — the boundary on the claim (2026-08-02) -->
-  <section class="note-gold-b" style="background:var(--bg-card)">
-    <p class="lbl-eyebrow" style="margin:0 0 8px">Where this wouldn’t transfer</p>
-    <p class="t-ui-175" style="margin:0; max-width:62ch">Those weeks bought explainability, and that trade only pays when the user is an expert with a reputation riding on the answer. For a low-stakes, high-volume decision nobody audits, spending them would have been the wrong call.</p>
+  <section class="note-gold-b xi-case-studies-fintech-031">
+    <p class="lbl-eyebrow xi-case-studies-fintech-034">Where this wouldn’t transfer</p>
+    <p class="t-ui-175 xi-case-studies-fintech-035">Those weeks bought explainability, and that trade only pays when the user is an expert with a reputation riding on the answer. For a low-stakes, high-volume decision nobody audits, spending them would have been the wrong call.</p>
   </section>
 
-  <!-- THE PRINCIPLE -->
-  <section style="margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)">
-    <h2 class="section-title" style="margin:0 0 24px;max-width:none;line-height:1.3">What this one taught me.</h2>
-    <p class="t-body">To an expert, a score they can't interrogate is a smooth pitch with no references — and experts walk past smooth pitches.</p>
+  <!-- WHERE THE PRINCIPLE BREAKS -->
+  <section class="xi-case-studies-fintech-017" id="breaks">
+    <h2 class="section-title xi-case-studies-fintech-015">Where the principle breaks.</h2>
+    <p class="t-body">Provenance-first assumes the reader will actually open the references — true of analysts whose names go on the memo, untrue of users grazing a feed. It also taxes latency and retrieval cost on every claim; in a product where a wrong answer is cheap, that tax buys nothing. And citations cannot save a model that's guessing: a source beside a wrong number just makes the error easier to find — which is the point, and which some rooms don't want. If your users don't doubt for a living, this case argues against copying it.</p>
   </section>
 
   <!-- NDA CALENDLY CTA — locked phase 11E -->
-  <section class="note-gold" style="background:var(--bg-card)">
-    <p class="t-standfirst" style="margin:0 0 12px 0">Want the full version of this work?</p>
-    <p class="t-body-muted" style="margin:0 0 24px 0; max-width:60ch">Details are confidential; I'll walk through the artifacts — the service blueprint included — and numbers on a call under mutual NDA.</p>
-    <a class="btn-label btn-a" href="../index.html#contact" data-cta="send-role" data-location="nda-case-cta" style="background:var(--gold); text-decoration:none; transition:background 0.3s,transform 0.2s" onmouseover="this.style.background='var(--gold-light)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">Send me the role <svg class="icon" style="width:13px;height:13px" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+  <section class="note-gold xi-case-studies-fintech-031">
+    <p class="t-standfirst xi-case-studies-fintech-036">Want the full version of this work?</p>
+    <p class="t-body-muted xi-case-studies-fintech-037">Details are confidential; I'll walk through the artifacts — the service blueprint included — and numbers on a call under mutual NDA.</p>
+    <a class="btn-label btn-a xi-case-studies-fintech-038 hv-case-studies-fintech-1" href="../index.html#contact" data-cta="send-role" data-location="nda-case-cta">Send me the role <svg class="icon xi-case-studies-fintech-039" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
   </section>
 
 
   <!-- RELATED PATTERNS -->
-  <section style="padding:32px;background:rgba(212,168,94,0.03);border:1px solid rgba(212,168,94,0.1);border-radius:4px;margin-bottom:80px">
-    <h3 class="t-card-title" style="margin-bottom:16px">Design Patterns Used in This Case</h3>
-    <p class="t-ui-muted-loose" style="margin-bottom:20px">This project produced two patterns I now reach for whenever AI meets domain experts:</p>
-    <ul class="t-ui-muted-loose" style="margin-bottom:16px; padding-left:24px">
-      <li style="margin-bottom:12px"><strong><a href="../patterns/ml-explainability.html" style="color:var(--gold);text-decoration:none">ML Explainability Patterns</a>:</strong> How to ground each generated claim in the cited source it was retrieved from — and surface abstention when the model isn't sure — so a non-technical expert can read the why, not just the verdict.</li>
-      <li style="margin-bottom:12px"><strong><a href="../patterns/human-in-loop.html" style="color:var(--gold);text-decoration:none">Human-in-Loop Patterns</a>:</strong> The override-and-explain loop, the visible weighting on each risk factor, and disagreement handled with respect — the moves that keep the expert in command.</li>
+  <section class="xi-case-studies-fintech-040">
+    <h3 class="t-card-title xi-case-studies-fintech-012">Design Patterns Used in This Case</h3>
+    <p class="t-ui-muted-loose xi-case-studies-fintech-016">This project produced two patterns I now reach for whenever AI meets domain experts:</p>
+    <ul class="t-ui-muted-loose xi-case-studies-fintech-041">
+      <li class="xi-case-studies-fintech-042"><strong><a class="xi-case-studies-fintech-043" href="../patterns/ml-explainability.html">ML Explainability Patterns</a>:</strong> How to ground each generated claim in the cited source it was retrieved from — and surface abstention when the model isn't sure — so a non-technical expert can read the why, not just the verdict.</li>
+      <li class="xi-case-studies-fintech-042"><strong><a class="xi-case-studies-fintech-043" href="../patterns/human-in-loop.html">Human-in-Loop Patterns</a>:</strong> The override-and-explain loop, the visible weighting on each risk factor, and disagreement handled with respect — the moves that keep the expert in command.</li>
     </ul>
   </section>
 
-  <p class="t-ui-muted" style="margin:0 0 64px 0">I write about this on <a href="https://arpitmaheshwari.substack.com" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="case-study-substack" style="color:var(--gold);text-decoration:none">Human in the Loop ↗</a></p>
+  <p class="t-ui-muted xi-case-studies-fintech-044">I write about this in <a class="xi-case-studies-fintech-043" href="https://arpitmaheshwari.substack.com" target="_blank" rel="noopener noreferrer" data-cta="newsletter" data-location="case-study-substack">my newsletter ↗</a></p>
 
   <!-- SEQUENTIAL NAVIGATION -->
-  <p class="t-quote-sm" style="margin:0 0 16px">That was trust built for experts betting other people's money. Next: take the model away entirely — the same trust problem, between two hundred people.</p>
-  <div class="btn-row" style="justify-content:space-between">
-    <a class="lbl-pill-bg btn-a" href="./orgos.html" style="background:var(--gold); text-decoration:none; transition:background 0.3s" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">Next case study →</a>
-    <a class="lbl-pill-gold btn-a-ghost" href="../index.html#contact" data-cta="send-role" data-location="case-study-bottom" style="background:transparent; text-decoration:none; transition:background 0.3s,color 0.3s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Send me the role ↗</a>
+  <p class="t-quote-sm xi-case-studies-fintech-045">That was trust built for experts betting other people's money. Next: take the model away entirely — the same trust problem, between two hundred people.</p>
+  <div class="btn-row xi-case-studies-fintech-046">
+    <a class="lbl-pill-bg btn-a xi-case-studies-fintech-047 hv-case-studies-fintech-2" href="./orgos.html">Next case study →</a>
+    <a class="lbl-pill-gold btn-a-ghost xi-case-studies-fintech-048 hv-case-studies-fintech-3" href="../index.html#contact" data-cta="send-role" data-location="case-study-bottom">Send me the role ↗</a>
   </div>
 </div></main>
 
@@ -469,7 +662,7 @@
     <span>Dyslexia-friendly</span>
   </button>
   <div class="footer-note">No copyright · Design is for all</div>
-  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon" style="width:14px;height:14px" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon xi-case-studies-fintech-049" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
 </footer>
 
 <script>

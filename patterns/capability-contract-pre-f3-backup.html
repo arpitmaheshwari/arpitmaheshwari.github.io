@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ember">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Capability Contract: Say What the System Can't Do</title>
+<meta name="description" content="An AI design pattern — state a generative model's scope and limits up front (what it's for, where it taps out) so the rest of the product earns belief. A language model will answer anything; the contract says what it should.">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/patterns/capability-contract.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Capability Contract | Arpit Maheshwari">
+<meta property="og:description" content="Stating an AI system's limits up front — the honest &quot;no&quot; that makes the confident answer believable.">
+<meta property="og:url" content="https://arpitmaheshwari.com/patterns/capability-contract.html">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/capability-contract-og.png">
+<meta property="og:image:width" content="926">
+<meta property="og:image:height" content="1273">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Capability Contract">
+<meta name="twitter:description" content="Say what the model can't do, before it fails at it.">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/capability-contract-og.png">
+<meta name="twitter:image:alt" content="Say what the model can't do, before it fails at it.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<noscript></noscript>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","headline":"The Capability Contract","description":"An AI design pattern for stating a model's scope and limits up front so the rest of the product earns belief.","author":{"@type":"Person","name":"Arpit Maheshwari"},"datePublished":"2026-06-19","dateModified":"2026-06-19"}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://arpitmaheshwari.com/"},
+    {"@type":"ListItem","position":2,"name":"Patterns","item":"https://arpitmaheshwari.com/#patterns"},
+    {"@type":"ListItem","position":3,"name":"The Capability Contract","item":"https://arpitmaheshwari.com/patterns/capability-contract.html"}
+  ]
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PFY6ME99K8');
+</script>
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../styles.css?v=p62">
+<link rel="stylesheet" href="../ember.css?v=e109">
+</head>
+<body class="p-patterns-capability-contract">
+<a href="#main" class="skip-link">Skip to content</a>
+<svg class="xi-patterns-capability-contract-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+</svg>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo"><a class="row-ic xi-patterns-capability-contract-002" href="../index.html"><img class="xi-patterns-capability-contract-003" src="../assets/logo.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="nav-links"><li><a href="../index.html#featured-case-studies">Work</a></li><li><a href="../index.html#patterns" aria-current="true">Patterns</a></li><li><a href="../lab/">Lab</a></li><li><a href="../index.html#thoughts">Writing</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book ↗</a></li></ul>
+  <a href="../index.html#contact" class="nav-cta" data-cta="send-role" data-location="nav">Send me the role ↗</a>
+  </nav>
+
+<div class="xi-patterns-capability-contract-004">
+  <div class="xi-patterns-capability-contract-005">
+    <div class="meta-row">
+      <h1 class="t-hero xi-patterns-capability-contract-006">The Capability Contract</h1>
+      <span class="lbl-badge-ink xi-patterns-capability-contract-007">In production</span>
+    </div>
+    <p class="lbl-cap">AI Design · Scope &amp; limits · Last updated June 2026</p>
+    <p class="lbl-cap xi-patterns-capability-contract-008">Part of <a class="xi-patterns-capability-contract-009" href="./">A Field Guide to Trust</a> · updated June 2026</p>
+    <p class="hand xi-patterns-capability-contract-010" aria-hidden="true">say what the system can’t do — out loud</p>
+  </div>
+</div>
+
+<main id="main" class="section xi-patterns-capability-contract-011"><div class="xi-patterns-capability-contract-005">
+
+  <section class="xi-patterns-capability-contract-012">
+    <p class="lead xi-patterns-capability-contract-013">A large language model has no natural edges — ask it anything and it will produce a fluent answer, in or out of its depth. A capability contract draws those edges for it: here's what this system is for, here's where it taps out, and here's what it hands back to a human. Set it before the first use — not after the first complaint. The limits of a generative model, named plainly up front, are what make the rest of it believable.</p>
+  </section>
+
+  <section class="xi-patterns-capability-contract-012">
+    <figure class="xi-patterns-capability-contract-014">
+      <img class="framed xi-patterns-capability-contract-015" src="../assets/visuals/pattern-capability.svg" alt="Capability-contract pattern: an in-scope checklist, an out-of-scope list that routes onward, and a clean hand-off to a human specialist" loading="lazy" width="1280" height="400">
+    </figure>
+  </section>
+
+  <section class="xi-patterns-capability-contract-012">
+    <h2 class="section-title xi-patterns-capability-contract-016">Declare the edges in the interface</h2>
+    <p class="u-body xi-patterns-capability-contract-017">Most products bury scope in a terms-of-service page and hope. Then the model gets a question outside its competence, answers anyway, and a user's trust dies in a single confident wrong answer. The fix is to state the boundary where the work happens — in the interface, at the moment of use.</p>
+    <p class="u-body">An honest "I don't handle that" is not a weakness; it's the thing that makes the "I do handle this" believable. A model that knows its own edges reads as a colleague, not a slot machine.</p>
+  </section>
+  <!-- LIVE DEMO — same demo as the book's field guide -->
+  <section class="xi-patterns-capability-contract-012">
+    <h2 class="section-title xi-patterns-capability-contract-018">Try it — the pattern, live</h2>
+    <p class="u-ui xi-patterns-capability-contract-019">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+    <div data-demo="bounds"></div>
+  </section>
+
+
+  <section class="xi-patterns-capability-contract-012">
+    <h2 class="section-title xi-patterns-capability-contract-016">Hand off; don't fake it</h2>
+    <p class="u-body xi-patterns-capability-contract-017">When a request leaves the model's competence, the right move is a clean hand-off to a human — visibly, not silently. The worst pattern is graceful-looking degradation: the model keeps answering, in the same confident tone, well past the point where it knows anything.</p>
+    <p class="u-body">Design the hand-off as a first-class path, with the same care as the happy path. The person should feel routed, not abandoned — "this one needs a specialist, here's how to reach one," not a shrug.</p>
+  </section>
+
+  <section class="xi-patterns-capability-contract-012">
+    <h2 class="section-title xi-patterns-capability-contract-016">Specific beats vague</h2>
+    <p class="u-body xi-patterns-capability-contract-017">"Results may vary" protects no one and informs no one. A real capability contract is specific: "I can't price illiquid assets," "I don't read handwriting," "I'm trained through 2024." Specific limits are the ones a person can actually plan around.</p>
+    <p class="u-body">Specificity also disciplines the team building the thing. Writing the contract forces an honest conversation about what the model actually does well — and that conversation, more than any feature, is what keeps the product trustworthy as it grows.</p>
+  </section>
+
+  <section class="xi-patterns-capability-contract-012">
+    <h2 class="section-title xi-patterns-capability-contract-018">Implementation Checklist</h2>
+    <ul class="u-body xi-patterns-capability-contract-020">
+      <li class="xi-patterns-capability-contract-021"><strong>Write the contract before launch:</strong> what it's for, where it taps out, what it hands back.</li>
+      <li class="xi-patterns-capability-contract-021"><strong>State limits in the interface,</strong> at the point of use — not only in the docs.</li>
+      <li class="xi-patterns-capability-contract-021"><strong>Make out-of-scope a clean hand-off to a human,</strong> not a silent confident guess.</li>
+      <li class="xi-patterns-capability-contract-021"><strong>Be specific:</strong> name a boundary a person can plan around.</li>
+      <li class="xi-patterns-capability-contract-021"><strong>Revisit the contract</strong> every time the model's scope actually changes.</li>
+    </ul>
+  </section>
+
+  <!-- THE TEMPLATE -->
+  <section class="xi-patterns-capability-contract-012">
+    <div class="eyebrow xi-patterns-capability-contract-022">The Template — Copy It Into Your PRD</div>
+    <p class="u-body xi-patterns-capability-contract-019">A capability contract is a one-pager the whole team signs before launch. Fill in the brackets; delete nothing without deciding it.</p>
+    <div class="xi-patterns-capability-contract-023">
+      <button class="lbl-eyebrow-500 xi-patterns-capability-contract-024 hv-patterns-capability-contract-1" id="copyContractBtn" data-cta="copy-template" data-location="pattern-template">Copy</button>
+      <pre class="xi-patterns-capability-contract-025" id="contractTemplate">CAPABILITY CONTRACT — [product / feature]
+Owner: [name] · Review date: [quarterly]
+
+IN SCOPE — this system is for:
+  • [the job, stated narrowly: "score deal risk from the data room"]
+
+DECLINES — it says "I can't" when:
+  • [named limit: "the claim can't be grounded in a source document"]
+  • [named limit: "confidence falls below the abstention threshold"]
+
+HANDS OFF — out-of-scope requests route to:
+  • [the human/team + the handoff surface]
+
+NEVER — even if asked:
+  • [the hard line: "state a figure without a citation"]
+
+WHAT WE TELL THE USER — in the interface, not the docs:
+  • [the sentence on screen: "I can't price illiquid assets."]</pre>
+    </div>
+  </section>
+
+  <section class="card-gold xi-patterns-capability-contract-026">
+    <h3 class="card-title xi-patterns-capability-contract-017">See This Pattern In Action</h3>
+    <ul class="t-cap-loose xi-patterns-capability-contract-027">
+      <li class="xi-patterns-capability-contract-022"><strong><a class="xi-patterns-capability-contract-009" href="../case-studies/adtech.html">Programmatic Advertising Platform</a>:</strong> the planner stated what it could and could not price — unsold inventory it could flag as risk, outcomes it would not promise.</li>
+      <li class="xi-patterns-capability-contract-022"><strong><a class="xi-patterns-capability-contract-009" href="../case-studies/fintech.html">AI-Assisted Due Diligence</a>:</strong> the model declared the deals it wouldn't score, up front, instead of bluffing through them.</li>
+    </ul>
+  </section>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section class="card-gold xi-patterns-capability-contract-026">
+    <div class="eyebrow xi-patterns-capability-contract-022">Get AI design patterns in your inbox</div>
+    <p class="u-ui xi-patterns-capability-contract-019">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
+    <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+      <input class="t-sans-ui card-seg xi-patterns-capability-contract-028" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
+      <button class="lbl-eyebrow-500 btn-b xi-patterns-capability-contract-029" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
+    </form>
+  </section>
+
+  <div class="btn-row">
+    <a class="lbl-badge-bg btn-a xi-patterns-capability-contract-030 hv-patterns-capability-contract-2" href="./calibration-track-record.html">Next pattern / Calibration &amp; Track Record →</a>
+    <a class="lbl-badge-gold btn-a-ghost xi-patterns-capability-contract-031 hv-patterns-capability-contract-1" href="../index.html#contact" data-cta="send-role" data-location="pattern-bottom">Send me the role ↗</a>
+  </div>
+<section class="measure-t">
+    <div class="xi-patterns-capability-contract-032">
+      <div class="eyebrow xi-patterns-capability-contract-022">Limits — when NOT to use this</div>
+      <p class="u-body xi-patterns-capability-contract-033">A contract on every screen reads as a product unsure of itself — state the boundary once, where the user first meets the capability, not as a recurring disclaimer. And never write a contract you don't enforce: a stated limit the system quietly exceeds burns more trust than no statement at all.</p>
+    </div>
+  </section>
+</div></main>
+
+<footer>
+  <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
+  <button class="dyslexia-toggle" id="dyslexiaToggle" aria-pressed="false" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+    <span>Dyslexia-friendly</span>
+  </button>
+  <div class="footer-note">No copyright · Design is for all</div>
+  <button class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon xi-patterns-capability-contract-034" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+</footer>
+
+<script>
+const toggle = document.getElementById('dyslexiaToggle');
+if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on'; if (isDyslexic) { document.body.classList.add('dyslexia-mode'); toggle.setAttribute('aria-pressed', 'true'); } toggle.addEventListener('click', () => { document.body.classList.toggle('dyslexia-mode'); const isOn = document.body.classList.contains('dyslexia-mode'); toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false'); localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off'); }); }
+document.addEventListener('click', (e) => { const cta = e.target.closest('[data-cta]'); if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' }); });
+
+// Scroll depth — fires once per threshold (25/50/75/100)
+const scrollDepthHits = new Set();
+function trackScrollDepth() {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (docHeight <= 0) return;
+  const pct = Math.min(100, Math.floor((window.scrollY / docHeight) * 100));
+  [25, 50, 75, 100].forEach(threshold => {
+    if (pct >= threshold && !scrollDepthHits.has(threshold)) {
+      scrollDepthHits.add(threshold);
+      if (typeof gtag === 'function') gtag('event', 'scroll_depth', { percent: threshold });
+    }
+  });
+}
+window.addEventListener('scroll', trackScrollDepth, { passive: true });
+
+// Section visibility — fires once per section when 50% in viewport
+const sectionViewObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.viewed) {
+      entry.target.dataset.viewed = '1';
+      if (typeof gtag === 'function') {
+        gtag('event', 'section_view', { section_id: entry.target.id });
+      }
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s));
+</script>
+
+<script>
+// Copy the capability-contract template
+(function(){
+  const btn = document.getElementById('copyContractBtn');
+  const tpl = document.getElementById('contractTemplate');
+  if (!btn || !tpl) return;
+  btn.addEventListener('click', () => {
+    navigator.clipboard.writeText(tpl.textContent).then(() => {
+      btn.textContent = 'Copied';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 1600);
+    });
+  });
+})();
+</script>
+
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script src="./demos.js?v=2" defer></script>
+</body>
+</html>

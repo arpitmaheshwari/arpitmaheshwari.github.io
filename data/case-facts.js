@@ -41,7 +41,7 @@
     "ptc": {
       "no": "01",
       "key": "ptc",
-      "title": "PTC University — Learning Connector",
+      "title": "The Redesign That Asked PTC to Kill Four Products",
       "tag": "EdTech · Non-NDA",
       "meta": [
         [
@@ -89,7 +89,7 @@
     "o2": {
       "no": "02",
       "key": "o2",
-      "title": "Telefónica MyO2 & Priority Moments",
+      "title": "Two O2 UK Products, Four Million People",
       "tag": "Telecom · Non-NDA",
       "meta": [
         [
@@ -125,7 +125,7 @@
     "fintech": {
       "no": "03",
       "key": "fintech",
-      "title": "AI-Assisted Private Equity Investing",
+      "title": "Deal-Screening AI That Cites Its Sources",
       "tag": "FinTech · NDA",
       "meta": [
         [
@@ -165,8 +165,8 @@
     "adtech": {
       "no": "04",
       "key": "adtech",
-      "title": "Programmatic Advertising Platform",
-      "tag": "AdTech · NDA",
+      "title": "An Ad Agency Became the Market’s Aggregator",
+      "tag": "AdTech · Named client",
       "meta": [
         [
           "Role",
@@ -182,7 +182,7 @@
         ],
         [
           "Status",
-          "Shipped · under NDA"
+          "Shipped · named client, publicly documented"
         ]
       ],
       "metrics": [
@@ -200,12 +200,12 @@
         ]
       ],
       "plateNo": "4.1",
-      "provenance": "White-labelled reconstruction · synthetic data · bound by NDA"
+      "provenance": "Reconstruction · synthetic data · client named, public record on the page"
     },
     "orgos": {
       "no": "05",
       "key": "orgos",
-      "title": "OrgOS · Transparent Org Tooling",
+      "title": "The Software That Replaced the Org Chart",
       "tag": "Org Design · NDA",
       "meta": [
         [
@@ -245,7 +245,7 @@
     "vc-diligence": {
       "no": "06",
       "key": "vc-diligence",
-      "title": "Technical Due Diligence Platform",
+      "title": "Due Diligence You Can’t Rubber-Stamp",
       "tag": "VC/PE · NDA",
       "meta": [
         [
