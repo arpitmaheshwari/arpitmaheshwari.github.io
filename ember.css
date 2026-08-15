@@ -1944,7 +1944,10 @@ html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022 .xi-patterns
 /* ============================================================================
    ARTIFACT TOKENS (2026-08-15) — the inlined SVG artifacts are drawn in
    var(--art-*, classic-fallback). Without these overrides they render the
-   original cream (which is exactly what the classic theme should see);
+   original cream. NOTE (corrected 2026-08-15): that fallback protects the
+   ARTIFACT only — it is not a working page-level theme swap. styles.css has
+   no rules for the Ember DOM, so removing data-theme yields a broken page.
+   The real rollback is the classic-v1 git tag.
    with them, every diagram becomes the Ember instrument language Arpit
    picked from the rendered options (A for diagrams; document exhibits are
    hardcoded paper and ignore these on purpose).
@@ -2039,3 +2042,11 @@ html[data-theme="ember"] body.p-home .thought-tag{grid-column:2;grid-row:1}
   html[data-theme="ember"] body.p-home .thought-card>*{grid-column:1!important;grid-row:auto!important}
   html[data-theme="ember"] body.p-home .thought-tag{margin-top:6px}
 }
+
+
+/* KNOWN, MEASURED, UNFIXED (2026-08-15): patterns/ml-explainability.html
+   scrolls 5px horizontally at 390px. Bisected to <abbr>LIME/SHAP</abbr> in the
+   checklist — hiding it or shrinking it fixes the 5px, but NO wrapping rule
+   does, including *{overflow-wrap:anywhere}, word-break, and text-wrap. So it
+   is not a wrap problem and I did not ship a rule pretending otherwise.
+   Impact: 5px of horizontal scroll on one page, one breakpoint. */

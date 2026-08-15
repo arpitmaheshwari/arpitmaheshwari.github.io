@@ -4,8 +4,8 @@
 Why inline: the artifacts load via <img>, where webfonts cannot apply — the
 brand fonts would silently fall back. Inlined, they inherit the page's real
 fonts and, through CSS custom properties, render correctly under BOTH themes:
-every color becomes var(--art-*, CLASSIC-VALUE), so the classic theme (the
-production fallback) still sees the original palette, while ember.css
+every color becomes var(--art-*, CLASSIC-VALUE), so an artifact keeps its
+original palette wherever the Ember tokens are absent, while ember.css
 overrides the tokens to the dark instrument language Arpit picked (2026-08-15,
 option A for diagrams / option C for document exhibits, scope: everything).
 
