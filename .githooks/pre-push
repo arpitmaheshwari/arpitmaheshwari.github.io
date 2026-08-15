@@ -126,10 +126,15 @@ MSG
   fi
 fi
 
+# .grad is gradient-clipped text (background-clip:text; color:transparent). A
+# computed-style sampler reads the transparent fallback and reports the
+# impossible "#170D17 on #170D17" — identical colours, i.e. the instrument
+# failing, not the page. Measured from rendered pixels 2026-08-15: the hero
+# glyphs are rgb(244,155,149) on rgb(19,11,22) = 9.16:1 against a 3.0 bar.
 echo "pre-push: contrast smoke check (homepage + book cover, 1440px)…"
 python3 tools/contrast-audit.py \
   --docroot . --widths 1440 \
-  --exempt '.bk-device__label, .bk-device__mark' \
+  --exempt '.bk-device__label, .bk-device__mark, .grad' \
   --force-visible '.reveal' \
   "http://localhost:$PORT/" "http://localhost:$PORT/book/"
 STATUS=$?
