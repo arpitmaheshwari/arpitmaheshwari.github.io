@@ -1495,6 +1495,16 @@ Source: Arpit directly, in-session. No numbers were given, so none may be printe
 2. **The design system was later ported into Claude** (Anthropic's AI assistant): encoding the
    system's rules made front-end development faster and more precise with fewer bugs, and
    empowered Talon's developers to prototype with Claude themselves.
+3. **MECHANISM (Arpit, 2026-08-15, later in the same session): the port was a CLAUDE PLUGIN.**
+   He packaged the design system as a plugin for Claude and **shared it across the
+   organization** — so the encoding is a distributable artifact other people install and use,
+   not a prompt he personally reused. This is the answer to "what does 'ported into Claude'
+   actually mean", which three independent reviewers flagged as vague AI seasoning.
+   CONFIRMED (Arpit, same session): **TWO plugins were built — one for Talon, one for Sahaj —
+   and shared across both organizations.** The capability is therefore repeatable, not a
+   one-off for a single client. **The plugins are CLIENT CONFIDENTIAL: no artifact, no
+   screenshot, no redacted reconstruction may be published.** Words only, on every surface.
+   Still no numbers: "faster", "fewer bugs" stay qualitative until Arpit supplies measurements.
 Display rules: no invented metric for "fewer bugs" or "faster" — qualitative only until Arpit
 supplies numbers. The design-system-retired-language rule of 2026-08-06 applies to the PATTERNS
 page only; this Talon system is a real component design system and may be called one.
