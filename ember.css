@@ -1969,3 +1969,57 @@ html[data-theme="ember"] figure:has(> picture svg[data-art="A"]){
 html[data-theme="ember"] figure:has(> svg[data-art="A"]) figcaption{
   background:none!important;color:rgba(245,237,230,.62)!important;
   border-top:1px solid var(--border)!important}
+
+/* ============================================================================
+   SECOND-HALF SECTION GRAMMARS (2026-08-15, Arpit approved all four from the
+   rendered prototype): after How-I-Lead the page ran four card grids in a row.
+   Each section now carries its own layout DNA —
+   memos → ledger rows · voices → anchor quote + chorus · lab → terminal
+   listing · writing → editorial index. Prototype: prototypes/secondhalf.css.
+   ============================================================================ */
+/* PROTOTYPE — second-half section grammars, 2026-08-15. Each section gets its own layout DNA. */
+
+/* 1 · HOW I LEAD — memo cards become a ledger: label rail | content, hairline rows */
+html[data-theme="ember"] body.p-home .memos{display:block!important;border-top:1px solid rgba(245,237,230,.14)}
+html[data-theme="ember"] body.p-home .memo{display:grid!important;grid-template-columns:200px minmax(0,1fr);column-gap:48px;
+  background:none!important;border:none!important;border-bottom:1px solid rgba(245,237,230,.14)!important;
+  border-radius:0!important;padding:28px 0!important}
+html[data-theme="ember"] body.p-home .memo .mk{margin:0!important}
+html[data-theme="ember"] body.p-home .memo h3{grid-column:2;margin:0 0 8px!important}
+html[data-theme="ember"] body.p-home .memo p:not(.mk){grid-column:2;max-width:70ch}
+html[data-theme="ember"] body.p-home .memo .mk{grid-column:1;grid-row:1/span 2}
+
+/* 2 · VOICES — first quote is the anchor: bare, large, serif; the other three become a compact chorus */
+html[data-theme="ember"] body.p-home .quotes{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:20px!important}
+html[data-theme="ember"] body.p-home .qt:first-child{grid-column:1/-1;background:none!important;border:none!important;padding:8px 0 28px!important}
+html[data-theme="ember"] body.p-home .qt:first-child blockquote{font-family:var(--serif);font-size:clamp(22px,2.4vw,32px);
+  line-height:1.35;font-style:italic;color:#F5EDE6;max-width:34ch}
+html[data-theme="ember"] body.p-home .qt:first-child .qt-view{color:#FF8A5C}
+html[data-theme="ember"] body.p-home .qt:not(:first-child) blockquote{font-size:13.5px;line-height:1.6}
+
+/* 3 · THE LAB — cards become a terminal listing: mono rows on near-black, prompt glyphs */
+html[data-theme="ember"] body.p-home #lab .lab3{display:block!important;background:#0D0810;border:1px solid rgba(245,237,230,.14);
+  border-radius:10px;padding:8px 0;overflow:hidden}
+html[data-theme="ember"] body.p-home #lab .labc{display:grid!important;grid-template-columns:180px 130px minmax(0,1fr) 70px;gap:24px;
+  align-items:baseline;background:none!important;border:none!important;border-radius:0!important;
+  padding:16px 24px!important;border-bottom:1px solid rgba(245,237,230,.08)!important}
+html[data-theme="ember"] body.p-home #lab .labc:last-child{border-bottom:none!important}
+html[data-theme="ember"] body.p-home #lab .labc .lk{margin:0!important;color:#7FCF9E!important;font-family:var(--mono)!important}
+html[data-theme="ember"] body.p-home #lab .labc .lk::before{content:"$ ";color:rgba(245,237,230,.4)}
+html[data-theme="ember"] body.p-home #lab .labc b{font-family:var(--mono)!important;font-size:12px;color:#FFC46B;white-space:nowrap}
+html[data-theme="ember"] body.p-home #lab .labc p:not(.lk){font-family:var(--mono)!important;font-size:12.5px;line-height:1.6;
+  color:rgba(245,237,230,.6);margin:0!important;max-width:none!important}
+html[data-theme="ember"] body.p-home #lab .labc::after{content:"run →";font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:rgba(245,237,230,.45)}
+html[data-theme="ember"] body.p-home #lab .labc:hover::after{color:#7FCF9E}
+@media(max-width:860px){body.p-home #lab .labc{grid-template-columns:1fr;gap:6px}}
+
+/* 4 · WRITING — cards become an editorial index: serif titles, inline excerpts, hairline rows */
+html[data-theme="ember"] body.p-home .thoughts-grid{display:block!important;border-top:1px solid rgba(245,237,230,.14)}
+html[data-theme="ember"] body.p-home .thought-card{display:grid!important;grid-template-columns:minmax(0,1fr) auto;column-gap:32px;
+  background:none!important;border:none!important;border-bottom:1px solid rgba(245,237,230,.14)!important;
+  border-radius:0!important;padding:24px 0!important;align-items:baseline}
+html[data-theme="ember"] body.p-home .thought-title{font-family:var(--serif);font-size:clamp(20px,2vw,26px);font-weight:400}
+html[data-theme="ember"] body.p-home .thought-excerpt{grid-column:1;max-width:75ch;margin-top:6px!important}
+html[data-theme="ember"] body.p-home .thought-tag{grid-column:2;grid-row:1}
+@media(max-width:860px){body.p-home .memo{grid-template-columns:1fr}body.p-home .memo .mk{grid-row:auto}
+html[data-theme="ember"] body.p-home .quotes{grid-template-columns:1fr!important}}
