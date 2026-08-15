@@ -11,7 +11,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="The App People Broke on Purpose — PlanIt Case Study">
 <meta property="og:description" content="Six months, one designer-strategist, real footfall data — and an interface that paid the emotional cost of choosing a slower train.">
-<meta property="og:url" content="https://arpitmaheshwari.com/case-studies/vc-diligence.html">
+<meta property="og:url" content="https://arpitmaheshwari.com/case-studies/planit.html">
 <meta property="og:site_name" content="Arpit Maheshwari Portfolio">
 <meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/planit-og.png">
 <meta property="og:image:width" content="1200">
@@ -29,7 +29,7 @@
   "@context":"https://schema.org",
   "@type":"Article",
   "headline":"The App People Broke on Purpose",
-  "description":"Case study on designing AI-powered technical due-diligence for venture-capital and private-equity firms.",
+  "description":"Case study on a London transit product that optimised for breathing room instead of speed, and the mascot that made choosing a slower journey acceptable.",
   "author":{"@type":"Person","name":"Arpit Maheshwari"},
   "datePublished":"2026-03-15",
   "dateModified":"2026-05-24"
@@ -42,7 +42,7 @@
   "itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://arpitmaheshwari.com/"},
     {"@type":"ListItem","position":2,"name":"Work","item":"https://arpitmaheshwari.com/#featured-case-studies"},
-    {"@type":"ListItem","position":3,"name":"The App People Broke on Purpose","item":"https://arpitmaheshwari.com/case-studies/vc-diligence.html"}
+    {"@type":"ListItem","position":3,"name":"The App People Broke on Purpose","item":"https://arpitmaheshwari.com/case-studies/planit.html"}
   ]
 }
 </script>
@@ -57,8 +57,8 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../styles.css?v=p62">
-<link rel="stylesheet" href="../ember.css?v=e123">
+<link rel="stylesheet" href="../styles.css?v=p65">
+<link rel="stylesheet" href="../ember.css?v=e138">
 </head>
 <body class="p-case-studies-planit">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -119,8 +119,11 @@
     <p class="t-body">The first move was to narrow the audience deliberately, against instinct. Not commuters in general &mdash; the specific people for whom a crowded carriage is not an annoyance but a risk. That reframing decided everything downstream: a product for them could not look like the category. Transit apps speak in tech blue, dense grids and sharp edges, the visual language of a corporate dashboard. To someone already tense, that interface does not read as capable. It reads as one more thing making demands.</p>
     <p class="t-body">So the identity went the other way on purpose: warm primaries, soft accents, generous space, and <span class="td-inline">Prompt</span> for its rounded, legible forms &mdash; readable for an eighty-year-old without tipping into hospital signage. The brief was a strange one to write down and the right one: the app should behave less like an instrument and more like a sedative.</p>
     <figure class="fig-paper">
-      <img src="../assets/planit/phone-1.png" alt="The PlanIt planner screen: a warm, uncluttered mobile web form — Using: London Underground, From, To, Day and Time — under the line 'Let us help you find the quietest time to travel around London.'" loading="lazy" width="375" height="667" style="max-width:340px;margin:0 auto">
-      <figcaption>The whole product in one screen: it asks for a journey, and answers with a time you can breathe in &mdash; not the fastest one.</figcaption>
+      <div class="phone-row">
+        <div class="shot"><img src="../assets/planit/phone-1.png" alt="The PlanIt planner screen: a warm, uncluttered mobile web form — Using: London Underground, From, To, Day and Time — under the line ‘Let us help you find the quietest time to travel around London.’" loading="lazy" width="375" height="667"><span>Ask</span></div>
+        <div class="shot"><img src="../assets/planit/phone-2.png" alt="The same planner with a missing station, showing the validation message ‘No worries, it happens! Please add in the station.’" loading="lazy" width="375" height="667"><span>Get it wrong</span></div>
+      </div>
+      <figcaption>The whole product in one screen &mdash; and, beside it, the tone under pressure. Most forms scold: <em>required field</em>. This one says <em>&ldquo;No worries, it happens!&rdquo;</em> Tonality is not decoration when your user is already tense; it is the product.</figcaption>
     </figure>
   </section>
 
@@ -128,13 +131,25 @@
     <h2 class="section-title">The mechanism: one number, a British voice, and a train with a face.</h2>
     <p class="t-body"><strong>A single score, not a data stream.</strong> Crowd data collapsed into <em>Quietness</em>, one to ten, so a route could be judged at a glance. Colour reinforced it &mdash; green comfortable, amber moderate, red busy &mdash; but softened away from neon, because a warning that induces panic defeats a product built to lower it. Large touch targets and tuned contrast were treated as first-class constraints, not an accessibility pass at the end: the same interface had to work for an eighteen-year-old student and an eighty-year-old grandparent.</p>
     <p class="t-body"><strong>A voice, instead of a readout.</strong> &ldquo;Footfall density: high&rdquo; tells an anxious person to brace. The copy went colloquial and distinctly British, trading metrics for pictures they already hold: <em>&ldquo;Quietness: 3/10 &ndash; very busy. Imagine Platform 9&frac34; on the first day at Hogwarts.&rdquo;</em> And where the old app would issue an instruction, this one made an offer: <em>&ldquo;A quieter time is coming up &mdash; bring your book, a seat should be waiting for you.&rdquo;</em></p>
+    <figure class="fig-paper">
+      <div class="phone-row phone-row--one">
+        <div class="shot"><img src="../assets/planit/phone-3.png" alt="PlanIt results: a bar chart of quietness across the morning, teal for quiet and pink for busy, above a list of suggested windows — Quiet 08:00–08:15, Quiet 11:15–11:30, Busy 08:45–09:00 — and the line ‘Quietness: 3/10 — Very busy. Imagine Platform 9¾ on the first day at Hogwarts.’" loading="lazy" width="375" height="667"><span>Suggested trains</span></div>
+        <ul class="shot-rail">
+          <li><b>The chart answers first.</b> Teal and pink carry the verdict across the whole morning before a single word is read &mdash; you can pick a train without parsing anything.</li>
+          <li><b>Windows, not orders.</b> Every row is an offer with a time attached &mdash; <em>Quiet, 08:00&ndash;08:15</em> &mdash; so the traveller chooses, and the choice stays theirs.</li>
+          <li><b>The number gets a picture.</b> <em>&ldquo;Quietness: 3/10 &ndash; Very busy. Imagine Platform 9&frac34; on the first day at Hogwarts.&rdquo;</em> Nobody has to be taught what that means.</li>
+        </ul>
+      </div>
+      <figcaption>The answer screen. Colour carries the judgement before a word is read, the list offers windows rather than issuing an instruction, and the explanation is a picture you already hold &mdash; not a density figure.</figcaption>
+    </figure>
+
     <p class="t-body"><strong>A mascot doing real work.</strong> The PlanIt train was not decoration. It was the emotional anchor: greeting the traveller, approving a clear route, and visibly feeling bad when something went wrong. A face is a shortcut to a judgement humans make in milliseconds &mdash; is this thing on my side? &mdash; and the product needed that answer before it could sell a slower journey.</p>
-    <figure class="fig-paper" style="background:none;border:none;padding:0">
-      <div style="display:flex;gap:20px;justify-content:center;align-items:flex-end;flex-wrap:wrap">
-        <img src="../assets/planit/mascot-1.png" alt="The PlanIt train mascot, cheerful" width="116" height="165" loading="lazy">
-        <img src="../assets/planit/mascot-2.png" alt="The PlanIt train mascot, annoyed" width="116" height="165" loading="lazy">
-        <img src="../assets/planit/mascot-3.png" alt="The PlanIt train mascot, wincing" width="116" height="165" loading="lazy">
-        <img src="../assets/planit/mascot-4.png" alt="The PlanIt train mascot, another state" width="116" height="165" loading="lazy">
+    <figure class="fig-paper">
+      <div class="mascot-row">
+        <div class="mascot"><img src="../assets/planit/mascot-1.png" alt="The PlanIt train mascot, cheerful" width="116" height="165" loading="lazy"><span>greeting you</span></div>
+        <div class="mascot"><img src="../assets/planit/mascot-2.png" alt="The PlanIt train mascot, annoyed" width="116" height="165" loading="lazy"><span>this one&rsquo;s busy</span></div>
+        <div class="mascot"><img src="../assets/planit/mascot-3.png" alt="The PlanIt train mascot, wincing" width="116" height="165" loading="lazy"><span>sorry &mdash; that broke</span></div>
+        <div class="mascot"><img src="../assets/planit/mascot-4.png" alt="The PlanIt train mascot, pleased with a quiet route" width="116" height="165" loading="lazy"><span>go now, it&rsquo;s quiet</span></div>
       </div>
       <figcaption>The same character across states. The range is the point: a system that can only look pleased is not trusted when things go wrong.</figcaption>
     </figure>
@@ -143,6 +158,18 @@
   <section id="peak">
     <h2 class="section-title">What nobody predicted: they broke it on purpose.</h2>
     <p class="t-body">During testing and again in the wild, people deliberately triggered broken flows &mdash; entering journeys they knew would fail &mdash; to watch the little train be sad about it. The error state, the screen every product team treats as damage control, had become the thing users went looking for.</p>
+    <figure class="fig-paper">
+      <div class="phone-row phone-row--one">
+        <div class="shot"><img src="../assets/planit/phone-4.png" alt="The PlanIt error screen: the train mascot with a downturned mouth above the line ‘Oh no, there seems to be a small problem! We are working on it, please try again later.’ and a Refresh button." loading="lazy" width="375" height="667"><span>The screen they went looking for</span></div>
+        <ul class="shot-rail">
+          <li><b>It owns it in the first person.</b> <em>&ldquo;Oh no, there seems to be a small problem! We are working on it&rdquo;</em> &mdash; not <em>an error occurred</em>. Somebody is on the other side of this.</li>
+          <li><b>The face carries the apology.</b> A downturned mouth does in a glance what a paragraph of sorry-for-the-inconvenience cannot, and it costs the reader nothing.</li>
+          <li><b>Nothing you had is taken away.</b> The last good answer stays on screen underneath, so the failure is an interruption rather than a loss &mdash; and one button puts it right.</li>
+        </ul>
+      </div>
+      <figcaption>The most-loved screen in the product. It apologises in the first person, shows you a face that feels bad about it, and keeps the last good answer on screen underneath &mdash; so the failure costs you nothing you already had.</figcaption>
+    </figure>
+
     <div class="counter">
       <span class="c-l">Why that is more than a charming anecdote</span>
       <p class="t-body">A failure state people <em>seek out</em> is a failure state that costs no trust. The moment the product could not deliver &mdash; ordinarily where confidence leaks away &mdash; became a small act of empathy that made the system more believable, not less. It is the same conviction that runs through the AI work on this site, arrived at from the opposite direction: what a system does when it cannot help is what decides whether anyone believes it when it can.</p>

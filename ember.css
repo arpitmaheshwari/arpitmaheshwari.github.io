@@ -2074,3 +2074,127 @@ html[data-theme="ember"] body.p-404 .divert{color:#B84A1F;border-color:rgba(184,
 html[data-theme="ember"] body.p-404 .lug-claim{color:rgba(36,24,48,.75)}
 html[data-theme="ember"] body.p-404 .lug-claim .rt{color:#B84A1F}
 html[data-theme="ember"] body.p-404 footer{color:rgba(245,237,230,.45);border-top:1px solid var(--border)}
+
+/* ── PlanIt: the mascot row ──────────────────────────────────────────────
+   The character is the case's argument, so it gets a component, not inline
+   styles. Two things it must declare for itself: its WIDTH (the page-level
+   `.fig-paper img{width:100%}` would otherwise blow a 116px mascot up to the
+   full column) and its GROUND (the artwork is dark-featured line work drawn
+   for PlanIt's warm light identity — on the #120B14 page the eyes and mouth
+   disappear entirely, which is what shipped). Paper ground, as the system
+   says for anything that represents a real printed/product surface. */
+html[data-theme="ember"] body.p-case-studies-planit .mascot-row{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0}
+@media (max-width:640px){
+  html[data-theme="ember"] body.p-case-studies-planit .mascot-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Same trap as figure.vid-card above: .mascot is a <figure> inside .measure-c,
+   so the spine's breakout force-widens it to 1040px and translates it -520.
+   The ROW breaks out as one object; the plates inside obey their tracks. */
+html[data-theme="ember"] body.p-case-studies-planit .mascot-row .mascot{
+  width:auto!important;max-width:none!important;
+  margin:0!important;transform:none!important;min-width:0;display:flex;flex-direction:column;align-items:center;gap:12px;
+  background:#FFF6E9;border:1px solid rgba(32,24,12,.14);border-radius:16px;padding:20px 16px 12px}
+html[data-theme="ember"] body.p-case-studies-planit .mascot-row .mascot img{
+  width:116px;height:auto;border:0;display:block}
+html[data-theme="ember"] body.p-case-studies-planit .mascot-row .mascot span{
+  font-family:var(--ff-label);font-size:11px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:rgba(32,24,12,.62);text-align:center;margin:0}
+
+/* Headings sat almost on top of their first paragraph — the base
+   .section-title carries no bottom margin because elsewhere a kicker or grid
+   supplies the gap. On this page nothing does. */
+html[data-theme="ember"] body.p-case-studies-planit .section-title{margin-bottom:20px}
+html[data-theme="ember"] body.p-case-studies-planit section > .t-body + .t-body{margin-top:20px}
+
+/* PlanIt product shots. Same breakout discipline as .mascot: the wrappers are
+   divs (not <figure>) precisely so the spine's figure-breakout can't claim
+   them, and the tracks are minmax(0,1fr) so an image can never force the grid
+   wider than its container. */
+html[data-theme="ember"] body.p-case-studies-planit .phone-row{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;justify-items:center;margin:0}
+html[data-theme="ember"] body.p-case-studies-planit .phone-row--one{grid-template-columns:minmax(0,1fr)}
+html[data-theme="ember"] body.p-case-studies-planit .phone-row .shot{
+  display:flex;flex-direction:column;align-items:center;gap:12px;width:100%;max-width:340px}
+html[data-theme="ember"] body.p-case-studies-planit .phone-row .shot img{
+  width:100%;height:auto;display:block;border:1px solid rgba(32,24,12,.2);border-radius:12px}
+html[data-theme="ember"] body.p-case-studies-planit .phone-row .shot span{
+  font-family:var(--ff-label);font-size:11px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-dim)}
+@media (max-width:640px){
+  html[data-theme="ember"] body.p-case-studies-planit .phone-row{grid-template-columns:minmax(0,1fr)}}
+
+/* The single-phone figures: a 340px screenshot centred in a 1040px band left a
+   ~350px void down each side. The space gets a content role — an annotation
+   rail reading the screen — rather than being left over. */
+html[data-theme="ember"] body.p-case-studies-planit .phone-row--one{
+  grid-template-columns:300px minmax(0,1fr);gap:48px;justify-items:start;align-items:start}
+html[data-theme="ember"] body.p-case-studies-planit .phone-row--one .shot{max-width:300px}
+html[data-theme="ember"] body.p-case-studies-planit .shot-rail{
+  list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+  gap:40px;padding-top:8px}
+html[data-theme="ember"] body.p-case-studies-planit .shot-rail li{
+  font-family:var(--ff-sans);font-size:15px;line-height:1.7;color:var(--ink-muted);
+  padding-left:16px;border-left:2px solid rgba(255,138,92,.45)}
+html[data-theme="ember"] body.p-case-studies-planit .shot-rail b{color:var(--ink);font-weight:600}
+@media (max-width:860px){
+  html[data-theme="ember"] body.p-case-studies-planit .phone-row--one{
+    grid-template-columns:minmax(0,1fr);justify-items:center}
+  html[data-theme="ember"] body.p-case-studies-planit .shot-rail{max-width:520px}}
+
+/* ============================================================================
+   FIGURE CAPTIONS — the last classic-theme remnant (2026-08-16, Arpit caught it)
+   styles.css paints .fig-paper figcaption as a cream band (background:--paper,
+   ink:--paper-soft, dashed top rule) — the classic theme's taped-photo look.
+   Ember never restyled the BAND, only its font, so every case study carried a
+   full-bleed cream strip under its figures: a second, competing surface that
+   belongs to no Ember grammar and reads as a highlighter smear on the dark
+   page. Captions are captions — house label face, dim ink, page ground.
+   ============================================================================ */
+html[data-theme="ember"] body[class*="p-case-studies"] .fig-paper figcaption{
+  background:none;border-top:0;color:var(--ink-dim);
+  padding:0;margin:16px 0 0;max-width:70ch;text-align:left;line-height:1.6}
+
+/* The single-phone figure as ONE grid object: the phone holds the left column
+   across both rows; the annotation rail sits top-right; the caption drops into
+   the space beneath it. Composed this way the figure has no leftover corner —
+   previously the caption sat under the phone and the bottom-right ~400px was
+   an unstructured void. */
+@media (min-width:861px){
+  html[data-theme="ember"] body.p-case-studies-planit figure.fig-paper:has(.phone-row--one){
+    display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-rows:auto 1fr;
+    column-gap:48px;row-gap:24px;align-items:start}
+  html[data-theme="ember"] body.p-case-studies-planit figure.fig-paper:has(.phone-row--one) .phone-row--one{
+    display:contents}
+  html[data-theme="ember"] body.p-case-studies-planit figure.fig-paper:has(.phone-row--one) .shot{
+    grid-column:1;grid-row:1 / span 2}
+  html[data-theme="ember"] body.p-case-studies-planit figure.fig-paper:has(.phone-row--one) .shot-rail{
+    grid-column:2;grid-row:1;padding-top:8px}
+  html[data-theme="ember"] body.p-case-studies-planit figure.fig-paper:has(.phone-row--one) figcaption{
+    grid-column:2;grid-row:2;margin:0;align-self:end}
+  @media (max-width:860px){
+    html[data-theme="ember"] body.p-case-studies-planit figure.fig-paper:has(.phone-row--one){
+      display:block}
+    html[data-theme="ember"] body.p-case-studies-planit figure.fig-paper:has(.phone-row--one) .phone-row--one{
+      display:grid}}
+}
+
+/* The bottom button row. Every other case study carries a per-page extracted
+   class whose sole declaration is justify-content:space-between; planit was
+   authored without one, so its two buttons bunched left at a 16px gap while
+   the other six push to the column edges. Declared by name rather than by
+   cloning another page's xi- class — those numbers are page-specific. */
+html[data-theme="ember"] body.p-case-studies-planit .btn-row{justify-content:space-between}
+
+/* Below 860 the figure stops being a two-column object: the 300px phone track
+   was surviving into the narrow layout and squeezing the screenshot to ~120px
+   — legible in a geometry check, useless to a human. Caught at 768, which is
+   neither declared breakpoint. */
+@media (max-width:860px){
+  html[data-theme="ember"] body.p-case-studies-planit .phone-row--one{
+    grid-template-columns:minmax(0,1fr);justify-items:center;gap:32px}
+  html[data-theme="ember"] body.p-case-studies-planit .phone-row--one .shot{max-width:340px}
+  html[data-theme="ember"] body.p-case-studies-planit .mascot-row{
+    grid-template-columns:repeat(2,minmax(0,1fr))}
+  html[data-theme="ember"] body[class*="p-case-studies"] .fig-paper figcaption{text-align:left}
+}
+html[data-theme="ember"] body.p-home .l7{--lc:var(--rose);--lt:rgba(255,122,168,.08)}

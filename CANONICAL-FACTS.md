@@ -55,7 +55,7 @@ _Last reconciled: 2026-06-19._
 - Looking for ONE role: founding product & design lead at an AI product company of 5–40 people, OR a
   staff / director seat where human-in-the-loop design is the job.
 
-## 3. The six case studies — names + numbers are LOCKED
+## 3. The seven case studies — names + numbers are LOCKED
 Use the exact metric strings below on every surface (homepage chip, case-study page, the book, the résumé).
 
 | # | Canonical name | Tag | Headline metric (exact string) | Other locked numbers |
@@ -66,6 +66,7 @@ Use the exact metric strings below on every surface (homepage chip, case-study p
 | 4 | **An Ad Agency Became the Market’s Aggregator** | AdTech · Named client | **2 wks → 3 hrs** (campaign planning) | Recommended campaign plans with visible KPIs/ROI, easily customizable — **NO confidence scores, ever** (corrected 2026-08-05, see AdTech correction entry) · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · £400M media spend transacted through the platform · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
 | 5 | **The Software That Replaced the Org Chart** | Org Design · NDA | **200** (people) | 200 people · 0 managers · 8 modules · **in use by 250 people today (2026)** — the org grew past the 200 it was designed for and the coordination model held · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25). ("Zero managers" is the *outcome*, never the title.) |
 | 6 | **Due Diligence You Can’t Rubber-Stamp** | VC/PE · NDA | **3 wks → 4 days** (diligence cycle) | 16 analysis dimensions — a finding became a SIGNAL only at sufficient confidence, every signal backed by verified evidence (corrected 2026-08-06, see entry) · VC + PE · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25) |
+| 7 | **The App People Broke on Purpose** | Consumer · PlanIt · public product, since deprecated | **0 complaints** (usability complaints to customer service in the launch window) | 6 months, Jul–Dec 2021 · Role: designer & strategist, remote distributed team · **1,000 unique visitors / 250 active users per month** (the traction goal — honestly small, always stated as small) · shipped with **no tutorial**; users from teens to eighty-somethings navigated unaided · quietness score **1–10**, green/amber/red · typeface **Prompt** · planitnow.co.uk no longer resolves · _(added to the site 2026-08-16 on Arpit's instruction — this REVERSES the 2026-08-06 six-case ruling; the site now carries SEVEN cases and every 'six cases' string was swept)_ |
 
 **Number-writing rules:** arrow is "→" with a space each side. Never write "−60%" (use "60% faster").
 Never abbreviate to "3w → 4d" (use "3 wks → 4 days"). Lowercase "k" in "550k+".
