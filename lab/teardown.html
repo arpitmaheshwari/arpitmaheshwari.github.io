@@ -80,7 +80,7 @@
             <tr><td>Hand-written HTML pages</td><td><b>40</b></td><td><span class="td-inline">find . -name "*.html"</span>, excluding the book and print sources</td></tr>
             <tr><td>Stylesheet, entire site</td><td><b>309.8 KB</b></td><td><span class="td-inline">stat -f "%z" styles.css</span> → 317,254 bytes, unminified</td></tr>
             <tr><td>Runtime dependencies, classic site</td><td><b>0</b></td><td>No root <span class="td-inline">package.json</span>, no <span class="td-inline">node_modules</span>, no bundler config</td></tr>
-            <tr><td>Third-party domains serving code</td><td><b>2</b></td><td>Google Fonts and Google Analytics. Nothing else is fetched.</td></tr>
+            <tr><td>Third-party domains serving code</td><td><b>1</b></td><td>Google Analytics. Google Fonts left on 2026-08-14 when the nine font files moved to this origin. Attention measurement (scroll depth, section dwell) is first-party: <span class="td-inline">attention.js</span>, 120 lines, no network of its own. A heatmap tool is staged in <span class="td-inline">clarity.js</span> but inactive — switching it on makes this number 2, and this row is the thing to update when it does.</td></tr>
             <tr><td>Interactive pattern demos</td><td><b>9</b></td><td>All in <span class="td-inline">patterns/demos.js</span> — 234 lines, 12.9 KB</td></tr>
             <tr><td>Its imports, requires, fetches</td><td><b>0</b></td><td><span class="td-inline">grep -nE "import |require\(|fetch\("</span> → no matches</td></tr>
             <tr><td>Open Graph share cards</td><td><b>30</b></td><td>All exactly 1200×630, verified with <span class="td-inline">sips -g pixelWidth</span></td></tr>
@@ -196,5 +196,7 @@ document.addEventListener('click', (e) => {
   if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' });
 });
 </script>
+<script defer src="../attention.js?v=a1"></script>
+<script defer src="../clarity.js?v=c1"></script>
 </body>
 </html>
