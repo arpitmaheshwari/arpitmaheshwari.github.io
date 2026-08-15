@@ -2018,7 +2018,7 @@ html[data-theme="ember"] body.p-home #lab .labc p:not(.lk){font-family:var(--mon
   color:rgba(245,237,230,.6);margin:0!important;max-width:none!important}
 html[data-theme="ember"] body.p-home #lab .labc::after{content:"run →";font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:rgba(245,237,230,.45)}
 html[data-theme="ember"] body.p-home #lab .labc:hover::after{color:#7FCF9E}
-@media(max-width:860px){body.p-home #lab .labc{grid-template-columns:1fr;gap:6px}}
+@media(max-width:860px){html[data-theme="ember"] body.p-home #lab .labc{grid-template-columns:1fr;gap:6px}}
 
 /* 4 · WRITING — cards become an editorial index: serif titles, inline excerpts, hairline rows */
 html[data-theme="ember"] body.p-home .thoughts-grid{display:block!important;border-top:1px solid rgba(245,237,230,.14)}
@@ -2028,5 +2028,14 @@ html[data-theme="ember"] body.p-home .thought-card{display:grid!important;grid-t
 html[data-theme="ember"] body.p-home .thought-title{font-family:var(--serif);font-size:clamp(20px,2vw,26px);font-weight:400}
 html[data-theme="ember"] body.p-home .thought-excerpt{grid-column:1;max-width:75ch;margin-top:6px!important}
 html[data-theme="ember"] body.p-home .thought-tag{grid-column:2;grid-row:1}
-@media(max-width:860px){body.p-home .memo{grid-template-columns:1fr}body.p-home .memo .mk{grid-row:auto}
-html[data-theme="ember"] body.p-home .quotes{grid-template-columns:1fr!important}}
+/* phone: one column means one column — the children's explicit grid-column:2
+   placements must be reset too, or grid auto-creates an implicit second track
+   (measured: "89px 220px" where 1fr was expected) */
+@media(max-width:860px){
+  html[data-theme="ember"] body.p-home .memo{grid-template-columns:1fr;row-gap:4px}
+  html[data-theme="ember"] body.p-home .memo>*{grid-column:1!important;grid-row:auto!important}
+  html[data-theme="ember"] body.p-home .quotes{grid-template-columns:1fr!important}
+  html[data-theme="ember"] body.p-home .thought-card{grid-template-columns:1fr}
+  html[data-theme="ember"] body.p-home .thought-card>*{grid-column:1!important;grid-row:auto!important}
+  html[data-theme="ember"] body.p-home .thought-tag{margin-top:6px}
+}
