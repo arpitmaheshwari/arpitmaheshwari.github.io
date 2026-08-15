@@ -29,7 +29,7 @@ const WORK = [{
   tag: "AdTech · Named client",
   title: "An Ad Agency Became the Market’s Aggregator",
   metric: "2 wks → 3 hrs",
-  desc: "Traders watched the algorithm win and still played hunches — until plans they could argue with turned a media agency into the market’s aggregator: five systems, one platform, all public."
+  desc: "Traders watched the algorithm win and still played hunches — until plans they could argue with turned a media agency into the market’s aggregator: six systems, one platform, all public."
 }, {
   tag: "Org Design · NDA",
   title: "The Software That Replaced the Org Chart",

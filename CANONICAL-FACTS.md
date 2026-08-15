@@ -598,6 +598,14 @@ old phrasing was not false — but revenue now leads. Do not use both framings i
 4. **The advertisement display reporting system.**
 5. **Free SaaS for media owners** — inventory management given away free; media owners share
    their inventory with the aggregator in return. (This is the supply-side PLG mechanism.)
+6. **White-label franchisor booking (added to canon 2026-08-15).** A mobile-web product a
+   franchisor brands as its own: it shares PRE-NEGOTIATED billboard inventory with its
+   franchisee owners, who browse sites on a map, book them self-serve, and raise complaints or
+   enquiries — Arpit's own comparison is Uber. Franchisor examples he named: McDonald's,
+   Specsavers. Significance: a THIRD audience (franchisees, alongside advertisers/agencies and
+   media owners) and the demand-side PLG mechanism to match the supply-side free SaaS — the
+   franchisor negotiates once, hundreds of franchisees transact themselves. No metrics supplied;
+   none may be invented.
 
 **The transformation arc (the story the case now tells):** an advertising media agency became
 the market's aggregator — an adtech company running the workflow end-to-end on one platform
@@ -1528,7 +1536,9 @@ Artifacts extracted to assets/planit/ (4 mascot states 116×165 native, 4 phone 
 NOTE: this supersedes 'no metrics for PlanIt' — the numbers above are HIS, recorded twice.
 
 ### A SIXTH Talon product surfaces — franchisor white-label, 2026-08-15 (Arpit, in-session)
-**NEW, NOT YET RECONCILED WITH THE "FIVE SYSTEMS" COUNT — do not print either way until Arpit rules.**
+**RULED 2026-08-15: it IS a sixth system. The count changes to SIX everywhere.** (Arpit: "Yes it is
+the sixth system.") Swept: index.html, case-studies/adtech.html + adtech-anonymous.html,
+book/index.html, book/portfolio.js, data/case-facts.js, portfolio-sources/portfolio.html.
 Arpit: he also designed a **white-labelled mobile web product for franchisors**. A franchisor
 (his examples: McDonald's, Specsavers) shares **pre-negotiated billboards** with its franchisee
 owners; franchisees **browse sites on a map and book them** — he describes the experience as
