@@ -2031,3 +2031,42 @@ html[data-theme="ember"] body.p-home .thought-tag{grid-column:2;grid-row:1}
 /* Inlined artifacts fill their figure — was a repeated inline style on 41 SVGs
    until the pre-push inline-style gate caught it (2026-08-15). Named, not stamped. */
 .art-svg{width:100%;height:auto;display:block}
+
+/* ============================================================================
+   404 — MISSED IN THE PORT (found 2026-08-15 by Arpit). The page carried
+   data-theme="ember" and loaded ember.css, so it LOOKED ported; in fact
+   styles.css held 40 rules for it and ember.css held one. It rendered in the
+   classic palette on a site that had moved on. Attribute ≠ theme.
+   ============================================================================ */
+html[data-theme="ember"] body.p-404{background:var(--bg);color:var(--ink)}
+html[data-theme="ember"] body.p-404 .ghost{color:rgba(245,237,230,.04);font-family:var(--serif)}
+html[data-theme="ember"] body.p-404 .kick{font-family:var(--ff-label);font-weight:600;font-size:12px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ember)}
+html[data-theme="ember"] body.p-404 h1{font-family:var(--serif);font-weight:300;
+  font-size:clamp(32px,4.4vw,56px);line-height:1.1;color:var(--ink);margin:12px 0 16px}
+html[data-theme="ember"] body.p-404 h1 em{font-style:italic;
+  background:linear-gradient(92deg,var(--ember),var(--violet));-webkit-background-clip:text;
+  background-clip:text;color:transparent}
+html[data-theme="ember"] body.p-404 .lede{color:rgba(245,237,230,.76);max-width:60ch;line-height:1.7}
+html[data-theme="ember"] body.p-404 .btn{background:var(--g-hot);color:var(--cta-ink);border:none;
+  border-radius:999px;padding:12px 20px;font-family:var(--ff-label);font-weight:600;font-size:12px;
+  letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+html[data-theme="ember"] body.p-404 .btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
+html[data-theme="ember"] body.p-404 .inline-links{color:rgba(245,237,230,.62);font-size:13.5px}
+html[data-theme="ember"] body.p-404 .inline-links a{color:var(--link);border-bottom:1px solid var(--border-accent)}
+html[data-theme="ember"] body.p-404 .hand{font-family:'Caveat',cursive;font-size:20px;color:var(--amber)}
+html[data-theme="ember"] body.p-404 .meta-note{color:rgba(245,237,230,.6);font-size:13.5px;line-height:1.7}
+html[data-theme="ember"] body.p-404 .meta-note a{color:var(--link)}
+/* the claim ticket stays PAPER on purpose — it is a printed artifact in a dark room,
+   the same grammar the case studies use for document exhibits */
+html[data-theme="ember"] body.p-404 .lug{background:#F5EDE6;color:#241830;border-radius:10px;
+  box-shadow:0 24px 60px rgba(0,0,0,.45)}
+html[data-theme="ember"] body.p-404 .lug-head b,
+html[data-theme="ember"] body.p-404 .lug-row b{color:#241830}
+html[data-theme="ember"] body.p-404 .lug-row span,
+html[data-theme="ember"] body.p-404 .lug-head span{color:rgba(36,24,48,.6)}
+html[data-theme="ember"] body.p-404 .lug-fill{background:var(--ember)}
+html[data-theme="ember"] body.p-404 .divert{color:#B84A1F;border-color:rgba(184,74,31,.5)}
+html[data-theme="ember"] body.p-404 .lug-claim{color:rgba(36,24,48,.75)}
+html[data-theme="ember"] body.p-404 .lug-claim .rt{color:#B84A1F}
+html[data-theme="ember"] body.p-404 footer{color:rgba(245,237,230,.45);border-top:1px solid var(--border)}

@@ -1506,7 +1506,41 @@ Source: Arpit directly, in-session. No numbers were given, so none may be printe
    screenshot, no redacted reconstruction may be published.** Words only, on every surface.
    Still no numbers: "faster", "fewer bugs" stay qualitative until Arpit supplies measurements.
 Display rules: no invented metric for "fewer bugs" or "faster" — qualitative only until Arpit
-supplies numbers. The design-system-retired-language rule of 2026-08-06 applies to the PATTERNS
+supplies numbers.
+
+### PlanIt — full story recovered from Arpit's folio .docx, 2026-08-15
+Source: 'Arpit Maheshwari - Folio & Case Studies.docx' (his own writing + artifacts).
+Role: designer & strategist · Jul–Dec 2021 · remote distributed team · planitnow.co.uk (dead).
+Data: near-real-time footfall, London Underground + National Rail.
+Audience reframe: elderly travellers, expecting mothers advised to avoid stress, mobility/
+stroller/luggage needs, post-pandemic wary — NOT commuters in general.
+Craft: warm primaries against category 'tech blue'; typeface Prompt; Quietness score 1–10 with
+softened green/amber/red; large touch targets and tuned contrast as first-class constraints;
+British colloquial voice ('Imagine Platform 9¾ on the first day at Hogwarts').
+THE PEAK — users deliberately triggered broken flows to watch the sad mascot animation. The
+error state became a sought-out screen. This is the case's memorable beat; it is Arpit's own
+report from testing and live usage.
+Outcomes (all from the doc, none invented): zero usability-related complaints to customer
+service in the early launch window; no tutorial shipped; 1,000 unique visitors + 250 active
+users per month = the traction goal. Deprecated within months (Arpit, 2026-08-15).
+Artifacts extracted to assets/planit/ (4 mascot states 116×165 native, 4 phone screens
+375×667, 2 desktop captures) — his own work, safe to publish, no client confidentiality.
+NOTE: this supersedes 'no metrics for PlanIt' — the numbers above are HIS, recorded twice.
+
+### A SIXTH Talon product surfaces — franchisor white-label, 2026-08-15 (Arpit, in-session)
+**NEW, NOT YET RECONCILED WITH THE "FIVE SYSTEMS" COUNT — do not print either way until Arpit rules.**
+Arpit: he also designed a **white-labelled mobile web product for franchisors**. A franchisor
+(his examples: McDonald's, Specsavers) shares **pre-negotiated billboards** with its franchisee
+owners; franchisees **browse sites on a map and book them** — he describes the experience as
+Uber-like — and can also **raise complaints or inquiries** about a site.
+Why this matters beyond one more bullet: it is a self-serve, demand-side, mobile-web surface
+aimed at a THIRD audience (franchisees), distinct from the five recorded systems (aggregator,
+data intelligence, creative management, display reporting, media-owner SaaS) and from PlanIt.
+CONSEQUENCE: "five systems" is currently printed on index.html, case-studies/adtech.html,
+book/index.html, book/portfolio.js, data/case-facts.js, portfolio-sources/portfolio.html and
+this file. If this is a sixth system the count changes on all of them; if it is a surface of
+the aggregator, the count stands and it is described inside that system. **Arpit's call.**
+No metrics supplied for it; none may be invented. The design-system-retired-language rule of 2026-08-06 applies to the PATTERNS
 page only; this Talon system is a real component design system and may be called one.
 
 
