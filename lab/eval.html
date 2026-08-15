@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f1">
 <noscript></noscript>
 <link rel="stylesheet" href="../styles.css?v=p62">
-<link rel="stylesheet" href="../ember.css?v=e113">
+<link rel="stylesheet" href="../ember.css?v=e114">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PFY6ME99K8');</script>
@@ -91,7 +91,7 @@
         <div class="lint-panel" aria-live="polite">
           <h3>The lint pass</h3>
           <span class="lint-verdict is-empty" id="lint-verdict">—</span>
-          <p class="lint-sub" id="lint-sub">Waiting for text.</p>
+          <p class="lint-sub" id="lint-sub">No text, no verdict &mdash; guessing one would fail its own lint.</p>
           <div class="lint-stats">
             <div class="lint-stat"><b id="lint-claims">0</b><span>Figures</span></div>
             <div class="lint-stat"><b id="lint-cov">—</b><span>Cited</span></div>
@@ -177,7 +177,7 @@ function render() {
     'do-not-ship': ['do not ship', 'is-bad', 'A high-severity finding means a reader cannot check this answer.'],
     'needs-review': ['needs review', 'is-mid', 'Nothing disqualifying, but a human should look before this reaches a user.'],
     'shaped-honestly': ['shaped honestly', 'is-good', 'Shaped so a reader can check it. This says nothing about whether it is correct.'],
-    empty: ['—', 'is-empty', 'Waiting for text.'],
+    empty: ['—', 'is-empty', 'No text, no verdict — guessing one would fail its own lint.'],
   }[r.verdict];
 
   $('lint-verdict').textContent = verdictCopy[0];
@@ -190,7 +190,7 @@ function render() {
 
   if (!r.findings.length) {
     $('lint-findings').innerHTML = r.verdict === 'empty'
-      ? '<li><p class="lint-clean">Paste an answer above, or load one of the examples.</p></li>'
+      ? '<li><p class="lint-clean">Paste an answer, or load an example. It reads shape, never truth — and it will say so either way.</p></li>'
       : '<li><p class="lint-clean">No findings. Every figure carries a source, no absolutes, no decorative hedging.</p></li>';
     return;
   }

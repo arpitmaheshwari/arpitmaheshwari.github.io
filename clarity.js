@@ -25,7 +25,7 @@
 */
 (function () {
   'use strict';
-  var PROJECT_ID = '';           // ← paste the Clarity project ID here
+  var PROJECT_ID = 'y2u3gbd89h';   // live since 2026-08-15
 
   if (!PROJECT_ID) return;                        // inactive by default
   // respect an explicit do-not-track signal rather than arguing with it
