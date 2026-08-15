@@ -814,7 +814,10 @@ shipped work; the code is his re-statement, not client source), **Outcome** (a c
 product, evidenced on the case with baseline and window, never by a green test). Also states
 that thresholds are defaults, not findings. Same device as "Where this wouldn't transfer".
 
-### PlanIt — deliberate asymmetry across surfaces, 2026-08-06 (Arpit's ruling)
+### PlanIt — deliberate asymmetry across surfaces, 2026-08-06 (Arpit's ruling) — **SUPERSEDED 2026-08-16**
+**This ruling no longer holds.** On 2026-08-16 Arpit instructed "add plan it to the work section on home page".
+PlanIt is now a full case on the SITE too (case-studies/planit.html, homepage lane l7, sitemap, next-case ring).
+The site carries SEVEN cases. The book and the résumé have NOT been brought across — see the open items.
 An external review flagged "PDF has 7 cases, site has 6" as an inconsistency. **It is
 intentional — Arpit: "keep it as is."** PlanIt is a full case in the portfolio PDF, a bullet on
 the résumé, and absent from the website. The PDF is the long-form artifact and can carry it;
