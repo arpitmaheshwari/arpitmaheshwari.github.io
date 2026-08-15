@@ -110,6 +110,27 @@ fi
 # style attributes whose type declarations duplicated each other 562 times — every duplicate an
 # independent fork, several already drifted. Canon-lint, contrast, case-sync and asset-load all
 # passed throughout: they check whether a page is RIGHT, never whether it is STRUCTURED.
+# Artifact legibility. Added 2026-08-15 after invisible text reached production:
+# the diagrams became inlined SVG so the brand fonts would apply, and nothing had
+# ever looked INSIDE one — they used to be <img> files no CSS could touch. Two
+# defects shipped together (leaked artifact stylesheets, an incomplete colour
+# remap) and every other gate passed them. Arpit found it by eye.
+if [ -f tools/artifact-legibility-check.py ]; then
+  echo "pre-push: artifact legibility (can a reader see the text inside the diagrams?)…"
+  if ! python3 tools/artifact-legibility-check.py; then
+    cat <<'MSG'
+
+pre-push: BLOCKED — text inside an artifact is invisible against its own background.
+
+  Usually an artifact's <style> leaking into the page (scope it to the artifact's
+  id), or a colour applied to the text but not to the box behind it.
+  Fix it, or push anyway with:   SKIP_CONTRAST=1 git push
+MSG
+    exit 1
+  fi
+  echo "pre-push: artifact legibility OK."
+fi
+
 if [ -f tools/inline-style-check.py ]; then
   echo "pre-push: inline-style check (is a repeated component still unnamed?)…"
   if ! python3 tools/inline-style-check.py --root .; then
