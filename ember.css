@@ -1941,37 +1941,13 @@ html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022 .xi-patterns
   html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022>*{grid-column:1!important;grid-row:auto!important}
 }
 
-/* ============================================================================
-   ARTIFACT TOKENS (2026-08-15) — the inlined SVG artifacts are drawn in
-   var(--art-*, classic-fallback). Without these overrides they render the
-   original cream. NOTE (corrected 2026-08-15): that fallback protects the
-   ARTIFACT only — it is not a working page-level theme swap. styles.css has
-   no rules for the Ember DOM, so removing data-theme yields a broken page.
-   The real rollback is the classic-v1 git tag.
-   with them, every diagram becomes the Ember instrument language Arpit
-   picked from the rendered options (A for diagrams; document exhibits are
-   hardcoded paper and ignore these on purpose).
-   ============================================================================ */
-html[data-theme="ember"]{
-  --art-bg:#1B1320; --art-card:#241830; --art-card2:#2A1D36; --art-card3:#221730;
-  --art-cardgood:#1E2B26;
-  --art-ink:#F5EDE6; --art-ink2:#FFF8F0;
-  --art-mut:rgba(245,237,230,.62); --art-mut2:rgba(245,237,230,.55);
-  --art-mut3:rgba(245,237,230,.48); --art-dim:rgba(245,237,230,.35);
-  --art-label:#FFC46B; --art-arrow:rgba(245,237,230,.45);
-  --art-heat:#FF8A5C; --art-good:#7FCF9E; --art-gold:#FFC46B;
-  --art-line-rgb:245,237,230; --art-heat-rgb:255,138,92;
-}
+/* ARTIFACT TOKENS — REMOVED 2026-08-15. The recolouring they drove shipped
+   invisible text: the map was incomplete, so any colour it did not know kept
+   its original lightness while its text was remapped. Two failure shapes
+   (cream-on-cream, dark-on-dark) reached production. Artifacts now render in
+   their designed palette; only the brand fonts and per-artifact style scoping
+   are applied. See tools/artifact-ember.py. */
 
-/* A-mode artifacts carry their own dark canvas — the paper frame around them
-   flips dark so the instrument doesn't float in a cream mat (2026-08-15) */
-html[data-theme="ember"] figure:has(> svg[data-art="A"]),
-html[data-theme="ember"] figure:has(> picture svg[data-art="A"]){
-  background:var(--bg-card)!important;border:1px solid var(--border)!important;
-  border-radius:12px;padding:8px!important}
-html[data-theme="ember"] figure:has(> svg[data-art="A"]) figcaption{
-  background:none!important;color:rgba(245,237,230,.62)!important;
-  border-top:1px solid var(--border)!important}
 
 /* ============================================================================
    SECOND-HALF SECTION GRAMMARS (2026-08-15, Arpit approved all four from the
