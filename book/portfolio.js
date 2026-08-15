@@ -1914,9 +1914,9 @@ function buildBook(ctx) {
         folioR: "2",
         ...ndaPages[1]
       }, {
-        crumb: "Programmatic",
+        crumb: "Talon Outdoor",
         idxLabel: "walk-through",
-        runheadR: "Programmatic Advertising Platform",
+        runheadR: "Talon Outdoor · An Ad Agency Became the Market’s Aggregator",
         folioL: "1",
         folioR: "2",
         ...ndaPages[2]
