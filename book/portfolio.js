@@ -12,32 +12,32 @@
 
 const WORK = [{
   tag: "EdTech · Non-NDA",
-  title: "PTC University — Learning Connector",
+  title: "The Redesign That Asked PTC to Kill Four Products",
   metric: "$1M/yr",
   desc: "Five learning platforms, one survivor, eleven languages. Drawing the screens was easy; the case for retiring four products was the work that mattered."
 }, {
   tag: "Telecom · Non-NDA",
-  title: "Telefónica MyO2 & Priority Moments",
+  title: "Two O2 UK Products, Four Million People",
   metric: "4M+",
   desc: "Two O2 UK products at national scale. Every screen co-designed, every screen coded by me — mobile web."
 }, {
   tag: "FinTech · NDA",
-  title: "AI-Assisted Private Equity Investing",
+  title: "Deal-Screening AI That Cites Its Sources",
   metric: "60% faster",
   desc: "Analysts are paid to doubt confident numbers, so the score shipped already able to explain itself."
 }, {
-  tag: "AdTech · NDA",
-  title: "Programmatic Advertising Platform",
+  tag: "AdTech · Named client",
+  title: "An Ad Agency Became the Market’s Aggregator",
   metric: "2 wks → 3 hrs",
-  desc: "Traders watched the algorithm win and still played hunches. The fix was the interface, not the model."
+  desc: "Traders watched the algorithm win and still played hunches — until plans they could argue with turned a media agency into the market’s aggregator: five systems, one platform, all public."
 }, {
   tag: "Org Design · NDA",
-  title: "OrgOS · Transparent Org Tooling",
+  title: "The Software That Replaced the Org Chart",
   metric: "200",
   desc: "Eight modules doing the coordination work a management layer usually does — built for 200 people, zero managers; 250 run on it today."
 }, {
   tag: "VC/PE · NDA",
-  title: "Technical Due Diligence Platform",
+  title: "Due Diligence You Can’t Rubber-Stamp",
   metric: "3 wks → 4 days",
   desc: "Partners stake millions on claims they can't verify. So sign-off stays locked until the evidence is read."
 }];
@@ -60,35 +60,35 @@ const PRINCIPLES = [{
 const PATTERNS = [{
   k: "gauge",
   h: "Confidence Score Patterns",
-  p: "Five ways to put a number on certainty, and when each one earns or burns the trust to drive a decision."
+  p: "An unexplained 87% is a shrug with decimals. A score earns its pixels only when it resolves to a verb."
 }, {
   k: "alert",
   h: "Failure States",
-  p: "What the screen says when the model can't deliver — and how saying it honestly keeps users from leaving."
+  p: "Users forgive a model for being wrong. They never forgive it for bluffing."
 }, {
   k: "branch",
   h: "Explainability",
-  p: "Showing a non-technical person why the machine decided, at a depth they can use without a stats degree."
+  p: "A recommendation you can trace, you’ll defend. One you can’t, you’ll quietly rebuild around."
 }, {
   k: "loop",
   h: "Human-in-the-Loop",
-  p: "Keeping the person in command when the stakes outgrow the model's confidence."
+  p: "An override is not defiance. It is the training data the next version needs."
 }, {
   k: "trace",
   h: "Provenance & Citations",
-  p: "The exact source behind every claim — one click from the number to the document that produced it."
+  p: "A claim with its source beside it is evidence. The same claim without one is prose."
 }, {
   k: "bounds",
   h: "The Capability Contract",
-  p: "Saying what the system can't do, up front — so the rest of it earns belief."
+  p: "The honest “no” is what makes the confident answer believable."
 }, {
   k: "calib",
   h: "Calibration & Track Record",
-  p: "Showing whether the confidence has actually been right before, so trust is earned, not assumed."
+  p: "“80% sure” is a promise. Show whether it has been kept."
 }, {
   k: "undo",
   h: "Reversibility",
-  p: "Making the model's suggestion cheap to walk back, so people dare to act on it."
+  p: "People don’t act when the model is right. They act when being wrong is cheap."
 }];
 const WRITING = [{
   d: "2026 · Essay",

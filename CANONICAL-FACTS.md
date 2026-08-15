@@ -60,12 +60,12 @@ Use the exact metric strings below on every surface (homepage chip, case-study p
 
 | # | Canonical name | Tag | Headline metric (exact string) | Other locked numbers |
 |---|----------------|-----|-------------------------------|----------------------|
-| 1 | **PTC University — Learning Connector** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile: 4% of sessions at start, grew after the responsive redesign (endpoint number RETIRED 2026-08-06 — see entry) · **20+ countries** (corrected from "80+" 2026-08-06, Arpit: "safe side make it 20+" — never reprint 80+) · Role: Product & Design Lead (retitled 2026-08-02, PM receipt) · 2014–2019 |
-| 2 | **Telefónica MyO2 & Priority Moments** | Telecom · Non-NDA / public | **4M+** (MyO2 users) | Priority Moments **2.6M** sign-ups year one · 2.5M+ active · 5★ App Store · Role: Designer + front-end via **Equal Experts, 2012–14** · **design was SHARED with one co-designer; ALL front-end code his (corrected 2026-08-06 — never claim solo design)** |
-| 3 | **AI-Assisted Private Equity Investing** | FinTech · NDA | **60% faster** (deal screening) | measured pre- vs post-rollout · 3 sources behind every score · Role: Lead Product Designer · _(true sample: 42 deals over a 90-day window — DO NOT PUBLISH, see display rule below)_ |
-| 4 | **Programmatic Advertising Platform** | AdTech · Named client | **2 wks → 3 hrs** (campaign planning) | Recommended campaign plans with visible KPIs/ROI, easily customizable — **NO confidence scores, ever** (corrected 2026-08-05, see AdTech correction entry) · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · £400M media spend transacted through the platform · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
-| 5 | **OrgOS · Transparent Org Tooling** | Org Design · NDA | **200** (people) | 200 people · 0 managers · 8 modules · **in use by 250 people today (2026)** — the org grew past the 200 it was designed for and the coordination model held · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25). ("Zero managers" is the *outcome*, never the title.) |
-| 6 | **Technical Due Diligence Platform** | VC/PE · NDA | **3 wks → 4 days** (diligence cycle) | 16 analysis dimensions — a finding became a SIGNAL only at sufficient confidence, every signal backed by verified evidence (corrected 2026-08-06, see entry) · VC + PE · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25) |
+| 1 | **The Redesign That Asked PTC to Kill Four Products** | EdTech · Non-NDA · full case | **$1M / yr** (print savings) | 550k+ registered · 350k+ active · subscription **0% → 64%** of new bookings (Q3 2017 → Q3 2018) · 5→1 platforms · 9→11 locales · mobile: 4% of sessions at start, grew after the responsive redesign (endpoint number RETIRED 2026-08-06 — see entry) · **20+ countries** (corrected from "80+" 2026-08-06, Arpit: "safe side make it 20+" — never reprint 80+) · Role: Product & Design Lead (retitled 2026-08-02, PM receipt) · 2014–2019 |
+| 2 | **Two O2 UK Products, Four Million People** | Telecom · Non-NDA / public | **4M+** (MyO2 users) | Priority Moments **2.6M** sign-ups year one · 2.5M+ active · 5★ App Store · Role: Designer + front-end via **Equal Experts, 2012–14** · **design was SHARED with one co-designer; ALL front-end code his (corrected 2026-08-06 — never claim solo design)** |
+| 3 | **Deal-Screening AI That Cites Its Sources** | FinTech · NDA | **60% faster** (deal screening) | measured pre- vs post-rollout · 3 sources behind every score · Role: Lead Product Designer · _(true sample: 42 deals over a 90-day window — DO NOT PUBLISH, see display rule below)_ |
+| 4 | **An Ad Agency Became the Market’s Aggregator** | AdTech · Named client | **2 wks → 3 hrs** (campaign planning) | Recommended campaign plans with visible KPIs/ROI, easily customizable — **NO confidence scores, ever** (corrected 2026-08-05, see AdTech correction entry) · Role: Lead Product Designer · _(added 2026-07-31, Arpit confirmed real + interview-defensible)_: **45%** reduction in time/effort to plan + book campaigns · **£69,000** average media-value uplift per client · **3x** purchase-intent uplift + **70%** audience uplift vs traditional bookings · £400M media spend transacted through the platform · 50M bids/hr (engineering's infrastructure — attribute, never claim). **RETIRED (2026-07-31, Arpit's call): "2 wks → 1 hr speed to market" — true but confusable with the locked headline; "2 wks → 3 hrs" is the ONLY time metric on any surface. Never re-add the 1-hr variant.** |
+| 5 | **The Software That Replaced the Org Chart** | Org Design · NDA | **200** (people) | 200 people · 0 managers · 8 modules · **in use by 250 people today (2026)** — the org grew past the 200 it was designed for and the coordination model held · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25). ("Zero managers" is the *outcome*, never the title.) |
+| 6 | **Due Diligence You Can’t Rubber-Stamp** | VC/PE · NDA | **3 wks → 4 days** (diligence cycle) | 16 analysis dimensions — a finding became a SIGNAL only at sufficient confidence, every signal backed by verified evidence (corrected 2026-08-06, see entry) · VC + PE · Role: Product & Design Lead (per PM-receipts retitle, 2026-07-25) |
 
 **Number-writing rules:** arrow is "→" with a space each side. Never write "−60%" (use "60% faster").
 Never abbreviate to "3w → 4d" (use "3 wks → 4 days"). Lowercase "k" in "550k+".
@@ -1498,3 +1498,19 @@ Source: Arpit directly, in-session. No numbers were given, so none may be printe
 Display rules: no invented metric for "fewer bugs" or "faster" — qualitative only until Arpit
 supplies numbers. The design-system-retired-language rule of 2026-08-06 applies to the PATTERNS
 page only; this Talon system is a real component design system and may be called one.
+
+
+### Case display titles renamed — 2026-08-15 (Arpit's directive: identifiable + intriguing)
+The six cases' display titles are now transformation hooks, one per case, used consistently on the
+homepage lanes, case-facts.js, the book, and the portfolio PDF's AdTech entry:
+1. The Redesign That Asked PTC to Kill Four Products (was: PTC University — Learning Connector)
+2. Two O2 UK Products, Four Million People (was: Telefónica MyO2 & Priority Moments)
+3. Deal-Screening AI That Cites Its Sources (was: AI-Assisted Private Equity Investing)
+4. An Ad Agency Became the Market's Aggregator (was: Programmatic Advertising Platform)
+5. The Software That Replaced the Org Chart (was: OrgOS · Transparent Org Tooling)
+6. Due Diligence You Can't Rubber-Stamp (was: Technical Due Diligence Platform)
+The old names remain valid as product/engagement descriptors in body copy; the HOOK is the title.
+Same date: the book (portfolio.js WORK/PATTERNS + noscript fulltext) and both documents
+(portfolio.html, resume.html + make-resume.js docx) synced to the F3 narratives — Talon named,
+five systems, design system + Claude, pattern theses. Resume page-1 fit paid for by shortening
+the PlanIt bullet (Arpit's pick over dropping the design-system bullet).
