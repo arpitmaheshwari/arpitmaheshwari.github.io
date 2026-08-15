@@ -11,35 +11,40 @@
 */
 
 const WORK = [{
-  tag: "EdTech · Non-NDA",
-  title: "The Redesign That Asked PTC to Kill Four Products",
-  metric: "$1M/yr",
-  desc: "Five learning platforms, one survivor, eleven languages. Drawing the screens was easy; the case for retiring four products was the work that mattered."
-}, {
-  tag: "Telecom · Non-NDA",
-  title: "Two O2 UK Products, Four Million People",
-  metric: "4M+",
-  desc: "Two O2 UK products at national scale. Every screen co-designed, every screen coded by me — mobile web."
+  tag: "AdTech · Named client",
+    title: "An Ad Agency Became the Market’s Aggregator",
+    metric: "2 wks → 3 hrs",
+    desc: "Traders watched the algorithm win and still played hunches — until plans they could argue with turned a media agency into the market’s aggregator: six systems, one platform, all public."
 }, {
   tag: "FinTech · NDA",
-  title: "Deal-Screening AI That Cites Its Sources",
-  metric: "60% faster",
-  desc: "Analysts are paid to doubt confident numbers, so the score shipped already able to explain itself."
-}, {
-  tag: "AdTech · Named client",
-  title: "An Ad Agency Became the Market’s Aggregator",
-  metric: "2 wks → 3 hrs",
-  desc: "Traders watched the algorithm win and still played hunches — until plans they could argue with turned a media agency into the market’s aggregator: six systems, one platform, all public."
-}, {
-  tag: "Org Design · NDA",
-  title: "The Software That Replaced the Org Chart",
-  metric: "200",
-  desc: "Eight modules doing the coordination work a management layer usually does — built for 200 people, zero managers; 250 run on it today."
+    title: "Deal-Screening AI That Cites Its Sources",
+    metric: "60% faster",
+    desc: "Analysts are paid to doubt confident numbers, so the score shipped already able to explain itself."
 }, {
   tag: "VC/PE · NDA",
-  title: "Due Diligence You Can’t Rubber-Stamp",
-  metric: "3 wks → 4 days",
-  desc: "Partners stake millions on claims they can't verify. So sign-off stays locked until the evidence is read."
+    title: "Due Diligence You Can’t Rubber-Stamp",
+    metric: "3 wks → 4 days",
+    desc: "Partners stake millions on claims they can't verify. So sign-off stays locked until the evidence is read."
+}, {
+  tag: "Org Design · NDA",
+    title: "The Software That Replaced the Org Chart",
+    metric: "200",
+    desc: "Eight modules doing the coordination work a management layer usually does — built for 200 people, zero managers; 250 run on it today."
+}, {
+  tag: "EdTech · Non-NDA",
+    title: "The Redesign That Asked PTC to Kill Four Products",
+    metric: "$1M/yr",
+    desc: "Five learning platforms, one survivor, eleven languages. Drawing the screens was easy; the case for retiring four products was the work that mattered."
+}, {
+  tag: "Telecom · Non-NDA",
+    title: "Two O2 UK Products, Four Million People",
+    metric: "4M+",
+    desc: "Two O2 UK products at national scale. Every screen co-designed, every screen coded by me — mobile web."
+}, {
+  tag: "Consumer · PlanIt",
+  title: "The App People Broke on Purpose",
+  metric: "0 complaints",
+  desc: "The same client's data, pointed at a commuter. People triggered the error screen on purpose, just to watch the little train be sorry — the failure state became the reason they came back."
 }];
 const PRINCIPLES = [{
   h: "What gets measured is a design decision.",
@@ -322,6 +327,35 @@ const NDA_CASES = [{
   note: "made the model's verdict auditable enough to bet on",
   boundary: "Deliberate friction survives only when the person clicking is personally accountable for the verdict. A user with no downside routes around it.",
   stamp: { t: "4-Day DD", v: "" }
+}, {
+  no: "07",
+  img: "../assets/planit/phone-3.png",
+  tag: CF.get("planit").tag,
+  redacted: false,
+  ph: "PlanIt — the quietness chart and the suggested travel windows, mobile web",
+  title: CF.get("planit").title,
+  standfirst: "The prediction was already right. Nobody moved — because choosing a slower train is not a calculation, it is a nerve. So the interface paid what the model could not.",
+  meta: cfMeta("planit"),
+  context: "The same client, the same data, a different bet: the footfall the AdTech platform generated, pointed at a commuter. It could say which carriages would be empty — and that changed nothing, because the people who most needed a quiet carriage were the least likely to accept a slower journey on the word of a number. Elderly travellers, expecting mothers told to avoid stress, anyone with a stroller or a mobility need, anyone still wary after a pandemic. Not commuters in general. Designing for the frightened, not the busy, decided everything downstream.",
+  moves: [{
+    h: "One score, not a data stream",
+    p: "Crowd data collapsed into Quietness, 1–10, so a route could be judged at a glance. Green, amber, red — softened away from neon, because a warning that induces panic defeats a product built to lower it."
+  }, {
+    h: "A voice instead of a readout",
+    p: "\u201CFootfall density: high\u201D tells an anxious person to brace. \u201CQuietness: 3/10 \u2013 very busy. Imagine Platform 9\u00BE on the first day at Hogwarts\u201D hands them a picture they already hold. And where the category issues instructions, this made offers: a quieter time is coming up, bring your book."
+  }, {
+    h: "A mascot doing real work",
+    p: "A train with a face, greeting the traveller, approving a clear route, and visibly feeling bad when something went wrong. A face answers in milliseconds the question the product needed settled before it could sell a slower journey: is this thing on my side?"
+  }, {
+    h: "The failure state, sought out",
+    p: "In testing and again in the wild, people entered journeys they knew would fail, just to watch the little train be sorry about it. The screen every team treats as damage control had become the thing users went looking for — and a failure people seek out is a failure that costs no trust."
+  }],
+  plateNo: CF.get("planit").plateNo,
+  plateCn: CF.get("planit").provenance,
+  ledger: CF.metrics("planit"),
+  note: "paid the emotional cost in the interface, not the model",
+  boundary: "Warmth cannot rescue a weak signal — a mascot on top of bad data is a lie with a face on it. And charm is not a moat: the affection users had for the train would not have survived a competitor with better data and a warmer product. PlanIt found a small loyal base and was switched off within months. Showing it is the point: the six-month build and the shutdown are the same skill.",
+  stamp: { t: "0 Complaints", v: "ok" }
 }];
 const PATTERN_PAGES = {
   gauge: {
@@ -1539,7 +1573,7 @@ function buildBook(ctx) {
       }
     }, "Selected", /*#__PURE__*/React.createElement("br", null), "Work"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body bk-drop"
-    }, "Every brief opened with “improve the UX.” Every diagnosis ended somewhere else. Sixteen years of this work mostly lives behind NDAs; the six here are the shape of all of it — two told in full, four as decision walkthroughs."), /*#__PURE__*/React.createElement("div", {
+    }, "Every brief opened with “improve the UX.” Every diagnosis ended somewhere else. Sixteen years of this work mostly lives behind NDAs; the seven here are the shape of all of it — one told in full, six as decision walkthroughs."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
         margin: "22px 0 18px"
@@ -1886,6 +1920,34 @@ function buildBook(ctx) {
       label: "Selected Work",
       kind: "Case study",
       items: [{
+        crumb: "Talon Outdoor",
+        idxLabel: "walk-through",
+        runheadR: "Talon Outdoor · An Ad Agency Became the Market’s Aggregator",
+        folioL: "1",
+        folioR: "2",
+        ...ndaPages[2]
+      }, {
+        crumb: "Private Equity Investing",
+        idxLabel: "walk-through",
+        runheadR: "AI-Assisted Private Equity Investing",
+        folioL: "1",
+        folioR: "2",
+        ...ndaPages[1]
+      }, {
+        crumb: "Technical Due Diligence",
+        idxLabel: "walk-through",
+        runheadR: "Technical Due Diligence Platform",
+        folioL: "1",
+        folioR: "2",
+        ...ndaPages[4]
+      }, {
+        crumb: "OrgOS",
+        idxLabel: "walk-through",
+        runheadR: "OrgOS",
+        folioL: "1",
+        folioR: "2",
+        ...ndaPages[3]
+      }, {
         crumb: "PTC University",
         idxLabel: "1 / 2",
         runheadR: "PTC University",
@@ -1907,33 +1969,12 @@ function buildBook(ctx) {
         folioR: "2",
         ...ndaPages[0]
       }, {
-        crumb: "Private Equity Investing",
+        crumb: "PlanIt",
         idxLabel: "walk-through",
-        runheadR: "AI-Assisted Private Equity Investing",
+        runheadR: "PlanIt · The App People Broke on Purpose",
         folioL: "1",
         folioR: "2",
-        ...ndaPages[1]
-      }, {
-        crumb: "Talon Outdoor",
-        idxLabel: "walk-through",
-        runheadR: "Talon Outdoor · An Ad Agency Became the Market’s Aggregator",
-        folioL: "1",
-        folioR: "2",
-        ...ndaPages[2]
-      }, {
-        crumb: "OrgOS",
-        idxLabel: "walk-through",
-        runheadR: "OrgOS",
-        folioL: "1",
-        folioR: "2",
-        ...ndaPages[3]
-      }, {
-        crumb: "Technical Due Diligence",
-        idxLabel: "walk-through",
-        runheadR: "Technical Due Diligence Platform",
-        folioL: "1",
-        folioR: "2",
-        ...ndaPages[4]
+        ...ndaPages[5]
       }]
     },
     patterns: {

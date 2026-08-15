@@ -35,7 +35,8 @@
     "fintech",
     "adtech",
     "orgos",
-    "vc-diligence"
+    "vc-diligence",
+    "planit"
   ],
   "cases": {
     "ptc": {
@@ -241,6 +242,25 @@
       ],
       "plateNo": "5.1",
       "provenance": "Schematic, not a screenshot — the real screens stay under NDA"
+    },
+    "planit": {
+      "no": "07",
+      "key": "planit",
+      "title": "The App People Broke on Purpose",
+      "tag": "Consumer · PlanIt",
+      "meta": [
+        ["Role", "Designer & strategist"],
+        ["Team", "Small remote, distributed team"],
+        ["Surface", "Mobile web + desktop"],
+        ["Status", "Shipped 2021 · since deprecated"]
+      ],
+      "metrics": [
+        ["0", "Usability complaints in the launch window"],
+        ["250", "Active users a month \u00b7 on 1,000 visitors"],
+        ["6", "Months, 0\u21921"]
+      ],
+      "plateNo": "7.1",
+      "provenance": "The shipped product — his own screens, no client confidentiality"
     },
     "vc-diligence": {
       "no": "06",

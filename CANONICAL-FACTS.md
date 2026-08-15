@@ -94,8 +94,14 @@ project**, built for the client by **leveraging the data generated from the AdTe
 the fact that it was client work is TRUE and drives the framing, but do NOT print the label
 "Client project" on the PDF — the kicker reads "PlanIt · built on the AdTech platform's data · 2021".
 Facts that stay: quietness score 1-10, the mascot, warm palette, London Underground + National
-Rail footfall data, ~1,000 monthly visitors / 250 active users (honest small scale), zero-complaints
-claim REMOVED earlier (keep removed). Surfaces: portfolio PDF (currently "Coda · Side Project" — fix).
+Rail footfall data, ~1,000 monthly visitors / 250 active users (honest small scale).
+**SUPERSEDED 2026-08-16:** this entry used to end "zero-complaints claim REMOVED earlier (keep
+removed)". Arpit: "Keep it — it's true." It was removed in July only because nothing sourced it;
+his folio .docx supplied the source on 2026-08-15. **"0 complaints" is the LOCKED headline metric
+for case 7** and is live on the homepage lane. Do not remove it again.
+Also superseded: the note that the portfolio PDF says "Coda · Side Project" — that was fixed, and
+on 2026-08-16 the PDF's role line was corrected from "product design + front-end" to
+"designer & strategist" to match this file and the .docx it came from.
 
 ### O2 evidence (updated 2026-07-22)
 Primary O2 imagery on all surfaces = **MyO2 self-service app screens** (home, minutes/data
