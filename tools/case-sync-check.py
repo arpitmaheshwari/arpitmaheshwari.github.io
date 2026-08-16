@@ -211,6 +211,11 @@ def check_against_canon(root, facts):
     would happily agree with it — one confident, self-consistent, wrong answer on every surface."""
     findings = []
     canon = parse_canon(root)
+    # An EMPTY dict means canon is legitimately absent (fresh clone / CI) and parse_canon has
+    # already said so. That is a skip, not drift. A PARTIAL parse still means the table's shape
+    # changed under us and the check has gone blind — that must still fail.
+    if not canon:
+        return findings
     if len(canon) != 6:
         findings.append(f"canon: parsed {len(canon)} case rows from CANONICAL-FACTS §3, expected 6 "
                         f"— the locked table's shape changed and this check has gone blind")
@@ -318,18 +323,29 @@ def selftest(root):
     if not any("ROLE" in f for f in check(root, facts_override=mutated)):
         return False, "SENSITIVITY: a role changed in the single source was not caught"
 
-    # sensitivity B2: the single source contradicting CANONICAL-FACTS, which outranks it
-    mutatedC = copy.deepcopy(facts)
-    mutatedC["cases"]["adtech"]["title"] = "Programmatic Advertising Platform (rebranded)"
-    if not any("TITLE" in f and "CANONICAL-FACTS" in f for f in check(root, facts_override=mutatedC)):
-        return False, "SENSITIVITY: a source title contradicting CANONICAL-FACTS was not caught"
+    # sensitivity B2: the single source contradicting CANONICAL-FACTS, which outranks it.
+    # Only meaningful when canon is present — it is untracked on purpose, so on a fresh clone
+    # this probe would be testing a comparison that is legitimately switched off. Skipping the
+    # PROBE when its subject is absent is correct; skipping it silently would not be, so it says so.
+    # Both canon-outranks-source probes live together: they test a comparison that is only
+    # possible when CANONICAL-FACTS.md is present, and it is untracked on purpose so a fresh
+    # clone legitimately has none. Skipping the probes whose SUBJECT is absent is correct;
+    # doing it silently would not be, so it prints. Any future canon probe belongs in here.
+    if os.path.exists(os.path.join(root, "CANONICAL-FACTS.md")):
+        mutatedC = copy.deepcopy(facts)
+        mutatedC["cases"]["adtech"]["title"] = "Programmatic Advertising Platform (rebranded)"
+        if not any("TITLE" in f and "CANONICAL-FACTS" in f for f in check(root, facts_override=mutatedC)):
+            return False, "SENSITIVITY: a source title contradicting CANONICAL-FACTS was not caught"
 
-    mutatedD = copy.deepcopy(facts)
-    for m in mutatedD["cases"]["fintech"]["meta"]:
-        if m[0] == "Role":
-            m[1] = "Consultant"
-    if not any("ROLE" in f and "CANONICAL-FACTS" in f for f in check(root, facts_override=mutatedD)):
-        return False, "SENSITIVITY: a source role contradicting CANONICAL-FACTS was not caught"
+        mutatedD = copy.deepcopy(facts)
+        for m in mutatedD["cases"]["fintech"]["meta"]:
+            if m[0] == "Role":
+                m[1] = "Consultant"
+        if not any("ROLE" in f and "CANONICAL-FACTS" in f for f in check(root, facts_override=mutatedD)):
+            return False, "SENSITIVITY: a source role contradicting CANONICAL-FACTS was not caught"
+    else:
+        print("[calibration] the 2 canon-outranks-source probes were SKIPPED — CANONICAL-FACTS.md\n"
+              "              is not in this checkout (untracked on purpose). Every other probe ran.")
 
     # sensitivity B: a provenance caption that lies about what the screen is
     mutated2 = copy.deepcopy(facts)
