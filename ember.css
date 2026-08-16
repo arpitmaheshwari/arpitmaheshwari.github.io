@@ -20,17 +20,17 @@ html[data-theme="ember"]{
   --ink:#F5EDE6;
   --ink-muted:rgba(245,237,230,.76);
   --ink-dim:rgba(245,237,230,.62);
-  /* amber inherits gold's job: links, CTAs, kickers — 11.3:1 on bg */
+  /* amber inherits gold's job: links, CTAs, kickers — 12.3:1 on bg */
   --gold:#FFC46B;
   --gold-light:#FFD28A;
   --gold-dark:#C98F3F;
   --copper:#FF8A5C;
   --copper-light:#FF8A5C;
   /* the four heats */
-  --ember:#FF8A5C;   /* 8.0:1 on bg */
-  --violet:#E86BFF;  /* 7.1:1 */
-  --amber:#FFC46B;   /* 11.3:1 */
-  --rose:#FF7AA8;    /* 7.6:1 */
+  --ember:#FF8A5C;   /* 8.3:1 on bg */
+  --violet:#E86BFF;  /* 7.4:1 */
+  --amber:#FFC46B;   /* 12.3:1 */
+  --rose:#FF7AA8;    /* 7.9:1 */
   --g-hot:linear-gradient(92deg,#FF8A5C,#E86BFF);
 }
 
@@ -1105,7 +1105,7 @@ html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]
      column in a wide container is a decision about the leftover space —
      so narrow the READING SPINE and let objects break out of it instead.
    · links were amber, i.e. the retired gold. Violet is the other end of the
-     signature gradient: unmistakably Ember, 7.1:1 on the base and 6.3:1 on
+     signature gradient: unmistakably Ember, 7.4:1 on the base and 6.3:1 on
      card fill, and distinct from the amber focus ring (which stays amber
      precisely so focus never reads as "just a link").
    ================================================================ */
@@ -1209,7 +1209,7 @@ html[data-theme="ember"] body.p-home .work .k{max-width:none}
    it while the nav still linked to #thoughts). Ember card grammar, purple heat
    matching the /writing/ page it leads to. */
 /* --heat was #A96BFF: 4.99:1 on the card — a number that passes AA and still
-   reads badly at 11px. Canon's checked violet is #E86BFF (7.1:1). Same purple
+   reads badly at 11px. Canon's checked violet is #E86BFF (7.4:1). Same purple
    identity, +42% contrast, and it is already the link colour sitewide. */
 html[data-theme="ember"] body.p-home #thoughts{--heat:#E86BFF}
 html[data-theme="ember"] body.p-home .thoughts-grid{
@@ -1268,7 +1268,7 @@ html[data-theme="ember"] body.p-home :is(.seam,.seam-up)::after{
    once, here, and every instance follows. Guarded by
    tools/theme-remnant-check.py, which fails on any retired colour that is
    actually painted under Ember.
-   --goldA    #FFC46B  amber, 11.3:1 on the ember ground (canon)
+   --goldA    #FFC46B  amber, 12.3:1 on the ember ground (canon)
    --goldA-dk #C98F3F  the dim/border variant
    ================================================================ */
 html[data-theme="ember"]{--goldA:#FFC46B;--goldA-dk:#C98F3F}
@@ -2200,7 +2200,7 @@ html[data-theme="ember"] body.p-case-studies-planit .btn-row{justify-content:spa
 html[data-theme="ember"] body.p-home .l7{--lc:var(--rose);--lt:rgba(255,122,168,.08)}
 
 /* A pattern card's "Read the rule →" eyebrow sits on the CREAM card, not the dark page, so the
-   page-level amber (--amber, correct at 11.3:1 on #120B14) measured 1.33:1 there. The paper
+   page-level amber (--amber, correct at 12.3:1 on #120B14) measured 1.33:1 there. The paper
    plates already define --goldA #7E5A14 = 5.62:1 on cream for exactly this: a label that has
    crossed onto paper takes the paper's gold. Found 2026-08-16 by the contrast audit once it
    stopped reading `color` for SVG text and started reporting real failures. */
@@ -2209,7 +2209,7 @@ html[data-theme="ember"] body.p-home .l7{--lc:var(--rose);--lt:rgba(255,122,168,
   html[data-theme="ember"] body.p-patterns [class*="-paper"] .lbl-eyebrow{color:#7E5A14}
 }
 /* Below 861px the pattern card is not paper — it is the dark page — so the paper gold would be
-   2.93:1 there. The page amber is 11.3:1 on that ground and is what should paint. Same label,
+   2.93:1 there. The page amber is 12.3:1 on that ground and is what should paint. Same label,
    two grounds, two inks: the ink follows the SURFACE, never the component name. */
 /* ...and the FIRST feature card's meta rail, which is paper but carries neither class:
    "Read the rule →" rendered #FFC46B on #F4ECDA = 1.33:1, a call to action nobody could read.
@@ -2246,3 +2246,53 @@ html[data-theme="ember"] body.p-home #design-system .ds-ty span{
    paragraph follows it and sat flush against the final definition. */
 html[data-theme="ember"] body.p-lab #design-system .ev-tiers + p{margin-top:24px}
 html[data-theme="ember"] body.p-lab #design-system .lab-code{margin-top:20px}
+
+/* ============================================================================
+   HOMEPAGE · DESIGN SYSTEM GALLERY (2026-08-17)
+   The band that used to be here moved to /lab/ (Arpit's call — the Lab is where the
+   openable artifacts live). What belongs on the homepage is a GALLERY: the system
+   showing itself rather than describing itself. Every value below is painted by this
+   same stylesheet, and the contrast figures are measured on load, so the gallery
+   cannot drift from the system the way a screenshot of a Figma page would.
+   ============================================================================ */
+html[data-theme="ember"] body.p-home .dsg .dsg-lede{
+  max-width:64ch;color:var(--ink-muted);margin-top:16px}
+html[data-theme="ember"] body.p-home .dsg-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));
+  gap:20px;margin-top:40px}
+html[data-theme="ember"] body.p-home .dsg-card{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px}
+html[data-theme="ember"] body.p-home .dsg-k{
+  font-family:var(--ff-label);font-size:11px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-dim);margin:0 0 20px}
+
+html[data-theme="ember"] body.p-home .dsg-heats{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+html[data-theme="ember"] body.p-home .dsg-heats li{display:flex;align-items:center;gap:12px}
+html[data-theme="ember"] body.p-home .dsg-heats i{width:32px;height:32px;border-radius:8px;flex:0 0 auto}
+html[data-theme="ember"] body.p-home .dsg-heats b{font-size:14px;font-weight:600;color:var(--ink)}
+html[data-theme="ember"] body.p-home .dsg-heats em{
+  font-style:normal;font-size:12px;color:var(--ink-dim);display:block;margin-top:2px}
+html[data-theme="ember"] body.p-home .dsg-heats span{
+  margin-left:auto;font-family:var(--ff-mono);font-size:12px;color:#7FCF9E;white-space:nowrap}
+
+html[data-theme="ember"] body.p-home .dsg-type{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+html[data-theme="ember"] body.p-home .dsg-type li{display:flex;align-items:baseline;gap:12px;justify-content:space-between}
+html[data-theme="ember"] body.p-home .dsg-type b{
+  font-family:var(--ff-label);font-size:11px;font-weight:600;letter-spacing:.06em;
+  color:var(--ink-dim);text-align:right;flex:0 0 auto}
+html[data-theme="ember"] body.p-home .dsg-serif{font-family:var(--ff-display);font-weight:300;font-size:24px;color:var(--ink)}
+html[data-theme="ember"] body.p-home .dsg-sans{font-size:16px;color:var(--ink)}
+html[data-theme="ember"] body.p-home .dsg-label{
+  font-family:var(--ff-label);font-weight:600;font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--amber)}
+html[data-theme="ember"] body.p-home .dsg-mono{font-family:var(--ff-mono);font-size:14px;color:var(--ink)}
+
+html[data-theme="ember"] body.p-home .dsg-steps{
+  list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+html[data-theme="ember"] body.p-home .dsg-steps li{text-align:center}
+html[data-theme="ember"] body.p-home .dsg-steps i{display:block;height:20px;border-radius:3px;background:var(--g-hot)}
+html[data-theme="ember"] body.p-home .dsg-steps span{
+  display:block;margin-top:8px;font-family:var(--ff-mono);font-size:11px;color:var(--ink-dim)}
+html[data-theme="ember"] body.p-home .dsg-note{
+  margin-top:20px;font-size:12.5px;color:var(--ink-dim);max-width:none}
+html[data-theme="ember"] body.p-home .dsg-links{display:flex;flex-wrap:wrap;gap:24px;margin-top:32px}
