@@ -1919,6 +1919,18 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sub{font-size:11px;color:#464C56;margin-bottom:12px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sig{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#fff;border:1px solid #E3E6EA;border-radius:6px;margin-bottom:8px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sig.sel{border-color:#2E2570;box-shadow:0 0 0 1px #2E2570 inset}
+/* The diligence dossier at phone widths (2026-08-16). Two grid/flex min-content traps stacked:
+   the .plV-body columns collapse to one track at 700px but a grid item will not shrink below its
+   min-content unless min-width is 0, so .plV-main stayed 439px inside a 277px plate; and each
+   signal row is a flex line that could not wrap. The plate has overflow-x:auto so the PAGE never
+   scrolled — the damage was invisible to the overflow gate and showed up instead as nine phantom
+   contrast failures, because the audit was sampling pixels of text clipped at the plate edge.
+   Measured: 439 -> 382 (min-width) -> 277 (wrap), against a 279px plate. */
+@media(max-width:700px){
+  :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-body > *{min-width:0}
+  :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sig{flex-wrap:wrap}
+  :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sig > *{min-width:0}
+}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sname{flex:1 1 auto;min-width:0;font-size:12.5px;font-weight:600;color:#16181D}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sname small{display:block;font-weight:400;font-size:11px;color:#464C56;margin-top:2px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-st{font-family:var(--ff-mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:3px;flex:0 0 auto}

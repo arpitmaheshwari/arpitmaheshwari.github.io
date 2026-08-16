@@ -44,7 +44,20 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
   const f=sec.querySelector('p,h1,h2,h3,li'); if(!f)return;
   const fr=f.getBoundingClientRect(); const gap=Math.round(fr.top-sr.top);
   if(gap<32&&fr.height>0) tight.push({sec:(sec.id||(sec.className+'').split(' ')[0]||'section'),gap});});
- document.title='R:'+JSON.stringify({vw,ox:d.documentElement.scrollWidth-vw,bad:out.slice(0,6),tight:tight.slice(0,5)});
+ // scrollWidth INCLUDES the classic scrollbar gutter, so on any page tall enough to scroll
+ // it reads viewport+scrollbar and reports phantom overflow. patterns/ml-explainability.html
+ // was "5px over" for weeks on exactly that: measured in a real browser, innerWidth 395 vs
+ // clientWidth 375 — a 20px scrollbar — while scrollLeft could not move past 0. Ask whether the
+ // document can ACTUALLY scroll right instead; that is the thing a reader would experience.
+ var de=d.documentElement, was=de.scrollLeft;
+ de.scrollLeft=99999; var canScroll=de.scrollLeft; de.scrollLeft=was;
+ // ox is what a READER would experience: how far the page can actually be scrolled right.
+ // scrollWidth arithmetic is not used at all — inside this probe's iframe it still picks up a
+ // scrollbar gutter and reported a phantom 5px. The per-element `bad` list below is the other
+ // half: an element whose box escapes the viewport fails even when the page cannot scroll
+ // (because something clipped it), so a genuine escape cannot hide behind a zero here.
+ var ox=Math.max(0, canScroll);
+ document.title='R:'+JSON.stringify({vw,ox:ox,bad:out.slice(0,6),tight:tight.slice(0,5)});
 }catch(e){document.title='R:{"err":"'+String(e).slice(0,90)+'"}'}},2600);};
 </script></body></html>"""
 fails=0

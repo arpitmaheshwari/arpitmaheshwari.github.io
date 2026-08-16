@@ -90,16 +90,13 @@ jobs:
       #   orgos    .plO  — a pale-teal board surface; its own light palette, unrelated to .plM
       # Both verified 0 failures at BOTH widths before being added here.
       #
-      # DELIBERATELY STILL ABSENT — case-studies/vc-diligence.html. It carries a context nothing
-      # else covers (semantic status tokens as TEXT on a dark card) and SHOULD be here, but it
-      # cannot be added yet: at 390px its .plV diligence-dossier plate lays out ~450px wide inside
-      # a 390px viewport and is visibly clipped mid-word ("repo scan ·", "commit history · releas…").
-      # The audit reports that as nine contrast failures because it samples the clipped edge pixels
-      # — the reading is a symptom, the layout is the bug. Adding the URL now would just pin CI red
-      # against a defect this gate is not the right tool to describe. Fix the responsive layout,
-      # then add the URL. Tracked separately; do not "fix" those nine colours, they are not broken.
-      # Residual risk, stated rather than hidden: fintech's .rxf-conf shares vc's colour context,
-      # so that context is currently UNCOVERED in CI until vc-diligence can be added.
+      # RESOLVED 2026-08-16 — vc-diligence.html used to be excluded here: at 390px its .plV
+      # dossier laid out ~440px inside a ~279px plate and clipped mid-word, and the audit read
+      # the clipped edge pixels as nine contrast failures. Two stacked min-content traps: a grid
+      # item will not shrink below min-content without min-width:0, and the signal rows could not
+      # wrap. Fixed in styles.css; measured 439 -> 382 -> 277 against a 279px plate, zero clipped
+      # children. The page is covered by --all below, so fintech's .rxf-conf colour context —
+      # previously uncovered in CI for the same reason — is covered again.
       # Added 2026-08-02. The /process method diagram had been a BROKEN IMAGE on the live site:
       # a literal angle-bracket tag inside a CSS comment made the SVG invalid XML, and an SVG
       # loaded through an img element must be valid XML or the browser refuses to paint it.

@@ -54,6 +54,13 @@ BANNED = [
     (r"2\s*wks?\s*(?:→|->)\s*1\s*hr|two weeks to one hour",
      'the retired speed variant — "2 wks → 3 hrs" is the ONLY time metric on any surface',
      "§3 case 4, retired 2026-07-31"),
+    (r"I held the (launch|release)|the (launch|release) I held|RELEASE I HELD",
+     'the retired authority over-claim — the launch date was the product owner\'s call as much '
+     'as his. Canon: he ARGUED for building the trust surface before the first release, and '
+     'built it. Added 2026-08-16 after the 2026-08-12 sweep rewrote 20 prose instances and '
+     'missed the one baked into an inline SVG artifact heading on fintech.html, which then sat '
+     'live for four days. A retired phrase that is not in this list is a phrase that comes back',
+     "\u00a73 case 3, retired 2026-08-12"),
     (r"\bfour weeks'? notice\b",
      'availability must use the digit "4", never the word',
      "§2 availability"),
@@ -198,6 +205,10 @@ SKIP_DIRS = {".git", "node_modules", ".claude", "portfolio-sources", ".requireme
 RULE_ARCHIVE_EXEMPT = {
     r"\b15 years\b|\bfifteen years\b|\b15 yrs\b": ("prototypes/",),
     r"years, five industries": ("prototypes/",),   # the PAIRED tenure rule, same reason
+    # Dated prototype snapshots record what the copy WAS on the day they were made. Rewriting
+    # them would falsify the record — the same reasoning as the tenure rules above. The rule
+    # still fails the build for every shipped surface, which is where it matters.
+    r"I held the (launch|release)|the (launch|release) I held|RELEASE I HELD": ("prototypes/",),
 }
 
 
