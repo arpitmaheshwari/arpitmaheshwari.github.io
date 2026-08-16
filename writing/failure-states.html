@@ -21,8 +21,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
 <link rel="stylesheet" href="/fonts.css?v=f1">
 <noscript></noscript>
-  <link rel="stylesheet" href="../styles.css?v=p67">
-<link rel="stylesheet" href="../ember.css?v=e145">
+  <link rel="stylesheet" href="../styles.css?v=p70">
+<link rel="stylesheet" href="../ember.css?v=e150">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -91,11 +91,11 @@
   <div class="xi-writing-failure-states-020">
     <p class="eyebrow xi-writing-failure-states-021">Continue exploring</p>
     <div class="xi-writing-failure-states-022">
-      <a class="xi-writing-failure-states-023 hv-writing-failure-states-1" href="./explainability.html">
+      <a class="xi-writing-failure-states-023 hv-writing-failure-states-1" href="./explainability.html" data-cta="next-essay" data-location="essay-footer">
         <div class="xi-writing-failure-states-024">Next essay</div>
         <div class="card-title">The Explainability Layer</div>
       </a>
-      <a class="xi-writing-failure-states-023 hv-writing-failure-states-1" href="./index.html">
+      <a class="xi-writing-failure-states-023 hv-writing-failure-states-1" href="./index.html" data-cta="back-to-writing" data-location="essay-footer">
         <div class="xi-writing-failure-states-024">All essays</div>
         <div class="card-title">Back to Writing</div>
       </a>
@@ -140,6 +140,19 @@ if (menuBtn && navLinks) {
 // Dyslexia mode
 const isDyslexia = localStorage.getItem('dyslexia-mode') === 'on';
 if (isDyslexia) document.body.classList.add('dyslexia-mode');
+
+// GA4 events
+document.querySelectorAll('[data-cta]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'cta_click', {
+        cta_type: el.dataset.cta,
+        location: el.dataset.location || 'unknown',
+        page: window.location.pathname
+      });
+    }
+  });
+});
 </script>
 <script>
 // a11y: mark current nav item

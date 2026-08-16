@@ -1607,12 +1607,25 @@ function buildBook(ctx) {
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-kicker"
     }, "Also in this volume"), /*#__PURE__*/React.createElement("div", {
-      className: "bk-list",
+      // --volume: this list carries every case but the featured one, so it grows each
+      // time WORK does. The spread was composed for 5 rows; the 6th (PlanIt, 2026-08-16)
+      // pushed the closing note 72px off the bottom of an overflow:hidden page, where it
+      // was invisible. The modifier tightens ONLY this list. If a 7th row is ever added,
+      // this compression will not absorb it — split the list across a second spread.
+      className: "bk-list bk-list--volume",
       style: {
         marginTop: 8
       }
     }, WORK.slice(1).map((w, i) => {
-      const openIdx = [2, 3, 4, 5, 6][i];
+      // Maps each "Also in this volume" row to its spread in the `cases` deck.
+      // WORK.slice(1) order:      fintech, vc-diligence, orgos, ptc, o2, planit
+      // cases deck order: 0 adtech, 1 fintech, 2 vc-diligence, 3 orgos, 4 ptc(1/2),
+      //                   5 ptc(2/2), 6 o2, 7 planit  — so 5 is skipped (PTC's second
+      //                   spread) and planit is 7.
+      // Was [2,3,4,5,6]: off by one on every row, and one short once PlanIt joined WORK
+      // — the missing 6th value made `enter("cases", undefined)` fall back to `idx || 0`,
+      // so the newest case opened AdTech. Verified 2026-08-16 by clicking all six.
+      const openIdx = [1, 2, 3, 4, 6, 7][i];
       return /*#__PURE__*/React.createElement("div", {
         className: "bk-item bk-item--link",
         key: i,
@@ -1632,7 +1645,7 @@ function buildBook(ctx) {
     })), /*#__PURE__*/React.createElement("div", {
       className: "bk-note bk-note--r",
       style: {
-        marginTop: 20
+        marginTop: 12 // was 20; trimmed with .bk-list--volume so the note clears the page edge
       }
     }, "four are redacted — the logos are just shy."))
   }, /* 4 · CHAPTER III — A FIELD GUIDE TO TRUST (hub) */

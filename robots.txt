@@ -1,27 +1,32 @@
 # All crawlers welcome — including AI assistants and LLM training/retrieval bots.
+# The AI bots are named explicitly so the welcome is on the record; they share one rule group
+# with * so that the Disallow list below applies to every one of them.
+#
+# NOTE ON GROUPS: a blank line ends a rule group. Every User-agent line below belongs to the
+# SAME group, so the Allow/Disallow rules that follow apply to all of them. Do not insert a
+# blank line between the User-agent lines.
 User-agent: *
-Allow: /
-
 User-agent: GPTBot
-Allow: /
-
 User-agent: ClaudeBot
-Allow: /
-
 User-agent: Claude-Web
-Allow: /
-
 User-agent: PerplexityBot
-Allow: /
-
 User-agent: Google-Extended
-Allow: /
-
 User-agent: CCBot
-Allow: /
-
+# NOTE ON "Allow: /": deliberately absent. Anything not disallowed is allowed by default, and a
+# blanket Allow placed above a Disallow silently cancels it in first-match parsers. Do not re-add it.
+#
 # Working files, superseded drafts and downloaded reference material — not content.
 Disallow: /prototypes/
+# Internal working documents — governance, source-of-truth and hand-over artifacts, not
+# published content. All of these were REMOVED from the published branch on 2026-08-16 and are
+# now gitignored, so they no longer exist on the domain. These lines are kept only as a second
+# line of defence in case one is ever re-committed by mistake: robots.txt merely ASKS crawlers
+# to stay away, so it was never sufficient on its own.
+Disallow: /CANONICAL-FACTS.md
+Disallow: /DESIGN-SYSTEM.md
+Disallow: /DESIGN-SYSTEM-EMBER.md
+Disallow: /NARRATIVE-FRAMEWORKS.md
+Disallow: /*.docx$
 
 Sitemap: https://arpitmaheshwari.com/sitemap.xml
 # LLM-oriented site summary: https://arpitmaheshwari.com/llms.txt

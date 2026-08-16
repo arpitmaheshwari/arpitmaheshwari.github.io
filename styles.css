@@ -61,6 +61,10 @@
 /* ----- Reset + base ----- */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px}
+/* The scrolling element is `html`, so a reduced-motion override scoped to `body` never
+   applies (ember.css:253 targeted body.p-home and did nothing). Motion sensitivity is a
+   vestibular accessibility need, not a preference — smooth scroll can trigger nausea. */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{background:var(--bg);color:var(--ink);font-family:var(--ff-sans);line-height:1.7;overflow-x:hidden;letter-spacing:-0.003em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
@@ -337,7 +341,7 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
    pixels. No uppercase, no bold shouting, no compensating shadows inside the window. */
 .recon { margin:32px 0 48px; border:1px solid rgba(255,255,255,0.12); border-radius:10px; overflow:hidden; position:relative;
   --bg:#FFFFFF; --bg-soft:#F4F5F7; --bg-card:#F4F5F7;
-  --ink:#16181D; --ink-muted:#515863; --ink-dim:#515863;
+  --ink:#16181D; --ink-muted:#282B31; --ink-dim:#282B31;
   --gold:#8A6210; --gold-dark:#8A6210; --gold-light:#6B4C0C;
   --border:#E3E6EA; --border-accent:#C9CED6;
   --err:#B63D0B; --warn:var(--goldA-dk); --ok:#0E7A5F; --copper:#0E7A5F;
@@ -345,14 +349,14 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
   box-shadow:0 30px 64px rgba(0,0,0,0.45); }
 /* the chrome bar — same idiom as the plates: dark strip, three window dots, quiet title */
 .recon-badge { display:flex; align-items:center; gap:8px; padding:12px 16px; background:#22252B; border-bottom:1px solid #2E323A;
-  font-family:var(--ff-mono); font-size:10px; letter-spacing:0.04em; text-transform:none; color:#8B93A1; }
+  font-family:var(--ff-mono); font-size:10px; letter-spacing:0.04em; text-transform:none; color:#8D95A3; }
 .recon-badge::before { content:""; width:9px; height:9px; border-radius:50%; background:#3A3F48; flex:0 0 auto;
   box-shadow:14px 0 0 #3A3F48, 28px 0 0 #3A3F48; margin-right:32px; }
 .recon-badge::after { content:""; width:7px; height:7px; border-radius:50%; background:#37B87E; flex:0 0 auto;
   animation:reconPulse 2.4s ease-in-out infinite; }
 @keyframes reconPulse { 0%,100%{opacity:1} 50%{opacity:.35} }
 .rl-spark { width:60px; height:14px; margin-left:auto; flex:0 0 auto; opacity:.9; }
-.rl-clock { font-family:var(--ff-mono); font-size:10px; color:#8B93A1; flex:0 0 auto; font-variant-numeric:tabular-nums; }
+.rl-clock { font-family:var(--ff-mono); font-size:10px; color:#8D95A3; flex:0 0 auto; font-variant-numeric:tabular-nums; }
 .recon-stage { padding:20px 24px; }
 /* product controls: sentence case, sans, real-software idioms */
 .recon button { font-family:var(--ff-sans); font-size:13px; letter-spacing:0; text-transform:none; font-weight:500;
@@ -363,12 +367,12 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .recon button:focus-visible { outline:2px solid #8A6210; outline-offset:2px; }
 /* the segmented control — the most recognized "pick one" idiom in software */
 .recon-stage [role="group"] { display:inline-flex; gap:2px; padding:3px; background:#E7E9EE; border:1px solid #DCDFE5; border-radius:8px; }
-.recon-stage [role="group"] button { background:transparent; border:none; box-shadow:none; border-radius:6px; color:#515863; }
+.recon-stage [role="group"] button { background:transparent; border:none; box-shadow:none; border-radius:6px; color:#282B31; }
 .recon-stage [role="group"] button:hover { background:rgba(255,255,255,0.6); }
 .recon-stage [role="group"] button[aria-pressed="true"] { background:#FFFFFF; color:#16181D; font-weight:600;
   box-shadow:0 1px 3px rgba(22,24,29,0.16); }
 .recon-caption { padding:12px 16px; border-top:1px solid #E3E6EA; background:#FFFFFF;
-  font-family:var(--ff-sans); font-size:11.5px; letter-spacing:0; text-transform:none; color:#515863; }
+  font-family:var(--ff-sans); font-size:11.5px; letter-spacing:0; text-transform:none; color:#282B31; }
 /* the ghost cursor — the widget demonstrating itself once (assets/recon-live.js) */
 .rl-ghost { position:absolute; top:0; left:0; width:16px; height:16px; margin:-8px 0 0 -8px; border-radius:50%;
   background:rgba(22,24,29,0.85); box-shadow:0 0 0 4px rgba(22,24,29,0.15), 0 4px 10px rgba(0,0,0,0.25);
@@ -520,7 +524,6 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .t-serif-body{font-family:var(--ff-display);font-size:var(--fs-body);color:var(--ink);line-height:1.75}
 .t-serif-16{font-family:var(--ff-display);font-size:var(--fs-body);color:var(--ink)}
 .lbl-eyebrow-tight{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.04em;color:var(--ink-muted)}
-.lbl-micro-eyebrow{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
 .t-sans-ui-muted{font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--ink-muted);line-height:1.8}
 
 /* round 3 — the last triple-repeats. Two of these used raw 14px/16px where --fs-ui and
@@ -1237,11 +1240,11 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-case-studies-adtech) .plA *{box-sizing:border-box}
 :where(body.p-case-studies-adtech) .plA-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-adtech) .plA-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
-:where(body.p-case-studies-adtech) .plA-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8B93A1}
+:where(body.p-case-studies-adtech) .plA-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8D95A3}
 :where(body.p-case-studies-adtech) .plA-app{background:#F4F5F7;color:#16181D}
 :where(body.p-case-studies-adtech) .plA-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:#fff;border-bottom:1px solid #E3E6EA;flex-wrap:wrap}
 :where(body.p-case-studies-adtech) .plA-brand{font-weight:600;font-size:13px;color:#16181D}
-:where(body.p-case-studies-adtech) .plA-camp{font-size:13px;color:#515863}
+:where(body.p-case-studies-adtech) .plA-camp{font-size:13px;color:#282B31}
 :where(body.p-case-studies-adtech) .plA-camp b{color:#16181D;font-weight:600}
 :where(body.p-case-studies-adtech) .plA-stage{font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#B63D0B;background:#FBEAE1;border-radius:3px;padding:3px 8px;white-space:nowrap}
 :where(body.p-case-studies-adtech) .plA-body{display:grid;grid-template-columns:1.5fr 1fr;gap:0}
@@ -1250,7 +1253,7 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 @media(max-width:700px){:where(body.p-case-studies-adtech) .plA-main{border-right:none;border-bottom:1px solid #E3E6EA}}
 :where(body.p-case-studies-adtech) .plA-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:4px}
 :where(body.p-case-studies-adtech) .plA-head b{font-size:16px;font-weight:600;color:#16181D}
-:where(body.p-case-studies-adtech) .plA-sub{font-size:11px;color:#515863;margin-bottom:12px}
+:where(body.p-case-studies-adtech) .plA-sub{font-size:11px;color:#282B31;margin-bottom:12px}
 :where(body.p-case-studies-adtech) .plA-card{background:#fff;border:1px solid #E3E6EA;border-left:3px solid #E3E6EA;border-radius:6px;padding:12px 12px;margin-bottom:8px}
 :where(body.p-case-studies-adtech) .plA-card.act{border-left-color:#0E7A5F}
 :where(body.p-case-studies-adtech) .plA-card.rev{border-color:#C2410C;border-left:3px solid var(--goldA-dk);box-shadow:0 0 0 1px #C2410C inset}
@@ -1260,26 +1263,26 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-case-studies-adtech) .plA-verb{font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;border-radius:3px;padding:4px 8px;white-space:nowrap;flex:0 0 auto}
 :where(body.p-case-studies-adtech) .plA-verb.act{color:#0E7A5F;background:#E6F3EE;border:1px solid #BFDFD4}
 :where(body.p-case-studies-adtech) .plA-verb.rev{color:var(--goldA-dk);background:#FCF2DC;border:1px solid #EAD9B0}
-:where(body.p-case-studies-adtech) .plA-verb.ign{color:#515863;background:#EFEFEC;border:1px solid #E3E6EA}
-:where(body.p-case-studies-adtech) .plA-conf{font-family:var(--ff-mono);font-size:10.5px;color:#515863;font-variant-numeric:tabular-nums}
-:where(body.p-case-studies-adtech) .plA-reason{font-size:11px;color:#515863;line-height:1.55;margin:4px 0 0}
-:where(body.p-case-studies-adtech) .plA-note{font-size:10.5px;color:#515863;font-style:italic;margin-top:4px}
+:where(body.p-case-studies-adtech) .plA-verb.ign{color:#282B31;background:#EFEFEC;border:1px solid #E3E6EA}
+:where(body.p-case-studies-adtech) .plA-conf{font-family:var(--ff-mono);font-size:10.5px;color:#282B31;font-variant-numeric:tabular-nums}
+:where(body.p-case-studies-adtech) .plA-reason{font-size:11px;color:#282B31;line-height:1.55;margin:4px 0 0}
+:where(body.p-case-studies-adtech) .plA-note{font-size:10.5px;color:#282B31;font-style:italic;margin-top:4px}
 :where(body.p-case-studies-adtech) .plA-btns{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
 :where(body.p-case-studies-adtech) .plA-apply{display:inline-block;font-size:11px;font-weight:600;color:#fff;background:#0E7A5F;border-radius:4px;padding:4px 12px}
-:where(body.p-case-studies-adtech) .plA-quiet{display:inline-block;font-size:11px;color:#515863;background:#fff;border:1px solid #E3E6EA;border-radius:4px;padding:4px 12px}
+:where(body.p-case-studies-adtech) .plA-quiet{display:inline-block;font-size:11px;color:#282B31;background:#fff;border:1px solid #E3E6EA;border-radius:4px;padding:4px 12px}
 :where(body.p-case-studies-adtech) .plA-ovr{display:inline-block;font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.05em;color:#0E7A5F;background:#E6F3EE;border-radius:3px;padding:2px 4px;margin:2px 0 8px 12px}
-:where(body.p-case-studies-adtech) .plA-foot{font-family:var(--ff-mono);font-size:10px;color:#515863;padding-top:8px;border-top:1px solid #E3E6EA;margin-top:4px}
+:where(body.p-case-studies-adtech) .plA-foot{font-family:var(--ff-mono);font-size:10px;color:#282B31;padding-top:8px;border-top:1px solid #E3E6EA;margin-top:4px}
 :where(body.p-case-studies-adtech) .plA-rail{padding:16px;background:#FBFBFC}
-:where(body.p-case-studies-adtech) .plA-rl{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#515863;margin-bottom:8px}
-:where(body.p-case-studies-adtech) .plA-w{display:flex;align-items:center;gap:8px;font-size:11px;color:#515863;margin-bottom:4px}
+:where(body.p-case-studies-adtech) .plA-rl{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#282B31;margin-bottom:8px}
+:where(body.p-case-studies-adtech) .plA-w{display:flex;align-items:center;gap:8px;font-size:11px;color:#282B31;margin-bottom:4px}
 :where(body.p-case-studies-adtech) .plA-w i{height:5px;border-radius:3px;background:#C2410C;display:inline-block;flex:0 0 auto}
 :where(body.p-case-studies-adtech) .plA-board{background:#fff;border:1px solid #E3E6EA;border-radius:4px;padding:12px 12px;margin-top:16px}
-:where(body.p-case-studies-adtech) .plA-mono{font-family:var(--ff-mono);font-size:10px;color:#515863;margin-bottom:8px}
-:where(body.p-case-studies-adtech) .plA-cmp{display:flex;align-items:center;gap:8px;font-size:11px;color:#515863;margin-bottom:4px}
+:where(body.p-case-studies-adtech) .plA-mono{font-family:var(--ff-mono);font-size:10px;color:#282B31;margin-bottom:8px}
+:where(body.p-case-studies-adtech) .plA-cmp{display:flex;align-items:center;gap:8px;font-size:11px;color:#282B31;margin-bottom:4px}
 :where(body.p-case-studies-adtech) .plA-cmp i{height:8px;border-radius:2px;display:inline-block;flex:0 0 auto}
 :where(body.p-case-studies-adtech) .plA-cmp .m{background:#0E7A5F}
 :where(body.p-case-studies-adtech) .plA-cmp .d{background:#C6CBD2}
-:where(body.p-case-studies-adtech) .plA-bcap{font-size:10.5px;color:#515863;font-style:italic;line-height:1.55;margin-top:8px}
+:where(body.p-case-studies-adtech) .plA-bcap{font-size:10.5px;color:#282B31;font-style:italic;line-height:1.55;margin-top:8px}
 :where(body.p-case-studies-adtech) .plA-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 24px;transform:translateX(-50%)}
 :where(body.p-case-studies-adtech) #recon-adtech .rxa-card{max-width:480px;margin:0 auto;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:20px;transition:border-color .25s}
 :where(body.p-case-studies-adtech) #recon-adtech .rxa-card.hot{border-color:var(--gold-dark)}
@@ -1388,13 +1391,13 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-case-studies-fintech) .plF *{box-sizing:border-box}
 :where(body.p-case-studies-fintech) .plF-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-fintech) .plF-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
-:where(body.p-case-studies-fintech) .plF-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8B93A1}
+:where(body.p-case-studies-fintech) .plF-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8D95A3}
 :where(body.p-case-studies-fintech) .plF-app{background:#F4F5F7;color:#16181D}
 :where(body.p-case-studies-fintech) .plF-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:#fff;border-bottom:1px solid #E3E6EA}
 :where(body.p-case-studies-fintech) .plF-brand{font-weight:600;font-size:13px;color:#16181D}
-:where(body.p-case-studies-fintech) .plF-deal{font-size:13px;color:#515863}
+:where(body.p-case-studies-fintech) .plF-deal{font-size:13px;color:#282B31}
 :where(body.p-case-studies-fintech) .plF-deal b{color:#16181D;font-weight:600}
-:where(body.p-case-studies-fintech) .plF-stage{font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#0E6E56;background:#E4F1EC;border-radius:3px;padding:3px 8px}
+:where(body.p-case-studies-fintech) .plF-stage{font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#063127;background:#E4F1EC;border-radius:3px;padding:3px 8px}
 :where(body.p-case-studies-fintech) .plF-body{display:grid;grid-template-columns:1.5fr 1fr;gap:0}
 @media(max-width:700px){:where(body.p-case-studies-fintech) .plF-body{grid-template-columns:1fr}}
 :where(body.p-case-studies-fintech) .plF-main{padding:16px;border-right:1px solid #E3E6EA}
@@ -1402,29 +1405,29 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-case-studies-fintech) .plF-score{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
 :where(body.p-case-studies-fintech) .plF-score b{font-size:40px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
 :where(body.p-case-studies-fintech) .plF-verb{font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--goldA-dk);background:#FCF2DC;border:1px solid #EAD9B0;border-radius:3px;padding:4px 8px}
-:where(body.p-case-studies-fintech) .plF-sub{font-size:11px;color:#515863;margin-bottom:12px}
+:where(body.p-case-studies-fintech) .plF-sub{font-size:11px;color:#282B31;margin-bottom:12px}
 :where(body.p-case-studies-fintech) .plF-sig{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#fff;border:1px solid #E3E6EA;border-radius:6px;margin-bottom:8px}
-:where(body.p-case-studies-fintech) .plF-sig.sel{border-color:#0E6E56;box-shadow:0 0 0 1px #0E6E56 inset}
+:where(body.p-case-studies-fintech) .plF-sig.sel{border-color:#063127;box-shadow:0 0 0 1px #063127 inset}
 :where(body.p-case-studies-fintech) .plF-sig.abst{border-style:dashed;background:#FAFAF8}
 :where(body.p-case-studies-fintech) .plF-sname{flex:1 1 auto;min-width:0;font-size:12.5px;font-weight:600;color:#16181D}
-:where(body.p-case-studies-fintech) .plF-sname small{display:block;font-weight:400;font-size:11px;color:#515863;margin-top:2px}
+:where(body.p-case-studies-fintech) .plF-sname small{display:block;font-weight:400;font-size:11px;color:#282B31;margin-top:2px}
 :where(body.p-case-studies-fintech) .plF-risk{font-family:var(--ff-mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:3px;flex:0 0 auto}
 :where(body.p-case-studies-fintech) .plF-risk.hi{color:#8C2B2B;background:#F9E8E8}
 :where(body.p-case-studies-fintech) .plF-risk.md{color:var(--goldA-dk);background:#FCF2DC}
-:where(body.p-case-studies-fintech) .plF-conf{font-family:var(--ff-mono);font-size:10.5px;color:#515863;flex:0 0 auto;font-variant-numeric:tabular-nums}
-:where(body.p-case-studies-fintech) .plF-src{font-family:var(--ff-mono);font-size:10px;color:#0E6E56;background:#E4F1EC;border-radius:3px;padding:3px 8px;white-space:nowrap;flex:0 0 auto}
+:where(body.p-case-studies-fintech) .plF-conf{font-family:var(--ff-mono);font-size:10.5px;color:#282B31;flex:0 0 auto;font-variant-numeric:tabular-nums}
+:where(body.p-case-studies-fintech) .plF-src{font-family:var(--ff-mono);font-size:10px;color:#063127;background:#E4F1EC;border-radius:3px;padding:3px 8px;white-space:nowrap;flex:0 0 auto}
 :where(body.p-case-studies-fintech) .plF-ovr{display:inline-block;font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.05em;color:#0E7A5F;background:#E6F3EE;border-radius:3px;padding:2px 4px;margin:2px 0 8px 12px}
-:where(body.p-case-studies-fintech) .plF-foot{font-family:var(--ff-mono);font-size:10px;color:#515863;padding-top:8px;border-top:1px solid #E3E6EA;margin-top:4px}
+:where(body.p-case-studies-fintech) .plF-foot{font-family:var(--ff-mono);font-size:10px;color:#282B31;padding-top:8px;border-top:1px solid #E3E6EA;margin-top:4px}
 :where(body.p-case-studies-fintech) .plF-rail{padding:16px;background:#FBFBFC}
-:where(body.p-case-studies-fintech) .plF-rl{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#515863;margin-bottom:8px}
-:where(body.p-case-studies-fintech) .plF-quote{background:#fff;border:1px solid #E3E6EA;border-left:3px solid #0E6E56;border-radius:4px;padding:12px 12px;font-size:12.5px;line-height:1.6;color:#16181D;font-style:italic}
+:where(body.p-case-studies-fintech) .plF-rl{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#282B31;margin-bottom:8px}
+:where(body.p-case-studies-fintech) .plF-quote{background:#fff;border:1px solid #E3E6EA;border-left:3px solid #063127;border-radius:4px;padding:12px 12px;font-size:12.5px;line-height:1.6;color:#16181D;font-style:italic}
 :where(body.p-case-studies-fintech) .plF-quote mark{background:#FDF0C9;font-style:italic}
-:where(body.p-case-studies-fintech) .plF-cite{font-family:var(--ff-mono);font-size:10px;color:#515863;margin:8px 0 12px}
-:where(body.p-case-studies-fintech) .plF-open{display:inline-block;font-size:11.5px;font-weight:600;color:#fff;background:#0E6E56;border-radius:4px;padding:8px 12px}
-:where(body.p-case-studies-fintech) .plF-more{display:inline-block;font-size:11px;color:#0E6E56;margin-left:8px}
+:where(body.p-case-studies-fintech) .plF-cite{font-family:var(--ff-mono);font-size:10px;color:#282B31;margin:8px 0 12px}
+:where(body.p-case-studies-fintech) .plF-open{display:inline-block;font-size:11.5px;font-weight:600;color:#fff;background:#063127;border-radius:4px;padding:8px 12px}
+:where(body.p-case-studies-fintech) .plF-more{display:inline-block;font-size:11px;color:#063127;margin-left:8px}
 :where(body.p-case-studies-fintech) .plF-weights{margin-top:16px;border-top:1px solid #E3E6EA;padding-top:12px}
-:where(body.p-case-studies-fintech) .plF-w{display:flex;align-items:center;gap:8px;font-size:11px;color:#515863;margin-bottom:4px}
-:where(body.p-case-studies-fintech) .plF-w i{height:5px;border-radius:3px;background:#0E6E56;display:inline-block}
+:where(body.p-case-studies-fintech) .plF-w{display:flex;align-items:center;gap:8px;font-size:11px;color:#282B31;margin-bottom:4px}
+:where(body.p-case-studies-fintech) .plF-w i{height:5px;border-radius:3px;background:#063127;display:inline-block}
 :where(body.p-case-studies-fintech) .plF-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 24px;transform:translateX(-50%)}
 :where(body.p-case-studies-fintech) #recon-fintech .rxf-card{max-width:520px;margin:0 auto;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:20px}
 :where(body.p-case-studies-fintech) #recon-fintech .rxf-deal{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
@@ -1476,7 +1479,7 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 .xi-case-studies-fintech-018{margin:8px 0 32px!important}
 .xi-case-studies-fintech-019{display:block!important;width:100%!important;height:auto!important}
 .xi-case-studies-fintech-020{color:var(--ink)!important}
-.xi-case-studies-fintech-021{color:#515863!important;background:#EFEFEC!important}
+.xi-case-studies-fintech-021{color:#282B31!important;background:#EFEFEC!important}
 .xi-case-studies-fintech-022{width:64%!important}
 .xi-case-studies-fintech-023{width:41%!important}
 .xi-case-studies-fintech-024{width:33%!important}
@@ -1531,7 +1534,7 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-case-studies-o2) .plM *{box-sizing:border-box}
 :where(body.p-case-studies-o2) .plM-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-o2) .plM-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
-:where(body.p-case-studies-o2) .plM-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8B93A1}
+:where(body.p-case-studies-o2) .plM-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8D95A3}
 :where(body.p-case-studies-o2) .plM-stage{background:#22252B;padding:24px 16px;display:grid;grid-template-columns:repeat(3,minmax(0,250px));gap:16px;justify-content:center}
 @media(max-width:700px){:where(body.p-case-studies-o2) .plM-stage{grid-template-columns:minmax(0,250px)}}
 :where(body.p-case-studies-o2) .plM-phone{width:100%;max-width:250px;background:#14161B;border-radius:22px;padding:8px 8px 12px;box-shadow:0 14px 30px rgba(0,0,0,.5)}
@@ -1541,7 +1544,7 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-case-studies-o2) .plM-hdr{padding:12px 12px;background:#11318F;color:#fff;font-weight:600;font-size:13.5px}
 :where(body.p-case-studies-o2) .plM-body{padding:12px;flex:1 1 auto}
 :where(body.p-case-studies-o2) .plM-big{font-size:31px;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums;margin:4px 0 2px}
-:where(body.p-case-studies-o2) .plM-sub{font-size:10.5px;color:#515863;margin:0 0 8px}
+:where(body.p-case-studies-o2) .plM-sub{font-size:10.5px;color:#282B31;margin:0 0 8px}
 :where(body.p-case-studies-o2) .plM-info{font-size:10.5px;line-height:1.5;color:#0019A5;background:#E6E9F8;border-radius:4px;padding:8px 8px;margin-bottom:8px}
 :where(body.p-case-studies-o2) .plM-btn{display:block;width:100%;padding:12px 0;background:#11318F;border-radius:4px;color:#fff;font-weight:600;font-size:12.5px;text-align:center;margin-bottom:8px}
 :where(body.p-case-studies-o2) .plM-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 8px;background:#fff;border:1px solid #E3E6EA;border-radius:4px;font-size:12px;font-weight:600;color:#16181D;margin-bottom:4px}
@@ -1550,17 +1553,17 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-case-studies-o2) .plM-nav b{flex:1;padding:8px 0;text-align:center;font-family:var(--ff-mono);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:400;color:#6A7280}
 :where(body.p-case-studies-o2) .plM-nav b.on{color:#11318F;font-weight:700;box-shadow:inset 0 2px 0 #11318F}
 :where(body.p-case-studies-o2) .plM-mlabel{display:flex;justify-content:space-between;align-items:baseline;font-size:11.5px;font-weight:600;color:#16181D;margin:8px 0 4px}
-:where(body.p-case-studies-o2) .plM-mlabel small{font-weight:400;font-size:10.5px;color:#515863;font-variant-numeric:tabular-nums}
+:where(body.p-case-studies-o2) .plM-mlabel small{font-weight:400;font-size:10.5px;color:#282B31;font-variant-numeric:tabular-nums}
 :where(body.p-case-studies-o2) .plM-track{height:8px;border-radius:4px;background:#E3E6EA;overflow:hidden}
 :where(body.p-case-studies-o2) .plM-track i{display:block;height:100%;background:#11318F;border-radius:4px}
 :where(body.p-case-studies-o2) .plM-track i.mut{background:#C4C9D2}
-:where(body.p-case-studies-o2) .plM-msub{font-size:9.5px;color:#515863;margin:4px 0 0}
+:where(body.p-case-studies-o2) .plM-msub{font-size:9.5px;color:#282B31;margin:4px 0 0}
 :where(body.p-case-studies-o2) .plM-tag{display:inline-block;font-family:var(--ff-mono);font-size:9px;letter-spacing:.14em;color:#0019A5;background:#E6E9F8;border-radius:3px;padding:3px 8px;margin-bottom:8px}
 :where(body.p-case-studies-o2) .plM-otitle{font-size:14.5px;font-weight:600;line-height:1.35;margin:0 0 3px}
-:where(body.p-case-studies-o2) .plM-osub{font-size:10.5px;color:#515863;margin:0 0 12px}
+:where(body.p-case-studies-o2) .plM-osub{font-size:10.5px;color:#282B31;margin:0 0 12px}
 :where(body.p-case-studies-o2) .plM-code{border:1.5px dashed #9BA3B0;border-radius:5px;padding:12px 8px;text-align:center;background:#fff;margin-bottom:8px}
 :where(body.p-case-studies-o2) .plM-code b{display:block;font-family:var(--ff-mono);font-size:15px;letter-spacing:.08em;font-weight:600;color:#16181D}
-:where(body.p-case-studies-o2) .plM-code span{display:block;font-size:9.5px;color:#515863;margin-top:4px}
+:where(body.p-case-studies-o2) .plM-code span{display:block;font-size:9.5px;color:#282B31;margin-top:4px}
 :where(body.p-case-studies-o2) .plM-match{font-family:var(--ff-mono);font-size:9px;letter-spacing:.05em;color:#6A7280;padding:8px 12px;border-top:1px solid #E3E6EA;background:#fff}
 :where(body.p-case-studies-o2) .plM-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 24px;transform:translateX(-50%)}
 :where(body.p-case-studies-o2) #recon-o2 .rx2-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:600px;margin:0 auto}
@@ -1673,26 +1676,26 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-case-studies-orgos) .plO *{box-sizing:border-box}
 :where(body.p-case-studies-orgos) .plO-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-orgos) .plO-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
-:where(body.p-case-studies-orgos) .plO-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8B93A1}
+:where(body.p-case-studies-orgos) .plO-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8D95A3}
 :where(body.p-case-studies-orgos) .plO-app{background:#F4F5F7;color:#16181D}
 :where(body.p-case-studies-orgos) .plO-bar{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#fff;border-bottom:1px solid #E3E6EA;flex-wrap:wrap}
 :where(body.p-case-studies-orgos) .plO-brand{font-weight:600;font-size:13px;color:#16181D}
 :where(body.p-case-studies-orgos) .plO-tabs{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
-:where(body.p-case-studies-orgos) .plO-tab{font-size:11.5px;color:#515863;padding:4px 8px;border-radius:3px}
+:where(body.p-case-studies-orgos) .plO-tab{font-size:11.5px;color:#282B31;padding:4px 8px;border-radius:3px}
 :where(body.p-case-studies-orgos) .plO-tab.on{color:#0A6961;background:#E2F1EF;font-weight:600}
-:where(body.p-case-studies-orgos) .plO-count{margin-left:auto;font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:#515863;background:#F4F5F7;border:1px solid #E3E6EA;border-radius:3px;padding:3px 8px;white-space:nowrap}
+:where(body.p-case-studies-orgos) .plO-count{margin-left:auto;font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;color:#282B31;background:#F4F5F7;border:1px solid #E3E6EA;border-radius:3px;padding:3px 8px;white-space:nowrap}
 :where(body.p-case-studies-orgos) .plO-body{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:16px}
 @media(max-width:700px){:where(body.p-case-studies-orgos) .plO-body{grid-template-columns:1fr}}
-:where(body.p-case-studies-orgos) .plO-colh{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#515863;margin-bottom:8px}
+:where(body.p-case-studies-orgos) .plO-colh{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#282B31;margin-bottom:8px}
 :where(body.p-case-studies-orgos) .plO-colh b{color:#16181D;font-weight:600}
 :where(body.p-case-studies-orgos) .plO-card{background:#fff;border:1px solid #E3E6EA;border-radius:6px;padding:12px 12px;margin-bottom:8px}
 :where(body.p-case-studies-orgos) .plO-ct{font-size:12.5px;font-weight:600;color:#16181D;line-height:1.45}
-:where(body.p-case-studies-orgos) .plO-cx{font-size:11px;color:#515863;line-height:1.5;margin-top:3px}
-:where(body.p-case-studies-orgos) .plO-cf{display:flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:10px;color:#515863;margin-top:8px;padding-top:8px;border-top:1px solid #E3E6EA}
+:where(body.p-case-studies-orgos) .plO-cx{font-size:11px;color:#282B31;line-height:1.5;margin-top:3px}
+:where(body.p-case-studies-orgos) .plO-cf{display:flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:10px;color:#282B31;margin-top:8px;padding-top:8px;border-top:1px solid #E3E6EA}
 :where(body.p-case-studies-orgos) .plO-av{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#E2F1EF;color:#0A6961;font-family:var(--ff-mono);font-size:9px;font-weight:600;flex:0 0 auto}
 :where(body.p-case-studies-orgos) .plO-pick{display:inline-block;font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.04em;color:#0E7A5F;background:#E6F3EE;border-radius:3px;padding:3px 8px;margin-top:8px}
 :where(body.p-case-studies-orgos) .plO-dec{font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--goldA-dk);background:#FCF2DC;border-radius:3px;padding:2px 8px}
-:where(body.p-case-studies-orgos) .plO-foot{font-family:var(--ff-mono);font-size:10px;letter-spacing:.04em;color:#515863;background:#fff;border-top:1px solid #E3E6EA;padding:12px 16px;text-align:center}
+:where(body.p-case-studies-orgos) .plO-foot{font-family:var(--ff-mono);font-size:10px;letter-spacing:.04em;color:#282B31;background:#fff;border-top:1px solid #E3E6EA;padding:12px 16px;text-align:center}
 :where(body.p-case-studies-orgos) .plO-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 24px;transform:translateX(-50%)}
 :where(body.p-case-studies-orgos) #recon-orgos .rxo-toggle{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
 :where(body.p-case-studies-orgos) #recon-orgos .rxo-mode{padding:8px 12px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink-muted);transition:border-color .2s,color .2s}
@@ -1782,26 +1785,26 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-case-studies-ptc) .plP-frame{border:1px solid var(--border);border-radius:9px;overflow:hidden;box-shadow:0 22px 48px rgba(0,0,0,.4);font-family:var(--ff-sans)}
 :where(body.p-case-studies-ptc) .plP-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-ptc) .plP-chrome i{width:8px;height:8px;border-radius:50%;background:#3A3F48;display:inline-block}
-:where(body.p-case-studies-ptc) .plP-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.04em;color:#8B93A1;text-transform:none}
+:where(body.p-case-studies-ptc) .plP-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.04em;color:#8D95A3;text-transform:none}
 :where(body.p-case-studies-ptc) .plP-app{background:#F4F5F7;color:#16181D;min-height:280px;display:flex;flex-direction:column}
 :where(body.p-case-studies-ptc) .plP-win{border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:0 12px 24px rgba(0,0,0,.35);background:#F4F5F7}
 :where(body.p-case-studies-ptc) .plP-winb{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:12px;font-size:12.5px;color:#16181D}
 :where(body.p-case-studies-ptc) .plP-winb b{font-weight:600}
-:where(body.p-case-studies-ptc) .plP-winb span{font-size:11px;color:#515863;white-space:nowrap}
+:where(body.p-case-studies-ptc) .plP-winb span{font-size:11px;color:#282B31;white-space:nowrap}
 :where(body.p-case-studies-ptc) .plP-bar{padding:8px 12px;background:#fff;border-bottom:1px solid #E3E6EA;font-weight:600;font-size:12px}
 :where(body.p-case-studies-ptc) .plP-body{padding:12px 12px;flex:1}
 :where(body.p-case-studies-ptc) .plP-tile{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border:1px solid #E3E6EA;border-radius:5px;padding:8px 8px;margin-bottom:8px}
 :where(body.p-case-studies-ptc) .plP-tile b{font-size:11px;font-weight:600}
-:where(body.p-case-studies-ptc) .plP-tile small{display:block;font-weight:400;font-size:9.5px;color:#515863}
+:where(body.p-case-studies-ptc) .plP-tile small{display:block;font-weight:400;font-size:9.5px;color:#282B31}
 :where(body.p-case-studies-ptc) .plP-si{font-size:9.5px;border-radius:3px;padding:4px 8px;white-space:nowrap}
-:where(body.p-case-studies-ptc) .plP-search{background:#fff;border:1px solid #C9CED6;border-radius:6px;padding:12px 12px;font-size:12px;color:#515863;margin-bottom:12px}
+:where(body.p-case-studies-ptc) .plP-search{background:#fff;border:1px solid #C9CED6;border-radius:6px;padding:12px 12px;font-size:12px;color:#282B31;margin-bottom:12px}
 :where(body.p-case-studies-ptc) .plP-search b{color:#16181D;font-weight:400}
-:where(body.p-case-studies-ptc) .plP-rl{font-family:var(--ff-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#515863;margin:2px 0 8px}
+:where(body.p-case-studies-ptc) .plP-rl{font-family:var(--ff-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#282B31;margin:2px 0 8px}
 :where(body.p-case-studies-ptc) .plP-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
 :where(body.p-case-studies-ptc) .plP-course{background:#fff;border:1px solid #E3E6EA;border-radius:5px;padding:8px}
 :where(body.p-case-studies-ptc) .plP-course b{display:block;font-size:10px;font-weight:600;line-height:1.35}
-:where(body.p-case-studies-ptc) .plP-course small{font-size:9px;color:#515863}
-:where(body.p-case-studies-ptc) .plP-foot{font-family:var(--ff-mono);font-size:10px;letter-spacing:.04em;color:#515863;padding:8px 12px;border-top:1px solid #E3E6EA;background:#fff;text-transform:none}
+:where(body.p-case-studies-ptc) .plP-course small{font-size:9px;color:#282B31}
+:where(body.p-case-studies-ptc) .plP-foot{font-family:var(--ff-mono);font-size:10px;letter-spacing:.04em;color:#282B31;padding:8px 12px;border-top:1px solid #E3E6EA;background:#fff;text-transform:none}
 :where(body.p-case-studies-ptc) .plP-locale{display:inline-block;font-family:var(--ff-mono);font-size:9.5px;color:#00695C;background:#E1EFEC;border-radius:3px;padding:3px 8px}
 :where(body.p-case-studies-ptc) .plP-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 40px;transform:translateX(-50%)}
 :where(body.p-case-studies-ptc) #recon-ptc .rxp-toggle{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
@@ -1902,7 +1905,7 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV *{box-sizing:border-box}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8B93A1}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;color:#8D95A3}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-app{background:#F4F5F7;color:#16181D}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:#fff;border-bottom:1px solid #E3E6EA}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-brand{font-weight:600;font-size:13px;color:#16181D}

@@ -2068,7 +2068,7 @@ html[data-theme="ember"] body.p-404 .lug{background:#F5EDE6;color:#241830;border
 html[data-theme="ember"] body.p-404 .lug-head b,
 html[data-theme="ember"] body.p-404 .lug-row b{color:#241830}
 html[data-theme="ember"] body.p-404 .lug-row span,
-html[data-theme="ember"] body.p-404 .lug-head span{color:rgba(36,24,48,.6)}
+html[data-theme="ember"] body.p-404 .lug-head span{color:rgba(36,24,48,.72)}
 html[data-theme="ember"] body.p-404 .lug-fill{background:var(--ember)}
 html[data-theme="ember"] body.p-404 .divert{color:#B84A1F;border-color:rgba(184,74,31,.5)}
 html[data-theme="ember"] body.p-404 .lug-claim{color:rgba(36,24,48,.75)}
@@ -2198,3 +2198,19 @@ html[data-theme="ember"] body.p-case-studies-planit .btn-row{justify-content:spa
   html[data-theme="ember"] body[class*="p-case-studies"] .fig-paper figcaption{text-align:left}
 }
 html[data-theme="ember"] body.p-home .l7{--lc:var(--rose);--lt:rgba(255,122,168,.08)}
+
+/* A pattern card's "Read the rule →" eyebrow sits on the CREAM card, not the dark page, so the
+   page-level amber (--amber, correct at 11.3:1 on #120B14) measured 1.33:1 there. The paper
+   plates already define --goldA #7E5A14 = 5.62:1 on cream for exactly this: a label that has
+   crossed onto paper takes the paper's gold. Found 2026-08-16 by the contrast audit once it
+   stopped reading `color` for SVG text and started reporting real failures. */
+html[data-theme="ember"] body.p-patterns .pat-card .lbl-eyebrow,
+html[data-theme="ember"] body.p-patterns [class*="-paper"] .lbl-eyebrow{color:#7E5A14}
+/* ...and the FIRST feature card's meta rail, which is paper but carries neither class:
+   "Read the rule →" rendered #FFC46B on #F4ECDA = 1.33:1, a call to action nobody could read.
+   Scoped to .xi-patterns-012 ONLY. The second card (.xi-patterns-018) uses the identical
+   .xi-patterns-017 rail on a DARK ground (#241830) where the light gold is correct — a
+   blanket rail selector darkened it to 2.69:1 and had to be walked back. Same component,
+   two grounds: match the surface, never the component alone. Both measured from rendered
+   pixels 2026-08-16. */
+html[data-theme="ember"] body.p-patterns .xi-patterns-012 .xi-patterns-017 .lbl-eyebrow{color:#7E5A14}

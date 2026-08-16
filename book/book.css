@@ -136,7 +136,7 @@ body {
 /* stacked page-edge thickness (grows on the read side) */
 .bk-book::before,
 .bk-book::after {
-  content: ""; position: absolute; top: 6px; bottom: 6px; width: 16px;
+  content: ""; position: absolute; top: 8px; bottom: 8px; width: 16px;
   background:
     repeating-linear-gradient(90deg, var(--bk-paper-edge) 0 1px, rgba(0,0,0,0.05) 1px 2px, var(--bk-paper-edge) 2px 3px);
   z-index: -1;
@@ -154,7 +154,7 @@ body {
      var(--bk-gutter) 51%, rgba(34,28,22,0.05) 70%, rgba(34,28,22,0) 100%);
 }
 .bk-ribbon {
-  position: absolute; top: -6px; left: calc(50% + 8px); right: auto; width: 24px; height: 150px;
+  position: absolute; top: -8px; left: calc(50% + 8px); right: auto; width: 24px; height: 150px;
   background: linear-gradient(180deg, var(--bk-ribbon), #8d2c20);
   z-index: 6; box-shadow: 0 4px 8px rgba(0,0,0,0.25);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 84%, 0 100%);
@@ -1161,3 +1161,13 @@ body {
   color: var(--bk-paper); text-decoration: underline; text-underline-offset: 3px;
 }
 .bk-cover__skimlink:hover { color: #F4ECDA; }
+
+/* "Also in this volume" (spread 4, right page) — see bk-list--volume in portfolio.js.
+   Six rows plus the closing note overrun an 880px page by 72px; the page clips
+   (overflow:hidden), so the note vanished silently. Tightened here rather than in
+   .bk-item, which the rest of the book shares. Measured 2026-08-16: content bottom
+   821px against an 814px text edge — full page, 59px of bottom margin intact. */
+.bk-list--volume .bk-item { padding: 8px 0; }
+.bk-list--volume .bk-item h4 { margin: 2px 0 3px; font-size: 18px; }
+.bk-list--volume .bk-item p { font-size: 13.5px; line-height: 1.5; }
+.bk-list--volume .bk-item__metric { font-size: 23px; }

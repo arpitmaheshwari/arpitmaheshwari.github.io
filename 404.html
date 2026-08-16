@@ -9,8 +9,9 @@
 <link rel="canonical" href="https://arpitmaheshwari.com/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-<link rel="stylesheet" href="/styles.css?v=p67">
-<link rel="stylesheet" href="/ember.css?v=e145">
+<link rel="stylesheet" href="/fonts.css?v=f1">
+<link rel="stylesheet" href="/styles.css?v=p70">
+<link rel="stylesheet" href="/ember.css?v=e150">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -88,7 +89,39 @@
     });
   })();
 </script>
-<script defer src="./attention.js?v=a1"></script>
-<script defer src="./clarity.js?v=c1"></script>
+<script>
+// The nav and the dyslexia toggle are real controls, not decoration. 404.html is served
+// at ARBITRARY depths, so every src/href here is root-absolute — a relative "./" would
+// resolve against the missing URL's own directory and 404 a second time.
+(function () {
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function () { if (nav) nav.classList.toggle('scrolled', window.scrollY > 60); });
+  var menuBtn = document.getElementById('menuToggle');
+  var navLinks = document.querySelector('.nav-links');
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', function (e) { e.stopPropagation(); var isOpen = navLinks.classList.toggle('nav-open'); menuBtn.setAttribute('aria-expanded', String(isOpen)); });
+    document.addEventListener('click', function (e) { if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) { navLinks.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); } });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) { navLinks.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.focus(); } });
+  }
+  var dys = document.getElementById('dyslexiaToggle');
+  if (dys) {
+    try { if (localStorage.getItem('dyslexia-mode') === 'on') { document.body.classList.add('dyslexia-mode'); dys.classList.add('active'); dys.setAttribute('aria-pressed', 'true'); } } catch (e) {}
+    dys.addEventListener('click', function () {
+      document.body.classList.toggle('dyslexia-mode');
+      var isOn = document.body.classList.contains('dyslexia-mode');
+      dys.classList.toggle('active', isOn);
+      dys.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+      try { localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off'); } catch (e) {}
+      if (typeof gtag === 'function') gtag('event', 'dyslexia_toggle', { state: isOn ? 'on' : 'off' });
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var cta = e.target.closest && e.target.closest('[data-cta]');
+    if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' });
+  });
+})();
+</script>
+<script defer src="/attention.js?v=a1"></script>
+<script defer src="/clarity.js?v=c1"></script>
 </body>
 </html>

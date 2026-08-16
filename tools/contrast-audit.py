@@ -186,6 +186,24 @@ f.onload = function () {
         if (!f || f === 'none' || f.indexOf('url(') === 0) return;
         ink = f;
       }
+      // GRADIENT TEXT is painted by the BACKGROUND, not by `color`. `background-clip:text` with
+      // color:transparent survives the pass-B hide rule untouched (that rule only sets `color`),
+      // so pass B samples the glyph's own paint and calls it "background" — foreground and
+      // background come back identical and the ratio is EXACTLY 1.00. The 404 headline read
+      // 1.00 that way on 2026-08-16 while actually rendering at 7.5-8.5:1. An exactly-1.00
+      // reading is the signature of this instrument failing, never of a real defect, so refuse
+      // to guess: flag the node as UNMEASURABLE and say what would be needed instead.
+      var clip = cs.webkitBackgroundClip || cs.backgroundClip;
+      var fill = cs.webkitTextFillColor;
+      var transparentInk = /rgba\(0, 0, 0, 0\)|transparent/.test(fill || '')
+                        || /rgba\(0, 0, 0, 0\)|transparent/.test(ink || '');
+      if (clip === 'text' && transparentInk) {
+        out.push({ t: own.trim().slice(0, 44), size: parseFloat(cs.fontSize),
+                   wt: cs.fontWeight, color: ink, unmeasurable: 'gradient text (background-clip:text)',
+                   ex: !!(EX && el.closest(EX)),
+                   r: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)] });
+        return;
+      }
       out.push({ t: own.trim().slice(0, 44), size: parseFloat(cs.fontSize),
                  wt: cs.fontWeight, color: ink,
                  ex: !!(EX && el.closest(EX)),
@@ -294,7 +312,27 @@ def audit(url, width, exempt=None, canary=False, force_visible=None):
     full = min(max(int(probe["h"]) + 40, 900), MAX_PAGE_PX)
     truncated = int(probe["h"]) + 40 > MAX_PAGE_PX
 
+    # PAGE HEIGHT DEPENDS ON VIEWPORT HEIGHT, and there is NO fixed point to converge on.
+    # Sections sized with 100vh (the homepage hero, the 404 .wrap) make total height roughly
+    # content + viewport, so every attempt to size the iframe to the page just grows the page by
+    # the same amount again: 9143 -> 17426 -> ... -> the 24000 clamp. Sizing the capture from the
+    # 900px probe leaves everything below that height unsampled — 192 of 224 homepage text nodes,
+    # silently, while the tool printed "33 text nodes measured / 0 failures" (measured 2026-08-16).
+    # PROPER FIX (not done here, it is a real rewrite): keep the iframe at a realistic viewport and
+    # capture in tiles, scrolling the iframe and re-reading rects at each scroll offset, or drive
+    # the capture over CDP with captureBeyondViewport. Until then the drop guard below makes the
+    # unmeasured remainder LOUD, so a clean verdict can never be mistaken for full coverage.
     data = run_pass(url, width, full, exempt=exempt, canary=canary, force_visible=force_visible)
+    # A page that yields ZERO text nodes has not been measured — it has failed to load, raced the
+    # renderer, or timed out. Reporting that as "0 text nodes measured / 0 failures" is the tool
+    # claiming a clean bill of health for a page it never saw; patterns/ai-failure-states.html did
+    # exactly that under parallel load on 2026-08-16, then measured 130 nodes on a re-run. Retry
+    # once, then say so out loud rather than pass.
+    if data is not None and not data.get("els"):
+        data = run_pass(url, width, full, exempt=exempt, canary=canary,
+                        force_visible=force_visible)
+        if data is not None and not data.get("els"):
+            return None, truncated
     if not data:
         return None, truncated
     with tempfile.TemporaryDirectory() as td:
@@ -305,7 +343,20 @@ def audit(url, width, exempt=None, canary=False, force_visible=None):
         im = Image.open(png).convert("RGB")
         sx = im.width / float(width)
         rows = []
+        # SILENT DROP GUARD. Every node whose sample points fall outside the captured image used to
+        # be skipped by a bare `continue`, and the printed total was len(rows) — so a screenshot
+        # shorter than the page reported "32 text nodes measured" on a homepage that really has 224,
+        # and its "0 failures" verdict covered only the first screen (measured 2026-08-16).
+        # A node that could not be sampled is an UNMEASURED node, and must be said out loud.
+        dropped = []
         for e in data["els"]:
+            if e.get("unmeasurable"):
+                rows.append({"width": width, "text": e["t"], "size": e["size"],
+                             "fg": "-", "bg": "-", "ratio": 0.0,
+                             "need": required_ratio(e["size"], e["wt"]),
+                             "ok": True, "exempt": e["ex"],
+                             "unmeasurable": e["unmeasurable"]})
+                continue
             x, y, w, h = e["r"]
             pts = []
             for i in range(1, 6):
@@ -314,6 +365,7 @@ def audit(url, width, exempt=None, canary=False, force_visible=None):
                     if 0 <= px < im.width and 0 <= py < im.height:
                         pts.append(im.getpixel((px, py)))
             if not pts:
+                dropped.append(e["t"])
                 continue
             bgc = tuple(sum(p[k] for p in pts) // len(pts) for k in range(3))
             fg, alpha = parse_rgb(e["color"])
@@ -327,6 +379,12 @@ def audit(url, width, exempt=None, canary=False, force_visible=None):
                          # tool bug and gets dismissed. Flooring never overstates a passing value.
                          "ratio": math.floor(got * 100) / 100.0, "need": need,
                          "ok": got >= need, "exempt": e["ex"]})
+        if dropped:
+            rows.append({"width": width, "text": "", "size": 0, "fg": "-", "bg": "-",
+                         "ratio": 0.0, "need": 0, "ok": True, "exempt": False,
+                         "dropped": dropped,
+                         "geom": f"page {full}px tall, screenshot {im.height}px "
+                                 f"({im.width}x{im.height} at sx={sx:.2f})"})
         return rows, truncated
 
 # ---------------------------------------------------------------- calibration
@@ -425,7 +483,7 @@ def main():
     failures = 0
     for url in a.urls:
         measured = 0
-        bad, exempt_bad, notes = [], [], []
+        bad, exempt_bad, notes, unmeasurable = [], [], [], []
         for width in widths:
             rows, truncated = audit(url, width, exempt=a.exempt,
                                     force_visible=a.force_visible)
@@ -433,6 +491,14 @@ def main():
                 notes.append(f"@{width}px could not be measured")
                 continue
             measured += len(rows)
+            for r in rows:
+                if r.get("dropped"):
+                    notes.append(f"UNMEASURED: {len(r['dropped'])} text node(s) at {width}px "
+                                 f"fell outside the captured image — {r['geom']}. "
+                                 f"Their contrast is UNKNOWN, not passing. "
+                                 f"First few: {r['dropped'][:5]}")
+            rows = [r for r in rows if not r.get("dropped")]
+            unmeasurable += [r for r in rows if r.get("unmeasurable")]
             bad += [r for r in rows if not r["ok"] and not r["exempt"]]
             exempt_bad += [r for r in rows if not r["ok"] and r["exempt"]]
             if truncated:
@@ -461,6 +527,16 @@ def main():
                   f"(declared 1.4.3-exempt — confirm that is true)")
         for n in notes:
             print(f"  NOTE  {n}")
+        if unmeasurable:
+            print(f"  UNMEASURABLE by this instrument ({len(unmeasurable)}) — NOT a verdict, "
+                  f"these need pixel sampling of the glyph paint itself:")
+            seen_u = set()
+            for r in unmeasurable:
+                k = (r["text"], r["unmeasurable"])
+                if k in seen_u:
+                    continue
+                seen_u.add(k)
+                print(f"    {r['unmeasurable']}  {r['size']:>6}px  @{r['width']}px  {r['text']!r}")
         if not bad:
             print("  0 failures. Blind spots of this method: text inside <canvas>, <video>, "
                   "cross-origin iframes, and any state not reachable on load (hover, focus, open "
