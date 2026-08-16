@@ -2204,8 +2204,13 @@ html[data-theme="ember"] body.p-home .l7{--lc:var(--rose);--lt:rgba(255,122,168,
    plates already define --goldA #7E5A14 = 5.62:1 on cream for exactly this: a label that has
    crossed onto paper takes the paper's gold. Found 2026-08-16 by the contrast audit once it
    stopped reading `color` for SVG text and started reporting real failures. */
-html[data-theme="ember"] body.p-patterns .pat-card .lbl-eyebrow,
-html[data-theme="ember"] body.p-patterns [class*="-paper"] .lbl-eyebrow{color:#7E5A14}
+@media (min-width:861px){
+  html[data-theme="ember"] body.p-patterns .pat-card .lbl-eyebrow,
+  html[data-theme="ember"] body.p-patterns [class*="-paper"] .lbl-eyebrow{color:#7E5A14}
+}
+/* Below 861px the pattern card is not paper — it is the dark page — so the paper gold would be
+   2.93:1 there. The page amber is 11.3:1 on that ground and is what should paint. Same label,
+   two grounds, two inks: the ink follows the SURFACE, never the component name. */
 /* ...and the FIRST feature card's meta rail, which is paper but carries neither class:
    "Read the rule →" rendered #FFC46B on #F4ECDA = 1.33:1, a call to action nobody could read.
    Scoped to .xi-patterns-012 ONLY. The second card (.xi-patterns-018) uses the identical
@@ -2214,3 +2219,30 @@ html[data-theme="ember"] body.p-patterns [class*="-paper"] .lbl-eyebrow{color:#7
    two grounds: match the surface, never the component alone. Both measured from rendered
    pixels 2026-08-16. */
 html[data-theme="ember"] body.p-patterns .xi-patterns-012 .xi-patterns-017 .lbl-eyebrow{color:#7E5A14}
+
+/* The design-system band's install card was ~570px shorter than the prose beside it, leaving a
+   void down the right. The space gets the thing the card is actually about: the four heats with
+   their measured ratios — showing the system instead of describing it. */
+html[data-theme="ember"] body.p-home #design-system .ds-tok{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+html[data-theme="ember"] body.p-home #design-system .ds-t{
+  display:flex;align-items:center;gap:8px;padding:12px;
+  background:rgba(245,237,230,.04);border:1px solid var(--border);border-radius:8px}
+html[data-theme="ember"] body.p-home #design-system .ds-t i{
+  width:16px;height:16px;border-radius:4px;flex:0 0 auto}
+html[data-theme="ember"] body.p-home #design-system .ds-t b{
+  font-family:var(--ff-label);font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--ink)}
+html[data-theme="ember"] body.p-home #design-system .ds-t span{
+  margin-left:auto;font-family:var(--ff-mono);font-size:11.5px;color:var(--ink-dim)}
+html[data-theme="ember"] body.p-home #design-system .ds-type{
+  display:grid;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+html[data-theme="ember"] body.p-home #design-system .ds-ty{
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+html[data-theme="ember"] body.p-home #design-system .ds-ty b{font-size:15px;color:var(--ink);font-weight:400}
+html[data-theme="ember"] body.p-home #design-system .ds-ty span{
+  font-family:var(--ff-label);font-size:11.5px;letter-spacing:.04em;color:var(--ink-dim);text-align:right}
+
+/* The Lab's ev-tiers list is normally the last thing in a .lab-body; on the design-system band a
+   paragraph follows it and sat flush against the final definition. */
+html[data-theme="ember"] body.p-lab #design-system .ev-tiers + p{margin-top:24px}
+html[data-theme="ember"] body.p-lab #design-system .lab-code{margin-top:20px}

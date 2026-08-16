@@ -367,7 +367,19 @@ def audit(url, width, exempt=None, canary=False, force_visible=None):
             if not pts:
                 dropped.append(e["t"])
                 continue
-            bgc = tuple(sum(p[k] for p in pts) // len(pts) for k in range(3))
+            # The MEAN of a grid inside a glyph box is not the background — it is the background
+            # blended with however much of the glyph the grid happened to land on. On bold 16px
+            # text in a small chip that is ~30% coverage, which dragged a real 8.72:1 label down
+            # to a reported 3.96 and sent me darkening colours that were never wrong. The MODE is
+            # the honest estimator: on any solid ground most sampled pixels ARE the ground, and
+            # the glyph pixels are the minority that the mean was quietly folding in.
+            # Quantised to 8 levels per channel first, so antialiased near-matches count together.
+            buckets = {}
+            for pnt in pts:
+                key = tuple(v // 32 for v in pnt)
+                buckets.setdefault(key, []).append(pnt)
+            winner = max(buckets.values(), key=len)
+            bgc = tuple(sum(p[k] for p in winner) // len(winner) for k in range(3))
             fg, alpha = parse_rgb(e["color"])
             if alpha < 1:
                 fg = tuple(int(round(f * alpha + b * (1 - alpha))) for f, b in zip(fg, bgc))
