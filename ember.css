@@ -609,14 +609,14 @@ html[data-theme="ember"] body.p-home .qc-slot .hk-qc{
   justify-content:flex-start;gap:clamp(32px,5vw,80px);max-width:840px;margin-top:40px}
 html[data-theme="ember"] body.p-home .qc-slot .hk-qc-side{flex:0 1 320px}
 html[data-theme="ember"] body.p-home .qc-slot .hk-qc-obj{flex:0 0 300px;margin:0}
-/* at 390 the hero CTA's gradient sits in its violet half under the dark ink
-   (measured 3.51:1); flip to a solid ember fill on narrow screens where the
-   gradient has no room to read anyway */
-@media (max-width:640px){
-  /* beats the earlier [data-cta=send-role][data-location=hero] rule, which carries
-     !important from the classic-DOM era and was forcing the gradient back on */
-  html[data-theme="ember"] body.p-home .hero .pill-hot{background:#FFB08E!important;color:#1A0D08!important}
-}
+/* REVERTED 2026-08-16 (Arpit caught it: "on mobile button still of the old design system").
+   This block used to flatten the hero CTA to a solid #FFB08E below 640px, on the strength of a
+   "measured 3.51:1" reading. That reading was wrong — it came from the same contrast audit that
+   was reading `color` instead of `fill` and inventing 344 phantom failures. Measured properly,
+   the dark ink #1A0D08 sits at 8.18:1 on the ember stop and 7.22:1 on the violet stop: the
+   gradient never had a contrast problem. So the site's primary call to action wore a different
+   fill from the nav CTA on every phone, to satisfy a number that did not exist. The gradient IS
+   the CTA grammar; a gate reading is not a reason to abandon it. */
 
 /* ================================================================
    EMBER · CASE STUDIES — the prototype grammar applied to the case

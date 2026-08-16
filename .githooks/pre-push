@@ -135,6 +135,18 @@ fi
 # teardown-facts --check. Every published "hand-written HTML pages / OG cards / skip-link
 # pages" number on lab/teardown.html is measured, and adding any page makes them stale.
 # A check that only runs AFTER the push is a check you learn about too late; it belongs here.
+# 2026-08-16 — the homepage's PRIMARY CTA wore a flat fill on every phone while the nav CTA
+# beside it carried the gradient, and no gate could see it: cta-grammar-check renders at 1440
+# only and excludes pills, contrast measures legibility not consistency. A phone and a laptop
+# must agree about what a component IS.
+if [ -f tools/cta-viewport-check.py ]; then
+  echo "pre-push: CTA viewport identity (does a button change below 640px?)…"
+  if ! python3 tools/cta-viewport-check.py; then
+    echo "pre-push: BLOCKED — a call-to-action renders differently on phone and desktop."
+    exit 1
+  fi
+fi
+
 if [ -f tools/teardown-facts.py ]; then
   echo "pre-push: teardown facts (are the published counts still true?)…"
   if ! python3 tools/teardown-facts.py --check; then
