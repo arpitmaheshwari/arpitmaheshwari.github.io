@@ -144,8 +144,8 @@
   gtag('js', new Date());
   gtag('config', 'G-PFY6ME99K8');
 </script>
-<link rel="stylesheet" href="./styles.css?v=p71">
-<link rel="stylesheet" href="./ember.css?v=e154">
+<link rel="stylesheet" href="./styles.css?v=p72">
+<link rel="stylesheet" href="./ember.css?v=e168">
 </head>
 <body class="p-home">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -403,47 +403,6 @@
 </section>
 
 <!-- ============ LAB + PROCESS ============ -->
-<!-- ============ DESIGN SYSTEM GALLERY ============ -->
-<!-- A gallery, not an essay: the prose argument lives on /lab/. Here the system shows itself —
-     the four heats with the ratios MEASURED against this page's ground, the three type roles
-     doing their three jobs, and the spacing grid. Nothing here is a picture of the system; it is
-     the system, painted by the same stylesheet as everything above it. -->
-<section class="labrow dsg" id="design-system" aria-labelledby="h-dsg">
-  <div class="wrap">
-    <p class="k">The system this page is built with</p>
-    <h2 id="h-dsg">Six products under one system &mdash; then encoded, so it applies itself.</h2>
-    <p class="dsg-lede">Every colour, size and step below is live: painted by the same stylesheet as
-      the rest of this page, with contrast measured on load rather than quoted.</p>
-
-    <div class="dsg-grid">
-      <div class="dsg-card">
-        <p class="dsg-k">Four heats &middot; semantic, never decorative</p>
-        <ul class="dsg-heats" id="dsg-heats"></ul>
-      </div>
-      <div class="dsg-card">
-        <p class="dsg-k">Three families &middot; one job each</p>
-        <ul class="dsg-type">
-          <li><span class="dsg-spec dsg-serif">Announces</span><b>Source Serif 4</b></li>
-          <li><span class="dsg-spec dsg-sans">Is read</span><b>Source Sans 3</b></li>
-          <li><span class="dsg-spec dsg-label">Labels</span><b>600 &middot; .08em &middot; upper</b></li>
-          <li><span class="dsg-spec dsg-mono">code()</span><b>JetBrains Mono &mdash; code only</b></li>
-        </ul>
-      </div>
-      <div class="dsg-card">
-        <p class="dsg-k">One spacing grid &middot; enforced by a gate</p>
-        <ul class="dsg-steps" id="dsg-steps"></ul>
-        <p class="dsg-note">Below 4 is an optical nudge, above 80 is structural. Anything between
-          that is off-grid fails the build.</p>
-      </div>
-    </div>
-
-    <p class="dsg-links">
-      <a href="./lab/#design-system" data-cta="ds-gallery-lab" data-location="home-gallery">Why it exists, and what it cost&nbsp;&rarr;</a>
-      <a href="https://github.com/arpitmaheshwari/ember-design-system" target="_blank" rel="noopener" data-cta="ds-gallery-repo" data-location="home-gallery">Install it &mdash; MIT&nbsp;&#8599;</a>
-    </p>
-  </div>
-</section>
-
 <section class="labrow" id="lab" aria-labelledby="h-lab">
   <div class="wrap">
     <p class="k">Proof, not philosophy</p>
@@ -483,6 +442,7 @@
       <h2 id="h-close">One seat. Full-time. <span class="grad">Yours to offer.</span></h2>
       <p class="sub">Staff / Principal product designer or founding product-design lead at an AI product company — open to hands-on Director roles. Fully remote, GMT+5:30, daily overlap with both US coasts.</p>
       <p class="sub">A real conversation, no pitch deck. If you would rather read first: the <a href="./hire/">one-page hiring brief</a>, the <a href="./patterns/">pattern library</a>, or my <a href="./screen/">technical screen, already answered</a>.</p>
+      <p class="sub">Not sure it is a match? <a href="./fit/" data-cta="fit-check" data-location="contact">Paste the job description into the fit check</a> &mdash; it answers with the work that is documented and the page behind each claim, what is thin, and where the fit plainly is not there.</p>
       <div class="form-slot"><form class="xi-home-095" id="contact-form" action="https://formspree.io/f/xpqednyy" method="POST">
         <input type="hidden" name="_subject" value="Hiring Arpit Maheshwari — role inquiry">
         <label for="contact-email" class="visually-hidden">Your email</label>
@@ -1037,50 +997,5 @@ if (canvas && !prefersReducedMotion) {
 </script>
 <script defer src="./attention.js?v=a1"></script>
 <script defer src="./clarity.js?v=c1"></script>
-<script>
-/* The gallery paints itself from the live tokens and measures its own contrast — so it can never
-   drift from the system the way a screenshot would. Alpha is composited against the real ground
-   before the ratio is taken; a translucent ink is not a colour until you do that. */
-(function(){
-  var heats=[['--ember','Ember','action, emphasis'],['--violet','Violet','contrast within a set'],
-              ['--amber','Amber','links, kickers, CTAs'],['--rose','Rose','the fourth voice']];
-  var ul=document.getElementById('dsg-heats'); if(!ul) return;
-  function parse(c){var m=c.match(/rgba?\(([^)]+)\)/);if(!m)return null;
-    var p=m[1].split(',').map(parseFloat);return {r:p[0],g:p[1],b:p[2],a:p.length>3?p[3]:1};}
-  function over(f,b){return {r:f.r*f.a+b.r*(1-f.a),g:f.g*f.a+b.g*(1-f.a),b:f.b*f.a+b.b*(1-f.a),a:1};}
-  function lum(c){var v=[c.r,c.g,c.b].map(function(x){x/=255;
-    return x<=0.03928?x/12.92:Math.pow((x+0.055)/1.055,2.4);});
-    return 0.2126*v[0]+0.7152*v[1]+0.0722*v[2];}
-  function ratio(a,b){var la=lum(a),lb=lum(b),hi=Math.max(la,lb),lo=Math.min(la,lb);
-    return (hi+0.05)/(lo+0.05);}
-  function tok(name){var p=document.createElement('span');p.style.color='var('+name+')';
-    document.body.appendChild(p);var c=parse(getComputedStyle(p).color);p.remove();return c;}
-  // Measured against --bg AS RESOLVED ON THIS PAGE. That is #1B1320 here, while the published
-  // skill quotes its ratios against #120B14 — so ember reads 8.3 here and 8.0 there. Both are
-  // correct; they are different grounds. The fix is to SAY which ground, not to force the
-  // numbers to agree, because a ratio without its ground is the thing this system argues against.
-  var ground=tok('--bg')||parse(getComputedStyle(document.body).backgroundColor)||{r:18,g:11,b:20,a:1};
-  function hex(c){return '#'+[c.r,c.g,c.b].map(function(x){
-    return ('0'+Math.round(x).toString(16)).slice(-2).toUpperCase();}).join('');}
-  heats.forEach(function(h){
-    var c=tok(h[0]); if(!c) return;
-    var solid=c.a<1?over(c,ground):c;
-    var li=document.createElement('li');
-    li.innerHTML='<i style="background:var('+h[0]+')"></i>'+
-      '<span style="flex:1 1 auto"><b>'+h[1]+'</b><em>'+h[2]+'</em></span>'+
-      '<span>'+ratio(solid,ground).toFixed(1)+':1</span>';
-    ul.appendChild(li);
-  });
-  var k=document.querySelector('.dsg-card .dsg-k');
-  if(k) k.textContent='Four heats · measured on '+hex(ground);
-
-  var steps=document.getElementById('dsg-steps');
-  [4,8,12,16,20,24,32,40,48,64,80].forEach(function(n){
-    var li=document.createElement('li');
-    li.innerHTML='<i style="width:'+n+'px"></i><span>'+n+'</span>';
-    steps.appendChild(li);
-  });
-})();
-</script>
 </body>
 </html>

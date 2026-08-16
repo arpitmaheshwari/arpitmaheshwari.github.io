@@ -32,12 +32,29 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
    return '#'+m.slice(0,3).map(v=>(+v).toString(16).padStart(2,'0')).join('');};
  const exempt=el=>{let n=el;while(n&&n.tagName!=='BODY'){
    const c=(n.className+'').toLowerCase(); if(EX.some(x=>c.includes(x)))return true; n=n.parentElement;} return false;};
+ // BLIND SPOT, stated because it cost a wrong "fix": this walks backgroundColor up the
+ // tree, so it only sees cream a PARENT declares. Cream painted by a pseudo-element, a
+ // gradient or a background-image is invisible to it, and the label then looks like it is
+ // on the dark page when the rendered pixels are #F4ECDA. When this gate and contrast-audit
+ // disagree, contrast-audit wins — it samples what was actually painted. The class-name
+ // exempt list above is what covers the overlay cases; name the surface.
+ // The ink follows the SURFACE, never the component name. A label that has crossed onto a
+ // cream plate takes the paper palette on purpose — that is the design system's rule, and
+ // #7E5A14 is 5.62:1 on cream where the page amber is 1.33:1. Judging by ancestor CLASS
+ // NAME missed every paper plate not spelled "paper" (.pat-card), so the gate called a
+ // deliberate, accessible, correct ink a port failure. Measure the ground instead.
+ const ground=el=>{let n=el;while(n){const m=((w.getComputedStyle(n).backgroundColor)||'').match(/[\d.]+/g);
+   if(m&&m.length>=3&&(m.length<4||+m[3]>0.5)){const f=v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4);};
+     return 0.2126*f(+m[0])+0.7152*f(+m[1])+0.0722*f(+m[2]);}
+   n=n.parentElement;} return 0;};
  const hits={};
  d.querySelectorAll('body *').forEach(el=>{const cs=w.getComputedStyle(el);
   if(cs.display==='none'||cs.visibility==='hidden')return;
   if(exempt(el))return;
   ['color','backgroundColor','borderTopColor','borderLeftColor'].forEach(p=>{
    const h=hex(cs[p]); if(h&&RET[h]){
+    // ink on a light ground is the paper palette doing its job, not a remnant
+    if(p==='color'&&ground(el)>0.5)return;
     // border colours only count when the border is actually drawn
     if(p.startsWith('border')&&parseFloat(cs[p.replace('Color','Width')])===0)return;
     const k=h+'|'+p+'|'+(el.tagName+'.'+((el.className+'').trim().split(/\\s+/)[0]||''));

@@ -43,6 +43,11 @@ CHROME = os.environ.get("CHROME") or find_chrome()
 # comment above each block — CANONICAL-FACTS.md 2026-08-10 has the full audit.
 
 REG = [
+    # --- /fit/ (added 2026-08-17 with the page; a page shipped without a card falls back to
+    #     a personal photo as its share image, which is the defect this generator was built for)
+    ("fit-og.png", "FIT CHECK", "Paste the role. It answers with evidence, or says it can\u2019t.",
+     "Matched against work published on this site \u2014 with the page behind every claim.",
+     "Arpit Maheshwari \u00b7 Fit Check"),
     # --- the 4 blank/broken pattern cards (source: each page's own og:title/og:description) ---
     ("act-review-ignore-og.png", "AI DESIGN PATTERNS", "The Act / Review / Ignore Rule",
      "An unexplained 87% is a shrug with decimals.", "Arpit Maheshwari · Pattern Library"),

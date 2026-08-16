@@ -27,8 +27,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
 <link rel="stylesheet" href="/fonts.css?v=f1">
 <noscript></noscript>
-<link rel="stylesheet" href="../styles.css?v=p71">
-<link rel="stylesheet" href="../ember.css?v=e154">
+<link rel="stylesheet" href="../styles.css?v=p72">
+<link rel="stylesheet" href="../ember.css?v=e168">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PFY6ME99K8');</script>
@@ -110,8 +110,39 @@
           <dd>Contrast, overflow and legibility measured from rendered pixels on every push &mdash;
               and the interface I design is the front-end I ship in the PR.</dd>
         </dl>
-        <p>The public one is MIT, and its reference page audits itself: it measures its own rendered
-           pixels on load and prints what it finds, failures included.</p>
+      </div>
+
+      <!-- The specimen. Moved off the homepage (Arpit's call, 2026-08-17) into the band that
+           argues for it: claim -> the three properties -> SEE IT -> take it. Nothing below is a
+           picture of the system; it is the system, painted by the stylesheet running this page. -->
+      <p class="dsg-cap">Below is the system itself, not a picture of it &mdash; the same stylesheet
+         that paints this page, with every contrast ratio measured on load rather than quoted.</p>
+
+      <div class="dsg-grid">
+        <div class="dsg-card">
+          <p class="dsg-k">Four heats &middot; semantic, never decorative</p>
+          <ul class="dsg-heats" id="dsg-heats"></ul>
+        </div>
+        <div class="dsg-card">
+          <p class="dsg-k">Three families &middot; one job each</p>
+          <ul class="dsg-type">
+            <li><span class="dsg-spec dsg-serif">Announces</span><b>Source Serif 4</b></li>
+            <li><span class="dsg-spec dsg-sans">Is read</span><b>Source Sans 3</b></li>
+            <li><span class="dsg-spec dsg-label">Labels</span><b>600 &middot; .08em &middot; upper</b></li>
+            <li><span class="dsg-spec dsg-mono">code()</span><b>JetBrains Mono &mdash; code only</b></li>
+          </ul>
+        </div>
+        <div class="dsg-card">
+          <p class="dsg-k">One spacing grid &middot; enforced by a gate</p>
+          <ul class="dsg-steps" id="dsg-steps"></ul>
+          <p class="dsg-note">Below 4 is an optical nudge, above 80 is structural. Anything between
+            that is off-grid fails the build.</p>
+        </div>
+      </div>
+
+      <div class="lab-body">
+        <p>The public one is MIT, and its reference page runs that same audit on itself &mdash;
+           failures included.</p>
         <pre class="lab-code"><code>/plugin marketplace add arpitmaheshwari/ember-design-system
 /plugin install ember-design-system</code></pre>
       </div>
@@ -201,5 +232,51 @@ document.addEventListener('click', (e) => {
 </script>
 <script defer src="../attention.js?v=a1"></script>
 <script defer src="../clarity.js?v=c1"></script>
+<script>
+/* The specimen paints itself from the live tokens and measures its own contrast — so it can never
+   drift from the system the way a screenshot would. Alpha is composited against the real ground
+   before the ratio is taken; a translucent ink is not a colour until you do that. */
+(function(){
+  var heats=[['--ember','Ember','action, emphasis'],['--violet','Violet','contrast within a set'],
+              ['--amber','Amber','links, kickers, CTAs'],['--rose','Rose','the fourth voice']];
+  var ul=document.getElementById('dsg-heats'); if(!ul) return;
+  function parse(c){var m=c.match(/rgba?\(([^)]+)\)/);if(!m)return null;
+    var p=m[1].split(',').map(parseFloat);return {r:p[0],g:p[1],b:p[2],a:p.length>3?p[3]:1};}
+  function over(f,b){return {r:f.r*f.a+b.r*(1-f.a),g:f.g*f.a+b.g*(1-f.a),b:f.b*f.a+b.b*(1-f.a),a:1};}
+  function lum(c){var v=[c.r,c.g,c.b].map(function(x){x/=255;
+    return x<=0.03928?x/12.92:Math.pow((x+0.055)/1.055,2.4);});
+    return 0.2126*v[0]+0.7152*v[1]+0.0722*v[2];}
+  function ratio(a,b){var la=lum(a),lb=lum(b),hi=Math.max(la,lb),lo=Math.min(la,lb);
+    return (hi+0.05)/(lo+0.05);}
+  function tok(name){var p=document.createElement('span');p.style.color='var('+name+')';
+    document.body.appendChild(p);var c=parse(getComputedStyle(p).color);p.remove();return c;}
+  // Measured against --bg AS RESOLVED ON THIS PAGE. That is #1B1320 here, while the published
+  // skill quotes its ratios against #120B14 — so ember reads 8.3 here and 8.0 there. Both are
+  // correct; they are different grounds. The fix is to SAY which ground, not to force the
+  // numbers to agree, because a ratio without its ground is the thing this system argues against.
+  var ground=tok('--bg')||parse(getComputedStyle(document.body).backgroundColor)||{r:18,g:11,b:20,a:1};
+  function hex(c){return '#'+[c.r,c.g,c.b].map(function(x){
+    return ('0'+Math.round(x).toString(16)).slice(-2).toUpperCase();}).join('');}
+  heats.forEach(function(h){
+    var c=tok(h[0]); if(!c) return;
+    var solid=c.a<1?over(c,ground):c;
+    var li=document.createElement('li');
+    li.innerHTML='<i style="background:var('+h[0]+')"></i>'+
+      '<span style="flex:1 1 auto"><b>'+h[1]+'</b><em>'+h[2]+'</em></span>'+
+      '<span>'+ratio(solid,ground).toFixed(1)+':1</span>';
+    ul.appendChild(li);
+  });
+  var k=document.querySelector('.dsg-card .dsg-k');
+  if(k) k.textContent='Four heats · measured on '+hex(ground);
+
+  var steps=document.getElementById('dsg-steps');
+  [4,8,12,16,20,24,32,40,48,64,80].forEach(function(n){
+    var li=document.createElement('li');
+    li.innerHTML='<i style="width:'+n+'px"></i><span>'+n+'</span>';
+    steps.appendChild(li);
+  });
+})();
+</script>
+
 </body>
 </html>

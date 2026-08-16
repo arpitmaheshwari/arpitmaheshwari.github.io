@@ -166,6 +166,30 @@ if [ -f tools/css-version-check.py ]; then
   fi
 fi
 
+# The fit check is the only page that answers a stranger's question ABOUT ARPIT. Two gates:
+# the index must be rebuildable (every citation resolves, every number traced to a published
+# page), and the matcher must still refuse the controls — an earlier lexicon matched
+# "leadership" on a pastry chef's "manage the ovens" and nothing on screen revealed it.
+if [ -f tools/build-fit-index.py ]; then
+  echo "pre-push: fit index (does every claim still trace to a published page?)…"
+  if ! python3 tools/build-fit-index.py; then
+    echo "pre-push: BLOCKED — a fit-index claim cites a missing page or an unpublished number."
+    exit 1
+  fi
+  if ! git diff --quiet -- data/fit-index.json 2>/dev/null; then
+    echo "pre-push: BLOCKED — data/fit-index.json is stale. It was just rebuilt; commit it."
+    exit 1
+  fi
+fi
+
+if [ -f tools/fit-check-calibration.py ]; then
+  echo "pre-push: fit-check calibration (do the controls still come back empty?)…"
+  if ! python3 tools/fit-check-calibration.py "http://localhost:$PORT"; then
+    echo "pre-push: BLOCKED — the fit check is over- or under-matching. See the failing case above."
+    exit 1
+  fi
+fi
+
 if [ -f tools/inline-style-check.py ]; then
   echo "pre-push: inline-style check (is a repeated component still unnamed?)…"
   if ! python3 tools/inline-style-check.py --root .; then
