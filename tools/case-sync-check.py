@@ -166,6 +166,18 @@ def parse_canon(root):
     those cells is commentary and is deliberately not machine-checked — inventing a parser for
     free prose would produce exactly the confident false positives this repo keeps getting
     burned by."""
+    # CANONICAL-FACTS.md is deliberately UNTRACKED (2026-08-16): this repo is the live site, so
+    # anything committed here is fetchable at arpitmaheshwari.com/<path> and readable on a public
+    # GitHub repo — and canon holds NDA client identities and private rulings. It exists on the
+    # author's machine and nowhere else. So on a fresh clone (CI) it is legitimately absent, and
+    # this gate must degrade rather than crash: the classic-vs-case-facts.js comparison below is
+    # the half that guards shipped surfaces, and it runs regardless. Skipping is announced loudly
+    # rather than silently, because a check that quietly stops checking is worse than no check.
+    if not os.path.exists(os.path.join(root, "CANONICAL-FACTS.md")):
+        print("NOTE  CANONICAL-FACTS.md is absent (expected on a fresh clone — it is untracked on\n"
+              "      purpose, see .gitignore). The canon-vs-page comparison is SKIPPED; the\n"
+              "      classic-vs-case-facts.js comparison still runs and still fails the build.")
+        return {}
     md = read(root, "CANONICAL-FACTS.md")
     out = {}
     for line in md.split("\n"):
