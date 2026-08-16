@@ -131,6 +131,29 @@ MSG
   echo "pre-push: artifact legibility OK."
 fi
 
+# 2026-08-16 — the CANON gate sat red in CI for days on a check this hook never ran:
+# teardown-facts --check. Every published "hand-written HTML pages / OG cards / skip-link
+# pages" number on lab/teardown.html is measured, and adding any page makes them stale.
+# A check that only runs AFTER the push is a check you learn about too late; it belongs here.
+if [ -f tools/teardown-facts.py ]; then
+  echo "pre-push: teardown facts (are the published counts still true?)…"
+  if ! python3 tools/teardown-facts.py --check; then
+    echo "pre-push: BLOCKED — lab/teardown.html publishes a number that is no longer true."
+    echo "          Run: python3 tools/teardown-facts.py   (then update the page), and retry."
+    exit 1
+  fi
+fi
+
+# Same reasoning: a stylesheet edited without bumping its ?v= means browsers keep serving the
+# old file under the same URL. That cost a full misdiagnosis once; CI catching it is too late.
+if [ -f tools/css-version-check.py ]; then
+  echo "pre-push: css version check (stylesheet edited without a cache bump?)…"
+  if ! python3 tools/css-version-check.py; then
+    echo "pre-push: BLOCKED — a stylesheet changed but its ?v= did not. Run tools/bump-css-version.py."
+    exit 1
+  fi
+fi
+
 if [ -f tools/inline-style-check.py ]; then
   echo "pre-push: inline-style check (is a repeated component still unnamed?)…"
   if ! python3 tools/inline-style-check.py --root .; then

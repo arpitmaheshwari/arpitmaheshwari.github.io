@@ -174,8 +174,20 @@ f.onload = function () {
       if (cs.visibility === 'hidden' || cs.display === 'none' || parseFloat(cs.opacity) === 0) return;
       var r = el.getBoundingClientRect();
       if (r.width < 3 || r.height < 3) return;
+      // SVG <text>/<tspan> is painted by `fill`, NOT `color`. Reading `color` here reported the
+      // INHERITED page ink for every label inside an inlined SVG artifact — 344 phantom failures
+      // across six case studies, each claiming cream-on-cream while the element actually painted
+      // a dark warm grey. It held CI red for four days and hid whatever was really broken.
+      // `fill` can be a url()/gradient paint-server; those are not flat colours, so skip rather
+      // than guess (a paint-server needs pixel sampling, which is a different instrument).
+      var ink = cs.color;
+      if (el.ownerSVGElement || el.namespaceURI === 'http://www.w3.org/2000/svg') {
+        var f = cs.fill;
+        if (!f || f === 'none' || f.indexOf('url(') === 0) return;
+        ink = f;
+      }
       out.push({ t: own.trim().slice(0, 44), size: parseFloat(cs.fontSize),
-                 wt: cs.fontWeight, color: cs.color,
+                 wt: cs.fontWeight, color: ink,
                  ex: !!(EX && el.closest(EX)),
                  r: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)] });
     });
