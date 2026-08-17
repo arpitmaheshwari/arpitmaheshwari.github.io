@@ -49,6 +49,22 @@ html[data-theme="ember"]{--cta-ink:#1A0D08}
 html[data-theme="ember"] #nav{
   background:linear-gradient(180deg,rgba(18,11,20,.92),rgba(18,11,20,.72));
   backdrop-filter:blur(10px);border-bottom:0}
+/* The nav logo was sized by a PER-PAGE extracted class — .xi-home-003, .xi-lab-002,
+   .xi-patterns-003, .xi-screen-002 … each {width:40px!important;height:40px!important}.
+   /fit/ was hand-written and got none, so its logo fell back to intrinsic size (45px) and
+   made that one nav 1px taller than the other 42. Sized here instead, so the nav is a
+   component and a new page cannot forget it. */
+html[data-theme="ember"] #nav .nav-logo img{width:40px;height:40px}
+/* ...and the links declare their own line-height instead of inheriting the page's. The
+   homepage body sets 1.65 and the inner pages 1.7, so the same nav computed 21.45px on
+   home and 22.1px everywhere else and the bar was 0.4px shorter on one page out of 43.
+   A component that inherits a critical property is a component that differs per page. */
+html[data-theme="ember"] #nav .nav-links a{line-height:1.7}
+/* Same for the CTA pill: the homepage declared line-height:1 (44.00px tall) while the
+   other 42 pages INHERITED ~1.7 (44.39px), so the bar was 0.39px shorter on one page.
+   Declared once here at the value adtech computes, which is what Arpit asked every nav to
+   match. Declared, not inherited — inheritance is what made them differ. */
+html[data-theme="ember"] #nav .nav-cta{line-height:1.7}
 html[data-theme="ember"] .nav-cta{background:var(--g-hot);color:var(--cta-ink);border:none;border-radius:999px;font-weight:600}
 html[data-theme="ember"] .nav-cta:hover{color:var(--cta-ink);transform:translateY(-2px)}
 html[data-theme="ember"] .nav-links a.nav-on{color:var(--ember)}
@@ -275,13 +291,6 @@ html[data-theme="ember"] body.p-home .pill-line:hover{border-color:var(--ember)}
 html[data-theme="ember"] body.p-home .pill:hover{transform:none}}
 html[data-theme="ember"] body.p-home .seam{height:110px;clip-path:polygon(0 62%,100% 8%,100% 100%,0 100%);margin-top:-60px;position:relative;z-index:1}
 html[data-theme="ember"] body.p-home .seam-up{clip-path:polygon(0 8%,100% 62%,100% 100%,0 100%)}
-html[data-theme="ember"] body.p-home header{position:sticky;top:0;z-index:60;background:rgba(18,11,20,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-html[data-theme="ember"] body.p-home .hd{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
-html[data-theme="ember"] body.p-home .logo{font-family:var(--serif);font-size:20px}
-html[data-theme="ember"] body.p-home nav ul{display:flex;gap:24px;align-items:center;list-style:none}
-html[data-theme="ember"] body.p-home nav a.nl{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);padding:8px 2px}
-html[data-theme="ember"] body.p-home nav a.nl:hover{color:var(--ember)}
-html[data-theme="ember"] body.p-home nav .pill{padding:12px 20px}
 html[data-theme="ember"] body.p-home .hero{position:relative;overflow:hidden;padding:96px 0 150px}
 /* Arpit's call, 2026-08-17 (option C). The third layer used to be
    linear-gradient(160deg,#1E1022 0%,#120B14 55%,#190D10 100%) — it reached near-black by
@@ -447,11 +456,7 @@ html[data-theme="ember"] body.p-home .lab3{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .acts{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .close .wrap{grid-template-columns:1fr}}
 @media (max-width:640px){html[data-theme="ember"] body.p-home .rrow{grid-template-columns:1fr}
-html[data-theme="ember"] body.p-home nav a.nl{display:none}
 html[data-theme="ember"] body.p-home .cols{grid-template-columns:1fr}
-html[data-theme="ember"] body.p-home .logo{font-size:16px;white-space:nowrap}
-html[data-theme="ember"] body.p-home nav ul{gap:8px}
-html[data-theme="ember"] body.p-home nav .pill{padding:8px 12px;font-size:10.5px;letter-spacing:.06em;white-space:nowrap}
 html[data-theme="ember"] body.p-home .wrap{padding:0 16px}}
 
 /* ---------- EMBER HOMEPAGE · fitting the live widgets into the prototype layout ---------- */
@@ -533,8 +538,15 @@ html[data-theme="ember"] body.p-home .hd-free{margin-top:16px;display:flex;align
 html[data-theme="ember"] body.p-home .hd-free input{flex:1 1 auto;background:transparent;border:none;border-bottom:1px solid var(--line);font-family:var(--serif);font-style:italic;font-size:15px;padding:8px 2px}
 html[data-theme="ember"] body.p-home .hd-diag > a{display:block;margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
 html[data-theme="ember"] body.p-home .hd-diag > a:hover{color:var(--amber)}
+/* REMOVED 2026-08-17: eleven prototype-era homepage nav rules (a.nl, .pill, .hd, .logo,
+   header) that matched NOTHING on the shipped page — verified 0 matches each in the
+   browser. Only `nav ul{gap:24px}` was still live, and only because a generic element
+   selector retargeted itself onto the real <ul class="nav-links">, holding the homepage
+   nav at 24px while every other page sat at the system's 40px. The dead
+   `body.p-home header{position:sticky}` from the same block is what made today's banner
+   wrapper a second sticky bar. The homepage now inherits .nav-links{gap:40px}. */
 /* nav CTA: the prototype pill sizing, not the classic block */
-html[data-theme="ember"] body.p-home .nav-cta{padding:12px 20px;line-height:1;white-space:nowrap;
+html[data-theme="ember"] body.p-home .nav-cta{padding:12px 24px;white-space:nowrap;
   color:#1A0D08;font-weight:600}  /* dark ink on the hot gradient: cream measured 2.21:1 */
 @media (max-width:640px){
   /* the QC slip is a rotated cream artifact — its rotated box overflowed the
@@ -728,10 +740,12 @@ html[data-theme="ember"] .hd-case-btn{margin-top:20px}
    (.xi-case-studies-*-0NN{justify-content:space-between!important}) which threw the pair
    to opposite ends of a 632px column — 283px apart, so they stopped reading as a pair —
    while planit had no such class and sat them together. Two arrangements for one component
-   across eight pages, which is the same complaint as the nine fills. The pair is one
-   object: primary first, secondary beside it, one 16px gap. */
+   across eight pages, which is the same complaint as the nine fills. Arpit's call: the
+   two sit at the ENDS of the block — the arrangement seven of the eight already had.
+   (I first normalised to flex-start, which was my preference substituted for his; the
+   majority arrangement was the one to normalise TO.) Primary left, secondary right. */
 html[data-theme="ember"] body[class*="p-case-studies"] .btn-row{
-  justify-content:flex-start!important;align-items:center;gap:16px}
+  justify-content:space-between!important;align-items:center;gap:16px}
 
 /* The "Design Patterns Demonstrated" cards were still the CLASSIC card: border-radius 4px
    and a gold wash (color-mix(--goldA 3%) on a 10% gold border), set with !important by the
