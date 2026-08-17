@@ -736,6 +736,29 @@ html[data-theme="ember"] body[class*="p-case-studies"] blockquote{
    saw it (they all read the page as loaded). 20px, on the spacing grid. */
 html[data-theme="ember"] .hd-case-btn{margin-top:20px}
 
+/* DIAGRAMS GET THE ROOM THEY WERE DRAWN FOR (Arpit: "it feels like squeezed", 2026-08-17).
+   Measured, not felt: patterns/reversibility-safe-to-act.html draws at viewBox 1280x400
+   and rendered 493px wide — scale 0.385, so a 14px label painted at 5.4px. The inner
+   pattern pages ran 0.38-0.41; the case studies, not boxed into the same narrow column,
+   ran 0.81-0.88. The figure steps out of the measure column the way the Lab specimen
+   does. Symmetric, because the column is already centred (figure spanned 473..966 in a
+   1440 viewport). Below 768 it stays in column — there is no room to step into. */
+@media (min-width:768px){
+  /* Widen the FIGURE, not the svg. Widening only the svg clipped it to nothing on every
+     diagram whose figure carries overflow:hidden (act-review-ignore lost its outer thirds
+     to the dark page, text cut mid-word) while diagrams with overflow:visible happened to
+     look fine. The container paints the cream and owns the clip, so it has to move first;
+     the svg then simply fills it. */
+  html[data-theme="ember"] :is(body[class*="p-patterns"],body.p-process) figure:has(svg.art-svg){
+    --art-w:min(1120px,calc(100vw - 128px));
+    width:var(--art-w)!important;
+    max-width:none!important;
+    margin-left:calc((100% - var(--art-w))/2)!important;
+    margin-right:calc((100% - var(--art-w))/2)!important}
+  html[data-theme="ember"] :is(body[class*="p-patterns"],body.p-process) figure:has(svg.art-svg) svg.art-svg{
+    width:100%;height:auto;max-width:none;margin:0}
+}
+
 /* One row, one arrangement. Seven case studies carried their own extracted class
    (.xi-case-studies-*-0NN{justify-content:space-between!important}) which threw the pair
    to opposite ends of a 632px column — 283px apart, so they stopped reading as a pair —
