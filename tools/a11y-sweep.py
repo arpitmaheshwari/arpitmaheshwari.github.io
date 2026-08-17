@@ -118,7 +118,12 @@ document.getElementById("f").addEventListener("load", () => {
   const hs = vis("h1,h2,h3,h4,h5,h6");
   const h1s = hs.filter(h => h.tagName === "H1");
   if (h1s.length === 0) add("h1-missing", "document", "");
-  if (h1s.length > 1) add("h1-multiple", "document", h1s.map(h=>(h.textContent||"").trim().slice(0,40)).join(" | "));
+  // Count only RENDERED h1s. book/ ships a no-script fallback edition inside
+  // <div id="bk-fulltext" hidden> that <noscript> swaps in for the app, so two h1
+  // elements exist while only one is ever live. Counting the DOM reported a defect
+  // that was not there — and "fixing" it would have left every chapter view with no h1.
+  const liveH1 = h1s.filter(h => h.offsetParent !== null);
+  if (liveH1.length > 1) add("h1-multiple", "document", liveH1.map(h=>(h.textContent||"").trim().slice(0,40)).join(" | "));
   let prev = 0;
   hs.forEach(h => {
     const lv = +h.tagName[1];
@@ -226,7 +231,15 @@ document.getElementById("f").addEventListener("load", () => {
     const infinite = /infinite/.test(cs.animationIterationCount);
     if (dur > 0 && infinite) animated.push(desc(el) + " " + cs.animationName + " " + cs.animationDuration);
   });
-  if (animated.length) add("motion-infinite", "document", animated.slice(0,8).join(" ; "));
+  // An infinite animation is a finding only if prefers-reduced-motion does NOT stop it.
+  // Reading the default state alone reports a correctly-covered animation forever — which
+  // is how a real fix (book/book.css, 2026-08-17) still showed red after it worked.
+  // matchMedia says which state we are being evaluated in, so only assert a finding when
+  // the reduce state still animates; otherwise flag it as unverified rather than broken.
+  const reduced = w.matchMedia && w.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (animated.length && reduced) add("motion-infinite", "document", animated.slice(0,8).join(" ; "));
+  else if (animated.length) add("motion-infinite-unverified", "document",
+      animated.slice(0,4).join(" ; ") + "  [default state — re-run with reduced motion emulated]");
 
   out({findings: F, focusables: [...d.querySelectorAll(
      'a[href],button,input:not([type=hidden]),select,textarea,[tabindex]:not([tabindex="-1"])')]

@@ -153,20 +153,28 @@ def sweep(url, max_tabs=250, mods=0):
             seq.append({"sel": "(null activeElement)"}); break
         if st.get("body"):
             seq.append({"sel": "(body — cycle complete)"}); break
+        # IDENTITY, not description: 53 identical `input.ckl` checkboxes share a
+        # tag.class::name signature, so the second one read as a revisit and the walk
+        # stopped at 13 of 65 — a phantom `unreachable:52`. Stamp the live element.
+        uid = c.evaluate("""(()=>{const a=document.activeElement;if(!a||a===document.body)return null;
+            if(!a.dataset.kbuid)a.dataset.kbuid=Math.random().toString(36).slice(2);
+            return a.dataset.kbuid;})()""")
         sig = st["sel"] + "::" + st.get("name", "")
-        if seq and sig == seq[-1].get("sig"):
+        ident = uid or sig
+        if seq and ident == seq[-1].get("ident"):
             stuck += 1
             if stuck >= 3:
                 st["TRAP"] = True
-                seq.append({**st, "sig": sig}); break
+                seq.append({**st, "sig": sig, "ident": ident}); break
         else:
             stuck = 0
         st["sig"] = sig
+        st["ident"] = ident
         seq.append(st)
-        if sig in seen_sigs:               # revisited -> tab ring closed
+        if ident in seen_sigs:             # revisited THIS element -> tab ring closed
             st["CYCLE"] = True
             break
-        seen_sigs.append(sig)
+        seen_sigs.append(ident)
     c.close()
     return inv, seq
 

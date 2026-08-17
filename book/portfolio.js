@@ -2210,6 +2210,8 @@ function Arrow({
     disabled: disabled,
     "aria-label": dir === "prev" ? "Previous page" : "Next page"
   }, /*#__PURE__*/React.createElement("svg", {
+    "aria-hidden": "true",
+    focusable: "false",
     viewBox: "0 0 24 24",
     fill: "none",
     stroke: "currentColor",
@@ -2224,6 +2226,8 @@ function Arrow({
 }
 function Caret(d) {
   return /*#__PURE__*/React.createElement("svg", {
+    "aria-hidden": "true",
+    focusable: "false",
     viewBox: "0 0 24 24",
     fill: "none",
     stroke: "currentColor",
@@ -2841,6 +2845,8 @@ function App() {
       className: "bk-back",
       onClick: exitSection
     }, /*#__PURE__*/React.createElement("svg", {
+      "aria-hidden": "true",
+      focusable: "false",
       viewBox: "0 0 24 24",
       fill: "none",
       stroke: "currentColor",
@@ -2878,6 +2884,8 @@ function App() {
       onClick: () => setMenu(true),
       "aria-label": "Open chapter menu"
     }, /*#__PURE__*/React.createElement("svg", {
+      "aria-hidden": "true",
+      focusable: "false",
       viewBox: "0 0 24 24",
       fill: "none",
       stroke: "currentColor",
@@ -2968,6 +2976,8 @@ function App() {
       onClick: () => setMenu(true),
       "aria-label": "Open chapter menu"
     }, /*#__PURE__*/React.createElement("svg", {
+      "aria-hidden": "true",
+      focusable: "false",
       viewBox: "0 0 24 24",
       fill: "none",
       stroke: "currentColor",

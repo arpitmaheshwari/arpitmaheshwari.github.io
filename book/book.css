@@ -1171,3 +1171,10 @@ body {
 .bk-list--volume .bk-item h4 { margin: 2px 0 3px; font-size: 18px; }
 .bk-list--volume .bk-item p { font-size: 13.5px; line-height: 1.5; }
 .bk-list--volume .bk-item__metric { font-size: 23px; }
+
+/* WCAG 2.2.2: bkpulse and bkCue run `infinite` and were never covered by any of the
+   prefers-reduced-motion blocks already in this file. Found by a11y-sweep 2026-08-17. */
+@media (prefers-reduced-motion: reduce){
+  .bk-cover__open .dot{animation:none}
+  .bk-opencue{animation:none}
+}
