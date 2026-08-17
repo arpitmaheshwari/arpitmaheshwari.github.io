@@ -212,6 +212,15 @@ fi
 # failing, not the page. Measured from rendered pixels 2026-08-15: the hero
 # glyphs are rgb(244,155,149) on rgb(19,11,22) = 9.16:1 against a 3.0 bar.
 echo "pre-push: contrast smoke check (homepage + book cover, 1440px)…"
+# .bk-device__label / __mark: CONFIRMED 2026-08-17 by rendering the element — it is the
+# circled AM monogram with "HUMAN IN THE LOOP" as its letterspaced wordmark beneath, i.e. a
+# logo lockup on a depicted device. WCAG 1.4.3 exempts text that is part of a logo or brand
+# name, so the 2.68:1 the audit reports there is correct and deliberate. The gate prints
+# "confirm that is true" every run; this comment is the confirmation, so the next person
+# does not re-litigate it or, worse, recolour a logotype to satisfy a checker.
+# (This comment lived INSIDE the \-continuation below and silently mangled the command —
+#  `sh -n` reported valid syntax while the invocation was broken. Comments never go between
+#  continued arguments.)
 python3 tools/contrast-audit.py \
   --docroot . --widths 1440 \
   --exempt '.bk-device__label, .bk-device__mark, .grad' \

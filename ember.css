@@ -227,7 +227,10 @@ html[data-theme="ember"] .footer-back:hover{color:var(--ember)}
 }
 
 /* ---------- 11 · brand assets under ember */
-html[data-theme="ember"] .nav-logo img{content:url("/assets/logo-ember.svg")}
+/* The `content:url()` override that used to live here is gone: the markup now points at
+   assets/logo-ember.svg directly. It was doing real work — every ember page PAINTED the
+   right mark — but it also meant the HTML said one thing and the browser drew another,
+   which is how "the site logo is the dated gold one" stayed invisible. 2026-08-17. */
 html[data-theme="ember"] .hk-btn{border-radius:999px;background:var(--g-hot);color:var(--cta-ink)}
 html[data-theme="ember"] .hk-btn:disabled{background:var(--bg-card);color:var(--ink-dim)}
 

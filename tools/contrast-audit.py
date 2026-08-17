@@ -193,18 +193,34 @@ f.onload = function () {
       // 1.00 that way on 2026-08-16 while actually rendering at 7.5-8.5:1. An exactly-1.00
       // reading is the signature of this instrument failing, never of a real defect, so refuse
       // to guess: flag the node as UNMEASURABLE and say what would be needed instead.
+      /* WCAG's 3:1 large-text allowance is about PAINTED size. computed fontSize for SVG
+         text is in USER UNITS, so a 40px label inside a viewBox rendered at 0.385 paints
+         at 15.4px — and this gate graded it on the LENIENT threshold, exactly backwards.
+         Real case: 'The Act / Review / Ignore Rule' was judged 1.29 against 3.0 when it
+         owed 4.5. getScreenCTM gives the true element-to-screen scale. */
+      function paintedSize(el, cs) {
+        var px = parseFloat(cs.fontSize);
+        if (el.ownerSVGElement && el.getScreenCTM) {
+          var m = el.getScreenCTM();
+          if (m) {
+            var sc = Math.sqrt(Math.abs(m.a * m.d - m.b * m.c));
+            if (sc > 0 && isFinite(sc)) return px * sc;
+          }
+        }
+        return px;
+      }
       var clip = cs.webkitBackgroundClip || cs.backgroundClip;
       var fill = cs.webkitTextFillColor;
       var transparentInk = /rgba\(0, 0, 0, 0\)|transparent/.test(fill || '')
                         || /rgba\(0, 0, 0, 0\)|transparent/.test(ink || '');
       if (clip === 'text' && transparentInk) {
-        out.push({ t: own.trim().slice(0, 44), size: parseFloat(cs.fontSize),
+        out.push({ t: own.trim().slice(0, 44), size: paintedSize(el, cs),
                    wt: cs.fontWeight, color: ink, unmeasurable: 'gradient text (background-clip:text)',
                    ex: !!(EX && el.closest(EX)),
                    r: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)] });
         return;
       }
-      out.push({ t: own.trim().slice(0, 44), size: parseFloat(cs.fontSize),
+      out.push({ t: own.trim().slice(0, 44), size: paintedSize(el, cs),
                  wt: cs.fontWeight, color: ink,
                  ex: !!(EX && el.closest(EX)),
                  r: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)] });
@@ -522,12 +538,12 @@ def main():
                         f"render or could not be instrumented in this environment. Notes: "
                         f"{'; '.join(notes) or 'none'}")
         for r in bad:
-            print(f"  FAIL {r['ratio']:5.2f}/{r['need']}  {r['size']:>6}px  "
+            print(f"  FAIL {r['ratio']:5.2f}/{r['need']}  {r['size']:>6.1f}px  "
                   f"{r['fg']} on {r['bg']}  @{r['width']}px  {r['text']!r}")
         # Surface each failure as an annotation so a CI failure is diagnosable without log access.
         # Capped: annotations are rate-limited per run and a wall of them buries the signal.
         for r in bad[:15]:
-            gh("error", f"CONTRAST {r['ratio']:.2f}:1 (needs {r['need']}) — {r['size']}px "
+            gh("error", f"CONTRAST {r['ratio']:.2f}:1 (needs {r['need']}) — {r['size']:.1f}px "
                         f"{r['fg']} on {r['bg']} @{r['width']}px — {url} — text: {r['text']!r}")
         if len(bad) > 15:
             gh("error", f"...and {len(bad) - 15} further contrast failures on {url} "
@@ -548,7 +564,7 @@ def main():
                 if k in seen_u:
                     continue
                 seen_u.add(k)
-                print(f"    {r['unmeasurable']}  {r['size']:>6}px  @{r['width']}px  {r['text']!r}")
+                print(f"    {r['unmeasurable']}  {r['size']:>6.1f}px  @{r['width']}px  {r['text']!r}")
         if not bad:
             print("  0 failures. Blind spots of this method: text inside <canvas>, <video>, "
                   "cross-origin iframes, and any state not reachable on load (hover, focus, open "

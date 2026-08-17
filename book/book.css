@@ -432,10 +432,16 @@ body {
 .bk-confession p { font-family: var(--bk-serif); font-size: 14px; line-height: 1.58; color: var(--bk-ink); margin: 0 0 8px; }
 .bk-confession p:last-child { margin-bottom: 0; }
 
-.bk-pattern { padding: 4px 0; border-top: 1px solid var(--bk-rule); display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: start; }
+/* Eight rows separated by 4px of padding and a 10%-alpha hairline: the 44px icon nearly
+   filled its own 53px row, so everything touched (Arpit: "this looks congested").
+   Measured before spending anything — there was 254px of empty page below the last row on
+   desktop and 349px on mobile, which was an unstructured void rather than a budget.
+   12px top/bottom adds 8x16=128px and leaves ~126px of headroom on the tighter of the two.
+   Horizontal padding still comes from .bk-pattern--link below, which is declared later. */
+.bk-pattern { padding: 12px 0; border-top: 1px solid var(--bk-rule); display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: start; }
 .bk-pattern:first-of-type { border-top: none; }
 .bk-pattern__dia { width: 44px; height: 44px; }
-.bk-pattern h4 { font-family: var(--bk-serif); font-weight: 600; font-size: 15px; margin: 0 0 2px; color: var(--bk-ink); }
+.bk-pattern h4 { font-family: var(--bk-serif); font-weight: 600; font-size: 15px; margin: 0 0 4px; color: var(--bk-ink); }
 .bk-pattern p { font-family: var(--bk-serif); font-size: 12.5px; line-height: 1.4; color: var(--bk-ink-soft); margin: 0; }
 
 .bk-writing { padding: 12px 0; border-top: 1px solid var(--bk-rule); }
@@ -1070,13 +1076,19 @@ body {
    the book's --bk-ember coral. Repeats on cover/bookmark/openers.
    ============================================================ */
 .bk-device { display: inline-flex; flex-direction: column; align-items: center; gap: 8px; }
+/* Bookplate stamp (Arpit's pick, 2026-08-17). Was an outlined ring holding a typeset
+   italic serif "AM" — a different construction from the site mark, so the identity changed
+   when a reader crossed from the site into the book. Now a FILLED disc with the same
+   half-second ligature knocked out of it: the site's mark wearing the book's ink. The disc
+   carries the colour and the mark takes the ground via currentColor, so one declaration
+   flips the whole device between paper and dark. */
 .bk-device__mark {
   width: 60px; height: 60px; display: grid; place-items: center; border-radius: 50%;
-  border: 1.5px solid var(--bk-ember); color: var(--bk-ember);
-  font-family: var(--bk-display); font-style: italic; font-size: 27px; letter-spacing: -0.02em;
+  background: var(--bk-ember); color: var(--bk-paper);
 }
+.bk-device__mark svg { width: 32px; height: 23px; display: block; }
 .bk-device__label { font-family: var(--bk-mono); font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bk-ink-faint); }
-.bk-device--on-dark .bk-device__mark { border-color: var(--bk-paper); color: var(--bk-paper); }
+.bk-device--on-dark .bk-device__mark { background: var(--bk-paper); color: #241830; }
 /* The AM device is a logotype — WCAG 1.4.3 exempts text that is part of a logo or brand name,
    so the reduced alpha here stays (measured 2.1:1, deliberately unfixed, 2026-07-31). */
 .bk-device--on-dark .bk-device__label { color: rgba(244,236,218,0.6); }

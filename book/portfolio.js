@@ -530,7 +530,20 @@ function Device({
     style: style
   }, /*#__PURE__*/React.createElement("span", {
     className: "bk-device__mark"
-  }, "AM"), label && /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 200 140",
+    "aria-hidden": "true",
+    focusable: "false"
+  }, /*#__PURE__*/React.createElement("g", {
+    stroke: "currentColor",
+    strokeWidth: 22,
+    fill: "none",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", { d: "M14,126 L52,18 L88,118" }),
+     /*#__PURE__*/React.createElement("path", { d: "M90,126 L90,74" }),
+     /*#__PURE__*/React.createElement("path", { d: "M90,48 L90,22 L124,84 L158,22 L158,126" })))
+  ), label && /*#__PURE__*/React.createElement("span", {
     className: "bk-device__label"
   }, label));
 }
@@ -2837,7 +2850,7 @@ function App() {
       className: "bk-logo-mark",
       "aria-label": "Arpit Maheshwari — back to portfolio"
     }, /*#__PURE__*/React.createElement("img", {
-      src: "../assets/logo.svg",
+      src: "../assets/logo-ember.svg",
       alt: "AM",
       width: 32, height: 32,
       style: { display: "block" }
@@ -2964,7 +2977,7 @@ function App() {
     }, Caret("prev"), " ", section.label) : /*#__PURE__*/React.createElement("div", {
       style: { display: "flex", alignItems: "center", gap: "10px" }
     }, /*#__PURE__*/React.createElement("img", {
-      src: "../assets/logo.svg",
+      src: "../assets/logo-ember.svg",
       alt: "",
       "aria-hidden": "true",
       width: 28, height: 28,
