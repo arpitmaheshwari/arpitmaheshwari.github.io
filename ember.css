@@ -799,8 +799,25 @@ html[data-theme="ember"] body.p-screen .lbl-badge-bg{
 html[data-theme="ember"] body[class*="p-case-studies"] .measure-c{max-width:1100px;padding:0 24px}
 html[data-theme="ember"] body[class*="p-case-studies"] .measure-c > :is(p,h2,h3,ul,ol,blockquote,.t-quote),
 html[data-theme="ember"] body[class*="p-case-studies"] .measure-c > div > :is(p,h2,h3){max-width:66ch}
+/* This rule used to do TWO things through one wildcard, and only one of them
+   was intended. `[class^="pl"],[class*=" pl"]` matches every DESCENDANT of
+   every mockup — 45-50 elements per case study, not the one plate.
+     * max-width:640px on those descendants is LOAD-BEARING. The plate itself
+       is width:max-content, so the children's cap is what actually sizes it.
+       Removing it widened every plate from 642px to 862px. It stays.
+     * margin-left:0 on those descendants was never intended and flattened
+       every deliberate indent inside the reconstructions: .plF-more lost the
+       8px that holds "2 more sources" off the button beside it (measured gap
+       0px, at every width) and the "analyst override logged" chip lost its
+       12px inset. That half is now scoped to the plate ROOTS, which are the
+       only things that were ever meant to be pulled back to the margin.
+   A generic selector quietly doing a second job is lesson 10 in a new
+   costume — and this time the second job was the one worth keeping. */
 html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plB,.plC,.recon,.recon-stage,[class^="pl"],[class*=" pl"]){
-  max-width:640px;margin-left:0}
+  max-width:640px}
+html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plB,.plC,.plF,.plM,.plO,.plP,.plV,
+  .recon,.recon-stage){
+  margin-left:0}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-hero__in{max-width:1100px;padding:0 24px;margin:0 auto}
 /* widening the container cost the prose its reading measure (body copy ran to
    ~1050px). Cap the TEXT wherever it sits in the flow; inside cards let the
@@ -1529,10 +1546,14 @@ html[data-theme="ember"] .vid-grid{
   gap:24px;margin:24px 0}
 html[data-theme="ember"] .vid-note{margin:16px 0 32px}
 
-/* ---- before/after conversation table (talon) ----------------------------
-   Wide tables scroll inside their own container; the page never scrolls
-   sideways (overflow-sweep exempts scrollable boxes, fails page overflow). */
-html[data-theme="ember"] .ba-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:24px 0 8px}
+/* ---- the site's two wide tables ------------------------------------------
+   .ba-table  the before/after conversation on the AdTech case
+   .td-table  the measured teardown on /lab/teardown.html
+   Above 860px both are real tables in their own scroll container. Below it
+   they reflow to cards (see the media block further down) — the scroll
+   container was hiding the third column on a phone entirely, which is how
+   this ever got noticed. */
+html[data-theme="ember"] :is(.ba-wrap,.td-scroll){overflow-x:auto;-webkit-overflow-scrolling:touch;margin:24px 0 8px}
 html[data-theme="ember"] .ba-table{width:100%;min-width:0;border-collapse:collapse;
   font-size:14px;line-height:1.5}
 html[data-theme="ember"] .ba-table th{
@@ -1556,35 +1577,37 @@ html[data-theme="ember"] .ba-table td:first-child{font-weight:600;min-width:180p
    historically dropped them — and Safari is exactly the browser this
    breakpoint is for — so the markup also carries explicit ARIA roles. */
 @media (max-width:860px){
-  html[data-theme="ember"] .ba-wrap{overflow-x:visible;margin:20px 0 8px}
-  html[data-theme="ember"] .ba-table{display:block}
+  html[data-theme="ember"] :is(.ba-wrap,.td-scroll){overflow-x:visible;margin:20px 0 8px}
+  /* min-width is the whole defect in one declaration: .ba-table demanded 640px
+     and .td-table 520px, inside columns of 294px. Release it here. */
+  html[data-theme="ember"] :is(.ba-table,.td-table){display:block;min-width:0}
   /* thead is dropped from view, not from the tree — every cell below now
      carries its own visible label, so the column heads would only repeat. */
-  html[data-theme="ember"] .ba-table thead{
+  html[data-theme="ember"] :is(.ba-table,.td-table) thead{
     position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);
     clip-path:inset(50%);white-space:nowrap}
-  html[data-theme="ember"] .ba-table tbody{display:block}
-  html[data-theme="ember"] .ba-table tbody tr{
+  html[data-theme="ember"] :is(.ba-table,.td-table) tbody{display:block}
+  html[data-theme="ember"] :is(.ba-table,.td-table) tbody tr{
     display:block;background:var(--bg-card);border:1px solid var(--border);
     border-radius:12px;padding:18px 20px;margin:0 0 14px}
-  html[data-theme="ember"] .ba-table tbody tr:last-child{margin-bottom:0}
-  html[data-theme="ember"] .ba-table td{
+  html[data-theme="ember"] :is(.ba-table,.td-table) tbody tr:last-child{margin-bottom:0}
+  html[data-theme="ember"] :is(.ba-table,.td-table) td{
     display:block;padding:0;border-bottom:0}
   /* the question heads the card */
-  html[data-theme="ember"] .ba-table td:first-child{
+  html[data-theme="ember"] :is(.ba-table,.td-table) td:first-child{
     min-width:0;font-size:15px;line-height:1.45;color:var(--ink);
     padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid var(--border)}
-  html[data-theme="ember"] .ba-table td[data-label]{
+  html[data-theme="ember"] :is(.ba-table,.td-table) td[data-label]{
     padding-left:12px;border-left:2px solid var(--border)}
-  html[data-theme="ember"] .ba-table td[data-label="After"]{
+  html[data-theme="ember"] :is(.ba-table,.td-table) td[data-label]:nth-child(3){
     border-left-color:var(--border-accent);margin-top:12px}
-  html[data-theme="ember"] .ba-table td[data-label]::before{
+  html[data-theme="ember"] :is(.ba-table,.td-table) td[data-label]::before{
     content:attr(data-label);display:block;margin-bottom:3px;
     font-family:var(--ff-label);font-size:11.5px;font-weight:600;
     letter-spacing:.12em;text-transform:uppercase}
-  html[data-theme="ember"] .ba-table td[data-label="Before"]::before{
+  html[data-theme="ember"] :is(.ba-table,.td-table) td[data-label]:nth-child(2)::before{
     color:rgba(245,237,230,.76)}
-  html[data-theme="ember"] .ba-table td[data-label="After"]::before{
+  html[data-theme="ember"] :is(.ba-table,.td-table) td[data-label]:nth-child(3)::before{
     color:var(--ember)}
 }
 
@@ -1705,6 +1728,44 @@ html[data-theme="ember"] :is(.k,.eyebrow,.lbl-eyebrow,.ck,.mk,.lab-kicker,.opt-n
 /* code keeps the mono, and keeps its own tracking */
 html[data-theme="ember"] :is(code,pre,.t-code,.td-inline,.lab-code,.plA-stage,.plF-stage){
   font-family:var(--ff-mono);letter-spacing:0}
+
+/* CODE BLOCKS WRAP; THEY DO NOT SCROLL (2026-08-17, Arpit's pick) ----------
+   pre.lab-code was overflow-x:auto with white-space:pre, so the longest line
+   ran off the right edge at EVERY width — at 1440 the payoff line read
+   "…safe to act, with an" and simply stopped; at 390, 439px was hidden.
+   The Lab is the page that answers "is he actually technical", and its code
+   was cut off mid-sentence on every screen anyone would read it on.
+   Declared ONCE on the component, not per page: the four lab pages carry four
+   different body classes (p-lab, p-lab-loop, p-lab-teardown, p-lab-plugin) and
+   only two of them styled `code` at all, which is how they drifted. */
+html[data-theme="ember"] pre.lab-code{overflow-x:visible}
+html[data-theme="ember"] pre.lab-code code{
+  white-space:pre-wrap;overflow-wrap:break-word;word-break:normal}
+
+/* THE FINTECH MOCKUP SCALES; IT DOES NOT SLICE (2026-08-17, Arpit's pick) --
+   .plF is a picture of a product, so on a phone it shrinks whole rather than
+   losing its right-hand edge. It was 358px of interface inside a 292px box —
+   the evidence quote, the source citations and the score bars all lost their
+   ends behind an inner scroll.
+   358 is a flexbox min-content floor (.plF-main is min-width:auto and .plF-src
+   is nowrap), so it cannot be squeezed; it has to be scaled. The factor is
+   fluid, not stepped: the parent becomes a query container, and zoom divides
+   its width by the mockup's design width. min(1, …) means this can only ever
+   shrink — above ~480px the mockup is already at its natural size and the
+   rule stops applying itself. Verified: calc() length division resolves here
+   (0.768421 at 390px, painting 292px exactly). */
+@media (max-width:480px){
+  html[data-theme="ember"] body.p-case-studies-fintech .plF-hold{
+    container-type:inline-size}
+  /* !important is not decoration here: the case-study breakout rules above
+     set `width:100%!important` on every plate inside .measure-c, so a plain
+     declaration loses and the mockup lays out at 342px — narrower than its
+     358px min-content, which is the slicing all over again, just smaller. */
+  html[data-theme="ember"] body.p-case-studies-fintech .measure-c .plF-hold .plF{
+    width:380px!important;max-width:none!important;
+    margin:32px auto 8px!important;transform:none!important;
+    zoom:min(1, calc(100cqw / 380px));overflow:hidden}
+}
 
 /* Label roles move to the sans; the RECEIPT FAMILY keeps monospace on purpose.
    .rcpt-l / .rcell spans / .rfoot / .fr / .stamp / the boarding pass are a
