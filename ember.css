@@ -1254,11 +1254,20 @@ html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plF,.plM,.plO,.
 html[data-theme="ember"] body[class*="p-case-studies"] .case-hero__in{max-width:1040px}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-hero figure{
   width:100%!important;margin-left:0!important;margin-right:0!important;transform:none!important}
+/* Below 1100 this used to collapse the breakout to width:100%, which dropped every figure
+   into the 680px reading column: 632px of content for a 1280-unit viewBox, a scale of 0.49.
+   An 11px annotation then PAINTED AT 5.4px, and that is the whole of the five contrast
+   failures on fintech/ptc/vc-diligence — they were only ever failures at <=1024. The
+   authored type was never the problem; enlarging it would have distorted the diagrams at
+   1440 to fix something that does not happen there. So the width keeps scaling itself
+   instead of giving up: min() already guarantees it fits, at every width down to a phone.
+   Measured after: no figure escapes the viewport at 1024/900/768/640/390. 2026-08-17. */
 @media (max-width:1100px){
   html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plF,.plM,.plO,.plP,.plV,
     .plA-caption,.plF-caption,.plM-caption,.plO-caption,.plP-caption,.plV-caption,
     .case-vitals,.recon,.recon-stage,.measure-c figure){
-    width:100%!important;margin-left:0!important;transform:none!important}
+    width:min(1040px,calc(100vw - 48px))!important;
+    margin-left:50%!important;margin-right:0!important;transform:translateX(-50%)!important}
 }
 /* the quote's rule was sitting ON the text — the extraction stripped the
    padding that used to hold it off. Declare it here, on the component. */
@@ -1524,7 +1533,7 @@ html[data-theme="ember"] .vid-note{margin:16px 0 32px}
    Wide tables scroll inside their own container; the page never scrolls
    sideways (overflow-sweep exempts scrollable boxes, fails page overflow). */
 html[data-theme="ember"] .ba-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:24px 0 8px}
-html[data-theme="ember"] .ba-table{width:100%;min-width:640px;border-collapse:collapse;
+html[data-theme="ember"] .ba-table{width:100%;min-width:0;border-collapse:collapse;
   font-size:14px;line-height:1.5}
 html[data-theme="ember"] .ba-table th{
   font-family:var(--ff-label);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
@@ -1534,6 +1543,50 @@ html[data-theme="ember"] .ba-table td{
 html[data-theme="ember"] .ba-table td:nth-child(2){color:rgba(245,237,230,.62)}
 html[data-theme="ember"] .ba-table td:nth-child(3){color:var(--ink)}
 html[data-theme="ember"] .ba-table td:first-child{font-weight:600;min-width:180px}
+
+/* TABLET + MOBILE: the same six comparisons, as stacked cards -------------
+   The 3-column grid needs ~640px; the case column is 632px at desktop and
+   294px on a phone. Scrolling it sideways (what it used to do) hid the
+   "After" column entirely — a before/after table where you can only see the
+   before is not a comparison, it is half an argument (Arpit, 2026-08-17).
+   Below 860px each ROW becomes the unit: the question, then Before, then
+   After, each labelled in place.
+   The markup stays a real <table>. Chrome's AX tree keeps table/row/cell
+   through the display:block flip (measured, both widths) but Safari has
+   historically dropped them — and Safari is exactly the browser this
+   breakpoint is for — so the markup also carries explicit ARIA roles. */
+@media (max-width:860px){
+  html[data-theme="ember"] .ba-wrap{overflow-x:visible;margin:20px 0 8px}
+  html[data-theme="ember"] .ba-table{display:block}
+  /* thead is dropped from view, not from the tree — every cell below now
+     carries its own visible label, so the column heads would only repeat. */
+  html[data-theme="ember"] .ba-table thead{
+    position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);
+    clip-path:inset(50%);white-space:nowrap}
+  html[data-theme="ember"] .ba-table tbody{display:block}
+  html[data-theme="ember"] .ba-table tbody tr{
+    display:block;background:var(--bg-card);border:1px solid var(--border);
+    border-radius:12px;padding:18px 20px;margin:0 0 14px}
+  html[data-theme="ember"] .ba-table tbody tr:last-child{margin-bottom:0}
+  html[data-theme="ember"] .ba-table td{
+    display:block;padding:0;border-bottom:0}
+  /* the question heads the card */
+  html[data-theme="ember"] .ba-table td:first-child{
+    min-width:0;font-size:15px;line-height:1.45;color:var(--ink);
+    padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid var(--border)}
+  html[data-theme="ember"] .ba-table td[data-label]{
+    padding-left:12px;border-left:2px solid var(--border)}
+  html[data-theme="ember"] .ba-table td[data-label="After"]{
+    border-left-color:var(--border-accent);margin-top:12px}
+  html[data-theme="ember"] .ba-table td[data-label]::before{
+    content:attr(data-label);display:block;margin-bottom:3px;
+    font-family:var(--ff-label);font-size:11.5px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase}
+  html[data-theme="ember"] .ba-table td[data-label="Before"]::before{
+    color:rgba(245,237,230,.76)}
+  html[data-theme="ember"] .ba-table td[data-label="After"]::before{
+    color:var(--ember)}
+}
 
 /* ================================================================
    /lab/ — ONE READING AXIS (2026-08-14)
