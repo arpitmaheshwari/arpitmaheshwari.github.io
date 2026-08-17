@@ -43,7 +43,12 @@ html[data-theme="ember"] body::before{display:none}
 html[data-theme="ember"]{--cta-ink:#1A0D08}
 
 /* ---------- 3 · nav: pills + the half-second mark */
-html[data-theme="ember"] #nav{background:rgba(18,11,20,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+/* ...and the nav dissolves into the page instead of ending in a hard 1px line. Same call.
+   Specificity note: this beats styles.css `#nav.scrolled` (1,1,1 vs 1,1,0), so it governs
+   both the resting and the scrolled state — checked, not assumed. */
+html[data-theme="ember"] #nav{
+  background:linear-gradient(180deg,rgba(18,11,20,.92),rgba(18,11,20,.72));
+  backdrop-filter:blur(10px);border-bottom:0}
 html[data-theme="ember"] .nav-cta{background:var(--g-hot);color:var(--cta-ink);border:none;border-radius:999px;font-weight:600}
 html[data-theme="ember"] .nav-cta:hover{color:var(--cta-ink);transform:translateY(-2px)}
 html[data-theme="ember"] .nav-links a.nav-on{color:var(--ember)}
@@ -278,10 +283,15 @@ html[data-theme="ember"] body.p-home nav a.nl{font-family:var(--mono);font-size:
 html[data-theme="ember"] body.p-home nav a.nl:hover{color:var(--ember)}
 html[data-theme="ember"] body.p-home nav .pill{padding:12px 20px}
 html[data-theme="ember"] body.p-home .hero{position:relative;overflow:hidden;padding:96px 0 150px}
+/* Arpit's call, 2026-08-17 (option C). The third layer used to be
+   linear-gradient(160deg,#1E1022 0%,#120B14 55%,#190D10 100%) — it reached near-black by
+   55% and smothered the warm radial sitting above it. It was decoration, never a contrast
+   fix: on a flat ground the hero copy MEASURES BETTER, 16.31:1 -> 16.74:1 cream and
+   9.93 -> 10.19 muted. The radials now carry all the colour. */
 html[data-theme="ember"] body.p-home .hero .field{position:absolute;inset:0;background:
   radial-gradient(1000px 520px at 90% -12%, rgba(255,106,61,.5), transparent 62%),
   radial-gradient(760px 560px at -8% 112%, rgba(155,75,255,.4), transparent 62%),
-  linear-gradient(160deg,#1E1022 0%,#120B14 55%,#190D10 100%)}
+  #120B14}
 html[data-theme="ember"] body.p-home .hero .in{position:relative;z-index:2}
 html[data-theme="ember"] body.p-home .hero .k{color:var(--ember)}
 html[data-theme="ember"] body.p-home .hero h1{font-size:clamp(52px,7.2vw,106px);line-height:1.01;margin:24px 0 24px;max-width:13ch}
@@ -701,10 +711,46 @@ html[data-theme="ember"] body[class*="p-case-studies"] blockquote{
   border-radius:0 10px 10px 0;padding:20px 24px}
 
 /* --- CTAs --- */
-html[data-theme="ember"] body[class*="p-case-studies"] .btn-a,
-html[data-theme="ember"] body[class*="p-case-studies"] .lbl-pill-bg,
-html[data-theme="ember"] body[class*="p-case-studies"] .btn-label{
-  border-radius:999px;background:linear-gradient(92deg,var(--heat),var(--heat2))!important;color:#1A0D08!important}
+/* ONE fill for the filled button, 2026-08-17 (Arpit's call).
+   This used to be linear-gradient(92deg,var(--heat),var(--heat2)) — the PAGE'S
+   decorative accent — so the same two buttons rendered in NINE different colours
+   across seven case studies: gold on vc-diligence, pink on ptc, violet on fintech,
+   purple on o2, orange on adtech. The nav CTA meanwhile was one gradient on all 47
+   pages. A button is a component, not a place: it takes the system's primary-action
+   fill (--g-hot, the nav's) and --cta-ink. Decoration belongs to the page, not the
+   control. */
+/* The diagnostic answer touched its own button — #hd-reframe bottom and #hd-case top
+   measured the same y. Only visible after you drive the widget, which is why no gate
+   saw it (they all read the page as loaded). 20px, on the spacing grid. */
+html[data-theme="ember"] .hd-case-btn{margin-top:20px}
+
+/* One row, one arrangement. Seven case studies carried their own extracted class
+   (.xi-case-studies-*-0NN{justify-content:space-between!important}) which threw the pair
+   to opposite ends of a 632px column — 283px apart, so they stopped reading as a pair —
+   while planit had no such class and sat them together. Two arrangements for one component
+   across eight pages, which is the same complaint as the nine fills. The pair is one
+   object: primary first, secondary beside it, one 16px gap. */
+html[data-theme="ember"] body[class*="p-case-studies"] .btn-row{
+  justify-content:flex-start!important;align-items:center;gap:16px}
+
+/* The "Design Patterns Demonstrated" cards were still the CLASSIC card: border-radius 4px
+   and a gold wash (color-mix(--goldA 3%) on a 10% gold border), set with !important by the
+   extracted inline classes. Every other card under Ember is --bg-card on --border at 12px:
+   .dsg-card, .fit-item, .lab-card all agree. Four of them, on four case studies, sitting
+   next to Ember cards on the same page. Named .case-card in the markup so this is one rule
+   about a component rather than four rules about four ids. !important because that is what
+   it is overriding — not a preference. Found by Arpit, 2026-08-17. */
+html[data-theme="ember"] body[class*="p-case-studies"] .case-card{
+  background:var(--bg-card)!important;
+  border:1px solid var(--border)!important;
+  border-radius:12px!important;
+  padding:32px!important}
+
+html[data-theme="ember"] :is(body[class*="p-case-studies"],body.p-screen) .btn-a,
+html[data-theme="ember"] :is(body[class*="p-case-studies"],body.p-screen) .lbl-pill-bg,
+html[data-theme="ember"] :is(body[class*="p-case-studies"],body.p-screen) .btn-label,
+html[data-theme="ember"] body.p-screen .lbl-badge-bg{
+  border-radius:999px;background:var(--g-hot)!important;color:var(--cta-ink)!important}
 /* .measure-c caps the whole case body at 595px — right for prose, wrong for the
    card components, which sat centred in a narrow column with dead space either
    side. Widen the container; give the PROSE its measure back explicitly; pin the
@@ -1185,7 +1231,10 @@ html[data-theme="ember"] body[class*="p-case-studies"] :is(.note-gold,.note-gold
 /* --- 3 · links: violet, not the retired gold --- */
 html[data-theme="ember"]{--link:#E86BFF;--link-hover:#F2A3FF}
 html[data-theme="ember"] :is(main,footer) a:not(.pill):not(.btn-a):not(.btn-a-ghost):not(.lane):not(.labc):not(.hd-preset):not(.rcpt-btn):not(.hk-btn):not(.card-p28):not(.card-p32):not(.nav-cta):not(.hd-case-btn):not(.fit-cite){
-  color:var(--link)}
+  /* !important, 2026-08-17: the extracted .xi-* classes set color:var(--gold)!important
+     on individual anchors, so this rule lost its own property on /lab/ and /patterns/
+     and links there rendered amber while the token said violet. */
+  color:var(--link)!important}
 html[data-theme="ember"] :is(main,footer) a:not(.pill):not(.btn-a):not(.btn-a-ghost):not(.lane):hover{
   color:var(--link-hover)}
 html[data-theme="ember"] body.p-hire :is(.hire-avail,.hire-contact) a{color:var(--link)!important}
@@ -1507,7 +1556,15 @@ html[data-theme="ember"] :is(.t-code,.td-inline){font-size:13px!important;line-h
 /* the handwriting annotation: 22px/600 on home, 21px/400 on hire. One voice.
    !important because per-page extracted classes (.xi-*) set these inline-derived
    sizes with !important — the component must out-declare them. */
-html[data-theme="ember"] .hand{font-size:22px!important;font-weight:600!important}
+/* A ROTATED BLOCK MUST SHRINK-WRAP. On /patterns/ this <p> was display:block, so its box
+   ran the full 1180px column while the handwriting inside it was 271px. rotate(-1.6deg)
+   then swung the empty right-hand end of that box 16px DOWN, straight through the caption
+   below — the layout box said 28px tall, the rotated bbox was 60px. Shrink-wrapped, the
+   same rotation swings 8px and clears. The homepage instance already had inline-block,
+   which is exactly why it never collided. Found by tools/overlap-check.py, 2026-08-17,
+   after Arpit spotted it and five other gates could not see it. */
+html[data-theme="ember"] .hand{font-size:22px!important;font-weight:600!important;
+  display:inline-block;max-width:100%}
 /* the sign-off is a DIFFERENT component that happens to share the hand face —
    it declares its own size rather than inheriting a one-off override. */
 html[data-theme="ember"] .sig.hand{font-size:26px!important;font-weight:600!important}
@@ -2190,7 +2247,8 @@ html[data-theme="ember"] body[class*="p-case-studies"] .fig-paper figcaption{
    authored without one, so its two buttons bunched left at a 16px gap while
    the other six push to the column edges. Declared by name rather than by
    cloning another page's xi- class — those numbers are page-specific. */
-html[data-theme="ember"] body.p-case-studies-planit .btn-row{justify-content:space-between}
+/* planit pushed its pair apart with space-between; the row is one object and
+   reads as one on every other case. Removed 2026-08-17. */
 
 /* Below 860 the figure stops being a two-column object: the 300px phone track
    was surviving into the narrow layout and squeezing the screenshot to ~120px
