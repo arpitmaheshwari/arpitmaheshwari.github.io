@@ -149,6 +149,9 @@ def unwrap_layers(css):
     produces a different file than the first pass did.
     """
     css = re.sub(r'@layer[^;{]*;\s*', '', css)          # the order declaration
+    # drop a note this script wrote on a previous run, or every rebuild stacks
+    # another copy on top — the same idempotency trap as the layer wrappers.
+    css = re.sub(r'/\*\s*Wrapped into the cascade layers.*?\*/\s*', '', css, flags=re.S)
     out = []
     for kind, head, body in split_rules(css):
         # The prelude carries any comment that preceded the at-rule, so a
@@ -212,14 +215,10 @@ def main():
     # ember.css joins the SAME base layer; it is loaded after styles.css, so
     # within the layer it keeps exactly the position it has today.
     out_ember = ('/* Wrapped into the cascade layers declared in styles.css.\n'
-                 '   HISTORICAL NOTE: comments below still explain why a rule\n'
-                 '   carried !important — "so no ember rule could outrank them",\n'
-                 '   and similar. That reasoning described the old mechanism and\n'
-                 '   no longer describes this file: there is no !important in it.\n'
-                 '   The rules are unchanged and the reasoning behind them is\n'
-                 '   still worth reading; only the enforcement moved, into the\n'
-                 '   `emphasis` layer. Flagged here rather than silently left to\n'
-                 '   mislead the next reader. */\n'
+                 '   The comments below explain why particular rules must out-declare\n'
+                 '   the per-page extracted classes. They used to say "!important"\n'
+                 '   because that was the mechanism; they now name the `emphasis`\n'
+                 '   layer, which is. The reasoning did not change, only the lever. */\n'
                  '@layer base {\n' + ember_normal + '\n}\n'
                  + '\n@layer emphasis {\n' + emph_e + '\n}\n')
 

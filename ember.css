@@ -1,12 +1,8 @@
 /* Wrapped into the cascade layers declared in styles.css.
-   HISTORICAL NOTE: comments below still explain why a rule
-   carried !important — "so no ember rule could outrank them",
-   and similar. That reasoning described the old mechanism and
-   no longer describes this file: there is no !important in it.
-   The rules are unchanged and the reasoning behind them is
-   still worth reading; only the enforcement moved, into the
-   `emphasis` layer. Flagged here rather than silently left to
-   mislead the next reader. */
+   The comments below explain why particular rules must out-declare
+   the per-page extracted classes. They used to say "!important"
+   because that was the mechanism; they now name the `emphasis`
+   layer, which is. The reasoning did not change, only the lever. */
 @layer base {
 /* ================================================================
    EMBER — the second design system, as a stylesheet.
@@ -812,7 +808,7 @@ html[data-theme="ember"] body[class*="p-case-studies"] :is(.recon,.recon-stage){
     .plA-caption,.plF-caption,.plM-caption,.plO-caption,.plP-caption,.plV-caption){width:100%;margin-left:0;margin-right:0;transform:none}}
 /* --- NEGATIVE SPACE · the boundary notes ---
    .note-gold / .note-gold-b span the full 1052px column while their prose is
-   capped at 60–62ch by an !important rule (styles.css:1855/1857) — so ~40% of
+   capped at 60–62ch by a page-level rule (styles.css:1855/1857) — so ~40% of
    each card was empty on the right. Cap the CARD to its content instead of
    letting it stretch. Same treatment the .framed cards already have. --- */
 html[data-theme="ember"] body[class*="p-case-studies"] :is(.note-gold,.note-gold-b){max-width:60ch}
@@ -1013,7 +1009,7 @@ html[data-theme="ember"] body.p-home :is(.seam,.seam-up)::after{content:"";posit
 /* ================================================================
    RETIRED CLASSIC PALETTE — the gold that Ember never reached.
    styles.css hard-coded #D4A85E (and #7E5A14) inside extracted per-page
-   classes carrying !important, so no ember rule could outrank them: badges,
+   classes carrying page-level overrides, so no ember rule could outrank them: badges,
    card-gold panels and the "Send me the role" ghost button on 10 inner pages
    still rendered in the old theme. Both are now tokens; Ember redefines them
    once, here, and every instance follows. Guarded by
@@ -1235,8 +1231,8 @@ html[data-theme="ember"] :is([class*="p-hire"],[class*="p-process"],[class*="p-s
    paragraph it landed in. One token, one size. */
 html[data-theme="ember"] :is(.t-code,.td-inline){line-height:1.5}
 /* the handwriting annotation: 22px/600 on home, 21px/400 on hire. One voice.
-   !important because per-page extracted classes (.xi-*) set these inline-derived
-   sizes with !important — the component must out-declare them. */
+   In the `emphasis` layer because per-page extracted classes (.xi-*) set these inline-derived
+   sizes at page level — the component must out-declare them. */
 /* A ROTATED BLOCK MUST SHRINK-WRAP. On /patterns/ this <p> was display:block, so its box
    ran the full 1180px column while the handwriting inside it was 271px. rotate(-1.6deg)
    then swung the empty right-hand end of that box 16px DOWN, straight through the caption
@@ -1282,8 +1278,8 @@ html[data-theme="ember"] pre.lab-code code{white-space:pre-wrap;overflow-wrap:br
    rule stops applying itself. Verified: calc() length division resolves here
    (0.768421 at 390px, painting 292px exactly). */
 @media (max-width:480px){html[data-theme="ember"] body.p-case-studies-fintech .plF-hold{container-type:inline-size}
-/* !important is not decoration here: the case-study breakout rules above
-     set `width:100%!important` on every plate inside .measure-c, so a plain
+/* This sits in the `emphasis` layer, and not by habit: the case-study breakout rules above
+     set `width:100%` on every plate inside .measure-c from a winning layer, so a plain
      declaration loses and the mockup lays out at 342px — narrower than its
      358px min-content, which is the slicing all over again, just smaller. */
   html[data-theme="ember"] body.p-case-studies-fintech .measure-c .plF-hold .plF{zoom:min(1, calc(100cqw / 380px));overflow:hidden}}
@@ -1292,7 +1288,7 @@ html[data-theme="ember"] pre.lab-code code{white-space:pre-wrap;overflow-wrap:br
    printed-docket metaphor — fixed-width IS the point there, the way a till
    receipt or a boarding pass is set. Flattening those would cost meaning to
    satisfy a rule, the same mistake as flattening the semantic hues.
-   !important: these classes carry per-page extracted rules that outrank a
+   emphasis layer: these classes carry per-page extracted rules that outrank a
    plain component selector. */
 html[data-theme="ember"] body.p-home :is(.k,.go,.ck,.mk,.ek,.lk,.ak,.meta,
   .rcpt-btn,.rcpt-more,.ccd-q,.ccd-idle,.ccd-note,.thought-tag,.lede,.errata-l){font-weight:600;letter-spacing:.08em}
@@ -1347,7 +1343,7 @@ html[data-theme="ember"] body.p-home #how-i-lead h2{font-size:44px}
    right rail. Same principle as the case-study plates: fill designed space
    with content, do not shrink the object to hide the gap.
    ============================================================================ */
-@media (min-width:900px){/* !important: the extracted class sets display:block!important */
+@media (min-width:900px){/* emphasis layer: the extracted class also sets display:block */
   html[data-theme="ember"] body[class*="p-patterns"] .section-inner > a:has(> p){grid-template-columns:minmax(0,1fr) 300px;column-gap:64px;align-items:start}
 html[data-theme="ember"] body[class*="p-patterns"] .section-inner > a:has(> p)
     > :is(.eyebrow,.section-title,.t-ui-muted-175,p){grid-column:1}
@@ -1864,11 +1860,11 @@ html[data-theme="ember"] [data-cta="see-work"][data-location="hero"]:hover{borde
    majority arrangement was the one to normalise TO.) Primary left, secondary right. */
 html[data-theme="ember"] body[class*="p-case-studies"] .btn-row{justify-content:space-between}
 /* The "Design Patterns Demonstrated" cards were still the CLASSIC card: border-radius 4px
-   and a gold wash (color-mix(--goldA 3%) on a 10% gold border), set with !important by the
+   and a gold wash (color-mix(--goldA 3%) on a 10% gold border), set by the
    extracted inline classes. Every other card under Ember is --bg-card on --border at 12px:
    .dsg-card, .fit-item, .lab-card all agree. Four of them, on four case studies, sitting
    next to Ember cards on the same page. Named .case-card in the markup so this is one rule
-   about a component rather than four rules about four ids. !important because that is what
+   about a component rather than four rules about four ids. It sits in `emphasis` because that is what
    it is overriding — not a preference. Found by Arpit, 2026-08-17. */
 html[data-theme="ember"] body[class*="p-case-studies"] .case-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px}
 html[data-theme="ember"] :is(body[class*="p-case-studies"],body.p-screen) .btn-a,
@@ -1879,12 +1875,12 @@ html[data-theme="ember"] body.p-screen .lbl-badge-bg{background:var(--g-hot);col
    (zero delta on all five properties) while LinkedIn/GitHub got gold --- */
 html[data-theme="ember"] body.p-hire :is(.hire-avail,.hire-contact) a{color:var(--amber)}
 /* --- T1.5 · /writing/ Substack cards: fill identical to page ground
-   (1.000:1) and the hover never fired (border shorthand !important) --- */
+   (1.000:1) and the hover never fired (the border shorthand won) --- */
 html[data-theme="ember"] body.p-writing .xi-writing-020{background:var(--bg-card);padding:24px 32px;transition:border-color .25s var(--ease-out),transform .25s var(--ease-out)}
 html[data-theme="ember"] body.p-writing .xi-writing-020:hover{border-color:var(--border-accent)}
 /* --- T2.6 · contact submit was the only CTA not in the Ember language
    (flat amber slab reading as disabled, on the terminal action).
-   .xi-home-098 sets bg/radius/padding !important — must match it. --- */
+   .xi-home-098 sets bg/radius/padding — must match it. --- */
 html[data-theme="ember"] body.p-home .form-slot button[type="submit"]{background:var(--g-hot);border-radius:999px;color:var(--cta-ink);padding:12px 24px}
 html[data-theme="ember"] body.p-home .form-slot :is(input,textarea){border-radius:8px}
 html[data-theme="ember"] body[class*="p-case-studies"] blockquote[class*="xi-case-studies-"]{border-left:3px solid var(--heat)}
@@ -1912,9 +1908,9 @@ html[data-theme="ember"] body.p-home .lanes .lane .m{align-self:start}
 html[data-theme="ember"] body.p-home .lanes .lane>div{align-self:start}
 /* Objects that earn the full width break the spine, centred on it.
    THIS BREAKOUT NEEDS BOTH margin-left AND transform TO LAND TOGETHER. The
-   extracted per-page classes (.xi-*) carry `margin:… !important`, which killed
+   extracted per-page classes (.xi-*) carry `margin:…`, which killed
    margin-left while transform still applied — throwing figures 520px off the
-   left edge on every case study. Both declarations are !important so the pair
+   left edge on every case study. Both declarations sit in `emphasis` so the pair
    can never half-apply again. Guarded by tools/overflow-sweep.py. */
 html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plF,.plM,.plO,.plP,.plV,
   .plA-caption,.plF-caption,.plM-caption,.plO-caption,.plP-caption,.plV-caption,
@@ -1954,7 +1950,7 @@ html[data-theme="ember"] body.p-home p.contract-links{max-width:none;width:auto}
    centred on the reading spine; only genuinely wide artifacts reach 1040. */
 /* NOTE the .measure-c in the selector: the breakout rule above uses :is(),
    which takes the specificity of its MOST specific argument (.measure-c figure).
-   Without matching that, this rule loses despite being later and !important. */
+   Without matching that, this rule loses despite sitting in a later layer. */
 html[data-theme="ember"] body[class*="p-case-studies"] .measure-c :is(.plA,.plF,.plM,.plO,.plP,.plV){/* fit-content collapsed them to 328px — the stage tracks are minmax(0,…)
      and gave up all their width. Size to the stage's natural extent instead
      (3 × 250px + gaps ≈ 780) so the box matches its content and the leftover
@@ -1988,8 +1984,8 @@ html[data-theme="ember"] body[class*="p-case-studies"] .measure-c
    paragraph it landed in. One token, one size. */
 html[data-theme="ember"] :is(.t-code,.td-inline){font-size:13px}
 /* the handwriting annotation: 22px/600 on home, 21px/400 on hire. One voice.
-   !important because per-page extracted classes (.xi-*) set these inline-derived
-   sizes with !important — the component must out-declare them. */
+   In the `emphasis` layer because per-page extracted classes (.xi-*) set these inline-derived
+   sizes at page level — the component must out-declare them. */
 /* A ROTATED BLOCK MUST SHRINK-WRAP. On /patterns/ this <p> was display:block, so its box
    ran the full 1180px column while the handwriting inside it was 271px. rotate(-1.6deg)
    then swung the empty right-hand end of that box 16px DOWN, straight through the caption
@@ -2017,7 +2013,7 @@ html[data-theme="ember"] p.contract-links{color:var(--ink)}
 /* PROXIMITY — a heading sat 12px under its eyebrow but 27-40px above its own
    body, so Gestalt read it as belonging to the label above rather than
    introducing the content below. Arpit's call: TIGHTEN below (keep the
-   eyebrow-heading pairing, close the gap to the body). !important because the
+   eyebrow-heading pairing, close the gap to the body). In `emphasis` because the
    40px came from a page-level rule that outranks a section-scoped one. */
 html[data-theme="ember"] body.p-home main > section :is(h2,h3){margin-bottom:16px}
 html[data-theme="ember"] body.p-home main > section :is(h2,h3) + *{margin-top:0}
@@ -2040,8 +2036,8 @@ html[data-theme="ember"] [class*="p-hire"] main :is(h2,h3) + *{margin-top:0}
    shrink — above ~480px the mockup is already at its natural size and the
    rule stops applying itself. Verified: calc() length division resolves here
    (0.768421 at 390px, painting 292px exactly). */
-@media (max-width:480px){/* !important is not decoration here: the case-study breakout rules above
-     set `width:100%!important` on every plate inside .measure-c, so a plain
+@media (max-width:480px){/* This sits in the `emphasis` layer, and not by habit: the case-study breakout rules above
+     set `width:100%` on every plate inside .measure-c from a winning layer, so a plain
      declaration loses and the mockup lays out at 342px — narrower than its
      358px min-content, which is the slicing all over again, just smaller. */
   html[data-theme="ember"] body.p-case-studies-fintech .measure-c .plF-hold .plF{width:380px;max-width:none;margin:32px auto 8px;transform:none}}
@@ -2050,7 +2046,7 @@ html[data-theme="ember"] [class*="p-hire"] main :is(h2,h3) + *{margin-top:0}
    printed-docket metaphor — fixed-width IS the point there, the way a till
    receipt or a boarding pass is set. Flattening those would cost meaning to
    satisfy a rule, the same mistake as flattening the semantic hues.
-   !important: these classes carry per-page extracted rules that outrank a
+   emphasis layer: these classes carry per-page extracted rules that outrank a
    plain component selector. */
 html[data-theme="ember"] body.p-home :is(.k,.go,.ck,.mk,.ek,.lk,.ak,.meta,
   .rcpt-btn,.rcpt-more,.ccd-q,.ccd-idle,.ccd-note,.thought-tag,.lede,.errata-l){font-family:var(--ff-label)}
@@ -2071,7 +2067,7 @@ html[data-theme="ember"] [class*="p-hire"] .hire-foot a{font-family:var(--ff-lab
    other pages' tables), table-layout:fixed + word-break (no change), reduced
    cell padding (no change). The 5px does not scroll the page in a real browser
    and no text is cut, so it is logged rather than chased further. Next person:
-   the cells carry padding !important from the extraction, so the constraint is
+   the cells carry padding from the extraction, so the constraint is
    probably a min-content width on a column, not the padding. */
 
 /* ============================================================================
@@ -2095,7 +2091,7 @@ html[data-theme="ember"] body.p-home main > section:not(.hero) .wrap > div > :is
    right rail. Same principle as the case-study plates: fill designed space
    with content, do not shrink the object to hide the gap.
    ============================================================================ */
-@media (min-width:900px){/* !important: the extracted class sets display:block!important */
+@media (min-width:900px){/* emphasis layer: the extracted class also sets display:block */
   html[data-theme="ember"] body[class*="p-patterns"] .section-inner > a:has(> p){display:grid}}
 /* ============================================================================
    CASE-STUDY LABEL ROLES — the last monospace holdouts (2026-08-14)
