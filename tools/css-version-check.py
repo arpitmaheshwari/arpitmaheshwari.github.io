@@ -13,7 +13,46 @@ Self-calibrating: mutates a copy in memory and requires the check to fail.
 """
 import hashlib, json, pathlib, re, sys
 
-SHEETS = ["ember.css", "styles.css", "classic.css", "fonts.css"]
+def discover_sheets():
+    """Every stylesheet the pages actually link with a ?v= cache key.
+
+    This was a hardcoded list of four while the docstring above claimed the
+    sheets were "discovered from the pages themselves". book/book.css was not
+    on the list, so editing the book's styles bumped nothing and returning
+    visitors were served the cached copy. A list that must be edited by hand
+    is a list that will be wrong the first time someone adds a file — which is
+    exactly what happened.
+    """
+    found = set()
+    for p in pathlib.Path(".").rglob("*.html"):
+        rel = p.as_posix()
+        if rel.startswith((".", "node_modules", "prototypes/", "portfolio-sources/", "tests/")):
+            continue
+        for m in re.finditer(r'href="[^"]*?([A-Za-z0-9_-]+\.css)\?v=', p.read_text(encoding="utf-8")):
+            found.add(m.group(1))
+    return sorted(found)
+
+def sheet_path(name):
+    """Where a linked sheet actually lives.
+
+    Discovery yields bare filenames as the pages link them, but book.css sits
+    in book/. The old code did pathlib.Path("book.css").exists() -> False and
+    skipped it without a word, which is why editing the book's styles bumped
+    nothing. Resolve it, and if it genuinely cannot be found, SAY SO rather
+    than continue past it.
+    """
+    p = pathlib.Path(name)
+    if p.exists():
+        return p
+    for cand in pathlib.Path(".").rglob(name):
+        s = cand.as_posix()
+        if s.startswith((".", "node_modules", "prototypes/", "tests/")):
+            continue
+        return cand
+    return None
+
+
+SHEETS = discover_sheets()
 STATE = pathlib.Path(".cssver.json")
 
 def version_of(sheet):
@@ -28,13 +67,13 @@ def version_of(sheet):
     return None
 
 def digest(sheet):
-    return hashlib.sha256(pathlib.Path(sheet).read_bytes()).hexdigest()[:16]
+    return hashlib.sha256(sheet_path(sheet).read_bytes()).hexdigest()[:16]
 
 def main():
     state = json.loads(STATE.read_text()) if STATE.exists() else {}
     bad, rows = [], []
     for s in SHEETS:
-        if not pathlib.Path(s).exists():
+        if sheet_path(s) is None:
             continue
         v, h = version_of(s), digest(s)
         prev = state.get(s)

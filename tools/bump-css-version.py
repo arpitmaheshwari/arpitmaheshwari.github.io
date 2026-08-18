@@ -29,7 +29,46 @@ would race and re-introduce the "gate stays red after a revert" bug. Run the gat
 """
 import re, sys, json, pathlib, hashlib
 
-SHEETS = ["ember.css", "styles.css", "classic.css", "fonts.css"]
+def discover_sheets():
+    """Every stylesheet the pages actually link with a ?v= cache key.
+
+    This was a hardcoded list of four while the docstring above claimed the
+    sheets were "discovered from the pages themselves". book/book.css was not
+    on the list, so editing the book's styles bumped nothing and returning
+    visitors were served the cached copy. A list that must be edited by hand
+    is a list that will be wrong the first time someone adds a file — which is
+    exactly what happened.
+    """
+    found = set()
+    for p in pathlib.Path(".").rglob("*.html"):
+        rel = p.as_posix()
+        if rel.startswith((".", "node_modules", "prototypes/", "portfolio-sources/", "tests/")):
+            continue
+        for m in re.finditer(r'href="[^"]*?([A-Za-z0-9_-]+\.css)\?v=', p.read_text(encoding="utf-8")):
+            found.add(m.group(1))
+    return sorted(found)
+
+def sheet_path(name):
+    """Where a linked sheet actually lives.
+
+    Discovery yields bare filenames as the pages link them, but book.css sits
+    in book/. The old code did pathlib.Path("book.css").exists() -> False and
+    skipped it without a word, which is why editing the book's styles bumped
+    nothing. Resolve it, and if it genuinely cannot be found, SAY SO rather
+    than continue past it.
+    """
+    p = pathlib.Path(name)
+    if p.exists():
+        return p
+    for cand in pathlib.Path(".").rglob(name):
+        s = cand.as_posix()
+        if s.startswith((".", "node_modules", "prototypes/", "tests/")):
+            continue
+        return cand
+    return None
+
+
+SHEETS = discover_sheets()
 STATE = pathlib.Path(".cssver.json")
 # the three pages css-version-check.py reads a version from; a bump that misses all of
 # them is invisible to the gate, so we assert against exactly this set
@@ -67,11 +106,16 @@ def stale_sheets(files):
     state = json.loads(STATE.read_text()) if STATE.exists() else {}
     out = []
     for s in SHEETS:
-        path = pathlib.Path(s)
-        if not path.exists():
+        path = sheet_path(s)
+        if path is None:
+            print(f"  {s:14s} LINKED BUT NOT FOUND — check the path")
             continue
         prev = state.get(s)
         if not prev:
+            # never recorded: a sheet added since the state file was written.
+            # Skipping silently is how book.css went unbumped for weeks.
+            print(f"  {s:14s} not yet tracked — bumping so it starts being watched")
+            out.append(s)
             continue
         cur = versions_of(s, files)
         digest = hashlib.sha256(path.read_bytes()).hexdigest()[:16]
@@ -127,7 +171,7 @@ def main():
     if argv:
         targets = argv
     elif force_all:
-        targets = [s for s in SHEETS if pathlib.Path(s).exists()]
+        targets = [s for s in SHEETS if sheet_path(s) is not None]
     else:
         targets = stale_sheets(files)
         if not targets:
