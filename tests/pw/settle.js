@@ -22,4 +22,27 @@ module.exports = async function settle(page) {
       last = c;
     }
   });
+
+  // TWO SOURCES OF NON-DETERMINISM IN THE NAV, both fixed here.
+  //
+  // 1. backdrop-filter: blur(10px). GPU blur is not reproducible run to run —
+  //    this was 1,899 pixels across the nav bar failing 1 run in 3, on the one
+  //    page short enough for the nav to dominate the diff. The BLUR EFFECT is
+  //    therefore not pixel-verified; everything it sits on top of still is.
+  // 2. #nav gains .scrolled past 60px, changing background, padding and
+  //    border. Pinned to the un-scrolled state — what a visitor sees on
+  //    arrival, and identical on every run.
+  await page.addStyleTag({ content: `
+    *, *::before, *::after { backdrop-filter: none !important;
+                             -webkit-backdrop-filter: none !important; }
+    #nav.scrolled { padding: 24px 48px !important; border-bottom: 0 !important; }
+  `});
+  await page.evaluate(() => {
+    const nav = document.getElementById('nav');
+    if (!nav) return;
+    nav.classList.remove('scrolled');
+    const cl = nav.classList, add = cl.add.bind(cl), tog = cl.toggle.bind(cl);
+    cl.add = (...a) => add(...a.filter(x => x !== 'scrolled'));
+    cl.toggle = (n, f) => (n === 'scrolled' ? false : tog(n, f));
+  });
 };

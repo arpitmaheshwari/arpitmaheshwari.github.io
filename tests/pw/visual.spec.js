@@ -12,7 +12,11 @@ const settle = require('./settle');
 for (const p of PAGES) {
   for (const w of [390, 1440]) {
     test(`${p} @${w}`, async ({ page }) => {
-      await page.setViewportSize({ width: w, height: 900 });
+      // 1400 not 900: a fixed-position nav on a page barely taller than the
+      // viewport is the one case Playwright must special-case when stitching a
+      // fullPage shot, and 404.html (1079px) failed 1 run in 4 on exactly that
+      // element. A viewport taller than the shortest page removes the case.
+      await page.setViewportSize({ width: w, height: 1400 });
       // assets/recon-live.js drives a ticking session clock, flash highlights
       // and a ghost cursor inside the .recon mockups on seven case studies. A
       // clock reading "session 0:01" can never match a baseline, and the six
