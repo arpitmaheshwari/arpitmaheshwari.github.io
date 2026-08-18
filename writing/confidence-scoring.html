@@ -17,7 +17,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
 <link rel="stylesheet" href="/fonts.css?v=f2">
 <noscript></noscript>
-  <link rel="stylesheet" href="../styles.css?v=p78">
+  <link rel="stylesheet" href="../styles.css?v=p79">
 <link rel="stylesheet" href="../ember.css?v=e199">
   <script type="application/ld+json">
   {
@@ -57,15 +57,15 @@
   </nav>
 </div>
 
-<div class="xi-writing-confidence-scoring-004">
+<div class="page-head">
   <div class="xi-writing-confidence-scoring-005">
     <h1 class="xi-writing-confidence-scoring-006">How I Design Confidence Scores for AI Products</h1>
     <p class="xi-writing-confidence-scoring-007">Design Pattern · May 2026 · 8 min read</p>
-    <p class="hand xi-writing-confidence-scoring-008" aria-hidden="true">the 2018 shrug that started all this</p>
+    <p class="hand hand-note" aria-hidden="true">the 2018 shrug that started all this</p>
   </div>
 </div>
 
-<main id="main" class="section xi-writing-confidence-scoring-009"><div class="xi-writing-confidence-scoring-005">
+<main id="main" class="section page-bg"><div class="xi-writing-confidence-scoring-005">
 
   <p class="lead xi-writing-confidence-scoring-010">In 2018 I watched a media buyer look at a recommendation that was, statistically, better than her own judgment — and override it anyway. That half-second of doubt is the whole problem. It's also the only thing I was hired to design.</p>
 
@@ -73,7 +73,7 @@
   <p class="u-body xi-writing-confidence-scoring-012">The platform had built a recommendation engine, and on paper it was very good: across more than 10,000 campaigns it was running 60% more profitable than buyer intuition. The buyers rejected it 47% of the time anyway. I sat next to one of them for an afternoon to understand why. She wasn't fighting the math. She'd glance at the recommendation, see a bare number next to a "buy" button, and quietly do what she'd already decided to do.</p>
   <p class="u-body xi-writing-confidence-scoring-012">That afternoon reframed the whole brief for me. Media buyers are trained skeptics — they'll take data over instinct, but only when they can see which way the data is pointing and why. A system that says "buy this" and offers nothing else isn't a tool to them; it's a threat to the judgment they're paid for. So they reach for the thing that feels safer: their own call. The model wasn't being out-argued. It was being ignored.</p>
 
-  <p class="u-body xi-writing-confidence-scoring-012">The fix everyone reached for first was a better number — recalibrate, add a decimal, make it look more authoritative. That's the trap. The buyer didn't distrust the score because it was imprecise. She distrusted it because it arrived as a verdict with no way in. What she needed wasn't a more confident number; it was what I&rsquo;d come to think of as a <a class="xi-writing-confidence-scoring-013" href="../resources/intelligent-systems-glossary.html#confidence-layer">confidence layer</a> — a number she could interrogate and then choose to act on. The moment I started treating the score as the start of a conversation instead of the end of one, rejection started to fall.</p>
+  <p class="u-body xi-writing-confidence-scoring-012">The fix everyone reached for first was a better number — recalibrate, add a decimal, make it look more authoritative. That's the trap. The buyer didn't distrust the score because it was imprecise. She distrusted it because it arrived as a verdict with no way in. What she needed wasn't a more confident number; it was what I&rsquo;d come to think of as a <a class="link-gold" href="../resources/intelligent-systems-glossary.html#confidence-layer">confidence layer</a> — a number she could interrogate and then choose to act on. The moment I started treating the score as the start of a conversation instead of the end of one, rejection started to fall.</p>
 
   <div class="xi-writing-confidence-scoring-014">
     <p class="xi-writing-confidence-scoring-015"><strong>A confidence score is a contract.</strong> The model commits to a number. The user commits to acting on it. My job is to make both halves of that bargain visible — so the person can see what they're agreeing to before they agree.</p>
