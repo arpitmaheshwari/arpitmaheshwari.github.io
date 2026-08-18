@@ -98,7 +98,7 @@
   <section class="section">
     <div class="lab-wrap">
       <p class="eyebrow">Decisions</p>
-      <h2 class="section-title">Four choices, and what each one cost</h2>
+      <h2 class="section-title">Five choices, and what each one cost</h2>
 
       <div class="td-block xi-lab-teardown-005">
         <h3>No build step, and therefore no build to break</h3>
@@ -108,6 +108,14 @@
         </div>
       </div>
 
+      <div class="td-block">
+        <h3>The stylesheet is modular, on native cascade layers</h3>
+        <div class="lab-body">
+          <p>Priority is declared once, at the top of the file, in one line: <span class="td-inline">@layer base, utilities;</span>. A rule in a later layer wins outright, whatever its specificity, so the cascade is something you read rather than something you reverse-engineer. Base holds the system and the theme; utilities holds the single-purpose classes that have to sit above both.</p>
+          <p>It is plain CSS. No preprocessor, no framework, no naming convention borrowed from a build tool &mdash; <span class="td-inline">@layer</span> has been in every major browser since 2022, and it replaces the thing most stylesheets use instead, which is volume.</p>
+          <p><strong>What it costs:</strong> layers invert for <span class="td-inline">!important</span> &mdash; an important declaration in an <em>earlier</em> layer beats a later one, which is the reverse of the normal rule and catches people out. And 306 declarations still carry it, because they compete inside their own layer where a layer cannot arbitrate. Both facts are written at the top of the stylesheet, where the next person meets them before they meet the consequences.</p>
+        </div>
+      </div>
       <div class="td-block">
         <h3>Fonts are served from this origin, not a third party</h3>
         <div class="lab-body">
