@@ -27,8 +27,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
 <link rel="stylesheet" href="/fonts.css?v=f2">
 <noscript></noscript>
-<link rel="stylesheet" href="../styles.css?v=p79">
-<link rel="stylesheet" href="../ember.css?v=e199">
+<link rel="stylesheet" href="../styles.css?v=p80">
+<link rel="stylesheet" href="../ember.css?v=e200">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PFY6ME99K8');</script>
@@ -80,7 +80,7 @@
           <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">What</th><th scope="col" role="columnheader">Measured</th><th scope="col" role="columnheader">How</th></tr></thead>
           <tbody role="rowgroup">
             <tr role="row"><td role="cell">Hand-written HTML pages</td><td role="cell" data-label="Measured"><b>44</b></td><td role="cell" data-label="How"><span class="td-inline">find . -name "*.html"</span>, excluding the book and print sources</td></tr>
-            <tr role="row"><td role="cell">Stylesheet, entire site</td><td role="cell" data-label="Measured"><b>280.1 KB</b></td><td role="cell" data-label="How"><span class="td-inline">stat -f "%z" styles.css</span> → 286,780 bytes, unminified</td></tr>
+            <tr role="row"><td role="cell">Stylesheet, entire site</td><td role="cell" data-label="Measured"><b>277.4 KB</b></td><td role="cell" data-label="How"><span class="td-inline">stat -f "%z" styles.css</span> → 284,092 bytes, unminified</td></tr>
             <tr role="row"><td role="cell">Runtime dependencies, classic site</td><td role="cell" data-label="Measured"><b>0</b></td><td role="cell" data-label="How">No root <span class="td-inline">package.json</span>, no <span class="td-inline">node_modules</span>, no bundler config</td></tr>
             <tr role="row"><td role="cell">Third-party domains serving code</td><td role="cell" data-label="Measured"><b>2</b></td><td role="cell" data-label="How">Google Analytics and Microsoft Clarity (heatmaps, added 2026-08-15; honours Do-Not-Track). Attention measurement (scroll depth, section dwell) is first-party: <span class="td-inline">attention.js</span>, 159 lines, no network of its own. Both load async and gate nothing on first paint. Google Fonts left on 2026-08-14 when the nine font files moved to this origin.</td></tr>
             <tr role="row"><td role="cell">Interactive pattern demos</td><td role="cell" data-label="Measured"><b>9</b></td><td role="cell" data-label="How">All in <span class="td-inline">patterns/demos.js</span> — 234 lines, 12.9 KB</td></tr>
@@ -104,7 +104,7 @@
         <h3>No build step, and therefore no build to break</h3>
         <div class="lab-body">
           <p>There is no bundler, no transpiler, no CI pipeline. A file I edit is the file the browser receives. The benefit is that this site cannot rot: no dependency will publish a breaking major, and nothing in it needs a lockfile to reproduce in three years.</p>
-          <p><strong>What it costs:</strong> no tree-shaking, no automatic minification, and cache-busting done by hand — you can see the manual query strings, <span class="td-inline">styles.css?v=p79</span>, in the source of every page. On a site of this size that is the right trade. On a product it would not be, and I would not defend it there.</p>
+          <p><strong>What it costs:</strong> no tree-shaking, no automatic minification, and cache-busting done by hand — you can see the manual query strings, <span class="td-inline">styles.css?v=p80</span>, in the source of every page. On a site of this size that is the right trade. On a product it would not be, and I would not defend it there.</p>
         </div>
       </div>
 
@@ -113,7 +113,8 @@
         <div class="lab-body">
           <p>Priority is declared once, at the top of the file, in one line: <span class="td-inline">@layer base, utilities;</span>. A rule in a later layer wins outright, whatever its specificity, so the cascade is something you read rather than something you reverse-engineer. Base holds the system and the theme; utilities holds the single-purpose classes that have to sit above both.</p>
           <p>It is plain CSS. No preprocessor, no framework, no naming convention borrowed from a build tool &mdash; <span class="td-inline">@layer</span> has been in every major browser since 2022, and it replaces the thing most stylesheets use instead, which is volume.</p>
-          <p><strong>What it costs:</strong> layers invert for <span class="td-inline">!important</span> &mdash; an important declaration in an <em>earlier</em> layer beats a later one, which is the reverse of the normal rule and catches people out. And 306 declarations still carry it, because they compete inside their own layer where a layer cannot arbitrate. Both facts are written at the top of the stylesheet, where the next person meets them before they meet the consequences.</p>
+          <p>There is no <span class="td-inline">!important</span> in the stylesheet. A declaration marked important is not claiming importance, it is claiming precedence over some other rule &mdash; which is the thing a layer states outright &mdash; so those declarations sit in a layer named <span class="td-inline">emphasis</span> instead of shouting from wherever they happened to be written.</p>
+          <p><strong>What it costs:</strong> layers invert for <span class="td-inline">!important</span>, so if one is ever added back, an important declaration in an <em>earlier</em> layer will beat a later one &mdash; the reverse of the usual rule, and a trap worth knowing about. Splitting rules across layers also resolves one button two pixels wider on eleven pages; that was measured at 8&times; and accepted rather than discovered later. Both notes are at the top of the stylesheet, where the next person meets them before they meet the consequences.</p>
         </div>
       </div>
       <div class="td-block">
