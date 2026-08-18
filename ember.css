@@ -262,7 +262,35 @@ html[data-theme="ember"] body.p-home .who h2{font-size:clamp(28px,3vw,42px);marg
 html[data-theme="ember"] body.p-home .who p{color:var(--mut);max-width:56ch;margin-bottom:16px}
 html[data-theme="ember"] body.p-home .who p a{color:var(--amber);text-decoration:underline;text-underline-offset:3px}
 html[data-theme="ember"] body.p-home .who .meta{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:16px}
-html[data-theme="ember"] body.p-home .facts{background:var(--cream);color:var(--cream-ink);border-radius:12px;padding:24px;box-shadow:0 30px 60px rgba(0,0,0,.5);transform:rotate(1.2deg)}
+/* THE PORTRAIT ON THE RECORD — Arpit's pick from three rendered treatments.
+   The card is a document: serving size, allergen notice, a signature line. A
+   photograph affixed to a document overhangs it rather than sitting inside the
+   layout — half on the paper, half off.
+   The ring is the card's own stock (var(--cream)); that is what stops it
+   reading as a floating avatar. Its own shadow puts it above the page.
+   Below 900px the card nearly fills the screen and a sideways overhang runs
+   off the edge — measured, it escaped by 5px at 390. There it overhangs the
+   TOP edge only and tucks inside the right margin. */
+html[data-theme="ember"] body.p-home .facts-portrait{
+  position:absolute;top:-52px;right:-50px;width:164px;height:164px;
+  object-fit:cover;object-position:50% 18%;border-radius:50%;
+  border:5px solid var(--cream);
+  box-shadow:0 14px 30px rgba(0,0,0,.55);z-index:2}
+/* 1200, not 900. At 1024 the card sits close enough to the right gutter that
+   a 38px overhang pushed 4px past the viewport and gave the whole PAGE a
+   horizontal scrollbar. 390 and 1440 were both clean — the break was in
+   between, which is the only reason it was found. */
+@media (max-width:1300px){
+  html[data-theme="ember"] body.p-home .facts-portrait{
+    width:126px;height:126px;top:-48px;right:10px}}
+/* At 390 the card is only ~294px wide, so a 126px disc sitting 48px proud
+   still lands on the "Serving size" line — measured against the TEXT RANGE,
+   not the element box, which is the only way to see it. Smaller and higher on
+   the narrowest screens so it clears the type. */
+@media (max-width:480px){
+  html[data-theme="ember"] body.p-home .facts-portrait{
+    width:104px;height:104px;top:-58px;right:8px}}
+html[data-theme="ember"] body.p-home .facts{position:relative;background:var(--cream);color:var(--cream-ink);border-radius:12px;padding:24px;box-shadow:0 30px 60px rgba(0,0,0,.5);transform:rotate(1.2deg)}
 @media (prefers-reduced-motion:reduce){html[data-theme="ember"] body.p-home .facts{transform:none}}
 html[data-theme="ember"] body.p-home .facts h3{font-family:var(--sans);font-weight:600;font-size:20px;letter-spacing:0}
 html[data-theme="ember"] body.p-home .facts .fs{font-size:12px;color:var(--cream-mut);border-bottom:2px solid var(--cream-ink);padding:8px 0 8px;margin-bottom:8px}
