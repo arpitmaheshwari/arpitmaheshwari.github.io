@@ -31,7 +31,16 @@ for (const p of PAGES) {
         fullPage: true,
         animations: 'disabled',
         caret: 'hide',
-        mask: [page.locator('canvas')],
+        mask: [
+          page.locator('canvas'),
+          // /lab/teardown.html prints the live cache-busting string
+          // (styles.css?v=p78) as an example of hand-rolled versioning. That
+          // string changes on EVERY css edit by design, so without this mask
+          // the page fails the suite on every single change — 19 pixels, one
+          // character, always a false alarm. Masking the string keeps the rest
+          // of the page covered.
+          page.locator('.td-inline', { hasText: /\?v=/ }),
+        ],
         maxDiffPixels: 0,
       });
     });

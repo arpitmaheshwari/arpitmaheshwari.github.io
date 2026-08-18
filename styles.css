@@ -117,6 +117,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;
 
 /* ----- Navigation ----- */
 #nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,10,.6);backdrop-filter:blur(8px);transition:background .4s,backdrop-filter .4s,padding .3s}
+/* THE SITE MARK — one declaration, not 32.
+   This size was written out as a separate extracted class on every page
+   that shows the logo (.xi-patterns-003, .xi-home-003, ...), each with
+   !important. Thirty-two identical rules is not a system; it is the same
+   decision copied until nobody owns it. Changing the mark size used to
+   mean editing 32 rules and hoping none was missed. */
+.site-logo{width:40px;height:40px}
 #nav.scrolled{background:rgba(10,10,10,.92);backdrop-filter:blur(16px);padding:16px 48px;border-bottom:1px solid var(--border)}
 .nav-logo{font-family:var(--ff-mono);font-size:13px;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;white-space:nowrap}
 .nav-links{display:flex;gap:40px;list-style:none;align-items:center}
@@ -905,7 +912,6 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 /* --- former style attributes (index.html) --- */
 .xi-home-001{display:none!important}
 .xi-home-002{text-decoration:none!important;color:inherit!important}
-.xi-home-003{width:40px!important;height:40px!important}
 .xi-home-004{position:relative!important}
 .xi-home-005{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;z-index:-1!important;pointer-events:none!important}
 .xi-home-006{z-index:1!important}
@@ -1143,7 +1149,6 @@ body:where(.p-hire){ background: #fff !important; color: #111 !important; }
 :where(body.p-hire) a{ text-decoration: none; }}
 /* --- former style attributes (hire/index.html) --- */
 .xi-hire-001{text-decoration:none!important;color:inherit!important}
-.xi-hire-002{width:40px!important;height:40px!important}
 .xi-hire-003{font-size:21px!important;margin:8px 0 0!important;transform:rotate(-1.6deg)!important}
 .xi-hire-004{font-family:var(--ff-mono)!important;font-size:var(--fs-caption)!important;letter-spacing:.04em!important;line-height:1.8!important;margin:16px 0 0!important}
 .xi-hire-005{color:var(--ink)!important}
@@ -1183,7 +1188,6 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-screen) a{ text-decoration: none; }}
 /* --- former style attributes (screen/index.html) --- */
 .xi-screen-001{text-decoration:none!important;color:inherit!important}
-.xi-screen-002{width:40px!important;height:40px!important}
 .xi-screen-003{font-size:21px!important;margin:12px 0 0!important;transform:rotate(-1.6deg)!important}
 .xi-screen-004{background:var(--gold)!important;transition:background 0.3s,transform 0.2s;text-decoration:none!important;white-space:nowrap!important}
 .xi-screen-005{text-decoration:none!important;transition:border-color 0.3s,color 0.3s;white-space:nowrap!important}
@@ -1195,7 +1199,6 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 /* ===== EXTRACTED FROM process/index.html (theme-swap migration; scoped body.p-process) ===== */
 /* --- former style attributes (process/index.html) --- */
 .xi-process-001{text-decoration:none!important;color:inherit!important}
-.xi-process-002{width:40px!important;height:40px!important}
 .xi-process-003{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-process-004{max-width:var(--measure)!important;margin:0 auto!important}
 .xi-process-005{margin-bottom:16px!important}
@@ -1307,7 +1310,6 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 /* --- former style attributes (case-studies/adtech.html) --- */
 .xi-case-studies-adtech-001{display:none!important}
 .xi-case-studies-adtech-002{text-decoration:none!important;color:inherit!important}
-.xi-case-studies-adtech-003{width:40px!important;height:40px!important}
 .xi-case-studies-adtech-004{padding-bottom:64px!important}
 .xi-case-studies-adtech-005{font-size:21px!important;margin:12px 0 20px!important;transform:rotate(-1.6deg)!important}
 .xi-case-studies-adtech-006{background:var(--bg)!important;padding-top:48px!important}
@@ -1461,7 +1463,6 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 /* --- former style attributes (case-studies/fintech.html) --- */
 .xi-case-studies-fintech-001{display:none!important}
 .xi-case-studies-fintech-002{text-decoration:none!important;color:inherit!important}
-.xi-case-studies-fintech-003{width:40px!important;height:40px!important}
 .xi-case-studies-fintech-004{font-size:21px!important;margin:12px 0 20px!important;transform:rotate(-1.6deg)!important}
 .xi-case-studies-fintech-005{background:var(--bg)!important;padding-top:48px!important}
 .xi-case-studies-fintech-006{margin-bottom:32px!important}
@@ -1600,7 +1601,6 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 /* --- former style attributes (case-studies/o2.html) --- */
 .xi-case-studies-o2-001{display:none!important}
 .xi-case-studies-o2-002{text-decoration:none!important;color:inherit!important}
-.xi-case-studies-o2-003{width:40px!important;height:40px!important}
 .xi-case-studies-o2-004{font-size:21px!important;margin:12px 0 20px!important;transform:rotate(-1.6deg)!important}
 .xi-case-studies-o2-005{background:var(--bg)!important;padding-top:48px!important}
 .xi-case-studies-o2-006{overflow:hidden!important}
@@ -1720,7 +1720,6 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 /* --- former style attributes (case-studies/orgos.html) --- */
 .xi-case-studies-orgos-001{display:none!important}
 .xi-case-studies-orgos-002{text-decoration:none!important;color:inherit!important}
-.xi-case-studies-orgos-003{width:40px!important;height:40px!important}
 .xi-case-studies-orgos-004{font-size:21px!important;margin:12px 0 20px!important;transform:rotate(-1.6deg)!important}
 .xi-case-studies-orgos-005{background:var(--bg)!important;padding-top:48px!important}
 .xi-case-studies-orgos-006{margin-bottom:32px!important}
@@ -1822,7 +1821,6 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 /* --- former style attributes (case-studies/ptc.html) --- */
 .xi-case-studies-ptc-001{display:none!important}
 .xi-case-studies-ptc-002{text-decoration:none!important;color:inherit!important}
-.xi-case-studies-ptc-003{width:40px!important;height:40px!important}
 .xi-case-studies-ptc-004{font-size:21px!important;margin:12px 0 20px!important;transform:rotate(-1.6deg)!important}
 .xi-case-studies-ptc-005{background:var(--bg)!important;padding-top:48px!important}
 .xi-case-studies-ptc-006{overflow:hidden!important}
@@ -2056,7 +2054,6 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-lab,body.p-fit) .ev-tiers dd{ margin:4px 0 0; padding-left:16px; border-left: 1px solid var(--border); }
 /* --- former style attributes (lab/index.html) --- */
 .xi-lab-001{text-decoration:none!important;color:inherit!important}
-.xi-lab-002{width:40px!important;height:40px!important}
 .xi-lab-003{max-width:26ch!important}
 .xi-lab-004{font-size:21px!important;margin:12px 0 0!important;transform:rotate(-1.6deg)!important}
 .xi-lab-005{color:var(--gold)!important}
@@ -2112,7 +2109,6 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-lab-eval) .rule-list code{ font-family: var(--ff-mono); font-size: var(--fs-caption); color: var(--gold); display: block; margin-bottom:4px; }
 /* --- former style attributes (lab/eval.html) --- */
 .xi-lab-eval-001{text-decoration:none!important;color:inherit!important}
-.xi-lab-eval-002{width:40px!important;height:40px!important}
 .xi-lab-eval-003{max-width:20ch!important}
 .xi-lab-eval-004{font-size:21px!important;margin:12px 0 0!important;transform:rotate(-1.6deg)!important}
 .xi-lab-eval-005{margin:0 0 8px!important;display:block!important}
@@ -2194,7 +2190,6 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-lab-loop) .lab-nojs{ font-family: var(--ff-mono); font-size: var(--fs-caption); color: var(--warn); }
 /* --- former style attributes (lab/loop.html) --- */
 .xi-lab-loop-001{text-decoration:none!important;color:inherit!important}
-.xi-lab-loop-002{width:40px!important;height:40px!important}
 .xi-lab-loop-003{max-width:20ch!important}
 .xi-lab-loop-004{font-size:21px!important;margin:12px 0 0!important;transform:rotate(-1.6deg)!important}
 .xi-lab-loop-005{margin-bottom:24px!important}
@@ -2251,7 +2246,6 @@ body:where(.p-screen){ background: #fff !important; color: #111 !important; }
 :where(body.p-lab-teardown) .td-gaps b{ color: var(--ink); font-weight: 600; }
 /* --- former style attributes (lab/teardown.html) --- */
 .xi-lab-teardown-001{text-decoration:none!important;color:inherit!important}
-.xi-lab-teardown-002{width:40px!important;height:40px!important}
 .xi-lab-teardown-003{max-width:24ch!important}
 .xi-lab-teardown-004{font-size:21px!important;margin:12px 0 0!important;transform:rotate(-1.6deg)!important}
 .xi-lab-teardown-005{margin-top:32px!important}
@@ -2270,7 +2264,6 @@ body:where(.p-lab-fwd-stub){ margin:0; min-height: 100vh; display: grid; place-i
 /* --- former style attributes (patterns/index.html) --- */
 .xi-patterns-001{display:none!important}
 .xi-patterns-002{text-decoration:none!important;color:inherit!important}
-.xi-patterns-003{width:40px!important;height:40px!important}
 .xi-patterns-004{padding:90px var(--page-x) 48px!important;background:var(--bg)!important}
 .xi-patterns-005{max-width:var(--inner-max)!important;margin:0 auto!important}
 .xi-patterns-006{margin:0 0 20px 0!important}
@@ -2310,7 +2303,6 @@ body:where(.p-lab-fwd-stub){ margin:0; min-height: 100vh; display: grid; place-i
 /* --- former style attributes (patterns/act-review-ignore.html) --- */
 .xi-patterns-act-review-ignore-001{display:none!important}
 .xi-patterns-act-review-ignore-002{text-decoration:none!important;color:inherit!important}
-.xi-patterns-act-review-ignore-003{width:40px!important;height:40px!important}
 .xi-patterns-act-review-ignore-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-patterns-act-review-ignore-005{max-width:var(--measure)!important;margin:0 auto!important}
 .xi-patterns-act-review-ignore-006{margin:0!important;font-optical-sizing:auto!important;font-variant-ligatures:common-ligatures contextual!important}
@@ -2354,7 +2346,6 @@ body:where(.p-lab-fwd-stub){ margin:0; min-height: 100vh; display: grid; place-i
 /* --- former style attributes (patterns/ai-failure-states.html) --- */
 .xi-patterns-ai-failure-states-001{display:none!important}
 .xi-patterns-ai-failure-states-002{text-decoration:none!important;color:inherit!important}
-.xi-patterns-ai-failure-states-003{width:40px!important;height:40px!important}
 .xi-patterns-ai-failure-states-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-patterns-ai-failure-states-005{max-width:var(--measure)!important;margin:0 auto!important}
 .xi-patterns-ai-failure-states-006{margin:0!important;font-optical-sizing:auto!important;font-variant-ligatures:common-ligatures contextual!important}
@@ -2413,7 +2404,6 @@ body:where(.p-lab-fwd-stub){ margin:0; min-height: 100vh; display: grid; place-i
 /* --- former style attributes (patterns/calibration-track-record.html) --- */
 .xi-patterns-calibration-track-record-001{display:none!important}
 .xi-patterns-calibration-track-record-002{text-decoration:none!important;color:inherit!important}
-.xi-patterns-calibration-track-record-003{width:40px!important;height:40px!important}
 .xi-patterns-calibration-track-record-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-patterns-calibration-track-record-005{max-width:var(--measure)!important;margin:0 auto!important}
 .xi-patterns-calibration-track-record-006{margin:0!important;font-optical-sizing:auto!important;font-variant-ligatures:common-ligatures contextual!important}
@@ -2456,7 +2446,6 @@ body:where(.p-lab-fwd-stub){ margin:0; min-height: 100vh; display: grid; place-i
 /* --- former style attributes (patterns/capability-contract.html) --- */
 .xi-patterns-capability-contract-001{display:none!important}
 .xi-patterns-capability-contract-002{text-decoration:none!important;color:inherit!important}
-.xi-patterns-capability-contract-003{width:40px!important;height:40px!important}
 .xi-patterns-capability-contract-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-patterns-capability-contract-005{max-width:var(--measure)!important;margin:0 auto!important}
 .xi-patterns-capability-contract-006{margin:0!important;font-optical-sizing:auto!important;font-variant-ligatures:common-ligatures contextual!important}
@@ -2497,7 +2486,6 @@ body:where(.p-lab-fwd-stub){ margin:0; min-height: 100vh; display: grid; place-i
 /* --- former style attributes (patterns/confidence-scores.html) --- */
 .xi-patterns-confidence-scores-001{display:none!important}
 .xi-patterns-confidence-scores-002{text-decoration:none!important;color:inherit!important}
-.xi-patterns-confidence-scores-003{width:40px!important;height:40px!important}
 .xi-patterns-confidence-scores-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-patterns-confidence-scores-005{max-width:var(--measure)!important;margin:0 auto!important}
 .xi-patterns-confidence-scores-006{margin:0!important;font-optical-sizing:auto!important;font-variant-ligatures:common-ligatures contextual!important}
@@ -2560,7 +2548,6 @@ body:where(.p-lab-fwd-stub){ margin:0; min-height: 100vh; display: grid; place-i
 /* --- former style attributes (patterns/human-in-loop.html) --- */
 .xi-patterns-human-in-loop-001{display:none!important}
 .xi-patterns-human-in-loop-002{text-decoration:none!important;color:inherit!important}
-.xi-patterns-human-in-loop-003{width:40px!important;height:40px!important}
 .xi-patterns-human-in-loop-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-patterns-human-in-loop-005{max-width:var(--measure)!important;margin:0 auto!important}
 .xi-patterns-human-in-loop-006{margin:0!important;font-optical-sizing:auto!important;font-variant-ligatures:common-ligatures contextual!important}
@@ -2624,7 +2611,6 @@ body:where(.p-lab-fwd-stub){ margin:0; min-height: 100vh; display: grid; place-i
 /* --- former style attributes (patterns/ml-explainability.html) --- */
 .xi-patterns-ml-explainability-001{display:none!important}
 .xi-patterns-ml-explainability-002{text-decoration:none!important;color:inherit!important}
-.xi-patterns-ml-explainability-003{width:40px!important;height:40px!important}
 .xi-patterns-ml-explainability-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-patterns-ml-explainability-005{max-width:var(--measure)!important;margin:0 auto!important}
 .xi-patterns-ml-explainability-006{margin:0!important;font-optical-sizing:auto!important;font-variant-ligatures:common-ligatures contextual!important}
@@ -2681,7 +2667,6 @@ body:where(.p-lab-fwd-stub){ margin:0; min-height: 100vh; display: grid; place-i
 /* --- former style attributes (patterns/provenance-citations.html) --- */
 .xi-patterns-provenance-citations-001{display:none!important}
 .xi-patterns-provenance-citations-002{text-decoration:none!important;color:inherit!important}
-.xi-patterns-provenance-citations-003{width:40px!important;height:40px!important}
 .xi-patterns-provenance-citations-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-patterns-provenance-citations-005{max-width:var(--measure)!important;margin:0 auto!important}
 .xi-patterns-provenance-citations-006{margin:0!important;font-optical-sizing:auto!important;font-variant-ligatures:common-ligatures contextual!important}
@@ -2724,7 +2709,6 @@ body:where(.p-lab-fwd-stub){ margin:0; min-height: 100vh; display: grid; place-i
 /* --- former style attributes (patterns/reversibility-safe-to-act.html) --- */
 .xi-patterns-reversibility-safe-to-act-001{display:none!important}
 .xi-patterns-reversibility-safe-to-act-002{text-decoration:none!important;color:inherit!important}
-.xi-patterns-reversibility-safe-to-act-003{width:40px!important;height:40px!important}
 .xi-patterns-reversibility-safe-to-act-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-patterns-reversibility-safe-to-act-005{max-width:var(--measure)!important;margin:0 auto!important}
 .xi-patterns-reversibility-safe-to-act-006{margin:0!important;font-optical-sizing:auto!important;font-variant-ligatures:common-ligatures contextual!important}
@@ -2766,7 +2750,6 @@ body:where(.p-lab-fwd-stub){ margin:0; min-height: 100vh; display: grid; place-i
 /* ===== EXTRACTED FROM resources/index.html (theme-swap migration; scoped body.p-resources) ===== */
 /* --- former style attributes (resources/index.html) --- */
 .xi-resources-001{text-decoration:none!important;color:inherit!important}
-.xi-resources-002{width:40px!important;height:40px!important}
 .xi-resources-003{padding:104px 24px 40px!important;background:var(--bg)!important}
 .xi-resources-004{max-width:900px!important;margin:0 auto!important}
 .xi-resources-005{font-family:var(--ff-display)!important;font-size:var(--fs-hero)!important;font-weight:300!important;letter-spacing:-0.02em!important;color:var(--ink)!important;margin-bottom:20px!important}
@@ -2790,7 +2773,6 @@ body:where(.p-resources-ai-design-checklist){ background:#fff !important; color:
 :where(body.p-resources-ai-design-checklist) input.ckl{ accent-color:#000; }}
 /* --- former style attributes (resources/ai-design-checklist.html) --- */
 .xi-resources-ai-design-checklist-001{text-decoration:none!important;color:inherit!important;display:flex!important;align-items:center!important;gap:12px!important}
-.xi-resources-ai-design-checklist-002{width:40px!important;height:40px!important}
 .xi-resources-ai-design-checklist-003{font-family:var(--ff-sans)!important;font-size:14px!important;font-weight:600!important;letter-spacing:-0.5px!important}
 .xi-resources-ai-design-checklist-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-resources-ai-design-checklist-005{max-width:var(--measure)!important;margin:0 auto!important}
@@ -2824,7 +2806,6 @@ body:where(.p-resources-ai-design-checklist){ background:#fff !important; color:
 /* ===== EXTRACTED FROM resources/founder-questions.html (theme-swap migration; scoped body.p-resources-founder-questions) ===== */
 /* --- former style attributes (resources/founder-questions.html) --- */
 .xi-resources-founder-questions-001{text-decoration:none!important;color:inherit!important;display:flex!important;align-items:center!important;gap:12px!important}
-.xi-resources-founder-questions-002{width:40px!important;height:40px!important}
 .xi-resources-founder-questions-003{font-family:var(--ff-sans)!important;font-size:14px!important;font-weight:600!important;letter-spacing:-0.5px!important}
 .xi-resources-founder-questions-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-resources-founder-questions-005{max-width:var(--measure)!important;margin:0 auto!important}
@@ -2848,7 +2829,6 @@ body:where(.p-resources-ai-design-checklist){ background:#fff !important; color:
 /* ===== EXTRACTED FROM resources/intelligent-systems-glossary.html (theme-swap migration; scoped body.p-resources-intelligent-systems-glossary) ===== */
 /* --- former style attributes (resources/intelligent-systems-glossary.html) --- */
 .xi-resources-intelligent-systems-glossary-001{text-decoration:none!important;color:inherit!important;display:flex!important;align-items:center!important;gap:12px!important}
-.xi-resources-intelligent-systems-glossary-002{width:40px!important;height:40px!important}
 .xi-resources-intelligent-systems-glossary-003{font-family:var(--ff-sans)!important;font-size:14px!important;font-weight:600!important;letter-spacing:-0.5px!important}
 .xi-resources-intelligent-systems-glossary-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-resources-intelligent-systems-glossary-005{max-width:var(--measure)!important;margin:0 auto!important}
@@ -2872,7 +2852,6 @@ body:where(.p-resources-ai-design-checklist){ background:#fff !important; color:
 /* ===== EXTRACTED FROM writing/index.html (theme-swap migration; scoped body.p-writing) ===== */
 /* --- former style attributes (writing/index.html) --- */
 .xi-writing-001{text-decoration:none!important;color:inherit!important}
-.xi-writing-002{width:40px!important;height:40px!important}
 .xi-writing-003{padding:100px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-writing-004{max-width:900px!important;margin:0 auto!important}
 .xi-writing-005{font-family:var(--ff-display)!important;font-size:var(--fs-hero)!important;font-weight:300!important;letter-spacing:-.02em!important;color:var(--ink)!important;margin:0 0 20px!important}
@@ -2903,7 +2882,6 @@ body:where(.p-resources-ai-design-checklist){ background:#fff !important; color:
 /* ===== EXTRACTED FROM writing/confidence-scoring.html (theme-swap migration; scoped body.p-writing-confidence-scoring) ===== */
 /* --- former style attributes (writing/confidence-scoring.html) --- */
 .xi-writing-confidence-scoring-001{text-decoration:none!important;color:inherit!important;display:flex!important;align-items:center!important;gap:12px!important}
-.xi-writing-confidence-scoring-002{width:40px!important;height:40px!important}
 .xi-writing-confidence-scoring-003{font-family:var(--ff-sans)!important;font-size:14px!important;font-weight:600!important;letter-spacing:-0.5px!important}
 .xi-writing-confidence-scoring-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-writing-confidence-scoring-005{max-width:var(--measure)!important;margin:0 auto!important}
@@ -2937,7 +2915,6 @@ body:where(.p-resources-ai-design-checklist){ background:#fff !important; color:
 /* ===== EXTRACTED FROM writing/explainability.html (theme-swap migration; scoped body.p-writing-explainability) ===== */
 /* --- former style attributes (writing/explainability.html) --- */
 .xi-writing-explainability-001{text-decoration:none!important;color:inherit!important;display:flex!important;align-items:center!important;gap:12px!important}
-.xi-writing-explainability-002{width:40px!important;height:40px!important}
 .xi-writing-explainability-003{font-family:var(--ff-sans)!important;font-size:14px!important;font-weight:600!important;letter-spacing:-0.5px!important}
 .xi-writing-explainability-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-writing-explainability-005{max-width:var(--measure)!important;margin:0 auto!important}
@@ -2972,7 +2949,6 @@ body:where(.p-resources-ai-design-checklist){ background:#fff !important; color:
 /* ===== EXTRACTED FROM writing/failure-states.html (theme-swap migration; scoped body.p-writing-failure-states) ===== */
 /* --- former style attributes (writing/failure-states.html) --- */
 .xi-writing-failure-states-001{text-decoration:none!important;color:inherit!important;display:flex!important;align-items:center!important;gap:12px!important}
-.xi-writing-failure-states-002{width:40px!important;height:40px!important}
 .xi-writing-failure-states-003{font-family:var(--ff-sans)!important;font-size:14px!important;font-weight:600!important;letter-spacing:-0.5px!important}
 .xi-writing-failure-states-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-writing-failure-states-005{max-width:var(--measure)!important;margin:0 auto!important}
@@ -3006,7 +2982,6 @@ body:where(.p-resources-ai-design-checklist){ background:#fff !important; color:
 /* ===== EXTRACTED FROM writing/human-in-loop.html (theme-swap migration; scoped body.p-writing-human-in-loop) ===== */
 /* --- former style attributes (writing/human-in-loop.html) --- */
 .xi-writing-human-in-loop-001{text-decoration:none!important;color:inherit!important;display:flex!important;align-items:center!important;gap:12px!important}
-.xi-writing-human-in-loop-002{width:40px!important;height:40px!important}
 .xi-writing-human-in-loop-003{font-family:var(--ff-sans)!important;font-size:14px!important;font-weight:600!important;letter-spacing:-0.5px!important}
 .xi-writing-human-in-loop-004{padding:104px 24px 40px!important;background:var(--bg)!important;border-bottom:1px solid var(--border)!important}
 .xi-writing-human-in-loop-005{max-width:var(--measure)!important;margin:0 auto!important}
