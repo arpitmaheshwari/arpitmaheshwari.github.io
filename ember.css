@@ -306,7 +306,7 @@ html[data-theme="ember"] body.p-home .hero .field{position:absolute;inset:0;back
   #120B14}
 html[data-theme="ember"] body.p-home .hero .in{position:relative;z-index:2}
 html[data-theme="ember"] body.p-home .hero .k{color:var(--ember)}
-html[data-theme="ember"] body.p-home .hero h1{font-size:clamp(52px,7.2vw,106px);line-height:1.01;margin:24px 0 24px;max-width:13ch}
+html[data-theme="ember"] body.p-home .hero h1{font-size:clamp(52px,7.2vw,106px);margin:24px 0 24px;max-width:13ch}
 html[data-theme="ember"] body.p-home .hero h1 .grad{font-style:italic}
 html[data-theme="ember"] body.p-home .hero .sub{font-size:clamp(16px,1.6vw,19px);color:var(--mut);max-width:52ch;line-height:1.75}
 html[data-theme="ember"] body.p-home .hero .ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:32px}
@@ -333,7 +333,7 @@ html[data-theme="ember"] body.p-home .rfoot a{color:var(--amber);text-decoration
 html[data-theme="ember"] body.p-home .who{padding:96px 0 88px}
 html[data-theme="ember"] body.p-home .who .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
 html[data-theme="ember"] body.p-home .who .k{color:var(--ember)}
-html[data-theme="ember"] body.p-home .who h2{font-size:clamp(28px,3vw,42px);margin:12px 0 20px;line-height:1.15}
+html[data-theme="ember"] body.p-home .who h2{font-size:clamp(28px,3vw,42px);margin:12px 0 20px;}
 html[data-theme="ember"] body.p-home .who p{color:var(--mut);max-width:56ch;margin-bottom:16px}
 html[data-theme="ember"] body.p-home .who p a{color:var(--amber);text-decoration:underline;text-underline-offset:3px}
 html[data-theme="ember"] body.p-home .who .meta{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:16px}
@@ -350,7 +350,7 @@ html[data-theme="ember"] body.p-home .facts .warn b{color:var(--cream-ink)}
 html[data-theme="ember"] body.p-home .work{background:var(--bg1);padding:0 0 96px;position:relative}
 html[data-theme="ember"] body.p-home .work .seam{background:var(--bg1)}
 html[data-theme="ember"] body.p-home .work .k{color:var(--amber)}
-html[data-theme="ember"] body.p-home .work h2{font-size:clamp(32px,4vw,54px);line-height:1.12;margin:12px 0 16px;max-width:22ch}
+html[data-theme="ember"] body.p-home .work h2{font-size:clamp(32px,4vw,54px);margin:12px 0 16px;max-width:22ch}
 html[data-theme="ember"] body.p-home .work .lede{color:var(--mut);line-height:1.75}
 html[data-theme="ember"] body.p-home .lanes{margin-top:48px;display:flex;flex-direction:column;gap:16px}
 html[data-theme="ember"] body.p-home .lane{position:relative;display:grid;grid-template-columns:210px minmax(0,1fr) auto;gap:32px;align-items:center;padding:24px 32px;border-radius:8px;background:linear-gradient(94deg,var(--lt),transparent 70%);transform:skewX(-3deg);border-left:3px solid var(--lc);transition:background .25s}
@@ -359,6 +359,8 @@ html[data-theme="ember"] body.p-home .lane:hover{background:linear-gradient(94de
 @media (prefers-reduced-motion:reduce){html[data-theme="ember"] body.p-home .lane{transform:none;transition:none}
 html[data-theme="ember"] body.p-home .lane>*{transform:none}}
 html[data-theme="ember"] body.p-home .lane .m{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.2vw,32px);color:var(--lc);line-height:1.05}
+/* the label inside the metric wraps; it must not inherit the metric's solid set */
+html[data-theme="ember"] body.p-home .lane .m span{line-height:1.45;display:inline-block}
 html[data-theme="ember"] body.p-home .lane .m span{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-top:8px}
 html[data-theme="ember"] body.p-home .lane h3{font-size:clamp(22px,2.2vw,30px);font-weight:400}
 html[data-theme="ember"] body.p-home .lane p{font-size:13.5px;color:var(--mut);margin-top:8px;max-width:60ch;line-height:1.65}
@@ -374,7 +376,7 @@ html[data-theme="ember"] body.p-home .l6{--lc:var(--ember);--lt:rgba(255,138,92,
 html[data-theme="ember"] body.p-home .contract{padding:96px 0}
 html[data-theme="ember"] body.p-home .contract .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:start}
 html[data-theme="ember"] body.p-home .contract .k{color:var(--violet)}
-html[data-theme="ember"] body.p-home .contract h2{font-size:clamp(28px,3.2vw,44px);margin:12px 0 16px;line-height:1.12}
+html[data-theme="ember"] body.p-home .contract h2{font-size:clamp(28px,3.2vw,44px);margin:12px 0 16px;}
 html[data-theme="ember"] body.p-home .contract p{color:var(--mut);margin-bottom:16px;max-width:56ch}
 html[data-theme="ember"] body.p-home .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
 html[data-theme="ember"] body.p-home .col{border-top:3px solid var(--cc);padding-top:16px}
@@ -432,7 +434,7 @@ html[data-theme="ember"] body.p-home .close .field{position:absolute;inset:0;bac
   linear-gradient(200deg,#1E1022 0%,#120B14 60%)}
 html[data-theme="ember"] body.p-home .close .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
 html[data-theme="ember"] body.p-home .close .k{color:var(--ember)}
-html[data-theme="ember"] body.p-home .close h2{font-size:clamp(38px,4.8vw,64px);line-height:1.03;margin:16px 0 20px}
+html[data-theme="ember"] body.p-home .close h2{font-size:clamp(38px,4.8vw,64px);margin:16px 0 20px}
 html[data-theme="ember"] body.p-home .close h2 .grad{font-style:italic}
 html[data-theme="ember"] body.p-home .close .sub{color:var(--mut);max-width:46ch;line-height:1.75}
 html[data-theme="ember"] body.p-home .close .ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:32px}
@@ -533,7 +535,7 @@ html[data-theme="ember"] body.p-home .form-slot button{background:linear-gradien
 html[data-theme="ember"] body.p-home .sig{margin-top:24px;color:var(--amber);font-size:26px}
 /* diagnostic list needs its own rhythm inside the prototype card */
 html[data-theme="ember"] body.p-home .hd-presets{display:flex;flex-direction:column;gap:8px}
-html[data-theme="ember"] body.p-home .hd-preset{display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:1.35;text-decoration:none}
+html[data-theme="ember"] body.p-home .hd-preset{display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:1.5;text-decoration:none}
 html[data-theme="ember"] body.p-home .hd-preset span{flex:0 0 auto;font-family:var(--mono);font-size:11px}
 html[data-theme="ember"] body.p-home .hd-preset::after{content:"→";margin-left:auto;padding-left:12px;opacity:.5}
 html[data-theme="ember"] body.p-home .hd-preset:hover::after{opacity:1}
@@ -670,7 +672,7 @@ html[data-theme="ember"] body[class*="p-case-studies"] .case-hero::before{
 html[data-theme="ember"] body[class*="p-case-studies"] .case-hero__in{position:relative;z-index:1}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-hero__kicker{color:var(--heat)}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-hero h1{
-  font-size:clamp(38px,min(6vw,8.4vh),82px);line-height:1.04;margin:20px 0 20px}
+  font-size:clamp(38px,min(6vw,8.4vh),82px);margin:20px 0 20px}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-hero__hook{
   font-size:clamp(16px,1.5vw,19px);line-height:1.7;color:var(--ink-muted);max-width:60ch}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-hero .hand{color:var(--amber)}
@@ -915,7 +917,7 @@ html[data-theme="ember"] body.p-home .form-slot :is(input,textarea){border-radiu
 
 /* --- T2.7 · receipts act: 43.7px button stagger, body leading leaking
    into h2, note crowding. Verified together, shipped together. --- */
-html[data-theme="ember"] body.p-home :is(.receipts,.labrow) h2{line-height:1.12}
+html[data-theme="ember"] body.p-home :is(.receipts,.labrow) h2{}
 html[data-theme="ember"] body.p-home .receipts .hand{margin-top:24px}
 html[data-theme="ember"] body.p-home .receipts .rrow{margin-top:20px}
 html[data-theme="ember"] body.p-home .rcell span{margin-bottom:16px}
@@ -1114,13 +1116,6 @@ html[data-theme="ember"] :is(body.p-patterns,body[class*="p-lab"],body.p-fit,bod
   color:var(--heat)}
 html[data-theme="ember"] :is(body.p-patterns,body[class*="p-lab"],body.p-fit,body.p-hire,body.p-screen,
   body[class*="p-writing"],body[class*="p-resources"]) .hand{color:var(--amber)}
-html[data-theme="ember"] :is(body.p-patterns,body[class*="p-lab"],body.p-fit,body.p-hire,body.p-screen,
-  body[class*="p-writing"],body[class*="p-resources"]) :is(h1,.t-hero,.scr-title,.hire-name){
-  line-height:1.06}
-/* section titles were inheriting body leading (1.65) — the same defect the
-   audit measured on the homepage h2s */
-html[data-theme="ember"] :is(body.p-patterns,body[class*="p-lab"],body.p-fit,body.p-hire,body.p-screen,
-  body[class*="p-writing"],body[class*="p-resources"]) .section-title{line-height:1.14}
 
 /* --- the page header becomes a gradient field, tinted by the group's heat --- */
 html[data-theme="ember"] :is(body.p-patterns,body[class*="p-lab"],body.p-fit,body.p-hire,body.p-screen,
@@ -1247,7 +1242,7 @@ html[data-theme="ember"] body.p-home .lanes .lane .m{
   display:block;font-size:clamp(19px,1.7vw,24px);line-height:1.2;white-space:nowrap}
 html[data-theme="ember"] body.p-home .lanes .lane .m span{
   margin-top:0;font-size:11.5px;letter-spacing:.14em}
-html[data-theme="ember"] body.p-home .lanes .lane h3{margin-top:0;line-height:1.2}
+html[data-theme="ember"] body.p-home .lanes .lane h3{margin-top:0}
 html[data-theme="ember"] body.p-home .lanes .lane p{max-width:72ch}
 
 /* --- 2 · the reading spine, with objects breaking out of it --- */
@@ -1545,6 +1540,38 @@ html[data-theme="ember"] .vid-grid{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));
   gap:24px;margin:24px 0}
 html[data-theme="ember"] .vid-note{margin:16px 0 32px}
+
+
+/* ============================================================================
+   LEADING — DECLARED ONCE PER COMPONENT (2026-08-18, Arpit's picks)
+   Arpit pointed at the hero and a section heading and said the line height
+   looked tight. Measured: the hero was 1.01 — 38px type with 38.4px of
+   leading, solid-set, wrapping to three lines on a phone with descenders
+   running at the next line's ascenders.
+   The audit found 78 breaches across 25 pages, and the real fault underneath:
+   ELEVEN separate declarations of heading leading, so the same component was
+   set at 1.01/1.04/1.10 (h1) and 1.03/1.12/1.15/1.20 (h2) depending on which
+   page you were on. Those eleven are now deleted; this is the single source.
+   Lesson 11 exactly: a component must DECLARE its critical properties.
+   Unitless on purpose — every heading here is on a clamp() size ramp, and a
+   px leading would go tight as the type grows.
+   Floors that must hold (tools/line-height-check.py):
+     >=40px 1.05 · 24-40px 1.15 · 18-24px 1.25 · <18px 1.40
+   ============================================================================ */
+html[data-theme="ember"] :is(h1,h2,.section-title,.section-title--lg,.t-hero,.scr-title){
+  line-height:1.15}
+html[data-theme="ember"] h3{line-height:1.30}
+/* dd carries prose but sits denser than a paragraph by design; 1.30 put it
+   under the body floor while wrapping to three lines. */
+html[data-theme="ember"] dd{line-height:1.5}
+/* the stragglers the audit named, each set on its own component rather than
+   left to inherit whatever block it happened to sit in */
+html[data-theme="ember"] a.hd-preset{line-height:1.5}
+html[data-theme="ember"] button.footer-back{line-height:1.4}
+/* the label wraps to two lines only in a narrow band around 1024 — leading
+   that is invisible at 390 and 1440 and tight in between. Testing two
+   breakpoints is not testing the range between them (lesson 7). */
+html[data-theme="ember"] .dyslexia-toggle span{line-height:1.45}
 
 /* ---- the site's two wide tables ------------------------------------------
    .ba-table  the before/after conversation on the AdTech case
@@ -1858,7 +1885,7 @@ html[data-theme="ember"] body.p-home main > section:not(.hero) .wrap > :is(p,h2,
 html[data-theme="ember"] body.p-home main > section:not(.hero) .wrap > div > :is(p,h2,h3){
   margin-left:0!important;margin-right:0!important}
 /* the heading also ran 40px/1.20 against the 44px/1.12 its siblings use */
-html[data-theme="ember"] body.p-home #how-i-lead h2{font-size:44px;line-height:1.12}
+html[data-theme="ember"] body.p-home #how-i-lead h2{font-size:44px;}
 @media (max-width:640px){
   html[data-theme="ember"] body.p-home #how-i-lead h2{font-size:30px}}
 
@@ -2066,7 +2093,7 @@ html[data-theme="ember"] .lback{flex-basis:100%;font-size:11.5px;color:#E86BFF;
 html[data-theme="ember"] body.p-home .voices{padding:96px 0;background:none}
 html[data-theme="ember"] body.p-home #lab{background:var(--bg-soft)}
 html[data-theme="ember"] body.p-home .voices .k{color:var(--violet)}
-html[data-theme="ember"] body.p-home .voices h2{font-size:clamp(28px,3.2vw,44px);line-height:1.12;margin:12px 0 16px}
+html[data-theme="ember"] body.p-home .voices h2{font-size:clamp(28px,3.2vw,44px);margin:12px 0 16px}
 html[data-theme="ember"] body.p-home .voices .lede{color:rgba(245,237,230,.76);margin-bottom:40px}
 
 /* product-page link cards (replacing the two business-video embeds) */

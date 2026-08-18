@@ -189,14 +189,11 @@ def run(urls, widths):
         # ── calibration: plant both defects, require RED on both, then remove ──
         cmd("Emulation.setDeviceMetricsOverride", width=390, height=900,
             deviceScaleFactor=1, mobile=True)
-        cmd("Page.navigate", url=urls[0]); time.sleep(2.0)
+        nav = cmd("Page.navigate", url=urls[0]); time.sleep(2.0)
         # calibrate on a page that actually loaded, or the whole run is theatre
-        boot = json.loads(cmd("Runtime.evaluate", returnByValue=True, expression=(
-            "(()=>JSON.stringify({len:(document.body?document.body.innerText:'').trim().length,"
-            "main:!!document.querySelector('main,#main')}))()"))["result"]["value"])
-        if boot["len"] < 200 or not boot["main"]:
-            print(f"[calibration] FAILED — {urls[0]} did not load "
-                  f"(body {boot['len']} chars, main={boot['main']}). Is :8000 up?")
+        if nav.get("errorText"):
+            print(f"[calibration] FAILED — {urls[0]} did not load ({nav['errorText']}). "
+                  "Is the server on :8000 up?")
             return 2
         cmd("Runtime.evaluate", returnByValue=True, expression=(
             "(()=>{const d=document.createElement('div');"
@@ -232,15 +229,11 @@ def run(urls, widths):
                 # 2026-08-17 when :8000 died mid-session and a 180-combination
                 # sweep came back green. An empty result must mean "looked and
                 # found nothing", never "there was nothing to look at".
-                loaded = cmd("Runtime.evaluate", returnByValue=True, expression=(
-                    "(()=>{const t=(document.body?document.body.innerText:'').trim();"
-                    "return JSON.stringify({len:t.length,"
-                    "main:!!document.querySelector('main,#main'),"
-                    "title:(document.title||'').slice(0,60)})})()"))["result"]["value"]
-                st = json.loads(loaded)
-                if st["len"] < 200 or not st["main"]:
-                    print(f"LOAD FAILURE {u} @{w} — body text {st['len']} chars, "
-                          f"main={st['main']}, title={st['title']!r}")
+                # Body LENGTH was the first attempt at this and was wrong: it
+                # called a 114-char OG-image template a dead server. The
+                # navigation's own errorText is the size-blind signal.
+                if nav.get("errorText"):
+                    print(f"LOAD FAILURE {u} @{w} — {nav['errorText']}")
                     print("  Refusing to report a verdict on a page that did not load. "
                           "Is the server on :8000 up?")
                     return 2

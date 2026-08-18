@@ -1087,7 +1087,9 @@ body {
   background: var(--bk-ember); color: var(--bk-paper);
 }
 .bk-device__mark svg { width: 32px; height: 23px; display: block; }
-.bk-device__label { font-family: var(--bk-mono); font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bk-ink-faint); }
+/* wraps to two lines under the device mark; at 8px it inherited the book's
+   display leading and set solid. The only leading breach in the book. */
+.bk-device__label { font-family: var(--bk-mono); font-size: 8px; line-height: 1.45; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bk-ink-faint); }
 .bk-device--on-dark .bk-device__mark { background: var(--bk-paper); color: #241830; }
 /* The AM device is a logotype — WCAG 1.4.3 exempts text that is part of a logo or brand name,
    so the reduced alpha here stays (measured 2.1:1, deliberately unfixed, 2026-07-31). */
