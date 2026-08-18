@@ -1128,6 +1128,11 @@ html[data-theme="ember"] .lab-wrap :is(p,dl,ul,ol):not(:has(pre)):not(.lab-note)
    homepage rebuild dropped #em-l, which both crashed the page script (TypeError,
    stopping every script after it) and removed the public email — a canon
    requirement (recruiters don't fill forms). */
+/* the compressed "read first" line — the three alternatives that used to
+   occupy 196px ABOVE the form now sit under it as one sentence. Nothing
+   was removed; it stopped standing between a reader and the ask. */
+html[data-theme="ember"] body.p-home .contact-read{
+  font-size:14px;line-height:1.6;margin:14px 0 0;color:var(--ink-muted)}
 html[data-theme="ember"] body.p-home .contact-alt{font-size:14px;color:var(--ink-muted);margin:16px 0 0}
 html[data-theme="ember"] body.p-home .contact-alt a{font-family:var(--ff-label);font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--link);text-decoration:none;border-bottom:1px solid color-mix(in srgb, var(--link) 45%, transparent);padding-bottom:2px}
 html[data-theme="ember"] body.p-home .contact-alt a:hover{color:var(--link-hover)}
