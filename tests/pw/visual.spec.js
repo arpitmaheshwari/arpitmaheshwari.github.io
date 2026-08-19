@@ -41,7 +41,9 @@ for (const p of PAGES) {
           // of the page covered.
           page.locator('.td-inline', { hasText: /\?v=/ }),
         ],
-        maxDiffPixels: 0,
+        // 4, not 0 — see playwright.config.js for why. One pixel of gradient
+        // antialiasing is not a change; 19 pixels (one character) still is.
+        maxDiffPixels: 4,
       });
     });
   }
