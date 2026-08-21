@@ -15,7 +15,9 @@ def tracked(pat,excl=()):
     return [f for f in out if not any(f.startswith(e) for e in excl)]
 
 facts={
- "html_pages": len(tracked('*.html',('book/','prototypes/'))),
+    # partials/ holds nav and footer FRAGMENTS stamped into pages by
+    # build-partials.py — sources, not pages a visitor can reach.
+ "html_pages": len(tracked('*.html',('book/','prototypes/','partials/'))),
  "stylesheet_bytes": os.path.getsize(os.path.join(R,'styles.css')),
  "runtime_deps": 0 if not os.path.exists(os.path.join(R,'package.json')) else -1,
  "third_party_domains": len(set(re.findall(r'https://([a-z.]+)/',sh("cat index.html")))

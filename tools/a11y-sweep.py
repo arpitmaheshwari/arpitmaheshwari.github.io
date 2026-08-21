@@ -303,7 +303,7 @@ def discover(docroot):
     urls = []
     for root, dirs, files in os.walk(docroot):
         dirs[:] = [d for d in dirs if not d.startswith(".") and d not in
-                   ("prototypes", "portfolio-sources", "node_modules")]
+                   ("prototypes", "portfolio-sources", "node_modules", "partials", "tests")]
         for f in sorted(files):
             if not f.endswith(".html") or f.startswith("_"):
                 continue

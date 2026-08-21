@@ -101,37 +101,13 @@ CANARY = ("<div><p style='line-height:8px;margin:0'>CANARY ONE overlapping line 
 
 
 def run(urls, widths):
-    port = 9750 + (os.getpid() % 150)
-    prof = tempfile.mkdtemp(prefix="ovl-")
-    proc = subprocess.Popen(
-        [CHROME, "--headless=new", f"--remote-debugging-port={port}", f"--user-data-dir={prof}",
-         "--no-first-run", "--remote-allow-origins=*", "--hide-scrollbars",
-         "--force-device-scale-factor=1", "about:blank"],
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    # shared harness — see tools/cdp.py
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+    from cdp import Browser
+    br = Browser(port_base=9862)
+    cmd = br.cmd
     try:
-        ws_url = None
-        for _ in range(80):
-            try:
-                tabs = json.load(urllib.request.urlopen(f"http://127.0.0.1:{port}/json"))
-                ws_url = next(t["webSocketDebuggerUrl"] for t in tabs if t["type"] == "page")
-                break
-            except Exception:
-                time.sleep(.15)
-        if not ws_url:
-            print("chrome never came up"); return 2
-        ws = websocket.create_connection(ws_url, timeout=90); n = [0]
 
-        def cmd(m, **kw):
-            n[0] += 1
-            ws.send(json.dumps({"id": n[0], "method": m, "params": kw}))
-            while True:
-                r = json.loads(ws.recv())
-                if r.get("id") == n[0]:
-                    if "error" in r:
-                        raise RuntimeError(r["error"])
-                    return r.get("result", {})
-
-        cmd("Page.enable"); cmd("Runtime.enable")
         probe = PROBE % (json.dumps(ALLOW), MIN_OVERLAP)
 
         # ── calibration: plant an overlap, require RED, then remove it ──────────
@@ -178,8 +154,7 @@ def run(urls, widths):
         print(f"{bad} overlapping element pair(s).")
         return 1 if bad else 0
     finally:
-        proc.send_signal(signal.SIGKILL); proc.wait(timeout=10)
-        shutil.rmtree(prof, ignore_errors=True)
+        br.close()
 
 
 def main():
@@ -194,7 +169,7 @@ def main():
         root = pathlib.Path(__file__).resolve().parent.parent
         for p in sorted(root.rglob("*.html")):
             rel = p.relative_to(root).as_posix()
-            if any(rel.startswith(x) for x in ("prototypes/", "portfolio-sources/", ".")):
+            if any(rel.startswith(x) for x in ("prototypes/", "portfolio-sources/", "partials/", "tests/", ".")):
                 continue
             if p.name.startswith("__"):
                 continue

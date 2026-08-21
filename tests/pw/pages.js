@@ -14,7 +14,10 @@ function walk(dir, out = []) {
     const full = path.join(dir, e.name);
     const rel = path.relative(ROOT, full).split(path.sep).join('/');
     if (e.isDirectory()) {
-      if (/^(\.|node_modules|prototypes|portfolio-sources|tests)/.test(rel.split('/')[0])) continue;
+      // partials/ holds the SOURCE fragments for the shared nav and footer.
+      // They are not pages and have no baseline; counting them made the
+      // dyslexia-toggle census report 38/41 when the real figure was 38/39.
+      if (/^(\.|node_modules|prototypes|portfolio-sources|tests|partials)/.test(rel.split('/')[0])) continue;
       if (rel.includes('og-images')) continue;
       walk(full, out);
     } else if (e.name.endsWith('.html') && !e.name.startsWith('__')) {

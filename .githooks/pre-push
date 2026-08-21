@@ -242,3 +242,20 @@ fi
 
 echo "pre-push: contrast OK."
 exit 0
+
+# ── partials are the source; a page that has drifted from them must not ship ──
+# The nav and footer live in partials/ and are stamped into every page by
+# tools/build-partials.py. Editing a page's nav by hand puts it back where it
+# was before the architecture review: 37 navs that were all supposed to be one.
+if [ -f tools/build-partials.py ]; then
+  echo "pre-push: partials (has any page drifted from the shared nav/footer?)…"
+  if ! python3 tools/build-partials.py --check | grep -q "drifted from the partials : 0"; then
+    python3 tools/build-partials.py --check
+    echo
+    echo "pre-push: BLOCKED — a page's nav or footer differs from partials/."
+    echo "  Edit partials/nav.html or partials/footer.html, then run:"
+    echo "     python3 tools/build-partials.py"
+    exit 1
+  fi
+  echo "pre-push: partials OK."
+fi
