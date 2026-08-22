@@ -77,7 +77,26 @@ class Browser:
         res = self.cmd("Page.navigate", url=url)
         if res.get("errorText"):
             raise RuntimeError(f"did not load: {url} — {res['errorText']}")
-        time.sleep(settle)
+
+        # `settle` is now a CEILING, not a bill. It used to be a blind sleep on
+        # every page, so a suite of six gates over 50 pages spent almost all of
+        # its wall clock waiting on pages that had been ready for a second and
+        # a half — 13% CPU across a 20-minute run. Ask the page instead, and
+        # leave as soon as the document, its fonts and its images are done.
+        deadline = time.time() + settle
+        floor = time.time() + 0.12   # let a first paint and any CSS transition land
+        probe = ("document.readyState === 'complete' && "
+                 "(!document.fonts || document.fonts.status === 'loaded') && "
+                 "[...document.images].every(i => !i.currentSrc || i.complete)")
+        while time.time() < deadline:
+            time.sleep(0.06)
+            if time.time() < floor:
+                continue
+            try:
+                if self.eval(probe) is True:
+                    break
+            except RuntimeError:
+                break   # mid-navigation context swap: fall through to the cap
         return res
 
     def eval(self, expression, await_promise=False):

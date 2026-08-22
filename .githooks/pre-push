@@ -61,6 +61,22 @@ curl -sf -o /dev/null "http://localhost:$PORT/" || { echo "pre-push: local serve
 # the verdicts further down where each gate's own message already lives.
 # Nothing about what is checked changes — only that the waiting overlaps.
 # ---------------------------------------------------------------------------
+# Scope the per-page gates to what actually changed. A stylesheet or a shared
+# partial touches every page, so those still force the full sweep — but a push
+# that edits two case studies should not re-render fifty. The image gate alone
+# was 8m42s over 100 page loads at 2% CPU: Chrome rendering pages nobody
+# touched. Correctness is unchanged; only the pages nothing could have altered
+# are skipped.
+if printf '%s\n' "$CHANGED" | grep -qE '\.(css|js)$|^partials/|^tools/'; then
+  IMG_SCOPE="--all"
+  echo "pre-push: shared assets changed — full sweep"
+else
+  IMG_SCOPE=$(printf '%s\n' "$CHANGED" | grep -E '\.html$' \
+              | sed "s|^|http://localhost:$PORT/|" | tr '\n' ' ')
+  [ -z "$IMG_SCOPE" ] && IMG_SCOPE="--all"
+  echo "pre-push: scoping page gates to the changed pages"
+fi
+
 GATEDIR=$(mktemp -d)
 trap 'kill $SRV 2>/dev/null; rm -f __ca_*.html; rm -rf "$GATEDIR"' EXIT INT TERM
 
@@ -87,7 +103,7 @@ echo "pre-push: starting the browser gates in parallel…"
 [ -f tools/component-identity-check.py ] && bg_gate component-identity \
   python3 tools/component-identity-check.py
 [ -f tools/image-alignment-check.py ] && bg_gate image-alignment \
-  python3 tools/image-alignment-check.py --all --widths 390,1440
+  python3 tools/image-alignment-check.py $IMG_SCOPE --widths 390,1440
 bg_gate contrast \
   python3 tools/contrast-audit.py --docroot . --widths 1440 \
   --exempt '.bk-device__label, .bk-device__mark, .grad' \
