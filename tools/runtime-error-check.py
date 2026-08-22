@@ -77,7 +77,8 @@ def main():
 
     pages = a.pages or sorted(
         p for p in glob.glob('**/*.html', recursive=True)
-        if not p.startswith(('partials/', 'node_modules/', 'tests/', 'prototypes/')))
+        if not p.startswith(('partials/', 'node_modules/', 'tests/', 'prototypes/'))
+           and not os.path.basename(p).startswith('__'))
 
     bad, total = [], 0
     with cdp.Browser() as br:

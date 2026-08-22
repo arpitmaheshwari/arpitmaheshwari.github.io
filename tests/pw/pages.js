@@ -7,7 +7,28 @@ const ROOT = path.resolve(__dirname, '..', '..');
 // retired term in this file (canon §1) and, worse, meant a new stub would be
 // silently uncovered. A stub declares itself with a meta refresh; that is the
 // property to test for.
-const isStub = p => /<meta[^>]+http-equiv=["']refresh["']/i.test(fs.readFileSync(p, 'utf8'));
+// A stub forwards two ways: a meta refresh, or a script calling
+// location.replace on load. /folio/ is the second kind — it shows "Opening
+// the portfolio…" for a moment and leaves. Baselining that is racing the
+// redirect, and it started failing the instant the redirect got faster.
+// Nothing about how it LOOKS is worth a screenshot; where it GOES is covered
+// by redirects.spec.js.
+const isStub = p => {
+  const html = fs.readFileSync(p, 'utf8');
+  if (/<meta[^>]+http-equiv=["']refresh["']/i.test(html)) return true;
+  // A script redirect alone is not enough: the homepage calls
+  // location.replace inside a handler to switch to the book edition, and a
+  // bare regex marked it a stub and broke its own redirect test. A stub is a
+  // page with essentially nothing ON it — that is the property to test.
+  if (!/location\.replace\(/.test(html)) return false;
+  const visible = html
+    .replace(/<(script|style|noscript|svg)\b[\s\S]*?<\/\1>/gi, ' ')
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return visible.length < 200;
+};
 
 function walk(dir, out = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -35,7 +56,9 @@ const PAGES = ALL.filter(r => !STUBS.includes(r));
 function stubTarget(rel) {
   const html = fs.readFileSync(path.join(ROOT, rel), 'utf8');
   const m = html.match(/<meta[^>]+http-equiv=["']refresh["'][^>]+content=["'][^;]*;\s*url=([^"']+)["']/i);
-  return m ? m[1].trim() : null;
+  if (m) return m[1].trim();
+  const j = html.match(/location\.replace\(\s*['"]([^'"]+)['"]/);
+  return j ? j[1].trim() : null;
 }
 
 module.exports = { PAGES, STUBS, ROOT, stubTarget };

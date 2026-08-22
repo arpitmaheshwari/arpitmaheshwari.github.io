@@ -36,7 +36,8 @@ return out;})()""" % (json.dumps(COMPONENTS), json.dumps(PROPS))
 def main():
     base = os.environ.get('BASE', 'http://localhost:8899')
     pages = sorted(p for p in glob.glob('**/*.html', recursive=True)
-                   if not p.startswith(('partials/', 'node_modules/', 'tests/', 'prototypes/')))
+                   if not p.startswith(('partials/', 'node_modules/', 'tests/', 'prototypes/'))
+                      and not os.path.basename(p).startswith('__'))
     seen = collections.defaultdict(lambda: collections.defaultdict(list))
     with cdp.Browser() as b:
         b.viewport(1440, 900)

@@ -28,6 +28,12 @@
   var PROJECT_ID = 'y2u3gbd89h';   // live since 2026-08-15
 
   if (!PROJECT_ID) return;                        // inactive by default
+
+  // Live domain only. Clarity RECORDS SESSIONS, so every headless gate run was
+  // not merely counted — it was replayed into the heatmaps as a visitor who
+  // scrolled the whole page and never moved a mouse. See analytics.js.
+  var LIVE_HOSTS = ['arpitmaheshwari.com', 'www.arpitmaheshwari.com'];
+  if (LIVE_HOSTS.indexOf(location.hostname) === -1) return;
   // respect an explicit do-not-track signal rather than arguing with it
   var dnt = navigator.doNotTrack === '1' || window.doNotTrack === '1' ||
             navigator.msDoNotTrack === '1';

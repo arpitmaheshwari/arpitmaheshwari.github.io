@@ -23,6 +23,8 @@ from html.parser import HTMLParser
 SHIPPED = set()
 SKIP_SCHEMES = ('mailto:', 'tel:', 'javascript:', 'data:', 'sms:')
 EXCLUDE_DIRS = ('node_modules/', 'tests/', 'prototypes/', '.git/')
+# Gates write __cv.html / __al.html into the repo root while they run.
+TEMP_PAGE = '__'
 
 
 class Links(HTMLParser):
@@ -99,7 +101,8 @@ def main():
                                         recursive=True)
                    if not any(d in os.path.relpath(p, root).replace(os.sep, '/')
                               for d in EXCLUDE_DIRS)
-                   and not os.path.relpath(p, root).startswith('partials/'))
+                   and not os.path.relpath(p, root).startswith('partials/')
+                   and not os.path.basename(p).startswith(TEMP_PAGE))
 
     ids = {}          # page path -> declared ids
     parsed = {}
