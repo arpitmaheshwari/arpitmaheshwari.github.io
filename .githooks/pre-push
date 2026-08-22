@@ -54,6 +54,47 @@ while [ $i -lt 40 ]; do
 done
 curl -sf -o /dev/null "http://localhost:$PORT/" || { echo "pre-push: local server did not start — skipping"; exit 0; }
 
+# ---------------------------------------------------------------------------
+# The heavy gates each boot their own Chrome and re-render the same 50 pages.
+# Run serially that was ~20 minutes of doing the identical work five times.
+# They are independent, so fire them all now, in the background, and collect
+# the verdicts further down where each gate's own message already lives.
+# Nothing about what is checked changes — only that the waiting overlaps.
+# ---------------------------------------------------------------------------
+GATEDIR=$(mktemp -d)
+trap 'kill $SRV 2>/dev/null; rm -f __ca_*.html; rm -rf "$GATEDIR"' EXIT INT TERM
+
+bg_gate() {  # bg_gate <name> <cmd...>
+  _n="$1"; shift
+  ( if "$@" >"$GATEDIR/$_n.log" 2>&1; then echo OK; else echo FAIL; fi \
+      >"$GATEDIR/$_n.status" ) &
+}
+# Print a finished gate's output and return its exit status.
+wait_gate() {  # wait_gate <name>
+  while [ ! -f "$GATEDIR/$1.status" ]; do sleep 0.3; done
+  cat "$GATEDIR/$1.log"
+  [ "$(cat "$GATEDIR/$1.status")" = OK ]
+}
+
+echo "pre-push: starting the browser gates in parallel…"
+[ -f tools/asset-load-check.py ] && bg_gate asset-load \
+  python3 tools/asset-load-check.py --docroot . --no-selftest \
+  "http://localhost:$PORT/" "http://localhost:$PORT/process/"
+[ -f tools/artifact-legibility-check.py ] && bg_gate artifact-legibility \
+  python3 tools/artifact-legibility-check.py
+[ -f tools/cta-viewport-check.py ] && bg_gate cta-viewport \
+  python3 tools/cta-viewport-check.py
+[ -f tools/component-identity-check.py ] && bg_gate component-identity \
+  python3 tools/component-identity-check.py
+[ -f tools/image-alignment-check.py ] && bg_gate image-alignment \
+  python3 tools/image-alignment-check.py --all --widths 390,1440
+bg_gate contrast \
+  python3 tools/contrast-audit.py --docroot . --widths 1440 \
+  --exempt '.bk-device__label, .bk-device__mark, .grad' \
+  --force-visible '.reveal' \
+  "http://localhost:$PORT/" "http://localhost:$PORT/book/"
+
+
 # Canon lint first — it is pure text, costs under a second, and catches the failure that actually
 # escaped review (a retired term still printed on the book cover). No reason to make you wait for
 # Chrome before hearing about a wrong word.
@@ -91,8 +132,7 @@ fi
 # tree; the runtime half re-checks the two pages that carry the most diagrams.
 if [ -f tools/asset-load-check.py ]; then
   echo "pre-push: asset load check (SVG validity + images actually painting)…"
-  if ! python3 tools/asset-load-check.py --docroot . --no-selftest \
-        "http://localhost:$PORT/" "http://localhost:$PORT/process/"; then
+  if ! wait_gate asset-load; then
     cat <<'MSG'
 
 pre-push: BLOCKED — a broken asset was detected above.
@@ -117,7 +157,7 @@ fi
 # remap) and every other gate passed them. Arpit found it by eye.
 if [ -f tools/artifact-legibility-check.py ]; then
   echo "pre-push: artifact legibility (can a reader see the text inside the diagrams?)…"
-  if ! python3 tools/artifact-legibility-check.py; then
+  if ! wait_gate artifact-legibility; then
     cat <<'MSG'
 
 pre-push: BLOCKED — text inside an artifact is invisible against its own background.
@@ -141,8 +181,22 @@ fi
 # must agree about what a component IS.
 if [ -f tools/cta-viewport-check.py ]; then
   echo "pre-push: CTA viewport identity (does a button change below 640px?)…"
-  if ! python3 tools/cta-viewport-check.py; then
+  if ! wait_gate cta-viewport; then
     echo "pre-push: BLOCKED — a call-to-action renders differently on phone and desktop."
+    exit 1
+  fi
+fi
+
+# The cta-viewport gate compares a button to ITSELF across widths on one page.
+# It cannot see two pages at once, which is how the same button shipped as a
+# flat gold slab on six case studies and a gradient pill on three. Arpit found
+# it by opening two case studies side by side.
+if [ -f tools/component-identity-check.py ]; then
+  echo "pre-push: component identity (does one component look the same on every page?)…"
+  if ! wait_gate component-identity; then
+    echo
+    echo "pre-push: BLOCKED — a component renders differently on different pages."
+    echo "  Name it once, on the component. A page-scoped rule is how this comes back."
     exit 1
   fi
 fi
@@ -221,11 +275,7 @@ echo "pre-push: contrast smoke check (homepage + book cover, 1440px)…"
 # (This comment lived INSIDE the \-continuation below and silently mangled the command —
 #  `sh -n` reported valid syntax while the invocation was broken. Comments never go between
 #  continued arguments.)
-python3 tools/contrast-audit.py \
-  --docroot . --widths 1440 \
-  --exempt '.bk-device__label, .bk-device__mark, .grad' \
-  --force-visible '.reveal' \
-  "http://localhost:$PORT/" "http://localhost:$PORT/book/"
+wait_gate contrast
 STATUS=$?
 
 if [ $STATUS -ne 0 ]; then
@@ -266,7 +316,7 @@ fi
 # an element has TEXT, so images were outside the suite entirely.
 if [ -f tools/image-alignment-check.py ]; then
   echo "pre-push: image alignment (is anything cut off, clipped or broken?)…"
-  if ! python3 tools/image-alignment-check.py --all --widths 390,1440; then
+  if ! wait_gate image-alignment; then
     echo
     echo "pre-push: BLOCKED — an image is off-viewport, clipped, broken or stretched."
     echo "  A figure a reader cannot see whole is a figure that is not making its point."
