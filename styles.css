@@ -20,6 +20,12 @@
 @layer base, utilities, emphasis;
 
 @layer base {
+/* A figure image centres in its figure. An img is inline-level, so one
+   given a max-width narrower than its figure sits hard LEFT and leaves
+   the remainder as dead space — 180px of it on the O2 case at 1440.
+   Stated on the component so no page has to remember it. */
+figure > img, figure > svg, figure > video, figure > picture{display:block;margin-inline:auto}
+
 /* ============================================================
    Arpit Maheshwari — Portfolio styles
    Cleaned up Phase 11J: pruned dead rules, kept only what

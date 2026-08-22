@@ -43,6 +43,18 @@ module.exports = async function settle(page) {
     throw new Error('page never rendered content: size=' + size());
   });
 
+  // Lazy images below the fold never load in a screenshot run, so the
+  // baseline recorded a 2px white line where the O2 app screens should be —
+  // the suite was structurally blind to every below-fold image, which is the
+  // exact class of defect it exists to catch. Force them eager and wait for
+  // the bytes to actually decode before capturing.
+  await page.evaluate(async () => {
+    document.querySelectorAll('img[loading="lazy"],iframe[loading="lazy"]')
+      .forEach(e => e.loading = 'eager');
+    await Promise.all([...document.images].map(i =>
+      i.complete ? Promise.resolve() : i.decode().catch(() => {})));
+  });
+
   // reveal-on-scroll: walk the page so every IntersectionObserver fires, then
   // wait for the revealed count to STOP MOVING. A fixed sleep here produced a
   // 1-in-3 flake that was always the identical pixel count — the tell that it

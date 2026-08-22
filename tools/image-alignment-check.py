@@ -19,6 +19,7 @@ WHAT IT CHECKS, per image and inline <svg>, at every width
   BROKEN         a raster that failed to load (naturalWidth 0)
   STRETCHED      rendered aspect ratio differs from the file's by >2%
   UNSIZED        no width/height attributes and no CSS size — a layout shift
+  OFF-CENTRE     max-width narrower than its container, hard against one side
                  waiting for a slow connection
 
 LAZY IMAGES ARE FORCED EAGER FIRST. The first version of this measurement
@@ -100,6 +101,31 @@ PROBE = r"""
         if (skew > 0.02 && !isSvg && fit !== 'cover' && fit !== 'contain') {
           out.push({kind:'STRETCHED', src:name,
                     detail:`content box ${shown.toFixed(2)}:1, file is ${natural.toFixed(2)}:1 (${Math.round(skew*100)}% off)`});
+        }
+      }
+      // OFF-CENTRE. Every other check here asks about the image alone. This
+      // one asks about the image AGAINST THE SPACE IT WAS GIVEN — an <img> is
+      // inline-level, so a max-width narrower than its container leaves the
+      // remainder as dead space on one side. The O2 case had 180px of it.
+      const par = el.parentElement;
+      if (par && cs.position !== 'absolute' && cs.position !== 'fixed') {
+        const pr = par.getBoundingClientRect(), ps = getComputedStyle(par);
+        const cL = pr.left + parseFloat(ps.paddingLeft || 0);
+        const cR = pr.right - parseFloat(ps.paddingRight || 0);
+        const gapL = b.left - cL, gapR = cR - b.right;
+        // A sibling beside it means a deliberate multi-column arrangement,
+        // not leftover space — that is composition, and this gate has no
+        // opinion on it.
+        const rowMate = [...par.children].some(sib => {
+          if (sib === el) return false;
+          const sr = sib.getBoundingClientRect();
+          return sr.width > 8 && sr.height > 8 &&
+                 sr.top < b.bottom - 4 && sr.bottom > b.top + 4;
+        });
+        if (!rowMate && gapL + gapR >= 24 && Math.abs(gapL - gapR) > 2) {
+          out.push({kind:'OFF-CENTRE', src:name,
+            detail:`${Math.round(b.width)}px inside ${Math.round(cR-cL)}px — `
+                 + `${Math.round(gapL)}px left, ${Math.round(gapR)}px right`});
         }
       }
       const hasAttrs = el.getAttribute('width') && el.getAttribute('height');
