@@ -92,6 +92,18 @@ wait_gate() {  # wait_gate <name>
   [ "$(cat "$GATEDIR/$1.status")" = OK ]
 }
 
+# Static gates: no browser, no network, under a second each. They run inline
+# because they are cheaper than the bookkeeping to background them.
+for g in link-integrity share-preview prose; do
+  [ -f "tools/$g-check.py" ] || continue
+  echo "pre-push: $g…"
+  if ! python3 "tools/$g-check.py"; then
+    echo
+    echo "pre-push: BLOCKED — see the $g findings above."
+    exit 1
+  fi
+done
+
 echo "pre-push: starting the browser gates in parallel…"
 [ -f tools/asset-load-check.py ] && bg_gate asset-load \
   python3 tools/asset-load-check.py --docroot . --no-selftest \
@@ -104,6 +116,10 @@ echo "pre-push: starting the browser gates in parallel…"
   python3 tools/component-identity-check.py
 [ -f tools/image-alignment-check.py ] && bg_gate image-alignment \
   python3 tools/image-alignment-check.py $IMG_SCOPE --widths 390,1440
+[ -f tools/runtime-error-check.py ] && bg_gate runtime-error \
+  python3 tools/runtime-error-check.py --base "http://localhost:$PORT"
+[ -f tools/interaction-state-check.py ] && bg_gate interaction-state \
+  python3 tools/interaction-state-check.py --base "http://localhost:$PORT"
 bg_gate contrast \
   python3 tools/contrast-audit.py --docroot . --widths 1440 \
   --exempt '.bk-device__label, .bk-device__mark, .grad' \
@@ -336,6 +352,27 @@ if [ -f tools/image-alignment-check.py ]; then
     echo
     echo "pre-push: BLOCKED — an image is off-viewport, clipped, broken or stretched."
     echo "  A figure a reader cannot see whole is a figure that is not making its point."
+    exit 1
+  fi
+fi
+
+# Nothing here ever opened the console, and nothing ever touched the page.
+# A script that throws, an asset that 404s, or a hover that paints ink on its
+# own colour was invisible to every other gate.
+if [ -f tools/runtime-error-check.py ]; then
+  echo "pre-push: runtime errors (does the page throw, or ask for something it never gets?)…"
+  if ! wait_gate runtime-error; then
+    echo
+    echo "pre-push: BLOCKED — a page throws, logs an error, or a request fails."
+    exit 1
+  fi
+fi
+
+if [ -f tools/interaction-state-check.py ]; then
+  echo "pre-push: interaction states (hover, keyboard focus, opened panels)…"
+  if ! wait_gate interaction-state; then
+    echo
+    echo "pre-push: BLOCKED — the page breaks once a reader touches it."
     exit 1
   fi
   echo "pre-push: image alignment OK."

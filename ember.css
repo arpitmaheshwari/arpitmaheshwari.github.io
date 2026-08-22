@@ -2199,5 +2199,14 @@ html[data-theme="ember"] body.p-case-studies-planit .mascot-row .mascot{width:au
    @layer base, where .xi-* in @layer utilities outranked them and six
    case studies went back to a flat gold slab. This is what emphasis is
    for: the layer above the page-level utilities. */
-html[data-theme="ember"] :is(.btn-a,.lbl-pill-bg,.btn-label,.lbl-badge-bg){background:var(--g-hot);color:var(--cta-ink);border-radius:999px;font-family:var(--ff-label);text-transform:uppercase;letter-spacing:.08em;font-size:var(--fs-eyebrow);font-weight:600}
+html[data-theme="ember"] :is(.btn-a,.lbl-pill-bg,.btn-label,.lbl-badge-bg){background:var(--g-hot);color:var(--cta-ink);border-radius:999px;font-family:var(--ff-label);text-transform:uppercase;letter-spacing:.08em;font-size:var(--fs-eyebrow);font-weight:600
+
+}
+
+/* The first thing a keyboard reader meets on every page. It declared
+   color:var(--bg) in styles.css, but an ember link rule outranked it and
+   painted cream on gold at 1.36:1 — and the focus ring was gold on gold,
+   i.e. invisible. Same disease as the CTA: a component that does not
+   declare its own ink at a specificity that holds. */
+html[data-theme="ember"] .skip-link{background:var(--g-hot);color:var(--cta-ink);outline-color:var(--cta-ink);outline-offset:2px}
 }

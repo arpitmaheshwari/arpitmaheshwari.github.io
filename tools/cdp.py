@@ -49,6 +49,11 @@ class Browser:
             raise RuntimeError("chrome never came up")
         self.ws = websocket.create_connection(ws_url, timeout=timeout)
         self._id = 0
+        # cmd() used to throw away every message that was not the reply it was
+        # waiting for — which is every console error, every exception and every
+        # failed request Chrome reported. They are kept now so a gate can ask
+        # what actually went wrong on the page, not just how it looked.
+        self.events = []
         self.cmd("Page.enable")
         self.cmd("Runtime.enable")
 
@@ -57,6 +62,10 @@ class Browser:
         self.ws.send(json.dumps({"id": self._id, "method": method, "params": params}))
         while True:
             r = json.loads(self.ws.recv())
+            if "method" in r:
+                self.events.append(r)
+                if len(self.events) > 4000:      # a runaway page must not eat RAM
+                    del self.events[:2000]
             if r.get("id") == self._id:
                 if "error" in r:
                     raise RuntimeError(f"{method}: {r['error']}")
@@ -98,6 +107,33 @@ class Browser:
             except RuntimeError:
                 break   # mid-navigation context swap: fall through to the cap
         return res
+
+    def pump(self, seconds=1.0):
+        """Read the socket for a while so events actually arrive.
+
+        cmd() only reads while it waits for its own reply, so between commands
+        Chrome's events sit unread in the socket and a plain sleep() collects
+        nothing. This is what makes console errors and failed requests visible.
+        """
+        end = time.time() + seconds
+        old_to = self.ws.gettimeout()
+        try:
+            while time.time() < end:
+                self.ws.settimeout(max(0.05, end - time.time()))
+                try:
+                    r = json.loads(self.ws.recv())
+                except Exception:
+                    break
+                if "method" in r:
+                    self.events.append(r)
+        finally:
+            self.ws.settimeout(old_to)
+
+    def drain(self, *methods):
+        """Take the buffered CDP events, optionally only the named methods."""
+        got = [e for e in self.events if not methods or e.get("method") in methods]
+        self.events = []
+        return got
 
     def eval(self, expression, await_promise=False):
         r = self.cmd("Runtime.evaluate", expression=expression,
