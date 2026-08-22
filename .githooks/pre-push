@@ -259,3 +259,18 @@ if [ -f tools/build-partials.py ]; then
   fi
   echo "pre-push: partials OK."
 fi
+
+# ── images: cut off, clipped, broken, stretched or unsized ────────────────────
+# Added after Arpit found figures sliced off the left edge on /case-studies/o2
+# while five gates were green. Every other gate here begins by asking whether
+# an element has TEXT, so images were outside the suite entirely.
+if [ -f tools/image-alignment-check.py ]; then
+  echo "pre-push: image alignment (is anything cut off, clipped or broken?)…"
+  if ! python3 tools/image-alignment-check.py --all --widths 390,1440; then
+    echo
+    echo "pre-push: BLOCKED — an image is off-viewport, clipped, broken or stretched."
+    echo "  A figure a reader cannot see whole is a figure that is not making its point."
+    exit 1
+  fi
+  echo "pre-push: image alignment OK."
+fi
