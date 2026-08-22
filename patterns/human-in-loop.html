@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Human-in-Loop Patterns: Approve/Reject/Override</title>
+<title>Human-in-Loop Patterns: Approve/Reject/Override — Arpit Maheshwari</title>
 <meta name="description" content="Five patterns for human-in-the-loop AI systems — approve/reject, editable recommendations, expert overrides, escalation ladders, and feedback loops.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
@@ -52,7 +52,7 @@
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../styles.css?v=9f614230">
-<link rel="stylesheet" href="../ember.css?v=b4c85530">
+<link rel="stylesheet" href="../ember.css?v=bcaad079">
 </head>
 <body class="p-patterns-human-in-loop">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -85,7 +85,7 @@
 <main id="main" class="section page-bg"><div class="xi-patterns-human-in-loop-005">
 
   <section class="xi-patterns-human-in-loop-012">
-    <p class="lead xi-patterns-human-in-loop-013">An override is the user telling you what the training data missed. Treat it as noise and you throw the lesson away. Treat it as signal and the next version arrives smarter. Every pattern here keeps the person in command when the stakes outgrow the model's confidence — and logs what they do about it.</p>
+    <p class="lead xi-patterns-human-in-loop-013">An override is the user telling you what the training data missed. Treat it as noise and you throw the lesson away. Treat it as signal and the next version arrives smarter. Every pattern here keeps the person in command when the stakes outgrow the model’s confidence — and logs what they do about it.</p>
     
     <!-- Abstract UI Diagram: The Override Modal -->
     <div class="card-wire xi-patterns-human-in-loop-014">
@@ -219,7 +219,7 @@
   <!-- LIVE DEMO — same demo as the book's field guide -->
   <section class="xi-patterns-human-in-loop-012">
     <h2 class="section-title xi-patterns-human-in-loop-033">Try it — the pattern, live</h2>
-    <p class="u-ui xi-patterns-human-in-loop-024">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+    <p class="u-ui xi-patterns-human-in-loop-024">The same live demo that runs in the book edition’s field guide. Synthetic data; nothing leaves the page.</p>
     <div data-demo="loop"></div>
   </section>
 
@@ -233,15 +233,15 @@
 
   <section class="xi-patterns-human-in-loop-012">
     <h2 class="section-title xi-patterns-human-in-loop-034">2. The Editable Recommendation</h2>
-    <p class="u-body xi-patterns-human-in-loop-035">The model hands over a draft — an email, a document, a decision. The person edits it before it ships. "AI suggested this email subject. You modified it. Predicted open rate increased from 22% to 25%. Ship it?"</p>
-    <p class="u-body">A draft you can edit respects the expertise you brought to the screen. You verify the model's thinking <em>while</em> you improve it. After a few rounds you know its blind spots, and you edit for them on sight.</p>
-    <p class="u-body xi-patterns-human-in-loop-036"><strong>Choose it for</strong> personalized content like email, drafting like documents and code, or creative output like design suggestions.</p>
+    <p class="u-body xi-patterns-human-in-loop-035">The model hands over a draft — an email, a document, a decision. The person edits it before it ships. “AI suggested this email subject. You modified it. Predicted open rate increased from 22% to 25%. Ship it?”</p>
+    <p class="u-body">A draft you can edit respects the expertise you brought to the screen. You verify the model’s thinking <em>while</em> you improve it. After a few rounds you know its blind spots, and you edit for them on sight.</p>
+    <p class="u-body xi-patterns-human-in-loop-036"><strong>Choose it for</strong> personalised content like email, drafting like documents and code, or creative output like design suggestions.</p>
   </section>
 
   <section class="xi-patterns-human-in-loop-012">
     <h2 class="section-title xi-patterns-human-in-loop-034">3. The Expert Override</h2>
-    <p class="u-body xi-patterns-human-in-loop-035">The model recommends action X at high confidence. The user overrides with action Y. The system logs the swap and asks <em>why</em>. "You chose Y instead of X. Why?" → the user explains → the model has a new lesson.</p>
-    <p class="u-body">An override is not a failure. It is the user pointing at something the model couldn't see. Track the overrides and the patterns surface: "90% of the time users override Prediction B, they cite Domain Concern X. Add that to the model."</p>
+    <p class="u-body xi-patterns-human-in-loop-035">The model recommends action X at high confidence. The user overrides with action Y. The system logs the swap and asks <em>why</em>. “You chose Y instead of X. Why?” → the user explains → the model has a new lesson.</p>
+    <p class="u-body">An override is not a failure. It is the user pointing at something the model couldn’t see. Track the overrides and the patterns surface: “90% of the time users override Prediction B, they cite Domain Concern X. Add that to the model.”</p>
     <p class="u-body xi-patterns-human-in-loop-036"><strong>Choose it when</strong> you want the model to get better in production. Log the override, name the missing feature, retrain, repeat.</p>
   </section>
 
@@ -266,8 +266,8 @@
 
   <section class="xi-patterns-human-in-loop-012">
     <h2 class="section-title xi-patterns-human-in-loop-034">5. The Feedback Loop (Learn From Corrections)</h2>
-    <p class="u-body xi-patterns-human-in-loop-035">Every correction a person makes — a reject, an edit, a line of explanation — is a small lesson the model hasn't learned yet. Catch it the moment it happens, and once a month let the month's worth of lessons retrain the thing.</p>
-    <p class="u-body">"In May, you corrected 120 recommendations. Top theme: you rejected deals in healthcare when industry was &lt;2 years old. We've added 'company age' as a feature. Accuracy improved from 81% to 85% in June."</p>
+    <p class="u-body xi-patterns-human-in-loop-035">Every correction a person makes — a reject, an edit, a line of explanation — is a small lesson the model hasn’t learned yet. Catch it the moment it happens, and once a month let the month’s worth of lessons retrain the thing.</p>
+    <p class="u-body">“In May, you corrected 120 recommendations. Top theme: you rejected deals in healthcare when industry was &lt;2 years old. We’ve added 'company age’ as a feature. Accuracy improved from 81% to 85% in June.”</p>
     <p class="u-body xi-patterns-human-in-loop-036"><strong>The loop pays off:</strong> the model sharpens, the user trusts it more, the trust buys more feedback, and the feedback sharpens it again.</p>
   </section>
 
@@ -279,12 +279,12 @@
   <section class="xi-patterns-human-in-loop-012">
     <h2 class="section-title xi-patterns-human-in-loop-033">Ship it: the checklist.</h2>
     <ul class="u-body xi-patterns-human-in-loop-043">
-      <li class="xi-patterns-human-in-loop-044"><strong>Name the human's role:</strong> verifier who approves or rejects, editor who modifies, or expert who overrides with a reason?</li>
+      <li class="xi-patterns-human-in-loop-044"><strong>Name the human’s role:</strong> verifier who approves or rejects, editor who modifies, or expert who overrides with a reason?</li>
       <li class="xi-patterns-human-in-loop-044"><strong>Draw the decision boundary:</strong> what does the model decide alone, what needs a review, what needs an expert?</li>
-      <li class="xi-patterns-human-in-loop-044"><strong>Log every decision:</strong> the recommendation, the human's call, the confidence, the reasoning.</li>
+      <li class="xi-patterns-human-in-loop-044"><strong>Log every decision:</strong> the recommendation, the human’s call, the confidence, the reasoning.</li>
       <li class="xi-patterns-human-in-loop-044"><strong>Read the divergence:</strong> weekly, see where humans override; monthly, find the patterns; quarterly, ship the fixes and <abbr class="xi-patterns-human-in-loop-037" tabindex="0" title="To update and improve a machine learning model by feeding it new data from user corrections and feedback">retrain</abbr>.</li>
-      <li class="xi-patterns-human-in-loop-044"><strong>Close the loop out loud:</strong> tell users "Your feedback improved accuracy by X%."</li>
-      <li class="xi-patterns-human-in-loop-044"><strong>Guard against <abbr class="xi-patterns-human-in-loop-037" tabindex="0" title="Cognitive overload and decreased decision quality that occurs when users must make too many approval decisions in succession">approval fatigue</abbr>:</strong> don't make a person rubber-stamp 100 low-risk items a day.</li>
+      <li class="xi-patterns-human-in-loop-044"><strong>Close the loop out loud:</strong> tell users “Your feedback improved accuracy by X%.”</li>
+      <li class="xi-patterns-human-in-loop-044"><strong>Guard against <abbr class="xi-patterns-human-in-loop-037" tabindex="0" title="Cognitive overload and decreased decision quality that occurs when users must make too many approval decisions in succession">approval fatigue</abbr>:</strong> don’t make a person rubber-stamp 100 low-risk items a day.</li>
     </ul>
   </section>
 
@@ -298,7 +298,7 @@
         <tbody>
           <tr class="xi-patterns-human-in-loop-040"><td class="xi-patterns-human-in-loop-042"><strong>Full automation</strong></td><td class="xi-patterns-human-in-loop-042">Instant</td><td class="xi-patterns-human-in-loop-042">Low</td><td class="xi-patterns-human-in-loop-042">Low-stakes, internal</td></tr>
           <tr class="xi-patterns-human-in-loop-040"><td class="xi-patterns-human-in-loop-042"><strong>Approve/Reject</strong></td><td class="xi-patterns-human-in-loop-042">Fast</td><td class="xi-patterns-human-in-loop-042">High</td><td class="xi-patterns-human-in-loop-042">High-volume, moderate-stakes</td></tr>
-          <tr class="xi-patterns-human-in-loop-040"><td class="xi-patterns-human-in-loop-042"><strong>Editable</strong></td><td class="xi-patterns-human-in-loop-042">Medium</td><td class="xi-patterns-human-in-loop-042">Very high</td><td class="xi-patterns-human-in-loop-042">Creative, personalization</td></tr>
+          <tr class="xi-patterns-human-in-loop-040"><td class="xi-patterns-human-in-loop-042"><strong>Editable</strong></td><td class="xi-patterns-human-in-loop-042">Medium</td><td class="xi-patterns-human-in-loop-042">Very high</td><td class="xi-patterns-human-in-loop-042">Creative, personalisation</td></tr>
           <tr><td class="xi-patterns-human-in-loop-042"><strong>Expert review</strong></td><td class="xi-patterns-human-in-loop-042">Slow</td><td class="xi-patterns-human-in-loop-042">Very high</td><td class="xi-patterns-human-in-loop-042">Critical decisions</td></tr>
         </tbody>
       </table>
@@ -308,8 +308,8 @@
   <section class="card-gold xi-patterns-human-in-loop-046">
     <h3 class="card-title xi-patterns-human-in-loop-035">Where this pattern earned its keep</h3>
     <ul class="t-cap-loose xi-patterns-human-in-loop-047">
-      <li class="xi-patterns-human-in-loop-048"><strong><a class="link-gold" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> analysts read the model's scores and override them with domain expertise.</li>
-      <li class="xi-patterns-human-in-loop-048"><strong><a class="link-gold" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> media buyers approve or reject the algorithm's calls, and the rejections train the next ones.</li>
+      <li class="xi-patterns-human-in-loop-048"><strong><a class="link-gold" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> analysts read the model’s scores and override them with domain expertise.</li>
+      <li class="xi-patterns-human-in-loop-048"><strong><a class="link-gold" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> media buyers approve or reject the algorithm’s calls, and the rejections train the next ones.</li>
       <li class="xi-patterns-human-in-loop-048"><strong><a class="link-gold" href="../case-studies/orgos.html">OrgOS</a>:</strong> peer review and feedback loops running at the scale of a whole company.</li>
     </ul>
   </section>
@@ -332,7 +332,7 @@
   <section class="measure-t">
     <div class="xi-patterns-human-in-loop-055">
       <div class="eyebrow xi-patterns-human-in-loop-048">Where this breaks — do not use it here</div>
-      <p class="u-body xi-patterns-human-in-loop-056">Watch the override rate: near zero means the loop is theater and the human is a rubber stamp — retire the review step or raise its stakes. Under volume pressure, review queues decay into approve-all; if you can't staff the loop honestly, narrow what enters it instead of pretending.</p>
+      <p class="u-body xi-patterns-human-in-loop-056">Watch the override rate: near zero means the loop is theater and the human is a rubber stamp — retire the review step or raise its stakes. Under volume pressure, review queues decay into approve-all; if you can’t staff the loop honestly, narrow what enters it instead of pretending.</p>
     </div>
   </section>
 

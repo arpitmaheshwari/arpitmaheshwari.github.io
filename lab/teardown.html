@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f2">
 <noscript></noscript>
 <link rel="stylesheet" href="../styles.css?v=9f614230">
-<link rel="stylesheet" href="../ember.css?v=b4c85530">
+<link rel="stylesheet" href="../ember.css?v=bcaad079">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PFY6ME99K8');</script>
@@ -51,7 +51,7 @@
     <div class="lab-wrap">
       <p class="lab-kicker">The Lab · 03 · Teardown</p>
       <h1 class="section-title xi-lab-teardown-003">How this site is built</h1>
-      <p class="lab-lede">A designer's portfolio is a strange artifact: it is the one deliverable where the medium is also the sample. So here is the build, measured rather than described — <strong>what it costs, what it depends on, and what is still missing</strong>.</p>
+      <p class="lab-lede">A designer’s portfolio is a strange artifact: it is the one deliverable where the medium is also the sample. So here is the build, measured rather than described — <strong>what it costs, what it depends on, and what is still missing</strong>.</p>
       <p class="hand hand-note" aria-hidden="true">measured, not estimated — every number</p>
       <div class="lab-note">
         <b>Every number on this page was measured, not estimated.</b> The commands are printed beside the results so you can run them against the repository yourself. Where something is unmeasured, it says so.
@@ -80,7 +80,7 @@
           <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">What</th><th scope="col" role="columnheader">Measured</th><th scope="col" role="columnheader">How</th></tr></thead>
           <tbody role="rowgroup">
             <tr role="row"><td role="cell">Hand-written HTML pages</td><td role="cell" data-label="Measured"><b>43</b></td><td role="cell" data-label="How"><span class="td-inline">find . -name "*.html"</span>, excluding the book and print sources</td></tr>
-            <tr role="row"><td role="cell">Stylesheet, entire site</td><td role="cell" data-label="Measured"><b>278.0 KB</b></td><td role="cell" data-label="How"><span class="td-inline">stat -f "%z" styles.css</span> → 284,670 bytes, unminified</td></tr>
+            <tr role="row"><td role="cell">Stylesheet, entire site</td><td role="cell" data-label="Measured"><b>278.0 KB</b></td><td role="cell" data-label="How"><span class="td-inline">stat -f “%z” styles.css</span> → 284,670 bytes, unminified</td></tr>
             <tr role="row"><td role="cell">Runtime dependencies, classic site</td><td role="cell" data-label="Measured"><b>0</b></td><td role="cell" data-label="How">No root <span class="td-inline">package.json</span>, no <span class="td-inline">node_modules</span>, no bundler config</td></tr>
             <tr role="row"><td role="cell">Third-party domains serving code</td><td role="cell" data-label="Measured"><b>2</b></td><td role="cell" data-label="How">Google Analytics and Microsoft Clarity (heatmaps, added 2026-08-15; honours Do-Not-Track). Attention measurement (scroll depth, section dwell) is first-party: <span class="td-inline">attention.js</span>, 159 lines, no network of its own. Both load async and gate nothing on first paint. Google Fonts left on 2026-08-14 when the nine font files moved to this origin.</td></tr>
             <tr role="row"><td role="cell">Interactive pattern demos</td><td role="cell" data-label="Measured"><b>9</b></td><td role="cell" data-label="How">All in <span class="td-inline">patterns/demos.js</span> — 234 lines, 12.9 KB</td></tr>
@@ -133,7 +133,7 @@
       <div class="td-block">
         <h3>One type scale, written down, enforced by refusal</h3>
         <div class="lab-body">
-          <p>Every size on the classic site comes from twelve custom properties — <span class="td-inline">--fs-eyebrow</span> through <span class="td-inline">--fs-display-xl</span> — declared once in <span class="td-inline">styles.css</span> and documented in a 174-line spec in the repository. The rule in that file is one sentence: <strong>if a value isn't in this file, it doesn't ship.</strong> Roughly twenty earlier one-off sizes are listed explicitly as retired, so a stray <span class="td-inline">font-size: 17px</span> reads as a bug rather than a preference.</p>
+          <p>Every size on the classic site comes from twelve custom properties — <span class="td-inline">--fs-eyebrow</span> through <span class="td-inline">--fs-display-xl</span> — declared once in <span class="td-inline">styles.css</span> and documented in a 174-line spec in the repository. The rule in that file is one sentence: <strong>if a value isn’t in this file, it doesn’t ship.</strong> Roughly twenty earlier one-off sizes are listed explicitly as retired, so a stray <span class="td-inline">font-size: 17px</span> reads as a bug rather than a preference.</p>
           <p>Writing this page is what caught the drift described at the bottom of it.</p>
         </div>
       </div>
@@ -153,7 +153,7 @@
       <p class="eyebrow">One honest exception</p>
       <h2 class="section-title">The book view does use React</h2>
       <div class="lab-body">
-        <p>"Zero dependencies" is true of the classic site you are reading and false of <a class="xi-lab-teardown-006" href="../book/">the book edition</a>, which is a React application — around 120 KB of my own code plus React and React DOM, <strong>self-hosted from the repository rather than a CDN</strong>, so the page still has no third-party runtime.</p>
+        <p>“Zero dependencies” is true of the classic site you are reading and false of <a class="xi-lab-teardown-006" href="../book/">the book edition</a>, which is a React application — around 120 KB of my own code plus React and React DOM, <strong>self-hosted from the repository rather than a CDN</strong>, so the page still has no third-party runtime.</p>
         <p>Two views of one portfolio, built two ways, was a deliberate exercise: the classic site proves I can work without a framework, and the book proves I can work with one. It also means I have opinions about both that came from shipping, not reading.</p>
       </div>
     </div>
@@ -162,7 +162,7 @@
   <!-- ===================== WHAT'S MISSING ===================== -->
   <section class="section act-cream">
     <div class="lab-wrap">
-      <p class="eyebrow">What's missing</p>
+      <p class="eyebrow">What’s missing</p>
       <div class="counter">
         <span class="c-l">The strongest objection, kept in</span>
         <p>&ldquo;A hand-built static site doesn&rsquo;t prove you can ship a modern stack.&rdquo; The book edition of this same site runs React &mdash; the stack shows up where the job needs it and stays out where it doesn&rsquo;t. That allocation, not the absence of a framework, is the decision on display here.</p>
@@ -171,7 +171,7 @@
       <p class="lab-lede">A teardown that only lists strengths is a brochure. These are real, and they are the next things I would fix.</p>
       <ul class="td-gaps">
         <li><b>There were no automated tests at all until this week.</b> The repository contained zero test files and an empty CI directory; verification was a manual checklist — every page at two widths, no overflow, console clean. <span class="xi-lab-teardown-007">The 42 assertions behind <a class="xi-lab-teardown-006" href="./loop.html">loop.js</a> are the first tests in this codebase</span>, which is a genuine gap being closed, not a strength.</li>
-        <li class="is-fixed"><b>No continuous integration.</b> Nothing ran those 42 tests on push. A <a class="xi-lab-teardown-006" href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io/blob/master/.github/workflows/test-lab.yml">GitHub Action</a> now runs <span class="td-inline">node lab/loop.test.js</span> on every push and pull request touching <span class="td-inline">lab/</span> — this repository's first CI job.</li>
+        <li class="is-fixed"><b>No continuous integration.</b> Nothing ran those 42 tests on push. A <a class="xi-lab-teardown-006" href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io/blob/master/.github/workflows/test-lab.yml">GitHub Action</a> now runs <span class="td-inline">node lab/loop.test.js</span> on every push and pull request touching <span class="td-inline">lab/</span> — this repository’s first CI job.</li>
         <li><b>Cache-busting is manual.</b> Version query strings are bumped by hand, which means they can be forgotten — and have been.</li>
         <li class="is-fixed"><b>Two third-party domains gated the first paint.</b> Fixed 2026-08-14: all nine font files are now served from this origin, Google Fonts is gone from the critical path, and one third-party domain remains (analytics). The type stack changed with it — Source Serif 4 and Source Sans 3, a superfamily, replacing a mix that had monospace carrying 34 labels a page.</li>
         <li class="is-fixed"><b>A token had drifted out of sync with its own spec.</b> The design system documented <span class="td-inline">--fs-display</span> while the stylesheet defined <span class="td-inline">--fs-display-xl</span> — a rename that never reached the document. Found while writing this page, and fixed in the commit that published it.</li>

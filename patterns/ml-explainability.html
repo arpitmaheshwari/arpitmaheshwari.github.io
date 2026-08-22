@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ML Explainability: Why the Algorithm Decided</title>
+<title>ML Explainability: Why the Algorithm Decided — Arpit Maheshwari</title>
 <meta name="description" content="ML explainability UX patterns. Designing the &quot;why&quot; surface so a non-technical person can act on an algorithmic decision without a stats degree.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
@@ -52,7 +52,7 @@
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../styles.css?v=9f614230">
-<link rel="stylesheet" href="../ember.css?v=b4c85530">
+<link rel="stylesheet" href="../ember.css?v=bcaad079">
 </head>
 <body class="p-patterns-ml-explainability">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -85,7 +85,7 @@
 <main id="main" class="section page-bg"><div class="xi-patterns-ml-explainability-005">
 
   <section class="xi-patterns-ml-explainability-012">
-    <p class="lead xi-patterns-ml-explainability-013">A recommendation you can trace back to evidence is one you'll stand behind. One you can't is one you'll override — and then you rebuild your own process beside it. These patterns show a person why the machine decided. Not the full math, not the model internals. Just enough of the reasoning to act on it without a stats degree.</p>
+    <p class="lead xi-patterns-ml-explainability-013">A recommendation you can trace back to evidence is one you’ll stand behind. One you can’t is one you’ll override — and then you rebuild your own process beside it. These patterns show a person why the machine decided. Not the full math, not the model internals. Just enough of the reasoning to act on it without a stats degree.</p>
     
     <!-- Abstract UI Diagram: Feature Importance -->
     <div class="card-wire xi-patterns-ml-explainability-014">
@@ -133,7 +133,7 @@
     <figure class="xi-patterns-ml-explainability-025">
       <svg id="art-ml-explainab-1" class="framed xi-patterns-ml-explainability-026 art-svg" data-art-scoped viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
   <title id="t">Explainability pattern</title>
-  <desc id="d">A wide left-to-right banner: a final score on the right is traced back to the two or three inputs that drove it via an explanation drawer, with an "I disagree" affordance as a first-class action.</desc>
+  <desc id="d">A wide left-to-right banner: a final score on the right is traced back to the two or three inputs that drove it via an explanation drawer, with an “I disagree” affordance as a first-class action.</desc>
   <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
 
   <!-- header -->
@@ -231,42 +231,42 @@
   <!-- LIVE DEMO — same demo as the book's field guide -->
   <section class="xi-patterns-ml-explainability-012">
     <h2 class="section-title xi-patterns-ml-explainability-027">Try it — the pattern, live</h2>
-    <p class="u-ui xi-patterns-ml-explainability-028">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+    <p class="u-ui xi-patterns-ml-explainability-028">The same live demo that runs in the book edition’s field guide. Synthetic data; nothing leaves the page.</p>
     <div data-demo="branch"></div>
   </section>
 
 
   <section class="xi-patterns-ml-explainability-012">
     <h2 class="section-title xi-patterns-ml-explainability-029">1. Feature Importance (What Mattered Most)</h2>
-    <p class="u-body xi-patterns-ml-explainability-017">Name the top 3–5 features that drove the call, ranked. "This lead scored high because: (1) 85% match on job title [importance: 45%], (2) Company size in target range [importance: 30%], (3) Recent activity on site [importance: 15%]." The person reads three reasons, not a black box.</p>
+    <p class="u-body xi-patterns-ml-explainability-017">Name the top 3–5 features that drove the call, ranked. “This lead scored high because: (1) 85% match on job title [importance: 45%], (2) Company size in target range [importance: 30%], (3) Recent activity on site [importance: 15%].” The person reads three reasons, not a black box.</p>
     <p class="u-ui xi-patterns-ml-explainability-030"><strong>Strengths:</strong> Cheap to build. The user can check the work. Repeated exposure trains their intuition.</p>
     <p class="u-ui"><strong>Weaknesses:</strong> It hides <abbr class="xi-patterns-ml-explainability-031" tabindex="0" title="How changes in one input variable affect the impact of another input variable on the decision—for example, job title and industry may interact, making both more important together than separately">feature interactions</abbr>. When features are correlated, the ranking lies.</p>
   </section>
 
   <section class="xi-patterns-ml-explainability-012">
-    <h2 class="section-title xi-patterns-ml-explainability-029">2. Counterfactual Reasoning ("What If")</h2>
-    <p class="u-body xi-patterns-ml-explainability-017">Show the one input that flips the call. "The system rated this lead high-value. Change [one thing] and it drops to medium-value." Or: "You're 3 steps away from the next tier. Here's what closes the gap."</p>
+    <h2 class="section-title xi-patterns-ml-explainability-029">2. Counterfactual Reasoning (“What If”)</h2>
+    <p class="u-body xi-patterns-ml-explainability-017">Show the one input that flips the call. “The system rated this lead high-value. Change [one thing] and it drops to medium-value.” Or: “You’re 3 steps away from the next tier. Here’s what closes the gap.”</p>
     <p class="u-body xi-patterns-ml-explainability-017">A <abbr class="xi-patterns-ml-explainability-031" tabindex="0" title="A hypothetical scenario showing what would change if one input variable were different, revealing causal relationships and decision boundaries">counterfactual</abbr> lands because the person reads it as a causal story, not a verdict. The decision stops feeling fixed. They know exactly what lever to pull.</p>
     <p class="u-ui"><strong>Choose it when the user can act:</strong> sales (close a deal), education (lift a score), recommendations (steer toward better picks).</p>
   </section>
 
   <section class="xi-patterns-ml-explainability-012">
-    <h2 class="section-title xi-patterns-ml-explainability-029">3. Comparative Explanation ("How It Compares")</h2>
-    <p class="u-body xi-patterns-ml-explainability-017">Set the pick against its rivals. "I recommended Option A. It beats Option B on [dimension 1] and loses to it on [dimension 2]."</p>
+    <h2 class="section-title xi-patterns-ml-explainability-029">3. Comparative Explanation (“How It Compares”)</h2>
+    <p class="u-body xi-patterns-ml-explainability-017">Set the pick against its rivals. “I recommended Option A. It beats Option B on [dimension 1] and loses to it on [dimension 2].”</p>
     <p class="u-body">A person reads a comparison faster than an absolute score. The trade-off is right there: Option A is riskier with more upside, Option B is the safe call.</p>
   </section>
 
   <section class="xi-patterns-ml-explainability-012">
-    <h2 class="section-title xi-patterns-ml-explainability-029">4. Reasoning Path ("Step by Step")</h2>
-    <p class="u-body xi-patterns-ml-explainability-017">Walk the chain in order. "To predict conversion, I checked industry (SaaS), then company size (50–200), then engagement (high), then landed on 73%."</p>
+    <h2 class="section-title xi-patterns-ml-explainability-029">4. Reasoning Path (“Step by Step”)</h2>
+    <p class="u-body xi-patterns-ml-explainability-017">Walk the chain in order. “To predict conversion, I checked industry (SaaS), then company size (50–200), then engagement (high), then landed on 73%.”</p>
     <p class="u-body xi-patterns-ml-explainability-017">It reads the way a human analyst would talk through the case. The person follows the branch, step by step.</p>
-    <p class="u-ui"><strong>Works for:</strong> <abbr class="xi-patterns-ml-explainability-031" tabindex="0" title="Machine learning models like decision trees, random forests, and gradient boosting that split data into interpretable branches, making decisions traceable step-by-step">tree-based models</abbr>, decision trees, rule-based systems — anything with a real path to trace. <strong>Breaks for:</strong> <abbr class="xi-patterns-ml-explainability-031" tabindex="0" title="Deep learning models with multiple layers of interconnected nodes whose decision logic is mathematically complex and not easily interpretable by humans">neural networks</abbr>. There's no path to show, and inventing one is hand-waving with a UI.</p>
+    <p class="u-ui"><strong>Works for:</strong> <abbr class="xi-patterns-ml-explainability-031" tabindex="0" title="Machine learning models like decision trees, random forests, and gradient boosting that split data into interpretable branches, making decisions traceable step-by-step">tree-based models</abbr>, decision trees, rule-based systems — anything with a real path to trace. <strong>Breaks for:</strong> <abbr class="xi-patterns-ml-explainability-031" tabindex="0" title="Deep learning models with multiple layers of interconnected nodes whose decision logic is mathematically complex and not easily interpretable by humans">neural networks</abbr>. There’s no path to show, and inventing one is hand-waving with a UI.</p>
   </section>
 
   <section class="xi-patterns-ml-explainability-012">
     <h2 class="section-title xi-patterns-ml-explainability-029">5. Confidence + Uncertainty Bands</h2>
-    <p class="u-body xi-patterns-ml-explainability-017">Ship the prediction with its range. "Predicted revenue: $45K (±$15K). Past errors put the real number between $30K–$60K."</p>
-    <p class="u-body">A band is an honest surface. It says: the model's best guess is $45K, it isn't 100% sure, and here's the spread it usually misses by. This one doesn't explain <em>why</em> — it tells the person <em>how hard to lean</em>.</p>
+    <p class="u-body xi-patterns-ml-explainability-017">Ship the prediction with its range. “Predicted revenue: $45K (±$15K). Past errors put the real number between $30K–$60K.”</p>
+    <p class="u-body">A band is an honest surface. It says: the model’s best guess is $45K, it isn’t 100% sure, and here’s the spread it usually misses by. This one doesn’t explain <em>why</em> — it tells the person <em>how hard to lean</em>.</p>
   </section>
 
   <div class="counter">
@@ -279,9 +279,9 @@
     <ul class="u-body xi-patterns-ml-explainability-032">
       <li class="xi-patterns-ml-explainability-030"><strong>Pick the explanation type</strong> from the domain — feature importance, counterfactual, or comparative.</li>
       <li class="xi-patterns-ml-explainability-030"><strong>Compute it:</strong> tree models give you importance for free; neural networks need <abbr class="xi-patterns-ml-explainability-031" tabindex="0" title="LIME (Local Interpretable Model-agnostic Explanations) and SHAP (SHapley Additive exPlanations) are mathematical methods that explain neural network predictions by attributing each decision to individual input features">LIME/SHAP</abbr>; rule-based systems trace the rules.</li>
-      <li class="xi-patterns-ml-explainability-030"><strong>Say it in plain words:</strong> "Feature X has importance 0.34" becomes "Job title was the strongest signal — 34% of the decision."</li>
+      <li class="xi-patterns-ml-explainability-030"><strong>Say it in plain words:</strong> "Feature X has importance 0.34" becomes “Job title was the strongest signal — 34% of the decision.”</li>
       <li class="xi-patterns-ml-explainability-030"><strong>Watch a real user read it:</strong> can they say <em>why</em> the model decided? Do they lean on it more after?</li>
-      <li class="xi-patterns-ml-explainability-030"><strong>Don't fake it:</strong> if you can't follow the model's logic, don't write a story that pretends you can.</li>
+      <li class="xi-patterns-ml-explainability-030"><strong>Don’t fake it:</strong> if you can’t follow the model’s logic, don’t write a story that pretends you can.</li>
       <li class="xi-patterns-ml-explainability-030"><strong><abbr class="xi-patterns-ml-explainability-031" tabindex="0" title="A design pattern where complex information is hidden initially to reduce cognitive load, then revealed on user action to avoid overwhelming them">Progressive disclosure</abbr>:</strong> top 3 features by default, the rest one click away.</li>
     </ul>
   </section>
@@ -331,7 +331,7 @@
   <section class="measure-t">
     <div class="xi-patterns-ml-explainability-048">
       <div class="eyebrow xi-patterns-ml-explainability-041">Where this breaks — do not use it here</div>
-      <p class="u-body xi-patterns-ml-explainability-049">Reasons the user can't verify or act on become noise — by week three, unread explanation chips are pixels. Rotate to showing reasons only when they'd change the decision (low confidence, high stakes, disagreement), not on every card. Explaining everything equally is the same as explaining nothing.</p>
+      <p class="u-body xi-patterns-ml-explainability-049">Reasons the user can’t verify or act on become noise — by week three, unread explanation chips are pixels. Rotate to showing reasons only when they’d change the decision (low confidence, high stakes, disagreement), not on every card. Explaining everything equally is the same as explaining nothing.</p>
     </div>
   </section>
 

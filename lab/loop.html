@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f2">
 <noscript></noscript>
 <link rel="stylesheet" href="../styles.css?v=9f614230">
-<link rel="stylesheet" href="../ember.css?v=b4c85530">
+<link rel="stylesheet" href="../ember.css?v=bcaad079">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFY6ME99K8"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PFY6ME99K8');</script>
@@ -55,7 +55,7 @@
       <p class="lab-lede">The rules I argue for in design reviews, written as functions so they can be <strong>tested instead of debated</strong>. Four decisions that sit between a model and a person: which verb a score becomes, whether its confidence has earned belief, when to say nothing at all, and what to show while it thinks.</p>
       <p class="hand hand-note" aria-hidden="true">the tests run right on this page — check them</p>
       <div class="lab-note">
-        <b>What this is not.</b> It is not a UI kit and not a model. There is no network call, no DOM, no state, no framework — four pure functions and their tests. I own the decision logic and the interface; whether the model is right is the ML team's result to defend. The visual layer is deliberately left to you, because the verb matters more than the chip it ships in.
+        <b>What this is not.</b> It is not a UI kit and not a model. There is no network call, no DOM, no state, no framework — four pure functions and their tests. I own the decision logic and the interface; whether the model is right is the ML team’s result to defend. The visual layer is deliberately left to you, because the verb matters more than the chip it ships in.
       </div>
       <div class="lab-links">
         <a href="./loop.js" data-cta="lab-source" data-location="loop-hero">Read the source →</a>
@@ -103,7 +103,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
       <div class="lab-fn">
         <h3>decide(score, options)</h3>
         <p class="lab-pat">Pattern · Act / Review / Ignore + Reversibility</p>
-        <p>A naked number ends in a shrug: an unexplained 87% reports the model's mood and hands the user all of the work. So the score resolves to exactly one verb before it reaches the screen, and each verb carries an obligation — an act must be overridable, a review must show its reasons, an ignore must admit it is below the line. <strong>Reversibility outranks confidence:</strong> if the action cannot be undone, the model does not get to auto-act at any score.</p>
+        <p>A naked number ends in a shrug: an unexplained 87% reports the model’s mood and hands the user all of the work. So the score resolves to exactly one verb before it reaches the screen, and each verb carries an obligation — an act must be overridable, a review must show its reasons, an ignore must admit it is below the line. <strong>Reversibility outranks confidence:</strong> if the action cannot be undone, the model does not get to auto-act at any score.</p>
         <div class="lab-play" id="play-decide">
           <div class="lab-controls">
             <div class="lab-ctl">
@@ -137,7 +137,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
       <div class="lab-fn">
         <h3>calibrate(history, options)</h3>
         <p class="lab-pat">Pattern · Calibration &amp; Track Record</p>
-        <p>"80% sure" only means something if, across every time it said 80%, it was right about 80% of the time. This computes the standard measures of that — <strong>Brier score</strong>, <strong>expected calibration error</strong> and the worst single bin — from a history of confidence/outcome pairs. Below thirty observations it refuses to render a verdict at all, because a track record you cannot support is just another confident claim.</p>
+        <p>“80% sure” only means something if, across every time it said 80%, it was right about 80% of the time. This computes the standard measures of that — <strong>Brier score</strong>, <strong>expected calibration error</strong> and the worst single bin — from a history of confidence/outcome pairs. Below thirty observations it refuses to render a verdict at all, because a track record you cannot support is just another confident claim.</p>
         <div class="lab-play" id="play-calib">
           <div class="lab-controls">
             <div class="lab-ctl">
@@ -291,7 +291,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
         <p>&ldquo;It&rsquo;s a hundred lines of if-statements.&rdquo; Exactly &mdash; and that is the entire point. The same decisions usually live in a slide deck where they can only be believed or ignored. Here they are versioned, testable, and able to fail loudly. The day a threshold is wrong, a test goes red &mdash; a deck has never once done that.</p>
       </div>
       <h2 class="section-title">A rule you can run beats a rule you can argue with</h2>
-      <p class="t-body-muted xi-lab-loop-019">Every one of these decisions used to be a slide. "Don't show a naked confidence score." "Fail toward humility." "Reversibility outranks confidence." Reasonable people nodded, and then shipped the naked number anyway, because a principle has no failing state.</p>
+      <p class="t-body-muted xi-lab-loop-019">Every one of these decisions used to be a slide. “Don’t show a naked confidence score.” “Fail toward humility.” “Reversibility outranks confidence.” Reasonable people nodded, and then shipped the naked number anyway, because a principle has no failing state.</p>
       <p class="t-body-muted xi-lab-loop-019">Written as functions, the same rules get a failing state. <code class="t-code">decide()</code> reports <code class="t-code">review-without-reasons</code> as a violation rather than a suggestion. <code class="t-code">calibrate()</code> returns <code class="t-code">insufficient-data</code> instead of a flattering number. That is the whole argument for this file existing: human-in-the-loop design is a set of decisions, and decisions can be tested.</p>
       <p class="t-body-muted xi-lab-loop-007">The eight patterns these come from are documented, with live demos, in <a class="xi-lab-loop-018" href="../patterns/">the pattern library</a> — and each one is running in a production product. This is their logic, extracted and made checkable.</p>
       <div class="lab-links">

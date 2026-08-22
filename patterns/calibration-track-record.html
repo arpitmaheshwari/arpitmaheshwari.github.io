@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calibration &amp; Track Record: Confidence That Earns Its Trust</title>
+<title>Calibration &amp; Track Record — Arpit Maheshwari</title>
 <meta name="description" content="An AI design pattern — show whether the model's confidence has actually been right before, so people learn how hard to lean and trust is earned, not assumed.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
@@ -52,7 +52,7 @@
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../styles.css?v=9f614230">
-<link rel="stylesheet" href="../ember.css?v=b4c85530">
+<link rel="stylesheet" href="../ember.css?v=bcaad079">
 </head>
 <body class="p-patterns-calibration-track-record">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -85,7 +85,7 @@
 <main id="main" class="section page-bg"><div class="xi-patterns-calibration-track-record-005">
 
   <section class="xi-patterns-calibration-track-record-012">
-    <p class="lead xi-patterns-calibration-track-record-013">A confidence number is a claim; its track record is the evidence. Calibration shows whether "80% sure" has actually been right about 80% of the time — so a person can learn exactly how hard to lean on the model, and watch that judgment improve as the history grows.</p>
+    <p class="lead xi-patterns-calibration-track-record-013">A confidence number is a claim; its track record is the evidence. Calibration shows whether “80% sure” has actually been right about 80% of the time — so a person can learn exactly how hard to lean on the model, and watch that judgment improve as the history grows.</p>
   </section>
 
   <div class="thesis">
@@ -196,26 +196,26 @@
 
   <section class="xi-patterns-calibration-track-record-012">
     <h2 class="section-title xi-patterns-calibration-track-record-016">Show the hit rate beside the number</h2>
-    <p class="u-body xi-patterns-calibration-track-record-017">A confidence score with no history is a stranger's opinion. The same number gets believable the moment it sits next to its own record: "high confidence — right on 94% of the last 200 calls like this." Now the person isn't trusting the model's self-assessment; they're trusting its receipts.</p>
+    <p class="u-body xi-patterns-calibration-track-record-017">A confidence score with no history is a stranger’s opinion. The same number gets believable the moment it sits next to its own record: “high confidence — right on 94% of the last 200 calls like this.” Now the person isn’t trusting the model’s self-assessment; they’re trusting its receipts.</p>
     <p class="u-body">This is the single cheapest trust-builder in AI UX and the most often skipped. Teams ship the confidence number and never ship the thing that makes it mean something — the evidence that the confidence has been honest before.</p>
   </section>
   <!-- LIVE DEMO — same demo as the book's field guide -->
   <section class="xi-patterns-calibration-track-record-012">
     <h2 class="section-title xi-patterns-calibration-track-record-018">Try it — the pattern, live</h2>
-    <p class="u-ui xi-patterns-calibration-track-record-019">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+    <p class="u-ui xi-patterns-calibration-track-record-019">The same live demo that runs in the book edition’s field guide. Synthetic data; nothing leaves the page.</p>
     <div data-demo="calib"></div>
   </section>
 
 
   <section class="xi-patterns-calibration-track-record-012">
     <h2 class="section-title xi-patterns-calibration-track-record-016">Break it down by the kind of case</h2>
-    <p class="u-body xi-patterns-calibration-track-record-017">A single global accuracy figure hides the cases that matter. A model can be 90% accurate overall and reliably wrong on a specific, important slice. Calibration that's worth anything is segmented: accuracy by case type, by confidence band, by the conditions a user actually faces.</p>
-    <p class="u-body">Reliability diagrams — confidence on one axis, actual hit rate on the other — make over- and under-confidence visible at a glance. The goal is a person who knows not just how sure the model is, but where its sureness can be trusted and where it can't.</p>
+    <p class="u-body xi-patterns-calibration-track-record-017">A single global accuracy figure hides the cases that matter. A model can be 90% accurate overall and reliably wrong on a specific, important slice. Calibration that’s worth anything is segmented: accuracy by case type, by confidence band, by the conditions a user actually faces.</p>
+    <p class="u-body">Reliability diagrams — confidence on one axis, actual hit rate on the other — make over- and under-confidence visible at a glance. The goal is a person who knows not just how sure the model is, but where its sureness can be trusted and where it can’t.</p>
   </section>
 
   <section class="xi-patterns-calibration-track-record-012">
     <h2 class="section-title xi-patterns-calibration-track-record-016">Earn it in the open</h2>
-    <p class="u-body xi-patterns-calibration-track-record-017">Track record is only persuasive if it updates honestly, in public. Let the history accumulate where the user can see it; don't quietly reset the counter every time the model is retrained. A record that resets on every release is one nobody believes.</p>
+    <p class="u-body xi-patterns-calibration-track-record-017">Track record is only persuasive if it updates honestly, in public. Let the history accumulate where the user can see it; don’t quietly reset the counter every time the model is retrained. A record that resets on every release is one nobody believes.</p>
     <p class="u-body">Done right, calibration turns trust into something the model earns over time rather than demands on day one. The number stops being a claim and becomes a relationship — one the person can watch get better.</p>
   </section>
 
@@ -227,11 +227,11 @@
   <section class="xi-patterns-calibration-track-record-012">
     <h2 class="section-title xi-patterns-calibration-track-record-018">Ship it: the checklist.</h2>
     <ul class="u-body xi-patterns-calibration-track-record-020">
-      <li class="xi-patterns-calibration-track-record-021">Show the model's historical hit rate beside its current confidence.</li>
+      <li class="xi-patterns-calibration-track-record-021">Show the model’s historical hit rate beside its current confidence.</li>
       <li class="xi-patterns-calibration-track-record-021">Segment accuracy by case type and confidence band, not one global average.</li>
       <li class="xi-patterns-calibration-track-record-021">Use a reliability view so over/under-confidence is visible at a glance.</li>
-      <li class="xi-patterns-calibration-track-record-021">Let the history accumulate in the open; don't silently reset on retrain.</li>
-      <li class="xi-patterns-calibration-track-record-021">Check: can a user tell where the model's confidence can be trusted, and where not?</li>
+      <li class="xi-patterns-calibration-track-record-021">Let the history accumulate in the open; don’t silently reset on retrain.</li>
+      <li class="xi-patterns-calibration-track-record-021">Check: can a user tell where the model’s confidence can be trusted, and where not?</li>
     </ul>
   </section>
   <section class="xi-patterns-calibration-track-record-012">
@@ -243,7 +243,7 @@
         </thead>
         <tbody>
           <tr class="xi-patterns-calibration-track-record-024"><td class="xi-patterns-calibration-track-record-026"><strong>Global hit rate</strong></td><td class="xi-patterns-calibration-track-record-026">A single, simple trust signal</td><td class="xi-patterns-calibration-track-record-026">Averages away the cases where the model is reliably wrong</td></tr>
-          <tr class="xi-patterns-calibration-track-record-024"><td class="xi-patterns-calibration-track-record-026"><strong>Per-case-type record</strong></td><td class="xi-patterns-calibration-track-record-026">Experts who know the domain's segments</td><td class="xi-patterns-calibration-track-record-026">More to render; needs enough history per segment</td></tr>
+          <tr class="xi-patterns-calibration-track-record-024"><td class="xi-patterns-calibration-track-record-026"><strong>Per-case-type record</strong></td><td class="xi-patterns-calibration-track-record-026">Experts who know the domain’s segments</td><td class="xi-patterns-calibration-track-record-026">More to render; needs enough history per segment</td></tr>
           <tr class="xi-patterns-calibration-track-record-024"><td class="xi-patterns-calibration-track-record-026"><strong>Rolling window (30–90d)</strong></td><td class="xi-patterns-calibration-track-record-026">Models that retrain often</td><td class="xi-patterns-calibration-track-record-026">Short windows swing; long ones hide recent drift</td></tr>
           <tr class="xi-patterns-calibration-track-record-024"><td class="xi-patterns-calibration-track-record-026"><strong>Persistent across retrains</strong></td><td class="xi-patterns-calibration-track-record-026">Long-term trust; the record is the product</td><td class="xi-patterns-calibration-track-record-026">A bad release is visible to everyone — by design</td></tr>
         </tbody>
@@ -273,7 +273,7 @@
   <section class="measure-t">
     <div class="xi-patterns-calibration-track-record-034">
       <div class="eyebrow xi-patterns-calibration-track-record-029">Where this breaks — do not use it here</div>
-      <p class="u-body xi-patterns-calibration-track-record-035">A track record needs history — a young product showing three data points as a 'record' is costume jewelry. Wait until the sample is honest, and never reset the record silently when the model changes; a visible break in the line is more credible than an unbroken lie.</p>
+      <p class="u-body xi-patterns-calibration-track-record-035">A track record needs history — a young product showing three data points as a 'record’ is costume jewelry. Wait until the sample is honest, and never reset the record silently when the model changes; a visible break in the line is more credible than an unbroken lie.</p>
     </div>
   </section>
 

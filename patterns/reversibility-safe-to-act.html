@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reversibility: Make Acting on the Model Safe to Try</title>
+<title>Reversibility: Safe to Act — Arpit Maheshwari</title>
 <meta name="description" content="An AI design pattern — make acting on a recommendation cheap to undo, so people dare to try the model's suggestion. Reversibility buys the first action.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
@@ -52,7 +52,7 @@
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../styles.css?v=9f614230">
-<link rel="stylesheet" href="../ember.css?v=b4c85530">
+<link rel="stylesheet" href="../ember.css?v=bcaad079">
 </head>
 <body class="p-patterns-reversibility-safe-to-act">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -85,7 +85,7 @@
 <main id="main" class="section page-bg"><div class="xi-patterns-reversibility-safe-to-act-005">
 
   <section class="xi-patterns-reversibility-safe-to-act-012">
-    <p class="lead xi-patterns-reversibility-safe-to-act-013">Adoption often stalls not because the model is wrong, but because acting on it feels risky. Make the action cheap to undo — one click to reverse, a clear path back, no permanent damage — and people will try the recommendation they'd otherwise ignore. Reversibility buys you the first action; accuracy keeps the rest.</p>
+    <p class="lead xi-patterns-reversibility-safe-to-act-013">Adoption often stalls not because the model is wrong, but because acting on it feels risky. Make the action cheap to undo — one click to reverse, a clear path back, no permanent damage — and people will try the recommendation they’d otherwise ignore. Reversibility buys you the first action; accuracy keeps the rest.</p>
   </section>
 
   <div class="thesis">
@@ -197,27 +197,27 @@
 
   <section class="xi-patterns-reversibility-safe-to-act-012">
     <h2 class="section-title xi-patterns-reversibility-safe-to-act-016">Make the action one click to walk back</h2>
-    <p class="u-body xi-patterns-reversibility-safe-to-act-017">People don't refuse the model because they've judged it wrong; they refuse because acting feels like a commitment they can't unwind. The cure is rarely a better model — it's a cheaper undo. When reversing costs nothing, the bar to trying the suggestion drops to almost zero.</p>
-    <p class="u-body">This reframes the whole adoption problem. You're not asking the user to bet that the model is right; you're asking them to try something they can instantly take back. That's a far smaller ask — and it's the one that actually gets the first action.</p>
+    <p class="u-body xi-patterns-reversibility-safe-to-act-017">People don’t refuse the model because they’ve judged it wrong; they refuse because acting feels like a commitment they can’t unwind. The cure is rarely a better model — it’s a cheaper undo. When reversing costs nothing, the bar to trying the suggestion drops to almost zero.</p>
+    <p class="u-body">This reframes the whole adoption problem. You’re not asking the user to bet that the model is right; you’re asking them to try something they can instantly take back. That’s a far smaller ask — and it’s the one that actually gets the first action.</p>
   </section>
   <!-- LIVE DEMO — same demo as the book's field guide -->
   <section class="xi-patterns-reversibility-safe-to-act-012">
     <h2 class="section-title xi-patterns-reversibility-safe-to-act-018">Try it — the pattern, live</h2>
-    <p class="u-ui xi-patterns-reversibility-safe-to-act-019">The same live demo that runs in the book edition's field guide. Synthetic data; nothing leaves the page.</p>
+    <p class="u-ui xi-patterns-reversibility-safe-to-act-019">The same live demo that runs in the book edition’s field guide. Synthetic data; nothing leaves the page.</p>
     <div data-demo="undo"></div>
   </section>
 
 
   <section class="xi-patterns-reversibility-safe-to-act-012">
     <h2 class="section-title xi-patterns-reversibility-safe-to-act-016">Show the way back before they commit</h2>
-    <p class="u-body xi-patterns-reversibility-safe-to-act-017">Reversibility only works if the person can see it before they act. An undo they discover after a mistake is reassurance arriving too late. Show the exit up front — "you can change this anytime" — so the safety is part of the decision, not a consolation afterward.</p>
-    <p class="u-body">The visible path back does quiet work on confidence. It signals that the product expects people to explore, correct, and adjust — that acting on the model is a conversation, not a verdict they're stuck with.</p>
+    <p class="u-body xi-patterns-reversibility-safe-to-act-017">Reversibility only works if the person can see it before they act. An undo they discover after a mistake is reassurance arriving too late. Show the exit up front — “you can change this anytime” — so the safety is part of the decision, not a consolation afterward.</p>
+    <p class="u-body">The visible path back does quiet work on confidence. It signals that the product expects people to explore, correct, and adjust — that acting on the model is a conversation, not a verdict they’re stuck with.</p>
   </section>
 
   <section class="xi-patterns-reversibility-safe-to-act-012">
     <h2 class="section-title xi-patterns-reversibility-safe-to-act-016">Stage it, so you can stop it</h2>
     <p class="u-body xi-patterns-reversibility-safe-to-act-017">For changes too big to undo with one click, the equivalent of reversibility is a staged rollout you can halt. Sequence the change so its effects are visible early and reversible mid-flight, and protect the people affected with a grace period rather than a hard cutover.</p>
-    <p class="u-body">A migration you can stop beats a leap you can't take back. The same principle scales from a single undo button to a company-wide rollout: keep a hand on the brake, in view, the whole way down.</p>
+    <p class="u-body">A migration you can stop beats a leap you can’t take back. The same principle scales from a single undo button to a company-wide rollout: keep a hand on the brake, in view, the whole way down.</p>
   </section>
 
   <div class="counter">
@@ -244,7 +244,7 @@
         </thead>
         <tbody>
           <tr class="xi-patterns-reversibility-safe-to-act-024"><td class="xi-patterns-reversibility-safe-to-act-026"><strong>One-click undo</strong></td><td class="xi-patterns-reversibility-safe-to-act-026">Frequent, low-cost actions</td><td class="xi-patterns-reversibility-safe-to-act-026">Needs true reversal underneath, not a cosmetic toast</td></tr>
-          <tr class="xi-patterns-reversibility-safe-to-act-024"><td class="xi-patterns-reversibility-safe-to-act-026"><strong>Grace window (undo for 30s)</strong></td><td class="xi-patterns-reversibility-safe-to-act-026">Sends, posts, purchases</td><td class="xi-patterns-reversibility-safe-to-act-026">Delays the action; a window that's too short is theater</td></tr>
+          <tr class="xi-patterns-reversibility-safe-to-act-024"><td class="xi-patterns-reversibility-safe-to-act-026"><strong>Grace window (undo for 30s)</strong></td><td class="xi-patterns-reversibility-safe-to-act-026">Sends, posts, purchases</td><td class="xi-patterns-reversibility-safe-to-act-026">Delays the action; a window that’s too short is theater</td></tr>
           <tr class="xi-patterns-reversibility-safe-to-act-024"><td class="xi-patterns-reversibility-safe-to-act-026"><strong>Staged rollout / halt</strong></td><td class="xi-patterns-reversibility-safe-to-act-026">Big, systemic changes</td><td class="xi-patterns-reversibility-safe-to-act-026">Slower to full effect; needs progress visibility</td></tr>
           <tr class="xi-patterns-reversibility-safe-to-act-024"><td class="xi-patterns-reversibility-safe-to-act-026"><strong>Preview before commit</strong></td><td class="xi-patterns-reversibility-safe-to-act-026">First-time or high-stakes acts</td><td class="xi-patterns-reversibility-safe-to-act-026">Adds a step; friction where trust is already high</td></tr>
         </tbody>

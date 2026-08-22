@@ -118,7 +118,7 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="stylesheet" href="../styles.css?v=9f614230">
-<link rel="stylesheet" href="../ember.css?v=b4c85530">
+<link rel="stylesheet" href="../ember.css?v=bcaad079">
 
 </head>
 <body class="p-screen">
@@ -144,7 +144,7 @@
   <section class="scr-q">
     <p class="scr-num">01</p>
     <h2>&ldquo;How do you know the model is right?&rdquo;</h2>
-    <p>I don't — and I won't pretend to. Whether the model is right is the ML team's work and their measurement to defend; the eval is their proof, not mine. What I own starts where the eval ends. Week one, I'm reading eval results before I open a design file, because the interface inherits every property the eval measures — and a few it doesn't. Then I design what gets measured into the surface itself: abstentions the user can see, overrides that get logged, a track record that accumulates in the open. One rule holds throughout: the screen never claims more certainty than the eval supports. The fastest way to lose an ML team is to design a surface their eval can't back.</p>
+    <p>I don’t — and I won’t pretend to. Whether the model is right is the ML team’s work and their measurement to defend; the eval is their proof, not mine. What I own starts where the eval ends. Week one, I’m reading eval results before I open a design file, because the interface inherits every property the eval measures — and a few it doesn’t. Then I design what gets measured into the surface itself: abstentions the user can see, overrides that get logged, a track record that accumulates in the open. One rule holds throughout: the screen never claims more certainty than the eval supports. The fastest way to lose an ML team is to design a surface their eval can’t back.</p>
     <p class="scr-receipt">Receipt → <a href="../index.html#how-i-lead">how I lead: eval design before interface design</a></p>
   </section>
 
@@ -152,7 +152,7 @@
   <section class="scr-q">
     <p class="scr-num">02</p>
     <h2>&ldquo;Your model reports 87% confidence. What does the user see?&rdquo;</h2>
-    <p>Never the 87. An unexplained 87% is a shrug with decimals — it reports the model's mood and hands the user all of the work. So the score resolves to a verb before it reaches the screen: act, review, or ignore. Every review carries the handful of signals that drove it, in language a person can test against their own judgment; every act carries an override. Where the bands sit is a product decision someone owns and revisits against real outcomes — the same 87 can mean <em>act</em> on a media plan and <em>review</em> on a deal memo, because the stakes set the verb, not the number. A naked number ends in a shrug. A score tied to a verb ends in an action.</p>
+    <p>Never the 87. An unexplained 87% is a shrug with decimals — it reports the model’s mood and hands the user all of the work. So the score resolves to a verb before it reaches the screen: act, review, or ignore. Every review carries the handful of signals that drove it, in language a person can test against their own judgment; every act carries an override. Where the bands sit is a product decision someone owns and revisits against real outcomes — the same 87 can mean <em>act</em> on a media plan and <em>review</em> on a deal memo, because the stakes set the verb, not the number. A naked number ends in a shrug. A score tied to a verb ends in an action.</p>
     <p class="scr-receipt">Receipt → <a href="../patterns/act-review-ignore.html">the Act / Review / Ignore rule</a></p>
   </section>
 
@@ -160,7 +160,7 @@
   <section class="scr-q">
     <p class="scr-num">03</p>
     <h2>&ldquo;Walk me through an abstention decision.&rdquo;</h2>
-    <p>On the PE screening tool, the state I fought hardest for was the model saying &ldquo;I'm not sure about this one.&rdquo; It shipped in the first release — I made the case for building it before launch rather than after, alongside a cited source behind every number and a logged override. The threshold was a design argument as much as a statistical one. Pitch it too eager and the tool cries uncertainty on claims it could defend, and analysts learn to skim past the abstentions; too shy, and one fluent, wrong claim undoes the trust the tool has earned. The threshold has to fail toward humility — the cheaper mistake. And the effect ran the direction you'd hope: once analysts had watched the model decline to bluff, its confident answers started carrying weight. They went from ignoring the score to leading their deal memos with it.</p>
+    <p>On the PE screening tool, the state I fought hardest for was the model saying &ldquo;I’m not sure about this one.&rdquo; It shipped in the first release — I made the case for building it before launch rather than after, alongside a cited source behind every number and a logged override. The threshold was a design argument as much as a statistical one. Pitch it too eager and the tool cries uncertainty on claims it could defend, and analysts learn to skim past the abstentions; too shy, and one fluent, wrong claim undoes the trust the tool has earned. The threshold has to fail toward humility — the cheaper mistake. And the effect ran the direction you’d hope: once analysts had watched the model decline to bluff, its confident answers started carrying weight. They went from ignoring the score to leading their deal memos with it.</p>
     <p class="scr-receipt">Receipt → <a href="../case-studies/fintech.html">the FinTech case: 60% faster screening, abstention over hallucination</a></p>
   </section>
 
@@ -168,21 +168,21 @@
   <section class="scr-q">
     <p class="scr-num">04</p>
     <h2>&ldquo;Do you actually speak our language?&rdquo;</h2>
-    <p>Enough to argue in it. <a href="../patterns/provenance-citations.html">Retrieval grounding and provenance</a> — every generated claim traces to a source the reader can open, or it doesn't ship. Per-claim confidence versus offline evals — different signals with different jobs: one belongs on the screen beside the claim, the other decides whether the screen is allowed to exist. <a href="../patterns/calibration-track-record.html">Calibration and track record</a> — does &ldquo;80% sure&rdquo; actually mean right 80% of the time, and does the history accumulate in the open instead of quietly resetting on retrain. Abstention thresholds — where the model stops answering, owned as a product decision, not left to a default. Overrides as training signal — the user's disagreement, logged, feeding the next cycle instead of vanishing into a support ticket. <a href="../patterns/capability-contract.html">Capability boundaries</a> — the honest &ldquo;no,&rdquo; stated in the interface before the first failure, not after the first complaint.</p>
+    <p>Enough to argue in it. <a href="../patterns/provenance-citations.html">Retrieval grounding and provenance</a> — every generated claim traces to a source the reader can open, or it doesn’t ship. Per-claim confidence versus offline evals — different signals with different jobs: one belongs on the screen beside the claim, the other decides whether the screen is allowed to exist. <a href="../patterns/calibration-track-record.html">Calibration and track record</a> — does &ldquo;80% sure&rdquo; actually mean right 80% of the time, and does the history accumulate in the open instead of quietly resetting on retrain. Abstention thresholds — where the model stops answering, owned as a product decision, not left to a default. Overrides as training signal — the user’s disagreement, logged, feeding the next cycle instead of vanishing into a support ticket. <a href="../patterns/capability-contract.html">Capability boundaries</a> — the honest &ldquo;no,&rdquo; stated in the interface before the first failure, not after the first complaint.</p>
   </section>
 
   <!-- 05 -->
   <section class="scr-q">
     <p class="scr-num">05</p>
     <h2>&ldquo;What about latency and cost?&rdquo;</h2>
-    <p>They're design inputs, and I ask about both in week one. What's precomputed and what's generated on demand — because an explanation drawer is a latency budget decision, and a drawer that takes four seconds to open teaches people to stop opening it. When retrieval costs real money per call, the evidence may have to load behind the number instead of beside it — that's a trust tradeoff, and it should be made on purpose rather than discovered in the invoice. And the loading state is a promise: what the interface says while the model thinks sets what the person expects when it answers. I won't hand you case numbers here, because I don't have honest ones — these are the questions I bring, and the answers are always specific to your stack. That's part of what the first week is for.</p>
+    <p>They’re design inputs, and I ask about both in week one. What’s precomputed and what’s generated on demand — because an explanation drawer is a latency budget decision, and a drawer that takes four seconds to open teaches people to stop opening it. When retrieval costs real money per call, the evidence may have to load behind the number instead of beside it — that’s a trust tradeoff, and it should be made on purpose rather than discovered in the invoice. And the loading state is a promise: what the interface says while the model thinks sets what the person expects when it answers. I won’t hand you case numbers here, because I don’t have honest ones — these are the questions I bring, and the answers are always specific to your stack. That’s part of what the first week is for.</p>
   </section>
 
   <!-- 06 -->
   <section class="scr-q">
     <p class="scr-num">06</p>
     <h2>&ldquo;What did <em>you</em> own, versus the team?&rdquo;</h2>
-    <p>I keep this boundary sharp, because blurring it insults the people who did the work. The model's accuracy, its lift, its benchmarks — theirs; question 01 already drew that line. Mine is the layer where a right answer becomes an acted-on one: the evidence beside the number, the abstention state, the override that gets logged instead of lost, the score that resolves to a decision. I write it the same way about my O2 work — &ldquo;the launch-era figures are O2's; the screens I owned are mine.&rdquo; A candidate who claims the model's numbers as their own is telling you something. A candidate who can't say exactly which pixels were theirs is telling you more.</p>
+    <p>I keep this boundary sharp, because blurring it insults the people who did the work. The model’s accuracy, its lift, its benchmarks — theirs; question 01 already drew that line. Mine is the layer where a right answer becomes an acted-on one: the evidence beside the number, the abstention state, the override that gets logged instead of lost, the score that resolves to a decision. I write it the same way about my O2 work — &ldquo;the launch-era figures are O2's; the screens I owned are mine.&rdquo; A candidate who claims the model’s numbers as their own is telling you something. A candidate who can’t say exactly which pixels were theirs is telling you more.</p>
     <p class="scr-receipt">Receipt → <a href="../case-studies/o2.html">the O2 case, scoped honestly</a></p>
   </section>
 
@@ -190,7 +190,7 @@
   <section class="scr-q">
     <p class="scr-num">07</p>
     <h2>&ldquo;Tell me about a time you were wrong.&rdquo;</h2>
-    <p>I fought hard for a recommendation card with three ranked options — give people choice, I argued. Engineering wanted one option, the top pick, nothing else. They won the meeting, and the next quarter's A/B test made it permanent: the single-option card converted 2.3× better, because three choices froze people at the exact moment we needed them to move. Every recommendation surface I've designed since starts from that loss. There's a second scar. I used to treat a human-in-the-loop checkpoint as a safety net by itself — it isn't, because people click through without reading. Now, on anything high-stakes, a confirmation sits between the click and the consequence.</p>
+    <p>I fought hard for a recommendation card with three ranked options — give people choice, I argued. Engineering wanted one option, the top pick, nothing else. They won the meeting, and the next quarter’s A/B test made it permanent: the single-option card converted 2.3× better, because three choices froze people at the exact moment we needed them to move. Every recommendation surface I’ve designed since starts from that loss. There’s a second scar. I used to treat a human-in-the-loop checkpoint as a safety net by itself — it isn’t, because people click through without reading. Now, on anything high-stakes, a confirmation sits between the click and the consequence.</p>
     <p class="scr-receipt">Receipt → <a href="../patterns/human-in-loop.html">the Human-in-Loop pattern, scar included</a></p>
   </section>
 
@@ -198,7 +198,7 @@
   <section class="scr-q">
     <p class="scr-num">08</p>
     <h2>&ldquo;Can you ship code, or just Figma?&rdquo;</h2>
-    <p>The receipt is the page you're reading. This site is hand-built HTML, CSS, and JavaScript — view source, or read the repository. In production I ship the front-end of the features I design — buttons, forms, data displays, AI surfaces — in the PR, under my name, with senior engineers reviewing. React beyond prototypes — the book edition of this site is ~150KB of my own React, 50+ hooks of state management. I won't claim the backend; that's someone else's craft, and I'd rather be reviewed by them than pretend at it. A designer who codes doesn't need the handoff meeting — the handoff is the pull request. If you want the code rather than the claim, <a href="../lab/">The Lab</a> is three artifacts where the code is the deliverable — including a zero-dependency module with 42 tests that run in your browser.</p>
+    <p>The receipt is the page you’re reading. This site is hand-built HTML, CSS, and JavaScript — view source, or read the repository. In production I ship the front-end of the features I design — buttons, forms, data displays, AI surfaces — in the PR, under my name, with senior engineers reviewing. React beyond prototypes — the book edition of this site is ~150KB of my own React, 50+ hooks of state management. I won’t claim the backend; that’s someone else’s craft, and I’d rather be reviewed by them than pretend at it. A designer who codes doesn’t need the handoff meeting — the handoff is the pull request. If you want the code rather than the claim, <a href="../lab/">The Lab</a> is three artifacts where the code is the deliverable — including a zero-dependency module with 42 tests that run in your browser.</p>
     <p class="scr-receipt">Receipt → <a href="../lab/loop.html">loop.js — the pattern logic as a tested module</a> · <a href="../lab/teardown.html">how this site is built</a> · <a href="https://github.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer">the repository ↗<span class="visually-hidden"> (opens in a new tab)</span></a></p>
   </section>
 
@@ -206,12 +206,12 @@
   <section class="scr-q">
     <p class="scr-num">09</p>
     <h2>&ldquo;Why should we trust a designer with this at all?&rdquo;</h2>
-    <p>Because the failure mode you're hiring against isn't a wrong model — it's a right model nobody bets on. Your model is right; your users still won't act on it, and that half-second of doubt is the only thing I design. Human-in-the-loop design — the exact pixels where a person decides the model deserves their click — is a design problem, and it's the whole job I'm asking you to hire me for. But don't take a page's word for it; take the standing offer from my FAQ. A 30-minute intro, then a paid 1-week trial on a real (not contrived) problem, then a 1-hour debrief, then a decision. The trial is mutual — I'm evaluating you too.</p>
+    <p>Because the failure mode you’re hiring against isn’t a wrong model — it’s a right model nobody bets on. Your model is right; your users still won’t act on it, and that half-second of doubt is the only thing I design. Human-in-the-loop design — the exact pixels where a person decides the model deserves their click — is a design problem, and it’s the whole job I’m asking you to hire me for. But don’t take a page’s word for it; take the standing offer from my FAQ. A 30-minute intro, then a paid 1-week trial on a real (not contrived) problem, then a 1-hour debrief, then a decision. The trial is mutual — I’m evaluating you too.</p>
   </section>
 
   <!-- CLOSE -->
   <div class="scr-close">
-    <p class="scr-close-line">That's the screen. The call can be about your product.</p>
+    <p class="scr-close-line">That’s the screen. The call can be about your product.</p>
     <div class="scr-cta-row">
       <a class="lbl-badge-bg btn-a xi-screen-004 hv-screen-1" href="../index.html#contact" data-cta="send-role" data-location="screen-close">Send me the role →</a>
       <a class="lbl-badge-gold btn-a-ghost xi-screen-005 hv-screen-2" href="https://calendly.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer" data-cta="calendly" data-location="screen-close">Book 30 minutes ↗<span class="visually-hidden"> (opens in a new tab)</span></a>

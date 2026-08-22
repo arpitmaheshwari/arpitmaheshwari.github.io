@@ -105,13 +105,17 @@ for g in link-integrity share-preview prose; do
 done
 
 echo "pre-push: starting the browser gates in parallel…"
-[ -f tools/asset-load-check.py ] && bg_gate asset-load \
-  python3 tools/asset-load-check.py --docroot . --no-selftest \
-  "http://localhost:$PORT/" "http://localhost:$PORT/process/"
-[ -f tools/artifact-legibility-check.py ] && bg_gate artifact-legibility \
-  python3 tools/artifact-legibility-check.py
-[ -f tools/cta-viewport-check.py ] && bg_gate cta-viewport \
-  python3 tools/cta-viewport-check.py
+# These three are NOT backgrounded. Each drives Chrome without a private
+# profile, so they contend on the default profile's singleton lock whenever
+# another Chrome is up and fail with no output at all — which is exactly how
+# the first parallel push died. Giving asset-load its own --user-data-dir broke
+# --dump-dom outright, so rather than rewrite three working gates they run
+# inline. The cdp.py-based gates each get their own profile and stay parallel.
+# asset-load-check is NOT backgrounded. It drives Chrome with --dump-dom and
+# no private profile, so it contends on the default profile's singleton lock
+# when other Chromes are up, and fails with no output at all. Giving it its own
+# --user-data-dir broke --dump-dom outright, so it stays inline: it visits two
+# pages and costs a few seconds.
 [ -f tools/component-identity-check.py ] && bg_gate component-identity \
   python3 tools/component-identity-check.py
 [ -f tools/image-alignment-check.py ] && bg_gate image-alignment \
@@ -164,7 +168,8 @@ fi
 # tree; the runtime half re-checks the two pages that carry the most diagrams.
 if [ -f tools/asset-load-check.py ]; then
   echo "pre-push: asset load check (SVG validity + images actually painting)…"
-  if ! wait_gate asset-load; then
+  if ! python3 tools/asset-load-check.py --docroot . --no-selftest \
+        "http://localhost:$PORT/" "http://localhost:$PORT/process/"; then
     cat <<'MSG'
 
 pre-push: BLOCKED — a broken asset was detected above.
@@ -189,7 +194,7 @@ fi
 # remap) and every other gate passed them. Arpit found it by eye.
 if [ -f tools/artifact-legibility-check.py ]; then
   echo "pre-push: artifact legibility (can a reader see the text inside the diagrams?)…"
-  if ! wait_gate artifact-legibility; then
+  if ! python3 tools/artifact-legibility-check.py; then
     cat <<'MSG'
 
 pre-push: BLOCKED — text inside an artifact is invisible against its own background.
@@ -213,7 +218,7 @@ fi
 # must agree about what a component IS.
 if [ -f tools/cta-viewport-check.py ]; then
   echo "pre-push: CTA viewport identity (does a button change below 640px?)…"
-  if ! wait_gate cta-viewport; then
+  if ! python3 tools/cta-viewport-check.py; then
     echo "pre-push: BLOCKED — a call-to-action renders differently on phone and desktop."
     exit 1
   fi

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Act / Review / Ignore Rule — AI Trust</title>
+<title>The Act / Review / Ignore Rule — AI Trust — Arpit Maheshwari</title>
 <meta name="description" content="One score, one action. The rule that binds every AI confidence score to a verb — act, review or ignore — before it ever reaches a screen.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
@@ -60,7 +60,7 @@
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../styles.css?v=9f614230">
-<link rel="stylesheet" href="../ember.css?v=b4c85530">
+<link rel="stylesheet" href="../ember.css?v=bcaad079">
 </head>
 <body class="p-patterns-act-review-ignore">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -145,7 +145,7 @@
 
   <section class="xi-patterns-act-review-ignore-012">
     <p class="lead xi-patterns-act-review-ignore-015">One score, one action. The rule I have held confidence surfaces to since a roomful of traders taught me why.</p>
-    <p class="u-body xi-patterns-act-review-ignore-016">An unexplained 87% is a shrug with decimals. It reports the model's mood and assigns the user all of the work: is 87 high for this kind of call? High enough to spend money on? Higher than my own hunch? While the person does that math, the moment to act expires — and a recommendation nobody acts on rounds down to zero, whatever the model's accuracy says.</p>
+    <p class="u-body xi-patterns-act-review-ignore-016">An unexplained 87% is a shrug with decimals. It reports the model’s mood and assigns the user all of the work: is 87 high for this kind of call? High enough to spend money on? Higher than my own hunch? While the person does that math, the moment to act expires — and a recommendation nobody acts on rounds down to zero, whatever the model’s accuracy says.</p>
     <p class="u-body">The rule: a confidence score should never reach the screen alone. It resolves into an explicit next state before the user sees it — across the products I&rsquo;ve shipped, three verbs covered the production cases — <strong class="xi-patterns-act-review-ignore-017">act</strong>, <strong class="xi-patterns-act-review-ignore-017">review</strong>, or <strong class="xi-patterns-act-review-ignore-017">ignore</strong>.</p>
   </section>
 
@@ -180,15 +180,15 @@
   </section>
 
   <section class="xi-patterns-act-review-ignore-012">
-    <h2 class="section-title xi-patterns-act-review-ignore-020">2. "Review" forces the reasoning surface to exist</h2>
+    <h2 class="section-title xi-patterns-act-review-ignore-020">2. “Review” forces the reasoning surface to exist</h2>
     <p class="u-body xi-patterns-act-review-ignore-016">A verb of <em>review</em> is empty without something to review. So the moment a score lands there, the interface owes the user the handful of signals that drove it, in language the person can test against their own judgment. Build the rule and you have to build the reasoning panel; there is no skipping it.</p>
     <p class="u-body">Even when the user overrules the model, they should see <em>how</em> it got there. A review without a reason is a shrug with extra steps. (See the <a class="link-gold" href="./ml-explainability.html">ML Explainability</a> and <a class="link-gold" href="./confidence-scores.html">Confidence Score</a> patterns for the surfaces that do this.)</p>
   </section>
 
   <section class="xi-patterns-act-review-ignore-012">
     <h2 class="section-title xi-patterns-act-review-ignore-020">3. The override stops being a failure mode</h2>
-    <p class="u-body xi-patterns-act-review-ignore-016">An <em>act</em> the user can't undo is a bet they never agreed to make. So every recommended action carries a first-class override — not a buried setting, but a path visible at the point of decision.</p>
-    <p class="u-body">A user correcting the model inside a review state is not the system breaking; it is the training data the next version needs. Log it, feed it back, and show people their fingerprints on next week's calls. The first time someone watches their own pushback sharpen the model, the override flips from a fight into coaching. (This is the <a class="link-gold" href="./human-in-loop.html">Human-in-Loop</a> pattern in practice.)</p>
+    <p class="u-body xi-patterns-act-review-ignore-016">An <em>act</em> the user can’t undo is a bet they never agreed to make. So every recommended action carries a first-class override — not a buried setting, but a path visible at the point of decision.</p>
+    <p class="u-body">A user correcting the model inside a review state is not the system breaking; it is the training data the next version needs. Log it, feed it back, and show people their fingerprints on next week’s calls. The first time someone watches their own pushback sharpen the model, the override flips from a fight into coaching. (This is the <a class="link-gold" href="./human-in-loop.html">Human-in-Loop</a> pattern in practice.)</p>
   </section>
 
   <div class="counter">
@@ -201,9 +201,9 @@
     <ul class="u-body xi-patterns-act-review-ignore-026">
       <li class="xi-patterns-act-review-ignore-027"><strong>Bind every score to exactly one verb</strong> — act, review, or ignore — before it reaches the screen.</li>
       <li class="xi-patterns-act-review-ignore-027"><strong>Write down where each band starts, and who owns that call.</strong> Band edges are a product decision, not a stats default.</li>
-      <li class="xi-patterns-act-review-ignore-027"><strong>Build the surface "review" demands.</strong> Reasons named on the call itself — not in a tooltip, not in the docs.</li>
-      <li class="xi-patterns-act-review-ignore-027"><strong>Give "act" a visible override</strong> — one click, logged, and fed back to the model as training signal.</li>
-      <li class="xi-patterns-act-review-ignore-027"><strong>Let "ignore" say the honest no.</strong> Below the line, the model declines to bluff — the honest no is what makes the act believable.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Build the surface “review” demands.</strong> Reasons named on the call itself — not in a tooltip, not in the docs.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Give “act” a visible override</strong> — one click, logged, and fed back to the model as training signal.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Let “ignore” say the honest no.</strong> Below the line, the model declines to bluff — the honest no is what makes the act believable.</li>
       <li class="xi-patterns-act-review-ignore-027"><strong>Revisit the band edges against real outcomes</strong> on a schedule, not when someone complains.</li>
       <li class="xi-patterns-act-review-ignore-027"><strong>Audit your screens:</strong> any score not bound to a verb is decoration. Delete it or finish it.</li>
     </ul>
@@ -211,14 +211,14 @@
 
   <section class="xi-patterns-act-review-ignore-012">
     <h2 class="section-title xi-patterns-act-review-ignore-018">Where it has run</h2>
-    <p class="u-body">PE screening and technical diligence run the rule as shipped; media buying ran its ancestor — plans a trader could accept, adjust, or reject. PE screening: 60% faster once analysts stopped re-deriving the score. Technical diligence: three-week cycles to four days. Different stakes, same three verbs &mdash; and it holds for agents too: a tool call is an <strong class="xi-patterns-act-review-ignore-017">act</strong>, a draft is a <strong class="xi-patterns-act-review-ignore-017">review</strong>, an abstention is an honest <strong class="xi-patterns-act-review-ignore-017">ignore</strong>. If a score or an action on your screen doesn't bind to <strong class="xi-patterns-act-review-ignore-017">act</strong>, <strong class="xi-patterns-act-review-ignore-017">review</strong>, or <strong class="xi-patterns-act-review-ignore-017">ignore</strong>, with a reason for every review and an override for every act, it's decoration. Delete it or finish it.</p>
+    <p class="u-body">PE screening and technical diligence run the rule as shipped; media buying ran its ancestor — plans a trader could accept, adjust, or reject. PE screening: 60% faster once analysts stopped re-deriving the score. Technical diligence: three-week cycles to four days. Different stakes, same three verbs &mdash; and it holds for agents too: a tool call is an <strong class="xi-patterns-act-review-ignore-017">act</strong>, a draft is a <strong class="xi-patterns-act-review-ignore-017">review</strong>, an abstention is an honest <strong class="xi-patterns-act-review-ignore-017">ignore</strong>. If a score or an action on your screen doesn’t bind to <strong class="xi-patterns-act-review-ignore-017">act</strong>, <strong class="xi-patterns-act-review-ignore-017">review</strong>, or <strong class="xi-patterns-act-review-ignore-017">ignore</strong>, with a reason for every review and an override for every act, it’s decoration. Delete it or finish it.</p>
   </section>
 
   <section class="card-gold xi-patterns-act-review-ignore-028">
     <h3 class="card-title xi-patterns-act-review-ignore-016">Where the rule earned its name</h3>
     <p class="t-cap-loose xi-patterns-act-review-ignore-019">No single product taught me this rule — the same pattern kept recurring across the AI work until it earned a name. It runs across these case studies:</p>
     <ul class="t-cap-loose xi-patterns-act-review-ignore-029">
-      <li class="xi-patterns-act-review-ignore-030"><strong><a class="link-gold" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> the ancestor, not an instance — recommendations shipped as full plans with KPIs and one-click customization; the accept-adjust-reject rhythm there is what later crystallized into the three verbs.</li>
+      <li class="xi-patterns-act-review-ignore-030"><strong><a class="link-gold" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> the ancestor, not an instance — recommendations shipped as full plans with KPIs and one-click customisation; the accept-adjust-reject rhythm there is what later crystallised into the three verbs.</li>
       <li class="xi-patterns-act-review-ignore-030"><strong><a class="link-gold" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> a score that opens its own reasoning when it hits review, never a bare verdict the analyst has to take on faith.</li>
       <li class="xi-patterns-act-review-ignore-030"><strong><a class="link-gold" href="../case-studies/vc-diligence.html">Due Diligence You Can&rsquo;t Rubber-Stamp</a>:</strong> the same three verbs took the diligence cycle from 3 wks → 4 days.</li>
     </ul>
@@ -237,7 +237,7 @@
   <section class="measure-t">
     <div class="xi-patterns-act-review-ignore-035">
       <div class="eyebrow xi-patterns-act-review-ignore-030">Where this breaks — do not use it here</div>
-      <p class="u-body xi-patterns-act-review-ignore-036">Skip the rule when every output is safe to auto-apply (no verb needed but Act) or when the volume is so low a human reviews everything anyway — three bands with nothing in them is ceremony. And if the model can't be calibrated well enough to place the two thresholds honestly, fix that first; verbs on top of noise just launder the noise.</p>
+      <p class="u-body xi-patterns-act-review-ignore-036">Skip the rule when every output is safe to auto-apply (no verb needed but Act) or when the volume is so low a human reviews everything anyway — three bands with nothing in them is ceremony. And if the model can’t be calibrated well enough to place the two thresholds honestly, fix that first; verbs on top of noise just launder the noise.</p>
     </div>
   </section>
 
