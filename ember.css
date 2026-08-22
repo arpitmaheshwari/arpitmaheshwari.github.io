@@ -1900,10 +1900,6 @@ html[data-theme="ember"] body[class*="p-case-studies"] .btn-row{justify-content:
    about a component rather than four rules about four ids. It sits in `emphasis` because that is what
    it is overriding — not a preference. Found by Arpit, 2026-08-17. */
 html[data-theme="ember"] body[class*="p-case-studies"] .case-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px}
-html[data-theme="ember"] :is(body[class*="p-case-studies"],body.p-screen) .btn-a,
-html[data-theme="ember"] :is(body[class*="p-case-studies"],body.p-screen) .lbl-pill-bg,
-html[data-theme="ember"] :is(body[class*="p-case-studies"],body.p-screen) .btn-label,
-html[data-theme="ember"] body.p-screen .lbl-badge-bg{background:var(--g-hot);color:var(--cta-ink)}
 /* --- T1.3 · /hire → /screen handoff link was styled identically to prose
    (zero delta on all five properties) while LinkedIn/GitHub got gold --- */
 html[data-theme="ember"] body.p-hire :is(.hire-avail,.hire-contact) a{color:var(--amber)}
@@ -2197,4 +2193,11 @@ html[data-theme="ember"] body.p-case-studies-planit .mascot-row .mascot{width:au
 
 @layer emphasis {
 
+
+/* The design system beats a per-page extraction. These declarations
+   carried !important; when it was deleted they landed at the end of
+   @layer base, where .xi-* in @layer utilities outranked them and six
+   case studies went back to a flat gold slab. This is what emphasis is
+   for: the layer above the page-level utilities. */
+html[data-theme="ember"] :is(.btn-a,.lbl-pill-bg,.btn-label,.lbl-badge-bg){background:var(--g-hot);color:var(--cta-ink);border-radius:999px;font-family:var(--ff-label);text-transform:uppercase;letter-spacing:.08em;font-size:var(--fs-eyebrow);font-weight:600}
 }
