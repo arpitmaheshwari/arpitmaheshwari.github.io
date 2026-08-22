@@ -336,11 +336,25 @@ exit 0
 # was before the architecture review: 37 navs that were all supposed to be one.
 if [ -f tools/build-partials.py ]; then
   echo "pre-push: partials (has any page drifted from the shared nav/footer?)…"
-  if ! python3 tools/build-partials.py --check | grep -q "drifted from the partials : 0"; then
-    python3 tools/build-partials.py --check
+  BP_OUT=$(python3 tools/build-partials.py --check)
+  if ! printf '%s' "$BP_OUT" | grep -q "drifted from the partials : 0"; then
+    printf '%s\n' "$BP_OUT"
     echo
     echo "pre-push: BLOCKED — a page's nav or footer differs from partials/."
     echo "  Edit partials/nav.html or partials/footer.html, then run:"
+    echo "     python3 tools/build-partials.py"
+    exit 1
+  fi
+  # A page that would be REWRITTEN is a page whose cache version is behind its
+  # file. This was only checked for drift, so editing clarity.js without
+  # bumping ?v=c1 by hand shipped the OLD script to every reader — Cloudflare
+  # keeps serving the cached URL and the change simply does not exist live.
+  # Versions are content hashes now, and staleness is a blocking condition.
+  if ! printf '%s' "$BP_OUT" | grep -q "pages rewritten: 0"; then
+    printf '%s\n' "$BP_OUT"
+    echo
+    echo "pre-push: BLOCKED — an asset changed but the ?v= on some page did not."
+    echo "  Readers would keep getting the cached old file. Run:"
     echo "     python3 tools/build-partials.py"
     exit 1
   fi

@@ -44,11 +44,16 @@ FOOTER_RE = re.compile(r'<footer.*?</footer>', re.S)
 ABSOLUTE_PATH_PAGES = {'404.html'}
 
 
-def pages():
+def all_pages():
     out = subprocess.run(['git', 'ls-files', '*.html'], capture_output=True,
                          text=True, cwd=ROOT).stdout.split()
     return [p for p in out if not p.startswith(('tests/', 'partials/'))
-            and 'og-images' not in p and not p.startswith('book/')]
+            and 'og-images' not in p]
+
+
+def pages():
+    """Pages that carry the shared nav and footer. The book has neither."""
+    return [p for p in all_pages() if not p.startswith('book/')]
 
 
 def root_for(rel):
@@ -87,10 +92,22 @@ def render(rel, existing_nav, existing_footer):
     return nav, foot
 
 
+# Scripts were versioned by hand (clarity.js?v=c1, fit.js?v=fit1). Editing
+# clarity.js without remembering to bump it shipped the OLD file to every
+# reader — Cloudflare keeps serving the cached URL, and the change simply did
+# not exist in production. css-version-check has guarded stylesheets against
+# exactly this for months; scripts had no such guard. Hash them the same way.
+VERSIONED = ('styles.css', 'ember.css',
+             'analytics.js', 'clarity.js', 'attention.js', 'fit.js',
+             'patterns/demos.js', 'data/case-facts.js',
+             'lab/loop.js', 'lab/loop.test.js', 'lab/trustlint.js',
+             'book/portfolio.js')
+
+
 def css_versions():
-    """A short content hash per stylesheet, so a change always busts the cache."""
+    """A short content hash per versioned asset, so a change always busts the cache."""
     out = {}
-    for name in ('styles.css', 'ember.css'):
+    for name in VERSIONED:
         p = ROOT / name
         if p.exists():
             out[name] = hashlib.sha256(p.read_bytes()).hexdigest()[:8]
@@ -101,9 +118,24 @@ def main():
     check = '--check' in sys.argv
     vers = css_versions()
     changed, drift = [], []
-    for rel in pages():
+    # The book has no nav or footer to stamp, but it loads portfolio.js and
+    # case-facts.js — and a stale script there is the same defect as anywhere
+    # else. Partials are stamped on pages(); versions on all_pages().
+    partial_pages = set(pages())
+    for rel in all_pages():
         p = ROOT / rel
         s = orig = p.read_text(encoding='utf-8')
+        if rel not in partial_pages:
+            for name, h in css_versions().items():
+                base = pathlib.Path(name).name
+                stem, ext = base.rsplit('.', 1)
+                s = re.sub(re.escape(stem) + r'\.' + ext + r'\?v=[A-Za-z0-9.]+',
+                           f'{stem}.{ext}?v={h}', s)
+            if s != orig:
+                changed.append(rel)
+                if not check:
+                    p.write_text(s, encoding='utf-8')
+            continue
         mn, mf = NAV_RE.search(s), FOOTER_RE.search(s)
         nav, foot = render(rel, mn.group(0) if mn else None,
                            mf.group(0) if mf else None)
@@ -117,13 +149,15 @@ def main():
                 drift.append((rel, 'footer'))
             s = s[:mf.start()] + foot + s[mf.end():]
         for name, h in vers.items():
-            stem = re.escape(pathlib.Path(name).stem)
-            s = re.sub(stem + r'\.css\?v=[A-Za-z0-9.]+', f'{pathlib.Path(name).stem}.css?v={h}', s)
+            base = pathlib.Path(name).name           # book/portfolio.js -> portfolio.js
+            stem, ext = base.rsplit('.', 1)
+            s = re.sub(re.escape(stem) + r'\.' + ext + r'\?v=[A-Za-z0-9.]+',
+                       f'{stem}.{ext}?v={h}', s)
         if s != orig:
             changed.append(rel)
             if not check:
                 p.write_text(s, encoding='utf-8')
-    print(f"  pages scanned : {len(pages())}")
+    print(f"  pages scanned : {len(all_pages())}")
     print(f"  drifted from the partials : {len(drift)}")
     for rel, what in drift[:10]:
         print(f"      {what:<7} {rel}")
