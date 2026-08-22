@@ -40,6 +40,11 @@ EXIT CODE   0 = calibrated and clean · 1 = broken assets found, or calibration 
 import argparse, html, json, os, re, subprocess, sys, tempfile
 import xml.etree.ElementTree as ET
 from urllib.parse import urlsplit
+# Trackers are refused for every browser this repo drives — see cdp.py.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cdp import NO_TRACKING_FLAG
+import sys
+import os
 
 CHROME_CANDIDATES = [
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
@@ -140,7 +145,7 @@ f.addEventListener("load", async () => {
 
 def chrome_run(args, timeout=90):
     return subprocess.run(
-        [CHROME, "--headless", "--disable-gpu", "--no-sandbox", "--hide-scrollbars",
+        [CHROME, "--headless", NO_TRACKING_FLAG, "--disable-gpu", "--no-sandbox", "--hide-scrollbars",
          "--disable-dev-shm-usage", "--force-device-scale-factor=1"] + args,
         capture_output=True, text=True, timeout=timeout)
 

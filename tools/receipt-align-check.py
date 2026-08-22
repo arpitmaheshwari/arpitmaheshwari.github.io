@@ -1,4 +1,8 @@
 import subprocess,json,tempfile,pathlib,sys,shutil
+import sys as _sys, os as _os
+# Trackers are refused for every browser this repo drives — see cdp.py.
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from cdp import NO_TRACKING_FLAG
 CH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 PAGES=["case-studies/adtech.html","case-studies/fintech.html","case-studies/o2.html",
        "case-studies/orgos.html","case-studies/ptc.html","case-studies/vc-diligence.html"]
@@ -18,7 +22,7 @@ bad=0
 for W in (1440,1024,390):
   for pg in PAGES:
     open('__ra.html','w').write(PROBE%(pg,W))
-    o=subprocess.run([CH,"--headless=new","--disable-gpu","--no-sandbox",
+    o=subprocess.run([CH,"--headless=new",NO_TRACKING_FLAG,"--disable-gpu","--no-sandbox",
       f"--window-size={W+80},1000",
       "--virtual-time-budget=9000","--dump-dom","http://localhost:8000/__ra.html"],capture_output=True,text=True,timeout=60).stdout
     import re

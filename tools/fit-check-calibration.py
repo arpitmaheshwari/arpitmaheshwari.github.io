@@ -16,6 +16,11 @@ USAGE  fit-check-calibration.py [base-url]      (default http://localhost:8000)
 """
 import json, os, re, shutil, signal, subprocess, sys, tempfile, time, urllib.request
 import websocket
+# Trackers are refused for every browser this repo drives — see cdp.py.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cdp import NO_TRACKING_FLAG
+import sys
+import os
 
 BASE = (sys.argv[1] if len(sys.argv) > 1 else "http://localhost:8000").rstrip("/")
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
@@ -78,7 +83,7 @@ def main():
     port = 9600 + (os.getpid() % 180)
     prof = tempfile.mkdtemp(prefix="fitcal-")
     proc = subprocess.Popen(
-        [CHROME, "--headless=new", f"--remote-debugging-port={port}", f"--user-data-dir={prof}",
+        [CHROME, "--headless=new", NO_TRACKING_FLAG, f"--remote-debugging-port={port}", f"--user-data-dir={prof}",
          "--no-first-run", "--remote-allow-origins=*", "--hide-scrollbars", "about:blank"],
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     try:

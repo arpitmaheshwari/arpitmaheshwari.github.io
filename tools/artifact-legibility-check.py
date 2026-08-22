@@ -32,6 +32,10 @@ background colour to measure), <text> without a painted rect behind it, and
 whether the words are the RIGHT words — only whether a reader can see them.
 """
 import subprocess, sys, json, re, html as H, pathlib, tempfile
+import sys, os
+# Trackers are refused for every browser this repo drives — see cdp.py.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cdp import NO_TRACKING_FLAG
 
 CH = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 HARD = 2.0          # below this, a human cannot read it — hard failure
@@ -95,7 +99,7 @@ def scan(page, port, inject=""):
     pathlib.Path("__al.html").write_text(PROBE % (page, inject))
     try:
         r = subprocess.run(
-            [CH, "--headless=new", "--disable-gpu", "--no-sandbox",
+            [CH, "--headless=new", NO_TRACKING_FLAG, "--disable-gpu", "--no-sandbox",
              "--window-size=1360,1000", "--virtual-time-budget=12000", "--dump-dom",
              f"http://localhost:{port}/__al.html"],
             capture_output=True, text=True, timeout=100)

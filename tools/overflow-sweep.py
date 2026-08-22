@@ -5,6 +5,10 @@ Uses a same-origin iframe so the tested page gets a TRUE CSS viewport width
 (headless clamps the real window to ~500px, which would silently lie below that).
 """
 import subprocess, sys, json, re, html as H, pathlib, os
+import sys as _sys, os as _os
+# Trackers are refused for every browser this repo drives — see cdp.py.
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from cdp import NO_TRACKING_FLAG
 CH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 W=int(sys.argv[1]) if len(sys.argv)>1 else 1440
 PAGES=sys.argv[2:] or [str(p) for p in sorted(pathlib.Path('.').rglob('*.html'))
@@ -64,7 +68,7 @@ fails=0
 for pg in PAGES:
     open("__ov.html","w").write(PROBE % (pg, W))
     try:
-        r=subprocess.run([CH,"--headless=new","--disable-gpu","--no-sandbox",
+        r=subprocess.run([CH,"--headless=new",NO_TRACKING_FLAG,"--disable-gpu","--no-sandbox",
           f"--window-size={max(W+80,600)},1000","--virtual-time-budget=9000","--dump-dom",
           "http://localhost:8000/__ov.html"],capture_output=True,text=True,timeout=90)
         m=re.search(r"<title>R:(.*?)</title>", r.stdout, re.S)

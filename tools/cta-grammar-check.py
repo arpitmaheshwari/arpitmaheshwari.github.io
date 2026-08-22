@@ -14,6 +14,10 @@ are a different component. Self-calibrating: plants an off-grammar CTA and
 requires red.
 """
 import subprocess, sys, json, re, html as H, pathlib, os, collections
+import sys as _sys, os as _os
+# Trackers are refused for every browser this repo drives — see cdp.py.
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from cdp import NO_TRACKING_FLAG
 
 CH = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
@@ -55,7 +59,7 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;co
 def scan(page):
     open("__cg.html","w").write(PROBE % page)
     try:
-        r = subprocess.run([CH,"--headless=new","--disable-gpu","--no-sandbox",
+        r = subprocess.run([CH,"--headless=new",NO_TRACKING_FLAG,"--disable-gpu","--no-sandbox",
             "--window-size=1520,1000","--virtual-time-budget=9000","--dump-dom",
             "http://localhost:8000/__cg.html"], capture_output=True, text=True, timeout=90)
         m = re.search(r"<title>R:(.*?)</title>", r.stdout, re.S)

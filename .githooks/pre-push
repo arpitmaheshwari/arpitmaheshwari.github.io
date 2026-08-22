@@ -94,7 +94,7 @@ wait_gate() {  # wait_gate <name>
 
 # Static gates: no browser, no network, under a second each. They run inline
 # because they are cheaper than the bookkeeping to background them.
-for g in link-integrity share-preview prose; do
+for g in no-tracking link-integrity share-preview prose; do
   [ -f "tools/$g-check.py" ] || continue
   echo "pre-push: $g…"
   if ! python3 "tools/$g-check.py"; then

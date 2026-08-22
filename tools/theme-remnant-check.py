@@ -8,6 +8,10 @@ renders, so a component Ember never restyled shows up as a hard failure.
 Self-calibrating: plants a known remnant and requires the check to go red.
 """
 import subprocess, sys, json, re, html as H, pathlib, os
+import sys as _sys, os as _os
+# Trackers are refused for every browser this repo drives — see cdp.py.
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from cdp import NO_TRACKING_FLAG
 
 CH = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 # classic-theme values that must never render under ember
@@ -66,7 +70,7 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
 def scan(page):
     open("__tr.html","w").write(PROBE % (json.dumps(RETIRED), json.dumps(EXEMPT_ANCESTORS), page))
     try:
-        r = subprocess.run([CH,"--headless=new","--disable-gpu","--no-sandbox",
+        r = subprocess.run([CH,"--headless=new",NO_TRACKING_FLAG,"--disable-gpu","--no-sandbox",
             "--window-size=1400,1000","--virtual-time-budget=9000","--dump-dom",
             "http://localhost:8000/__tr.html"], capture_output=True, text=True, timeout=90)
         m = re.search(r"<title>R:(.*?)</title>", r.stdout, re.S)

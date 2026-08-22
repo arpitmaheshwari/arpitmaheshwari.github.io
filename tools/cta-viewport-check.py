@@ -20,6 +20,11 @@ agree about it.
 CALIBRATION: plants a viewport-specific override and requires it to be caught.
 """
 import json, subprocess, sys, re, os, html as H, pathlib
+# Trackers are refused for every browser this repo drives — see cdp.py.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cdp import NO_TRACKING_FLAG
+import sys
+import os
 
 CH = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 SEL = ".pill,.nav-cta,.btn-a,.btn-a-ghost,.rcpt-btn,.lbl-pill-bg,.lbl-badge-gold"
@@ -41,7 +46,7 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;co
 def sample(page, width, inject=""):
     open("__cv.html", "w").write(PROBE % (page, width, inject, SEL))
     try:
-        r = subprocess.run([CH, "--headless=new", "--disable-gpu", "--no-sandbox",
+        r = subprocess.run([CH, "--headless=new", NO_TRACKING_FLAG, "--disable-gpu", "--no-sandbox",
                             f"--window-size={max(width+80,600)},1000",
                             "--virtual-time-budget=8000", "--dump-dom",
                             "http://localhost:8000/__cv.html"],

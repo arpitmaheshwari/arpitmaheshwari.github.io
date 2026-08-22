@@ -46,6 +46,11 @@ REQUIREMENTS  Google Chrome (or set $CHROME), Pillow, pages served over http(s),
 EXIT CODE     0 = calibrated and clean · 1 = failures found, or calibration did not go red.
 """
 import argparse, json, html, math, re, os, subprocess, sys, tempfile
+# Trackers are refused for every browser this repo drives — see cdp.py.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cdp import NO_TRACKING_FLAG
+import sys
+import os
 
 CHROME_CANDIDATES = [
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
@@ -120,7 +125,7 @@ def gh(level, msg):
 
 def chrome(args, timeout=90):
     return subprocess.run(
-        [CHROME, "--headless", "--disable-gpu", "--no-sandbox", "--hide-scrollbars",
+        [CHROME, "--headless", NO_TRACKING_FLAG, "--disable-gpu", "--no-sandbox", "--hide-scrollbars",
          # --disable-dev-shm-usage: standard CI hardening. Chrome writes shared memory to /dev/shm,
          # which is small on many CI images; without this it can crash mid-render and return a
          # blank or partial screenshot, which this tool would then measure as garbage.

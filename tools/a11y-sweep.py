@@ -36,6 +36,10 @@ EXIT CODE  0 = calibrated and clean · 1 = findings, or calibration did not go r
 """
 import argparse, html, json, os, re, subprocess, sys, tempfile
 from urllib.parse import urlsplit, unquote
+import sys as _sys, os as _os
+# Trackers are refused for every browser this repo drives — see cdp.py.
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from cdp import NO_TRACKING_FLAG
 
 CHROME = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
@@ -254,7 +258,7 @@ INFO_KINDS = {"img-info", "form-info"}
 
 def chrome_run(args, timeout=120):
     return subprocess.run(
-        [CHROME, "--headless", "--disable-gpu", "--no-sandbox", "--hide-scrollbars",
+        [CHROME, "--headless", NO_TRACKING_FLAG, "--disable-gpu", "--no-sandbox", "--hide-scrollbars",
          "--disable-dev-shm-usage", "--force-device-scale-factor=1"] + args,
         capture_output=True, text=True, timeout=timeout)
 

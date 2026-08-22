@@ -16,6 +16,10 @@ this into canon-lint or a CI step); run with no args to regenerate everything.
 """
 import argparse, html, os, re, subprocess, sys, time
 from urllib.parse import urlencode
+import sys as _sys, os as _os
+# Trackers are refused for every browser this repo drives — see cdp.py.
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from cdp import NO_TRACKING_FLAG
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 TEMPLATE = "assets/og-images/_card.template.html"
@@ -119,7 +123,7 @@ def render(out_name, kicker, title, subtitle, byline, docroot):
     q = urlencode({"kicker": kicker, "title": title, "subtitle": subtitle, "byline": byline})
     url = f"http://localhost:8000/{TEMPLATE}?{q}"
     out_path = os.path.join(docroot, "assets", "og-images", out_name)
-    args = [CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars",
+    args = [CHROME, "--headless=new", NO_TRACKING_FLAG, "--disable-gpu", "--hide-scrollbars",
             "--window-size=1200,630", "--virtual-time-budget=4000",
             f"--screenshot={out_path}", url]
     r = subprocess.run(args, capture_output=True, text=True, timeout=60)

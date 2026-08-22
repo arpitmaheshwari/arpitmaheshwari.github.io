@@ -33,6 +33,11 @@ WHAT IT STRUCTURALLY CANNOT SEE
 import json, os, re, subprocess, sys, time, argparse
 import urllib.request
 import websocket  # websocket-client
+# Trackers are refused for every browser this repo drives — see cdp.py.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cdp import NO_TRACKING_FLAG
+import sys
+import os
 
 CHROME = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 PORT = int(os.environ.get("CDP_PORT", "9333"))
@@ -94,7 +99,7 @@ class CDP:
 
 def start_chrome(width, height, extra=()):
     proc = subprocess.Popen(
-        [CHROME, "--headless=new", f"--remote-debugging-port={PORT}", "--no-first-run",
+        [CHROME, "--headless=new", NO_TRACKING_FLAG, f"--remote-debugging-port={PORT}", "--no-first-run",
          "--no-default-browser-check", "--disable-gpu", "--no-sandbox",
          "--remote-allow-origins=*",
          f"--window-size={width},{height}", "--user-data-dir=" + os.path.join(

@@ -22,6 +22,26 @@ import websocket
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 
+# Every page on this site loads Google Analytics AND Microsoft Clarity, so
+# every page a gate opened sent a real pageview and a real session recording.
+# One full sweep is ~844 page loads; a day of work is thousands. Arpit reads
+# those numbers to judge whether his outreach is landing, so a gate that
+# inflates them is worse than no gate — it corrupts the decision the data is
+# for. Resolution is refused at the DNS level, which works for every way we
+# launch Chrome, including --dump-dom where there is no CDP session to hook.
+TRACKER_HOSTS = [
+    "www.googletagmanager.com", "googletagmanager.com",
+    "www.google-analytics.com", "google-analytics.com",
+    "analytics.google.com", "ssl.google-analytics.com",
+    "region1.google-analytics.com", "region1.analytics.google.com",
+    "*.clarity.ms", "clarity.ms",
+    "c.bing.com", "bat.bing.com",
+    "stats.g.doubleclick.net", "*.doubleclick.net",
+]
+NO_TRACKING_FLAG = "--host-resolver-rules=" + ",".join(
+    f"MAP {h} ~NOTFOUND" for h in TRACKER_HOSTS)
+
+
 class Browser:
     """A headless Chrome speaking CDP. Use as a context manager."""
 
@@ -32,7 +52,8 @@ class Browser:
             [CHROME, "--headless=new", f"--remote-debugging-port={self.port}",
              f"--user-data-dir={self.profile}", "--no-first-run",
              "--remote-allow-origins=*", "--hide-scrollbars",
-             "--force-device-scale-factor=1", *extra_flags, "about:blank"],
+             "--force-device-scale-factor=1", NO_TRACKING_FLAG,
+             *extra_flags, "about:blank"],
             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         ws_url = None
         for _ in range(90):
