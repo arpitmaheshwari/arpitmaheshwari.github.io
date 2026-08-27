@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ember">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prototype — AdTech plan card reconstruction</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../fonts.css?v=f2">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../ember.css">
+<style>
+/* Scoped to .rc- so nothing leaks into the page, and every critical property is
+   DECLARED rather than inherited — the artifact-stylesheet leak that once made
+   text invisible came from relying on the page for colour. */
+.rc-wrap{max-width:1040px;margin:0 auto;padding:0 24px 80px}
+.rc-h{font-family:var(--ff-label);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--copper);margin:64px 0 10px}
+.rc-t{font-family:var(--serif,'Source Serif 4',Georgia,serif);font-weight:300;
+      font-size:clamp(24px,3.2vw,31px);line-height:1.15;color:var(--ink);margin:0 0 8px}
+.rc-sub{font-size:15px;line-height:1.7;color:var(--ink-dim);margin:0 0 28px;max-width:64ch}
+
+/* the paper mount every artifact on this site sits on */
+.rc-paper{background:#F4ECDA;border-radius:10px;padding:clamp(16px,2.4vw,28px);
+          box-shadow:0 24px 60px rgba(0,0,0,.38)}
+
+/* the reconstructed application surface */
+.rc-app{background:#FFFDF8;border:1px solid #DED2BC;border-radius:8px;overflow:hidden;
+        font-family:var(--ff-sans);color:#241830}
+.rc-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+        padding:10px 16px;background:#EFE6D2;border-bottom:1px solid #DED2BC;
+        font-family:var(--ff-mono);font-size:11px;letter-spacing:.06em;color:#6A5C46}
+.rc-dot{width:8px;height:8px;border-radius:50%;background:#3F7F63;flex:0 0 auto}
+.rc-bar b{font-weight:600;color:#241830;letter-spacing:.04em}
+.rc-bar .rc-right{margin-left:auto}
+
+.rc-body{padding:clamp(16px,2.2vw,24px)}
+.rc-brieflab{font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.1em;
+             text-transform:uppercase;color:#8A7A5E;margin:0 0 6px}
+.rc-brief{font-family:var(--serif,'Source Serif 4',Georgia,serif);font-style:italic;
+          font-size:clamp(18px,2.2vw,23px);line-height:1.35;color:#241830;margin:0 0 20px}
+
+.rc-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+          gap:1px;background:#DED2BC;border:1px solid #DED2BC;border-radius:6px;overflow:hidden;
+          margin:0 0 22px}
+.rc-stat{background:#FFFDF8;padding:12px 14px}
+.rc-stat b{display:block;font-family:var(--serif,'Source Serif 4',Georgia,serif);
+           font-weight:400;font-size:22px;line-height:1.15;color:#241830}
+.rc-stat span{display:block;font-family:var(--ff-mono);font-size:10px;letter-spacing:.08em;
+              text-transform:uppercase;color:#8A7A5E;margin-top:3px}
+
+.rc-lab{font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+        color:#8A7A5E;margin:0 0 8px}
+.rc-rows{display:flex;flex-direction:column;gap:1px;background:#E7DCC6;
+         border:1px solid #DED2BC;border-radius:6px;overflow:hidden}
+.rc-row{display:grid;grid-template-columns:1.25fr 62px 2fr;gap:14px;align-items:start;
+        background:#FFFDF8;padding:12px 14px}
+.rc-row.rc-weak{background:#FBF3E4}
+.rc-env{font-size:14px;font-weight:600;line-height:1.35;color:#241830}
+.rc-env small{display:block;font-weight:400;font-size:12px;color:#6A5C46;margin-top:2px}
+.rc-share{font-family:var(--ff-mono);font-size:14px;color:#241830;text-align:right;padding-top:1px}
+.rc-why{font-size:13px;line-height:1.55;color:#4A3F30}
+.rc-flag{display:inline-block;font-family:var(--ff-mono);font-size:9.5px;letter-spacing:.08em;
+         text-transform:uppercase;color:#A8521F;border:1px solid #D9A87A;border-radius:3px;
+         padding:1px 5px;margin-left:6px;vertical-align:2px;white-space:nowrap;font-weight:400}
+
+.rc-trade{margin:18px 0 0;padding:14px 16px;background:#F6EEDD;
+          border-left:3px solid #C98F3F;border-radius:0 6px 6px 0}
+.rc-trade b{display:block;font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.1em;
+            text-transform:uppercase;color:#8A6A2E;margin-bottom:5px}
+.rc-trade p{margin:0;font-size:14px;line-height:1.6;color:#3A3021}
+
+.rc-acts{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:20px;
+         padding-top:16px;border-top:1px solid #E7DCC6}
+.rc-btn{font-family:var(--ff-label);font-size:12px;font-weight:600;letter-spacing:.08em;
+        text-transform:uppercase;border-radius:999px;padding:10px 18px;border:1px solid transparent}
+.rc-btn-1{background:#241830;color:#F5EDE6}
+.rc-btn-2{background:transparent;color:#241830;border-color:#B8A987}
+.rc-log{font-size:12.5px;line-height:1.5;color:#6A5C46;margin-left:auto;max-width:34ch}
+
+.rc-badge{font-family:var(--ff-mono);font-size:10.5px;letter-spacing:.05em;color:#6A5C46;
+          margin:14px 2px 0}
+.rc-cap{font-size:13.5px;line-height:1.7;color:var(--ink-dim);margin:16px 0 0;max-width:70ch}
+
+@media (max-width:640px){
+  .rc-row{grid-template-columns:1fr 54px;gap:8px 12px}
+  .rc-why{grid-column:1 / -1;padding-top:2px}
+  .rc-log{margin-left:0}
+}
+</style>
+</head>
+<body class="p-case-studies-adtech">
+<main class="rc-wrap">
+
+  <p class="rc-h">Prototype · the design move, shown</p>
+  <h1 class="rc-t">What the trader actually received.</h1>
+  <p class="rc-sub">The same content the current diagram describes in boxes — rendered as
+  the thing itself. No client data: every figure is synthetic and the surface is rebuilt
+  from memory.</p>
+
+  <figure class="rc-paper" style="margin:0">
+    <div class="rc-app">
+      <div class="rc-bar">
+        <span class="rc-dot" aria-hidden="true"></span>
+        <b>CAMPAIGN PLANNER</b>
+        <span>· plan drafted · awaiting trader sign-off</span>
+        <span class="rc-right">v4 · 3 hrs from brief</span>
+      </div>
+
+      <div class="rc-body">
+        <p class="rc-brieflab">The brief</p>
+        <p class="rc-brief">“Reach party-lovers on Friday nights, 9 PM to 1 AM.”</p>
+
+        <div class="rc-stats">
+          <div class="rc-stat"><b>1.9M</b><span>Audience reached</span></div>
+          <div class="rc-stat"><b>4.6×</b><span>Avg. frequency</span></div>
+          <div class="rc-stat"><b>£82,400</b><span>Budget allocated</span></div>
+          <div class="rc-stat"><b>6 weeks</b><span>Fri–Sat, 21:00–01:00</span></div>
+        </div>
+
+        <p class="rc-lab">Where the money goes — and why it is there</p>
+        <div class="rc-rows">
+          <div class="rc-row">
+            <div class="rc-env">Roadside<small>6-sheet digital</small></div>
+            <div class="rc-share">34%</div>
+            <div class="rc-why">Highest reach against this audience between 21:00 and 23:00,
+              on the routes into the night-time economy.</div>
+          </div>
+          <div class="rc-row">
+            <div class="rc-env">Rail<small>platform digital</small></div>
+            <div class="rc-share">26%</div>
+            <div class="rc-why">Catches the outbound leg — before the decision is made,
+              not after.</div>
+          </div>
+          <div class="rc-row">
+            <div class="rc-env">Bar &amp; venue<small>in-venue screen</small></div>
+            <div class="rc-share">22%</div>
+            <div class="rc-why">In-environment at the moment of choice. Smallest reach,
+              strongest context.</div>
+          </div>
+          <div class="rc-row rc-weak">
+            <div class="rc-env">Shopping centre <span class="rc-flag">cut first</span>
+              <small>large format</small></div>
+            <div class="rc-share">18%</div>
+            <div class="rc-why"><b>Weakest fit in this plan.</b> Held only to keep the reach
+              floor. Drop it if you want budget back — costs ~4% reach.</div>
+          </div>
+        </div>
+
+        <div class="rc-trade">
+          <b>The trade-off this plan made</b>
+          <p>It bought <strong>context over raw reach</strong>: 4% fewer people, 11% more of
+          them seen inside the environment where the decision happens. If the KPI is reach,
+          this is the wrong plan — and shopping centre is the line to argue with first.</p>
+        </div>
+
+        <div class="rc-acts">
+          <span class="rc-btn rc-btn-1">Approve plan</span>
+          <span class="rc-btn rc-btn-2">Customise</span>
+          <p class="rc-log">Every edit is logged against the recommendation and feeds
+          next week’s model.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="rc-badge">Reconstruction — anonymised, rebuilt from memory for illustration ·
+    client under NDA · figures synthetic</p>
+  </figure>
+
+  <p class="rc-cap">The engine still produced a ranked list. What changed is what it handed
+  over: a plan carrying its own reasoning, its own weakest line, and the trade-off it
+  made — so a trader could defend it in a room, or argue with it in one click.</p>
+
+</main>
+</body>
+</html>
