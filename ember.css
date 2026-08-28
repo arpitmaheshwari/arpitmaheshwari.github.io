@@ -2244,4 +2244,11 @@ html[data-theme="ember"] body.dyslexia-mode,
 html[data-theme="ember"] body.dyslexia-mode *:not(code):not(pre):not(kbd):not(samp):not(code *):not(pre *){
   font-family:'Atkinson Hyperlegible','Source Sans 3',sans-serif;
   letter-spacing:.03em;word-spacing:.1em}
+
+/* .section-title rendered at 1.15 on 139 elements and 1.30 on 54 — the 1.30
+   coming from per-page .xi-* classes in @layer utilities, which outrank the
+   design system in @layer base. Arpit's call: 1.15, the system's own answer.
+   Stated here rather than by editing 54 extracted classes, because the next
+   extraction would reintroduce it. One component, one leading. */
+html[data-theme="ember"] .section-title{line-height:1.15}
 }
