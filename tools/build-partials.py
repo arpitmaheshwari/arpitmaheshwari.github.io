@@ -97,7 +97,7 @@ def render(rel, existing_nav, existing_footer):
 # reader — Cloudflare keeps serving the cached URL, and the change simply did
 # not exist in production. css-version-check has guarded stylesheets against
 # exactly this for months; scripts had no such guard. Hash them the same way.
-VERSIONED = ('styles.css', 'ember.css',
+VERSIONED = ('styles.css', 'ember.css', 'fonts.css',
              'analytics.js', 'clarity.js', 'attention.js', 'fit.js',
              'patterns/demos.js', 'data/case-facts.js',
              'lab/loop.js', 'lab/loop.test.js', 'lab/trustlint.js',

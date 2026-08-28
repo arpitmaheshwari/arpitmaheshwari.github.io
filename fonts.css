@@ -91,3 +91,17 @@
   font-display:swap;
   src:url('/assets/fonts-web/caveat-normal-600.woff2') format('woff2');
 }
+
+/* ----------------------------------------------------------------------------
+   ATKINSON HYPERLEGIBLE — loaded ONLY for the dyslexia-friendly mode.
+   Drawn by the Braille Institute specifically so letterforms that usually
+   collide (I l 1, O 0, b d p q) stay distinguishable. It was already sitting
+   in assets/ unreferenced while the toggle asked for 'Lexend', which is not
+   loaded anywhere — so the control changed spacing and left the typeface
+   exactly as it was. A browser fetches a font only when something uses it, so
+   declaring it here costs a reader who never touches the toggle nothing.
+   ------------------------------------------------------------------------- */
+@font-face{font-family:'Atkinson Hyperlegible';font-style:normal;font-weight:400;
+  font-display:swap;src:url('/assets/fonts-web/atkinson-hyperlegible-normal-400.woff2') format('woff2')}
+@font-face{font-family:'Atkinson Hyperlegible';font-style:normal;font-weight:700;
+  font-display:swap;src:url('/assets/fonts-web/atkinson-hyperlegible-normal-700.woff2') format('woff2')}

@@ -2229,4 +2229,19 @@ html[data-theme="ember"] :is(.btn-a,.lbl-pill-bg,.btn-label,.lbl-badge-bg){backg
    i.e. invisible. Same disease as the CTA: a component that does not
    declare its own ink at a specificity that holds. */
 html[data-theme="ember"] .skip-link{background:var(--g-hot);color:var(--cta-ink);outline-color:var(--cta-ink);outline-offset:2px}
+
+/* DYSLEXIA MODE — the toggle set body.dyslexia-mode{font-family:'Lexend'} in
+   styles.css, and html[data-theme="ember"] body.p-home{font-family:var(--sans)}
+   outranked it on every ember page. Measured: clicking the control changed
+   letter-spacing and word-spacing and left the TYPEFACE untouched — the half
+   of the feature that matters most silently did nothing. Lexend was never
+   loaded either, so even winning the cascade would have fallen back.
+   This belongs in emphasis because a reader's accessibility choice must beat
+   every page-level and component-level font declaration on the site, and
+   components here deliberately declare their own family rather than inherit.
+   Code keeps its monospace: distinguishing l/1/O/0 is the whole point there. */
+html[data-theme="ember"] body.dyslexia-mode,
+html[data-theme="ember"] body.dyslexia-mode *:not(code):not(pre):not(kbd):not(samp):not(code *):not(pre *){
+  font-family:'Atkinson Hyperlegible','Source Sans 3',sans-serif;
+  letter-spacing:.03em;word-spacing:.1em}
 }

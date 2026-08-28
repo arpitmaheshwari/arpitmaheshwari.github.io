@@ -67,7 +67,17 @@ def scan_files(root):
 def collect_refs(root, extra_text=None):
     """-> {abs_asset_path: [(scanfile, lineno, raw)]}, [(scanfile, lineno, raw)] unresolved"""
     found, dangling = {}, []
-    items = [(p, open(p, encoding="utf-8", errors="replace").read()) for p in scan_files(root)]
+    # partials/ are TEMPLATES: their paths carry a {{ROOT}} placeholder that
+    # build-partials.py resolves per page ("", "../", "/"). Read literally, every
+    # one of them looks dangling — the nav logo was reported missing while the
+    # file existed and served 200 live. Substitute the placeholder away so the
+    # template is checked as the pages will actually see it.
+    items = []
+    for p in scan_files(root):
+        txt = open(p, encoding="utf-8", errors="replace").read()
+        if os.sep + "partials" + os.sep in p or p.replace(os.sep, "/").startswith("partials/"):
+            txt = txt.replace("{{ROOT}}", "")
+        items.append((p, txt))
     if extra_text:
         items.append(extra_text)
     for path, text in items:
@@ -96,7 +106,13 @@ def collect_refs(root, extra_text=None):
                     clean = unquote(urlsplit(cand).path)
                     if os.path.splitext(clean)[1].lower() not in ASSET_EXT:
                         continue
-                    base = root if clean.startswith("/") else os.path.dirname(path)
+                    # A partial is a TEMPLATE stamped into pages at every depth,
+                    # so its {{ROOT}}-prefixed paths resolve from the site root,
+                    # never from partials/. Resolving them relative to the file
+                    # reported the nav logo missing while it served 200 live.
+                    in_partial = "partials" in path.replace(os.sep, "/").split("/")
+                    base = root if (clean.startswith("/") or in_partial) \
+                        else os.path.dirname(path)
                     target = os.path.normpath(os.path.join(base, clean.lstrip("/")))
                     if os.path.exists(target):
                         found.setdefault(os.path.realpath(target), []).append((path, ln, cand))
