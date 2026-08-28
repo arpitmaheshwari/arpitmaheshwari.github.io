@@ -194,7 +194,17 @@ fi
 # remap) and every other gate passed them. Arpit found it by eye.
 if [ -f tools/artifact-legibility-check.py ]; then
   echo "pre-push: artifact legibility (can a reader see the text inside the diagrams?)…"
-  if ! python3 tools/artifact-legibility-check.py; then
+  python3 tools/artifact-legibility-check.py; AL=$?
+  # Exit 3 means the gate could not MEASURE (Chrome timed out under load), which
+  # is not the same as finding invisible text. Reporting a timeout with the
+  # legibility message once blocked a push over a defect that did not exist.
+  if [ $AL -eq 3 ]; then
+    echo "pre-push: BLOCKED — artifact legibility could not be measured (see above)."
+    echo "  This is NOT a finding. Re-run when the machine is quieter:"
+    echo "     python3 tools/artifact-legibility-check.py"
+    exit 1
+  fi
+  if [ $AL -ne 0 ]; then
     cat <<'MSG'
 
 pre-push: BLOCKED — text inside an artifact is invisible against its own background.

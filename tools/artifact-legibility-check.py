@@ -95,14 +95,29 @@ def pages_with_artifacts():
     return out
 
 
+class Inconclusive(RuntimeError):
+    """Measurement failed. Never report this as a defect."""
+
+
 def scan(page, port, inject=""):
     pathlib.Path("__al.html").write_text(PROBE % (page, inject))
+    cmd = [CH, "--headless=new", NO_TRACKING_FLAG, "--disable-gpu", "--no-sandbox",
+           "--window-size=1360,1000", "--virtual-time-budget=12000", "--dump-dom",
+           f"http://localhost:{port}/__al.html"]
+    # 100s was fine when this gate ran alone (~49s for 17 pages) and far too tight
+    # once the other browser gates run beside it. The push failed reporting "text
+    # inside an artifact is invisible" when nothing was invisible — only slow.
+    # A timeout is NOT a finding; say that instead of blaming the page.
     try:
-        r = subprocess.run(
-            [CH, "--headless=new", NO_TRACKING_FLAG, "--disable-gpu", "--no-sandbox",
-             "--window-size=1360,1000", "--virtual-time-budget=12000", "--dump-dom",
-             f"http://localhost:{port}/__al.html"],
-            capture_output=True, text=True, timeout=100)
+        try:
+            r = subprocess.run(cmd, capture_output=True, text=True, timeout=240)
+        except subprocess.TimeoutExpired:
+            print(f"  retrying {page} — Chrome exceeded 240s (machine under load)")
+            r = subprocess.run(cmd, capture_output=True, text=True, timeout=360)
+    except subprocess.TimeoutExpired:
+        raise Inconclusive(
+            f"Chrome timed out twice on {page}. Nothing was measured — this is "
+            f"NOT a legibility finding.")
     finally:
         pathlib.Path("__al.html").unlink(missing_ok=True)
     m = re.search(r"<title>R:(.*?)</title>", r.stdout, re.S)
@@ -177,4 +192,9 @@ def main():
     sys.exit(1 if hard else 0)
 
 
-main()
+try:
+    main()
+except Inconclusive as e:
+    print(f"\nINCONCLUSIVE — {e}")
+    print("The gate did not run. Do not read this as a clean page OR a defect.")
+    sys.exit(3)
