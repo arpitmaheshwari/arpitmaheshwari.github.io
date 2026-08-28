@@ -260,7 +260,7 @@
         ["6", "Months, 0\u21921"]
       ],
       "plateNo": "7.1",
-      "provenance": "The shipped product — his own screens, no client confidentiality"
+      "provenance": "The shipped product — his own screens, from a client project; the client is not named"
     },
     "vc-diligence": {
       "no": "06",

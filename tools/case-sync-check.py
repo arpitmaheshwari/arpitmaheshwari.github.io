@@ -53,6 +53,7 @@ CLASSIC = {
     "adtech":       "case-studies/adtech.html",
     "orgos":        "case-studies/orgos.html",
     "vc-diligence": "case-studies/vc-diligence.html",
+    "planit":       "case-studies/planit.html",
 }
 
 
@@ -89,6 +90,9 @@ LOCKED = {
     "orgos":        [("8 modules",     r"\b8\s*modules|eight modules"),
                      ("250 today",     r"\b250\b")],
     "vc-diligence": [("3 wks → 4 days",r"3\s*wks?\s*(?:→|&rarr;|\\u2192)\s*4\s*days")],
+    "planit":       [("250 active",    r"\b250\b"),
+                     ("1,000 visitors",r"1,000"),
+                     ("0 complaints",  r"\b0\b[^.]{0,24}complaints|complaints[^.]{0,24}\b0\b")],
 }
 
 # A surface must never assert screens are withheld while rendering one.
@@ -145,7 +149,8 @@ def book_case_chunk(book, title):
 
 
 # Which canon table row (by its "#" column) corresponds to which case key.
-CANON_ROW = {"1": "ptc", "2": "o2", "3": "fintech", "4": "adtech", "5": "orgos", "6": "vc-diligence"}
+CANON_ROW = {"1": "ptc", "2": "o2", "3": "fintech", "4": "adtech", "5": "orgos",
+             "6": "vc-diligence", "7": "planit"}
 
 
 def _norm(t):
