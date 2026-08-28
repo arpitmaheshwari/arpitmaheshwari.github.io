@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>[PHASE 1] Work-grid tiering options — three flagships + the range</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap">
+<style>
+/* ============================================================
+   PROTOTYPE — not a shipping surface. Decision this file renders:
+   how the homepage work section expresses the 3–5-case consensus
+   (three flagships at full weight, four range cases compact)
+   WITHOUT deleting any case. All copy verbatim from index.html.
+   Ember tokens from DESIGN-SYSTEM-EMBER.md §1. Lane skew omitted
+   on purpose — this judges composition, not styling fidelity.
+   ============================================================ */
+:root{
+  --bg0:#120B14; --bg1:#1B1320; --card:#241830; --line:rgba(245,237,230,.16);
+  --ink:#F5EDE6; --mut:rgba(245,237,230,.76); --dim:rgba(245,237,230,.62);
+  --ember:#FF8A5C; --violet:#E86BFF; --amber:#FFC46B; --rose:#FF7AA8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg0);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-size:15.5px;line-height:1.65}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+@media(max-width:640px){.wrap{padding:0 16px}}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.k{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ember)}
+.study-head{border-bottom:1px solid var(--line);padding:48px 0 32px;background:var(--bg1)}
+.study-head h1{font-family:'Newsreader',serif;font-weight:300;font-size:clamp(28px,3.4vw,44px);line-height:1.12;letter-spacing:-.01em;max-width:24ch}
+.study-head p{color:var(--mut);max-width:70ch;margin-top:12px}
+.opt-head{padding:72px 0 8px;border-top:1px solid var(--line);margin-top:88px}
+.opt-head:first-of-type{margin-top:0}
+.opt-chip{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  border:1.5px solid var(--amber);color:var(--amber);padding:5px 14px;border-radius:999px}
+.opt-bet{color:var(--mut);max-width:74ch;margin:14px 0 40px;font-size:14.5px}
+.opt-bet b{color:var(--ink)}
+
+/* ---- section head, as on the live page ---- */
+.sec-head h2{font-family:'Newsreader',serif;font-weight:300;font-size:clamp(30px,3.6vw,48px);line-height:1.12;letter-spacing:-.012em;max-width:26ch}
+.sec-head .sub{color:var(--mut);max-width:66ch;margin-top:14px;font-size:15px}
+.hand{font-family:'Caveat',cursive;font-weight:600;font-size:22px;color:var(--amber);display:inline-block;transform:rotate(-1.5deg);margin:8px 0 0}
+
+/* ---- flagship lane (full weight) ---- */
+.flag{display:grid;gap:16px;margin-top:36px}
+.lane{display:grid;grid-template-columns:250px 1fr;gap:28px;align-items:start;background:var(--card);
+  border-radius:6px;padding:26px 30px;border-left:4px solid var(--ember);color:var(--ink)}
+.lane:hover{transform:translateY(-2px)}
+@media(prefers-reduced-motion:reduce){.lane:hover{transform:none}}
+.lane.f2{border-left-color:var(--violet)}
+.lane.f3{border-left-color:var(--amber)}
+.lane .m{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(24px,2.2vw,40px);line-height:1.05;color:var(--ember)}
+.lane.f2 .m{color:var(--violet)}
+.lane.f3 .m{color:var(--amber)}
+.lane .m span{display:block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:10px}
+.lane h3{font-family:'Newsreader',serif;font-weight:400;font-size:24px;line-height:1.2;margin-bottom:8px}
+.lane p{color:var(--mut);font-size:14.5px;max-width:66ch}
+.lane .walk{display:inline-block;margin-top:10px;font-size:13px}
+@media(max-width:760px){.lane{grid-template-columns:1fr;gap:12px;padding:20px}}
+
+/* ---- OPTION A: range as index cards ---- */
+.range-k{margin-top:56px;display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.range-k .k{color:var(--dim)}
+.range-k .note{font-size:13px;color:var(--dim)}
+.idx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+@media(max-width:1000px){.idx-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.idx-grid{grid-template-columns:1fr}}
+.idx{background:var(--bg1);border:1px solid var(--line);border-radius:6px;padding:16px 18px;color:var(--ink);display:block}
+.idx:hover{background:var(--card);text-decoration:none}
+.idx b{font-family:'Newsreader',serif;font-weight:400;font-size:21px;display:block;line-height:1.1}
+.idx.r1 b{color:var(--ember)}.idx.r2 b{color:var(--violet)}.idx.r3 b{color:var(--amber)}.idx.r4 b{color:var(--rose)}
+.idx i{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);display:block;margin:8px 0 6px}
+.idx span{font-size:13.5px;line-height:1.45;display:block;color:var(--mut)}
+
+/* ---- OPTION B: flagship trio columns + range ledger ---- */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+@media(max-width:900px){.trio{grid-template-columns:1fr}}
+.tcard{background:var(--card);border-radius:6px;border-top:4px solid var(--ember);padding:24px 24px 26px;color:var(--ink);display:block}
+.tcard.f2{border-top-color:var(--violet)}
+.tcard.f3{border-top-color:var(--amber)}
+.tcard:hover{transform:translateY(-6px);text-decoration:none}
+@media(prefers-reduced-motion:reduce){.tcard:hover{transform:none}}
+.tcard .m{font-family:'Newsreader',serif;font-size:34px;line-height:1.05;color:var(--ember)}
+.tcard.f2 .m{color:var(--violet)}
+.tcard.f3 .m{color:var(--amber)}
+.tcard .tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);display:block;margin:10px 0 12px}
+.tcard h3{font-family:'Newsreader',serif;font-weight:400;font-size:22px;line-height:1.22;margin-bottom:8px}
+.tcard p{color:var(--mut);font-size:13.5px}
+.ledger{margin-top:52px;border-top:2px solid var(--line)}
+.lrow{display:grid;grid-template-columns:120px 1fr auto;gap:20px;align-items:baseline;padding:16px 4px;border-bottom:1px solid var(--line);color:var(--ink)}
+.lrow:hover{background:var(--bg1);text-decoration:none}
+.lrow b{font-family:'Newsreader',serif;font-weight:400;font-size:20px;white-space:nowrap}
+.lrow.r1 b{color:var(--ember)}.lrow.r2 b{color:var(--violet)}.lrow.r3 b{color:var(--amber)}.lrow.r4 b{color:var(--rose)}
+.lrow span{font-size:14.5px}
+.lrow span em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-left:10px;display:inline-block;white-space:nowrap}
+.lrow .go{font-size:13px;color:var(--amber);white-space:nowrap}
+@media(max-width:640px){.lrow{grid-template-columns:1fr;gap:4px}.lrow .go{justify-self:start}}
+</style>
+</head>
+<body>
+
+<header class="study-head">
+  <div class="wrap">
+    <p class="k">Phase 1 · rendered options · branch prototype/skim-layer · not a shipping surface</p>
+    <h1>Tiering the work grid: three flagships at full weight, the range kept but compact.</h1>
+    <p>The evidence consensus is 3–5 case studies with clear hierarchy; the site has seven at near-equal weight. Both options below keep all seven reachable — no case is deleted — and spend the weight on the three AI flagships. All copy is verbatim from the live homepage.</p>
+  </div>
+</header>
+
+<!-- ==================== OPTION A ==================== -->
+<section class="opt-head" id="option-a">
+  <div class="wrap">
+    <span class="opt-chip">Option A — headliners + index cards</span>
+    <p class="opt-bet"><b>The bet:</b> flagships stay full-width lanes (room for the hook sentence a screener actually reads); the range becomes four index cards — still characterful, still one line of story each. <b>The cost:</b> the section stays tall; four cards in a row read close to equal weight with each other.</p>
+  </div>
+</section>
+<div class="wrap sec-head">
+  <p class="k">Selected work — seven products, one job</p>
+  <h2>The AI work is the headline. The rest is the range under it.</h2>
+  <p class="sub">Get a professional to trust a system enough to act on it. The first three are AI — two of them LLMs reading unstructured documents. Two of the rest are public, so you can check them yourself; where a client is under NDA I walk the real artifacts on a call.</p>
+</div>
+<div class="wrap flag">
+  <a class="lane" href="../case-studies/adtech.html"><div class="m">2 wks → 3 hrs<span>AdTech · Named client</span></div><div><h3>An Ad Agency Became the Market’s Aggregator</h3><p>Traders watched an algorithm beat them and played their hunches anyway. The fix was letting them argue back — plans they could reshape in one click, every edit teaching next week.</p><span class="walk">Walk the case →</span></div></a>
+  <a class="lane f2" href="../case-studies/fintech.html"><div class="m">60% faster<span>FinTech · NDA</span></div><div><h3>Deal-Screening AI That Cites Its Sources</h3><p>Analysts get paid to doubt confident numbers. So it shipped already able to name a source for every claim, and to say “I’m not sure” instead of bluffing.</p><span class="walk">Walk the case →</span></div></a>
+  <a class="lane f3" href="../case-studies/vc-diligence.html"><div class="m">3 wks → 4 days<span>VC &amp; PE · NDA</span></div><div><h3>Due Diligence You Can’t Rubber-Stamp</h3><p>Partners stake millions on claims they’ll never personally verify. So I made them do more work: sign-off stays locked until every signal’s evidence has been opened.</p><span class="walk">Walk the case →</span></div></a>
+</div>
+<div class="wrap">
+  <div class="range-k"><span class="k">The range under it — four more products, same job</span><span class="note">public where possible, NDA walked on a call</span></div>
+  <div class="idx-grid">
+    <a class="idx r1" href="../case-studies/ptc.html"><b>$1M / yr</b><i>EdTech · Public</i><span>The Redesign That Asked PTC to Kill Four Products</span></a>
+    <a class="idx r2" href="../case-studies/o2.html"><b>4M+</b><i>Telecom · Public</i><span>Two O2 UK Products, Four Million People</span></a>
+    <a class="idx r3" href="../case-studies/orgos.html"><b>0 managers</b><i>Org Design · NDA</i><span>The Software That Replaced the Org Chart</span></a>
+    <a class="idx r4" href="../case-studies/planit.html"><b>0 complaints</b><i>Consumer · 0→1</i><span>The App People Broke on Purpose</span></a>
+  </div>
+</div>
+
+<!-- ==================== OPTION B ==================== -->
+<section class="opt-head" id="option-b">
+  <div class="wrap">
+    <span class="opt-chip" style="border-color:var(--violet);color:var(--violet)">Option B — the trio + the ledger</span>
+    <p class="opt-bet"><b>The bet:</b> the hierarchy is unmistakable — three tall cards side by side own the section, and the range compresses to four ledger lines (metric · title · tag), the same receipt language the site already uses. Shortest possible section. <b>The cost:</b> flagship hooks compete side-by-side instead of being read one at a time, and the range loses its one-line stories.</p>
+  </div>
+</section>
+<div class="wrap sec-head">
+  <p class="k">Selected work — seven products, one job</p>
+  <h2>The AI work is the headline. The rest is the range under it.</h2>
+  <span class="hand">the first three are the interview — the ledger is the range</span>
+</div>
+<div class="wrap trio">
+  <a class="tcard" href="../case-studies/adtech.html"><div class="m">2 wks → 3 hrs</div><span class="tag">AdTech · Named client</span><h3>An Ad Agency Became the Market’s Aggregator</h3><p>Traders watched an algorithm beat them and played their hunches anyway. The fix was letting them argue back — plans they could reshape in one click, every edit teaching next week.</p></a>
+  <a class="tcard f2" href="../case-studies/fintech.html"><div class="m">60% faster</div><span class="tag">FinTech · NDA</span><h3>Deal-Screening AI That Cites Its Sources</h3><p>Analysts get paid to doubt confident numbers. So it shipped already able to name a source for every claim, and to say “I’m not sure” instead of bluffing.</p></a>
+  <a class="tcard f3" href="../case-studies/vc-diligence.html"><div class="m">3 wks → 4 days</div><span class="tag">VC &amp; PE · NDA</span><h3>Due Diligence You Can’t Rubber-Stamp</h3><p>Partners stake millions on claims they’ll never personally verify. So I made them do more work: sign-off stays locked until every signal’s evidence has been opened.</p></a>
+</div>
+<div class="wrap">
+  <div class="ledger">
+    <a class="lrow r1" href="../case-studies/ptc.html"><b>$1M / yr</b><span>The Redesign That Asked PTC to Kill Four Products<em>EdTech · Public</em></span><span class="go">the case →</span></a>
+    <a class="lrow r2" href="../case-studies/o2.html"><b>4M+</b><span>Two O2 UK Products, Four Million People<em>Telecom · Public</em></span><span class="go">the case →</span></a>
+    <a class="lrow r3" href="../case-studies/orgos.html"><b>0 managers</b><span>The Software That Replaced the Org Chart<em>Org Design · NDA</em></span><span class="go">the case →</span></a>
+    <a class="lrow r4" href="../case-studies/planit.html"><b>0 complaints</b><span>The App People Broke on Purpose<em>Consumer · 0→1</em></span><span class="go">the case →</span></a>
+  </div>
+</div>
+
+<footer style="border-top:1px solid var(--line);padding:40px 0 72px;margin-top:88px">
+  <div class="wrap">
+    <p class="k" style="margin-bottom:12px">What stays true in both</p>
+    <p style="color:var(--mut);max-width:74ch;font-size:14px">All seven cases stay linked from the homepage — tiering, not deletion. Flagship copy is untouched. The range keeps metric + title + tag, all verbatim. Accent cycling follows the system order (ember → violet → amber → rose). Lane skew and final styling are deliberately omitted; the picked option is rebuilt on the live surface against ember.css.</p>
+  </div>
+</footer>
+
+</body>
+</html>
