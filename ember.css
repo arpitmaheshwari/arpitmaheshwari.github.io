@@ -692,6 +692,15 @@ html[data-theme="ember"] body[class*="p-case-studies"] .measure-c > div > :is(p,
    A generic selector quietly doing a second job is lesson 10 in a new
    costume — and this time the second job was the one worth keeping. */
 html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plB,.plC,.recon,.recon-stage,[class^="pl"],[class*=" pl"]){max-width:640px}
+/* The ownership split, named once. Every case carrying it repeated the same
+   four values as per-page .xi-* classes, so a new case had to remember all
+   four or render differently. Scoped to .own-split and NOT to .framed-tight,
+   because that class also wraps four other kinds of block on the AdTech pages
+   — styling it would be one generic selector quietly doing a second job. */
+html[data-theme="ember"] body[class*="p-case-studies"] .own-split{overflow:hidden}
+html[data-theme="ember"] body[class*="p-case-studies"] .own-split > div:nth-child(odd){background:color-mix(in srgb, var(--goldA) 4%, transparent)}
+html[data-theme="ember"] body[class*="p-case-studies"] .own-split > div > :first-child{flex:0 0 200px}
+html[data-theme="ember"] body[class*="p-case-studies"] .own-split > div > :last-child{flex:1 1 240px}
 html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plB,.plC,.plF,.plM,.plO,.plP,.plV,
   .recon,.recon-stage){margin-left:0}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-hero__in{max-width:1100px;padding:0 24px;margin:0 auto}
