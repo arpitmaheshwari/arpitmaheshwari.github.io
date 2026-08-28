@@ -231,6 +231,17 @@ html[data-theme="ember"] body.p-home .hero .field{position:absolute;inset:0;back
   #120B14}
 html[data-theme="ember"] body.p-home .hero .in{position:relative;z-index:2}
 html[data-theme="ember"] body.p-home .hero .k{color:var(--ember)}
+/* The availability line, sitting under the identity line. Arpit would take a
+   hands-on Staff IC role, and "Product & Design Leader" reads as MANAGER to an
+   IC screener — the first filter applied. This states what he is open to
+   rather than claiming a level, which is literally true and carries the words
+   a recruiter searches for. It declares its own type rather than inheriting
+   the eyebrow's: a second, different piece of information should not look like
+   a second title. line-height is explicit because this wraps to two lines on a
+   phone and the label floor is 1.40. */
+html[data-theme="ember"] body.p-home .hero .k-open{
+  font-family:var(--mono);font-size:11.5px;font-weight:400;letter-spacing:.14em;
+  text-transform:uppercase;line-height:1.55;color:var(--amber);margin:8px 0 0}
 html[data-theme="ember"] body.p-home .hero h1{font-size:clamp(52px,7.2vw,106px);margin:24px 0 24px;max-width:13ch}
 html[data-theme="ember"] body.p-home .hero h1 .grad{font-style:italic}
 html[data-theme="ember"] body.p-home .hero .sub{font-size:clamp(16px,1.6vw,19px);color:var(--mut);max-width:52ch;line-height:1.75}
