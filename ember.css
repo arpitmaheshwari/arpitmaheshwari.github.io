@@ -2390,3 +2390,29 @@ html[data-theme="ember"] body.p-home .lab-row{margin-top:40px;padding-top:24px;b
 html[data-theme="ember"] body.p-home .lab-row .lr-k{text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--amber)}
 html[data-theme="ember"] body.p-home .lab-row a{color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(245,237,230,.3)}
 html[data-theme="ember"] body.p-home .lab-row a:hover{color:var(--violet);border-bottom-color:var(--violet)}
+
+/* ============================================================
+   HEADING RANKS (2026-08-30) — Arpit's pick: Option C with the
+   merge, after the measured diagnosis (h2 rendered at 42/44/48/64
+   and h3 at 40/30/26/20/19/14 — rank was unreadable in isolation).
+   Four ranks, each with ONE identity; the section address (k-idx)
+   merges into the kicker line, so sections are the only headings
+   that carry an act address. See DESIGN-SYSTEM-EMBER.md § ranks.
+   Declared late so the rank wins over older per-section sizes.
+   ============================================================ */
+/* R1 — section title: one size, light serif. The close keeps a display license. */
+html[data-theme="ember"] body.p-home main h2{font-size:clamp(32px,3vw,42px);font-weight:300;line-height:1.18}
+html[data-theme="ember"] body.p-home #h-close{font-size:clamp(38px,4vw,56px);line-height:1.1}
+/* R2 — subsection lead & item titles: smaller AND semibold (categorical flip) */
+html[data-theme="ember"] body.p-home #h-lead,
+html[data-theme="ember"] body.p-home .lane h3,
+html[data-theme="ember"] body.p-home .thought-title{font-size:22px;font-weight:600;line-height:1.3}
+/* R3 — row/label headings: 17px semibold, upright everywhere */
+html[data-theme="ember"] body.p-home .wl-lead .memo h3,
+html[data-theme="ember"] body.p-home .aiwork .memo h3,
+html[data-theme="ember"] body.p-home .contract .col h3{font-size:17px;font-weight:600;font-style:normal;line-height:1.4}
+/* the section address — mono, act accent, merged into the kicker line */
+html[data-theme="ember"] body.p-home .k-idx{font-family:var(--mono);font-weight:500;letter-spacing:.08em;margin-right:12px}
+html[data-theme="ember"] body.p-home .k-idx-violet{color:var(--violet)}
+html[data-theme="ember"] body.p-home .k-idx-amber{color:var(--amber)}
+html[data-theme="ember"] body.p-home .k-idx-rose{color:var(--rose)}
