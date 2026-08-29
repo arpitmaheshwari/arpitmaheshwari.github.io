@@ -157,3 +157,22 @@
     }
   }, { passive: true });
 })();
+
+/* Walkthrough video: a controls-video ignores body clicks in poster state, so the
+   whole frame becomes click-to-toggle. The guard skips the bottom 52px — clicks on
+   the native control bar already toggle, and handling them here would double-toggle
+   into a no-op (verified by CDP hit-test before this was written). */
+document.addEventListener('click', function (e) {
+  var v = e.target.closest && e.target.closest('.vid-frame video');
+  if (!v) return;
+  var r = v.getBoundingClientRect();
+  if (e.clientY > r.bottom - 52) return;            // native control bar
+  // Chrome ignores body clicks in poster state but toggles them itself once
+  // playing — acting unconditionally made pause impossible (both toggles
+  // cancelled). So: act only if, a beat later, the native handler did nothing.
+  var was = v.paused;
+  setTimeout(function () {
+    if (v.paused !== was) return;                   // native already toggled
+    if (was) { v.play(); } else { v.pause(); }
+  }, 60);
+});

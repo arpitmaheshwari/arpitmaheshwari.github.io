@@ -2331,8 +2331,8 @@ html[data-theme="ember"] body[class*="p-case-studies"] .vplate-shot{display:bloc
    block. The email address is still assembled at runtime (privacy: never
    printed in served HTML); the resume PDF is the same artifact sent to ATSes. */
 html[data-theme="ember"] body.p-home .contact-facts{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-top:16px}
-html[data-theme="ember"] body.p-home .contact-channels{font-family:var(--sans);font-size:14px;color:var(--mut);margin-top:8px}
-html[data-theme="ember"] body.p-home .contact-channels a{color:var(--amber);text-decoration:underline;text-underline-offset:3px}
+html[data-theme="ember"] body.p-home .contact-channels{font-family:var(--sans);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-top:10px}
+html[data-theme="ember"] body.p-home .contact-channels a{color:var(--violet);text-decoration:underline;text-underline-offset:4px}
 
 /* ---------- the process walkthrough video (2026-08-29): self-hosted, no third party,
    no tracking — it reuses the .vid-main/.vid-frame component the AdTech film already
@@ -2359,3 +2359,6 @@ html[data-theme="ember"] body.p-process .vid-walk{
 html[data-theme="ember"] body.p-process .vid-kick{
   --vw-w:min(1000px, calc(100vw - 80px));
   margin-left:calc((100% - var(--vw-w)) / 2)}
+/* The whole video frame is clickable (attention.js toggles play) — say so with the cursor. */
+html[data-theme="ember"] .vid-frame video{cursor:pointer}
+html[data-theme="ember"] body.p-home .cta-watch{align-self:center;font-family:var(--sans);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--violet);text-decoration:underline;text-underline-offset:4px}
