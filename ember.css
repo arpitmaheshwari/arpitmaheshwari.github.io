@@ -382,11 +382,6 @@ html[data-theme="ember"] body.p-home .qt figcaption b{color:var(--amber);font-we
 html[data-theme="ember"] body.p-home .labrow{padding:92px 0}
 html[data-theme="ember"] body.p-home .labrow .k{color:var(--amber)}
 html[data-theme="ember"] body.p-home .labrow h2{font-size:clamp(28px,3.2vw,44px);margin:12px 0 40px}
-html[data-theme="ember"] body.p-home .lab3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-html[data-theme="ember"] body.p-home .labc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px}
-html[data-theme="ember"] body.p-home .labc .lk{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--violet)}
-html[data-theme="ember"] body.p-home .labc b{display:block;font-family:var(--serif);font-weight:400;font-size:30px;margin:8px 0 8px;color:var(--ink)}
-html[data-theme="ember"] body.p-home .labc p{font-size:13.5px;color:var(--mut);line-height:1.7}
 html[data-theme="ember"] body.p-home .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
 html[data-theme="ember"] body.p-home .act .ak{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ember)}
 html[data-theme="ember"] body.p-home .act h3{font-size:19px;font-weight:400;font-style:italic;margin:8px 0 8px}
@@ -421,7 +416,6 @@ html[data-theme="ember"] body.p-home .who .wrap{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .contract .wrap{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .memos{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .quotes{grid-template-columns:1fr}
-html[data-theme="ember"] body.p-home .lab3{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .acts{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .close .wrap{grid-template-columns:1fr}}
 @media (max-width:640px){html[data-theme="ember"] body.p-home .rrow{grid-template-columns:1fr}
@@ -1505,7 +1499,6 @@ html[data-theme="ember"] .lback{flex-basis:100%;font-size:11.5px;color:#E86BFF;b
    band, then lab and thoughts both sat on base — alternation died after the
    fold. Voices returns to base; #lab takes the band, restoring band/base/band. */
 html[data-theme="ember"] body.p-home .voices{padding:96px 0;background:none}
-html[data-theme="ember"] body.p-home #lab{background:var(--bg-soft)}
 html[data-theme="ember"] body.p-home .voices .k{color:var(--violet)}
 html[data-theme="ember"] body.p-home .voices h2{font-size:clamp(28px,3.2vw,44px);margin:12px 0 16px}
 html[data-theme="ember"] body.p-home .voices .lede{color:rgba(245,237,230,.76);margin-bottom:40px}
@@ -1594,15 +1587,6 @@ html[data-theme="ember"] body.p-home .qt:first-child figcaption{grid-column:2;al
 html[data-theme="ember"] body.p-home .qt:first-child figcaption{grid-column:1;margin-top:16px}}
 html[data-theme="ember"] body.p-home .qt:first-child .qt-view{color:#FF8A5C}
 html[data-theme="ember"] body.p-home .qt:not(:first-child) blockquote{font-size:13.5px;line-height:1.6}
-/* 3 · THE LAB — cards become a terminal listing: mono rows on near-black, prompt glyphs */
-html[data-theme="ember"] body.p-home #lab .lab3{background:#0D0810;border:1px solid rgba(245,237,230,.14);border-radius:10px;padding:8px 0;overflow:hidden}
-html[data-theme="ember"] body.p-home #lab .labc{grid-template-columns:180px 130px minmax(0,1fr) 70px;gap:24px;align-items:baseline}
-html[data-theme="ember"] body.p-home #lab .labc .lk::before{content:"$ ";color:rgba(245,237,230,.4)}
-html[data-theme="ember"] body.p-home #lab .labc b{font-size:12px;color:#FFC46B;white-space:nowrap}
-html[data-theme="ember"] body.p-home #lab .labc p:not(.lk){font-size:12.5px;line-height:1.7;color:rgba(245,237,230,.6)}
-html[data-theme="ember"] body.p-home #lab .labc::after{content:"run →";font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:rgba(245,237,230,.45)}
-html[data-theme="ember"] body.p-home #lab .labc:hover::after{color:#7FCF9E}
-@media(max-width:860px){html[data-theme="ember"] body.p-home #lab .labc{grid-template-columns:1fr;gap:8px}}
 /* 4 · WRITING — cards become an editorial index: serif titles, inline excerpts, hairline rows */
 html[data-theme="ember"] body.p-home .thoughts-grid{border-top:1px solid rgba(245,237,230,.14)}
 html[data-theme="ember"] body.p-home .thought-card{grid-template-columns:minmax(0,1fr) auto;column-gap:32px;align-items:baseline}
@@ -2189,12 +2173,6 @@ html[data-theme="ember"] body.p-home .memo h3{margin:0 0 8px}
 html[data-theme="ember"] body.p-home .quotes{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 html[data-theme="ember"] body.p-home .qt:first-child{background:none;border:none;padding:8px 0 24px}
 /* 3 · THE LAB — cards become a terminal listing: mono rows on near-black, prompt glyphs */
-html[data-theme="ember"] body.p-home #lab .lab3{display:block}
-html[data-theme="ember"] body.p-home #lab .labc{display:grid;background:none;border:none;border-radius:0;padding:16px 24px;border-bottom:1px solid rgba(245,237,230,.08)}
-html[data-theme="ember"] body.p-home #lab .labc:last-child{border-bottom:none}
-html[data-theme="ember"] body.p-home #lab .labc .lk{margin:0;color:#7FCF9E;font-family:var(--mono)}
-html[data-theme="ember"] body.p-home #lab .labc b{font-family:var(--mono)}
-html[data-theme="ember"] body.p-home #lab .labc p:not(.lk){font-family:var(--mono);margin:0;max-width:none}
 /* 4 · WRITING — cards become an editorial index: serif titles, inline excerpts, hairline rows */
 html[data-theme="ember"] body.p-home .thoughts-grid{display:block}
 html[data-theme="ember"] body.p-home .thought-card{display:grid;background:none;border:none;border-bottom:1px solid rgba(245,237,230,.14);border-radius:0;padding:24px 0}
@@ -2374,8 +2352,6 @@ html[data-theme="ember"] body.p-home .whoband .wl-lead h3{font-family:var(--seri
 html[data-theme="ember"] body.p-home .whoband .wl-lead .k{color:var(--rose)}
 html[data-theme="ember"] body.p-home .whoband .wl-lead p{max-width:none;margin-bottom:0}
 html[data-theme="ember"] body.p-home .band-split{border:none;border-top:1px solid var(--line);margin:64px 0 48px}
-html[data-theme="ember"] body.p-home .lab-sub{color:var(--amber)}
-html[data-theme="ember"] body.p-home .aiwork .lab-sub{margin-top:0}
 html[data-theme="ember"] body.p-home .aiwork h3#h-lab{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.2vw,40px);line-height:1.2;margin:12px 0 40px;color:var(--ink)}
 @media (max-width:860px){html[data-theme="ember"] body.p-home .whoband .wrap.wl-lead{margin-top:48px;padding-top:40px}}
 
@@ -2403,3 +2379,14 @@ html[data-theme="ember"] .chap-rose .chap-n{color:var(--rose)}
   html[data-theme="ember"] .chap-rule{display:none}
   html[data-theme="ember"] .chap-t{line-height:1.5}
 }
+
+/* THE LAB, COMPRESSED TO ONE PROOF ROW (2026-08-30, Arpit's call): the three
+   falsifiable stats stay one click away, act III loses a heading and ~300px.
+   Replaces the .lab3 card grid — those rules are deleted above, along with the
+   #lab .lab3 terminal-listing block that had been silently dead since the
+   consolidation moved id="lab" onto the kicker (lesson 10: rules matching 0
+   elements get removed, not left to rot). Component declares its own ink. */
+html[data-theme="ember"] body.p-home .lab-row{margin-top:40px;padding-top:24px;border-top:1px solid var(--border);font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;line-height:1.9;color:var(--ink-muted)}
+html[data-theme="ember"] body.p-home .lab-row .lr-k{text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--amber)}
+html[data-theme="ember"] body.p-home .lab-row a{color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(245,237,230,.3)}
+html[data-theme="ember"] body.p-home .lab-row a:hover{color:var(--violet);border-bottom-color:var(--violet)}
