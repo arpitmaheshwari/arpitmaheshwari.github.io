@@ -280,6 +280,22 @@ def check(root, facts_override=None, classic_override=None):
         canon_role = dict((m[0], m[1]) for m in case["meta"]).get("Role")
         cm = re.search(r"<dt[^>]*>\s*Role\s*</dt>\s*<dd[^>]*>(.*?)</dd>", classic, re.S)
         classic_role = re.sub(r"<[^>]+>", "", cm.group(1)).replace("&amp;", "&").strip() if cm else None
+        # A structured Role row may elaborate after a '·' (e.g. credits blocks); the role is
+        # the first segment. Elaboration is not drift.
+        if classic_role and "·" in classic_role:
+            classic_role = classic_role.split("·")[0].strip()
+        # 2026-08-29 (de-interposition pass): the opener vitals table was retired; the role now
+        # lives, visibly, in the verdict slip's "My part" row. Where no <dt>Role</dt> exists,
+        # the canon role must appear (case-insensitively) inside that row's visible text.
+        # Exact equality still applies wherever a structured Role row remains.
+        if cm is None:
+            mp = re.search(r"<dt[^>]*>\s*My part\s*</dt>\s*<dd[^>]*>(.*?)</dd>", classic, re.S)
+            if mp:
+                mp_text = re.sub(r"<[^>]+>", "", mp.group(1)).replace("&amp;", "&").strip()
+                if canon_role and canon_role.lower() in mp_text.lower():
+                    classic_role = canon_role  # visible and agreeing, just prose-cased
+                else:
+                    classic_role = mp_text or None
         if canon_role and classic_role != canon_role:
             findings.append(f"{key}: ROLE on the classic page is {classic_role!r}, "
                             f"data/case-facts.js says {canon_role!r}")
