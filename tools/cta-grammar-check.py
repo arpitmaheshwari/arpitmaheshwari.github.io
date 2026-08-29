@@ -76,16 +76,29 @@ def collect(pages):
     return per_page
 
 def calibrate():
+    # Plant the canary on ONE CTA and leave at least one untouched witness.
+    # (2026-08-29: the old canary hit `.contract-links a`, which after the
+    # four-act restructure was EVERY qualifying CTA on the homepage — all rows
+    # turned Georgia together, one signature remained, and the calibration
+    # could not split. An instrument that repaints its whole sample has no
+    # baseline to diff against.)
+    base = scan("index.html")
+    base_sigs = collections.Counter(r["sig"] for r in base)
+    if len(base) < 2:
+        print(f"[calibration] FAIL — index.html has {len(base)} qualifying CTA(s); "
+              "need >=2 so the canary can differ from a witness."); sys.exit(2)
     css = pathlib.Path("ember.css"); orig = css.read_text()
-    css.write_text(orig + '\nhtml[data-theme="ember"] .contract-links a{font-family:Georgia,serif!important;font-size:19px!important}\n')
+    css.write_text(orig + '\nhtml[data-theme="ember"] #patterns .contract-links a'
+                   '{font-family:Georgia,serif!important;font-size:19px!important}\n')
     try:
         rows = scan("index.html")
         sigs = collections.Counter(r["sig"] for r in rows)
     finally:
         css.write_text(orig)
-    if len(sigs) < 2:
-        print("[calibration] FAIL — planted 19px Georgia CTA produced no second grammar."); sys.exit(2)
-    print("[calibration] PASS — planted off-grammar CTA splits the signature set")
+    if len(sigs) <= len(base_sigs):
+        print("[calibration] FAIL — planted 19px Georgia CTA on #patterns .contract-links "
+              "did not add a signature (selector matched nothing, or probe blind)."); sys.exit(2)
+    print(f"[calibration] PASS — canary split the set ({len(base_sigs)} -> {len(sigs)} grammars), witness intact")
 
 if __name__ == "__main__":
     pages = sys.argv[1:]
