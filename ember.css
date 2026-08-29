@@ -2252,3 +2252,76 @@ html[data-theme="ember"] body.dyslexia-mode *:not(code):not(pre):not(kbd):not(sa
    extraction would reintroduce it. One component, one leading. */
 html[data-theme="ember"] .section-title{line-height:1.15}
 }
+
+/* ---------- work-grid tier (2026-08-29, Arpit's pick: headliners + index cards).
+   The three flagship lanes keep their exact treatment; the four range cases
+   compress to index cards in the same skew family. Accent cycling follows the
+   system order ember -> violet -> amber -> rose. Evidence: the 3-5-case
+   consensus in the Five-Minute Screen dossier; tiering, not deletion. */
+html[data-theme="ember"] body.p-home .range-lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-top:40px}
+html[data-theme="ember"] body.p-home .idx-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+html[data-theme="ember"] body.p-home .idx{--lc:var(--ember);--lt:rgba(255,138,92,.10);display:block;background:linear-gradient(94deg,var(--lt),transparent 70%);border-left:3px solid var(--lc);border-radius:8px;padding:20px 20px;transform:skewX(-3deg);transition:transform .2s ease-out}
+html[data-theme="ember"] body.p-home .idx>*{transform:skewX(3deg)}
+html[data-theme="ember"] body.p-home .idx:hover{transform:skewX(-3deg) translateY(-2px)}
+html[data-theme="ember"] body.p-home .idx .m{font-family:var(--serif);font-weight:400;font-size:22px;line-height:1.2;color:var(--lc);display:block}
+html[data-theme="ember"] body.p-home .idx i{font-style:normal;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);display:block;margin:8px 0 4px}
+html[data-theme="ember"] body.p-home .idx h3{font-family:var(--sans);font-weight:400;font-size:14px;line-height:1.5;color:var(--ink)}
+html[data-theme="ember"] body.p-home .idx.x1{--lc:var(--ember);--lt:rgba(255,138,92,.10)}
+html[data-theme="ember"] body.p-home .idx.x2{--lc:var(--violet);--lt:rgba(232,107,255,.10)}
+html[data-theme="ember"] body.p-home .idx.x3{--lc:var(--amber);--lt:rgba(255,196,107,.10)}
+html[data-theme="ember"] body.p-home .idx.x4{--lc:var(--rose);--lt:rgba(255,122,168,.10)}
+@media (max-width:1000px){html[data-theme="ember"] body.p-home .idx-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){html[data-theme="ember"] body.p-home .idx-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html[data-theme="ember"] body.p-home .idx,html[data-theme="ember"] body.p-home .idx>*,html[data-theme="ember"] body.p-home .idx:hover{transform:none;transition:none}}
+
+/* ---------- the verdict slip (2026-08-29, Arpit's pick: option A). A cream
+   evidence object + one product plate directly under the case hero, so the
+   2-5-minute screener gets outcome / call / ownership / boundary without
+   entering the essay. Scoped to all case pages: AdTech first, FinTech and
+   VC-diligence to follow. The slip declares its own cream tokens (component
+   declares its critical properties; the p-home token scope does not reach
+   case pages). All inks below are pre-computed pairs from the system table. */
+html[data-theme="ember"] body[class*="p-case-studies"] .vband{padding:0 0 clamp(40px,6vh,64px)}
+html[data-theme="ember"] body[class*="p-case-studies"] .vband-in{max-width:1040px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,4vw,48px);align-items:start}
+@media (max-width:900px){html[data-theme="ember"] body[class*="p-case-studies"] .vband-in{grid-template-columns:1fr}}
+html[data-theme="ember"] body[class*="p-case-studies"] .vslip{--cream:#EFE7D2;--cream-ink:#221C10;--cream-mut:#5D5442;--cream-red:#A93A24;position:relative;background:var(--cream);color:var(--cream-ink);border-radius:12px;padding:24px 32px 20px;box-shadow:0 30px 60px rgba(0,0,0,.5);transform:rotate(-.5deg)}
+html[data-theme="ember"] body[class*="p-case-studies"] .vslip-stamp{position:absolute;top:20px;right:20px;border:2px solid var(--cream-red);color:var(--cream-red);font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;padding:4px 8px;transform:rotate(3deg)}
+html[data-theme="ember"] body[class*="p-case-studies"] .vslip-k{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-red);padding-right:118px}
+html[data-theme="ember"] body[class*="p-case-studies"] .vslip-title{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.2;letter-spacing:0;color:var(--cream-ink);margin:8px 0 4px;max-width:20ch}
+html[data-theme="ember"] body[class*="p-case-studies"] .vslip-sub{font-size:13px;line-height:1.5;color:var(--cream-mut);margin-bottom:12px}
+html[data-theme="ember"] body[class*="p-case-studies"] .vslip-rows{border-top:2px solid var(--cream-ink);margin:0}
+html[data-theme="ember"] body[class*="p-case-studies"] .vslip-rows>div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid rgba(34,28,16,.18)}
+html[data-theme="ember"] body[class*="p-case-studies"] .vslip-rows>div:last-child{border-bottom:none}
+html[data-theme="ember"] body[class*="p-case-studies"] .vslip-rows dt{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--cream-mut);padding-top:2px}
+html[data-theme="ember"] body[class*="p-case-studies"] .vslip-rows dd{font-size:13.5px;line-height:1.6;color:var(--cream-ink);margin:0}
+html[data-theme="ember"] body[class*="p-case-studies"] .vslip-rows dd b{font-weight:600;color:var(--cream-ink)}
+html[data-theme="ember"] body[class*="p-case-studies"] .vslip-rows dd a{color:var(--cream-red);font-size:12.5px;white-space:nowrap;text-decoration:underline;text-underline-offset:2px}
+@media (max-width:520px){html[data-theme="ember"] body[class*="p-case-studies"] .vslip-rows>div{grid-template-columns:1fr;gap:4px;padding:12px 0}}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-wrap{margin:0}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate{background:#FFFFFF;color:#221C10;border-radius:12px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-bar{background:#22201C;color:#A99E8B;display:flex;gap:8px;align-items:center;padding:8px 12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-bar i{width:8px;height:8px;border-radius:50%;background:#4A453C}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-bar em{font-style:normal}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-body{padding:16px 20px 20px;font-size:13px}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:1px solid rgba(34,28,16,.14);padding-bottom:12px;margin-bottom:8px}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-head b{font-family:var(--serif);font-weight:400;font-size:17px;line-height:1.45}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-head span{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:#5D5442;text-transform:uppercase;white-space:nowrap}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed rgba(34,28,16,.14);line-height:1.45}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-row .vl b{display:block;font-weight:600;font-size:13.5px;line-height:1.45}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-row .vl span{color:#5D5442;font-size:12px;line-height:1.5}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-row .vr{text-align:right;font-family:var(--mono);font-size:11.5px;color:#5D5442;white-space:nowrap}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-row .vr b{display:block;color:#A93A24;font-size:13px;font-weight:500}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-ok{margin-top:12px;background:#EAF0EE;border-left:3px solid #2F5D52;padding:8px 12px;font-size:12px;line-height:1.5;color:#24493F}
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-cap{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:rgba(245,237,230,.76);margin-top:12px;line-height:1.6}
+@media (prefers-reduced-motion:reduce){html[data-theme="ember"] body[class*="p-case-studies"] .vslip,html[data-theme="ember"] body[class*="p-case-studies"] .vslip-stamp{transform:none}}
+
+/* ---------- how-i-build section (2026-08-29, phase 2 of the evidence plan).
+   Reuses .labrow rhythm and the .memo component verbatim (identity gate:
+   one component, one rendering). Only the closing line is new. */
+html[data-theme="ember"] body.p-home .aiwork-close{margin-top:32px;font-size:14px;line-height:1.7;color:var(--mut);max-width:66ch}
+html[data-theme="ember"] body.p-home .aiwork-close a{color:var(--amber)}
+
+/* ---------- vplate image variant (2026-08-29): PlanIt's band carries a real
+   shipped screen instead of a text reconstruction. Cropped from the top so the
+   score and voice stay visible at the plate's height. */
+html[data-theme="ember"] body[class*="p-case-studies"] .vplate-shot{display:block;width:100%;height:auto;max-height:340px;object-fit:cover;object-position:top}
