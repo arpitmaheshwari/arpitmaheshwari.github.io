@@ -2249,6 +2249,7 @@ body:where(.p-resources-ai-design-checklist){background:#fff;color:#111}
 .xi-patterns-017{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .xi-patterns-018{display:block;padding:24px 24px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);text-decoration:none;color:inherit;margin-bottom:64px;transition:border-color .25s}
 .xi-patterns-019{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:64px}
+@media(max-width:768px){.xi-patterns-019{grid-template-columns:1fr}} /* 2026-08-30: the base rule above is declared AFTER the earlier mobile collapses, so at 390 the 2-col won by source order — cards escaped the viewport. Collapse re-declared after the base. */
 .xi-patterns-020{background:var(--bg-card);transition:border-color 0.3s,transform 0.3s;text-decoration:none;color:inherit}
 .xi-patterns-021{margin-bottom:16px}
 .xi-patterns-022{padding:32px;background:var(--bg-card);border:1px solid var(--border);border-radius:4px;margin-bottom:24px}

@@ -53,14 +53,6 @@ html[data-theme="ember"] .nav-cta{background:var(--g-hot);color:var(--cta-ink);b
 html[data-theme="ember"] .nav-cta:hover{color:var(--cta-ink);transform:translateY(-2px)}
 html[data-theme="ember"] .nav-links a.nav-on{color:var(--ember)}
 html[data-theme="ember"] .nav-links a:hover{color:var(--ember)}
-/* ---------- 4 · hero: the gradient field replaces the starfield */
-html[data-theme="ember"] #hero-canvas,
-html[data-theme="ember"] .hero-grid-lines{display:none}
-html[data-theme="ember"] .hero-bg{background:
-    radial-gradient(1000px 520px at 90% -12%, rgba(255,106,61,.5), transparent 62%),
-    radial-gradient(760px 560px at -8% 112%, rgba(155,75,255,.4), transparent 62%),
-    linear-gradient(160deg,#1E1022 0%,#120B14 55%,#190D10 100%);opacity:1;inset:0}
-html[data-theme="ember"] .hero-headline em{background:var(--g-hot);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic}
 /* hero diagnostic — first-class component, ember demo-box language */
 html[data-theme="ember"] .hd-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;box-shadow:0 24px 60px rgba(0,0,0,.5);position:relative;overflow:hidden}
 html[data-theme="ember"] .hd-card::after{content:"";position:absolute;right:-70px;top:-70px;width:190px;height:190px;border-radius:999px;background:radial-gradient(circle,rgba(232,107,255,.28),transparent 70%);pointer-events:none}
@@ -72,65 +64,25 @@ html[data-theme="ember"] .hd-preset::after{color:var(--ember)}
 html[data-theme="ember"] .hd-case-btn{background:var(--g-hot);color:var(--cta-ink);border-radius:999px}
 html[data-theme="ember"] .hd-rule{background:var(--ember)}
 html[data-theme="ember"] .hd-reframe em{color:var(--ember)}
-html[data-theme="ember"] .hd-verdict{color:var(--amber)}
 html[data-theme="ember"] .hd-free input:focus{border-color:var(--ember)}
-html[data-theme="ember"] .hd-free-submit{color:var(--ember)}
 /* ---------- 5 · the receipts act: cream peak -> plum band with the four heats */
 html[data-theme="ember"] .act-cream{/* re-point the act's own token re-mappings back to dark-stage values */
   --bg:#1B1320;--bg-card:#241830;--ink:#F5EDE6;--ink-muted:rgba(245,237,230,.76);--gold:#FFC46B;--gold-dark:#C98F3F;--gold-light:#FFD28A;--border:rgba(245,237,230,.14);--border-accent:rgba(255,138,92,.5);--hairline:rgba(245,237,230,.14);--err:#FF7AA8;--warn:#FFC46B;--ok:#7FCF9E;background:var(--bg);color:var(--ink);position:relative}
-/* angled seam into the band — pseudo-element, zero markup */
-html[data-theme="ember"] .proof-act::before{content:"";position:absolute;left:0;right:0;top:-64px;height:64px;background:#1B1320;clip-path:polygon(0 100%,100% 0,100% 100%,0 100%);pointer-events:none}
-/* four colour identities on the proof cells */
-html[data-theme="ember"] .proof-cell{background:var(--bg-card);border-radius:10px;border-top:3px solid var(--border);padding:24px 20px 20px}
-html[data-theme="ember"] .proof-cell:hover{opacity:1;transform:translateY(-4px);transition:transform .2s}
 html[data-theme="ember"] #chip-adtech{border-top-color:var(--ember)}
-html[data-theme="ember"] #chip-adtech .metric-num{color:var(--ember)}
 html[data-theme="ember"] #chip-fintech{border-top-color:var(--violet)}
-html[data-theme="ember"] #chip-fintech .metric-num{color:var(--violet)}
 html[data-theme="ember"] #chip-ptc{border-top-color:var(--amber)}
-html[data-theme="ember"] #chip-ptc .metric-num{color:var(--amber)}
 html[data-theme="ember"] #chip-o2{border-top-color:var(--rose)}
-html[data-theme="ember"] #chip-o2 .metric-num{color:var(--rose)}
-html[data-theme="ember"] .act-cream .metric-num{font-weight:400}
 html[data-theme="ember"] .rcpt-btn{border-radius:999px}
 /* the paper receipt artifact stays cream — it is an object, not skin */
 
 /* ---------- 6 · case index: six colour-coded lanes on the shared row markup */
 html[data-theme="ember"] #featured-case-studies{background:var(--bg)}
-html[data-theme="ember"] .ai-cases{gap:12px}
-html[data-theme="ember"] .ai-case{--lc:var(--amber);--lt:rgba(255,196,107,.07);border-bottom:none;border-left:3px solid var(--lc);border-radius:6px;background:linear-gradient(94deg,var(--lt),transparent 70%);padding:24px;transition:background .25s}
-html[data-theme="ember"] .ai-case:hover{background:linear-gradient(94deg,var(--lt),var(--lt))}
-html[data-theme="ember"] .ai-case[data-location="work-ai-1"]{--lc:#FF6A3D;--lc2:#FFB08E;--lt:rgba(255,138,92,.13)}
-html[data-theme="ember"] .ai-case[data-location="work-ai-2"]{--lc:#C64BFF;--lc2:#E86BFF;--lt:rgba(198,75,255,.13)}
-html[data-theme="ember"] .ai-case[data-location="work-ai-3"]{--lc:#FFC46B;--lc2:#FFE0A8;--lt:rgba(255,196,107,.10)}
-html[data-theme="ember"] .ai-case[data-location="work-range-ptc"]{--lc:#FF5FA2;--lc2:#FF9DC6;--lt:rgba(255,122,168,.12)}
-html[data-theme="ember"] .ai-case[data-location="work-range-o2"]{--lc:#A96BFF;--lc2:#E86BFF;--lt:rgba(169,107,255,.12)}
-html[data-theme="ember"] .ai-case[data-location="work-range-orgos"]{--lc:var(--ember);--lt:rgba(255,138,92,.06)}
 html[data-theme="ember"] .ai-case-kick,
 html[data-theme="ember"] .ai-case-num,
 html[data-theme="ember"] .ai-case .walk{color:var(--lc)}
-html[data-theme="ember"] .ai-case:hover .card-title{color:var(--lc)}
-/* the prototype lane layout, chosen by Arpit (screenshot): SKEWED parallelogram
-   lanes with a gradient rail on the slanted left edge. The skew is the point —
-   inner content counter-skews so type stays upright. */
-html[data-theme="ember"] .ai-case{display:grid;grid-template-columns:210px minmax(0,1fr) auto;grid-template-areas:"head title walk" "head desc walk";column-gap:clamp(20px,3vw,40px);row-gap:8px;align-items:center;transform:skewX(-4deg);border-left:none;border-radius:4px;padding:24px 32px;position:relative;background:linear-gradient(96deg,var(--lt) 0%,rgba(0,0,0,0) 72%)}
-html[data-theme="ember"] .ai-case > *{transform:skewX(4deg)}
-/* the gradient rail rides the slanted edge */
-html[data-theme="ember"] .ai-case::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px;background:linear-gradient(180deg,var(--lc),var(--lc2,var(--lc)));pointer-events:none}
-html[data-theme="ember"] .ai-case:hover{background:linear-gradient(96deg,var(--lt) 0%,var(--lt) 55%,rgba(0,0,0,0) 92%)}
-html[data-theme="ember"] .ai-case-head{grid-area:head;display:flex;flex-direction:column-reverse;gap:8px}
-html[data-theme="ember"] .ai-case-num{font-size:clamp(22px,2vw,30px);white-space:normal}
-html[data-theme="ember"] .ai-case .card-title{grid-area:title;font-size:clamp(24px,2.6vw,36px);align-self:end}
-html[data-theme="ember"] .ai-case>p.beat-lbl{display:none}
-html[data-theme="ember"] .ai-case>p:not(.visually-hidden):not(.beat-lbl){grid-area:desc;display:block;margin:0;font-family:var(--ff-sans);font-size:14px;line-height:1.7;color:var(--ink-muted);max-width:62ch;align-self:start}
 html[data-theme="ember"] .ai-case .walk{grid-area:walk;white-space:nowrap}
-@media (max-width:860px){html[data-theme="ember"] .ai-case{grid-template-columns:1fr;grid-template-areas:"head" "title" "desc" "walk";align-items:start;transform:skewX(-2deg);padding:24px}}
-@media (prefers-reduced-motion:reduce){/* skew is decoration, not information: flatten it */
-  html[data-theme="ember"] .ai-case{transform:none}
-html[data-theme="ember"] .ai-case > *{transform:none}}
-/* ---------- 7 · capability-contract act: second plum band, colored verbs */
-html[data-theme="ember"] .idea-act::before{content:"";position:absolute;left:0;right:0;top:-64px;height:64px;background:#1B1320;clip-path:polygon(0 0,100% 100%,100% 100%,0 100%);pointer-events:none}
-html[data-theme="ember"] .idea-act{position:relative}
+@media (max-width:860px){}
+@media (prefers-reduced-motion:reduce){}
 html[data-theme="ember"] .verbs .verb{border-top:3px solid var(--border);padding-top:16px}
 html[data-theme="ember"] .verbs .verb:nth-child(1){border-top-color:var(--amber)}
 html[data-theme="ember"] .verbs .verb:nth-child(1) .verb-word{color:var(--amber)}
@@ -166,7 +118,6 @@ html[data-theme="ember"] .nav-cta:hover{transform:none}}
    right mark — but it also meant the HTML said one thing and the browser drew another,
    which is how "the site logo is the dated gold one" stayed invisible. 2026-08-17. */
 html[data-theme="ember"] .hk-btn{border-radius:999px;background:var(--g-hot);color:var(--cta-ink)}
-html[data-theme="ember"] .hk-btn:disabled{background:var(--bg-card);color:var(--ink-dim)}
 /* ---------- 12 · the contract demo hardcodes cream-stage inks (tuned for the
    cream act, which Ember turns plum). Re-ink for the dark card. Measured by the
    pixel audit: #635848/#7E5A14/#2E6A46 on #241830 = 2.4-2.7:1. */
@@ -203,8 +154,6 @@ html[data-theme="ember"] body.p-home{scroll-behavior:smooth}
 html[data-theme="ember"] body.p-home{background:var(--bg0);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7}
 html[data-theme="ember"] body.p-home a{color:inherit;text-decoration:none}
 html[data-theme="ember"] body.p-home :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
-html[data-theme="ember"] body.p-home .skip{position:absolute;left:-9999px;top:0;background:var(--amber);color:var(--bg0);padding:12px 20px;font-weight:600;z-index:100}
-html[data-theme="ember"] body.p-home .skip:focus{left:16px;top:12px}
 html[data-theme="ember"] body.p-home .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
 html[data-theme="ember"] body.p-home .k{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
 html[data-theme="ember"] body.p-home .hand{font-family:var(--hand);font-weight:600}
@@ -263,9 +212,6 @@ html[data-theme="ember"] body.p-home .rc1{--rc:var(--ember)}
 html[data-theme="ember"] body.p-home .rc2{--rc:var(--violet)}
 html[data-theme="ember"] body.p-home .rc3{--rc:var(--amber)}
 html[data-theme="ember"] body.p-home .rc4{--rc:var(--rose)}
-html[data-theme="ember"] body.p-home .rfoot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:20px;font-family:var(--mono);font-size:12px;color:var(--dim)}
-html[data-theme="ember"] body.p-home .rfoot b{color:var(--ink);font-weight:500;letter-spacing:.1em}
-html[data-theme="ember"] body.p-home .rfoot a{color:var(--amber);text-decoration:underline;text-underline-offset:3px}
 html[data-theme="ember"] body.p-home .who{padding:96px 0 88px}
 html[data-theme="ember"] body.p-home .who .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
 html[data-theme="ember"] body.p-home .who .k{color:var(--ember)}
@@ -328,14 +274,9 @@ html[data-theme="ember"] body.p-home .lane .m span{line-height:1.45;display:inli
 html[data-theme="ember"] body.p-home .lane .m span{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-top:8px}
 html[data-theme="ember"] body.p-home .lane h3{font-size:clamp(22px,2.2vw,30px);font-weight:400}
 html[data-theme="ember"] body.p-home .lane p{font-size:13.5px;color:var(--mut);margin-top:8px;max-width:60ch;line-height:1.7}
-html[data-theme="ember"] body.p-home .lane .go{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
-html[data-theme="ember"] body.p-home .lane:hover .go,html[data-theme="ember"] body.p-home .lane:focus-within .go{color:var(--lc)}
 html[data-theme="ember"] body.p-home .l1{--lc:var(--ember);--lt:rgba(255,138,92,.12)}
 html[data-theme="ember"] body.p-home .l2{--lc:var(--violet);--lt:rgba(232,107,255,.10)}
 html[data-theme="ember"] body.p-home .l3{--lc:var(--amber);--lt:rgba(255,196,107,.10)}
-html[data-theme="ember"] body.p-home .l4{--lc:var(--rose);--lt:rgba(255,122,168,.10)}
-html[data-theme="ember"] body.p-home .l5{--lc:var(--violet);--lt:rgba(232,107,255,.08)}
-html[data-theme="ember"] body.p-home .l6{--lc:var(--ember);--lt:rgba(255,138,92,.08)}
 @media (max-width:860px){html[data-theme="ember"] body.p-home .lane{grid-template-columns:1fr;gap:12px}}
 html[data-theme="ember"] body.p-home .contract{padding:96px 0}
 html[data-theme="ember"] body.p-home .contract .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:start}
@@ -436,7 +377,6 @@ html[data-theme="ember"] body.p-home .hd-preset span,
 html[data-theme="ember"] body.p-home .hd-preset::after{color:var(--ember)}
 html[data-theme="ember"] body.p-home .hd-free input{color:var(--ink);border-bottom-color:var(--line)}
 html[data-theme="ember"] body.p-home .hd-free input:focus{border-color:var(--ember)}
-html[data-theme="ember"] body.p-home .hd-free-submit{color:var(--ember)}
 html[data-theme="ember"] body.p-home .hd-kicker{color:var(--mut)}
 html[data-theme="ember"] body.p-home .hd-said{color:var(--mut)}
 html[data-theme="ember"] body.p-home .hd-rule{background:var(--ember)}
@@ -452,10 +392,6 @@ html[data-theme="ember"] body.p-home .rcpt-btn{margin-top:16px;background:transp
 html[data-theme="ember"] body.p-home .rcpt-btn:hover{border-color:var(--rc)}
 html[data-theme="ember"] body.p-home .rcpt{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-top:16px}
 html[data-theme="ember"] body.p-home .rcpt h3{font-size:20px;margin-bottom:12px}
-html[data-theme="ember"] body.p-home .rcpt-r,
-html[data-theme="ember"] body.p-home .rcpt-r-tight,
-html[data-theme="ember"] body.p-home .rcpt-r-last,
-html[data-theme="ember"] body.p-home .rcpt-r-tight-last{display:flex;gap:20px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
 html[data-theme="ember"] body.p-home .rcpt-l{flex:0 0 140px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
 html[data-theme="ember"] body.p-home .rcpt-v{color:var(--mut);font-size:14px}
 /* contract demo */
@@ -475,10 +411,6 @@ html[data-theme="ember"] body.p-home .ccd-tag--in{color:#7FCF9E;border:1.5px sol
 html[data-theme="ember"] body.p-home .ccd-tag--out{color:var(--rose);border:1.5px solid var(--rose);border-radius:4px;padding:2px 8px;font-size:10px}
 html[data-theme="ember"] body.p-home .contract-links{margin-top:24px;display:flex;flex-wrap:wrap;gap:20px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
 html[data-theme="ember"] body.p-home .contract-links a{color:var(--amber);text-decoration:underline;text-underline-offset:3px}
-/* QC stamp cluster stays a cream artifact, on its own row */
-html[data-theme="ember"] body.p-home .qc-slot{margin-top:32px}
-html[data-theme="ember"] body.p-home .hk-btn{background:linear-gradient(92deg,var(--ember),var(--violet));color:#1A0D08;border:none;border-radius:999px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:12px 24px;cursor:pointer;font-weight:600}
-html[data-theme="ember"] body.p-home .hk-btn:disabled{background:var(--card);color:var(--dim)}
 /* contact form */
 html[data-theme="ember"] body.p-home .form-slot{margin-top:24px;max-width:460px}
 html[data-theme="ember"] body.p-home .form-slot input,
@@ -512,9 +444,7 @@ html[data-theme="ember"] body.p-home .nav-cta{padding:12px 24px;white-space:nowr
 /* dark ink on the hot gradient: cream measured 2.21:1 */
 @media (max-width:640px){/* the QC slip is a rotated cream artifact — its rotated box overflowed the
      viewport by 23px at 390 (measured in a real viewport, not headless) */
-  html[data-theme="ember"] body.p-home .qc-slot{overflow:hidden;padding:0 4px}
-html[data-theme="ember"] body.p-home .qc-stamp{transform:none;max-width:100%}
-html[data-theme="ember"] body.p-home .qc{max-width:100%}}
+  html[data-theme="ember"] body.p-home .qc-slot{overflow:hidden;padding:0 4px}}
 /* ---------- EMBER HOMEPAGE · hero fits the viewport; receipts get their rhythm ----------
    Measured 2026-08-13 at 1200x785: hero was 942px tall against 708px of usable
    height (viewport minus the 77px sticky nav) — it overflowed by 234px, so the
@@ -561,12 +491,6 @@ html[data-theme="ember"] body.p-home main > section{max-width:none;width:auto}
 html[data-theme="ember"] body.p-home section.lead{font-family:var(--sans);font-size:16px;font-weight:400;line-height:1.7;color:var(--ink)}
 html[data-theme="ember"] body.p-home .lanes .m{max-width:none;font-weight:400}
 html[data-theme="ember"] body.p-home .work .lede{max-width:none}
-/* the stamp cluster was flung to the page edges by the classic flex (justify-content
-   :center on a full-width row): ~500px of dead gap between the button and the slip.
-   Pair them as one object with designed space between. */
-html[data-theme="ember"] body.p-home .qc-slot .hk-qc{justify-content:flex-start;gap:clamp(32px,5vw,80px);max-width:840px;margin-top:40px}
-html[data-theme="ember"] body.p-home .qc-slot .hk-qc-side{flex:0 1 320px}
-html[data-theme="ember"] body.p-home .qc-slot .hk-qc-obj{flex:0 0 300px;margin:0}
 /* REVERTED 2026-08-16 (Arpit caught it: "on mobile button still of the old design system").
    This block used to flatten the hero CTA to a solid #FFB08E below 640px, on the strength of a
    "measured 3.51:1" reading. That reading was wrong — it came from the same contrast audit that
@@ -618,9 +542,6 @@ html[data-theme="ember"] body[class*="p-case-studies"] :is(.rcpt-r,.rcpt-r-tight
 html[data-theme="ember"] body[class*="p-case-studies"] :is(.rcpt-r-last,.rcpt-r-tight-last){border-bottom:none}
 html[data-theme="ember"] body[class*="p-case-studies"] .lbl-eyebrow{color:var(--ink-dim);line-height:1.8}
 @media (max-width:640px){html[data-theme="ember"] body[class*="p-case-studies"] :is(.rcpt-r,.rcpt-r-tight,.rcpt-r-last,.rcpt-r-tight-last){grid-template-columns:1fr;gap:4px}}
-/* --- section rhythm: alternating bands with one angled seam --- */
-html[data-theme="ember"] body[class*="p-case-studies"] main > section:nth-of-type(even){background:var(--bg-soft);position:relative}
-html[data-theme="ember"] body[class*="p-case-studies"] main > section:nth-of-type(even)::before{content:"";position:absolute;left:0;right:0;top:-56px;height:56px;background:var(--bg-soft);clip-path:polygon(0 100%,100% 0,100% 100%,0 100%);pointer-events:none}
 /* --- pull quotes: the heat rail --- */
 html[data-theme="ember"] body[class*="p-case-studies"] .t-quote,
 html[data-theme="ember"] body[class*="p-case-studies"] blockquote{border-left:3px solid var(--heat);background:var(--bg-card);border-radius:0 10px 10px 0;padding:20px 24px}
@@ -713,8 +634,6 @@ html[data-theme="ember"] body[class*="p-case-studies"] .framed{max-width:76ch}
    A three-row template left a phantom empty 'desc' row (measured 74px between
    hook and CTA). Two rows match the real DOM. */
 html[data-theme="ember"] body.p-home .lanes .lane{grid-template-columns:210px minmax(0,1fr);grid-template-areas:"head title" "head go"}
-html[data-theme="ember"] body.p-home .lanes .lane .go{grid-area:go;justify-self:start;margin-top:16px;color:var(--lc);border-bottom:1px solid color-mix(in srgb, var(--lc) 45%, transparent);padding-bottom:2px}
-html[data-theme="ember"] body.p-home .lanes .lane:hover .go{border-bottom-color:var(--lc)}
 @media (max-width:860px){html[data-theme="ember"] body.p-home .lanes .lane{grid-template-columns:1fr;grid-template-areas:"head" "title" "go"}}
 /* rows were centring their content, adding ~56px of slack between the hook and
    its CTA (measured 78px total). Hug the content; keep the metric column
@@ -722,7 +641,6 @@ html[data-theme="ember"] body.p-home .lanes .lane:hover .go{border-bottom-color:
 html[data-theme="ember"] body.p-home .lanes .lane{align-items:start}
 html[data-theme="ember"] body.p-home .lanes .lane .ai-case-head,
 html[data-theme="ember"] body.p-home .lanes .lane > div:first-child{align-self:center}
-html[data-theme="ember"] body.p-home .lanes .lane .go{margin-top:8px}
 /* MOBILE MENU — the prototype's `nav ul{display:flex}
 ` (specificity 0,3,2 once
    scoped) outranked classic's @media(max-width:1100px){.nav-links{display:none}}
@@ -750,7 +668,6 @@ html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plB,.plC,.plA-c
    abstain() were invisible --- */
 html[data-theme="ember"] body.p-lab-loop .lab-ctl input[type="number"],
 html[data-theme="ember"] body.p-lab-loop .act-cream .lab-ctl input[type="number"]{background:var(--bg-soft);color:var(--ink);border:1px solid var(--border)}
-html[data-theme="ember"] body.p-hire :is(.hire-avail,.hire-contact) a:hover{text-decoration:underline;text-underline-offset:3px}
 /* --- T1.4 · "In production" badge 2.01:1, nine uses sitewide --- */
 html[data-theme="ember"] .lbl-badge-ink{color:var(--cta-ink)}
 html[data-theme="ember"] body.p-writing .xi-writing-020:hover{transform:translateY(-4px)}
@@ -763,7 +680,6 @@ html[data-theme="ember"] body.p-home .rcell .rcpt-btn{margin-top:auto}
 html[data-theme="ember"] body.p-home .lanes .lane{background:linear-gradient(94deg,var(--lt),transparent 70%),rgba(245,237,230,.035);border-top:1px solid rgba(245,237,230,.10);border-right:1px solid rgba(245,237,230,.10);border-bottom:1px solid rgba(245,237,230,.10)}
 @media (max-width:860px){html[data-theme="ember"] body.p-home .lanes .lane,
   html[data-theme="ember"] body.p-home .lanes .lane > *{transform:none}}
-html[data-theme="ember"] body.p-home .lanes .lane .go{margin-left:0}
 /* single-axis lanes: .go shares the left axis, no skew to correct */
 
 /* --- T2.9 · demo card carried an orphaned top:104px from the classic
@@ -821,9 +737,6 @@ html[data-theme="ember"] .card-gold > :last-child > :last-child{margin-bottom:0}
    colour, so the PARENT is muted instead. --- */
 html[data-theme="ember"] body.p-hire .hand + .hire-receipts,
 html[data-theme="ember"] body.p-screen .hand + .scr-q{margin-top:24px}
-html[data-theme="ember"] body.p-hire .hire-receipt{display:flex;flex-direction:column}
-html[data-theme="ember"] body.p-hire .hire-receipt small{margin-top:auto;padding-top:8px}
-html[data-theme="ember"] body.p-hire .hire-cred{color:var(--ink-dim)}
 /* --- T4.25 · control shape language. NOT applying the plan's
    `.btn-a{border:1px solid transparent}
 `: it adds 2px to every .btn-a
@@ -873,7 +786,6 @@ html[data-theme="ember"] body.p-home footer{padding-left:20px;padding-right:20px
    ================================================================ */
 html[data-theme="ember"] body.p-patterns{--heat:#FFC46B;--heat2:#FFE0A8}
 html[data-theme="ember"] :is(body[class*="p-lab"],body.p-fit){--heat:#E86BFF;--heat2:#C64BFF}
-html[data-theme="ember"] body.p-hire{--heat:#FF8A5C;--heat2:#FFB08E}
 html[data-theme="ember"] body.p-screen{--heat:#FF7AA8;--heat2:#FF9DC6}
 html[data-theme="ember"] body[class*="p-writing"]{--heat:#A96BFF;--heat2:#E86BFF}
 html[data-theme="ember"] body[class*="p-resources"]{--heat:#FF6A3D;--heat2:#FFB08E}
@@ -908,10 +820,6 @@ html[data-theme="ember"] :is(body.p-patterns,body[class*="p-writing"],body[class
 /* --- /screen/ : each answered question is a card, not a hairline --- */
 html[data-theme="ember"] body.p-screen .scr-q{background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--heat);border-radius:0 12px 12px 0;padding:24px 32px;margin:0 0 20px}
 html[data-theme="ember"] body.p-screen .scr-close{background:var(--bg-soft);border-radius:12px;padding:32px;margin-top:32px}
-/* --- /hire/ : receipts read as one family --- */
-html[data-theme="ember"] body.p-hire .hire-receipt{border-left:3px solid var(--heat);border-radius:0 12px 12px 0}
-html[data-theme="ember"] body.p-hire .hire-quote{border-left:3px solid var(--violet);border-radius:0 12px 12px 0;padding:20px 24px}
-html[data-theme="ember"] body.p-hire .hire-sec{margin-bottom:48px}
 /* --- /lab/ : the code surfaces --- */
 html[data-theme="ember"] body:is([class*="p-lab"],.p-fit) :is(.lab-note,.lab-links,.lab-body){border-radius:12px}
 html[data-theme="ember"] body:is([class*="p-lab"],.p-fit) .lab-note{background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--heat);border-radius:0 12px 12px 0;padding:20px 24px}
@@ -972,8 +880,7 @@ html[data-theme="ember"] body.p-home .lanes .lane .m span{display:block;margin-t
 html[data-theme="ember"] body.p-home .lanes .lane .ai-case-head,
 html[data-theme="ember"] body.p-home .lanes .lane > div:first-child{align-self:start}
 /* phone: no room for a right-hand column — stack, action last */
-@media (max-width:640px){html[data-theme="ember"] body.p-home .lanes .lane{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "title" "go"}
-html[data-theme="ember"] body.p-home .lanes .lane .go{justify-self:start;margin-top:8px}}
+@media (max-width:640px){html[data-theme="ember"] body.p-home .lanes .lane{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "title" "go"}}
 html[data-theme="ember"] body.p-home .lanes .lane .m{display:block;font-size:clamp(19px,1.7vw,24px);line-height:1.2;white-space:nowrap}
 html[data-theme="ember"] body.p-home .lanes .lane .m span{margin-top:0;font-size:11.5px;letter-spacing:.14em}
 html[data-theme="ember"] body.p-home .lanes .lane h3{margin-top:0}
@@ -1027,7 +934,6 @@ html[data-theme="ember"] body.p-home .thought-tag{color:var(--heat);font-size:11
 html[data-theme="ember"] body.p-home .thought-title{color:var(--ink);font-weight:400;font-size:20px;line-height:1.25;margin:8px 0}
 html[data-theme="ember"] body.p-home .thoughts-grid > *:hover .thought-title{color:var(--heat)}
 html[data-theme="ember"] body.p-home .thought-excerpt{color:rgba(245,237,230,.84);font-size:14px;line-height:1.7}
-html[data-theme="ember"] body.p-home .thought-meta{color:rgba(245,237,230,.74);font-size:11.5px;margin-top:16px}
 /* ================================================================
    SECTION SEAMS — the diagonal wedge is retired.
    It was a 110px slab with a shallow clip-path pulled up by -60px, so it
@@ -1100,8 +1006,6 @@ html[data-theme="ember"] body.p-home #thoughts .wr-more{margin-top:16px}
 html[data-theme="ember"] body.p-home #thoughts .wr-more a{font-family:var(--ff-label);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--heat);white-space:nowrap;border-bottom:1px solid color-mix(in srgb, var(--heat) 45%, transparent);padding-bottom:3px;text-decoration:none}
 html[data-theme="ember"] body.p-home #thoughts .wr-more a:hover{border-bottom-color:var(--heat)}
 html[data-theme="ember"] body.p-home #thoughts .thoughts-grid{margin-top:48px}
-/* the 12px inline-sized icon in the card meta, declared as a class */
-html[data-theme="ember"] .icon-xs{width:12px;height:12px}
 /* PHONE: plate internals have fixed track widths, so at 390px the fintech and
    vc plates pushed their content past the edge (measured right=413 and 491).
    Give the plate its own horizontal scroll rather than letting it drag the
@@ -1147,16 +1051,12 @@ html[data-theme="ember"] .lab-wrap :is(p,dl,ul,ol):not(:has(pre)):not(.lab-note)
    was removed; it stopped standing between a reader and the ask. */
 html[data-theme="ember"] body.p-home .contact-read{
   font-size:14px;line-height:1.6;margin:16px 0 0;color:var(--ink-muted)}
-html[data-theme="ember"] body.p-home .contact-alt{font-size:14px;color:var(--ink-muted);margin:16px 0 0}
-html[data-theme="ember"] body.p-home .contact-alt a{font-family:var(--ff-label);font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--link);text-decoration:none;border-bottom:1px solid color-mix(in srgb, var(--link) 45%, transparent);padding-bottom:2px}
-html[data-theme="ember"] body.p-home .contact-alt a:hover{color:var(--link-hover)}
 /* ---- video evidence on the named case (talon) --------------------------- */
 html[data-theme="ember"] .vid-frame{position:relative;aspect-ratio:16/9;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
 html[data-theme="ember"] .vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 html[data-theme="ember"] .vid-main{margin:32px 0 24px}
 html[data-theme="ember"] .vid-main figcaption,
 html[data-theme="ember"] .vid-card figcaption{display:flex;flex-direction:column;gap:4px;margin-top:12px}
-html[data-theme="ember"] .vid-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px;margin:24px 0}
 html[data-theme="ember"] .vid-note{margin:16px 0 32px}
 /* ============================================================================
    LEADING — DECLARED ONCE PER COMPONENT (2026-08-18, Arpit's picks)
@@ -1262,11 +1162,6 @@ html[data-theme="ember"] :is([class*="p-lab"],.p-fit) .lab-cards{margin-bottom:0
    exactly why the colour gate passed them; the grammar was the defect). */
 html[data-theme="ember"] .lab-links a{font-family:var(--ff-label);font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--link);text-decoration:none;border-bottom:1px solid color-mix(in srgb, var(--link) 45%, transparent);padding-bottom:2px}
 html[data-theme="ember"] .lab-links a:hover{color:var(--link-hover);border-bottom-color:var(--link)}
-/* Three near-miss CTA grammars found by tools/cta-grammar-check.py — 12px/1.8
-   tracking on /process, 12px lowercase on /hire, 13px on /screen. Same job,
-   three dialects. One voice: */
-html[data-theme="ember"] :is([class*="p-hire"],[class*="p-process"],[class*="p-screen"]) main
-  :is(.btn-row,.proc-links,.cta-row,p,div) > a:not([class*="btn"]):not(.pill):not(.card-p28):not(.card-p32){font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
 /* ================================================================
    SIMILARITY PASS (Playwright Gestalt audit, 2026-08-14)
    Four classes rendered at arbitrary different sizes/weights for the SAME
@@ -1344,8 +1239,6 @@ html[data-theme="ember"] body.p-home :is(.meta,.ccd-q,.ccd-idle,.ccd-note,.lede)
 /* the remaining label classes on inner pages — same treatment, same exemptions */
 html[data-theme="ember"] :is(.cg-l,.lbl-pill-bg,.lbl-pill-gold,.lbl-eyebrow-500,
   .hire-role,.hire-print-note,.lab-num,.ev-tiers dt,figcaption .lbl-eyebrow){font-weight:600;letter-spacing:.08em}
-/* /hire/ prose ran to 90 characters a line — past the comfortable 45-75 band */
-html[data-theme="ember"] [class*="p-hire"] .hire-wrap :is(p,li){max-width:70ch}
 /* case-study prose at 82 characters: pull the spine in to the reading band */
 html[data-theme="ember"] body[class*="p-case-studies"] .measure-c{max-width:680px}
 /* ============================================================================
@@ -1366,19 +1259,13 @@ html[data-theme="ember"] :is(.plA,.plF,.plM,.plO,.plP,.plV,.fig-paper,.recon,
    patterns/ml-explainability 4px past the edge with no single offending box —
    the classic signature of a word that cannot wrap. */
 @media (max-width:640px){html[data-theme="ember"] main :is(p,li,dd,dt,h1,h2,h3,figcaption){overflow-wrap:break-word}}
-/* /hire/ prose was capped at 70ch but left aligned in a wider band, so the cap
-   I added for line length created a 215px void on its right. Capped text in a
-   single-column band centres — the same rule the rest of the site follows. */
-html[data-theme="ember"] [class*="p-hire"] .hire-wrap :is(p,li){margin-left:auto;margin-right:auto}
 /* A wide comparison table on patterns/ml-explainability pushes 4px past the
    edge at 390. `display:block` on <table> was tried and made it WORSE (broke
    two other pages' tables), so the table keeps its display and the cells wrap
    instead — measured, not assumed. */
 @media (max-width:640px){html[data-theme="ember"] main table{table-layout:fixed;width:100%}
 html[data-theme="ember"] main :is(td,th){overflow-wrap:break-word;word-break:break-word}}
-/* the heading also ran 40px/1.20 against the 44px/1.12 its siblings use */
-html[data-theme="ember"] body.p-home #how-i-lead h2{font-size:44px}
-@media (max-width:640px){html[data-theme="ember"] body.p-home #how-i-lead h2{font-size:30px}}
+@media (max-width:640px){}
 /* ============================================================================
    /patterns/ FEATURE CARDS — my call, per Arpit "you decide".
    The two lead cards are 1180px wide while their content used ~430px, leaving
@@ -1438,14 +1325,6 @@ html[data-theme="ember"] .thesis p em{font-style:italic;color:#E86BFF}
 html[data-theme="ember"] .counter{border-left:3px solid #FF7AA8;padding:20px 24px;margin:32px 0;background:rgba(255,122,168,.05);border-radius:0 8px 8px 0}
 html[data-theme="ember"] .counter .c-l{font-family:var(--ff-label);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#FF7AA8;display:block;margin-bottom:8px}
 html[data-theme="ember"] .loopfig{margin:32px 0;border:1px solid rgba(245,237,230,.14);border-radius:12px;padding:32px;background:rgba(27,19,32,.6);overflow-x:auto}
-html[data-theme="ember"] .loopfig svg{display:block;min-width:640px;width:100%;height:auto}
-html[data-theme="ember"] .loopfig text{font-family:var(--ff-sans);font-size:13px;fill:var(--ink)}
-html[data-theme="ember"] .loopfig .lt{font-weight:600}
-html[data-theme="ember"] .loopfig .lm{fill:rgba(245,237,230,.62);font-size:11px}
-html[data-theme="ember"] .loopfig .arr{stroke:rgba(245,237,230,.45);stroke-width:1.5;fill:none;marker-end:url(#ah)}
-html[data-theme="ember"] .loopfig .hot{stroke:#E86BFF}
-html[data-theme="ember"] .loopfig rect{fill:rgba(18,11,20,.8);stroke:rgba(245,237,230,.2);rx:8}
-html[data-theme="ember"] .loopfig .r-hot{stroke:#E86BFF}
 html[data-theme="ember"] .loopfig figcaption{font-family:var(--ff-sans);font-size:12px;color:rgba(245,237,230,.62);margin-top:16px;line-height:1.6}
 /* ============================================================================
    RECEIPT CHIP — show the TRANSITION, not just the endpoint (2026-08-14)
@@ -1479,8 +1358,7 @@ html[data-theme="ember"] body.p-home .qt-view{font-family:var(--ff-label);font-w
 html[data-theme="ember"] body.p-home .qt blockquote{flex:1 1 auto;margin:0}
 html[data-theme="ember"] body.p-home .qt figcaption{margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
 @media (max-width:860px){html[data-theme="ember"] body.p-home .quotes{grid-template-columns:1fr}}
-html[data-theme="ember"] body[class*="p-case-studies"] .measure-c .vid-grid{width:min(1040px,calc(100vw - 48px));max-width:none;margin-left:50%;transform:translateX(-50%);grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))}
-@media (max-width:1100px){html[data-theme="ember"] body[class*="p-case-studies"] .measure-c .vid-grid{width:100%;margin-left:0;transform:none}}
+@media (max-width:1100px){}
 /* the trust loop as wrapping HTML chips — the SVG version forced a 640px
    min-width, which is a horizontal scrollbar on every phone. Chips wrap. */
 html[data-theme="ember"] .loop-steps{display:flex;flex-wrap:wrap;align-items:stretch;gap:12px}
@@ -1499,7 +1377,6 @@ html[data-theme="ember"] .lback{flex-basis:100%;font-size:11.5px;color:#E86BFF;b
    band, then lab and thoughts both sat on base — alternation died after the
    fold. Voices returns to base; #lab takes the band, restoring band/base/band. */
 html[data-theme="ember"] body.p-home .voices{padding:96px 0;background:none}
-html[data-theme="ember"] body.p-home .voices .k{color:var(--violet)}
 html[data-theme="ember"] body.p-home .voices h2{font-size:clamp(28px,3.2vw,44px);margin:12px 0 16px}
 html[data-theme="ember"] body.p-home .voices .lede{color:rgba(245,237,230,.76);margin-bottom:40px}
 /* product-page link cards (replacing the two business-video embeds) */
@@ -1726,7 +1603,6 @@ html[data-theme="ember"] body.p-case-studies-planit figure.fig-paper:has(.phone-
 html[data-theme="ember"] body.p-case-studies-planit .phone-row--one .shot{max-width:340px}
 html[data-theme="ember"] body.p-case-studies-planit .mascot-row{grid-template-columns:repeat(2,minmax(0,1fr))}
 html[data-theme="ember"] body[class*="p-case-studies"] .fig-paper figcaption{text-align:left}}
-html[data-theme="ember"] body.p-home .l7{--lc:var(--rose);--lt:rgba(255,122,168,.08)}
 /* CORRECTED 2026-08-17, twice — the second time by the instrument that measures PIXELS.
    Three rules here painted this eyebrow the paper gold #7E5A14. I removed all three after a
    DOM probe walked up the tree reading backgroundColor and reported the ground as #120B14 at
@@ -1743,21 +1619,6 @@ html[data-theme="ember"] body.p-home .l7{--lc:var(--rose);--lt:rgba(255,122,168,
    read 3.03:1 there. The card IS paper above 861 and IS the dark page below it. Same label,
    two grounds, two inks — measured from painted pixels at both, 2026-08-17. */
 @media (min-width:861px){html[data-theme="ember"] body.p-patterns .is-paper .lbl-eyebrow{color:#7E5A14}}
-/* The design-system band's install card was ~570px shorter than the prose beside it, leaving a
-   void down the right. The space gets the thing the card is actually about: the four heats with
-   their measured ratios — showing the system instead of describing it. */
-html[data-theme="ember"] body.p-home #design-system .ds-tok{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
-html[data-theme="ember"] body.p-home #design-system .ds-t{display:flex;align-items:center;gap:8px;padding:12px;background:rgba(245,237,230,.04);border:1px solid var(--border);border-radius:8px}
-html[data-theme="ember"] body.p-home #design-system .ds-t i{width:16px;height:16px;border-radius:4px;flex:0 0 auto}
-html[data-theme="ember"] body.p-home #design-system .ds-t b{font-family:var(--ff-label);font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--ink)}
-html[data-theme="ember"] body.p-home #design-system .ds-t span{margin-left:auto;font-family:var(--ff-mono);font-size:11.5px;color:var(--ink-dim)}
-html[data-theme="ember"] body.p-home #design-system .ds-type{display:grid;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
-html[data-theme="ember"] body.p-home #design-system .ds-ty{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
-html[data-theme="ember"] body.p-home #design-system .ds-ty b{font-size:15px;color:var(--ink);font-weight:400}
-html[data-theme="ember"] body.p-home #design-system .ds-ty span{font-family:var(--ff-label);font-size:11.5px;letter-spacing:.04em;color:var(--ink-dim);text-align:right}
-/* The Lab's ev-tiers list is normally the last thing in a .lab-body; on the design-system band a
-   paragraph follows it and sat flush against the final definition. */
-html[data-theme="ember"] body.p-lab #design-system .ev-tiers + p{margin-top:24px}
 html[data-theme="ember"] body.p-lab #design-system .lab-code{margin-top:20px}
 /* ============================================================================
    LAB · DESIGN SYSTEM SPECIMEN (2026-08-17)
@@ -1904,9 +1765,6 @@ html[data-theme="ember"] body[class*="p-case-studies"] .btn-row{justify-content:
    about a component rather than four rules about four ids. It sits in `emphasis` because that is what
    it is overriding — not a preference. Found by Arpit, 2026-08-17. */
 html[data-theme="ember"] body[class*="p-case-studies"] .case-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px}
-/* --- T1.3 · /hire → /screen handoff link was styled identically to prose
-   (zero delta on all five properties) while LinkedIn/GitHub got gold --- */
-html[data-theme="ember"] body.p-hire :is(.hire-avail,.hire-contact) a{color:var(--amber)}
 /* --- T1.5 · /writing/ Substack cards: fill identical to page ground
    (1.000:1) and the hover never fired (the border shorthand won) --- */
 html[data-theme="ember"] body.p-writing .xi-writing-020{background:var(--bg-card);padding:24px 32px;transition:border-color .25s var(--ease-out),transform .25s var(--ease-out)}
@@ -1964,7 +1822,6 @@ html[data-theme="ember"] :is(main,footer) a:not(.pill):not(.btn-a):not(.btn-a-gh
      on individual anchors, so this rule lost its own property on /lab/ and /patterns/
      and links there rendered amber while the token said violet. */
   color:var(--link)}
-html[data-theme="ember"] body.p-hire :is(.hire-avail,.hire-contact) a{color:var(--link)}
 /* --- three fixes from review, each measured before and after ---------------- */
 
 /* 1. The pattern links sat in a 386px box inside an 875px parent, so both long
@@ -2054,9 +1911,6 @@ html[data-theme="ember"] body.p-home main > section :is(h2,h3) + *{margin-top:0}
    against the Lab's 16) — the same complaint the planit case drew. Scope, again. */
 html[data-theme="ember"] :is([class*="p-lab"],.p-fit) .lab-wrap :is(h1,h2){margin-bottom:16px}
 html[data-theme="ember"] :is([class*="p-lab"],.p-fit) .lab-wrap :is(h1,h2) + *{margin-top:0}
-/* /hire/ headings live in .hire-wrap, outside the p-home and p-lab scopes */
-html[data-theme="ember"] [class*="p-hire"] main :is(h2,h3){margin-bottom:16px}
-html[data-theme="ember"] [class*="p-hire"] main :is(h2,h3) + *{margin-top:0}
 /* THE FINTECH MOCKUP SCALES; IT DOES NOT SLICE (2026-08-17, Arpit's pick) --
    .plF is a picture of a product, so on a phone it shrinks whole rather than
    losing its right-hand edge. It was 358px of interface inside a 292px box —
@@ -2091,10 +1945,6 @@ html[data-theme="ember"] :is(.cg-l,.lbl-pill-bg,.lbl-pill-gold,.lbl-eyebrow-500,
    primary CTA still on the mono face. Caught by tools/cta-grammar-check.py. */
 html[data-theme="ember"] :is(.wr-more a,.contact-alt a,.lab-links a,.contract-links a,
   .go,.rcpt-btn,.rcpt-more,.lbl-badge-bg,.lbl-badge-gold,.btn-a,.btn-a-ghost,.nav-cta,.pill){font-family:var(--ff-label);letter-spacing:.08em}
-/* /hire/ footer links carry no class of their own — the label rules could not
-   reach them. (Found because the CTA gate kept failing while I kept measuring
-   the NAV button and calling it fixed: two elements, same text, same page.) */
-html[data-theme="ember"] [class*="p-hire"] .hire-foot a{font-family:var(--ff-label);letter-spacing:.08em}
 /* OPEN, 5px: patterns/ml-explainability's comparison table runs 5px past 390px.
    Tried and REJECTED, each re-measured: display:block on the table (broke two
    other pages' tables), table-layout:fixed + word-break (no change), reduced
@@ -2140,15 +1990,6 @@ html[data-theme="ember"] body[class*="p-case-studies"] :is(
   figure figcaption > span:last-child,
   .ba-table th){font-family:var(--ff-label);letter-spacing:.08em}
 /* ============================================================================
-   VIDEO GRID vs THE BREAKOUT (2026-08-14)
-   The spine's breakout force-widens every .measure-c figure to 1040px — which
-   is right for the full-width film and CATASTROPHIC for figure.vid-card inside
-   a 304px grid track: both cards rendered 1040px wide, translated onto each
-   other (measured lefts 36 and 364 in one 632px grid). The GRID breaks out as
-   one object; the cards inside it obey their tracks.
-   ============================================================================ */
-html[data-theme="ember"] body[class*="p-case-studies"] .measure-c figure.vid-card{width:auto;max-width:none;margin-left:0;margin-right:0;transform:none}
-/* ============================================================================
    FRAMED ROWS — the tint must reach the frame's edges (2026-08-14)
    The frame owned the horizontal padding (8px 24px) while the rows had none,
    so every tinted row stopped 27px short on the left and 25px on the right —
@@ -2164,7 +2005,10 @@ html[data-theme="ember"] :is(.rcpt-r,.rcpt-r-tight,.rcpt-r-last,.rcpt-r-tight-la
 html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-016{max-width:none}
 html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-023 p{max-width:none}
 html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022 .xi-patterns-029{max-width:none}
-@media (max-width:900px){html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022>*{grid-column:1;grid-row:auto}}
+/* 2026-08-30: this reset was losing to the col-2 pin above by specificity —
+   (0,3,1) vs (0,4,1) — so an IMPLICIT second column survived at 390 and pushed
+   'Cite this library' off the viewport. Matched with :is() to the pin's weight. */
+@media (max-width:900px){html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022>:is(*,.xi-patterns-021){grid-column:1;grid-row:auto}}
 html[data-theme="ember"] body.p-home .memos{display:block}
 html[data-theme="ember"] body.p-home .memo{display:grid;background:none;border:none;border-bottom:1px solid rgba(245,237,230,.14);border-radius:0;padding:24px 0}
 html[data-theme="ember"] body.p-home .memo .mk{margin:0}
@@ -2322,7 +2166,6 @@ html[data-theme="ember"] .vid-meta{font-family:var(--ff-mono),monospace;font-siz
 html[data-theme="ember"] .vid-note-t{font-size:14px;line-height:1.65;color:var(--mut,rgba(245,237,230,.76));max-width:68ch}
 html[data-theme="ember"] .vid-note-t a{color:var(--amber,#FFC46B)}
 html[data-theme="ember"] .vid-fallback{padding:24px;font-size:14px;color:var(--mut,rgba(245,237,230,.76))}
-html[data-theme="ember"] body.p-home .vidrow .k{color:var(--rose)}
 html[data-theme="ember"] body.p-process .vid-walk{margin-top:24px;margin-bottom:40px}
 /* /process has a narrow prose column (~493px at 1440), which rendered the walkthrough
    too small to read the screens inside it. The video breaks out to a readable width,
@@ -2351,8 +2194,6 @@ html[data-theme="ember"] body.p-home .whoband .wrap.wl-lead{display:block;margin
 html[data-theme="ember"] body.p-home .whoband .wl-lead h3{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3vw,40px);line-height:1.2;max-width:34ch;margin:12px 0 40px;color:var(--ink)}
 html[data-theme="ember"] body.p-home .whoband .wl-lead .k{color:var(--rose)}
 html[data-theme="ember"] body.p-home .whoband .wl-lead p{max-width:none;margin-bottom:0}
-html[data-theme="ember"] body.p-home .band-split{border:none;border-top:1px solid var(--line);margin:64px 0 48px}
-html[data-theme="ember"] body.p-home .aiwork h3#h-lab{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.2vw,40px);line-height:1.2;margin:12px 0 40px;color:var(--ink)}
 @media (max-width:860px){html[data-theme="ember"] body.p-home .whoband .wrap.wl-lead{margin-top:48px;padding-top:40px}}
 
 /* ============================================================
@@ -2428,3 +2269,16 @@ html[data-theme="ember"] .vband-film{padding:48px 40px 8px}
 html[data-theme="ember"] .vband-film .vid-case{max-width:1000px;margin:0 auto}
 html[data-theme="ember"] .vband-film .vid-cap-row{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;margin-top:12px}
 @media (max-width:768px){html[data-theme="ember"] .vband-film{padding:32px 24px 8px}}
+
+/* live-capture evidence figure (2026-08-30, closes the review's 'no real
+   artifact' finding — Arpit's call: the live platform as a longevity receipt,
+   framed honestly as today's product, not his screens) */
+/* opt OUT of the .measure-c figure breakout (same pattern as .case-hero figure).
+   A live-capture receipt reads as evidence at column width. Re-added 2026-08-30
+   after css-coverage.py's report-mode restore clobbered a mid-run edit — the
+   instrument now refuses to restore over a changed file. */
+html[data-theme="ember"] body[class*="p-case-studies"] .measure-c figure.fig-shot-live{width:100%;max-width:none;margin:40px 0 0;transform:none}
+html[data-theme="ember"] .fig-shot-live{margin:40px 0 0}
+html[data-theme="ember"] .fig-shot-live img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border);display:block}
+html[data-theme="ember"] .fig-shot-live figcaption{margin-top:12px;font-size:13.5px;line-height:1.65;color:var(--ink-dim)}
+html[data-theme="ember"] .fig-shot-live figcaption b{color:var(--ink-muted);font-weight:500}

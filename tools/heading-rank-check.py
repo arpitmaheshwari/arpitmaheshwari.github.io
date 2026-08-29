@@ -1,72 +1,85 @@
 #!/usr/bin/env python3
-"""Fail when a homepage heading leaves its rank.
+"""Fail when ANY heading on a checked page speaks an unregistered rank.
 
-Why this exists (2026-08-30): the measured homepage carried h2s at 42/44/48/64
-and h3s at 40/30/26/20/19/14 — six sizes for one semantic level, and a
-subsection row ("Eval design before interface design") rendering at the same
-40px as the section titles above it. No property gate saw it, because every
-size was individually legal; the defect was RANK DRIFT, visible only as a
-census of one level across the page. Arpit picked Option C (one identity per
-rank); this gate keeps it.
+v2 (2026-08-30): site-wide. v1 checked only the homepage's named selectors —
+which is a whitelist that can't see a NEW rogue heading. v2 measures EVERY
+main h1/h2/h3 on each page and classifies it against the registered ranks and
+named component exceptions below; anything unclassified fails. Two page
+families exist by design (DESIGN-SYSTEM-EMBER.md §2):
 
-Ranks (DESIGN-SYSTEM-EMBER.md § 2, verified against rendered pixels at 1440):
-  R1  every main h2        -> 42px w300   (exception: #h-close at 56px)
-  R2  #h-lead, .lane h3, .thought-title          -> 22px w600
-  R3  .memo h3, .contract .col h3               -> 17px w600 lh1.4, upright
+  home family (/, /folio): R1 h2=42/300 (+close 56/300) · R2 h3=22/600 ·
+    R3 h3=17/600 · components: .facts h3 20/600 · .rcpt-h 20/400 ·
+    .idx h3 14/400 · .chap-n is a span (not audited here)
+  case/subpage family: section h2=31/400 · component h2 (.vband h2)=24/400 ·
+    component h3: .t-card-title 24/400 · .labc-ish labels 14/500 · h1 hero free
 
-Self-calibrating: plants a 40px rogue h3 and requires red.
+Self-calibrating: plants a rogue size and requires red.
 """
 import sys, json, collections
 import sys as _s, os as _o
 _s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__)))
 from cdp import Browser
 
-URL = "http://localhost:8000/index.html"
+HOME = ["index.html", "folio/index.html"]
+SUB  = ["case-studies/adtech.html","case-studies/fintech.html","case-studies/vc-diligence.html",
+        "case-studies/ptc.html","case-studies/o2.html","case-studies/orgos.html",
+        "case-studies/planit.html","patterns/index.html","lab/index.html",
+        "process/index.html","fit/index.html"]
 
 JS = """JSON.stringify((function(){var out=[];
-function push(rank,sel){document.querySelectorAll(sel).forEach(function(e){
-  var cs=getComputedStyle(e); if(!e.getBoundingClientRect().height && cs.position!=='absolute')return;
-  out.push({rank:rank, sz:Math.round(parseFloat(cs.fontSize)), w:cs.fontWeight,
-    it:cs.fontStyle, txt:e.textContent.trim().slice(0,40)});});}
-push('R1','main h2'); push('R2','#h-lead, .lane h3, .thought-title');
-push('R3','.wl-lead .memo h3, .aiwork .memo h3, .contract .col h3');
+document.querySelectorAll('main h2, main h3, body > section h2, body > section h3').forEach(function(e){
+  if(!e.getBoundingClientRect().height && getComputedStyle(e).position!=='absolute') return;
+  var cs=getComputedStyle(e);
+  out.push({tag:e.tagName.toLowerCase(), sz:Math.round(parseFloat(cs.fontSize)), w:cs.fontWeight,
+    cls:(e.className+''), in_vband:!!e.closest('.vband'), in_facts:!!e.closest('.facts'),
+    in_idx:!!e.closest('.idx'), in_lab:!!(e.closest('.labc')||e.closest('.lab3')),
+    txt:e.textContent.trim().slice(0,36)});});
 return out;})())"""
 
-RULES = {
-    'R1': lambda r: (r['sz'] in (42, 56) and r['w'] == '300'),
-    'R2': lambda r: (r['sz'] == 22 and r['w'] == '600'),
-    'R3': lambda r: (r['sz'] == 17 and r['w'] == '600' and r['it'] == 'normal'),
-}
+def classify_home(r):
+    if r['tag']=='h2': return r['sz'] in (42,56) and r['w']=='300'
+    if 'rcpt-h' in r['cls']: return r['sz']==20 and r['w']=='400'
+    if r['in_facts']: return r['sz']==20 and r['w']=='600'
+    if r['in_idx']: return r['sz']==14
+    return (r['sz'],r['w']) in ((22,'600'),(17,'600'))
 
-def census(br, plant=None):
-    br.navigate(URL, settle=3.0)
-    if plant:
-        br.eval("var s=document.createElement('style');s.textContent=%s;document.head.appendChild(s)" % json.dumps(plant))
-        br.pump(0.5)
-    return br.eval_json(JS)
+def classify_sub(r):
+    if r['tag']=='h2':
+        if r['in_vband'] or 'card-title' in r['cls']: return r['sz']==24 and r['w']=='400'
+        return r['sz']==31 and r['w']=='400'
+    if 't-card-title' in r['cls']: return r['sz']==24
+    if r['in_lab'] or r['sz']==14: return r['sz']==14
+    if 'rcpt-h' in r['cls']: return r['sz']==20
+    return (r['sz'],r['w']) in ((22,'600'),(17,'600'),(24,'400'),(20,'400'))
+
+def sweep(br, plant=None):
+    bad_all=[]
+    for fam, pages, clf in (('home',HOME,classify_home),('sub',SUB,classify_sub)):
+        for pg in pages:
+            br.navigate(f"http://localhost:8000/{pg}", settle=2.2)
+            if plant:
+                br.eval("var s=document.createElement('style');s.textContent=%s;document.head.appendChild(s)" % json.dumps(plant)); br.pump(0.4)
+            rows=br.eval_json(JS)
+            bad=[(pg,r) for r in rows if not clf(r)]
+            bad_all += bad
+            if not plant:
+                print(f"{'FAIL' if bad else 'ok  '} {pg}  ({len(rows)} headings)")
+                for pg2,r in bad[:6]:
+                    print(f"       {r['tag']} {r['sz']}px w{r['w']}  '{r['txt']}'")
+        if plant: break  # calibration only needs one family
+    return bad_all
 
 def main():
     with Browser() as br:
-        br.viewport(1440, 900)
-        # calibration: a planted rogue h3 must scream
-        rows = census(br, plant=".wl-lead .memo h3{font-size:40px !important;font-weight:300 !important}")
-        bad = [r for r in rows if not RULES[r['rank']](r)]
+        br.viewport(1440,900)
+        bad = sweep(br, plant="main h3{font-size:40px !important;font-weight:300 !important}")
         if not bad:
-            print("[calibration] FAIL — planted 40px rogue h3 not flagged; instrument blind.")
-            sys.exit(2)
-        print(f"[calibration] PASS — planted rogue h3 flagged ({len(bad)} off-rank rows seen)")
-        # real run
-        rows = census(br)
-        bad = [r for r in rows if not RULES[r['rank']](r)]
-        cnt = collections.Counter((r['rank'], r['sz'], r['w']) for r in rows)
-        for k, v in sorted(cnt.items()):
-            print(f"  {v} × {k}")
+            print("[calibration] FAIL — planted 40px rogue h3 not flagged; instrument blind."); sys.exit(2)
+        print(f"[calibration] PASS — planted rogue flagged ({len(bad)} rows)")
+        bad = sweep(br)
         if bad:
-            print(f"\n{len(bad)} heading(s) OFF RANK:")
-            for r in bad[:10]:
-                print(f"  {r['rank']} {r['sz']}px w{r['w']} {r['it']}  '{r['txt']}'")
-            sys.exit(1)
-        print(f"\nall {len(rows)} headings on rank.")
+            print(f"\n{len(bad)} heading(s) OFF RANK site-wide."); sys.exit(1)
+        print("\nall pages on rank.")
 
 if __name__ == "__main__":
     main()
