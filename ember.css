@@ -2333,3 +2333,29 @@ html[data-theme="ember"] body[class*="p-case-studies"] .vplate-shot{display:bloc
 html[data-theme="ember"] body.p-home .contact-facts{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-top:16px}
 html[data-theme="ember"] body.p-home .contact-channels{font-family:var(--sans);font-size:14px;color:var(--mut);margin-top:8px}
 html[data-theme="ember"] body.p-home .contact-channels a{color:var(--amber);text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- the process walkthrough video (2026-08-29): self-hosted, no third party,
+   no tracking — it reuses the .vid-main/.vid-frame component the AdTech film already
+   uses, so one component keeps one rendering. preload="none" means the 16MB file is
+   fetched only on a real play; the poster carries the first impression. */
+html[data-theme="ember"] .vid-frame video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;object-fit:contain}
+html[data-theme="ember"] .vid-walk{max-width:1000px;margin-left:auto;margin-right:auto}
+html[data-theme="ember"] .vid-meta{font-family:var(--ff-mono),monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut,rgba(245,237,230,.76))}
+html[data-theme="ember"] .vid-note-t{font-size:14px;line-height:1.65;color:var(--mut,rgba(245,237,230,.76));max-width:68ch}
+html[data-theme="ember"] .vid-note-t a{color:var(--amber,#FFC46B)}
+html[data-theme="ember"] .vid-fallback{padding:24px;font-size:14px;color:var(--mut,rgba(245,237,230,.76))}
+html[data-theme="ember"] body.p-home .vidrow .k{color:var(--rose)}
+html[data-theme="ember"] body.p-process .vid-walk{margin-top:24px;margin-bottom:40px}
+/* /process has a narrow prose column (~493px at 1440), which rendered the walkthrough
+   too small to read the screens inside it. The video breaks out to a readable width,
+   centred on the viewport rather than the column. Measured, not guessed. */
+html[data-theme="ember"] body.p-process .vid-walk{
+  --vw-w:min(1000px, calc(100vw - 80px));
+  width:var(--vw-w);max-width:none;
+  margin-left:calc((100% - var(--vw-w)) / 2);margin-right:calc((100% - var(--vw-w)) / 2)}
+/* The walkthrough's kicker must align with the video it introduces, not with the prose
+   column the video breaks out of — inner elements align to one another, not just inside
+   correct outer bounds. Same breakout maths as .vid-walk. */
+html[data-theme="ember"] body.p-process .vid-kick{
+  --vw-w:min(1000px, calc(100vw - 80px));
+  margin-left:calc((100% - var(--vw-w)) / 2)}
