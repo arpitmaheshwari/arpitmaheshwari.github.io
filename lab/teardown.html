@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../styles.css?v=e2e4fc77">
-<link rel="stylesheet" href="../ember.css?v=13385979">
+<link rel="stylesheet" href="../ember.css?v=a09d4962">
 
 <script defer src="../analytics.js?v=4f9aa0a0"></script>
 </head>
@@ -79,7 +79,7 @@
           <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">What</th><th scope="col" role="columnheader">Measured</th><th scope="col" role="columnheader">How</th></tr></thead>
           <tbody role="rowgroup">
             <tr role="row"><td role="cell">Hand-written HTML pages</td><td role="cell" data-label="Measured"><b>43</b></td><td role="cell" data-label="How"><span class="td-inline">find . -name "*.html"</span>, excluding the book and print sources</td></tr>
-            <tr role="row"><td role="cell">Stylesheet, entire site</td><td role="cell" data-label="Measured"><b>278.0 KB</b></td><td role="cell" data-label="How"><span class="td-inline">stat -f “%z” styles.css</span> → 284,670 bytes, unminified</td></tr>
+            <tr role="row"><td role="cell">Stylesheet, entire site</td><td role="cell" data-label="Measured"><b>278.3 KB</b> on disk &middot; <b>42.2 KB</b> gzipped</td><td role="cell" data-label="How"><span class="td-inline">stat -f “%z” styles.css</span> &rarr; 284,965 bytes, unminified; <span class="td-inline">gzip -c styles.css | wc -c</span> &rarr; 43,255 bytes over the wire. Unminified because there is no build step &mdash; gzip is what a reader pays, the disk number is what the choice costs me. Removing dead rules is still owed: a first pass suggested hundreds of unused classes but proved unreliable, so it waits for a rendered-coverage instrument rather than a guess.</td></tr>
             <tr role="row"><td role="cell">Runtime dependencies, classic site</td><td role="cell" data-label="Measured"><b>0</b></td><td role="cell" data-label="How">No root <span class="td-inline">package.json</span>, no <span class="td-inline">node_modules</span>, no bundler config</td></tr>
             <tr role="row"><td role="cell">Third-party domains serving code</td><td role="cell" data-label="Measured"><b>2</b></td><td role="cell" data-label="How">Google Analytics and Microsoft Clarity (heatmaps, added 2026-08-15; honours Do-Not-Track). Attention measurement (scroll depth, section dwell) is first-party: <span class="td-inline">attention.js</span>, 159 lines, no network of its own. Both load async and gate nothing on first paint. Google Fonts left on 2026-08-14 when the nine font files moved to this origin.</td></tr>
             <tr role="row"><td role="cell">Interactive pattern demos</td><td role="cell" data-label="Measured"><b>9</b></td><td role="cell" data-label="How">All in <span class="td-inline">patterns/demos.js</span> — 234 lines, 12.9 KB</td></tr>
