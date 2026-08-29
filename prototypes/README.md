@@ -22,8 +22,8 @@ Branch: `prototype/skim-layer`. Evidence dossier: "The Five-Minute Screen" artif
 
 | File | Study | Outcome |
 |---|---|---|
-| `skim-options.html` | The 60-second layer on the AdTech opener — A: cream verdict slip + plate beside · B: typographic wire strip + full-width plate · C: sticky split rail. Same four beats (outcome · call · my part · where it breaks), all copy condensed from the live case, anchors to its real sections. | **Pending Arpit's pick.** |
-| `work-tier-options.html` | Homepage work grid tiered to 3 flagships + 4-case range — A: full-width lanes + index cards · B: trio columns + ledger lines. All copy verbatim from index.html. | **Pending Arpit's pick.** |
+| `skim-options.html` | The 60-second layer on the AdTech opener — A: cream verdict slip + plate beside · B: typographic wire strip + full-width plate · C: sticky split rail. Same four beats (outcome · call · my part · where it breaks), all copy condensed from the live case, anchors to its real sections. | **Arpit picked A (the verdict slip).** Built on all seven case pages, 2026-08-29. |
+| `work-tier-options.html` | Homepage work grid tiered to 3 flagships + 4-case range — A: full-width lanes + index cards · B: trio columns + ledger lines. All copy verbatim from index.html. | **Arpit picked A (headliners + index cards)**, flagship lane treatment kept exactly as live. Built, 2026-08-29. |
 
 ## The reference studies
 
