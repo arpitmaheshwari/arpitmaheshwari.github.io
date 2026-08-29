@@ -141,7 +141,7 @@
 </script>
 <script defer src="./analytics.js?v=4f9aa0a0"></script>
 <link rel="stylesheet" href="./styles.css?v=9f614230">
-<link rel="stylesheet" href="./ember.css?v=ae42ceae">
+<link rel="stylesheet" href="./ember.css?v=2d930423">
 </head>
 <body class="p-home">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -188,7 +188,7 @@
   <div class="wrap in hero-split">
     <div class="hero-copy">
       <p class="k">Staff / Principal Product Designer · AI &amp; LLM Products</p>
-<p class="k-open">Open to founding product-design lead — hands-on</p>
+<p class="k-open">Open to founding product-design lead — hands-on · fully remote (GMT+5:30)</p>
       <h1 id="h-hero">Your model is right. Your users still <span class="grad">won’t bet on it.</span></h1>
       <p class="sub">The half-second of doubt is the only thing I design. Sixteen years, five industries, one problem — and the receipts for all of it.</p>
       <div class="ctas">
@@ -461,6 +461,8 @@
       <p class="k">Contact — available · 4 weeks’ notice</p>
       <h2 id="h-close">One seat. Full-time. <span class="grad">Yours to offer.</span></h2>
       <p class="sub">Staff / Principal product design, or a founding design lead. Fully remote, GMT+5:30, four weeks&rsquo; notice.</p>
+      <p class="contact-facts">Indore, India &middot; fully remote &middot; daily overlap with both US coasts &middot; 4 weeks&rsquo; notice</p>
+      <p class="contact-channels"><a id="em-c" href="#contact" data-cta="email" data-location="contact">Email</a> &middot; <a href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin" data-location="contact">LinkedIn&nbsp;&#8599;</a></p>
       
       
       <div class="form-slot"><form class="xi-home-095" id="contact-form" action="https://formspree.io/f/xpqednyy" method="POST">
@@ -499,13 +501,15 @@
   <div class="footer-note">Patterns are free — good ones should travel. Client work stays confidential.</div>
   <button class="footer-back" onclick="window.scrollTo({top:0,behavior:window.matchMedia&amp;&amp;window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})" aria-label="Back to top"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
 </footer>
-<script>(function(){var e=document.getElementById('em-l');if(!e)return;
-var u='maheshwari.arpit'+'88',d='gmail.com';
-e.textContent='write to me directly \u2192';
-/* set the destination ON LOAD: with it only on click, the link was href="#" for
+<script>(function(){
+/* set destinations ON LOAD: with it only on click, the link was href="#" for
    keyboard activation, "copy link address", middle-click and assistive tech.
-   The address is still assembled here rather than printed in the served HTML. */
-e.href='mailto:'+u+'@'+d;})();</script>
+   The address is still assembled here rather than printed in the served HTML.
+   Each target wires independently — #em-l no longer exists on this page, and
+   its old early-return guard silently killed the wiring for every later link. */
+var u='maheshwari.arpit'+'88',d='gmail.com',m='mailto:'+u+'@'+d;
+var e=document.getElementById('em-l');if(e){e.textContent='write to me directly \u2192';e.href=m;}
+var c=document.getElementById('em-c');if(c){c.href=m;}})();</script>
 <script>
 // Scroll policy: reloads start at top (prevents the "black page" bug where a restored
 // mid-page position outruns the .reveal observer) — but an anchored arrival (#contact,
