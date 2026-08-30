@@ -47,6 +47,13 @@ CHROME = os.environ.get("CHROME") or find_chrome()
 # comment above each block — CANONICAL-FACTS.md 2026-08-10 has the full audit.
 
 REG = [
+    # --- essays. The four essay cards were hand-made and outside this generator until
+    #     2026-08-30, when the confidence-scoring essay was rewritten to the attested AdTech
+    #     story and its card still carried the retired "How I Design Confidence Scores"
+    #     headline. A card outside REG does not change when its page does. The other three
+    #     essay cards (explainability, failure-states, human-in-loop) are still unmanaged.
+    ("confidence-scoring-og.png", "ESSAY", "The Model Was Right. I Fixed the Wrong Thing.",
+     "Adoption is not a function of accuracy.", "Arpit Maheshwari \u00b7 Essay"),
     # --- /fit/ (added 2026-08-17 with the page; a page shipped without a card falls back to
     #     a personal photo as its share image, which is the defect this generator was built for)
     ("fit-og.png", "FIT CHECK", "Paste the role. It answers with evidence, or says it can\u2019t.",
