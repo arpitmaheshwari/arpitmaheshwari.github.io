@@ -67,6 +67,7 @@ CHROME_CANDIDATES = [
     "google-chrome", "chromium", "chromium-browser",
 ]
 
+VIEWPORT_H = 900             # a REAL viewport: 100vh sections must lay out as a reader sees them.
 MAX_PAGE_PX = 24000          # Chrome refuses absurd window heights; clamp and report truncation.
 CANARY_TEXT = "calibration canary do not ship"
 # grey-on-grey, ~1.1:1 — unambiguously failing at any size.
@@ -285,149 +286,171 @@ f.onload = function () {
 </script>
 """
 
-def build_wrapper(url, w, h, *, canary=False, hide=False, exempt=None, settle=1400,
-                  force_visible=None):
-    return (WRAPPER
-            .replace("__URL__", html.escape(url, quote=True))
-            .replace("__W__", str(w)).replace("__H__", str(h))
-            .replace("__CANARY__", "true" if canary else "false")
-            .replace("__CANARY_HTML__", json.dumps(CANARY_HTML))
-            .replace("__HIDE__", "true" if hide else "false")
-            .replace("__HIDE_CSS__", json.dumps(HIDE_TEXT_CSS))
-            .replace("__FORCE_VISIBLE__", json.dumps(force_visible) if force_visible else "null")
-            .replace("__EXEMPT__", json.dumps(exempt) if exempt else "null")
-            .replace("__SETTLE__", str(settle)))
+# The iframe wrapper that used to RENDER the page was removed on 2026-08-30, when audit()
+# moved to CDP. WRAPPER itself is KEPT: collect_js() extracts the measurement JS from it,
+# so it is the single source of that logic rather than a page that is rendered any more.
 
-DOCROOT = None   # set from --docroot; the directory served at the URL origin's root.
+# ---------------------------------------------------------------- page probe
+# The measurement JS is EXTRACTED from WRAPPER rather than retyped, so there is exactly one
+# copy of logic that took several rounds to get right (SVG fill vs color, painted size via
+# getScreenCTM, gradient text, own-text-node collection). If the anchors ever move this
+# raises rather than silently measuring nothing.
+_COLLECT_START = "var collect = function () {"
+_COLLECT_END = "document.title = 'CA:'"
 
-def run_pass(url, w, h, *, canary=False, hide=False, exempt=None, png=None,
-             force_visible=None):
-    """Run one measurement pass. Returns parsed data, True (for screenshots), or None on failure.
 
-    The wrapper is written into DOCROOT and fetched over http from the SAME ORIGIN as the target, so
-    reading into the iframe needs no --disable-web-security (which hung Chrome, and would have been
-    a bad thing to normalise anyway)."""
-    from urllib.parse import urlsplit
-    parts = urlsplit(url)
-    origin = f"{parts.scheme}://{parts.netloc}"
-    fd, path = tempfile.mkstemp(suffix=".html", prefix="__ca_", dir=DOCROOT)
-    os.close(fd)
-    try:
-        with open(path, "w", encoding="utf-8") as fh:
-            fh.write(build_wrapper(url, w, h, canary=canary, hide=hide, exempt=exempt,
-                                   force_visible=force_visible))
-        wrapper_url = origin + "/" + os.path.basename(path)
-        args = ["--virtual-time-budget=9000", f"--window-size={w},{h}"]
-        args += [f"--screenshot={png}"] if png else ["--dump-dom"]
-        try:
-            r = chrome(args + [wrapper_url])
-        except subprocess.TimeoutExpired:
-            return None
-        if png:
-            return True if os.path.exists(png) else None
-        m = re.search(r"<title>CA:(.*?)</title>", r.stdout, re.S)
-        return json.loads(html.unescape(m.group(1))) if m else None
-    finally:
-        if os.path.exists(path):
-            os.unlink(path)
+def collect_js(exempt=None):
+    i = WRAPPER.find(_COLLECT_START)
+    j = WRAPPER.find(_COLLECT_END)
+    if i < 0 or j < 0 or j <= i:
+        raise RuntimeError("contrast-audit: could not extract the collect body from WRAPPER — "
+                           "the anchors moved. Fix this rather than measuring nothing.")
+    body = WRAPPER[i + len(_COLLECT_START):j]
+    body = body.replace("__EXEMPT__", json.dumps(exempt) if exempt else "null")
+    return ("(function(){var d=document,w=window;" + body +
+            "return {h:d.documentElement.scrollHeight,els:out};})()")
+
+DOCROOT = None   # accepted for compatibility; unused since audit() drives the page over CDP
+                 # and no longer writes a wrapper file into the served tree.
 
 # ---------------------------------------------------------------------- audit
 
 def audit(url, width, exempt=None, canary=False, force_visible=None):
-    """Measure one URL at one width. Returns (rows, truncated_bool) or (None, False) on failure."""
-    from PIL import Image
-    probe = run_pass(url, width, 900, exempt=exempt, canary=canary, force_visible=force_visible)
-    if not probe:
-        return None, False
-    full = min(max(int(probe["h"]) + 40, 900), MAX_PAGE_PX)
-    truncated = int(probe["h"]) + 40 > MAX_PAGE_PX
+    """Measure one URL at one width. Returns (rows, truncated_bool) or (None, False) on failure.
 
-    # PAGE HEIGHT DEPENDS ON VIEWPORT HEIGHT, and there is NO fixed point to converge on.
-    # Sections sized with 100vh (the homepage hero, the 404 .wrap) make total height roughly
-    # content + viewport, so every attempt to size the iframe to the page just grows the page by
-    # the same amount again: 9143 -> 17426 -> ... -> the 24000 clamp. Sizing the capture from the
-    # 900px probe leaves everything below that height unsampled — 192 of 224 homepage text nodes,
-    # silently, while the tool printed "33 text nodes measured / 0 failures" (measured 2026-08-16).
-    # PROPER FIX (not done here, it is a real rewrite): keep the iframe at a realistic viewport and
-    # capture in tiles, scrolling the iframe and re-reading rects at each scroll offset, or drive
-    # the capture over CDP with captureBeyondViewport. Until then the drop guard below makes the
-    # unmeasured remainder LOUD, so a clean verdict can never be mistaken for full coverage.
-    data = run_pass(url, width, full, exempt=exempt, canary=canary, force_visible=force_visible)
-    # A page that yields ZERO text nodes has not been measured — it has failed to load, raced the
-    # renderer, or timed out. Reporting that as "0 text nodes measured / 0 failures" is the tool
-    # claiming a clean bill of health for a page it never saw; patterns/ai-failure-states.html did
-    # exactly that under parallel load on 2026-08-16, then measured 130 nodes on a re-run. Retry
-    # once, then say so out loud rather than pass.
-    if data is not None and not data.get("els"):
-        data = run_pass(url, width, full, exempt=exempt, canary=canary,
-                        force_visible=force_visible)
-        if data is not None and not data.get("els"):
-            return None, truncated
-    if not data:
-        return None, truncated
-    with tempfile.TemporaryDirectory() as td:
-        png = os.path.join(td, "bg.png")
-        if not run_pass(url, width, full, canary=canary, hide=True, exempt=exempt, png=png,
-                        force_visible=force_visible):
-            return None, truncated
-        im = Image.open(png).convert("RGB")
-        sx = im.width / float(width)
-        rows = []
-        # SILENT DROP GUARD. Every node whose sample points fall outside the captured image used to
-        # be skipped by a bare `continue`, and the printed total was len(rows) — so a screenshot
-        # shorter than the page reported "32 text nodes measured" on a homepage that really has 224,
-        # and its "0 failures" verdict covered only the first screen (measured 2026-08-16).
-        # A node that could not be sampled is an UNMEASURED node, and must be said out loud.
-        dropped = []
-        for e in data["els"]:
-            if e.get("unmeasurable"):
+    ONE browser, ONE layout, a REALISTIC viewport, and a full-page capture over CDP.
+
+    What this replaced, and why: the tool used to load the page in an IFRAME sized to the
+    page's own height, then screenshot that. Pages here use 100vh sections, so the page
+    height depends on the viewport height and sizing the iframe to the page just grows the
+    page again — there is no fixed point. The capture was therefore sized from a 900px
+    probe while the content laid out taller, and every node below the image was dropped:
+    198 of 231 homepage text nodes at 1440px, on EVERY run, reported as "UNMEASURED ...
+    contrast is UNKNOWN, not passing" beside a "0 failures" verdict. The message even
+    contradicted itself ("page 10417px tall, screenshot 10417px") because it printed the
+    intended height, not the height the content actually needed.
+
+    Holding the viewport at a real 900px removes the feedback loop entirely: the page lays
+    out once, the way a reader sees it, and Page.captureScreenshot(captureBeyondViewport)
+    photographs the whole scrollable document WITHOUT resizing anything. Both passes now run
+    against the SAME loaded page, so the rects and the pixels cannot disagree.
+    """
+    from PIL import Image
+    import base64, io as _io
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import cdp
+
+    with cdp.Browser() as br:
+        br.viewport(width, VIEWPORT_H)
+        try:
+            br.navigate(url, settle=2.2)
+        except Exception:
+            return None, False
+        if canary:
+            br.eval("(function(){var s=document.createElement('div');s.innerHTML=%s;"
+                    "document.body.appendChild(s.firstChild);})()" % json.dumps(CANARY_HTML))
+        if force_visible:
+            br.eval("(function(){var st=document.createElement('style');st.textContent=%s+"
+                    "'{opacity:1!important;transform:none!important;visibility:visible!important;"
+                    "transition-property:none!important}';document.head.appendChild(st);})()"
+                    % json.dumps(force_visible))
+        # Same settle discipline as the wrapper had: webfonts, then running animations.
+        br.eval("document.fonts && document.fonts.ready", await_promise=False)
+        # RACED against a deadline, never awaited outright. /book/ is a React app with a
+        # looping animation, so a bare await on getAnimations().finished never resolves and
+        # the CDP socket times out after 90s — the audit hung on the book page every run.
+        # A settle wait must be bounded: the point is to avoid sampling mid-fade, not to
+        # prove the page ever stops moving.
+        br.eval("(async()=>{const deadline=new Promise(r=>setTimeout(r,1800));"
+                "const settled=(async()=>{try{await document.fonts.ready;}catch(e){}"
+                "try{await Promise.all(document.getAnimations().map(a=>a.finished.catch(()=>0)));}"
+                "catch(e){}})();"
+                "await Promise.race([settled,deadline]);})()", await_promise=True)
+        br.pump(0.6)
+        br.eval("window.scrollTo(0,0)")          # rects are then document coordinates
+        data = br.eval_json(collect_js(exempt))
+        if not data or not data.get("els"):
+            return None, False
+        full = int(data["h"])
+        truncated = full > MAX_PAGE_PX
+
+        # Pass B: the SAME page, ink removed, so what is photographed is the true ground.
+        br.eval("(function(){var st=document.createElement('style');st.textContent=%s;"
+                "document.head.appendChild(st);})()" % json.dumps(HIDE_TEXT_CSS))
+        br.pump(0.35)
+        shot = br.cmd("Page.captureScreenshot", format="png", captureBeyondViewport=True)
+        im = Image.open(_io.BytesIO(base64.b64decode(shot["data"]))).convert("RGB")
+
+    sx = im.width / float(width)
+    rows = []
+    # SILENT DROP GUARD. Every node whose sample points fall outside the captured image used to
+    # be skipped by a bare `continue`, and the printed total was len(rows) — so a screenshot
+    # shorter than the page reported "32 text nodes measured" on a homepage that really has 224,
+    # and its "0 failures" verdict covered only the first screen (measured 2026-08-16).
+    # A node that could not be sampled is an UNMEASURED node, and must be said out loud.
+    dropped = []
+    for e in data["els"]:
+        if e.get("unmeasurable"):
+            rows.append({"width": width, "text": e["t"], "size": e["size"],
+                         "fg": "-", "bg": "-", "ratio": 0.0,
+                         "need": required_ratio(e["size"], e["wt"]),
+                         "ok": True, "exempt": e["ex"],
+                         "unmeasurable": e["unmeasurable"]})
+            continue
+        x, y, w, h = e["r"]
+        pts = []
+        for i in range(1, 6):
+            for j in range(1, 4):
+                px, py = int((x + w * i / 6.0) * sx), int((y + h * j / 4.0) * sx)
+                if 0 <= px < im.width and 0 <= py < im.height:
+                    pts.append(im.getpixel((px, py)))
+        if not pts:
+            # OFF-CANVAS BY DESIGN is not the same as UNMEASURED. A skip link is parked above
+            # the document (y = -100) until it is focused, so it has no pixels to sample and
+            # never will on load. Reporting that as "contrast UNKNOWN, not passing" printed a
+            # permanent false alarm on every page, on every run — and a warning that is always
+            # on is one nobody reads. The focused state is covered by interaction-state-check,
+            # which forces :focus-visible.
+            if y + h <= 0 or x + w <= 0:
                 rows.append({"width": width, "text": e["t"], "size": e["size"],
                              "fg": "-", "bg": "-", "ratio": 0.0,
                              "need": required_ratio(e["size"], e["wt"]),
                              "ok": True, "exempt": e["ex"],
-                             "unmeasurable": e["unmeasurable"]})
+                             "unmeasurable": "off-canvas until focused (skip link)"})
                 continue
-            x, y, w, h = e["r"]
-            pts = []
-            for i in range(1, 6):
-                for j in range(1, 4):
-                    px, py = int((x + w * i / 6.0) * sx), int((y + h * j / 4.0) * sx)
-                    if 0 <= px < im.width and 0 <= py < im.height:
-                        pts.append(im.getpixel((px, py)))
-            if not pts:
-                dropped.append(e["t"])
-                continue
-            # The MEAN of a grid inside a glyph box is not the background — it is the background
-            # blended with however much of the glyph the grid happened to land on. On bold 16px
-            # text in a small chip that is ~30% coverage, which dragged a real 8.72:1 label down
-            # to a reported 3.96 and sent me darkening colours that were never wrong. The MODE is
-            # the honest estimator: on any solid ground most sampled pixels ARE the ground, and
-            # the glyph pixels are the minority that the mean was quietly folding in.
-            # Quantised to 8 levels per channel first, so antialiased near-matches count together.
-            buckets = {}
-            for pnt in pts:
-                key = tuple(v // 32 for v in pnt)
-                buckets.setdefault(key, []).append(pnt)
-            winner = max(buckets.values(), key=len)
-            bgc = tuple(sum(p[k] for p in winner) // len(winner) for k in range(3))
-            fg, alpha = parse_rgb(e["color"])
-            if alpha < 1:
-                fg = tuple(int(round(f * alpha + b * (1 - alpha))) for f, b in zip(fg, bgc))
-            need = required_ratio(e["size"], e["wt"])
-            got = ratio(fg, bgc)
-            rows.append({"width": width, "text": e["t"], "size": e["size"],
-                         "fg": "#%02X%02X%02X" % fg, "bg": "#%02X%02X%02X" % bgc,
-                         # FLOOR, never round: a true 4.4996 displayed as "4.50" against a 4.5 floor reads as a
-                         # tool bug and gets dismissed. Flooring never overstates a passing value.
-                         "ratio": math.floor(got * 100) / 100.0, "need": need,
-                         "ok": got >= need, "exempt": e["ex"]})
-        if dropped:
-            rows.append({"width": width, "text": "", "size": 0, "fg": "-", "bg": "-",
-                         "ratio": 0.0, "need": 0, "ok": True, "exempt": False,
-                         "dropped": dropped,
-                         "geom": f"page {full}px tall, screenshot {im.height}px "
-                                 f"({im.width}x{im.height} at sx={sx:.2f})"})
-        return rows, truncated
+            dropped.append(e["t"])
+            continue
+        # The MEAN of a grid inside a glyph box is not the background — it is the background
+        # blended with however much of the glyph the grid happened to land on. On bold 16px
+        # text in a small chip that is ~30% coverage, which dragged a real 8.72:1 label down
+        # to a reported 3.96 and sent me darkening colours that were never wrong. The MODE is
+        # the honest estimator: on any solid ground most sampled pixels ARE the ground, and
+        # the glyph pixels are the minority that the mean was quietly folding in.
+        # Quantised to 8 levels per channel first, so antialiased near-matches count together.
+        buckets = {}
+        for pnt in pts:
+            key = tuple(v // 32 for v in pnt)
+            buckets.setdefault(key, []).append(pnt)
+        winner = max(buckets.values(), key=len)
+        bgc = tuple(sum(p[k] for p in winner) // len(winner) for k in range(3))
+        fg, alpha = parse_rgb(e["color"])
+        if alpha < 1:
+            fg = tuple(int(round(f * alpha + b * (1 - alpha))) for f, b in zip(fg, bgc))
+        need = required_ratio(e["size"], e["wt"])
+        got = ratio(fg, bgc)
+        rows.append({"width": width, "text": e["t"], "size": e["size"],
+                     "fg": "#%02X%02X%02X" % fg, "bg": "#%02X%02X%02X" % bgc,
+                     # FLOOR, never round: a true 4.4996 displayed as "4.50" against a 4.5 floor reads as a
+                     # tool bug and gets dismissed. Flooring never overstates a passing value.
+                     "ratio": math.floor(got * 100) / 100.0, "need": need,
+                     "ok": got >= need, "exempt": e["ex"]})
+    if dropped:
+        rows.append({"width": width, "text": "", "size": 0, "fg": "-", "bg": "-",
+                     "ratio": 0.0, "need": 0, "ok": True, "exempt": False,
+                     "dropped": dropped,
+                     "geom": f"page {full}px tall, screenshot {im.height}px "
+                             f"({im.width}x{im.height} at sx={sx:.2f})"})
+    return rows, truncated
 
 # ---------------------------------------------------------------- calibration
 
