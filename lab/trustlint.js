@@ -32,7 +32,11 @@ const NUMERIC_CLAIM = /[$£€]\s?\d[\d,.]*|\d[\d,.]*\s?%|\b\d[\d,.]*\s?(?:x|×|
 const ABSOLUTE = /\b(always|never|guaranteed?|certainly|definitely|undoubtedly|impossible|100\s?%|zero\s+risk|no\s+risk|every\s+time)\b/i;
 const HEDGE = /\b(might|may|possibly|perhaps|probably|likely|unlikely|appears?\s+to|seems?\s+to|roughly|approximately|arguably|I\s+think|I\s+believe)\b/i;
 const SUPERLATIVE = /\b(best|worst|fastest|slowest|largest|smallest|cheapest|optimal|unmatched|industry[-\s]leading|state[-\s]of[-\s]the[-\s]art)\b/i;
-const ABSTENTION = /\b(I\s+(?:don't|do not|cannot|can't)\s+(?:know|say|determine|verify)|insufficient\s+(?:data|evidence|sources?)|not\s+enough\s+(?:data|evidence|sources?)|unable\s+to\s+verify|no\s+(?:source|evidence)\s+(?:for|to)|cannot\s+be\s+determined)\b/i;
+// Apostrophes: BOTH forms. The straight-only version returned "no abstention found" for
+// "I don’t know" — the curly form any word processor, any CMS and this site itself
+// produce. A linter whose job is to notice honest abstention was blind to it in exactly
+// the text a careful writer pastes in. Found 2026-08-30 while curling the JS surfaces.
+const ABSTENTION = /\b(I\s+(?:don['\u2019]t|do not|cannot|can['\u2019]t)\s+(?:know|say|determine|verify)|insufficient\s+(?:data|evidence|sources?)|not\s+enough\s+(?:data|evidence|sources?)|unable\s+to\s+verify|no\s+(?:source|evidence)\s+(?:for|to)|cannot\s+be\s+determined)\b/i;
 
 /** Every rule this linter can report, so a UI can document itself. */
 export const RULES = Object.freeze([
