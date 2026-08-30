@@ -28,6 +28,12 @@ COMMENT = re.compile(r'<!--.*?-->', re.S)
 TAG = re.compile(r'<[^>]+>')
 WORD = re.compile(r"[A-Za-z][A-Za-z'’-]{2,}")
 DOUBLED = re.compile(r'\b(\w+)[ \t]+\1\b', re.I)   # same line only
+# A straight apostrophe between letters (it's, O2's) or a straight double quote
+# opening a phrase. Feet/inches and code are excluded by STRIP + the letter context.
+STRAIGHT = re.compile(r"[A-Za-z]'[A-Za-z]|\"[A-Za-z][^\"\n]{0,80}\"")
+# Opens straight, closes curly — the pair a find-and-replace leaves behind.
+MISMATCHED = re.compile(r"'[A-Za-z][^'\u2019\n]{0,40}\u2019")
+
 # Pairs that are legitimately repeated in English.
 OK_DOUBLE = {'had', 'that', 'is', 'no', 'so', 'very'}
 
@@ -85,7 +91,7 @@ def main():
         rel = os.path.relpath(p, root)
         text = visible(p)
         if a.selftest and rel == os.path.relpath(pages[0], root):
-            text += ' the the quombulate '
+            text += ' the the quombulate it\'s a "planted" one and a \'mismatched\u2019 one '
         for m in DOUBLED.finditer(text):
             w = m.group(1).lower()
             if w in OK_DOUBLE or not w.isalpha() or len(w) < 3:
@@ -96,6 +102,18 @@ def main():
                 continue
             findings.append((rel, 'DOUBLED-WORD',
                              f'"{m.group(0)}" — {text[max(0,m.start()-38):m.end()+30].strip()[:78]}'))
+        # STRAIGHT-QUOTE. Documented at the top of this file since it was written and
+        # never implemented, so the gate reported "clean" over 68 real ones in book/.
+        # It must run on UNESCAPED text: the book stores its marks as &#x27; / &quot;,
+        # which render straight but are invisible to any grep for a bare ' or ".
+        for m in STRAIGHT.finditer(text):
+            ctx = ' '.join(text[max(0, m.start()-42):m.end()+42].split())
+            findings.append((rel, 'STRAIGHT-QUOTE',
+                             f'{m.group(0)!r} — …{ctx}…'))
+        for m in MISMATCHED.finditer(text):
+            ctx = ' '.join(text[max(0, m.start()-30):m.end()+30].split())
+            findings.append((rel, 'MISMATCHED-QUOTE',
+                             f'{m.group(0)!r} opens straight and closes curly — …{ctx}…'))
         for m in WORD.finditer(text):
             w = m.group(0)
             lw = w.lower().replace('’', "'")
@@ -114,7 +132,13 @@ def main():
         if w in words or w in allow:
             return True
         c = w.replace('’', "'")
-        for cand in (c, c.rstrip('.'), c.split("'")[0]):
+        # Strip a TRAILING apostrophe before any stemming: a plural possessive
+        # ("the traders' own picks") is not in any dictionary and never reaches the
+        # "'s"/"s" stems below, because the word ends in the apostrophe itself.
+        c = c.rstrip("'")
+        # A plural possessive ends in a bare apostrophe ("the traders' own picks"),
+        # which no dictionary lists and the "'s" stem below does not reach.
+        for cand in (c, c.rstrip('.'), c.rstrip("'"), c.split("'")[0]):
             if cand in words or cand in allow:
                 return True
         stems = set()
@@ -159,14 +183,23 @@ def main():
 
     if a.selftest:
         got = {k for _, k, _ in findings}
-        ok = 'DOUBLED-WORD' in got and any(
+        # Every rule this file DOCUMENTS must be exercised here. STRAIGHT-QUOTE was
+        # described at the top of this file and never implemented; the selftest only
+        # asserted the other two, so nothing ever noticed, and the gate reported
+        # "0 findings" over 68 straight marks in book/. A rule outside the selftest
+        # is a rule that can quietly stop existing.
+        want = {'DOUBLED-WORD', 'STRAIGHT-QUOTE', 'MISMATCHED-QUOTE'}
+        absent = sorted(want - got)
+        ok = not absent and any(
             'quombulate' in v for _, k, v in findings if k == 'SUSPECT-SPELL')
-        print(f'[calibration] {"PASS" if ok else "FAIL"} — a doubled word and a '
-              f'nonsense word are {"caught" if ok else "INVISIBLE"}')
+        detail = ('all four rules fire' if ok else
+                  f'INVISIBLE: {", ".join(absent) or "SUSPECT-SPELL"}')
+        print(f'[calibration] {"PASS" if ok else "FAIL"} — {detail}')
         if not ok:
             return 2
         findings = [f for f in findings
-                    if 'quombulate' not in f[2] and '"the the"' not in f[2]]
+                    if 'quombulate' not in f[2] and '"the the"' not in f[2]
+                    and 'planted' not in f[2] and 'mismatched' not in f[2]]
 
     seen = set()
     for rel, kind, why in sorted(findings):

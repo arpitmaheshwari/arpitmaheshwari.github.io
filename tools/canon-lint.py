@@ -27,6 +27,7 @@ USAGE
 EXIT
     0 = calibrated and clean · 1 = violation, or calibration failed to go red
 """
+import html as html_mod
 import argparse, os, re, sys, tempfile
 
 # --------------------------------------------------------------------- rules
@@ -115,6 +116,28 @@ BANNED = [
 # rule case-insensitively, so `\b550K\+` matched the perfectly correct "550k+" and produced 11 false
 # positives. A rule about letter case cannot be checked case-insensitively.
 CASE_SENSITIVE = {r"\b550K\+"}
+
+# PROXIMITY rules run on the whole file's VISIBLE TEXT (tags stripped), in both directions,
+# with a character window. Everything above is matched per LINE against raw markup, which is why
+# the 2026-08-05 AdTech correction leaked for 25 days: the markup-shaped rule above was written
+# around the four pattern pages that had already been found ("Programmatic Advertising
+# Platform</a>:</strong>…"), so it could only ever re-find those. It was blind to
+#   * the same claim told in PROSE (writing/confidence-scoring.html narrated the client's story
+#     as a confidence-score story across several paragraphs — different lines, so no line-level
+#     rule could see it), and
+#   * patterns/confidence-scores.html's own lead, which put "the UK's largest out-of-home
+#     advertiser" and "87% is not an instruction" in one breath.
+# Both were live on 2026-08-30. A rule shaped like the instances you already found is not a gate.
+PROXIMITY = [
+    (r"Talon|out-of-home|OOH|media buyer|billboard|campaign plan",
+     r"confidence (?:score|scoring|layer)s?|naked \d{1,3}\s?%|act,\s*review,?\s*or\s*ignore",
+     400,
+     'a confidence score or the A/R/I verbs attached to the AdTech client - canon: the '
+     'recommendations were full campaign plans with KPIs, NO confidence scores ever, and A/R/I '
+     'was a synthesis across products, never born there. Generic score talk is fine; score talk '
+     'NEXT TO this client is not',
+     "AdTech correction 2026-08-05"),
+]
 
 # (pattern, why, ref, severity). "warn" never fails the build.
 MALFORMED = [
@@ -283,6 +306,20 @@ def scan(root, extra=None):
                     else:
                         errors.append(hit)
 
+        visible = re.sub(r"(?is)<(script|style|svg)\b[^>]*>.*?</\1>", " ", decommented)
+        visible = re.sub(r"(?s)<[^>]+>", " ", visible)
+        visible = re.sub(r"\s+", " ", html_mod.unescape(visible))
+        for left, right, window, why, ref in PROXIMITY:
+            for pat in (rf"(?is)\b(?:{left})\b.{{0,{window}}}?(?:{right})",
+                        rf"(?is)(?:{right}).{{0,{window}}}?\b(?:{left})\b"):
+                for m in re.finditer(pat, visible):
+                    hit = (rel, 0, m.group(0).strip()[:110], why, ref)
+                    if allowlisted:
+                        allowed.append(hit)
+                    else:
+                        (warnings if soft else errors).append(hit)
+                    break   # one report per file per direction is enough to act on
+
         for left, right, why, ref in PAIRED:
             if re.search(left, text) and not re.search(right, text):
                 hit = (rel, 0, f"missing companion for /{left}/", why, ref)
@@ -300,6 +337,11 @@ def scan(root, extra=None):
 CANARIES = [
     ("__canon_canary_a.html", "<p>Fifteen years… the trust layer between people and AI.</p>"),
     ("__canon_canary_b.html", "<p>15 years shipping, and a $120M ARR platform.</p>"),
+    # The 2026-08-30 leak: the client's story told in prose, as a confidence-score story,
+    # across two paragraphs. Any line-level rule passes this file.
+    ("__canon_canary_c.html",
+     "<p>I sat with a media buyer at the UK's largest out-of-home advertiser.</p>"
+     "<p>She glanced at the confidence score and overrode it anyway.</p>"),
 ]
 
 # Precision canary — MUST produce ZERO hits. This is the second calibration axis, added after three
