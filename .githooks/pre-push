@@ -166,11 +166,17 @@ echo "pre-push: starting the browser gates in parallel…"
   python3 tools/runtime-error-check.py --base "http://localhost:$PORT"
 [ -f tools/interaction-state-check.py ] && bg_gate interaction-state \
   python3 tools/interaction-state-check.py --base "http://localhost:$PORT"
+# EVERY page, not two. This used to audit the homepage and /book/ only — a sample chosen when
+# the tool could measure just the first screenful anyway. Since the 2026-08-30 rewrite it reads
+# the whole document (4,671 text nodes across the site, against 33 on 2 pages before), and the
+# first full sweep found a real 3.03:1 call-to-action on /patterns/ that a two-page sample could
+# never have seen. Arpit's call: audit all of them. --base is passed explicitly so the sweep
+# cannot depend on this hook happening to serve the port the tool defaults to.
 bg_gate contrast \
-  python3 tools/contrast-audit.py --docroot . --widths 1440 \
+  python3 tools/contrast-audit.py --docroot . --all --base "http://localhost:$PORT" \
+  --widths 1440 \
   --exempt '.bk-device__label, .bk-device__mark, .grad' \
-  --force-visible '.reveal' \
-  "http://localhost:$PORT/" "http://localhost:$PORT/book/"
+  --force-visible '.reveal'
 
 
 # Canon lint first — it is pure text, costs under a second, and catches the failure that actually

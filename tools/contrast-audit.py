@@ -543,12 +543,14 @@ def main():
                     help="CSS selector for scroll-reveal elements, pinned to their settled visible "
                          "state before measuring (e.g. '.reveal'). Removes the timing race against "
                          "a JS-triggered fade, which otherwise yields false failures on slow runners.")
+    ap.add_argument("--base", default="http://localhost:8000",
+                    help="origin --all builds its URLs from. Passed explicitly by the\n                          pre-push hook so the sweep cannot depend on the hook happening\n                          to serve the port this file defaults to.")
     ap.add_argument("--selftest", action="store_true", help="run calibration only, then exit")
     ap.add_argument("--no-selftest", action="store_true",
                     help="skip calibration (a green result then proves nothing)")
     a = ap.parse_args()
     if a.all:
-        a.urls = discover_pages()
+        a.urls = discover_pages(a.base.rstrip("/"))
         print(f"  --all: discovered {len(a.urls)} shipped pages")
     if not a.urls:
         ap.error("give URLs, or use --all")
