@@ -15,11 +15,23 @@ are, in the first ten seconds, before they reach any of the work.
   STRAIGHT-QUOTE  ' or " inside prose on a site that otherwise sets curly
                   quotes — visible as a typographic wobble
 
-Only visible copy is read: script, style, comments, and attribute values are
-stripped first, so an internal note or a class name is never a finding.
+Two kinds of surface are read:
+  * HTML — visible copy only. Script, style, comments and attribute values are stripped
+    first, so an internal note or a class name is never a finding.
+  * JS   — the display strings inside shipped .js files (the book is a React app;
+    patterns/demos.js writes its own DOM). Comments are stripped first and CSS selectors
+    are excluded. vendor/, tools/ and tests/ are not published copy and are skipped.
+
+Adding the .js surfaces on 2026-08-30 immediately found what HTML-only could not: the same
+sentence spelled two ways across the same book ("I design the organisation before the
+interface" in book/index.html, "organization" in book/portfolio.js), and an article title
+printed "Weaponising" on three classic pages and "Weaponizing" in the book app. A gate that
+reads one surface family cannot see a component disagreeing with itself across two.
 
 CALIBRATION
-    --selftest injects a doubled word and a nonsense word and requires both.
+    --selftest injects one violation per rule and requires EVERY rule named above to fire.
+    Asserting only some of them is how STRAIGHT-QUOTE stayed unimplemented while this
+    docstring advertised it, over 68 real defects in book/.
 """
 import argparse, collections, glob, html, os, re, subprocess, sys
 
@@ -47,6 +59,52 @@ BRIT_AMER = [('ise', 'ize'), ('ised', 'ized'), ('ises', 'izes'),
              ('yse', 'yze'), ('ysed', 'yzed'), ('ysing', 'yzing')]
 
 
+# ---- JavaScript surfaces -------------------------------------------------
+# prose-check read *.html only until 2026-08-30. The book is a React app: book/portfolio.js
+# carries 275 display strings, and 67 straight apostrophes were found there BY HAND after the
+# gate had just reported "0 prose findings across 42 pages". A surface the gate cannot read is
+# a surface with no gate.
+#
+# Comments are stripped FIRST. Without that, an apostrophe inside a comment
+# (/* start at the widget's centre, land on the control's centre */) is read as a pair of
+# string delimiters and the text between two unrelated apostrophes becomes a "string".
+JS_STRING = re.compile(r'"((?:[^"\\\n]|\\.){4,400})"'
+                       r"|'((?:[^'\\\n]|\\.){4,400})'"
+                       r'|`((?:[^`\\]|\\.){4,400})`')
+# A CSS selector is not prose. querySelectorAll('figure svg, figure img, [data-demo]') has
+# four space-separated words and reads as a sentence to a naive word count.
+SELECTORISH = re.compile(r'^[.#\[]|[>~]|\[[a-z-]+[\]=]'
+                         r'|\b(?:div|span|svg|img|figure|section|button|input)\b\s*[,.\[]')
+JS_ESCAPES = {r'\n': ' ', r'\t': ' ', r"\'": "'", r'\"': '"', r'\\': '\\'}
+
+
+def js_prose(path):
+    """Display strings from a shipped .js file, one per line.
+
+    One per line matters: DOUBLED is a same-line rule, so joining strings with newlines
+    stops the end of one string and the start of the next reading as a doubled word.
+    """
+    s = open(path, encoding='utf-8', errors='replace').read()
+    s = re.sub(r'/\*.*?\*/', ' ', s, flags=re.S)
+    s = re.sub(r'(?m)(^|[\s;{(])//[^\n]*', r'\1 ', s)
+    out = []
+    for m in JS_STRING.finditer(s):
+        t = m.group(1) or m.group(2) or m.group(3)
+        if len(t.split()) < 4 or SELECTORISH.search(t):
+            continue
+        if re.search(r'https?://|[{}<>]|=>|\bfunction\b|;\s*$', t):
+            continue
+        if not re.match(r'^[A-Z"\u201c\u2018(]|^[a-z]+ ', t):
+            continue
+        if not re.search(r'[a-z] [a-z]', t):
+            continue
+        for esc, rep in JS_ESCAPES.items():
+            t = t.replace(esc, rep)
+        t = re.sub(r'\\u([0-9a-fA-F]{4})', lambda x: chr(int(x.group(1), 16)), t)
+        out.append(t)
+    return '\n'.join(out)
+
+
 def visible(path):
     s = open(path, encoding='utf-8', errors='replace').read()
     s = COMMENT.sub(' ', s)
@@ -68,10 +126,12 @@ def main():
     a = ap.parse_args()
     root = os.path.abspath(a.root)
 
-    shipped = subprocess.run(['git', 'ls-files', '*.html'], cwd=root,
+    shipped = subprocess.run(['git', 'ls-files', '*.html', '*.js'], cwd=root,
                              capture_output=True, text=True).stdout.split()
+    # vendor/ is third-party (React); tools/ and tests/ are not published copy.
     pages = [os.path.join(root, f) for f in shipped
-             if not f.startswith(('partials/', 'tests/', 'assets/og-images/'))]
+             if not f.startswith(('partials/', 'tests/', 'tools/', 'assets/og-images/'))
+             and '/vendor/' not in f]
 
     words = set()
     if os.path.exists(a.dict):
@@ -89,7 +149,7 @@ def main():
 
     for p in pages:
         rel = os.path.relpath(p, root)
-        text = visible(p)
+        text = js_prose(p) if p.endswith('.js') else visible(p)
         if a.selftest and rel == os.path.relpath(pages[0], root):
             text += ' the the quombulate it\'s a "planted" one and a \'mismatched\u2019 one '
         for m in DOUBLED.finditer(text):

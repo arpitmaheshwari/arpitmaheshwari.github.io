@@ -296,7 +296,7 @@
         ],
         [
           "16",
-          "Dimensions analyzed per finding"
+          "Dimensions analysed per finding"
         ]
       ],
       "plateNo": "6.1",

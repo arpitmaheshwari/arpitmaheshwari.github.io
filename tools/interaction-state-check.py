@@ -20,7 +20,7 @@ CALIBRATION
     --selftest plants a hover rule that paints ink on its own colour and a
     disclosure that overflows, and requires both to be reported.
 """
-import argparse, glob, os, sys
+import subprocess, argparse, glob, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdp
 
@@ -72,10 +72,25 @@ def main():
     ap.add_argument('--selftest', action='store_true')
     ap.add_argument('pages', nargs='*')
     a = ap.parse_args()
+    # Scope from git: a filesystem walk also swept portfolio-sources/, a separate private
+    # repo checked out inside this one whose working files are not the published site.
+    tracked = subprocess.run(['git', 'ls-files', '*.html'],
+                             capture_output=True, text=True).stdout.split()
     pages = a.pages or sorted(
-        p for p in glob.glob('**/*.html', recursive=True)
+        p for p in tracked
         if not p.startswith(('partials/', 'node_modules/', 'tests/', 'prototypes/'))
            and not os.path.basename(p).startswith('__'))
+
+    # No server means nothing was measured. Exit 3 so the hook says so, rather than
+    # reporting silence as a pass or navigation failures as findings.
+    import urllib.request
+    try:
+        urllib.request.urlopen(a.base + '/', timeout=3)
+    except Exception as e:
+        print(f'interaction-state-check: no server on {a.base} ({e.__class__.__name__}). '
+              f'Start one:  python3 tools/devserver.py 8899')
+        print('This is NOT a finding — nothing was measured.')
+        return 3
 
     findings = 0
     with cdp.Browser() as br:

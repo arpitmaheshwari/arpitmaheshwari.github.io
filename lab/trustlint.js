@@ -38,8 +38,8 @@ const ABSTENTION = /\b(I\s+(?:don't|do not|cannot|can't)\s+(?:know|say|determine
 export const RULES = Object.freeze([
   { id: 'uncited-number', severity: 'high', describe: 'A figure is asserted with no source in the same sentence.' },
   { id: 'no-sources-no-abstention', severity: 'high', describe: 'The answer makes claims with no citation anywhere, and never says it is unsure.' },
-  { id: 'absolute-claim', severity: 'high', describe: 'Absolute language ("always", "guaranteed") that no evidence can support.' },
-  { id: 'uncited-superlative', severity: 'medium', describe: 'A superlative ("fastest", "best") with nothing behind it.' },
+  { id: 'absolute-claim', severity: 'high', describe: 'Absolute language (“always”, “guaranteed”) that no evidence can support.' },
+  { id: 'uncited-superlative', severity: 'medium', describe: 'A superlative (“fastest”, “best”) with nothing behind it.' },
   { id: 'decorative-hedge', severity: 'medium', describe: 'Hedging in a sentence that cites nothing — softened language standing in for evidence.' },
   { id: 'over-hedged', severity: 'low', describe: 'Most sentences hedge, which reads as evasion rather than care.' },
   { id: 'honest-abstention', severity: 'info', describe: 'The answer states plainly where it cannot go. This is the behaviour to keep.' },

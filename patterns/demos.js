@@ -64,7 +64,7 @@
       var chip = h("span", "pd__chip", "92");
       var v = verdict();
       var MAP = [
-        { s: "92", verb: "→ Act on it", sub: "High confidence, signals named — the user can check the model's work and move. An override stays one click away." , ok: true },
+        { s: "92", verb: "→ Act on it", sub: "High confidence, signals named — the user can check the model’s work and move. An override stays one click away." , ok: true },
         { s: "61", verb: "→ Review first", sub: "Mixed signals — surfaced for a human to weigh, with the reasons on the card. Never auto-run." },
         { s: "23", verb: "→ Ignore", sub: "Low confidence — the model declines to bluff. An honest no is what makes the act believable." }
       ];
@@ -83,7 +83,7 @@
       var MAP = [
         { verb: "→ Act on it", sub: "Low stakes: 87% clears the bar — let it run.", ok: true },
         { verb: "→ Review first", sub: "Medium stakes: 87% is close — a human glances before it ships." },
-        { verb: "→ Hand to a human", sub: "High stakes: 87% isn't enough when the downside is real." }
+        { verb: "→ Hand to a human", sub: "High stakes: 87% isn’t enough when the downside is real." }
       ];
       row.appendChild(seg(["Low stakes", "Medium", "High stakes"], function (i) { v.set(MAP[i].verb, MAP[i].sub, !!MAP[i].ok); }, 1));
       el.appendChild(row); el.appendChild(v.root);
@@ -92,11 +92,11 @@
 
     /* ai-failure-states: deliver — or admit you can't */
     alert: function (el) {
-      el.appendChild(h("div", "pd__lead", "Tap to see it deliver — or admit it can't"));
+      el.appendChild(h("div", "pd__lead", "Tap to see it deliver — or admit it can’t"));
       var v = verdict();
       var MAP = [
-        { verb: "Risk 7.2 / 10", sub: "Confident read — here's the breakdown, sources attached.", ok: true },
-        { verb: "“I can't price this one.”", sub: "Out of its depth — says so plainly, and hands you to a human with context. No confident tone past the point it knows anything." }
+        { verb: "Risk 7.2 / 10", sub: "Confident read — here’s the breakdown, sources attached.", ok: true },
+        { verb: "“I can’t price this one.”", sub: "Out of its depth — says so plainly, and hands you to a human with context. No confident tone past the point it knows anything." }
       ];
       el.appendChild(seg(["Confident", "Unsure"], function (i) { v.set(MAP[i].verb, MAP[i].sub, i === 0); }, 1));
       el.appendChild(v.root);
@@ -132,8 +132,8 @@
       var btn = h("button", "pd__go", "I disagree");
       btn.type = "button";
       function paint() {
-        if (done) { v.set("Noted — you're teaching it", "Your correction is logged and feeds next week's model. Not an exception — a training signal.", true); btn.textContent = "↺ Start over"; }
-        else { v.set("Recommend: raise bid 12%", "Not sure the model's right? Say so — and watch what happens to the correction."); btn.textContent = "I disagree"; }
+        if (done) { v.set("Noted — you’re teaching it", "Your correction is logged and feeds next week’s model. Not an exception — a training signal.", true); btn.textContent = "↺ Start over"; }
+        else { v.set("Recommend: raise bid 12%", "Not sure the model’s right? Say so — and watch what happens to the correction."); btn.textContent = "I disagree"; }
       }
       btn.addEventListener("click", function () { done = !done; paint(); });
       el.appendChild(v.root); el.appendChild(h("div", "pd__row")).appendChild(btn);
@@ -149,7 +149,7 @@
       row.appendChild(claim);
       var open = false;
       var panel = h("ul", "pd__panel pd__panel--src");
-      ["Cap table · row 14 ↗", "Board deck Q3 · p. 8 ↗", "Auditor's note · §2.1 ↗"].forEach(function (t) { panel.appendChild(h("li", null, t)); });
+      ["Cap table · row 14 ↗", "Board deck Q3 · p. 8 ↗", "Auditor’s note · §2.1 ↗"].forEach(function (t) { panel.appendChild(h("li", null, t)); });
       panel.style.display = "none";
       var btn = h("button", "pd__go", "▸ 3 sources");
       btn.type = "button"; btn.setAttribute("aria-expanded", "false");
@@ -161,7 +161,7 @@
       });
       row.appendChild(btn);
       el.appendChild(row); el.appendChild(panel);
-      el.appendChild(h("div", "pd__sub", "A citation you can't open is decoration — each of these drills to the document itself."));
+      el.appendChild(h("div", "pd__sub", "A citation you can’t open is decoration — each of these drills to the document itself."));
     },
 
     /* capability-contract: an honest no, drawn up front */
@@ -170,7 +170,7 @@
       var v = verdict();
       var MAP = [
         { verb: "✓ Price liquid public equities", sub: "Confident here — this is the job it was built for.", ok: true },
-        { verb: "✗ Illiquid, pre-revenue assets", sub: "Out of scope — handed to a human, not guessed. The boundary is specific, and it's on the screen, not in the docs." }
+        { verb: "✗ Illiquid, pre-revenue assets", sub: "Out of scope — handed to a human, not guessed. The boundary is specific, and it’s on the screen, not in the docs." }
       ];
       el.appendChild(seg(["In scope", "Out of scope"], function (i) { v.set(MAP[i].verb, MAP[i].sub, i === 0); }, 0));
       el.appendChild(v.root);
@@ -201,7 +201,7 @@
       });
       row.appendChild(btn);
       el.appendChild(row); el.appendChild(panel);
-      el.appendChild(h("div", "pd__sub", "Does 80% mean 80%? The history answers — and it doesn't reset when the model retrains."));
+      el.appendChild(h("div", "pd__sub", "Does 80% mean 80%? The history answers — and it doesn’t reset when the model retrains."));
     },
 
     /* reversibility: a way back buys the first action */
@@ -210,7 +210,7 @@
       var v = verdict();
       var MAP = [
         { verb: "Act now — undo anytime", sub: "Cheap to walk back, so people try it. The way back is shown before they commit.", ok: true },
-        { verb: "Act now — permanent", sub: "Feels risky — so most won't act at all, however accurate the call." }
+        { verb: "Act now — permanent", sub: "Feels risky — so most won’t act at all, however accurate the call." }
       ];
       el.appendChild(seg(["1-click undo", "No way back"], function (i) { v.set(MAP[i].verb, MAP[i].sub, i === 0); }, 0));
       el.appendChild(v.root);

@@ -54,7 +54,7 @@ const PRINCIPLES = [{
   p: "No AI feature ships until I’ve watched someone fail to use it. If I can’t draw how the system fails, the happy path doesn’t matter — trust is built in the error states."
 }, {
   h: "The org chart is the hardest wireframe.",
-  p: "Most UX problems are misaligned teams wearing UX clothes, so I design the organization before the interface. Then I write the system down — the next designer should inherit more than my taste."
+  p: "Most UX problems are misaligned teams wearing UX clothes, so I design the organisation before the interface. Then I write the system down — the next designer should inherit more than my taste."
 }, {
   h: "Override is a feature, not a failure.",
   p: "A user correcting the model is the training data the next version needs. I design the override as a first-class move — logged, visible, fed back, so people see their fingerprints on next week’s calls."
@@ -102,7 +102,7 @@ const WRITING = [{
 }, {
   d: "2026 · Field note",
   h: "The AI Fight Club",
-  p: "Weaponizing Claude and Gemini for Bulletproof Products. A practical method for stress-testing AI interfaces."
+  p: "Weaponising Claude and Gemini for Bulletproof Products. A practical method for stress-testing AI interfaces."
 }, {
   d: "2026 · Essay",
   h: "The New Renaissance",
@@ -119,7 +119,7 @@ const WRITING = [{
 const STATUS = ["Available · 4 weeks' notice", "Product & design lead · AI", "Remote · GMT+5:30"];
 
 /* ---- CURRICULUM VITAE (the printable appendix) ---- */
-const CV_SKILLS = ["Model-Layer Design", "Product Definition & Roadmaps", "Data-Intensive UI", "Design Leadership", "Organizational Design", "Research & Evals", "System Architecture"];
+const CV_SKILLS = ["Model-Layer Design", "Product Definition & Roadmaps", "Data-Intensive UI", "Design Leadership", "Organisational Design", "Research & Evals", "System Architecture"];
 const CV_EXP = [{
   yr: "2019—",
   role: "Product & Design Lead — AI Products",
@@ -384,14 +384,14 @@ const PATTERN_PAGES = {
     k: "alert",
     h: "Failure States",
     principle: "A model that bluffs one confident wrong answer loses the user for good. Design that moment before the happy path.",
-    def: "What the screen says when the model can't deliver \u2014 and how saying it honestly makes recovery cheaper than the mistake itself.",
+    def: "What the screen says when the model can’t deliver \u2014 and how saying it honestly makes recovery cheaper than the mistake itself.",
     note: "I design the error recovery first now",
     dos: ["Design the wrong-answer screen before you design the happy path.", "Make recovery from a miss cheaper than the mistake itself.", "Say what the system doesn’t know, plainly and early."],
-    donts: ["Hide uncertainty behind a confident-looking default.", "File \u201Cwhat if it's wrong\u201D as an edge case to handle later.", "Apologise for an error without offering the next step."],
+    donts: ["Hide uncertainty behind a confident-looking default.", "File \u201Cwhat if it’s wrong\u201D as an edge case to handle later.", "Apologise for an error without offering the next step."],
     instTag: "FinTech · Due Diligence",
     inst: /*#__PURE__*/React.createElement(React.Fragment, null, "We shipped the ", /*#__PURE__*/React.createElement("span", {
       className: "bk-em"
-    }, "\u201CI'm not sure about this one\u201D"), " state first. Analysts trusted the confident answers more once they’d watched the model decline to bluff."),
+    }, "\u201CI’m not sure about this one\u201D"), " state first. Analysts trusted the confident answers more once they’d watched the model decline to bluff."),
     fig: {
       no: "3.2",
       img: "../assets/visuals/pattern-failure.svg",
@@ -460,7 +460,7 @@ const PATTERN_PAGES = {
     principle: "Imply the product can do anything and it fails silently the first time it can’t — taking the user’s trust with it.",
     def: "The model’s promise, stated up front: what this system is for, where it taps out, and what it hands back to a human — set before the first use, not after the first complaint.",
     note: "say where it taps out, before it taps out",
-    dos: ["State the model’s limits in the interface, not just the docs.", "Hand off to a human the moment a request leaves the model’s competence.", "Make the boundary specific — 'I can’t price illiquid assets,' not 'results may vary.'"],
+    dos: ["State the model’s limits in the interface, not just the docs.", "Hand off to a human the moment a request leaves the model’s competence.", "Make the boundary specific — ‘I can’t price illiquid assets,’ not ‘results may vary.’"],
     donts: ["Imply the product can do things it can’t, then degrade silently.", "Bury scope in a terms page nobody reads.", "Treat 'out of scope' as an error instead of an honest answer."],
     instTag: "AdTech \xB7 Programmatic",
     inst: React.createElement(React.Fragment, null, "Each call resolved to act, review, or ignore — and ", React.createElement("span", { className: "bk-em" }, "“ignore” was the model admitting it had nothing worth saying"), ". The honest no is what made buyers believe the act."),
@@ -808,7 +808,7 @@ function DoDont({
     className: "bk-dd bk-dd--dont"
   }, /*#__PURE__*/React.createElement("div", {
     className: "bk-dd__head"
-  }, "Don't"), /*#__PURE__*/React.createElement("ul", null, donts.map((d, i) => /*#__PURE__*/React.createElement("li", {
+  }, "Don’t"), /*#__PURE__*/React.createElement("ul", null, donts.map((d, i) => /*#__PURE__*/React.createElement("li", {
     key: i
   }, d)))));
 }
@@ -1101,7 +1101,7 @@ function GaugeDemo() {
   }, m.sub)));
 }
 
-/* Field Guide — Failure States: flip between a confident read and an honest "I can't" */
+/* Field Guide — Failure States: flip between a confident read and an honest "I can’t" */
 function AlertDemo() {
   const h = React.createElement;
   const [ok, setOk] = React.useState(false);
@@ -1228,7 +1228,7 @@ function patternSpread(p) {
       className: "bk-reveal"
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-kicker"
-    }, "Do & don't"), /*#__PURE__*/React.createElement(DoDont, {
+    }, "Do & don’t"), /*#__PURE__*/React.createElement(DoDont, {
       dos: p.dos,
       donts: p.donts
     }), /*#__PURE__*/React.createElement("div", {
@@ -1381,13 +1381,13 @@ function buildBook(ctx) {
       className: "bk-cover__rule"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-cover__byline"
-    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Product & design leader for AI products \xB7 shipped to 4M+"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "Read the classic site instead \u2192"), /*#__PURE__*/React.createElement("button", {
+    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Staff / principal product designer for AI products \xB7 shipped to 4M+"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "Read the classic site instead \u2192"), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1),
       "aria-label": "Open the book \u2014 tap or press space"
     }, /*#__PURE__*/React.createElement("span", {
       className: "dot"
-    }), " Open \u2014 6 case studies inside \u2192"), /*#__PURE__*/React.createElement("span", {
+    }), " Open \u2014 7 case studies inside \u2192"), /*#__PURE__*/React.createElement("span", {
       className: "bk-cover__openhint",
       style: {
         display: "block",
@@ -1555,10 +1555,10 @@ function buildBook(ctx) {
     right: /*#__PURE__*/React.createElement("div", { className: "bk-reveal" },
       /*#__PURE__*/React.createElement("div", { className: "bk-kicker" }, "The four moves of the spiral"),
       /*#__PURE__*/React.createElement("div", { style: { marginTop: 12 } },
-        [["01", "Listen", "User research and requirement gathering, in the problem space's own words. Act / Review / Ignore was born here \u2014 watching traders override a correct model."],
+        [["01", "Listen", "User research and requirement gathering, in the problem space’s own words. Act / Review / Ignore was born here \u2014 watching traders override a correct model."],
          ["02", "Structure", "Journey maps, service blueprints, information architecture: what the product is, before what it looks like."],
          ["03", "Prove", "AI-assisted working HTML, not clickable pictures \u2014 usability-tested, and when it survives, shipped as part of the codebase."],
-         ["04", "Land", "Visual design, brand, tone \u2014 where PlanIt's downcast mascot lived; the layer people mistake for the whole job."]
+         ["04", "Land", "Visual design, brand, tone \u2014 where PlanIt’s downcast mascot lived; the layer people mistake for the whole job."]
         ].map((m, i) => /*#__PURE__*/React.createElement("div", { className: "bk-principle", key: i },
           /*#__PURE__*/React.createElement("span", { className: "bk-principle__n" }, m[0]),
           /*#__PURE__*/React.createElement("div", null,
@@ -1857,7 +1857,7 @@ function buildBook(ctx) {
       }
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-kicker"
-    }, "Let's talk"), /*#__PURE__*/React.createElement("h2", {
+    }, "Let’s talk"), /*#__PURE__*/React.createElement("h2", {
       className: "bk-title bk-title--m",
       style: {
         margin: "4px 0 14px"

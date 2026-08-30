@@ -126,15 +126,46 @@ def scan(page, port, inject=""):
     return json.loads(H.unescape(m.group(1)))
 
 
+def _own_server():
+    """Start a throwaway server on an EPHEMERAL port and return it.
+
+    This gate used to require someone to have already started `python3 -m http.server 8000`
+    and exited 2 when nobody had. Two things went wrong with that on 2026-08-30:
+      * the pre-push hook only treats exit 3 as "could not measure", so a MISSING SERVER was
+        reported to Arpit as "text inside an artifact is invisible against its own
+        background" — a defect that did not exist, on a push that should have gone through.
+      * hard-coding :8000 also collided with generate-og-cards.py, which binds the same port;
+        whichever ran second died on "Address already in use".
+    An ephemeral port has neither problem, and the gate no longer depends on the operator.
+    """
+    import threading
+    from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+
+    class Quiet(SimpleHTTPRequestHandler):
+        def log_message(self, *a):
+            pass
+        def end_headers(self):
+            self.send_header("Cache-Control", "no-store")
+            super().end_headers()
+
+    httpd = ThreadingHTTPServer(("127.0.0.1", 0), Quiet)
+    threading.Thread(target=httpd.serve_forever, daemon=True).start()
+    return httpd
+
+
 def main():
-    port = 8000
     import urllib.request
+    port, httpd = 8000, None
     try:
+        # Reuse a server the operator already has; it is faster and keeps local runs familiar.
         urllib.request.urlopen(f"http://localhost:{port}/", timeout=2)
     except Exception:
-        print(f"artifact-legibility: no server on :{port} — start one, e.g. "
-              f"python3 -m http.server {port}")
-        sys.exit(2)
+        try:
+            httpd = _own_server()
+            port = httpd.server_address[1]
+        except OSError as e:
+            # Could not measure. NEVER report this as a legibility finding.
+            raise Inconclusive(f"could not start a local server: {e}")
 
     pages = pages_with_artifacts()
     if not pages:

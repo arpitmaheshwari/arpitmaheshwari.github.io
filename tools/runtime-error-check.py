@@ -20,7 +20,7 @@ CALIBRATION
     --selftest loads a page and injects a throw plus a request for a file that
     cannot exist, and requires both to be reported.
 """
-import argparse, glob, os, re, sys
+import subprocess, argparse, glob, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdp
 
@@ -75,10 +75,29 @@ def main():
     ap.add_argument('pages', nargs='*')
     a = ap.parse_args()
 
+    # Scope from git, not the filesystem. A filesystem walk also picked up
+    # portfolio-sources/ — a SEPARATE private repo checked out inside this one, whose local
+    # working files are not the published site. One of them references localhost:8000 for a
+    # video poster and was reported as a runtime defect on the portfolio.
+    tracked = subprocess.run(['git', 'ls-files', '*.html'],
+                             capture_output=True, text=True).stdout.split()
     pages = a.pages or sorted(
-        p for p in glob.glob('**/*.html', recursive=True)
+        p for p in tracked
         if not p.startswith(('partials/', 'node_modules/', 'tests/', 'prototypes/'))
            and not os.path.basename(p).startswith('__'))
+
+    # A missing server made this report "100 runtime problem(s) on 100 of 100 page(s)" —
+    # every page identically, which is the signature of a broken instrument, not a broken
+    # site. Exit 3 (could not measure) so the pre-push hook reports it honestly instead of
+    # as findings. Same failure mode as artifact-legibility-check, fixed the same way.
+    import urllib.request
+    try:
+        urllib.request.urlopen(a.base + '/', timeout=3)
+    except Exception as e:
+        print(f'runtime-error-check: no server on {a.base} ({e.__class__.__name__}). '
+              f'Start one:  python3 tools/devserver.py 8899')
+        print('This is NOT a finding — nothing was measured.')
+        return 3
 
     bad, total = [], 0
     with cdp.Browser() as br:

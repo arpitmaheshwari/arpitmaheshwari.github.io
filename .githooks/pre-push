@@ -80,16 +80,33 @@ fi
 GATEDIR=$(mktemp -d)
 trap 'kill $SRV 2>/dev/null; rm -f __ca_*.html; rm -rf "$GATEDIR"' EXIT INT TERM
 
+# Record the REAL exit code, not OK/FAIL. Collapsing it lost the one distinction that
+# matters: a gate reporting a defect (exit 1) versus a gate that could not measure at all
+# (any other non-zero — no server, Chrome timeout). On 2026-08-30 a missing server made
+# runtime-error-check report "100 runtime problem(s) on 100 of 100 page(s)" and this helper
+# had no way to tell that from 100 real defects.
 bg_gate() {  # bg_gate <name> <cmd...>
   _n="$1"; shift
-  ( if "$@" >"$GATEDIR/$_n.log" 2>&1; then echo OK; else echo FAIL; fi \
-      >"$GATEDIR/$_n.status" ) &
+  ( "$@" >"$GATEDIR/$_n.log" 2>&1; echo $? >"$GATEDIR/$_n.status" ) &
 }
-# Print a finished gate's output and return its exit status.
+# Print a finished gate's output and return its real exit status.
 wait_gate() {  # wait_gate <name>
   while [ ! -f "$GATEDIR/$1.status" ]; do sleep 0.3; done
   cat "$GATEDIR/$1.log"
-  [ "$(cat "$GATEDIR/$1.status")" = OK ]
+  return "$(cat "$GATEDIR/$1.status")"
+}
+# A gate blocked the push. Say WHICH kind of blocked it is: exit 1 is a finding, anything
+# else means the instrument never ran and the message must not describe a defect.
+gate_block() {  # gate_block <exit-code> <what-a-real-finding-means>
+  if [ "$1" -ne 1 ]; then
+    echo
+    echo "pre-push: BLOCKED — $2 could not be measured (exit $1, see above)."
+    echo "  This is NOT a finding. Nothing was checked."
+  else
+    echo
+    echo "pre-push: BLOCKED — $3"
+  fi
+  exit 1
 }
 
 # Static gates: no browser, no network, under a second each. They run inline
@@ -198,9 +215,14 @@ if [ -f tools/artifact-legibility-check.py ]; then
   # Exit 3 means the gate could not MEASURE (Chrome timed out under load), which
   # is not the same as finding invisible text. Reporting a timeout with the
   # legibility message once blocked a push over a defect that did not exist.
-  if [ $AL -eq 3 ]; then
-    echo "pre-push: BLOCKED — artifact legibility could not be measured (see above)."
-    echo "  This is NOT a finding. Re-run when the machine is quieter:"
+  # The script uses exit 1 for a real finding. ANY other non-zero code means it could not
+  # measure — 3 for a timeout, 2 for the old missing-server path. Enumerating only 3 here is
+  # what turned "no server on :8000" into "text inside an artifact is invisible against its
+  # own background" on 2026-08-30, blocking a clean push over a defect that did not exist.
+  # Inverting the test means a NEW failure mode reports honestly instead of as a defect.
+  if [ $AL -ne 0 ] && [ $AL -ne 1 ]; then
+    echo "pre-push: BLOCKED — artifact legibility could not be measured (exit $AL, see above)."
+    echo "  This is NOT a finding. Re-run, or investigate the gate itself:"
     echo "     python3 tools/artifact-legibility-check.py"
     exit 1
   fi
@@ -390,19 +412,13 @@ fi
 # own colour was invisible to every other gate.
 if [ -f tools/runtime-error-check.py ]; then
   echo "pre-push: runtime errors (does the page throw, or ask for something it never gets?)…"
-  if ! wait_gate runtime-error; then
-    echo
-    echo "pre-push: BLOCKED — a page throws, logs an error, or a request fails."
-    exit 1
-  fi
+  wait_gate runtime-error || gate_block $? "runtime errors" \
+    "a page throws, logs an error, or a request fails."
 fi
 
 if [ -f tools/interaction-state-check.py ]; then
   echo "pre-push: interaction states (hover, keyboard focus, opened panels)…"
-  if ! wait_gate interaction-state; then
-    echo
-    echo "pre-push: BLOCKED — the page breaks once a reader touches it."
-    exit 1
-  fi
+  wait_gate interaction-state || gate_block $? "interaction states" \
+    "the page breaks once a reader touches it."
   echo "pre-push: image alignment OK."
 fi
