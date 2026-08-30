@@ -41,10 +41,29 @@ command -v python3 >/dev/null 2>&1 || { echo "pre-push: python3 missing — skip
 python3 -c 'import PIL' 2>/dev/null   || { echo "pre-push: Pillow missing (pip install pillow) — skipping contrast check"; exit 0; }
 [ -f tools/contrast-audit.py ]        || { echo "pre-push: tools/contrast-audit.py missing — skipping"; exit 0; }
 
-# Pick a free port so this never collides with a dev server already running.
-PORT=$(python3 -c 'import socket;s=socket.socket();s.bind(("127.0.0.1",0));print(s.getsockname()[1]);s.close()')
-python3 -m http.server "$PORT" --directory . >/dev/null 2>&1 &
-SRV=$!
+# Serve on :8000, because that is the port EIGHTEEN gates hard-code
+# (cta-viewport, cta-grammar, overlap, overflow, reachability, line-height, heading-rank,
+#  image-alignment, receipt-align, balance, a11y-sweep, asset-load, contrast-audit,
+#  css-coverage, theme-remnant, fit-check-calibration, asset-reference-sweep, runtime-error).
+# This used to pick a RANDOM free port and pass it only to the gates that accept --base, so
+# the hard-coded ones silently depended on the operator happening to have a server up. On
+# 2026-08-30 that made cta-viewport-check's CALIBRATION fail — it could not load the page it
+# plants into — and the hook announced "a call-to-action renders differently on phone and
+# desktop", a defect that did not exist.
+# Reuse an existing :8000 if the developer already has one; only start ours if the port is free.
+if python3 -c 'import urllib.request,sys; urllib.request.urlopen("http://localhost:8000/",timeout=2)' 2>/dev/null; then
+  PORT=8000; SRV=""
+  echo "pre-push: reusing the server already on :8000"
+else
+  PORT=8000
+  python3 -m http.server "$PORT" --directory . >/dev/null 2>&1 &
+  SRV=$!
+  # Wait for it, rather than racing the first gate.
+  for _ in 1 2 3 4 5 6 7 8 9 10; do
+    python3 -c 'import urllib.request;urllib.request.urlopen("http://localhost:8000/",timeout=1)' 2>/dev/null && break
+    sleep 0.3
+  done
+fi
 trap 'kill $SRV 2>/dev/null; rm -f __ca_*.html' EXIT INT TERM
 
 i=0
@@ -250,10 +269,8 @@ fi
 # must agree about what a component IS.
 if [ -f tools/cta-viewport-check.py ]; then
   echo "pre-push: CTA viewport identity (does a button change below 640px?)…"
-  if ! python3 tools/cta-viewport-check.py; then
-    echo "pre-push: BLOCKED — a call-to-action renders differently on phone and desktop."
-    exit 1
-  fi
+  python3 tools/cta-viewport-check.py || gate_block $? "CTA viewport identity" \
+    "a call-to-action renders differently on phone and desktop."
 fi
 
 # The cta-viewport gate compares a button to ITSELF across widths on one page.

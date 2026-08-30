@@ -24,6 +24,8 @@ import json, subprocess, sys, re, os, html as H, pathlib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from cdp import NO_TRACKING_FLAG
 import sys
+sys.path.insert(0, __import__("os").path.dirname(__file__))
+import cdp
 import os
 
 CH = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
@@ -66,11 +68,14 @@ INJECT = ("const s=d.createElement('style');"
 def diff(a, b):
     return sorted(k for k in a if k != "__err" and a.get(k) != b.get(k))
 
+cdp.ensure_server(8000)
 print("[calibration] planting a viewport-specific fill on .pill …")
 cal_wide, cal_narrow = sample(PAGES[0], 1440, INJECT), sample(PAGES[0], 390, INJECT)
 if not diff(cal_wide, cal_narrow):
     print("[calibration] FAIL — planted override was not detected; refusing to report.")
-    sys.exit(1)
+    print("  This is NOT a finding. The commonest cause is nothing serving :8000, so the")
+    print("  page the override is planted into never loaded.")
+    sys.exit(3)   # could not measure — see cdp.ensure_server()
 print("[calibration] PASS — a viewport-specific fill is caught\n")
 
 fails = 0

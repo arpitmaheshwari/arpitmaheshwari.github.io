@@ -190,3 +190,38 @@ class Browser:
     def __exit__(self, *exc):
         self.close()
         return False
+
+def ensure_server(port=8000, root=None):
+    """Guarantee something is serving `root` on `port`; return a stop() callable.
+
+    Eighteen gates hard-code http://localhost:8000 and none of them checked that anything
+    was there. When nothing was, they did not say "no server" — they reported findings:
+    runtime-error-check announced "100 runtime problem(s) on 100 of 100 page(s)", and
+    cta-viewport-check's calibration failed to see its own planted override, which the
+    pre-push hook then printed as "a call-to-action renders differently on phone and
+    desktop". Both were the absence of a server, described as defects in the site.
+
+    Reuses an existing server if one is already listening, so a developer's own dev server
+    is never disturbed and never double-bound.
+    """
+    import urllib.request, threading, os
+    from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+    try:
+        urllib.request.urlopen(f"http://localhost:{port}/", timeout=2)
+        return lambda: None
+    except Exception:
+        pass
+    root = root or os.getcwd()
+
+    class Quiet(SimpleHTTPRequestHandler):
+        def __init__(self, *a, **kw):
+            super().__init__(*a, directory=root, **kw)
+        def log_message(self, *a):
+            pass
+        def end_headers(self):
+            self.send_header("Cache-Control", "no-store")
+            super().end_headers()
+
+    httpd = ThreadingHTTPServer(("127.0.0.1", port), Quiet)
+    threading.Thread(target=httpd.serve_forever, daemon=True).start()
+    return httpd.shutdown
