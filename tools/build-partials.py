@@ -98,7 +98,7 @@ def render(rel, existing_nav, existing_footer):
 # not exist in production. css-version-check has guarded stylesheets against
 # exactly this for months; scripts had no such guard. Hash them the same way.
 VERSIONED = ('styles.css', 'ember.css', 'fonts.css',
-             'analytics.js', 'clarity.js', 'attention.js', 'fit.js',
+             'analytics.js', 'clarity.js', 'attention.js', 'fit.js', 'dyslexia.js',
              'patterns/demos.js', 'data/case-facts.js',
              'lab/loop.js', 'lab/loop.test.js', 'lab/trustlint.js',
              'book/portfolio.js')
@@ -139,13 +139,19 @@ def main():
         mn, mf = NAV_RE.search(s), FOOTER_RE.search(s)
         nav, foot = render(rel, mn.group(0) if mn else None,
                            mf.group(0) if mf else None)
+        # Compare version-AGNOSTICALLY. The partial is rendered without ?v= stamps, which
+        # are applied further down, so a partial that references a VERSIONED asset (the
+        # footer loads dyslexia.js) never matched the stamped page and every page reported
+        # drift on every run — including immediately after being written. A drift signal
+        # that is always on is not a signal; it would have hidden a real partial change.
+        devers = lambda x: re.sub(r'\?v=[A-Za-z0-9.]+', '', x)
         if mn:
-            if mn.group(0) != nav:
+            if devers(mn.group(0)) != devers(nav):
                 drift.append((rel, 'nav'))
             s = s[:mn.start()] + nav + s[mn.end():]
         mf = FOOTER_RE.search(s)
         if mf:
-            if mf.group(0) != foot:
+            if devers(mf.group(0)) != devers(foot):
                 drift.append((rel, 'footer'))
             s = s[:mf.start()] + foot + s[mf.end():]
         for name, h in vers.items():

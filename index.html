@@ -140,8 +140,8 @@
 }
 </script>
 <script defer src="./analytics.js?v=4f9aa0a0"></script>
-<link rel="stylesheet" href="./styles.css?v=01cfc06e">
-<link rel="stylesheet" href="./ember.css?v=5f2e4331">
+<link rel="stylesheet" href="./styles.css?v=4c0b4694">
+<link rel="stylesheet" href="./ember.css?v=51a64d77">
 </head>
 <body class="p-home">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -164,7 +164,7 @@
   <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></symbol>
   <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></symbol>
   <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></symbol>
-  <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+  
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
   <symbol id="i-file-text" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
   <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
@@ -516,6 +516,13 @@
 </main>
 
 <footer>
+  <!-- The back-to-top button is the ONLY consumer of this symbol, so the symbol travels
+       with it. It used to live in a page-level sprite that 17 shipped pages did not have,
+       so on those pages <use href="#i-chevron-up"> resolved to nothing: the SVG reserved
+       its 14x14 box and painted a 0x0 bounding box. A broken sprite reference passes every
+       text, colour and asset gate, because there is no <img> and no request to fail. -->
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute"><symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol></svg>
+
   <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
   <button class="dyslexia-toggle" id="dyslexiaToggle" aria-pressed="false" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
@@ -523,6 +530,7 @@
   </button>
   <div class="footer-note">Patterns are free — good ones should travel. Client work stays confidential.</div>
   <button class="footer-back" onclick="window.scrollTo({top:0,behavior:window.matchMedia&amp;&amp;window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})" aria-label="Back to top"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+  <script defer src="./dyslexia.js"></script>
 </footer>
 <script>(function(){
 /* set destinations ON LOAD: with it only on click, the link was href="#" for
@@ -648,66 +656,6 @@ window.addEventListener('scroll', () => {
 });
 
 // Dyslexia-friendly toggle with localStorage persistence
-const dyslexiaBtn = document.getElementById('dyslexiaToggle');
-// Inline receipts: one open at a time; aria-expanded mirrored; #receipt-<key> deep-links open.
-(function () {
-  var btns = document.querySelectorAll('.rcpt-btn');
-  function setOpen(key, open, focusHeading) {
-    btns.forEach(function (b) {
-      var mine = b.dataset.receipt === key;
-      var panel = document.getElementById('receipt-' + b.dataset.receipt);
-      var on = mine && open;
-      b.setAttribute('aria-expanded', String(on));
-      if (panel) panel.hidden = !on;
-      if (on && focusHeading) {
-        var h = panel.querySelector('.rcpt-h');
-        if (h) { h.focus(); panel.scrollIntoView({ block: 'nearest' }); }
-      }
-    });
-    if (open) { history.replaceState(null, '', '#receipt-' + key); }
-    else if (location.hash.indexOf('#receipt-') === 0) { history.replaceState(null, '', location.pathname + location.search); }
-  }
-  btns.forEach(function (b) {
-    b.addEventListener('click', function () {
-      setOpen(b.dataset.receipt, b.getAttribute('aria-expanded') !== 'true', true);
-    });
-  });
-  function openFromHash(scrollTo) {
-    if (location.hash.indexOf('#receipt-') !== 0) return;
-    var key = location.hash.slice('#receipt-'.length);
-    if (!document.getElementById('receipt-' + key)) return;
-    setOpen(key, true, false);
-    if (scrollTo) {
-      var p = document.getElementById('receipt-' + key);
-      if (p) p.scrollIntoView();
-    }
-  }
-  document.querySelectorAll('.rcpt-close').forEach(function (c) {
-    c.addEventListener('click', function () {
-      var key = c.dataset.close;
-      setOpen(key, false, false);
-      var chip = document.querySelector('.rcpt-btn[data-receipt="' + key + '"]');
-      if (chip) chip.focus();
-    });
-  });
-  openFromHash(false);
-  window.addEventListener('load', function () { openFromHash(true); });
-  window.addEventListener('hashchange', function () { openFromHash(true); });
-})();
-
-if (localStorage.getItem('dyslexia-mode') === 'on') {
-  document.body.classList.add('dyslexia-mode');
-  dyslexiaBtn.classList.add('active');
-  dyslexiaBtn.setAttribute('aria-pressed', 'true');
-}
-dyslexiaBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dyslexia-mode');
-  const isOn = document.body.classList.contains('dyslexia-mode');
-  dyslexiaBtn.classList.toggle('active', isOn);
-  dyslexiaBtn.setAttribute('aria-pressed', isOn ? 'true' : 'false');
-  localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off');
-  if (typeof gtag === 'function') gtag('event', 'dyslexia_toggle', { state: isOn ? 'on' : 'off' });
-});
 
 // ===== GA4 EVENT TRACKING =====
 // CTA click delegation — fires on any element with data-cta

@@ -88,7 +88,35 @@ READ = r"""
 """
 
 
+def published_term_count_matches():
+    """fit/index.html states how many terms the matcher knows. Keep it true.
+
+    Added 2026-08-30 with the claim itself. The page used to promise that "anything it has
+    no evidence for is listed as exactly that", which overstated the tool: it reports gaps
+    only for terms in its lexicon, so a role full of unrecognised requirements returned a
+    short gap list and looked more confident than it was. The honest version names the
+    number — and a published number has to be checked, or it becomes the next stale fact.
+    """
+    import json as _json
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    n = len(_json.load(open(os.path.join(root, "data/fit-index.json")))["terms"])
+    page = open(os.path.join(root, "fit/index.html"), encoding="utf-8").read()
+    claimed = re.search(r"It knows ([\d,]+) terms", page)
+    if not claimed:
+        return False, "fit/index.html no longer states a term count — the claim was removed or reworded"
+    c = int(claimed.group(1).replace(",", ""))
+    if c != n:
+        return False, f"fit/index.html says it knows {c} terms; data/fit-index.json has {n}"
+    return True, f"published term count ({n}) matches the index"
+
+
 def main():
+    ok, msg = published_term_count_matches()
+    print(f"[published claim] {'OK' if ok else 'STALE'} — {msg}")
+    if not ok:
+        print("\nA number the page states about itself is no longer true. Fix the page.")
+        return 1
+
     port = 9600 + (os.getpid() % 180)
     prof = tempfile.mkdtemp(prefix="fitcal-")
     proc = subprocess.Popen(

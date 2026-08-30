@@ -27,8 +27,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
-<link rel="stylesheet" href="../styles.css?v=01cfc06e">
-<link rel="stylesheet" href="../ember.css?v=5f2e4331">
+<link rel="stylesheet" href="../styles.css?v=4c0b4694">
+<link rel="stylesheet" href="../ember.css?v=51a64d77">
 
 <script defer src="../analytics.js?v=4f9aa0a0"></script>
 </head>
@@ -79,7 +79,7 @@
           <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">What</th><th scope="col" role="columnheader">Measured</th><th scope="col" role="columnheader">How</th></tr></thead>
           <tbody role="rowgroup">
             <tr role="row"><td role="cell">Hand-written HTML pages</td><td role="cell" data-label="Measured"><b>43</b></td><td role="cell" data-label="How"><span class="td-inline">find . -name "*.html"</span>, excluding the book and print sources</td></tr>
-            <tr role="row"><td role="cell">Stylesheet, entire site</td><td role="cell" data-label="Measured"><b>277.8 KB</b> on disk &middot; <b>42.2 KB</b> gzipped</td><td role="cell" data-label="How"><span class="td-inline">stat -f “%z” styles.css</span> &rarr; 284,457 bytes, unminified; <span class="td-inline">gzip -c styles.css | wc -c</span> &rarr; 43,400 bytes over the wire. Unminified because there is no build step &mdash; gzip is what a reader pays, the disk number is what the choice costs me. The rendered-coverage instrument that earlier passes waited for now exists (tools/css-coverage.py): a rule is called dead only when Chrome&rsquo;s rule-usage tracking, a DOM census of every page, and a JS-token sweep all agree &mdash; and the instrument is calibrated with a planted dead rule each run. Its first pass removed 115 rules from the ember sheet with zero geometry change on the sampled pages. This classic sheet keeps its dead weight by design: the coverage harness can only exercise the active theme, so deleting here would be a guess again.</td></tr>
+            <tr role="row"><td role="cell">Stylesheet, entire site</td><td role="cell" data-label="Measured"><b>277.8 KB</b> on disk &middot; <b>42.2 KB</b> gzipped</td><td role="cell" data-label="How"><span class="td-inline">stat -f “%z” styles.css</span> &rarr; 284,436 bytes, unminified; <span class="td-inline">gzip -c styles.css | wc -c</span> &rarr; 43,400 bytes over the wire. Unminified because there is no build step &mdash; gzip is what a reader pays, the disk number is what the choice costs me. The rendered-coverage instrument that earlier passes waited for now exists (tools/css-coverage.py): a rule is called dead only when Chrome&rsquo;s rule-usage tracking, a DOM census of every page, and a JS-token sweep all agree &mdash; and the instrument is calibrated with a planted dead rule each run. Its first pass removed 115 rules from the ember sheet with zero geometry change on the sampled pages. This classic sheet keeps its dead weight by design: the coverage harness can only exercise the active theme, so deleting here would be a guess again.</td></tr>
             <tr role="row"><td role="cell">Runtime dependencies, classic site</td><td role="cell" data-label="Measured"><b>0</b></td><td role="cell" data-label="How">No root <span class="td-inline">package.json</span>, no <span class="td-inline">node_modules</span>, no bundler config</td></tr>
             <tr role="row"><td role="cell">Third-party domains serving code</td><td role="cell" data-label="Measured"><b>2</b></td><td role="cell" data-label="How">Google Analytics and Microsoft Clarity (heatmaps, added 2026-08-15; honours Do-Not-Track). Attention measurement (scroll depth, section dwell) is first-party: <span class="td-inline">attention.js</span>, 159 lines, no network of its own. Both load async and gate nothing on first paint. Google Fonts left on 2026-08-14 when the nine font files moved to this origin.</td></tr>
             <tr role="row"><td role="cell">Interactive pattern demos</td><td role="cell" data-label="Measured"><b>9</b></td><td role="cell" data-label="How">All in <span class="td-inline">patterns/demos.js</span> — 234 lines, 12.9 KB</td></tr>
@@ -104,7 +104,7 @@
         <div class="lab-body">
           <p>There is no bundler, no transpiler, no CI pipeline. A file I edit is the file the browser receives. The benefit is that this site cannot rot: no dependency will publish a breaking major, and nothing in it needs a lockfile to reproduce in three years.</p>
           <p>One qualification, added when the nav and footer became shared: they now live in <span class="td-inline">partials/</span> and a script stamps them into every page. Nothing runs at deploy &mdash; GitHub Pages still serves the committed file, and the file in the repo is the file you receive. But there is a generator between editing a partial and committing, and cache versions are now content hashes it computes rather than numbers I bump by hand. Before that, the nav existed in 37 copies which had all quietly diverged.</p>
-          <p><strong>What it costs:</strong> no tree-shaking, no automatic minification, and cache-busting done by hand — you can see the manual query strings, <span class="td-inline">styles.css?v=01cfc06e</span>, in the source of every page. On a site of this size that is the right trade. On a product it would not be, and I would not defend it there.</p>
+          <p><strong>What it costs:</strong> no tree-shaking, no automatic minification, and cache-busting done by hand — you can see the manual query strings, <span class="td-inline">styles.css?v=4c0b4694</span>, in the source of every page. On a site of this size that is the right trade. On a product it would not be, and I would not defend it there.</p>
         </div>
       </div>
 
@@ -186,6 +186,13 @@
 </main>
 
 <footer>
+  <!-- The back-to-top button is the ONLY consumer of this symbol, so the symbol travels
+       with it. It used to live in a page-level sprite that 17 shipped pages did not have,
+       so on those pages <use href="#i-chevron-up"> resolved to nothing: the SVG reserved
+       its 14x14 box and painted a 0x0 bounding box. A broken sprite reference passes every
+       text, colour and asset gate, because there is no <img> and no request to fail. -->
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute"><symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol></svg>
+
   <div class="footer-logo">Arpit Maheshwari · Indore, India</div>
   <button class="dyslexia-toggle" id="dyslexiaToggle" aria-pressed="false" aria-label="Toggle dyslexia-friendly font" title="Switch to dyslexia-friendly reading mode">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
@@ -193,6 +200,7 @@
   </button>
   <div class="footer-note">No rights reserved — good patterns should travel</div>
   <button class="footer-back" onclick="window.scrollTo({top:0,behavior:window.matchMedia&amp;&amp;window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})" aria-label="Back to top"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
+  <script defer src="../dyslexia.js"></script>
 </footer>
 
 <script>
