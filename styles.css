@@ -1403,9 +1403,15 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 :where(body.p-lab,body.p-fit) .lab-tags{display: flex;flex-wrap: wrap;gap:4px;margin:0 0 16px}
 :where(body.p-lab,body.p-fit) .lab-tags span{font-family: var(--ff-mono);font-size: var(--fs-micro);letter-spacing: .08em;text-transform: uppercase;color: var(--ink-muted);border: 1px solid var(--border);border-radius: 2px;padding:4px 8px}
 :where(body.p-lab,body.p-fit) .lab-go{font-family: var(--ff-mono);font-size: var(--fs-caption);color: var(--gold);letter-spacing: .03em}
-:where(body.p-lab,body.p-fit) .lab-links{display: flex;flex-wrap: wrap;gap:12px;margin-top:24px}
-:where(body.p-lab,body.p-fit) .lab-links a{font-family: var(--ff-mono);font-size: var(--fs-caption);letter-spacing: .04em;color: var(--gold);text-decoration: none;border: 1px solid var(--gold-dark);border-radius: var(--radius);padding:8px 16px;transition: background .15s, color .15s}
-:where(body.p-lab,body.p-fit) .lab-links a:hover{background: var(--gold);color: var(--bg)}
+/* ONE definition for every lab page and /fit/. This component was written out FOUR times —
+   once each for p-lab/p-fit, p-lab-eval, p-lab-loop and p-lab-teardown, byte-identical — and
+   p-lab-plugin was never added, so lab/plugin.html rendered the same markup as a bare
+   underlined link (height 19.5px, no box) while the other four pages rendered a 31.5px
+   button. A component copied per page is not a system, and the page that forgets a copy is
+   the page that looks wrong. The attribute match covers every current and future p-lab-* page. */
+:where(body[class*="p-lab"],body.p-fit) .lab-links{display: flex;flex-wrap: wrap;gap:12px;margin-top:24px}
+:where(body[class*="p-lab"],body.p-fit) .lab-links a{font-family: var(--ff-mono);font-size: var(--fs-caption);letter-spacing: .04em;color: var(--gold);text-decoration: none;border: 1px solid var(--gold-dark);border-radius: var(--radius);padding:8px 16px;transition: background .15s, color .15s, border-color .15s}
+:where(body[class*="p-lab"],body.p-fit) .lab-links a:hover{background: var(--gold);color: var(--bg)}
 @media (prefers-reduced-motion: reduce){:where(body.p-lab,body.p-fit) .lab-card{transition: none}
 :where(body.p-lab,body.p-fit) .lab-card:hover{transform: none}}
 :where(body.p-lab,body.p-fit) .ev-tiers{margin:16px 0 0}
@@ -1419,9 +1425,6 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 :where(body.p-lab-eval) .lab-lede strong{color: var(--ink);font-weight: 400}
 :where(body.p-lab-eval) .lab-note{border-left: 2px solid var(--gold-dark);padding:12px 0 12px 20px;margin:32px 0 0;font-size: var(--fs-ui);line-height: 1.7;color: var(--ink-muted);max-width: var(--measure)}
 :where(body.p-lab-eval) .lab-note b{color: var(--ink);font-weight: 600}
-:where(body.p-lab-eval) .lab-links{display: flex;flex-wrap: wrap;gap:12px;margin-top:24px}
-:where(body.p-lab-eval) .lab-links a{font-family: var(--ff-mono);font-size: var(--fs-caption);letter-spacing: .04em;color: var(--gold);text-decoration: none;border: 1px solid var(--gold-dark);border-radius: var(--radius);padding:8px 16px;transition: background .15s, color .15s}
-:where(body.p-lab-eval) .lab-links a:hover{background: var(--gold);color: var(--bg)}
 :where(body.p-lab-eval) .lint-grid{display: grid;grid-template-columns: 1fr 1fr;gap:24px;margin-top:24px;align-items: start}
 @media (max-width: 860px){:where(body.p-lab-eval) .lint-grid{grid-template-columns: 1fr}}
 :where(body.p-lab-eval) .lint-panel{border: 1px solid var(--border);border-radius: var(--radius);background: var(--bg-card);padding:20px 24px;min-width: 0}
@@ -1525,9 +1528,6 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 :where(body.p-lab-loop) .lab-tests li.is-fail{color: var(--err)}
 :where(body.p-lab-loop) .lab-tests li.is-fail::before{content: '✕';color: var(--err)}
 :where(body.p-lab-loop) .lab-tests .lab-err{display: block;color: var(--err);padding-top:3px}
-:where(body.p-lab-loop) .lab-links{display: flex;flex-wrap: wrap;gap:12px;margin-top:24px}
-:where(body.p-lab-loop) .lab-links a{font-family: var(--ff-mono);font-size: var(--fs-caption);letter-spacing: .04em;color: var(--gold);text-decoration: none;border: 1px solid var(--gold-dark);border-radius: var(--radius);padding:8px 16px;transition: background .15s, color .15s}
-:where(body.p-lab-loop) .lab-links a:hover{background: var(--gold);color: var(--bg)}
 :where(body.p-lab-loop) .lab-nojs{font-family: var(--ff-mono);font-size: var(--fs-caption);color: var(--warn)}
 /* ===== EXTRACTED FROM lab/teardown.html (theme-swap migration; scoped body.p-lab-teardown) ===== */
 :where(body.p-lab-teardown) .lab-wrap{max-width: var(--inner-max);margin:0 auto;padding:0 var(--page-x)}
@@ -1537,9 +1537,6 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 :where(body.p-lab-teardown) .lab-lede strong{color: var(--ink);font-weight: 400}
 :where(body.p-lab-teardown) .lab-note{border-left: 2px solid var(--gold-dark);padding:12px 0 12px 20px;margin:32px 0 0;font-size: var(--fs-ui);line-height: 1.7;color: var(--ink-muted);max-width: var(--measure)}
 :where(body.p-lab-teardown) .lab-note b{color: var(--ink);font-weight: 600}
-:where(body.p-lab-teardown) .lab-links{display: flex;flex-wrap: wrap;gap:12px;margin-top:24px}
-:where(body.p-lab-teardown) .lab-links a{font-family: var(--ff-mono);font-size: var(--fs-caption);letter-spacing: .04em;color: var(--gold);text-decoration: none;border: 1px solid var(--gold-dark);border-radius: var(--radius);padding:8px 16px;transition: background .15s, color .15s}
-:where(body.p-lab-teardown) .lab-links a:hover{background: var(--gold);color: var(--bg)}
 :where(body.p-lab-teardown) .lab-body{font-size: var(--fs-body);line-height: 1.7;color: var(--ink-muted);max-width: var(--measure)}
 :where(body.p-lab-teardown) .lab-body strong{color: var(--ink);font-weight: 400}
 :where(body.p-lab-teardown) .lab-body p{margin:0 0 16px}

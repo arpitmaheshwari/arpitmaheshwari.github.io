@@ -38,7 +38,12 @@ import argparse, collections, glob, html, os, re, subprocess, sys
 STRIP = re.compile(r'<(script|style|svg|code|pre)\b.*?</\1>', re.I | re.S)
 COMMENT = re.compile(r'<!--.*?-->', re.S)
 TAG = re.compile(r'<[^>]+>')
-WORD = re.compile(r"[A-Za-z][A-Za-z'’-]{2,}")
+# Match the WHOLE alphanumeric token, then reject any token containing a digit — a
+# content hash (styles.css ?v=01cfc06e), a YouTube id (_9CmmmIGfZo) and a file format
+# (woff2) are not prose, and their letter-runs were being reported as one-off typos.
+# Doing this with a trailing (?![0-9]) instead makes the regex BACKTRACK to a shorter
+# match — "woff2" became the word "wof" — which is worse than the bug it fixes.
+WORD = re.compile(r"[A-Za-z0-9][A-Za-z0-9'’-]*")
 DOUBLED = re.compile(r'\b(\w+)[ \t]+\1\b', re.I)   # same line only
 # A straight apostrophe between letters (it's, O2's) or a straight double quote
 # opening a phrase. Feet/inches and code are excluded by STRIP + the letter context.
@@ -176,6 +181,9 @@ def main():
                              f'{m.group(0)!r} opens straight and closes curly — …{ctx}…'))
         for m in WORD.finditer(text):
             w = m.group(0)
+            # token, not word: skip hashes/ids/formats, and anything too short to judge
+            if any(ch.isdigit() for ch in w) or len(w) < 3 or not w[0].isalpha():
+                continue
             lw = w.lower().replace('’', "'")
             freq[lw] += 1
             if len(where[lw]) < 3:
