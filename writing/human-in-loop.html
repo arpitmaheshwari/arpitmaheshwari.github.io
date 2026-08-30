@@ -6,7 +6,7 @@
   <title>Human-in-Loop Patterns — Arpit Maheshwari</title>
   <meta name="description" content="Designing human-in-loop AI: when to surface override paths, how to design dissent as a feature, and what analyst behavior reveals about trust.">
   <meta property="og:title" content="Human-in-the-Loop: When to Ask, When to Override">
-  <meta property="og:description" content="If an AI is right 99% of the time, making users click 'confirm' 99% of the time is broken design. I design systems that only ask for confirmation when the AI is uncertain.">
+  <meta property="og:description" content="Asking a person to confirm everything gets you their judgment on nothing. I design systems that spend the ask only where a human&rsquo;s input would change the answer.">
   <meta property="og:url" content="https://arpitmaheshwari.com/writing/human-in-loop.html">
   <meta property="og:type" content="article">
   <meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/human-in-loop-og.png">
@@ -22,13 +22,13 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
   <link rel="stylesheet" href="../styles.css?v=38ab17c6">
-<link rel="stylesheet" href="../ember.css?v=2d87ec83">
+<link rel="stylesheet" href="../ember.css?v=9b55019b">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Human-in-the-Loop: When to Ask, When to Override",
-    "description": "If an AI is right 99% of the time, making users click 'confirm' 99% of the time is broken design. I design systems that only ask for confirmation when the AI is uncertain.",
+    "description": "Asking a person to confirm everything gets you their judgment on nothing. I design systems that spend the ask only where a human&rsquo;s input would change the answer.",
     "author": {
       "@type": "Person",
       "name": "Arpit Maheshwari",
@@ -56,16 +56,16 @@
   <div class="xi-writing-human-in-loop-005">
     <h1 class="xi-writing-human-in-loop-006">Human-in-the-Loop: When to Ask, When to Override</h1>
     <p class="xi-writing-human-in-loop-007">Pattern · May 2026 · 5 min read</p>
-    <p class="hand hand-note" aria-hidden="true">94% accurate, ignored 60% of the time — that gap is the job</p>
+    <p class="hand hand-note" aria-hidden="true">accurate, and ignored anyway — that gap is the job</p>
   </div>
 </div>
 
 <main id="main" class="section page-bg"><div class="xi-writing-human-in-loop-005">
 
-  <p class="lead xi-writing-human-in-loop-010">The recommender was 94% accurate. The students skipped it 60% of the time. Not because it was wrong — because we’d made them click “confirm” so often they’d stopped reading. We’d asked for their judgment so relentlessly that we’d trained them to switch it off.</p>
+  <p class="lead xi-writing-human-in-loop-010">The recommender was good. The students skipped it most of the time anyway. Not because it was wrong — because we’d made them click “confirm” so often they’d stopped reading. We’d asked for their judgment so relentlessly that we’d trained them to switch it off.</p>
 
   <h2 class="section-title xi-writing-human-in-loop-011">Death by “are you sure?”</h2>
-  <p class="u-body xi-writing-human-in-loop-012">In 2019 I was looking at a learning platform that, on paper, was doing everything right. It recommended the next course. It asked the student to confirm. It kept the human in the loop. And it was quietly failing — the engine was 94% accurate, yet six out of ten recommendations got skipped. When I watched a few students go through it, the reason was almost embarrassing: they weren’t disagreeing with the recommendations. They were exhausted by them. “Do you want to take this course?” appeared so often it had become wallpaper, and the muscle-memory answer to wallpaper is <em>skip</em>.</p>
+  <p class="u-body xi-writing-human-in-loop-012">In 2019 I was looking at a learning platform that, on paper, was doing everything right. It recommended the next course. It asked the student to confirm. It kept the human in the loop. And it was quietly failing — the engine was accurate, and most of its recommendations got skipped anyway. When I watched a few students go through it, the reason was almost embarrassing: they weren’t disagreeing with the recommendations. They were exhausted by them. “Do you want to take this course?” appeared so often it had become wallpaper, and the muscle-memory answer to wallpaper is <em>skip</em>.</p>
   <p class="u-body xi-writing-human-in-loop-012">That’s the trap hiding inside good intentions. We add the confirmation step to respect the user’s autonomy. But ask for a person’s judgment on everything and you get their judgment on nothing — the prompts blur together, attention drains out, and people start clicking on reflex. The thing we added to keep the human in control was the exact thing pushing them out of it.</p>
 
   <h2 class="section-title xi-writing-human-in-loop-013">Spend the asks where they count</h2>

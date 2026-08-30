@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
   <link rel="stylesheet" href="../styles.css?v=38ab17c6">
-<link rel="stylesheet" href="../ember.css?v=2d87ec83">
+<link rel="stylesheet" href="../ember.css?v=9b55019b">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -62,14 +62,14 @@
 
 <main id="main" class="section page-bg"><div class="xi-writing-explainability-005">
 
-  <p class="lead xi-writing-explainability-010">“Your algorithm says this trade is risky. I need to know why.” The model had an answer — 72% — and no way to defend it. She overrode it. Three weeks later the trade lost $2.1M. The model had been right. The interface just couldn’t say so.</p>
+  <p class="lead xi-writing-explainability-010">“Your algorithm says this trade is risky. I need to know why.” The model had an answer — a number — and no way to defend it. She overrode it. The trade went through, and it went badly. The model had been right. The interface just couldn’t say so.</p>
 
   <h2 class="section-title xi-writing-explainability-011">The question the system couldn’t answer</h2>
-  <p class="u-body xi-writing-explainability-012">In 2021 a compliance officer put that question to me directly, and I didn’t have a good answer. The risk model flagged a trade at 72%. She wasn’t refusing to listen — she was doing her job, which is to never sign off on something she can’t explain to an auditor. The system gave her a number and a recommendation and nothing in between. So she did the only defensible thing and waved the model away. The trade went through unsupervised. Three weeks later it cost the firm $2.1M.</p>
+  <p class="u-body xi-writing-explainability-012">In 2021 a compliance officer put that question to me directly, and I didn’t have a good answer. The risk model flagged a trade as high-risk. She wasn’t refusing to listen — she was doing her job, which is to never sign off on something she can’t explain to an auditor. The system gave her a number and a recommendation and nothing in between. So she did the only defensible thing and waved the model away. The trade went through unsupervised, and it cost the firm.</p>
   <p class="u-body xi-writing-explainability-012">Here’s the part that stayed with me: the model wasn’t wrong. It had caught the risk. The failure was entirely on the interface — nobody had designed the layer that turns a score into a reason. And a score without a reason is, to an expert who’s accountable for the decision, just noise with a confident font.</p>
 
   <h2 class="section-title xi-writing-explainability-011">What she actually needed</h2>
-  <p class="u-body xi-writing-explainability-012">I used to think <a class="link-gold" href="../resources/intelligent-systems-glossary.html#ml-explainability">explainability</a> meant exposing the machinery — model weights, feature vectors, the architecture. It doesn’t. The compliance officer didn’t want a lecture on the model. She wanted an answer to one human question: <em>why this, and not that?</em> When I rebuilt the surface, that’s the only question I designed around. The recommendation moved down the page. The reasoning moved up: this counterparty has six failed trades in eighteen months; their average position is $500K; this one is $2M, twice their normal appetite. Suddenly she wasn’t being asked to trust a number. She was being handed a case she could check, argue with, and put her name next to.</p>
+  <p class="u-body xi-writing-explainability-012">I used to think <a class="link-gold" href="../resources/intelligent-systems-glossary.html#ml-explainability">explainability</a> meant exposing the machinery — model weights, feature vectors, the architecture. It doesn’t. The compliance officer didn’t want a lecture on the model. She wanted an answer to one human question: <em>why this, and not that?</em> When I rebuilt the surface, that’s the only question I designed around. The recommendation moved down the page. The reasoning moved up: this counterparty has failed repeatedly in the last two years, and this position is several times their normal size. Suddenly she wasn’t being asked to trust a number. She was being handed a case she could check, argue with, and put her name next to.</p>
 
   <div class="xi-writing-explainability-014">
     <p class="lead xi-writing-explainability-015"><strong>Explainability isn’t a data-science problem. It’s a design problem.</strong> You can ship the best model in the world; if the person on the hook for the decision can’t see why it decided, they won’t use it — and they’ll be right not to.</p>

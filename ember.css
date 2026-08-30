@@ -2073,6 +2073,19 @@ html[data-theme="ember"] body.dyslexia-mode *:not(code):not(pre):not(kbd):not(sa
    Stated here rather than by editing 54 extracted classes, because the next
    extraction would reintroduce it. One component, one leading. */
 html[data-theme="ember"] .section-title{line-height:1.15}
+
+
+/* The homepage opted OUT of the site's own responsive spacing scale. styles.css already
+   ramps --section-y 90px -> 64px (<=900) -> 48px (<=600), and every other page follows it,
+   so a case study tightens on a phone. The homepage hard-codes 96px per section instead,
+   which is a desktop value held at every width: measured at 390 that is a 188px gap — 23%
+   of the viewport — at each of nine section joins, on a page already 15,906px tall.
+   These sections now read the same token as the rest of the site. The bookends (.hero and
+   .close) keep their deliberate asymmetry and are untouched. */
+@media (max-width:900px){
+  html[data-theme="ember"] body.p-home :is(.receipts,.work,.who,.whoband,.contract,.labrow,.voices){
+    padding-top:var(--section-y);padding-bottom:var(--section-y)}
+}
 }
 
 /* ---------- work-grid tier (2026-08-29, Arpit's pick: headliners + index cards).
