@@ -32,7 +32,13 @@ fi
 # svg/png/jpg are in this list deliberately. On 2026-08-02 a broken SVG shipped and sat live
 # on /process; had someone pushed an SVG-only change, the old html|css|js filter would have
 # skipped every gate and waved it straight through.
-if [ -n "$CHANGED" ] && ! printf '%s\n' "$CHANGED" | grep -qE '\.(html|css|js|svg|png|jpe?g|webp)$'; then
+# A change to a GATE, or to this hook, ALWAYS runs the gates. The filter below is by file
+# extension, so a .py under tools/ counted as "not renderable" and skipped every check —
+# meaning the one push most likely to have broken an instrument was the one push that never
+# exercised it. On 2026-08-30 the contrast-audit rewrite itself was waved through this way.
+if [ -n "$CHANGED" ] && printf '%s\n' "$CHANGED" | grep -qE '^(tools/|\.githooks/)'; then
+  echo "pre-push: a gate or the hook changed — running the full suite"
+elif [ -n "$CHANGED" ] && ! printf '%s\n' "$CHANGED" | grep -qE '\.(html|css|js|svg|png|jpe?g|webp)$'; then
   echo "pre-push: no renderable changes — visual checks not needed"
   exit 0
 fi
