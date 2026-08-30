@@ -58,6 +58,16 @@
      move. The original card breaks the clause whole; this reproduces it by construction. */
   body.hero .title em { font-style: italic; color: #D4A85E; display: block; }
   body.hero .subtitle { display: none; }
+  /* Two subtitle treatments the hand-made cards used and the generic gold one cannot do:
+     sub-muted  — screen-og's quiet sans line under the title
+     sub-mono   — lab-og's function-signature row, with a gold tail for the test count */
+  body.hero.sub-muted .subtitle, body.hero.sub-mono .subtitle { display: block; }
+  body.hero.sub-muted .subtitle {
+    color: rgba(242,237,228,0.62); font-size: 23px; margin-top: 40px; }
+  body.hero.sub-mono .subtitle {
+    font-family: "IBM Plex Mono", monospace; font-size: 21px; letter-spacing: 0.02em;
+    color: rgba(242,237,228,0.62); margin-top: 48px; }
+  body.hero .subtitle em { font-style: normal; color: #D4A85E; }
   .byline {
     font-family: 'IBM Plex Sans', sans-serif; font-size: 19px;
     color: rgba(242,237,228,0.62); /* --ink-muted */
@@ -92,6 +102,19 @@
         e.textContent = em;
         t.appendChild(e);
         t.appendChild(document.createTextNode(full.slice(i + em.length)));
+      }
+      const sub = q.get("sub");
+      if (sub) document.body.classList.add("sub-" + sub);
+      // subem highlights a trailing token of the subtitle (e.g. a test count) in gold.
+      const se = q.get("subem"), st = document.getElementById("subtitle");
+      const j = se ? st.textContent.indexOf(se) : -1;
+      if (j >= 0) {
+        const head = st.textContent.slice(0, j), tail = st.textContent.slice(j + se.length);
+        st.textContent = head;
+        const e2 = document.createElement("em");
+        e2.textContent = se;
+        st.appendChild(e2);
+        st.appendChild(document.createTextNode(tail));
       }
     }
   </script>

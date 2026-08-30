@@ -47,6 +47,18 @@ CHROME = os.environ.get("CHROME") or find_chrome()
 # comment above each block — CANONICAL-FACTS.md 2026-08-10 has the full audit.
 
 REG = [
+    # --- the last three hand-made cards, brought in 2026-08-30. Each keeps its own design.
+    ("book-og.png", "", "", "", "", {"template": "assets/og-images/_book-og.template.html"}),
+    ("lab-og.png", "THE LAB \u00b7 ZERO DEPENDENCIES \u00b7 MIT",
+     "Where the code is the deliverable.",
+     "decide()  calibrate()  abstain()  disclose()  \u00b7  42/42 passing",
+     "arpitmaheshwari.com/lab",
+     {"hero": "1", "em": "the deliverable.", "sub": "mono", "subem": "42/42 passing"}),
+    ("screen-og.png", "HIRING \u00b7 BEFORE THE FIRST CALL",
+     "The technical screen, pre-answered.",
+     "Evals \u00b7 abstention \u00b7 calibration \u00b7 ownership \u2014 in writing, with receipts",
+     "Arpit Maheshwari \u00b7 arpitmaheshwari.com/screen",
+     {"hero": "1", "em": "pre-answered.", "sub": "muted"}),
     # --- the home card. Hand-made until 2026-08-30, by which time it had drifted twice:
     #     it still read "PRODUCT & DESIGN LEADER" after the 2026-08-29 move to a Staff /
     #     Principal IC positioning, and "won't" was baked in with a STRAIGHT apostrophe —
@@ -123,6 +135,12 @@ REG = [
     # Loop" (canon §1, "trust layer" retired 2026-08-01); the glossary's real entry count (15).
     ("ai-design-checklist-og.png", "CHECKLIST · SHIPPING", "53 Things to Check Before Shipping AI",
      "Happy-path demo ≠ production ready", "Arpit Maheshwari · Resource"),
+    # the last two hand-made cards, brought in 2026-08-30 — every card on disk is now generated
+    ("founder-questions-og.png", "GUIDE \u00b7 HIRING", "12 Questions Every Founder Should Ask",
+     "What to ask before you hire a designer for an AI product", "Arpit Maheshwari \u00b7 Resource"),
+    ("resources-index-og.png", "RESOURCES \u00b7 FREE TO USE", "Reference Tools for Intelligent Systems",
+     "A shipping checklist, a glossary, and the questions to ask a designer",
+     "Arpit Maheshwari \u00b7 Resources"),
     ("fintech-og.png", "FINTECH · PRIVATE EQUITY", "Deal-Screening AI That Cites Its Sources",
      "60% faster screening · measured pre- vs post-rollout", "Arpit Maheshwari · Case Study"),
     ("writing-index-og.png", "WRITING · ESSAYS", "Essays on AI Design",
@@ -149,10 +167,17 @@ REG = [
 
 
 def render(out_name, kicker, title, subtitle, byline, docroot, extra=None):
-    params = {"kicker": kicker, "title": title, "subtitle": subtitle, "byline": byline}
-    params.update(extra or {})
-    q = urlencode(params)
-    url = f"http://localhost:8000/{TEMPLATE}?{q}"
+    extra = dict(extra or {})
+    # An entry may name its OWN template file. book-og has a dedicated one (its cover is an
+    # orange cloth gradient with an inset keyline, nothing the generic card can express); it
+    # existed since 2026-08-01 but was never wired in, so the card stayed hand-made anyway.
+    tpl = extra.pop("template", TEMPLATE)
+    if tpl == TEMPLATE:
+        params = {"kicker": kicker, "title": title, "subtitle": subtitle, "byline": byline}
+        params.update(extra)
+        url = f"http://localhost:8000/{tpl}?{urlencode(params)}"
+    else:
+        url = f"http://localhost:8000/{tpl}"
     out_path = os.path.join(docroot, "assets", "og-images", out_name)
     args = [CHROME, "--headless=new", NO_TRACKING_FLAG, "--disable-gpu", "--hide-scrollbars",
             "--window-size=1200,630", "--virtual-time-budget=4000",

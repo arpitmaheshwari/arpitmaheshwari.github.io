@@ -22,13 +22,13 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
   <link rel="stylesheet" href="../styles.css?v=38ab17c6">
-<link rel="stylesheet" href="../ember.css?v=2d87ec83">
+<link rel="stylesheet" href="../ember.css?v=9b55019b">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Design the Failure State First",
-    "description": "A model demoed at 94% confidence, then met real deal data it had never seen and was wrong four times out of ten. The failure state—when confidence is low, data is missing, or the model is uncertain—is what I design first.",
+    "description": "A model demoed beautifully, then met real deal data it had never seen and became a coin-flip. The failure state—when confidence is low, data is missing, or the model is uncertain—is what I design first.",
     "author": {
       "@type": "Person",
       "name": "Arpit Maheshwari",
@@ -61,11 +61,11 @@
 
 <main id="main" class="section page-bg"><div class="xi-writing-failure-states-005">
 
-  <p class="lead xi-writing-failure-states-010">The demo went perfectly. Confidence: 94%. Everyone in the room left convinced. Three months later, on real deal data, the same model was wrong four times out of ten. The model hadn’t changed. We’d just never designed the part where it’s wrong.</p>
+  <p class="lead xi-writing-failure-states-010">The demo went perfectly. A confident number, a tidy answer. Everyone in the room left convinced. Three months later, on real deal data, the same model was closer to a coin-flip. The model hadn’t changed. We’d just never designed the part where it’s wrong.</p>
 
   <h2 class="section-title xi-writing-failure-states-011">The room that left impressed</h2>
-  <p class="u-body xi-writing-failure-states-012">In 2020 I sat in on a machine-learning team presenting a new model to a private-equity client. It was a clean demo — curated inputs, a confident number, a tidy answer. The client was sold. So was I, for about a week. Then the model met deal data it had never seen, and the 94% became a coin-flip with delusions of certainty. The failure wasn’t dramatic. It was quiet, and the people relying on it didn’t find out until they’d already acted on a few of the wrong answers.</p>
-  <p class="u-body xi-writing-failure-states-012">What stuck with me wasn’t that the model was wrong sometimes — every model is. It was that the interface had no language for being wrong. It had been designed entirely around the demo: the happy path, the case where the data is clean and the answer is obvious. The 40% where the model is uncertain, the inputs are missing, or the world has drifted away from the training set (what a data scientist would call <a class="link-gold" href="../resources/intelligent-systems-glossary.html#distribution-shift">distribution shift</a>) — none of that had a screen. And that 40% is exactly where the client’s trust either held or evaporated.</p>
+  <p class="u-body xi-writing-failure-states-012">In 2020 I sat in on a machine-learning team presenting a new model to a private-equity client. It was a clean demo — curated inputs, a confident number, a tidy answer. The client was sold. So was I, for about a week. Then the model met deal data it had never seen, and that confident number became a coin-flip with delusions of certainty. The failure wasn’t dramatic. It was quiet, and the people relying on it didn’t find out until they’d already acted on a few of the wrong answers.</p>
+  <p class="u-body xi-writing-failure-states-012">What stuck with me wasn’t that the model was wrong sometimes — every model is. It was that the interface had no language for being wrong. It had been designed entirely around the demo: the happy path, the case where the data is clean and the answer is obvious. The cases where the model is uncertain, the inputs are missing, or the world has drifted away from the training set (what a data scientist would call <a class="link-gold" href="../resources/intelligent-systems-glossary.html#distribution-shift">distribution shift</a>) — none of that had a screen. And that is exactly where the client’s trust either held or evaporated.</p>
 
   <div class="xi-writing-failure-states-014">
     <p class="lead xi-writing-failure-states-015"><strong>Designing the failure state isn’t error handling. It’s trust recovery.</strong> When the system stumbles, the user needs to know why and what to do next — and getting that moment right is what lets them keep using the system at all.</p>
@@ -73,7 +73,7 @@
 
   <h2 class="section-title xi-writing-failure-states-011">So now I start at the bottom</h2>
   <p class="u-body xi-writing-failure-states-012">After that project I changed the order I design in. I no longer start with the case where the model is right. I start with the question almost nobody asks until production forces it: <em>what does this look like when it’s wrong?</em> Low confidence, missing data, a user whose situation the model has never seen — I design those screens first, because they’re the ones that decide whether anyone trusts the good answers later.</p>
-  <p class="u-body xi-writing-failure-states-012">The reflex everywhere else is to treat the unhappy path as a rounding error. “Edge cases are too rare to be worth it.” They are rare, right up until the day production hands the system something it’s never seen — and by then the trust that took months to build is gone in an afternoon. The happy path is maybe 30% of the real work. The other 70% is the part nobody demos, and it’s the part that decides whether a business will run on what you built.</p>
+  <p class="u-body xi-writing-failure-states-012">The reflex everywhere else is to treat the unhappy path as a rounding error. “Edge cases are too rare to be worth it.” They are rare, right up until the day production hands the system something it’s never seen — and by then the trust that took months to build is gone in an afternoon. The happy path is the smaller half of the real work. The rest is the part nobody demos, and it’s the part that decides whether a business will run on what you built.</p>
 
   <h2 class="section-title xi-writing-failure-states-011">What I believe now</h2>
   <p class="u-body xi-writing-failure-states-012">Every intelligent system I design now opens with one question, asked before a single happy-path screen: “What happens when this fails?” Not as a polish pass at the end. As the first design problem, because it’s the one the user will actually judge you on.</p>
