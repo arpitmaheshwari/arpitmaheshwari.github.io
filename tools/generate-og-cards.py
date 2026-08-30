@@ -47,6 +47,16 @@ CHROME = os.environ.get("CHROME") or find_chrome()
 # comment above each block — CANONICAL-FACTS.md 2026-08-10 has the full audit.
 
 REG = [
+    # --- the home card. Hand-made until 2026-08-30, by which time it had drifted twice:
+    #     it still read "PRODUCT & DESIGN LEADER" after the 2026-08-29 move to a Staff /
+    #     Principal IC positioning, and "won't" was baked in with a STRAIGHT apostrophe —
+    #     a defect no text gate can ever see, on the site's most-shared image. It keeps its
+    #     own scale and its italic gold clause (hero=1, em=...) rather than being flattened
+    #     into the generic card; kicker chosen by Arpit on 2026-08-30 from three renders.
+    ("home-og.png", "STAFF / PRINCIPAL PRODUCT DESIGNER \u00b7 AI & LLM PRODUCTS",
+     "Your model is right. Your users still won\u2019t bet on it.", "",
+     "Arpit Maheshwari \u00b7 arpitmaheshwari.com",
+     {"hero": "1", "em": "won\u2019t bet on it."}),
     # --- essays. The four essay cards were hand-made and outside this generator until
     #     2026-08-30, when the confidence-scoring essay was rewritten to the attested AdTech
     #     story and its card still carried the retired "How I Design Confidence Scores"
@@ -138,8 +148,10 @@ REG = [
 ]
 
 
-def render(out_name, kicker, title, subtitle, byline, docroot):
-    q = urlencode({"kicker": kicker, "title": title, "subtitle": subtitle, "byline": byline})
+def render(out_name, kicker, title, subtitle, byline, docroot, extra=None):
+    params = {"kicker": kicker, "title": title, "subtitle": subtitle, "byline": byline}
+    params.update(extra or {})
+    q = urlencode(params)
     url = f"http://localhost:8000/{TEMPLATE}?{q}"
     out_path = os.path.join(docroot, "assets", "og-images", out_name)
     args = [CHROME, "--headless=new", NO_TRACKING_FLAG, "--disable-gpu", "--hide-scrollbars",
@@ -200,8 +212,10 @@ def main():
     httpd = serve(a.docroot)
     try:
         ok_count = 0
-        for out_name, kicker, title, subtitle, byline in REG:
-            ok, path = render(out_name, kicker, title, subtitle, byline, a.docroot)
+        for entry in REG:
+            out_name, kicker, title, subtitle, byline = entry[:5]
+            extra = entry[5] if len(entry) > 5 else None
+            ok, path = render(out_name, kicker, title, subtitle, byline, a.docroot, extra)
             print(f"  {'✓' if ok else '✗ FAILED'}  {out_name}")
             if ok:
                 ok_count += 1

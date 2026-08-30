@@ -43,6 +43,21 @@
     font-family: 'IBM Plex Sans', sans-serif; font-size: 25px; font-weight: 400;
     color: #D4A85E; margin-top: 24px; max-width: 900px;
   }
+  /* Hero variant (home-og). The home card was hand-made until 2026-08-30 and drifted:
+     it still carried the pre-2026-08-29 "Product & Design Leader" positioning and a
+     STRAIGHT apostrophe in "won't", baked into pixels where no text gate can see it.
+     It is the site's most-shared image, so it keeps its own scale and its italic gold
+     clause rather than being flattened into the generic card. Same template, one flag. */
+  /* 780px measure, not 1000: at the wider measure the hero line wraps to TWO lines and
+     leaves a dead band across the middle third of the card. Three lines is the original
+     composition and it fills the frame. */
+  body.hero .title { font-size: 74px; line-height: 1.16; max-width: 780px; }
+  /* display:block puts the italic clause on its OWN line deterministically. Relying on
+     the wrap width instead broke "won’t / bet on it." across two lines, and the exact
+     break then depends on the measure, the font and the string — three things that all
+     move. The original card breaks the clause whole; this reproduces it by construction. */
+  body.hero .title em { font-style: italic; color: #D4A85E; display: block; }
+  body.hero .subtitle { display: none; }
   .byline {
     font-family: 'IBM Plex Sans', sans-serif; font-size: 19px;
     color: rgba(242,237,228,0.62); /* --ink-muted */
@@ -64,6 +79,20 @@
     const q = new URLSearchParams(location.search);
     for (const id of ["kicker","title","subtitle","byline"]) {
       document.getElementById(id).textContent = q.get(id) || "";
+    }
+    // hero=1 switches to the home card's scale; em=<substring of title> is set as an
+    // <em> node built with textContent, never innerHTML, so the no-injection rule holds.
+    if (q.get("hero")) {
+      document.body.classList.add("hero");
+      const em = q.get("em"), t = document.getElementById("title"), full = t.textContent;
+      const i = em ? full.indexOf(em) : -1;
+      if (i >= 0) {
+        t.textContent = full.slice(0, i);
+        const e = document.createElement("em");
+        e.textContent = em;
+        t.appendChild(e);
+        t.appendChild(document.createTextNode(full.slice(i + em.length)));
+      }
     }
   </script>
 </body>
