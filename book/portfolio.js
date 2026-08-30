@@ -24,7 +24,7 @@ const WORK = [{
   tag: "VC/PE · NDA",
     title: "Due Diligence You Can’t Rubber-Stamp",
     metric: "3 wks → 4 days",
-    desc: "Partners stake millions on claims they can't verify. So sign-off stays locked until the evidence is read."
+    desc: "Partners stake millions on claims they can’t verify. So sign-off stays locked until the evidence is read."
 }, {
   tag: "Org Design · NDA",
     title: "The Software That Replaced the Org Chart",
@@ -44,23 +44,23 @@ const WORK = [{
   tag: "Consumer · PlanIt",
   title: "The App People Broke on Purpose",
   metric: "0 complaints",
-  desc: "The same client's data, pointed at a commuter. People triggered the error screen on purpose, just to watch the little train be sorry — the failure state became the reason they came back."
+  desc: "The same client’s data, pointed at a commuter. People triggered the error screen on purpose, just to watch the little train be sorry — the failure state became the reason they came back."
 }];
 const PRINCIPLES = [{
   h: "What gets measured is a design decision.",
-  p: "By Friday of week one I've read your evals and sat in your customer calls. I shape what gets measured, then I ship the front-end under my own name in the PR."
+  p: "By Friday of week one I’ve read your evals and sat in your customer calls. I shape what gets measured, then I ship the front-end under my own name in the PR."
 }, {
   h: "I design the wrong-answer screen first.",
-  p: "No AI feature ships until I've watched someone fail to use it. If I can't draw how the system fails, the happy path doesn't matter — trust is built in the error states."
+  p: "No AI feature ships until I’ve watched someone fail to use it. If I can’t draw how the system fails, the happy path doesn’t matter — trust is built in the error states."
 }, {
   h: "The org chart is the hardest wireframe.",
   p: "Most UX problems are misaligned teams wearing UX clothes, so I design the organization before the interface. Then I write the system down — the next designer should inherit more than my taste."
 }, {
   h: "Override is a feature, not a failure.",
-  p: "A user correcting the model is the training data the next version needs. I design the override as a first-class move — logged, visible, fed back, so people see their fingerprints on next week's calls."
+  p: "A user correcting the model is the training data the next version needs. I design the override as a first-class move — logged, visible, fed back, so people see their fingerprints on next week’s calls."
 }, {
   h: "I read the data before I open Figma.",
-  p: "SQL, raw support tickets, model evals — I want the signal before the summary. Decisions grounded in the data survive the review; the ones I made on instinct don't."
+  p: "SQL, raw support tickets, model evals — I want the signal before the summary. Decisions grounded in the data survive the review; the ones I made on instinct don’t."
 }];
 const PATTERNS = [{
   k: "gauge",
@@ -172,7 +172,7 @@ const CASES = {
     title: CF.get("ptc").title,
     standfirst: "Five platforms, one survivor. The redesign took a quarter — the case for killing four products took a year. That was the design work.",
     meta: cfMeta("ptc"),
-    context: "The brief said “redesign the UX.” Three weeks in the customer-success recordings said the navigation was fine — so I made the call that the contract was the broken interface: kill four of five learning platforms (LearningExchange, Precision LMS, Digital Guides, IoTU) and move the survivor off perpetual licenses — onto a product-led funnel where free tutorials and trainings converted learners to premium subscriptions. Research had already named the survivor: usability testing kept showing customers didn't use our product names — they called everything “PTC University.”",
+    context: "The brief said “redesign the UX.” Three weeks in the customer-success recordings said the navigation was fine — so I made the call that the contract was the broken interface: kill four of five learning platforms (LearningExchange, Precision LMS, Digital Guides, IoTU) and move the survivor off perpetual licenses — onto a product-led funnel where free tutorials and trainings converted learners to premium subscriptions. Research had already named the survivor: usability testing kept showing customers didn’t use our product names — they called everything “PTC University.”",
     fig1: {
       no: "1.1",
       label: "before — five disconnected platforms, five sign-in screens"
@@ -214,10 +214,10 @@ const NDA_CASES = [{
   title: CF.get("o2").title,
   standfirst: "Designed with one co-designer, coded by me alone — every screen of two O2 UK products on mobile web, at a scale where rounding errors have populations.",
   meta: cfMeta("o2"),
-  context: "The one move: own both sides of the handoff — design every screen with a co-designer, then code alone the front-end that ships it, so nothing is lost in translation. The cost of that scale: a rounding error has a population. The proof isn't sign-ups; it's the 2.5M who came back.",
+  context: "The one move: own both sides of the handoff — design every screen with a co-designer, then code alone the front-end that ships it, so nothing is lost in translation. The cost of that scale: a rounding error has a population. The proof isn’t sign-ups; it’s the 2.5M who came back.",
   moves: [{
     h: "MyO2 — the whole account, alone",
-    p: "O2 UK's self-service app: data and usage, the bill, a tariff change, an upgrade — the whole account without dialing anyone. A replatforming, not a fresh start: the legacy system made responsive — iOS, Android, Windows Phone, web — moved cautiously, millions of subscribers aboard, in step with Telefónica's brand and copy teams."
+    p: "O2 UK’s self-service app: data and usage, the bill, a tariff change, an upgrade — the whole account without dialing anyone. A replatforming, not a fresh start: the legacy system made responsive — iOS, Android, Windows Phone, web — moved cautiously, millions of subscribers aboard, in step with Telefónica’s brand and copy teams."
   }, {
     h: "Priority Moments — a reason to open it",
     p: "O2's loyalty programme: a geolocated list of rewards near you — Odeon, M&S, Caffè Nero — every redemption a reason to stay. Launched July 2011; 2.6M registrations in year one, 2.5M+ active. The launch figures are O2's record — I joined in 2013 and owned the reward and offer screens."
@@ -238,13 +238,13 @@ const NDA_CASES = [{
   title: CF.get("fintech").title,
   standfirst: "The LLM shipped already able to defend its own scores. Then screening sped up 60%.",
   meta: cfMeta("fintech"),
-  context: "An LLM read the deal docs and scored the risk. The first release already carried a cited source on every claim, and an abstention on thin cases — a confident hallucination nobody signs is dead on arrival. I owned product definition and the abstention and citation UX; accuracy is the ML team's result to defend. One analysis, two reading modes — a written report, or a conversation that interrogates it — over a pipeline-wide scoring dashboard.",
+  context: "An LLM read the deal docs and scored the risk. The first release already carried a cited source on every claim, and an abstention on thin cases — a confident hallucination nobody signs is dead on arrival. I owned product definition and the abstention and citation UX; accuracy is the ML team’s result to defend. One analysis, two reading modes — a written report, or a conversation that interrogates it — over a pipeline-wide scoring dashboard.",
   moves: [{
     h: "Explain before the verdict",
     p: "An “explain this score” surface: pull a rating into its signals, challenge the weighting, watch it answer — sources beside the number."
   }, {
     h: "Design the decline",
-    p: "A visible “I'm not sure about this one” state, so the model could refuse to bluff instead of guessing."
+    p: "A visible “I’m not sure about this one” state, so the model could refuse to bluff instead of guessing."
   }, {
     h: "Disagreement on record",
     p: "A logged override when the analyst disagreed — fed the next eval."
@@ -260,18 +260,18 @@ const NDA_CASES = [{
   img: "../assets/shots/adtech-planner.png",
   tag: CF.get("adtech").tag,
   title: CF.get("adtech").title,
-  standfirst: "The algorithm beat the traders, and they ignored it — until they could argue back. Every edit taught next week's calls.",
+  standfirst: "The algorithm beat the traders, and they ignored it — until they could argue back. Every edit taught next week’s calls.",
   meta: cfMeta("adtech"),
   context: "The engine beat the buyers; adoption sat near zero. I left the model and rebuilt the interface around it. Once traders acted on it: 45% less time and effort to plan and book a campaign, and 3x uplift in purchase intent with 70% audience uplift against traditional bookings.",
   moves: [{
     h: "A plan, not a pick",
-    p: "The model's raw output was a list of billboards. The screen turned it into a full campaign plan a trader could defend — never a bare list, never a bare number."
+    p: "The model’s raw output was a list of billboards. The screen turned it into a full campaign plan a trader could defend — never a bare list, never a bare number."
   }, {
     h: "KPIs on the plan itself",
     p: "Reach, estimated ROI, price trend — the case for the plan sat on the plan, checkable before anyone committed budget."
   }, {
     h: "Customization that teaches",
-    p: "Reshaping the plan took one click; every edit was logged and fed next week's recommendations. Watching their pushback land flipped fighting into coaching."
+    p: "Reshaping the plan took one click; every edit was logged and fed next week’s recommendations. Watching their pushback land flipped fighting into coaching."
   }],
   plateNo: CF.get("adtech").plateNo,
   plateCn: CF.get("adtech").provenance,
@@ -289,7 +289,7 @@ const NDA_CASES = [{
   context: "The decision: refuse every feature with a manager hiding inside it. Transparency coordinates — salaries, finances, assignments, open to all — but holds only to forty; at two hundred the hallway stops scaling. Assignment, approval, escalation were each a boss in disguise.",
   moves: [{
     h: "Read access is the feature",
-    p: "Who's on what, who's blocked, who decides — visible to everyone, always. Pull, not push. Coordination came from information, not instruction."
+    p: "Who’s on what, who’s blocked, who decides — visible to everyone, always. Pull, not push. Coordination came from information, not instruction."
   }, {
     h: "Commitments, not assignments",
     p: "People pull work and publish commitments in the open. The system tracks promises kept; it never hands out tasks."
@@ -300,7 +300,7 @@ const NDA_CASES = [{
   plateNo: CF.get("orgos").plateNo,
   plateCn: CF.get("orgos").provenance,
   ledger: CF.metrics("orgos"),
-  note: "the org's numbers, the founders' philosophy — my tooling held at scale",
+  note: "the org’s numbers, the founders' philosophy — my tooling held at scale",
   boundary: "This ran inside a company that already believed in radical transparency, with no management layer defending its own existence. In a conventional hierarchy it fails on politics long before it fails on product.",
   stamp: { t: "0 Managers", v: "ok" }
 }, {
@@ -308,9 +308,9 @@ const NDA_CASES = [{
   img: "../assets/visuals/case-vc.svg?v=3",
   tag: CF.get("vc-diligence").tag,
   title: CF.get("vc-diligence").title,
-  standfirst: "Partners bet millions on claims they'll never check. So the design made them work: no sign-off until the evidence is read.",
+  standfirst: "Partners bet millions on claims they’ll never check. So the design made them work: no sign-off until the evidence is read.",
   meta: cfMeta("vc-diligence"),
-  context: "An LLM read the code and docs. No verdict ships without a cited source (retrieval) — unaudited, it's a confident hallucination.",
+  context: "An LLM read the code and docs. No verdict ships without a cited source (retrieval) — unaudited, it’s a confident hallucination.",
   moves: [{
     h: "Score at the signal level",
     p: "Confidence carried per signal — a finding crossed into a signal only when the analysis cleared the confidence bar, each one holding the evidence behind it — never one opaque verdict."
@@ -324,7 +324,7 @@ const NDA_CASES = [{
   plateNo: CF.get("vc-diligence").plateNo,
   plateCn: CF.get("vc-diligence").provenance,
   ledger: CF.metrics("vc-diligence"),
-  note: "made the model's verdict auditable enough to bet on",
+  note: "made the model’s verdict auditable enough to bet on",
   boundary: "Deliberate friction survives only when the person clicking is personally accountable for the verdict. A user with no downside routes around it.",
   stamp: { t: "4-Day DD", v: "" }
 }, {
@@ -364,8 +364,8 @@ const PATTERN_PAGES = {
     h: "Confidence Score Patterns",
     principle: "A bare 87% leaves the user two bad options — over-trust it or ignore it. The score has to offer a third.",
     def: "How much certainty to show, in what form, and the threshold at which a number earns the right to drive a decision instead of decorating a dashboard.",
-    note: "a percentage is a feeling until it's anchored to a business action",
-    dos: ["Anchor the score to an action — act, review, or ignore — not just a bare number.", "Show the score's own track record so people can calibrate their trust.", "Round to the precision you'd be willing to defend out loud."],
+    note: "a percentage is a feeling until it’s anchored to a business action",
+    dos: ["Anchor the score to an action — act, review, or ignore — not just a bare number.", "Show the score’s own track record so people can calibrate their trust.", "Round to the precision you’d be willing to defend out loud."],
     donts: ["Render 87.3% when what you actually mean is \u201Cprobably.\u201D", "Let a high score auto-execute with no visible way to override.", "Reuse one confidence scale across decisions of wildly different stakes."],
     instTag: "AdTech · Programmatic",
     inst: /*#__PURE__*/React.createElement(React.Fragment, null, "Media buyers ignored the recommendation until the score sat beside ", /*#__PURE__*/React.createElement("span", {
@@ -386,12 +386,12 @@ const PATTERN_PAGES = {
     principle: "A model that bluffs one confident wrong answer loses the user for good. Design that moment before the happy path.",
     def: "What the screen says when the model can't deliver \u2014 and how saying it honestly makes recovery cheaper than the mistake itself.",
     note: "I design the error recovery first now",
-    dos: ["Design the wrong-answer screen before you design the happy path.", "Make recovery from a miss cheaper than the mistake itself.", "Say what the system doesn't know, plainly and early."],
+    dos: ["Design the wrong-answer screen before you design the happy path.", "Make recovery from a miss cheaper than the mistake itself.", "Say what the system doesn’t know, plainly and early."],
     donts: ["Hide uncertainty behind a confident-looking default.", "File \u201Cwhat if it's wrong\u201D as an edge case to handle later.", "Apologise for an error without offering the next step."],
     instTag: "FinTech · Due Diligence",
     inst: /*#__PURE__*/React.createElement(React.Fragment, null, "We shipped the ", /*#__PURE__*/React.createElement("span", {
       className: "bk-em"
-    }, "\u201CI'm not sure about this one\u201D"), " state first. Analysts trusted the confident answers more once they'd watched the model decline to bluff."),
+    }, "\u201CI'm not sure about this one\u201D"), " state first. Analysts trusted the confident answers more once they’d watched the model decline to bluff."),
     fig: {
       no: "3.2",
       img: "../assets/visuals/pattern-failure.svg",
@@ -405,7 +405,7 @@ const PATTERN_PAGES = {
     h: "Explainability",
     principle: "A correct answer nobody can audit loses to a gut nobody can question.",
     def: "Showing a non-technical person why the machine decided, at a depth they can use without a stats degree \u2014 the difference between obeying a score and owning the decision.",
-    note: "an output you can audit is an output you'll stand behind",
+    note: "an output you can audit is an output you’ll stand behind",
     dos: ["Show the two or three inputs that actually moved the result.", "Let the user trace from the output back to the evidence.", "Make \u201CI disagree\u201D a first-class, recorded action."],
     donts: ["Dump every feature weight on screen and call it transparency.", "Explain after the decision instead of before it.", "Mistake a tooltip for an account of the reasoning."],
     instTag: "FinTech · Due Diligence",
@@ -423,13 +423,13 @@ const PATTERN_PAGES = {
     no: "04",
     k: "loop",
     h: "Human-in-the-Loop",
-    principle: "Throw away the human's correction and the model never learns — the person just babysits it forever.",
+    principle: "Throw away the human’s correction and the model never learns — the person just babysits it forever.",
     def: "Where and how the person corrects the system \u2014 turning corrections into the training signal the next version needs, so the workflow scales without growing overhead.",
     note: "correcting the model should feel like teaching, not cleanup",
-    dos: ["Make the human's edit visibly improve the next result.", "Put the control where the decision happens, never buried in settings.", "Default to the human's last call when the stakes are high."],
+    dos: ["Make the human’s edit visibly improve the next result.", "Put the control where the decision happens, never buried in settings.", "Default to the human’s last call when the stakes are high."],
     donts: ["Ask for approval on everything until approval means nothing.", "Treat corrections as exceptions instead of as training signal.", "Make overriding feel like a fight with the product."],
     instTag: "AdTech · Programmatic",
-    inst: /*#__PURE__*/React.createElement(React.Fragment, null, "When a buyer's override visibly retrained the next week's recommendation, correcting the model ", /*#__PURE__*/React.createElement("span", {
+    inst: /*#__PURE__*/React.createElement(React.Fragment, null, "When a buyer’s override visibly retrained the next week’s recommendation, correcting the model ", /*#__PURE__*/React.createElement("span", {
       className: "bk-em"
     }, "stopped feeling like rework"), " and started feeling like teaching."),
     fig: {
@@ -443,13 +443,13 @@ const PATTERN_PAGES = {
     no: "05",
     k: "trace",
     h: "Provenance & Citations",
-    principle: "A citation you can't open is a rumour with a footnote — so the analyst re-checks it by hand anyway.",
+    principle: "A citation you can’t open is a rumour with a footnote — so the analyst re-checks it by hand anyway.",
     def: "Explainability says why the model decided; provenance says where the evidence came from — the exact source behind every claim, one click from the number to the document that produced it.",
     note: "the score and its sources travel together, or not at all",
     dos: ["Put the source next to the claim, not behind a 'details' link.", "Let a person open the original document the model read, unedited.", "Say how many sources back a number — and flag the one that disagreed."],
-    donts: ["Cite a source the user can't actually open and verify.", "Summarise the evidence so heavily that the trail goes cold.", "Reveal provenance only after the answer is challenged."],
+    donts: ["Cite a source the user can’t actually open and verify.", "Summarise the evidence so heavily that the trail goes cold.", "Reveal provenance only after the answer is challenged."],
     instTag: "VC \xB7 Technical Diligence",
-    inst: React.createElement(React.Fragment, null, "Partners signed off faster once every score carried a clean drill from summary to the source document — ", React.createElement("span", { className: "bk-em" }, "they'll stand on an extraction they can open"), ", never one they can't."),
+    inst: React.createElement(React.Fragment, null, "Partners signed off faster once every score carried a clean drill from summary to the source document — ", React.createElement("span", { className: "bk-em" }, "they’ll stand on an extraction they can open"), ", never one they can’t."),
     fig: { no: "3.5", img: "../assets/visuals/pattern-provenance.svg", label: "claim → the sources behind it" }
   },
   bounds: {
@@ -457,11 +457,11 @@ const PATTERN_PAGES = {
     no: "06",
     k: "bounds",
     h: "The Capability Contract",
-    principle: "Imply the product can do anything and it fails silently the first time it can't — taking the user's trust with it.",
-    def: "The model's promise, stated up front: what this system is for, where it taps out, and what it hands back to a human — set before the first use, not after the first complaint.",
+    principle: "Imply the product can do anything and it fails silently the first time it can’t — taking the user’s trust with it.",
+    def: "The model’s promise, stated up front: what this system is for, where it taps out, and what it hands back to a human — set before the first use, not after the first complaint.",
     note: "say where it taps out, before it taps out",
-    dos: ["State the model's limits in the interface, not just the docs.", "Hand off to a human the moment a request leaves the model's competence.", "Make the boundary specific — 'I can't price illiquid assets,' not 'results may vary.'"],
-    donts: ["Imply the product can do things it can't, then degrade silently.", "Bury scope in a terms page nobody reads.", "Treat 'out of scope' as an error instead of an honest answer."],
+    dos: ["State the model’s limits in the interface, not just the docs.", "Hand off to a human the moment a request leaves the model’s competence.", "Make the boundary specific — 'I can’t price illiquid assets,' not 'results may vary.'"],
+    donts: ["Imply the product can do things it can’t, then degrade silently.", "Bury scope in a terms page nobody reads.", "Treat 'out of scope' as an error instead of an honest answer."],
     instTag: "AdTech \xB7 Programmatic",
     inst: React.createElement(React.Fragment, null, "Each call resolved to act, review, or ignore — and ", React.createElement("span", { className: "bk-em" }, "“ignore” was the model admitting it had nothing worth saying"), ". The honest no is what made buyers believe the act."),
     fig: { no: "3.6", img: "../assets/visuals/pattern-capability.svg", label: "in-scope / out-of-scope, drawn before launch" }
@@ -473,11 +473,11 @@ const PATTERN_PAGES = {
     h: "Calibration & Track Record",
     principle: "A confident score with no track record is a stranger asking you to bet your reputation on their word.",
     def: "A confidence number is a claim; its track record is the evidence. Show whether “80% sure” has actually been right about 80% of the time — so a person learns how hard to lean, and watches that judgment improve as the history grows.",
-    note: "confidence with a memory gets acted on; confidence alone doesn't",
-    dos: ["Show the model's hit rate beside its current confidence.", "Break the record down by the kind of case, not one global average.", "Let the history update in the open, so trust is earned, not assumed."],
+    note: "confidence with a memory gets acted on; confidence alone doesn’t",
+    dos: ["Show the model’s hit rate beside its current confidence.", "Break the record down by the kind of case, not one global average.", "Let the history update in the open, so trust is earned, not assumed."],
     donts: ["Show a confidence number with no past to back it.", "Average away the cases where the model is reliably wrong.", "Reset the track record silently every time the model changes."],
     instTag: "FinTech \xB7 Due Diligence",
-    inst: React.createElement(React.Fragment, null, "Once the track record was long enough to read, the score had been right often enough that analysts ", React.createElement("span", { className: "bk-em" }, "stopped re-checking the confident calls"), ". The history earned the trust the number alone couldn't."),
+    inst: React.createElement(React.Fragment, null, "Once the track record was long enough to read, the score had been right often enough that analysts ", React.createElement("span", { className: "bk-em" }, "stopped re-checking the confident calls"), ". The history earned the trust the number alone couldn’t."),
     fig: { no: "3.7", img: "../assets/visuals/pattern-calibration.svg", label: "confidence beside its own hit rate" }
   },
   undo: {
@@ -485,13 +485,13 @@ const PATTERN_PAGES = {
     no: "08",
     k: "undo",
     h: "Reversibility",
-    principle: "When a suggestion can't be walked back, the safe move is to ignore it. Adoption stalls on fear, not accuracy.",
-    def: "Adoption stalls when acting feels risky, not when the model is wrong. Make the action cheap to undo — one click to reverse, a clear path back, no permanent damage — and people will try the recommendation they'd otherwise ignore.",
+    principle: "When a suggestion can’t be walked back, the safe move is to ignore it. Adoption stalls on fear, not accuracy.",
+    def: "Adoption stalls when acting feels risky, not when the model is wrong. Make the action cheap to undo — one click to reverse, a clear path back, no permanent damage — and people will try the recommendation they’d otherwise ignore.",
     note: "reversibility buys the first action; accuracy keeps the rest",
     dos: ["Make acting on a recommendation one click to reverse.", "Show the way back before the person commits.", "Stage risky changes so they can be halted, not just rolled back."],
     donts: ["Hide undo, or make reversing cost more than the original action.", "Make a wrong call feel permanent.", "Force an irreversible commit to get any value from the model."],
     instTag: "EdTech \xB7 PTC University",
-    inst: React.createElement(React.Fragment, null, "Retiring four products, I sequenced the shutdowns so every team ", React.createElement("span", { className: "bk-em" }, "watched their users land softly before the lights went out"), " — a migration you could halt beats a leap you can't take back."),
+    inst: React.createElement(React.Fragment, null, "Retiring four products, I sequenced the shutdowns so every team ", React.createElement("span", { className: "bk-em" }, "watched their users land softly before the lights went out"), " — a migration you could halt beats a leap you can’t take back."),
     fig: { no: "3.8", img: "../assets/visuals/pattern-reversibility.svg", label: "act → undo, one move each" }
   }
 };
@@ -1049,7 +1049,7 @@ function caseWalk(c) {
         fontStyle: "italic",
         color: "var(--bk-ink-faint)"
       }
-    }, "What you see is a reconstruction or a schematic, never a client's live screen: names and figures on it are synthetic and the client is unnamed. The moves, outcomes and principles are public; I'll walk through the real artifacts — service blueprints included — and numbers on a call under mutual NDA.") : null)
+    }, "What you see is a reconstruction or a schematic, never a client’s live screen: names and figures on it are synthetic and the client is unnamed. The moves, outcomes and principles are public; I’ll walk through the real artifacts — service blueprints included — and numbers on a call under mutual NDA.") : null)
   };
 }
 
@@ -1070,7 +1070,7 @@ function GaugeDemo() {
   }, {
     k: "High",
     verb: "Hand to a human",
-    sub: "87% isn't enough when the downside is real.",
+    sub: "87% isn’t enough when the downside is real.",
     cls: "ignore"
   }];
   const m = MAP[stake];
@@ -1106,13 +1106,13 @@ function AlertDemo() {
   const h = React.createElement;
   const [ok, setOk] = React.useState(false);
   return h("div", { className: "bk-demo" },
-    h("div", { className: "bk-demo__lead" }, "Tap to see it deliver — or admit it can't"),
+    h("div", { className: "bk-demo__lead" }, "Tap to see it deliver — or admit it can’t"),
     h("div", { className: "bk-demo__seg", role: "group", "aria-label": "Model state" },
       h("button", { type: "button", className: "bk-demo__seg-btn" + (ok ? " is-on" : ""), onClick: () => setOk(true), "aria-pressed": ok }, "Confident"),
       h("button", { type: "button", className: "bk-demo__seg-btn" + (!ok ? " is-on" : ""), onClick: () => setOk(false), "aria-pressed": !ok }, "Unsure")),
     h("div", { className: "bk-demo__verdict" + (ok ? " bk-demo__verdict--act" : "") },
-      h("span", { className: "bk-demo__verb" }, ok ? "Risk 7.2 / 10" : "“I can't price this one.”"),
-      h("span", { className: "bk-demo__sub" }, ok ? "Confident read — here's the breakdown." : "Illiquid asset — handing you to a human →")));
+      h("span", { className: "bk-demo__verb" }, ok ? "Risk 7.2 / 10" : "“I can’t price this one.”"),
+      h("span", { className: "bk-demo__sub" }, ok ? "Confident read — here’s the breakdown." : "Illiquid asset — handing you to a human →")));
 }
 
 /* Field Guide — Explainability: tap to unfold the reasons behind the number */
@@ -1137,8 +1137,8 @@ function LoopDemo() {
   return h("div", { className: "bk-demo" },
     h("div", { className: "bk-demo__lead" }, "Correcting it should feel like teaching"),
     h("div", { className: "bk-demo__verdict" + (done ? " bk-demo__verdict--act" : "") },
-      h("span", { className: "bk-demo__verb" }, done ? "Noted — you're teaching it" : "Recommend: raise bid 12%"),
-      h("span", { className: "bk-demo__sub" }, done ? "Next week's model retrains on your call →" : "Not sure the model's right?")),
+      h("span", { className: "bk-demo__verb" }, done ? "Noted — you’re teaching it" : "Recommend: raise bid 12%"),
+      h("span", { className: "bk-demo__sub" }, done ? "Next week’s model retrains on your call →" : "Not sure the model’s right?")),
     h("button", { type: "button", className: "bk-demo__btn", onClick: () => setDone(!done) }, done ? "↺ start over" : "I disagree"));
 }
 
@@ -1154,7 +1154,7 @@ function TraceDemo() {
     open && h("ul", { className: "bk-demo__panel bk-demo__panel--src" },
       h("li", null, "Cap table · row 14 ↗"),
       h("li", null, "Board deck Q3 · p. 8 ↗"),
-      h("li", null, "Auditor's note · §2.1 ↗")));
+      h("li", null, "Auditor’s note · §2.1 ↗")));
 }
 
 /* Field Guide — Capability Contract: switch between what it does and what it declines */
@@ -1196,7 +1196,7 @@ function UndoDemo() {
       h("button", { type: "button", className: "bk-demo__seg-btn" + (!safe ? " is-on" : ""), onClick: () => setSafe(false), "aria-pressed": !safe }, "No way back")),
     h("div", { className: "bk-demo__verdict" + (safe ? " bk-demo__verdict--act" : "") },
       h("span", { className: "bk-demo__verb" }, safe ? "Act now — undo anytime" : "Act now — permanent"),
-      h("span", { className: "bk-demo__sub" }, safe ? "Cheap to walk back, so people try it." : "Feels risky — so most won't act at all.")));
+      h("span", { className: "bk-demo__sub" }, safe ? "Cheap to walk back, so people try it." : "Feels risky — so most won’t act at all.")));
 }
 
 function patternSpread(p) {
@@ -1293,7 +1293,7 @@ function ContactForm() {
     type: "url",
     id: "bk-product",
     name: "product",
-    placeholder: "https://… the role you're hiring for",
+    placeholder: "https://… the role you’re hiring for",
     value: product,
     onChange: e => setProduct(e.target.value)
   }), error ? /*#__PURE__*/React.createElement("p", {
@@ -1351,7 +1351,7 @@ function buildBook(ctx) {
   }, {
     n: "V",
     name: "Contact",
-    sub: "Write to me — let's talk",
+    sub: "Write to me — let’s talk",
     pg: "p. 10",
     to: 8
   }];
@@ -1505,9 +1505,9 @@ function buildBook(ctx) {
       style: {
         marginTop: 0
       }
-    }, "Hire me and week one looks like this: reading eval results before opening a design file, sitting silent on customer calls, writing the diagnosis nobody assigned. The best call in an AI product is rarely the interface — it's ", /*#__PURE__*/React.createElement("span", {
+    }, "Hire me and week one looks like this: reading eval results before opening a design file, sitting silent on customer calls, writing the diagnosis nobody assigned. The best call in an AI product is rarely the interface — it’s ", /*#__PURE__*/React.createElement("span", {
       className: "bk-mark"
-    }, "what the system admits it doesn't know"), "."), /*#__PURE__*/React.createElement("div", {
+    }, "what the system admits it doesn’t know"), "."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
         marginTop: 20
