@@ -1619,11 +1619,18 @@ html[data-theme="ember"] body[class*="p-case-studies"] .fig-paper figcaption{tex
    no element on any page carrying body.p-patterns and were dead the day they were written.
    The survivor is keyed on a class that NAMES THE SURFACE rather than on an extracted id, so
    the theme-remnant gate can see it is paper too (its exempt list already matches "paper"). */
-/* ...and the media query was right too. Restoring the rule unconditionally moved the failure
-   rather than fixing it: at 768px the pixels under this glyph are #160E14, and the paper gold
-   read 3.03:1 there. The card IS paper above 861 and IS the dark page below it. Same label,
-   two grounds, two inks — measured from painted pixels at both, 2026-08-17. */
-@media (min-width:861px){html[data-theme="ember"] body.p-patterns .is-paper .lbl-eyebrow{color:#7E5A14}}
+/* RETIRED 2026-08-30. The rule above was correct when written: above 861px the pixels under
+   this glyph really were cream #F4ECDA, so the label needed the paper gold. That premise has
+   since expired — .is-paper on this card is now a 4% gold tint
+   (color(srgb 0.494 0.353 0.078 / 0.04)) over the dark page, so the painted ground is #160E14
+   at EVERY width. Measured at 390/768/860/861/1024/1280/1440: below 861 the amber #FFC46B
+   gives 12.07:1; at and above it the paper gold gave 3.03:1 against a 4.5 floor.
+   Deleting the override restores the amber everywhere, re-measured at 12.07:1.
+   Why nobody saw it: this label sits below the fold, and until today contrast-audit measured
+   only the first screenful — 33 of 231 nodes on the homepage — so the whole lower page was
+   reported as "UNKNOWN, not passing" beside a "0 failures" verdict.
+   The lesson from 2026-08-17 still stands, with a date on it: a correction is only as good as
+   the ground it was measured against, and grounds change. */
 html[data-theme="ember"] body.p-lab #design-system .lab-code{margin-top:20px}
 /* ============================================================================
    LAB · DESIGN SYSTEM SPECIMEN (2026-08-17)

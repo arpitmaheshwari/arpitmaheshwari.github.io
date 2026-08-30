@@ -81,7 +81,15 @@ CANARY_HTML = (
 # beat a zero-specificity hide rule — text polluted its own background samples and six
 # phantom contrast failures appeared on elements that render identically; measured 2026-08-13).
 HIDE_TEXT_CSS = (":root *{color:transparent!important;text-shadow:none!important;"
-                 "text-decoration-color:transparent!important;caret-color:transparent!important}")
+                 "text-decoration-color:transparent!important;caret-color:transparent!important}"
+                 # SVG <text> is painted by `fill`, NOT by `color`, so the rule above left every
+                 # label inside an inlined diagram STILL DRAWN in the background pass — and the
+                 # tool then sampled the glyph as if it were its own ground. On ptc.html that read
+                 # the label 'IoTU' as #2C2722 on #5A544B (1.97:1, a failure) when the tile behind
+                 # it is cream #EEE4CE and the true ratio is about 11:1. Every SVG label on the
+                 # site was measured this way. Scoped to text/tspan: filling the SHAPES would
+                 # erase the very background we are trying to photograph.
+                 ":root svg text,:root svg tspan{fill:transparent!important}")
 
 # --------------------------------------------------------------------- colour
 
@@ -398,10 +406,17 @@ def audit(url, width, exempt=None, canary=False, force_visible=None):
                          "unmeasurable": e["unmeasurable"]})
             continue
         x, y, w, h = e["r"]
+        # DENSITY SCALES WITH THE BOX. A fixed 5x3 grid is 15 samples, which on a short label
+        # ('IoTU', 24x13px) lands mostly ON the glyph and its antialiased edge, so the winning
+        # bucket was edge-blend #5A544B instead of the cream tile #EEE4CE underneath — a
+        # 1.97:1 false failure on text that really runs about 11:1.
+        cols = max(5, min(17, int(w / 6) or 5))
+        rows_n = max(3, min(9, int(h / 4) or 3))
         pts = []
-        for i in range(1, 6):
-            for j in range(1, 4):
-                px, py = int((x + w * i / 6.0) * sx), int((y + h * j / 4.0) * sx)
+        for i in range(1, cols + 1):
+            for j in range(1, rows_n + 1):
+                px = int((x + w * i / (cols + 1.0)) * sx)
+                py = int((y + h * j / (rows_n + 1.0)) * sx)
                 if 0 <= px < im.width and 0 <= py < im.height:
                     pts.append(im.getpixel((px, py)))
         if not pts:
@@ -427,13 +442,22 @@ def audit(url, width, exempt=None, canary=False, force_visible=None):
         # the honest estimator: on any solid ground most sampled pixels ARE the ground, and
         # the glyph pixels are the minority that the mean was quietly folding in.
         # Quantised to 8 levels per channel first, so antialiased near-matches count together.
+        fg, alpha = parse_rgb(e["color"])
+        # The GROUND is the mode of the pixels that are NOT the ink. Glyph and antialiased
+        # edge pixels are a systematic contaminant, not noise, so dropping the ones close to
+        # the known ink removes them by construction instead of hoping the mode outvotes them.
+        # If almost every sample is ink-like there is no ground to find and the text really IS
+        # low-contrast — so fall back to all samples rather than discard the evidence.
+        near_ink = lambda p: sum(abs(int(p[k]) - int(fg[k])) for k in range(3)) < 60
+        ground_pts = [p for p in pts if not near_ink(p)]
+        if len(ground_pts) < max(3, len(pts) // 4):
+            ground_pts = pts
         buckets = {}
-        for pnt in pts:
+        for pnt in ground_pts:
             key = tuple(v // 32 for v in pnt)
             buckets.setdefault(key, []).append(pnt)
         winner = max(buckets.values(), key=len)
         bgc = tuple(sum(p[k] for p in winner) // len(winner) for k in range(3))
-        fg, alpha = parse_rgb(e["color"])
         if alpha < 1:
             fg = tuple(int(round(f * alpha + b * (1 - alpha))) for f, b in zip(fg, bgc))
         need = required_ratio(e["size"], e["wt"])
