@@ -10,6 +10,15 @@ the layout fixed. Whitespace is designed or it is a defect; this measures it.
 
 Method: for each page, take the body paragraphs, and compare the median gap
 from the viewport's left edge to the median gap on the right. A difference
+
+# Guarantee the server these gates assume. Every one of them hard-codes
+# http://localhost:8000 and none checked it was there; when it was not, they did not report
+# "no server", they reported findings (see cdp.ensure_server). Idempotent: reuses a server
+# that is already listening, so a dev server is never disturbed or double-bound.
+import sys as _s, os as _o
+_s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__)))
+import cdp as _cdp
+_cdp.ensure_server(8000)
 beyond TOL means the reading column is not centred in the space it occupies.
 Self-calibrating: plants a one-sided margin and requires the check to go red.
 """

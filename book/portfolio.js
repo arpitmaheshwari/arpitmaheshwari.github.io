@@ -102,7 +102,7 @@ const WRITING = [{
 }, {
   d: "2026 · Field note",
   h: "The AI Fight Club",
-  p: "Weaponising Claude and Gemini for Bulletproof Products. A practical method for stress-testing AI interfaces."
+  p: "Weaponizing Claude and Gemini for Bulletproof Products. A practical method for stress-testing AI interfaces."
 }, {
   d: "2026 · Essay",
   h: "The New Renaissance",

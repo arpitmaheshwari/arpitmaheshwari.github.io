@@ -46,6 +46,15 @@ REQUIREMENTS  Google Chrome (or set $CHROME), Pillow, pages served over http(s),
 EXIT CODE     0 = calibrated and clean · 1 = failures found, or calibration did not go red.
 """
 import argparse, json, html, math, re, os, subprocess, sys, tempfile
+
+# Guarantee the server these gates assume. Every one of them hard-codes
+# http://localhost:8000 and none checked it was there; when it was not, they did not report
+# "no server", they reported findings (see cdp.ensure_server). Idempotent: reuses a server
+# that is already listening, so a dev server is never disturbed or double-bound.
+import sys as _s, os as _o
+_s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__)))
+import cdp as _cdp
+_cdp.ensure_server(8000)
 # Trackers are refused for every browser this repo drives — see cdp.py.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from cdp import NO_TRACKING_FLAG

@@ -2095,6 +2095,17 @@ html[data-theme="ember"] .section-title{line-height:1.15}
   html[data-theme="ember"] body.p-home :is(.receipts,.work,.who,.whoband,.contract,.labrow,.voices){
     padding-top:var(--section-y);padding-bottom:var(--section-y)}
 }
+
+
+/* The standalone arrow-CTA link row, off the homepage. Its grammar — 11.5px, uppercase,
+   .12em — lived ONLY on `body.p-home .contract-links`, so the same component on any other
+   page fell back to 16px body text in sentence case. process/index.html therefore shipped
+   three CTAs at 12px built out of .lbl-eyebrow (an EYEBROW class doing a CTA's job), which
+   cta-grammar-check flagged as off-grammar. That gate could never run without someone
+   manually starting a server on :8000, so nobody saw it.
+   The grammar now belongs to the component, not to one page. Layout (gap, margin) stays
+   per-page: a row under a rule and a row inside the hero want different spacing. */
+html[data-theme="ember"] .contract-links{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
 }
 
 /* ---------- work-grid tier (2026-08-29, Arpit's pick: headliners + index cards).

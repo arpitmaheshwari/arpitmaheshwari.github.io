@@ -40,6 +40,15 @@ EXIT CODE   0 = calibrated and clean · 1 = broken assets found, or calibration 
 import argparse, html, json, os, re, subprocess, sys, tempfile
 import xml.etree.ElementTree as ET
 from urllib.parse import urlsplit
+
+# Guarantee the server these gates assume. Every one of them hard-codes
+# http://localhost:8000 and none checked it was there; when it was not, they did not report
+# "no server", they reported findings (see cdp.ensure_server). Idempotent: reuses a server
+# that is already listening, so a dev server is never disturbed or double-bound.
+import sys as _s, os as _o
+_s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__)))
+import cdp as _cdp
+_cdp.ensure_server(8000)
 # Trackers are refused for every browser this repo drives — see cdp.py.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from cdp import NO_TRACKING_FLAG

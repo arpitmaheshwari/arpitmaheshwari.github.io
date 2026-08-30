@@ -21,6 +21,15 @@ WHAT IT STRUCTURALLY CANNOT SEE
 import os, re, sys, argparse
 from urllib.parse import urlsplit, unquote
 
+# Guarantee the server these gates assume. Every one of them hard-codes
+# http://localhost:8000 and none checked it was there; when it was not, they did not report
+# "no server", they reported findings (see cdp.ensure_server). Idempotent: reuses a server
+# that is already listening, so a dev server is never disturbed or double-bound.
+import sys as _s, os as _o
+_s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__)))
+import cdp as _cdp
+_cdp.ensure_server(8000)
+
 SCAN_EXT = {".html", ".css", ".js", ".json", ".txt", ".xml", ".md", ".svg"}
 ASSET_EXT = {".png", ".jpg", ".jpeg", ".svg", ".webp", ".avif", ".gif", ".ico",
              ".woff", ".woff2", ".ttf", ".otf", ".mp4", ".webm", ".pdf", ".js", ".css"}
