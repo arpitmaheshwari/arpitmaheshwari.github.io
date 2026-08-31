@@ -375,6 +375,18 @@ def audit(url, width, exempt=None, canary=False, force_visible=None):
                 "catch(e){}})();"
                 "await Promise.race([settled,deadline]);})()", await_promise=True)
         br.pump(0.6)
+        # LAZY IMAGES GROW THE PAGE MID-CAPTURE (2026-08-31). Rects are collected at
+        # scroll 0, where below-fold loading=lazy images have unloaded slots; the
+        # full-page capture then renders the whole document, the images load, the
+        # page grows, and every rect below them points at the wrong pixels — six
+        # phantom ~1.0:1 failures on ptc@390. Layout must be FINAL before anything
+        # is measured: eager-load and decode every image, bounded by a deadline.
+        br.eval("(async()=>{const dl=new Promise(r=>setTimeout(r,4000));"
+                "const work=Promise.all([].slice.call(document.images).map(i=>{"
+                "try{i.loading='eager';}catch(e){}"
+                "return (i.decode?i.decode():Promise.resolve()).catch(()=>0);}));"
+                "await Promise.race([work,dl]);})()", await_promise=True)
+        br.pump(0.4)
         br.eval("window.scrollTo(0,0)")          # rects are then document coordinates
         data = br.eval_json(collect_js(exempt))
         if not data or not data.get("els"):
@@ -386,8 +398,61 @@ def audit(url, width, exempt=None, canary=False, force_visible=None):
         br.eval("(function(){var st=document.createElement('style');st.textContent=%s;"
                 "document.head.appendChild(st);})()" % json.dumps(HIDE_TEXT_CSS))
         br.pump(0.35)
+
+        # ALIGNMENT BEACONS (2026-08-31). captureBeyondViewport resizes the render
+        # surface, and on some pages that RELAYOUTS the document: ptc@390 photographed
+        # ~780px higher than its measured rects, so dark-section text sampled the cream
+        # plates above it — six phantom ~1.0:1 failures for sections that render
+        # perfectly. Geometry (page px == image px) cannot catch this: the heights
+        # matched while the CONTENT moved. So the image itself must prove alignment:
+        # three 6px magenta beacons pinned in document coordinates; if any beacon is
+        # not where the rects say it is, the fast capture is a lie for THIS page and
+        # the tiled capture below replaces it.
+        beacon_ys = [max(0, int(full * f)) for f in (0.08, 0.5, 0.92)]
+        br.eval("(function(ys){var w=document.createElement('div');w.id='__ca_beacons';"
+                "ys.forEach(function(y){var b=document.createElement('div');"
+                "b.style.cssText='position:absolute;left:2px;top:'+y+'px;width:6px;height:6px;"
+                "background:#FF00FE;z-index:2147483647;pointer-events:none';w.appendChild(b);});"
+                "document.body.appendChild(w);})(%s)" % json.dumps(beacon_ys))
+        br.pump(0.2)
         shot = br.cmd("Page.captureScreenshot", format="png", captureBeyondViewport=True)
         im = Image.open(_io.BytesIO(base64.b64decode(shot["data"]))).convert("RGB")
+        sx = im.width / float(width)
+
+        def beacon_ok(img):
+            for by in beacon_ys:
+                py = int((by + 3) * sx)
+                if py >= img.height: return False
+                p = img.getpixel((int(5 * sx), py))
+                if not (p[0] > 200 and p[1] < 90 and p[2] > 200):
+                    return False
+            return True
+
+        if not beacon_ok(im):
+            # CLIP-TILED CAPTURE (2026-08-31). The single beyond-viewport capture WRAPS
+            # past Chrome's 16384px texture cap: capture row y > 16384 shows the page's
+            # content from y-16384 — ptc@390 photographed its own verdict slip again at
+            # ~18.6k, and dark-section text sampled cream. Measured, not guessed: the
+            # slip (DOM y 1931) was found at capture y ≈ 18.5k, offset exactly the cap.
+            # A body-transform tiling was tried first and carries its own ~150px error
+            # (sticky/fixed interplay); a CLIP capture, by contrast, was verified
+            # pixel-exact past the cap (the pill's gradient sampled correctly at
+            # y=19,146). So: stitch clip captures in segments comfortably under the cap.
+            SEG = 8000
+            stitched = Image.new("RGB", (int(width * sx), int(full * sx)))
+            off = 0
+            while off < full:
+                seg_h = min(SEG, full - off)
+                tshot = br.cmd("Page.captureScreenshot", format="png",
+                               captureBeyondViewport=True,
+                               clip={"x": 0, "y": off, "width": width, "height": seg_h, "scale": 1})
+                tim = Image.open(_io.BytesIO(base64.b64decode(tshot["data"]))).convert("RGB")
+                stitched.paste(tim, (0, int(off * sx)))
+                off += seg_h
+            if beacon_ok(stitched):
+                im = stitched
+            # else: keep the fast capture; the drop-guard below will speak for what
+            # cannot be trusted rather than silently measuring garbage.
 
     sx = im.width / float(width)
     rows = []
