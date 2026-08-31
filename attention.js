@@ -176,3 +176,81 @@ document.addEventListener('click', function (e) {
     if (was) { v.play(); } else { v.pause(); }
   }, 60);
 });
+
+/* ── THE DOUBT RING (2026-08-31, Arpit's pick: memorability direction D1) ──
+   Every door grows a thin ring under the cursor that fills over exactly 500ms
+   — the half-second of doubt, happening to the visitor. Ambient only: nothing
+   is delayed, blocked, or intercepted. Guarded off for reduced-motion and for
+   touch (no hover to measure). One ring element, reused; rAF-driven. */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  var DOORS = '.lane,.idx,.hd-preset,.thought-card,.lab-card,a.card-p28,a.card-p32';
+  var HALF = 500; // the whole job, in milliseconds
+  var CIRC = 2 * Math.PI * 15; // r=15 ring
+
+  var el = null, arc = null, lbl = null, raf = 0, t0 = 0, cur = null, mx = 0, my = 0;
+
+  function build() {
+    el = document.createElement('div');
+    el.id = 'doubt-ring';
+    el.setAttribute('aria-hidden', 'true');
+    el.style.cssText = 'position:fixed;z-index:2147483600;pointer-events:none;opacity:0;transition:opacity .15s';
+    el.innerHTML =
+      '<svg width="40" height="40" viewBox="0 0 40 40" style="display:block;transform:translate(-50%,-50%)">' +
+      '<circle cx="20" cy="20" r="15" fill="none" stroke="rgba(245,237,230,.18)" stroke-width="2"/>' +
+      '<circle class="dr-arc" cx="20" cy="20" r="15" fill="none" stroke="#FFC46B" stroke-width="2" ' +
+      'stroke-linecap="round" stroke-dasharray="' + CIRC + '" stroke-dashoffset="' + CIRC + '" transform="rotate(-90 20 20)"/>' +
+      '</svg>' +
+      '<span class="dr-lbl" style="position:absolute;left:16px;top:-30px;white-space:nowrap;' +
+      'font:500 10px/1 \'JetBrains Mono\',monospace;letter-spacing:.1em;color:#FFC46B;opacity:0;transition:opacity .12s"></span>';
+    document.body.appendChild(el);
+    arc = el.querySelector('.dr-arc');
+    lbl = el.querySelector('.dr-lbl');
+  }
+
+  function place() { el.style.left = mx + 'px'; el.style.top = my + 'px'; }
+
+  function tick(now) {
+    var p = Math.min(1, (now - t0) / HALF);
+    arc.style.strokeDashoffset = String(CIRC * (1 - p));
+    if (now - t0 > 140) lbl.style.opacity = '1'; // no flicker on drive-by hovers
+    if (p < 1) {
+      lbl.textContent = (p * 0.5).toFixed(2) + ' s — deciding…';
+      raf = requestAnimationFrame(tick);
+    } else {
+      lbl.textContent = '0.50 s — committed';
+      arc.style.stroke = '#7FCF9E';
+    }
+  }
+
+  function start() {
+    if (!el) build();
+    place();
+    el.style.opacity = '1';
+    lbl.style.opacity = '0';
+    arc.style.stroke = '#FFC46B';
+    arc.style.strokeDashoffset = String(CIRC);
+    t0 = performance.now();
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(tick);
+  }
+
+  function stop() {
+    cur = null;
+    cancelAnimationFrame(raf);
+    if (el) { el.style.opacity = '0'; lbl.style.opacity = '0'; }
+  }
+
+  document.addEventListener('mousemove', function (e) {
+    mx = e.clientX; my = e.clientY;
+    var d = e.target && e.target.closest ? e.target.closest(DOORS) : null;
+    if (d && d !== cur) { cur = d; start(); }
+    else if (!d && cur) { stop(); }
+    else if (d && el) { place(); }
+  }, { passive: true });
+
+  document.addEventListener('click', stop, true);
+  window.addEventListener('scroll', stop, { passive: true });
+})();

@@ -2363,3 +2363,28 @@ html[data-theme="ember"] body.p-home .cta-status i{width:8px;height:8px;border-r
 /* route links speak the house CTA grammar (the wrap into .hd-route made them
    standalone arrow-CTAs — the census flags any second dialect) */
 html[data-theme="ember"] body.p-home .hd-route a{font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--violet)}
+
+/* ============================================================
+   THE CHANT (D3, 2026-08-31 — Arpit's pick, paired with the doubt
+   ring). Four commandments, one per act, in the act accents; the
+   homepage gets the four-column band, every other page one line.
+   ============================================================ */
+html[data-theme="ember"] .chant{border-top:1px solid var(--border);background:var(--bg-soft,#1B1320)}
+html[data-theme="ember"] .chant-in{max-width:1160px;margin:0 auto;padding:64px 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+html[data-theme="ember"] .chant .cl{font-family:var(--serif);font-weight:300;font-size:clamp(22px,2.2vw,30px);line-height:1.2;letter-spacing:-.01em;color:var(--ink)}
+html[data-theme="ember"] .chant .cl b{display:block;font-family:var(--mono),monospace;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
+html[data-theme="ember"] .chant .cl-1 b{color:#FF8A5C}
+html[data-theme="ember"] .chant .cl-2 b{color:var(--violet)}
+html[data-theme="ember"] .chant .cl-3 b{color:var(--amber)}
+html[data-theme="ember"] .chant .cl-4 b{color:var(--rose)}
+/* the one-line edition for subpages */
+html[data-theme="ember"] .chant-line{background:none}
+html[data-theme="ember"] .chant-line p{max-width:1160px;margin:0 auto;padding:24px 40px;font-family:var(--serif);font-weight:300;font-style:italic;font-size:16px;letter-spacing:.01em;color:var(--ink-muted);text-align:center}
+html[data-theme="ember"] .chant-line .cw-1{color:#FF8A5C}
+html[data-theme="ember"] .chant-line .cw-2{color:var(--violet)}
+html[data-theme="ember"] .chant-line .cw-3{color:var(--amber)}
+html[data-theme="ember"] .chant-line .cw-4{color:var(--rose)}
+@media (max-width:900px){html[data-theme="ember"] .chant-in{grid-template-columns:1fr 1fr;gap:24px;padding:48px 24px}}
+@media (max-width:520px){html[data-theme="ember"] .chant-in{grid-template-columns:1fr}}
+/* the homepage closes with the four-column band instead — the partial's line yields */
+html[data-theme="ember"] body.p-home .chant-line{display:none}
