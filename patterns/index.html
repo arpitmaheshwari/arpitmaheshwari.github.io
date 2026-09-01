@@ -64,7 +64,7 @@
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../styles.css?v=4c0b4694">
-<link rel="stylesheet" href="../ember.css?v=5250f589">
+<link rel="stylesheet" href="../ember.css?v=3342cc3a">
 </head>
 <body class="p-patterns">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -84,20 +84,26 @@
 
 <div class="xi-patterns-004">
   <div class="xi-patterns-005">
+  <!-- hero recomposed 2026-09-01: two columns — the claim on the left, the problem-router on
+       the right as the page's front door. The router routes INTO this library (pattern pages),
+       not away to case studies: on /patterns its reader is a builder with a named problem. -->
+  <div class="pat-hero">
+  <div class="pat-hero-l">
     <p class="eyebrow xi-patterns-006">The Field Guide to Trust</p>
     <h1 class="t-hero xi-patterns-007">AI design patterns that ran in production</h1>
     <p class="lead xi-patterns-008">A working system for trusting and governing AI agents. Everything in it ran in production, failed somewhere specific, and came back stronger — the tradeoffs are written down because I paid for them once already.</p>
-
-  <!-- the problem-router, relocated from the hero (2026-09-01): its audience — a builder with a named problem — lives on this page -->
+    <p class="hand hand-note" aria-hidden="true">shipped, broke, fixed — in that order</p>
+    <p class="lbl-cap xi-patterns-010">Library v1.1 · the rule + 8 patterns · last updated June 2026 · free to use, attribution appreciated</p>
+  </div>
   <div class="pat-diag"><div class="hero-demo" role="group" aria-label="Try it: where does your AI product lose people?">
     <div class="hd-tag"><img class="hd-face" src="../arpit-maheshwari.jpg" alt="Arpit Maheshwari" width="34" height="34" loading="eager"><span>Building AI? &mdash; name your problem</span></div>
     <div class="hd-card">
       <div id="hd-diag">
         <p class="hd-diag-q">Where does your AI product lose people?</p>
         <div class="hd-presets">
-          <a href="../case-studies/adtech.html" class="hd-preset" data-i="0"><span>01</span>Users ignore our recommendations.</a>
-          <a href="../case-studies/fintech.html" class="hd-preset" data-i="1"><span>02</span>Great accuracy, low adoption.</a>
-          <a href="../case-studies/adtech.html" class="hd-preset" data-i="2"><span>03</span>They override the model every time.</a>
+          <a href="./ml-explainability.html" class="hd-preset" data-i="0"><span>01</span>Users ignore our recommendations.</a>
+          <a href="./provenance-citations.html" class="hd-preset" data-i="1"><span>02</span>Great accuracy, low adoption.</a>
+          <a href="./human-in-loop.html" class="hd-preset" data-i="2"><span>03</span>They override the model every time.</a>
           <a href="./act-review-ignore.html" class="hd-preset" data-i="3"><span>04</span>Nobody trusts the score.</a>
         </div>
         <p class="hd-route"><a class="xi-home-020" href="../index.html#featured-case-studies" data-cta="skip-diagnostic" data-location="hero-diagnostic">Hiring? See the strongest work &rarr;</a> <a class="xi-home-020" href="../fit/" data-cta="fit-check" data-location="hero-diagnostic">or paste the role into the fit check &rarr;</a></p>
@@ -107,28 +113,23 @@
         <p class="hd-said" id="hd-said"></p>
         <div class="hd-rule" aria-hidden="true"></div>
         <p class="hd-reframe" id="hd-reframe"></p>
-        <a id="hd-case" class="hd-case-btn" href="../index.html#featured-case-studies" data-cta="diag-case" data-location="hero-diagnostic">See how I fixed it <svg class="icon xi-home-021" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        <a id="hd-case" class="hd-case-btn" href="./act-review-ignore.html" data-cta="diag-case" data-location="hero-diagnostic">Read the pattern <svg class="icon xi-home-021" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
         <button type="button" class="hd-reset" id="hd-reset">↩ try another</button>
       </div>
     </div>
   </div></div>
-    <p class="hand hand-note" aria-hidden="true">shipped, broke, fixed — in that order</p>
-    <p class="lbl-cap xi-patterns-010">Library v1.1 · the rule + 8 patterns · last updated June 2026 · free to use, attribution appreciated</p>
+  </div>
   </div>
 </div>
 
 <main id="main" class="section page-bg"><div class="section-inner">
 
   <a class="xi-patterns-012 hv-patterns-1 is-paper" href="./act-review-ignore.html">
-    <svg id="art-index-1" class="framed-blk xi-patterns-013 art-svg" data-art-scoped viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+    <svg id="art-index-1" class="framed-blk xi-patterns-013 art-svg" data-art-scoped viewBox="0 126 1280 262" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
   <title id="t">The Act / Review / Ignore rule</title>
   <desc id="d">Three model scores — ninety-two, sixty-one and twenty-three — each resolving to exactly one verb: act with a visible override, review with the reasons named, or ignore where the model declines to bluff.</desc>
   <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
 
-  <!-- Title block -->
-  <text x="36" y="74" font-family="'Source Serif 4', Georgia, serif" font-size="40" font-weight="bold" fill="#2C2620">The Act / Review / Ignore Rule</text>
-  <text x="36" y="106" font-family="'Source Sans 3', system-ui, sans-serif" font-size="19" fill="#2C2722">One score, one action &#8212; a number never reaches the screen alone.</text>
-  <line x1="36" y1="126" x2="1244" y2="126" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
 
   <!-- ===== ACT ===== -->
   <g transform="translate(40,150)">
@@ -174,9 +175,66 @@
     </div>
   </a>
 
+
+  <div class="pat-grid-hd">
+    <div class="eyebrow xi-patterns-014">The library</div>
+    <h2 class="section-title xi-patterns-015">Eight patterns in service of the rule</h2>
+  </div>
+
+  <div class="philosophy-cards xi-patterns-019">
+    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./confidence-scores.html">
+      <span class="pat-n" aria-hidden="true">01</span>
+      <h2 class="card-title xi-patterns-014">Confidence Score Patterns</h2>
+      <p class="t-ui-muted xi-patterns-021">A score earns its pixels only when it resolves to a verb.</p>
+      <div class="lbl-cap">from AdTech + FinTech · May 2026</div>
+    </a>
+    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./ai-failure-states.html">
+      <span class="pat-n" aria-hidden="true">02</span>
+      <h2 class="card-title xi-patterns-014">AI Failure States</h2>
+      <p class="t-ui-muted xi-patterns-021">Users forgive a model for being wrong. They never forgive it for bluffing.</p>
+      <div class="lbl-cap">from AdTech + Org Design · May 2026</div>
+    </a>
+    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./ml-explainability.html">
+      <span class="pat-n" aria-hidden="true">03</span>
+      <h2 class="card-title xi-patterns-014">ML Explainability</h2>
+      <p class="t-ui-muted xi-patterns-021">A recommendation you can trace, you&rsquo;ll defend. One you can&rsquo;t, you&rsquo;ll quietly rebuild around.</p>
+      <div class="lbl-cap">from FinTech + AdTech · May 2026</div>
+    </a>
+    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./human-in-loop.html">
+      <span class="pat-n" aria-hidden="true">04</span>
+      <h2 class="card-title xi-patterns-014">Human-in-Loop Patterns</h2>
+      <p class="t-ui-muted xi-patterns-021">An override is not defiance. It is the training data the next version needs.</p>
+      <div class="lbl-cap">from FinTech + AdTech + Org Design · May 2026</div>
+    </a>
+    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./provenance-citations.html">
+      <span class="pat-n" aria-hidden="true">05</span>
+      <h2 class="card-title xi-patterns-014">Provenance &amp; Citations</h2>
+      <p class="t-ui-muted xi-patterns-021">A claim with its source beside it is evidence. The same claim without one is prose.</p>
+      <div class="lbl-cap">from VC + FinTech · June 2026</div>
+    </a>
+    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./capability-contract.html">
+      <span class="pat-n" aria-hidden="true">06</span>
+      <h2 class="card-title xi-patterns-014">The Capability Contract</h2>
+      <p class="t-ui-muted xi-patterns-021">The honest &ldquo;no&rdquo; is what makes the confident answer believable.</p>
+      <div class="lbl-cap">from AdTech + FinTech · June 2026</div>
+    </a>
+    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./calibration-track-record.html">
+      <span class="pat-n" aria-hidden="true">07</span>
+      <h2 class="card-title xi-patterns-014">Calibration &amp; Track Record</h2>
+      <p class="t-ui-muted xi-patterns-021">&ldquo;80% sure&rdquo; is a promise. Show whether it has been kept.</p>
+      <div class="lbl-cap">from AdTech + FinTech · June 2026</div>
+    </a>
+    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./reversibility-safe-to-act.html">
+      <span class="pat-n" aria-hidden="true">08</span>
+      <h2 class="card-title xi-patterns-014">Reversibility</h2>
+      <p class="t-ui-muted xi-patterns-021">People don&rsquo;t act when the model is right. They act when being wrong is cheap.</p>
+      <div class="lbl-cap">from EdTech + AdTech · June 2026</div>
+    </a>
+  </div>
+
   <a class="xi-patterns-018" href="../lab/loop.html" data-cta="lab-from-patterns" data-location="patterns-index">
-    <div class="eyebrow xi-patterns-014">The same rules, as running code</div>
-    <h2 class="section-title xi-patterns-015">loop.js</h2>
+    <div class="eyebrow xi-patterns-014">Proof — the same rules, as running code</div>
+    <h2 class="card-title xi-patterns-014">loop.js</h2>
     <p class="t-ui-muted-175 xi-patterns-016">Four of these patterns exist as a zero-dependency JavaScript module, so the decisions can be tested instead of debated: which verb a score becomes, whether its confidence has earned belief (Brier score, expected calibration error), when to refuse to answer, and what to show while the model thinks. Forty-two assertions, running in your browser.</p>
     <div class="xi-patterns-017">
       <span class="lbl-eyebrow">Read it, run it, break it →</span>
@@ -184,93 +242,24 @@
     </div>
   </a>
 
-  <div class="philosophy-cards xi-patterns-019">
-    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./confidence-scores.html">
-      
-
-
-      <h2 class="card-title xi-patterns-014">Confidence Score Patterns</h2>
-      <p class="t-ui-muted xi-patterns-021">An unexplained 87% is a shrug with decimals. A score earns its pixels only when it resolves to a verb.</p>
-      <div class="lbl-cap">May 2026 · from AdTech + FinTech</div>
-    </a>
-    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./ai-failure-states.html">
-      
-
-
-      <h2 class="card-title xi-patterns-014">AI Failure States</h2>
-      <p class="t-ui-muted xi-patterns-021">Users forgive a model for being wrong. They never forgive it for bluffing.</p>
-      <div class="lbl-cap">May 2026 · from AdTech + Org Design</div>
-    </a>
-    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./ml-explainability.html">
-      
-
-
-      <h2 class="card-title xi-patterns-014">ML Explainability</h2>
-      <p class="t-ui-muted xi-patterns-021">A recommendation you can trace, you&rsquo;ll defend. One you can&rsquo;t, you&rsquo;ll quietly rebuild around.</p>
-      <div class="lbl-cap">May 2026 · from FinTech + AdTech</div>
-    </a>
-    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./human-in-loop.html">
-      
-
-
-      <h2 class="card-title xi-patterns-014">Human-in-Loop Patterns</h2>
-      <p class="t-ui-muted xi-patterns-021">An override is not defiance. It is the training data the next version needs.</p>
-      <div class="lbl-cap">May 2026 · from FinTech + AdTech + Org Design</div>
-    </a>
-    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./provenance-citations.html">
-      
-
-
-      <h2 class="card-title xi-patterns-014">Provenance &amp; Citations</h2>
-      <p class="t-ui-muted xi-patterns-021">A claim with its source beside it is evidence. The same claim without one is prose.</p>
-      <div class="lbl-cap">June 2026 · from VC + FinTech</div>
-    </a>
-    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./capability-contract.html">
-      
-
-
-      <h2 class="card-title xi-patterns-014">The Capability Contract</h2>
-      <p class="t-ui-muted xi-patterns-021">The honest &ldquo;no&rdquo; is what makes the confident answer believable.</p>
-      <div class="lbl-cap">June 2026 · from AdTech + FinTech</div>
-    </a>
-    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./calibration-track-record.html">
-      
-
-
-      <h2 class="card-title xi-patterns-014">Calibration &amp; Track Record</h2>
-      <p class="t-ui-muted xi-patterns-021">&ldquo;80% sure&rdquo; is a promise. Show whether it has been kept.</p>
-      <div class="lbl-cap">June 2026 · from AdTech + FinTech</div>
-    </a>
-    <a class="card-p28 xi-patterns-020 hv-patterns-2" href="./reversibility-safe-to-act.html">
-      
-
-
-      <h2 class="card-title xi-patterns-014">Reversibility</h2>
-      <p class="t-ui-muted xi-patterns-021">People don&rsquo;t act when the model is right. They act when being wrong is cheap.</p>
-      <div class="lbl-cap">June 2026 · from EdTech + AdTech</div>
-    </a>
-  </div>
-
   <section class="xi-patterns-022">
     <div class="xi-patterns-023">
     <div class="eyebrow xi-patterns-014">Prior art, named</div>
     <p class="t-ui-muted-loose xi-patterns-024">Google’s <a class="link-gold" href="https://pair.withgoogle.com/guidebook/" target="_blank" rel="noopener noreferrer">PAIR guidebook<span class="visually-hidden"> (opens in a new tab)</span></a> and Microsoft’s <a class="link-gold" href="https://www.microsoft.com/en-us/haxtoolkit/" target="_blank" rel="noopener noreferrer">HAX toolkit<span class="visually-hidden"> (opens in a new tab)</span></a> map this territory from the research side — read them; they’re excellent, and several patterns here have cousins there. This library doesn’t compete with the lab. It’s the production-side report: what those guidelines don’t tell you about week three, when users have stopped reading the explanation chips and started gaming the confidence threshold.</p>
     <p class="t-ui-muted-loose xi-patterns-026">What’s distinctly mine: the <b class="xi-patterns-027">Act / Review / Ignore rule</b> — a score never reaches the screen without resolving to a verb; abstention treated as a shippable feature, not an error state; the override captured as structured data the system learns from; and every pattern here priced by a product that actually shipped. Each page also says when <i>not</i> to use the pattern — the discipline that separates a reference from a sales pitch.</p>
   </div>
-  <div class="eyebrow xi-patterns-021">Cite this library</div>
+  <div class="pat-cite">
+    <div class="eyebrow xi-patterns-021">Cite this library</div>
     <div class="xi-patterns-028">
       <p class="xi-patterns-029" id="citeLine">Maheshwari, A. (2026). <em>A Field Guide to Trust: AI Design Patterns.</em> arpitmaheshwari.com/patterns/.</p>
       <button class="lbl-eyebrow-500 xi-patterns-030 hv-patterns-3" id="copyCiteBtn" data-cta="copy-citation" data-location="patterns-index">Copy</button>
     </div>
     <p class="t-ui-muted xi-patterns-031">Prefer it as a book? The same patterns run as live demos in the <a class="link-gold" href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="patterns-cite">field guide</a> →</p>
+  </div>
   </section>
 
 </div></main>
 
-<aside class="chant chant-line" aria-label="The four commandments"><p><span class="cw-1">Right isn&rsquo;t enough.</span> <span class="cw-2">Earn the tap.</span> <span class="cw-3">Keep the receipts.</span> <span class="cw-4">Show the miss.</span></p></aside>
-<aside class="chant chant-line" aria-label="The four commandments"><p><span class="cw-1">Right isn&rsquo;t enough.</span> <span class="cw-2">Earn the tap.</span> <span class="cw-3">Keep the receipts.</span> <span class="cw-4">Show the miss.</span></p></aside>
-<aside class="chant chant-line" aria-label="The four commandments"><p><span class="cw-1">Right isn&rsquo;t enough.</span> <span class="cw-2">Earn the tap.</span> <span class="cw-3">Keep the receipts.</span> <span class="cw-4">Show the miss.</span></p></aside>
-<aside class="chant chant-line" aria-label="The four commandments"><p><span class="cw-1">Right isn&rsquo;t enough.</span> <span class="cw-2">Earn the tap.</span> <span class="cw-3">Keep the receipts.</span> <span class="cw-4">Show the miss.</span></p></aside>
 <aside class="chant chant-line" aria-label="The four commandments"><p><span class="cw-1">Right isn&rsquo;t enough.</span> <span class="cw-2">Earn the tap.</span> <span class="cw-3">Keep the receipts.</span> <span class="cw-4">Show the miss.</span></p></aside>
 <footer>
   <!-- The back-to-top button is the ONLY consumer of this symbol, so the symbol travels
@@ -424,9 +413,9 @@ document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s))
       reset=document.getElementById('hd-reset'),freeForm=document.getElementById('hd-free'),freeInput=document.getElementById('hd-free-input');
   if(!diag||!answer) return;
   var DIAG=[
-    {q:'Users ignore our recommendations.',a:'The model isn’t unconvincing. It’s <em>uncommitted</em> — a score that asks for faith and offers no collateral.',m:['Bind every score to one action','Name the reasons out loud, on the recommendation','Give an override the model actually learns from'],href:'../case-studies/adtech.html',start:87},
-    {q:'Great accuracy, low adoption.',a:'Accuracy was never the bottleneck. <em>Trust was.</em>',m:['Put the evidence beside the answer, not behind it','Let people argue back — and show the model listens','Make the confident case defensible, not just correct'],href:'../case-studies/fintech.html',start:87},
-    {q:'They override the model every time.',a:'Every override is the interface admitting it <em>never earned the call.</em>',m:['Make the recommendation legible before it asks','Rank by what they can act on right now','Turn each override into next week’s training signal'],href:'../case-studies/adtech.html',start:54},
+    {q:'Users ignore our recommendations.',a:'The model isn’t unconvincing. It’s <em>uncommitted</em> — a score that asks for faith and offers no collateral.',m:['Bind every score to one action','Name the reasons out loud, on the recommendation','Give an override the model actually learns from'],href:'./ml-explainability.html',start:87},
+    {q:'Great accuracy, low adoption.',a:'Accuracy was never the bottleneck. <em>Trust was.</em>',m:['Put the evidence beside the answer, not behind it','Let people argue back — and show the model listens','Make the confident case defensible, not just correct'],href:'./provenance-citations.html',start:87},
+    {q:'They override the model every time.',a:'Every override is the interface admitting it <em>never earned the call.</em>',m:['Make the recommendation legible before it asks','Rank by what they can act on right now','Turn each override into next week’s training signal'],href:'./human-in-loop.html',start:54},
     {q:'Nobody trusts the score.',a:'A naked number ends in a shrug. A score tied to a <em>verb</em> ends in an action.',m:['Replace the % with act / review / ignore','State what the system can’t do, up front','Show confidence as consequence, not decoration'],href:'./act-review-ignore.html',start:87}
   ];
   function reveal(d){

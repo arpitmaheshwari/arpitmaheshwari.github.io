@@ -38,7 +38,11 @@ NAV = (ROOT / 'partials' / 'nav.html').read_text(encoding='utf-8').rstrip('\n')
 FOOTER = (ROOT / 'partials' / 'footer.html').read_text(encoding='utf-8').rstrip('\n')
 
 NAV_RE = re.compile(r'<nav id="nav".*?</nav>', re.S)
-FOOTER_RE = re.compile(r'<footer.*?</footer>', re.S)
+# The stamped footer region INCLUDES the chant one-liner that precedes <footer>
+# in the partial. When the region was only <footer>…</footer>, every build run
+# pasted a fresh aside in front while leaving the old ones outside the match —
+# five builds put five chant lines on every page (caught by Arpit, 2026-09-01).
+FOOTER_RE = re.compile(r'(?:<aside class="chant chant-line".*?</aside>\s*)*<footer.*?</footer>', re.S)
 
 # 404.html is served for any missing URL at any depth, so relative paths break.
 ABSOLUTE_PATH_PAGES = {'404.html'}

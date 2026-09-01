@@ -1425,7 +1425,7 @@ html[data-theme="ember"] .menu-toggle[aria-expanded="true"] span:nth-child(3){tr
 html[data-theme="ember"] body[class*="p-patterns"] :is(.xi-patterns-012,.xi-patterns-018){display:grid;grid-template-columns:minmax(0,66ch) 300px;justify-content:space-between;column-gap:48px;align-items:start;grid-template-areas:"img img" "eye eye" "ttl ttl" "body meta"}
 html[data-theme="ember"] body[class*="p-patterns"] :is(.xi-patterns-012,.xi-patterns-018) .framed-blk{grid-area:img}
 html[data-theme="ember"] body[class*="p-patterns"] :is(.xi-patterns-012,.xi-patterns-018) .eyebrow{grid-area:eye}
-html[data-theme="ember"] body[class*="p-patterns"] :is(.xi-patterns-012,.xi-patterns-018) .section-title{grid-area:ttl}
+html[data-theme="ember"] body[class*="p-patterns"] :is(.xi-patterns-012,.xi-patterns-018) :is(.section-title,.card-title){grid-area:ttl}
 html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-016{grid-area:body}
 html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-017{grid-area:meta;align-self:center;display:flex;flex-direction:column;gap:8px;border-left:1px solid var(--border);padding-left:24px}
 @media (max-width:900px){html[data-theme="ember"] body[class*="p-patterns"] :is(.xi-patterns-012,.xi-patterns-018){grid-template-columns:1fr}
@@ -1435,7 +1435,10 @@ html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-017{border-left:
    lonely 431px paragraphs against an 846px void; balance gate RED) */
 html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:48px;align-items:start}
 html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-023{grid-column:1;grid-row:1/span 3}
-html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022>:is(.xi-patterns-021,.xi-patterns-028,.xi-patterns-031){grid-column:2}
+/* the citation rail owns its column: hairline + vertical centering against the prose,
+   the same meta-rail grammar the rule band uses (was three short blocks over a void) */
+html[data-theme="ember"] body[class*="p-patterns"] .pat-cite{grid-column:2;grid-row:1/span 3;align-self:stretch;display:flex;flex-direction:column;justify-content:center;gap:16px;border-left:1px solid var(--border);padding-left:24px}
+@media (max-width:900px){html[data-theme="ember"] body[class*="p-patterns"] .pat-cite{grid-column:1;grid-row:auto;border-left:none;padding-left:0;margin-top:8px}}
 @media (max-width:900px){html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022{grid-template-columns:1fr}}
 /* ARTIFACT TOKENS — REMOVED 2026-08-15. The recolouring they drove shipped
    invisible text: the map was incomplete, so any colour it did not know kept
@@ -2023,7 +2026,9 @@ html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022 .xi-patterns
 @media (max-width:900px){html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022>:is(*,.xi-patterns-021){grid-column:1;grid-row:auto}}
 html[data-theme="ember"] body.p-home .memos{display:block}
 html[data-theme="ember"] body.p-home .memo{display:grid;background:none;border:none;border-bottom:1px solid rgba(245,237,230,.14);border-radius:0;padding:24px 0}
-html[data-theme="ember"] body.p-home .memo .mk{margin:0}
+/* the kicker's cap line must sit ON the title's cap line — the two columns of one
+   row align to each other, not merely inside the row (lesson 7, 2026-09-01) */
+html[data-theme="ember"] body.p-home .memo .mk{margin:12px 0 0}
 html[data-theme="ember"] body.p-home .memo h3{margin:0 0 8px}
 /* 2 · VOICES — first quote is the anchor: bare, large, serif; the other three become a compact chorus */
 html[data-theme="ember"] body.p-home .quotes{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
@@ -2036,7 +2041,11 @@ html[data-theme="ember"] body.p-home .thought-excerpt{margin-top:8px}
 /* phone: one column means one column — the children's explicit grid-column:2
    placements must be reset too, or grid auto-creates an implicit second track
    (measured: "89px 220px" where 1fr was expected) */
-@media(max-width:860px){html[data-theme="ember"] body.p-home .memo>*{grid-column:1;grid-row:auto}
+/* the reset must match the heaviest pin it undoes — p:not(.mk) carries (class+element),
+   so a bare * reset loses and the paragraph keeps an implicit second track */
+@media(max-width:860px){html[data-theme="ember"] body.p-home .memo{grid-template-columns:1fr;row-gap:4px}
+html[data-theme="ember"] body.p-home .memo>:is(*,p:not(.mk)){grid-column:1;grid-row:auto}
+html[data-theme="ember"] body.p-home .memo .mk{margin:0 0 4px} /* stacked: the cap-alignment offset has no partner column */
 html[data-theme="ember"] body.p-home .quotes{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .thought-card>*{grid-column:1;grid-row:auto}}
 /* Same trap as figure.vid-card above: .mascot is a <figure> inside .measure-c,
@@ -2400,4 +2409,25 @@ html[data-theme="ember"] body.p-home .vid-hero-k{font-family:var(--mono),monospa
 html[data-theme="ember"] body.p-home .vid-hero-cap{font-family:var(--mono),monospace;font-size:11px;letter-spacing:.04em;line-height:1.7;color:var(--ink-dim);margin-top:12px}
 html[data-theme="ember"] body.p-home .vid-hero-cap a{color:var(--amber)}
 /* the router card on /patterns keeps its card look, sized to the content column */
-html[data-theme="ember"] body[class*="p-patterns"] .pat-diag{max-width:560px;margin:40px 0 48px}
+/* /patterns hero recomposition (2026-09-01): the claim and the problem-router are the
+   two columns of one hero row — the router is the page's front door, not an insert. */
+html[data-theme="ember"] body[class*="p-patterns"] .pat-hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:64px;align-items:center}
+html[data-theme="ember"] body[class*="p-patterns"] .pat-diag{max-width:none;margin:0}
+html[data-theme="ember"] body[class*="p-patterns"] .pat-hero-l .hand-note{margin:24px 0 8px}
+@media (max-width:960px){html[data-theme="ember"] body[class*="p-patterns"] .pat-hero{grid-template-columns:1fr;row-gap:32px}}
+
+/* inside a pattern card the global centre-capped-text rule (see the auto-margin
+   block above) meets a flex column: auto inline margins shrink each block to
+   fit-content and centre it — number and caption flush left, title floating
+   centred. A card is a column; everything in it sits flush left. */
+html[data-theme="ember"] body[class*="p-patterns"] .card-p28 :is(p,h2,h3){margin-left:0;margin-right:0}
+
+/* the grid header — the eight cards are the page's substance and get a named section */
+html[data-theme="ember"] body[class*="p-patterns"] .pat-grid-hd{margin:48px 0 24px}
+html[data-theme="ember"] body[class*="p-patterns"] .pat-grid-hd .section-title{margin:0}
+
+/* card index number — the grid reads as a numbered library, not loose tiles */
+html[data-theme="ember"] body[class*="p-patterns"] .card-p28 .pat-n{display:block;font-family:var(--mono,'JetBrains Mono',monospace);font-size:12px;letter-spacing:.12em;color:var(--gold,#FFC46B);margin-bottom:12px}
+
+/* loop.js follows the grid as its proof artifact, not a peer of the rule */
+html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-018{margin:8px 0 64px}
