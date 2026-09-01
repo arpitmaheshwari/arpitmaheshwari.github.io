@@ -524,7 +524,14 @@ html[data-theme="ember"] body[class*="p-case-studies"] .case-hero h1{font-size:c
 html[data-theme="ember"] body[class*="p-case-studies"] .case-hero__hook{font-size:clamp(16px,1.5vw,19px);line-height:1.7;color:var(--ink-muted);max-width:60ch}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-hero .hand{color:var(--amber)}
 /* --- the stat row: heat-coded cards, the homepage receipts language --- */
-html[data-theme="ember"] body[class*="p-case-studies"] .case-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px;margin-top:32px}
+/* auto-fit orphaned the third stat at mid widths (2+1 with a half-band void,
+   every case hero at 768 — 2026-09-02 sweep). Stepped instead: 3-across,
+   then 2-across with an odd last card spanning, then a single column. */
+html[data-theme="ember"] body[class*="p-case-studies"] .case-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
+@media (max-width:899px){html[data-theme="ember"] body[class*="p-case-studies"] .case-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-stats > *:nth-child(3):last-child{grid-column:1/-1}}
+@media (max-width:560px){html[data-theme="ember"] body[class*="p-case-studies"] .case-stats{grid-template-columns:1fr}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-stats > *:nth-child(3):last-child{grid-column:auto}}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-stat{background:var(--bg-card);border:none;border-top:3px solid var(--heat);border-radius:10px;padding:20px}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-stat b{display:block;font-family:var(--ff-display);font-weight:400;font-size:clamp(24px,2.4vw,34px);line-height:1.1;color:var(--heat)}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-stat span{display:block;margin-top:8px;font-family:var(--ff-label);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);line-height:1.8}
@@ -2520,3 +2527,12 @@ html[data-theme="ember"] body.p-home .qt-anchors .qt:last-child .qt-view{color:v
 html[data-theme="ember"] body.p-home .qt-anchors figcaption{margin-top:auto;padding-top:16px;border-top:1px solid rgba(245,237,230,.14)}
 html[data-theme="ember"] body.p-home .qt-anchors blockquote{margin-bottom:24px} /* captions share the band foot (lesson 7) */
 @media (max-width:900px){html[data-theme="ember"] body.p-home .qt-anchors{grid-template-columns:1fr;gap:40px;padding-top:48px;padding-bottom:40px}}
+
+/* orgos: four vitals in a 3-col grid left the fourth alone on row 2 with a
+   two-cell void (2026-09-02 sweep). Four vitals read as a 2x2. */
+html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals:has(> div:nth-child(4):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals:has(> div:nth-child(4):last-child) > div{border-right:1px solid var(--border)}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals:has(> div:nth-child(4):last-child) > div:nth-child(2n){border-right:0}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals:has(> div:nth-child(4):last-child) > div:nth-child(n+3){border-top:1px solid var(--border)}
+@media (max-width:640px){html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals:has(> div:nth-child(4):last-child){grid-template-columns:1fr}
+html[data-theme="ember"] body[class*="p-case-studies"] .case-vitals:has(> div:nth-child(4):last-child) > div{border-right:0}}

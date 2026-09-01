@@ -17,7 +17,11 @@ ASSETS = ROOT / 'assets' / 'video'
 CASES = ['adtech','fintech','vc-diligence','ptc','o2','orgos','planit']
 
 def mmss(sec):
-    return f"{int(sec//60)}:{int(round(sec%60)):02d}"
+    # ceil the TOTAL first: round() understated every label by 1-2s (a "my words,
+    # my facts" site can't say 1:58 for a 1:59.4 film), and per-part ceil printed 1:60.
+    import math
+    t = math.ceil(sec)
+    return f"{t//60}:{t%60:02d}"
 
 changed = 0
 for c in CASES:
