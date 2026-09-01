@@ -64,7 +64,7 @@
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../styles.css?v=4c0b4694">
-<link rel="stylesheet" href="../ember.css?v=e5a4b5ef">
+<link rel="stylesheet" href="../ember.css?v=5250f589">
 </head>
 <body class="p-patterns">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -87,6 +87,31 @@
     <p class="eyebrow xi-patterns-006">The Field Guide to Trust</p>
     <h1 class="t-hero xi-patterns-007">AI design patterns that ran in production</h1>
     <p class="lead xi-patterns-008">A working system for trusting and governing AI agents. Everything in it ran in production, failed somewhere specific, and came back stronger — the tradeoffs are written down because I paid for them once already.</p>
+
+  <!-- the problem-router, relocated from the hero (2026-09-01): its audience — a builder with a named problem — lives on this page -->
+  <div class="pat-diag"><div class="hero-demo" role="group" aria-label="Try it: where does your AI product lose people?">
+    <div class="hd-tag"><img class="hd-face" src="../arpit-maheshwari.jpg" alt="Arpit Maheshwari" width="34" height="34" loading="eager"><span>Building AI? &mdash; name your problem</span></div>
+    <div class="hd-card">
+      <div id="hd-diag">
+        <p class="hd-diag-q">Where does your AI product lose people?</p>
+        <div class="hd-presets">
+          <a href="../case-studies/adtech.html" class="hd-preset" data-i="0"><span>01</span>Users ignore our recommendations.</a>
+          <a href="../case-studies/fintech.html" class="hd-preset" data-i="1"><span>02</span>Great accuracy, low adoption.</a>
+          <a href="../case-studies/adtech.html" class="hd-preset" data-i="2"><span>03</span>They override the model every time.</a>
+          <a href="./act-review-ignore.html" class="hd-preset" data-i="3"><span>04</span>Nobody trusts the score.</a>
+        </div>
+        <p class="hd-route"><a class="xi-home-020" href="../index.html#featured-case-studies" data-cta="skip-diagnostic" data-location="hero-diagnostic">Hiring? See the strongest work &rarr;</a> <a class="xi-home-020" href="../fit/" data-cta="fit-check" data-location="hero-diagnostic">or paste the role into the fit check &rarr;</a></p>
+      </div>
+      <div id="hd-answer" hidden aria-live="polite">
+        <p class="hd-kicker">You said</p>
+        <p class="hd-said" id="hd-said"></p>
+        <div class="hd-rule" aria-hidden="true"></div>
+        <p class="hd-reframe" id="hd-reframe"></p>
+        <a id="hd-case" class="hd-case-btn" href="../index.html#featured-case-studies" data-cta="diag-case" data-location="hero-diagnostic">See how I fixed it <svg class="icon xi-home-021" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        <button type="button" class="hd-reset" id="hd-reset">↩ try another</button>
+      </div>
+    </div>
+  </div></div>
     <p class="hand hand-note" aria-hidden="true">shipped, broke, fixed — in that order</p>
     <p class="lbl-cap xi-patterns-010">Library v1.1 · the rule + 8 patterns · last updated June 2026 · free to use, attribution appreciated</p>
   </div>
@@ -245,6 +270,8 @@
 <aside class="chant chant-line" aria-label="The four commandments"><p><span class="cw-1">Right isn&rsquo;t enough.</span> <span class="cw-2">Earn the tap.</span> <span class="cw-3">Keep the receipts.</span> <span class="cw-4">Show the miss.</span></p></aside>
 <aside class="chant chant-line" aria-label="The four commandments"><p><span class="cw-1">Right isn&rsquo;t enough.</span> <span class="cw-2">Earn the tap.</span> <span class="cw-3">Keep the receipts.</span> <span class="cw-4">Show the miss.</span></p></aside>
 <aside class="chant chant-line" aria-label="The four commandments"><p><span class="cw-1">Right isn&rsquo;t enough.</span> <span class="cw-2">Earn the tap.</span> <span class="cw-3">Keep the receipts.</span> <span class="cw-4">Show the miss.</span></p></aside>
+<aside class="chant chant-line" aria-label="The four commandments"><p><span class="cw-1">Right isn&rsquo;t enough.</span> <span class="cw-2">Earn the tap.</span> <span class="cw-3">Keep the receipts.</span> <span class="cw-4">Show the miss.</span></p></aside>
+<aside class="chant chant-line" aria-label="The four commandments"><p><span class="cw-1">Right isn&rsquo;t enough.</span> <span class="cw-2">Earn the tap.</span> <span class="cw-3">Keep the receipts.</span> <span class="cw-4">Show the miss.</span></p></aside>
 <footer>
   <!-- The back-to-top button is the ONLY consumer of this symbol, so the symbol travels
        with it. It used to live in a page-level sprite that 17 shipped pages did not have,
@@ -388,5 +415,42 @@ document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s))
 </script>
 <script defer src="../attention.js?v=2fa8260a"></script>
 <script defer src="../clarity.js?v=9e4df576"></script>
+<script>
+(function(){
+  /* Diagnostic layer — the tappable problem chips are the affordance; without JS they stay plain links to the cases. */
+  var diag=document.getElementById('hd-diag'),answer=document.getElementById('hd-answer'),
+      said=document.getElementById('hd-said'),reframe=document.getElementById('hd-reframe'),
+      caseLink=document.getElementById('hd-case'),
+      reset=document.getElementById('hd-reset'),freeForm=document.getElementById('hd-free'),freeInput=document.getElementById('hd-free-input');
+  if(!diag||!answer) return;
+  var DIAG=[
+    {q:'Users ignore our recommendations.',a:'The model isn’t unconvincing. It’s <em>uncommitted</em> — a score that asks for faith and offers no collateral.',m:['Bind every score to one action','Name the reasons out loud, on the recommendation','Give an override the model actually learns from'],href:'../case-studies/adtech.html',start:87},
+    {q:'Great accuracy, low adoption.',a:'Accuracy was never the bottleneck. <em>Trust was.</em>',m:['Put the evidence beside the answer, not behind it','Let people argue back — and show the model listens','Make the confident case defensible, not just correct'],href:'../case-studies/fintech.html',start:87},
+    {q:'They override the model every time.',a:'Every override is the interface admitting it <em>never earned the call.</em>',m:['Make the recommendation legible before it asks','Rank by what they can act on right now','Turn each override into next week’s training signal'],href:'../case-studies/adtech.html',start:54},
+    {q:'Nobody trusts the score.',a:'A naked number ends in a shrug. A score tied to a <em>verb</em> ends in an action.',m:['Replace the % with act / review / ignore','State what the system can’t do, up front','Show confidence as consequence, not decoration'],href:'./act-review-ignore.html',start:87}
+  ];
+  function reveal(d){
+    if(said) said.textContent='“'+d.q+'”';
+    if(reframe) reframe.innerHTML=d.a;
+    if(caseLink) caseLink.setAttribute('href',d.href);
+    answer.hidden=false;
+    diag.hidden=true;
+  }
+  [].forEach.call(document.querySelectorAll('.hd-preset'),function(el){
+    if(el.getAttribute('data-i')===null) return; el.addEventListener('click',function(e){ e.preventDefault(); reveal(DIAG[+el.getAttribute('data-i')]); });
+  });
+  if(freeForm) freeForm.addEventListener('submit',function(e){ e.preventDefault(); var v=(freeInput.value||'').trim(); if(!v) return;
+    var lv=v.toLowerCase();
+    var route=null;
+    if(/ignor|dismiss|don.t (use|act)|unused|adopt/.test(lv)) route=DIAG[/accura|correct|right/.test(lv)?1:0];
+    else if(/overrid|hunch|gut|manual|bypass/.test(lv)) route=DIAG[2];
+    else if(/score|confiden|percent|%|number|trust/.test(lv)) route=DIAG[3];
+    else if(/accura|correct|right|precis/.test(lv)) route=DIAG[1];
+    if(route){ reveal({q:v,a:route.a,m:route.m,href:route.href,start:route.start}); }
+    else { reveal({q:v,a:'That’s the half-second I design for — the pause between a right answer and an acted-on one. Seven cases below show the moves.',m:[],href:'#featured-case-studies',start:87}); }
+  });
+  if(reset) reset.addEventListener('click',function(){ if(answer) answer.hidden=true; if(diag) diag.hidden=false; });
+})();
+</script>
 </body>
 </html>

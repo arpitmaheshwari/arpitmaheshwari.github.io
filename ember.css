@@ -365,25 +365,25 @@ html[data-theme="ember"] body.p-home .hero .wrap.hero-split{display:grid;grid-te
 @media (max-width:1040px){html[data-theme="ember"] body.p-home .hero .wrap.hero-split{grid-template-columns:1fr;gap:40px}}
 /* hero diagnostic — the one interactive Arpit named; ember demo-box language */
 html[data-theme="ember"] body.p-home .hero-demo{opacity:1;transform:none;animation:none;flex:none;max-width:none}
-html[data-theme="ember"] body.p-home .hd-tag{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ember);margin-bottom:12px}
-html[data-theme="ember"] body.p-home .hd-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;box-shadow:0 24px 60px rgba(0,0,0,.5);position:relative;overflow:hidden}
-html[data-theme="ember"] body.p-home .hd-card::after{content:"";position:absolute;right:-70px;top:-70px;width:190px;height:190px;border-radius:999px;background:radial-gradient(circle,rgba(232,107,255,.28),transparent 70%);pointer-events:none}
-html[data-theme="ember"] body.p-home .hd-diag-q{font-family:var(--serif);font-weight:300;font-size:21px;line-height:1.3;color:var(--ink);margin:0 0 16px}
-html[data-theme="ember"] body.p-home .hd-preset{border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--ink);position:relative;z-index:1}
-html[data-theme="ember"] body.p-home .hd-preset:hover{border-color:var(--ember);background:rgba(255,138,92,.08)}
-html[data-theme="ember"] body.p-home .hd-preset span,
-html[data-theme="ember"] body.p-home .hd-preset::after{color:var(--ember)}
-html[data-theme="ember"] body.p-home .hd-free input{color:var(--ink);border-bottom-color:var(--line)}
-html[data-theme="ember"] body.p-home .hd-free input:focus{border-color:var(--ember)}
-html[data-theme="ember"] body.p-home .hd-kicker{color:var(--mut)}
-html[data-theme="ember"] body.p-home .hd-said{color:var(--mut)}
-html[data-theme="ember"] body.p-home .hd-rule{background:var(--ember)}
-html[data-theme="ember"] body.p-home .hd-reframe{color:var(--ink)}
-html[data-theme="ember"] body.p-home .hd-reframe em{background:linear-gradient(92deg,var(--ember),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
-html[data-theme="ember"] body.p-home .hd-case-btn{background:linear-gradient(92deg,var(--ember),var(--violet));color:#1A0D08;border-radius:999px;font-weight:600}
-html[data-theme="ember"] body.p-home .hd-reset{color:var(--dim)}
-html[data-theme="ember"] body.p-home .hd-reset:hover{color:var(--amber)}
-html[data-theme="ember"] body.p-home .hd-err{color:var(--amber)}
+html[data-theme="ember"] .hd-tag{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ember);margin-bottom:12px}
+html[data-theme="ember"] .hd-card{background:var(--card,#241830);border:1px solid var(--line,rgba(245,237,230,.14));border-radius:12px;padding:24px;box-shadow:0 24px 60px rgba(0,0,0,.5);position:relative;overflow:hidden}
+html[data-theme="ember"] .hd-card::after{content:"";position:absolute;right:-70px;top:-70px;width:190px;height:190px;border-radius:999px;background:radial-gradient(circle,rgba(232,107,255,.28),transparent 70%);pointer-events:none}
+html[data-theme="ember"] .hd-diag-q{font-family:var(--serif);font-weight:300;font-size:21px;line-height:1.3;color:var(--ink);margin:0 0 16px}
+html[data-theme="ember"] .hd-preset{border:1px solid var(--line,rgba(245,237,230,.14));border-radius:10px;background:transparent;color:var(--ink);position:relative;z-index:1}
+html[data-theme="ember"] .hd-preset:hover{border-color:var(--ember);background:rgba(255,138,92,.08)}
+html[data-theme="ember"] .hd-preset span,
+html[data-theme="ember"] .hd-preset::after{color:var(--ember)}
+html[data-theme="ember"] .hd-free input{color:var(--ink);border-bottom-color:var(--line,rgba(245,237,230,.14))}
+html[data-theme="ember"] .hd-free input:focus{border-color:var(--ember)}
+html[data-theme="ember"] .hd-kicker{color:var(--mut)}
+html[data-theme="ember"] .hd-said{color:var(--mut)}
+html[data-theme="ember"] .hd-rule{background:var(--ember)}
+html[data-theme="ember"] .hd-reframe{color:var(--ink)}
+html[data-theme="ember"] .hd-reframe em{background:linear-gradient(92deg,var(--ember),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+html[data-theme="ember"] .hd-case-btn{background:linear-gradient(92deg,var(--ember),var(--violet));color:#1A0D08;border-radius:999px;font-weight:600}
+html[data-theme="ember"] .hd-reset{color:var(--dim)}
+html[data-theme="ember"] .hd-reset:hover{color:var(--amber)}
+html[data-theme="ember"] .hd-err{color:var(--amber)}
 /* receipts: the expand buttons live inside the prototype cells */
 html[data-theme="ember"] body.p-home .rcell{display:flex;flex-direction:column;align-items:flex-start}
 html[data-theme="ember"] body.p-home .rcpt-btn{margin-top:16px;background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--rc);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;cursor:pointer}
@@ -418,15 +418,15 @@ html[data-theme="ember"] body.p-home .form-slot textarea::placeholder{color:var(
 html[data-theme="ember"] body.p-home .form-slot button{background:linear-gradient(92deg,var(--ember),var(--violet));color:#1A0D08;border:none;border-radius:999px;font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:16px 24px;cursor:pointer;width:100%;justify-content:center;display:inline-flex;align-items:center;gap:8px}
 html[data-theme="ember"] body.p-home .sig{margin-top:24px;color:var(--amber);font-size:26px}
 /* diagnostic list needs its own rhythm inside the prototype card */
-html[data-theme="ember"] body.p-home .hd-presets{display:flex;flex-direction:column;gap:8px}
-html[data-theme="ember"] body.p-home .hd-preset{display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:1.5;text-decoration:none}
-html[data-theme="ember"] body.p-home .hd-preset span{flex:0 0 auto;font-family:var(--mono);font-size:11px}
-html[data-theme="ember"] body.p-home .hd-preset::after{content:"→";margin-left:auto;padding-left:12px;opacity:.5}
-html[data-theme="ember"] body.p-home .hd-preset:hover::after{opacity:1}
-html[data-theme="ember"] body.p-home .hd-free{margin-top:16px;display:flex;align-items:flex-end;gap:8px}
-html[data-theme="ember"] body.p-home .hd-free input{flex:1 1 auto;background:transparent;border:none;border-bottom:1px solid var(--line);font-family:var(--serif);font-style:italic;font-size:15px;padding:8px 2px}
-html[data-theme="ember"] body.p-home .hd-diag > a{display:block;margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
-html[data-theme="ember"] body.p-home .hd-diag > a:hover{color:var(--amber)}
+html[data-theme="ember"] .hd-presets{display:flex;flex-direction:column;gap:8px}
+html[data-theme="ember"] .hd-preset{display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:1.5;text-decoration:none}
+html[data-theme="ember"] .hd-preset span{flex:0 0 auto;font-family:var(--mono);font-size:11px}
+html[data-theme="ember"] .hd-preset::after{content:"→";margin-left:auto;padding-left:12px;opacity:.5}
+html[data-theme="ember"] .hd-preset:hover::after{opacity:1}
+html[data-theme="ember"] .hd-free{margin-top:16px;display:flex;align-items:flex-end;gap:8px}
+html[data-theme="ember"] .hd-free input{flex:1 1 auto;background:transparent;border:none;border-bottom:1px solid var(--line,rgba(245,237,230,.14));font-family:var(--serif);font-style:italic;font-size:15px;padding:8px 2px}
+html[data-theme="ember"] .hd-diag > a{display:block;margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+html[data-theme="ember"] .hd-diag > a:hover{color:var(--amber)}
 /* REMOVED 2026-08-17: eleven prototype-era homepage nav rules (a.nl, .pill, .hd, .logo,
    header) that matched NOTHING on the shipped page — verified 0 matches each in the
    browser. Only `nav ul{gap:24px}
@@ -2349,18 +2349,18 @@ html[data-theme="ember"] .lab-src{font-family:var(--mono),monospace;font-size:12
    hero blocks. Each component declares its own critical properties.
    ============================================================ */
 /* the diagnostic gains its asker */
-html[data-theme="ember"] body.p-home .hd-tag{display:flex;align-items:center;gap:12px}
-html[data-theme="ember"] body.p-home .hd-face{width:32px;height:32px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(255,196,107,.5);flex:0 0 auto}
+html[data-theme="ember"] .hd-tag{display:flex;align-items:center;gap:12px}
+html[data-theme="ember"] .hd-face{width:32px;height:32px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(255,196,107,.5);flex:0 0 auto}
 /* the routing line: two doors, one line; wraps whole-door on mobile */
-html[data-theme="ember"] body.p-home .hd-route{margin:0;line-height:1.9}
-html[data-theme="ember"] body.p-home .hd-route a{white-space:nowrap}
+html[data-theme="ember"] .hd-route{margin:0;line-height:1.9}
+html[data-theme="ember"] .hd-route a{white-space:nowrap}
 /* availability chip: CTA metadata, mono, live-dot */
 html[data-theme="ember"] body.p-home .cta-status{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono),monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim)}
 html[data-theme="ember"] body.p-home .cta-status i{width:8px;height:8px;border-radius:50%;background:#7FCF9E;flex:0 0 auto}
 @media (max-width:700px){html[data-theme="ember"] body.p-home .cta-status{width:100%;justify-content:flex-start}}
 /* route links speak the house CTA grammar (the wrap into .hd-route made them
    standalone arrow-CTAs — the census flags any second dialect) */
-html[data-theme="ember"] body.p-home .hd-route a{font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--violet)}
+html[data-theme="ember"] .hd-route a{font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--violet)}
 
 /* ============================================================
    THE CHANT (D3, 2026-08-31 — Arpit's pick, paired with the doubt
@@ -2386,3 +2386,18 @@ html[data-theme="ember"] .chant-line .cw-4{color:var(--rose)}
 @media (max-width:520px){html[data-theme="ember"] .chant-in{grid-template-columns:1fr}}
 /* the homepage closes with the four-column band instead — the partial's line yields */
 html[data-theme="ember"] body.p-home .chant-line{display:none}
+
+/* ============================================================
+   H-B HERO (2026-09-01, Arpit's pick): the film is the hero.
+   The diagnostic problem-router moved to /patterns, where its
+   audience lives; .hd-* rules above were un-scoped from p-home
+   for that move. Components declare their own properties.
+   ============================================================ */
+html[data-theme="ember"] body.p-home .vid-hero{margin:0}
+html[data-theme="ember"] body.p-home .vid-hero .vid-frame{position:relative;aspect-ratio:16/9;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.45)}
+html[data-theme="ember"] body.p-home .vid-hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;cursor:pointer}
+html[data-theme="ember"] body.p-home .vid-hero-k{font-family:var(--mono),monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin:0 0 12px}
+html[data-theme="ember"] body.p-home .vid-hero-cap{font-family:var(--mono),monospace;font-size:11px;letter-spacing:.04em;line-height:1.7;color:var(--ink-dim);margin-top:12px}
+html[data-theme="ember"] body.p-home .vid-hero-cap a{color:var(--amber)}
+/* the router card on /patterns keeps its card look, sized to the content column */
+html[data-theme="ember"] body[class*="p-patterns"] .pat-diag{max-width:560px;margin:40px 0 48px}
