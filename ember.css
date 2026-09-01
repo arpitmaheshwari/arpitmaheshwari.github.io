@@ -1357,9 +1357,9 @@ html[data-theme="ember"] body.p-home .rcell b .to{font-style:normal;color:var(--
    ============================================================================ */
 html[data-theme="ember"] body.p-home .quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:40px;align-items:start}
 html[data-theme="ember"] body.p-home .qt{background:var(--card);border:1px solid var(--border);border-radius:12px;border-top:3px solid var(--heat,#FF8A5C);padding:24px 24px 20px;display:flex;flex-direction:column;height:100%}
-html[data-theme="ember"] body.p-home .qt:nth-child(2){--heat:#E86BFF}
-html[data-theme="ember"] body.p-home .qt:nth-child(3){--heat:#FFC46B}
-html[data-theme="ember"] body.p-home .qt:nth-child(4){--heat:#FF7AA8}
+html[data-theme="ember"] body.p-home .quotes .qt:nth-child(1){--heat:#E86BFF}
+html[data-theme="ember"] body.p-home .quotes .qt:nth-child(2){--heat:#FFC46B}
+html[data-theme="ember"] body.p-home .quotes .qt:nth-child(3){--heat:#FF7AA8}
 html[data-theme="ember"] body.p-home .qt-view{font-family:var(--ff-label);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--heat,#FF8A5C);display:block;margin-bottom:16px}
 html[data-theme="ember"] body.p-home .qt blockquote{flex:1 1 auto;margin:0}
 html[data-theme="ember"] body.p-home .qt figcaption{margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
@@ -1467,13 +1467,9 @@ html[data-theme="ember"] body.p-home .memo{grid-template-columns:200px minmax(0,
 html[data-theme="ember"] body.p-home .memo h3{grid-column:2}
 html[data-theme="ember"] body.p-home .memo p:not(.mk){grid-column:2;max-width:none}
 html[data-theme="ember"] body.p-home .memo .mk{grid-column:1;grid-row:1/span 2}
-html[data-theme="ember"] body.p-home .qt:first-child{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) 260px;column-gap:48px;align-items:end}
-html[data-theme="ember"] body.p-home .qt:first-child .qt-view{grid-column:1/-1}
-html[data-theme="ember"] body.p-home .qt:first-child blockquote{font-family:var(--serif);font-size:clamp(19px,1.9vw,25px);line-height:1.45;font-style:italic;color:#F5EDE6;max-width:58ch;grid-column:1}
-html[data-theme="ember"] body.p-home .qt:first-child figcaption{grid-column:2;align-self:end;border-left:2px solid #FF8A5C;padding-left:16px}
-@media(max-width:860px){html[data-theme="ember"] body.p-home .qt:first-child{grid-template-columns:1fr}
-html[data-theme="ember"] body.p-home .qt:first-child figcaption{grid-column:1;margin-top:16px}}
-html[data-theme="ember"] body.p-home .qt:first-child .qt-view{color:#FF8A5C}
+/* the single-anchor .qt:first-child grammar retired 2026-09-02 — it was matching
+   the first child of BOTH the new anchors band and the chorus, placing the CTO
+   quote diagonally. The anchors band carries its own grammar below. */
 html[data-theme="ember"] body.p-home .qt:not(:first-child) blockquote{font-size:13.5px;line-height:1.6}
 /* 4 · WRITING — cards become an editorial index: serif titles, inline excerpts, hairline rows */
 html[data-theme="ember"] body.p-home .thoughts-grid{border-top:1px solid rgba(245,237,230,.14)}
@@ -2035,7 +2031,7 @@ html[data-theme="ember"] body.p-home .memo .mk{margin:12px 0 0}
 html[data-theme="ember"] body.p-home .memo h3{margin:0 0 8px}
 /* 2 · VOICES — first quote is the anchor: bare, large, serif; the other three become a compact chorus */
 html[data-theme="ember"] body.p-home .quotes{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-html[data-theme="ember"] body.p-home .qt:first-child{background:none;border:none;padding:8px 0 24px}
+/* the bare first-quote grammar retired 2026-09-02: the anchors band replaced it */
 /* 3 · THE LAB — cards become a terminal listing: mono rows on near-black, prompt glyphs */
 /* 4 · WRITING — cards become an editorial index: serif titles, inline excerpts, hairline rows */
 html[data-theme="ember"] body.p-home .thoughts-grid{display:block}
@@ -2505,3 +2501,22 @@ html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]
    stage only earns the breakout where its content fills it (ptc's grid does);
    here the demo stays in the reading column. */
 html[data-theme="ember"] :is(body.p-case-studies-fintech,body.p-case-studies-vc-diligence) .recon{width:100%;max-width:none;margin-left:0;margin-right:0;transform:none}
+
+/* ============================================================================
+   VOICES — the anchors band (2026-09-02, Arpit's pick: TWO anchors).
+   The act was "lost in the scroll": a wall of same-size quote cards. The two
+   anchors — the client's CTO (authority) and the tech lead who sat beside him
+   for five years (specificity) — now hold a full-bleed rose field, the act IV
+   counterpart of act III's cream contract band; the chorus sits beneath.
+   ============================================================================ */
+html[data-theme="ember"] body.p-home .qt-anchors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:64px;
+  margin:48px calc(50% - 50vw) 8px;padding:64px calc(50vw - 50% + 0px) 56px;
+  background:linear-gradient(180deg,#2B1522,#1B1320);
+  border-top:1px solid rgba(245,237,230,.1);border-bottom:1px solid rgba(245,237,230,.1)}
+html[data-theme="ember"] body.p-home .qt-anchors .qt{background:none;border:none;border-radius:0;padding:0;display:flex;flex-direction:column}
+html[data-theme="ember"] body.p-home .qt-anchors .qt blockquote{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(17px,1.5vw,21px);line-height:1.55}
+html[data-theme="ember"] body.p-home .qt-anchors .qt:first-child .qt-view{color:var(--rose)}
+html[data-theme="ember"] body.p-home .qt-anchors .qt:last-child .qt-view{color:var(--amber)}
+html[data-theme="ember"] body.p-home .qt-anchors figcaption{margin-top:auto;padding-top:16px;border-top:1px solid rgba(245,237,230,.14)}
+html[data-theme="ember"] body.p-home .qt-anchors blockquote{margin-bottom:24px} /* captions share the band foot (lesson 7) */
+@media (max-width:900px){html[data-theme="ember"] body.p-home .qt-anchors{grid-template-columns:1fr;gap:40px;padding-top:48px;padding-bottom:40px}}
