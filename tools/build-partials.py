@@ -42,7 +42,13 @@ NAV_RE = re.compile(r'<nav id="nav".*?</nav>', re.S)
 # in the partial. When the region was only <footer>…</footer>, every build run
 # pasted a fresh aside in front while leaving the old ones outside the match —
 # five builds put five chant lines on every page (caught by Arpit, 2026-09-01).
-FOOTER_RE = re.compile(r'(?:<aside class="chant chant-line".*?</aside>\s*)*<footer.*?</footer>', re.S)
+# Tempered dot: an aside may not match across its own </aside> or a <footer>.
+# With a plain .*? and re.S, a rogue chant aside ANYWHERE on the page anchored the
+# match and the replacement swallowed everything between it and the footer —
+# main content included (caught by the multiplicity canary's calibration plant).
+FOOTER_RE = re.compile(
+    r'(?:<aside class="chant chant-line"(?:(?!</aside>|<footer).)*</aside>\s*)*<footer.*?</footer>',
+    re.S)
 
 # 404.html is served for any missing URL at any depth, so relative paths break.
 ABSOLUTE_PATH_PAGES = {'404.html'}
@@ -158,6 +164,17 @@ def main():
             if devers(mf.group(0)) != devers(foot):
                 drift.append((rel, 'footer'))
             s = s[:mf.start()] + foot + s[mf.end():]
+        # A stamped fragment must appear EXACTLY once per stamped page. Five chant
+        # lines shipped on every page (2026-09-01) because the stamp region excluded
+        # the aside and each build added one more — a class of failure, not an
+        # instance: assert multiplicity for every distinctive fragment the partials
+        # carry. Pages without a footer (redirect stubs like talon.html) are exempt —
+        # the calibration plant surfaced exactly that, which is the assertion working.
+        if mf:
+            for frag in ('class="chant chant-line"', 'class="footer-logo"', '<footer'):
+                n = s.count(frag)
+                if n != 1:
+                    raise SystemExit(f'STAMP MULTIPLICITY: {rel} carries {n}× {frag!r} (must be exactly 1)')
         for name, h in vers.items():
             base = pathlib.Path(name).name           # book/portfolio.js -> portfolio.js
             stem, ext = base.rsplit('.', 1)
