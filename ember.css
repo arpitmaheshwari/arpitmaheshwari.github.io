@@ -2465,3 +2465,15 @@ html[data-theme="ember"] body.p-home .contract .ccd{background:#241830;border-co
    landed with its heading under the bar). Headings already carried scroll-margin;
    the nav's actual targets are sections and divs, which carried none. */
 html[data-theme="ember"] :is(section,div,aside,article)[id]{scroll-margin-top:96px}
+
+/* /lab recomposition (2026-09-02, first-principles revisit Arpit ordered):
+   the four runnable artifacts are the page's answer to "is he really technical?"
+   — promoted to a 2×2 grid so the proof is the loudest object on the page. */
+@media (min-width:861px){html[data-theme="ember"] body.p-lab .lab-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* lab/eval: the answer panel stretches to meet the lint panel — the default
+   preset's 7 findings ran 3.1× the left column and left ~1,100px of void
+   (found by the exploratory sweep; per-element gates cannot see composition) */
+html[data-theme="ember"] body.p-lab-eval .lint-grid{align-items:stretch}
+html[data-theme="ember"] body.p-lab-eval .lint-grid > *:first-child{display:flex;flex-direction:column}
+html[data-theme="ember"] body.p-lab-eval .lint-grid textarea{flex:1 1 auto;min-height:220px}
