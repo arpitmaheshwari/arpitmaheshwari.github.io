@@ -19,7 +19,7 @@
    — otherwise every nav anchor breaks for anyone who ever opened the book. */
 (function(){try{if(location.hash){return;}var p=new URLSearchParams(location.search);if(p.get('view')==='classic'){localStorage.setItem('am-view','classic');return;}if(p.get('view')==='book'){localStorage.setItem('am-view','book');location.replace('./book/');return;}if(localStorage.getItem('am-view')==='book' && !matchMedia('(pointer:coarse)').matches && innerWidth>1024){location.replace('./book/');}}catch(e){}})();
 </script>
-<title>Staff / Principal Product Designer, AI Products — Arpit Maheshwari</title>
+<title>[C] Staff / Principal Product Designer, AI Products — Arpit Maheshwari</title>
 <meta name="description" content="AI products don't fail at the model — they fail in the half-second before a person acts on it. I've designed that half-second for sixteen years.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -141,8 +141,20 @@
 </script>
 <script defer src="./analytics.js?v=4f9aa0a0"></script>
 <link rel="stylesheet" href="./styles.css?v=5656afd2">
-<link rel="stylesheet" href="./ember.css?v=0abfc389">
-</head>
+<link rel="stylesheet" href="./ember.css?v=e1">
+
+<meta name="robots" content="noindex">
+<style>
+/* CONCEPT C — the compression: nothing removed, everything one step tighter.
+   Vertical budget lives on the sections themselves (measured 84-129px each). */
+body.p-home main > section:not(.hero){padding-top:64px;padding-bottom:64px}
+body.p-home main > section.receipts,body.p-home main > section#featured-case-studies{padding-top:0}
+body.p-home .chap{margin-bottom:28px}
+body.p-home .who .memo{padding:16px 0}
+body.p-home .thought-card{padding:16px 0}
+body.p-home .errata{margin-top:20px}
+body.p-home .qt{padding:14px 16px}
+</style>
 <body class="p-home">
 <a href="#main" class="skip-link">Skip to content</a>
 <svg class="xi-home-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

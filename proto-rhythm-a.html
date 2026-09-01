@@ -19,7 +19,7 @@
    — otherwise every nav anchor breaks for anyone who ever opened the book. */
 (function(){try{if(location.hash){return;}var p=new URLSearchParams(location.search);if(p.get('view')==='classic'){localStorage.setItem('am-view','classic');return;}if(p.get('view')==='book'){localStorage.setItem('am-view','book');location.replace('./book/');return;}if(localStorage.getItem('am-view')==='book' && !matchMedia('(pointer:coarse)').matches && innerWidth>1024){location.replace('./book/');}}catch(e){}})();
 </script>
-<title>Staff / Principal Product Designer, AI Products — Arpit Maheshwari</title>
+<title>[A] Staff / Principal Product Designer, AI Products — Arpit Maheshwari</title>
 <meta name="description" content="AI products don't fail at the model — they fail in the half-second before a person acts on it. I've designed that half-second for sixteen years.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -141,8 +141,22 @@
 </script>
 <script defer src="./analytics.js?v=4f9aa0a0"></script>
 <link rel="stylesheet" href="./styles.css?v=5656afd2">
-<link rel="stylesheet" href="./ember.css?v=0abfc389">
-</head>
+<link rel="stylesheet" href="./ember.css?v=e1">
+
+<meta name="robots" content="noindex">
+<style>
+/* CONCEPT A — each act gets its own tonal ground, cast from its accent.
+   Act III (the contract/method) inverts to paper — the contract is a document. */
+body.p-home .receipts, body.p-home .work{background:linear-gradient(180deg,#221218,#1B1320)}
+body.p-home .who{background:linear-gradient(180deg,#211531,#1B1320)}
+body.p-home .contract{background:#F4ECDA;--ink:#2C2620;--ink-muted:rgba(44,38,32,.78);--mut:rgba(44,38,32,.78);
+  --card:#EEE4CE;--line:rgba(44,38,32,.16);--border:rgba(44,38,32,.16);color:#2C2620}
+body.p-home .contract :is(h2,h3,p,span,dt,dd,li){color:inherit}
+body.p-home .contract .chap-i, body.p-home .contract p{color:rgba(44,38,32,.8)}
+body.p-home .contract a{color:#6B3A99}
+body.p-home .aiwork{background:linear-gradient(180deg,#241713,#1B1320)}
+body.p-home .voices, body.p-home .thoughts{background:linear-gradient(180deg,#241320,#1B1320)}
+</style>
 <body class="p-home">
 <a href="#main" class="skip-link">Skip to content</a>
 <svg class="xi-home-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

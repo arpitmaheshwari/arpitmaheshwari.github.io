@@ -19,7 +19,7 @@
    — otherwise every nav anchor breaks for anyone who ever opened the book. */
 (function(){try{if(location.hash){return;}var p=new URLSearchParams(location.search);if(p.get('view')==='classic'){localStorage.setItem('am-view','classic');return;}if(p.get('view')==='book'){localStorage.setItem('am-view','book');location.replace('./book/');return;}if(localStorage.getItem('am-view')==='book' && !matchMedia('(pointer:coarse)').matches && innerWidth>1024){location.replace('./book/');}}catch(e){}})();
 </script>
-<title>Staff / Principal Product Designer, AI Products — Arpit Maheshwari</title>
+<title>[B] Staff / Principal Product Designer, AI Products — Arpit Maheshwari</title>
 <meta name="description" content="AI products don't fail at the model — they fail in the half-second before a person acts on it. I've designed that half-second for sixteen years.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -141,8 +141,19 @@
 </script>
 <script defer src="./analytics.js?v=4f9aa0a0"></script>
 <link rel="stylesheet" href="./styles.css?v=5656afd2">
-<link rel="stylesheet" href="./ember.css?v=0abfc389">
-</head>
+<link rel="stylesheet" href="./ember.css?v=e1">
+
+<meta name="robots" content="noindex">
+<style>
+/* CONCEPT B — the four commandments stop being a footer band and become the
+   act dividers: one full-bleed line opens each act. Rhythm + memorability. */
+.act-int{display:flex;align-items:baseline;gap:24px;padding:72px 6vw;border-top:1px solid rgba(245,237,230,.1);border-bottom:1px solid rgba(245,237,230,.1);background:#171019}
+.act-int .ai-n{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.2em;color:rgba(245,237,230,.5)}
+.act-int .ai-l{font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(30px,4.6vw,54px);line-height:1.1;margin:0}
+.chant-ember .ai-l{color:#FF8A5C}.chant-violet .ai-l{color:#C9A6FF}.chant-amber .ai-l{color:#FFC46B}.chant-rose .ai-l{color:#FF9BBE}
+body.p-home .chant{display:none} /* the closing 4-col chant band retires; the lines now structure the page */
+@media(max-width:700px){.act-int{padding:48px 20px;gap:14px;flex-direction:column}}
+</style>
 <body class="p-home">
 <a href="#main" class="skip-link">Skip to content</a>
 <svg class="xi-home-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -215,6 +226,7 @@
 
 <!-- ============ ACT I — THE OUTCOMES ============ -->
 
+<div class="act-int chant-ember" aria-hidden="true"><span class="ai-n">01</span><p class="ai-l">Right isn&rsquo;t enough.</p></div>
 <section class="receipts" aria-labelledby="h-receipts">
   <div class="seam" aria-hidden="true"></div>
   <div class="wrap">
@@ -313,6 +325,7 @@
 
 <!-- ============ ACT II — THE PERSON ============ -->
 
+<div class="act-int chant-violet" aria-hidden="true"><span class="ai-n">02</span><p class="ai-l">Earn the tap.</p></div>
 <section class="who whoband" aria-labelledby="h-who">
   <div class="wrap">
     <div>
@@ -364,6 +377,7 @@
 
 
 
+<div class="act-int chant-amber" aria-hidden="true"><span class="ai-n">03</span><p class="ai-l">Keep the receipts.</p></div>
 <section class="contract" id="patterns" aria-labelledby="h-contract">
   <div class="wrap">
     <div>
@@ -414,6 +428,7 @@
 
 <!-- ============ ACT IV — BEFORE YOU DECIDE ============ -->
 
+<div class="act-int chant-rose" aria-hidden="true"><span class="ai-n">04</span><p class="ai-l">Show the miss.</p></div>
 <section class="voices" id="voices" aria-labelledby="h-voices">
   <div class="wrap">
     <header class="chap chap-rose">
