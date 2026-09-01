@@ -15,9 +15,21 @@
   function read() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
   function write(v) { try { localStorage.setItem(KEY, v); } catch (e) { /* no-op */ } }
 
+  // Stale inline copies of this handler still ship on ~18 pages; two toggles
+  // cancel each other and the control goes dead (caught by the 2026-09-02
+  // exploratory sweep). Cloning the button strips every earlier listener, so
+  // this file is the ONLY binder no matter what a page pasted inline. This
+  // script loads deferred, i.e. after every inline block that could bind.
+  function claim(btn) {
+    var clone = btn.cloneNode(true);
+    btn.replaceWith(clone);
+    return clone;
+  }
+
   function start() {
     var btn = document.getElementById('dyslexiaToggle');
     if (!btn || btn.dataset.dyslexiaBound) return;   // never bind twice
+    btn = claim(btn);
     btn.dataset.dyslexiaBound = '1';
 
     function apply(on) {
@@ -35,9 +47,44 @@
     });
   }
 
+  // The mobile menu, same story one register up: the binder used to live as an
+  // inline block per page, and 7 pattern pages shipped WITHOUT it — a rendered
+  // hamburger that did nothing, so phone readers could not navigate at all
+  // (2026-09-02 sweep, BLOCKER). The behaviour now travels with the nav in the
+  // shared script every page loads; claim() strips any page's stale inline copy.
+  function startMenu() {
+    var btn = document.getElementById('menuToggle');
+    var links = document.querySelector('.nav-links');
+    if (!btn || !links || btn.dataset.menuBound) return;
+    btn = claim(btn);
+    btn.dataset.menuBound = '1';
+    function close() {
+      links.classList.remove('nav-open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = links.classList.toggle('nav-open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', function (e) {
+      if (links.classList.contains('nav-open') && !links.contains(e.target) && !btn.contains(e.target)) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && links.classList.contains('nav-open')) { close(); btn.focus(); }
+    });
+    // stray duplicate scroll-shading binders are idempotent (toggle with a condition)
+    var nav = document.getElementById('nav');
+    if (nav) window.addEventListener('scroll', function () {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+  }
+
+  function boot() { start(); startMenu(); }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', start);
+    document.addEventListener('DOMContentLoaded', boot);
   } else {
-    start();
+    boot();
   }
 })();

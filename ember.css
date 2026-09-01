@@ -1373,7 +1373,10 @@ html[data-theme="ember"] .lstep span{font-size:11.5px;color:rgba(245,237,230,.62
 html[data-theme="ember"] .lstep-hot{border-color:#E86BFF}
 html[data-theme="ember"] .larr{align-self:center;color:rgba(245,237,230,.45);font-size:16px}
 html[data-theme="ember"] .lback{flex-basis:100%;font-size:11.5px;color:#E86BFF;border-top:1px dashed rgba(232,107,255,.4);padding-top:12px;margin-top:4px}
-@media (max-width:560px){html[data-theme="ember"] .larr{display:none}}
+/* the arrows only mean something on ONE line: from 640-849 the row wrapped 3+1
+   with a dangling third arrow (2026-09-02 sweep) — below the single-line width
+   the tiles carry the sequence on their own */
+@media (max-width:849px){html[data-theme="ember"] .larr{display:none}}
 /* #voices joins the homepage section cadence (it was born with zero padding —
    exactly the boundary-collision defect the overflow gate checks for).
    2026-08-15: it was ALSO born outside the section type grammar — h2 at browser
@@ -1820,7 +1823,7 @@ html[data-theme="ember"] body.p-home .lanes .lane>div{align-self:start}
    can never half-apply again. Guarded by tools/overflow-sweep.py. */
 html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plF,.plM,.plO,.plP,.plV,
   .plA-caption,.plF-caption,.plM-caption,.plO-caption,.plP-caption,.plV-caption,
-  .case-vitals,.recon,.recon-stage,.measure-c figure){width:min(1040px,calc(100vw - 48px));max-width:none;margin-left:50%;margin-right:0;transform:translateX(-50%)}
+  .case-vitals,.recon,.measure-c figure){width:min(1040px,calc(100vw - 48px));max-width:none;margin-left:50%;margin-right:0;transform:translateX(-50%)}
 html[data-theme="ember"] body[class*="p-case-studies"] .case-hero figure{width:100%;margin-left:0;margin-right:0;transform:none}
 /* Below 1100 this used to collapse the breakout to width:100%, which dropped every figure
    into the 680px reading column: 632px of content for a 1280-unit viewBox, a scale of 0.49.
@@ -1832,7 +1835,7 @@ html[data-theme="ember"] body[class*="p-case-studies"] .case-hero figure{width:1
    Measured after: no figure escapes the viewport at 1024/900/768/640/390. 2026-08-17. */
 @media (max-width:1100px){html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plF,.plM,.plO,.plP,.plV,
     .plA-caption,.plF-caption,.plM-caption,.plO-caption,.plP-caption,.plV-caption,
-    .case-vitals,.recon,.recon-stage,.measure-c figure){width:min(1040px,calc(100vw - 48px));margin-left:50%;margin-right:0;transform:translateX(-50%)}}
+    .case-vitals,.recon,.measure-c figure){width:min(1040px,calc(100vw - 48px));margin-left:50%;margin-right:0;transform:translateX(-50%)}}
 html[data-theme="ember"] :is(main,footer) a:not(.pill):not(.btn-a):not(.btn-a-ghost):not(.lane):not(.labc):not(.hd-preset):not(.rcpt-btn):not(.hk-btn):not(.card-p28):not(.card-p32):not(.nav-cta):not(.hd-case-btn):not(.fit-cite){/* , 2026-08-17: the extracted .xi-* classes set color:var(--gold)
      on individual anchors, so this rule lost its own property on /lab/ and /patterns/
      and links there rendered amber while the token said violet. */
@@ -2477,3 +2480,28 @@ html[data-theme="ember"] :is(section,div,aside,article)[id]{scroll-margin-top:96
 html[data-theme="ember"] body.p-lab-eval .lint-grid{align-items:stretch}
 html[data-theme="ember"] body.p-lab-eval .lint-grid > *:first-child{display:flex;flex-direction:column}
 html[data-theme="ember"] body.p-lab-eval .lint-grid textarea{flex:1 1 auto;min-height:220px}
+
+/* Hub cards → editorial rows (2026-09-02, sweep DEFECT: the 520px card cap
+   fixed dead space INSIDE the cards and moved it OUTSIDE — 43% right void at
+   1024 and two right endings on /writing. The homepage writing section already
+   solved this class: full-width ledger rows. Same grammar here.) */
+html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28){
+  max-width:none;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:48px;
+  grid-template-rows:auto auto 1fr;align-items:start;background:none;border:none;border-radius:0;
+  border-bottom:1px solid var(--border);padding:28px 0}
+html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28) > .eyebrow{grid-column:1;grid-row:1}
+html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28) > .card-title{grid-column:1;grid-row:2;margin:8px 0 0}
+html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28) > p{grid-column:2;grid-row:1/span 3}
+html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28) > [class*="lbl-cap"]{grid-column:1;grid-row:3;align-self:end;margin-top:16px}
+/* the global centre-capped-text rule meets a grid area: flush left, always (patterns precedent) */
+html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28) :is(p,h2,h3){margin-left:0;margin-right:0}
+@media (max-width:768px){
+html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28){grid-template-columns:1fr;grid-template-rows:auto}
+html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28) > :is(.eyebrow,.card-title,p,[class*="lbl-cap"]){grid-column:1;grid-row:auto}
+html[data-theme="ember"] :is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28) > p{margin-top:10px}}
+
+/* D3 (2026-09-02 sweep): fintech and vc break their recon out to 1040px and then
+   centre a 520px card in it — 260px of empty stage each side, every state. The
+   stage only earns the breakout where its content fills it (ptc's grid does);
+   here the demo stays in the reading column. */
+html[data-theme="ember"] :is(body.p-case-studies-fintech,body.p-case-studies-vc-diligence) .recon{width:100%;max-width:none;margin-left:0;margin-right:0;transform:none}

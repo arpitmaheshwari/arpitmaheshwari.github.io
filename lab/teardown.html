@@ -26,8 +26,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
-<link rel="stylesheet" href="../styles.css?v=5656afd2">
-<link rel="stylesheet" href="../ember.css?v=bda309b6">
+<link rel="stylesheet" href="../styles.css?v=ec7c1917">
+<link rel="stylesheet" href="../ember.css?v=0b34f0d2">
 
 <script defer src="../analytics.js?v=4f9aa0a0"></script>
 </head>
@@ -104,7 +104,7 @@
         <div class="lab-body">
           <p>There is no bundler, no transpiler, no CI pipeline. A file I edit is the file the browser receives. The benefit is that this site cannot rot: no dependency will publish a breaking major, and nothing in it needs a lockfile to reproduce in three years.</p>
           <p>One qualification, added when the nav and footer became shared: they now live in <span class="td-inline">partials/</span> and a script stamps them into every page. Nothing runs at deploy &mdash; GitHub Pages still serves the committed file, and the file in the repo is the file you receive. But there is a generator between editing a partial and committing, and cache versions are now content hashes it computes rather than numbers I bump by hand. Before that, the nav existed in 37 copies which had all quietly diverged.</p>
-          <p><strong>What it costs:</strong> no tree-shaking, no automatic minification, and cache-busting done by hand — you can see the manual query strings, <span class="td-inline">styles.css?v=5656afd2</span>, in the source of every page. On a site of this size that is the right trade. On a product it would not be, and I would not defend it there.</p>
+          <p><strong>What it costs:</strong> no tree-shaking, no automatic minification, and cache-busting done by hand — you can see the manual query strings, <span class="td-inline">styles.css?v=ec7c1917</span>, in the source of every page. On a site of this size that is the right trade. On a product it would not be, and I would not defend it there.</p>
         </div>
       </div>
 

@@ -232,9 +232,13 @@ body.dyslexia-mode .remote-card-title{font-family:'Lexend',sans-serif}
 /* ----- abbr[title] tooltips ----- */
 abbr[title]{position:relative;text-decoration:none;border-bottom:1px dashed var(--gold);cursor:help}
 abbr[title]:hover{color:var(--gold-light)}
-abbr[title]::after{content:attr(title);position:absolute;bottom:140%;left:50%;transform:translateX(-50%) scale(0.9);background:var(--bg-card);border:1px solid var(--border);color:var(--ink);padding:8px 12px;font-size:12px;line-height:1.5;border-radius:4px;width:240px;box-shadow:0 8px 24px rgba(0,0,0,0.18);z-index:1000;opacity:0;pointer-events:none;transition:opacity 0.2s cubic-bezier(0.16,1,0.3,1),transform 0.2s cubic-bezier(0.16,1,0.3,1);font-family:var(--ff-sans);font-weight:normal;text-transform:none;text-align:left;white-space:normal}
+abbr[title]::after{content:attr(title);position:absolute;bottom:140%;left:50%;transform:translateX(-50%) scale(0.9);background:var(--bg-card);border:1px solid var(--border);color:var(--ink);padding:8px 12px;font-size:12px;line-height:1.5;border-radius:4px;width:min(240px,calc(100vw - 32px));display:none;box-shadow:0 8px 24px rgba(0,0,0,0.18);z-index:1000;opacity:0;pointer-events:none;transition:opacity 0.2s cubic-bezier(0.16,1,0.3,1),transform 0.2s cubic-bezier(0.16,1,0.3,1);font-family:var(--ff-sans);font-weight:normal;text-transform:none;text-align:left;white-space:normal}
 abbr[title]::before{content:"";position:absolute;bottom:125%;left:50%;transform:translateX(-50%);border-width:6px;border-style:solid;border-color:var(--border) transparent transparent transparent;z-index:1000;opacity:0;pointer-events:none;transition:opacity 0.2s cubic-bezier(0.16,1,0.3,1)}
-abbr[title]:hover::after,abbr[title]:focus::after,abbr[title]:active::after{opacity:1;transform:translateX(-50%) scale(1);pointer-events:auto}
+abbr[title]:hover::after,abbr[title]:focus::after,abbr[title]:active::after{display:block;opacity:1;transform:translateX(-50%) scale(1);pointer-events:auto}
+/* no hover, no tooltip: on touch the box could only appear clipped off-viewport;
+   the surrounding prose (and the glossary) carry the definitions (2026-09-02 sweep) */
+@media(hover:none){abbr[title]::after,abbr[title]::before{display:none !important}
+abbr[title]{cursor:inherit}}
 abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{opacity:1;pointer-events:auto}
 /* ----- Responsive: tablet (769px–1024px) ----- */
 @media(min-width:769px) and (max-width:1024px){#nav{padding:20px 32px}
@@ -1324,7 +1328,7 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-verdict{font-family:var(--ff-display);font-weight:300;font-size:26px;line-height:1.25;color:#16181D;margin-bottom:4px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-verdict em{font-style:normal;color:var(--goldA-dk)}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sub{font-size:11px;color:#464C56;margin-bottom:12px}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sig{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#fff;border:1px solid #E3E6EA;border-radius:6px;margin-bottom:8px}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sig{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 12px;background:#fff;border:1px solid #E3E6EA;border-radius:6px;margin-bottom:8px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sig.sel{border-color:#2E2570;box-shadow:0 0 0 1px #2E2570 inset}
 /* The diligence dossier at phone widths (2026-08-16). Two grid/flex min-content traps stacked:
    the .plV-body columns collapse to one track at 700px but a grid item will not shrink below its
@@ -1336,7 +1340,7 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 @media(max-width:700px){:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-body > *{min-width:0}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sig{flex-wrap:wrap}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sig > *{min-width:0}}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sname{flex:1 1 auto;min-width:0;font-size:12.5px;font-weight:600;color:#16181D}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sname{flex:1 1 auto;min-width:150px;/* a floor, not 0: long chips crushed rows C-09/D-05 into one-word towers (2026-09-02 sweep) */font-size:12.5px;font-weight:600;color:#16181D}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sname small{display:block;font-weight:400;font-size:11px;color:#464C56;margin-top:2px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-st{font-family:var(--ff-mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:3px;flex:0 0 auto}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-st.clear{color:#0E7A5F;background:#E6F3EE}
@@ -1970,7 +1974,7 @@ body:where(.p-resources-ai-design-checklist){background:#fff;color:#111}
 .xi-case-studies-adtech-051{padding:32px;background:color-mix(in srgb, var(--goldA) 3%, transparent);border:1px solid color-mix(in srgb, var(--goldA) 10%, transparent);border-radius:4px;margin-bottom:80px}
 .xi-case-studies-adtech-052{margin-bottom:16px;padding-left:24px}
 .xi-case-studies-adtech-053{margin-bottom:12px}
-.xi-case-studies-adtech-055{margin:0 0 64px 0}
+.xi-case-studies-adtech-055{margin:0 0 16px 0}/* was 64px: a void inside a small card, not a section gap (2026-09-02 sweep) */
 .xi-case-studies-adtech-056{margin:0 0 16px}
 .xi-case-studies-adtech-057{justify-content:space-between}
 .xi-case-studies-adtech-058{background:var(--gold);text-decoration:none;transition:background 0.3s}
@@ -2384,7 +2388,7 @@ body:where(.p-resources-ai-design-checklist){background:#fff;color:#111}
 .xi-patterns-capability-contract-022{margin-bottom:12px}
 .xi-patterns-capability-contract-023{position:relative}
 .xi-patterns-capability-contract-024{position:absolute;top:12px;right:12px;padding:4px 12px;background:var(--bg);border:1px solid var(--gold-dark);border-radius:2px;cursor:pointer;transition:background 0.3s,color 0.3s}
-.xi-patterns-capability-contract-025{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:24px 24px;margin:0;font-family:var(--ff-mono);font-size:var(--fs-caption);line-height:1.8;color:var(--ink-muted);overflow-x:auto}
+.xi-patterns-capability-contract-025{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:24px 24px;white-space:pre-wrap;overflow-wrap:break-word;/* the template must be READ, not just copied: ~130px of every long line hid behind a sideways scroll at every width (2026-09-02 sweep) */margin:0;font-family:var(--ff-mono);font-size:var(--fs-caption);line-height:1.8;color:var(--ink-muted);overflow-x:auto}
 .xi-patterns-capability-contract-026{background:color-mix(in srgb, var(--goldA) 3%, transparent)}
 .xi-patterns-capability-contract-027{margin-bottom:16px;padding-left:24px}
 .xi-patterns-capability-contract-028{min-width:200px;background:var(--bg)}
