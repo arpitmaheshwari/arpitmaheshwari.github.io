@@ -2460,3 +2460,8 @@ html[data-theme="ember"] body.p-home .contract .ccd{background:#241830;border-co
   --ink:#F5EDE6;--mut:rgba(245,237,230,.76);--ink-muted:rgba(245,237,230,.76);--dim:rgba(245,237,230,.62);
   --border:rgba(245,237,230,.14);--line:rgba(245,237,230,.14);
   --amber:#FFC46B;--violet:#E86BFF;--ember:#FF8A5C;--bg0:#1B1320;--card:#241830;--bg-card:#241830}
+
+/* Anchored arrivals clear the fixed nav (2026-09-02, Arpit's catch: "How I Lead"
+   landed with its heading under the bar). Headings already carried scroll-margin;
+   the nav's actual targets are sections and divs, which carried none. */
+html[data-theme="ember"] :is(section,div,aside,article)[id]{scroll-margin-top:96px}

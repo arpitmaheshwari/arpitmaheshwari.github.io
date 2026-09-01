@@ -141,7 +141,7 @@
 </script>
 <script defer src="./analytics.js?v=4f9aa0a0"></script>
 <link rel="stylesheet" href="./styles.css?v=5656afd2">
-<link rel="stylesheet" href="./ember.css?v=0abfc389">
+<link rel="stylesheet" href="./ember.css?v=2cefeb2a">
 </head>
 <body class="p-home">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -907,6 +907,56 @@ if (canvas && !prefersReducedMotion) {
   else requestAnimationFrame(drawStatic);
 }
 
+
+// Inline receipts: one open at a time; aria-expanded mirrored; #receipt-<key> deep-links open.
+// RESTORED 2026-09-02: the a11y cleanup of 2026-08-30 (60897a7b) removed the dyslexia toggle
+// and swallowed this handler with it — the receipt chips sat dead in production for three days.
+// Found by driving the button and reading aria-expanded, not by any gate.
+(function () {
+  var btns = document.querySelectorAll('.rcpt-btn');
+  if (!btns.length) return;
+  function setOpen(key, open, focusHeading) {
+    btns.forEach(function (b) {
+      var mine = b.dataset.receipt === key;
+      var panel = document.getElementById('receipt-' + b.dataset.receipt);
+      var on = mine && open;
+      b.setAttribute('aria-expanded', String(on));
+      if (panel) panel.hidden = !on;
+      if (on && focusHeading) {
+        var h = panel.querySelector('.rcpt-h');
+        if (h) { h.focus(); panel.scrollIntoView({ block: 'nearest' }); }
+      }
+    });
+    if (open) { history.replaceState(null, '', '#receipt-' + key); }
+    else if (location.hash.indexOf('#receipt-') === 0) { history.replaceState(null, '', location.pathname + location.search); }
+  }
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      setOpen(b.dataset.receipt, b.getAttribute('aria-expanded') !== 'true', true);
+    });
+  });
+  function openFromHash(scrollTo) {
+    if (location.hash.indexOf('#receipt-') !== 0) return;
+    var key = location.hash.slice('#receipt-'.length);
+    if (!document.getElementById('receipt-' + key)) return;
+    setOpen(key, true, false);
+    if (scrollTo) {
+      var p = document.getElementById('receipt-' + key);
+      if (p) p.scrollIntoView();
+    }
+  }
+  document.querySelectorAll('.rcpt-close').forEach(function (c) {
+    c.addEventListener('click', function () {
+      var key = c.dataset.close;
+      setOpen(key, false, false);
+      var chip = document.querySelector('.rcpt-btn[data-receipt="' + key + '"]');
+      if (chip) chip.focus();
+    });
+  });
+  openFromHash(false);
+  window.addEventListener('load', function () { openFromHash(true); });
+  window.addEventListener('hashchange', function () { openFromHash(true); });
+})();
 </script>
 <script>
 /* Hero diagnostic: name the problem → reframe + first moves → the Act/Review/Ignore slider as the live payoff */
