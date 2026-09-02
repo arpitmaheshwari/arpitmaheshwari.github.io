@@ -43,7 +43,7 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;co
   if(parseFloat(cs.borderTopWidth)>0.5)return;
   // links inside plate/paper artifacts keep artifact styling — skip
   let n=a,skip=false; while(n&&n.tagName!=='BODY'){const c=(n.className+'').toLowerCase();
-    if(/pl[a-z]-|fig-paper|recon|pass|mock/.test(c)){skip=true;break;}n=n.parentElement;}
+    if(/pl[a-z]-|fig-paper|recon|pass|mock|card-p\\d|thought-card|lab-card|\\blane\\b/.test(c)){skip=true;break;}n=n.parentElement;}
   if(skip)return;
   // TWO SPECIES: a STANDALONE CTA (the link is its block's content) must speak
   // the house grammar; an INLINE link flowing inside a sentence correctly
@@ -58,8 +58,17 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;co
     const proseLen=block.textContent.trim().length-linkLen;
     if(proseLen>block.textContent.trim().length*0.3)return; // prose block: inline link, exempt
   }
+  // the GROUND decides which house ink is correct: the paper act remaps the
+  // same component to a darker violet by design (one component, two grounds)
+  let g=a, ground='dark';
+  while(g){const b=w.getComputedStyle(g).backgroundColor;
+    const mm=b.match(/rgba?\((\d+), (\d+), (\d+)/);
+    if(mm && (!/rgba/.test(b) || !/, 0\)$/.test(b))){
+      ground=(0.2126*mm[1]+0.7152*mm[2]+0.0722*mm[3])>128?'paper':'dark';break;}
+    g=g.parentElement;}
   out.push({sig:[cs.fontFamily.split(',')[0],cs.fontSize,cs.textTransform,
-    Math.round(parseFloat(cs.letterSpacing)*10)/10+'', cs.color].join(' | '),
+    Math.round(parseFloat(cs.letterSpacing)*10)/10+''].join(' | '),
+    ink:cs.color, ground:ground,
     txt:t.slice(0,34)});});
  document.title='R:'+JSON.stringify(out);
 }catch(e){document.title='R:[]'}},2800);};
@@ -118,6 +127,14 @@ if __name__ == "__main__":
                  if not any(x.startswith('.') or x in ('prototypes','portfolio-sources','node_modules')
                             for x in p.parts) and not p.name.startswith('_')]
     per_page = collect(pages)
+    # TYPE grammar (face/size/case/tracking) must be ONE, site-wide. INK is
+    # judged against the GROUND: the design system deliberately maps the same
+    # component to a darker violet on the paper act (2026-09-03 — one ground-
+    # blind signature made two correct inks read as two grammars, the majority
+    # of a 2-CTA sample picked the paper one, and the calibration canary could
+    # only swap a signature, never add one).
+    HOUSE_INK = {"dark": "rgb(232, 107, 255)",    # --link on dark grounds
+                 "paper": "rgb(107, 58, 153)"}    # --link inside the cream act
     allsigs = collections.Counter(r["sig"] for rows in per_page.values() for r in rows)
     if not allsigs:
         print("no arrow-CTAs found — probe broken?"); sys.exit(2)
@@ -126,11 +143,15 @@ if __name__ == "__main__":
     print(f"house grammar ({dn}/{total} CTAs): {dominant}\n")
     bad = 0
     for pg, rows in per_page.items():
-        outliers = [r for r in rows if r["sig"] != dominant]
+        outliers = [r for r in rows if r["sig"] != dominant
+                    or r.get("ink") not in (None, HOUSE_INK.get(r.get("ground", "dark")))]
         if outliers:
             bad += 1; print(f"FAIL {pg}")
             for r in outliers[:6]:
-                print(f"       '{r['txt']}'\n        speaks: {r['sig']}")
+                why = r["sig"] if r["sig"] != dominant else (
+                    f"ink {r.get('ink')} on a {r.get('ground')} ground "
+                    f"(house: {HOUSE_INK.get(r.get('ground','dark'))})")
+                print(f"       '{r['txt']}'\n        speaks: {why}")
         elif rows:
             print(f"ok   {pg}  ({len(rows)} CTAs on grammar)")
     print(f"\n{bad} page(s) with off-grammar CTAs.")
