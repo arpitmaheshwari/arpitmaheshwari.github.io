@@ -1713,6 +1713,11 @@ html[data-theme="ember"] body.p-fit .fit-jd{width:100%;box-sizing:border-box;bac
 html[data-theme="ember"] body.p-fit .fit-jd::placeholder{color:var(--ink-dim)}
 html[data-theme="ember"] body.p-fit .fit-jd:focus{outline:2px solid var(--amber);outline-offset:2px;border-color:transparent}
 html[data-theme="ember"] body.p-fit .fit-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:20px}
+/* The empty-submit status, beside the buttons it answers. Full ink, not muted: this is the
+   one line telling someone why nothing happened, and a quiet grey is the wrong place to
+   save contrast. Empty until the JS writes it, so it takes no space in the normal flow. */
+html[data-theme="ember"] body.p-fit .fit-status{margin-top:12px;font-size:15px;color:var(--ink)}
+html[data-theme="ember"] body.p-fit .fit-status:empty{margin-top:0}
 html[data-theme="ember"] body.p-fit .btn-primary{font-family:var(--ff-label);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#241206;background:var(--g-hot);border:1px solid transparent;border-radius:999px;padding:16px 24px;cursor:pointer}
 html[data-theme="ember"] body.p-fit .btn-ghost{font-family:var(--ff-label);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);background:none;border:1px solid var(--border-accent);border-radius:999px;padding:16px 24px;cursor:pointer}
 html[data-theme="ember"] body.p-fit .btn-ghost:hover{color:var(--ink);border-color:var(--amber)}

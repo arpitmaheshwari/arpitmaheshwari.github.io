@@ -242,7 +242,13 @@
 
   function run() {
     var jd = document.getElementById('fit-jd').value;
-    if (!jd.trim()) { document.getElementById('fit-jd').focus(); return; }
+    var status = document.getElementById('fit-status');
+    if (!jd.trim()) {
+      if (status) status.textContent = 'Paste a job description first — the tool matches your words, so it needs some.';
+      document.getElementById('fit-jd').focus();
+      return;
+    }
+    if (status) status.textContent = '';
     var res = document.getElementById('fit-results');
     res.hidden = false;           // unhide BEFORE rendering: content injected into a hidden
     render(match(jd));            // live region is not reliably announced by screen readers

@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../styles.css?v=071ced1d">
-<link rel="stylesheet" href="../ember.css?v=96e2ff87">
+<link rel="stylesheet" href="../ember.css?v=ca461a10">
 
 <script defer src="../analytics.js?v=4f9aa0a0"></script>
 </head>
@@ -104,6 +104,11 @@
           <button type="button" class="btn-ghost" id="fit-sample">Try it on a sample role</button>
           <button type="button" class="btn-ghost" id="fit-clear">Clear</button>
         </div>
+        <!-- Pressing "Check the fit" on an empty box used to move focus and say nothing. Focus
+             alone is the affordance for a sighted user; a screen-reader user got silence. This
+             page already thinks carefully about live regions (see the comment in fit.js about
+             unhiding before rendering), so the empty path should speak too. -->
+        <p class="fit-status" id="fit-status" role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>
@@ -167,6 +172,6 @@ document.addEventListener('click', (e) => {
 </script>
 <script defer src="../attention.js?v=2fa8260a"></script>
 <script defer src="../clarity.js?v=9e4df576"></script>
-<script defer src="../fit.js?v=fdc770b0"></script>
+<script defer src="../fit.js?v=d42aa95f"></script>
 </body>
 </html>
