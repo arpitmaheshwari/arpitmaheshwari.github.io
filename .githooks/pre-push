@@ -389,7 +389,10 @@ MSG
 fi
 
 echo "pre-push: contrast OK."
-exit 0
+# (An `exit 0` stranded here from 2026-08-30 hook surgery killed every gate
+#  below this line for four days — partials drift, image alignment, runtime
+#  errors and interaction states were launched in parallel and never awaited.
+#  Found 2026-09-03 while tracing a SIGPIPE; lesson 10 in shell form.)
 
 # ── partials are the source; a page that has drifted from them must not ship ──
 # The nav and footer live in partials/ and are stamped into every page by
@@ -449,5 +452,5 @@ if [ -f tools/interaction-state-check.py ]; then
   echo "pre-push: interaction states (hover, keyboard focus, opened panels)…"
   wait_gate interaction-state || gate_block $? "interaction states" \
     "the page breaks once a reader touches it."
-  echo "pre-push: image alignment OK."
+  echo "pre-push: interaction states OK."
 fi
