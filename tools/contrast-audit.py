@@ -7,577 +7,585 @@ This copy exists because CI checks out only this repository and cannot read ~/.c
 If you change one, change both. `diff` them if the two ever disagree.
 """
 """
-contrast-audit.py — WCAG contrast auditing measured from RENDERED PIXELS, not computed style.
+contrast-audit.py v3 — WCAG contrast measured from RENDERED PIXELS, viewport-native.
 
 WHY THIS EXISTS
     On 2026-07-31 a style-based contrast checker reported "clean" for eight consecutive QA rounds
     while the primary call-to-action on the most-shared page of a portfolio site sat at 1.18:1 —
-    invisible. That checker read `getComputedStyle(el).backgroundColor` and walked up the DOM for the
-    first opaque colour. The failing surface painted itself with a background-IMAGE (a gradient) over
-    a transparent background-color, so the walk fell straight through to an unrelated ancestor and
-    compared cream text against cream. It could not see the defect. Being more careful, or running it
-    more times, would never have helped: the instrument had to change.
+    invisible. Style walks cannot see gradients, overlays, blend modes or stacked opacity, so this
+    tool has always measured pixels.
 
-    This tool measures the real pixels behind every glyph box, so gradients, background images, blend
-    modes, filters and stacked opacity are all handled by construction.
+WHY v3 EXISTS (2026-09-03 — Arpit: "the contrast gate is continuously breaking; first principles")
+    v2 photographed the WHOLE DOCUMENT as one image and mapped DOM rects onto it in document
+    coordinates. Chrome fights that architecture at every turn, and one month of git history reads
+    as eleven compensations for it: the 16,384px capture wrap (beacons + tiled stitching),
+    capture-triggered relayout, lazy images growing the page under the rects, scroll algebra,
+    silent node drops, per-element-type ink branches (SVG fill, gradient text declared
+    UNMEASURABLE), and statistical ground-guessing (grid samples, mode-not-mean, near-ink
+    exclusion). Each compensation carried its own failure modes; the gate broke monthly.
 
-HOW IT MEASURES
-    Two passes at identical geometry, both inside a same-origin wrapper that hosts the target in an
-    iframe sized to the page's full height:
-      Pass A — collect each leaf text node's colour, size, weight and rect.
-      Pass B — screenshot with `color: transparent` forced everywhere, so the image shows the TRUE
-               background under each glyph box. Sample a grid inside each rect, average, compare.
+    A reader never sees the document as one image. v3 grades what the reader sees, where they
+    see it, and defines ink by physics instead of by style reading:
+
+      1. VIEWPORT-NATIVE CAPTURE. The page is scrolled in real steps and each screenful is
+         photographed with a plain viewport screenshot. Nothing is ever captured beyond the
+         viewport, so the texture-cap wrap, capture relayout, beacons and stitching are not
+         fixed — they are structurally impossible. Rects are queried FRESH at every stop, in
+         viewport coordinates: there is no document-space mapping to drift.
+      2. DIFFERENTIAL INK. Every screenful is photographed twice at identical geometry —
+         once as shipped, once with all text paint removed. A glyph pixel is DEFINED as a
+         pixel the two frames disagree on; its ink is frame A at that pixel, its ground is
+         frame B at the same pixel. SVG fill vs color, background-clip:text gradients,
+         text-shadow, alpha compositing: all just pixels now. Gradient text — v2's declared
+         blind spot — is measured like everything else, and the selftest proves it.
+      3. STATE IS THE INSTRUMENT'S JOB. Fonts, animations, lazy images and scroll-reveals are
+         settled INSIDE the tool on every run. --force-visible still exists but now has a
+         default ('.reveal'); a caller can no longer produce false reds by forgetting a flag
+         (which happened the day before this rewrite).
+      4. SELF-ACCOUNTING. Every eligible text element must be graded somewhere or explained;
+         the ungraded are printed by name. "33 of 231 measured, 0 failures" can't recur.
+      5. INVISIBLE INK IS A FINDING. An eligible, visible text element whose two frames do not
+         differ paints no legible ink at all (color == ground, or fully obscured). v2 reported
+         the closely-related signature "exactly 1.00" as instrument failure; v3 detects it as
+         the legibility failure it is.
 
 CALIBRATION IS NOT OPTIONAL
-    Before reporting anything, the tool plants a ~1.1:1 "canary" element and confirms it gets flagged.
-    If the canary is not caught, the tool prints nothing else and exits non-zero. An instrument that
-    has never gone red is not evidence.
+    Before reporting anything the tool plants THREE canaries and requires all three red:
+    a plain low-contrast element, a low-contrast background-clip:text gradient element
+    (the old blind spot), and a low-contrast element hidden behind a `.reveal` fade
+    (the state race). If any canary survives, nothing else is reported.
 
 USAGE
     python3 contrast-audit.py URL [URL ...] [--widths 1440,1024,768] [--exempt "SELECTOR"]
+    python3 contrast-audit.py --all [--base http://localhost:8000]
     python3 contrast-audit.py --selftest URL          # calibration only
 
-    --exempt marks text that legitimately has no contrast requirement (WCAG 1.4.3 exempts logotypes
-    and incidental text). Exempt failures are still PRINTED — a silent exemption is how real defects
-    hide. Requires a same-origin URL (http://localhost/... ), because it reads into the iframe.
-
-REQUIREMENTS  Google Chrome (or set $CHROME), Pillow, pages served over http(s), and
-              --docroot pointing at the directory that origin serves (defaults to cwd).
-EXIT CODE     0 = calibrated and clean · 1 = failures found, or calibration did not go red.
+EXIT CODE     0 = calibrated and clean · 1 = failures found, or calibration did not go red
+              2 = the instrument could not measure (distinct from "found a defect")
 """
-import argparse, json, html, math, re, os, subprocess, sys, tempfile
+import argparse, json, math, os, subprocess, sys
 
-# Guarantee the server these gates assume. Every one of them hard-codes
-# http://localhost:8000 and none checked it was there; when it was not, they did not report
-# "no server", they reported findings (see cdp.ensure_server). Idempotent: reuses a server
-# that is already listening, so a dev server is never disturbed or double-bound.
+# Guarantee the server these gates assume (idempotent; reuses a listening server).
 import sys as _s, os as _o
 _s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__)))
 import cdp as _cdp
 _cdp.ensure_server(8000)
-# Trackers are refused for every browser this repo drives — see cdp.py.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from cdp import NO_TRACKING_FLAG
-import sys
-import os
+import cdp
 
-CHROME_CANDIDATES = [
-    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-    "/Applications/Chromium.app/Contents/MacOS/Chromium",
-    "google-chrome", "chromium", "chromium-browser",
-]
+VIEWPORT_H = 900             # a REAL viewport: 100vh sections lay out as a reader sees them.
+BAND_PAD = 8                 # px of slack inside the unobstructed band
+DIFF_T = 24                  # per-pixel channel-sum difference that counts as "ink was here"
+ALPHA_CORE = 0.7             # glyph-core coverage: pixels this inked recover the authored colour
 
-VIEWPORT_H = 900             # a REAL viewport: 100vh sections must lay out as a reader sees them.
-MAX_PAGE_PX = 24000          # Chrome refuses absurd window heights; clamp and report truncation.
 CANARY_TEXT = "calibration canary do not ship"
-# grey-on-grey, ~1.1:1 — unambiguously failing at any size.
+CANARY_GT_TEXT = "gradient canary do not ship"
+CANARY_RV_TEXT = "reveal canary do not ship"
+# Three planted defects. Each exercises a distinct historical failure mode.
 CANARY_HTML = (
-    "<div id='__ca_canary' style='position:absolute;left:0;top:0;z-index:2147483647;"
-    "background:#777777;color:#8A8A8A;font-size:14px;font-weight:400;padding:6px'>"
-    + CANARY_TEXT + "</div>"
+    "<div id='__ca_c1' style='position:absolute;left:0;top:120px;z-index:2147483647;"
+    "background:#777;color:#8A8A8A;font-size:14px;padding:6px'>" + CANARY_TEXT + "</div>"
+    # background-clip:text — v2 declared this UNMEASURABLE; v3 must flag it.
+    "<div id='__ca_c2' style='position:absolute;left:0;top:160px;z-index:2147483647;"
+    "background:#777;padding:6px'><span style='font-size:14px;"
+    "background:linear-gradient(90deg,#808080,#8C8C8C);-webkit-background-clip:text;"
+    "background-clip:text;color:transparent;-webkit-text-fill-color:transparent'>"
+    + CANARY_GT_TEXT + "</span></div>"
+    # a .reveal element starting invisible — the settle/pin machinery must surface it.
+    "<div class='reveal' id='__ca_c3' style='position:absolute;left:0;top:200px;"
+    "z-index:2147483647;background:#777;color:#8A8A8A;font-size:14px;padding:6px'>"
+    + CANARY_RV_TEXT + "</div>"
 )
-# ":root *" not "*": the hide rule must WIN ties against class-level color:..!important
-# (the theme-swap extraction moved inline colors into single-class !important rules, which
-# beat a zero-specificity hide rule — text polluted its own background samples and six
-# phantom contrast failures appeared on elements that render identically; measured 2026-08-13).
+
+# Pass-B ink removal. ":root *" so it WINS ties against single-class !important color rules
+# (measured 2026-08-13: a zero-specificity rule lost and text polluted its own ground).
+# [data-ca-gt] handles background-clip:text — those glyphs are painted BY the background,
+# so the background itself must not paint in pass B.
 HIDE_TEXT_CSS = (":root *{color:transparent!important;text-shadow:none!important;"
-                 "text-decoration-color:transparent!important;caret-color:transparent!important}"
-                 # SVG <text> is painted by `fill`, NOT by `color`, so the rule above left every
-                 # label inside an inlined diagram STILL DRAWN in the background pass — and the
-                 # tool then sampled the glyph as if it were its own ground. On ptc.html that read
-                 # the label 'IoTU' as #2C2722 on #5A544B (1.97:1, a failure) when the tile behind
-                 # it is cream #EEE4CE and the true ratio is about 11:1. Every SVG label on the
-                 # site was measured this way. Scoped to text/tspan: filling the SHAPES would
-                 # erase the very background we are trying to photograph.
-                 ":root svg text,:root svg tspan{fill:transparent!important}")
+                 "text-decoration-color:transparent!important;caret-color:transparent!important;"
+                 "-webkit-text-fill-color:transparent!important}"
+                 ":root svg text,:root svg tspan{fill:transparent!important}"
+                 ":root [data-ca-gt]{background:none!important}")
+
+# Pass-C ink replacement: repaint every glyph in KNOWN magenta. Per pixel,
+# coverage alpha = how far frame C moved from frame B toward pure magenta —
+# which de-aliases frame A by algebra: authored_ink = (A - (1-a)*B) / a.
+# Without this, antialiased 10-12px text never paints a fully-inked pixel and
+# any pixel-picked estimate reads dark (measured 2026-09-03: three labels with
+# authored ratios 5.1-6.1 read as 3.7-4.0 — phantom failures, the exact
+# disease this rewrite exists to cure).
+MAGENTA = (255, 0, 255)
+INK_KEY_CSS = (":root *{color:#FF00FF!important;text-shadow:none!important;"
+               "text-decoration-color:transparent!important;caret-color:transparent!important;"
+               "-webkit-text-fill-color:#FF00FF!important}"
+               ":root svg text,:root svg tspan{fill:#FF00FF!important}"
+               ":root [data-ca-gt]{background:#FF00FF!important;"
+               "-webkit-background-clip:text!important;background-clip:text!important}")
 
 # --------------------------------------------------------------------- colour
 
 def _lin(v):
     v /= 255.0
-    return v / 12.92 if v <= 0.03928 else ((v + 0.055) / 1.055) ** 2.4
+    return v / 12.92 if v <= 0.04045 else ((v + 0.055) / 1.055) ** 2.4
 
 def luminance(c):
     return 0.2126 * _lin(c[0]) + 0.7152 * _lin(c[1]) + 0.0722 * _lin(c[2])
 
 def ratio(a, b):
     la, lb = luminance(a), luminance(b)
-    return (max(la, lb) + 0.05) / (min(la, lb) + 0.05)
-
-def parse_rgb(css):
-    n = [float(x) for x in re.findall(r"[\d.]+", css)]
-    return tuple(int(round(v)) for v in n[:3]), (n[3] if len(n) > 3 else 1.0)
+    if la < lb: la, lb = lb, la
+    return (la + 0.05) / (lb + 0.05)
 
 def required_ratio(px, weight):
-    """WCAG 1.4.3: 3:1 for large text (>=24px, or >=18.66px bold); otherwise 4.5:1."""
+    # WCAG 1.4.3: "large text" is >=24px, or >=18.66px bold — that gets 3:1; the rest 4.5:1.
     try:
-        bold = int(weight) >= 700
-    except (TypeError, ValueError):
-        bold = str(weight).lower() in ("bold", "bolder")
-    return 3.0 if (px >= 24 or (px >= 18.66 and bold)) else 4.5
-
-# --------------------------------------------------------------------- chrome
-
-def find_chrome():
-    from shutil import which
-    for c in CHROME_CANDIDATES:
-        if os.path.exists(c):
-            return c
-        if which(c):
-            return which(c)
-    sys.exit("contrast-audit: Chrome not found. Set $CHROME.")
-
-CHROME = os.environ.get("CHROME") or find_chrome()
-
-IN_CI = os.environ.get("GITHUB_ACTIONS") == "true"
+        w = int(str(weight))
+    except ValueError:
+        w = 700 if str(weight) == "bold" else 400
+    if px >= 24 or (px >= 18.66 and w >= 700):
+        return 3.0
+    return 4.5
 
 def gh(level, msg):
-    """Emit a GitHub workflow annotation. These are readable via the PUBLIC check-runs
-    annotations API, unlike run LOGS which require admin rights on the repo — so when this gate
-    fails on CI, the reason is diagnosable from outside without a token. Learned the hard way:
-    the first two CI failures of this gate reported nothing but 'exit code 1'."""
-    if not IN_CI:
-        return
-    one_line = str(msg).replace("\r", "").replace("\n", "%0A")
-    print(f"::{level}::{one_line}", flush=True)
+    """GitHub Actions annotation; a no-op noise-free print locally."""
+    if os.environ.get("GITHUB_ACTIONS"):
+        print(f"::{level}::{msg}")
 
-def chrome(args, timeout=90):
-    return subprocess.run(
-        [CHROME, "--headless", NO_TRACKING_FLAG, "--disable-gpu", "--no-sandbox", "--hide-scrollbars",
-         # --disable-dev-shm-usage: standard CI hardening. Chrome writes shared memory to /dev/shm,
-         # which is small on many CI images; without this it can crash mid-render and return a
-         # blank or partial screenshot, which this tool would then measure as garbage.
-         "--disable-dev-shm-usage",
-         "--force-device-scale-factor=1"] + args,
-        capture_output=True, text=True, timeout=timeout)
+# ------------------------------------------------------------------ page prep
 
-# The wrapper runs in the PARENT document and reaches into the same-origin iframe. Nothing is
-# injected into the target as a <script> (innerHTML-inserted scripts never execute — an earlier
-# version of this tool failed its own calibration for exactly that reason).
-WRAPPER = """<!doctype html><meta charset="utf-8">
-<body style="margin:0;overflow:hidden;background:#000">
-<iframe id="f" src="__URL__" style="border:0;display:block;width:__W__px;height:__H__px"></iframe>
-<script>
-var f = document.getElementById('f');
-f.onload = function () {
-  var d = f.contentDocument, w = f.contentWindow;
-  if (__CANARY__) { var s = d.createElement('div'); s.innerHTML = __CANARY_HTML__;
-                    d.body.appendChild(s.firstChild); }
-  // Pin scroll-reveal elements to their SETTLED state in BOTH passes. Waiting for the fade is
-  // unreliable — the reveal is triggered by a JS-added class, so at the moment we check,
-  // getAnimations() is often still empty and we sample a half-faded element. On CI that surfaced
-  // as a gold button measured at 33-61% opacity (1.91:1 and 3.89:1) whose settled value is 9.01:1.
-  // Pinning removes the timing dependency instead of racing it. Note this deliberately does NOT
-  // set `transition:none` globally — that stopped the gold background painting at all.
-  if (__FORCE_VISIBLE__) {
-    var fv = d.createElement('style');
-    fv.textContent = __FORCE_VISIBLE__ +
-      '{opacity:1!important;transform:none!important;visibility:visible!important;' +
-      'transition-property:none!important}';
+# Eligibility: any element owning a DIRECT non-empty text node (NOT only childless elements —
+# `children.length===0` once skipped the very CTA that motivated this tool). Painted size for
+# SVG text uses getScreenCTM: computed fontSize is in user units and a 40px label in a scaled
+# viewBox can paint at 15px, flipping which WCAG threshold it owes (measured 2026-08-17).
+PREP_JS = """(function(FORCE){
+  var d=document, out=[], id=0;
+  // settle aids: instant scrolling for the whole audit
+  var st=d.createElement('style'); st.id='__ca_instant';
+  st.textContent='html{scroll-behavior:auto!important}';
+  d.head.appendChild(st);
+  if (FORCE) {
+    var fv=d.createElement('style'); fv.id='__ca_fv';
+    fv.textContent=FORCE+'{opacity:1!important;transform:none!important;'+
+      'visibility:visible!important;transition-property:none!important}';
     d.head.appendChild(fv);
   }
-  if (__HIDE__)   { var st = d.createElement('style'); st.textContent = __HIDE_CSS__;
-                    d.head.appendChild(st); }
-  // Wait for webfonts before measuring. Font metrics differ between macOS and Linux runners; if
-  // layout is still shifting when we sample, a CI gate flakes and gets switched off. fonts.ready
-  // removes the biggest source of that nondeterminism.
-  var collect = function () {
-    var out = [], EX = __EXEMPT__;
-    d.querySelectorAll('body *').forEach(function (el) {
-      // Collect any element owning a DIRECT non-empty text node — NOT only childless elements.
-      // A `el.children.length === 0` test silently skips <button><span class=dot></span>Open…</button>,
-      // which is precisely how the 1.18:1 call-to-action that motivated this tool escaped an earlier
-      // version of this tool as well. Text beside a decorative child is still text.
-      var own = '';
-      for (var i = 0; i < el.childNodes.length; i++)
-        if (el.childNodes[i].nodeType === 3) own += el.childNodes[i].nodeValue;
-      if (!own.trim()) return;
-      if (el.closest('script,style,[hidden],[aria-hidden="true"]')) return;
-      var cs = w.getComputedStyle(el);
-      if (cs.visibility === 'hidden' || cs.display === 'none' || parseFloat(cs.opacity) === 0) return;
-      var r = el.getBoundingClientRect();
-      if (r.width < 3 || r.height < 3) return;
-      // SVG <text>/<tspan> is painted by `fill`, NOT `color`. Reading `color` here reported the
-      // INHERITED page ink for every label inside an inlined SVG artifact — 344 phantom failures
-      // across six case studies, each claiming cream-on-cream while the element actually painted
-      // a dark warm grey. It held CI red for four days and hid whatever was really broken.
-      // `fill` can be a url()/gradient paint-server; those are not flat colours, so skip rather
-      // than guess (a paint-server needs pixel sampling, which is a different instrument).
-      var ink = cs.color;
-      if (el.ownerSVGElement || el.namespaceURI === 'http://www.w3.org/2000/svg') {
-        var f = cs.fill;
-        if (!f || f === 'none' || f.indexOf('url(') === 0) return;
-        ink = f;
-      }
-      // GRADIENT TEXT is painted by the BACKGROUND, not by `color`. `background-clip:text` with
-      // color:transparent survives the pass-B hide rule untouched (that rule only sets `color`),
-      // so pass B samples the glyph's own paint and calls it "background" — foreground and
-      // background come back identical and the ratio is EXACTLY 1.00. The 404 headline read
-      // 1.00 that way on 2026-08-16 while actually rendering at 7.5-8.5:1. An exactly-1.00
-      // reading is the signature of this instrument failing, never of a real defect, so refuse
-      // to guess: flag the node as UNMEASURABLE and say what would be needed instead.
-      /* WCAG's 3:1 large-text allowance is about PAINTED size. computed fontSize for SVG
-         text is in USER UNITS, so a 40px label inside a viewBox rendered at 0.385 paints
-         at 15.4px — and this gate graded it on the LENIENT threshold, exactly backwards.
-         Real case: 'The Act / Review / Ignore Rule' was judged 1.29 against 3.0 when it
-         owed 4.5. getScreenCTM gives the true element-to-screen scale. */
-      function paintedSize(el, cs) {
-        var px = parseFloat(cs.fontSize);
-        if (el.ownerSVGElement && el.getScreenCTM) {
-          var m = el.getScreenCTM();
-          if (m) {
-            var sc = Math.sqrt(Math.abs(m.a * m.d - m.b * m.c));
-            if (sc > 0 && isFinite(sc)) return px * sc;
-          }
-        }
-        return px;
-      }
-      var clip = cs.webkitBackgroundClip || cs.backgroundClip;
-      var fill = cs.webkitTextFillColor;
-      var transparentInk = /rgba\(0, 0, 0, 0\)|transparent/.test(fill || '')
-                        || /rgba\(0, 0, 0, 0\)|transparent/.test(ink || '');
-      if (clip === 'text' && transparentInk) {
-        out.push({ t: own.trim().slice(0, 44), size: paintedSize(el, cs),
-                   wt: cs.fontWeight, color: ink, unmeasurable: 'gradient text (background-clip:text)',
-                   ex: !!(EX && el.closest(EX)),
-                   r: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)] });
-        return;
-      }
-      out.push({ t: own.trim().slice(0, 44), size: paintedSize(el, cs),
-                 wt: cs.fontWeight, color: ink,
-                 ex: !!(EX && el.closest(EX)),
-                 r: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)] });
-    });
-    document.title = 'CA:' + JSON.stringify({ h: d.documentElement.scrollHeight, els: out });
-  };
-  // Wait for every running CSS transition/animation to FINISH before measuring, then settle.
-  // Without this the tool races the page: on a slower CI runner it sampled a scroll-reveal gold
-  // button mid-fade (~61% opacity over a dark page) and reported 3.89:1 against its dark label —
-  // the settled value is 9.01:1. Three false failures on a page that was never wrong.
-  // getAnimations() is the precise instrument here: it waits for the real end state instead of
-  // suppressing animation (an earlier attempt to just force `transition:none` stopped the gold
-  // background painting at all, turning three false failures into a different false failure).
-  // Capped, because an infinite animation — the cover's pulsing dot — never resolves.
-  // Jump every CSS animation straight to its end state before measuring. This is the general
-  // form of the problem: the hero CTA is not `.reveal` at all — it is `.hero-cta-row` carrying an
-  // inline `opacity:0; animation: reveal .4s ... .35s forwards`. A selector-based pin can never
-  // enumerate every such element; finish() needs no selector and covers keyframe animations AND
-  // transitions. Infinite animations (the book cover's pulsing dot) throw on finish() — skipped.
-  var finishAll = function () {
-    try {
-      (d.getAnimations ? d.getAnimations() : []).forEach(function (an) {
-        try { an.finish(); } catch (e) { /* infinite / unresolved — leave it running */ }
-      });
-    } catch (e) {}
-  };
-  var settleThen = function () {
-    finishAll();
-    var pending = [];
-    try {
-      pending = (d.getAnimations ? d.getAnimations() : []).map(function (an) {
-        return an.finished.catch(function () {});
-      });
-    } catch (e) {}
-    var done = false;
-    var fire = function () {
-      if (done) return;
-      done = true;
-      setTimeout(function () { finishAll(); collect(); }, __SETTLE__);
-    };
-    if (pending.length) { Promise.all(pending).then(fire, fire); }
-    setTimeout(fire, 3000);   // hard cap: infinite/looping animations must not hang the run
-    if (!pending.length) fire();
-  };
-  var go = function () { settleThen(); };
-  if (d.fonts && d.fonts.ready) { d.fonts.ready.then(go, go); } else { go(); }
-};
-</script>
-"""
+  d.querySelectorAll('body *').forEach(function(el){
+    var own='';
+    for (var i=0;i<el.childNodes.length;i++)
+      if (el.childNodes[i].nodeType===3) own+=el.childNodes[i].nodeValue;
+    if (!own.trim()) return;
+    if (el.closest('script,style,[hidden],[aria-hidden="true"]')) return;
+    var cs=getComputedStyle(el);
+    if (cs.visibility==='hidden'||cs.display==='none'||parseFloat(cs.opacity)===0) return;
+    var r=el.getBoundingClientRect();
+    if (r.width<3||r.height<3) return;
+    var px=parseFloat(cs.fontSize);
+    if (el.ownerSVGElement && el.getScreenCTM){
+      var m=el.getScreenCTM();
+      if (m){ var sc=Math.sqrt(Math.abs(m.a*m.d-m.b*m.c));
+              if (sc>0&&isFinite(sc)) px=px*sc; }
+    }
+    var clip=cs.webkitBackgroundClip||cs.backgroundClip;
+    if (clip==='text') el.setAttribute('data-ca-gt','1');
+    el.setAttribute('data-ca-id', String(id));
+    var fx=false, p=el;
+    while (p && p!==d.body){ var pcs=getComputedStyle(p);
+      if (pcs.position==='fixed'||pcs.position==='sticky'){fx=true;break;} p=p.parentElement; }
+    out.push({id:id, t:own.trim().slice(0,44), size:px, wt:cs.fontWeight,
+              ex:!!(EXEMPT_SEL && el.closest(EXEMPT_SEL)), fx:fx,
+              offcanvas:(r.bottom<=0||r.right<=0)});
+    id++;
+  });
+  // fixed chrome bands: regions a scrolling reader never sees content through
+  var top=0, bot=0, vh=innerHeight;
+  d.querySelectorAll('body *').forEach(function(el){
+    var cs=getComputedStyle(el);
+    if (cs.position!=='fixed'&&cs.position!=='sticky') return;
+    if (cs.display==='none'||cs.visibility==='hidden') return;
+    var r=el.getBoundingClientRect();
+    if (r.width<innerWidth*0.5||r.height<8||r.height>vh*0.5) return;
+    if (r.top<=2) top=Math.max(top,r.bottom);
+    if (r.bottom>=vh-2) bot=Math.max(bot,vh-r.top);
+  });
+  return {els:out, h:d.documentElement.scrollHeight, top:Math.ceil(top), bot:Math.ceil(bot)};
+})"""
 
-# The iframe wrapper that used to RENDER the page was removed on 2026-08-30, when audit()
-# moved to CDP. WRAPPER itself is KEPT: collect_js() extracts the measurement JS from it,
-# so it is the single source of that logic rather than a page that is rendered any more.
+RECTS_JS = """(function(ids){
+  var out={};
+  ids.forEach(function(i){
+    var el=document.querySelector('[data-ca-id="'+i+'"]');
+    if (!el) return;
+    var r=el.getBoundingClientRect();
+    out[i]=[Math.round(r.x),Math.round(r.y),Math.round(r.width),Math.round(r.height)];
+  });
+  return out;
+})"""
 
-# ---------------------------------------------------------------- page probe
-# The measurement JS is EXTRACTED from WRAPPER rather than retyped, so there is exactly one
-# copy of logic that took several rounds to get right (SVG fill vs color, painted size via
-# getScreenCTM, gradient text, own-text-node collection). If the anchors ever move this
-# raises rather than silently measuring nothing.
-_COLLECT_START = "var collect = function () {"
-_COLLECT_END = "document.title = 'CA:'"
+SETTLE_JS = """(async()=>{
+  const dl=new Promise(r=>setTimeout(r,4000));
+  const work=(async()=>{
+    try{await document.fonts.ready;}catch(e){}
+    // eager-load and decode every image: lazy images once grew the page mid-capture
+    try{await Promise.all([].slice.call(document.images).map(i=>{
+      try{i.loading='eager';}catch(e){}
+      return (i.decode?i.decode():Promise.resolve()).catch(()=>0);}));}catch(e){}
+    // jump every animation/transition to its end state; infinite ones are left running
+    try{document.getAnimations().forEach(a=>{try{a.finish();}catch(e){}});
+        await Promise.all(document.getAnimations().map(a=>a.finished.catch(()=>0)));}catch(e){}
+  })();
+  await Promise.race([work,dl]);
+})()"""
 
 
-def collect_js(exempt=None):
-    i = WRAPPER.find(_COLLECT_START)
-    j = WRAPPER.find(_COLLECT_END)
-    if i < 0 or j < 0 or j <= i:
-        raise RuntimeError("contrast-audit: could not extract the collect body from WRAPPER — "
-                           "the anchors moved. Fix this rather than measuring nothing.")
-    body = WRAPPER[i + len(_COLLECT_START):j]
-    body = body.replace("__EXEMPT__", json.dumps(exempt) if exempt else "null")
-    return ("(function(){var d=document,w=window;" + body +
-            "return {h:d.documentElement.scrollHeight,els:out};})()")
+def _measure(im_a, im_b, im_c, rect, band):
+    """Grade one element from three frames: A shipped, B ink removed, C ink keyed magenta.
 
-DOCROOT = None   # accepted for compatibility; unused since audit() drives the page over CDP
-                 # and no longer writes a wrapper file into the served tree.
+    Per pixel, coverage a = |C - B| / |MAGENTA - B| (channel-wise, well-conditioned
+    channels only). Where a >= ALPHA_CORE the AUTHORED ink is recovered exactly:
+    ink = (A - (1-a)*B) / a — de-aliasing by algebra, not statistics. The element's
+    ratio is the 10th percentile of per-pixel ratios over core pixels, so a gradient
+    is graded at its weakest point and uniform ink is graded at its true value.
 
-# ---------------------------------------------------------------------- audit
+    Returns (ratio, no_ink, fg_hex, bg_hex, core_count) or None if the rect has no
+    area inside the band."""
+    x, y, w, h = rect
+    x0 = max(x, 0); y0 = max(y, band[0])
+    x1 = min(x + w, im_a.width); y1 = min(y + h, band[1])
+    if x1 - x0 < 2 or y1 - y0 < 2:
+        return None
+    a_px = im_a.crop((x0, y0, x1, y1)).load()
+    b_px = im_b.crop((x0, y0, x1, y1)).load()
+    c_px = im_c.crop((x0, y0, x1, y1)).load()
+    W, H = x1 - x0, y1 - y0
+    glyphs = []          # (alpha, a_pixel, b_pixel)
+    for j in range(H):
+        for i in range(W):
+            pb, pc = b_px[i, j], c_px[i, j]
+            # coverage from frame C: how far this pixel moved toward pure magenta
+            alphas = []
+            for ch in range(3):
+                denom = MAGENTA[ch] - pb[ch]
+                if abs(denom) >= 48:
+                    al = (pc[ch] - pb[ch]) / float(denom)
+                    if -0.15 <= al <= 1.2:
+                        alphas.append(min(1.0, max(0.0, al)))
+            if not alphas:
+                continue
+            alpha = sorted(alphas)[len(alphas) // 2]
+            if alpha < 0.12:
+                continue
+            glyphs.append((alpha, a_px[i, j], pb))
+    if len(glyphs) < 4:
+        # frame C shows no glyphs either: nothing is painted here at all
+        # (fully obscured), or frames A and B agree because ink == ground.
+        # Either way the reader cannot see this text.
+        return (1.0, True, "-", "-", 0)
+    # Recover the authored ink from the best-covered pixels. Letter-spaced 11px
+    # caps (the nav) never reach 0.7 coverage, so the core bar adapts: at least
+    # 0.35, at most ALPHA_CORE, pinned to 85% of the best coverage this element
+    # actually painted — the algebra is identical, only noisier at low alpha.
+    max_a = max(g[0] for g in glyphs)
+    bar = min(ALPHA_CORE, max(0.35, max_a * 0.85))
+    core = []
+    for alpha, pa, pb in glyphs:
+        if alpha < bar:
+            continue
+        ink = tuple(min(255, max(0, int(round((pa[ch] - (1 - alpha) * pb[ch]) / alpha))))
+                    for ch in range(3))
+        core.append((ratio(ink, pb[:3]), ink, pb[:3]))
+    if not core:
+        return (1.0, True, "-", "-", 0)
+    core.sort(key=lambda t: t[0])
+    pick = core[max(0, int(len(core) * 0.10) - 1)] if len(core) > 4 else core[0]
+    got, ink, ground = pick
+    return (got, False, "#%02X%02X%02X" % ink, "#%02X%02X%02X" % ground, len(core))
 
-def audit(url, width, exempt=None, canary=False, force_visible=None):
-    """Measure one URL at one width. Returns (rows, truncated_bool) or (None, False) on failure.
 
-    ONE browser, ONE layout, a REALISTIC viewport, and a full-page capture over CDP.
+def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
+    """Measure one URL at one width, viewport by viewport.
 
-    What this replaced, and why: the tool used to load the page in an IFRAME sized to the
-    page's own height, then screenshot that. Pages here use 100vh sections, so the page
-    height depends on the viewport height and sizing the iframe to the page just grows the
-    page again — there is no fixed point. The capture was therefore sized from a 900px
-    probe while the content laid out taller, and every node below the image was dropped:
-    198 of 231 homepage text nodes at 1440px, on EVERY run, reported as "UNMEASURED ...
-    contrast is UNKNOWN, not passing" beside a "0 failures" verdict. The message even
-    contradicted itself ("page 10417px tall, screenshot 10417px") because it printed the
-    intended height, not the height the content actually needed.
-
-    Holding the viewport at a real 900px removes the feedback loop entirely: the page lays
-    out once, the way a reader sees it, and Page.captureScreenshot(captureBeyondViewport)
-    photographs the whole scrollable document WITHOUT resizing anything. Both passes now run
-    against the SAME loaded page, so the rects and the pixels cannot disagree.
-    """
+    Returns (rows, notes) — rows is None only if the page could not be driven at all."""
     from PIL import Image
     import base64, io as _io
-    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    import cdp
-
+    notes = []
     with cdp.Browser() as br:
         br.viewport(width, VIEWPORT_H)
+        # The audit grades the SETTLED reading state, and the site's own honesty
+        # rail defines one: every self-demo, ghost cursor and session clock dies
+        # under prefers-reduced-motion (assets/recon-live.js early-returns). A
+        # continuously animating widget flips views BETWEEN this tool's frames and
+        # fabricates ink==ground readings (PTC's recon caption, 2026-09-03), so the
+        # audit runs as a reduced-motion reader. Colours only shown mid-animation
+        # join the stated blind-spot list.
         try:
-            br.navigate(url, settle=2.2)
+            br.cmd("Emulation.setEmulatedMedia",
+                   features=[{"name": "prefers-reduced-motion", "value": "reduce"}])
         except Exception:
-            return None, False
+            pass
+        try:
+            br.navigate(url, settle=2.0)
+        except Exception:
+            return None, ["navigation failed"]
         if canary:
             br.eval("(function(){var s=document.createElement('div');s.innerHTML=%s;"
-                    "document.body.appendChild(s.firstChild);})()" % json.dumps(CANARY_HTML))
-        if force_visible:
-            br.eval("(function(){var st=document.createElement('style');st.textContent=%s+"
-                    "'{opacity:1!important;transform:none!important;visibility:visible!important;"
-                    "transition-property:none!important}';document.head.appendChild(st);})()"
-                    % json.dumps(force_visible))
-        # Same settle discipline as the wrapper had: webfonts, then running animations.
-        br.eval("document.fonts && document.fonts.ready", await_promise=False)
-        # RACED against a deadline, never awaited outright. /book/ is a React app with a
-        # looping animation, so a bare await on getAnimations().finished never resolves and
-        # the CDP socket times out after 90s — the audit hung on the book page every run.
-        # A settle wait must be bounded: the point is to avoid sampling mid-fade, not to
-        # prove the page ever stops moving.
-        br.eval("(async()=>{const deadline=new Promise(r=>setTimeout(r,1800));"
-                "const settled=(async()=>{try{await document.fonts.ready;}catch(e){}"
-                "try{await Promise.all(document.getAnimations().map(a=>a.finished.catch(()=>0)));}"
-                "catch(e){}})();"
-                "await Promise.race([settled,deadline]);})()", await_promise=True)
-        br.pump(0.6)
-        # LAZY IMAGES GROW THE PAGE MID-CAPTURE (2026-08-31). Rects are collected at
-        # scroll 0, where below-fold loading=lazy images have unloaded slots; the
-        # full-page capture then renders the whole document, the images load, the
-        # page grows, and every rect below them points at the wrong pixels — six
-        # phantom ~1.0:1 failures on ptc@390. Layout must be FINAL before anything
-        # is measured: eager-load and decode every image, bounded by a deadline.
-        br.eval("(async()=>{const dl=new Promise(r=>setTimeout(r,4000));"
-                "const work=Promise.all([].slice.call(document.images).map(i=>{"
-                "try{i.loading='eager';}catch(e){}"
-                "return (i.decode?i.decode():Promise.resolve()).catch(()=>0);}));"
-                "await Promise.race([work,dl]);})()", await_promise=True)
-        br.pump(0.4)
-        br.eval("window.scrollTo(0,0)")          # rects are then document coordinates
-        data = br.eval_json(collect_js(exempt))
+                    "while(s.firstChild)document.body.appendChild(s.firstChild);})()"
+                    % json.dumps(CANARY_HTML))
+        br.eval(SETTLE_JS, await_promise=True)
+        br.pump(0.3)
+        prep = PREP_JS.replace("EXEMPT_SEL", json.dumps(exempt) if exempt else "null")
+        data = br.eval_json("JSON.stringify((%s)(%s))" % (prep, json.dumps(force_visible)))
         if not data or not data.get("els"):
-            return None, False
-        full = int(data["h"])
-        truncated = full > MAX_PAGE_PX
+            return None, ["no eligible text found — page did not render?"]
+        els = {e["id"]: e for e in data["els"]}
+        page_h = int(data["h"])
+        band = (int(data["top"]) + BAND_PAD, VIEWPORT_H - int(data["bot"]) - BAND_PAD)
+        usable = band[1] - band[0]
+        if usable < 200:
+            return None, [f"fixed chrome leaves only {usable}px of viewport — refusing to grade"]
 
-        # Pass B: the SAME page, ink removed, so what is photographed is the true ground.
+        # After settle, future transitions serve nobody and poison the frame set:
+        # nav links carry `transition: color .2s`, so restoring ink from the magenta
+        # key frame fired a fade that frame A2 caught mid-flight — every nav link
+        # read UNSTABLE at every stop (measured 2026-09-03). The settled state is
+        # already reached; from here, state changes apply instantly.
+        # After settle, future transitions serve nobody: nav links carry
+        # `transition: color .2s`, so restoring ink from the magenta key frame fired
+        # a fade that frame A2 caught mid-flight — every nav link read UNSTABLE at
+        # every stop (2026-09-03). And aria-hidden text is decoration, not content —
+        # its glyphs land inside CONTENT rects (the 404's giant ghost watermark
+        # overlapped the h1 and the worst-pixel grader attributed the ghost's 1.07 to
+        # a cream heading that runs >11:1). Blanked in ALL frames it contributes
+        # nothing to any diff; the ground shifts by the decoration's own near-
+        # invisible shade — conservative, and stated in the blind-spot line.
+        # The blanking must OUTRANK the pass-B/C rules (:root * is 0,1,1): with a
+        # tie, the magenta key repainted the aria-hidden ghost in frame C ONLY,
+        # minting alpha=1 pixels whose "ink" was the bare background (2026-09-03).
+        _audit_css = (":root *{transition-duration:0s!important;transition-delay:0s!important}"
+                      ":root [aria-hidden='true'],:root [aria-hidden='true'] *{color:transparent!important;"
+                      "-webkit-text-fill-color:transparent!important;text-shadow:none!important;"
+                      "fill:transparent!important}")
         br.eval("(function(){var st=document.createElement('style');st.textContent=%s;"
-                "document.head.appendChild(st);})()" % json.dumps(HIDE_TEXT_CSS))
-        br.pump(0.35)
+                "document.head.appendChild(st);})()" % json.dumps(_audit_css))
+        # pass-B style, present from the start but disabled; toggling `media` swaps ink
+        # on/off with zero layout consequence between the paired captures.
+        br.eval("(function(){var st=document.createElement('style');st.id='__ca_hide';"
+                "st.media='not all';st.textContent=%s;document.head.appendChild(st);})()"
+                % json.dumps(HIDE_TEXT_CSS))
+        br.eval("(function(){var st=document.createElement('style');st.id='__ca_key';"
+                "st.media='not all';st.textContent=%s;document.head.appendChild(st);})()"
+                % json.dumps(INK_KEY_CSS))
 
-        # ALIGNMENT BEACONS (2026-08-31). captureBeyondViewport resizes the render
-        # surface, and on some pages that RELAYOUTS the document: ptc@390 photographed
-        # ~780px higher than its measured rects, so dark-section text sampled the cream
-        # plates above it — six phantom ~1.0:1 failures for sections that render
-        # perfectly. Geometry (page px == image px) cannot catch this: the heights
-        # matched while the CONTENT moved. So the image itself must prove alignment:
-        # three 6px magenta beacons pinned in document coordinates; if any beacon is
-        # not where the rects say it is, the fast capture is a lie for THIS page and
-        # the tiled capture below replaces it.
-        beacon_ys = [max(0, int(full * f)) for f in (0.08, 0.5, 0.92)]
-        br.eval("(function(ys){var w=document.createElement('div');w.id='__ca_beacons';"
-                "ys.forEach(function(y){var b=document.createElement('div');"
-                "b.style.cssText='position:absolute;left:2px;top:'+y+'px;width:6px;height:6px;"
-                "background:#FF00FE;z-index:2147483647;pointer-events:none';w.appendChild(b);});"
-                "document.body.appendChild(w);})(%s)" % json.dumps(beacon_ys))
-        br.pump(0.2)
-        shot = br.cmd("Page.captureScreenshot", format="png", captureBeyondViewport=True)
-        im = Image.open(_io.BytesIO(base64.b64decode(shot["data"]))).convert("RGB")
-        sx = im.width / float(width)
+        def shot():
+            r = br.cmd("Page.captureScreenshot", format="png")
+            return Image.open(_io.BytesIO(base64.b64decode(
+                r.get("result", r)["data"]))).convert("RGB")
 
-        def beacon_ok(img):
-            for by in beacon_ys:
-                py = int((by + 3) * sx)
-                if py >= img.height: return False
-                p = img.getpixel((int(5 * sx), py))
-                if not (p[0] > 200 and p[1] < 90 and p[2] > 200):
-                    return False
+        def _frames(br, shot):
+            """A, B, C, then A again. The second A frame is the instrument checking
+            itself: a widget that self-demos on scroll (PTC's reconstruction does)
+            repaints BETWEEN frames, and any element whose two A frames disagree is
+            deferred rather than graded from lying pixels."""
+            a = shot()
+            br.eval("document.getElementById('__ca_hide').media='all'")
+            br.pump(0.08)
+            b = shot()
+            br.eval("document.getElementById('__ca_hide').media='not all';"
+                    "document.getElementById('__ca_key').media='all'")
+            br.pump(0.08)
+            c = shot()
+            br.eval("document.getElementById('__ca_key').media='not all'")
+            br.pump(0.08)
+            a2 = shot()
+            return a, b, c, a2
+
+        def _stable(im1, im2, rect, band):
+            x, y, w, h = rect
+            x0 = max(x, 0); y0 = max(y, band[0])
+            x1 = min(x + w, im1.width); y1 = min(y + h, band[1])
+            if x1 - x0 < 2 or y1 - y0 < 2:
+                return True
+            p1 = im1.crop((x0, y0, x1, y1)).load()
+            p2 = im2.crop((x0, y0, x1, y1)).load()
+            W, H = x1 - x0, y1 - y0
+            moved = 0
+            for j in range(0, H, 2):
+                for i in range(0, W, 2):
+                    q1, q2 = p1[i, j], p2[i, j]
+                    if abs(q1[0]-q2[0]) + abs(q1[1]-q2[1]) + abs(q1[2]-q2[2]) > DIFF_T:
+                        moved += 1
+                        if moved * 16 > W * H // 25:   # >4% of the (subsampled) area moved
+                            return False
             return True
 
-        if not beacon_ok(im):
-            # CLIP-TILED CAPTURE (2026-08-31). The single beyond-viewport capture WRAPS
-            # past Chrome's 16384px texture cap: capture row y > 16384 shows the page's
-            # content from y-16384 — ptc@390 photographed its own verdict slip again at
-            # ~18.6k, and dark-section text sampled cream. Measured, not guessed: the
-            # slip (DOM y 1931) was found at capture y ≈ 18.5k, offset exactly the cap.
-            # A body-transform tiling was tried first and carries its own ~150px error
-            # (sticky/fixed interplay); a CLIP capture, by contrast, was verified
-            # pixel-exact past the cap (the pill's gradient sampled correctly at
-            # y=19,146). So: stitch clip captures in segments comfortably under the cap.
-            SEG = 8000
-            stitched = Image.new("RGB", (int(width * sx), int(full * sx)))
-            off = 0
-            while off < full:
-                seg_h = min(SEG, full - off)
-                tshot = br.cmd("Page.captureScreenshot", format="png",
-                               captureBeyondViewport=True,
-                               clip={"x": 0, "y": off, "width": width, "height": seg_h, "scale": 1})
-                tim = Image.open(_io.BytesIO(base64.b64decode(tshot["data"]))).convert("RGB")
-                stitched.paste(tim, (0, int(off * sx)))
-                off += seg_h
-            if beacon_ok(stitched):
-                im = stitched
-            # else: keep the fast capture; the drop-guard below will speak for what
-            # cannot be trusted rather than silently measuring garbage.
-
-    sx = im.width / float(width)
-    rows = []
-    # SILENT DROP GUARD. Every node whose sample points fall outside the captured image used to
-    # be skipped by a bare `continue`, and the printed total was len(rows) — so a screenshot
-    # shorter than the page reported "32 text nodes measured" on a homepage that really has 224,
-    # and its "0 failures" verdict covered only the first screen (measured 2026-08-16).
-    # A node that could not be sampled is an UNMEASURED node, and must be said out loud.
-    dropped = []
-    for e in data["els"]:
-        if e.get("unmeasurable"):
-            rows.append({"width": width, "text": e["t"], "size": e["size"],
-                         "fg": "-", "bg": "-", "ratio": 0.0,
-                         "need": required_ratio(e["size"], e["wt"]),
-                         "ok": True, "exempt": e["ex"],
-                         "unmeasurable": e["unmeasurable"]})
-            continue
-        x, y, w, h = e["r"]
-        # DENSITY SCALES WITH THE BOX. A fixed 5x3 grid is 15 samples, which on a short label
-        # ('IoTU', 24x13px) lands mostly ON the glyph and its antialiased edge, so the winning
-        # bucket was edge-blend #5A544B instead of the cream tile #EEE4CE underneath — a
-        # 1.97:1 false failure on text that really runs about 11:1.
-        cols = max(5, min(17, int(w / 6) or 5))
-        rows_n = max(3, min(9, int(h / 4) or 3))
-        pts = []
-        for i in range(1, cols + 1):
-            for j in range(1, rows_n + 1):
-                px = int((x + w * i / (cols + 1.0)) * sx)
-                py = int((y + h * j / (rows_n + 1.0)) * sx)
-                if 0 <= px < im.width and 0 <= py < im.height:
-                    pts.append(im.getpixel((px, py)))
-        if not pts:
-            # OFF-CANVAS BY DESIGN is not the same as UNMEASURED. A skip link is parked above
-            # the document (y = -100) until it is focused, so it has no pixels to sample and
-            # never will on load. Reporting that as "contrast UNKNOWN, not passing" printed a
-            # permanent false alarm on every page, on every run — and a warning that is always
-            # on is one nobody reads. The focused state is covered by interaction-state-check,
-            # which forces :focus-visible.
-            if y + h <= 0 or x + w <= 0:
+        graded, rows = set(), []
+        # declared non-participants
+        for i, e in els.items():
+            if e["offcanvas"]:
                 rows.append({"width": width, "text": e["t"], "size": e["size"],
                              "fg": "-", "bg": "-", "ratio": 0.0,
-                             "need": required_ratio(e["size"], e["wt"]),
-                             "ok": True, "exempt": e["ex"],
+                             "need": required_ratio(e["size"], e["wt"]), "ok": True,
+                             "exempt": e["ex"],
                              "unmeasurable": "off-canvas until focused (skip link)"})
+                graded.add(i)
+
+        step = max(200, usable - 60)          # overlap so band-edge elements land fully inside
+        y = 0
+        positions = []
+        while True:
+            positions.append(min(y, max(0, page_h - VIEWPORT_H)))
+            if y >= page_h - VIEWPORT_H:
+                break
+            y += step
+        seen_pos = set()
+        for pos in positions:
+            if pos in seen_pos:
                 continue
-            dropped.append(e["t"])
-            continue
-        # The MEAN of a grid inside a glyph box is not the background — it is the background
-        # blended with however much of the glyph the grid happened to land on. On bold 16px
-        # text in a small chip that is ~30% coverage, which dragged a real 8.72:1 label down
-        # to a reported 3.96 and sent me darkening colours that were never wrong. The MODE is
-        # the honest estimator: on any solid ground most sampled pixels ARE the ground, and
-        # the glyph pixels are the minority that the mean was quietly folding in.
-        # Quantised to 8 levels per channel first, so antialiased near-matches count together.
-        fg, alpha = parse_rgb(e["color"])
-        # The GROUND is the mode of the pixels that are NOT the ink. Glyph and antialiased
-        # edge pixels are a systematic contaminant, not noise, so dropping the ones close to
-        # the known ink removes them by construction instead of hoping the mode outvotes them.
-        # If almost every sample is ink-like there is no ground to find and the text really IS
-        # low-contrast — so fall back to all samples rather than discard the evidence.
-        near_ink = lambda p: sum(abs(int(p[k]) - int(fg[k])) for k in range(3)) < 60
-        ground_pts = [p for p in pts if not near_ink(p)]
-        if len(ground_pts) < max(3, len(pts) // 4):
-            ground_pts = pts
-        buckets = {}
-        for pnt in ground_pts:
-            key = tuple(v // 32 for v in pnt)
-            buckets.setdefault(key, []).append(pnt)
-        winner = max(buckets.values(), key=len)
-        bgc = tuple(sum(p[k] for p in winner) // len(winner) for k in range(3))
-        if alpha < 1:
-            fg = tuple(int(round(f * alpha + b * (1 - alpha))) for f, b in zip(fg, bgc))
-        need = required_ratio(e["size"], e["wt"])
-        got = ratio(fg, bgc)
-        rows.append({"width": width, "text": e["t"], "size": e["size"],
-                     "fg": "#%02X%02X%02X" % fg, "bg": "#%02X%02X%02X" % bgc,
-                     # FLOOR, never round: a true 4.4996 displayed as "4.50" against a 4.5 floor reads as a
-                     # tool bug and gets dismissed. Flooring never overstates a passing value.
-                     "ratio": math.floor(got * 100) / 100.0, "need": need,
-                     "ok": got >= need, "exempt": e["ex"]})
-    if dropped:
-        rows.append({"width": width, "text": "", "size": 0, "fg": "-", "bg": "-",
-                     "ratio": 0.0, "need": 0, "ok": True, "exempt": False,
-                     "dropped": dropped,
-                     "geom": f"page {full}px tall, screenshot {im.height}px "
-                             f"({im.width}x{im.height} at sx={sx:.2f})"})
-    return rows, truncated
+            seen_pos.add(pos)
+            br.eval(f"window.scrollTo(0,{pos})")
+            # the nav's scroll-shading transition must FINISH before the frame set,
+            # or fixed chrome fails its own stability check at every stop
+            br.pump(0.4)
+            want = [i for i in els if i not in graded]
+            if not want:
+                break
+            rects = br.eval_json("JSON.stringify((%s)(%s))" % (RECTS_JS, json.dumps(want)))
+            # fully inside the unobstructed band → gradable at this stop.
+            # Fixed/sticky-chrome text rides with the viewport: it is graded at the
+            # FIRST stop against the full viewport (its ground is its own chrome).
+            here = {}
+            for k, r in (rects or {}).items():
+                x, ry, w, h = r
+                if w < 2 or h < 2:
+                    continue
+                ik = int(k)
+                if els[ik].get("fx"):
+                    if 0 <= ry and ry + h <= VIEWPORT_H and x < width and x + w > 0:
+                        here[ik] = ("full", r)
+                    continue
+                if ry >= band[0] and ry + h <= band[1] and x < width and x + w > 0:
+                    here[ik] = ("band", r)
+            # oversized elements: on the LAST chance (element taller than the band),
+            # grade the slice that is visible — the diff method grades partial regions honestly.
+            for k, r in (rects or {}).items():
+                ik = int(k)
+                if ik in here or ik in graded or els[ik].get("fx"):
+                    continue
+                x, ry, w, h = r
+                if h > usable and ry < band[1] and ry + h > band[0]:
+                    here[ik] = ("band", r)
+            if not here:
+                continue
+            im_a, im_b, im_c, im_a2 = _frames(br, shot)
+            for i, (scope, r) in here.items():
+                e = els[i]
+                use_band = (0, VIEWPORT_H) if scope == "full" else band
+                if not _stable(im_a, im_a2, r, use_band):
+                    continue          # animated here; the targeted pass gets another shot
+                res = _measure(im_a, im_b, im_c, r, use_band)
+                if res is None:
+                    continue
+                got, no_ink, fg, bg, n = res
+                need = required_ratio(e["size"], e["wt"])
+                if no_ink:
+                    # An eligible, visible element whose frames do not differ paints no
+                    # legible ink: invisible text or fully obscured. v2's "exactly 1.00"
+                    # instrument-failure signature, now detected as the defect it is.
+                    rows.append({"width": width, "text": e["t"], "size": e["size"],
+                                 "fg": fg, "bg": bg, "ratio": 1.0, "need": need,
+                                 "ok": False, "exempt": e["ex"], "noink": True})
+                else:
+                    rows.append({"width": width, "text": e["t"], "size": e["size"],
+                                 "fg": fg, "bg": bg,
+                                 # FLOOR, never round: 4.4996 shown as "4.50" against a
+                                 # 4.5 floor reads as a tool bug and gets dismissed.
+                                 "ratio": math.floor(got * 100) / 100.0, "need": need,
+                                 "ok": got >= need, "exempt": e["ex"]})
+                graded.add(i)
+
+        # TARGETED PASS: whatever the stops missed (self-mutating content shifts
+        # elements across stop boundaries) gets its own private stop, centred.
+        leftovers = [i for i in els if i not in graded]
+        for i in leftovers:
+            for attempt in range(2):
+                r0 = br.eval_json("JSON.stringify((%s)([%d]))" % (RECTS_JS, i)).get(str(i))
+                if not r0:
+                    break
+                x, ry, w, h = r0
+                doc_y = br.eval_json("JSON.stringify([Math.round(window.scrollY)])")[0] + ry
+                br.eval(f"window.scrollTo(0,{max(0, doc_y - VIEWPORT_H // 2)})")
+                br.pump(0.15)
+                r1 = br.eval_json("JSON.stringify((%s)([%d]))" % (RECTS_JS, i)).get(str(i))
+                if not r1 or r1[2] < 2 or r1[3] < 2:
+                    break
+                use_band = (0, VIEWPORT_H) if els[i].get("fx") else band
+                im_a, im_b, im_c, im_a2 = _frames(br, shot)
+                if not _stable(im_a, im_a2, r1, use_band):
+                    continue
+                res = _measure(im_a, im_b, im_c, r1, use_band)
+                if res is None:
+                    break
+                got, no_ink, fg, bg, n = res
+                e = els[i]
+                need = required_ratio(e["size"], e["wt"])
+                if no_ink:
+                    rows.append({"width": width, "text": e["t"], "size": e["size"],
+                                 "fg": fg, "bg": bg, "ratio": 1.0, "need": need,
+                                 "ok": False, "exempt": e["ex"], "noink": True})
+                else:
+                    rows.append({"width": width, "text": e["t"], "size": e["size"],
+                                 "fg": fg, "bg": bg,
+                                 "ratio": math.floor(got * 100) / 100.0, "need": need,
+                                 "ok": got >= need, "exempt": e["ex"]})
+                graded.add(i)
+                break
+
+        missing = [els[i]["t"] for i in els if i not in graded]
+        if missing:
+            notes.append(f"{len(missing)} text node(s) at {width}px could not be placed in any "
+                         f"viewport stop — their contrast is UNKNOWN, not passing. "
+                         f"First few: {missing[:5]}")
+    return rows, notes
 
 # ---------------------------------------------------------------- calibration
 
-def selftest(url, width, force_visible=None):
-    rows, _ = audit(url, width, canary=True, force_visible=force_visible)
+def selftest(url, width, exempt=None, force_visible=".reveal"):
+    rows, _ = audit(url, width, exempt=exempt, canary=True, force_visible=force_visible)
     if rows is None:
         return False, "could not instrument the page at all (is it served same-origin over http?)"
-    hits = [r for r in rows if r["text"].startswith(CANARY_TEXT[:18])]
-    if not hits:
-        return False, "planted canary was never measured — the auditor cannot see injected text"
-    if all(h["ok"] for h in hits):
-        return False, f"canary measured {hits[0]['ratio']}:1 yet was reported PASSING"
-    return True, (f"planted canary correctly flagged at {hits[0]['ratio']}:1 "
-                  f"(needs {hits[0]['need']}) — the instrument can go red")
+    def flagged(prefix):
+        hits = [r for r in rows if r["text"].startswith(prefix[:18])]
+        if not hits:
+            return None
+        return next((h for h in hits if not h["ok"]), False)
+    checks = [(CANARY_TEXT, "plain low-contrast text"),
+              (CANARY_GT_TEXT, "gradient (background-clip:text) low-contrast text"),
+              (CANARY_RV_TEXT, "low-contrast text behind a .reveal fade")]
+    msgs = []
+    for prefix, what in checks:
+        hit = flagged(prefix)
+        if hit is None:
+            return False, f"{what} canary was never measured — the auditor cannot see it"
+        if hit is False:
+            return False, f"{what} canary was measured yet reported PASSING"
+        msgs.append(f"{what} {hit['ratio']:.2f}:1")
+    return True, ("all three canaries correctly flagged (" + " · ".join(msgs) +
+                  ") — the instrument can go red on the plain case, the old gradient "
+                  "blind spot, and the reveal race")
 
 # ------------------------------------------------------------------------ cli
 
 def discover_pages(base="http://localhost:8000"):
-    """Every tracked .html a visitor can reach. Archives, templates and the private repo out."""
-    import subprocess
-    out = subprocess.run("git ls-files '*.html'", shell=True, capture_output=True, text=True).stdout
+    """Every tracked .html a visitor can reach. Archives, templates and stubs out."""
+    out = subprocess.run("git ls-files '*.html'", shell=True,
+                         capture_output=True, text=True).stdout
     urls = []
-    # .split() breaks on any filename containing a space (e.g. prototypes/reference-concepts/
-    # "Theme 1 - Warm Gallery.dc.html") — it shreds ONE path into several fake single-word
-    # "files" ('1', '-', 'Warm', ...) that pass the prototypes/ exclusion (only the FIRST
-    # fragment starts with "prototypes/"), so they get audited as real pages and 404.
-    # Measured 2026-08-11: this is what actually broke CI run 31526918220 ("localhost:8000/1").
+    # iterate LINES, never .split(): filenames with spaces once shredded into fake pages
+    # that 404'd in CI (run 31526918220, measured 2026-08-11).
     for f in out.splitlines():
         if f.startswith(("prototypes/", "assets/", "portfolio-sources/")):
             continue
-        # Meta-refresh redirect stubs (lab/hitl.html, lab/trustlayer.html) have no real
-        # content to audit — and auditing one is actively harmful: this tool loads the
-        # target in a same-origin iframe and samples it after a fixed settle delay, so the
-        # stub's own <meta http-equiv="refresh"> can navigate the iframe to its destination
-        # DURING that window. The result is destination-page text (measured 2026-08-13:
-        # loop.html's calibration demo — "600ms", "Was right", "Underconfident") reported
-        # under the STUB's URL, intermittently, because it's a timing race against the
-        # stub's own navigation. CI run #49 failed on exactly this. Skip stubs outright.
+        # meta-refresh stubs navigate mid-measure and report the DESTINATION's text
+        # under the stub's URL (CI run #49) — skip them outright.
         try:
             with open(f, encoding="utf-8", errors="ignore") as fh:
                 if 'http-equiv="refresh"' in fh.read():
@@ -591,25 +599,22 @@ def discover_pages(base="http://localhost:8000"):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Pixel-truth WCAG contrast audit.")
+    ap = argparse.ArgumentParser(description="Pixel-truth WCAG contrast audit (viewport-native, differential ink).")
     ap.add_argument("urls", nargs="*")
-    # Enumerate, never trust a typed list. On 2026-08-07 the CI list named 9 pages by hand, so
-    # 11 shipped pages had NEVER been contrast-checked — including lab/loop.html, the largest
-    # page in the Lab. A hand-maintained scope silently stops covering whatever gets added next.
     ap.add_argument("--all", action="store_true",
                     help="discover every shipped page from git and check all of them")
     ap.add_argument("--widths", default="1440,1024,768")
     ap.add_argument("--exempt", default=None,
                     help='CSS selector for WCAG 1.4.3-exempt text, e.g. ".logo, .wordmark"')
     ap.add_argument("--docroot", default=os.getcwd(),
-                    help="directory served at the URL origin root (default: cwd). The wrapper is "
-                         "written here so it is same-origin with the pages under test.")
-    ap.add_argument("--force-visible", default=None, metavar="SELECTOR",
-                    help="CSS selector for scroll-reveal elements, pinned to their settled visible "
-                         "state before measuring (e.g. '.reveal'). Removes the timing race against "
-                         "a JS-triggered fade, which otherwise yields false failures on slow runners.")
+                    help="accepted for hook/CI compatibility; v3 drives pages over CDP and "
+                         "writes nothing into the served tree")
+    ap.add_argument("--force-visible", default=".reveal", metavar="SELECTOR",
+                    help="scroll-reveal selector pinned to its settled state (DEFAULT '.reveal' — "
+                         "v2 made this opt-in and a forgotten flag produced false reds; pass '' "
+                         "to disable)")
     ap.add_argument("--base", default="http://localhost:8000",
-                    help="origin --all builds its URLs from. Passed explicitly by the\n                          pre-push hook so the sweep cannot depend on the hook happening\n                          to serve the port this file defaults to.")
+                    help="origin --all builds its URLs from")
     ap.add_argument("--selftest", action="store_true", help="run calibration only, then exit")
     ap.add_argument("--no-selftest", action="store_true",
                     help="skip calibration (a green result then proves nothing)")
@@ -620,72 +625,60 @@ def main():
     if not a.urls:
         ap.error("give URLs, or use --all")
     widths = [int(w) for w in a.widths.split(",")]
-    global DOCROOT
-    DOCROOT = os.path.abspath(a.docroot)
-    if not os.path.isdir(DOCROOT):
-        sys.exit(f"contrast-audit: --docroot is not a directory: {DOCROOT}")
+    fv = a.force_visible or None
 
     if not a.no_selftest:
-        ok, msg = selftest(a.urls[0], widths[0], force_visible=a.force_visible)
+        ok, msg = selftest(a.urls[0], widths[0], exempt=a.exempt, force_visible=fv)
         print(f"[calibration] {'PASS' if ok else 'FAIL'} — {msg}")
         if not ok:
             print("\nRefusing to report results. An instrument that cannot fail is not evidence.")
             gh("error", f"contrast-audit CALIBRATION FAILED — {msg}. No contrast results were "
                         f"produced; the instrument itself is broken in this environment.")
-            sys.exit(1)
+            sys.exit(2)
         if a.selftest:
             sys.exit(0)
 
     failures = 0
+    could_not_measure = False
     for url in a.urls:
         measured = 0
         bad, exempt_bad, notes, unmeasurable = [], [], [], []
         for width in widths:
-            rows, truncated = audit(url, width, exempt=a.exempt,
-                                    force_visible=a.force_visible)
+            rows, wnotes = audit(url, width, exempt=a.exempt, force_visible=fv)
+            notes += [f"@{width}px: {n}" for n in (wnotes or [])]
             if rows is None:
                 notes.append(f"@{width}px could not be measured")
+                could_not_measure = True
                 continue
             measured += len(rows)
-            for r in rows:
-                if r.get("dropped"):
-                    notes.append(f"UNMEASURED: {len(r['dropped'])} text node(s) at {width}px "
-                                 f"fell outside the captured image — {r['geom']}. "
-                                 f"Their contrast is UNKNOWN, not passing. "
-                                 f"First few: {r['dropped'][:5]}")
-            rows = [r for r in rows if not r.get("dropped")]
             unmeasurable += [r for r in rows if r.get("unmeasurable")]
-            bad += [r for r in rows if not r["ok"] and not r["exempt"]]
+            bad += [r for r in rows if not r["ok"] and not r["exempt"]
+                    and not r.get("unmeasurable")]
             exempt_bad += [r for r in rows if not r["ok"] and r["exempt"]]
-            if truncated:
-                notes.append(f"@{width}px page taller than {MAX_PAGE_PX}px — bottom NOT measured")
         failures += len(bad)
         print(f"\n{url}  —  {measured} text nodes measured at {widths}")
         if measured == 0:
             gh("error", f"contrast-audit measured ZERO text nodes on {url} — the page did not "
-                        f"render or could not be instrumented in this environment. Notes: "
-                        f"{'; '.join(notes) or 'none'}")
+                        f"render or could not be instrumented. Notes: {'; '.join(notes) or 'none'}")
+            could_not_measure = True
         for r in bad:
-            print(f"  FAIL {r['ratio']:5.2f}/{r['need']}  {r['size']:>6.1f}px  "
-                  f"{r['fg']} on {r['bg']}  @{r['width']}px  {r['text']!r}")
-        # Surface each failure as an annotation so a CI failure is diagnosable without log access.
-        # Capped: annotations are rate-limited per run and a wall of them buries the signal.
+            tag = "NO-INK" if r.get("noink") else "FAIL"
+            print(f"  {tag} {r['ratio']:5.2f}/{r['need']}  {r['size']:>6.1f}px  "
+                  f"{r['fg']} on {r['bg']}  @{r['width']}px  {r['text']!r}"
+                  + ("  (paints no visible ink: invisible or obscured)" if r.get("noink") else ""))
         for r in bad[:15]:
             gh("error", f"CONTRAST {r['ratio']:.2f}:1 (needs {r['need']}) — {r['size']:.1f}px "
                         f"{r['fg']} on {r['bg']} @{r['width']}px — {url} — text: {r['text']!r}")
         if len(bad) > 15:
-            gh("error", f"...and {len(bad) - 15} further contrast failures on {url} "
-                        f"(see the step log for the full list).")
-        for n in notes:
-            gh("warning", f"contrast-audit on {url}: {n}")
+            gh("error", f"...and {len(bad) - 15} further contrast failures on {url}.")
         for r in exempt_bad:
             print(f"  exempt {r['ratio']:5.2f}  @{r['width']}px  {r['text']!r}  "
                   f"(declared 1.4.3-exempt — confirm that is true)")
         for n in notes:
             print(f"  NOTE  {n}")
+            gh("warning", f"contrast-audit on {url}: {n}")
         if unmeasurable:
-            print(f"  UNMEASURABLE by this instrument ({len(unmeasurable)}) — NOT a verdict, "
-                  f"these need pixel sampling of the glyph paint itself:")
+            print(f"  UNMEASURABLE by this instrument ({len(unmeasurable)}) — NOT a verdict:")
             seen_u = set()
             for r in unmeasurable:
                 k = (r["text"], r["unmeasurable"])
@@ -695,9 +688,13 @@ def main():
                 print(f"    {r['unmeasurable']}  {r['size']:>6.1f}px  @{r['width']}px  {r['text']!r}")
         if not bad:
             print("  0 failures. Blind spots of this method: text inside <canvas>, <video>, "
-                  "cross-origin iframes, and any state not reachable on load (hover, focus, open "
-                  "menus) are NOT measured.")
-    sys.exit(1 if failures else 0)
+                  "cross-origin iframes, any state not reachable on load (hover, focus, open "
+                  "menus), colours shown only mid-animation (the audit reads as a "
+                  "reduced-motion visitor), and two ELIGIBLE text layers overlapping "
+                  "the same pixels (graded as one) are NOT measured.")
+    if failures:
+        sys.exit(1)
+    sys.exit(2 if could_not_measure else 0)
 
 if __name__ == "__main__":
     main()
