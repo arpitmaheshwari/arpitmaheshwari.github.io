@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>T3 — Riso Press</title><meta name="robots" content="noindex">
+<link rel="stylesheet" href="/fonts.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--paper:#F2ECDD;--ink:#221E1A;--orange:#FF4D1F;--blue:#4437D6;--overprint:#7B2E5B;
+--serif:'Source Serif 4',Georgia,serif;--sans:'Source Sans 3',system-ui,sans-serif;--mono:'JetBrains Mono',monospace}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);position:relative}
+/* riso grain */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
+ background-image:radial-gradient(rgba(34,30,26,.16) .5px,transparent .6px);background-size:3px 3px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 5vw;border-bottom:2.5px solid var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+nav b{font-size:13px;letter-spacing:.1em}
+nav .tag{background:var(--blue);color:var(--paper);padding:5px 12px;transform:rotate(-1deg)}
+.hero{padding:8vh 5vw 6vh;position:relative;overflow:hidden}
+.kick{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;background:var(--orange);color:var(--paper);padding:6px 14px;transform:rotate(-.8deg)}
+/* misregistered display — the two inks never quite align */
+h1{font-weight:700;font-family:var(--sans);font-size:clamp(44px,8.6vw,112px);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;margin-top:30px;position:relative;max-width:13ch}
+h1 .mis{position:relative;display:inline-block;color:var(--orange)}
+h1 .mis::before{content:attr(data-t);position:absolute;left:3px;top:3px;color:var(--blue);z-index:-1;mix-blend-mode:multiply;white-space:nowrap}
+.sub{margin-top:26px;font-size:17px;line-height:1.6;color:rgba(34,30,26,.75);max-width:46ch}
+.stamp{position:absolute;right:6vw;top:9vh;border:3px solid var(--blue);color:var(--blue);font-family:var(--mono);font-size:11px;letter-spacing:.2em;padding:10px 16px;transform:rotate(7deg);text-transform:uppercase;mix-blend-mode:multiply}
+/* the numbers as print blocks */
+.blocks{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:20px 5vw 0}
+.b{border:2.5px solid var(--ink);padding:18px 16px;position:relative;background:var(--paper)}
+.b:nth-child(2){background:var(--orange);color:var(--paper);border-color:var(--orange)}
+.b:nth-child(4){background:var(--blue);color:var(--paper);border-color:var(--blue)}
+.b b{font-weight:800;font-size:clamp(20px,2.4vw,32px);letter-spacing:-.02em;display:block;text-transform:uppercase}
+.b span{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-top:8px;display:block;line-height:1.8;opacity:.8}
+/* the case as a poster row */
+.poster{margin:9vh 5vw 0;border:2.5px solid var(--ink);display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr)}
+.poster .l{padding:36px;border-right:2.5px solid var(--ink)}
+.poster .num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--overprint);text-transform:uppercase}
+.poster h2{font-weight:800;text-transform:uppercase;font-size:clamp(26px,4vw,52px);line-height:.98;letter-spacing:-.02em;margin-top:14px}
+.poster h2 i{font-style:normal;color:var(--orange)}
+.poster p{margin-top:16px;font-size:15px;line-height:1.65;color:rgba(34,30,26,.75);max-width:52ch}
+.poster .r{padding:36px;display:flex;flex-direction:column;justify-content:space-between;gap:20px;background:repeating-linear-gradient(-45deg,transparent 0 10px,rgba(68,55,214,.06) 10px 12px)}
+.poster .r .big{font-weight:800;font-size:clamp(30px,4.6vw,56px);line-height:1;color:var(--blue);text-transform:uppercase}
+.poster .r .cap{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(34,30,26,.6);line-height:2}
+.chant{margin:8vh 5vw 60px;padding-top:18px;border-top:2.5px solid var(--ink);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.chant span:nth-child(2){color:var(--orange)}.chant span:nth-child(3){color:var(--blue)}.chant span:nth-child(4){color:var(--overprint)}
+@media(max-width:840px){.blocks{grid-template-columns:1fr 1fr}.poster{grid-template-columns:1fr}.poster .l{border-right:0;border-bottom:2.5px solid var(--ink)}.stamp{display:none}}
+</style></head><body>
+<nav><b>ARPIT MAHESHWARI</b><span class="tag">PRINTED IN TWO INKS &middot; NO PROOFS HIDDEN</span></nav>
+<section class="hero">
+  <p class="kick">Staff / Principal product designer &middot; AI products &middot; fully remote</p>
+  <h1>Your model is right. Your users still <span class="mis" data-t="WON&rsquo;T BET">won&rsquo;t bet</span> on it.</h1>
+  <p class="sub">I design AI products professionals actually trust and act on. Sixteen years, five industries, one problem &mdash; and the receipts for all of it.</p>
+  <div class="stamp">receipts<br>attached</div>
+</section>
+<div class="blocks">
+  <div class="b"><b>2wks&rarr;3hrs</b><span>campaign planning &middot; AdTech</span></div>
+  <div class="b"><b>60% faster</b><span>PE deal screening &middot; FinTech</span></div>
+  <div class="b"><b>$1M / yr</b><span>off print &middot; EdTech</span></div>
+  <div class="b"><b>4M+ users</b><span>two O2 products &middot; Telecom</span></div>
+</div>
+<section class="poster">
+  <div class="l">
+    <p class="num">EDITION 01 / 07 &mdash; ADTECH &middot; NAMED CLIENT</p>
+    <h2>An ad agency became <i>the market&rsquo;s aggregator</i></h2>
+    <p>The model beat the traders &mdash; and they overrode it anyway, until every score arrived as a full campaign plan with KPIs attached and one-click customisation. What changed wasn&rsquo;t the engine; it was the half-second before the tap.</p>
+  </div>
+  <div class="r">
+    <div class="big">2 wks &rarr; 3 hrs</div>
+    <p class="cap">+&pound;69K MEDIA VALUE / CLIENT<br>BASELINE: ~2-WEEK MANUAL PLANNING<br>MEASURED INSIDE THE ENGAGEMENT</p>
+  </div>
+</section>
+<footer class="chant"><span>RIGHT ISN&rsquo;T ENOUGH.</span><span>EARN THE TAP.</span><span>KEEP THE RECEIPTS.</span><span>SHOW THE MISS.</span></footer>
+</body></html>

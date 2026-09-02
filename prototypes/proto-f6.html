@@ -1,0 +1,75 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>F6 — a half-second, slowed down</title><meta name="robots" content="noindex">
+<link rel="stylesheet" href="/fonts.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#16101B;--ink:#F5EDE6;--mut:rgba(245,237,230,.75);--dim:rgba(245,237,230,.45);
+--ember:#FF8A5C;--violet:#E86BFF;--rose:#FF7AA8;--amber:#FFC46B;
+--serif:'Source Serif 4',Georgia,serif;--sans:'Source Sans 3',system-ui,sans-serif;--mono:'JetBrains Mono',monospace}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif)}
+/* the clock — the whole site takes place inside one half-second */
+.clock{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:baseline;padding:18px 5vw;
+ font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;
+ background:linear-gradient(180deg,rgba(22,16,27,.92),rgba(22,16,27,0))}
+.clock b{font-size:22px;color:var(--ink);font-weight:400;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.clock b i{font-style:normal;color:var(--ember)}
+.track{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--ember),var(--violet),var(--rose));width:0%;z-index:41}
+.beat{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:16vh 7vw;position:relative}
+.t{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--ember);text-transform:uppercase;margin-bottom:22px}
+h1,h2{font-weight:300;line-height:1.12;letter-spacing:-.02em}
+h1{font-size:clamp(40px,7vw,88px)}
+h2{font-size:clamp(30px,4.6vw,54px);max-width:18ch}
+.beat p.n{font-family:var(--sans);margin-top:24px;color:var(--mut);font-size:16.5px;line-height:1.65;max-width:50ch}
+em{font-style:italic;background:linear-gradient(92deg,var(--ember),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.b2 .t{color:var(--violet)} .b3 .t{color:var(--amber)} .b4 .t{color:var(--rose)}
+.fin{min-height:92svh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 7vw}
+.cta{display:inline-block;margin-top:34px;font-family:var(--sans);font-size:13.5px;font-weight:600;letter-spacing:.05em;padding:16px 32px;border-radius:999px;background:linear-gradient(92deg,var(--ember),var(--violet));color:#1A0D08;text-decoration:none}
+.hint{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase}
+</style></head><body>
+<div class="track" id="track"></div>
+<div class="clock"><span>Arpit Maheshwari &middot; the half-second</span><b><i id="ms">0.000</i>&thinsp;s&thinsp;/&thinsp;0.500</b></div>
+
+<section class="beat">
+  <p class="t">0.000 s &mdash; the answer appears</p>
+  <h1>Your model is right.<br>This site takes place in the <em>half-second</em> after.</h1>
+  <p class="n">A professional sees a correct answer and hesitates before betting on it. I have spent sixteen years inside that pause. Scroll &mdash; the clock above is the pause, slowed four hundred times.</p>
+</section>
+
+<section class="beat b2">
+  <p class="t">0.120 s &mdash; the eye asks: says who?</p>
+  <h2>Evidence beside the answer, or no bet.</h2>
+  <p class="n">AdTech: the model beat the traders and they overrode it anyway &mdash; until every score arrived as a full plan with the reasons named. Two weeks of planning became three hours.</p>
+</section>
+
+<section class="beat b3">
+  <p class="t">0.260 s &mdash; the hand asks: what if it&rsquo;s wrong?</p>
+  <h2>People act when being wrong is cheap.</h2>
+  <p class="n">FinTech: sixty percent faster deal screening &mdash; not because the model improved, but because the override became a one-tap, logged, reversible act instead of an argument.</p>
+</section>
+
+<section class="beat b4">
+  <p class="t">0.410 s &mdash; the doubt breaks</p>
+  <h2>Right isn&rsquo;t enough. <em>Earn the tap.</em></h2>
+  <p class="n">Four products on camera, the miss included. The receipts, the patterns, the running code &mdash; everything this pause taught me, documented below deck.</p>
+</section>
+
+<section class="fin">
+  <p class="t" style="color:var(--ember)">0.500 s &mdash; your half-second is up</p>
+  <h2>You just did the thing I design for. Now decide.</h2>
+  <a class="cta" href="#">Book the 30-min call &nearr;</a>
+</section>
+
+<p class="hint">scroll = time &middot; the page is one decision, slowed down</p>
+<script>
+(function(){
+  var ms=document.getElementById('ms'), track=document.getElementById('track');
+  function upd(){
+    var max=document.documentElement.scrollHeight-innerHeight;
+    var p=max>0?Math.min(1,scrollY/max):0;
+    ms.textContent=(p*0.5).toFixed(3);
+    track.style.width=(p*100)+'%';
+  }
+  addEventListener('scroll',upd,{passive:true}); upd();
+})();
+</script>
+</body></html>

@@ -1,0 +1,97 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M2 — words that hesitate, then commit</title><meta name="robots" content="noindex">
+<link rel="stylesheet" href="/fonts.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#1B1320;--ink:#F5EDE6;--mut:rgba(245,237,230,.76);--ember:#FF8A5C;--violet:#E86BFF;--amber:#FFC46B;--rose:#FF7AA8;
+--serif:'Source Serif 4',Georgia,serif;--sans:'Source Sans 3',system-ui,sans-serif;--mono:'JetBrains Mono',monospace}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans)}
+section{min-height:88svh;display:flex;flex-direction:column;justify-content:center;padding:64px 8vw;border-bottom:1px solid rgba(245,237,230,.1)}
+.kick{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px}
+h1,h2{font-family:var(--serif);font-weight:300;letter-spacing:-.015em;line-height:1.15}
+h1{font-size:clamp(36px,5.2vw,64px)}
+h2{font-size:clamp(28px,3.6vw,44px)}
+.note{margin-top:26px;color:var(--mut);max-width:52ch;line-height:1.65;font-size:16px}
+/* ===== the motion identity: a word SETTLES like a decision =====
+   every word streams in confidently — except the LOAD-BEARING one, which
+   stalls mid-air (blurred, tilted: unresolved), holds ~500ms, then snaps
+   into place with a small overshoot: the moment of commitment. */
+.w{display:inline-block;opacity:0;transform:translateY(.35em);transition:opacity .35s,transform .45s cubic-bezier(.2,.7,.2,1)}
+.w.in{opacity:1;transform:none}
+.hes{display:inline-block;position:relative}
+.hes .w{transition:none}
+.hes.stall .w{opacity:.55;transform:translateY(.12em) rotate(-1.6deg);filter:blur(2.5px)}
+.hes.commit .w{opacity:1;transform:none;filter:blur(0);transition:all .34s cubic-bezier(.2,1.6,.3,1)}
+.hes.commit::after{content:"";position:absolute;left:-4%;right:-4%;bottom:-6px;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;animation:rule .4s .05s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes rule{to{transform:scaleX(1)}}
+.s1 .kick{color:var(--ember)}.s1 .hes{color:var(--ember)}
+.s2 .kick{color:var(--violet)}.s2 .hes{color:var(--violet)}
+.s3 .kick{color:var(--amber)}.s3 .hes{color:var(--amber)}
+.tagline{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:rgba(245,237,230,.45);text-transform:uppercase;background:var(--bg);padding:4px 10px}
+@media(prefers-reduced-motion:reduce){.w{opacity:1;transform:none}.hes.stall .w{opacity:1;filter:none;transform:none}}
+</style></head><body>
+
+<section class="s1">
+  <p class="kick">The site&rsquo;s one motion &mdash; scroll to see it hold across sections</p>
+  <h1 data-hes="bet">Your model is right. Your users still won&rsquo;t <span class="hx">bet</span> on it.</h1>
+  <p class="note">Every headline streams in sure of itself &mdash; except its load-bearing word, which hangs unresolved for exactly half a second, then commits with a snap and earns its underline. The reader feels the hesitation before they read about it.</p>
+</section>
+
+<section class="s2">
+  <p class="kick">02 &middot; the person</p>
+  <h2>Numbers survive scrutiny; a person <span class="hx">ships</span> them.</h2>
+  <p class="note">Same signature, one register quieter. The stalled word is always the verb the section must prove.</p>
+</section>
+
+<section class="s3">
+  <p class="kick">03 &middot; the method</p>
+  <h2>A language model has no edges. So I <span class="hx">draw</span> them.</h2>
+  <p class="note">One motion, owned everywhere &mdash; buttons, films and demos stay still so the signature stays scarce.</p>
+</section>
+
+<p class="tagline">M2 &mdash; the hesitation lives in the type itself: the key word stalls half a second, then commits</p>
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('h1,h2').forEach(function(h){
+    // wrap words
+    var walk=function(node){
+      [].slice.call(node.childNodes).forEach(function(n){
+        if(n.nodeType===3){
+          var frag=document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function(tok){
+            if(/^\s+$/.test(tok)||tok===''){frag.appendChild(document.createTextNode(tok));return;}
+            var s=document.createElement('span'); s.className='w'; s.textContent=tok; frag.appendChild(s);
+          });
+          node.replaceChild(frag,n);
+        } else if(n.nodeType===1 && !n.classList.contains('w')) walk(n);
+      });
+    };
+    walk(h);
+    h.querySelectorAll('.hx').forEach(function(x){x.classList.add('hes');});
+  });
+  if(reduce){document.querySelectorAll('.w').forEach(function(w){w.classList.add('in')});return;}
+  var played=new Set();
+  function playHeading(h){
+    if(played.has(h)) return; played.add(h);
+    var words=[].slice.call(h.querySelectorAll('.w'));
+    var t=0;
+    words.forEach(function(w){
+      var hes=w.closest('.hes');
+      if(hes){
+        setTimeout(function(){ hes.classList.add('stall'); w.classList.add('in');
+          setTimeout(function(){ hes.classList.remove('stall'); hes.classList.add('commit'); },520);
+        },t);
+        t+=560;
+      } else {
+        setTimeout(function(){ w.classList.add('in'); },t);
+        t+=55;
+      }
+    });
+  }
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting) playHeading(e.target);});},{threshold:.5});
+  document.querySelectorAll('h1,h2').forEach(function(h){io.observe(h)});
+})();
+</script>
+</body></html>

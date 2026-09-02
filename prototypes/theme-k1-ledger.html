@@ -1,0 +1,54 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>K1 — The Double-Entry Ledger</title><meta name="robots" content="noindex"><link rel="stylesheet" href="/fonts.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--stock:#F1E9D4;--ink:#211C13;--ox:#6E1F1F;--faint:rgba(33,28,19,.55);--rule:rgba(33,28,19,.28);
+--serif:'Source Serif 4',Georgia,serif;--mono:'JetBrains Mono',monospace;--sans:'Source Sans 3',sans-serif}
+body{background:var(--stock);color:var(--ink);font-family:var(--serif);
+background-image:repeating-linear-gradient(180deg,transparent 0 31px,var(--rule) 31px 32px);line-height:32px}
+/* THE CONSTRAINT: nothing exists outside a ruled 32px line. Every element sits ON the rules. */
+.sheet{max-width:1080px;margin:0 auto;padding:64px 40px;border-left:1px solid var(--ox);border-right:1px solid var(--rule)}
+.head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:3px double var(--ink);padding-bottom:31px}
+.head b{font-size:15px;letter-spacing:.06em}
+.head span{font-family:var(--mono);font-size:11px;color:var(--faint)}
+h1{font-weight:300;font-size:63px;line-height:64px;letter-spacing:-.02em;margin-top:32px}
+h1 i{font-style:italic;color:var(--ox)}
+.opening{margin-top:32px;font-size:16px;line-height:32px;max-width:60ch;color:var(--faint)}
+.cols{display:grid;grid-template-columns:120px minmax(0,1fr) 190px 190px;border-top:3px double var(--ink);border-bottom:1px solid var(--ink);margin-top:63px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--faint)}
+.cols div{padding:0 12px;line-height:31px;text-transform:uppercase}
+.cols div:nth-child(3),.cols div:nth-child(4){text-align:right;border-left:1px solid var(--rule)}
+.entry{display:grid;grid-template-columns:120px minmax(0,1fr) 190px 190px;border-bottom:1px solid var(--rule)}
+.entry>div{padding:15px 12px 16px;line-height:32px}
+.entry .no{font-family:var(--mono);font-size:11px;color:var(--faint)}
+.entry h2{font-weight:400;font-size:21px;line-height:32px;display:inline}
+.entry p{font-family:var(--sans);font-size:14px;line-height:32px;color:var(--faint)}
+.entry .cr,.entry .dr{font-family:var(--mono);font-size:12.5px;text-align:right;border-left:1px solid var(--rule);line-height:32px}
+.entry .cr{color:var(--ink);font-weight:600}
+.entry .dr{color:var(--ox)}
+.carried{display:flex;justify-content:space-between;border-top:3px double var(--ink);margin-top:-1px;padding:15px 12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em}
+.carried i{font-style:italic;font-family:var(--serif);font-size:15px;letter-spacing:0}
+.sig{margin-top:63px;text-align:right;font-style:italic;font-size:17px;line-height:32px}
+.sig small{display:block;font-family:var(--mono);font-style:normal;font-size:10px;letter-spacing:.14em;color:var(--faint);text-transform:uppercase}
+@media(max-width:760px){.cols,.entry{grid-template-columns:64px minmax(0,1fr) 110px 110px}h1{font-size:35px;line-height:32px}}
+</style></head><body>
+<div class="sheet">
+  <div class="head"><b>MAHESHWARI, A. — DESIGNER OF THE HALF-SECOND</b><span>ACCOUNT BOOK · FOLIO 1 · KEPT DOUBLE-ENTRY SINCE 2010</span></div>
+  <h1>Every claim on this account has a <i>cost column.</i></h1>
+  <p class="opening">Your model is right; your users still won&rsquo;t bet on it. Sixteen years of making professionals act on machines &mdash; entered the way honest books are kept: what it returned on the left you expect, what it cost beside it, nothing carried without a baseline.</p>
+  <div class="cols"><div>Entry</div><div>The work</div><div>Credit</div><div>Debit</div></div>
+  <div class="entry">
+    <div class="no">No. 01<br>2019&ndash;24<br>NAMED</div>
+    <div><h2>An ad agency became the market&rsquo;s aggregator.</h2><p>The model beat the traders and they overrode it anyway &mdash; until every score arrived as a full plan, reasons attached, one click to reshape.</p></div>
+    <div class="cr">2 wks &rarr; 3 hrs<br>+&pound;69k / client</div>
+    <div class="dr">2 wks lost to the<br>wrong diagnosis</div>
+  </div>
+  <div class="entry">
+    <div class="no">No. 02<br>NDA</div>
+    <div><h2>Deal-screening AI that cites its sources.</h2><p>Evidence beside the answer; an override that teaches the model; a visible &ldquo;I&rsquo;m not sure&rdquo; where it abstains.</p></div>
+    <div class="cr">60% faster<br>screening</div>
+    <div class="dr">the objection,<br>kept on the page</div>
+  </div>
+  <div class="carried"><span>CARRIED FORWARD — RIGHT ISN&rsquo;T ENOUGH · EARN THE TAP · KEEP THE RECEIPTS · SHOW THE MISS</span><i>balance: honest</i></div>
+  <p class="sig">Arpit Maheshwari<small>Indore, India · entered 2 September 2026 · every figure keeps its baseline</small></p>
+</div>
+</body></html>

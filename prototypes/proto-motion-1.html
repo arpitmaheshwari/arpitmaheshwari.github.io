@@ -1,0 +1,164 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M1 v2 — the hero performs the thesis</title><meta name="robots" content="noindex">
+<link rel="stylesheet" href="/fonts.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#1B1320;--card:#241830;--ink:#F5EDE6;--mut:rgba(245,237,230,.78);--dim:rgba(245,237,230,.55);
+--ember:#FF8A5C;--violet:#E86BFF;--ok:#7FCF9E;
+--serif:'Source Serif 4',Georgia,serif;--sans:'Source Sans 3',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
+--e-out:cubic-bezier(.19,1,.22,1);--e-inout:cubic-bezier(.45,.05,.15,1)}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:
+ radial-gradient(900px 520px at 85% -10%,rgba(155,75,255,.16),transparent 62%),
+ radial-gradient(800px 520px at -5% 110%,rgba(255,106,61,.14),transparent 62%)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 5vw;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+nav b{color:var(--ink);letter-spacing:.1em}
+.hero{display:grid;grid-template-columns:minmax(0,11fr) minmax(0,9fr);gap:5vw;align-items:center;max-width:1240px;margin:0 auto;padding:4vh 5vw 0;height:calc(100svh - 120px)}
+.kick{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ember);opacity:0}
+h1{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4.4vw,56px);line-height:1.14;letter-spacing:-.015em;margin-top:20px}
+h1 .ln{display:block;overflow:hidden}
+h1 .ln > span{display:inline-block;transform:translateY(110%)}
+h1 em{font-style:italic;background:linear-gradient(92deg,var(--ember),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin-top:22px;font-size:16.5px;line-height:1.65;color:var(--mut);max-width:44ch;opacity:0;transform:translateY(10px)}
+/* ---------- the stage ---------- */
+.stage{position:relative;perspective:900px}
+.card{background:linear-gradient(180deg,#2A1D38,#241830 55%);border:1px solid rgba(245,237,230,.13);border-radius:16px;padding:26px 26px 24px;position:relative;
+ box-shadow:0 40px 90px rgba(0,0,0,.5),inset 0 1px 0 rgba(245,237,230,.06);transform:rotateX(3deg) rotateY(-3.5deg);opacity:0}
+.card::after{content:"";position:absolute;inset:0;border-radius:16px;pointer-events:none;
+ box-shadow:0 0 0 0 rgba(255,138,92,0);transition:box-shadow .7s var(--e-out)}
+.card.committed::after{box-shadow:0 0 64px 2px rgba(255,138,92,.22)}
+.ck{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);display:flex;justify-content:space-between;align-items:center}
+.ck b{font-weight:500;color:var(--dim);transition:color .4s}
+.card.committed .ck b{color:var(--ok)}
+.cq{font-family:var(--serif);font-size:19.5px;font-weight:300;line-height:1.42;margin:16px 0 8px}
+.cs{font-family:var(--mono);font-size:11.5px;color:var(--dim);font-variant-numeric:tabular-nums}
+.cs b{color:var(--ink);font-size:14px;font-weight:500}
+.btns{display:flex;gap:12px;margin-top:22px;align-items:center}
+.btn{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;padding:12px 24px;border-radius:999px;border:1px solid rgba(245,237,230,.28);color:var(--mut);background:none}
+.btn.apply{background:linear-gradient(92deg,var(--ember),var(--violet));border:none;color:#1A0D08;position:relative;
+ display:inline-grid;place-items:center;min-width:150px;transition:transform .18s var(--e-out)}
+.btn.apply .t{grid-area:1/1;transition:opacity .25s}
+.btn.apply .t2{grid-area:1/1;opacity:0;transition:opacity .25s .05s}
+.card.committed .apply .t{opacity:0}
+.card.committed .apply .t2{opacity:1}
+.btn.apply.press{transform:scale(.96)}
+/* ---------- the probe: an intention, not a clip-art cursor ---------- */
+.probe{position:absolute;width:14px;height:14px;z-index:6;pointer-events:none;opacity:0;
+ offset-rotate:0deg;filter:drop-shadow(0 3px 8px rgba(0,0,0,.55))}
+.probe .dot{position:absolute;inset:3px;border-radius:50%;background:var(--ink)}
+.probe .halo{position:absolute;inset:-6px;border-radius:50%;border:1.5px solid rgba(245,237,230,.55);transform:scale(.6);opacity:0;transition:transform .3s var(--e-out),opacity .3s}
+.probe.hesitating .halo{opacity:1;transform:scale(1)}
+/* the doubt dial rides WITH the probe */
+.dial{position:absolute;inset:-17px;opacity:0;transition:opacity .25s}
+.probe.hesitating .dial{opacity:1}
+.dial svg{transform:rotate(-90deg);display:block}
+.dial .track{fill:none;stroke:rgba(245,237,230,.16);stroke-width:2}
+.dial .arc{fill:none;stroke:var(--ember);stroke-width:2;stroke-linecap:round;stroke-dasharray:141.4;stroke-dashoffset:141.4}
+.readout{position:absolute;left:44px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ember);white-space:nowrap;font-variant-numeric:tabular-nums;opacity:0;transition:opacity .25s}
+.probe.hesitating .readout{opacity:1}
+.readout small{display:block;font-size:9px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin-top:2px}
+.foot{position:fixed;bottom:16px;left:0;right:0;display:flex;justify-content:center;gap:24px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:rgba(245,237,230,.4);text-transform:uppercase}
+.foot button{all:unset;cursor:pointer;color:rgba(245,237,230,.55);letter-spacing:.14em}
+.foot button:hover{color:var(--ink)}
+@media(max-width:920px){body{overflow:auto}.hero{grid-template-columns:1fr;height:auto;gap:44px;padding-bottom:96px}.card{transform:none}}
+@media(prefers-reduced-motion:reduce){.probe,.dial{display:none!important}
+ .kick,.sub,.card{opacity:1!important;transform:none!important}
+ h1 .ln > span{transform:none!important}}
+</style></head><body>
+<nav><b>ARPIT MAHESHWARI</b><span>WORK &middot; PATTERNS &middot; LAB &middot; WRITING</span></nav>
+<div class="hero">
+  <div>
+    <p class="kick" id="kick">Staff / Principal product designer &middot; AI products &middot; fully remote</p>
+    <h1 aria-label="Your model is right. Your users still won&rsquo;t bet on it.">
+      <span class="ln"><span id="l1">Your model is right.</span></span>
+      <span class="ln"><span id="l2">Your users still <em>won&rsquo;t bet on it.</em></span></span>
+    </h1>
+    <p class="sub" id="sub">That half-second you just watched is the entire job. Sixteen years, five industries &mdash; and the receipts for all of it.</p>
+  </div>
+  <div class="stage" id="stage">
+    <div class="card" id="card">
+      <p class="ck"><span>live &mdash; the moment I design</span><b id="sig">model output</b></p>
+      <p class="cq">Shift &pound;40k to digital screens in Manchester &mdash; projected reach +18%.</p>
+      <p class="cs">confidence <b>92%</b> &middot; signals named &middot; safe to run</p>
+      <div class="btns">
+        <button class="btn apply" id="apply"><span class="t">Apply the plan</span><span class="t2">Applied&ensp;&#10003;</span></button>
+        <button class="btn">Override &#8630;</button>
+      </div>
+      <div class="probe" id="probe">
+        <span class="halo"></span><span class="dot"></span>
+        <span class="dial"><svg width="48" height="48" viewBox="0 0 48 48"><circle class="track" cx="24" cy="24" r="22.5"/><circle class="arc" id="arc" cx="24" cy="24" r="22.5"/></svg></span>
+        <span class="readout"><span id="ms">0.00&thinsp;s</span><small>deciding&hellip;</small></span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="foot"><span>M1 v2</span><button id="replay">&#8635; replay the half-second</button></div>
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $=function(id){return document.getElementById(id)};
+  var card=$('card'),probe=$('probe'),arc=$('arc'),ms=$('ms'),apply=$('apply'),
+      sig=$('sig'),sub=$('sub'),kick=$('kick'),l1=$('l1'),l2=$('l2');
+  var E_OUT='cubic-bezier(.19,1,.22,1)', E_INOUT='cubic-bezier(.45,.05,.15,1)';
+  if(reduce){card.classList.add('committed');sig.textContent='bet placed';return;}
+
+  function target(){ // centre of the Apply button, in stage coords
+    var s=$('stage').getBoundingClientRect(), r=apply.getBoundingClientRect();
+    return {x:r.left-s.left+r.width*0.58-7, y:r.top-s.top+r.height*0.5-7};
+  }
+  function play(){
+    card.classList.remove('committed'); apply.classList.remove('press');
+    probe.classList.remove('hesitating'); sig.textContent='model output';
+    arc.style.transition='none'; arc.style.strokeDashoffset='141.4';
+    ms.textContent='0.00\u2009s';
+    // one choreographed timeline (WAAPI) ------------------------------
+    kick.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:600,easing:E_OUT,fill:'forwards'});
+    l1.animate([{transform:'translateY(110%)'},{transform:'none'}],{duration:700,delay:120,easing:E_OUT,fill:'forwards'});
+    l2.animate([{transform:'translateY(110%)'},{transform:'none'}],{duration:700,delay:260,easing:E_OUT,fill:'forwards'});
+    card.animate([{opacity:0,transform:'rotateX(3deg) rotateY(-3.5deg) translateY(26px)'},
+                  {opacity:1,transform:'rotateX(3deg) rotateY(-3.5deg) translateY(0)'}],
+                 {duration:800,delay:420,easing:E_OUT,fill:'forwards'});
+    sub.animate([{opacity:0,transform:'translateY(10px)'},{opacity:0,transform:'translateY(10px)'}],{duration:1,fill:'forwards'});
+    // probe: appear, travel a natural arc, settle ---------------------
+    setTimeout(function(){
+      var t=target(), sx=t.x+230, sy=t.y+170, mx=t.x+60, my=t.y-56;
+      probe.style.opacity='1';
+      probe.animate([
+        {transform:'translate('+sx+'px,'+sy+'px) scale(.8)',offset:0,easing:E_INOUT},
+        {transform:'translate('+mx+'px,'+my+'px) scale(1.05)',offset:.62,easing:E_OUT},
+        {transform:'translate('+t.x+'px,'+t.y+'px) scale(1)',offset:1}
+      ],{duration:1050,fill:'forwards'});
+      setTimeout(hesitate,1120);
+    },1350);
+  }
+  function hesitate(){
+    probe.classList.add('hesitating');
+    arc.style.transition='stroke-dashoffset .5s linear';
+    requestAnimationFrame(function(){arc.style.strokeDashoffset='0';});
+    var t0=performance.now();
+    (function tick(){
+      var t=(performance.now()-t0)/1000;
+      if(t>=0.5){ ms.textContent='0.50\u2009s'; commit(); return; }
+      ms.textContent=t.toFixed(2)+'\u2009s';
+      requestAnimationFrame(tick);
+    })();
+  }
+  function commit(){
+    setTimeout(function(){
+      probe.classList.remove('hesitating');
+      apply.classList.add('press');
+      setTimeout(function(){
+        apply.classList.remove('press');
+        card.classList.add('committed'); sig.textContent='bet placed';
+        probe.animate([{opacity:1},{opacity:0}],{duration:450,delay:250,easing:E_OUT,fill:'forwards'});
+        sub.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:650,easing:E_OUT,fill:'forwards'});
+      },150);
+    },80);
+  }
+  setTimeout(play,350);
+  $('replay').addEventListener('click',play);
+  $('stage').addEventListener('click',play);
+})();
+</script>
+</body></html>

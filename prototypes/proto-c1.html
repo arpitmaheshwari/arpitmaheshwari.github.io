@@ -1,0 +1,105 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C1 — the site measures you</title><meta name="robots" content="noindex">
+<link rel="stylesheet" href="/fonts.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#1B1320;--card:#241830;--ink:#F5EDE6;--mut:rgba(245,237,230,.78);--dim:rgba(245,237,230,.5);
+--ember:#FF8A5C;--violet:#E86BFF;--ok:#7FCF9E;
+--serif:'Source Serif 4',Georgia,serif;--sans:'Source Sans 3',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
+--e-out:cubic-bezier(.19,1,.22,1)}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:
+ radial-gradient(900px 520px at 85% -10%,rgba(155,75,255,.15),transparent 62%),
+ radial-gradient(800px 520px at -5% 110%,rgba(255,106,61,.13),transparent 62%)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 5vw;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+nav b{color:var(--ink)}
+.hero{max-width:900px;margin:0 auto;padding:11vh 5vw 12vh;text-align:left}
+.kick{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ember)}
+h1{font-family:var(--serif);font-weight:300;font-size:clamp(36px,5vw,62px);line-height:1.13;letter-spacing:-.015em;margin-top:20px}
+h1 em{font-style:italic;background:linear-gradient(92deg,var(--ember),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin-top:22px;font-size:17px;line-height:1.65;color:var(--mut);max-width:52ch}
+.cta{display:inline-block;margin-top:30px;font-size:13px;font-weight:600;letter-spacing:.05em;padding:14px 28px;border-radius:999px;background:linear-gradient(92deg,var(--ember),var(--violet));color:#1A0D08;text-decoration:none}
+/* ---------------- THE INSTRUMENT ---------------- */
+.inst{position:fixed;right:22px;bottom:22px;z-index:50;width:min(300px,calc(100vw - 44px));
+ background:rgba(27,19,32,.88);backdrop-filter:blur(10px);border:1px solid rgba(245,237,230,.16);border-radius:12px;
+ font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--mut);overflow:hidden;
+ box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.inst-h{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid rgba(245,237,230,.12);
+ font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.inst-h b{color:var(--ember);font-weight:500;display:flex;align-items:center;gap:6px}
+.inst-h b::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ember);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.rows{padding:8px 14px 10px;display:grid;gap:6px}
+.row{display:flex;justify-content:space-between;gap:12px;opacity:0;transform:translateY(4px);transition:opacity .45s var(--e-out),transform .45s var(--e-out)}
+.row.on{opacity:1;transform:none}
+.row span:first-child{color:var(--dim)}
+.row b{font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;text-align:right}
+.row.hot b{color:var(--ember)}
+.inst-f{padding:8px 14px 12px;border-top:1px dashed rgba(245,237,230,.14);font-size:9.5px;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
+/* the verdict line that appears once it has caught your half-second */
+.verdict{padding:0 14px;max-height:0;overflow:hidden;transition:max-height .6s var(--e-out),padding .6s var(--e-out)}
+.verdict.on{max-height:90px;padding:2px 14px 12px}
+.verdict p{font-family:var(--serif);font-style:italic;font-size:13.5px;line-height:1.5;color:var(--ink)}
+.verdict em{color:var(--ember);font-style:normal}
+section.f{max-width:900px;margin:0 auto;padding:10vh 5vw 16vh;border-top:1px solid rgba(245,237,230,.1)}
+section.f h2{font-family:var(--serif);font-weight:300;font-size:clamp(24px,3vw,34px)}
+section.f p{margin-top:14px;color:var(--mut);line-height:1.7;max-width:60ch}
+@media(prefers-reduced-motion:reduce){.inst-h b::before{animation:none}}
+</style></head><body>
+<nav><b>ARPIT MAHESHWARI</b><span>WORK &middot; PATTERNS &middot; LAB &middot; WRITING</span></nav>
+
+<div class="hero">
+  <p class="kick">Staff / Principal product designer &middot; AI products &middot; fully remote</p>
+  <h1>Your model is right. Your users still <em>won&rsquo;t bet on it.</em></h1>
+  <p class="sub">I design the half-second between seeing an answer and acting on it. The panel in the corner is measuring yours right now &mdash; that&rsquo;s the whole job, running on you.</p>
+  <a class="cta" id="cta" href="#">Book the 30-min call &nearr;</a>
+</div>
+
+<section class="f">
+  <h2>Why the panel is the pitch</h2>
+  <p>Every product I ship instruments the same moment: when a capable system offers an answer and a professional hesitates. The panel is honest &mdash; it runs in your tab, keeps nothing, sends nothing, and says what it cannot see. Which is also the pattern library, demonstrated instead of described.</p>
+</section>
+
+<aside class="inst" aria-label="Live measurement of this visit — runs locally, sends nothing">
+  <div class="inst-h"><b>measuring</b><span>this visit &middot; live</span></div>
+  <div class="rows">
+    <div class="row" id="r-arrive"><span>you arrived</span><b id="v-arrive">0.0&thinsp;s ago</b></div>
+    <div class="row" id="r-read"><span>headline read</span><b id="v-read">&mdash;</b></div>
+    <div class="row" id="r-scroll"><span>first scroll</span><b id="v-scroll">not yet</b></div>
+    <div class="row hot" id="r-doubt"><span>doubt, on the button</span><b id="v-doubt">&mdash;</b></div>
+  </div>
+  <div class="verdict" id="verdict"><p>There &mdash; <em id="v-final">0.00&thinsp;s</em> of hesitation. That half-second is what I design. <em>Sixteen years of it.</em></p></div>
+  <div class="inst-f">runs in your tab &middot; keeps nothing &middot; sends nothing &middot; can&rsquo;t see who you are</div>
+</aside>
+
+<script>
+(function(){
+  var t0=performance.now(), $=function(id){return document.getElementById(id)};
+  var rows=['r-arrive','r-read','r-scroll','r-doubt'];
+  rows.forEach(function(id,i){setTimeout(function(){$(id).classList.add('on')},500+i*380);});
+  // arrived: live clock
+  setInterval(function(){$('v-arrive').textContent=((performance.now()-t0)/1000).toFixed(1)+'\u2009s ago';},120);
+  // headline read: ~when the visitor has had time to read 11 words, mark it (honest label: estimated)
+  setTimeout(function(){$('v-read').textContent='~'+((performance.now()-t0)/1000).toFixed(1)+'\u2009s';},3400);
+  // first scroll: real
+  var scrolled=false;
+  addEventListener('scroll',function(){if(scrolled)return;scrolled=true;
+    $('v-scroll').textContent=((performance.now()-t0)/1000).toFixed(1)+'\u2009s';},{passive:true});
+  // doubt on the button: REAL dwell measurement — hover (or touch-press) without committing
+  var cta=$('cta'), enter=0, best=0, done=false;
+  function begin(){enter=performance.now();}
+  function end(commit){
+    if(!enter)return; var d=(performance.now()-enter)/1000; enter=0;
+    if(d>best){best=d;$('v-doubt').textContent=best.toFixed(2)+'\u2009s';}
+    if(!done && best>=0.3){done=true;
+      $('v-final').textContent=best.toFixed(2)+'\u2009s';
+      $('verdict').classList.add('on');}
+  }
+  cta.addEventListener('mouseenter',begin);
+  cta.addEventListener('mouseleave',function(){end(false)});
+  cta.addEventListener('touchstart',begin,{passive:true});
+  cta.addEventListener('touchend',function(){end(false)},{passive:true});
+  cta.addEventListener('click',function(e){e.preventDefault();end(true);});
+})();
+</script>
+</body></html>
