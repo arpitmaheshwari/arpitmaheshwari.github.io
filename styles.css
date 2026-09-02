@@ -302,7 +302,14 @@ h1,h2,h3{scroll-margin-top:120px}}
    pixels. No uppercase, no bold shouting, no compensating shadows inside the window. */
 .recon{margin:32px 0 48px;border:1px solid rgba(255,255,255,0.12);border-radius:10px;overflow:hidden;position:relative;--bg:#FFFFFF;--bg-soft:#F4F5F7;--bg-card:#F4F5F7;--ink:#16181D;--ink-muted:#282B31;--ink-dim:#282B31;--gold:#8A6210;--gold-dark:#8A6210;--gold-light:#6B4C0C;--border:#E3E6EA;--border-accent:#C9CED6;--err:#B63D0B;--warn:var(--goldA-dk);--ok:#0E7A5F;--copper:#0E7A5F;background:var(--bg-soft);color:var(--ink);box-shadow:0 30px 64px rgba(0,0,0,0.45)}
 /* the chrome bar — same idiom as the plates: dark strip, three window dots, quiet title */
-.recon-badge{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#22252B;border-bottom:1px solid #2E323A;font-family:var(--ff-mono);font-size:10px;letter-spacing:0.04em;text-transform:none;color:#8D95A3}
+/* WRAPS. This row is a flex nowrap containing a BARE TEXT NODE — the "Reconstruction —
+   anonymised … client under NDA" provenance line — beside an svg and the clock, both
+   flex-shrink:0, plus two ::before/::after dots. At 390px the fixed items and the text's
+   minimum exceeded the 260px content box by 30px, and .recon has overflow:hidden, so the
+   NDA caption and "session 0:00" were cut off on fintech and vc-diligence. An anonymous
+   flex item cannot be given min-width:0 — there is no selector for a text node — so the
+   row wraps instead. It only wraps when it must; nothing moves at desktop widths. */
+.recon-badge{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px 16px;background:#22252B;border-bottom:1px solid #2E323A;font-family:var(--ff-mono);font-size:10px;letter-spacing:0.04em;text-transform:none;color:#8D95A3}
 .recon-badge::before{content:"";width:9px;height:9px;border-radius:50%;background:#3A3F48;flex:0 0 auto;box-shadow:14px 0 0 #3A3F48, 28px 0 0 #3A3F48;margin-right:32px}
 .recon-badge::after{content:"";width:7px;height:7px;border-radius:50%;background:#37B87E;flex:0 0 auto;animation:reconPulse 2.4s ease-in-out infinite}
 @keyframes reconPulse{ 0%,100%{opacity:1} 50%{opacity:.35} }
