@@ -134,8 +134,11 @@ def main():
     shipped = subprocess.run(['git', 'ls-files', '*.html', '*.js'], cwd=root,
                              capture_output=True, text=True).stdout.split()
     # vendor/ is third-party (React); tools/ and tests/ are not published copy.
+    # prototypes/ entered version control 2026-09-02 as an archived design search —
+    # noindex drafts, not shipped prose; grading them blocked an ordered push.
     pages = [os.path.join(root, f) for f in shipped
-             if not f.startswith(('partials/', 'tests/', 'tools/', 'assets/og-images/'))
+             if not f.startswith(('partials/', 'tests/', 'tools/', 'assets/og-images/',
+                                  'prototypes/'))
              and '/vendor/' not in f]
 
     words = set()
