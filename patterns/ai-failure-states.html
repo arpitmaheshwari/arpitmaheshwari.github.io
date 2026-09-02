@@ -79,7 +79,7 @@
 <main id="main" class="section page-bg"><div class="xi-patterns-ai-failure-states-005">
 
   <section class="xi-patterns-ai-failure-states-013">
-    <p class="lead xi-patterns-ai-failure-states-014">A failure state is not a footnote. It’s where the next ten interactions are won or lost. This is sharpest with a language model, which will happily hallucinate a fluent, confident answer rather than admit it doesn’t know — so the design has to make abstention, the honest “I’m not sure,” the easy path. Handle your own uncertainty out loud and the user gives you another shot. Fail quietly — or fail confidently wrong — and the user leaves. So design the wrong answer before you design the right one. The five patterns below are the ones I keep reaching for.</p>
+    <p class="lead xi-patterns-ai-failure-states-014">A failure state is not a footnote. It’s where the next ten interactions are won or lost — I’ve shipped an error state people triggered on purpose, because the product was sorry in a way they wanted to see. This is sharpest with a language model, which will happily hallucinate a fluent, confident answer rather than admit it doesn’t know — so the design has to make abstention, the honest “I’m not sure,” the easy path. Handle your own uncertainty out loud and the user gives you another shot. Fail quietly — or fail confidently wrong — and the user leaves. So design the wrong answer before you design the right one. The five patterns below are the ones I keep reaching for.</p>
     
     <!-- Abstract UI Diagram: Failure State Comparison -->
     <div class="card-wire xi-patterns-ai-failure-states-015">
@@ -251,7 +251,7 @@
       <li class="xi-patterns-ai-failure-states-040"><strong>What you can do:</strong> Retry, View guide, Contact support</li>
       <li class="xi-patterns-ai-failure-states-040"><strong>Reference code:</strong> If error persists, users can reference this code with support</li>
     </ul>
-    <p class="u-body">The card turns a cryptic stop into a failure the user can act on. It respects their time and their intelligence. Use it wherever an error has a knowable cause and a next step.</p>
+    <p class="u-body">The card turns a cryptic stop into a failure the user can act on. Use it wherever an error has a knowable cause and a next step.</p>
   </section>
 
   <section class="xi-patterns-ai-failure-states-013">
@@ -268,7 +268,7 @@
       <li class="xi-patterns-ai-failure-states-040">“I’ve been wrong about churn 3× this month. Recent model updates should reduce this. Accuracy now: 77% (was 71%).”</li>
       <li class="xi-patterns-ai-failure-states-040">“This is a new product category I haven’t seen before. I’ll learn from this case. Current uncertainty: ±25%.”</li>
     </ul>
-    <p class="u-body">The log doesn’t bury the miss. It converts it into something the user watched the model learn from. People lean on systems that admit error and visibly improve. Reach for this in any product a user returns to across sessions.</p>
+    <p class="u-body">The log doesn’t bury the miss. It converts it into something the user watched the model learn from. People lean on systems that admit error and visibly improve. Reach for this in any product a user returns to across sessions. This is &ldquo;show the miss&rdquo; shipped as a feature: the model&rsquo;s documented misses, kept where the user can read them.</p>
   </section>
 
   <div class="counter">

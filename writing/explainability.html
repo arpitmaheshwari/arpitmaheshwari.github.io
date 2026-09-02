@@ -55,7 +55,7 @@
 <div class="page-head">
   <div class="xi-writing-explainability-005">
     <h1 class="xi-writing-explainability-006">The Explainability Layer: Making AI Legible</h1>
-    <p class="xi-writing-explainability-007">Framework · May 2026 · 7 min read</p>
+    <p class="xi-writing-explainability-007">Essay · May 2026 · 7 min read</p>
     <p class="hand hand-note" aria-hidden="true">everything here answers one word: why</p>
   </div>
 </div>
@@ -66,7 +66,7 @@
 
   <h2 class="section-title xi-writing-explainability-011">The question the system couldn’t answer</h2>
   <p class="u-body xi-writing-explainability-012">In 2021 a compliance officer put that question to me directly, and I didn’t have a good answer. The risk model flagged a trade as high-risk. She wasn’t refusing to listen — she was doing her job, which is to never sign off on something she can’t explain to an auditor. The system gave her a number and a recommendation and nothing in between. So she did the only defensible thing and waved the model away. The trade went through unsupervised, and it cost the firm.</p>
-  <p class="u-body xi-writing-explainability-012">Here’s the part that stayed with me: the model wasn’t wrong. It had caught the risk. The failure was entirely on the interface — nobody had designed the layer that turns a score into a reason. And a score without a reason is, to an expert who’s accountable for the decision, just noise with a confident font.</p>
+  <p class="u-body xi-writing-explainability-012">Here’s the part that stayed with me: the model wasn’t wrong. It had caught the risk. The failure was entirely on the interface — nobody had designed the layer that turns a score into a reason. And a score without a reason is, to an expert who’s accountable for the decision, just noise with a confident font. Everything I’ve shipped since holds to one rule — a number never reaches the screen alone. The patterns library names it the Act / Review / Ignore rule.</p>
 
   <h2 class="section-title xi-writing-explainability-011">What she actually needed</h2>
   <p class="u-body xi-writing-explainability-012">I used to think <a class="link-gold" href="../resources/intelligent-systems-glossary.html#ml-explainability">explainability</a> meant exposing the machinery — model weights, feature vectors, the architecture. It doesn’t. The compliance officer didn’t want a lecture on the model. She wanted an answer to one human question: <em>why this, and not that?</em> When I rebuilt the surface, that’s the only question I designed around. The recommendation moved down the page. The reasoning moved up: this counterparty has failed repeatedly in the last two years, and this position is several times their normal size. Suddenly she wasn’t being asked to trust a number. She was being handed a case she could check, argue with, and put her name next to.</p>

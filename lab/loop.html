@@ -54,7 +54,7 @@
       <p class="lab-lede">The rules I argue for in design reviews, written as functions so they can be <strong>tested instead of debated</strong>. Four decisions that sit between a model and a person: which verb a score becomes, whether its confidence has earned belief, when to say nothing at all, and what to show while it thinks.</p>
       <p class="hand hand-note" aria-hidden="true">the tests run right on this page — check them</p>
       <div class="lab-note">
-        <b>What this is not.</b> It is not a UI kit and not a model. There is no network call, no DOM, no state, no framework — four pure functions and their tests. I own the decision logic and the interface; whether the model is right is the ML team’s result to defend. The visual layer is deliberately left to you, because the verb matters more than the chip it ships in.
+        <b>What this is not.</b> It is not a UI kit and not a model. There is no network call, no DOM, no state, no framework — four pure functions and their tests. I own the decision logic and the interface; whether the model is right is the ML team’s result to defend.
       </div>
       <div class="lab-links">
         <a href="./loop.js" data-cta="lab-source" data-location="loop-hero">Read the source →</a>
@@ -291,7 +291,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
       </div>
       <h2 class="section-title">A rule you can run beats a rule you can argue with</h2>
       <p class="t-body-muted xi-lab-loop-019">Every one of these decisions used to be a slide. “Don’t show a naked confidence score.” “Fail toward humility.” “Reversibility outranks confidence.” Reasonable people nodded, and then shipped the naked number anyway, because a principle has no failing state.</p>
-      <p class="t-body-muted xi-lab-loop-019">Written as functions, the same rules get a failing state. <code class="t-code">decide()</code> reports <code class="t-code">review-without-reasons</code> as a violation rather than a suggestion. <code class="t-code">calibrate()</code> returns <code class="t-code">insufficient-data</code> instead of a flattering number. That is the whole argument for this file existing: human-in-the-loop design is a set of decisions, and decisions can be tested.</p>
+      <p class="t-body-muted xi-lab-loop-019">Written as functions, the same rules get a failing state &mdash; the record above is those slides, versioned and able to go red. That is the whole argument for this file existing: human-in-the-loop design is a set of decisions, and decisions can be tested..</p>
       <p class="t-body-muted xi-lab-loop-007">The eight patterns these come from are documented, with live demos, in <a class="xi-lab-loop-018" href="../patterns/">the pattern library</a> — and each one is running in a production product. This is their logic, extracted and made checkable.</p>
       <div class="lab-links">
         <a href="./index.html" data-cta="lab-home" data-location="loop-foot">← Everything in The Lab</a>
