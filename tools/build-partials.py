@@ -74,9 +74,20 @@ def root_for(rel):
 
 
 def current_item(nav_html):
-    """Which nav link carries aria-current, so it can be put back."""
+    """Which nav link carries aria-current, so it can be put back.
+
+    Nav items may target a hash (#featured-case-studies) or a PAGE (patterns/,
+    writing/ — since 2026-09-03 the bar promises pages or main sections only).
+    The stored key is the fragment when there is one, else the path tail."""
     m = re.search(r'<a href="([^"]*)"[^>]*aria-current="true"', nav_html)
-    return m.group(1).split('#')[-1] if m else None
+    if not m:
+        return None
+    href = m.group(1)
+    if "#" in href:
+        frag = href.split("#")[-1]
+        # legacy markers from before the nav promised pages (2026-09-03)
+        return {"patterns": "patterns/", "thoughts": "writing/"}.get(frag, frag)
+    return href.rstrip("/").split("/")[-1] + "/"
 
 
 def footer_note(footer_html):
@@ -90,8 +101,12 @@ def render(rel, existing_nav, existing_footer):
     cur = current_item(existing_nav) if existing_nav else None
     if cur:
         # restore the active marker on the same destination it was on
-        nav = re.sub(r'(<a href="[^"]*#' + re.escape(cur) + r'")',
-                     r'\1 aria-current="true"', nav, count=1)
+        if cur.endswith("/"):
+            nav = re.sub(r'(<a href="[^"]*' + re.escape(cur) + r'")',
+                         r'\1 aria-current="true"', nav, count=1)
+        else:
+            nav = re.sub(r'(<a href="[^"]*#' + re.escape(cur) + r'")',
+                         r'\1 aria-current="true"', nav, count=1)
     # the homepage links its own contact section as a same-page anchor
     if rel == 'index.html':
         nav = nav.replace(f'href="{root}index.html#contact"', 'href="#contact"')
