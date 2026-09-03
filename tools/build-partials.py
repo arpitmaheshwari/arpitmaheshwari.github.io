@@ -109,9 +109,12 @@ def freshness():
     Two design decisions, because a freshness signal is the one element that
     turns against you by doing nothing:
 
-      * a ROLLING 30 days, not the calendar month. A calendar counter collapses
-        to "2 changes this month" on the 1st, which reads as abandonment on the
-        day the site is busiest.
+      * THE DATE ONLY, no change count. Two reasons. A count derived from git is
+        stale the instant you commit — the commit being pushed changes it — so
+        the pre-push drift check could never pass twice in a row. And a commit
+        volume on a personal site is ambiguous evidence anyway: "298 changes this
+        month" reads as ships-constantly to one reader and cannot-leave-it-alone
+        to another. The date carries the proof of life without the second reading.
       * it SUPPRESSES ITSELF past SHIP_STAMP_MAX_AGE_DAYS. The upside of this
         stamp is bounded and its downside is not: it helps while the work is
         active and quietly advertises neglect the moment it stops — at exactly
@@ -129,13 +132,7 @@ def freshness():
     today = datetime.date.today()
     if (today - last).days > SHIP_STAMP_MAX_AGE_DAYS:
         return None
-    since = (today - datetime.timedelta(days=30)).isoformat()
-    n = len(subprocess.run(['git', 'log', f'--since={since}', '--format=%h'],
-                           cwd=ROOT, capture_output=True, text=True).stdout.split())
-    stamp = f'last shipped {iso}'
-    if n:
-        stamp += f' &middot; {n} change{"" if n == 1 else "s"} in the last 30 days'
-    return stamp
+    return f'last shipped {iso}'
 
 
 def current_for(rel):
