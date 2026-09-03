@@ -105,7 +105,13 @@ jobs:
       # page — the check is cheap and a broken asset is page-specific, not context-specific.
       - name: Asset load check (SVG validity + every image actually paints)
         run: |
-          python3 tools/asset-load-check.py --docroot . --all
+          # tee into the job summary. This gate was RED on every push from at least
+          # 2026-08-30 to 2026-09-04 and the reason was unreadable: job logs need admin
+          # rights, so the failure showed only as "Process completed with exit code 1".
+          # A gate whose output nobody can read is a gate nobody can fix.
+          set -o pipefail
+          python3 tools/asset-load-check.py --docroot . --all 2>&1 \
+            | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Fail if asset-load-check left a wrapper behind
         if: always()
         run: |
