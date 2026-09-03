@@ -155,6 +155,12 @@ def main():
             for url, (code, why) in zip(external, ex.map(head, external)):
                 if not (code == 0 or code >= 400):
                     continue
+                # Verified by hand in a real browser on 2026-09-03: BOTH Medium
+                # citations behind this wall are live and say what the page claims
+                # — "Talon Outdoor: An Out of Home evolution" (Digital Bulletin,
+                # 5 Jul 2021) and "Transition to SaaS with Case Studies of Autodesk
+                # and PTC" (Charlene Lower, 12 Jul 2021). Cloudflare answers curl
+                # with a challenge page, so no script here can confirm that.
                 # A 401/403 is a bot wall, not a dead page — Medium and several
                 # publishers serve humans fine and refuse scripts. Reporting
                 # those as failures every run is how a gate teaches you to
