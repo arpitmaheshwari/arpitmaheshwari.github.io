@@ -51,7 +51,12 @@ def tracked(pat,excl=()):
 facts={
     # partials/ holds nav and footer FRAGMENTS stamped into pages by
     # build-partials.py — sources, not pages a visitor can reach.
- "html_pages": len(tracked('*.html',('book/','prototypes/','partials/'))),
+ # assets/ excluded from 2026-09-03: the count included the two OG-card GENERATOR
+ # templates (_card.template.html, _book-og.template.html), which are not pages — they
+ # are rendered to PNG by tools/generate-og-cards.py and no visitor can reach them.
+ # 43 -> 41. Same species as the stylesheet row: an accurate count of the wrong set,
+ # under a label that says "pages".
+ "html_pages": len(tracked('*.html',('book/','prototypes/','partials/','assets/','tests/'))),
  # EVERY stylesheet a classic page loads, not just one of them. This measured styles.css
  # alone and the page published it as "Stylesheet, entire site" — 280.4 KB, when the three
  # files a page actually links total 510.1 KB. It understated the site by 82% on the one
@@ -81,6 +86,10 @@ facts={
  "pattern_demos": len(re.findall(r'data-demo="([a-z-]+)"',sh("cat patterns/*.html"))) or
                   len(set(re.findall(r"demo\s*===\s*'([a-z-]+)'",open(os.path.join(R,'patterns/demos.js')).read()))),
  "demos_js_lines": len(open(os.path.join(R,'patterns/demos.js')).read().splitlines()),
+ # The KB beside those lines was typed, not measured, and used DECIMAL KB while the
+ # stylesheet row above uses binary — 12,881 bytes read as "12.9 KB" here and would
+ # read 12.6 there. It also never moved when demos.js was edited on 2026-08-30.
+ "demos_js_kb": round(os.path.getsize(os.path.join(R,'patterns/demos.js'))/1024,1),
  "demos_js_imports": len(re.findall(r'import |require\(|fetch\(',open(os.path.join(R,'patterns/demos.js')).read())),
  "og_cards": len(tracked('assets/og-images/*.png')),
  "skip_link_pages": len([f for f in tracked('*.html',('prototypes/',)) if 'skip-link' in open(os.path.join(R,f),encoding='utf-8',errors='ignore').read()]),
@@ -103,6 +112,7 @@ if '--check' in sys.argv:
                            ('html pages',f">{facts['html_pages']}<"),
                            ('og cards',f">{facts['og_cards']}<"),
                            ('skip-link pages',f">{facts['skip_link_pages']}<"),
+                           ('demos.js KB',f"{facts['demos_js_kb']} KB"),
                            # Prose spells its numbers, so match the word. This
                            # receipt said "one third-party domain" for months
                            # after Clarity was added — the page arguing that a
