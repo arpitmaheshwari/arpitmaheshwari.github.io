@@ -95,18 +95,35 @@ def footer_note(footer_html):
     return m.group(1) if m else None
 
 
+def current_for(rel):
+    """The nav destination this page IS, from its path. None if it is not one."""
+    if rel == 'index.html':
+        return 'index.html'
+    top = rel.split('/')[0]
+    if top in ('lab', 'patterns', 'writing'):
+        return top + '/'
+    if top == 'case-studies':
+        return '#featured-case-studies'
+    return None
+
+
 def render(rel, existing_nav, existing_footer):
     root = root_for(rel)
     nav = NAV.replace('{{ROOT}}', root)
-    cur = current_item(existing_nav) if existing_nav else None
+    # DERIVE the marker from the page's own path rather than copying whatever was
+    # there before. Preservation could only ever be as right as the day someone typed
+    # it, and it was wrong: /lab/ is a nav item, but lab/index.html and its four
+    # sub-pages carried NO aria-current, while patterns/, writing/ and every case study
+    # did. A rebuilt nav also dropped the marker silently. Derived, it cannot rot.
+    # index.html is deliberately absent here: the bar has no "Home" item (the logo is
+    # home), so there is nothing to mark. The book has no shared nav at all.
+    cur = current_for(rel) or (current_item(existing_nav) if existing_nav else None)
     if cur:
         # restore the active marker on the same destination it was on
-        if cur.endswith("/"):
-            nav = re.sub(r'(<a href="[^"]*' + re.escape(cur) + r'")',
-                         r'\1 aria-current="true"', nav, count=1)
-        else:
-            nav = re.sub(r'(<a href="[^"]*#' + re.escape(cur) + r'")',
-                         r'\1 aria-current="true"', nav, count=1)
+        # The href must END at cur, so a section key never matches a hash link on the
+        # same path (index.html vs index.html#featured-case-studies).
+        nav = re.sub(r'(<a href="[^"]*' + re.escape(cur) + r'")',
+                     r'\1 aria-current="true"', nav, count=1)
     # the homepage links its own contact section as a same-page anchor
     if rel == 'index.html':
         nav = nav.replace(f'href="{root}index.html#contact"', 'href="#contact"')
