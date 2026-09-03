@@ -127,7 +127,7 @@ def render(rel, existing_nav, existing_footer):
 # Same failure as fonts.css earlier this session — a stylesheet outside this list is a
 # stylesheet nobody is stamping.
 VERSIONED = ('styles.css', 'ember.css', 'fonts.css', 'book/book.css',
-             'analytics.js', 'clarity.js', 'attention.js', 'fit.js', 'dyslexia.js',
+             'analytics.js', 'clarity.js', 'attention.js', 'fit.js', 'dyslexia.js', 'nav-inert.js',
              'patterns/demos.js', 'data/case-facts.js',
              'lab/loop.js', 'lab/loop.test.js', 'lab/trustlint.js',
              'book/portfolio.js', 'book/scroll-hint.js')
