@@ -31,6 +31,22 @@ def visible_main(blob):
 
 
 def last_prose_change(path):
+    # The WORKING TREE comes first. This walks git history, so an edit that is staged or merely
+    # saved is invisible to it — which meant the generator had to run AFTER the commit that
+    # changed the page, and the gate then failed the very push that carried the change. A
+    # regenerate-commit-regenerate loop is not a workflow. If the file on disk differs from
+    # HEAD, the content that is about to ship changed today, and today is the honest lastmod.
+    import datetime
+    head = subprocess.run(['git', 'show', f'HEAD:{path}'], cwd=ROOT,
+                          capture_output=True, text=True)
+    if head.returncode == 0:
+        try:
+            disk = open(os.path.join(ROOT, path), encoding='utf-8').read()
+        except OSError:
+            disk = None
+        if disk is not None and visible_main(disk) != visible_main(head.stdout):
+            return datetime.date.today().isoformat()
+
     log = [l.split() for l in subprocess.run(
         ['git', 'log', '--format=%H %cs', '--', path], cwd=ROOT,
         capture_output=True, text=True).stdout.strip().split('\n') if l.strip()]
