@@ -110,8 +110,16 @@ jobs:
           # rights, so the failure showed only as "Process completed with exit code 1".
           # A gate whose output nobody can read is a gate nobody can fix.
           set -o pipefail
-          python3 tools/asset-load-check.py --docroot . --all 2>&1 \
-            | tee -a "$GITHUB_STEP_SUMMARY"
+          if python3 tools/asset-load-check.py --docroot . --all 2>&1 \
+               | tee -a "$GITHUB_STEP_SUMMARY" | tee /tmp/al.out; then
+            exit 0
+          fi
+          # ::error:: lines become CHECK ANNOTATIONS, readable from the public API with no
+          # admin rights - unlike job logs (403) and job summaries (not exposed at all).
+          # This gate was red for a week and the reason was unreadable to anyone who could
+          # not click into the run. Now the failure carries its own explanation.
+          python3 tools/gh-annotate.py /tmp/al.out "asset-load-check failed"
+          exit 1
       - name: Fail if asset-load-check left a wrapper behind
         if: always()
         run: |
