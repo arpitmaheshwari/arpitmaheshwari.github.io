@@ -2035,8 +2035,32 @@ html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022 .xi-patterns
    (0,3,1) vs (0,4,1) — so an IMPLICIT second column survived at 390 and pushed
    'Cite this library' off the viewport. Matched with :is() to the pin's weight. */
 @media (max-width:900px){html[data-theme="ember"] body[class*="p-patterns"] .xi-patterns-022>:is(*,.xi-patterns-021){grid-column:1;grid-row:auto}}
-html[data-theme="ember"] body.p-home .memos{display:block}
-html[data-theme="ember"] body.p-home .memo{display:grid;background:none;border:none;border-bottom:1px solid rgba(245,237,230,.14);border-radius:0;padding:24px 0}
+/* THREE COLUMNS, 2026-09-03. Keeps the list treatment chosen on 2026-08-30 — a rule above
+   each item, no card chrome — and arranges the three items across the row instead of down it.
+   The cards are NOT coming back; only the axis changes.
+   Why: each memo body was a single unwrapped 912px line, 137 characters to track in one
+   sweep, with the kicker column mostly empty beside it. Measured alternatives, all rejected:
+   a max-width on the paragraph had NO effect (it is a grid item and the cap never bit);
+   narrowing the band to 780px reached 80ch but emptied the right half and broke alignment
+   with the errata box below; two columns reached 46ch but left the third item dangling
+   beside a void — three items never fill two columns.
+   Three columns is the only arrangement with no orphan and no dead space: 54ch at 1440,
+   43ch at 1024, and the block drops from 444px to 198px. The kicker moves above the title,
+   which is what removes the empty left gutter that caused the wide measure to begin with. */
+html[data-theme="ember"] body.p-home .memos{display:grid;grid-template-columns:repeat(3,1fr);column-gap:40px}
+html[data-theme="ember"] body.p-home .memo{display:block;background:none;border:none;border-top:1px solid rgba(245,237,230,.14);border-radius:0;padding:20px 0 0}
+/* Each item now carries its own rule, so the container's would double up above column one. */
+html[data-theme="ember"] body.p-home .memos{border-top:none}
+/* The ladder, measured at every step. Collapsing straight from three columns to one left a
+   103ch line at 768 and 123ch at 900 — the original defect, back again in the middle of
+   the range. Two columns there reads 49-59ch. It does leave the last row half filled,
+   because three items never fill two columns; at tablet that gap is ~350px and far less
+   costly than a 123-character line. A third candidate — one column with the kicker beside
+   the body — was rejected on measurement: 23ch at 768, unreadably narrow, and still 97ch
+   at 900.
+   Result across the range: 54ch at 1440+, 43ch at 1024, 49-59ch at 768-900, 54ch at 390. */
+@media (max-width:1000px) and (min-width:601px){html[data-theme="ember"] body.p-home .memos{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){html[data-theme="ember"] body.p-home .memos{grid-template-columns:1fr}}
 /* the kicker's cap line must sit ON the title's cap line — the two columns of one
    row align to each other, not merely inside the row (lesson 7, 2026-09-01) */
 html[data-theme="ember"] body.p-home .memo .mk{margin:12px 0 0}

@@ -52,7 +52,16 @@ facts={
     # partials/ holds nav and footer FRAGMENTS stamped into pages by
     # build-partials.py — sources, not pages a visitor can reach.
  "html_pages": len(tracked('*.html',('book/','prototypes/','partials/'))),
- "stylesheet_bytes": os.path.getsize(os.path.join(R,'styles.css')),
+ # EVERY stylesheet a classic page loads, not just one of them. This measured styles.css
+ # alone and the page published it as "Stylesheet, entire site" — 280.4 KB, when the three
+ # files a page actually links total 510.1 KB. It understated the site by 82% on the one
+ # page whose whole argument is that it can be inspected, and it never moved when ember.css
+ # changed, which is what finally gave it away. book/book.css is excluded on purpose: the
+ # book is a separate surface and no classic page loads it.
+ "stylesheet_bytes": sum(os.path.getsize(os.path.join(R,f))
+                        for f in ('fonts.css','styles.css','ember.css')),
+ "stylesheet_gzip": sum(len(__import__('gzip').compress(open(os.path.join(R,f),'rb').read()))
+                        for f in ('fonts.css','styles.css','ember.css')),
  "runtime_deps": 0 if not os.path.exists(os.path.join(R,'package.json')) else -1,
  # Measured, not asserted. The previous version grepped index.html and
  # intersected it with a hardcoded set of three domain names, so it could only
