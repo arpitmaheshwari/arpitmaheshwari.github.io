@@ -29,8 +29,14 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install Pillow
-        run: python -m pip install --quiet --upgrade pillow
+      # websocket-client is NOT optional: tools/cdp.py imports websocket, and every gate
+      # that drives Chrome imports cdp. On 2026-08-30 asset-load-check started importing
+      # cdp and this step still installed only Pillow, so the gate died at IMPORT time on
+      # every push for five days — "ModuleNotFoundError: No module named 'websocket'".
+      # It looked like a failing check; it was a check that never ran.
+      # tools/ci-deps-check.py keeps this list honest against what tools/ actually imports.
+      - name: Install Python dependencies (pillow, websocket-client)
+        run: python -m pip install --quiet --upgrade pillow websocket-client
 
       # ubuntu-latest does not reliably ship Chrome/Chromium — this step's own error message used
       # to just NAME the fix ("Add browser-actions/setup-chrome@v1") without applying it, so every
