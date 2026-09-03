@@ -95,6 +95,14 @@ facts={
  "skip_link_pages": len([f for f in tracked('*.html',('prototypes/',)) if 'skip-link' in open(os.path.join(R,f),encoding='utf-8',errors='ignore').read()]),
  "build_steps": 0,
  "loop_tests": int(re.search(r'(\d+)/\d+ passed',sh("node lab/loop.test.js")).group(1)),
+ # The runner prints "42/42 passed" and that 42 is a count of test() blocks. Two
+ # surfaces published it as "42 assertions", which is a different quantity — each
+ # test makes several. Measured separately so neither label can borrow the other's
+ # number. Counts calls to the four assertion helpers, minus their definitions.
+ "loop_assertions": (lambda b: sum(len(re.findall(r'(?<![\w.])'+k+r'\(',b))
+                                   for k in ('assert','equal','close','throws')))(
+     re.sub(r'(?s)function (assert|equal|close|throws)\(.*?\n\}','',
+            open(os.path.join(R,'lab/loop.test.js'),encoding='utf-8').read())),
  "trustlint_rules": len(re.findall(r"\{\s*id:\s*'",open(os.path.join(R,'lab/trustlint.js')).read())),
 }
 facts["stylesheet_kb"]=round(facts["stylesheet_bytes"]/1024,1)
@@ -113,6 +121,7 @@ if '--check' in sys.argv:
                            ('og cards',f">{facts['og_cards']}<"),
                            ('skip-link pages',f">{facts['skip_link_pages']}<"),
                            ('demos.js KB',f"{facts['demos_js_kb']} KB"),
+                           ('loop assertions',f"{facts['loop_assertions']} assertions"),
                            # Prose spells its numbers, so match the word. This
                            # receipt said "one third-party domain" for months
                            # after Clarity was added — the page arguing that a
@@ -123,7 +132,11 @@ if '--check' in sys.argv:
                         ('third-party services',
                          f"{WORD[facts['third_party_services']]} third-party services"),
                         ('third-party domains',
-                         f"{WORD[facts['third_party_domains_total']]} domains")],
+                         f"{WORD[facts['third_party_domains_total']]} domains"),
+                        # This surface publishes the assertion count too. It was
+                        # unguarded, which is how "42 assertions" survived here.
+                        ('loop assertions',f"{facts['loop_assertions']} assertions"),
+                        ('loop tests',f"{facts['loop_tests']} tests")],
     }
     for path,checks in expect.items():
         page=open(os.path.join(R,path),encoding='utf-8').read().replace('&nbsp;',' ')
