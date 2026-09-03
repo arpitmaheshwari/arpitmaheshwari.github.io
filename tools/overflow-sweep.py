@@ -21,7 +21,8 @@ from cdp import NO_TRACKING_FLAG
 CH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 W=int(sys.argv[1]) if len(sys.argv)>1 else 1440
 PAGES=sys.argv[2:] or [str(p) for p in sorted(pathlib.Path('.').rglob('*.html'))
-    if not any(x.startswith('.') or x in ('prototypes','portfolio-sources','node_modules')
+    if not any(x.startswith('.') or x in ('prototypes','portfolio-sources','node_modules',
+                                          'partials')
                     for x in p.parts) and not p.name.startswith('_')]
 PROBE="""<!doctype html><html><body><script>
 const f=document.createElement('iframe');f.src='http://localhost:8000/%s?cb='+Date.now();

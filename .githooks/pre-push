@@ -229,8 +229,13 @@ fi
 # tree; the runtime half re-checks the two pages that carry the most diagrams.
 if [ -f tools/asset-load-check.py ]; then
   echo "pre-push: asset load check (SVG validity + images actually painting)…"
-  if ! python3 tools/asset-load-check.py --docroot . --no-selftest \
-        "http://localhost:$PORT/" "http://localhost:$PORT/process/"; then
+  # --all, the SAME command CI runs. This used to check exactly two URLs, "/" and
+  # "/process/", while .github/workflows/contrast-gate.yml ran --all over every page.
+  # That divergence is why the Contrast gate could be RED on every push since at least
+  # 2026-08-30 while this hook said OK every single time: local was not running the
+  # check that was failing. A gate you only run locally is a gate you are not running.
+  if ! BASE="http://localhost:$PORT" python3 tools/asset-load-check.py \
+        --docroot . --no-selftest --all; then
     cat <<'MSG'
 
 pre-push: BLOCKED — a broken asset was detected above.

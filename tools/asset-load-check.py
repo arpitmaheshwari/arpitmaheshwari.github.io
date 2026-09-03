@@ -232,7 +232,14 @@ def discover_pages(base="http://localhost:8000"):
     # .split() breaks on any filename containing a space — see tools/contrast-audit.py's
     # discover_pages for the full story (same copy-pasted bug, found there 2026-08-11).
     for f in out.splitlines():
-        if f.startswith(("prototypes/", "assets/", "portfolio-sources/")):
+        if f.startswith(("prototypes/", "assets/", "portfolio-sources/",
+                         # partials/ are TEMPLATES, not pages: nav.html ships the literal
+                         # string {{ROOT}}assets/logo-ember.svg, which no browser can load.
+                         # asset-load-check --all counted it as one of "41 shipped pages"
+                         # and reported a broken image on every CI run since at least
+                         # 2026-08-30 — the Contrast gate has never been green. The local
+                         # pre-push hook checked two URLs and so never saw it.
+                         "partials/")):
             continue
         # Meta-refresh redirect stubs (lab/hitl.html, lab/trustlayer.html) carry no images —
         # nothing for this gate to check. Kept in sync with contrast-audit.py's discover_pages,

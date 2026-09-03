@@ -128,8 +128,17 @@ def freshness():
                          capture_output=True, text=True).stdout.strip()
     if not iso:
         return None
-    last = datetime.date.fromisoformat(iso)
     today = datetime.date.today()
+    # WORKING-TREE-AWARE, the same way build-sitemap.py derives lastmod. A stamp read
+    # from the last COMMIT is invalidated by the very commit that carries it: build on
+    # the 4th, commit on the 4th, and the page still says the 3rd — the hook then blocks
+    # the push for drift it created itself. If the tree is dirty we are mid-ship, so
+    # today is the honest answer and it matches what the commit is about to record.
+    dirty = bool(subprocess.run(['git', 'status', '--porcelain'], cwd=ROOT,
+                                capture_output=True, text=True).stdout.strip())
+    if dirty:
+        iso = today.isoformat()
+    last = datetime.date.fromisoformat(iso)
     if (today - last).days > SHIP_STAMP_MAX_AGE_DAYS:
         return None
     return f'last shipped {iso}'
