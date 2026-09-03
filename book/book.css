@@ -811,6 +811,18 @@ body {
   z-index: 10;
 }
 .bk-m-page--cover { padding: 0; overflow: hidden; animation: none; }
+/* "more below" fade, set by book/scroll-hint.js only while the current page actually has
+   more to scroll. It lives on the STAGE, not the page: the page is the scrolling box, and
+   a sticky child of a scroller with a negative bottom offset sits outside the scrollport
+   and never paints (tried it — invisible). The stage is a stable, position:relative,
+   overflow:hidden ancestor, so an absolutely-positioned fade pinned to its bottom edge is
+   both simpler and correct. pointer-events:none so it can never eat a tap. */
+.bk-m-stage[data-more]::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 84px;
+  pointer-events: none; z-index: 9;
+  background: linear-gradient(to bottom, rgba(244,236,218,0) 0%, var(--bk-paper) 82%);
+}
+
 .bk-m-page--cover::after { display: none; }
 .bk-m-folio { font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--bk-ink-faint); margin-top: 24px; text-align: center; }
 @keyframes mFlip {
