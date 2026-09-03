@@ -392,6 +392,12 @@ h1,h2,h3{scroll-margin-top:120px}}
 /* print-shared — before this, hire/index.html was the only file with print styles, so
    every case study printed a solid near-black background with the fixed nav stamped
    onto all 14 sheets. */
+/* A <video> prints as a large empty rounded box with a dead 0:00 scrubber. On the
+   homepage that wasted roughly two thirds of printed page 2 on a control nobody can
+   press. Measured 2026-09-03 by generating the actual PDF rather than emulating print.
+   The surrounding caption and the "The method, written out" link already print and say
+   what the film contains, so hiding the shell loses nothing a reader can use on paper. */
+@media print{.vid-frame{display:none}}
 @media print{section,figure,.case-gate,.plA,.plF,.plM,.plO,.plP,.plV{page-break-inside:avoid}
 a{text-decoration:underline}}
 /* ============================================================================
