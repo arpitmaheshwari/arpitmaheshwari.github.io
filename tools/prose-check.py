@@ -13,6 +13,7 @@ are, in the first ten seconds, before they reach any of the work.
   MIXED-SPELLING  the same word spelled two ways across the site
                   (e.g. "prioritise" and "prioritize")
   STRAIGHT-QUOTE  ' or " inside prose on a site that otherwise sets curly
+  UNSPACED-DASH   an em dash with no space around it, against 1,193 that have it
                   quotes — visible as a typographic wobble
 
 Two kinds of surface are read:
@@ -49,6 +50,8 @@ DOUBLED = re.compile(r'\b(\w+)[ \t]+\1\b', re.I)   # same line only
 # opening a phrase. Feet/inches and code are excluded by STRIP + the letter context.
 STRAIGHT = re.compile(r"[A-Za-z]'[A-Za-z]|\"[A-Za-z][^\"\n]{0,80}\"")
 # Opens straight, closes curly — the pair a find-and-replace leaves behind.
+ATTR_TEXT = re.compile(r'\b(title|aria-label|alt|placeholder)="([^"]{12,})"')
+UNSPACED_DASH = re.compile(r'\w—\w')
 MISMATCHED = re.compile(r"'[A-Za-z][^'\u2019\n]{0,40}\u2019")
 
 # Pairs that are legitimately repeated in English.
@@ -113,13 +116,19 @@ def js_prose(path):
 def visible(path):
     s = open(path, encoding='utf-8', errors='replace').read()
     s = COMMENT.sub(' ', s)
+    # Pull attribute text out BEFORE STRIP, because STRIP deletes <svg> blocks whole
+    # and most of the site's diagrams carry their description in an aria-label on the
+    # <svg> itself. Extracting after STRIP found nothing there — the first calibration
+    # of this rule stayed green over a straight apostrophe planted in exactly such a
+    # label. SVG GLYPH text stays excluded; only the spoken description comes through.
+    spoken = '\n'.join(m.group(2) for m in ATTR_TEXT.finditer(s))
     s = STRIP.sub(' ', s)
     # Replace a tag with a NEWLINE, not a space. Collapsing tags to spaces
     # welded adjacent table cells into one string, so a row reading
     # "Fast | High | High-volume" was reported as the doubled word "High High".
     # A doubled word is only a doubled word inside one element's own text.
     s = TAG.sub('\n', s)
-    return html.unescape(s)
+    return html.unescape(s + '\n' + spoken)
 
 
 def main():
@@ -178,6 +187,14 @@ def main():
             ctx = ' '.join(text[max(0, m.start()-42):m.end()+42].split())
             findings.append((rel, 'STRAIGHT-QUOTE',
                              f'{m.group(0)!r} — …{ctx}…'))
+        # UNSPACED-DASH. The site sets an em dash with a space either side, 1,193
+        # times. Two places did not, both in the glossary — one of them inside a
+        # title= tooltip, where no proofread would ever land. A 1193-to-2 split is a
+        # convention, so the two are the defect.
+        for m in UNSPACED_DASH.finditer(text):
+            ctx = ' '.join(text[max(0, m.start()-38):m.end()+38].split())
+            findings.append((rel, 'UNSPACED-DASH',
+                             f'{m.group(0)!r} — the site spaces its em dashes: …{ctx}…'))
         for m in MISMATCHED.finditer(text):
             ctx = ' '.join(text[max(0, m.start()-30):m.end()+30].split())
             findings.append((rel, 'MISMATCHED-QUOTE',
@@ -259,7 +276,7 @@ def main():
         # asserted the other two, so nothing ever noticed, and the gate reported
         # "0 findings" over 68 straight marks in book/. A rule outside the selftest
         # is a rule that can quietly stop existing.
-        want = {'DOUBLED-WORD', 'STRAIGHT-QUOTE', 'MISMATCHED-QUOTE'}
+        want = {'DOUBLED-WORD', 'STRAIGHT-QUOTE', 'MISMATCHED-QUOTE', 'UNSPACED-DASH'}
         absent = sorted(want - got)
         ok = not absent and any(
             'quombulate' in v for _, k, v in findings if k == 'SUSPECT-SPELL')
