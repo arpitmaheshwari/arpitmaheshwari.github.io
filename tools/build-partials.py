@@ -252,10 +252,22 @@ def main():
         # carry. Pages without a footer (redirect stubs like talon.html) are exempt —
         # the calibration plant surfaced exactly that, which is the assertion working.
         if mf:
-            for frag in ('class="chant chant-line"', 'class="footer-logo"', '<footer'):
+            for frag in ('class="footer-logo"', '<footer'):
                 n = s.count(frag)
                 if n != 1:
                     raise SystemExit(f'STAMP MULTIPLICITY: {rel} carries {n}× {frag!r} (must be exactly 1)')
+            # The chant is HOMEPAGE ONLY as of 2026-09-03. It used to be stamped onto
+            # every page by the footer partial, where four lines of manifesto at the
+            # bottom of all 38 pages stopped reading as a payoff and started reading as
+            # wallpaper — and as assertion, on a site whose argument is that it measures
+            # rather than asserts. The homepage closes on the four-act block, which is
+            # where the acts structure makes it land. Same multiplicity discipline, new
+            # expectation: exactly one there, none anywhere else.
+            want_chant = 1 if rel == 'index.html' else 0
+            n = s.count('<aside class="chant')
+            if n != want_chant:
+                raise SystemExit(f'CHANT PLACEMENT: {rel} carries {n} chant aside(s), '
+                                 f'expected {want_chant} (homepage only)')
         for name, h in vers.items():
             base = pathlib.Path(name).name           # book/portfolio.js -> portfolio.js
             stem, ext = base.rsplit('.', 1)
