@@ -89,6 +89,12 @@ facts={
  # The KB beside those lines was typed, not measured, and used DECIMAL KB while the
  # stylesheet row above uses binary — 12,881 bytes read as "12.9 KB" here and would
  # read 12.6 there. It also never moved when demos.js was edited on 2026-08-30.
+ # "all nine font files are now served from this origin" was measured correctly on
+ # 2026-08-14 and quietly became false on 2026-08-28, when the dyslexia toggle added
+ # Atkinson Hyperlegible 400/700. Nothing counts a self-hosted font, so nothing noticed.
+ "self_hosted_fonts": len(set(re.findall(r"url\('(/assets/fonts-web/[^']+)'\)",
+     ''.join(open(os.path.join(R,f),encoding='utf-8').read()
+             for f in ('fonts.css','styles.css','ember.css'))))),
  "demos_js_kb": round(os.path.getsize(os.path.join(R,'patterns/demos.js'))/1024,1),
  "demos_js_imports": len(re.findall(r'import |require\(|fetch\(',open(os.path.join(R,'patterns/demos.js')).read())),
  "og_cards": len(tracked('assets/og-images/*.png')),
@@ -107,7 +113,8 @@ facts={
 }
 facts["stylesheet_kb"]=round(facts["stylesheet_bytes"]/1024,1)
 
-WORD = {1:'one',2:'two',3:'three',4:'four',5:'five',6:'six'}
+WORD = {1:'one',2:'two',3:'three',4:'four',5:'five',6:'six',7:'seven',8:'eight',
+        9:'nine',10:'ten',11:'eleven',12:'twelve'}
 
 if '--check' in sys.argv:
     # Check EACH page separately. The first version concatenated both files, so a stale
@@ -122,6 +129,8 @@ if '--check' in sys.argv:
                            ('skip-link pages',f">{facts['skip_link_pages']}<"),
                            ('demos.js KB',f"{facts['demos_js_kb']} KB"),
                            ('loop assertions',f"{facts['loop_assertions']} assertions"),
+                           ('self-hosted fonts',
+                            f"{WORD[facts['self_hosted_fonts']]} font files are now served"),
                            # Prose spells its numbers, so match the word. This
                            # receipt said "one third-party domain" for months
                            # after Clarity was added — the page arguing that a
