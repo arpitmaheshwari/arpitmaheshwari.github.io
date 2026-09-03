@@ -146,6 +146,19 @@ for g in no-tracking link-integrity sprite-reference share-preview prose freshne
   fi
 done
 
+# The sitemap states a lastmod per page. Every one of them was the same hard-coded date and
+# 18 days stale on 2026-09-03; a crawler reads that as a claim. build-sitemap.py derives it
+# from the last revision whose visible prose changed — the same definition freshness-check
+# uses, so the sitemap and the on-page "Last updated" line cannot disagree.
+if [ -f tools/build-sitemap.py ]; then
+  echo "pre-push: sitemap lastmod…"
+  if ! python3 tools/build-sitemap.py --check; then
+    echo
+    echo "pre-push: BLOCKED — sitemap.xml states a lastmod its page has outlived."
+    exit 1
+  fi
+fi
+
 echo "pre-push: starting the browser gates in parallel…"
 # These three are NOT backgrounded. Each drives Chrome without a private
 # profile, so they contend on the default profile's singleton lock whenever
