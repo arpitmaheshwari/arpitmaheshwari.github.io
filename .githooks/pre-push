@@ -172,7 +172,7 @@ echo "pre-push: starting the browser gates in parallel…"
 # --user-data-dir broke --dump-dom outright, so it stays inline: it visits two
 # pages and costs a few seconds.
 [ -f tools/component-identity-check.py ] && bg_gate component-identity \
-  python3 tools/component-identity-check.py
+  env BASE="http://localhost:$PORT" python3 tools/component-identity-check.py
 [ -f tools/image-alignment-check.py ] && bg_gate image-alignment \
   python3 tools/image-alignment-check.py $IMG_SCOPE --widths 390,1440
 [ -f tools/runtime-error-check.py ] && bg_gate runtime-error \

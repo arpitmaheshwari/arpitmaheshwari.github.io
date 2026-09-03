@@ -34,7 +34,15 @@ return out;})()""" % (json.dumps(COMPONENTS), json.dumps(PROPS))
 
 
 def main():
+    # BASE is honoured for standalone runs; the pre-push hook exports it so the gate uses the
+    # server the hook already started. This used to hard-code :8899 with no way to override,
+    # so it passed only when a dev server happened to be on that port and failed outright on a
+    # clean machine — including straight after a reboot, which is exactly when a push matters.
     base = os.environ.get('BASE', 'http://localhost:8899')
+    import sys as _s, os as _o
+    _s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__)))
+    import cdp as _cdp
+    _cdp.ensure_server(int(base.rsplit(':', 1)[1]))
     pages = sorted(p for p in glob.glob('**/*.html', recursive=True)
                    if not p.startswith(('partials/', 'node_modules/', 'tests/', 'prototypes/'))
                       and not os.path.basename(p).startswith('__'))
