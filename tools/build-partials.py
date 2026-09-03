@@ -95,6 +95,49 @@ def footer_note(footer_html):
     return m.group(1) if m else None
 
 
+SHIP_STAMP_MAX_AGE_DAYS = 45
+
+
+def freshness():
+    """The footer's ship stamp — derived, and silent when it would hurt.
+
+    It was hardcoded, and on 2026-09-03 it read "last shipped 2026-08-31 · 298
+    changes this month" on all 38 pages. Both halves were wrong in the way that
+    is hardest to see: 298 is the EXACT number of commits in August, under a
+    label that had come to mean September, where the real figure was 52.
+
+    Two design decisions, because a freshness signal is the one element that
+    turns against you by doing nothing:
+
+      * a ROLLING 30 days, not the calendar month. A calendar counter collapses
+        to "2 changes this month" on the 1st, which reads as abandonment on the
+        day the site is busiest.
+      * it SUPPRESSES ITSELF past SHIP_STAMP_MAX_AGE_DAYS. The upside of this
+        stamp is bounded and its downside is not: it helps while the work is
+        active and quietly advertises neglect the moment it stops — at exactly
+        the time nobody is looking at the site to notice. Silence is the correct
+        output then, and it needs no one to remember to remove it.
+
+    Returns the inner HTML for <span class="fresh">, or None to omit the span.
+    """
+    import datetime
+    iso = subprocess.run(['git', 'log', '-1', '--format=%cs'], cwd=ROOT,
+                         capture_output=True, text=True).stdout.strip()
+    if not iso:
+        return None
+    last = datetime.date.fromisoformat(iso)
+    today = datetime.date.today()
+    if (today - last).days > SHIP_STAMP_MAX_AGE_DAYS:
+        return None
+    since = (today - datetime.timedelta(days=30)).isoformat()
+    n = len(subprocess.run(['git', 'log', f'--since={since}', '--format=%h'],
+                           cwd=ROOT, capture_output=True, text=True).stdout.split())
+    stamp = f'last shipped {iso}'
+    if n:
+        stamp += f' &middot; {n} change{"" if n == 1 else "s"} in the last 30 days'
+    return stamp
+
+
 def current_for(rel):
     """The nav destination this page IS, from its path. None if it is not one."""
     if rel == 'index.html':
@@ -129,6 +172,11 @@ def render(rel, existing_nav, existing_footer):
         nav = nav.replace(f'href="{root}index.html#contact"', 'href="#contact"')
     note = footer_note(existing_footer) if existing_footer else None
     foot = FOOTER.replace('{{ROOT}}', root)
+    fresh = freshness()
+    foot = (re.sub(r'<span class="fresh">.*?</span>\s*', '', foot, flags=re.S)
+            if fresh is None
+            else re.sub(r'(<span class="fresh">).*?(</span>)',
+                        lambda m: m.group(1) + fresh + m.group(2), foot, flags=re.S))
     foot = foot.replace('{{FOOTER_NOTE}}', note if note else
                         'No rights reserved — good patterns should travel')
     return nav, foot
