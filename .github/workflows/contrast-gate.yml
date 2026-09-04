@@ -114,7 +114,21 @@ jobs:
       # on purpose: a diagnosis must not be able to redden a build. DELETE once answered.
       - name: Diagnose the two Linux-only gate failures
         continue-on-error: true
-        run: python3 tools/runner-diagnose.py process/
+        run: |
+          # Round 1 showed the runner renders the page IDENTICALLY to macOS — cream ink,
+          # all four stylesheets, both drivers agreeing. So the page is fine there and the
+          # difference is in how the GATE runs. The one thing that differed: the
+          # diagnostic ran alone, while the gates ran 4-wide against other Chrome-driving
+          # gates on a 2-core runner. Virtual time advances only while the page is idle,
+          # so under CPU contention the budget can expire mid-render.
+          # Decisive test: run each failing gate ALONE here and annotate the result.
+          python3 tools/runner-diagnose.py process/ || true
+          echo "=== theme-remnant-check, running ALONE ==="
+          python3 tools/theme-remnant-check.py > /tmp/tr.out 2>&1 && echo "PASSES ALONE" \
+            || python3 tools/gh-annotate.py /tmp/tr.out "theme-remnant ALONE on the runner"
+          echo "=== cta-grammar-check, running ALONE ==="
+          python3 tools/cta-grammar-check.py > /tmp/cg.out 2>&1 && echo "PASSES ALONE" \
+            || python3 tools/gh-annotate.py /tmp/cg.out "cta-grammar ALONE on the runner"
 
       - name: Gates (from tools/gates.json)
         run: python3 tools/run-gates.py --stage ci --parallel 4
