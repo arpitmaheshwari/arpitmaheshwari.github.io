@@ -13,6 +13,9 @@ dominant signature, and fail every outlier. Buttons/pills are excluded — they
 are a different component. Self-calibrating: plants an off-grammar CTA and
 requires red.
 """
+import sys as _gl_s, os as _gl_o
+_gl_s.path.insert(0, _gl_o.path.dirname(_gl_o.path.abspath(__file__)))
+from gatelib import planted   # locked plant/restore — see gatelib for why
 import subprocess, sys, json, re, html as H, pathlib, os, collections
 import sys as _sys, os as _os
 
@@ -110,14 +113,13 @@ def calibrate():
     if len(base) < 2:
         print(f"[calibration] FAIL — index.html has {len(base)} qualifying CTA(s); "
               "need >=2 so the canary can differ from a witness."); sys.exit(2)
-    css = pathlib.Path("ember.css"); orig = css.read_text()
-    css.write_text(orig + '\nhtml[data-theme="ember"] #patterns .contract-links a'
-                   '{font-family:Georgia,serif!important;font-size:19px!important}\n')
-    try:
+    # Under gatelib.planted — locked plant -> scan -> restore. Unguarded, this raced with
+    # theme-remnant-check and balance-check, which plant into the same file.
+    with planted("ember.css",
+                 '\nhtml[data-theme="ember"] #patterns .contract-links a'
+                 '{font-family:Georgia,serif!important;font-size:19px!important}\n'):
         rows = scan("index.html")
         sigs = collections.Counter(r["sig"] for r in rows)
-    finally:
-        css.write_text(orig)
     if len(sigs) <= len(base_sigs):
         print("[calibration] FAIL — planted 19px Georgia CTA on #patterns .contract-links "
               "did not add a signature (selector matched nothing, or probe blind)."); sys.exit(2)

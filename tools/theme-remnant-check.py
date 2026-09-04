@@ -7,6 +7,9 @@ not read CSS or count classes, it reads the colour each element actually
 renders, so a component Ember never restyled shows up as a hard failure.
 Self-calibrating: plants a known remnant and requires the check to go red.
 """
+import sys as _gl_s, os as _gl_o
+_gl_s.path.insert(0, _gl_o.path.dirname(_gl_o.path.abspath(__file__)))
+from gatelib import planted   # locked plant/restore — see gatelib for why
 import subprocess, sys, json, re, html as H, pathlib, os
 import sys as _sys, os as _os
 
@@ -102,10 +105,11 @@ def scan(page):
         if os.path.exists("__tr.html"): os.unlink("__tr.html")
 
 def calibrate():
-    css = pathlib.Path("ember.css"); orig = css.read_text()
-    css.write_text(orig + '\nhtml[data-theme="ember"] h1{color:#515863!important}\n')
-    try: red = bool(scan("index.html"))
-    finally: css.write_text(orig)
+    # Under gatelib.planted: this used to read-modify-write ember.css unguarded, and
+    # running beside another gate that does the same left the plant on disk — which is
+    # exactly how this gate came to report #515863, its OWN canary, on 40 pages.
+    with planted("ember.css", '\nhtml[data-theme="ember"] h1{color:#515863!important}\n'):
+        red = bool(scan("index.html"))
     if not red:
         print("[calibration] FAIL — planted remnant #515863 on h1 was NOT caught.\n             Either the check is blind or the browser served a cached ember.css."); sys.exit(2)
     print("[calibration] PASS — planted classic-palette remnant caught")

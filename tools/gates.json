@@ -273,9 +273,8 @@
       "needs": [
         "server"
       ],
-      "note": "the hook ran this against two URLs while CI ran --all; that divergence hid a five-day CI failure — executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — serial: this gate drives Chrome with --dump-dom --virtual-time-budget. Virtual time advances only while the page is IDLE, so running several such gates at once on a 2-core runner lets the budget expire before an iframe finishes styling and --dump-dom returns a half-rendered DOM. Diagnosed on the runner 2026-09-04: the page renders identically to macOS, and each gate PASSES when run alone there — the contention was introduced by putting them behind a --parallel 4 runner. The proper fix is porting these probes to CDP like every other gate; serialising is the correct interim answer, not a workaround for an unknown.",
-      "runner": false,
-      "serial": true
+      "note": "the hook ran this against two URLs while CI ran --all; that divergence hid a five-day CI failure — executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason.",
+      "runner": false
     },
     {
       "id": "og-card-presence",
@@ -290,8 +289,7 @@
       "needs": [
         "server"
       ],
-      "serial": true,
-      "note": "serial: this gate drives Chrome with --dump-dom --virtual-time-budget. Virtual time advances only while the page is IDLE, so running several such gates at once on a 2-core runner lets the budget expire before an iframe finishes styling and --dump-dom returns a half-rendered DOM. Diagnosed on the runner 2026-09-04: the page renders identically to macOS, and each gate PASSES when run alone there — the contention was introduced by putting them behind a --parallel 4 runner. The proper fix is porting these probes to CDP like every other gate; serialising is the correct interim answer, not a workaround for an unknown."
+      "note": "was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
     },
     {
       "id": "contrast-audit",
@@ -332,7 +330,7 @@
       "needs": [
         "server"
       ],
-      "note": "DIAGNOSED 2026-09-04 and returned to every-push CI: it was not a Linux defect and not a false positive — it was CPU contention between parallel virtual-time gates. MOVED OFF EVERY-PUSH 2026-09-04, UNEXPLAINED. Its CALIBRATION fails on the Linux runner — 'planted 19px Georgia CTA did not add a signature (selector matched nothing, or probe blind)' — and a gate whose calibration fails is correctly refusing to report. It calibrates fine on macOS. Same treatment and same open question as theme-remnant-check. — serial: this gate drives Chrome with --dump-dom --virtual-time-budget. Virtual time advances only while the page is IDLE, so running several such gates at once on a 2-core runner lets the budget expire before an iframe finishes styling and --dump-dom returns a half-rendered DOM. Diagnosed on the runner 2026-09-04: the page renders identically to macOS, and each gate PASSES when run alone there — the contention was introduced by putting them behind a --parallel 4 runner. The proper fix is porting these probes to CDP like every other gate; serialising is the correct interim answer, not a workaround for an unknown.",
+      "note": "DIAGNOSED 2026-09-04 and returned to every-push CI: it was not a Linux defect and not a false positive — it was CPU contention between parallel virtual-time gates. MOVED OFF EVERY-PUSH 2026-09-04, UNEXPLAINED. Its CALIBRATION fails on the Linux runner — 'planted 19px Georgia CTA did not add a signature (selector matched nothing, or probe blind)' — and a gate whose calibration fails is correctly refusing to report. It calibrates fine on macOS. Same treatment and same open question as theme-remnant-check. — serial: this gate CALIBRATES BY WRITING INTO ember.css — a shared source file. Two such gates at once clobber each other's read-modify-write restore and leave a canary rule on disk permanently, which is how theme-remnant-check came to report #515863, its OWN plant, on 40 pages in CI. Reproduced locally by running three of them concurrently: two planted rules left behind and the same 40-page failure. The REAL fix is gatelib.planted(), which holds a lock across plant -> scan -> restore and does not depend on who schedules the gates; serial is belt-and-braces for a bug that corrupted the working tree.",
       "serial": true
     },
     {
@@ -347,7 +345,7 @@
       "needs": [
         "server"
       ],
-      "note": "DIAGNOSED 2026-09-04 and returned to every-push CI: it was not a Linux defect and not a false positive — it was CPU contention between parallel virtual-time gates. MOVED OFF EVERY-PUSH 2026-09-04, UNEXPLAINED. It passes on macOS and fails on the Linux runner, and I could not reproduce it locally: it reports h1 colour #515863 'slate ink' on 40 pages, a value authored in NO stylesheet in this repo. Ruled out by measurement: ember.css not applying (disabling it gives 242,237,228, not slate), prefers-color-scheme (the site has no colour-scheme rules at all), and a load race (the probe waits 2.6s after iframe onload). This gate has now produced two false positives — it also convicted the correct paper gold on a cream ground — so it runs nightly, where a wrong answer costs a notification instead of a blocked push. The CI-only behaviour is open and needs diagnosing from the runner, not from here. — serial: this gate drives Chrome with --dump-dom --virtual-time-budget. Virtual time advances only while the page is IDLE, so running several such gates at once on a 2-core runner lets the budget expire before an iframe finishes styling and --dump-dom returns a half-rendered DOM. Diagnosed on the runner 2026-09-04: the page renders identically to macOS, and each gate PASSES when run alone there — the contention was introduced by putting them behind a --parallel 4 runner. The proper fix is porting these probes to CDP like every other gate; serialising is the correct interim answer, not a workaround for an unknown.",
+      "note": "DIAGNOSED 2026-09-04 and returned to every-push CI: it was not a Linux defect and not a false positive — it was CPU contention between parallel virtual-time gates. MOVED OFF EVERY-PUSH 2026-09-04, UNEXPLAINED. It passes on macOS and fails on the Linux runner, and I could not reproduce it locally: it reports h1 colour #515863 'slate ink' on 40 pages, a value authored in NO stylesheet in this repo. Ruled out by measurement: ember.css not applying (disabling it gives 242,237,228, not slate), prefers-color-scheme (the site has no colour-scheme rules at all), and a load race (the probe waits 2.6s after iframe onload). This gate has now produced two false positives — it also convicted the correct paper gold on a cream ground — so it runs nightly, where a wrong answer costs a notification instead of a blocked push. The CI-only behaviour is open and needs diagnosing from the runner, not from here. — serial: this gate CALIBRATES BY WRITING INTO ember.css — a shared source file. Two such gates at once clobber each other's read-modify-write restore and leave a canary rule on disk permanently, which is how theme-remnant-check came to report #515863, its OWN plant, on 40 pages in CI. Reproduced locally by running three of them concurrently: two planted rules left behind and the same 40-page failure. The REAL fix is gatelib.planted(), which holds a lock across plant -> scan -> restore and does not depend on who schedules the gates; serial is belt-and-braces for a bug that corrupted the working tree.",
       "serial": true
     },
     {
@@ -414,9 +412,8 @@
       "needs": [
         "server"
       ],
-      "note": "pre-push only: slow, and CI covers the same class through cta-grammar-check — executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — serial: this gate drives Chrome with --dump-dom --virtual-time-budget. Virtual time advances only while the page is IDLE, so running several such gates at once on a 2-core runner lets the budget expire before an iframe finishes styling and --dump-dom returns a half-rendered DOM. Diagnosed on the runner 2026-09-04: the page renders identically to macOS, and each gate PASSES when run alone there — the contention was introduced by putting them behind a --parallel 4 runner. The proper fix is porting these probes to CDP like every other gate; serialising is the correct interim answer, not a workaround for an unknown.",
-      "runner": false,
-      "serial": true
+      "note": "pre-push only: slow, and CI covers the same class through cta-grammar-check — executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason.",
+      "runner": false
     },
     {
       "id": "artifact-legibility-check",
@@ -431,8 +428,7 @@
         "server"
       ],
       "runner": false,
-      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — serial: this gate drives Chrome with --dump-dom --virtual-time-budget. Virtual time advances only while the page is IDLE, so running several such gates at once on a 2-core runner lets the budget expire before an iframe finishes styling and --dump-dom returns a half-rendered DOM. Diagnosed on the runner 2026-09-04: the page renders identically to macOS, and each gate PASSES when run alone there — the contention was introduced by putting them behind a --parallel 4 runner. The proper fix is porting these probes to CDP like every other gate; serialising is the correct interim answer, not a workaround for an unknown.",
-      "serial": true
+      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
     },
     {
       "id": "fit-check-calibration",
@@ -481,8 +477,7 @@
       "needs": [
         "server"
       ],
-      "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — serial: this gate drives Chrome with --dump-dom --virtual-time-budget. Virtual time advances only while the page is IDLE, so running several such gates at once on a 2-core runner lets the budget expire before an iframe finishes styling and --dump-dom returns a half-rendered DOM. Diagnosed on the runner 2026-09-04: the page renders identically to macOS, and each gate PASSES when run alone there — the contention was introduced by putting them behind a --parallel 4 runner. The proper fix is porting these probes to CDP like every other gate; serialising is the correct interim answer, not a workaround for an unknown.",
-      "serial": true
+      "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
     },
     {
       "id": "overflow-sweep-1024",
@@ -497,8 +492,7 @@
       "needs": [
         "server"
       ],
-      "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — serial: this gate drives Chrome with --dump-dom --virtual-time-budget. Virtual time advances only while the page is IDLE, so running several such gates at once on a 2-core runner lets the budget expire before an iframe finishes styling and --dump-dom returns a half-rendered DOM. Diagnosed on the runner 2026-09-04: the page renders identically to macOS, and each gate PASSES when run alone there — the contention was introduced by putting them behind a --parallel 4 runner. The proper fix is porting these probes to CDP like every other gate; serialising is the correct interim answer, not a workaround for an unknown.",
-      "serial": true
+      "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
     },
     {
       "id": "overflow-sweep-768",
@@ -513,8 +507,7 @@
       "needs": [
         "server"
       ],
-      "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — serial: this gate drives Chrome with --dump-dom --virtual-time-budget. Virtual time advances only while the page is IDLE, so running several such gates at once on a 2-core runner lets the budget expire before an iframe finishes styling and --dump-dom returns a half-rendered DOM. Diagnosed on the runner 2026-09-04: the page renders identically to macOS, and each gate PASSES when run alone there — the contention was introduced by putting them behind a --parallel 4 runner. The proper fix is porting these probes to CDP like every other gate; serialising is the correct interim answer, not a workaround for an unknown.",
-      "serial": true
+      "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
     },
     {
       "id": "line-height-check",
@@ -589,11 +582,10 @@
       "needs": [
         "server"
       ],
-      "note": "orphan until 2026-09-04. Page list comes from gatelib. The book is excluded: it deliberately carries no shared nav or footer, so the landmark rule fails it by design — and its infinite animations were verified to clear under prefers-reduced-motion, which all three stylesheets honour. — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — serial: this gate drives Chrome with --dump-dom --virtual-time-budget. Virtual time advances only while the page is IDLE, so running several such gates at once on a 2-core runner lets the budget expire before an iframe finishes styling and --dump-dom returns a half-rendered DOM. Diagnosed on the runner 2026-09-04: the page renders identically to macOS, and each gate PASSES when run alone there — the contention was introduced by putting them behind a --parallel 4 runner. The proper fix is porting these probes to CDP like every other gate; serialising is the correct interim answer, not a workaround for an unknown.",
+      "note": "orphan until 2026-09-04. Page list comes from gatelib. The book is excluded: it deliberately carries no shared nav or footer, so the landmark rule fails it by design — and its infinite animations were verified to clear under prefers-reduced-motion, which all three stylesheets honour. — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason.",
       "pages": {
         "include_book": false
-      },
-      "serial": true
+      }
     },
     {
       "id": "receipt-align-check",
@@ -607,8 +599,7 @@
       "needs": [
         "server"
       ],
-      "note": "orphan until 2026-09-04 — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — serial: this gate drives Chrome with --dump-dom --virtual-time-budget. Virtual time advances only while the page is IDLE, so running several such gates at once on a 2-core runner lets the budget expire before an iframe finishes styling and --dump-dom returns a half-rendered DOM. Diagnosed on the runner 2026-09-04: the page renders identically to macOS, and each gate PASSES when run alone there — the contention was introduced by putting them behind a --parallel 4 runner. The proper fix is porting these probes to CDP like every other gate; serialising is the correct interim answer, not a workaround for an unknown.",
-      "serial": true
+      "note": "orphan until 2026-09-04 — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
     }
   ],
   "manual": [

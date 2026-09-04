@@ -22,6 +22,9 @@ _cdp.ensure_server(8000)
 beyond TOL means the reading column is not centred in the space it occupies.
 Self-calibrating: plants a one-sided margin and requires the check to go red.
 """
+import sys as _gl_s, os as _gl_o
+_gl_s.path.insert(0, _gl_o.path.dirname(_gl_o.path.abspath(__file__)))
+from gatelib import planted   # locked plant/restore — see gatelib for why
 import subprocess, sys, json, re, html as H, pathlib, os
 import sys as _sys, os as _os
 # Trackers are refused for every browser this repo drives — see cdp.py.
@@ -93,10 +96,12 @@ def scan(page):
         if os.path.exists("__bal.html"): os.unlink("__bal.html")
 
 def calibrate():
-    css = pathlib.Path("ember.css"); orig = css.read_text()
-    css.write_text(orig + '\nhtml[data-theme="ember"] body.p-home main p{margin-right:400px!important}\n')
-    try: d = scan("index.html")
-    finally: css.write_text(orig)
+    # Under gatelib.planted, which holds a lock for the whole plant -> scan -> restore
+    # window. Unguarded, two gates doing this at once clobber each other's restore and
+    # leave a canary rule in ember.css permanently.
+    with planted("ember.css",
+                 '\nhtml[data-theme="ember"] body.p-home main p{margin-right:400px!important}\n'):
+        d = scan("index.html")
     if d.get("skew",0) <= TOL:
         print(f"[calibration] FAIL — planted 400px one-sided margin gave skew "
               f"{d.get('skew')}. The check cannot see lopsided space."); sys.exit(2)

@@ -14,9 +14,11 @@ A definition that lives in three places is three definitions. This is the one.
 Tools are run from the repo root, so `sys.path.insert(0, 'tools')` or an
 `os.path.dirname(__file__)` insert is the usual import preamble.
 """
+import contextlib
 import os
 import re
 import subprocess
+import time
 
 # Re-exported so a tool needs one import, not three. cdp owns the Chrome and server
 # details; this module owns what a gate is pointed AT.
@@ -110,3 +112,63 @@ if __name__ == '__main__':
         print(f'{len(ps)} shipped page(s)')
         for p in ps:
             print(' ', p)
+
+
+# --------------------------------------------------------------------------- calibration
+
+LOCK = os.path.join(ROOT, '.gate-source-lock')
+
+
+@contextlib.contextmanager
+def planted(path, addition, timeout=300):
+    """Append `addition` to a SHARED source file, then restore it — under a lock.
+
+    WHY THE LOCK. Four gates calibrate by planting a rule into ember.css, scanning, and
+    writing the original back. Each does read -> modify -> write. Run two at once and the
+    restores clobber: gate A reads the pristine file and plants; gate B reads A's plant and
+    plants its own; A writes back the pristine text, erasing B's plant; B writes back
+    "pristine + A's plant" — and A's planted rule is now on disk permanently.
+
+    That is not theory. Running theme-remnant-check, cta-grammar-check and balance-check
+    concurrently leaves TWO planted rules in ember.css and makes theme-remnant report "40
+    pages still painting the retired classic palette" — the exact CI failure, reproduced.
+    The reported colour #515863 was its own calibration's plant, read back off disk.
+
+    Worse than a flaky gate: it corrupts the WORKING TREE. A push during a run could ship
+    planted CSS. So the lock is not an optimisation, and it is not the manifest's `serial`
+    flag either — that depends on who schedules the gates, and this must hold whoever does.
+    """
+    deadline = time.time() + timeout
+    fd = None
+    while True:
+        try:
+            fd = os.open(LOCK, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            break
+        except FileExistsError:
+            if time.time() > deadline:
+                raise RuntimeError(
+                    f'another gate has held {LOCK} for {timeout}s. If no gate is running, '
+                    f'a previous one died mid-plant: check the file it names, then delete '
+                    f'the lock.')
+            time.sleep(0.2)
+    try:
+        os.write(fd, f'{os.getpid()} {path}\n'.encode())
+        os.close(fd)
+        fd = None
+        original = open(path, encoding='utf-8').read()
+        try:
+            with open(path, 'w', encoding='utf-8') as fh:
+                fh.write(original + addition)
+            yield
+        finally:
+            # Restore from the text read INSIDE the lock, so nothing else can have
+            # touched it in between.
+            with open(path, 'w', encoding='utf-8') as fh:
+                fh.write(original)
+    finally:
+        if fd is not None:
+            os.close(fd)
+        try:
+            os.unlink(LOCK)
+        except FileNotFoundError:
+            pass
