@@ -77,6 +77,7 @@ VIEWPORT_H = 900             # a REAL viewport: 100vh sections lay out as a read
 BAND_PAD = 8                 # px of slack inside the unobstructed band
 DIFF_T = 24                  # per-pixel channel-sum difference that counts as "ink was here"
 ALPHA_CORE = 0.7             # glyph-core coverage: pixels this inked recover the authored colour
+ALPHA_FLOOR = 0.5            # below this the un-blend is noise, not a measurement
 
 CANARY_TEXT = "calibration canary do not ship"
 CANARY_GT_TEXT = "gradient canary do not ship"
@@ -285,6 +286,25 @@ def _measure(im_a, im_b, im_c, rect, band):
     # 0.35, at most ALPHA_CORE, pinned to 85% of the best coverage this element
     # actually painted — the algebra is identical, only noisier at low alpha.
     max_a = max(g[0] for g in glyphs)
+    # DO NOT CONVICT ON A NOISY UN-BLEND. The recovery below is
+    #     ink = (painted - (1 - alpha) * ground) / alpha
+    # which divides by alpha, so every rounding error is multiplied by 1/alpha. At
+    # alpha 0.7 the authored colour comes back exactly; at 0.35 a one-step rounding
+    # error becomes three, and the "ink" it returns is a colour nobody authored.
+    #
+    # That is not hypothetical. The nightly sweep on a Linux runner reported the
+    # homepage call-to-action at 2.49:1, sampling #B1330C on #F67E99. The authored
+    # pair is #1A0D08 on #F67E99 — 7.57:1 — and #B1330C appears in no stylesheet in
+    # this repository. Headless Chrome on Linux renders 11-12.5px text thinner than
+    # macOS does, every flagged element was 11-12.5px, and the thinner the glyph the
+    # lower max coverage goes and the noisier this algebra gets.
+    #
+    # So below the floor this reports UNMEASURABLE rather than a failure. A gate that
+    # cannot see clearly must say so; inventing a colour and convicting the page on it
+    # is the worst thing it could do, because the fix would be to damage a design that
+    # is already accessible.
+    if max_a < ALPHA_FLOOR:
+        return (None, False, "-", "-", 0)
     bar = min(ALPHA_CORE, max(0.35, max_a * 0.85))
     core = []
     for alpha, pa, pb in glyphs:
@@ -486,6 +506,22 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
                     continue
                 got, no_ink, fg, bg, n = res
                 need = required_ratio(e["size"], e["wt"])
+                if got is None:
+                    # Coverage too low for the un-blend to mean anything — see
+                    # ALPHA_FLOOR. Reported through the tool's OWN unmeasurable
+                    # row, the same path the skip link uses, so it appears in the
+                    # UNMEASURABLE block and is never counted as a failure. My
+                    # first version kept a private list and added a note, which
+                    # tripped could_not_measure and failed a push over two
+                    # elements the tool had simply declined to grade.
+                    rows.append({"width": width, "text": e["t"],
+                                 "size": e["size"], "fg": "-", "bg": "-",
+                                 "ratio": 0.0, "need": need, "ok": True,
+                                 "exempt": e["ex"],
+                                 "unmeasurable": "glyph coverage below the "
+                                                 "un-blend floor (thin anti-aliasing)"})
+                    graded.add(i)
+                    continue
                 if no_ink:
                     # An eligible, visible element whose frames do not differ paints no
                     # legible ink: invisible text or fully obscured. v2's "exactly 1.00"
@@ -527,6 +563,21 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
                 got, no_ink, fg, bg, n = res
                 e = els[i]
                 need = required_ratio(e["size"], e["wt"])
+                if got is None:
+                    # Coverage too low for the un-blend to mean anything — see
+                    # ALPHA_FLOOR. Reported through the tool's OWN unmeasurable
+                    # row, the same path the skip link uses, so it appears in the
+                    # UNMEASURABLE block and is never counted as a failure. My
+                    # first version kept a private list and added a note, which
+                    # tripped could_not_measure and failed a push over two
+                    # elements the tool had simply declined to grade.
+                    rows.append({"width": width, "text": e["t"],
+                                 "size": e["size"], "fg": "-", "bg": "-",
+                                 "ratio": 0.0, "need": need, "ok": True,
+                                 "exempt": e["ex"],
+                                 "unmeasurable": "glyph coverage below the "
+                                                 "un-blend floor (thin anti-aliasing)"})
+                    continue
                 if no_ink:
                     rows.append({"width": width, "text": e["t"], "size": e["size"],
                                  "fg": fg, "bg": bg, "ratio": 1.0, "need": need,

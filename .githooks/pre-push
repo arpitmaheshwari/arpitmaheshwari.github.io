@@ -188,11 +188,14 @@ echo "pre-push: starting the browser gates in parallel…"
 # first full sweep found a real 3.03:1 call-to-action on /patterns/ that a two-page sample could
 # never have seen. Arpit's call: audit all of them. --base is passed explicitly so the sweep
 # cannot depend on this hook happening to serve the port the tool defaults to.
+# THE COMMAND COMES FROM THE MANIFEST, not from here. This block used to spell out its own
+# contrast-audit invocation, and it had drifted from the one in tools/gates.json: --widths
+# 1440 here against 1440,390 there, and an exempt list two selectors shorter. That is the
+# EXACT divergence this whole manifest exists to prevent — the hook and CI running the same
+# tool under the same name with different arguments — and I reintroduced it by leaving this
+# gate runner:false without pointing it at the single list.
 bg_gate contrast \
-  python3 tools/contrast-audit.py --docroot . --all --base "http://localhost:$PORT" \
-  --widths 1440 \
-  --exempt '.bk-device__label, .bk-device__mark, .grad' \
-  --force-visible '.reveal'
+  python3 tools/run-gates.py --stage pre-push --only contrast-audit --port "$PORT"
 
 
 # Canon lint first — it is pure text, costs under a second, and catches the failure that actually
