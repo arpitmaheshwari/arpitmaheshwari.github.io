@@ -194,7 +194,20 @@ PREP_JS = """(function(FORCE){
       if (pcs.position==='fixed'||pcs.position==='sticky'){fx=true;break;} p=p.parentElement; }
     out.push({id:id, t:own.trim().slice(0,44), size:px, wt:cs.fontWeight,
               ex:!!(EXEMPT_SEL && el.closest(EXEMPT_SEL)), fx:fx,
-              offcanvas:(r.bottom<=0||r.right<=0)});
+              offcanvas:(r.bottom<=0||r.right<=0),
+              // VISUALLY HIDDEN IS NOT A CONTRAST DEFECT. The standard sr-only pattern —
+              // a 1x1 clipped box — paints nothing on purpose, and the audit reported the
+              // before/after table's <thead> on /case-studies/adtech.html as "paints no
+              // visible ink" at 390px. It is correct markup: the thead is dropped from view
+              // and every cell below carries its own visible label, which is exactly what
+              // the mobile cards show. Convicting it would push someone to "fix" an
+              // accessibility affordance by making it visible.
+              sronly:(()=>{let n=el;while(n&&n!==document.body){const cs=getComputedStyle(n);
+                const cr=n.getBoundingClientRect();
+                if((cs.clipPath||'').includes('inset(50%)')) return true;
+                if(cs.position==='absolute'&&cr.width<=2&&cr.height<=2&&
+                   cs.overflow==='hidden') return true;
+                n=n.parentElement;} return false;})()});
     id++;
   });
   // fixed chrome bands: regions a scrolling reader never sees content through
@@ -440,12 +453,14 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
         graded, rows = set(), []
         # declared non-participants
         for i, e in els.items():
-            if e["offcanvas"]:
+            if e["offcanvas"] or e.get("sronly"):
                 rows.append({"width": width, "text": e["t"], "size": e["size"],
                              "fg": "-", "bg": "-", "ratio": 0.0,
                              "need": required_ratio(e["size"], e["wt"]), "ok": True,
                              "exempt": e["ex"],
-                             "unmeasurable": "off-canvas until focused (skip link)"})
+                             "unmeasurable": ("visually hidden on purpose (sr-only)"
+                                              if e.get("sronly") else
+                                              "off-canvas until focused (skip link)")})
                 graded.add(i)
 
         step = max(200, usable - 60)          # overlap so band-edge elements land fully inside
