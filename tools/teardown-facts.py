@@ -23,7 +23,25 @@ def third_party_count(base=None):
         import cdp
     except Exception:
         return None
+    # START THE SERVER IT NEEDS. This returned None on any exception, and the exception
+    # was simply "nothing is listening on 8899" — so the measurement had never once run,
+    # while the page published a hard-coded number under a header reading "measured rather
+    # than described". It works: given a server it observes exactly clarity.ms and
+    # googletagmanager.com. A measurement that silently degrades to None is the same defect
+    # as a stale number, wearing a tidier coat.
+    import socket, subprocess as _sp, time as _t
     port = base or os.environ.get("TD_PORT", "8899")
+    _srv = None
+    with socket.socket() as _probe:
+        if _probe.connect_ex(("127.0.0.1", int(port))) != 0:
+            _srv = _sp.Popen([_s.executable, "-m", "http.server", str(port),
+                              "--directory", R],
+                             stdout=_sp.DEVNULL, stderr=_sp.DEVNULL)
+            for _ in range(40):
+                with socket.socket() as _p2:
+                    if _p2.connect_ex(("127.0.0.1", int(port))) == 0:
+                        break
+                _t.sleep(0.25)
     rules = ("--host-resolver-rules=MAP arpitmaheshwari.com 127.0.0.1," +
              ",".join(f"MAP {h} ~NOTFOUND" for h in cdp.TRACKER_HOSTS))
     doms = set()
@@ -42,6 +60,9 @@ def third_party_count(base=None):
                 doms.add(".".join(h.split(".")[-2:]))
     except Exception:
         return None
+    finally:
+        if _srv:
+            _srv.terminate()
     return len(doms)
 
 def tracked(pat,excl=()):
@@ -147,6 +168,21 @@ if '--check' in sys.argv:
                         ('loop assertions',f"{facts['loop_assertions']} assertions"),
                         ('loop tests',f"{facts['loop_tests']} tests")],
     }
+    # THE DECLARED NUMBER MUST ANSWER TO THE MEASURED ONE. third_party_services is
+    # hand-written (two services) and third_party_loader_domains is observed from a real
+    # page load (two domains serving code). They describe the same fact from two sides, so
+    # if they ever disagree the page is wrong whichever way it is stated. This is the only
+    # thing that makes "measured, not asserted" true of this row rather than aspirational.
+    measured = facts.get('third_party_loader_domains')
+    if measured is None:
+        print('  UNMEASURED — third_party_loader_domains could not be observed. The page '
+              'still publishes a hand-written number; that is a declaration, not a receipt.')
+        stale = True
+    elif measured != facts['third_party_services']:
+        print(f"  STALE — third-party: a real page load touches {measured} domain(s) "
+              f"serving code, the page declares {facts['third_party_services']} service(s).")
+        stale = True
+
     for path,checks in expect.items():
         page=open(os.path.join(R,path),encoding='utf-8').read().replace('&nbsp;',' ')
         for label,needle in checks:
