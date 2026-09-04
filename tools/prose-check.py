@@ -34,7 +34,8 @@ CALIBRATION
     Asserting only some of them is how STRAIGHT-QUOTE stayed unimplemented while this
     docstring advertised it, over 68 real defects in book/.
 """
-import argparse, collections, glob, html, os, re, subprocess, sys
+import argparse
+import gzip, collections, glob, html, os, re, subprocess, sys
 
 STRIP = re.compile(r'<(script|style|svg|code|pre)\b.*?</\1>', re.I | re.S)
 COMMENT = re.compile(r'<!--.*?-->', re.S)
@@ -134,11 +135,18 @@ def visible(path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--root', default='.')
-    # /usr/share/dict/words exists on macOS and NOT on a GitHub Linux runner. With no
-    # dictionary every word is unknown, so the first CI run of this gate reported 2,267
-    # SUSPECT-SPELL findings on prose that had not changed. A gate that cannot measure
-    # must say so, not invent thousands of defects — see the exit-2 path below.
-    ap.add_argument('--dict', default='/usr/share/dict/words')
+    # PINNED, IN THE REPO. This defaulted to /usr/share/dict/words, which exists on macOS
+    # and not on a GitHub runner — the first CI run reported 2,267 SUSPECT-SPELL findings
+    # on prose nobody had touched. Installing Debian's wamerican-huge fixed the crash and
+    # left a subtler fault: that list lacks ordinary words web2 has (stakeholder, outlier,
+    # cutover), so the SAME gate gave a DIFFERENT verdict depending on which machine ran
+    # it. A check whose answer depends on the host is not a check.
+    #
+    # tools/wordlist.txt.gz is web2 — Webster's Second, 1934, public domain — lowercased,
+    # deduplicated and gzipped: 234,456 words in 717 KB. Every machine now measures against
+    # the same list. --dict still overrides it.
+    ap.add_argument('--dict', default=os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                                   'wordlist.txt.gz'))
     ap.add_argument('--allow', default='tools/prose-allow.txt')
     ap.add_argument('--selftest', action='store_true')
     a = ap.parse_args()
@@ -156,8 +164,9 @@ def main():
 
     words = set()
     if os.path.exists(a.dict):
-        words = {w.strip().lower() for w in open(a.dict, encoding='utf-8',
-                                                 errors='replace')}
+        opener = gzip.open if a.dict.endswith('.gz') else open
+        words = {w.strip().lower() for w in opener(a.dict, 'rt', encoding='utf-8',
+                                                   errors='replace')}
     # NO DICTIONARY = NO SPELL VERDICT. With `words` empty, every token looks unknown and
     # the spelling rules fire on the entire site: the first CI run of this gate reported
     # 2,267 findings on prose nobody had touched, because a Linux runner has no
@@ -184,7 +193,19 @@ def main():
         rel = os.path.relpath(p, root)
         text = js_prose(p) if p.endswith('.js') else visible(p)
         if a.selftest and rel == os.path.relpath(pages[0], root):
-            text += ' the the quombulate it\'s a "planted" one and a \'mismatched\u2019 one '
+            # One violation per DOCUMENTED rule. UNSPACED-DASH was added to the rule
+            # list without being added here, so --selftest correctly refused with
+            # "INVISIBLE: UNSPACED-DASH" — a rule the selftest cannot exercise is a rule
+            # nobody has proved fires.
+            # EVERY plant carries the same nonsense sentinel, and the cleanup below
+            # removes findings by that sentinel alone. The plants used to read "the the",
+            # "planted" and "mismatched", and the cleanup filtered on those STRINGS — so a
+            # real doubled "the the" anywhere on the site was silently swallowed whenever
+            # --selftest was on. Proved it: planting one in writing/index.html reported
+            # nothing. A calibration that hides the defect it calibrates for is worse than
+            # no calibration.
+            text += (' quombulate quombulate "quombulate" \'quombulate\u2019'
+                     ' quombulate\u2014quombulate ')
         for m in DOUBLED.finditer(text):
             w = m.group(1).lower()
             if w in OK_DOUBLE or not w.isalpha() or len(w) < 3:
@@ -303,9 +324,7 @@ def main():
         print(f'[calibration] {"PASS" if ok else "FAIL"} — {detail}')
         if not ok:
             return 2
-        findings = [f for f in findings
-                    if 'quombulate' not in f[2] and '"the the"' not in f[2]
-                    and 'planted' not in f[2] and 'mismatched' not in f[2]]
+        findings = [f for f in findings if 'quombulate' not in f[2]]
 
     seen = set()
     for rel, kind, why in sorted(findings):

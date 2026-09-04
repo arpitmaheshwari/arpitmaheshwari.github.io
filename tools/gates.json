@@ -123,12 +123,14 @@
       "id": "prose-check",
       "cmd": [
         "python3",
-        "tools/prose-check.py"
+        "tools/prose-check.py",
+        "--selftest"
       ],
       "stages": [
         "pre-push",
         "ci"
-      ]
+      ],
+      "note": "--selftest, not a bare run: it plants one violation per documented rule and refuses to report unless every rule fires. It was never wired in, so the calibration existed and never ran — and when finally invoked it failed with 'INVISIBLE: UNSPACED-DASH', a rule added to the list without being added to the fixture. A calibration nobody runs is a comment."
     },
     {
       "id": "freshness-check",
