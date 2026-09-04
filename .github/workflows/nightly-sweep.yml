@@ -85,6 +85,11 @@ jobs:
           curl -sf -o /dev/null http://localhost:8000/ || { echo "::error::server never came up"; exit 1; }
 
       - name: Sweeps (from tools/gates.json)
+        # --parallel 3 was set before the shared-file race in the calibrations was
+        # understood. gatelib.planted() now locks plant -> scan -> restore, so
+        # concurrency is safe again; the first run of this workflow reported ten
+        # homepage contrast failures and predates that fix, so its verdict is being
+        # re-taken rather than acted on.
         run: python3 tools/run-gates.py --stage nightly --parallel 3
 
       - name: Fail if a gate left a wrapper file behind
