@@ -23,10 +23,11 @@ from cdp import NO_TRACKING_FLAG
 # CI failure to the next step that launches Chrome.
 CH = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 W=int(sys.argv[1]) if len(sys.argv)>1 else 1440
-PAGES=sys.argv[2:] or [str(p) for p in sorted(pathlib.Path('.').rglob('*.html'))
-    if not any(x.startswith('.') or x in ('prototypes','portfolio-sources','node_modules',
-                                          'partials')
-                    for x in p.parts) and not p.name.startswith('_')]
+# One definition of "a shipped page", in gatelib. This used to be a private rglob
+# with its own exclusion tuple — one of three such copies, which is how partials/
+# was excluded in two of them and not the third.
+from gatelib import pages as _pages
+PAGES = sys.argv[2:] or _pages()
 PROBE="""<!doctype html><html><body><script>
 const f=document.createElement('iframe');f.src='http://localhost:8000/%s?cb='+Date.now();
 f.style.cssText='width:%dpx;height:900px;border:0';document.body.appendChild(f);

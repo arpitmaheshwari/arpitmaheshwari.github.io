@@ -25,7 +25,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PIP_NAME = {'PIL': 'pillow', 'websocket': 'websocket-client', 'yaml': 'pyyaml',
             'bs4': 'beautifulsoup4', 'cv2': 'opencv-python'}
 # modules that live in this repo, not on PyPI
-LOCAL = {'cdp'}
+# modules that live in tools/ itself, not on PyPI
+LOCAL = {'cdp', 'gatelib'}
 
 # sys.stdlib_module_names is 3.10+. On 3.9 the first version of this fell back to
 # sys.builtin_module_names — about thirty C builtins — and duly reported that CI was

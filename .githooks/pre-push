@@ -136,15 +136,18 @@ gate_block() {  # gate_block <exit-code> <what-a-real-finding-means>
 
 # Static gates: no browser, no network, under a second each. They run inline
 # because they are cheaper than the bookkeeping to background them.
-for g in no-tracking link-integrity sprite-reference share-preview prose freshness ci-claim jsonld social-title image-dimension orphan-asset ci-deps; do
-  [ -f "tools/$g-check.py" ] || continue
-  echo "pre-push: $g…"
-  if ! python3 "tools/$g-check.py"; then
-    echo
-    echo "pre-push: BLOCKED — see the $g findings above."
-    exit 1
-  fi
-done
+# ONE LIST. These used to be twelve names typed here and a separate set typed into
+# .github/workflows/, with nothing requiring the two to agree — and they stopped
+# agreeing, which is how the Contrast gate stayed red for thirty pushes while this
+# hook said OK every time. tools/gates.json is now the only list; both this hook and
+# CI read it. The runner also PRINTS which gates are CI-only, so a green hook is
+# never mistaken for a green build.
+echo "pre-push: gates (from tools/gates.json)…"
+if ! python3 tools/run-gates.py --stage pre-push --parallel 4 --port "$PORT"; then
+  echo
+  echo "pre-push: BLOCKED — a gate failed above. The gate list lives in tools/gates.json."
+  exit 1
+fi
 
 # The sitemap states a lastmod per page. Every one of them was the same hard-coded date and
 # 18 days stale on 2026-09-03; a crawler reads that as a claim. build-sitemap.py derives it

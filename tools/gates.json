@@ -1,0 +1,619 @@
+{
+  "_why": [
+    "ONE list of gates. The pre-push hook and .github/workflows/ used to keep two",
+    "hand-maintained lists, and nothing required them to agree. They stopped agreeing:",
+    "the hook ran asset-load-check against two URLs while CI ran it against every page,",
+    "so a green hook said nothing about the gate that was failing — and the Contrast gate",
+    "was red on thirty consecutive pushes from 2026-08-30 to 2026-09-04 while every local",
+    "run reported OK.",
+    "",
+    "Divergence is still allowed, because some sweeps are too slow for every push. What is",
+    "no longer allowed is UNDECLARED divergence: every gate names the stages it runs in,",
+    "and tools/run-gates.py --audit fails if a check exists that this file does not list.",
+    "",
+    "stages : pre-push | ci     (a gate may be in both; at least one is required)",
+    "needs  : server            (run-gates starts ONE for all of them and passes {BASE})",
+    "         network           (never run automatically — see manual_reason)",
+    "stages : pre-push | ci | ci-always   (ci-always = canon-gate.yml, unfiltered)",
+    "cmd    : argv. {BASE} is substituted with the server origin.",
+    "",
+    "runner:false = declared here, executed by the hook's own parallel orchestration.",
+    "The DECLARATION is single either way; --audit proves the hook really invokes it."
+  ],
+  "gates": [
+    {
+      "id": "canon-lint",
+      "cmd": [
+        "python3",
+        "tools/canon-lint.py",
+        "--root",
+        "."
+      ],
+      "stages": [
+        "pre-push",
+        "ci-always"
+      ],
+      "note": "ci-always: runs in canon-gate.yml, which has NO paths filter, so a push that touches only prose or a tool is still checked. contrast-gate.yml is paths-filtered."
+    },
+    {
+      "id": "case-sync-check",
+      "cmd": [
+        "python3",
+        "tools/case-sync-check.py",
+        "--root",
+        "."
+      ],
+      "stages": [
+        "pre-push",
+        "ci-always"
+      ],
+      "note": "ci-always: runs in canon-gate.yml, which has NO paths filter, so a push that touches only prose or a tool is still checked. contrast-gate.yml is paths-filtered."
+    },
+    {
+      "id": "teardown-facts",
+      "cmd": [
+        "python3",
+        "tools/teardown-facts.py",
+        "--check"
+      ],
+      "stages": [
+        "pre-push",
+        "ci-always"
+      ],
+      "note": "ci-always: runs in canon-gate.yml, which has NO paths filter, so a push that touches only prose or a tool is still checked. contrast-gate.yml is paths-filtered."
+    },
+    {
+      "id": "case-surface-inventory",
+      "cmd": [
+        "python3",
+        "tools/case-surface-inventory.py"
+      ],
+      "stages": [
+        "ci-always"
+      ],
+      "note": "ci-always: runs in canon-gate.yml, which has NO paths filter, so a push that touches only prose or a tool is still checked. contrast-gate.yml is paths-filtered."
+    },
+    {
+      "id": "no-tracking-check",
+      "cmd": [
+        "python3",
+        "tools/no-tracking-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ]
+    },
+    {
+      "id": "link-integrity-check",
+      "cmd": [
+        "python3",
+        "tools/link-integrity-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ]
+    },
+    {
+      "id": "sprite-reference-check",
+      "cmd": [
+        "python3",
+        "tools/sprite-reference-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ]
+    },
+    {
+      "id": "share-preview-check",
+      "cmd": [
+        "python3",
+        "tools/share-preview-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ]
+    },
+    {
+      "id": "prose-check",
+      "cmd": [
+        "python3",
+        "tools/prose-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ]
+    },
+    {
+      "id": "freshness-check",
+      "cmd": [
+        "python3",
+        "tools/freshness-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ]
+    },
+    {
+      "id": "ci-claim-check",
+      "cmd": [
+        "python3",
+        "tools/ci-claim-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ]
+    },
+    {
+      "id": "jsonld-check",
+      "cmd": [
+        "python3",
+        "tools/jsonld-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ]
+    },
+    {
+      "id": "social-title-check",
+      "cmd": [
+        "python3",
+        "tools/social-title-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ]
+    },
+    {
+      "id": "image-dimension-check",
+      "cmd": [
+        "python3",
+        "tools/image-dimension-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ]
+    },
+    {
+      "id": "orphan-asset-check",
+      "cmd": [
+        "python3",
+        "tools/orphan-asset-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ]
+    },
+    {
+      "id": "ci-deps-check",
+      "cmd": [
+        "python3",
+        "tools/ci-deps-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ]
+    },
+    {
+      "id": "inline-style-check",
+      "cmd": [
+        "python3",
+        "tools/inline-style-check.py",
+        "--root",
+        "."
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ]
+    },
+    {
+      "id": "css-version-check",
+      "cmd": [
+        "python3",
+        "tools/css-version-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ]
+    },
+    {
+      "id": "heading-rank-check",
+      "cmd": [
+        "python3",
+        "tools/heading-rank-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ],
+      "note": "was wired to neither stage until 2026-09-04 — one of nine orphans the architecture review found"
+    },
+    {
+      "id": "asset-reference-sweep",
+      "cmd": [
+        "python3",
+        "tools/asset-reference-sweep.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ],
+      "note": "orphan until 2026-09-04"
+    },
+    {
+      "id": "asset-load-check",
+      "cmd": [
+        "python3",
+        "tools/asset-load-check.py",
+        "--docroot",
+        ".",
+        "--all"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ],
+      "note": "the hook ran this against two URLs while CI ran --all; that divergence hid a five-day CI failure — executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it.",
+      "runner": false
+    },
+    {
+      "id": "og-card-presence",
+      "cmd": [
+        "python3",
+        "tools/generate-og-cards.py",
+        "--check"
+      ],
+      "stages": [
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ]
+    },
+    {
+      "id": "contrast-audit",
+      "cmd": [
+        "python3",
+        "tools/contrast-audit.py",
+        "--docroot",
+        ".",
+        "--all",
+        "--base",
+        "{BASE}",
+        "--widths",
+        "1440,390",
+        "--exempt",
+        ".bk-device__label, .bk-device__mark, .grad, .hero-headline em, body.p-404 h1 em",
+        "--force-visible",
+        ".reveal"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ],
+      "runner": false,
+      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
+    },
+    {
+      "id": "cta-grammar-check",
+      "cmd": [
+        "python3",
+        "tools/cta-grammar-check.py"
+      ],
+      "stages": [
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ]
+    },
+    {
+      "id": "theme-remnant-check",
+      "cmd": [
+        "python3",
+        "tools/theme-remnant-check.py"
+      ],
+      "stages": [
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ]
+    },
+    {
+      "id": "runtime-error-check",
+      "cmd": [
+        "python3",
+        "tools/runtime-error-check.py",
+        "--base",
+        "{BASE}"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ],
+      "runner": false,
+      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
+    },
+    {
+      "id": "interaction-state-check",
+      "cmd": [
+        "python3",
+        "tools/interaction-state-check.py",
+        "--base",
+        "{BASE}"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ],
+      "runner": false,
+      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
+    },
+    {
+      "id": "component-identity-check",
+      "cmd": [
+        "python3",
+        "tools/component-identity-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ],
+      "runner": false,
+      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
+    },
+    {
+      "id": "cta-viewport-check",
+      "cmd": [
+        "python3",
+        "tools/cta-viewport-check.py"
+      ],
+      "stages": [
+        "pre-push"
+      ],
+      "needs": [
+        "server"
+      ],
+      "note": "pre-push only: slow, and CI covers the same class through cta-grammar-check — executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it.",
+      "runner": false
+    },
+    {
+      "id": "artifact-legibility-check",
+      "cmd": [
+        "python3",
+        "tools/artifact-legibility-check.py"
+      ],
+      "stages": [
+        "pre-push"
+      ],
+      "needs": [
+        "server"
+      ],
+      "runner": false,
+      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
+    },
+    {
+      "id": "fit-check-calibration",
+      "cmd": [
+        "python3",
+        "tools/fit-check-calibration.py",
+        "{BASE}"
+      ],
+      "stages": [
+        "pre-push"
+      ],
+      "needs": [
+        "server"
+      ],
+      "runner": false,
+      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
+    },
+    {
+      "id": "image-alignment-check",
+      "cmd": [
+        "python3",
+        "tools/image-alignment-check.py",
+        "--all",
+        "--widths",
+        "390,1440"
+      ],
+      "stages": [
+        "pre-push"
+      ],
+      "needs": [
+        "server"
+      ],
+      "runner": false,
+      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
+    },
+    {
+      "id": "overflow-sweep-1440",
+      "cmd": [
+        "python3",
+        "tools/overflow-sweep.py",
+        "1440"
+      ],
+      "stages": [
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ]
+    },
+    {
+      "id": "overflow-sweep-1024",
+      "cmd": [
+        "python3",
+        "tools/overflow-sweep.py",
+        "1024"
+      ],
+      "stages": [
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ]
+    },
+    {
+      "id": "overflow-sweep-768",
+      "cmd": [
+        "python3",
+        "tools/overflow-sweep.py",
+        "768"
+      ],
+      "stages": [
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ]
+    },
+    {
+      "id": "line-height-check",
+      "cmd": [
+        "python3",
+        "tools/line-height-check.py"
+      ],
+      "stages": [
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ],
+      "note": "orphan until 2026-09-04; ~7 min, so CI is the authority rather than every push"
+    },
+    {
+      "id": "reachability-check",
+      "cmd": [
+        "python3",
+        "tools/reachability-check.py"
+      ],
+      "stages": [
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ],
+      "note": "orphan until 2026-09-04"
+    },
+    {
+      "id": "overlap-check",
+      "cmd": [
+        "python3",
+        "tools/overlap-check.py"
+      ],
+      "stages": [
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ],
+      "note": "orphan until 2026-09-04"
+    },
+    {
+      "id": "keyboard-sweep",
+      "cmd": [
+        "python3",
+        "tools/keyboard-sweep.py"
+      ],
+      "stages": [
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ],
+      "note": "orphan until 2026-09-04. Page list from gatelib; the book has no shared chrome to tab through.",
+      "pages": {
+        "include_book": false
+      }
+    },
+    {
+      "id": "a11y-sweep",
+      "cmd": [
+        "python3",
+        "tools/a11y-sweep.py",
+        "--docroot",
+        "."
+      ],
+      "stages": [
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ],
+      "note": "orphan until 2026-09-04. Page list comes from gatelib. The book is excluded: it deliberately carries no shared nav or footer, so the landmark rule fails it by design — and its infinite animations were verified to clear under prefers-reduced-motion, which all three stylesheets honour.",
+      "pages": {
+        "include_book": false
+      }
+    },
+    {
+      "id": "receipt-align-check",
+      "cmd": [
+        "python3",
+        "tools/receipt-align-check.py"
+      ],
+      "stages": [
+        "ci"
+      ],
+      "needs": [
+        "server"
+      ],
+      "note": "orphan until 2026-09-04"
+    }
+  ],
+  "manual": [
+    {
+      "id": "ci-status-check",
+      "cmd": [
+        "python3",
+        "tools/ci-status-check.py"
+      ],
+      "manual_reason": "asks the GitHub Actions API. Needs the network, and running it inside the very push it reports on would report the previous run."
+    },
+    {
+      "id": "lab-mirror-check",
+      "cmd": [
+        "python3",
+        "tools/lab-mirror-check.py"
+      ],
+      "manual_reason": "fetches github.com/arpitmaheshwari/the-lab to prove the published files are still verbatim. A gate that fails on a plane is a gate people learn to skip."
+    },
+    {
+      "id": "balance-check",
+      "cmd": [
+        "python3",
+        "tools/balance-check.py"
+      ],
+      "manual_reason": "Reports 2 findings that were verified BY EYE on 2026-09-04 and are false positives: index.html and folio/index.html hero, and the 'who you'd be hiring' band, are staggered TWO-COLUMN compositions — prose left, the process film / Candidate Facts card right — and they render balanced at 1440 (prototypes/renders/hero-1440.png, chap-i-1440.png). The gate's unit is the paragraph: a column that starts BELOW the headline leaves the eyebrow and h1 with nothing level with them, so they read as one-sided. Widening the test to the section was tried and REJECTED — it let the gate's own planted 400px defect through, and a check that cannot fail is not evidence. Kept manual rather than weakened, so it never blocks CI on a reading a human has already overruled. Re-run it by hand after any layout change."
+    }
+  ]
+}
