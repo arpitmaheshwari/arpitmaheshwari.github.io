@@ -86,6 +86,14 @@ class Browser:
              f"--user-data-dir={self.profile}", "--no-first-run",
              "--remote-allow-origins=*", "--hide-scrollbars",
              "--force-device-scale-factor=1", NO_TRACKING_FLAG,
+             # A GitHub runner runs as root in a container: Chrome refuses to start
+             # without --no-sandbox, and /dev/shm is 64MB there, which crashes the
+             # renderer on a heavy page. asset-load-check.py passed these and worked on
+             # CI; cdp.Browser did not, so every gate that imports it died with
+             # "chrome never came up" the moment they were wired into CI. Harmless
+             # locally, so they are unconditional rather than guarded by a platform test
+             # that would itself be one more thing to get wrong.
+             "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu",
              *extra_flags, "about:blank"],
             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         ws_url = None

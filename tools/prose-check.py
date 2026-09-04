@@ -134,6 +134,10 @@ def visible(path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--root', default='.')
+    # /usr/share/dict/words exists on macOS and NOT on a GitHub Linux runner. With no
+    # dictionary every word is unknown, so the first CI run of this gate reported 2,267
+    # SUSPECT-SPELL findings on prose that had not changed. A gate that cannot measure
+    # must say so, not invent thousands of defects — see the exit-2 path below.
     ap.add_argument('--dict', default='/usr/share/dict/words')
     ap.add_argument('--allow', default='tools/prose-allow.txt')
     ap.add_argument('--selftest', action='store_true')
@@ -154,6 +158,18 @@ def main():
     if os.path.exists(a.dict):
         words = {w.strip().lower() for w in open(a.dict, encoding='utf-8',
                                                  errors='replace')}
+    # NO DICTIONARY = NO SPELL VERDICT. With `words` empty, every token looks unknown and
+    # the spelling rules fire on the entire site: the first CI run of this gate reported
+    # 2,267 findings on prose nobody had touched, because a Linux runner has no
+    # /usr/share/dict/words. Reporting nothing would be worse — a silent pass over an
+    # unrun check is the failure this whole audit is about — so say it plainly and exit 2,
+    # which is neither a pass nor a finding.
+    spell_ok = bool(words)
+    if not spell_ok:
+        print(f'  UNMEASURED  no dictionary at {a.dict} — SUSPECT-SPELL and '
+              f'MIXED-SPELLING cannot run on this machine.')
+        print('              Install one (Debian/Ubuntu: apt-get install -y wamerican)')
+        print('              or pass --dict. The other rules still ran; this is not a pass.')
     allow = set()
     if os.path.exists(os.path.join(root, a.allow)):
         allow = {w.strip().lower() for w in
@@ -199,7 +215,7 @@ def main():
             ctx = ' '.join(text[max(0, m.start()-30):m.end()+30].split())
             findings.append((rel, 'MISMATCHED-QUOTE',
                              f'{m.group(0)!r} opens straight and closes curly — …{ctx}…'))
-        for m in WORD.finditer(text):
+        for m in (WORD.finditer(text) if spell_ok else []):
             w = m.group(0)
             # token, not word: skip hashes/ids/formats, and anything too short to judge
             if any(ch.isdigit() for ch in w) or len(w) < 3 or not w[0].isalpha():
@@ -269,6 +285,8 @@ def main():
                                      f'"{w}" ({freq[w]}x) and "{twin}" '
                                      f'({freq[twin]}x) both used'))
 
+    if not spell_ok and not findings:
+        sys.exit(2)
     if a.selftest:
         got = {k for _, k, _ in findings}
         # Every rule this file DOCUMENTS must be exercised here. STRAIGHT-QUOTE was

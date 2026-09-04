@@ -44,6 +44,16 @@ jobs:
       - name: Install Python dependencies (pillow, websocket-client)
         run: python -m pip install --quiet --upgrade pillow websocket-client
 
+      # A Linux runner has no /usr/share/dict/words. Without it prose-check's spelling
+      # rules see every token as unknown — its first CI run reported 2,267 findings on
+      # prose nobody had touched. It now refuses to guess and exits 2 instead, so the
+      # dictionary has to actually be here for that rule to run at all.
+      - name: Install a word list (prose-check's spelling rules need one)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq wamerican
+          ls -l /usr/share/dict/words
+
       # ubuntu-latest does not reliably ship Chrome/Chromium — this step's own error message used
       # to just NAME the fix ("Add browser-actions/setup-chrome@v1") without applying it, so every
       # run failed here. setup-chrome doesn't put a fixed binary name on PATH (its README: the name

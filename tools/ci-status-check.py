@@ -56,9 +56,16 @@ if not rows:
     print(f'  UNMEASURED  no runs found for {sha[:7] if sha else "HEAD"}.')
     sys.exit(2)
 
-bad = [r for r in rows if r[1] != 'success']
+# STILL RUNNING IS NOT FAILED. The first version printed FAIL for a run whose status
+# was in_progress, because it tested `conclusion != 'success'` and an unfinished run has
+# no conclusion at all. That is the exact defect this whole audit has been chasing — a
+# true reading (not success) under a label claiming more (failed) — produced by my own
+# instrument, twice in one day.
+RUNNING = {'in_progress', 'queued', 'waiting', 'requested', 'pending'}
+bad = [r for r in rows if r[1] != 'success' and r[1] not in RUNNING]
+running = [r for r in rows if r[1] in RUNNING]
 for name, concl, s, when, url in sorted(rows):
-    mark = 'ok  ' if concl == 'success' else 'FAIL'
+    mark = 'ok  ' if concl == 'success' else ('.. ' if concl in RUNNING else 'FAIL')
     print(f'  {mark} {name:24} {s}  {when}')
     if concl != 'success':
         print(f'       {concl} — {url}')
@@ -66,6 +73,9 @@ if bad:
     print(f'\n{len(bad)} of {len(rows)} workflow(s) not green. '
           f'A red gate nobody reads is not a gate.')
     sys.exit(1)
+if running:
+    print(f'\n{len(running)} workflow(s) still running — no verdict yet. Not a pass.')
+    sys.exit(2)
 print(f'\nAll {len(rows)} workflow(s) green.')
 print('CANNOT SEE: a gate that passes for the wrong reason, a step that silently')
 print('skipped itself, or a workflow whose paths: filter meant it never ran at all.')
