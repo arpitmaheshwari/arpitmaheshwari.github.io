@@ -160,6 +160,9 @@ def main():
     ap.add_argument('--list', action='store_true')
     ap.add_argument('--port', type=int, default=8000)
     ap.add_argument('--only', help='comma-separated gate ids to run instead of the whole stage')
+    ap.add_argument('--scope', default='',
+                    help='URLs to narrow scoped gates to, or "--all". Only the stage decides '
+                         'the page SET; the manifest still owns every other flag.')
     ap.add_argument('--parallel', type=int, default=4,
                     help='gates to run at once (they are independent); 1 to serialise')
     a = ap.parse_args()
@@ -206,6 +209,16 @@ def main():
 
     def run_one(g):
         cmd = [base if c == '{BASE}' else c.replace('{BASE}', base or '') for c in g['cmd']]
+        # SCOPED GATES: the stage may narrow the PAGE SET, never the flags. contrast-audit
+        # at two widths across every page is ~20 minutes, which is not a check anyone waits
+        # for on every push — and a gate people learn to skip is the failure this whole
+        # manifest exists to prevent. So pre-push passes the changed pages and nightly does
+        # not. The widths, exemptions and force-visible list still come from here, so the
+        # two runs cannot drift the way the hook and CI did.
+        if g.get('scoped') and a.scope and a.scope.strip() != '--all':
+            urls = a.scope.split()
+            if urls:
+                cmd = [c for c in cmd if c != '--all'] + urls
         # A gate that takes page URLs gets them from gatelib, the single definition of
         # "a shipped page" — not from a hand-typed list that goes stale. include_book
         # is false where a gate asserts something the book deliberately does not have:

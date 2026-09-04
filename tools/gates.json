@@ -315,7 +315,8 @@
       "needs": [
         "server"
       ],
-      "note": "The pre-push hook invokes this through run-gates --only contrast-audit, so there is ONE command line. It previously spelled out its own and had drifted: --widths 1440 in the hook against 1440,390 in the manifest, with an exempt list two selectors shorter. runner:false is gone with it."
+      "note": "The pre-push hook invokes this through run-gates --only contrast-audit, so there is ONE command line. It previously spelled out its own and had drifted: --widths 1440 in the hook against 1440,390 in the manifest, with an exempt list two selectors shorter. runner:false is gone with it. — scoped: pre-push passes only the CHANGED pages (the hook falls back to every page when CSS, a partial or a tool changed). The full two-width sweep across all pages runs nightly. Only the page SET differs; widths, exemptions and force-visible come from this file either way.",
+      "scoped": true
     },
     {
       "id": "cta-grammar-check",
