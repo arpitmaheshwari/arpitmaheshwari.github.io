@@ -15,6 +15,7 @@
     "needs  : server            (run-gates starts ONE for all of them and passes {BASE})",
     "         network           (never run automatically — see manual_reason)",
     "stages : pre-push | ci | ci-always   (ci-always = canon-gate.yml, unfiltered)",
+    "         nightly           (nightly-sweep.yml — the multi-minute browser sweeps)",
     "cmd    : argv. {BASE} is substituted with the server origin.",
     "",
     "runner:false = declared here, executed by the hook's own parallel orchestration.",
@@ -305,13 +306,13 @@
       ],
       "stages": [
         "pre-push",
-        "ci"
+        "nightly"
       ],
       "needs": [
         "server"
       ],
       "runner": false,
-      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
+      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
     },
     {
       "id": "cta-grammar-check",
@@ -463,11 +464,12 @@
         "1440"
       ],
       "stages": [
-        "ci"
+        "nightly"
       ],
       "needs": [
         "server"
-      ]
+      ],
+      "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
     },
     {
       "id": "overflow-sweep-1024",
@@ -477,11 +479,12 @@
         "1024"
       ],
       "stages": [
-        "ci"
+        "nightly"
       ],
       "needs": [
         "server"
-      ]
+      ],
+      "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
     },
     {
       "id": "overflow-sweep-768",
@@ -491,11 +494,12 @@
         "768"
       ],
       "stages": [
-        "ci"
+        "nightly"
       ],
       "needs": [
         "server"
-      ]
+      ],
+      "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
     },
     {
       "id": "line-height-check",
@@ -504,12 +508,12 @@
         "tools/line-height-check.py"
       ],
       "stages": [
-        "ci"
+        "nightly"
       ],
       "needs": [
         "server"
       ],
-      "note": "orphan until 2026-09-04; ~7 min, so CI is the authority rather than every push"
+      "note": "orphan until 2026-09-04; ~7 min, so CI is the authority rather than every push — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
     },
     {
       "id": "reachability-check",
@@ -518,12 +522,12 @@
         "tools/reachability-check.py"
       ],
       "stages": [
-        "ci"
+        "nightly"
       ],
       "needs": [
         "server"
       ],
-      "note": "orphan until 2026-09-04"
+      "note": "orphan until 2026-09-04 — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
     },
     {
       "id": "overlap-check",
@@ -532,12 +536,12 @@
         "tools/overlap-check.py"
       ],
       "stages": [
-        "ci"
+        "nightly"
       ],
       "needs": [
         "server"
       ],
-      "note": "orphan until 2026-09-04"
+      "note": "orphan until 2026-09-04 — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
     },
     {
       "id": "keyboard-sweep",
@@ -546,12 +550,12 @@
         "tools/keyboard-sweep.py"
       ],
       "stages": [
-        "ci"
+        "nightly"
       ],
       "needs": [
         "server"
       ],
-      "note": "orphan until 2026-09-04. Page list from gatelib; the book has no shared chrome to tab through.",
+      "note": "orphan until 2026-09-04. Page list from gatelib; the book has no shared chrome to tab through. — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch.",
       "pages": {
         "include_book": false
       }
@@ -565,12 +569,12 @@
         "."
       ],
       "stages": [
-        "ci"
+        "nightly"
       ],
       "needs": [
         "server"
       ],
-      "note": "orphan until 2026-09-04. Page list comes from gatelib. The book is excluded: it deliberately carries no shared nav or footer, so the landmark rule fails it by design — and its infinite animations were verified to clear under prefers-reduced-motion, which all three stylesheets honour.",
+      "note": "orphan until 2026-09-04. Page list comes from gatelib. The book is excluded: it deliberately carries no shared nav or footer, so the landmark rule fails it by design — and its infinite animations were verified to clear under prefers-reduced-motion, which all three stylesheets honour. — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch.",
       "pages": {
         "include_book": false
       }
@@ -582,12 +586,12 @@
         "tools/receipt-align-check.py"
       ],
       "stages": [
-        "ci"
+        "nightly"
       ],
       "needs": [
         "server"
       ],
-      "note": "orphan until 2026-09-04"
+      "note": "orphan until 2026-09-04 — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
     }
   ],
   "manual": [
