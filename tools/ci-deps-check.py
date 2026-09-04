@@ -86,12 +86,33 @@ for w in workflows:
         if 'pip install' in line:
             installed |= set(re.findall(r'[A-Za-z0-9][A-Za-z0-9._-]+', line.split('pip install', 1)[1]))
 
+# A hardcoded macOS path is the same defect as a missing package: the gate cannot run on
+# the runner. cdp.py pinned /Applications/Google Chrome.app and ignored the $CHROME the
+# workflow had been exporting all along, so the Contrast gate died with FileNotFoundError
+# the moment the websocket-client fix finally let it import. Any tool naming a macOS-only
+# path must also read the environment override.
+mac_only = []
+for f in sorted(glob.glob(os.path.join(ROOT, 'tools', '*.py'))):
+    src = open(f, encoding='utf-8').read()
+    if '/Applications/' not in src:
+        continue
+    # Match the CALL, not a closing paren: cta-viewport-check.py writes
+    # os.environ.get("CHROME", "<default>") and the first version of this rule
+    # reported it as mac-only. A detector that only knows one spelling of the
+    # correct code invents defects.
+    if 'environ.get("CHROME"' in src or "environ.get('CHROME'" in src:
+        continue
+    mac_only.append(os.path.basename(f))
+for name in mac_only:
+    print(f'  MAC-ONLY PATH  {name}\n                 names /Applications/... and never reads $CHROME — '
+          f'cannot run on a Linux runner')
+
 missing = {p: v for p, v in needed.items() if p not in installed}
 for pkg, users in sorted(missing.items()):
     print(f'  MISSING IN CI  {pkg}\n                 imported by {", ".join(sorted(users))}')
-if missing:
-    print(f'\n{len(missing)} package(s) tools/ imports that no workflow installs. '
-          f'A gate that cannot import is a gate that never ran.')
+if missing or mac_only:
+    print(f'\n{len(missing)} missing package(s) and {len(mac_only)} mac-only path(s). '
+          f'A gate that cannot import or cannot launch is a gate that never ran.')
     sys.exit(1)
 if unparsed:
     print(f'\n{unparsed} tool(s) could not be parsed. This is not a full pass.')

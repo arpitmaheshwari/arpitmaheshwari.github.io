@@ -28,8 +28,13 @@ _cdp.ensure_server(8000)
 _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
 from cdp import NO_TRACKING_FLAG
 
-CH = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+# $CHROME first: every CI runner is Linux and this path is macOS-only.
 
+# Eleven tools pinned it, so fixing cdp.py alone would only have moved the
+
+# CI failure to the next step that launches Chrome.
+
+CH = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 PROBE = """<!doctype html><html><body><script>
 const f=document.createElement('iframe');f.src='http://localhost:8000/%s?cb='+Date.now();
 f.style.cssText='width:1440px;height:900px;border:0';document.body.appendChild(f);

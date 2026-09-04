@@ -22,7 +22,13 @@ _cdp.ensure_server(8000)
 _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
 from cdp import NO_TRACKING_FLAG
 
-CH = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+# $CHROME first: every CI runner is Linux and this path is macOS-only.
+
+# Eleven tools pinned it, so fixing cdp.py alone would only have moved the
+
+# CI failure to the next step that launches Chrome.
+
+CH = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 # classic-theme values that must never render under ember
 RETIRED = {"#515863":"slate ink","#e3e6ea":"slate line","#16181d":"slate bg",
   "#0e7a5f":"classic green","#0e6e56":"classic green dk","#7e5a14":"dark gold",
@@ -66,8 +72,14 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
   if(exempt(el))return;
   ['color','backgroundColor','borderTopColor','borderLeftColor'].forEach(p=>{
    const h=hex(cs[p]); if(h&&RET[h]){
-    // ink on a light ground is the paper palette doing its job, not a remnant
-    if(p==='color'&&ground(el)>0.5)return;
+    // Ink on a light ground is the paper palette doing its job, not a remnant — and
+    // that is as true of a BORDER as of text. This test used to read p==='color', so a
+    // 3px border-top in the paper gold #7E5A14 on the cream .contract section of the
+    // homepage was reported as a retired-palette remnant on 2026-09-04. It is the
+    // documented, contrast-checked correct value there (5.62:1 on cream). The rule is
+    // the surface, not the property: only backgroundColor is exempt from the exemption,
+    // because there the element IS the ground rather than sitting on one.
+    if(p!=='backgroundColor'&&ground(el)>0.5)return;
     // border colours only count when the border is actually drawn
     if(p.startsWith('border')&&parseFloat(cs[p.replace('Color','Width')])===0)return;
     const k=h+'|'+p+'|'+(el.tagName+'.'+((el.className+'').trim().split(/\\s+/)[0]||''));

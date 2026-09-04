@@ -18,7 +18,10 @@ _cdp.ensure_server(8000)
 # Trackers are refused for every browser this repo drives — see cdp.py.
 _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
 from cdp import NO_TRACKING_FLAG
-CH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+# $CHROME first: every CI runner is Linux and this path is macOS-only.
+# Eleven tools pinned it, so fixing cdp.py alone would only have moved the
+# CI failure to the next step that launches Chrome.
+CH = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 W=int(sys.argv[1]) if len(sys.argv)>1 else 1440
 PAGES=sys.argv[2:] or [str(p) for p in sorted(pathlib.Path('.').rglob('*.html'))
     if not any(x.startswith('.') or x in ('prototypes','portfolio-sources','node_modules',

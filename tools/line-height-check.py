@@ -50,7 +50,13 @@ _s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__)))
 import cdp as _cdp
 _cdp.ensure_server(8000)
 
-CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+# $CHROME first: every CI runner is Linux and this path is macOS-only.
+
+# Eleven tools pinned it, so fixing cdp.py alone would only have moved the
+
+# CI failure to the next step that launches Chrome.
+
+CHROME = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 # leading is a deliberate design choice inside these: a printed-docket metaphor,
 # a code block set to a fixed grid, or a mark drawn as type.
 ALLOW = ["rcpt", "rcell", "rfoot", "stamp", "boarding", "lab-code", "nav-logo",

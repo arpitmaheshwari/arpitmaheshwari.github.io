@@ -19,7 +19,40 @@ WHAT IT GUARANTEES, so no caller has to remember
 import json, os, shutil, signal, subprocess, tempfile, time, urllib.request
 import websocket
 
-CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+def _find_chrome():
+    """Resolve Chrome, honouring $CHROME first.
+
+    This module hardcoded the macOS bundle path. Every CI runner is Linux, so the
+    Contrast gate died with FileNotFoundError on '/Applications/Google Chrome.app/...'
+    the moment it was finally able to import — after the websocket-client fix let it get
+    that far. The workflow's "Locate Chrome" step had been exporting $CHROME all along
+    and nothing here read it. asset-load-check.py already did exactly this; cdp.py, which
+    every browser-driving gate imports, did not.
+    """
+    from_env = os.environ.get("CHROME")
+    if from_env and (os.path.isabs(from_env) or shutil.which(from_env)):
+        return from_env
+    candidates = [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "/Applications/Chromium.app/Contents/MacOS/Chromium",
+        "google-chrome-stable", "google-chrome", "chromium-browser", "chromium",
+        "/usr/bin/google-chrome-stable", "/usr/bin/google-chrome",
+        "/usr/bin/chromium-browser", "/usr/bin/chromium",
+    ]
+    for c in candidates:
+        if os.path.isabs(c):
+            if os.path.exists(c):
+                return c
+        else:
+            found = shutil.which(c)
+            if found:
+                return found
+    # Nothing found: return the env value or the first candidate so the eventual
+    # FileNotFoundError names something real rather than failing silently later.
+    return from_env or candidates[0]
+
+
+CHROME = _find_chrome()
 
 
 # Every page on this site loads Google Analytics AND Microsoft Clarity, so

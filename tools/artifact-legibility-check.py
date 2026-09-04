@@ -37,7 +37,13 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from cdp import NO_TRACKING_FLAG
 
-CH = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+# $CHROME first: every CI runner is Linux and this path is macOS-only.
+
+# Eleven tools pinned it, so fixing cdp.py alone would only have moved the
+
+# CI failure to the next step that launches Chrome.
+
+CH = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 HARD = 2.0          # below this, a human cannot read it — hard failure
 DOCROOT = pathlib.Path(".")
 
