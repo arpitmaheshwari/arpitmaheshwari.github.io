@@ -196,7 +196,11 @@ echo "pre-push: starting the browser gates in parallel…"
 # gate runner:false without pointing it at the single list.
 bg_gate contrast \
   python3 tools/run-gates.py --stage pre-push --only contrast-audit --port "$PORT" \
-    --scope "$IMG_SCOPE"
+    # --scope=... in the EQUALS form. IMG_SCOPE is literally "--all" when a shared
+    # asset changed, and `--scope --all` makes argparse read the value as a flag and
+    # exit with a usage error — which the hook then reported as "a contrast failure
+    # (or a broken checker)". It was the checker.
+    --scope="$IMG_SCOPE"
 
 
 # Canon lint first — it is pure text, costs under a second, and catches the failure that actually
