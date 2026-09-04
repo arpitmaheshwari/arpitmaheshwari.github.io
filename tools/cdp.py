@@ -16,7 +16,7 @@ WHAT IT GUARANTEES, so no caller has to remember
   * the browser is always killed and its profile removed, even on exception.
   * one place to fix a timeout, a flag, or a protocol change.
 """
-import json, os, shutil, signal, subprocess, tempfile, time, urllib.request
+import json, os, shutil, signal, socket, subprocess, tempfile, time, urllib.request
 import websocket
 
 def _find_chrome():
@@ -79,7 +79,14 @@ class Browser:
     """A headless Chrome speaking CDP. Use as a context manager."""
 
     def __init__(self, port_base=9300, timeout=90, extra_flags=()):
-        self.port = port_base + (os.getpid() % 200)
+        # ASK THE OS FOR A FREE PORT. This was port_base + (os.getpid() % 200), which is
+        # per-PROCESS: six Browser() instances inside one process all computed the SAME
+        # port, collided, and five of six died with net::ERR_ABORTED. Even across
+        # processes it collides whenever two pids differ by a multiple of 200. Binding to
+        # port 0 and reading the assignment back cannot collide with anything.
+        with socket.socket() as _s0:
+            _s0.bind(('127.0.0.1', 0))
+            self.port = _s0.getsockname()[1]
         self.profile = tempfile.mkdtemp(prefix="cdp-")
         self.proc = subprocess.Popen(
             [CHROME, "--headless=new", f"--remote-debugging-port={self.port}",
@@ -96,19 +103,46 @@ class Browser:
              "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu",
              *extra_flags, "about:blank"],
             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        # 13.5s of patience, then RETRY on a fresh port. A CI runner has two cores, and
+        # several gates each boot their own Chrome: under that contention startup can
+        # exceed the wait, and the port is derived from the pid, so two processes whose
+        # pids are 200 apart pick the SAME port and the second one finds the first one's
+        # tab list. Three gates failed a build with "chrome never came up" this way.
+        # Retrying on a different port costs nothing when Chrome is healthy and is the
+        # difference between a flaky suite and a trustworthy one.
         ws_url = None
-        for _ in range(90):
-            try:
-                tabs = json.load(urllib.request.urlopen(
-                    f"http://127.0.0.1:{self.port}/json"))
-                ws_url = next(t["webSocketDebuggerUrl"]
-                              for t in tabs if t["type"] == "page")
+        for attempt in range(3):
+            for _ in range(90):
+                try:
+                    tabs = json.load(urllib.request.urlopen(
+                        f"http://127.0.0.1:{self.port}/json"))
+                    ws_url = next(t["webSocketDebuggerUrl"]
+                                  for t in tabs if t["type"] == "page")
+                    break
+                except Exception:
+                    time.sleep(.15)
+            if ws_url:
                 break
-            except Exception:
-                time.sleep(.15)
+            if attempt < 2:
+                try:
+                    self.proc.kill()
+                except Exception:
+                    pass
+                with socket.socket() as _s1:      # a fresh OS-assigned port, not a guess
+                    _s1.bind(('127.0.0.1', 0))
+                    self.port = _s1.getsockname()[1]
+                self.proc = subprocess.Popen(
+                    [CHROME, "--headless=new", f"--remote-debugging-port={self.port}",
+                     f"--user-data-dir={self.profile}", "--no-first-run",
+                     "--remote-allow-origins=*", "--hide-scrollbars",
+                     "--force-device-scale-factor=1", NO_TRACKING_FLAG,
+                     "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu",
+                     *extra_flags, "about:blank"],
+                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         if not ws_url:
             self.close()
-            raise RuntimeError("chrome never came up")
+            raise RuntimeError(f"chrome never came up after 3 attempts "
+                               f"(last port {self.port}) — {CHROME}")
         self.ws = websocket.create_connection(ws_url, timeout=timeout)
         self._id = 0
         # cmd() used to throw away every message that was not the reply it was
