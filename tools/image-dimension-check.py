@@ -52,8 +52,15 @@ def png_jpg_size(path):
     return None
 
 findings, checked = [], 0
-for f in sorted(glob.glob(os.path.join(ROOT, '**/*.html'), recursive=True)):
-    rel = os.path.relpath(f, ROOT)
+# gatelib.pages() enumerates from `git ls-files`, so an untracked temp file cannot appear
+# in it. A raw glob can: canon-lint writes __canon_canary_a.html into the repo root during
+# its calibration, and this gate globbed it a moment before it was deleted, then died with
+# FileNotFoundError mid-push. Same shape as the ember.css race — one gate's scratch file
+# inside another gate's working set.
+sys.path.insert(0, os.path.join(ROOT, 'tools'))
+from gatelib import pages as _pages
+for rel in _pages(include_redirects=True):
+    f = os.path.join(ROOT, rel)
     if rel.startswith(SKIP):
         continue
     src_html = re.sub(r'(?s)<!--.*?-->', '', open(f, encoding='utf-8').read())
