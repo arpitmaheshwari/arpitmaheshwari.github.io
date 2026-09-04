@@ -20,6 +20,13 @@
 name: Nightly sweep
 
 on:
+  # TEMPORARY, 2026-09-04. This workflow has never run: twelve gates whose CI behaviour is
+  # entirely unverified, and I have now been wrong twice about a gate working in CI because
+  # it worked locally. Waiting for 02:00 to find out is not a plan. This trigger fires the
+  # sweep when the workflow file itself changes, so it can be exercised on demand without a
+  # token. REMOVE once the first run is green.
+  push:
+    paths: ['.github/workflows/nightly-sweep.yml']
   schedule:
     # 02:00 UTC = 07:30 in Indore, so a failure is waiting at the start of the day
     # rather than discovered at the end of one.
