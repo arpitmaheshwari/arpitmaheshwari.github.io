@@ -600,6 +600,18 @@
         "server"
       ],
       "note": "orphan until 2026-09-04 — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
+    },
+    {
+      "id": "tooling-budget-check",
+      "cmd": [
+        "python3",
+        "tools/tooling-budget-check.py"
+      ],
+      "stages": [
+        "pre-push",
+        "ci"
+      ],
+      "note": "Fix 04 from the architecture review, enforced rather than wished. tools/ is 1.98x the size of the site CSS it checks; the ceiling makes the next increase a decision someone records instead of a drift nobody notices. Raising CEILING is expected and fine — raising it silently is not."
     }
   ],
   "manual": [
