@@ -51,8 +51,14 @@ jobs:
       - name: Install a word list (prose-check's spelling rules need one)
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq wamerican
-          ls -l /usr/share/dict/words
+          # -huge, not plain wamerican. The small list lacks ordinary words that macOS's
+          # web2 has — stakeholder, outlier, cutover, superfamily — so the same gate gave
+          # a different verdict on each machine. Both variants are unioned into one file
+          # so the spelling rule is not also a British/American argument.
+          sudo apt-get install -y -qq wamerican-huge wbritish-huge
+          cat /usr/share/dict/american-english-huge /usr/share/dict/british-english-huge \
+            | sort -u | sudo tee /usr/share/dict/words > /dev/null
+          wc -l /usr/share/dict/words
 
       # ubuntu-latest does not reliably ship Chrome/Chromium — this step's own error message used
       # to just NAME the fix ("Add browser-actions/setup-chrome@v1") without applying it, so every
