@@ -11,11 +11,17 @@ name: Contrast gate
 # tools/contrast-audit.py plants a deliberately failing element and refuses to report anything until
 # it has confirmed it catches it, so a silently-broken checker fails the build instead of passing it.
 
+# PATHS: 'tools/**', not an enumerated list of three scripts. The filter used to name
+# contrast-audit.py, asset-load-check.py and generate-og-cards.py — while the same job also
+# runs overflow-sweep, cta-grammar-check and theme-remnant-check, and ALL of them import
+# tools/cdp.py. So commit 034652c2, which fixed the hardcoded macOS Chrome path in cdp.py
+# and ten other tools, changed nothing the filter matched and this workflow DID NOT RUN.
+# A gate that its own engine's repairs cannot trigger is a gate you cannot fix on purpose.
 on:
   push:
-    paths: ['**.html', '**.css', '**.js', '**.svg', '.github/workflows/contrast-gate.yml', 'tools/contrast-audit.py', 'tools/asset-load-check.py', 'tools/generate-og-cards.py', 'assets/og-images/_card.template.html']
+    paths: ['**.html', '**.css', '**.js', '**.svg', '.github/workflows/contrast-gate.yml', 'tools/**', 'assets/og-images/_card.template.html']
   pull_request:
-    paths: ['**.html', '**.css', '**.js', '**.svg', '.github/workflows/contrast-gate.yml', 'tools/contrast-audit.py', 'tools/asset-load-check.py', 'tools/generate-og-cards.py', 'assets/og-images/_card.template.html']
+    paths: ['**.html', '**.css', '**.js', '**.svg', '.github/workflows/contrast-gate.yml', 'tools/**', 'assets/og-images/_card.template.html']
   workflow_dispatch:
 
 jobs:
