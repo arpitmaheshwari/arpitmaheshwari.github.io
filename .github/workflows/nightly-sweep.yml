@@ -85,6 +85,10 @@ jobs:
           curl -sf -o /dev/null http://localhost:8000/ || { echo "::error::server never came up"; exit 1; }
 
       - name: Sweeps (from tools/gates.json)
+        # Re-fired 2026-09-05 to verify the two contrast fixes on Linux: the
+        # ALPHA_FLOOR guard against noisy un-blends, and sr-only recognition. Both
+        # landed AFTER the last nightly run, so the ten reported failures have not
+        # been re-taken since. Unproven on the runner is not fixed.
         # --parallel 3 was set before the shared-file race in the calibrations was
         # understood. gatelib.planted() now locks plant -> scan -> restore, so
         # concurrency is safe again; the first run of this workflow reported ten
