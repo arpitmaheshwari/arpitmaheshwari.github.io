@@ -78,9 +78,20 @@ jobs:
       # and sampled rects move — so fail loudly here rather than produce a misleading green.
       - name: Check webfonts are reachable
         run: |
-          curl -sf -o /dev/null "https://fonts.googleapis.com/css2?family=Newsreader&display=swap" \
-            || { echo "::error::Google Fonts unreachable — results would not be trustworthy"; exit 1; }
+          # Emit this step's tail as a check ANNOTATION on failure. Job logs need
+          # admin rights (403) and job summaries are not exposed by the API, so an
+          # annotation is the only way a failure explains itself to anyone who
+          # cannot click into the run.
+          set -o pipefail
+          if (
+            curl -sf -o /dev/null "https://fonts.googleapis.com/css2?family=Newsreader&display=swap" \
+              || { echo "::error::Google Fonts unreachable — results would not be trustworthy"; exit 1; }
 
+          ) 2>&1 | tee "/tmp/check-webfonts-are-reachable.out"; then
+            exit 0
+          fi
+          python3 tools/gh-annotate.py "/tmp/check-webfonts-are-reachable.out" "check-webfonts-are-reachable failed"
+          exit 1
       # The page set is deliberately not "every page": each URL costs three headless renders per
       # width. These cover every distinct colour context on the site — dark theme, cream acts, the
       # gradient book cover, the semantic status palette, and the mockup plates. Add a URL here when
@@ -142,8 +153,19 @@ jobs:
       # reverting to a stub again, not to lint pixel content.
       - name: OG card presence check (registry vs disk)
         run: |
-          python3 tools/generate-og-cards.py --check
+          # Emit this step's tail as a check ANNOTATION on failure. Job logs need
+          # admin rights (403) and job summaries are not exposed by the API, so an
+          # annotation is the only way a failure explains itself to anyone who
+          # cannot click into the run.
+          set -o pipefail
+          if (
+            python3 tools/generate-og-cards.py --check
 
+          ) 2>&1 | tee "/tmp/og-card-presence-check-registry-vs-disk.out"; then
+            exit 0
+          fi
+          python3 tools/gh-annotate.py "/tmp/og-card-presence-check-registry-vs-disk.out" "og-card-presence-check-registry-vs-disk failed"
+          exit 1
       # Every shipped page, discovered from git — NOT a hand-typed list. On 2026-08-07 the
       # list below named 9 pages, so 11 shipped pages had never been contrast-checked at all
       # (lab/loop.html, lab/teardown.html, all 4 writing/ posts, all 3 resources/ pages).
@@ -151,13 +173,24 @@ jobs:
       # whatever is added next. --all cannot fall behind the site.
       - name: Contrast audit — every shipped page (pixel-truth, self-calibrating)
         run: |
-          python3 tools/contrast-audit.py \
-            --docroot . \
-            --widths 1440,390 \
-            --exempt '.bk-device__label, .bk-device__mark, .grad, .hero-headline em, body.p-404 h1 em' \
-            --force-visible '.reveal' \
-            --all
+          # Emit this step's tail as a check ANNOTATION on failure. Job logs need
+          # admin rights (403) and job summaries are not exposed by the API, so an
+          # annotation is the only way a failure explains itself to anyone who
+          # cannot click into the run.
+          set -o pipefail
+          if (
+            python3 tools/contrast-audit.py \
+              --docroot . \
+              --widths 1440,390 \
+              --exempt '.bk-device__label, .bk-device__mark, .grad, .hero-headline em, body.p-404 h1 em' \
+              --force-visible '.reveal' \
+              --all
 
+          ) 2>&1 | tee "/tmp/contrast-audit-every-shipped-page-pixel-truth-se.out"; then
+            exit 0
+          fi
+          python3 tools/gh-annotate.py "/tmp/contrast-audit-every-shipped-page-pixel-truth-se.out" "contrast-audit-every-shipped-page-pixel-truth-se failed"
+          exit 1
       # 2026-08-13: two defect classes that every existing gate was blind to, both found by
       # Arpit rather than by CI. (1) A breakout rule needing margin-left AND transform to land
       # together half-applied against the extracted !important margins, throwing case-study
@@ -168,8 +201,19 @@ jobs:
       # Both checks plant a known defect and require themselves to go red before a green counts.
       - name: Overflow sweep — nothing escapes the viewport (1440 / 1024 / 768)
         run: |
-          for W in 1440 1024 768; do python3 tools/overflow-sweep.py $W; done
+          # Emit this step's tail as a check ANNOTATION on failure. Job logs need
+          # admin rights (403) and job summaries are not exposed by the API, so an
+          # annotation is the only way a failure explains itself to anyone who
+          # cannot click into the run.
+          set -o pipefail
+          if (
+            for W in 1440 1024 768; do python3 tools/overflow-sweep.py $W; done
 
+          ) 2>&1 | tee "/tmp/overflow-sweep-nothing-escapes-the-viewport-1440.out"; then
+            exit 0
+          fi
+          python3 tools/gh-annotate.py "/tmp/overflow-sweep-nothing-escapes-the-viewport-1440.out" "overflow-sweep-nothing-escapes-the-viewport-1440 failed"
+          exit 1
       # 2026-08-14: third defect in the same blind spot (Writing heading, lab foot
       # links, contact email line) — an element doing the SAME JOB styled from a
       # different era. Colour and geometry gates pass it; only a component DIFF sees
@@ -177,12 +221,34 @@ jobs:
       # grammar signature, and fails outliers. Inline links inside prose are exempt.
       - name: CTA grammar check — every standalone arrow-CTA speaks one grammar
         run: |
-          python3 tools/cta-grammar-check.py
+          # Emit this step's tail as a check ANNOTATION on failure. Job logs need
+          # admin rights (403) and job summaries are not exposed by the API, so an
+          # annotation is the only way a failure explains itself to anyone who
+          # cannot click into the run.
+          set -o pipefail
+          if (
+            python3 tools/cta-grammar-check.py
 
+          ) 2>&1 | tee "/tmp/cta-grammar-check-every-standalone-arrow-cta-spe.out"; then
+            exit 0
+          fi
+          python3 tools/gh-annotate.py "/tmp/cta-grammar-check-every-standalone-arrow-cta-spe.out" "cta-grammar-check-every-standalone-arrow-cta-spe failed"
+          exit 1
       - name: Theme remnant check — no retired classic palette painted under Ember
         run: |
-          python3 tools/theme-remnant-check.py
+          # Emit this step's tail as a check ANNOTATION on failure. Job logs need
+          # admin rights (403) and job summaries are not exposed by the API, so an
+          # annotation is the only way a failure explains itself to anyone who
+          # cannot click into the run.
+          set -o pipefail
+          if (
+            python3 tools/theme-remnant-check.py
 
+          ) 2>&1 | tee "/tmp/theme-remnant-check-no-retired-classic-palette-p.out"; then
+            exit 0
+          fi
+          python3 tools/gh-annotate.py "/tmp/theme-remnant-check-no-retired-classic-palette-p.out" "theme-remnant-check-no-retired-classic-palette-p failed"
+          exit 1
       - name: Fail if a stray wrapper file was left behind
         if: always()
         run: |
