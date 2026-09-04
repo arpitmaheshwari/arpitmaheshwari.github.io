@@ -106,6 +106,16 @@ jobs:
       # on thirty consecutive pushes before anyone noticed.
       # run-gates emits each failure as a ::error:: annotation, because job logs need admin
       # rights to read and an unreadable failure is how the last one hid for five days.
+      # TEMPORARY, added 2026-09-04. theme-remnant-check and cta-grammar-check pass on
+      # macOS and fail only here, and three local hypotheses were ruled out by
+      # measurement. This runs the same page through BOTH drivers — the --dump-dom +
+      # virtual-time one those two gates use, and the CDP one every other gate uses — and
+      # annotates what each sees. If they disagree, the driver is the defect. Non-blocking
+      # on purpose: a diagnosis must not be able to redden a build. DELETE once answered.
+      - name: Diagnose the two Linux-only gate failures
+        continue-on-error: true
+        run: python3 tools/runner-diagnose.py process/
+
       - name: Gates (from tools/gates.json)
         run: python3 tools/run-gates.py --stage ci --parallel 4
 
