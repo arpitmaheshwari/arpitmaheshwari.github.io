@@ -221,15 +221,30 @@ def main():
 
     failed = []
     try:
-        if a.parallel > 1 and len(gates) > 1:
+        # SERIAL GATES RUN ALONE. A gate driving Chrome with --dump-dom and
+        # --virtual-time-budget is not safe to run beside another one: virtual time
+        # advances only while the page is idle, so several Chromes on a 2-core runner
+        # let the budget expire mid-render and --dump-dom returns a half-styled DOM.
+        # That is what made theme-remnant-check and cta-grammar-check fail only in CI —
+        # both pass alone on the same runner. Contention I introduced with --parallel 4.
+        serial_gates = [g for g in gates if g.get('serial')]
+        parallel_gates = [g for g in gates if not g.get('serial')]
+        total = len(gates)          # count BEFORE splitting: the summary reports how many
+                                    # gates RAN, and reassigning `gates` here made it say
+                                    # "all 1 gate(s) passed" after running three.
+        if serial_gates:
+            print(f'  {len(serial_gates)} gate(s) run alone (virtual-time drivers): '
+                  f'{", ".join(g["id"] for g in serial_gates)}')
+        if a.parallel > 1 and len(parallel_gates) > 1:
             # The heavy gates each boot their own Chrome and re-render the same pages;
             # serially that was ~20 minutes of doing identical work several times over.
             # They are independent, so overlap the waiting. Output is still printed
             # per-gate and in manifest order, so a log reads the same either way.
             with cf.ThreadPoolExecutor(max_workers=a.parallel) as ex:
-                results = list(ex.map(run_one, gates))
+                results = list(ex.map(run_one, parallel_gates))
         else:
-            results = [run_one(g) for g in gates]
+            results = [run_one(g) for g in parallel_gates]
+        results = results + [run_one(g) for g in serial_gates]
         for g, code, out in results:
             print(f"\n=== {g['id']}")
             print(out.rstrip())
@@ -242,9 +257,9 @@ def main():
 
     print()
     if failed:
-        print(f'{len(failed)} of {len(gates)} gate(s) failed: {", ".join(failed)}')
+        print(f'{len(failed)} of {total} gate(s) failed: {", ".join(failed)}')
         sys.exit(1)
-    print(f'all {len(gates)} gate(s) passed in stage {a.stage}')
+    print(f'all {total} gate(s) passed in stage {a.stage}')
     sys.exit(0)
 
 

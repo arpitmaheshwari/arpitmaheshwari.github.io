@@ -106,30 +106,6 @@ jobs:
       # on thirty consecutive pushes before anyone noticed.
       # run-gates emits each failure as a ::error:: annotation, because job logs need admin
       # rights to read and an unreadable failure is how the last one hid for five days.
-      # TEMPORARY, added 2026-09-04. theme-remnant-check and cta-grammar-check pass on
-      # macOS and fail only here, and three local hypotheses were ruled out by
-      # measurement. This runs the same page through BOTH drivers — the --dump-dom +
-      # virtual-time one those two gates use, and the CDP one every other gate uses — and
-      # annotates what each sees. If they disagree, the driver is the defect. Non-blocking
-      # on purpose: a diagnosis must not be able to redden a build. DELETE once answered.
-      - name: Diagnose the two Linux-only gate failures
-        continue-on-error: true
-        run: |
-          # Round 1 showed the runner renders the page IDENTICALLY to macOS — cream ink,
-          # all four stylesheets, both drivers agreeing. So the page is fine there and the
-          # difference is in how the GATE runs. The one thing that differed: the
-          # diagnostic ran alone, while the gates ran 4-wide against other Chrome-driving
-          # gates on a 2-core runner. Virtual time advances only while the page is idle,
-          # so under CPU contention the budget can expire mid-render.
-          # Decisive test: run each failing gate ALONE here and annotate the result.
-          python3 tools/runner-diagnose.py process/ || true
-          echo "=== theme-remnant-check, running ALONE ==="
-          python3 tools/theme-remnant-check.py > /tmp/tr.out 2>&1 && echo "PASSES ALONE" \
-            || python3 tools/gh-annotate.py /tmp/tr.out "theme-remnant ALONE on the runner"
-          echo "=== cta-grammar-check, running ALONE ==="
-          python3 tools/cta-grammar-check.py > /tmp/cg.out 2>&1 && echo "PASSES ALONE" \
-            || python3 tools/gh-annotate.py /tmp/cg.out "cta-grammar ALONE on the runner"
-
       - name: Gates (from tools/gates.json)
         run: python3 tools/run-gates.py --stage ci --parallel 4
 
