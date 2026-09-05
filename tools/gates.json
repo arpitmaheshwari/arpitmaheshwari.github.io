@@ -273,7 +273,7 @@
       "needs": [
         "server"
       ],
-      "note": "the hook ran this against two URLs while CI ran --all; that divergence hid a five-day CI failure — executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason.",
+      "note": "the hook ran this against two URLs while CI ran --all; that divergence hid a five-day CI failure — executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason. — the HOOK narrows this one to the changed pages by passing $IMG_SCOPE directly (it is runner:false, so run-gates --scope never reaches it). ci and nightly run --all.",
       "runner": false
     },
     {

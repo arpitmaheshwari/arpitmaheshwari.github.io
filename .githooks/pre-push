@@ -256,8 +256,12 @@ if [ -f tools/asset-load-check.py ]; then
   # That divergence is why the Contrast gate could be RED on every push since at least
   # 2026-08-30 while this hook said OK every single time: local was not running the
   # check that was failing. A gate you only run locally is a gate you are not running.
+  # $IMG_SCOPE is either the literal "--all" or a space-separated URL list, and this tool
+  # accepts both — so the same narrowing contrast-audit gets applies here. It ran --all
+  # across every page on every push, which is the slow half of what is left in this hook.
+  # ci and nightly still run --all; only the page SET differs, never the flags.
   if ! BASE="http://localhost:$PORT" python3 tools/asset-load-check.py \
-        --docroot . --no-selftest --all; then
+        --docroot . --no-selftest $IMG_SCOPE; then
     cat <<'MSG'
 
 pre-push: BLOCKED — a broken asset was detected above.
