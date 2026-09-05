@@ -78,9 +78,12 @@ BAND_PAD = 8                 # px of slack inside the unobstructed band
 DIFF_T = 24                  # per-pixel channel-sum difference that counts as "ink was here"
 ALPHA_CORE = 0.7             # glyph-core coverage: pixels this inked recover the authored colour
 ALPHA_FLOOR = 0.5            # below this the un-blend is noise, not a measurement
+CORE_BAND = 0.10             # ink is recovered only within this much of PEAK coverage:
+                             # the glyph's core, never its antialiased edge. See _measure.
 
 CANARY_TEXT = "calibration canary do not ship"
 CANARY_GT_TEXT = "gradient canary do not ship"
+CANARY_SM_TEXT = "thin canary do not ship"
 CANARY_RV_TEXT = "reveal canary do not ship"
 # Three planted defects. Each exercises a distinct historical failure mode.
 CANARY_HTML = (
@@ -96,6 +99,15 @@ CANARY_HTML = (
     "<div class='reveal' id='__ca_c3' style='position:absolute;left:0;top:200px;"
     "z-index:2147483647;background:#777;color:#8A8A8A;font-size:14px;padding:6px'>"
     + CANARY_RV_TEXT + "</div>"
+    # THIN SMALL TEXT — the class that broke this tool. Every one of the ten false
+    # Linux failures was 11-12.5px semibold; nothing larger was ever wrong. The other
+    # three canaries are all 14px, so none of them exercised the coverage regime where
+    # a glyph is mostly antialiased edge. Restricting ink recovery to the core band
+    # (see _measure) makes a FALSE PASS on exactly this text the new risk, so it is
+    # now a standing canary rather than a thing I checked once by hand.
+    "<div id='__ca_c4' style='position:absolute;left:0;top:240px;z-index:2147483647;"
+    "background:#777;color:#8A8A8A;font-size:11px;font-weight:600;padding:6px'>"
+    + CANARY_SM_TEXT + "</div>"
 )
 
 # Pass-B ink removal. ":root *" so it WINS ties against single-class !important color rules
@@ -318,7 +330,35 @@ def _measure(im_a, im_b, im_c, rect, band):
     # is already accessible.
     if max_a < ALPHA_FLOOR:
         return (None, False, "-", "-", 0)
-    bar = min(ALPHA_CORE, max(0.35, max_a * 0.85))
+    # GRADE THE GLYPH CORE, NOT ITS ANTIALIASING.
+    #
+    # This selection used to take every pixel above 0.85 of peak coverage and report
+    # the 10th-percentile WORST ratio among them. Two different things were conflated
+    # in that one number, and the mixture is what produced ten false failures that
+    # appeared only on Linux:
+    #
+    #   * INK is a property of the ELEMENT — one authored colour (or, for gradient
+    #     text, a colour that varies smoothly). It is recovered exactly at pixels the
+    #     glyph fully covers, where the un-blend is nearly an identity.
+    #   * GROUND is a property of POSITION. It genuinely varies: the same word can sit
+    #     on the light and dark ends of a gradient pill, and it must be graded at its
+    #     weakest point. That was the percentile's real job, and it is kept.
+    #
+    # Recomputing ink at every pixel and then choosing the WORST result means choosing
+    # the NOISIEST un-blend, because ink = (A - (1-a)B)/a divides by coverage: at
+    # a = 0.70 a one-step rounding error is amplified half again, and an edge pixel is
+    # SUPPOSED to be a blend — grading it as ink grades the antialiasing. Headless
+    # Chrome on Linux renders 11-12.5px text thinner than macOS does, so on the runner
+    # that set was mostly edges and the percentile landed on rubbish. Every flagged
+    # element was 11-12.5px; nothing larger was ever flagged. The alpha probe read the
+    # SAME element on the SAME runner and recovered #FF8A5C at 7.24:1 where this
+    # returned #60575A at 2.40:1 — from a ground it had read pixel-exactly right.
+    #
+    # So: restrict recovery to the near-peak coverage band, and take the percentile
+    # over THAT. Per-pixel ink is retained inside the band, which keeps gradient text
+    # (the old blind spot, canary #2) honest — it just stops asking edge pixels what
+    # colour the text is.
+    bar = max(ALPHA_FLOOR, max_a - CORE_BAND)
     core = []
     for alpha, pa, pb in glyphs:
         if alpha < bar:
@@ -656,7 +696,8 @@ def selftest(url, width, exempt=None, force_visible=".reveal"):
         return next((h for h in hits if not h["ok"]), False)
     checks = [(CANARY_TEXT, "plain low-contrast text"),
               (CANARY_GT_TEXT, "gradient (background-clip:text) low-contrast text"),
-              (CANARY_RV_TEXT, "low-contrast text behind a .reveal fade")]
+              (CANARY_RV_TEXT, "low-contrast text behind a .reveal fade"),
+              (CANARY_SM_TEXT, "11px semibold low-contrast text (thin antialiasing)")]
     msgs = []
     for prefix, what in checks:
         hit = flagged(prefix)
@@ -665,9 +706,9 @@ def selftest(url, width, exempt=None, force_visible=".reveal"):
         if hit is False:
             return False, f"{what} canary was measured yet reported PASSING"
         msgs.append(f"{what} {hit['ratio']:.2f}:1")
-    return True, ("all three canaries correctly flagged (" + " · ".join(msgs) +
+    return True, ("all four canaries correctly flagged (" + " · ".join(msgs) +
                   ") — the instrument can go red on the plain case, the old gradient "
-                  "blind spot, and the reveal race")
+                  "blind spot, the reveal race, and 11px semibold thin antialiasing")
 
 # ------------------------------------------------------------------------ cli
 

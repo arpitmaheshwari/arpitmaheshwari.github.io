@@ -109,6 +109,13 @@ jobs:
           python3 tools/alpha-probe.py "What the two weeks held" || true
           python3 tools/alpha-probe.py "Send me the role" || true
 
+      # Re-fired 2026-09-05 (fourth time) with the pixel-SELECTION step rewritten. The
+      # camera calibration came back green, which exonerated frame geometry and left
+      # exactly one suspect: the audit chose the 10th-percentile WORST ratio among every
+      # pixel above 0.85 of peak coverage, i.e. its own noisiest un-blend. Ink recovery is
+      # now restricted to the glyph core. A fourth canary — 11px semibold, the size class
+      # that broke — guards the false PASS this narrowing could otherwise introduce.
+      # Old comment kept below; it still names the three outcomes worth watching for.
       # Re-fired 2026-09-05 (third time) to read the ten homepage contrast reports
       # through the new CAMERA CALIBRATION. The audit now refuses to grade unless the
       # captured frame is the same size as the emulated viewport, and reports a
