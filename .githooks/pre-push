@@ -92,9 +92,20 @@ curl -sf -o /dev/null "http://localhost:$PORT/" || { echo "pre-push: local serve
 # was 8m42s over 100 page loads at 2% CPU: Chrome rendering pages nobody
 # touched. Correctness is unchanged; only the pages nothing could have altered
 # are skipped.
-if printf '%s\n' "$CHANGED" | grep -qE '\.(css|js)$|^partials/|^tools/'; then
+# A RENDERING change and a CHECKER change are not the same thing.
+#   css / js / partials  -> every page really does render differently: full sweep.
+#   tools/               -> the PAGES are untouched; only the checker moved. A
+#                           representative sample proves the checker still works, and the
+#                           nightly sweep covers all 44 pages anyway.
+# This mattered: every commit for hours touched tools/, so every push paid the ~25-minute
+# full sweep while I reported pre-push as fixed. It was fixed for ordinary pushes and I
+# never took the path I was actually using.
+if printf '%s\n' "$CHANGED" | grep -qE '\.(css|js)$|^partials/'; then
   IMG_SCOPE="--all"
-  echo "pre-push: shared assets changed — full sweep"
+  echo "pre-push: rendering assets changed — full sweep"
+elif printf '%s\n' "$CHANGED" | grep -qE '^(tools/|\.githooks/)'; then
+  IMG_SCOPE="http://localhost:$PORT/ http://localhost:$PORT/case-studies/adtech.html http://localhost:$PORT/writing/ http://localhost:$PORT/lab/teardown.html"
+  echo "pre-push: a gate changed — four representative pages here, all 44 nightly"
 else
   IMG_SCOPE=$(printf '%s\n' "$CHANGED" | grep -E '\.html$' \
               | sed "s|^|http://localhost:$PORT/|" | tr '\n' ' ')
