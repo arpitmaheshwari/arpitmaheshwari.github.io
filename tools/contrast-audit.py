@@ -450,6 +450,29 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
                             return False
             return True
 
+        # ---- CAMERA CALIBRATION. Everything below reads PIXELS at coordinates the DOM
+        # reported in CSS pixels. That equivalence is an ASSUMPTION, and it is the one
+        # assumption this tool never checked. If the frame comes back at a different
+        # scale or size than the emulated viewport — a deviceScaleFactor the override
+        # did not take, a capture that used the window instead of the emulation — then
+        # every crop lands somewhere the element is not. The arithmetic stays perfect
+        # and the answer is still wrong, which is precisely the shape of the ten Linux
+        # "failures": right page, right fonts, right un-blend, wrong pixels.
+        # _measure() clamps crops to the image (min(x+w, im.width)), so a mismatch
+        # cannot raise — it can only silently grade the wrong region. Hence an explicit
+        # assertion, before anything is graded, that refuses rather than reports.
+        _probe = shot()
+        _vw, _vh, _dpr = br.eval_json(
+            "JSON.stringify([innerWidth,innerHeight,devicePixelRatio])")
+        if (_probe.width, _probe.height) != (int(_vw), int(_vh)):
+            return None, [f"UNCALIBRATED CAMERA: frame is {_probe.width}x{_probe.height} "
+                          f"but the viewport reports {_vw}x{_vh} (dpr {_dpr}). Every rect "
+                          f"is in CSS pixels; grading would sample the wrong region."]
+        if (_probe.width, _probe.height) != (width, VIEWPORT_H):
+            notes.append(f"viewport is {_probe.width}x{_probe.height}, asked for "
+                         f"{width}x{VIEWPORT_H} — frame and rects agree, so grading is "
+                         f"honest, but the page was measured at a size nobody requested")
+
         graded, rows = set(), []
         # declared non-participants
         for i, e in els.items():
@@ -477,6 +500,14 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
                 continue
             seen_pos.add(pos)
             br.eval(f"window.scrollTo(0,{pos})")
+            # A scroll that does not scroll is the same defect in motion: this page's
+            # rects would then be queried at a position the camera never reached. Rects
+            # ARE re-read below, so a stuck scroll cannot mis-grade — but it can loop
+            # forever regrading one screenful, so say so once instead of pretending.
+            _sy = int(br.eval_json("JSON.stringify([Math.round(window.scrollY)])")[0])
+            if abs(_sy - pos) > 2 and pos > 0:
+                notes.append(f"scrollTo({pos}) landed at {_sy} — the window is not the "
+                             f"scrolling element here; pages below this point may go ungraded")
             # the nav's scroll-shading transition must FINISH before the frame set,
             # or fixed chrome fails its own stability check at every stop
             br.pump(0.4)
