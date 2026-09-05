@@ -1,0 +1,562 @@
+/* Cream faces — OFL, self-hosted (site policy: no third-party requests). Latin subsets only. */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts-web/cream/cormorant-garamond-italic-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts-web/cream/cormorant-garamond-normal-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts-web/cream/cormorant-garamond-normal-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/assets/fonts-web/cream/newsreader-italic-300.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts-web/cream/newsreader-italic-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/assets/fonts-web/cream/newsreader-normal-300.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts-web/cream/newsreader-normal-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts-web/cream/space-mono-normal-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts-web/cream/space-mono-normal-700.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ============================================================================
+   CREAM — the site skin (branch: cream · 2026-09-05)
+   Source of truth: prototypes/cream-system/ (Cream Design System v1.0,
+   Arpit's package; ground truth Concept 9 "Private Gallery").
+   His picks: cream as a SKIN over the intact four-act storyline · gallery
+   voice on labels · doubt ring + chant retired · light parchment only.
+   Token values are copied verbatim from tokens/*.css with their provenance.
+   ============================================================================ */
+
+html[data-theme="ember"][data-skin="cream"]{
+  /* tier 1 — base [spec: Concept 9] */
+  --cream-parchment:#f7f4ee; --cream-paper:#fffdf8; --cream-ink:#201d18;
+  --cream-umber:#46423a; --cream-taupe:#5c574c; --cream-stone:#8c8676;
+  --cream-sand:#b3ac9a; --cream-hairline:#d8d2c2; --cream-linen:#c9c2b2;
+  --cream-bronze:#8a5a2b; --cream-bronze-deep:#6e4720; --cream-gold:#d6b278;
+  --cream-tint-blue-a:#dbe4f2; --cream-tint-blue-b:#b9c8e0;
+  --cream-tint-peach-a:#f2e3d3; --cream-tint-peach-b:#e0c5a6;
+  --cream-tint-sage-a:#dceadb; --cream-tint-sage-b:#b8d2ba;
+  --cream-tint-lilac-a:#e8ddf0; --cream-tint-lilac-b:#cbb8dd;
+  --cream-tint-flax-a:#f2ecd4; --cream-tint-flax-b:#e0d3a4;
+  --cream-positive:#4a6741; --cream-caution:#96660f; --cream-negative:#96361f;
+  /* tier 2 — semantic */
+  --surface-page:var(--cream-parchment); --surface-card:var(--cream-paper);
+  --surface-sunken:#f0ece2; --surface-inverse:var(--cream-ink);
+  --text-primary:var(--cream-ink); --text-body:var(--cream-umber);
+  --text-muted:var(--cream-taupe); --text-faint:var(--cream-stone);
+  --text-on-inverse:#f2eddf;
+  --accent:var(--cream-bronze); --accent-hover:var(--cream-bronze-deep);
+  --accent-soft:rgba(138,90,43,.10); --glow:rgba(214,178,120,.18);
+  --border-hairline:var(--cream-hairline); --border-strong:var(--cream-linen);
+  /* type [spec] */
+  --font-display:'Cormorant Garamond',Georgia,serif;
+  --font-body:'Newsreader',Georgia,serif;
+  --font-mono:'Space Mono','Courier New',monospace;
+  --tracking-label:.22em; --tracking-label-wide:.3em;
+  /* motion [spec] */
+  --ease-gallery:cubic-bezier(.16,1,.3,1);
+  --dur-quick:.24s; --dur-reveal:1s;
+  /* frame mat [spec] */
+  --frame-shadow:0 30px 60px -30px rgba(32,29,24,.35);
+  --frame-mat:inset 0 0 0 12px var(--cream-paper), inset 0 0 0 13px var(--cream-hairline);
+  /* legacy variable bridge: existing components read these names */
+  --bg0:var(--surface-page); --bg1:var(--surface-page); --card:var(--surface-card);
+  --ink:var(--text-primary); --mut:var(--text-muted); --dim:var(--text-faint);
+  --border:var(--border-hairline); --line:var(--border-hairline);
+  --link:var(--accent); --link-hover:var(--accent-hover);
+  --ember:var(--accent); --violet:var(--accent); --amber:var(--accent); --rose:var(--accent);
+  --serif:var(--font-display); --sans:var(--font-body); --mono:var(--font-mono);
+  --ff-display:var(--font-display); --ff-sans:var(--font-body);
+  --ff-mono:var(--font-mono); --ff-label:var(--font-mono);
+}
+
+/* ---------- element base ---------- */
+html[data-theme="ember"][data-skin="cream"] body{background:var(--surface-page);color:var(--text-primary);
+  font-family:var(--font-body);font-weight:400}
+html[data-theme="ember"][data-skin="cream"] ::selection{background:var(--cream-ink);color:var(--cream-parchment)}
+html[data-theme="ember"][data-skin="cream"] h1,html[data-theme="ember"][data-skin="cream"] h2,html[data-theme="ember"][data-skin="cream"] h3{
+  font-family:var(--font-display);font-weight:400;letter-spacing:.005em;color:var(--text-primary)}
+html[data-theme="ember"][data-skin="cream"] em,html[data-theme="ember"][data-skin="cream"] i{font-style:italic}
+html[data-theme="ember"][data-skin="cream"] p{color:var(--text-body)}
+html[data-theme="ember"][data-skin="cream"] a{color:var(--text-primary)}
+html[data-theme="ember"][data-skin="cream"] a:hover{color:var(--accent)}
+/* the single accent: bronze. never on tints; state never by color alone [HIG] */
+
+/* the cursor glow — the page's one atmospheric layer [spec] */
+html[data-theme="ember"][data-skin="cream"] #cream-glow{position:fixed;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(560px circle at 50% 40%,var(--glow),transparent 70%)}
+html[data-theme="ember"][data-skin="cream"] body > *{position:relative;z-index:2}
+
+/* ---------- label grammar (gallery voice) ---------- */
+html[data-theme="ember"][data-skin="cream"] :is(.k,.eyebrow,.lbl-eyebrow,.ck,.mk,.lab-kicker,.chap-t,.qt-view,
+  .thought-tag,.case-hero__kicker,.lbl-cap,.lbl-meta,.hd-tag span,.st-k,.pl-k){
+  font-family:var(--font-mono);font-weight:400;font-size:11px;letter-spacing:var(--tracking-label);
+  text-transform:uppercase;color:var(--text-faint)}
+html[data-theme="ember"][data-skin="cream"] :is(.k,.eyebrow,.chap-t) {color:var(--accent)}
+
+/* ---------- nav: gallery registrar bar ---------- */
+html[data-theme="ember"][data-skin="cream"] #nav{background:var(--surface-page);border-bottom:1px solid var(--border-hairline);
+  box-shadow:none;padding:22px 40px}
+html[data-theme="ember"][data-skin="cream"] #nav.scrolled{background:rgba(247,244,238,.94);backdrop-filter:none}
+html[data-theme="ember"][data-skin="cream"] .nav-name{font-family:var(--font-mono);font-size:11px;
+  letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-primary)}
+html[data-theme="ember"][data-skin="cream"] .site-logo{filter:grayscale(1) brightness(.35) sepia(.35)}
+html[data-theme="ember"][data-skin="cream"] .nav-links a{font-family:var(--font-mono);font-size:11px;
+  letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-faint)}
+html[data-theme="ember"][data-skin="cream"] .nav-links a:hover{color:var(--accent)}
+html[data-theme="ember"][data-skin="cream"] .nav-links a[aria-current="true"]{color:var(--text-primary);
+  border-bottom:1px solid var(--text-primary);padding-bottom:2px}
+html[data-theme="ember"][data-skin="cream"] .nav-cta{font-family:var(--font-mono);font-size:11px;
+  letter-spacing:var(--tracking-label);text-transform:uppercase;background:none;
+  color:var(--text-primary);border:none;border-bottom:1px solid var(--text-primary);
+  border-radius:0;padding:0 0 2px}
+html[data-theme="ember"][data-skin="cream"] .nav-cta:hover{color:var(--accent);border-bottom-color:var(--accent)}
+html[data-theme="ember"][data-skin="cream"] .nav-book a{color:var(--accent)}
+html[data-theme="ember"][data-skin="cream"] .menu-toggle{border:1px solid var(--border-strong);border-radius:0}
+html[data-theme="ember"][data-skin="cream"] .menu-toggle span{background:var(--text-primary)}
+html[data-theme="ember"][data-skin="cream"] .nav-links.nav-open{background:var(--surface-page);
+  border:1px solid var(--border-strong);box-shadow:var(--frame-shadow)}
+
+/* ---------- buttons & CTAs: rules, not boxes; pill only as label [spec] ---------- */
+html[data-theme="ember"][data-skin="cream"] :is(.btn-a,.pill,.hd-case-btn,button.btn){
+  background:var(--surface-inverse);color:var(--text-on-inverse);border:none;border-radius:999px;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  transition:transform var(--dur-quick) var(--ease-gallery),box-shadow var(--dur-quick) var(--ease-gallery)}
+html[data-theme="ember"][data-skin="cream"] :is(.btn-a,.pill,.hd-case-btn):hover{transform:translateY(-2px);
+  box-shadow:0 14px 28px -14px rgba(32,29,24,.5);color:var(--text-on-inverse)}
+html[data-theme="ember"][data-skin="cream"] :is(.btn-a,.pill,.hd-case-btn):active{transform:translateY(1px)}
+html[data-theme="ember"][data-skin="cream"] :is(.btn-a-ghost,.hd-reset){background:none;color:var(--text-primary);
+  border:1px solid var(--border-strong);border-radius:999px}
+/* underline CTA (the quiet kind) */
+html[data-theme="ember"][data-skin="cream"] :is(.go,.lab-go,.rcpt-more,.contract-links a,.wr-more a,.contact-alt a,.lab-links a,.qt-src a){
+  font-family:var(--font-mono);font-size:11px;letter-spacing:var(--tracking-label);
+  text-transform:uppercase;color:var(--text-primary);text-decoration:none;
+  border-bottom:1px solid var(--text-primary);padding-bottom:2px}
+html[data-theme="ember"][data-skin="cream"] :is(.go,.lab-go,.rcpt-more,.contract-links a,.wr-more a,.contact-alt a,.lab-links a,.qt-src a):hover{
+  color:var(--accent);border-bottom-color:var(--accent)}
+
+/* ---------- cards & frames: paper, hairline, square; framed = double mat ---------- */
+html[data-theme="ember"][data-skin="cream"] :is(.card-p28,.card-p32,.qt,.memo,.thought-card,.lab-card,.hd-card,.rcpt,.errata,.ccd){
+  background:var(--surface-card);border:1px solid var(--border-strong);border-radius:0;
+  box-shadow:0 12px 28px -20px rgba(32,29,24,.28)}
+html[data-theme="ember"][data-skin="cream"] .frame, html[data-theme="ember"][data-skin="cream"] .fig-shot-live,
+html[data-theme="ember"][data-skin="cream"] figure.framed{background:var(--surface-card);
+  border:1px solid var(--border-strong);box-shadow:var(--frame-shadow),var(--frame-mat);
+  padding:26px;border-radius:0}
+
+/* ---------- reveals: rise 26-40px over ~1s, gallery ease [spec] ---------- */
+html[data-theme="ember"][data-skin="cream"] .reveal{opacity:0;transform:translateY(32px);
+  transition:opacity var(--dur-reveal) var(--ease-gallery),transform var(--dur-reveal) var(--ease-gallery)}
+html[data-theme="ember"][data-skin="cream"] .reveal.visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html[data-theme="ember"][data-skin="cream"] .reveal{opacity:1;transform:none;transition:none}
+  html[data-theme="ember"][data-skin="cream"] #cream-glow{display:none}}
+
+/* ---------- retired ember devices ---------- */
+html[data-theme="ember"][data-skin="cream"] :is(.chant,.chant-line){display:none}
+html[data-theme="ember"][data-skin="cream"] #doubt-ring{display:none}
+
+/* ============================================================
+   L4 — THE HOMEPAGE ON PARCHMENT (structure untouched: his pick)
+   ============================================================ */
+/* every act sits on parchment; acts separate by hairline rules, not grounds —
+   "rules, not boxes" [spec]. The museum wall is one continuous surface. */
+html[data-theme="ember"][data-skin="cream"] body.p-home,
+html[data-theme="ember"][data-skin="cream"] body.p-home main,
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section,
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero,
+html[data-theme="ember"][data-skin="cream"] body.p-home .receipts,
+html[data-theme="ember"][data-skin="cream"] body.p-home .work,
+html[data-theme="ember"][data-skin="cream"] body.p-home .who,
+html[data-theme="ember"][data-skin="cream"] body.p-home .contract,
+html[data-theme="ember"][data-skin="cream"] body.p-home .aiwork,
+html[data-theme="ember"][data-skin="cream"] body.p-home .voices,
+html[data-theme="ember"][data-skin="cream"] body.p-home .thoughts,
+html[data-theme="ember"][data-skin="cream"] body.p-home .contact{background:var(--surface-page)}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section{border-top:1px solid var(--border-hairline)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero{border-top:none}
+html[data-theme="ember"][data-skin="cream"] body.p-home .texture,
+html[data-theme="ember"][data-skin="cream"] body.p-home [class*="glowfield"]{display:none}
+
+/* hero — entrance register: display serif, bronze kicker, quiet meta */
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero h1{
+  font:400 clamp(44px,6.2vw,92px)/1.06 var(--font-display);letter-spacing:.005em}
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero h1 em{
+  font-style:italic;background:none;-webkit-text-fill-color:currentColor;color:var(--accent)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero .sub{
+  font:300 17px/1.7 var(--font-body);color:var(--text-muted);max-width:52ch}
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero .kicker,
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero .hk{color:var(--accent)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .cta-status{color:var(--text-faint);border:1px solid var(--border-hairline);border-radius:999px;background:var(--surface-card)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .cta-status .dot{background:var(--cream-positive)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .cred{color:var(--text-faint)}
+/* the film hangs as a framed work */
+html[data-theme="ember"][data-skin="cream"] body.p-home .vid-hero{background:var(--surface-card);
+  border:1px solid var(--border-strong);border-radius:0;box-shadow:var(--frame-shadow),var(--frame-mat);padding:18px}
+html[data-theme="ember"][data-skin="cream"] .vid-frame{position:relative;padding-top:56.25%;background:#141210;overflow:hidden}
+html[data-theme="ember"][data-skin="cream"] body.p-home .vid-hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;cursor:pointer}
+html[data-theme="ember"][data-skin="cream"] body.p-home .vid-hero-k{color:var(--accent)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .vid-hero-cap,
+html[data-theme="ember"][data-skin="cream"] body.p-home .vid-main figcaption{color:var(--text-faint);
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+
+/* act openers — the wall label above each room */
+html[data-theme="ember"][data-skin="cream"] .chap{border-bottom:1px solid var(--border-hairline);padding-bottom:20px}
+html[data-theme="ember"][data-skin="cream"] .chap-n{font-family:var(--font-display);font-weight:400;
+  color:var(--accent);font-size:clamp(44px,5vw,64px)}
+html[data-theme="ember"][data-skin="cream"] .chap-t{color:var(--text-faint)}
+html[data-theme="ember"][data-skin="cream"] .chap-rule{background:var(--border-hairline)}
+html[data-theme="ember"][data-skin="cream"] .chap-i{color:var(--text-muted);font:300 16px/1.7 var(--font-body)}
+html[data-theme="ember"][data-skin="cream"] .k-idx{color:var(--accent)}
+
+/* the measured results (receipts strip): plaques on the wall */
+html[data-theme="ember"][data-skin="cream"] body.p-home .rcell{background:var(--surface-card);
+  border:1px solid var(--border-strong);border-radius:0;box-shadow:0 12px 28px -20px rgba(32,29,24,.28)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .rcell b{font-family:var(--font-display);font-weight:500;color:var(--text-primary)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .rcell .was{color:var(--text-faint)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .rcell > span{color:var(--text-faint)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt-btn{background:none;border:none;color:var(--text-primary);
+  border-bottom:1px solid var(--text-primary);border-radius:0;font-family:var(--font-mono);
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:0 0 2px}
+html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt-btn:hover{color:var(--accent);border-bottom-color:var(--accent)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt{padding:26px}
+html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt-h{font-family:var(--font-display);font-weight:500}
+html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt-l{color:var(--text-faint);font-family:var(--font-mono);
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt-v{color:var(--text-body)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt-row{border-top:1px solid var(--border-hairline)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt-close{background:none;border:1px solid var(--border-strong);
+  border-radius:999px;color:var(--text-muted);font-family:var(--font-mono);font-size:10px;letter-spacing:.14em}
+
+/* the works (lanes + index): each lane is a hung work */
+html[data-theme="ember"][data-skin="cream"] body.p-home .lane{background:var(--surface-card);border:1px solid var(--border-strong);
+  border-left:none;border-right:none;border-radius:0;box-shadow:none;border-bottom:1px solid var(--border-hairline);
+  border-top:1px solid var(--border-hairline)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .lane:hover{background:var(--surface-sunken)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .lane h3{font-family:var(--font-display);font-weight:500}
+html[data-theme="ember"][data-skin="cream"] body.p-home .lane .meta{color:var(--text-faint)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .idx a,
+html[data-theme="ember"][data-skin="cream"] body.p-home .idx{border-color:var(--border-hairline);color:var(--text-body)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .idx h3{font-family:var(--font-display);font-weight:500;color:var(--text-primary)}
+
+/* the person act */
+html[data-theme="ember"][data-skin="cream"] body.p-home .who h2,
+html[data-theme="ember"][data-skin="cream"] body.p-home .whoband h2{font-family:var(--font-display)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .facts,
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero-face{border-color:var(--border-strong)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .memo{background:none;border:none;border-bottom:1px solid var(--border-hairline);box-shadow:none}
+html[data-theme="ember"][data-skin="cream"] body.p-home .memo .mk{color:var(--accent)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .memo h3{font-family:var(--font-display);font-weight:500}
+html[data-theme="ember"][data-skin="cream"] body.p-home .memo p{color:var(--text-body)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .errata{background:var(--surface-card);border:1px dashed var(--cream-negative)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .errata .ek{color:var(--cream-negative);border-color:var(--cream-negative)}
+
+/* the method act (was the cream peak — now the whole site is the peak;
+   the contract distinguishes itself as a FRAMED document) */
+html[data-theme="ember"][data-skin="cream"] body.p-home .contract{--card:var(--surface-card)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .contract .col{border-top:2px solid var(--accent)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .contract .ck{color:var(--accent)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd{box-shadow:var(--frame-shadow),var(--frame-mat);padding:26px}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-q{border:1px solid var(--border-strong);border-radius:0;
+  color:var(--text-primary);background:var(--surface-card);font-family:var(--font-mono);font-size:12px}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-q:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-ctr{background:var(--surface-sunken);border:1px solid var(--border-hairline);
+  border-radius:0;color:var(--text-body)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-ctr b{color:var(--text-primary)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-cap b{color:var(--cream-positive)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-idle,
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-note{color:var(--text-faint)}
+
+/* voices: the anchors band becomes a matted double frame on the wall */
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors{background:var(--surface-sunken);
+  border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors .qt{background:none;border:none;box-shadow:none}
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors .qt blockquote{
+  font:300 clamp(17px,1.5vw,21px)/1.6 var(--font-body);font-style:italic;color:var(--text-body)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors .qt-view{color:var(--accent)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors figcaption{border-top:1px solid var(--border-hairline)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt{border-top:2px solid var(--border-strong)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt blockquote{font-style:italic;color:var(--text-body)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt figcaption b{color:var(--text-primary);font-family:var(--font-body)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt figcaption{color:var(--text-faint)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt-src{color:var(--text-faint)}
+
+/* writing rows + contact (the visitors' book) */
+html[data-theme="ember"][data-skin="cream"] body.p-home .thought-card{background:none;border:none;
+  border-bottom:1px solid var(--border-hairline);box-shadow:none}
+html[data-theme="ember"][data-skin="cream"] body.p-home .thought-title{font-family:var(--font-display);font-weight:500}
+html[data-theme="ember"][data-skin="cream"] body.p-home .contact input,
+html[data-theme="ember"][data-skin="cream"] body.p-home .contact textarea{background:var(--surface-card);
+  border:1px solid var(--border-strong);border-radius:0;color:var(--text-primary);font-family:var(--font-body)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .contact input:focus,
+html[data-theme="ember"][data-skin="cream"] body.p-home .contact textarea:focus{border-color:var(--accent);outline:1px solid var(--accent)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .contact label{color:var(--text-faint)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .pass,
+html[data-theme="ember"][data-skin="cream"] body.p-home .pass-link{filter:none}
+
+/* footer: colophon */
+html[data-theme="ember"][data-skin="cream"] footer{background:var(--surface-page);border-top:1px solid var(--border-strong);color:var(--text-faint)}
+html[data-theme="ember"][data-skin="cream"] footer a,html[data-theme="ember"][data-skin="cream"] .footer-logo,
+html[data-theme="ember"][data-skin="cream"] .footer-back{color:var(--text-faint);font-family:var(--font-mono);
+  letter-spacing:.18em;text-transform:uppercase;font-size:10px}
+html[data-theme="ember"][data-skin="cream"] footer a:hover,html[data-theme="ember"][data-skin="cream"] .footer-back:hover{color:var(--accent)}
+html[data-theme="ember"][data-skin="cream"] .fresh{color:var(--text-faint)}
+
+/* ---------- L4b: the last ember grounds ---------- */
+/* act atmospheres (.field layers): parchment with a breath of gold, not black */
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero .field,
+html[data-theme="ember"][data-skin="cream"] body.p-home .close .field{background:
+  radial-gradient(1000px 520px at 90% -12%, rgba(214,178,120,.22), transparent 62%),
+  radial-gradient(760px 560px at -8% 112%, rgba(138,90,43,.10), transparent 62%),
+  var(--surface-page)}
+/* gradient display type → solid ink with bronze italics */
+html[data-theme="ember"][data-skin="cream"] .grad,
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero h1 em,
+html[data-theme="ember"][data-skin="cream"] body.p-home .close h2 .grad{
+  background:none;-webkit-background-clip:initial;background-clip:initial;
+  -webkit-text-fill-color:currentColor;color:var(--accent);font-style:italic}
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero h1,
+html[data-theme="ember"][data-skin="cream"] body.p-home .close h2{color:var(--text-primary)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero .sub,
+html[data-theme="ember"][data-skin="cream"] body.p-home .close .sub{color:var(--text-muted)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .close .sig{color:var(--accent)}
+/* CTAs: the ink pill and the underlined quiet action [spec] */
+html[data-theme="ember"][data-skin="cream"] .pill,
+html[data-theme="ember"][data-skin="cream"] [data-cta="send-role"],
+html[data-theme="ember"][data-skin="cream"] [data-cta="send-role"][data-location="hero"],
+html[data-theme="ember"][data-skin="cream"] body.p-home .btn-label{
+  background:var(--cream-ink);color:var(--cream-parchment);border:1px solid var(--cream-ink);
+  border-radius:999px;font-family:var(--font-mono);letter-spacing:.14em;text-transform:uppercase}
+html[data-theme="ember"][data-skin="cream"] .pill:hover,
+html[data-theme="ember"][data-skin="cream"] body.p-home .btn-label:hover,
+html[data-theme="ember"][data-skin="cream"] [data-cta="send-role"]:hover{
+  background:var(--accent-hover);border-color:var(--accent-hover);color:var(--cream-parchment)}
+html[data-theme="ember"][data-skin="cream"] .pill-ghost,
+html[data-theme="ember"][data-skin="cream"] .pill.quiet{
+  background:none;color:var(--text-primary);border:none;border-radius:0;
+  border-bottom:1px solid var(--text-primary);padding-left:0;padding-right:0}
+html[data-theme="ember"][data-skin="cream"] .pill-ghost:hover,
+html[data-theme="ember"][data-skin="cream"] .pill.quiet:hover{color:var(--accent);border-bottom-color:var(--accent);background:none}
+/* the boarding pass: already a paper artifact — its red becomes bronze */
+html[data-theme="ember"][data-skin="cream"] body.p-home .pass{
+  --cream:var(--cream-paper);--cream-ink:#201d18;--cream-mut:#5c574c;--cream-red:var(--cream-bronze);
+  box-shadow:var(--frame-shadow);border:1px solid var(--border-strong)}
+/* contract widget: the terminal panel prints on paper */
+html[data-theme="ember"][data-skin="cream"] body.p-home .demo-slot .ccd,
+html[data-theme="ember"][data-skin="cream"] .ccd{background:var(--surface-card);
+  border:1px solid var(--border-strong);border-radius:0;box-shadow:var(--frame-shadow),var(--frame-mat);padding:26px}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-cap b{color:var(--cream-positive)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-ctr{background:var(--surface-sunken);
+  border:1px solid var(--border-hairline);border-radius:0;color:var(--text-body)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-ctr b{color:var(--text-primary)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-q{
+  background:var(--surface-card);border:1px solid var(--border-strong);border-radius:0;color:var(--text-primary)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-q:hover{
+  background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-ans{color:var(--text-body)}
+
+/* ---------- L4c: out-scope ember's body-level literal palette ----------
+   ember.css re-declares its dark tokens on body.p-home (closer scope beats
+   the html-level bridge). Re-bridge at body scope with the skin attribute. */
+html[data-theme="ember"][data-skin="cream"] body,
+html[data-theme="ember"][data-skin="cream"] body.p-home{
+  --bg:var(--surface-page);--bg-soft:var(--surface-sunken);--bg-card:var(--surface-card);
+  --bg0:var(--surface-page);--bg1:var(--surface-page);--card:var(--surface-card);
+  --line:var(--border-hairline);--border:var(--border-hairline);--hairline:var(--border-hairline);
+  --border-accent:var(--cream-linen);
+  --ink:var(--text-primary);--ink-muted:var(--text-muted);--ink-dim:var(--text-faint);
+  --mut:var(--text-muted);--dim:var(--text-faint);
+  --ember:var(--cream-bronze);--violet:var(--cream-bronze);--amber:var(--cream-bronze);
+  --rose:var(--cream-negative);--gold:var(--cream-bronze);--gold-dark:var(--cream-bronze-deep);
+  --gold-light:var(--cream-gold);
+  --err:var(--cream-negative);--warn:var(--cream-caution);--ok:var(--cream-positive);
+  --cream:var(--cream-paper);
+  --g-hot:var(--cream-ink);--cta-ink:var(--cream-parchment)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .close::before{background:
+  radial-gradient(900px 520px at 8% -10%, rgba(214,178,120,.20), transparent 62%),
+  radial-gradient(800px 520px at 105% 108%, rgba(138,90,43,.08), transparent 62%)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .form-slot input,
+html[data-theme="ember"][data-skin="cream"] body.p-home .form-slot textarea{
+  background:var(--surface-card);color:var(--text-primary);border:1px solid var(--border-strong);
+  border-radius:0;font-family:var(--font-body)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .form-slot input::placeholder,
+html[data-theme="ember"][data-skin="cream"] body.p-home .form-slot textarea::placeholder{color:var(--text-faint)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .form-slot :is(input,textarea):focus{
+  border-color:var(--accent);outline:1px solid var(--accent)}
+
+/* per-page heat accents collapse to the single bronze [spec: one accent] */
+html[data-theme="ember"][data-skin="cream"] body{--heat:var(--cream-bronze);--heat2:var(--cream-gold)}
+
+/* ---------- L5: subpage grounds ---------- */
+/* hero atmospheres across case studies / patterns / lab / writing / hire:
+   the same parchment-and-gold breath the homepage entrance uses */
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] .case-hero::before,
+html[data-theme="ember"][data-skin="cream"] :is(body.p-patterns main > section:first-of-type,
+  body[class*="p-lab"] .lab-hero, body.p-fit .lab-hero, body[class*="p-writing"] header,
+  body.p-hire .hire-head)::before{background:
+  radial-gradient(900px 460px at 88% -14%, rgba(214,178,120,.24), transparent 62%),
+  radial-gradient(700px 500px at -6% 112%, rgba(138,90,43,.10), transparent 62%),
+  var(--surface-page)}
+/* hero ink on the light ground */
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] .case-hero h1{color:var(--text-primary)}
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] .case-hero__hook{color:var(--text-muted)}
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] .case-hero .hand{color:var(--accent)}
+/* paper artifacts (vslip claim ticket, vplate) keep their grammar, bronze accents */
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] .vslip{
+  --cream:var(--cream-paper);--cream-ink:#201d18;--cream-mut:#5c574c;--cream-red:var(--cream-bronze);
+  box-shadow:var(--frame-shadow);border:1px solid var(--border-strong)}
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] .vplate{
+  box-shadow:var(--frame-shadow);border:1px solid var(--border-strong);border-radius:0}
+/* dark instrument panels (hd-card etc.) print on paper under the skin */
+html[data-theme="ember"][data-skin="cream"] .hd-card{
+  background:var(--surface-card);border:1px solid var(--border-strong);border-radius:0;
+  box-shadow:var(--frame-shadow)}
+html[data-theme="ember"][data-skin="cream"] .hd-case-btn,
+html[data-theme="ember"][data-skin="cream"] body.p-home .form-slot button,
+html[data-theme="ember"][data-skin="cream"] body.p-fit .btn-primary{
+  background:var(--cream-ink);color:var(--cream-parchment);border:1px solid var(--cream-ink);border-radius:999px}
+
+/* .act-cream: ember re-pointed these classic-cream acts to its dark stage;
+   under the skin they return to the gallery's own paper */
+html[data-theme="ember"][data-skin="cream"] .act-cream{
+  --bg:var(--surface-sunken);--bg-card:var(--surface-card);
+  --ink:var(--text-primary);--ink-muted:var(--text-muted);
+  --gold:var(--cream-bronze);--gold-dark:var(--cream-bronze-deep);--gold-light:var(--cream-gold);
+  --border:var(--border-hairline);--border-accent:var(--cream-linen);
+  background:var(--surface-sunken);color:var(--text-primary)}
+
+/* the method diagram (inline SVG, own dark plate): reprinted on paper.
+   the SVG's internal #art-index-1 rules cascade with the page, so these
+   carry the id to outrank them. */
+html[data-theme="ember"][data-skin="cream"] #art-index-1 > rect[fill="#0A0A0A"]{fill:var(--cream-paper)}
+html[data-theme="ember"][data-skin="cream"] #art-index-1 .node{fill:var(--cream-paper)}
+html[data-theme="ember"][data-skin="cream"] #art-index-1 :is(.ttl,.mv,.qn){fill:var(--cream-ink)}
+html[data-theme="ember"][data-skin="cream"] #art-index-1 :is(.act,.quo){fill:var(--cream-bronze)}
+html[data-theme="ember"][data-skin="cream"] #art-index-1 .cap{fill:var(--cream-taupe)}
+html[data-theme="ember"][data-skin="cream"] #art-index-1 [stroke="#D4A85E"]{stroke:var(--cream-bronze)}
+html[data-theme="ember"][data-skin="cream"] #art-index-1 [fill="#D4A85E"]{fill:var(--cream-bronze)}
+html[data-theme="ember"][data-skin="cream"] .process-fig{background:var(--surface-card);
+  border:1px solid var(--border-strong);box-shadow:var(--frame-shadow)}
+
+/* ---------- L6 (GENERATED from ember.css accent literals — regenerate, don't hand-edit) ---------- */
+html[data-theme="ember"][data-skin="cream"] .hd-card::after{background:radial-gradient(circle,rgba(138,90,43,.28),transparent 70%)}
+html[data-theme="ember"][data-skin="cream"] .hd-preset:hover{background:rgba(138,90,43,.07)}
+html[data-theme="ember"][data-skin="cream"] .ccd::after{background:radial-gradient(circle,rgba(138,90,43,.25),transparent 70%)}
+html[data-theme="ember"][data-skin="cream"] #how-i-lead::before{background:radial-gradient(circle at 40% 40%, rgba(138,90,43,.18), transparent 70%)}
+html[data-theme="ember"][data-skin="cream"] #contact::before{background:radial-gradient(900px 520px at 8% -10%, rgba(214,178,120,.30), transparent 62%),
+  radial-gradient(800px 520px at 105% 108%, rgba(138,90,43,.32), transparent 62%)}
+html[data-theme="ember"][data-skin="cream"] .ccd-cap b{color:var(--cream-positive)}
+html[data-theme="ember"][data-skin="cream"] .ccd-q:hover{background:rgba(214,178,120,.1)}
+html[data-theme="ember"][data-skin="cream"] .ccd-tag--in{color:var(--cream-positive);border-color:var(--cream-positive)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .pill-line{border:1.5px solid rgba(138,90,43,.55)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero .field{background:radial-gradient(1000px 520px at 90% -12%, rgba(138,90,43,.5), transparent 62%),
+  radial-gradient(760px 560px at -8% 112%, rgba(214,178,120,.4), transparent 62%),
+  #120B14}
+html[data-theme="ember"][data-skin="cream"] body.p-home .demo::after{background:radial-gradient(circle,rgba(138,90,43,.3),transparent 70%)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .demo .q{border:1px solid rgba(214,178,120,.5)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .close .field{background:radial-gradient(900px 520px at 8% -10%, rgba(214,178,120,.42), transparent 62%),
+  radial-gradient(800px 520px at 105% 108%, rgba(138,90,43,.45), transparent 62%),
+  linear-gradient(200deg,#1E1022 0%,#120B14 60%)}
+html[data-theme="ember"][data-skin="cream"] .hd-card::after{background:radial-gradient(circle,rgba(138,90,43,.28),transparent 70%)}
+html[data-theme="ember"][data-skin="cream"] .hd-preset:hover{background:rgba(138,90,43,.08)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-q{border:1px solid rgba(214,178,120,.5)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-q:hover{background:rgba(214,178,120,.1)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-tag--in{color:var(--cream-positive);border:1.5px solid var(--cream-positive)}
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] .case-hero::before{background:radial-gradient(900px 460px at 88% -14%, color-mix(in srgb, var(--heat) 42%, transparent), transparent 62%),
+    radial-gradient(700px 500px at -6% 112%, rgba(214,178,120,.34), transparent 62%),
+    linear-gradient(160deg,#1E1022 0%,#120B14 58%,#190D10 100%)}
+html[data-theme="ember"][data-skin="cream"] :is(body.p-patterns main > section:first-of-type, body[class*="p-lab"] .lab-hero, body.p-fit .lab-hero, body[class*="p-writing"] header, body.p-hire .hire-head)::before{background:radial-gradient(900px 440px at 88% -16%, color-mix(in srgb, var(--heat) 34%, transparent), transparent 62%),
+    radial-gradient(700px 480px at -6% 112%, rgba(214,178,120,.26), transparent 62%),
+    linear-gradient(160deg,#1E1022 0%,#120B14 58%,#190D10 100%)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .seam, html[data-theme="ember"][data-skin="cream"] body.p-home .seam-up{background:linear-gradient(90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--heat, var(--cream-bronze)) 55%, transparent) 18%,
+    color-mix(in srgb, var(--heat, var(--cream-bronze)) 55%, transparent) 82%,
+    transparent 100%)}
+html[data-theme="ember"][data-skin="cream"] body.p-home :is(.seam,.seam-up)::after{background:linear-gradient(to top,
+    color-mix(in srgb, var(--heat, var(--cream-bronze)) 9%, transparent), transparent)}
+html[data-theme="ember"][data-skin="cream"] .thesis{border:1px solid rgba(214,178,120,.4);background:linear-gradient(160deg,rgba(214,178,120,.07),rgba(138,90,43,.05))}
+html[data-theme="ember"][data-skin="cream"] .thesis .t-l{color:var(--cream-bronze)}
+html[data-theme="ember"][data-skin="cream"] .thesis p em{color:var(--cream-bronze)}
+html[data-theme="ember"][data-skin="cream"] .counter{border-left:3px solid var(--cream-negative);background:rgba(150,54,31,.05)}
+html[data-theme="ember"][data-skin="cream"] .counter .c-l{color:var(--cream-negative)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt{border-top:3px solid var(--heat,var(--cream-bronze))}
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt-view{color:var(--heat,var(--cream-bronze))}
+html[data-theme="ember"][data-skin="cream"] .lstep-hot{border-color:var(--cream-bronze)}
+html[data-theme="ember"][data-skin="cream"] .lback{color:var(--cream-bronze);border-top:1px dashed rgba(138,90,43,.4)}
+html[data-theme="ember"][data-skin="cream"] body.p-case-studies-planit .shot-rail li{border-left:2px solid rgba(138,90,43,.45)}
+html[data-theme="ember"][data-skin="cream"] body.p-lab .dsg-heats span{color:var(--cream-positive)}
+html[data-theme="ember"][data-skin="cream"] body.p-fit .fit-can .fit-col-k{color:var(--cream-positive)}
+html[data-theme="ember"][data-skin="cream"] body.p-fit .fit-can li::before{color:var(--cream-positive)}
+html[data-theme="ember"][data-skin="cream"] body.p-fit .fit-group--doc .fit-group-n{color:var(--cream-positive)}
+html[data-theme="ember"][data-skin="cream"] [data-cta="see-work"][data-location="hero"]{border:1.5px solid rgba(138,90,43,.55)}
+html[data-theme="ember"][data-skin="cream"] .vid-note-t a{color:var(--amber,var(--cream-bronze))}
+html[data-theme="ember"][data-skin="cream"] .chap-ember .chap-n{color:var(--cream-bronze)}
+html[data-theme="ember"][data-skin="cream"] .hd-face{border:1.5px solid rgba(214,178,120,.5)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .cta-status i{background:var(--cream-positive)}
+html[data-theme="ember"][data-skin="cream"] .chant .cl-1 b{color:var(--cream-bronze)}
+html[data-theme="ember"][data-skin="cream"] body[class*="p-patterns"] .card-p28 .pat-n{color:var(--gold,var(--cream-bronze))}
+
+/* L6b — homepage stragglers with local literal accents */
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt-view,
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors .qt:first-child .qt-view,
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors .qt:last-child .qt-view{color:var(--cream-bronze)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .idx.x1,
+html[data-theme="ember"][data-skin="cream"] body.p-home .idx.x2,
+html[data-theme="ember"][data-skin="cream"] body.p-home .idx.x3,
+html[data-theme="ember"][data-skin="cream"] body.p-home .idx.x4{--lc:var(--cream-bronze);--lt:rgba(214,178,120,.14)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .pass-cta{color:var(--cream-bronze-deep)}
