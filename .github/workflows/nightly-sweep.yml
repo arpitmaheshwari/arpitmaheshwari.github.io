@@ -84,6 +84,20 @@ jobs:
           done
           curl -sf -o /dev/null http://localhost:8000/ || { echo "::error::server never came up"; exit 1; }
 
+      # TEMPORARY, 2026-09-05. The ten homepage contrast "failures" this job reports are
+      # false: every authored pair measures 6.4:1 to 10.7:1 from the stylesheet, and every
+      # ratio reported here is roughly half that. Two fixes did not clear it and a third was
+      # reverted for blinding 30 elements. Standing hypothesis: the audit's settle step races
+      # document.fonts.ready against a 4000ms deadline, and a cold runner that loses it
+      # captures the page in FALLBACK faces — different glyph coverage, so the un-blend that
+      # recovers ink from coverage returns a colour nobody authored.
+      #
+      # Runs BEFORE the sweep, so it reports the same cold-cache state the sweep will see.
+      # Non-blocking: a diagnosis must never be able to redden a build. REMOVE once answered.
+      - name: Diagnose — font state on the runner
+        continue-on-error: true
+        run: python3 tools/runner-diagnose.py process/
+
       - name: Sweeps (from tools/gates.json)
         # Re-fired 2026-09-05 to verify the two contrast fixes on Linux: the
         # ALPHA_FLOOR guard against noisy un-blends, and sr-only recognition. Both
