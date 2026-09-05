@@ -36,7 +36,6 @@
   /* frame tilt on hover — max 7/9 degrees [spec]; pointer-fine only */
   if (!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
   document.querySelectorAll('.frame, .fig-shot-live, figure.framed').forEach(function (f) {
-    f.style.transition = 'transform .7s cubic-bezier(.16,1,.3,1), box-shadow .7s';
     f.addEventListener('pointermove', function (e) {
       var r = f.getBoundingClientRect();
       var rx = ((e.clientY - r.top) / r.height - 0.5) * -7;

@@ -97,7 +97,11 @@ html[data-theme="ember"][data-skin="cream"]{
   --surface-page:var(--cream-parchment); --surface-card:var(--cream-paper);
   --surface-sunken:#f0ece2; --surface-inverse:var(--cream-ink);
   --text-primary:var(--cream-ink); --text-body:var(--cream-umber);
-  --text-muted:var(--cream-taupe); --text-faint:var(--cream-stone);
+  --text-muted:var(--cream-taupe);
+  /* faint TEXT departs from spec stone #8c8676 (3.3:1, fails AA at label sizes);
+     #6f695b holds 4.6:1+ on parchment, paper and sunken [audit 2026-09-06].
+     stone stays for decorative, non-text use. */
+  --text-faint:#6f695b;
   --text-on-inverse:#f2eddf;
   --accent:var(--cream-bronze); --accent-hover:var(--cream-bronze-deep);
   --accent-soft:rgba(138,90,43,.10); --glow:rgba(214,178,120,.18);
@@ -404,7 +408,7 @@ html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-ctr{background:var(
   border:1px solid var(--border-hairline);border-radius:0;color:var(--text-body)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-ctr b{color:var(--text-primary)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-q{
-  background:var(--surface-card);border:1px solid var(--border-strong);border-radius:0;color:var(--text-primary)}
+  background:var(--surface-card);border:1px solid var(--border-strong);border-radius:0;color:var(--text-primary);line-height:1.5}
 html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-q:hover{
   background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .ccd-ans{color:var(--text-body)}
@@ -560,3 +564,21 @@ html[data-theme="ember"][data-skin="cream"] body.p-home .idx.x2,
 html[data-theme="ember"][data-skin="cream"] body.p-home .idx.x3,
 html[data-theme="ember"][data-skin="cream"] body.p-home .idx.x4{--lc:var(--cream-bronze);--lt:rgba(214,178,120,.14)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .pass-cta{color:var(--cream-bronze-deep)}
+
+/* one title register: every h3 speaks 500 (Cormorant title weight [spec]) */
+html[data-theme="ember"][data-skin="cream"] main h3{font-weight:500}
+html[data-theme="ember"][data-skin="cream"] body.p-home #h-lead{font-weight:500}
+html[data-theme="ember"][data-skin="cream"] body.p-home .contract .col h3{font-weight:500}
+@media (hover:hover) and (pointer:fine){
+  html[data-theme="ember"][data-skin="cream"] :is(.frame,.fig-shot-live,figure.framed){
+    transition:transform .7s var(--ease-gallery),box-shadow .7s}
+}
+@media (prefers-reduced-motion:reduce){
+  html[data-theme="ember"][data-skin="cream"] :is(.frame,.fig-shot-live,figure.framed){transition:none}
+}
+
+/* the glow layering flattened stacking to z:2 per body child; the banner
+   (fixed nav inside) must stay above later siblings like .page-head */
+html[data-theme="ember"][data-skin="cream"] body > [role="banner"],
+html[data-theme="ember"][data-skin="cream"] body > header,
+html[data-theme="ember"][data-skin="cream"] body > nav{z-index:50}
