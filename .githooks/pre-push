@@ -194,13 +194,14 @@ echo "pre-push: starting the browser gates in parallel…"
 # EXACT divergence this whole manifest exists to prevent — the hook and CI running the same
 # tool under the same name with different arguments — and I reintroduced it by leaving this
 # gate runner:false without pointing it at the single list.
+# --scope=... in the EQUALS form. IMG_SCOPE is literally "--all" when a shared asset
+# changed, and `--scope --all` makes argparse read the value as a flag and exit with a usage
+# error. Note the comments sit ABOVE the command, not inside it: a comment line between two
+# backslash-continued lines ENDS the continuation, and the leftover `--scope=--all` then ran
+# as its own command — "line 203: --scope=--all: command not found".
 bg_gate contrast \
   python3 tools/run-gates.py --stage pre-push --only contrast-audit --port "$PORT" \
-    # --scope=... in the EQUALS form. IMG_SCOPE is literally "--all" when a shared
-    # asset changed, and `--scope --all` makes argparse read the value as a flag and
-    # exit with a usage error — which the hook then reported as "a contrast failure
-    # (or a broken checker)". It was the checker.
-    --scope="$IMG_SCOPE"
+  --scope="$IMG_SCOPE"
 
 
 # Canon lint first — it is pure text, costs under a second, and catches the failure that actually

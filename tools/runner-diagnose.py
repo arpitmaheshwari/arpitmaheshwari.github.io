@@ -37,6 +37,19 @@ CH = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS
 BASE = os.environ.get("BASE", "http://localhost:8000")
 PATH = sys.argv[1] if len(sys.argv) > 1 else "process/"
 
+FONT_REPORT = """(async()=>{const t0=performance.now();
+ let ready=false; try{ await document.fonts.ready; ready=true; }catch(e){}
+ const ms=Math.round(performance.now()-t0);
+ const pick=t=>[...document.querySelectorAll('*')]
+   .find(x=>(x.textContent||'').trim().startsWith(t) && x.children.length===0);
+ const els=['What the two weeks held','Where the million went','Send me the role']
+   .map(t=>{const e=pick(t); if(!e) return {t:t, missing:true};
+     const cs=getComputedStyle(e);
+     return {t:t.slice(0,22), font:cs.fontFamily.split(',')[0].replace(/"/g,''),
+             size:cs.fontSize, weight:cs.fontWeight, color:cs.color};});
+ return JSON.stringify({fontsReadyMs:ms, ready, status:document.fonts.status,
+   faces:document.fonts.size, els});})()"""
+
 REPORT = """(()=>{const h=document.querySelector('h1');
  const sheets=[...document.styleSheets].map(s=>{
    let n=-1; try{ n=s.cssRules.length; }catch(e){ n='BLOCKED:'+e.name; }
@@ -110,6 +123,31 @@ def main():
     v = subprocess.run([CH, '--version'], capture_output=True, text=True).stdout.strip()
     lines.append(f'chrome: {v}  ({CH})')
     lines.append(f'platform: {sys.platform}')
+
+    # FONT STATE. The audit's settle step races document.fonts.ready against a 4000ms
+    # deadline. If a cold runner loses that race the page is captured with FALLBACK faces,
+    # whose glyph coverage differs from the real ones — and the un-blend that recovers ink
+    # from coverage then returns a colour nobody authored. That is the standing hypothesis
+    # for ten homepage "failures" whose authored pairs measure 6.4:1 to 10.7:1.
+    try:
+        b = cdp.Browser()
+        try:
+            b.viewport(1440, 900, False)
+            b.navigate(f"{BASE}/", settle=0.2)
+            lines.append('')
+            lines.append('C font state at settle time')
+            d = json.loads(b.eval(FONT_REPORT, await_promise=True))
+            lines.append(f"    fonts.ready {d['fontsReadyMs']}ms  status={d['status']}  "
+                         f"faces={d['faces']}  resolved={d['ready']}")
+            for e in d['els']:
+                lines.append(f"    {e}")
+        finally:
+            try:
+                b.close()
+            except Exception:
+                pass
+    except Exception as e:
+        lines.append(f'    FONT PROBE FAILED {type(e).__name__}: {e}')
 
     for name, fn in (('A dump-dom + virtual-time (the failing driver)', via_dump_dom),
                      ('B CDP (every other gate)', via_cdp)):
