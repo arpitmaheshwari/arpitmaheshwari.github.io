@@ -76,6 +76,13 @@ def off_scale_spacing(root):
             bad[v] += 1; where[v].add('book/portfolio.js')
     # print documents — 0.5mm grid; <1mm are hairlines and exempt
     for f in sorted(glob.glob(os.path.join(root, 'portfolio-sources', '*.html'))):
+        # Scratch files: gates plant temp .html into the docroot during their
+        # calibration (__canon_canary_a.html, __al_*.html, __tr.html). If the
+        # owning gate deletes one between this glob and the open, this gate dies
+        # with FileNotFoundError mid-push — which is how image-dimension-check
+        # broke a push on 2026-09-05. Every scratch name carries the __ prefix.
+        if os.path.basename(f).startswith('__'):
+            continue
         s = open(f, encoding='utf-8').read()
         for m in re.finditer(SPACE_PROPS + r'\s*:\s*([^;"}]+)', s):
             for tok in re.findall(r'(?<![\w.-])([\d.]+)mm', m.group(1)):

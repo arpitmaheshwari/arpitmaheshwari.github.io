@@ -51,6 +51,13 @@ def walk(node, path, rel):
 
 blocks = 0
 for f in sorted(glob.glob(os.path.join(ROOT, '**/*.html'), recursive=True)):
+    # Scratch files: gates plant temp .html into the docroot during their
+    # calibration (__canon_canary_a.html, __al_*.html, __tr.html). If the
+    # owning gate deletes one between this glob and the open, this gate dies
+    # with FileNotFoundError mid-push — which is how image-dimension-check
+    # broke a push on 2026-09-05. Every scratch name carries the __ prefix.
+    if os.path.basename(f).startswith('__'):
+        continue
     rel = os.path.relpath(f, ROOT)
     if rel.startswith(SKIP):
         continue

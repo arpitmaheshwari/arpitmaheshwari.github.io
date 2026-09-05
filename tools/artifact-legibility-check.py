@@ -88,6 +88,13 @@ document.title='R:'+JSON.stringify({measured,items:out});
 def pages_with_artifacts():
     out = []
     for p in sorted(DOCROOT.rglob("*.html")):
+                # Scratch files: gates plant temp .html into the docroot during calibration
+        # (__canon_canary_a.html, __al_*.html, __tr.html). If the owning gate deletes one
+        # between this glob and the open, this gate dies with FileNotFoundError mid-push —
+        # how image-dimension-check broke a push on 2026-09-05. Scratch names use __.
+        if p.name.startswith("__"):
+            continue
+
         s = str(p)
         if any(x in s for x in ("node_modules", ".claude/", ".git/", "prototypes/",
                                 "portfolio-sources", "__", "backup")):

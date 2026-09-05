@@ -41,6 +41,13 @@ def discover_sheets():
     """
     found = set()
     for p in pathlib.Path(".").rglob("*.html"):
+                # Scratch files: gates plant temp .html into the docroot during calibration
+        # (__canon_canary_a.html, __al_*.html, __tr.html). If the owning gate deletes one
+        # between this glob and the open, this gate dies with FileNotFoundError mid-push —
+        # how image-dimension-check broke a push on 2026-09-05. Scratch names use __.
+        if p.name.startswith("__"):
+            continue
+
         rel = p.as_posix()
         if rel.startswith((".", "node_modules", "prototypes/", "portfolio-sources/", "tests/")):
             continue
