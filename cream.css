@@ -496,7 +496,9 @@ html[data-theme="ember"][data-skin="cream"] #art-index-1 [fill="#D4A85E"]{fill:v
 html[data-theme="ember"][data-skin="cream"] .process-fig{background:var(--surface-card);
   border:1px solid var(--border-strong);box-shadow:var(--frame-shadow)}
 
-/* ---------- L6 (GENERATED from ember.css color literals — regenerate, don't hand-edit) ---------- */
+/* ---------- L6 (GENERATED from ember.css color literals; a declaration with ANY
+   unmapped dark literal is DROPPED, never shipped half-mapped; the mapper's own
+   bronze/ink outputs are whitelisted from that check) ---------- */
 html[data-theme="ember"][data-skin="cream"] .hd-card{box-shadow:0 24px 60px rgba(32,29,24,.12)}
 html[data-theme="ember"][data-skin="cream"] .hd-card::after{background:radial-gradient(circle,rgba(138,90,43,.28),transparent 70%)}
 html[data-theme="ember"][data-skin="cream"] .hd-preset:hover{background:rgba(138,90,43,.07)}
@@ -597,12 +599,9 @@ html[data-theme="ember"][data-skin="cream"] .chant{background:var(--bg-soft,var(
 html[data-theme="ember"][data-skin="cream"] .chant .cl-1 b{color:var(--cream-bronze)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .vid-hero .vid-frame{box-shadow:0 24px 70px rgba(32,29,24,.12)}
 html[data-theme="ember"][data-skin="cream"] body[class*="p-patterns"] .card-p28 .pat-n{color:var(--gold,var(--cream-bronze))}
-html[data-theme="ember"][data-skin="cream"] body.p-home .receipts, html[data-theme="ember"][data-skin="cream"] body.p-home .work{background:linear-gradient(180deg,#221218,var(--surface-sunken))}
-html[data-theme="ember"][data-skin="cream"] body.p-home .who{background:linear-gradient(180deg,#211531,var(--surface-sunken))}
-html[data-theme="ember"][data-skin="cream"] body.p-home .aiwork{background:linear-gradient(180deg,#241713,var(--surface-sunken))}
-html[data-theme="ember"][data-skin="cream"] body.p-home .voices, html[data-theme="ember"][data-skin="cream"] body.p-home .thoughts{background:linear-gradient(180deg,#241320,var(--surface-sunken))}
+html[data-theme="ember"][data-skin="cream"] body.p-home .who{background:linear-gradient(180deg,var(--surface-page),var(--surface-sunken))}
 html[data-theme="ember"][data-skin="cream"] body.p-home .contract .ccd{background:var(--surface-card);border-color:rgba(32,29,24,.14)}
-html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors{background:linear-gradient(180deg,#2B1522,var(--surface-sunken));border-top:1px solid rgba(32,29,24,.1);border-bottom:1px solid rgba(32,29,24,.1)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors{border-top:1px solid rgba(32,29,24,.1);border-bottom:1px solid rgba(32,29,24,.1)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors figcaption{border-top:1px solid rgba(32,29,24,.14)}
 
 /* L6b — homepage stragglers with local literal accents */
@@ -639,3 +638,25 @@ html[data-theme="ember"][data-skin="cream"] body.p-home .pill.pill-line{
   background:none;color:var(--text-primary);border:1px solid var(--border-strong);border-radius:999px}
 html[data-theme="ember"][data-skin="cream"] .pill-line:hover{
   background:var(--accent-soft);border-color:var(--accent);color:var(--accent-hover)}
+
+/* ---------- L7: ID-scoped ember washes + fully-declared chips ---------- */
+/* ember's ID pseudo washes outrank any class rule; named here at the same rank */
+html[data-theme="ember"][data-skin="cream"] #how-i-lead::before{
+  background:radial-gradient(circle at 40% 40%, rgba(214,178,120,.20), transparent 70%)}
+html[data-theme="ember"][data-skin="cream"] #contact::before{background:
+  radial-gradient(900px 520px at 8% -10%, rgba(214,178,120,.20), transparent 62%),
+  radial-gradient(800px 520px at 105% 108%, rgba(138,90,43,.08), transparent 62%)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .demo::after{
+  background:radial-gradient(circle,rgba(214,178,120,.28),transparent 70%)}
+html[data-theme="ember"][data-skin="cream"] .thesis{
+  border:1px solid var(--cream-linen);border-radius:0;
+  background:linear-gradient(160deg,rgba(214,178,120,.10),rgba(138,90,43,.04))}
+/* the availability chip declares ALL of its critical properties (lesson 4/11):
+   its own padding, type, ink and ground — nothing left to inheritance */
+html[data-theme="ember"][data-skin="cream"] body.p-home .cta-status{
+  display:inline-flex;align-items:center;gap:8px;padding:12px 20px;line-height:1;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text-muted);background:var(--surface-card);
+  border:1px solid var(--border-strong);border-radius:999px}
+html[data-theme="ember"][data-skin="cream"] body.p-home .cta-status i{
+  width:8px;height:8px;border-radius:50%;background:var(--cream-positive);flex:0 0 auto}
