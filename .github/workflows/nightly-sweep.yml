@@ -109,6 +109,14 @@ jobs:
           python3 tools/alpha-probe.py "What the two weeks held" || true
           python3 tools/alpha-probe.py "Send me the role" || true
 
+      # Re-fired 2026-09-05 (third time) to read the ten homepage contrast reports
+      # through the new CAMERA CALIBRATION. The audit now refuses to grade unless the
+      # captured frame is the same size as the emulated viewport, and reports a
+      # scrollTo that does not scroll. Three outcomes, all of them informative:
+      #   * a refusal naming the frame size -> the camera was the defect, as suspected
+      #   * the ten clear                   -> it was, and the assertion also fixed it
+      #   * the ten persist, calibration green -> the camera is EXONERATED, and the
+      #     next suspect is which rect the audit believes each element occupies
       - name: Sweeps (from tools/gates.json)
         # Re-fired 2026-09-05 to verify the two contrast fixes on Linux: the
         # ALPHA_FLOOR guard against noisy un-blends, and sr-only recognition. Both
