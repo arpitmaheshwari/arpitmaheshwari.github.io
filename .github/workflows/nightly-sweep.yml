@@ -98,6 +98,17 @@ jobs:
         continue-on-error: true
         run: python3 tools/runner-diagnose.py process/
 
+      # THE ALPHA PROBE. Fonts are ruled out (54ms, real faces, authored colours), so what
+      # is left is the recovery arithmetic. Locally this prints alpha=1.000 on the covered
+      # pixels, A equal to the authored colour, and ratio 7.24 — the true value. If the
+      # runner prints a lower alpha, or an A that is not the authored colour, that is the
+      # answer. Two elements: the worst reported (2.40:1) and the CTA on its gradient pill.
+      - name: Diagnose — alpha recovery on the runner
+        continue-on-error: true
+        run: |
+          python3 tools/alpha-probe.py "What the two weeks held" || true
+          python3 tools/alpha-probe.py "Send me the role" || true
+
       - name: Sweeps (from tools/gates.json)
         # Re-fired 2026-09-05 to verify the two contrast fixes on Linux: the
         # ALPHA_FLOOR guard against noisy un-blends, and sr-only recognition. Both

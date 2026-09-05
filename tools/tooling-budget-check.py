@@ -27,7 +27,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #   2026-09-04  11,000  the architecture review's own fixes: gatelib, run-gates, the
 #                       manifest runner, ci-deps/ci-claim/jsonld/social-title/
 #                       image-dimension/orphan-asset checks, and this file.
-CEILING = 11_000
+#   2026-09-05  11,400  TEMPORARY, and it owes a repayment. runner-diagnose.py and
+#                       alpha-probe.py are DIAGNOSTICS, not gates: they grade nothing and
+#                       block nothing, and they exist to answer one open question — why the
+#                       Linux runner reports ten contrast failures whose authored pairs
+#                       measure 6.4:1 to 10.7:1. When that is answered BOTH FILES ARE
+#                       DELETED and this comes back to 11,000. If you are reading this and
+#                       the question is closed, the deletion is overdue.
+CEILING = 11_400
 
 
 def loc(paths):
