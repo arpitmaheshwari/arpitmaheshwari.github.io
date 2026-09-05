@@ -154,7 +154,12 @@ gate_block() {  # gate_block <exit-code> <what-a-real-finding-means>
 # CI read it. The runner also PRINTS which gates are CI-only, so a green hook is
 # never mistaken for a green build.
 echo "pre-push: gates (from tools/gates.json)…"
-if ! python3 tools/run-gates.py --stage pre-push --parallel 4 --port "$PORT"; then
+# --scope reaches THIS call too. Without it contrast-audit ran here unscoped (every
+# page, both widths) and AGAIN in the separate bg_gate below with the scope — the
+# same gate twice, the slow way first. That is what kept a push at 25 minutes after
+# the scoping was supposedly in.
+if ! python3 tools/run-gates.py --stage pre-push --parallel 4 --port "$PORT" \
+     --scope="$IMG_SCOPE"; then
   echo
   echo "pre-push: BLOCKED — a gate failed above. The gate list lives in tools/gates.json."
   exit 1
@@ -205,14 +210,8 @@ echo "pre-push: starting the browser gates in parallel…"
 # EXACT divergence this whole manifest exists to prevent — the hook and CI running the same
 # tool under the same name with different arguments — and I reintroduced it by leaving this
 # gate runner:false without pointing it at the single list.
-# --scope=... in the EQUALS form. IMG_SCOPE is literally "--all" when a shared asset
-# changed, and `--scope --all` makes argparse read the value as a flag and exit with a usage
-# error. Note the comments sit ABOVE the command, not inside it: a comment line between two
-# backslash-continued lines ENDS the continuation, and the leftover `--scope=--all` then ran
-# as its own command — "line 203: --scope=--all: command not found".
-bg_gate contrast \
-  python3 tools/run-gates.py --stage pre-push --only contrast-audit --port "$PORT" \
-  --scope="$IMG_SCOPE"
+# contrast-audit is no longer invoked here: run-gates --stage pre-push already runs it,
+# with the same scope, from the same manifest entry. It used to be listed twice.
 
 
 # Canon lint first — it is pure text, costs under a second, and catches the failure that actually
@@ -414,22 +413,10 @@ echo "pre-push: contrast smoke check (homepage + book cover, 1440px)…"
 # (This comment lived INSIDE the \-continuation below and silently mangled the command —
 #  `sh -n` reported valid syntax while the invocation was broken. Comments never go between
 #  continued arguments.)
-wait_gate contrast
-STATUS=$?
-
-if [ $STATUS -ne 0 ]; then
-  cat <<'MSG'
-
-pre-push: BLOCKED — a contrast failure (or a broken checker) was detected above.
-
-  Fix it, or push anyway with:   SKIP_CONTRAST=1 git push
-  Full audit, all colour contexts: see .github/workflows/contrast-gate.yml
-
-MSG
-  exit 1
-fi
-
-echo "pre-push: contrast OK."
+# contrast-audit is awaited by run-gates above, not here. This block waited on a
+# background gate that is no longer started — wait_gate on a gate nobody launched.
+# Its failure message now comes from the runner, which names the gate and prints its
+# output. SKIP_CONTRAST=1 still bypasses the whole hook at the top of this file.
 # (An `exit 0` stranded here from 2026-08-30 hook surgery killed every gate
 #  below this line for four days — partials drift, image alignment, runtime
 #  errors and interaction states were launched in parallel and never awaited.
