@@ -60,7 +60,7 @@ html[data-theme="ember"][data-skin="cream"]{
   --cream-grey:#5A5F68; --cream-grey-2:#7C828C;
   --cream-silver:#B9BEC6; --cream-silver-2:#D5D8DC;
   --cream-gold:#C8862B; --cream-gold-lt:#E0A33E;
-  --cream-gold-text:#946320; --cream-gold-deep:#7E5418;
+  --cream-gold-text:#7E5418; --cream-gold-deep:#6B4614;
   /* the usage rule: gold is 2.89:1 and may NEVER carry text. --accent-text
      (#946320, 4.57:1 worst case) carries words; --control-fill fills checked
      states, because a gold fill's boundary against the page fails 1.4.11. */
@@ -253,8 +253,18 @@ html[data-theme="ember"][data-skin="cream"] body.p-home .aiwork,
 html[data-theme="ember"][data-skin="cream"] body.p-home .voices,
 html[data-theme="ember"][data-skin="cream"] body.p-home .thoughts,
 html[data-theme="ember"][data-skin="cream"] body.p-home .contact{background:var(--surface-page)}
-html[data-theme="ember"][data-skin="cream"] body.p-home main > section{border-top:1px solid var(--border-hairline)}
-html[data-theme="ember"][data-skin="cream"] body.p-home .hero{border-top:none}
+/* THE INTER-SECTION SEPARATOR IS REMOVED. This rule gave every section on the
+   homepage a 1px top rule and it has been here since the skin was built — it is
+   the "multiple separators" Arpit named: "when I scroll down from one section to
+   another, I just see multiple separators and tiny headings which don't feel
+   like a new section." Nine identical hairlines say "next item" nine times; a
+   chapter has to say "somewhere else". That job now belongs to the act's own
+   accent, numeral and mark (L27), which change per act instead of repeating.
+
+   I then added the same separator TWICE MORE today, in L24 and L26, and my
+   first removal only overrode one of the three — so every section still had one
+   while I reported it deleted. Verified in computed style now, not in a diff. */
+
 html[data-theme="ember"][data-skin="cream"] body.p-home .texture,
 html[data-theme="ember"][data-skin="cream"] body.p-home [class*="glowfield"]{display:none}
 
@@ -1896,7 +1906,7 @@ html[data-theme="ember"][data-skin="cream"] body.p-home :is(.who,.contract) .wra
    new act has started before it reads a word. One rule, every section, so it
    reads as a system rather than as decoration on one band. */
 html[data-theme="ember"][data-skin="cream"] body.p-home main > section:not(.hero) > .wrap{
-  border-top:1px solid var(--border-hairline);padding-top:42px}
+  padding-top:42px}
 
 /* ============================================================
    L25 — WCAG 1.4.10 REFLOW at 320px, and 2.5.8 TARGET SIZE
@@ -1975,8 +1985,15 @@ html[data-theme="ember"][data-skin="cream"] :is(button.rxa-why,button.rxf-explai
 html[data-theme="ember"][data-skin="cream"] main > :is(section,header) > :is(.wrap,.lab-wrap,.measure-c,.measure-t) > h2:not(.card-title):not(.rcpt-h):not(.t-card-title),
 html[data-theme="ember"][data-skin="cream"] main > :is(section,header) :is(.wrap,.lab-wrap) > h2:not(.card-title):not(.rcpt-h):not(.t-card-title){
   margin-top:0;margin-bottom:44px}
+/* THE HAIRLINE IS DELETED, not overridden. It was added earlier today as the
+   "section is starting" signal and Arpit's verdict was exact: "I just see
+   multiple separators and tiny headings which don't feel like a new section."
+   Nine identical rules down a page read as a list of items, not as chapters —
+   a separator says "next", where a chapter needs to say "elsewhere". The act's
+   own accent, numeral and mark do that job now. Kept the padding, which is the
+   air the census asked for. */
 html[data-theme="ember"][data-skin="cream"] main > :is(section,header):not(.hero):not(.lab-hero) > :is(.wrap,.lab-wrap){
-  border-top:1px solid var(--border-hairline);padding-top:42px}
+  padding-top:42px}
 /* the eyebrow stays TIGHT to the heading it names — they are one object
    (Gestalt proximity); the air belongs around the pair, never between them */
 html[data-theme="ember"][data-skin="cream"] main :is(.chap,header.chap,.k,.lab-kicker,.eyebrow){
@@ -1985,3 +2002,174 @@ html[data-theme="ember"][data-skin="cream"] main :is(.chap,header.chap,.k,.lab-k
    last of the 28 tight headings the census found. */
 html[data-theme="ember"][data-skin="cream"] body[class*="p-lab"] main :is(section,header) h2:not(.card-title):not(.rcpt-h):not(.t-card-title){
   margin-bottom:44px}
+
+/* ============================================================
+   L27 — THE ACCENT SET, AND A MARK PER ACT
+   (Arpit: "why use background solid colour — first decide what are the accent
+   colours of the design system, then add small visual elements or hints for
+   each section". Palette P2 chosen; brand accent deepened.)
+
+   MEASURED CAUSE. ember runs an accent SYSTEM: --ember #A93A24/#FF8A5C,
+   --link #E86BFF, a hot gradient, and a per-family --heat that "marks a card as
+   belonging to this page's family". Cream shipped ONE accent, gold, for all 41
+   pages. One hue for a whole site is why no act distinguished itself — and why
+   the earlier attempts (a hairline, two points of heading size, a paper grain,
+   a tonal field) were all working on the wrong variable.
+
+   Every accent below was measured against all four paper grounds before being
+   chosen. Worst cases: bronze 5.42, forest 6.21, indigo 7.39, rust 5.68,
+   plum 7.03, teal 6.40. The old brand accent #946320 was the ONLY failing
+   colour in the set at 4.23:1 on warm paper — which is the same fragility that
+   made the paper-grain experiment fail AA — so it is deepened one step in its
+   own hue rather than replaced.
+
+   The accent is spent on SMALL THINGS ONLY: the act numeral, the eyebrow, the
+   section rule and one 26px mark. The ground never changes colour.
+   ============================================================ */
+html[data-theme="ember"][data-skin="cream"]{
+  --acc-bronze:#7E5418; --acc-forest:#2F5D42; --acc-indigo:#33477A;
+  --acc-rust:#9A3B22;   --acc-plum:#6B3A6B;   --acc-teal:#1F5A5E;
+  --act:var(--acc-bronze);
+}
+/* THE HOMEPAGE HAS ACTS — each takes its own accent */
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(2){--act:var(--acc-bronze)}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(3){--act:var(--acc-forest)}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(4){--act:var(--acc-indigo)}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(5){--act:var(--acc-rust)}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(6){--act:var(--acc-plum)}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(7){--act:var(--acc-teal)}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(8){--act:var(--acc-indigo)}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(9){--act:var(--acc-bronze)}
+/* A SUBPAGE HAS A FAMILY — ember's --heat, in paper-theme colours. One identity
+   per family rather than a mark per section, because a case study is one act. */
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"]{--act:var(--acc-rust)}
+html[data-theme="ember"][data-skin="cream"] body.p-patterns,
+html[data-theme="ember"][data-skin="cream"] body[class*="p-patterns-"]{--act:var(--acc-indigo)}
+html[data-theme="ember"][data-skin="cream"] body[class*="p-lab"]{--act:var(--acc-teal)}
+html[data-theme="ember"][data-skin="cream"] body[class*="p-writing"]{--act:var(--acc-plum)}
+html[data-theme="ember"][data-skin="cream"] body.p-process{--act:var(--acc-forest)}
+
+/* ---- what the accent is spent on ---- */
+html[data-theme="ember"][data-skin="cream"] main > section :is(.chap-n,.act-n,.k-idx){
+  font:400 clamp(40px,3.8vw,60px)/1 var(--font-display);
+  color:var(--act);letter-spacing:-.02em;display:block;margin-bottom:4px}
+html[data-theme="ember"][data-skin="cream"] main > section :is(.rcell b,.stat b,.idx b,.lane .m){
+  color:var(--act)}
+html[data-theme="ember"][data-skin="cream"] main > section .chap-rule{background:var(--act);opacity:.34}
+html[data-theme="ember"][data-skin="cream"] main > section :is(.k,.eyebrow,.lbl-eyebrow,.lab-kicker){
+  color:var(--act)}
+
+/* ---- THE SEPARATORS GO. Nine identical hairlines read as a list, not as
+        chapters — Arpit: "I just see multiple separators and tiny headings". ---- */
+html[data-theme="ember"][data-skin="cream"] main > :is(section,header) > :is(.wrap,.lab-wrap){
+  border-top:none}
+
+/* ---- THE MARK: one device per act, same 26px slot every time, so a reader
+        learns the shapes. Wayfinding, not ornament. Homepage only — a subpage
+        is a single act and carries its family accent instead. ---- */
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:not(.hero) > .wrap{position:relative}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:not(.hero) > .wrap::before{
+  content:"";position:absolute;top:-42px;left:0;width:26px;height:26px;
+  color:var(--act);pointer-events:none}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(2) > .wrap::before{
+  background:repeating-linear-gradient(90deg,currentColor 0 2px,transparent 2px 7px);height:14px;top:-36px}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(3) > .wrap::before{
+  border-left:2px solid currentColor;border-top:2px solid currentColor;border-bottom:2px solid currentColor;width:12px}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(4) > .wrap::before{
+  border:2px solid currentColor;border-radius:50%}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(5) > .wrap::before{
+  border:2px solid currentColor;width:20px;height:20px;transform:rotate(45deg)}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(6) > .wrap::before{
+  background:repeating-linear-gradient(66deg,currentColor 0 2px,transparent 2px 8px)}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(7) > .wrap::before{
+  border-top:2px solid currentColor;border-left:2px solid currentColor;width:11px;height:11px;
+  box-shadow:15px 0 0 -1px currentColor inset}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(8) > .wrap::before{
+  border-top:2px solid currentColor;border-right:2px solid currentColor;width:18px;height:18px}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:nth-of-type(9) > .wrap::before{
+  border:2px solid currentColor;width:24px;height:24px;
+  background:repeating-linear-gradient(45deg,currentColor 0 1px,transparent 1px 5px)}
+
+/* the one surviving inter-section rule, from ember.css:
+   `body.p-home .whoband .wrap.wl-lead{border-top:1px solid var(--line)}`.
+   A single instance rather than the repeated set, but cream no longer separates
+   acts with rules at all, so it goes too. */
+html[data-theme="ember"][data-skin="cream"] body.p-home .whoband .wrap.wl-lead{border-top:none}
+
+/* ============================================================
+   L28 — THE ACT NUMERAL AS THE CHAPTER DEVICE  (Arpit's pick: D2)
+
+   The 26px geometric mark from L27 was the right idea at the wrong scale: at
+   scroll speed it disappeared, which is what Arpit reported — "tiny headings
+   which don't feel like a new section". A chapter device has to occupy real
+   estate, and it can do that in the MARGIN, where it costs the reading column
+   nothing.
+
+   THE NUMBER COMES FROM THE MARKUP, NOT FROM CSS. The first version generated
+   the watermark with `content:"01".."08"` keyed to :nth-of-type, i.e. a second
+   counter of raw sections running alongside the real one — so a ghosted "03"
+   sat beside a printed "02" and a ghosted "06" beside a printed "04". Arpit saw
+   it immediately. Two counters for one thing can never agree; there is now one.
+
+   And the real structure is a hierarchy, which the section index could not see:
+     receipts .chap-n 01   ·   who .chap-n 02
+     contract .chap-n 03   ·   voices .chap-n 04
+     labrow .k-idx "03 · 2"  ·  labrow .k-idx "04 · 2"  ·  close .k-idx "04 · 3"
+   Four ACTS, each with sub-sections. So the watermark belongs to .chap-n alone —
+   four chapter numbers, not eight — and a sub-section keeps its small accent
+   label because it is inside an act, not a new one.
+
+   overflow-x:CLIP, not hidden: the numeral bleeds past the section's left edge
+   and must be clipped or it adds horizontal page scroll, but `hidden` creates a
+   scroll container and breaks every position:sticky inside it — the case-page
+   rail labels and the essay contents rail both depend on sticky. `clip` does
+   not. overflow-y stays visible so a lifted card's shadow is not cut.
+   ============================================================ */
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:not(.hero){
+  position:relative;overflow-x:clip}
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:not(.hero) > .wrap{
+  position:relative;z-index:1}
+
+/* THE ACT NUMERAL IS THE WATERMARK — the element itself, scaled and set into the
+   margin. One number, one source. */
+/* IN THE COLUMN, AS ITS OWN ROW — not in the margin.
+
+   The margin version was built, rendered and rejected on the evidence: at 1440
+   the content column is 1240px wide, leaving 100px of margin, and a two-digit
+   numeral at 200px needs ~180px plus clearance. Anchoring it to the column edge
+   (`right:100%`) kept it clear of the text but cropped it off-canvas, so at the
+   most common desktop width "01" rendered as "1". A chapter number that shows
+   the wrong number is not a device, it is a defect — and it only appeared at
+   one width, which is why it had to be rendered at several to be seen.
+
+   Ember puts its act numeral in the column, above the heading, and that is the
+   robust answer: it cannot crop, it cannot crowd, and it reads at every width
+   from 390 to 1680. Held at 22% so it stays a chapter mark rather than becoming
+   content that has to be read. */
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section .chap-n{
+  grid-column:1 / -1;justify-self:start;
+  font:400 clamp(64px,6vw,110px)/.92 var(--font-display);
+  color:var(--act);opacity:.22;letter-spacing:-.05em;margin:0 0 -6px;
+  pointer-events:none;-webkit-user-select:none;user-select:none}
+
+/* a SUB-section keeps its small accent label: it is inside an act, not a new one */
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section :is(.k-idx,.act-n){
+  font:400 clamp(28px,2.4vw,38px)/1 var(--font-display);
+  color:var(--act);letter-spacing:-.02em;display:block;margin-bottom:4px}
+
+/* The act header is a three-column grid from ember.css —
+   `header.chap{grid-template-columns:44px 340px 736px}` = numeral | label |
+   rule. L28 takes the numeral OUT OF FLOW to set it in the margin, so the grid
+   must lose that first track: without this the label slid into the 44px column
+   and wrapped one word per line. Measured before and after, because a grid that
+   silently re-flows its remaining children is exactly the kind of change a
+   screenshot at one width can hide. */
+html[data-theme="ember"][data-skin="cream"] body.p-home header.chap{
+  grid-template-columns:340px minmax(0,1fr)}
+/* the numeral takes a full row of its own above them */
+html[data-theme="ember"][data-skin="cream"] body.p-home header.chap .chap-n{grid-row:1}
+html[data-theme="ember"][data-skin="cream"] body.p-home header.chap :is(.chap-t,.chap-rule){grid-row:2}
+/* and the 26px geometric mark is withdrawn now the numeral carries the act:
+   two devices in the same slot is one device too many. */
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:not(.hero) > .wrap::before{
+  content:none}
