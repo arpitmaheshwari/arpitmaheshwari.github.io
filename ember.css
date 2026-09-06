@@ -2613,3 +2613,81 @@ html[data-theme="ember"] body[class*="p-case-studies"] .measure-c :is(h2,h3){
   max-width:34ch}
 html[data-theme="ember"] :is(.t-body,.u-body){
   font-size:17px;color:#E2DBD3}
+
+/* ============================================================
+   WCAG 1.4.10 REFLOW at 320px, and 2.5.8 TARGET SIZE
+   (found by tools/wcag-reflow-target-check.py, cherry-picked 2026-09-06)
+
+   320px is the actual requirement — it is 1280px at 400% zoom, which is how a
+   low-vision reader reads this site. Every other gate here starts at 390, so
+   this had never been measured on ember.
+
+   Six pages scrolled sideways, and the causes were measured one page at a time
+   rather than assumed to be the same:
+
+     patterns/ai-failure-states  +42px   div.xi-*     min-width:auto
+     case-studies/adtech         +27px   tr/th        white-space:nowrap
+                                         div.vslip    326px in a 320px viewport
+     patterns/confidence-scores  +21px   div.xi-*     min-width:auto
+     lab/index                   +20px   div.dsg-card min-width:auto
+     writing/failure-states      +17px   a.xi-*       min-width:auto
+     patterns/index               +4px   div.pat-hero-l min-width:auto
+
+   min-width:auto is the default on a flex or grid child and it means "never go
+   below your min-content width", so a child refuses to shrink and takes the
+   page with it. min-width:0 lets the track shrink to the space it actually has.
+   ============================================================ */
+@media (max-width:420px){
+  /* let flex and grid children shrink to the space they have */
+  html[data-theme="ember"] main :is([class*="xi-"],.dsg-card,.dsg-grid,.pat-hero-l,
+    .pat-hero-r,.lab-wrap,.measure-c,.wrap) > *{min-width:0}
+  html[data-theme="ember"] main :is([class*="xi-"],.dsg-card,.pat-hero-l,.pat-hero-r){min-width:0}
+  /* a short before/after cell wraps rather than taking the page sideways. An
+     inner scroll would satisfy 1.4.10 (tables are its two-dimensional
+     exception) but would then be flagged as content behind a gesture, and
+     trading one real defect for another is not a fix. */
+  html[data-theme="ember"] main :is(th,td){white-space:normal}
+  /* an artifact is capped against the VIEWPORT, not against a percentage of a
+     parent that is itself too wide — .vslip measured 326px inside 320px with
+     max-width:none, and a percentage cannot save a child whose parent is the
+     thing overflowing. */
+  html[data-theme="ember"] :is(.vslip,.vplate,.vplate-wrap,.pass,.lug,figure,pre,table){
+    max-width:calc(100vw - 48px);width:auto}
+}
+
+/* SC 2.5.8: a crowded target must be at least 24px on the block axis. Fifteen
+   were under it — the 404's three reclaim links (49x21, 50x21, 68x21) and the
+   product-mockup demo buttons (.rxa-why 70x18, .rxf-explain 94x18). Padding is
+   on the block axis only, so nothing moves horizontally. This repo's notes
+   assumed 44px, which is SC 2.5.5 (AAA) and a different requirement — the AA
+   line at 24px had never been checked. */
+html[data-theme="ember"] :is(.inline-links a,.contact-channels a,.divert a,.btn-row a,
+  .wr-more a,p.hand a,.hd-route a,.contract-links a,.scr-receipt a,.lab-row a){
+  padding-block:4px;display:inline-block}
+html[data-theme="ember"] :is(button.rxa-why,button.rxf-explain,button.rxa-logged,
+  .rx2-btn,.demo-btn,.ccd-q){min-height:24px;padding-block:4px}
+
+/* The last reflow failure: div.pat-hero is a grid whose container is 272px at
+   320px viewport, but whose grid-template-columns computed to 300.266px — a
+   minmax() floor wider than the space available, which is the standard
+   auto-fit/minmax overflow. minmax(0,1fr) lets the track shrink to what there
+   actually is. */
+@media (max-width:420px){
+  html[data-theme="ember"] .pat-hero{grid-template-columns:minmax(0,1fr)}
+  html[data-theme="ember"] .pat-hero > *{min-width:0;max-width:100%}
+}
+
+/* The loop diagram was unreachable on a phone, and it predates today's work:
+   tools/reachability-check.py found 27px of h-scroll inside FIGURE.loopfig at
+   390px on /case-studies/adtech and /case-studies/talon. Measured, the figure
+   renders 147px wide inside a 294px section — exactly half — so a four-step
+   flow with 140px steps was being asked to live in half a phone screen, and the
+   remainder sat behind a sideways gesture inside its own box. Its .loop-steps
+   already wraps; it simply had no room to wrap into. Full width below the
+   two-column breakpoint, and the inner scroll goes with it. */
+@media (max-width:700px){
+  html[data-theme="ember"] .loopfig{
+    width:100%;max-width:100%;overflow-x:visible}
+  html[data-theme="ember"] .loopfig .loop-steps{flex-wrap:wrap;min-width:0}
+  html[data-theme="ember"] .loopfig .loop-steps > *{min-width:0;max-width:100%}
+}
