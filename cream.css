@@ -173,7 +173,7 @@ html[data-theme="ember"][data-skin="cream"] body > *:not(.skip-link){position:re
 html[data-theme="ember"][data-skin="cream"] :is(.k,.eyebrow,.lbl-eyebrow,.ck,.mk,.lab-kicker,.chap-t,.qt-view,
   .thought-tag,.case-hero__kicker,.lbl-cap,.lbl-meta,.hd-tag span,.st-k,.pl-k){
   font-family:var(--font-mono);font-weight:400;font-size:11px;letter-spacing:var(--tracking-label);
-  text-transform:uppercase;color:var(--text-faint)}
+  text-transform:uppercase;color:var(--act)}
 html[data-theme="ember"][data-skin="cream"] :is(.k,.eyebrow,.chap-t) {color:var(--accent-text)}
 
 /* ---------- nav: gallery registrar bar ---------- */
@@ -1173,8 +1173,27 @@ html[data-theme="ember"][data-skin="cream"] .skip-link:focus-visible{
   outline:2px solid var(--cream-ink);outline-offset:2px}
 
 /* 2 — captions that sit in a plate's shadow */
-html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] :is(.lbl-eyebrow,.vplate-cap,.plA-caption .lbl-eyebrow){
-  color:var(--text-primary);margin-top:20px}
+/* CASE PAGES KEEP INK ON EVERY LABEL, and this is the third attempt at it.
+
+   The family accent was applied to .lbl-eyebrow site-wide, which reads well on
+   /patterns, /writing, /process, /lab and /resources — all verified at 0
+   contrast failures. On case pages it fails, because a case page's labels are
+   mostly PLATE CAPTIONS and a plate is not paper:
+
+     rust #9A3B22 on the plate's shadow #CAC9C6   4.19:1   FAIL
+     naming the caption classes one at a time fixed adtech and left o2 at 4.03
+     making it structural (figcaption) then put INK on a DARK plate: 1.02:1
+
+   Three grounds, one label class, no colour that serves all of them. The
+   original rule — ink on every case-page label — was measured-correct, and the
+   accents' 5.4:1 floor was computed against the four PAPER grounds only. A
+   shadowed plate and a dark plate are two more grounds nobody had measured.
+
+   So case pages carry their family accent through the act numeral and the card
+   rules instead, and their labels stay ink. */
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] :is(.lbl-eyebrow,.vplate-cap,
+  figcaption,[class*="-caption"]){
+  color:var(--text-primary);margin-top:var(--sp-3)}
 
 /* 3 — finish the .act-cream re-point: the status trio too */
 html[data-theme="ember"][data-skin="cream"] .act-cream{
