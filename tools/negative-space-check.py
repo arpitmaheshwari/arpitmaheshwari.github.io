@@ -100,6 +100,16 @@ PROBE = r"""JSON.stringify((()=>{
       if(r.bottom<br.top||r.top>br.bottom) continue;   // clipped out of this band
       L=Math.min(L,r.left); R=Math.max(R,r.right); n++;
     }
+    // A STATEMENT BAND is a pause, not a composition. /lab carries bands whose
+    // whole content is a label and one principle ("A design opinion becomes
+    // falsifiable the day it compiles"). A statement is SUPPOSED to sit in a
+    // narrow measure, and widening it to satisfy a utilisation floor would be
+    // filling a form rather than designing. Recognised by shape — little text,
+    // no sub-structure — which is the same test tools/section-heading-census.py
+    // uses to decide a band needs no heading. Two gates, one definition.
+    const words=(b.textContent||'').trim().split(/\s+/).length;
+    const structured=!!b.querySelector('ul,ol,table,pre,[class*="grid"],[class*="row"],[class*="card"],[class*="fn"]');
+    if(words < 60 && !structured) continue;
     if(!n||!isFinite(L)) continue;
     const left=Math.round(L-availL), right=Math.round(availR-R);
     out.push({id:b.id||'', cls:(b.className+'').split(' ').slice(0,2).join('.'),

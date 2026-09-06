@@ -2441,3 +2441,53 @@ html[data-theme="ember"][data-skin="cream"] main :is(.rcell,a.idx,a.lane,figure.
    top edge and no shadow — a row is not a sheet */
 html[data-theme="ember"][data-skin="cream"] main a.lane{box-shadow:none;background:transparent}
 html[data-theme="ember"][data-skin="cream"] main a.lane:hover{background:var(--surface-card);box-shadow:none}
+
+/* ============================================================
+   L34 — THE LAB AND FIT PAGES GET THE MANUSCRIPT RAIL
+
+   tools/negative-space-check.py: 58 findings on 7 pages, all of them /lab and
+   /fit, all UNDERFILLED — a band 400-900px tall using barely half the width it
+   has. Those pages were the only long-form family never given the rail: L17's
+   grid keys off .measure-c/.measure-t and they use .lab-wrap.
+
+   Measured at 1440: .lab-wrap is 781px wide, centred, leaving ~330px of margin
+   on each side for the whole length of the page, and its children are DIRECT —
+   p.eyebrow, h2.section-title, p.lab-lede, then the content. That last fact is
+   what makes this CSS-only: the eyebrow can move into the rail without touching
+   the markup, which is what stopped this being done earlier (an eyebrow one
+   level deeper would have left the rail empty, and an empty rail is worse than
+   the void it replaces).
+
+   Gestalt, the same as L17: PROXIMITY (the label sits beside the prose it
+   names, not stacked above it) · COMMON REGION (one rail down the page) ·
+   CONTINUITY (a single alignment line) · SIMILARITY (every long-form family now
+   reads the same way).
+   ============================================================ */
+@media (min-width:1080px){
+  /* ONLY where a label exists to put in the rail. Without :has() every band got
+     the grid, and the bands with no eyebrow ended up with an EMPTY 190px rail and
+     their content starting at x=513 — a 554px left gap, which the negative-space
+     gate correctly called a VOID. That is the exact failure this file warns about
+     two comments up and I walked straight into it: an empty rail is worse than
+     the void it replaces. A band with no label keeps its block layout. */
+  html[data-theme="ember"][data-skin="cream"] body:is([class*="p-lab"],.p-fit)
+    .lab-wrap:has(> :is(.eyebrow,.lab-kicker)){
+    display:grid;
+    /* 700, not 653: with the rail the band measured 890px of ink in 1440px of
+       available width — 61%, one point under the floor. 700 takes it to 65%. */
+    grid-template-columns:190px minmax(0,700px);
+    column-gap:var(--sp-6);
+    max-width:calc(190px + 48px + 700px)}
+  html[data-theme="ember"][data-skin="cream"] body:is([class*="p-lab"],.p-fit)
+    .lab-wrap:has(> :is(.eyebrow,.lab-kicker)) > *{
+    grid-column:2;max-width:none}
+  /* the label takes the rail, on the first row, beside the heading it names */
+  html[data-theme="ember"][data-skin="cream"] body:is([class*="p-lab"],.p-fit)
+    .lab-wrap:has(> :is(.eyebrow,.lab-kicker)) > :is(.eyebrow,.lab-kicker){
+    /* LEFT-aligned, not right. Right-aligning the rail label looked tidier but
+       started the band's ink 65px inside the wrap, which cost the band 5 points
+       of measured utilisation and left it under the 62% floor. Left alignment
+       also gives the rail a single vertical line down the page, which is the
+       point of a rail. */
+    grid-column:1;grid-row:1;margin:0;align-self:start;text-align:left}
+}
