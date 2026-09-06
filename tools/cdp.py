@@ -251,6 +251,31 @@ class Browser:
                  deviceScaleFactor=1,
                  mobile=(width < 700) if mobile is None else mobile)
 
+    def touch_device(self, width=390, height=844, dpr=2):
+        """Emulate a real touch device — including its POINTER MEDIA FEATURES.
+
+        Use this, never Emulation.setEmulatedMedia, to test `(hover:hover)`,
+        `(hover:none)`, `(pointer:fine)` or `(pointer:coarse)`. Measured
+        2026-09-06:
+
+          baseline                      hover:hover=True  pointer:fine=True
+          setEmulatedMedia hover/ptr    hover:hover=True  pointer:fine=True   <-- ignored
+          setTouchEmulationEnabled      hover:hover=False pointer:coarse=True
+
+        setEmulatedMedia DOES work for prefers-reduced-motion and
+        prefers-color-scheme, which is what makes the silence dangerous: the call
+        succeeds, the features do not change, and a probe then reports that a
+        hover-gated feature is live on a phone. That produced one false "DEFECT"
+        verdict on cream.js's pointer-tracked card light, which is in fact
+        correctly inert on touch.
+
+        Reloads after applying, because load-time media gates (a script that
+        checks matchMedia once and returns) only re-run on a fresh document.
+        """
+        self.cmd("Emulation.setTouchEmulationEnabled", enabled=True, maxTouchPoints=5)
+        self.cmd("Emulation.setDeviceMetricsOverride", width=width, height=height,
+                 deviceScaleFactor=dpr, mobile=True)
+
     def navigate(self, url, settle=1.8):
         """Go to a URL. Raises on a navigation failure — never returns silently.
 
