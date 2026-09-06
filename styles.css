@@ -245,7 +245,11 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .thoughts-grid{grid-template-columns:1fr 1fr}
 #hero{padding:100px 32px 48px}
 .remote-grid{grid-template-columns:repeat(2,1fr)}}
-/* ----- Responsive: mobile + tablet hamburger (≤900px) ----- */
+/* ----- Responsive: mobile + tablet hamburger (≤1100px) ----- */
+/* The comment said 900px while the query below has always said 1100px; corrected
+   2026-09-06 after an exploratory sweep asked whether the breakpoint was chosen
+   or accidental. It is chosen: at 1024px the six nav links plus the CTA do not
+   fit beside the wordmark. */
 @media(max-width:1100px){.nav-links{display:none;flex-direction:column;align-items:stretch;position:fixed;top:64px;left:0;right:0;background:rgba(10,10,10,0.97);padding:32px 24px;gap:24px;border-bottom:1px solid var(--border);z-index:99}
 .nav-links a{display:block;padding:12px 16px;font-size:15px;white-space:normal}
 .nav-links.nav-open{display:flex}
