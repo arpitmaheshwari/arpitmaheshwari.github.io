@@ -685,6 +685,34 @@
     "server"
    ],
    "note": "A band taller than 220px must keep its content on axis and use at least 62% of the width available to it. Arpit's standing layout rule: whitespace must be designed, not left over. THIRD attempt at measuring this \u2014 attempt 1 compared the viewport to the page (real defects drowned in legitimate outer margin) and attempt 2 compared each container to its own children (finds zero by construction). This one measures each band against MAIN's content box, using the union of ink actually painted (leaf text, img, svg, video, canvas). The threshold that matters is UNDERFILLED, and it was missing from the first two versions: the essay pages' defect was SYMMETRIC \u2014 704px of ink centred in 1312px, 304px of gap on each side, so no 'one side over a third' rule could ever see it. Verified against the pre-fix state: the untreated essay measures 53% and fires, the treated one 71% and does not. Nightly: it walks every element of every band at two widths. CANNOT SEE whether filled space is filled with something worth having \u2014 an empty rail passes it, and an empty rail is worse than the void it replaced."
+  },
+  {
+   "id": "section-heading",
+   "cmd": [
+    "python3",
+    "tools/section-heading-census.py"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "Is there ONE section-heading component, and does it survive fast scrolling? Built 2026-09-06 after Arpit rejected a fix that moved a single number: 'apply first principles, review the design system, review all the section headings across the website, make sure they're easily distinguishable while fast scrolling, and fix them throughout. Think like an information architect and a visual designer; currently we are thinking like a clerk.' Asks four questions of every section heading on every page \u2014 DOMINANCE over the prose it introduces, ISOLATION (air), ANCHOR (one left edge per page, because a scanning eye tracks a constant vertical line), CONSISTENCY (one signature, with the contact close's documented display license printed rather than excused). Thresholds come from the two sections that already read correctly, not from taste. Its first run found 42 findings including headings at SEVEN different left edges on the homepage. Four classification errors were fixed in it before any of the site: artifact headings inside .vplate are exempt by design, a hero is a claim not a section heading, an h1 is the page title, and a statement band is a deliberate pause. CANNOT SEE whether the heading's WORDS say where you are, nor real motion blur."
+  },
+  {
+   "id": "wcag-reflow-target",
+   "cmd": [
+    "python3",
+    "tools/wcag-reflow-target-check.py"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "WCAG 1.4.10 reflow at 320px and 2.5.8 target size at 24x24 \u2014 two AA requirements with no instrument here until 2026-09-06, prompted by an article Arpit sent whose useful move is turning a heuristic into an inspectable artifact. 320px is the real requirement (1280px at 400% zoom); every other gate here starts at 390, so reflow had never been measured. And this repo's notes assumed 44px targets, which is 2.5.5 AAA and a different requirement, so the AA line was unchecked. First run: 5 pages scrolled sideways, 14 crowded targets under 24x24."
   }
  ],
  "manual": [

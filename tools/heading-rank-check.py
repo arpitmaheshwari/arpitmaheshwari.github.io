@@ -63,7 +63,10 @@ def classify_home(r):
             # and the scale is what this gate measures.
             if 'card-title' in r['cls'] or r.get('in_card'):
                 return (r['sz'],r['w'])==(22,'600')
-            return (r['sz'],r['w'])==(35,'600') or (40<=r['sz']<=56 and r['w']=='600')
+            # the section step is clamp(35px,2.9vw,46px) as of 2026-09-06 — a
+            # range, not a value. It was fixed at 35px while every other display
+            # step was responsive.
+            return (35<=r['sz']<=46 and r['w']=='600') or (40<=r['sz']<=56 and r['w']=='600')
         return (r['sz'],r['w'])==(22,'600')
     if r['tag']=='h2': return r['sz'] in (42,56) and r['w']=='300'
     if 'rcpt-h' in r['cls']: return r['sz']==20 and r['w']=='400'
@@ -86,7 +89,10 @@ def classify_sub(r):
             # and the scale is what this gate measures.
             if 'card-title' in r['cls'] or r.get('in_card'):
                 return (r['sz'],r['w'])==(22,'600')
-            return (r['sz'],r['w'])==(35,'600') or (40<=r['sz']<=56 and r['w']=='600')
+            # the section step is clamp(35px,2.9vw,46px) as of 2026-09-06 — a
+            # range, not a value. It was fixed at 35px while every other display
+            # step was responsive.
+            return (35<=r['sz']<=46 and r['w']=='600') or (40<=r['sz']<=56 and r['w']=='600')
         return (r['sz'],r['w'])==(22,'600')
     if r['tag']=='h2':
         if r['in_vband'] or 'card-title' in r['cls']: return r['sz']==24 and r['w']=='400'
