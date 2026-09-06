@@ -226,7 +226,21 @@
     document.head.appendChild(style);
     mounts.forEach(function (el) {
       var key = el.getAttribute("data-demo");
-      if (DEMOS[key]) { el.classList.add("pd"); DEMOS[key](el); }
+      if (DEMOS[key]) {
+        el.classList.add("pd");
+        // Every demo's output changes when a reader picks an option, and until
+        // 2026-09-06 it changed in SILENCE: a sighted reader watched "Act on it"
+        // become "Ignore", a screen-reader reader was told nothing. The router on
+        // /patterns has had aria-live since it shipped; the demos are the same
+        // interaction pattern with no equivalent. Declared here, at the single
+        // mount point, because three of the nine build ad-hoc output containers
+        // and tagging each one would be guesswork. polite + non-atomic means only
+        // the text that actually changed is announced; the buttons' aria-pressed
+        // flips are attribute changes and are not re-read.
+        el.setAttribute("aria-live", "polite");
+        el.setAttribute("aria-atomic", "false");
+        DEMOS[key](el);
+      }
     });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

@@ -638,9 +638,21 @@ if (contactForm) {
     if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
     if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: 'send-role', location: 'contact-submit' });
     const succeed = () => {
-      contactForm.innerHTML = '<div role="status" aria-live="polite" class="form-ok">' +
-        '<p class="form-ok-h">Got it — thank you.</p>' +
-        '<p class="form-ok-p">I reply within ~48 hours. If it\'s time-sensitive, book a call just above.</p></div>';
+      // A live region must EXIST before its content changes: a region inserted with
+      // its text already inside it is generally not announced, because there is no
+      // change for the screen reader to observe. So the region goes in empty, and
+      // the words arrive on the next frame. Focus moves to the confirmation too —
+      // the submit button has just been removed from under the reader's cursor, and
+      // without this a keyboard user gets no signal that anything happened at all.
+      // (Found 2026-09-06 by submitting the form with the network intercepted and
+      // asking what a screen-reader user would actually be told.)
+      contactForm.innerHTML = '<div role="status" aria-live="polite" class="form-ok" tabindex="-1"></div>';
+      const ok = contactForm.querySelector('.form-ok');
+      requestAnimationFrame(() => {
+        ok.innerHTML = '<p class="form-ok-h">Got it — thank you.</p>' +
+          '<p class="form-ok-p">I reply within ~48 hours. If it\'s time-sensitive, book a call just above.</p>';
+        ok.focus();
+      });
     };
     const fail = () => {
       if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
