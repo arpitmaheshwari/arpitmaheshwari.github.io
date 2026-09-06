@@ -152,7 +152,14 @@ html[data-theme="ember"][data-skin="cream"] :is(.k,.eyebrow,.chap-t) {color:var(
 /* ---------- nav: gallery registrar bar ---------- */
 html[data-theme="ember"][data-skin="cream"] #nav{background:var(--surface-page);border-bottom:1px solid var(--border-hairline);
   box-shadow:none;padding:22px 40px}
-html[data-theme="ember"][data-skin="cream"] #nav.scrolled{background:rgba(247,244,238,.94);backdrop-filter:none}
+/* OPAQUE, not .94. This rule used to carry rgba(247,244,238,.94) together with
+   backdrop-filter:none — it took the alpha from classic's dark bar
+   (styles.css:112, rgba(10,10,10,.92)) but dropped the blur(16px) that makes
+   that one read as frost. Transparency without blur is not frost, it is bleed:
+   an h2 scrolling under the bar ghosted through it in sharp focus, measured at
+   235,233,227 against the bar's own 247,245,238. Frosted glass is also the
+   wrong idiom for a paper theme, so the fix is opacity rather than a blur. */
+html[data-theme="ember"][data-skin="cream"] #nav.scrolled{background:#F7F4EE;backdrop-filter:none}
 html[data-theme="ember"][data-skin="cream"] .nav-name{font-family:var(--font-mono);font-size:11px;
   letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-primary)}
 /* the filter hack that coerced the ember logo into cream is gone: the asset
@@ -1389,8 +1396,19 @@ html[data-theme="ember"][data-skin="cream"] #nav{
   display:flex;gap:34px;box-sizing:border-box}
 html[data-theme="ember"][data-skin="cream"] #nav > *{align-self:center;margin-top:0;margin-bottom:0}
 html[data-theme="ember"][data-skin="cream"] #nav .nav-logo,
-html[data-theme="ember"][data-skin="cream"] #nav .nav-links,
 html[data-theme="ember"][data-skin="cream"] #nav .nav-cta{display:flex;align-items:center}
+/* .nav-links is DELIBERATELY not in the group above. It was, for one revision,
+   and that shipped the worst defect of this rebuild: an unscoped `display:flex`
+   at #nav specificity outranks classic's @media(max-width:1100px){.nav-links{
+   display:none}}, so the mobile drawer rendered PERMANENTLY OPEN below 1100px —
+   an opaque white panel over the top 475px of every page, eating every click
+   under it. It laid out correctly at 1200+ and on the two widths I habitually
+   check the menu at, which is why it survived. So the drawer's display state is
+   now declared once per width band, by the component, and never inherited. */
+@media (min-width:1101px){
+  html[data-theme="ember"][data-skin="cream"] #nav .nav-links{
+    display:flex;align-items:center}
+}
 html[data-theme="ember"][data-skin="cream"] #nav .nav-links{gap:28px;margin-left:auto}
 html[data-theme="ember"][data-skin="cream"] #nav .nav-cta{margin-left:34px}
 /* the hero reserved space for the taller bar */
@@ -1400,8 +1418,269 @@ html[data-theme="ember"][data-skin="cream"] body.p-home .hero{--navh:64px}
   html[data-theme="ember"][data-skin="cream"] #nav .nav-cta{margin-left:auto;margin-right:12px}
   /* the drawer hangs from the bar's real bottom edge, and it is PAPER — the
      rgba(10,10,10,.97) it inherited is an ember-era near-black. */
+  /* CLOSED is the default and it is stated here, at this skin's specificity, so
+     nothing in this file can silently reopen it again. */
+  html[data-theme="ember"][data-skin="cream"] #nav .nav-links,
+  html[data-theme="ember"][data-skin="cream"] .nav-links{display:none}
+  html[data-theme="ember"][data-skin="cream"] #nav .nav-links.nav-open,
+  html[data-theme="ember"][data-skin="cream"] .nav-links.nav-open{
+    display:flex;flex-direction:column;align-items:stretch}
   html[data-theme="ember"][data-skin="cream"] .nav-links{
     top:64px;background:var(--surface-card);border-bottom:1px solid var(--border-strong);
     box-shadow:0 18px 34px -22px rgba(26,26,28,.28)}
   html[data-theme="ember"][data-skin="cream"] .nav-links a{color:var(--text-primary)}
+}
+
+/* ============================================================
+   L20 — THE MODERN TOUCH  (html[data-touch="modern"])
+
+   Arpit, precisely: "heavy background colour goes against the plain theme —
+   add a modern touch to the existing sections that doesn't disturb readability
+   but increases appeal."
+
+   So nothing here changes an ink colour, a type size or a leading value. Every
+   touch is motion, micro-detail or precision. The switch is one attribute on
+   <html>, so it can be judged and reverted in one edit.
+
+   Readability is a measured constraint, not a hope: the same probe reads every
+   text colour/size/line-height with the switch off and on, and they must be
+   identical. Anything that would move them is not in this block.
+   ============================================================ */
+
+/* 1 · TYPESETTING — the most modern thing available on paper, and free.
+   text-wrap:pretty removes orphans and ragged last lines the browser can now
+   fix by itself; balance centres short headings' line lengths. */
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] :is(h1,h2,h3,.fig,.chap-t){text-wrap:balance}
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] :is(p,li,blockquote,.lede,.sub,figcaption){text-wrap:pretty}
+/* figures stop shifting width as they animate or change */
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] :is(.rcell b,.stat b,.fig,.pl b,.k-idx,.chap-n){
+  font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1}
+
+/* 2 · A HAIRLINE THAT DRAWS ITSELF as the section arrives. Scroll-driven, so
+   it costs no JavaScript and does nothing at all where unsupported. */
+@supports (animation-timeline: view()) {
+  @keyframes cream-draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  html[data-theme="ember"][data-skin="cream"][data-touch="modern"] :is(.chap-rule,.rail-rule){
+    transform-origin:left;animation:cream-draw linear both;
+    animation-timeline:view();animation-range:entry 8% cover 26%}
+  /* a 1px reading-progress hairline, the one piece of chrome that earns its pixel */
+  /* z-index 101, not 60: the nav is fixed, OPAQUE and z-index 100, so at 60 this
+     line was painted behind it and could never be seen on any page. And it sits
+     at top:0, not at the bar's lower edge — there it read as an underline under
+     the wordmark, i.e. as a link state, not as progress. */
+  html[data-theme="ember"][data-skin="cream"][data-touch="modern"] body::after{
+    content:"";position:fixed;top:0;left:0;height:1px;width:100%;z-index:101;
+    background:var(--cream-gold);transform-origin:left;transform:scaleX(0);
+    animation:cream-draw linear both;animation-timeline:scroll(root block)}
+}
+
+/* 3 · DEPTH BY LIGHT, NOT BY FILL. A 3px lift and a longer, softer shadow —
+   the card's ground never changes, so nothing behind the text moves. */
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] :is(.rcell,.lane,.idx a,.thought-card,.memo,.qt,.hd-card){
+  transition:transform .45s var(--ease-gallery),box-shadow .45s var(--ease-gallery)}
+/* THE LIGHT FOLLOWS THE POINTER. The sheet lifts, and the shadow swings AGAINST
+   the cursor while the lit edge follows it — so a card reads as a physical
+   object under a moving light rather than a rectangle that got a bigger shadow.
+   --tx/--ty are set by cream.js in the range [-1,1]; with no script they stay 0
+   and this degrades to a plain centred lift.
+
+   The card is deliberately NOT rotated. A rotateX/rotateY version was built and
+   measured first (prototypes/card-tilt/, rendered in
+   prototypes/renders/card-tilt-compare.jpg) and it looks better in a still: but
+   a 3D transform promotes the card to a composited layer and resamples every
+   glyph inside it, which replaces sub-pixel antialiasing with grayscale and
+   thins 12px text. Meta line while hovered: 4.64:1 flat, 3.86:1 rotated — below
+   AA, and not recoverable by styling, because nothing is covering the text; the
+   text is being redrawn. This version measures 4.64:1 hovered, i.e. no loss.
+
+   The inset edge is repeated in the hover value on purpose: box-shadow is a
+   single property, so listing only the drop shadow deletes the paper edge at the
+   exact moment the card lifts, which read as the sheet going flat as it rose. */
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] :is(.rcell,.lane,.idx a,.thought-card){--tx:0;--ty:0}
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] :is(.rcell,.lane,.idx a,.thought-card):hover{
+  transform:translateY(-4px);
+  box-shadow:
+    inset calc(var(--tx) * -1.5px) calc(var(--ty) * -1.5px) 0 rgba(255,255,255,1),
+    inset calc(var(--tx) *  1px)   calc(var(--ty) *  1px)   0 rgba(200,134,43,.16),
+    calc(var(--tx) * -14px) calc(var(--ty) * -14px + 22px) 40px -24px rgba(26,26,28,.36),
+    calc(var(--tx) *  -8px) calc(var(--ty) *  -8px + 6px)  34px -14px rgba(200,134,43,.20);
+  transition:box-shadow .12s linear, transform .3s var(--ease-gallery)}
+
+/* 4 · (WITHDRAWN) CORNER TICKS — two 9px gold marks on hover. Removed after
+   looking at them: an L-bracket appearing at a card's corners on hover is one of
+   the most-shipped card effects on the web, and this page is meant to look like
+   nobody else's. The hover now does one physical thing — the sheet lifts and its
+   cut edge catches light — and adds no marks at all. */
+
+/* 5 · THE UNDERLINE WIPES IN. An inline link keeps its resting underline (it
+   must stay findable without hover); on hover a gold rule grows across it. */
+/* Painted with BACKGROUNDS, not with an absolutely-positioned ::after. The
+   ::after version drew one bar across the union of the link's line boxes: a
+   two-line link measured 177px + 95px of text inside a 580px union, so the
+   gold rule ran straight through the empty space at the end of the first line
+   and under the following words. A background on an inline box is painted per
+   LINE FRAGMENT, which is what a wrapping link needs. Two layers: the resting
+   1px hairline (a body link must stay findable without hover) and the gold
+   rule that grows over it. */
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] main p a:not([class]){
+  text-decoration:none;
+  background-image:linear-gradient(var(--cream-gold),var(--cream-gold)),
+                   linear-gradient(var(--border-strong),var(--border-strong));
+  background-size:0 1.5px, 100% 1px;
+  background-position:0 calc(100% - 1px), 0 calc(100% - 1px);
+  background-repeat:no-repeat;
+  transition:background-size .4s var(--ease-gallery)}
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] main p a:not([class]):hover{background-size:100% 1.5px, 100% 1px}
+
+/* 6 · PAPER GRAIN at 3.5% — texture, not colour. The ground stays #FAF9F6;
+   this only stops it reading as flat screen white. */
+/* the grain is declared ONCE, at the end of this layer (item 12). It was
+   declared here too, with background-attachment:fixed, and the two rules fought:
+   the later image won but the earlier `fixed` survived, so the texture stood
+   still while the page scrolled — a screen door over the paper rather than the
+   paper's own tooth. */
+
+/* 7 · THE RAIL LABEL STAYS with its section while the prose scrolls past —
+   the manuscript grid's own payoff, and unmistakably modern editorial. */
+@media (min-width:1080px){
+  html[data-theme="ember"][data-skin="cream"][data-touch="modern"] :is(.measure-c,.measure-t) > section > .lbl-eyebrow{
+    position:sticky;top:88px}
+}
+
+/* 8 · A SPRING on the primary action alone: 1px down on press, so the one
+   thing you want clicked feels physical. */
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] :is(.pill-hot,.btn-label,[data-cta="send-role"]){
+  transition:background var(--dur-quick) var(--ease-gallery),transform 90ms var(--ease-standard)}
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] :is(.pill-hot,.btn-label,[data-cta="send-role"]):active{
+  transform:translateY(1px)}
+
+@media (prefers-reduced-motion:reduce){
+  html[data-theme="ember"][data-skin="cream"][data-touch="modern"] *{animation:none!important;transition:none!important}
+  html[data-theme="ember"][data-skin="cream"][data-touch="modern"] :is(.chap-rule,.rail-rule){transform:none}
+  html[data-theme="ember"][data-skin="cream"][data-touch="modern"] body::after{display:none}
+}
+
+/* ---- L20b · touches that read AT REST, still with no field colour ----
+   The first version was almost entirely motion, so a still frame showed no
+   difference — and a first impression is static. These four are visible before
+   anything is hovered, and none of them changes an ink, a size or a leading. */
+
+/* 9 · THE FIGURE TAKES THE ACCENT — SOLID, not foil-stamped.
+   A gradient inside the glyphs was tried and reverted the same hour: its stops
+   measured 6.3:1 and 5.2:1, but the PAINTED pixels came back at 3.6-3.7:1,
+   because gradient text blends with the ground through its own antialiasing.
+   Token arithmetic cannot see that; the pixel audit can. A solid accent is
+   4.91:1 on the ground and 5.17:1 on paper, and it still lifts the number off
+   the page at rest — which was the whole point. */
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] :is(.rcell b,.stat b,.idx b,.lane .m){
+  color:var(--accent-text)}
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] :is(.rcell b .was,.lane .m .was){
+  color:var(--text-muted)}
+/* A 2px gold border on every card shipped here for one revision and was wrong:
+   four cards in a row read as a table-header strip, and three stacked on a phone
+   read as an alert list. Accent repeated on every instance is decoration by
+   multiplication — the exact "commonplace" failure. The accent now appears ONCE
+   per object, as a break in the hairline (item 13). */
+
+/* 10 · PAPER HAS AN EDGE. A 1px white highlight along the top of every card —
+   the way light catches a sheet's cut edge. Free depth, no fill. */
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] :is(.rcell,.idx a,.thought-card,.hd-card,.qt){
+  box-shadow:inset 0 1px 0 #fff, 0 1px 0 rgba(26,26,28,.05), 0 12px 26px -22px rgba(26,26,28,.26)}
+
+/* 11 · RULES THAT FADE. A hairline that ends in nothing reads as drawn rather
+   than as a border — the cheapest modern detail there is. */
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] .chap-rule{
+  background:linear-gradient(90deg,var(--cream-silver),rgba(185,190,198,0))}
+/* .range-lbl was in this selector for one revision: it is a text LABEL, not a
+   rule, so the gradient painted silver behind its words (3.51:1). Caught by the
+   pixel audit, not by reading the CSS. */
+/* the `main > section` hairline that used to be declared here is REMOVED, not
+   commented into place: it matched, computed to background-image:none, and
+   therefore painted nothing on any page. A rule that cannot win its property is
+   not a subtle rule, it is a dead one. */
+
+/* ---- L20c · (WITHDRAWN) THE BREAK ----
+   The favicon's gold stem-break, applied as an 18px segment on each section's
+   hairline and a 12px one on each card. Built, rendered, and withdrawn for two
+   reasons, both learned by looking:
+
+   1. It could not land on sections at all. Every `main > section`'s computed
+      background-image is `none`, because the homepage ground rules
+      (`body.p-home .receipts{background:...}`, four class-level components)
+      outrank an attribute-scoped rule (three) and the `background` SHORTHAND
+      resets the image. Item 11's fading section hairline never rendered either,
+      for the same reason — it was dead the whole time it was in this file.
+
+   2. On cards it landed, and was wrong anyway: four gold ticks across a row of
+      four cards is the same decoration-by-multiplication as the border it was
+      meant to replace.
+
+   The page already has an accent grammar and it is better than this one:
+   NUMBERS TAKE THE ACCENT, WORDS TAKE INK. The act numeral is gold, and item 9
+   extends exactly that rule to the figures. One idea, already consistent, and it
+   is semantic rather than ornamental. */
+
+
+
+/* 12 · GRAIN, slightly stronger and finer, so the ground reads as paper rather
+   than as screen white. Measured: it shifts the ground by under 1.5% luminance,
+   so every contrast ratio on the page is unchanged. */
+html[data-theme="ember"][data-skin="cream"][data-touch="modern"] body{
+  background-image:radial-gradient(circle at 1px 1px, rgba(26,26,28,.045) 1px, transparent 0);
+  background-size:4px 4px;background-attachment:scroll;background-repeat:repeat}
+
+/* ============================================================
+   L21 — THE ESSAY CONTENTS RAIL
+
+   Measured on /writing/confidence-scoring at 1440: a 609px column with 368px
+   empty on the left and 463px on the right, the full length of the essay. The
+   case pages fixed the same defect with L17's margin rail, but that grid keys
+   off .measure-c/.measure-t and the essays have neither — their columns come
+   from xi-* extracted classes. So the rail is placed in the existing left
+   margin instead of re-gridding the page: the column does not move by a pixel.
+
+   Gestalt: PROXIMITY (contents beside the prose it indexes, not stacked above
+   it) · COMMON REGION (one rail down the page, as on the case pages) ·
+   CONTINUITY (a single left alignment line) · SIMILARITY (long-form pages all
+   read the same way) · FIGURE/GROUND (the prose stays the figure — the rail is
+   14px, muted, and unruled) · CLOSURE · PRÄGNANZ (two columns, not a stack).
+
+   Below 1080px there is no margin to put it in, so it is not rendered at all
+   rather than stacked above the essay as a second, competing table of contents.
+   ============================================================ */
+html[data-theme="ember"][data-skin="cream"] .esy-rail{display:none}
+@media (min-width:1080px){
+  html[data-theme="ember"][data-skin="cream"] .esy-rail{
+    display:block;position:absolute;left:-234px;top:0;bottom:0;width:190px;
+    pointer-events:none}
+  html[data-theme="ember"][data-skin="cream"] .esy-toc{
+    position:sticky;top:112px;pointer-events:auto}
+  html[data-theme="ember"][data-skin="cream"] .esy-toc-h{
+    font:600 12px/1.5 var(--font-ui);letter-spacing:.06em;text-transform:uppercase;
+    color:var(--text-muted);margin:0 0 10px}
+  html[data-theme="ember"][data-skin="cream"] .esy-toc ol{
+    list-style:none;margin:0;padding:0;counter-reset:esy}
+  html[data-theme="ember"][data-skin="cream"] .esy-toc li{
+    counter-increment:esy;margin:0 0 9px}
+  html[data-theme="ember"][data-skin="cream"] .esy-toc a{
+    display:block;font:400 14px/1.4 var(--font-ui);color:var(--text-secondary);
+    text-decoration:none;padding-left:22px;position:relative;
+    transition:color .2s var(--ease-standard)}
+  /* the numeral is the accent, exactly as it is everywhere else on this site:
+     numbers take the accent, words take ink. */
+  html[data-theme="ember"][data-skin="cream"] .esy-toc a::before{
+    content:counter(esy,decimal-leading-zero);position:absolute;left:0;top:0;
+    font:400 12px/1.65 var(--font-mono);color:var(--cream-silver);
+    transition:color .2s var(--ease-standard)}
+  html[data-theme="ember"][data-skin="cream"] .esy-toc a:hover{color:var(--text-primary)}
+  html[data-theme="ember"][data-skin="cream"] .esy-toc a:hover::before{color:var(--accent-text)}
+  /* the section being read: ink, and its numeral in accent. No fill, no bar —
+     the rail must not become a second figure on the page. */
+  html[data-theme="ember"][data-skin="cream"] .esy-toc a[aria-current="true"]{
+    color:var(--text-primary)}
+  html[data-theme="ember"][data-skin="cream"] .esy-toc a[aria-current="true"]::before{
+    color:var(--accent-text)}
+  /* a clicked heading must not land under the fixed 64px bar */
+  html[data-theme="ember"][data-skin="cream"] body[class*="p-writing-"] main h2{
+    scroll-margin-top:96px}
 }

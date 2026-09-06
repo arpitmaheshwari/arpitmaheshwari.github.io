@@ -16,7 +16,7 @@ WHAT IT GUARANTEES, so no caller has to remember
   * the browser is always killed and its profile removed, even on exception.
   * one place to fix a timeout, a flag, or a protocol change.
 """
-import json, os, shutil, signal, socket, subprocess, tempfile, time, urllib.request
+import atexit, json, os, shutil, signal, socket, subprocess, tempfile, time, urllib.request
 import websocket
 
 def _find_chrome():
@@ -75,6 +75,74 @@ NO_TRACKING_FLAG = "--host-resolver-rules=" + ",".join(
     f"MAP {h} ~NOTFOUND" for h in TRACKER_HOSTS)
 
 
+def _alive(pid):
+    try:
+        os.kill(pid, 0)
+        return True
+    except (OSError, ProcessLookupError):
+        return False
+
+
+def reap_stale_browsers(verbose=False):
+    """Kill headless Chromes whose owning python process is gone, and delete their
+    profiles.
+
+    Why this exists (2026-09-06). close() is correct and does SIGKILL the browser —
+    but it only runs if the interpreter reaches it. Every gate run that was
+    interrupted, timed out, or was moved to the background mid-flight left its
+    Chrome orphaned. Twenty-four of them accumulated, the oldest twenty minutes
+    old, and they starved new launches: contrast-audit began refusing to report
+    with 'could not instrument the page at all' — an environment failure wearing
+    the costume of a site defect. It refused rather than lying, which is why this
+    was findable at all.
+
+    Precision matters here: this NEVER touches a Chrome that is not ours. It acts
+    only on processes whose --user-data-dir is one of OUR cdp-* profiles, and only
+    when the pid stamped in that profile is no longer alive. A concurrently
+    running gate's browser is therefore safe.
+    """
+    tmp = tempfile.gettempdir()
+    killed = 0
+    try:
+        names = os.listdir(tmp)
+    except OSError:
+        return 0
+    for name in names:
+        if not name.startswith("cdp-"):
+            continue
+        d = os.path.join(tmp, name)
+        stamp = os.path.join(d, "owner.pid")
+        try:
+            owner = int(open(stamp).read().strip())
+        except Exception:
+            # no stamp: a profile from before this stamping existed, or a partial
+            # mkdtemp. Only reap it if nothing is using it.
+            owner = None
+        if owner is not None and _alive(owner):
+            continue                                   # a live gate owns this one
+        try:
+            out = subprocess.run(["ps", "ax", "-o", "pid=,command="],
+                                 capture_output=True, text=True, timeout=20).stdout
+        except Exception:
+            out = ""
+        for line in out.splitlines():
+            if d not in line or "--headless" not in line:
+                continue
+            try:
+                pid = int(line.split(None, 1)[0])
+            except (ValueError, IndexError):
+                continue
+            try:
+                os.kill(pid, signal.SIGKILL)
+                killed += 1
+            except OSError:
+                pass
+        shutil.rmtree(d, ignore_errors=True)
+    if verbose and killed:
+        print(f"[cdp] reaped {killed} orphaned headless Chrome process(es)")
+    return killed
+
+
 class Browser:
     """A headless Chrome speaking CDP. Use as a context manager."""
 
@@ -87,7 +155,16 @@ class Browser:
         with socket.socket() as _s0:
             _s0.bind(('127.0.0.1', 0))
             self.port = _s0.getsockname()[1]
+        # Clear other runs' orphans BEFORE launching: a starved launch is what an
+        # accumulated leak looks like from the inside.
+        reap_stale_browsers()
         self.profile = tempfile.mkdtemp(prefix="cdp-")
+        # stamp the owner so the reaper can tell an orphan from a live sibling
+        try:
+            with open(os.path.join(self.profile, "owner.pid"), "w") as _f:
+                _f.write(str(os.getpid()))
+        except OSError:
+            pass
         self.proc = subprocess.Popen(
             [CHROME, "--headless=new", f"--remote-debugging-port={self.port}",
              f"--user-data-dir={self.profile}", "--no-first-run",
@@ -152,6 +229,8 @@ class Browser:
         self.events = []
         self.cmd("Page.enable")
         self.cmd("Runtime.enable")
+        # the browser is up: guarantee it dies with us even if we die badly
+        self._arm_teardown()
 
     def cmd(self, method, **params):
         self._id += 1
@@ -253,11 +332,35 @@ class Browser:
 
     def close(self):
         try:
+            atexit.unregister(self.close)
+        except Exception:
+            pass
+        try:
             if getattr(self, "proc", None):
                 self.proc.send_signal(signal.SIGKILL)
                 self.proc.wait(timeout=10)
         finally:
             shutil.rmtree(self.profile, ignore_errors=True)
+
+    def _arm_teardown(self):
+        """Make close() run even when __exit__ never gets the chance.
+
+        atexit covers a normal interpreter exit and an uncaught exception;
+        SIGTERM/SIGINT cover the harness timing a run out or a Ctrl-C. Without
+        this, every interrupted run leaked a browser.
+        """
+        atexit.register(self.close)
+        for sig in (signal.SIGTERM, signal.SIGINT):
+            try:
+                prev = signal.getsignal(sig)
+                if prev in (signal.SIG_DFL, signal.SIG_IGN) or prev is None:
+                    signal.signal(sig, self._on_signal)
+            except (ValueError, OSError):
+                pass          # not the main thread: atexit still covers us
+
+    def _on_signal(self, signum, frame):
+        self.close()
+        raise SystemExit(128 + signum)
 
     def __enter__(self):
         return self

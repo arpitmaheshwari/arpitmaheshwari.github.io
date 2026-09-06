@@ -1,643 +1,702 @@
 {
-  "_why": [
-    "ONE list of gates. The pre-push hook and .github/workflows/ used to keep two",
-    "hand-maintained lists, and nothing required them to agree. They stopped agreeing:",
-    "the hook ran asset-load-check against two URLs while CI ran it against every page,",
-    "so a green hook said nothing about the gate that was failing — and the Contrast gate",
-    "was red on thirty consecutive pushes from 2026-08-30 to 2026-09-04 while every local",
-    "run reported OK.",
-    "",
-    "Divergence is still allowed, because some sweeps are too slow for every push. What is",
-    "no longer allowed is UNDECLARED divergence: every gate names the stages it runs in,",
-    "and tools/run-gates.py --audit fails if a check exists that this file does not list.",
-    "",
-    "stages : pre-push | ci     (a gate may be in both; at least one is required)",
-    "needs  : server            (run-gates starts ONE for all of them and passes {BASE})",
-    "         network           (never run automatically — see manual_reason)",
-    "stages : pre-push | ci | ci-always   (ci-always = canon-gate.yml, unfiltered)",
-    "         nightly           (nightly-sweep.yml — the multi-minute browser sweeps)",
-    "serial : run this gate alone (virtual-time drivers break under contention)",
-    "cmd    : argv. {BASE} is substituted with the server origin.",
-    "",
-    "runner:false = declared here, executed by the hook's own parallel orchestration.",
-    "The DECLARATION is single either way; --audit proves the hook really invokes it."
-  ],
-  "gates": [
-    {
-      "id": "canon-lint",
-      "cmd": [
-        "python3",
-        "tools/canon-lint.py",
-        "--root",
-        "."
-      ],
-      "stages": [
-        "pre-push",
-        "ci-always"
-      ],
-      "note": "ci-always: runs in canon-gate.yml, which has NO paths filter, so a push that touches only prose or a tool is still checked. contrast-gate.yml is paths-filtered."
-    },
-    {
-      "id": "case-sync-check",
-      "cmd": [
-        "python3",
-        "tools/case-sync-check.py",
-        "--root",
-        "."
-      ],
-      "stages": [
-        "pre-push",
-        "ci-always"
-      ],
-      "note": "ci-always: runs in canon-gate.yml, which has NO paths filter, so a push that touches only prose or a tool is still checked. contrast-gate.yml is paths-filtered."
-    },
-    {
-      "id": "teardown-facts",
-      "cmd": [
-        "python3",
-        "tools/teardown-facts.py",
-        "--check"
-      ],
-      "stages": [
-        "pre-push",
-        "ci-always"
-      ],
-      "note": "ci-always: runs in canon-gate.yml, which has NO paths filter, so a push that touches only prose or a tool is still checked. contrast-gate.yml is paths-filtered."
-    },
-    {
-      "id": "case-surface-inventory",
-      "cmd": [
-        "python3",
-        "tools/case-surface-inventory.py"
-      ],
-      "stages": [
-        "ci-always"
-      ],
-      "note": "ci-always: runs in canon-gate.yml, which has NO paths filter, so a push that touches only prose or a tool is still checked. contrast-gate.yml is paths-filtered."
-    },
-    {
-      "id": "no-tracking-check",
-      "cmd": [
-        "python3",
-        "tools/no-tracking-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ]
-    },
-    {
-      "id": "link-integrity-check",
-      "cmd": [
-        "python3",
-        "tools/link-integrity-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ]
-    },
-    {
-      "id": "sprite-reference-check",
-      "cmd": [
-        "python3",
-        "tools/sprite-reference-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ]
-    },
-    {
-      "id": "share-preview-check",
-      "cmd": [
-        "python3",
-        "tools/share-preview-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ]
-    },
-    {
-      "id": "prose-check",
-      "cmd": [
-        "python3",
-        "tools/prose-check.py",
-        "--selftest"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ],
-      "note": "--selftest, not a bare run: it plants one violation per documented rule and refuses to report unless every rule fires. It was never wired in, so the calibration existed and never ran — and when finally invoked it failed with 'INVISIBLE: UNSPACED-DASH', a rule added to the list without being added to the fixture. A calibration nobody runs is a comment."
-    },
-    {
-      "id": "freshness-check",
-      "cmd": [
-        "python3",
-        "tools/freshness-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ]
-    },
-    {
-      "id": "ci-claim-check",
-      "cmd": [
-        "python3",
-        "tools/ci-claim-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ]
-    },
-    {
-      "id": "jsonld-check",
-      "cmd": [
-        "python3",
-        "tools/jsonld-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ]
-    },
-    {
-      "id": "social-title-check",
-      "cmd": [
-        "python3",
-        "tools/social-title-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ]
-    },
-    {
-      "id": "image-dimension-check",
-      "cmd": [
-        "python3",
-        "tools/image-dimension-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ]
-    },
-    {
-      "id": "orphan-asset-check",
-      "cmd": [
-        "python3",
-        "tools/orphan-asset-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ]
-    },
-    {
-      "id": "ci-deps-check",
-      "cmd": [
-        "python3",
-        "tools/ci-deps-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ]
-    },
-    {
-      "id": "inline-style-check",
-      "cmd": [
-        "python3",
-        "tools/inline-style-check.py",
-        "--root",
-        "."
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ]
-    },
-    {
-      "id": "css-version-check",
-      "cmd": [
-        "python3",
-        "tools/css-version-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ]
-    },
-    {
-      "id": "heading-rank-check",
-      "cmd": [
-        "python3",
-        "tools/heading-rank-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ],
-      "note": "was wired to neither stage until 2026-09-04 — one of nine orphans the architecture review found"
-    },
-    {
-      "id": "asset-reference-sweep",
-      "cmd": [
-        "python3",
-        "tools/asset-reference-sweep.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ],
-      "note": "orphan until 2026-09-04"
-    },
-    {
-      "id": "asset-load-check",
-      "cmd": [
-        "python3",
-        "tools/asset-load-check.py",
-        "--docroot",
-        ".",
-        "--all"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "the hook ran this against two URLs while CI ran --all; that divergence hid a five-day CI failure — executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason. — the HOOK narrows this one to the changed pages by passing $IMG_SCOPE directly (it is runner:false, so run-gates --scope never reaches it). ci and nightly run --all.",
-      "runner": false
-    },
-    {
-      "id": "og-card-presence",
-      "cmd": [
-        "python3",
-        "tools/generate-og-cards.py",
-        "--check"
-      ],
-      "stages": [
-        "ci"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
-    },
-    {
-      "id": "contrast-audit",
-      "cmd": [
-        "python3",
-        "tools/contrast-audit.py",
-        "--docroot",
-        ".",
-        "--all",
-        "--base",
-        "{BASE}",
-        "--widths",
-        "1440,390",
-        "--exempt",
-        ".bk-device__label, .bk-device__mark, .grad, .hero-headline em, body.p-404 h1 em",
-        "--force-visible",
-        ".reveal"
-      ],
-      "stages": [
-        "pre-push",
-        "nightly"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "The pre-push hook invokes this through run-gates --only contrast-audit, so there is ONE command line. It previously spelled out its own and had drifted: --widths 1440 in the hook against 1440,390 in the manifest, with an exempt list two selectors shorter. runner:false is gone with it. — scoped: pre-push passes only the CHANGED pages (the hook falls back to every page when CSS, a partial or a tool changed). The full two-width sweep across all pages runs nightly. Only the page SET differs; widths, exemptions and force-visible come from this file either way. — OPEN 2026-09-05: on a Linux runner this reports ten homepage failures that are NOT real. Every authored pair measures 6.4:1 to 10.7:1 from the stylesheet, and every ratio it reports is roughly half that — the signature of painted, partially-covered pixels being read as solid ink. It does not reproduce on macOS. Two attempted fixes did not clear it: an ALPHA_FLOOR guard (the alphas are above the floor) and a check comparing the recovered ink against the authored colour (too crude — it made 30 elements unmeasurable locally, because rgba() text and headings containing a gradient <em> are legitimately not their computed colour). The next step is instrumenting the runner to dump per-pixel alphas for one of these elements, not another hypothesis.",
-      "scoped": true
-    },
-    {
-      "id": "cta-grammar-check",
-      "cmd": [
-        "python3",
-        "tools/cta-grammar-check.py"
-      ],
-      "stages": [
-        "ci"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "DIAGNOSED 2026-09-04 and returned to every-push CI: it was not a Linux defect and not a false positive — it was CPU contention between parallel virtual-time gates. MOVED OFF EVERY-PUSH 2026-09-04, UNEXPLAINED. Its CALIBRATION fails on the Linux runner — 'planted 19px Georgia CTA did not add a signature (selector matched nothing, or probe blind)' — and a gate whose calibration fails is correctly refusing to report. It calibrates fine on macOS. Same treatment and same open question as theme-remnant-check. — serial: this gate CALIBRATES BY WRITING INTO ember.css — a shared source file. Two such gates at once clobber each other's read-modify-write restore and leave a canary rule on disk permanently, which is how theme-remnant-check came to report #515863, its OWN plant, on 40 pages in CI. Reproduced locally by running three of them concurrently: two planted rules left behind and the same 40-page failure. The REAL fix is gatelib.planted(), which holds a lock across plant -> scan -> restore and does not depend on who schedules the gates; serial is belt-and-braces for a bug that corrupted the working tree.",
-      "serial": true
-    },
-    {
-      "id": "theme-remnant-check",
-      "cmd": [
-        "python3",
-        "tools/theme-remnant-check.py"
-      ],
-      "stages": [
-        "ci"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "DIAGNOSED 2026-09-04 and returned to every-push CI: it was not a Linux defect and not a false positive — it was CPU contention between parallel virtual-time gates. MOVED OFF EVERY-PUSH 2026-09-04, UNEXPLAINED. It passes on macOS and fails on the Linux runner, and I could not reproduce it locally: it reports h1 colour #515863 'slate ink' on 40 pages, a value authored in NO stylesheet in this repo. Ruled out by measurement: ember.css not applying (disabling it gives 242,237,228, not slate), prefers-color-scheme (the site has no colour-scheme rules at all), and a load race (the probe waits 2.6s after iframe onload). This gate has now produced two false positives — it also convicted the correct paper gold on a cream ground — so it runs nightly, where a wrong answer costs a notification instead of a blocked push. The CI-only behaviour is open and needs diagnosing from the runner, not from here. — serial: this gate CALIBRATES BY WRITING INTO ember.css — a shared source file. Two such gates at once clobber each other's read-modify-write restore and leave a canary rule on disk permanently, which is how theme-remnant-check came to report #515863, its OWN plant, on 40 pages in CI. Reproduced locally by running three of them concurrently: two planted rules left behind and the same 40-page failure. The REAL fix is gatelib.planted(), which holds a lock across plant -> scan -> restore and does not depend on who schedules the gates; serial is belt-and-braces for a bug that corrupted the working tree.",
-      "serial": true
-    },
-    {
-      "id": "runtime-error-check",
-      "cmd": [
-        "python3",
-        "tools/runtime-error-check.py",
-        "--base",
-        "{BASE}"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ],
-      "needs": [
-        "server"
-      ],
-      "runner": false,
-      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
-    },
-    {
-      "id": "interaction-state-check",
-      "cmd": [
-        "python3",
-        "tools/interaction-state-check.py",
-        "--base",
-        "{BASE}"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ],
-      "needs": [
-        "server"
-      ],
-      "runner": false,
-      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
-    },
-    {
-      "id": "component-identity-check",
-      "cmd": [
-        "python3",
-        "tools/component-identity-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ],
-      "needs": [
-        "server"
-      ],
-      "runner": false,
-      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
-    },
-    {
-      "id": "cta-viewport-check",
-      "cmd": [
-        "python3",
-        "tools/cta-viewport-check.py"
-      ],
-      "stages": [
-        "pre-push"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "pre-push only: slow, and CI covers the same class through cta-grammar-check — executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason.",
-      "runner": false
-    },
-    {
-      "id": "artifact-legibility-check",
-      "cmd": [
-        "python3",
-        "tools/artifact-legibility-check.py"
-      ],
-      "stages": [
-        "pre-push"
-      ],
-      "needs": [
-        "server"
-      ],
-      "runner": false,
-      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
-    },
-    {
-      "id": "fit-check-calibration",
-      "cmd": [
-        "python3",
-        "tools/fit-check-calibration.py",
-        "{BASE}"
-      ],
-      "stages": [
-        "pre-push"
-      ],
-      "needs": [
-        "server"
-      ],
-      "runner": false,
-      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
-    },
-    {
-      "id": "image-alignment-check",
-      "cmd": [
-        "python3",
-        "tools/image-alignment-check.py",
-        "--all",
-        "--widths",
-        "390,1440"
-      ],
-      "stages": [
-        "pre-push"
-      ],
-      "needs": [
-        "server"
-      ],
-      "runner": false,
-      "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
-    },
-    {
-      "id": "overflow-sweep-1440",
-      "cmd": [
-        "python3",
-        "tools/overflow-sweep.py",
-        "1440"
-      ],
-      "stages": [
-        "nightly"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
-    },
-    {
-      "id": "overflow-sweep-1024",
-      "cmd": [
-        "python3",
-        "tools/overflow-sweep.py",
-        "1024"
-      ],
-      "stages": [
-        "nightly"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
-    },
-    {
-      "id": "overflow-sweep-768",
-      "cmd": [
-        "python3",
-        "tools/overflow-sweep.py",
-        "768"
-      ],
-      "stages": [
-        "nightly"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
-    },
-    {
-      "id": "line-height-check",
-      "cmd": [
-        "python3",
-        "tools/line-height-check.py"
-      ],
-      "stages": [
-        "nightly"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "orphan until 2026-09-04; ~7 min, so CI is the authority rather than every push — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
-    },
-    {
-      "id": "reachability-check",
-      "cmd": [
-        "python3",
-        "tools/reachability-check.py"
-      ],
-      "stages": [
-        "nightly"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "orphan until 2026-09-04 — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
-    },
-    {
-      "id": "overlap-check",
-      "cmd": [
-        "python3",
-        "tools/overlap-check.py"
-      ],
-      "stages": [
-        "nightly"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "orphan until 2026-09-04 — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
-    },
-    {
-      "id": "keyboard-sweep",
-      "cmd": [
-        "python3",
-        "tools/keyboard-sweep.py"
-      ],
-      "stages": [
-        "nightly"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "orphan until 2026-09-04. Page list from gatelib; the book has no shared chrome to tab through. — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch.",
-      "pages": {
-        "include_book": false
-      }
-    },
-    {
-      "id": "a11y-sweep",
-      "cmd": [
-        "python3",
-        "tools/a11y-sweep.py",
-        "--docroot",
-        "."
-      ],
-      "stages": [
-        "nightly"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "orphan until 2026-09-04. Page list comes from gatelib. The book is excluded: it deliberately carries no shared nav or footer, so the landmark rule fails it by design — and its infinite animations were verified to clear under prefers-reduced-motion, which all three stylesheets honour. — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason.",
-      "pages": {
-        "include_book": false
-      }
-    },
-    {
-      "id": "receipt-align-check",
-      "cmd": [
-        "python3",
-        "tools/receipt-align-check.py"
-      ],
-      "stages": [
-        "nightly"
-      ],
-      "needs": [
-        "server"
-      ],
-      "note": "orphan until 2026-09-04 — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
-    },
-    {
-      "id": "tooling-budget-check",
-      "cmd": [
-        "python3",
-        "tools/tooling-budget-check.py"
-      ],
-      "stages": [
-        "pre-push",
-        "ci"
-      ],
-      "note": "Fix 04 from the architecture review, enforced rather than wished. tools/ is 1.98x the size of the site CSS it checks; the ceiling makes the next increase a decision someone records instead of a drift nobody notices. Raising CEILING is expected and fine — raising it silently is not."
-    }
-  ],
-  "manual": [
-    {
-      "id": "ci-status-check",
-      "cmd": [
-        "python3",
-        "tools/ci-status-check.py"
-      ],
-      "manual_reason": "asks the GitHub Actions API. Needs the network, and running it inside the very push it reports on would report the previous run."
-    },
-    {
-      "id": "lab-mirror-check",
-      "cmd": [
-        "python3",
-        "tools/lab-mirror-check.py"
-      ],
-      "manual_reason": "fetches github.com/arpitmaheshwari/the-lab to prove the published files are still verbatim. A gate that fails on a plane is a gate people learn to skip."
-    },
-    {
-      "id": "balance-check",
-      "cmd": [
-        "python3",
-        "tools/balance-check.py"
-      ],
-      "manual_reason": "Reports 2 findings that were verified BY EYE on 2026-09-04 and are false positives: index.html and folio/index.html hero, and the 'who you'd be hiring' band, are staggered TWO-COLUMN compositions — prose left, the process film / Candidate Facts card right — and they render balanced at 1440 (prototypes/renders/hero-1440.png, chap-i-1440.png). The gate's unit is the paragraph: a column that starts BELOW the headline leaves the eyebrow and h1 with nothing level with them, so they read as one-sided. Widening the test to the section was tried and REJECTED — it let the gate's own planted 400px defect through, and a check that cannot fail is not evidence. Kept manual rather than weakened, so it never blocks CI on a reading a human has already overruled. Re-run it by hand after any layout change."
-    }
-  ]
+ "_why": [
+  "ONE list of gates. The pre-push hook and .github/workflows/ used to keep two",
+  "hand-maintained lists, and nothing required them to agree. They stopped agreeing:",
+  "the hook ran asset-load-check against two URLs while CI ran it against every page,",
+  "so a green hook said nothing about the gate that was failing \u2014 and the Contrast gate",
+  "was red on thirty consecutive pushes from 2026-08-30 to 2026-09-04 while every local",
+  "run reported OK.",
+  "",
+  "Divergence is still allowed, because some sweeps are too slow for every push. What is",
+  "no longer allowed is UNDECLARED divergence: every gate names the stages it runs in,",
+  "and tools/run-gates.py --audit fails if a check exists that this file does not list.",
+  "",
+  "stages : pre-push | ci     (a gate may be in both; at least one is required)",
+  "needs  : server            (run-gates starts ONE for all of them and passes {BASE})",
+  "         network           (never run automatically \u2014 see manual_reason)",
+  "stages : pre-push | ci | ci-always   (ci-always = canon-gate.yml, unfiltered)",
+  "         nightly           (nightly-sweep.yml \u2014 the multi-minute browser sweeps)",
+  "serial : run this gate alone (virtual-time drivers break under contention)",
+  "cmd    : argv. {BASE} is substituted with the server origin.",
+  "",
+  "runner:false = declared here, executed by the hook's own parallel orchestration.",
+  "The DECLARATION is single either way; --audit proves the hook really invokes it."
+ ],
+ "gates": [
+  {
+   "id": "canon-lint",
+   "cmd": [
+    "python3",
+    "tools/canon-lint.py",
+    "--root",
+    "."
+   ],
+   "stages": [
+    "pre-push",
+    "ci-always"
+   ],
+   "note": "ci-always: runs in canon-gate.yml, which has NO paths filter, so a push that touches only prose or a tool is still checked. contrast-gate.yml is paths-filtered."
+  },
+  {
+   "id": "case-sync-check",
+   "cmd": [
+    "python3",
+    "tools/case-sync-check.py",
+    "--root",
+    "."
+   ],
+   "stages": [
+    "pre-push",
+    "ci-always"
+   ],
+   "note": "ci-always: runs in canon-gate.yml, which has NO paths filter, so a push that touches only prose or a tool is still checked. contrast-gate.yml is paths-filtered."
+  },
+  {
+   "id": "teardown-facts",
+   "cmd": [
+    "python3",
+    "tools/teardown-facts.py",
+    "--check"
+   ],
+   "stages": [
+    "pre-push",
+    "ci-always"
+   ],
+   "note": "ci-always: runs in canon-gate.yml, which has NO paths filter, so a push that touches only prose or a tool is still checked. contrast-gate.yml is paths-filtered."
+  },
+  {
+   "id": "case-surface-inventory",
+   "cmd": [
+    "python3",
+    "tools/case-surface-inventory.py"
+   ],
+   "stages": [
+    "ci-always"
+   ],
+   "note": "ci-always: runs in canon-gate.yml, which has NO paths filter, so a push that touches only prose or a tool is still checked. contrast-gate.yml is paths-filtered."
+  },
+  {
+   "id": "no-tracking-check",
+   "cmd": [
+    "python3",
+    "tools/no-tracking-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ]
+  },
+  {
+   "id": "link-integrity-check",
+   "cmd": [
+    "python3",
+    "tools/link-integrity-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ]
+  },
+  {
+   "id": "sprite-reference-check",
+   "cmd": [
+    "python3",
+    "tools/sprite-reference-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ]
+  },
+  {
+   "id": "share-preview-check",
+   "cmd": [
+    "python3",
+    "tools/share-preview-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ]
+  },
+  {
+   "id": "prose-check",
+   "cmd": [
+    "python3",
+    "tools/prose-check.py",
+    "--selftest"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ],
+   "note": "--selftest, not a bare run: it plants one violation per documented rule and refuses to report unless every rule fires. It was never wired in, so the calibration existed and never ran \u2014 and when finally invoked it failed with 'INVISIBLE: UNSPACED-DASH', a rule added to the list without being added to the fixture. A calibration nobody runs is a comment."
+  },
+  {
+   "id": "freshness-check",
+   "cmd": [
+    "python3",
+    "tools/freshness-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ]
+  },
+  {
+   "id": "ci-claim-check",
+   "cmd": [
+    "python3",
+    "tools/ci-claim-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ]
+  },
+  {
+   "id": "jsonld-check",
+   "cmd": [
+    "python3",
+    "tools/jsonld-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ]
+  },
+  {
+   "id": "social-title-check",
+   "cmd": [
+    "python3",
+    "tools/social-title-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ]
+  },
+  {
+   "id": "image-dimension-check",
+   "cmd": [
+    "python3",
+    "tools/image-dimension-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ]
+  },
+  {
+   "id": "orphan-asset-check",
+   "cmd": [
+    "python3",
+    "tools/orphan-asset-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ]
+  },
+  {
+   "id": "ci-deps-check",
+   "cmd": [
+    "python3",
+    "tools/ci-deps-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ]
+  },
+  {
+   "id": "inline-style-check",
+   "cmd": [
+    "python3",
+    "tools/inline-style-check.py",
+    "--root",
+    "."
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ]
+  },
+  {
+   "id": "css-version-check",
+   "cmd": [
+    "python3",
+    "tools/css-version-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ]
+  },
+  {
+   "id": "heading-rank-check",
+   "cmd": [
+    "python3",
+    "tools/heading-rank-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ],
+   "note": "was wired to neither stage until 2026-09-04 \u2014 one of nine orphans the architecture review found"
+  },
+  {
+   "id": "asset-reference-sweep",
+   "cmd": [
+    "python3",
+    "tools/asset-reference-sweep.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ],
+   "note": "orphan until 2026-09-04"
+  },
+  {
+   "id": "asset-load-check",
+   "cmd": [
+    "python3",
+    "tools/asset-load-check.py",
+    "--docroot",
+    ".",
+    "--all"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "the hook ran this against two URLs while CI ran --all; that divergence hid a five-day CI failure \u2014 executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason. \u2014 the HOOK narrows this one to the changed pages by passing $IMG_SCOPE directly (it is runner:false, so run-gates --scope never reaches it). ci and nightly run --all.",
+   "runner": false
+  },
+  {
+   "id": "og-card-presence",
+   "cmd": [
+    "python3",
+    "tools/generate-og-cards.py",
+    "--check"
+   ],
+   "stages": [
+    "ci"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
+  },
+  {
+   "id": "contrast-audit",
+   "cmd": [
+    "python3",
+    "tools/contrast-audit.py",
+    "--docroot",
+    ".",
+    "--all",
+    "--base",
+    "{BASE}",
+    "--widths",
+    "390,768,1024,1440",
+    "--exempt",
+    ".bk-device__label, .bk-device__mark, .grad, .hero-headline em, body.p-404 h1 em",
+    "--force-visible",
+    ".reveal"
+   ],
+   "stages": [
+    "pre-push",
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "The pre-push hook invokes this through run-gates --only contrast-audit, so there is ONE command line. It previously spelled out its own and had drifted: --widths 1440 in the hook against 1440,390 in the manifest, with an exempt list two selectors shorter. runner:false is gone with it. \u2014 scoped: pre-push passes only the CHANGED pages (the hook falls back to every page when CSS, a partial or a tool changed). The full two-width sweep across all pages runs nightly. Only the page SET differs; widths, exemptions and force-visible come from this file either way. \u2014 OPEN 2026-09-05: on a Linux runner this reports ten homepage failures that are NOT real. Every authored pair measures 6.4:1 to 10.7:1 from the stylesheet, and every ratio it reports is roughly half that \u2014 the signature of painted, partially-covered pixels being read as solid ink. It does not reproduce on macOS. Two attempted fixes did not clear it: an ALPHA_FLOOR guard (the alphas are above the floor) and a check comparing the recovered ink against the authored colour (too crude \u2014 it made 30 elements unmeasurable locally, because rgba() text and headings containing a gradient <em> are legitimately not their computed colour). The next step is instrumenting the runner to dump per-pixel alphas for one of these elements, not another hypothesis. \u2014 WIDTHS 2026-09-06: was '1440,390'. 768 and 1024 were added after a cover that hid the top 475px of every page below 1100px went unseen for weeks: this gate reported it loudly (177 NO-INK) the first time those widths were measured. Two widths on either side of a breakpoint band do not test the band.",
+   "scoped": true
+  },
+  {
+   "id": "cta-grammar-check",
+   "cmd": [
+    "python3",
+    "tools/cta-grammar-check.py"
+   ],
+   "stages": [
+    "ci"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "DIAGNOSED 2026-09-04 and returned to every-push CI: it was not a Linux defect and not a false positive \u2014 it was CPU contention between parallel virtual-time gates. MOVED OFF EVERY-PUSH 2026-09-04, UNEXPLAINED. Its CALIBRATION fails on the Linux runner \u2014 'planted 19px Georgia CTA did not add a signature (selector matched nothing, or probe blind)' \u2014 and a gate whose calibration fails is correctly refusing to report. It calibrates fine on macOS. Same treatment and same open question as theme-remnant-check. \u2014 serial: this gate CALIBRATES BY WRITING INTO ember.css \u2014 a shared source file. Two such gates at once clobber each other's read-modify-write restore and leave a canary rule on disk permanently, which is how theme-remnant-check came to report #515863, its OWN plant, on 40 pages in CI. Reproduced locally by running three of them concurrently: two planted rules left behind and the same 40-page failure. The REAL fix is gatelib.planted(), which holds a lock across plant -> scan -> restore and does not depend on who schedules the gates; serial is belt-and-braces for a bug that corrupted the working tree.",
+   "serial": true
+  },
+  {
+   "id": "theme-remnant-check",
+   "cmd": [
+    "python3",
+    "tools/theme-remnant-check.py"
+   ],
+   "stages": [
+    "ci"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "DIAGNOSED 2026-09-04 and returned to every-push CI: it was not a Linux defect and not a false positive \u2014 it was CPU contention between parallel virtual-time gates. MOVED OFF EVERY-PUSH 2026-09-04, UNEXPLAINED. It passes on macOS and fails on the Linux runner, and I could not reproduce it locally: it reports h1 colour #515863 'slate ink' on 40 pages, a value authored in NO stylesheet in this repo. Ruled out by measurement: ember.css not applying (disabling it gives 242,237,228, not slate), prefers-color-scheme (the site has no colour-scheme rules at all), and a load race (the probe waits 2.6s after iframe onload). This gate has now produced two false positives \u2014 it also convicted the correct paper gold on a cream ground \u2014 so it runs nightly, where a wrong answer costs a notification instead of a blocked push. The CI-only behaviour is open and needs diagnosing from the runner, not from here. \u2014 serial: this gate CALIBRATES BY WRITING INTO ember.css \u2014 a shared source file. Two such gates at once clobber each other's read-modify-write restore and leave a canary rule on disk permanently, which is how theme-remnant-check came to report #515863, its OWN plant, on 40 pages in CI. Reproduced locally by running three of them concurrently: two planted rules left behind and the same 40-page failure. The REAL fix is gatelib.planted(), which holds a lock across plant -> scan -> restore and does not depend on who schedules the gates; serial is belt-and-braces for a bug that corrupted the working tree.",
+   "serial": true
+  },
+  {
+   "id": "runtime-error-check",
+   "cmd": [
+    "python3",
+    "tools/runtime-error-check.py",
+    "--base",
+    "{BASE}"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ],
+   "needs": [
+    "server"
+   ],
+   "runner": false,
+   "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
+  },
+  {
+   "id": "interaction-state-check",
+   "cmd": [
+    "python3",
+    "tools/interaction-state-check.py",
+    "--base",
+    "{BASE}"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ],
+   "needs": [
+    "server"
+   ],
+   "runner": false,
+   "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
+  },
+  {
+   "id": "component-identity-check",
+   "cmd": [
+    "python3",
+    "tools/component-identity-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ],
+   "needs": [
+    "server"
+   ],
+   "runner": false,
+   "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
+  },
+  {
+   "id": "cta-viewport-check",
+   "cmd": [
+    "python3",
+    "tools/cta-viewport-check.py"
+   ],
+   "stages": [
+    "pre-push"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "pre-push only: slow, and CI covers the same class through cta-grammar-check \u2014 executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason.",
+   "runner": false
+  },
+  {
+   "id": "artifact-legibility-check",
+   "cmd": [
+    "python3",
+    "tools/artifact-legibility-check.py"
+   ],
+   "stages": [
+    "pre-push"
+   ],
+   "needs": [
+    "server"
+   ],
+   "runner": false,
+   "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
+  },
+  {
+   "id": "fit-check-calibration",
+   "cmd": [
+    "python3",
+    "tools/fit-check-calibration.py",
+    "{BASE}"
+   ],
+   "stages": [
+    "pre-push"
+   ],
+   "needs": [
+    "server"
+   ],
+   "runner": false,
+   "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
+  },
+  {
+   "id": "image-alignment-check",
+   "cmd": [
+    "python3",
+    "tools/image-alignment-check.py",
+    "--all",
+    "--widths",
+    "390,1440"
+   ],
+   "stages": [
+    "pre-push"
+   ],
+   "needs": [
+    "server"
+   ],
+   "runner": false,
+   "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it."
+  },
+  {
+   "id": "overflow-sweep-1440",
+   "cmd": [
+    "python3",
+    "tools/overflow-sweep.py",
+    "1440"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
+  },
+  {
+   "id": "overflow-sweep-1024",
+   "cmd": [
+    "python3",
+    "tools/overflow-sweep.py",
+    "1024"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
+  },
+  {
+   "id": "overflow-sweep-768",
+   "cmd": [
+    "python3",
+    "tools/overflow-sweep.py",
+    "768"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
+  },
+  {
+   "id": "line-height-check",
+   "cmd": [
+    "python3",
+    "tools/line-height-check.py"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "orphan until 2026-09-04; ~7 min, so CI is the authority rather than every push \u2014 moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
+  },
+  {
+   "id": "reachability-check",
+   "cmd": [
+    "python3",
+    "tools/reachability-check.py"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "orphan until 2026-09-04 \u2014 moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
+  },
+  {
+   "id": "overlap-check",
+   "cmd": [
+    "python3",
+    "tools/overlap-check.py"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "orphan until 2026-09-04 \u2014 moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
+  },
+  {
+   "id": "keyboard-sweep",
+   "cmd": [
+    "python3",
+    "tools/keyboard-sweep.py"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "orphan until 2026-09-04. Page list from gatelib; the book has no shared chrome to tab through. \u2014 moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch.",
+   "pages": {
+    "include_book": false
+   }
+  },
+  {
+   "id": "a11y-sweep",
+   "cmd": [
+    "python3",
+    "tools/a11y-sweep.py",
+    "--docroot",
+    "."
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "orphan until 2026-09-04. Page list comes from gatelib. The book is excluded: it deliberately carries no shared nav or footer, so the landmark rule fails it by design \u2014 and its infinite animations were verified to clear under prefers-reduced-motion, which all three stylesheets honour. \u2014 moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason.",
+   "pages": {
+    "include_book": false
+   }
+  },
+  {
+   "id": "receipt-align-check",
+   "cmd": [
+    "python3",
+    "tools/receipt-align-check.py"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "orphan until 2026-09-04 \u2014 moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
+  },
+  {
+   "id": "tooling-budget-check",
+   "cmd": [
+    "python3",
+    "tools/tooling-budget-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ],
+   "note": "Fix 04 from the architecture review, enforced rather than wished. tools/ is 1.98x the size of the site CSS it checks; the ceiling makes the next increase a decision someone records instead of a drift nobody notices. Raising CEILING is expected and fine \u2014 raising it silently is not."
+  },
+  {
+   "id": "menu-overlay",
+   "cmd": [
+    "python3",
+    "tools/menu-overlay-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "The open mobile menu must paint on top of the page. Built 2026-09-06 after the drawer rendered UNDER the hero. Checks the OPEN state only \u2014 see closed-state-cover for the other half, which is where the worse defect turned out to live."
+  },
+  {
+   "id": "menu-keyboard",
+   "cmd": [
+    "python3",
+    "tools/menu-keyboard-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "Escape must close the drawer, aria-expanded must tell the truth, the page must be released and focus must return to the toggle. Built after 29 pages were found carrying a stale inline binder that dyslexia.js could not unbind, leaving the live button announcing 'expanded' after the drawer had closed."
+  },
+  {
+   "id": "hover-contrast",
+   "cmd": [
+    "python3",
+    "tools/hover-contrast-check.py"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "Every link and button must stay >=4.5:1 WHILE HOVERED. Built after Arpit found the secondary CTA turning its label parchment on a near-white plate at 1.07:1 \u2014 a hover rule written for .pill, which every secondary also carries. Nightly only: it moves a real pointer to each of 14 targets per page and waits for the transition, so it is the slowest gate here. DOM arithmetic, so a shadow or overlay behind a label is invisible to it; contrast-audit's pixels remain the authority."
+  },
+  {
+   "id": "closed-state-cover",
+   "cmd": [
+    "python3",
+    "tools/closed-state-cover-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "In the page's DEFAULT, untouched state, no viewport-anchored element may cover the content. Built 2026-09-06 after an unscoped `display:flex` at #nav specificity outranked classic's @media(max-width:1100px){.nav-links{display:none}} and left the mobile drawer PERMANENTLY OPEN below 1100px on all 41 pages \u2014 an opaque white panel over the top 475px, eating every click under it. It laid out correctly at 1200+, so both menu gates (which open the menu first) passed it. Swept across a width RANGE, mobile first, because the defect hid between the widths anyone checks."
+  }
+ ],
+ "manual": [
+  {
+   "id": "ci-status-check",
+   "cmd": [
+    "python3",
+    "tools/ci-status-check.py"
+   ],
+   "manual_reason": "asks the GitHub Actions API. Needs the network, and running it inside the very push it reports on would report the previous run."
+  },
+  {
+   "id": "lab-mirror-check",
+   "cmd": [
+    "python3",
+    "tools/lab-mirror-check.py"
+   ],
+   "manual_reason": "fetches github.com/arpitmaheshwari/the-lab to prove the published files are still verbatim. A gate that fails on a plane is a gate people learn to skip."
+  },
+  {
+   "id": "balance-check",
+   "cmd": [
+    "python3",
+    "tools/balance-check.py"
+   ],
+   "manual_reason": "Reports 2 findings that were verified BY EYE on 2026-09-04 and are false positives: index.html and folio/index.html hero, and the 'who you'd be hiring' band, are staggered TWO-COLUMN compositions \u2014 prose left, the process film / Candidate Facts card right \u2014 and they render balanced at 1440 (prototypes/renders/hero-1440.png, chap-i-1440.png). The gate's unit is the paragraph: a column that starts BELOW the headline leaves the eyebrow and h1 with nothing level with them, so they read as one-sided. Widening the test to the section was tried and REJECTED \u2014 it let the gate's own planted 400px defect through, and a check that cannot fail is not evidence. Kept manual rather than weakened, so it never blocks CI on a reading a human has already overruled. Re-run it by hand after any layout change."
+  }
+ ]
 }

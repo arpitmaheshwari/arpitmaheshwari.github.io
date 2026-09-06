@@ -144,13 +144,23 @@ if __name__ == "__main__":
     # the cream skin has exactly one accent and sets inline CTAs in ink on
     # paper. Hard-coding ember's values reported every correct cream CTA as
     # off-grammar (3 pages, 2026-09-06).
+    # And the cream ink is RESOLVED FROM THE LIVE TOKEN, never written here as a
+    # hex. It was a hex for three days: rgb(32,29,24) — correct for cream v1.3.0.
+    # The v1.4.0 brand moved --text-primary to #1A1A1C, and this gate then
+    # reported five perfectly correct CTAs on three pages as off-grammar
+    # (2026-09-06). A gate that hard-codes a token's VALUE goes stale the next
+    # time the token moves, and it fails in the most expensive direction: it
+    # accuses the site. Ask the page what the token is instead.
     with _cdp.Browser() as _br:
         _br.viewport(1440, 900)
         _br.navigate("http://localhost:8000/index.html", settle=1.2)
         SKIN = _br.eval_json("JSON.stringify(document.documentElement.getAttribute('data-skin')||'')")
+        TOK = _br.eval_json("""JSON.stringify((()=>{const d=document.createElement('span');
+          d.style.color='var(--text-primary)';document.body.appendChild(d);
+          const v=getComputedStyle(d).color;d.remove();return v;})())""")
     if SKIN == "cream":
-        HOUSE_INK = {"paper": "rgb(32, 29, 24)",   # --text-primary on paper
-                     "dark":  "rgb(32, 29, 24)"}
+        HOUSE_INK = {"paper": TOK, "dark": TOK}
+        print(f"house ink resolved live from --text-primary: {TOK}")
     else:
         HOUSE_INK = {"dark": "rgb(232, 107, 255)",    # --link on dark grounds
                      "paper": "rgb(107, 58, 153)"}    # --link inside the cream act

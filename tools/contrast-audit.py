@@ -56,7 +56,7 @@ CALIBRATION IS NOT OPTIONAL
     (the state race). If any canary survives, nothing else is reported.
 
 USAGE
-    python3 contrast-audit.py URL [URL ...] [--widths 1440,1024,768] [--exempt "SELECTOR"]
+    python3 contrast-audit.py URL [URL ...] [--widths 390,768,1024,1440] [--exempt "SELECTOR"]
     python3 contrast-audit.py --all [--base http://localhost:8000]
     python3 contrast-audit.py --selftest URL          # calibration only
 
@@ -686,9 +686,14 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
 # ---------------------------------------------------------------- calibration
 
 def selftest(url, width, exempt=None, force_visible=".reveal"):
-    rows, _ = audit(url, width, exempt=exempt, canary=True, force_visible=force_visible)
+    rows, _notes = audit(url, width, exempt=exempt, canary=True, force_visible=force_visible)
     if rows is None:
-        return False, "could not instrument the page at all (is it served same-origin over http?)"
+        # PASS THE DIAGNOSIS THROUGH. This used to collapse four distinct failures
+        # — navigation failed, no eligible text, fixed chrome eating the viewport,
+        # uncalibrated camera — into one guess about same-origin http, and then I
+        # spent a run guessing which it was (2026-09-06). The note says.
+        why = "; ".join(_notes or []) or "no reason reported"
+        return False, f"could not instrument {url} at {width}px — {why}"
     def flagged(prefix):
         hits = [r for r in rows if r["text"].startswith(prefix[:18])]
         if not hits:
@@ -723,7 +728,13 @@ def main():
     ap.add_argument("urls", nargs="*")
     ap.add_argument("--all", action="store_true",
                     help="discover every shipped page from git and check all of them")
-    ap.add_argument("--widths", default="1440,1024,768")
+    # MOBILE FIRST, and 390 is in the default set. It was not, for the life of this
+    # tool: the default was "1440,1024,768", so the width where layouts actually
+    # fail was never measured unless a caller remembered to ask. Safe at 390
+    # because Browser.viewport uses setDeviceMetricsOverride at
+    # deviceScaleFactor=1 — that defeats headless Chrome's ~500px window clamp
+    # AND keeps screenshot pixels 1:1 with the CSS rects the crops are cut from.
+    ap.add_argument("--widths", default="390,768,1024,1440")
     ap.add_argument("--exempt", default=None,
                     help='CSS selector for WCAG 1.4.3-exempt text, e.g. ".logo, .wordmark"')
     ap.add_argument("--docroot", default=os.getcwd(),
@@ -744,6 +755,17 @@ def main():
         print(f"  --all: discovered {len(a.urls)} shipped pages")
     if not a.urls:
         ap.error("give URLs, or use --all")
+    # A URL cannot contain a space. If one does, the caller's shell did not split
+    # the list: zsh does NOT word-split an unquoted $VAR, so `audit $PAGES` arrives
+    # as ONE argv element holding all 41 URLs. Chrome then serves its error page,
+    # whose viewport is 980x2262, and the honest failure that follows
+    # ("UNCALIBRATED CAMERA") describes a symptom four minutes downstream of the
+    # cause. Say the cause instead, immediately. (zsh: use ${=PAGES}.)
+    for u in a.urls:
+        if " " in u.strip() or "\t" in u:
+            ap.error(f"URL contains whitespace — {len(u.split())} URLs arrived as a "
+                     f"single argument, so your shell did not split the list "
+                     f"(zsh: use ${{=VAR}}, not $VAR). First: {u.split()[0]}")
     widths = [int(w) for w in a.widths.split(",")]
     fv = a.force_visible or None
 
