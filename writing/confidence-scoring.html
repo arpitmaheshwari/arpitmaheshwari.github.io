@@ -136,31 +136,13 @@
 </footer>
 
 <script>
-// Mobile menu toggle
-const menuBtn = document.getElementById('menuToggle');
-const navLinks = document.querySelector('.nav-links');
-
-if (menuBtn && navLinks) {
-  menuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = navLinks.classList.toggle('nav-open');
-    menuBtn.setAttribute('aria-expanded', String(isOpen));
-  });
-  document.addEventListener('click', (e) => {
-    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
-      navLinks.classList.remove('nav-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
-      navLinks.classList.remove('nav-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.focus();
-    }
-  });
-}
-
+// Mobile menu: owned entirely by dyslexia.js (single binder, travels with the
+// nav on every page). The inline copy that used to live here was removed on
+// 2026-09-06: dyslexia.js replaces the button node to strip stale listeners,
+// but it cannot unbind the DOCUMENT-level ones the inline copy registered, so
+// the stale Escape handler kept winning the race and writing aria-expanded to
+// the detached node — leaving the live button announcing 'expanded' after the
+// drawer had closed, and dropping focus on <body>.
 // Reading mode toggle
 
 

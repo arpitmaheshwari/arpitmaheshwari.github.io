@@ -215,43 +215,13 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 });
 
-// Mobile menu (consolidated handler with aria-expanded + Escape support)
-const menuBtn = document.getElementById('menuToggle');
-const navLinks = document.querySelector('.nav-links');
-
-if (menuBtn && navLinks) {
-  menuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = navLinks.classList.toggle('nav-open');
-    menuBtn.setAttribute('aria-expanded', String(isOpen));
-  });
-
-  // Close drawer when clicking outside it
-  document.addEventListener('click', (e) => {
-    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
-      navLinks.classList.remove('nav-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // Close drawer on Escape key + return focus to hamburger
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
-      navLinks.classList.remove('nav-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.focus();
-    }
-  });
-
-  // Close drawer when any link OR the reading toggle inside it is clicked
-  navLinks.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') {
-      navLinks.classList.remove('nav-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-}
-
+// Mobile menu: owned entirely by dyslexia.js (single binder, travels with the
+// nav on every page). The inline copy that used to live here was removed on
+// 2026-09-06: dyslexia.js replaces the button node to strip stale listeners,
+// but it cannot unbind the DOCUMENT-level ones the inline copy registered, so
+// the stale Escape handler kept winning the race and writing aria-expanded to
+// the detached node — leaving the live button announcing 'expanded' after the
+// drawer had closed, and dropping focus on <body>.
 // GA4 event tracking
 document.addEventListener('click', (e) => {
   const cta = e.target.closest('[data-cta]');

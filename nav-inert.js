@@ -6,8 +6,12 @@
  * could not see, in an order that made no sense.
  *
  * The menu-open class is toggled by an inline handler duplicated across 37 pages, so this
- * watches for the class rather than editing 37 copies of the same script. It owns exactly one
- * concern: everything that is not the navigation stops being reachable while the menu is up.
+ * watches for the class rather than editing 37 copies of the same script.
+ *
+ * NOT here: Escape-to-dismiss. The page's own inline handler already owns that (it removes
+ * the class, flips aria-expanded and returns focus). A duplicate added here on 2026-09-06
+ * raced it and produced a contradictory state — removed the same day. This file owns exactly
+ * one concern: what is reachable while the menu is up.
  */
 (function () {
   'use strict';
@@ -36,6 +40,7 @@
     new MutationObserver(function () { apply(menu); })
       .observe(menu, { attributes: true, attributeFilter: ['class'] });
     apply(menu);
+
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);

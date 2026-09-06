@@ -103,13 +103,10 @@
 (function () {
   var nav = document.getElementById('nav');
   window.addEventListener('scroll', function () { if (nav) nav.classList.toggle('scrolled', window.scrollY > 60); });
-  var menuBtn = document.getElementById('menuToggle');
-  var navLinks = document.querySelector('.nav-links');
-  if (menuBtn && navLinks) {
-    menuBtn.addEventListener('click', function (e) { e.stopPropagation(); var isOpen = navLinks.classList.toggle('nav-open'); menuBtn.setAttribute('aria-expanded', String(isOpen)); });
-    document.addEventListener('click', function (e) { if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) { navLinks.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); } });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) { navLinks.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.focus(); } });
-  }
+  // Mobile menu: owned entirely by dyslexia.js — the inline duplicate here was
+  // removed 2026-09-06. dyslexia.js replaces the button to strip stale listeners but
+  // cannot unbind DOCUMENT-level ones, so this copy's Escape handler kept winning and
+  // writing aria-expanded to the detached node.
   var dys = document.getElementById('dyslexiaToggle');
   if (dys) {
     try { if (localStorage.getItem('dyslexia-mode') === 'on') { document.body.classList.add('dyslexia-mode'); dys.classList.add('active'); dys.setAttribute('aria-pressed', 'true'); } } catch (e) {}
