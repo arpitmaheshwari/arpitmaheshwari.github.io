@@ -2491,3 +2491,27 @@ html[data-theme="ember"][data-skin="cream"] main a.lane:hover{background:var(--s
        point of a rail. */
     grid-column:1;grid-row:1;margin:0;align-self:start;text-align:left}
 }
+
+/* ============================================================
+   L35 — THE LAST WCAG FAILURES
+
+   1.4.10 REFLOW at 320px. Two pages still scrolled sideways, and in both cases
+   `max-width:100%` was already applied and already useless: the ANCESTOR was
+   wider than the viewport, so 100% of it still overflowed. .vslip measured 320px
+   wide starting at x=20 (right edge 340), and /patterns' hero column measured
+   297px starting at x=24 (right edge 321). A percentage cannot save a child
+   whose parent is the thing that is too wide — the cap has to be against the
+   VIEWPORT, so it is.
+
+   2.5.8 TARGET SIZE. The /process contract links compute display:block with
+   zero padding and a 21px line box, and the earlier inline-block rule never won.
+   Since they are block, min-height does the job directly.
+   ============================================================ */
+@media (max-width:420px){
+  html[data-theme="ember"][data-skin="cream"] :is(.vslip,.vplate,.vplate-wrap,.pass,.lug,
+    .pat-hero-l,.pat-hero-r,p.hand){
+    max-width:calc(100vw - var(--sp-6)) !important;
+    width:auto}
+}
+html[data-theme="ember"][data-skin="cream"] body.p-process .contract-links a{
+  min-height:24px;display:block}
