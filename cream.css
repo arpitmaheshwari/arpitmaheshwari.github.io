@@ -1178,5 +1178,32 @@ html[data-theme="ember"][data-skin="cream"] .loopfig figcaption{color:rgba(247,2
 html[data-theme="ember"][data-skin="cream"] .loopfig{background:#1F1B22;border:1px solid var(--border-strong)}
 html[data-theme="ember"][data-skin="cream"] .lstep{background:rgba(255,253,248,.06);border-color:rgba(247,244,238,.16)}
 html[data-theme="ember"][data-skin="cream"] .loopfig figcaption{color:rgba(247,244,238,.86)}
-html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] figcaption{color:var(--text-body)}
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] figcaption{color:var(--text-primary)}
 html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] .loopfig figcaption{color:rgba(247,244,238,.86)}
+
+/* ============================================================
+   L14 — the last contrast findings, each fixed at its own root.
+   Driven by contrast-audit (which measures painted pixels), NOT by the
+   CSS-only triage tool, whose first run flagged white-on-brand-blue inside
+   the product mockups as a defect. The pixel audit is the authority.
+   ============================================================ */
+
+/* 1 — TRANSLUCENT INK. The migration preserved ember's alpha when flipping its
+   light ink to dark: rgba(245,237,230,.62) became rgba(32,29,24,.62), which is
+   4.30:1 on parchment — just under. An alpha ink cannot be reasoned about, so
+   under cream these become SOLID tokens. */
+html[data-theme="ember"][data-skin="cream"] :is(.meta-note,.ba-table td:nth-child(2)){color:var(--text-muted)}
+
+/* 2 — the demo verb greens. #5ED48E (styles.css, .xi-* extracted class) and
+   #7EA88F (three pattern pages' own <style> blocks) are ember dark-stage
+   greens: 1.72:1 and 2.61:1 on paper. My hand-listed colour map never held
+   them, which is why they survived every earlier pass. */
+html[data-theme="ember"][data-skin="cream"] :is(.pd__verb--ok,.pd__verb--act,[class*="confidence-scores-036"]),
+html[data-theme="ember"][data-skin="cream"] .pd :is(.ok,.verb--ok){color:var(--cream-positive)}
+
+/* 3 — captions sitting in a plate's shadow (see L13 note 2), on the two pages
+   whose caption class differs: PTC sets it in bronze, PlanIt in the faint
+   register. Both take ink that survives a shadow. */
+html[data-theme="ember"][data-skin="cream"] [class*="case-studies-ptc-031"],
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] :is(.fig-paper .shot span,.phone-row .shot span){
+  color:var(--text-primary)}

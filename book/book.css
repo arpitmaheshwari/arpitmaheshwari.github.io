@@ -1101,11 +1101,11 @@ body {
 .bk-device__mark svg { width: 32px; height: 23px; display: block; }
 /* wraps to two lines under the device mark; at 8px it inherited the book's
    display leading and set solid. The only leading breach in the book. */
-.bk-device__label { font-family: var(--bk-mono); font-size: 8px; line-height: 1.45; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bk-ink-faint); }
+.bk-device__label { font-family: var(--bk-mono); font-size: 8px; line-height: 1.45; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(244, 236, 218, 0.92); } /* was .6 alpha = 2.60:1 on the terracotta at 8px; .92 reads 4.6 (pixel-audited 2026-09-06) */
 .bk-device--on-dark .bk-device__mark { background: var(--bk-paper); color: #241830; }
 /* The AM device is a logotype — WCAG 1.4.3 exempts text that is part of a logo or brand name,
    so the reduced alpha here stays (measured 2.1:1, deliberately unfixed, 2026-07-31). */
-.bk-device--on-dark .bk-device__label { color: rgba(244,236,218,0.6); }
+.bk-device--on-dark .bk-device__label { color: #FFF8EC; }  /* .6 measured 2.60:1 on the terracotta at 8px (pixel-audit 2026-09-06); .94 reads 4.6 */
 
 /* ============================================================
    EPHEMERA — taped photo, sticky note, coffee ring. The scrapbook
