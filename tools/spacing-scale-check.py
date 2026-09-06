@@ -34,7 +34,9 @@ import cdp as _cdp
 _cdp.ensure_server(8000)
 from cdp import Browser
 
-SCALE = {0, 8, 16, 24, 32, 40, 48, 64, 96, 128, 160}
+# 80 is 8x10 and is the act rhythm; the scale must contain the values the
+# design uses or it reports correct work as broken — see the 40px lesson.
+SCALE = {0, 8, 16, 24, 32, 40, 48, 64, 80, 96, 128, 160}
 PLANT = ("var s=document.createElement('style');"
          "s.textContent='main > section > .wrap > h2{margin-bottom:37px !important}';"
          "document.head.appendChild(s);")

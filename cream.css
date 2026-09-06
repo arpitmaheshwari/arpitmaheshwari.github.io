@@ -2158,7 +2158,7 @@ html[data-theme="ember"][data-skin="cream"] body.p-home main > section:not(.hero
    content that has to be read. */
 html[data-theme="ember"][data-skin="cream"] body.p-home main > section .chap-n{
   grid-column:1 / -1;justify-self:start;
-  font:400 clamp(64px,6vw,110px)/.92 var(--font-display);
+  font:400 clamp(56px,5vw,88px)/.92 var(--font-display);
   color:var(--act);opacity:.22;letter-spacing:-.05em;margin:0 0 -6px;
   pointer-events:none;-webkit-user-select:none;user-select:none}
 
@@ -2212,10 +2212,14 @@ html[data-theme="ember"][data-skin="cream"]{
      correct values into five "defects" — a scale that disagrees with the design
      it governs is the thing that is wrong. */
   --sp-1:8px;  --sp-2:16px; --sp-3:24px;  --sp-4:32px;  --sp-5:40px;
-  --sp-6:48px; --sp-7:64px; --sp-8:96px;  --sp-9:128px; --sp-10:160px;
-  /* 96, not 128. At 128 the homepage measured 12,177px against ember's 9,800 —
-     24% longer for the same content, and length is one of the two things ember
-     wins on. 96 keeps the rhythm uniform and generous and takes ~1,150px out. */
+  --sp-6:48px; --sp-7:64px; --sp-8:80px;  --sp-9:96px;  --sp-10:128px; --sp-11:160px;
+  /* 80. Measured against ember section by section, cream was taller in every
+     one of the nine — +1,896px in total, worst at .work (+401) and .who (+399).
+     Some of that gap is a deliberate choice: cream sets 18px/1.65 on paper
+     where ember sets smaller and denser on dark, and the larger setting is the
+     better read. But a 128px rhythm was 24% longer for the same content and 96
+     was still generous; 80 keeps every act on ONE uniform rhythm and takes
+     another ~290px out. */
   --act-rhythm:var(--sp-8);
 }
 /* ONE rhythm for every act. The hero is exempt by name: it is a full-height
@@ -2230,7 +2234,7 @@ html[data-theme="ember"][data-skin="cream"] main > :is(section,header):not(.hero
 /* the three off-grid gaps, snapped to the scale */
 html[data-theme="ember"][data-skin="cream"] main :is(.chap,header.chap){margin-bottom:var(--sp-2)}
 html[data-theme="ember"][data-skin="cream"] main > section h2:not(.card-title):not(.rcpt-h):not(.t-card-title){
-  margin-top:0;margin-bottom:var(--sp-6)}
+  margin-top:0;margin-bottom:var(--sp-5)}
 html[data-theme="ember"][data-skin="cream"] main :is(.k,.eyebrow,.lbl-eyebrow,.lab-kicker){
   margin-bottom:var(--sp-2)}
 
@@ -2386,3 +2390,35 @@ html[data-theme="ember"][data-skin="cream"] body main :is(.ccd-ctr b,.ccd-ctr st
    .footer-note reads. Nothing on this site is set below 12px now. */
 html[data-theme="ember"][data-skin="cream"] body.p-home .lab-row .lr-k{font-size:12px}
 html[data-theme="ember"][data-skin="cream"]{--fs-micro:12px}
+
+/* ============================================================
+   L33 — SHEETS, NOT BOXES
+
+   Counted on the homepage: 33 bordered or filled objects, of which SIXTEEN are
+   the same visual kind — a thin-bordered white rectangle (.rcell x4, a.idx x4,
+   a.lane x3, figure.qt x3, .errata x2). Sixteen outlines of one kind is what
+   reads as "plain": the page looks assembled from a component library rather
+   than composed.
+
+   The fix is not to restyle the box, it is to stop drawing it. On a cream ground
+   a white sheet needs no outline to be seen — the tonal step from #FAF9F6 to
+   #FFFFFF already separates it, and a soft directional shadow does the rest.
+   That is how paper on paper actually reads, and it removes sixteen hairlines
+   from the page without removing a single object or changing one measure.
+
+   The card's ONE line is kept and moved to work: a 2px rule on its top edge in
+   the act's accent, so a card belongs visibly to the act it sits in. One line
+   that means something, instead of four that mean nothing.
+   ============================================================ */
+html[data-theme="ember"][data-skin="cream"] main :is(.rcell,a.idx,a.lane,figure.qt,.errata,.thought-card,.memo,.hd-card){
+  border:none;
+  border-top:2px solid var(--act);
+  border-radius:0;
+  background:var(--surface-card);
+  box-shadow:0 1px 0 rgba(26,26,28,.04), 0 14px 28px -24px rgba(26,26,28,.22)}
+html[data-theme="ember"][data-skin="cream"] main :is(.rcell,a.idx,a.lane,figure.qt,.thought-card):hover{
+  box-shadow:0 1px 0 rgba(26,26,28,.05), 0 22px 40px -26px rgba(26,26,28,.30)}
+/* a lane is a full-width row: its rule reads as a divider, so it keeps only the
+   top edge and no shadow — a row is not a sheet */
+html[data-theme="ember"][data-skin="cream"] main a.lane{box-shadow:none;background:transparent}
+html[data-theme="ember"][data-skin="cream"] main a.lane:hover{background:var(--surface-card);box-shadow:none}
