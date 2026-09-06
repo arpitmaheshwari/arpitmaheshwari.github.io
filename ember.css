@@ -2757,3 +2757,41 @@ html[data-theme="ember"] .measure-c :is(p,li) + :is(p,li){
 @media (max-width:380px){
   html[data-theme="ember"] main.section{padding-left:16px;padding-right:16px}
 }
+
+/* ============================================================
+   THE LEAD-IN BECOMES A SUB-HEAD  (2026-09-07)
+
+   Arpit asked for more sub-heads on the long case studies. Measured first, and
+   the answer was not to write any: the chunks ALREADY EXIST. Every paragraph in
+   the long runs opens with a <strong> lead-in in his own words —
+
+     "The structural play: a media agency became the market's aggregator."
+     "The four systems that made the claim hold"
+     "One design system made six products one platform."
+     "Then the design system learned to build itself."
+
+   — and /case-studies/adtech carries NINE h2 and ZERO h3. So the document was
+   chunked and the chunks were invisible: same size, same colour, inline at the
+   start of a paragraph, and absent from the outline entirely. Writing new
+   sub-heads would have duplicated his sentences in worse prose.
+
+   33 such lead-ins exist across six case pages. 27 are a complete clause and
+   are now promoted — role="heading" aria-level="3" for the outline, .lead-in
+   for the eye. The other five are single words (Plato, Ada, Atlas, PlanIt) and
+   stay INLINE: as blocks they would orphan the em-dash that follows them onto
+   the next line.
+
+   Not a size jump — brightness and position. The body ink is softened to
+   #E2DBD3 for long reading, so a lead-in at full --ink already separates
+   without needing to be bigger, and a bigger sub-head every 70 words would
+   fight the h2s above it.
+   ============================================================ */
+html[data-theme="ember"] .t-body .lead-in,
+html[data-theme="ember"] .u-body .lead-in{
+  display:block;
+  color:var(--ink);
+  letter-spacing:.005em;
+  margin-bottom:6px}
+/* a sub-head wants more air above it than a paragraph does */
+html[data-theme="ember"] :is(.t-body,.u-body):has(> .lead-in:first-child){
+  margin-top:44px}
