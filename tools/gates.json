@@ -671,6 +671,20 @@
     "server"
    ],
    "note": "In the page's DEFAULT, untouched state, no viewport-anchored element may cover the content. Built 2026-09-06 after an unscoped `display:flex` at #nav specificity outranked classic's @media(max-width:1100px){.nav-links{display:none}} and left the mobile drawer PERMANENTLY OPEN below 1100px on all 41 pages \u2014 an opaque white panel over the top 475px, eating every click under it. It laid out correctly at 1200+, so both menu gates (which open the menu first) passed it. Swept across a width RANGE, mobile first, because the defect hid between the widths anyone checks."
+  },
+  {
+   "id": "negative-space",
+   "cmd": [
+    "python3",
+    "tools/negative-space-check.py"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "A band taller than 220px must keep its content on axis and use at least 62% of the width available to it. Arpit's standing layout rule: whitespace must be designed, not left over. THIRD attempt at measuring this \u2014 attempt 1 compared the viewport to the page (real defects drowned in legitimate outer margin) and attempt 2 compared each container to its own children (finds zero by construction). This one measures each band against MAIN's content box, using the union of ink actually painted (leaf text, img, svg, video, canvas). The threshold that matters is UNDERFILLED, and it was missing from the first two versions: the essay pages' defect was SYMMETRIC \u2014 704px of ink centred in 1312px, 304px of gap on each side, so no 'one side over a third' rule could ever see it. Verified against the pre-fix state: the untreated essay measures 53% and fires, the treated one 71% and does not. Nightly: it walks every element of every band at two widths. CANNOT SEE whether filled space is filled with something worth having \u2014 an empty rail passes it, and an empty rail is worse than the void it replaced."
   }
  ],
  "manual": [

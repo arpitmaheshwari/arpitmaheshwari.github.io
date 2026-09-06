@@ -1655,6 +1655,12 @@ html[data-theme="ember"][data-skin="cream"] .esy-rail{display:none}
     pointer-events:none}
   html[data-theme="ember"][data-skin="cream"] .esy-toc{
     position:sticky;top:112px;pointer-events:auto}
+  /* the rail+prose group is centred as a whole. --esy-shift is measured by
+     cream.js; with no script it is unset and the essay sits exactly where it
+     always has. `left` on a relatively positioned block offsets paint without
+     promoting a layer, so unlike a transform it does not resample the type. */
+  html[data-theme="ember"][data-skin="cream"] .esy-host{
+    position:relative;left:var(--esy-shift,0px)}
   html[data-theme="ember"][data-skin="cream"] .esy-toc-h{
     font:600 12px/1.5 var(--font-ui);letter-spacing:.06em;text-transform:uppercase;
     color:var(--text-muted);margin:0 0 10px}

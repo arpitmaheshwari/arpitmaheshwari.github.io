@@ -95,19 +95,44 @@
    no fact can be invented. Built in script because the essays carry no heading
    ids to anchor to; with no JS the essay reads exactly as it does today. */
 (function () {
-  var d = document.documentElement;
-  if (!/\bp-writing-/.test(document.body.className)) return;   // essays only, not the index
   var main = document.querySelector('main');
   if (!main) return;
-  var heads = [].slice.call(main.querySelectorAll('h2'));
-  if (heads.length < 3) return;            // too few sections to be worth a rail
 
-  // the essay's own column wrapper: the closest common ancestor of the headings
+  /* WHO GETS A RAIL IS MEASURED, NOT LISTED. The first version tested
+     /\bp-writing-/ against the body class, which is a list of the four pages I
+     happened to be looking at. tools/negative-space-check.py then found the same
+     defect — a tall band using barely half the width it has — on /resources and
+     /screen, which are shaped identically. A page qualifies when the shape
+     qualifies:
+       · it has a real content root, not just <main>;
+       · its headings share ONE capped column (on /lab and /fit the headings'
+         common ancestor IS main, because each sits in its own full-width
+         section — those pages need the L17 grid, not this rail, and they are
+         left to that);
+       · that column is genuinely capped, leaving room beside it;
+       · there are enough sections for a list to be worth reading;
+       · and the page does not already carry the manuscript rail, or it would
+         get two rails in the same margin. */
+  if (document.querySelector('.measure-c, .measure-t')) return;
+  var heads = [].slice.call(main.querySelectorAll('h2'));
+  if (heads.length < 3) return;
+
   var host = heads[0].parentElement;
   while (host && host !== main && !heads.every(function (h) { return host.contains(h); })) {
     host = host.parentElement;
   }
-  if (!host || host === document.body) return;
+  if (!host || host === main || host === document.body) return;
+
+  /* And it must actually HAVE the defect. `avail - 200` was too loose and handed
+     a rail to /process and to the two listing pages, none of which is
+     underfilled — on a listing page a contents rail just restates the list the
+     reader is already looking at. The threshold is the same 62% that
+     tools/negative-space-check.py uses to call a band UNDERFILLED, so the rule
+     that decides who needs a rail and the rule that audits for the defect are
+     one number rather than two that can drift apart. */
+  var ms = getComputedStyle(main), mrect = main.getBoundingClientRect();
+  var avail = mrect.width - parseFloat(ms.paddingLeft || 0) - parseFloat(ms.paddingRight || 0);
+  if (host.getBoundingClientRect().width >= avail * 0.62) return;
 
   function slug(s) {
     return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48);
@@ -135,7 +160,35 @@
   nav.appendChild(list);
   wrap.appendChild(nav);
   if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+  host.classList.add('esy-host');
   host.insertBefore(wrap, host.firstChild);
+
+  /* RE-CENTRE THE GROUP. Adding a rail in the left margin fixes one void by
+     creating a lopsided band: measured at 1440 the rail+prose group ran
+     x=134..977, i.e. 134px of margin on the left against 463px on the right.
+     The shift is MEASURED rather than hard-coded, because it depends on two
+     things that can move independently — the rail's footprint and the slack
+     between the container (--measure) and the narrower cap on its paragraphs.
+     Set as a custom property; cream.css decides whether to use it, so below
+     1080px (no rail) nothing shifts. */
+  function centre() {
+    /* Balance on the CONTAINER's edges, not on a paragraph's. The first version
+       measured the first long <p> and centred on that, which looked right until
+       the render showed every container-width element — the pull-quotes — still
+       protruding 95px past the balance point. The essays cap paragraphs at 609px
+       inside a 704px container ON PURPOSE and let block elements fill it, so the
+       container is the block's true extent and the paragraph cap is a reading
+       measure inside it. */
+    var hr = host.getBoundingClientRect();
+    var railFoot = 234;                      // 190px rail + 44px gutter
+    var groupLeft = hr.left - railFoot;
+    var groupWidth = railFoot + hr.width;
+    var want = (document.documentElement.clientWidth - groupWidth) / 2;
+    var shift = Math.max(0, Math.round(want - groupLeft));
+    host.style.setProperty('--esy-shift', shift + 'px');
+  }
+  centre();
+  addEventListener('resize', centre, { passive: true });
 
   /* mark the section being read: the LAST heading scrolled past, not one that
      happens to sit inside a band. The first version used an IntersectionObserver
