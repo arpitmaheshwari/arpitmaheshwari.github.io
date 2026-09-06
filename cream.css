@@ -1376,6 +1376,23 @@ html[data-theme="ember"][data-skin="cream"] body.p-patterns :is(h2.card-title,.c
 html[data-theme="ember"][data-skin="cream"] body.p-home .close h2,
 html[data-theme="ember"][data-skin="cream"] body.p-folio .close h2{
   font:600 clamp(40px,5vw,55px)/1.12 var(--font-display);letter-spacing:-.01em}
+/* AND AGAIN BY ID, because the rule above never won. The closing headline
+   carries id="h-close", and ember.css:2326 says
+     html[data-theme="ember"] body.p-home #h-close{
+       font-size:clamp(38px,4vw,56px);line-height:1.1}
+   An ID outranks any number of attributes and classes, so the claim step above
+   matched and lost, and the headline shipped at 38px/41.8px — ratio 1.10 against
+   a 1.15 floor for its band, wrapping to two lines on a phone with descenders
+   running into the next line's ascenders. tools/line-height-check.py caught it
+   on /index and /folio; nothing else could, because every other gate asks about
+   a glyph against its ground and this is a measurement INSIDE one element.
+   A sweep of the whole codebase found five ID-scoped type rules in ember.css
+   and this was the only one overriding the cream system — the 45 in styles.css
+   are all #recon-* product reconstructions, which keep their own typography on
+   purpose. Same specificity as ember's rule; cream.css loads after it. */
+html[data-theme="ember"][data-skin="cream"] body.p-home #h-close,
+html[data-theme="ember"][data-skin="cream"] body.p-folio #h-close{
+  font:600 clamp(40px,5vw,55px)/1.12 var(--font-display);letter-spacing:-.01em}
 
 /* ============================================================
    L19 — THE NAV BAR (Arpit, twice: "the padding appears big",
@@ -1690,3 +1707,23 @@ html[data-theme="ember"][data-skin="cream"] .esy-rail{display:none}
   html[data-theme="ember"][data-skin="cream"] body[class*="p-writing-"] main h2{
     scroll-margin-top:96px}
 }
+
+/* ============================================================
+   L22 — REACHABILITY FIX: the PTC mockup's 14px of hidden scroll
+
+   tools/reachability-check.py, at 390px: DIV.plP had clientWidth 294 and
+   scrollWidth 308, so 14px of the reconstruction — the end of
+   "five products · five URLs · five logins · five lines" and of the browser
+   chrome's URL — sat behind a horizontal scroll INSIDE its own box. Content
+   parked behind a sideways gesture passes every property gate ever written
+   here, because those gates ask about one element's own attributes; this is the
+   same class Arpit found on the AdTech before/after table.
+
+   Cause: .plP is a grid whose columns are `1fr`, and `1fr` is
+   `minmax(auto, 1fr)` — the `auto` minimum is min-content, which the mockup's
+   <img> refuses to go below. The track therefore stayed 308px wide inside a
+   294px box. min-width:0 lets the track shrink to the space it actually has;
+   the image is width:100%/object-fit:cover, so it scales rather than crops
+   differently, and the reconstruction is unchanged in proportion.
+   ============================================================ */
+html[data-theme="ember"][data-skin="cream"] body.p-case-studies-ptc .plP > *{min-width:0}

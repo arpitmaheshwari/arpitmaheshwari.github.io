@@ -73,6 +73,12 @@
   document.addEventListener('pointerout', function (e) {
     var card = e.target.closest && e.target.closest(SEL);
     if (!card) return;
+    /* pointerout also fires when the pointer moves INTO a descendant — the
+       figure, the meta line, the link — so resetting unconditionally snapped the
+       light back to centre while the card was still being hovered. Only reset
+       when the pointer has actually left this card. */
+    var to = e.relatedTarget;
+    if (to && card.contains(to)) return;
     card.style.setProperty('--tx', 0);
     card.style.setProperty('--ty', 0);
   }, { passive: true });
@@ -181,7 +187,16 @@
        measure inside it. */
     var hr = host.getBoundingClientRect();
     var railFoot = 234;                      // 190px rail + 44px gutter
-    var groupLeft = hr.left - railFoot;
+    /* SUBTRACT THE SHIFT ALREADY APPLIED. getBoundingClientRect() reports where
+       the host is NOW, and the host is already displaced by the last value this
+       function wrote — so `want - groupLeft` is the ADDITIONAL offset needed,
+       not the absolute one. Writing it as absolute made the second call compute
+       0 and undo the first, and the third recompute it: a resize flip-flopped
+       the essay left and right. Only ever caught by reading this back, because
+       every width was verified with a FRESH navigation, where the function runs
+       exactly once. */
+    var applied = parseFloat(host.style.getPropertyValue('--esy-shift')) || 0;
+    var groupLeft = hr.left - railFoot - applied;
     var groupWidth = railFoot + hr.width;
     var want = (document.documentElement.clientWidth - groupWidth) / 2;
     var shift = Math.max(0, Math.round(want - groupLeft));
@@ -199,7 +214,13 @@
   var raf = 0;
   function mark() {
     raf = 0;
-    var line = 96, active = -1;               // just under the 64px bar
+    /* 100, not 96. The headings carry scroll-margin-top:96px, so a clicked
+       heading lands with its top at 96.x — and a `top <= 96` test then fails on
+       the fraction and marks the PREVIOUS section. Verified by clicking all four
+       links: every hash and scroll position was right and every highlight was
+       one behind. The line must sit just below where a heading comes to rest,
+       not exactly on it. */
+    var line = 100, active = -1;
     for (var i = 0; i < heads.length; i++) {
       if (heads[i].getBoundingClientRect().top <= line) active = i;
     }
