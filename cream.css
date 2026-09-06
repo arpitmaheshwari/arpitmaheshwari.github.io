@@ -1109,3 +1109,74 @@ html[data-theme="ember"][data-skin="cream"] body.p-patterns h2,
 html[data-theme="ember"][data-skin="cream"] body[class*="p-lab"] h2,
 html[data-theme="ember"][data-skin="cream"] body.p-fit h2,
 html[data-theme="ember"][data-skin="cream"] body.p-process h2{font-weight:400;line-height:1.2}
+
+/* ============================================================
+   L13 — THE INVISIBLE-INK PASS (contrast-audit --all, 173 findings)
+   Three root causes, none of which a DOM probe could see:
+
+   1 INK ON INK (1.00:1) — cream.css's element base sets `a{color:
+     var(--text-primary)}`, which outranks the ink-filled buttons' own
+     label colour. Every filled anchor therefore painted dark ink on a
+     dark fill: '← Back to the front door' (404), 'Send me the role ↗'
+     (lab pages). A component must DECLARE its critical properties; these
+     declarations are last in the file so no generated block outranks them.
+
+   2 A SHADOW IS A GROUND (2.35:1) — the plate captions on the case pages
+     ("Plate 03 · … all names and figures synthetic") read 4.97:1 by DOM
+     arithmetic and 2.35:1 in real pixels, because they sit inside the
+     plate's 60px box-shadow falloff. No style-based walk can see a
+     shadow; the pixel audit wins. These captions carry the synthetic-data
+     disclaimer, so they get ink that survives the shadow, plus clearance.
+
+   3 AN INCOMPLETE TOKEN RE-POINT (1.82:1) — ember's .act-cream block
+     re-declares --bg/--ink/--gold AND --err/--warn/--ok. The cream
+     override re-pointed the first three and forgot the status trio, so
+     ember's dark-stage green #7FCF9E survived on paper at 34px.
+   ============================================================ */
+
+/* 1 — ink-filled controls own their label colour */
+html[data-theme="ember"][data-skin="cream"] :is(.btn,.pill-hot,.btn-label,.hd-case-btn,
+  [data-cta="send-role"],body.p-fit .btn-primary,body.p-home .form-slot button,.cta-ink),
+html[data-theme="ember"][data-skin="cream"] a:is(.btn,.pill-hot,.btn-label,.hd-case-btn){
+  background:var(--cream-ink);color:var(--cream-parchment);border:1px solid var(--cream-ink)}
+html[data-theme="ember"][data-skin="cream"] :is(.btn,.pill-hot,.btn-label,.hd-case-btn,
+  [data-cta="send-role"]):hover{background:var(--accent-hover);border-color:var(--accent-hover);
+  color:var(--cream-parchment)}
+/* the skip link is ink-filled the moment it takes focus */
+html[data-theme="ember"][data-skin="cream"] .skip-link,
+html[data-theme="ember"][data-skin="cream"] .skip-link:focus{
+  background:var(--cream-ink);color:var(--cream-parchment)}
+
+/* 2 — captions that sit in a plate's shadow */
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] :is(.lbl-eyebrow,.vplate-cap,.plA-caption .lbl-eyebrow){
+  color:var(--text-primary);margin-top:20px}
+
+/* 3 — finish the .act-cream re-point: the status trio too */
+html[data-theme="ember"][data-skin="cream"] .act-cream{
+  --err:var(--cream-negative);--warn:var(--cream-caution);--ok:var(--cream-positive)}
+html[data-theme="ember"][data-skin="cream"] :is(.pd,.demo-verdict,.pat-demo) :is(.ok,.warn,.err){
+  color:inherit}
+
+/* L13b — the loop figure is a genuinely DARK plate (a reconstruction of a dark
+   product screen, like the film). My generator dropped its unmappable dark
+   grounds — correctly — but still mapped the annotation ink to cream's dark
+   ink, so every callout painted ink-on-ink at 1.03:1. Where the plate stays
+   dark, its ink stays light. */
+html[data-theme="ember"][data-skin="cream"] :is(.loopfig,.loop-steps,.lstep,.lback,.lstep-hot){
+  color:var(--cream-parchment)}
+html[data-theme="ember"][data-skin="cream"] :is(.loopfig,.loop-steps,.lstep,.lback) :is(b,span,em,i,p,div){
+  color:inherit}
+html[data-theme="ember"][data-skin="cream"] .lstep b{color:var(--cream-gold)}
+html[data-theme="ember"][data-skin="cream"] .lback{color:var(--cream-gold)}
+html[data-theme="ember"][data-skin="cream"] .loopfig figcaption{color:rgba(247,244,238,.78)}
+
+/* L13c — the loop plate's dark was rgba(27,19,32,.6): over ember's dark page it
+   read dark, over parchment it blends to a mid-grey (#736D72) that is hostile to
+   both light and dark ink. A plate that is deliberately dark must be OPAQUELY
+   dark. And the case-page figcaptions sit in plate shadows (see L13 note 2), so
+   they take ink that survives a shadow rather than the faint register. */
+html[data-theme="ember"][data-skin="cream"] .loopfig{background:#1F1B22;border:1px solid var(--border-strong)}
+html[data-theme="ember"][data-skin="cream"] .lstep{background:rgba(255,253,248,.06);border-color:rgba(247,244,238,.16)}
+html[data-theme="ember"][data-skin="cream"] .loopfig figcaption{color:rgba(247,244,238,.86)}
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] figcaption{color:var(--text-body)}
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] .loopfig figcaption{color:rgba(247,244,238,.86)}
