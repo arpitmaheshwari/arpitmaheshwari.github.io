@@ -1984,7 +1984,7 @@ html[data-theme="ember"][data-skin="cream"] :is(button.rxa-why,button.rxf-explai
    ============================================================ */
 html[data-theme="ember"][data-skin="cream"] main > :is(section,header) > :is(.wrap,.lab-wrap,.measure-c,.measure-t) > h2:not(.card-title):not(.rcpt-h):not(.t-card-title),
 html[data-theme="ember"][data-skin="cream"] main > :is(section,header) :is(.wrap,.lab-wrap) > h2:not(.card-title):not(.rcpt-h):not(.t-card-title){
-  margin-top:0;margin-bottom:44px}
+  margin-top:0;margin-bottom:var(--sp-6)}
 /* THE HAIRLINE IS DELETED, not overridden. It was added earlier today as the
    "section is starting" signal and Arpit's verdict was exact: "I just see
    multiple separators and tiny headings which don't feel like a new section."
@@ -2001,7 +2001,7 @@ html[data-theme="ember"][data-skin="cream"] main :is(.chap,header.chap,.k,.lab-k
 /* /lab/plugin's heading sits in a block the selectors above do not reach — the
    last of the 28 tight headings the census found. */
 html[data-theme="ember"][data-skin="cream"] body[class*="p-lab"] main :is(section,header) h2:not(.card-title):not(.rcpt-h):not(.t-card-title){
-  margin-bottom:44px}
+  margin-bottom:var(--sp-6)}
 
 /* ============================================================
    L27 — THE ACCENT SET, AND A MARK PER ACT
@@ -2173,3 +2173,128 @@ html[data-theme="ember"][data-skin="cream"] body.p-home header.chap :is(.chap-t,
    two devices in the same slot is one device too many. */
 html[data-theme="ember"][data-skin="cream"] body.p-home main > section:not(.hero) > .wrap::before{
   content:none}
+
+/* ============================================================
+   L29 — THE SPACING SYSTEM
+
+   Arpit: "you are still not following the grid religiously, the sections and
+   the items and elements in the homepage don't look evenly spaced out."
+   Measured on the homepage at 1440 before writing a line of this:
+
+     section padding-top    0, 92, 96, 104, 120, 140   (six values)
+     section padding-bottom 80, 88, 92, 96, 140        (five values)
+     vertical sibling gaps  12, 16, 20, 24, 32, 40, 48, 67
+                            — 12, 20 and 67 sit off any 8px grid
+     left edges             55 distinct values across 184 elements
+
+   Two sections had ZERO top padding and leaned on their neighbour's bottom
+   margin, which is why the rhythm collapsed wherever a neighbour changed. This
+   is not a taste problem; there was no spacing system to follow.
+
+   So: one scale, 8px base, and every section on the same rhythm. Evenly spaced
+   means the SAME NUMBER, not a similar one — 92 and 96 read as a mistake, and
+   at a glance that is precisely what "not evenly spaced" looks like.
+   ============================================================ */
+html[data-theme="ember"][data-skin="cream"]{
+  /* 8px base. --sp-5 is 40px, not 48: the design already used 40 in five
+     places (a lede's margin, a lane's rule, the quote block) and 40 is 8x5, a
+     normal step. The first version of this scale skipped it, which turned five
+     correct values into five "defects" — a scale that disagrees with the design
+     it governs is the thing that is wrong. */
+  --sp-1:8px;  --sp-2:16px; --sp-3:24px;  --sp-4:32px;  --sp-5:40px;
+  --sp-6:48px; --sp-7:64px; --sp-8:96px;  --sp-9:128px; --sp-10:160px;
+  /* 96, not 128. At 128 the homepage measured 12,177px against ember's 9,800 —
+     24% longer for the same content, and length is one of the two things ember
+     wins on. 96 keeps the rhythm uniform and generous and takes ~1,150px out. */
+  --act-rhythm:var(--sp-8);
+}
+/* ONE rhythm for every act. The hero is exempt by name: it is a full-height
+   opening, not an act in the sequence. */
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:not(.hero){
+  padding-top:var(--act-rhythm);padding-bottom:var(--act-rhythm)}
+/* and the same rhythm on every long-form page, so a reader moving from the
+   homepage to a case study does not change tempo */
+html[data-theme="ember"][data-skin="cream"] main > :is(section,header):not(.hero):not(.lab-hero){
+  padding-top:var(--act-rhythm);padding-bottom:var(--act-rhythm)}
+
+/* the three off-grid gaps, snapped to the scale */
+html[data-theme="ember"][data-skin="cream"] main :is(.chap,header.chap){margin-bottom:var(--sp-2)}
+html[data-theme="ember"][data-skin="cream"] main > section h2:not(.card-title):not(.rcpt-h):not(.t-card-title){
+  margin-top:0;margin-bottom:var(--sp-6)}
+html[data-theme="ember"][data-skin="cream"] main :is(.k,.eyebrow,.lbl-eyebrow,.lab-kicker){
+  margin-bottom:var(--sp-2)}
+
+/* The three declared values that sat off the scale, found by walking every
+   sibling pair on the homepage and reading their MARGINS rather than their
+   rendered gaps — a box-to-box gap includes half-leading, so it is almost never
+   a clean multiple even when the spacing is correct. 12 -> 16, 20 -> 24. */
+html[data-theme="ember"][data-skin="cream"] body.p-home main :is(p.k,.k){margin-bottom:var(--sp-2)}
+html[data-theme="ember"][data-skin="cream"] body.p-home main :is(p.k,.k) + :is(h2,h3){margin-top:0}
+html[data-theme="ember"][data-skin="cream"] body.p-home main .who h3{margin-top:var(--sp-2)}
+html[data-theme="ember"][data-skin="cream"] body.p-home main .qt-src{margin-top:var(--sp-3)}
+html[data-theme="ember"][data-skin="cream"] body.p-home main .hand{margin-top:var(--sp-3)}
+
+/* the one genuine outlier the scale audit found: 20px on the receipts row */
+html[data-theme="ember"][data-skin="cream"] body.p-home main .rrow{margin-top:var(--sp-3)}
+
+/* SITE-WIDE, not homepage-only. The eyebrow/kicker margins were snapped to the
+   scale on the homepage first and the gate then found 69 off-scale values on
+   /fit and /lab — 12px kickers and my own 44px heading margin, which is 8x5.5
+   and was never on the scale I wrote. A rule scoped to one page family is not a
+   system; this is the third time today that exact mistake has cost a round. */
+html[data-theme="ember"][data-skin="cream"] main :is(p.k,.k,.eyebrow,.lbl-eyebrow,.lab-kicker,p.lab-kicker){
+  margin-bottom:var(--sp-2)}
+html[data-theme="ember"][data-skin="cream"] main :is(h1,h2).section-title{margin-top:0}
+html[data-theme="ember"][data-skin="cream"] main :is(p.hand,.hand){margin-top:var(--sp-3)}
+html[data-theme="ember"][data-skin="cream"] main :is(h1,h2,h3).section-title + p{margin-top:0}
+
+/* the last three off-scale values the gate found, on /lab */
+html[data-theme="ember"][data-skin="cream"] main :is(p.lab-src,.lab-src){margin-top:var(--sp-2)}
+html[data-theme="ember"][data-skin="cream"] main :is(.lab-testhead){margin-bottom:var(--sp-3)}
+html[data-theme="ember"][data-skin="cream"] main :is(.dsg-grid){margin-top:var(--sp-3)}
+
+/* ============================================================
+   L30 — THE MEASURE SCALE AND ONE COLUMN SPLIT
+
+   Arpit: "you are still not following the grid religiously". The vertical half
+   was L29; this is the horizontal half, and the measurement was worse than the
+   vertical one. Every top-level block on the homepage at 1440, by width:
+
+     1160  the full measure                        (many blocks)
+     1040  .work                                   — mine, from L23
+     1120  .aiwork .memos                          — mine, from L23
+      960  .errata
+      900  .voices                                 — mine, from L23
+      749.461  p.aiwork-close                      — a computed accident
+      387.615  .who h3                             — a computed accident
+     two-column splits: 612/500, 630/473, 575/521  — THREE splits, one pattern
+
+   So blocks ended at fourteen different x positions. The left edge was fine —
+   33 of 39 blocks sat at x=140 — and the raggedness was all on the right, which
+   is exactly what reads as "not evenly spaced" without being nameable. Three of
+   the arbitrary measures were introduced by me earlier today when varying the
+   section measures; two are fractional values no one chose.
+
+   A measure is now one of three, and a two-column section has one split.
+   ============================================================ */
+html[data-theme="ember"][data-skin="cream"]{
+  --m-full:none;        /* the wrap's own width */
+  --m-wide:960px;       /* a broad block: lists, grids, indexes */
+  --m-prose:720px;      /* a reading measure — roughly 68 characters at 18px */
+  --split:1.15fr .85fr; /* the one two-column split */
+  --split-gap:var(--sp-7);
+}
+/* single-column blocks take one of the three measures */
+html[data-theme="ember"][data-skin="cream"] body.p-home .work .wrap > *{max-width:var(--m-wide)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .aiwork .memos{max-width:var(--m-full)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .voices :is(.lede,.quotes){max-width:var(--m-wide)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .aiwork-close{max-width:var(--m-prose)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .errata{max-width:var(--m-wide)}
+/* the two fractional accidents: a grid item does not need a pixel width */
+html[data-theme="ember"][data-skin="cream"] body.p-home .who h3{max-width:var(--m-full)}
+
+/* ONE two-column split, everywhere the pattern appears */
+@media (min-width:1000px){
+  html[data-theme="ember"][data-skin="cream"] body.p-home :is(.hero,.who,.contract,.close) .wrap{
+    grid-template-columns:var(--split);column-gap:var(--split-gap)}
+}
