@@ -96,7 +96,10 @@ html[data-theme="ember"][data-skin="cream"]{
   --font-body:'Inter',system-ui,-apple-system,sans-serif;
   --font-ui:'Inter',system-ui,-apple-system,sans-serif;
   --font-mono:'Space Mono','Courier New',monospace;
-  --type-claim:600 clamp(38px,5vw,55px)/1.12 var(--font-display);
+  /* the clamp FLOOR is 40px, not 38: at 38px the claim lands in the 24-40px band
+     where the leading floor is 1.15, and 1.12 would be illegal. Keeping the floor
+     at 40 keeps one ratio legal at every size. */
+  --type-claim:600 clamp(40px,5vw,55px)/1.12 var(--font-display);
   --type-section:600 35px/1.2 var(--font-display);
   --type-title:600 22px/1.3 var(--font-display);
   --type-body:400 18px/1.65 var(--font-body);
@@ -891,7 +894,7 @@ html[data-theme="ember"][data-skin="cream"] :is(h1,h2,h3,h4){
 html[data-theme="ember"][data-skin="cream"] h1{line-height:1.16}
 html[data-theme="ember"][data-skin="cream"] body.p-home .hero h1,
 html[data-theme="ember"][data-skin="cream"] body.p-folio .hero h1{
-  font:600 clamp(38px,5vw,55px)/1.12 var(--font-display);letter-spacing:-.01em}
+  font:600 clamp(40px,5vw,55px)/1.12 var(--font-display);letter-spacing:-.01em}
 html[data-theme="ember"][data-skin="cream"] h2{font-size:35px;line-height:1.2}
 html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] h2,
 html[data-theme="ember"][data-skin="cream"] body[class*="p-writing"] h2,
@@ -1319,3 +1322,50 @@ html[data-theme="ember"][data-skin="cream"] body.p-home .idx .fig{color:var(--ac
    already fell into once. The honest fix for an essay is a sticky rail carrying
    its own section titles as an in-page contents list; that is a new component,
    proposed rather than smuggled in here. */
+
+/* ============================================================
+   L18 — THE FIVE STEPS, MADE AUTHORITATIVE
+
+   A heading census after the v1.4.0 adoption showed the type system was only
+   half applied: the homepage still rendered h2 at 42/300 and h3 at 17/500,
+   subpages at 31/400 — the ember-era registers, winning on specificity because
+   they carry a page scope (body.p-home …, .section-title) that the family-level
+   v1.4.0 rules do not. Declaring a scale is not applying it.
+
+   These rules carry the same page scope, so the five steps actually land:
+     section 35/1.2 600 · title 22/1.3 600
+   Artifacts keep their own typography and are exempt by name below — a claim
+   ticket and a product mockup are reproductions, not page headings.
+   ============================================================ */
+html[data-theme="ember"][data-skin="cream"] body.p-home h2,
+html[data-theme="ember"][data-skin="cream"] body.p-folio h2,
+html[data-theme="ember"][data-skin="cream"] body.p-home .close h2{
+  font:600 35px/1.2 var(--font-display);letter-spacing:-.005em}
+html[data-theme="ember"][data-skin="cream"] body.p-home main h3,
+html[data-theme="ember"][data-skin="cream"] body.p-folio main h3,
+html[data-theme="ember"][data-skin="cream"] body.p-home :is(.rcpt-h,.thought-title,.facts h3,.memo h3,.lane h3,.idx h3),
+html[data-theme="ember"][data-skin="cream"] body.p-home .contract .col h3,
+html[data-theme="ember"][data-skin="cream"] body.p-home #h-lead{
+  font:600 22px/1.3 var(--font-display);letter-spacing:-.003em}
+html[data-theme="ember"][data-skin="cream"] :is(.section-title,.card-title,.t-card-title),
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] h2.section-title,
+html[data-theme="ember"][data-skin="cream"] body[class*="p-writing"] h2.section-title,
+html[data-theme="ember"][data-skin="cream"] body.p-patterns h2.section-title,
+html[data-theme="ember"][data-skin="cream"] body[class*="p-lab"] h2.section-title,
+html[data-theme="ember"][data-skin="cream"] body.p-fit h2.section-title,
+html[data-theme="ember"][data-skin="cream"] body.p-process h2.section-title{
+  font:600 35px/1.2 var(--font-display);letter-spacing:-.005em}
+html[data-theme="ember"][data-skin="cream"] :is(.t-card-title,.card-title){font-size:22px;line-height:1.3}
+/* artifacts keep their own type: a reproduction is not a page heading */
+html[data-theme="ember"][data-skin="cream"] :is(.vslip-title,.vplate h2,.vplate h3,.pass h2,.pass h3,
+  [class*="plA-"] h2,[class*="plF-"] h2,[class*="plM-"] h2,[class*="plO-"] h2,[class*="plP-"] h2,
+  [class*="plV-"] h2,.lug h2,.lug h3){font:inherit}
+/* the last two outliers the census found: a card title is the TITLE step, and the
+   closing headline is a second CLAIM (it was 56px — a sixth size nobody declared). */
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] :is(h2.card-title,.card-title),
+html[data-theme="ember"][data-skin="cream"] body[class*="p-writing"] :is(h2.card-title,.card-title),
+html[data-theme="ember"][data-skin="cream"] body.p-patterns :is(h2.card-title,.card-title){
+  font:600 22px/1.3 var(--font-display)}
+html[data-theme="ember"][data-skin="cream"] body.p-home .close h2,
+html[data-theme="ember"][data-skin="cream"] body.p-folio .close h2{
+  font:600 clamp(40px,5vw,55px)/1.12 var(--font-display);letter-spacing:-.01em}

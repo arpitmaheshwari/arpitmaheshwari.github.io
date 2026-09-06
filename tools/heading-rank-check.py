@@ -43,31 +43,57 @@ document.querySelectorAll('main h2, main h3, body > section h2, body > section h
     cls:(e.className+''), in_vband:!!e.closest('.vband'), in_facts:!!e.closest('.facts'),
     in_idx:!!e.closest('.idx'), in_lab:!!(e.closest('.labc')||e.closest('.lab3')),
     skin:document.documentElement.getAttribute('data-skin')||'',
+    in_card:!!e.closest('.philosophy-cards,.pat-grid,.card,.idx,.lane,.thought-card'),
+    artifact:!!e.closest('.vslip,.vplate,.pass,.lug,[class^="plA-"],[class^="plF-"],[class^="plM-"],[class^="plO-"],[class^="plP-"],[class^="plV-"]')||/vslip-title|card-title--art/.test(e.className+''),
     txt:e.textContent.trim().slice(0,36)});});
 return out;})())"""
 
 def classify_home(r):
-    if r['tag']=='h2': return r['sz'] in (42,56) and r['w']=='300'
+    # cream v1.4.0 FIRST: five steps and no sixth — claim 40-55/600, section
+    # 35/600, title 22/600. Placed before the ember branches because an h2 check
+    # above them judged every cream h2 against 42/300 and reported 92 phantom
+    # failures (2026-09-06). Artifacts — a claim ticket, a product mockup —
+    # reproduce someone else's typography and are exempt.
     if r.get('skin')=='cream':
-        # cream registry (DESIGN: Cream Design System v1.0 — one title weight, 500)
-        if 'rcpt-h' in r['cls']: return r['sz']==20 and r['w']=='500'
-        if r['in_facts']: return r['sz']==20 and r['w']=='500'
-        if r['in_idx']: return r['sz']==14 and r['w']=='500'
-        return (r['sz'],r['w']) in ((22,'500'),(17,'500'))
+        if r.get('artifact'): return True
+        if r['tag']=='h2':
+            # an h2 that titles a CARD takes the title step, not the section step:
+            # /patterns lists nine pattern cards whose titles are h2.card-title.
+            # Semantics (a list of sections) and scale (a card title) disagree here,
+            # and the scale is what this gate measures.
+            if 'card-title' in r['cls'] or r.get('in_card'):
+                return (r['sz'],r['w'])==(22,'600')
+            return (r['sz'],r['w'])==(35,'600') or (40<=r['sz']<=56 and r['w']=='600')
+        return (r['sz'],r['w'])==(22,'600')
+    if r['tag']=='h2': return r['sz'] in (42,56) and r['w']=='300'
     if 'rcpt-h' in r['cls']: return r['sz']==20 and r['w']=='400'
     if r['in_facts']: return r['sz']==20 and r['w']=='600'
     if r['in_idx']: return r['sz']==14
     return (r['sz'],r['w']) in ((22,'600'),(17,'600'))
 
 def classify_sub(r):
+    # cream v1.4.0 FIRST: five steps and no sixth — claim 40-55/600, section
+    # 35/600, title 22/600. Placed before the ember branches because an h2 check
+    # above them judged every cream h2 against 42/300 and reported 92 phantom
+    # failures (2026-09-06). Artifacts — a claim ticket, a product mockup —
+    # reproduce someone else's typography and are exempt.
+    if r.get('skin')=='cream':
+        if r.get('artifact'): return True
+        if r['tag']=='h2':
+            # an h2 that titles a CARD takes the title step, not the section step:
+            # /patterns lists nine pattern cards whose titles are h2.card-title.
+            # Semantics (a list of sections) and scale (a card title) disagree here,
+            # and the scale is what this gate measures.
+            if 'card-title' in r['cls'] or r.get('in_card'):
+                return (r['sz'],r['w'])==(22,'600')
+            return (r['sz'],r['w'])==(35,'600') or (40<=r['sz']<=56 and r['w']=='600')
+        return (r['sz'],r['w'])==(22,'600')
     if r['tag']=='h2':
         if r['in_vband'] or 'card-title' in r['cls']: return r['sz']==24 and r['w']=='400'
         return r['sz']==31 and r['w']=='400'
     if 't-card-title' in r['cls']: return r['sz']==24
     if r['in_lab'] or r['sz']==14: return r['sz']==14
     if 'rcpt-h' in r['cls']: return r['sz']==20
-    if r.get('skin')=='cream':
-        return (r['sz'],r['w']) in ((22,'500'),(17,'500'),(24,'500'),(20,'500'),(24,'400'),(20,'400'))
     return (r['sz'],r['w']) in ((22,'600'),(17,'600'),(24,'400'),(20,'400'))
 
 def sweep(br, plant=None):
