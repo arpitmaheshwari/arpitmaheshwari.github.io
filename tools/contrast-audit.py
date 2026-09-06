@@ -95,7 +95,16 @@ CANARY_HTML = (
     "background:linear-gradient(90deg,#808080,#8C8C8C);-webkit-background-clip:text;"
     "background-clip:text;color:transparent;-webkit-text-fill-color:transparent'>"
     + CANARY_GT_TEXT + "</span></div>"
-    # a .reveal element starting invisible — the settle/pin machinery must surface it.
+    # An element starting invisible behind a scroll-reveal fade — the settle/pin
+    # machinery must surface it, because PREP_JS SKIPS anything at opacity 0 and a
+    # skipped element is a silent PASS. This canary used to borrow the site's own
+    # `.reveal{opacity:0}` rule to hide itself. That rule was deleted on 2026-09-07
+    # (the scroll-reveal came off the homepage) and the canary went on "passing"
+    # while proving nothing — it was simply visible from the start. It now carries
+    # its own hiding, so the calibration is independent of the site's stylesheet.
+    # The id rule loses to force-visible's !important, which is the point.
+    "<style id='__ca_c3_hide'>#__ca_c3{opacity:0;transform:translateY(32px);"
+    "transition:opacity .8s,transform .8s}</style>"
     "<div class='reveal' id='__ca_c3' style='position:absolute;left:0;top:200px;"
     "z-index:2147483647;background:#777;color:#8A8A8A;font-size:14px;padding:6px'>"
     + CANARY_RV_TEXT + "</div>"

@@ -125,18 +125,15 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;
    The order property does not affect tab order — that is the point. */
 .menu-toggle{display:none;order:1;flex-direction:column;gap:4px;cursor:pointer;background:none;border:none;padding:12px 8px;margin:-14px -10px}
 .menu-toggle span{width:24px;height:1px;background:var(--ink);transition:transform .3s,opacity .3s}
-/* ----- Hero ----- */
-#hero{display:flex;flex-direction:column;justify-content:center;padding:104px 48px 92px;position:relative;overflow:visible}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 70% 30%,color-mix(in srgb, var(--goldA) 6%, transparent) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 80%,color-mix(in srgb, var(--goldA) 4%, transparent) 0%,transparent 60%);pointer-events:none;z-index:0}
-.hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%)}
-.hero-headline{font-family:var(--ff-display);font-weight:300;font-size:var(--fs-hero);letter-spacing:-.02em;margin-bottom:32px;max-width:none;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual}
-.hero-headline .line{display:block}
-/* Hero text visible immediately (LCP optimization), animation enhances entry */
-.hero-headline .line-inner{display:block;white-space:nowrap;opacity:0;transform:translateY(20px);animation:slideUp .5s var(--ease-out) forwards}
-.hero-headline .line:nth-child(2) .line-inner{animation-delay:.08s}
-.hero-headline .line:nth-child(3) .line-inner{animation-delay:.16s}
-.hero-headline .line:nth-child(4) .line-inner{animation-delay:.24s}
-.hero-headline em{font-style:italic;color:var(--gold)}
+/* ----- Hero -----
+   The prototype's hero block lived here: #hero, .hero-bg, .hero-grid-lines,
+   .hero-headline (+ .line, .line-inner, em) and .hero-cta-row, including a
+   half-second line-by-line entrance animation. The shipped hero is
+   .hero > .hero-split > .hero-copy > h1#h-hero; every selector in this block
+   matched 0 elements on all 39 live pages. Removed 2026-09-07 — the last time a
+   dead prototype block was left to rot here, one generic selector inside it
+   (`nav ul{gap:24px}`) silently retargeted onto the real nav and sat 16px off on
+   the homepage for weeks. */
 /* ----- Section scaffolding ----- */
 .section{padding:var(--section-y) var(--page-x);border-top:1px solid var(--hairline)}
 .section-inner{max-width:var(--inner-max);margin:0 auto}
@@ -209,13 +206,8 @@ footer{border-top:1px solid var(--border);padding:40px 48px;display:flex;align-i
 .footer-back:hover{color:var(--gold)}
 /* ----- Reveal animations ----- */
 @keyframes reveal{to{opacity:1;transform:translateY(0)}}
-@keyframes slideUp{to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:.1s}
-.reveal-delay-2{transition-delay:.2s}
-.reveal-delay-3{transition-delay:.3s}
-.reveal-delay-4{transition-delay:.4s}
+/* Scroll-reveal removed 2026-09-07 — it delayed content without reporting a
+   state change. Nothing on the site hides itself on load now. */
 /* ----- Dyslexia-friendly mode ----- */
 .dyslexia-toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:transparent;border:1px solid var(--border);border-radius:4px;color:var(--ink-dim);font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:0.05em;cursor:pointer;transition:border-color 0.3s,color 0.3s,background 0.3s}
 .dyslexia-toggle:hover{border-color:var(--border-accent);color:var(--ink)}
@@ -243,7 +235,6 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 /* ----- Responsive: tablet (769px–1024px) ----- */
 @media(min-width:769px) and (max-width:1024px){#nav{padding:20px 32px}
 .thoughts-grid{grid-template-columns:1fr 1fr}
-#hero{padding:100px 32px 48px}
 .remote-grid{grid-template-columns:repeat(2,1fr)}}
 /* ----- Responsive: mobile + tablet hamburger (≤900px) ----- */
 @media(max-width:1100px){.nav-links{display:none;flex-direction:column;align-items:stretch;position:fixed;top:64px;left:0;right:0;background:rgba(10,10,10,0.97);padding:32px 24px;gap:24px;border-bottom:1px solid var(--border);z-index:99}
@@ -260,12 +251,8 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .nav-logo span{display:none}
 #nav.scrolled{padding:12px 24px}
 .nav-cta{padding:8px 16px;font-size:11px;margin-left:auto;margin-right:16px}
-/* top padding must clear the FIXED nav (~76px tall at these widths) — 64px sat the
-     eyebrow 12px under the bar on every phone and tablet (caught 2026-08-06) */
-  #hero{padding:104px 24px 64px}
-.hero-headline{font-size:clamp(28px,6.5vw,48px);margin-bottom:8px}
-.hero-cta-row{margin-bottom:16px}
-.hero-cta-row a{flex:1 1 auto;min-width:120px;justify-content:center;padding:12px 16px;font-size:12px}
+/* the phone half of the dead prototype hero block (see ----- Hero ----- above)
+   came out with it on 2026-09-07 */
 .thoughts-grid{grid-template-columns:1fr}
 .remote-grid{grid-template-columns:1fr;gap:16px}
 html,body{font-size:16px}
@@ -273,9 +260,7 @@ html,body{font-size:16px}
   footer{flex-direction:column;gap:16px;text-align:center}
 .footer-logo,.footer-note,.footer-back{font-size:13px;min-height:44px;display:inline-flex;align-items:center;padding:4px 4px}}
 /* ----- Responsive: small mobile (≤480px) ----- */
-@media(max-width:480px){.hero-cta-row{flex-direction:column;align-items:stretch;gap:12px}
-.hero-cta-row a{flex:1 1 auto;width:100%;justify-content:center}
-h1,h2,h3{scroll-margin-top:120px}}
+@media(max-width:480px){h1,h2,h3{scroll-margin-top:120px}}
 /* ============================================================
    P19-B · VISUAL EVIDENCE SYSTEM (case pages)
    ============================================================ */
@@ -790,10 +775,6 @@ a{text-decoration:underline}}
 :where(body.p-home) .range-strip a:hover{border-color:var(--gold)}
 @media (max-width:860px){:where(body.p-home) .ai-case{flex-direction:column;align-items:stretch;gap:12px;padding:24px 0}
 :where(body.p-home) .ai-case-head{flex:0 0 auto;flex-direction:row;align-items:baseline;gap:16px}}
-@keyframes slideUp{
-  from { transform: translateY(100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
 @keyframes fadeIn{
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
@@ -1684,7 +1665,7 @@ h1,h2,h3,.section-title,.case-hero h1{color:#111}
 p,li,dd,dt,td,blockquote{color:#222}
 .case-gate{border-left:3px solid #8A6423;background:#faf7f0}
 a{color:#111}
-.reveal{opacity:1;transform:none}}
+}
 @media (max-width: 768px){:where(body.p-home) .featured-cases,:where(body.p-home) .nda-cases{grid-template-columns: 1fr}}
 :where(body.p-home) .rcpt-btn{border-color:var(--gold-dark)}
 /* --- former style attributes (index.html) --- */

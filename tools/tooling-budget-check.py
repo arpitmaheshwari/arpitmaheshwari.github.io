@@ -34,7 +34,26 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #                       measure 6.4:1 to 10.7:1. When that is answered BOTH FILES ARE
 #                       DELETED and this comes back to 11,000. If you are reading this and
 #                       the question is closed, the deletion is overdue.
-CEILING = 11_400
+#   2026-09-07  11,800  section-nav-check.py (144 lines), plus ~30 lines of instrument
+#                       repairs it forced (see below). It measures two properties every
+#                       other gate here is structurally blind to, because all of them grade
+#                       ONE element's own attributes: that no two headings on a page say the
+#                       same thing, and that every section carrying its own h2 is reachable
+#                       from the page's own jump nav. Its first run found a duplicated h2 on
+#                       /case-studies/o2 (the §01 stakes heading printed again over §04) and
+#                       six sections across five case studies that the page's own table of
+#                       contents did not list. Six defects on a site that was green on
+#                       contrast, heading-rank, leading, reflow, target-size and a11y.
+#                       The repairs: contrast-audit's reveal canary was hiding itself with
+#                       the SITE's `.reveal{opacity:0}` rule, so deleting that rule on
+#                       2026-09-07 left the canary visible from the start and the
+#                       calibration proving nothing while still reporting PASS — it now
+#                       carries its own hiding. And bump-css-version's fallback returned
+#                       `stem[0] + "1"` for any sheet not on a numeric version, so two
+#                       hash-versioned bumps in a row would both have produced `s1`: a
+#                       REPEATED cache key, which is the one failure that script exists to
+#                       prevent. It uses the content hash now.
+CEILING = 11_800
 
 
 def loc(paths):

@@ -98,11 +98,21 @@ def versions_of(sheet, files):
 
 
 def next_version(sheet, current):
-    """Keep the sheet's own letter prefix; increment the highest number seen anywhere."""
+    """Keep the sheet's own letter prefix; increment the highest number seen anywhere.
+
+    Fallback (2026-09-07): when there is no numeric version to build on, use the
+    sheet's own content hash rather than a counter. The old fallback returned
+    `stem[0] + "1"` — so a sheet already versioned by hash (which is what all four
+    are now: book.css=0410d8d9, ember.css=a067a4dc…) did not parse, fell through,
+    and got `s1`. The next hash-versioned bump would have produced `s1` AGAIN, and
+    a repeated cache key is a browser serving the stale file — the one failure this
+    whole script exists to prevent. A content hash cannot collide with itself."""
     parsed = [(m.group(1), int(m.group(2)))
               for m in (re.fullmatch(r"([A-Za-z]*)(\d+)", v) for v in current) if m]
     if not parsed:
-        # no numeric version to build on (or the sheet is referenced without ?v= at all)
+        path = sheet_path(sheet)
+        if path is not None:
+            return hashlib.sha256(path.read_bytes()).hexdigest()[:8]
         return pathlib.Path(sheet).stem[0] + "1"
     prefix = max(parsed, key=lambda t: t[1])[0]
     return f"{prefix}{max(n for _, n in parsed) + 1}"

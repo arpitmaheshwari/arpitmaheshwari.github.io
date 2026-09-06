@@ -246,6 +246,18 @@
    "note": "was wired to neither stage until 2026-09-04 \u2014 one of nine orphans the architecture review found"
   },
   {
+    "id": "section-nav-check",
+    "cmd": [
+      "python3",
+      "tools/section-nav-check.py"
+    ],
+    "stages": [
+      "pre-push",
+      "ci-always"
+    ],
+    "note": "Two properties every other gate is blind to, because they compare elements to EACH OTHER instead of measuring one element: no two headings on a page say the same thing (o2 shipped its §01 stakes heading a second time over §04), and every section carrying its own h2 is reachable from the page's own jump nav (five of eight case studies had one that was not). Self-calibrates by planting a duplicate heading and by deleting a jump link."
+  },
+  {
    "id": "asset-reference-sweep",
    "cmd": [
     "python3",
@@ -304,7 +316,7 @@
     "--widths",
     "1440,390",
     "--exempt",
-    ".bk-device__label, .bk-device__mark, .grad, .hero-headline em, body.p-404 h1 em",
+    ".bk-device__label, .bk-device__mark, .grad, body.p-404 h1 em",
     "--force-visible",
     ".reveal"
    ],

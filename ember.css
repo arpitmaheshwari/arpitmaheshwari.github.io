@@ -1323,6 +1323,34 @@ html[data-theme="ember"] .case-jump a{padding:8px 0;min-height:24px;display:inli
 /* 12px (grid) + the 20px line box = 44px, the comfortable phone target */
   html[data-theme="ember"] .case-jump a{padding:12px 0;min-height:44px}}
 html[data-theme="ember"] body[class*="p-case-studies"] :is(.case-jump a,.ba-table th){font-size:12px;font-weight:600}
+/* The jump nav is NAVIGATION, not a reading line — but it sits inside .measure-c,
+   so the 68ch prose cap added on 2026-09-06 (a 680px box, 632px of content) became
+   its width too. That is too narrow for a 7- or 8-entry table of contents: five of
+   the eight case studies wrapped with a single orphaned link alone on a second
+   row, and two of them (adtech at 8 entries, planit needing 634px against 632)
+   already did before 2026-09-07 added the sections the nav had been missing.
+   It goes on the axis THIS PAGE ALREADY HAS rather than a new one. Every plate,
+   .case-vitals and .recon on a case page is width:min(1040px, 100vw - 48px),
+   auto-centred — left edge 200px at 1440. My first attempt invented 940px, which
+   put the nav 50px inside the plates and 154px outside the prose: aligned to
+   nothing, centred in leftover space, which is the exact defect the layout rule
+   here names. Applied at EVERY width, exactly like `.measure-c figure` — the
+   plates sit at L24 from 390 to 1024 and at L200 at 1440, so following them adds
+   no new condition, and gating this at 1100px left the orphan standing at 1024 on
+   five pages (two of which had it before today). At 390 the two axes converge. */
+html[data-theme="ember"] body[class*="p-case-studies"] .measure-c > .case-jump{
+    width:min(1040px, calc(100vw - 48px));
+    /* the house breakout, verbatim from the plates rule below: auto margins do
+       NOT centre a block wider than its containing block — they resolve to 0 and
+       the nav ran 4px past the viewport. */
+    margin-left:50%;margin-right:0;transform:translateX(-50%);
+    /* 16px, not 20px: eight entries need more run than a 1100px window gives at
+       20px. Each link carries its own underline, so the gap is not what separates
+       them. (14px measured better still and is what I reached for first — but the
+       spacing scale is 4·8·12·16·20·24·32·40·48·64·80, and inline-style-check is
+       right that a value off it needs a reason, not a preference.) */
+    column-gap:16px}
+
 html[data-theme="ember"] body[class*="p-case-studies"] :is(.fig-paper figcaption,
   figure figcaption > span:last-child){font-size:12px;font-weight:400;text-transform:none}
 /* ============================================================================
@@ -2791,7 +2819,7 @@ html[data-theme="ember"] .u-body .lead-in{
   display:block;
   color:var(--ink);
   letter-spacing:.005em;
-  margin-bottom:6px}
+  margin-bottom:8px}
 /* a sub-head wants more air above it than a paragraph does */
 html[data-theme="ember"] :is(.t-body,.u-body):has(> .lead-in:first-child){
-  margin-top:44px}
+  margin-top:40px}
