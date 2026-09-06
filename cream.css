@@ -140,7 +140,16 @@ html[data-theme="ember"][data-skin="cream"] a:hover{color:var(--accent-text)}
 /* the cursor glow — the page's one atmospheric layer [spec] */
 html[data-theme="ember"][data-skin="cream"] #cream-glow{position:fixed;inset:0;pointer-events:none;z-index:1;
   background:radial-gradient(560px circle at 50% 40%,var(--glow),transparent 70%)}
-html[data-theme="ember"][data-skin="cream"] body > *{position:relative;z-index:2}
+/* :not(.skip-link) is load-bearing. This rule exists so body's children sit
+   above #cream-glow, and z-index needs a positioning context — but a blanket
+   `position:relative` also overrides anything that positions ITSELF with only
+   class specificity. #nav and #cream-glow survived because an ID outranks this
+   selector; .skip-link did not. It is declared `position:absolute; top:-100px`
+   and was forced back into flow as an inline element, which cost two defects on
+   all 41 pages: a ~30px phantom band at the top of every page (main began at
+   y=30, not 0), and a focused skip link clipped 5px off the top of the screen,
+   because vertical padding on an inline box bleeds outside its line box. */
+html[data-theme="ember"][data-skin="cream"] body > *:not(.skip-link){position:relative;z-index:2}
 
 /* ---------- label grammar (gallery voice) ---------- */
 html[data-theme="ember"][data-skin="cream"] :is(.k,.eyebrow,.lbl-eyebrow,.ck,.mk,.lab-kicker,.chap-t,.qt-view,
@@ -1114,10 +1123,26 @@ html[data-theme="ember"][data-skin="cream"] a:is(.btn,.pill-hot,.btn-label,.hd-c
 html[data-theme="ember"][data-skin="cream"] :is(.btn,.pill-hot,.btn-label,.hd-case-btn,
   [data-cta="send-role"]):hover{background:var(--accent-hover);border-color:var(--accent-hover);
   color:var(--cream-parchment)}
-/* the skip link is ink-filled the moment it takes focus */
+/* THE SKIP LINK — the first thing a keyboard visitor ever touches, and it had
+   three defects that only tools/interaction-state-check.py could see (the
+   contrast audit lists it as UNMEASURABLE, because it is off-canvas until
+   focused):
+     · on hover the label took the page's generic a:hover accent — gold on its
+       own ink plate, 3.36:1. A component must declare its own ink;
+     · the focus ring was --cream-parchment, i.e. the same colour as the page
+       ground it is drawn on at outline-offset:2px. A ring you cannot see is not
+       a ring. It is ink now: dark on the cream ground, and the 2px offset keeps
+       it clear of the plate;
+     · and it needs its own position back — see the body > * note above. */
 html[data-theme="ember"][data-skin="cream"] .skip-link,
 html[data-theme="ember"][data-skin="cream"] .skip-link:focus{
+  position:absolute;display:inline-block;
   background:var(--cream-ink);color:var(--cream-parchment)}
+html[data-theme="ember"][data-skin="cream"] .skip-link:hover,
+html[data-theme="ember"][data-skin="cream"] .skip-link:focus:hover{
+  background:var(--cream-ink);color:var(--cream-parchment)}
+html[data-theme="ember"][data-skin="cream"] .skip-link:focus-visible{
+  outline:2px solid var(--cream-ink);outline-offset:2px}
 
 /* 2 — captions that sit in a plate's shadow */
 html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] :is(.lbl-eyebrow,.vplate-cap,.plA-caption .lbl-eyebrow){
@@ -1639,12 +1664,23 @@ html[data-theme="ember"][data-skin="cream"][data-touch="modern"] .chap-rule{
 
 
 
-/* 12 · GRAIN, slightly stronger and finer, so the ground reads as paper rather
-   than as screen white. Measured: it shifts the ground by under 1.5% luminance,
-   so every contrast ratio on the page is unchanged. */
-html[data-theme="ember"][data-skin="cream"][data-touch="modern"] body{
-  background-image:radial-gradient(circle at 1px 1px, rgba(26,26,28,.045) 1px, transparent 0);
-  background-size:4px 4px;background-attachment:scroll;background-repeat:repeat}
+/* 12 · (WITHDRAWN) PAPER GRAIN.
+   A 4px radial dot screen at 4.5% ink, so the ground would read as paper rather
+   than as screen white. Removed, because it measurably broke readability and
+   the brief for this whole layer is that it must not.
+
+   tools/contrast-audit.py on /lab/teardown: 16 failures with the touch on, 0
+   with it off — the same page, isolated by toggling one attribute. The grain
+   darkens the tinted act-cream bands, and --accent-text (#946320) is already at
+   the AA edge on those grounds, so gold labels fell to 4.26:1 against a 4.5
+   requirement. An alpha sweep did not save it: 3.0% still failed twice at
+   4.36:1, 2.0% twice at 4.46:1, and even 1.4% left one element at 4.48:1 — by
+   which point the texture is invisible anyway.
+
+   The alternative was to darken the accent, and that is not mine to change:
+   #946320 is brand v1.4.0. So the texture goes and the brand stays. This is
+   also the reason a style-based checker could never have caught it — the
+   authored colour pair is legal; only the painted pixels are not. */
 
 /* ============================================================
    L21 — THE ESSAY CONTENTS RAIL

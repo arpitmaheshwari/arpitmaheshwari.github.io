@@ -46,8 +46,22 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;co
   const t=a.textContent.trim(); if(!/[\\u2192\\u2197]\\s*$/.test(t))return;
   const cs=w.getComputedStyle(a); const r=a.getBoundingClientRect();
   if(r.width<8||cs.display==='none')return;
-  // buttons/pills carry a fill or heavy border — different component, skip
-  if(cs.backgroundColor!=='rgba(0, 0, 0, 0)'||cs.backgroundImage!=='none')return;
+  // buttons/pills carry a fill or heavy border — different component, skip.
+  // But `backgroundImage!=='none'` alone is wrong: cream.css paints an inline
+  // link's UNDERLINE with two 1px background gradients (a ::after spanning the
+  // union of a wrapped link's line boxes drew through the empty space, so the
+  // rule is painted per line fragment instead). That made every body link look
+  // like a filled button and this gate reported 0 qualifying CTAs on a page
+  // where it had just found 7 — a calibration failure, not a site defect.
+  // A fill covers the element; an underline is a few pixels tall. Judge by size.
+  if(cs.backgroundColor!=='rgba(0, 0, 0, 0)')return;
+  if(cs.backgroundImage!=='none'){
+    const layers=cs.backgroundSize.split(',').map(s=>s.trim());
+    const isRule=layers.every(l=>{
+      const h=l.split(/\s+/)[1];                 // "100%% 1px" -> "1px"
+      return h && /px$/.test(h) && parseFloat(h)<=3;});
+    if(!isRule)return;                            // a real fill: skip
+  }
   if(parseFloat(cs.borderTopWidth)>0.5)return;
   // links inside plate/paper artifacts keep artifact styling — skip
   let n=a,skip=false; while(n&&n.tagName!=='BODY'){const c=(n.className+'').toLowerCase();
