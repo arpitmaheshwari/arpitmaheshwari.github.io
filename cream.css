@@ -93,6 +93,16 @@ html[data-theme="ember"][data-skin="cream"]{
   /* type — v1.4.0: Source Serif 4 headings, Inter body/UI/labels, Space Mono for
      machine output only. FIVE steps at 1.25 and no sixth. */
   --font-display:'Source Serif 4',Georgia,serif;
+  --t-claim:   600 clamp(40px,5vw,55px)/1.12 var(--font-display);
+  --t-section: 600 var(--fs-section)/1.2     var(--font-display);
+  --t-figure:  600 40px/1.1                  var(--font-display);
+  --t-title:   600 22px/1.3                  var(--font-display);
+  --t-lede:    400 21px/1.5                  var(--font-body);
+  --t-body:    400 18px/1.65                 var(--font-body);
+  --t-small:   400 15px/1.6                  var(--font-body);
+  --t-label:   500 14px/1.5                  var(--font-ui);
+  --t-micro:   500 12px/1.5                  var(--font-mono);
+  --t-caption: 400 13px/1.6                  var(--font-body);
   /* THE SECTION STEP IS RESPONSIVE. It was a fixed 35px while every other
      display step in v1.4.0 is a clamp — so a section heading was 35px on a
      phone and still 35px on a 1680px monitor, where it is 2% of the width. The
@@ -274,7 +284,7 @@ html[data-theme="ember"][data-skin="cream"] body.p-home .hero h1{
 html[data-theme="ember"][data-skin="cream"] body.p-home .hero h1 em{
   font-style:italic;background:none;-webkit-text-fill-color:currentColor;color:var(--accent-text)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .hero .sub{
-  font:300 17px/1.7 var(--font-body);color:var(--text-muted);max-width:52ch}
+  font:var(--t-body);color:var(--text-muted);max-width:52ch}
 html[data-theme="ember"][data-skin="cream"] body.p-home .hero .kicker,
 html[data-theme="ember"][data-skin="cream"] body.p-home .hero .hk{color:var(--accent-text)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .cta-status{color:var(--text-faint);border:1px solid var(--border-hairline);border-radius:999px;background:var(--surface-card)}
@@ -288,7 +298,7 @@ html[data-theme="ember"][data-skin="cream"] body.p-home .vid-hero video{position
 html[data-theme="ember"][data-skin="cream"] body.p-home .vid-hero-k{color:var(--accent-text)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .vid-hero-cap,
 html[data-theme="ember"][data-skin="cream"] body.p-home .vid-main figcaption{color:var(--text-faint);
-  font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
 
 /* act openers — the wall label above each room */
 html[data-theme="ember"][data-skin="cream"] .chap{border-bottom:1px solid var(--border-hairline);padding-bottom:20px}
@@ -296,7 +306,7 @@ html[data-theme="ember"][data-skin="cream"] .chap-n{font-family:var(--font-displ
   color:var(--accent-text);font-size:clamp(44px,5vw,64px)}
 html[data-theme="ember"][data-skin="cream"] .chap-t{color:var(--text-faint)}
 html[data-theme="ember"][data-skin="cream"] .chap-rule{background:var(--border-hairline)}
-html[data-theme="ember"][data-skin="cream"] .chap-i{color:var(--text-muted);font:300 16px/1.7 var(--font-body)}
+html[data-theme="ember"][data-skin="cream"] .chap-i{color:var(--text-muted);font:var(--t-small)}
 html[data-theme="ember"][data-skin="cream"] .k-idx{color:var(--accent-text)}
 
 /* the measured results (receipts strip): plaques on the wall */
@@ -307,16 +317,16 @@ html[data-theme="ember"][data-skin="cream"] body.p-home .rcell .was{color:var(--
 html[data-theme="ember"][data-skin="cream"] body.p-home .rcell > span{color:var(--text-faint)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt-btn{background:none;border:none;color:var(--text-primary);
   border-bottom:1px solid var(--text-primary);border-radius:0;font-family:var(--font-mono);
-  font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:0 0 2px}
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:0 0 2px}
 html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt-btn:hover{color:var(--accent-text);border-bottom-color:var(--accent)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt{padding:26px}
 html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt-h{font-family:var(--font-display);font-weight:500}
 html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt-l{color:var(--text-faint);font-family:var(--font-mono);
-  font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase}
 html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt-v{color:var(--text-body)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt-row{border-top:1px solid var(--border-hairline)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .rcpt-close{background:none;border:1px solid var(--border-strong);
-  border-radius:999px;color:var(--text-muted);font-family:var(--font-mono);font-size:10px;letter-spacing:.14em}
+  border-radius:999px;color:var(--text-muted);font-family:var(--font-mono);font-size:12px;letter-spacing:.14em}
 
 /* the works (lanes + index): each lane is a hung work */
 html[data-theme="ember"][data-skin="cream"] body.p-home .lane{background:var(--surface-card);border:1px solid var(--border-strong);
@@ -362,7 +372,7 @@ html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors{background:v
   border-top:1px solid var(--border-hairline);border-bottom:1px solid var(--border-hairline)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors .qt{background:none;border:none;box-shadow:none}
 html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors .qt blockquote{
-  font:300 clamp(17px,1.5vw,21px)/1.6 var(--font-body);font-style:italic;color:var(--text-body)}
+  font:var(--t-lede);font-style:italic;color:var(--text-body)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors .qt-view{color:var(--accent-text)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .qt-anchors figcaption{border-top:1px solid var(--border-hairline)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .qt{border-top:2px solid var(--border-strong)}
@@ -388,7 +398,7 @@ html[data-theme="ember"][data-skin="cream"] body.p-home .pass-link{filter:none}
 html[data-theme="ember"][data-skin="cream"] footer{background:var(--surface-page);border-top:1px solid var(--border-strong);color:var(--text-faint)}
 html[data-theme="ember"][data-skin="cream"] footer a,html[data-theme="ember"][data-skin="cream"] .footer-logo,
 html[data-theme="ember"][data-skin="cream"] .footer-back{color:var(--text-faint);font-family:var(--font-mono);
-  letter-spacing:.18em;text-transform:uppercase;font-size:10px}
+  letter-spacing:.18em;text-transform:uppercase;font-size:12px}
 html[data-theme="ember"][data-skin="cream"] footer a:hover,html[data-theme="ember"][data-skin="cream"] .footer-back:hover{color:var(--accent-text)}
 html[data-theme="ember"][data-skin="cream"] .fresh{color:var(--text-faint)}
 
@@ -681,7 +691,7 @@ html[data-theme="ember"][data-skin="cream"] .thesis{
    its own padding, type, ink and ground — nothing left to inheritance */
 html[data-theme="ember"][data-skin="cream"] body.p-home .cta-status{
   display:inline-flex;align-items:center;gap:8px;padding:12px 20px;line-height:1;
-  font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
   color:var(--text-muted);background:var(--surface-card);
   border:1px solid var(--border-strong);border-radius:999px}
 html[data-theme="ember"][data-skin="cream"] body.p-home .cta-status i{
@@ -900,7 +910,7 @@ html[data-theme="ember"][data-skin="cream"] body.p-home .cta-status{text-transfo
 /* body prose never wears the meta face: act ledes return to the reading serif */
 html[data-theme="ember"][data-skin="cream"] body.p-home .work .lede,
 html[data-theme="ember"][data-skin="cream"] body.p-home .lede{
-  font:300 16px/1.75 var(--font-body);letter-spacing:0;color:var(--text-muted)}
+  font:var(--t-lede);letter-spacing:0;color:var(--text-muted)}
 /* plaque figures inherit the display size from their b */
 html[data-theme="ember"][data-skin="cream"] body.p-home .rcell b span[aria-hidden]{font-size:inherit;line-height:inherit}
 
@@ -2298,3 +2308,81 @@ html[data-theme="ember"][data-skin="cream"] body.p-home .who h3{max-width:var(--
   html[data-theme="ember"][data-skin="cream"] body.p-home :is(.hero,.who,.contract,.close) .wrap{
     grid-template-columns:var(--split);column-gap:var(--split-gap)}
 }
+
+/* ============================================================
+   L31 — THE TYPE SYSTEM, COMPLETED
+
+   Census of every text element on the homepage (artifacts excluded): 199
+   elements carrying THIRTY-FOUR distinct type signatures, against a system that
+   declares five steps. The five were real — body 18/400/1.65 (46 uses), label
+   14/500/1.5 (30), title 22/600/1.3 (21), section (7), claim (4) — and
+   everything else was drift:
+
+     sizes off the scale   10, 11, 12, 13, 16, 21, 24, 26, 43
+     weights off the scale 300 (on ledes AND blockquotes)
+     leadings off the scale 1.08, 1.45, 1.6, 1.75, 1.9
+
+   The lesson is not "five steps were violated" — it is that five steps never
+   covered the roles this page actually has. A lede, a caption, a mono tag and a
+   data figure are real roles; if the system does not name them they get invented
+   per instance, which is exactly what happened. So the system now names them,
+   and each is fixed to the leading floor for its band (>=40px 1.1 / 24-40 1.2 /
+   18-24 1.5 / <18 1.6).
+
+   Weight 300 is removed outright. On a paper ground a 300 at 16px is thin
+   enough to lose its stroke, and the palette here is already carried by size
+   and family rather than weight.
+   ============================================================ */
+/* LEDE — was 16/300/1.75 and 21/300/1.6, two inventions of one role */
+html[data-theme="ember"][data-skin="cream"] main :is(p.lede,.lede,p.sub,.sub){font:var(--t-lede)}
+/* PULL QUOTE — was 21/300/1.6; a quote is a lede in a different voice */
+html[data-theme="ember"][data-skin="cream"] main blockquote{font:var(--t-lede);font-style:italic}
+/* SMALL — everything that had invented 13px or 16px */
+html[data-theme="ember"][data-skin="cream"] main :is(dd,figcaption,p.fs,.lab-src,.qt-src,p.ccd-note){
+  font:var(--t-small)}
+/* LABEL — 14px, one weight. dt was 600, b was 500, both at 1.65 */
+html[data-theme="ember"][data-skin="cream"] main :is(dt,.cred,p.cred){font:var(--t-label)}
+/* MICRO — the mono tags and status lines that invented 10px and 11px */
+html[data-theme="ember"][data-skin="cream"] main :is(.thought-tag,.cta-status,.ccd-idle,.lr-k,
+  .vid-hero-cap,.ccd-ctr,.ccd-q){font:var(--t-micro);letter-spacing:.04em}
+/* THE DATA FIGURE — was 43px/1.08, three points off the section step and set
+   solid. It is its own role: the number a section exists to show. */
+html[data-theme="ember"][data-skin="cream"] main :is(.rcell b,.stat b,.idx b,.lane .m,b.m,div.m){
+  font:var(--t-figure)}
+html[data-theme="ember"][data-skin="cream"] main :is(.rcell b .was,.lane .m .was,i.was){
+  font-size:.5em;font-weight:400;font-style:italic}
+/* the signature line kept its own 26px for no stated reason */
+html[data-theme="ember"][data-skin="cream"] main p.sig{font:var(--t-lede)}
+/* WEIGHT 300 IS GONE from the skin: nothing on paper is set that thin */
+html[data-theme="ember"][data-skin="cream"] main [style*="300"],
+html[data-theme="ember"][data-skin="cream"] main :is(.lede,.sub,blockquote,p.lede){font-weight:400}
+
+/* ============================================================
+   L32 — A FLOOR UNDER THE SMALL SIZES
+
+   The census found text at 10px and 11px, and 12px Inter used for card meta
+   alongside 12px Space Mono used for machine output — four sizes below the
+   label step, none of them declared. 10px on a paper ground is below what this
+   page can ask of a reader, and four undeclared smalls is how a type system
+   stops being one.
+
+   Two roles below the label, and nothing under 12px:
+     caption  13px Inter   — a card's meta line, a contact channel, an index tag
+     micro    12px Mono    — machine output, tags, status. Mono only, because
+                             that is the voice the system reserves for output.
+   ============================================================ */
+html[data-theme="ember"][data-skin="cream"] body main :is(.vid-hero-cap,.vid-hero-cap a,
+  .cta-status,.lr-k,.wr-more a,.thought-tag,.ccd-ctr,.ccd-q,.ccd-idle,.ccd-note){
+  font:var(--t-micro);letter-spacing:.03em}
+html[data-theme="ember"][data-skin="cream"] body main :is(.rcell span,.rcell p,.m span,.idx i,
+  .contact-facts,.contact-channels a,.lab-row a,.qt-src,.cred){
+  font:var(--t-caption)}
+/* mono keeps its own weight for emphasis inside machine output */
+html[data-theme="ember"][data-skin="cream"] body main :is(.ccd-ctr b,.ccd-ctr strong){
+  font:var(--t-micro);font-weight:600}
+
+/* the last two sub-12px values, both needing to out-specify ember:
+   `body.p-home .lab-row .lr-k` (three classes) and the --fs-micro token that
+   .footer-note reads. Nothing on this site is set below 12px now. */
+html[data-theme="ember"][data-skin="cream"] body.p-home .lab-row .lr-k{font-size:12px}
+html[data-theme="ember"][data-skin="cream"]{--fs-micro:12px}
