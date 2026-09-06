@@ -1369,3 +1369,39 @@ html[data-theme="ember"][data-skin="cream"] body.p-patterns :is(h2.card-title,.c
 html[data-theme="ember"][data-skin="cream"] body.p-home .close h2,
 html[data-theme="ember"][data-skin="cream"] body.p-folio .close h2{
   font:600 clamp(40px,5vw,55px)/1.12 var(--font-display);letter-spacing:-.01em}
+
+/* ============================================================
+   L19 — THE NAV BAR (Arpit, twice: "the padding appears big",
+   then "the nav has a margin into the top")
+
+   Measured: 89px tall on every page, from 22px of vertical padding on top of
+   the content's own height, with the three groups landing on three different
+   lines (logo 24px, links 29px, CTA 22px from the top — a 7px spread; inner
+   elements of a row must align to ONE ANOTHER).
+
+   Worse, and only visible with the menu open: styles.css pins the mobile
+   drawer at `top:64px` while the bar measures 89 — so the drawer opened 25px
+   UNDERNEATH the bar it hangs from. Setting the bar to the 64px the drawer has
+   always assumed fixes both the padding and the overlap with one number.
+   ============================================================ */
+html[data-theme="ember"][data-skin="cream"] #nav{
+  height:64px;padding:0 40px;align-items:center;
+  display:flex;gap:34px;box-sizing:border-box}
+html[data-theme="ember"][data-skin="cream"] #nav > *{align-self:center;margin-top:0;margin-bottom:0}
+html[data-theme="ember"][data-skin="cream"] #nav .nav-logo,
+html[data-theme="ember"][data-skin="cream"] #nav .nav-links,
+html[data-theme="ember"][data-skin="cream"] #nav .nav-cta{display:flex;align-items:center}
+html[data-theme="ember"][data-skin="cream"] #nav .nav-links{gap:28px;margin-left:auto}
+html[data-theme="ember"][data-skin="cream"] #nav .nav-cta{margin-left:34px}
+/* the hero reserved space for the taller bar */
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero{--navh:64px}
+@media (max-width:1100px){
+  html[data-theme="ember"][data-skin="cream"] #nav{padding:0 20px;gap:12px}
+  html[data-theme="ember"][data-skin="cream"] #nav .nav-cta{margin-left:auto;margin-right:12px}
+  /* the drawer hangs from the bar's real bottom edge, and it is PAPER — the
+     rgba(10,10,10,.97) it inherited is an ember-era near-black. */
+  html[data-theme="ember"][data-skin="cream"] .nav-links{
+    top:64px;background:var(--surface-card);border-bottom:1px solid var(--border-strong);
+    box-shadow:0 18px 34px -22px rgba(26,26,28,.28)}
+  html[data-theme="ember"][data-skin="cream"] .nav-links a{color:var(--text-primary)}
+}
