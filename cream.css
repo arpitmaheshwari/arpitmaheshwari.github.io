@@ -917,7 +917,14 @@ html[data-theme="ember"][data-skin="cream"] li,
 html[data-theme="ember"][data-skin="cream"] blockquote,
 html[data-theme="ember"][data-skin="cream"] dd{font-family:var(--font-body);font-weight:300;line-height:1.7}
 html[data-theme="ember"][data-skin="cream"] :is(h1,h2,h3,h4){font-family:var(--font-display)}
-html[data-theme="ember"][data-skin="cream"] h1{font-weight:300;line-height:1.1;letter-spacing:.002em}
+/* h1 leading defaults to the SAFE value. CSS cannot branch on computed
+   font-size, and every responsive h1 on this site clamps down into the
+   24-40px band on a phone (case hero 38px, .t-hero 36px, .section-title
+   24-31px) where the floor is 1.15. So 1.16 is the default and the tight
+   display leading is granted only where the clamp floor is >=40px. */
+html[data-theme="ember"][data-skin="cream"] h1{font-weight:300;line-height:1.16;letter-spacing:.002em}
+html[data-theme="ember"][data-skin="cream"] body.p-home .hero h1,
+html[data-theme="ember"][data-skin="cream"] body.p-folio .hero h1{line-height:1.1}
 html[data-theme="ember"][data-skin="cream"] h2{font-weight:300;line-height:1.16;letter-spacing:.002em}
 html[data-theme="ember"][data-skin="cream"] main h3{font-weight:500;line-height:1.25}
 html[data-theme="ember"][data-skin="cream"] body.p-home .hero h1{
@@ -1089,3 +1096,16 @@ html[data-theme="ember"][data-skin="cream"] body.p-home .rcell .rcpt-btn{
 html[data-theme="ember"][data-skin="cream"] body.p-home .rcell .rcpt-btn:hover{color:var(--accent)}
 
 html[data-theme="ember"][data-skin="cream"] .k-idx{font-variant-numeric:lining-nums tabular-nums;color:var(--accent)}
+
+/* L9c — two leading/weight corrections the gates caught (2026-09-06)
+   · a 31px section heading in Spectral 300 is too light to read and sat off
+     the registered rank; 300 is a DISPLAY weight, so it applies from 40px up.
+   · the case hero clamps to 38px on a phone, which lands in the 24-40px band
+     where the leading floor is 1.15 — it was set solid at 1.10 and wrapped to
+     six lines on /case-studies/adtech at 390. */
+html[data-theme="ember"][data-skin="cream"] body[class*="p-case-studies"] h2,
+html[data-theme="ember"][data-skin="cream"] body[class*="p-writing"] h2,
+html[data-theme="ember"][data-skin="cream"] body.p-patterns h2,
+html[data-theme="ember"][data-skin="cream"] body[class*="p-lab"] h2,
+html[data-theme="ember"][data-skin="cream"] body.p-fit h2,
+html[data-theme="ember"][data-skin="cream"] body.p-process h2{font-weight:400;line-height:1.2}

@@ -140,8 +140,20 @@ if __name__ == "__main__":
     # blind signature made two correct inks read as two grammars, the majority
     # of a 2-CTA sample picked the paper one, and the calibration canary could
     # only swap a signature, never add one).
-    HOUSE_INK = {"dark": "rgb(232, 107, 255)",    # --link on dark grounds
-                 "paper": "rgb(107, 58, 153)"}    # --link inside the cream act
+    # The house ink depends on which SKIN is live: ember links in violet, while
+    # the cream skin has exactly one accent and sets inline CTAs in ink on
+    # paper. Hard-coding ember's values reported every correct cream CTA as
+    # off-grammar (3 pages, 2026-09-06).
+    with _cdp.Browser() as _br:
+        _br.viewport(1440, 900)
+        _br.navigate("http://localhost:8000/index.html", settle=1.2)
+        SKIN = _br.eval_json("JSON.stringify(document.documentElement.getAttribute('data-skin')||'')")
+    if SKIN == "cream":
+        HOUSE_INK = {"paper": "rgb(32, 29, 24)",   # --text-primary on paper
+                     "dark":  "rgb(32, 29, 24)"}
+    else:
+        HOUSE_INK = {"dark": "rgb(232, 107, 255)",    # --link on dark grounds
+                     "paper": "rgb(107, 58, 153)"}    # --link inside the cream act
     allsigs = collections.Counter(r["sig"] for rows in per_page.values() for r in rows)
     if not allsigs:
         print("no arrow-CTAs found — probe broken?"); sys.exit(2)
