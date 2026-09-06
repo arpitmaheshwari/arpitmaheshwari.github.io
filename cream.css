@@ -1246,3 +1246,76 @@ html[data-theme="ember"][data-skin="cream"] body.p-home :is(.idx,.idx a){
   border-top:2px solid var(--cream-gold-deep);--lt:transparent;--lc:var(--accent-text)}
 html[data-theme="ember"][data-skin="cream"] body.p-home .idx b,
 html[data-theme="ember"][data-skin="cream"] body.p-home .idx .fig{color:var(--accent-text)}
+
+/* ============================================================
+   L17 — THE MANUSCRIPT GRID (negative-space audit, 2026-09-06)
+
+   Measured on /case-studies/adtech at 1440: a 680px prose column centred in
+   the band with 380px empty on EACH side, for the full 16,544px of the page —
+   53% of the width doing nothing for the length of the document. That is the
+   defect the layout rule names: capped text in a wide container is a decision
+   about the remaining space.
+
+   The space gets a role: a margin rail carrying each section's own eyebrow, so
+   the label sits BESIDE the prose it names instead of stacked above it.
+   Gestalt, concretely — PROXIMITY: label beside its content. COMMON REGION:
+   one rail down the page. CONTINUITY: a single alignment line instead of a new
+   one per band. SIMILARITY: every long-form page reads the same way.
+   FIGURE/GROUND: prose stays the figure. CLOSURE: a rule implies the column
+   without boxing it. PRÄGNANZ: two columns, not a stack of unrelated blocks.
+
+   Applied at SECTION level, not container level: a first attempt put the grid
+   on .measure-c, whose 17 children are mostly <section> wrappers — the labels
+   live one level deeper, so the rail rendered empty down the whole page. An
+   empty rail is worse than the void it replaced.
+   ============================================================ */
+@media (min-width:1080px){
+  html[data-theme="ember"][data-skin="cream"] body:is([class*="p-case-studies"],[class*="p-writing"],
+    .p-patterns,.p-process) :is(.measure-c,.measure-t){
+    max-width:calc(190px + 44px + 680px);margin-left:auto;margin-right:auto}
+  /* each section is its own two-column grid: rail + prose */
+  html[data-theme="ember"][data-skin="cream"] body:is([class*="p-case-studies"],[class*="p-writing"],
+    .p-patterns,.p-process) :is(.measure-c,.measure-t) > section{
+    display:grid;grid-template-columns:190px minmax(0,680px);column-gap:44px}
+  html[data-theme="ember"][data-skin="cream"] body:is([class*="p-case-studies"],[class*="p-writing"],
+    .p-patterns,.p-process) :is(.measure-c,.measure-t) > section > *{grid-column:2}
+  html[data-theme="ember"][data-skin="cream"] body:is([class*="p-case-studies"],[class*="p-writing"],
+    .p-patterns,.p-process) :is(.measure-c,.measure-t) > section
+    > :is(.lbl-eyebrow,.eyebrow,.k,.kicker,.lbl-cap){
+    grid-column:1;grid-row:span 2;text-align:right;margin:0;padding-top:7px;
+    border-top:1px solid var(--border-hairline);align-self:start}
+  /* exhibits span the whole measure — they are evidence, not prose */
+  html[data-theme="ember"][data-skin="cream"] body:is([class*="p-case-studies"],[class*="p-writing"],
+    .p-patterns,.p-process) :is(.measure-c,.measure-t) > section
+    > :is(figure,table,.ba-table,.vplate,.vslip,.loopfig,.thesis,.recon,.fig-paper,
+          .phone-row,.td-scroll,pre,.framed-tight){grid-column:1 / -1}
+  /* the container's own direct children keep the prose measure, offset to match */
+  html[data-theme="ember"][data-skin="cream"] body:is([class*="p-case-studies"],[class*="p-writing"],
+    .p-patterns,.p-process) :is(.measure-c,.measure-t)
+    > :is(p,h1,h2,h3,ul,ol,.case-jump,.btn-row,.t-standfirst){
+    margin-left:234px;max-width:680px}
+  html[data-theme="ember"][data-skin="cream"] body:is([class*="p-case-studies"],[class*="p-writing"],
+    .p-patterns,.p-process) :is(.measure-c,.measure-t) > .lbl-eyebrow{
+    margin-left:0;width:190px;text-align:right;padding-top:7px;
+    border-top:1px solid var(--border-hairline)}
+}
+
+/* process/ has one eyebrow and three sections — the same grid, applied to its
+   own container (its class is per-page extracted, so it is reached by family). */
+@media (min-width:1080px){
+  html[data-theme="ember"][data-skin="cream"] body.p-process main > div{
+    display:grid;grid-template-columns:190px minmax(0,680px);column-gap:44px;
+    max-width:914px;margin-left:auto;margin-right:auto}
+  html[data-theme="ember"][data-skin="cream"] body.p-process main > div > *{grid-column:2}
+  html[data-theme="ember"][data-skin="cream"] body.p-process main > div > :is(.eyebrow,.k,.lbl-eyebrow){
+    grid-column:1;text-align:right;margin:0;padding-top:7px;
+    border-top:1px solid var(--border-hairline);align-self:start}
+  html[data-theme="ember"][data-skin="cream"] body.p-process main > div
+    > :is(figure,.process-fig,.vid-main,section,pre,table){grid-column:1 / -1}
+}
+/* NOT APPLIED to writing essays: measured 704px of prose with 368px empty each
+   side at 1440, but their containers hold no labels at all (p.lead, h2.section-title,
+   p.u-body), so a rail there would be blank down the page — the trap this block
+   already fell into once. The honest fix for an essay is a sticky rail carrying
+   its own section titles as an in-page contents list; that is a new component,
+   proposed rather than smuggled in here. */
