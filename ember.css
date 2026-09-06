@@ -2691,3 +2691,69 @@ html[data-theme="ember"] :is(button.rxa-why,button.rxf-explain,button.rxa-logged
   html[data-theme="ember"] .loopfig .loop-steps{flex-wrap:wrap;min-width:0}
   html[data-theme="ember"] .loopfig .loop-steps > *{min-width:0;max-width:100%}
 }
+
+/* ============================================================
+   LONG-FORM READING, part two  (2026-09-07)
+
+   Measured on /case-studies/adtech after the measure cap landed.
+
+   1 · THE PHONE MEASURE WAS 35ch. Capping the desktop measure at 68ch fixed
+       one end and left the other: at 390px the column is 294px, which at 17px
+       Source Sans 3 is thirty-five characters — as far below the 45-75 range as
+       80 was above it, and the same fatigue from the opposite direction (a
+       return sweep every four or five words). At 390px you cannot have both
+       17px and 45ch, so the phone takes 16px and the page gutter narrows from
+       24px to 16px: 358px of column, ~45ch. Desktop keeps 17px and 68ch.
+
+   2 · PARAGRAPH SPACING WAS SMALLER THAN LINE SPACING — 20px between
+       paragraphs against a 31px line box. That is the wrong way round: if the
+       gap between paragraphs is tighter than the gap between lines, the eye
+       cannot see where one paragraph ends, and a page of prose reads as one
+       slab. Paragraph spacing is now 32px, just over one line box.
+
+   3 · TRACKING WAS NEGATIVE (-0.048px) on light-on-dark text. Light text on a
+       dark ground blooms — light scatters in the eye and strokes thicken — so
+       the counters need MORE air, not less. Now +0.01em on body copy only;
+       headings keep their tighter fit because display sizes do not bloom the
+       same way.
+
+   4 · text-wrap:pretty for orphan control. The browser can now avoid a
+       one-word last line by itself, which at any measure is free.
+
+   5 · hyphens:auto BELOW the two-column breakpoint only. At 68ch the rag is
+       fine and hyphenation would be noise; at 45ch on a phone the rag is severe
+       enough that evening it out is worth the hyphens.
+   ============================================================ */
+html[data-theme="ember"] :is(.t-body,.u-body,.measure-c p,.measure-t p){
+  letter-spacing:.01em;
+  text-wrap:pretty}
+html[data-theme="ember"] :is(.t-body,.u-body) + :is(.t-body,.u-body),
+html[data-theme="ember"] .measure-c :is(p,li) + :is(p,li){
+  margin-top:32px}
+@media (max-width:430px){
+  /* hyphens:auto with LIMITS. Unconstrained it put five hyphens in fifteen lines
+     at 42ch — "dis-covered", "indepen-dent", "conversa-tion", "engi-neering",
+     "partner-ship" — which evens the rag but interrupts the read every third
+     line. hyphenate-limit-chars 8 4 3 means: only words of 8+ characters, never
+     fewer than 4 before the break or 3 after, and at most two in a row. */
+  html[data-theme="ember"] :is(.t-body,.u-body){
+    font-size:16px;hyphens:auto;
+    -webkit-hyphenate-limit-before:4; -webkit-hyphenate-limit-after:3;
+    hyphenate-limit-chars:8 4 3;
+    hyphenate-limit-lines:2}
+  /* ZERO, not 16. The gutter was double-stacked: main.section already pads 24px
+     each side, and .measure-c added its own on top — 80px of a 390px screen
+     spent twice on the same margin, which is where the missing characters were.
+     main keeps the gutter; the inner container stops repeating it. */
+  html[data-theme="ember"] :is(.measure-c,.measure-t){padding-left:0;padding-right:0}
+}
+
+/* At 320-360px the measure is physically constrained: 45ch at 16px needs a
+   333px column, and a 320px screen has 272px after a 24px gutter each side. The
+   only lever left is the gutter itself, so below 380px it narrows to 16px —
+   worth about three characters a line, which at 33ch is not nothing. It does not
+   go tighter than 16px, because a gutter below that reads as text touching the
+   bezel. 33-38ch at these widths is the honest floor, not a defect. */
+@media (max-width:380px){
+  html[data-theme="ember"] main.section{padding-left:16px;padding-right:16px}
+}
