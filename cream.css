@@ -1763,3 +1763,183 @@ html[data-theme="ember"][data-skin="cream"] .esy-rail{display:none}
    differently, and the reconstruction is unchanged in proportion.
    ============================================================ */
 html[data-theme="ember"][data-skin="cream"] body.p-case-studies-ptc .plP > *{min-width:0}
+
+/* ============================================================
+   L23 — THE MEASURE SYSTEM  (Arpit: "the sections are not discernible",
+   and earlier: "the homepage feels long with one single theme pattern")
+
+   MEASURED FIRST, then designed. Every section of the homepage was rendered and
+   its painted ink extents recorded at 1440:
+
+     hero      x 100..1340   width 1240
+     receipts  x 100..1340   width 1240
+     work      x 200..1240   width 1040
+     who       x 100..1355   width 1255
+     contract  x 100..1340   width 1240
+     aiwork    x 100..1340   width 1240
+     voices    x 100..1340   width 1240
+     thoughts  x 100..1340   width 1240
+     close     x 100..1340   width 1240
+
+   Eight of nine sections are the SAME SHAPE. One template, repeated nine times
+   down 10,116px of page. That is the whole reason no section is discernible,
+   and it is why every card treatment tried before this failed: they were
+   decorating a template problem. `body.p-home .wrap{max-width:1240px}` is the
+   single line responsible.
+
+   The sections do alternate internally — hero, who, contract and close are
+   two-column grids, the rest are blocks — but the alternation is invisible
+   because the outer shape never changes.
+
+   So the measure now comes from what the act is DOING, which is the only
+   defensible way to choose it:
+
+     · FIGURES READ ACROSS. The receipts band goes widest — a row of numbers is
+       a ledger and a ledger wants width.
+     · PROSE READS NARROW. Voices are recommendations, i.e. prose, and drop to a
+       reading measure. Narrower prose is more legible, not less, so this costs
+       nothing at the gate.
+     · AN ENDING CONTRACTS. The close takes the narrowest measure and the most
+       air, so the page visibly closes rather than just stopping.
+     · ARTIFACTS TAKE A FRAME, slightly inset from the widest band.
+
+   The result is a page that steps 1240 - 1440 - 1040 - 1240 - 1120 - 900 -
+   1240 - 820 instead of holding one width for its whole length. Nothing here
+   changes a colour, a size or a leading value: it is all measure and air.
+   ============================================================ */
+@media (min-width:1000px){
+  /* figures read across */
+  html[data-theme="ember"][data-skin="cream"] body.p-home .receipts .wrap{
+    max-width:1440px;padding:0 48px}
+  /* AN INDEX WANTS DENSITY. .who and .contract are both two-column grids and
+     both sat at 1240/1255 — the one adjacency still reading as the same shape
+     after the first pass. The contract section is an index of patterns, so it
+     takes the wider measure and the tighter gutter. */
+  html[data-theme="ember"][data-skin="cream"] body.p-home .contract .wrap{
+    max-width:1360px;column-gap:48px}
+  /* artifacts take a frame */
+  html[data-theme="ember"][data-skin="cream"] body.p-home .aiwork .wrap{max-width:1120px}
+  /* prose reads narrow */
+  html[data-theme="ember"][data-skin="cream"] body.p-home .voices .wrap{max-width:900px}
+  /* an ending contracts, and takes the most air on the page */
+  html[data-theme="ember"][data-skin="cream"] body.p-home .close .wrap{
+    max-width:820px;grid-template-columns:1fr;gap:40px}
+  html[data-theme="ember"][data-skin="cream"] body.p-home .close{
+    padding-top:140px;padding-bottom:140px}
+  /* the quiet sections get more air than the wide ones, so the rhythm is
+     vertical as well as horizontal */
+  html[data-theme="ember"][data-skin="cream"] body.p-home .voices{padding-top:120px}
+  html[data-theme="ember"][data-skin="cream"] body.p-home .receipts{padding-bottom:96px}
+}
+
+/* ============================================================
+   L24 — THE SECTION HEADING BECOMES A LANDMARK
+   (Arpit: "heading of each section is not discernible")
+
+   MEASURED, per section, at 1440 — heading size against the largest other text
+   in the same band, and the gap to the nearest painted thing above and below:
+
+     section    h2   biggest other   ratio   air above / below
+     receipts   35   43 (a figure)   0.81      40 / 27
+     work       35   24              1.46       – / 91
+     who        35   30              1.17      40 /  6
+     contract   35   30              1.17       9 / 16
+     aiwork     35   22              1.59      12 / 40
+     voices     35   30              1.17      40 / 16
+     thoughts   35   22              1.59      12 / 40
+     close      55   44              1.25      16 / 20
+
+   Two findings. In the receipts band the heading is SMALLER than the content it
+   introduces — 35px against 43px figures, a ratio of 0.81 — so it cannot win.
+   And four headings sit within 6-16px of their own body text: `who` has SIX
+   pixels below it. A heading with six pixels of air is not a heading, it is the
+   first line of the paragraph.
+
+   The two sections that already read correctly (aiwork, thoughts) are the two
+   with 40px below and a ratio above 1.5 — so the target is taken from the pages
+   that already work, not invented.
+
+   Air is fixed here because air needs no brand change. Scale does: the section
+   step is 35px in brand v1.4.0 and raising it is Arpit's call, not mine.
+   Proximity is preserved deliberately — the eyebrow stays TIGHT to the heading
+   it names (Gestalt proximity: they are one object) and the air is placed
+   around that pair, not between them.
+   ============================================================ */
+html[data-theme="ember"][data-skin="cream"] body.p-home :is(.chap,header.chap){
+  margin-bottom:14px}
+/* EVERY section heading, at any nesting depth. Scoped by `> .wrap > h2` first,
+   which missed .work entirely — its h2 does not live in .wrap, so its lede sat
+   flush against it (a measured gap of -1px). Card titles are excluded by name:
+   they are the TITLE step, not a section heading, and giving them 48px of air
+   would blow every card open. */
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section h2:not(.card-title):not(.rcpt-h):not(.t-card-title){
+  margin-top:0;margin-bottom:48px}
+/* the sections whose heading sits inside a nested block, not directly in .wrap */
+html[data-theme="ember"][data-skin="cream"] body.p-home :is(.who,.contract,.close) .wrap h2{
+  margin-bottom:40px}
+html[data-theme="ember"][data-skin="cream"] body.p-home :is(.who,.contract) .wrap > div > :is(.k,.eyebrow,.lbl-eyebrow){
+  margin-bottom:14px}
+/* and a hairline that runs the measure ABOVE the label, so the eye is told a
+   new act has started before it reads a word. One rule, every section, so it
+   reads as a system rather than as decoration on one band. */
+html[data-theme="ember"][data-skin="cream"] body.p-home main > section:not(.hero) > .wrap{
+  border-top:1px solid var(--border-hairline);padding-top:42px}
+
+/* ============================================================
+   L25 — WCAG 1.4.10 REFLOW at 320px, and 2.5.8 TARGET SIZE
+
+   Both requirements were unmeasured here until tools/wcag-reflow-target-check.py
+   (prompted by the ux-maldo article Arpit sent, whose useful move is turning a
+   heuristic into an inspectable artifact). 320px is the actual requirement —
+   1280px at 400% zoom, which is how a low-vision reader reads this site. Every
+   other gate here starts at 390.
+
+   REFLOW: five pages scrolled horizontally at 320px. Two causes, neither a
+   single over-wide element:
+     · artifact reconstructions with a fixed width — .vslip is 320px wide, so at
+       a 320px viewport it reached x=340 and took the page with it;
+     · flex and grid children at the default min-width:auto, which refuse to go
+       below min-content. Exactly the trap behind the PTC mockup's 14px of
+       hidden scroll (L22).
+   A table that must scroll INSIDE itself is fine and is left alone: SC 1.4.10
+   exempts content that requires two-dimensional layout for meaning, and a data
+   table is the canonical example. What is not fine is the PAGE scrolling.
+
+   TARGET SIZE is SC 2.5.8 (AA) at 24x24 — not the 44px this repo's notes
+   assumed, which is SC 2.5.5 (AAA) and a different requirement, so the AA line
+   was never checked. Fourteen targets sat under it with a neighbour inside 24px.
+   Padding is added on the BLOCK axis only, so nothing moves horizontally.
+   ============================================================ */
+@media (max-width:420px){
+  /* NOT scoped to `main`: .vslip lives outside it on the case pages, which is
+     why the first version of this rule left adtech still scrolling 20px. */
+  html[data-theme="ember"][data-skin="cream"] :is(.vslip,.vplate,.pass,.lug,figure,pre,table){
+    max-width:100%}
+  /* 2px of overflow on /patterns came from a content-box width inside a padded
+     wrap. Border-box makes a declared width mean the same thing as the space
+     available, which is what every max-width:100% here assumes. */
+  html[data-theme="ember"][data-skin="cream"] main *{box-sizing:border-box}
+  /* A nowrap table row was the last thing taking adtech's page sideways. The
+     cells wrap instead of the table scrolling: an inner scroll would satisfy
+     1.4.10 (tables are its two-dimensional exception) but would then be flagged
+     by tools/reachability-check.py as content behind a gesture — and trading one
+     real defect for another is not a fix. Wrapping costs nothing here; these are
+     short before/after cells, not numeric columns that must stay aligned. */
+  html[data-theme="ember"][data-skin="cream"] main :is(th,td){white-space:normal}
+  /* let flex and grid children shrink to the space they actually have */
+  html[data-theme="ember"][data-skin="cream"] main :is([class*="xi-"],.vslip,.vplate,.plP,.plA,.plF,.plM,.plO,.plV) > *{
+    min-width:0}
+  html[data-theme="ember"][data-skin="cream"] main :is([class*="xi-"]){min-width:0}
+}
+/* SC 2.5.8: a crowded target must be at least 24px on the block axis. These are
+   standalone links and demo buttons, never links inside a sentence — an inline
+   link in prose is exempt, and padding there would overlap adjacent lines. */
+html[data-theme="ember"][data-skin="cream"] :is(a.book-call,a.pass-link,.footer-back a,
+  .divert a,.btn-row a,.wr-more a,p.hand a,
+  span.inline-links a,p.contact-channels a,p.hd-route a,p.scr-receipt a){
+  padding-block:5px}
+/* these sit on an 11px line box, so 5px each side still lands at 21px */
+html[data-theme="ember"][data-skin="cream"] .contract-links a{
+  display:inline-block;padding-block:7px}
+html[data-theme="ember"][data-skin="cream"] :is(button.rxa-why,button.rxf-explain,
+  button.rxa-logged,.rx2-btn,.demo-btn){min-height:24px;padding-block:4px}
