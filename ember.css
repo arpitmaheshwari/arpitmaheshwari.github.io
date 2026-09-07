@@ -3102,9 +3102,10 @@ html[data-theme="ember"] body.p-home .who p .skim{
    .errata p and .patterns p each set their own ink. */
 html[data-theme="ember"] body.p-home :is(.errata,.patterns,.lead,.labrow) p .skim{
   color:var(--ink);font-weight:600}
-/* The Overruled note is three paragraphs now instead of one 98-word block, so
-   its beats need air between them without turning the box into a list. */
-html[data-theme="ember"] body.p-home .errata p + p{margin-top:12px}
+/* The rule that gave the Overruled note's three beats their air came out with
+   the note on 2026-09-08 — the one remaining .errata holds a single paragraph, so
+   `.errata p + p` matched nothing. Dead rules with a live selector are how a
+   stylesheet starts lying about the page. */
 
 /* One lane instead of three, so its head column can hold "ADTECH · NAMED CLIENT"
    on one line instead of breaking after "NAMED". */
