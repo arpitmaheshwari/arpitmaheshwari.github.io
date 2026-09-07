@@ -2709,7 +2709,18 @@ html[data-theme="ember"] :is(.t-body,.u-body){
      max-width:none, and a percentage cannot save a child whose parent is the
      thing overflowing. */
   html[data-theme="ember"] :is(.vslip,.vplate,.vplate-wrap,.pass,.lug,figure,pre,table){
-    max-width:calc(100vw - 48px);width:auto}
+    max-width:calc(100vw - 48px)}
+  /* width:auto belongs to everything here EXCEPT a case-page figure. Those carry
+     the house breakout width:min(1040px, 100vw - 48px), which already guarantees
+     they fit; auto let one of them fall back to its share of a two-column track
+     and it halved — 171px at 390 for an SVG with a 1180-unit viewBox, a scale of
+     0.145, which painted fintech's 11px annotations at 1.6px. Fifty-four text
+     nodes on that page went from readable to invisible, and contrast-audit is
+     what caught it: NO-INK plus 54 UNMEASURABLE at 390, all under 2.5px. Same
+     failure mode as the 2026-08-17 note above, which is why the min() width is
+     never given up. */
+  html[data-theme="ember"] :is(.vslip,.vplate,.vplate-wrap,.pass,.lug,pre,table){width:auto}
+  html[data-theme="ember"] main figure:not(.measure-c figure){width:auto}
 }
 
 /* SC 2.5.8: a crowded target must be at least 24px on the block axis. Fifteen
