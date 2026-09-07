@@ -45,17 +45,24 @@ from cdp import NO_TRACKING_FLAG
 
 CH = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 HARD = 2.0          # below this, a human cannot read it — hard failure
+# SC 1.4.4 has no absolute floor, but nothing this small is readable at arm's
+# length, and it is the size a case-page diagram actually renders at on a phone.
+SIZE_FLOOR = 9.0    # rendered px, measured through the SVG's own screen CTM
+PROBE_WIDTHS = (1280, 390)  # 2026-09-07: this gate had only ever probed at 1280,
+                            # where the diagrams are 9-13px and fine. Every one of
+                            # them is 2.9-4.3px at 390, and the gate was blind to
+                            # it because of the width it chose, not the check.
 DOCROOT = pathlib.Path(".")
 
 PROBE = r"""<!doctype html><html><head><title>PENDING</title></head><body><script>
 const f=document.createElement('iframe');f.src='/%s?cb='+Date.now();
-f.style.cssText='width:1280px;height:900px;border:0';document.body.appendChild(f);
+f.style.cssText='width:%dpx;height:900px;border:0';document.body.appendChild(f);
 f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
 %s
 const srgb=v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)};
 const lum=a=>0.2126*srgb(a[0])+0.7152*srgb(a[1])+0.0722*srgb(a[2]);
 const parse=c=>(c.match(/[\d.]+/g)||[0,0,0]).map(Number).slice(0,3);
-const out=[];let measured=0;
+const out=[],tiny=[];let measured=0;const SIZE_FLOOR_JS=%f;
 d.querySelectorAll('svg').forEach((svg,si)=>{
  if(!svg.querySelector('text'))return;
  const rects=[...svg.querySelectorAll('rect')]
@@ -77,10 +84,16 @@ d.querySelectorAll('svg').forEach((svg,si)=>{
   const l1=lum(fg),l2=lum(bg);
   const cr=(Math.max(l1,l2)+.05)/(Math.min(l1,l2)+.05);
   const fs=parseFloat(cs.fontSize)||12;
+  // RENDERED size, not authored: a 11-unit label in a 1180-unit viewBox drawn
+  // 342px wide paints at 3.2px. getScreenCTM carries the viewBox scale.
+  let sc=1; try{const m=t.getScreenCTM(); if(m){const d0=Math.sqrt(Math.abs(m.a*m.d-m.b*m.c));
+    if(d0>0&&isFinite(d0)) sc=d0;}}catch(e){}
+  const rendered=+(fs*sc).toFixed(1);
+  if(rendered<SIZE_FLOOR_JS) tiny.push({svg:si,t:s.slice(0,30),px:rendered});
   const need=(fs>=24||(fs>=18.66&&+cs.fontWeight>=700))?3:4.5;
   if(cr<need-0.05) out.push({svg:si,t:s.slice(0,30),r:+cr.toFixed(2),need,fs:Math.round(fs)});
  });});
-document.title='R:'+JSON.stringify({measured,items:out});
+document.title='R:'+JSON.stringify({measured,items:out,tiny,converted:!!d.querySelector('.artalt')});
 }catch(e){document.title='R:{"err":"'+String(e.message).slice(0,60)+'"}'}},2600);};
 </script></body></html>"""
 
@@ -112,10 +125,11 @@ class Inconclusive(RuntimeError):
     """Measurement failed. Never report this as a defect."""
 
 
-def scan(page, port, inject=""):
-    pathlib.Path("__al.html").write_text(PROBE % (page, inject))
+def scan(page, port, inject="", width=1280):
+    pathlib.Path("__al.html").write_text(PROBE % (page, width, inject, SIZE_FLOOR))
     cmd = [CH, "--headless=new", NO_TRACKING_FLAG, "--disable-gpu", "--no-sandbox",
-           "--window-size=1360,1000", "--virtual-time-budget=12000", "--dump-dom",
+           f"--window-size={max(width + 80, 1360)},1000",
+           "--virtual-time-budget=12000", "--dump-dom",
            f"http://localhost:{port}/__al.html"]
     # 100s was fine when this gate ran alone (~49s for 17 pages) and far too tight
     # once the other browser gates run beside it. The push failed reporting "text
@@ -203,21 +217,52 @@ def main():
           f"({len(planted['items'])} findings vs {len(clean_probe['items'])} clean)")
 
     hard, warn, total = [], [], 0
+    tiny_debt, tiny_regress = [], []
     for pg in pages:
-        d = scan(pg, port)
-        if d is None or d.get("err"):
-            print(f"  {pg:44s} NO DATA {d.get('err','') if d else ''}")
-            hard.append((pg, "probe failed"))
-            continue
-        total += d.get("measured", 0)
-        for it in d.get("items", []):
-            if it["r"] < HARD:
-                hard.append((pg, f"{it['t']!r} {it['r']}:1 (needs {it['need']})"))
-            else:
-                warn.append((pg, f"{it['t']!r} {it['r']}:1 (needs {it['need']})"))
+        for w in PROBE_WIDTHS:
+            d = scan(pg, port, width=w)
+            if d is None or d.get("err"):
+                print(f"  {pg:44s} @{w} NO DATA {d.get('err','') if d else ''}")
+                hard.append((pg, f"probe failed @{w}"))
+                continue
+            # CONTRAST is judged once, at the wide width, so this change cannot
+            # move an existing verdict — only the size check reads every width.
+            if w == PROBE_WIDTHS[0]:
+                total += d.get("measured", 0)
+                for it in d.get("items", []):
+                    if it["r"] < HARD:
+                        hard.append((pg, f"{it['t']!r} {it['r']}:1 (needs {it['need']})"))
+                    else:
+                        warn.append((pg, f"{it['t']!r} {it['r']}:1 (needs {it['need']})"))
+            for it in d.get("tiny", []):
+                row = (pg, f"@{w} {it['px']}px  {it['t']!r}")
+                # A page carrying an .artalt has declared that it shows a typeset
+                # rendering instead of the plate at this width. If its SVG text is
+                # STILL rendering tiny, the swap broke — that is a regression and
+                # it blocks. Everywhere else this is the standing debt.
+                (tiny_regress if d.get("converted") else tiny_debt).append(row)
 
     print(f"\nmeasured {total} artifact text runs across {len(pages)} page(s), "
           f"each against its own background box")
+
+    if tiny_debt:
+        by_page = {}
+        for pg, msg in tiny_debt:
+            by_page.setdefault(pg, []).append(msg)
+        print(f"\nDEBT — artifact text rendering under {SIZE_FLOOR:g}px "
+              f"({len(tiny_debt)} run(s) across {len(by_page)} page(s)). These diagrams are "
+              f"authored in a ~1180-unit viewBox with 11-unit labels, so the rendered type "
+              f"scales with the figure and is unreadable below roughly a 1013px viewport. "
+              f"No CSS fixes that: the fix is a typeset rendering shown instead of the plate "
+              f"(see .artalt in ember.css, done for /case-studies/fintech).")
+        for pg, msgs in list(by_page.items())[:12]:
+            print(f"  {pg}: {len(msgs)} run(s), smallest {min(float(m.split()[1][:-2]) for m in msgs)}px")
+
+    if tiny_regress:
+        print(f"\nFAIL — a page with a typeset rendering is STILL painting tiny SVG text "
+              f"({len(tiny_regress)}). The swap broke:")
+        for pg, msg in tiny_regress[:12]:
+            print(f"  {pg}: {msg}")
 
     if warn:
         print(f"\nWARNINGS — below WCAG but still visible ({len(warn)}):")
@@ -233,7 +278,10 @@ def main():
               "but not to the box behind it.")
     else:
         print("\nResult: clean — every artifact text is visible against its own background.")
-    sys.exit(1 if hard else 0)
+    print(f"\nCANNOT SEE: whether a diagram is COMPREHENSIBLE at a legible size, "
+          f"text over a gradient or image inside an artifact, or any width other "
+          f"than {' and '.join(str(w) for w in PROBE_WIDTHS)}.")
+    sys.exit(1 if (hard or tiny_regress) else 0)
 
 
 try:

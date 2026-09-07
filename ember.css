@@ -2863,3 +2863,143 @@ html[data-theme="ember"] .u-body .lead-in{
 /* a sub-head wants more air above it than a paragraph does */
 html[data-theme="ember"] :is(.t-body,.u-body):has(> .lead-in:first-child){
   margin-top:40px}
+
+/* ============================================================================
+   ARTALT — the diagrams, typeset, for every width that cannot render them
+   ----------------------------------------------------------------------------
+   MEASURED, 2026-09-07: the case-page diagrams are authored in a 1180-unit
+   viewBox with 11-unit labels, and the figure is width:min(1040px, 100vw-48px).
+   So the rendered type is 2.9-4.3px at 390, 6.1-7.9px at 768, and only reaches
+   9px around a 1013px viewport. All 24 art SVGs on the site do this; 11 of 13
+   on the case pages had 100% of their text under 9px at 390.
+   No CSS can fix that. The type is small RELATIVE TO ITS OWN PANEL — a 11-unit
+   label inside a 470-unit card — so even giving one panel the whole phone gives
+   8px, and the SVGs are flat: absolute x/y on every element, no groups, no ids,
+   and <text> does not wrap. There is nothing to reflow. Bumping the font-size in
+   user units overflows every rect it sits in.
+   And the <desc> these SVGs carry is not a substitute: it describes the PICTURE
+   ("A wide left-to-right diagram on cream paper..."), which reads as alt text,
+   not as copy.
+   So below 1000px the plate is replaced by the same diagram typeset as HTML,
+   where the text is real text at 14-21px and reflows. Every string in those
+   blocks is copied verbatim from that diagram's own <text> nodes.
+   It keeps the paper identity: .fig-paper already re-scopes --bg-card to cream
+   and --amber to the paper gold (#7E5A14, 5.62:1 on cream), so the typeset
+   version inherits the plate's palette rather than inventing one — but every
+   colour below is DECLARED, because those same tokens hold dark-ground values
+   one selector away.
+   Rolled out on fintech first (4 diagrams). The other 20 still show the
+   unreadable plate below 1000px; same treatment, one diagram at a time.
+   ============================================================================ */
+html[data-theme="ember"] .artalt{display:none}
+/* COLOURS ARE DECLARED, AND THEY ARE THE PLATE'S OWN. First attempt used
+   var(--bg-card) on the assumption that .fig-paper re-scopes it to cream. It
+   does not — that selector re-scopes only --goldA/--gold — so the block painted
+   on #241800 dark purple with #2C2620 ink on it, and the headline and every
+   .artalt-t were invisible. Rendered and looked at it, which is the only reason
+   I saw it. These values are read out of the SVG itself (fill="#F4ECDA" ground,
+   #EEE4CE cards, #2C2620 ink) and every pair below is computed, not assumed:
+     #2C2620 on #F4ECDA 12.71:1 · on #EEE4CE 11.83:1
+     #463E33 (detail)   8.94:1 · 8.32:1        #5A3A1A (prevents) 8.69:1 · 8.09:1
+     #7A5410 (eyebrow)  5.75:1 · 5.36:1        #8A3A1C (abstain)  6.61:1 · 6.15:1
+     #5A4A2A (cost)     7.30:1 · 6.79:1
+   The plate's own accent, #C0512B, is NOT reused: it measures 4.01:1 on its own
+   paper and 3.73:1 on its cards, which is under AA. That is a real finding about
+   the SVGs themselves and it is not repeated here. */
+@media (max-width:999px){
+  /* SCOPED TO THE ONES THAT HAVE A REPLACEMENT. The first version hid every
+     .art-svg below 1000px while only fintech carried a typeset rendering — so
+     adtech, o2, orgos, ptc, vc-diligence and eleven pattern pages showed NOTHING
+     at all on a phone. Found because artifact-legibility-check suddenly measured
+     0 text runs at 390 where it should have measured dozens; an instrument going
+     quiet is a reading to chase, not to accept. */
+  html[data-theme="ember"] .art-svg:has(+ .artalt){display:none}
+  /* The plate's shadow is for a drawn artefact, not a text block — but its
+     transform is LOAD-BEARING, not decoration: the house breakout is
+     margin-left:50% + translateX(-50%), so `transform:none` here dropped the
+     translate and shoved every figure half a parent-width to the right. 768px
+     viewport, figure at 384..1104, 336px of horizontal scroll. Keep the
+     translate, drop only the filter. */
+  html[data-theme="ember"] .fig-paper:has(> .artalt){transform:translateX(-50%);filter:none}
+  /* GRID GAP, not `> * + * {margin-top}`. The margin version did not land: every
+     part below sets `margin:0` and those rules come later, so they won every
+     cascade and the measured gap between group-level siblings was 0 at 390 AND
+     768 — the gate and its branches read as if they were inside the "Score"
+     card. A grid gap cannot be overridden by a child's margin.
+     24px between GROUPS, 16px between items inside a set: without the two being
+     different the hierarchy flattens. */
+  html[data-theme="ember"] .artalt{
+    display:grid;gap:24px;background:#F4ECDA;color:#2C2620;
+    border:1px solid rgba(44,38,32,.16);border-radius:2px;padding:24px}
+  html[data-theme="ember"] .artalt-k{
+    margin:0;font-family:var(--ff-label,var(--ff-mono));font-size:var(--fs-eyebrow);
+    font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    line-height:1.4;color:#7A5410}
+  html[data-theme="ember"] .artalt-h{
+    margin:0;font-family:var(--serif,Georgia,serif);font-size:var(--fs-lead);
+    font-weight:400;line-height:1.25;color:#2C2620}
+  html[data-theme="ember"] .artalt-set{margin:0;padding:0;list-style:none;
+    display:grid;gap:16px}
+  html[data-theme="ember"] .artalt-set > li{
+    margin:0;background:#EEE4CE;border-left:2px solid #7A5410;padding:16px}
+  html[data-theme="ember"] .artalt-n{
+    margin:0 0 8px;font-family:var(--ff-label,var(--ff-mono));
+    font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;line-height:1.4;color:#7A5410}
+  html[data-theme="ember"] .artalt-t{
+    margin:0;font-size:var(--fs-body);font-weight:600;line-height:1.4;color:#2C2620}
+  html[data-theme="ember"] .artalt-t--warn{color:#8A3A1C}
+  html[data-theme="ember"] .artalt-d{
+    margin:8px 0 0;font-size:var(--fs-ui);line-height:1.5;color:#463E33}
+  html[data-theme="ember"] .artalt-p{
+    margin:8px 0 0;font-size:var(--fs-caption);line-height:1.5;
+    font-style:italic;color:#5A3A1A}
+  /* ONLY a set item carries a fill. Everything else sits on the paper and is
+     separated by a rule — when the gate, the branches and the cards all shared
+     #EEE4CE there were no card boundaries left to read. */
+  html[data-theme="ember"] :is(.artalt-bar,.artalt-hub,.artalt-gate){
+    margin:0;font-size:var(--fs-ui);line-height:1.5;color:#2C2620;background:none}
+  html[data-theme="ember"] .artalt-hub{
+    background:#EEE4CE;padding:12px 16px;border-left:2px solid #7A5410}
+  html[data-theme="ember"] .artalt-gate{
+    padding:12px 0 12px 16px;border-left:2px solid #8A3A1C;
+    border-top:1px solid rgba(44,38,32,.16);border-bottom:1px solid rgba(44,38,32,.16)}
+  html[data-theme="ember"] .artalt-bar{
+    padding:16px 0 0;border-top:1px solid rgba(44,38,32,.24)}
+  /* the branch under a gate is nested, and reads as nested */
+  html[data-theme="ember"] .artalt-set--branch{margin-left:16px}
+  html[data-theme="ember"] .artalt-set--branch > li{
+    background:none;border-left:2px solid rgba(44,38,32,.24);padding:0 0 0 16px}
+  html[data-theme="ember"] .artalt-cost{
+    display:block;margin-top:8px;font-family:var(--ff-label,var(--ff-mono));
+    font-size:var(--fs-eyebrow);letter-spacing:.08em;text-transform:uppercase;
+    line-height:1.4;color:#5A4A2A}
+  html[data-theme="ember"] .artalt-factors{
+    margin:0;display:grid;grid-template-columns:minmax(0,1fr) auto;
+    gap:8px 16px;align-items:center}
+  html[data-theme="ember"] .artalt-factors dt{
+    margin:0;font-size:var(--fs-ui);line-height:1.5;color:#2C2620}
+  html[data-theme="ember"] .artalt-factors dd{
+    margin:0;justify-self:end;font-family:var(--ff-label,var(--ff-mono));
+    font-size:var(--fs-ui);line-height:1.5;color:#7A5410}
+  html[data-theme="ember"] .artalt-note{
+    margin:0;font-size:var(--fs-caption);line-height:1.6;color:#463E33}
+  /* MEASURED at 768: the cards stopped at 541px, the bar at 473 and the eyebrow
+     at 418 inside a 670px column — three different ragged widths and a large
+     dead band down the right. Cause was mine: the reading cap added on
+     2026-09-06, `body[class*="p-case-studies"] .measure-c :is(p,li,blockquote)
+     {max-width:68ch}`, applies to every part of this block, and 68ch resolves
+     per font-size (473px at 14px, 541px at 16px, 418px at 12px uppercase) —
+     which is exactly the three numbers measured.
+     A card is not a reading line, so structure fills the width; only the RUNNING
+     PROSE keeps a measure. The selector matches the capping rule's shape and
+     adds one class, so it actually wins. */
+  html[data-theme="ember"] body[class*="p-case-studies"] .measure-c .artalt :is(p,li,dt,dd){
+    max-width:none}
+  html[data-theme="ember"] body[class*="p-case-studies"] .measure-c .artalt :is(.artalt-d,.artalt-note,.artalt-p){
+    max-width:64ch}
+  /* 34ch is the site's own heading measure (.measure-c :is(h2,h3)), not a new
+     number — and it keeps the headline from being stranded in a 670px column. */
+  html[data-theme="ember"] body[class*="p-case-studies"] .measure-c .artalt .artalt-h{
+    max-width:34ch}
+}
