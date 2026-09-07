@@ -3075,6 +3075,38 @@ html[data-theme="ember"] body.p-home .hero .role-line{
 html[data-theme="ember"] body.p-home .hero .cred .cred-m{
   color:var(--amber);font-weight:500;white-space:nowrap}
 
+/* THE ENGINEERING RECEIPT, MOVED INTO THE GLANCE — 2026-09-08.
+   "loop.js — 42/42 tests · trustlint — 7 rules · this site — 0 build steps" was
+   the second-to-last line of the design-system section, at screen 9.4 of 18 on a
+   phone, where a 10-second reader and a 2-5 minute reader never arrive. It is
+   the only claim on the page a stranger can verify in thirty seconds, and
+   "42/42 tests" from a designer is a stranger fact than any outcome number.
+   In the hero it drops the section divider it carried down there (a rule under
+   the client strip would read as the end of the hero) and keeps its own ink,
+   because .hero sets --dim on .cred and the row would otherwise inherit it. */
+html[data-theme="ember"] body.p-home .hero .lab-row{
+  margin-top:12px;padding-top:0;border-top:0;
+  /* 11px is the scale's --fs-micro step, and it is what buys the line back: the
+     hero copy column is a fixed 612px and this row needs 737px unwrapped, so at
+     12px it took THREE lines and pushed the receipt below the fold at 1280x800
+     and 1440x1000. At 11px it is two, and the hero returns to roughly the one
+     viewport its own comment above promises. */
+  font-size:11px;line-height:1.8;color:var(--dim);max-width:none}
+/* The hero is documented above as filling EXACTLY one viewport (min-height:100svh
+   with the nav paid for in padding). Three extra lines took it to 947px against a
+   900px screen, so the receipt gets the full column instead of a 62ch measure —
+   it is a list of three facts, not a reading line — and the rhythm below the
+   sub-head tightens to pay for it. Measured back to one viewport at 1440. */
+html[data-theme="ember"] body.p-home .hero .cred{margin-top:clamp(16px,2.2vh,24px)}
+/* The label becomes its own kicker line. At 11px the three facts need 470px and
+   the column is 612px, so they fit on ONE line — but with the label inline the
+   wrap broke at the middle separator and wasted a third line on "trustlint — 7
+   rules". Kicker + one fact row is two lines instead of three. */
+html[data-theme="ember"] body.p-home .hero .lab-row .lr-k{
+  color:var(--amber);display:block;margin-bottom:4px}
+html[data-theme="ember"] body.p-home .hero .lab-row a{
+  color:var(--ink);border-bottom-color:rgba(245,237,230,.28)}
+
 /* ONE NOMINATED DOOR. Reuses .range-lbl — same component, second instance —
    because the page already had a label for "here is a group of cases" and
    inventing a second one is how a system drifts. It sits directly above .lanes,
