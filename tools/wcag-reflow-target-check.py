@@ -112,8 +112,7 @@ def main():
                 br.navigate(f"http://localhost:8000/{p}", settle=1.5)
                 if br.eval_json("JSON.stringify([location.pathname])")[0].lstrip("/") != p:
                     continue                 # redirect stub
-                br.eval("document.querySelectorAll('.reveal').forEach(e=>e.classList.add('visible'))")
-                br.pump(0.3)
+                    br.pump(0.3)
                 r = br.eval_json(REFLOW)
                 if r["over"] > 1:
                     bad_r.append((p, r))

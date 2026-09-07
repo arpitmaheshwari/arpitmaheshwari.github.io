@@ -1350,6 +1350,20 @@ html[data-theme="ember"] body[class*="p-case-studies"] .measure-c > .case-jump{
        spacing scale is 4·8·12·16·20·24·32·40·48·64·80, and inline-style-check is
        right that a value off it needs a reason, not a preference.) */
     column-gap:16px}
+/* Between 768 and 1099 the long navs are ONE ROW PLUS A TAIL, which is the actual
+   defect — adtech's eight entries need 842px of run against 720, and ptc's seven
+   need 748, so both orphaned a single link on a row of its own. :has() counts the
+   children, so from seven entries up the nav becomes four aligned columns (4+4,
+   4+3) — a deliberate two-row contents list instead of a wrap that ran out of
+   room. It is applied by COUNT, not by which pages happen to overflow today:
+   o2 and adtech-anonymous fit on one row at 768 by 10px and 65px, and a rule that
+   exempted them would make the next added entry a silent orphan. Six-entry navs
+   keep their single row. Below 560 every nav is already a multi-row list and a
+   ragged last row is what a list looks like — not an orphan. */
+@media (min-width:560px) and (max-width:1099px){
+  html[data-theme="ember"] body[class*="p-case-studies"] .case-jump:has(> a:nth-child(7)){
+    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));row-gap:4px}
+}
 
 html[data-theme="ember"] body[class*="p-case-studies"] :is(.fig-paper figcaption,
   figure figcaption > span:last-child){font-size:12px;font-weight:400;text-transform:none}
@@ -1508,16 +1522,31 @@ html[data-theme="ember"] body.p-home .memo .mk{grid-column:1;grid-row:1/span 2}
 html[data-theme="ember"] body.p-home .qt:not(:first-child) blockquote{font-size:13.5px;line-height:1.6}
 /* 4 · WRITING — cards become an editorial index: serif titles, inline excerpts, hairline rows */
 html[data-theme="ember"] body.p-home .thoughts-grid{border-top:1px solid rgba(245,237,230,.14)}
-html[data-theme="ember"] body.p-home .thought-card{grid-template-columns:minmax(0,1fr) auto;column-gap:32px;align-items:baseline}
+/* The card is a full-width row because its TITLE is — 966px of serif at 1440 — but
+   the excerpt under it is capped at 75ch for reading, which left 638px of the band
+   (55% of the row) empty on the right, 422px at 1024. Whitespace has to be
+   designed: the tag is the only truthful element the card owns, so it moves from
+   beside the title to the END of the excerpt's row, bottom-aligned with its last
+   line. The band is now bracketed by content on both sides instead of trailing
+   off. NOTE, Arpit: this MOVES your tag from top-right to bottom-right — one line
+   to put back if you want it where it was.
+   align-items is `start`, not `baseline`: baseline snaps to a box's FIRST line, so
+   a two-line title (card 2 at 768 and every card at 390) stranded the tag against
+   the wrong line. Matching baselines here was never the typographic intent. */
+html[data-theme="ember"] body.p-home .thought-card{grid-template-columns:minmax(0,1fr) auto;column-gap:32px;align-items:start}
+html[data-theme="ember"] body.p-home .thought-title{grid-column:1 / -1}
 html[data-theme="ember"] body.p-home .thought-title{font-family:var(--serif);font-size:clamp(20px,2vw,26px);font-weight:400}
 html[data-theme="ember"] body.p-home .thought-excerpt{grid-column:1;max-width:75ch}
-html[data-theme="ember"] body.p-home .thought-tag{grid-column:2;grid-row:1}
+/* two-column band only — below 860 the card is a single column and the tag goes
+   back to where Arpit had it: left-aligned, under the title. */
+html[data-theme="ember"] body.p-home .thought-tag{grid-column:2;grid-row:2;align-self:end;justify-self:end;margin:0}
 /* phone: one column means one column — the children's explicit grid-column:2
    placements must be reset too, or grid auto-creates an implicit second track
    (measured: "89px 220px" where 1fr was expected) */
 @media(max-width:860px){html[data-theme="ember"] body.p-home .memo{grid-template-columns:1fr;row-gap:4px}
 html[data-theme="ember"] body.p-home .thought-card{grid-template-columns:1fr}
-html[data-theme="ember"] body.p-home .thought-tag{margin-top:8px}}
+html[data-theme="ember"] body.p-home .thought-tag{grid-column:1;grid-row:auto;
+  justify-self:start;align-self:auto;margin-top:8px}}
 /* KNOWN, MEASURED, UNFIXED (2026-08-15): patterns/ml-explainability.html
    scrolls 5px horizontally at 390px. Bisected to <abbr>LIME/SHAP</abbr> in the
    checklist — hiding it or shrinking it fixes the 5px, but NO wrapping rule

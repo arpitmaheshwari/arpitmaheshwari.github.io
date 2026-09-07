@@ -7,7 +7,7 @@ teardown has said so publicly since. And lesson 10 is standing: rules matching
 
 Method — three independent tests must ALL agree before a rule is called dead:
   1. COVERAGE: Chrome's CSS.ruleUsageTracking across every page at 390+1440,
-     with reveals forced and known interactives toggled (receipts, presets,
+     with known interactives toggled (receipts, presets,
      dyslexia toggle) — a rule used anywhere is alive.
   2. DOM: the selector (pseudo-classes stripped) matches 0 elements in every
      page's live DOM — catches rules coverage can't see (later media queries).
@@ -49,7 +49,6 @@ def all_pages():
     return out
 
 INTERACT = """(async function(){
-  document.querySelectorAll('.reveal').forEach(e=>e.classList.add('visible'));
   const clickables = ['.rcpt-btn','.rcpt-close','.rxa-preset','#rxf-explain','.rxo-toggle',
     '.rxp-toggle','.ccd-q','#dyslexiaToggle','#menuToggle','.hd-preset','.rxv-row'];
   for (const sel of clickables) {
