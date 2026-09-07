@@ -309,10 +309,22 @@ def scan(root, extra=None):
         visible = re.sub(r"(?is)<(script|style|svg)\b[^>]*>.*?</\1>", " ", decommented)
         visible = re.sub(r"(?s)<[^>]+>", " ", visible)
         visible = re.sub(r"\s+", " ", html_mod.unescape(visible))
+        # A DENIAL IS NOT AN ATTRIBUTION. The proximity rules fire on a score
+        # phrase near a client, which is right — but "No confidence score ever
+        # reached a trader" is canon's own position, stated in Arpit's words, and
+        # it tripped the AdTech rule the moment /case-studies/adtech's diagram was
+        # typeset into HTML where the gate could finally read it (2026-09-07).
+        # A gate that convicts a sentence for saying the opposite of the thing it
+        # guards against is not measuring what it claims to.
+        NEGATED = re.compile(r"(?is)\b(?:no|never|not|without|zero)\s+"
+                             r"(?:\w+\s+){0,2}$")
         for left, right, window, why, ref in PROXIMITY:
             for pat in (rf"(?is)\b(?:{left})\b.{{0,{window}}}?(?:{right})",
                         rf"(?is)(?:{right}).{{0,{window}}}?\b(?:{left})\b"):
                 for m in re.finditer(pat, visible):
+                    rm = re.search(rf"(?is)(?:{right})", m.group(0))
+                    if rm and NEGATED.search(m.group(0)[:rm.start()]):
+                        continue
                     hit = (rel, 0, m.group(0).strip()[:110], why, ref)
                     if allowlisted:
                         allowed.append(hit)

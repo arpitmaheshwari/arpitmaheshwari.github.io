@@ -236,11 +236,18 @@ def main():
                         warn.append((pg, f"{it['t']!r} {it['r']}:1 (needs {it['need']})"))
             for it in d.get("tiny", []):
                 row = (pg, f"@{w} {it['px']}px  {it['t']!r}")
-                # A page carrying an .artalt has declared that it shows a typeset
-                # rendering instead of the plate at this width. If its SVG text is
-                # STILL rendering tiny, the swap broke — that is a regression and
-                # it blocks. Everywhere else this is the standing debt.
-                (tiny_regress if d.get("converted") else tiny_debt).append(row)
+                # A REGRESSION is tiny SVG text at the NARROW width on a page that
+                # carries a typeset rendering: there the plate is supposed to be
+                # swapped out, so if its text is still painting, the swap broke.
+                # The first version of this rule ignored the width and hard-failed
+                # on 17 runs measured at 1280 — where the plate is correctly shown
+                # and 8.1-8.9px is simply its authored size. The gate was wrong,
+                # not the page. Sub-floor text at the WIDE width is a real but much
+                # smaller finding, and it goes in the debt list with its width.
+                if d.get("converted") and w == PROBE_WIDTHS[-1]:
+                    tiny_regress.append(row)
+                else:
+                    tiny_debt.append(row)
 
     print(f"\nmeasured {total} artifact text runs across {len(pages)} page(s), "
           f"each against its own background box")

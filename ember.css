@@ -2914,6 +2914,14 @@ html[data-theme="ember"] .artalt{display:none}
      0 text runs at 390 where it should have measured dozens; an instrument going
      quiet is a reading to chase, not to accept. */
   html[data-theme="ember"] .art-svg:has(+ .artalt){display:none}
+  /* /process hides its poster outright below 1040px (styles.css:376) — so a phone
+     reader got NOTHING there, not even the unreadable version. The figure comes
+     back when it holds a typeset rendering, with the poster's own breakout
+     (width:100% + 300px, margin-left:-150px) neutralised: that pulls 150px into
+     each margin, which is right for a 1280-unit drawing and wrong for a column
+     of text. */
+  html[data-theme="ember"] .process-fig:has(> .artalt){
+    display:block;width:100%;margin-left:0;max-width:none}
   /* The plate's shadow is for a drawn artefact, not a text block — but its
      transform is LOAD-BEARING, not decoration: the house breakout is
      margin-left:50% + translateX(-50%), so `transform:none` here dropped the
@@ -2929,12 +2937,26 @@ html[data-theme="ember"] .artalt{display:none}
      24px between GROUPS, 16px between items inside a set: without the two being
      different the hierarchy flattens. */
   html[data-theme="ember"] .artalt{
-    display:grid;gap:24px;background:#F4ECDA;color:#2C2620;
+    /* text-align IS DECLARED. The pattern pages centre their figure, so the block
+       inherited centring there and rendered every card centre-aligned while the
+       case pages looked correct — the same component in two shapes. Third time
+       today that leaning on an inherited property cost a defect. */
+    display:grid;gap:24px;background:#F4ECDA;color:#2C2620;text-align:left;
     border:1px solid rgba(44,38,32,.16);border-radius:2px;padding:24px}
   html[data-theme="ember"] .artalt-k{
     margin:0;font-family:var(--ff-label,var(--ff-mono));font-size:var(--fs-eyebrow);
     font-weight:600;letter-spacing:.12em;text-transform:uppercase;
     line-height:1.4;color:#7A5410}
+  /* A STANDFIRST IS NOT AN EYEBROW. The pattern diagrams put a full sentence
+     under their title ("One score, one action — a number never reaches the screen
+     alone.") where the case diagrams put a two-word kicker. Both were landing on
+     .artalt-k, so that sentence rendered uppercase and tracked at 12px — the same
+     class doing two jobs, which is how one component comes to look different per
+     page. */
+  html[data-theme="ember"] .artalt-sub{
+    margin:0;font-size:var(--fs-ui);line-height:1.5;color:#463E33;max-width:60ch}
+  /* a chip row inside a card is a continuation of its detail, not a new block */
+  html[data-theme="ember"] .artalt-set > li > .artalt-chips{margin-top:8px}
   html[data-theme="ember"] .artalt-h{
     margin:0;font-family:var(--serif,Georgia,serif);font-size:var(--fs-lead);
     font-weight:400;line-height:1.25;color:#2C2620}
@@ -2984,6 +3006,20 @@ html[data-theme="ember"] .artalt{display:none}
     font-size:var(--fs-ui);line-height:1.5;color:#7A5410}
   html[data-theme="ember"] .artalt-note{
     margin:0;font-size:var(--fs-caption);line-height:1.6;color:#463E33}
+  /* A CONNECTOR. In the drawing these label an arrow between two panels — small,
+     lowercase, and outside every painted box. They are neither a conclusion bar
+     nor a note, and flattening them into either loses the fact that the diagram
+     was showing a movement. #5A4A2A is 7.30:1 on the paper. */
+  html[data-theme="ember"] .artalt-flow{
+    margin:0;font-size:var(--fs-caption);line-height:1.5;font-style:italic;
+    color:#5A4A2A;padding-left:16px;border-left:2px solid rgba(44,38,32,.22)}
+  /* dashed read as two or three stray ticks on a 40px-tall line — solid, lighter */
+  /* A CHIP ROW. Several one-word boxes in a line (iOS · Android · Windows Phone)
+     are one enumeration, not four cards — rendering them as cards made a
+     four-item list look like four arguments. */
+  html[data-theme="ember"] .artalt-chips{
+    margin:0;font-family:var(--ff-label,var(--ff-mono));font-size:var(--fs-caption);
+    line-height:1.5;letter-spacing:.04em;color:#463E33}
   /* MEASURED at 768: the cards stopped at 541px, the bar at 473 and the eyebrow
      at 418 inside a 670px column — three different ragged widths and a large
      dead band down the right. Cause was mine: the reading cap added on
