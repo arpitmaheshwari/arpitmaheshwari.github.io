@@ -2229,6 +2229,12 @@ html[data-theme="ember"] body.p-home .idx.x1{--lc:var(--ember);--lt:rgba(255,138
 html[data-theme="ember"] body.p-home .idx.x2{--lc:var(--violet);--lt:rgba(232,107,255,.10)}
 html[data-theme="ember"] body.p-home .idx.x3{--lc:var(--amber);--lt:rgba(255,196,107,.10)}
 html[data-theme="ember"] body.p-home .idx.x4{--lc:var(--rose);--lt:rgba(255,122,168,.10)}
+/* x5 and x6 exist because the strip went from four products to six on
+   2026-09-08. Without them the last two fell back to .idx's own --lc (ember) and
+   two cases that had distinct colours came out identical — a positional class
+   system silently loses its identity the moment the list grows. */
+html[data-theme="ember"] body.p-home .idx.x5{--lc:var(--amber);--lt:rgba(255,196,107,.10)}
+html[data-theme="ember"] body.p-home .idx.x6{--lc:var(--rose);--lt:rgba(255,122,168,.10)}
 @media (max-width:1000px){html[data-theme="ember"] body.p-home .idx-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){html[data-theme="ember"] body.p-home .idx-grid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){html[data-theme="ember"] body.p-home .idx,html[data-theme="ember"] body.p-home .idx>*,html[data-theme="ember"] body.p-home .idx:hover{transform:none;transition:none}}
@@ -3039,3 +3045,60 @@ html[data-theme="ember"] .artalt{display:none}
   html[data-theme="ember"] body[class*="p-case-studies"] .measure-c .artalt .artalt-h{
     max-width:34ch}
 }
+
+/* ============================================================================
+   THE GLANCE, THE NOMINATION, THE SKIM — 2026-09-08
+   Measured first. The homepage is 18.5 phone screens and 2,089 words, but prose
+   is only 23% of its height, so "text heavy" was never the defect. Three were:
+     · the answer to a recruiter's only question ("what are you, at what level?")
+       was set at 12px under a 38px sentence about the reader;
+     · the first metric-bearing case row sat at screen 3.2 of 18.5, and the first
+       number a visitor met was a client name;
+     · seven cases were presented as equals, on a page whose job is to convert.
+   ============================================================================ */
+
+/* THE ROLE LINE IS NOT AN EYEBROW. It carries the one thing a 10-second reader
+   came for, so it gets its own class rather than a bigger .k — .k is the section
+   eyebrow, used a dozen times at 12px, and growing it here would have made one
+   component render at two sizes. Tracking comes down as the size goes up, or the
+   line gains a wrap it did not need. */
+html[data-theme="ember"] body.p-home .hero .role-line{
+  font-size:15px;letter-spacing:.1em;line-height:1.5;color:var(--ember);max-width:46ch}
+@media (max-width:560px){
+  html[data-theme="ember"] body.p-home .hero .role-line{font-size:14px;letter-spacing:.08em}}
+
+/* TWO NUMBERS IN THE FIRST SCREEN. Both already existed on the page — three
+   screens down, on their own case cards. They attach to the client strip that
+   was already there, so the glance gets a receipt instead of four bare names.
+   --amber on the hero ground, declared, not inherited: .cred is --dim and a
+   <span> inside it would have come out muted, which is the opposite of the job. */
+html[data-theme="ember"] body.p-home .hero .cred .cred-m{
+  color:var(--amber);font-weight:500;white-space:nowrap}
+
+/* ONE NOMINATED DOOR. Reuses .range-lbl — same component, second instance —
+   because the page already had a label for "here is a group of cases" and
+   inventing a second one is how a system drifts. It sits directly above .lanes,
+   which carries its own 48px top margin, so this one gives that back. */
+html[data-theme="ember"] body.p-home .range-lbl--first{
+  color:var(--amber);margin-top:32px;margin-bottom:-32px}
+
+/* Six in the strip, not four: 4 columns left a 4+2 row with two orphans. Three
+   columns give 3+3 — but ONLY above 1000px. Declared without the media query it
+   sat later in the file than the existing 2-column (<=1000) and 1-column (<=560)
+   rules and beat both, so a phone got three 127px columns. */
+@media (min-width:1001px){
+  html[data-theme="ember"] body.p-home .idx-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* THE SKIM LAYER for the person section. Arpit's own research is the reason this
+   is bold text and not a block sub-head: stage 2 of four reads "titles, bold
+   text, and images", 2-5 minutes, no full reading. Each bolded clause is
+   verbatim and stays where it was written — nothing moved, nothing rewritten —
+   and read in order they are the section's argument. .who p is --mut, so a <b>
+   inside it inherits muted and the emphasis inverts; the ink is declared. */
+html[data-theme="ember"] body.p-home .who p .skim{
+  color:var(--ink);font-weight:600}
+
+/* One lane instead of three, so its head column can hold "ADTECH · NAMED CLIENT"
+   on one line instead of breaking after "NAMED". */
+@media (min-width:1001px){
+  html[data-theme="ember"] body.p-home .lanes .lane{grid-template-columns:248px minmax(0,1fr)}}
