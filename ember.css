@@ -2474,16 +2474,10 @@ html[data-theme="ember"] .hd-route a{font-family:var(--sans);font-size:11.5px;fo
    ring). Four commandments, one per act, in the act accents; the
    homepage gets the four-column band, every other page one line.
    ============================================================ */
-html[data-theme="ember"] .chant{border-top:1px solid var(--border);background:var(--bg-soft,#1B1320)}
-html[data-theme="ember"] .chant-in{max-width:1160px;margin:0 auto;padding:64px 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
-html[data-theme="ember"] .chant .cl{font-family:var(--serif);font-weight:300;font-size:clamp(22px,2.2vw,30px);line-height:1.2;letter-spacing:-.01em;color:var(--ink)}
-html[data-theme="ember"] .chant .cl b{display:block;font-family:var(--mono),monospace;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
-html[data-theme="ember"] .chant .cl-1 b{color:#FF8A5C}
-html[data-theme="ember"] .chant .cl-2 b{color:var(--violet)}
-html[data-theme="ember"] .chant .cl-3 b{color:var(--amber)}
-html[data-theme="ember"] .chant .cl-4 b{color:var(--rose)}
-@media (max-width:900px){html[data-theme="ember"] .chant-in{grid-template-columns:1fr 1fr;gap:24px;padding:48px 24px}}
-@media (max-width:520px){html[data-theme="ember"] .chant-in{grid-template-columns:1fr}}
+/* The four-commandments chant (Act I-IV) came off the homepage on 2026-09-08 at
+   Arpit's request. Its 10 rules went with it — .chant, .chant-in, .cl and the
+   four per-act accent colours matched nothing anywhere else on the site. */
+
 /* ============================================================
    H-B HERO (2026-09-01, Arpit's pick): the film is the hero.
    The diagnostic problem-router moved to /patterns, where its
@@ -3143,3 +3137,34 @@ html[data-theme="ember"] body.p-home :is(.errata,.patterns,.lead,.labrow) p .ski
    on one line instead of breaking after "NAMED". */
 @media (min-width:1001px){
   html[data-theme="ember"] body.p-home .lanes .lane{grid-template-columns:248px minmax(0,1fr)}}
+
+/* ============================================================================
+   ACT BOUNDARIES, AND THE HERO'S SMALL PRINT — 2026-09-08
+   ============================================================================ */
+
+/* AN ACT BOUNDARY WAS ONLY VISIBLE WHERE THE CREAM BAND WAS. Measured: every
+   section on the homepage is background:transparent with border-top 0px, so the
+   four acts are told apart by their .chap opener alone (serif numeral + mono
+   title + rule). That opener is strong once you see it — but arriving at act 04
+   from section 03 · 2 there is nothing between them except 92px of padding, and
+   Arpit read the two as one section. The one obvious boundary on the whole page
+   is /patterns' cream ground, which is an act PEAK, not an act START.
+   `:has(.chap)` is the exact discriminator the design system already relies on:
+   act openers carry the numeral, sub-sections carry a NN · N address in their
+   kicker and must NOT get this rule. So all four acts gain the hairline the page
+   already uses everywhere else, and no sub-section does. */
+html[data-theme="ember"] body.p-home main > section:has(.chap){
+  border-top:1px solid var(--border)}
+/* the cream act keeps its own edge — a hairline in --border is invisible on it */
+html[data-theme="ember"] body.p-home main > section.pat:has(.chap),
+html[data-theme="ember"] body.p-home main > section#patterns:has(.chap){
+  border-top-color:rgba(34,28,16,.18)}
+
+/* THE HERO READ AS BUSY once the receipt joined it: six stacked blocks in the
+   left column, 622px, of which the last THREE are small-print rows in three
+   different inks — the availability line, the client strip, the engineering
+   receipt. Nothing is removed here; the three are grouped so they read as one
+   evidence block instead of three loose strips. More air above the group, less
+   inside it. */
+html[data-theme="ember"] body.p-home .hero .cred{margin-top:32px}
+html[data-theme="ember"] body.p-home .hero .lab-row{margin-top:8px}
