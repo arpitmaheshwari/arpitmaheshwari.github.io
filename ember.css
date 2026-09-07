@@ -3097,6 +3097,14 @@ html[data-theme="ember"] body.p-home .range-lbl--first{
    inside it inherits muted and the emphasis inverts; the ink is declared. */
 html[data-theme="ember"] body.p-home .who p .skim{
   color:var(--ink);font-weight:600}
+/* The same skim layer wherever a long paragraph lives — the errata blocks and
+   the patterns band, not just the .who column. Declared per ground because
+   .errata p and .patterns p each set their own ink. */
+html[data-theme="ember"] body.p-home :is(.errata,.patterns,.lead,.labrow) p .skim{
+  color:var(--ink);font-weight:600}
+/* The Overruled note is three paragraphs now instead of one 98-word block, so
+   its beats need air between them without turning the box into a list. */
+html[data-theme="ember"] body.p-home .errata p + p{margin-top:12px}
 
 /* One lane instead of three, so its head column can hold "ADTECH · NAMED CLIENT"
    on one line instead of breaking after "NAMED". */
