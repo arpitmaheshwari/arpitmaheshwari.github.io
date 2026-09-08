@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
+/* The case-board instruments animate only when this class is present, so with
+   JavaScript off every one of them renders in its resolved state. Set before
+   first paint to avoid a flash of the finished instrument. */
+document.documentElement.classList.add('vg-js');
 /* View router (homepage only). DEFAULT IS CLASSIC — for every visitor, every device, every first
    visit. The book only loads automatically if this browser PREVIOUSLY chose it (?view=book, or the
    "Read as a book" nav link), and even then only on desktop with a fine pointer — phones, touch, and
@@ -139,7 +143,7 @@
 </script>
 <script defer src="./analytics.js?v=4f9aa0a0"></script>
 <link rel="stylesheet" href="./styles.css?v=7780584b">
-<link rel="stylesheet" href="./ember.css?v=b6ba48ee">
+<link rel="stylesheet" href="./ember.css?v=5e1488d9">
 </head>
 <body class="p-home">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -291,19 +295,138 @@
   <div class="wrap">
     <h2 id="h-work" class="visually-hidden">Selected work — seven products</h2>
     <p class="lede">The products behind those numbers — three of them are AI, two of them LLMs reading unstructured documents. Open any door; where a client is under NDA I walk the real artifacts on a call.</p>
-    <p class="range-lbl range-lbl--first">Start here</p>
-    <div class="lanes">
-      <a class="lane l1" href="./case-studies/adtech.html" data-cta="case" data-location="work-ai-1"><div class="m">2 wks → 3 hrs<span>AdTech · Named client</span></div><div><h3>An Ad Agency Became the Market’s Aggregator</h3><p>Traders watched an algorithm beat them and played their hunches anyway. The fix was letting them argue back — plans they could reshape in one click, every edit teaching next week.</p></div></a>
+    <div class="caseboard">
+    <!-- ═══ 1 · AdTech — WALL-E: a brief in, a plan computed ═══ -->
+    <div class="bcard bcard--lead" style="--a:var(--ember)">
+      <p class="bcard-nom">Start here</p>
+      <div class="bcard-txt">
+        <p class="bcard-m">2 wks <i>→</i> 3 hrs</p>
+        <p class="bcard-s">AdTech · Named client</p>
+        <h3><a class="bcard-go" href="./case-studies/adtech.html" data-cta="case" data-location="work-ai-1">An Ad Agency Became the Market’s Aggregator</a></h3>
+        <p class="bcard-d">Traders watched an algorithm beat them and played their hunches
+        anyway. The fix was letting them argue back — plans they could reshape in one
+        click, every edit teaching next week.</p>
+      </div>
+      <figure class="vg vg-plan">
+        <div class="vg-hd"><b>Plan A</b><i class="vg-state" aria-hidden="true"></i></div>
+        <p class="vg-brief">Brand awareness · £100,000 · London, 30+ · video</p>
+        <div class="vg-metrics">
+          <div class="vg-met" style="--t:.95s"><i>Budget</i><b>GBP 99,432</b><s aria-hidden="true"></s></div>
+          <div class="vg-met" style="--t:1.05s"><i>Impressions</i><b>15.90K</b><s aria-hidden="true"></s></div>
+          <div class="vg-met" style="--t:1.15s"><i>On-target uplift</i><b>221 %</b><s aria-hidden="true"></s></div>
+        </div>
+        <div class="vg-rings">
+          <div class="vg-ring" style="--d:0.25s"><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle class="r-t" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:44.53;--o:-0.00;--k:0" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:47.64;--o:-45.43;--k:1" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:0.60;--o:-93.97;--k:2" cx="20" cy="20" r="15"/></svg><span>Formats</span></div>
+          <div class="vg-ring" style="--d:0.38s"><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle class="r-t" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:44.53;--o:-0.00;--k:0" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:19.65;--o:-45.43;--k:1" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:13.90;--o:-65.97;--k:2" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:9.28;--o:-80.77;--k:3" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:0.89;--o:-90.95;--k:4" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:0.60;--o:-92.74;--k:5" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:0.60;--o:-94.06;--k:6" cx="20" cy="20" r="15"/></svg><span>Environments</span></div>
+          <div class="vg-ring" style="--d:0.51s"><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle class="r-t" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:44.53;--o:-0.00;--k:0" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:19.65;--o:-45.43;--k:1" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:13.90;--o:-65.97;--k:2" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:9.28;--o:-80.77;--k:3" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:0.89;--o:-90.95;--k:4" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:0.60;--o:-92.74;--k:5" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:0.60;--o:-94.06;--k:6" cx="20" cy="20" r="15"/></svg><span>Locations</span></div>
+          <div class="vg-ring" style="--d:0.64s"><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle class="r-t" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:44.53;--o:-0.00;--k:0" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:19.65;--o:-45.43;--k:1" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:13.90;--o:-65.97;--k:2" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:9.28;--o:-80.77;--k:3" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:0.89;--o:-90.95;--k:4" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:0.60;--o:-92.74;--k:5" cx="20" cy="20" r="15"/><circle class="r-s" style="--l:0.60;--o:-94.06;--k:6" cx="20" cy="20" r="15"/></svg><span>Media owners</span></div>
+        </div>
+      </figure>
     </div>
-    <p class="range-lbl">The range under it — six more products, same job</p>
-    <div class="idx-grid">
-      <a class="idx x1" href="./case-studies/fintech.html" data-cta="case" data-location="work-range-fintech"><b class="m">60% faster</b><i>FinTech · NDA</i><h3>Deal-Screening AI That Cites Its Sources</h3></a>
-      <a class="idx x2" href="./case-studies/vc-diligence.html" data-cta="case" data-location="work-range-vc"><b class="m">3 wks → 4 days</b><i>VC &amp; PE · NDA</i><h3>Due Diligence You Can&rsquo;t Rubber-Stamp</h3></a>
-      <a class="idx x3" href="./case-studies/ptc.html" data-cta="case" data-location="work-range-ptc"><b class="m">$1M / yr</b><i>EdTech · Public</i><h3>The Redesign That Asked PTC to Kill Four Products</h3></a>
-      <a class="idx x4" href="./case-studies/o2.html" data-cta="case" data-location="work-range-o2"><b class="m">4M+</b><i>Telecom · Public</i><h3>Two O2 UK Products, Four Million People</h3></a>
-      <a class="idx x5" href="./case-studies/orgos.html" data-cta="case" data-location="work-range-orgos"><b class="m">0 managers</b><i>Org Design · NDA</i><h3>The Software That Replaced the Org Chart</h3></a>
-      <a class="idx x6" href="./case-studies/planit.html" data-cta="case" data-location="work-range-planit"><b class="m">0 complaints</b><i>Consumer &middot; 0&rarr;1</i><h3>The App People Broke on Purpose</h3></a>
+
+    <p class="range-lbl">The range under it &mdash; six more products, same job</p>
+
+    <!-- ═══ 2 · FinTech — a score with its three sources attached inline ═══ -->
+    <div class="bcard" style="--a:var(--violet)">
+      <figure class="vg vg-cite">
+        <div class="vg-hd"><b>Screening score</b><i>Risk read</i></div>
+        <p class="vg-score"><b>0.82</b><em>grounded</em></p>
+        <ul class="vg-srcs">
+          <li style="--t:.55s">Commit history · 24 months</li>
+          <li style="--t:.72s">Founder interview · run 2 of 2</li>
+          <li style="--t:.89s">Filing · audited accounts</li>
+        </ul>
+        <p class="vg-note">3 sources behind the number, inline — not in a tooltip</p>
+      </figure>
+      <p class="bcard-m">60% faster</p>
+      <p class="bcard-s">FinTech · NDA</p>
+      <h3><a class="bcard-go" href="./case-studies/fintech.html" data-cta="case" data-location="work-range-fintech">Deal-Screening AI That Cites Its Sources</a></h3>
     </div>
+
+    <!-- ═══ 3 · VC — signals clear the bar, one verdict lands ═══ -->
+    <div class="bcard" style="--a:var(--violet)">
+      <figure class="vg vg-dossier">
+        <div class="vg-hd"><b>Signals</b><i class="vg-count">16 dimensions</i></div>
+        <ul class="vg-sig">
+          <li style="--v:.86;--t:.10s"><i>A-14</i><span aria-hidden="true"></span><b>0.86</b></li>
+          <li style="--v:.71;--t:.22s"><i>B-02</i><span aria-hidden="true"></span><b>0.71</b></li>
+          <li style="--v:.79;--t:.34s"><i>C-09</i><span aria-hidden="true"></span><b>0.79</b></li>
+          <li style="--v:.68;--t:.46s"><i>D-05</i><span aria-hidden="true"></span><b>0.68</b></li>
+        </ul>
+        <p class="vg-held">12 further findings stayed below the bar</p>
+        <p class="vg-verdict"><i>Verdict</i><b>B+</b><em>Commit</em></p>
+      </figure>
+      <p class="bcard-m">3 wks <i>→</i> 4 days</p>
+      <p class="bcard-s">VC &amp; PE · NDA</p>
+      <h3><a class="bcard-go" href="./case-studies/vc-diligence.html" data-cta="case" data-location="work-range-vc">Due Diligence You Can’t Rubber-Stamp</a></h3>
+    </div>
+
+    <!-- ═══ 4 · PTC — five disconnected platforms become one ═══ -->
+    <div class="bcard" style="--a:var(--amber)">
+      <figure class="vg vg-cat">
+        <div class="vg-hd"><b>Before</b><i>Five platforms</i></div>
+        <ul class="vg-plats">
+          <li style="--t:.55s">Learning Connector</li>
+          <li style="--t:.64s">LearningExchange</li>
+          <li style="--t:.73s">Precision LMS</li>
+          <li style="--t:.82s">Digital Guides</li>
+          <li style="--t:.91s">IoTU</li>
+        </ul>
+        <p class="vg-after"><i>After</i><b>One platform</b></p>
+      </figure>
+      <p class="bcard-m">$1M / yr</p>
+      <p class="bcard-s">EdTech · Public</p>
+      <h3><a class="bcard-go" href="./case-studies/ptc.html" data-cta="case" data-location="work-range-ptc">The Redesign That Asked PTC to Kill Four Products</a></h3>
+    </div>
+
+    <!-- ═══ 5 · O2 — the allowances screen, filling to its real values ═══ -->
+    <div class="bcard" style="--a:var(--rose)">
+      <figure class="vg vg-allow">
+        <div class="vg-hd"><b>My allowances</b><i>Pay Monthly</i></div>
+        <ul class="vg-allows">
+          <li class="nobar" style="--t:.15s"><i>O2 to O2, anytime</i><span aria-hidden="true"></span><b>Unlimited</b></li>
+          <li style="--u:.40;--t:.30s"><i>Landline, anytime</i><span aria-hidden="true"></span><b>60:00 left</b></li>
+          <li style="--u:.967;--t:.45s"><i>International</i><span aria-hidden="true"></span><b>0:20 left</b></li>
+          <li style="--u:.004;--t:.60s"><i>UK data</i><span aria-hidden="true"></span><b>49.80 MB left</b></li>
+        </ul>
+        <p class="vg-bill"><i>Your next bill</i><b>Today</b><em>£9.31 since your last</em></p>
+      </figure>
+      <p class="bcard-m">4M+</p>
+      <p class="bcard-s">Telecom · Public</p>
+      <h3><a class="bcard-go" href="./case-studies/o2.html" data-cta="case" data-location="work-range-o2">Two O2 UK Products, Four Million People</a></h3>
+    </div>
+
+    <!-- ═══ 6 · OrgOS — eight modules on one shared bus ═══ -->
+    <div class="bcard" style="--a:var(--amber)">
+      <figure class="vg vg-bus">
+        <div class="vg-hd"><b>OrgOS</b><i>No hierarchy</i></div>
+        <div class="vg-row">
+          <b style="--i:0">Staffing</b><b style="--i:1">Comp</b><b style="--i:2">OKRs</b><b style="--i:3">Hiring</b>
+        </div>
+        <div class="vg-spine"><i aria-hidden="true"></i><span>one shared object model</span></div>
+        <div class="vg-row">
+          <b style="--i:4">Reviews</b><b style="--i:5">Onboarding</b><b style="--i:6">Finance</b><b style="--i:7">Roadmap</b>
+        </div>
+      </figure>
+      <p class="bcard-m">0 managers</p>
+      <p class="bcard-s">Org Design · NDA</p>
+      <h3><a class="bcard-go" href="./case-studies/orgos.html" data-cta="case" data-location="work-range-orgos">The Software That Replaced the Org Chart</a></h3>
+    </div>
+
+    <!-- ═══ 7 · Consumer — the wrong-answer screen, and two ways out ═══ -->
+    <div class="bcard" style="--a:var(--rose)">
+      <figure class="vg vg-fail">
+        <div class="vg-hd"><b>Failure state</b><i>Designed first</i></div>
+        <p class="vg-q">I’m not sure about this one.</p>
+        <p class="vg-conf"><i>Confidence</i><span aria-hidden="true"></span><em>Low</em></p>
+        <div class="vg-routes"><b style="--t:1.05s">Try another source</b><b style="--t:1.2s">Ask a human</b></div>
+      </figure>
+      <p class="bcard-m">0 complaints</p>
+      <p class="bcard-s">Consumer · 0→1</p>
+      <h3><a class="bcard-go" href="./case-studies/planit.html" data-cta="case" data-location="work-range-planit">The App People Broke on Purpose</a></h3>
+    </div>
+    </div>
+  </div>
   </div>
 </section>
 
@@ -967,6 +1090,7 @@ if (canvas && !prefersReducedMotion) {
   }
 })();
 </script>
+<script defer src="./instruments.js"></script>
 <script defer src="./attention.js?v=2fa8260a"></script>
 <script defer src="./clarity.js?v=9e4df576"></script>
 </body>
