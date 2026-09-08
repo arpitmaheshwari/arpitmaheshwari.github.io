@@ -38,6 +38,17 @@ DEFAULT_THRESHOLD = 4
 SPACE_SCALE = {4,8,12,16,20,24,32,40,48,64,80}
 SPACE_PROPS = r'(?:margin|padding|gap|row-gap|column-gap)(?:-(?:top|right|bottom|left))?'
 
+def _decomment(css):
+    """Strip /* ... */ before scanning. This repo's stylesheets carry long prose
+    comments, and the value regex is `(margin|padding|gap...)\s*:\s*([^;"}]+)` —
+    so a comment opening "no stacking margin: the footer is a flex container..."
+    parses as a declaration and the capture runs on until the next semicolon,
+    swallowing every px figure in the sentence. That is exactly how this gate
+    reported a phantom 11px on 2026-09-08: the number came from the prose
+    "the same 11px/18.7px type", not from any rule. Prose is not CSS."""
+    return re.sub(r'/\*.*?\*/', ' ', css, flags=re.S)
+
+
 def off_scale_spacing(root):
     """Spacing values that are neither on the 4px grid nor a documented exception.
     Exceptions, by design: <4px optical nudges, >80px structural values (the nav clearance
@@ -60,7 +71,7 @@ def off_scale_spacing(root):
     bad = collections.Counter(); where = collections.defaultdict(set)
     for f in files:
         s = open(f, encoding='utf-8').read()
-        for m in re.finditer(SPACE_PROPS + r'\s*:\s*([^;"}]+)', s):
+        for m in re.finditer(SPACE_PROPS + r'\s*:\s*([^;"}]+)', _decomment(s)):
             for tok in re.findall(r'(?<![\w.-])(\d+)px', m.group(1)):
                 v = int(tok)
                 if v == 0 or v < 4 or v > 80 or v in SPACE_SCALE: continue
@@ -84,7 +95,7 @@ def off_scale_spacing(root):
         if os.path.basename(f).startswith('__'):
             continue
         s = open(f, encoding='utf-8').read()
-        for m in re.finditer(SPACE_PROPS + r'\s*:\s*([^;"}]+)', s):
+        for m in re.finditer(SPACE_PROPS + r'\s*:\s*([^;"}]+)', _decomment(s)):
             for tok in re.findall(r'(?<![\w.-])([\d.]+)mm', m.group(1)):
                 v = float(tok)
                 if v < 1.0 or abs(v*2 - round(v*2)) < 1e-9: continue

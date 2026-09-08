@@ -86,7 +86,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # jsonld, link-integrity, social-title, wcag-reflow). Folding those into gatelib
 # is the repayment, and it retires that bug class rather than fixing it a fifth
 # time.
-CEILING = 12_100
+# 2026-09-08 (2): 12_100 -> 12_110. Ten lines: inline-style-check now strips
+# /* ... */ before scanning for off-grid spacing. Its value regex read a
+# comment opening "no stacking margin: the footer is..." as a declaration and
+# harvested a px figure out of the prose, reporting a spacing value that no
+# rule contains. Every stylesheet here is mostly prose, so that false positive
+# was going to recur on every explanation written from now on.
+CEILING = 12_110
 
 
 def loc(paths):
