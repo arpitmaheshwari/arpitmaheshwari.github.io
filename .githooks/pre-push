@@ -27,8 +27,27 @@ RANGE=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
 if git rev-parse --verify --quiet "origin/$RANGE" >/dev/null 2>&1; then
   CHANGED=$(git diff --name-only "origin/$RANGE"...HEAD 2>/dev/null)
 else
-  CHANGED=$(git diff --name-only HEAD~1...HEAD 2>/dev/null)
+  # FIRST PUSH OF A NEW BRANCH — fixed 2026-09-08. With no origin/<branch> ref this
+  # fell to HEAD~1...HEAD and inspected ONE commit. On that day board-proposal's
+  # first push carried 13 commits and 45 renderable files; its tip happened to be a
+  # lone .cssver.json, so the extension filter below said "no renderable changes"
+  # and skipped all 24 gates. The push with the MOST unreviewed work got the LEAST
+  # checking, and a brand-new branch is ALWAYS that push.
+  # Third instance of this class — see the SVG-only and tools/*.py cases noted
+  # below — so this is a range fix, not another extension added to a filter: use
+  # every commit the push actually carries, which for a new branch is its whole
+  # range against the default branch.
+  BASE=$(git rev-parse --verify --quiet origin/HEAD \
+      || git rev-parse --verify --quiet origin/master \
+      || git rev-parse --verify --quiet master)
+  if [ -n "$BASE" ]; then
+    CHANGED=$(git diff --name-only "$BASE"...HEAD 2>/dev/null)
+  else
+    CHANGED=$(git diff --name-only HEAD~1...HEAD 2>/dev/null)
+  fi
 fi
+# An EMPTY $CHANGED means "could not tell", not "nothing changed": both guards below
+# require -n, so an unknown range falls through and runs the full suite. Fail safe.
 # svg/png/jpg are in this list deliberately. On 2026-08-02 a broken SVG shipped and sat live
 # on /process; had someone pushed an SVG-only change, the old html|css|js filter would have
 # skipped every gate and waved it straight through.
