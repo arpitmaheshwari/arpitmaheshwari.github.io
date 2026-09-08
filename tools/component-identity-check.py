@@ -46,28 +46,17 @@ def main():
     pages = sorted(p for p in glob.glob('**/*.html', recursive=True)
                    if not p.startswith(('partials/', 'node_modules/', 'tests/', 'prototypes/'))
                       and not os.path.basename(p).startswith('__'))
-    # A REDIRECT STUB IS NOT A PAGE. Three files on this site exist only to bounce
-    # an old URL (case-studies/talon.html, lab/hitl.html, lab/trustlayer.html) and
-    # each says so in its own markup. They carry a 0-second meta refresh, so with
-    # settle=1.0 this gate was measuring a page mid-navigation — sometimes after
-    # the stylesheet applied, sometimes before. Before, everything reads as
-    # unstyled: Times New Roman, rgb(0,0,238) links, border-radius 0. On
-    # 2026-09-08 that surfaced on the CI runner as ".nav-cta - 2 distinct
-    # appearances, 40 pages vs 1", which is a race in the instrument reported as
-    # drift in the site. It had been passing on luck.
-    # Detected from the markup, not from a list of the three filenames I happen to
-    # know about — a rule shaped like the instances you already found can only
-    # ever re-find those.
-    def is_redirect_stub(path):
-        try:
-            head = open(path, encoding='utf-8', errors='replace').read(2048)
-        except OSError:
-            return False
-        return 'http-equiv="refresh"' in head.replace("'", '"')
-    stubs = [p for p in pages if is_redirect_stub(p)]
-    if stubs:
-        print(f'  skipping {len(stubs)} redirect stub(s): ' + ', '.join(stubs))
-    pages = [p for p in pages if p not in stubs]
+    # A REDIRECT STUB IS NOT A PAGE, and gatelib.pages() already knows that —
+    # it drops meta-refresh stubs and documents why (a gate that loads one races
+    # the stub's own navigation and measures the DESTINATION under the stub's
+    # URL). My first fix here duplicated that rule locally on 2026-09-08; this
+    # is the same rule, in the one place that owns it.
+    from gatelib import pages as _pages
+    kept = set(_pages())
+    dropped = [p for p in pages if p not in kept]
+    if dropped:
+        print(f'  skipping {len(dropped)} non-page(s): ' + ', '.join(dropped[:6]))
+    pages = [p for p in pages if p in kept]
     seen = collections.defaultdict(lambda: collections.defaultdict(list))
     with cdp.Browser() as b:
         b.viewport(1440, 900)

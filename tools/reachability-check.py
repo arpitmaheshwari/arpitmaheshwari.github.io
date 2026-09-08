@@ -260,14 +260,8 @@ def main():
     a = ap.parse_args()
     urls = list(a.urls)
     if a.all or not urls:
-        root = pathlib.Path(__file__).resolve().parent.parent
-        for p in sorted(root.rglob("*.html")):
-            rel = p.relative_to(root).as_posix()
-            if any(rel.startswith(x) for x in ("prototypes/", "portfolio-sources/", "partials/", "tests/", ".")):
-                continue
-            if p.name.startswith("__"):
-                continue
-            urls.append(f"{a.base}/{rel}")
+        from gatelib import pages as _pages   # the one definition of "a page"
+        urls += [f"{a.base}/{rel}" for rel in _pages()]
     return run(urls, [int(x) for x in a.widths.split(",")])
 
 

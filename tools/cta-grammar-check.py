@@ -130,9 +130,14 @@ if __name__ == "__main__":
     ran_all = not pages
     if ran_all:
         calibrate()
-        pages = [str(p) for p in sorted(pathlib.Path('.').rglob('*.html'))
-                 if not any(x.startswith('.') or x in ('prototypes','portfolio-sources','node_modules')
-                            for x in p.parts) and not p.name.startswith('_')]
+        # gatelib.pages() OWNS the page set, and it already drops meta-refresh
+        # stubs — its own docstring records why: a gate that loads one races the
+        # stub's navigation and reports the DESTINATION's content under the
+        # stub's URL. Globbing here bypassed that, so on 2026-09-08 this gate
+        # blamed folio/index.html (a redirect to the homepage) for a CTA that
+        # lives on the homepage. Two URLs, one page, one defect reported twice.
+        from gatelib import pages as _pages
+        pages = _pages()
     per_page = collect(pages)
     # TYPE grammar (face/size/case/tracking) must be ONE, site-wide. INK is
     # judged against the GROUND: the design system deliberately maps the same

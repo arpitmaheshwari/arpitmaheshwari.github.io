@@ -35,7 +35,24 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #                      browser can resolve. This is the exclusion that was missing.
 NOT_PAGES = ('prototypes/', 'assets/', 'portfolio-sources/', 'tests/', 'partials/')
 
+# A stub hands over EITHER by meta-refresh or by script. folio/index.html does
+# the second — it counts a PDF click-through and then sets location — and because
+# this pattern only matched the first, every gate that trusts pages() measured the
+# HOMEPAGE and reported it under folio's URL. On 2026-09-08 that made
+# cta-grammar-check report one homepage defect twice, on two URLs.
+# The script form is only treated as a stub when the page also says noindex: that
+# is what separates "a page that redirects" from "a page with a bit of routing JS".
 _REDIRECT = re.compile(r'http-equiv="refresh"', re.I)
+_JS_HANDOVER = re.compile(
+    r'<meta[^>]+name="robots"[^>]+noindex', re.I)
+_JS_LOCATION = re.compile(
+    r'(?:window\.)?location(?:\.(?:replace|assign|href)\s*[(=]|\s*=)', re.I)
+
+
+def _is_stub(text):
+    if _REDIRECT.search(text):
+        return True
+    return bool(_JS_HANDOVER.search(text) and _JS_LOCATION.search(text))
 _TAG = re.compile(r'<[^>]+>')
 _DROP = re.compile(r'(?is)<(script|style|svg|template)[^>]*>.*?</\1>')
 _COMMENT = re.compile(r'(?s)<!--.*?-->')
@@ -44,10 +61,13 @@ _COMMENT = re.compile(r'(?s)<!--.*?-->')
 def pages(include_book=True, include_redirects=False):
     """Every shipped HTML page, as repo-relative paths, sorted.
 
-    include_redirects=False drops the meta-refresh stubs (lab/hitl.html and friends).
-    They carry no content of their own, and a gate that loads one races against the
-    stub's own navigation — contrast-audit was reporting the DESTINATION page's
-    content under the stub's URL before it started excluding them.
+    include_redirects=False drops the handover stubs — by meta-refresh
+    (lab/hitl.html, lab/trustlayer.html, case-studies/talon.html) and by script
+    (folio/index.html). They carry no content of their own, and a gate that loads
+    one races against the stub's own navigation — contrast-audit was reporting the
+    DESTINATION page's content under the stub's URL before it started excluding
+    them, and cta-grammar-check reported one homepage defect on two URLs until the
+    script form was recognised too (2026-09-08).
     """
     out = subprocess.run(['git', 'ls-files', '*.html'], cwd=ROOT,
                          capture_output=True, text=True, check=True).stdout
@@ -60,7 +80,7 @@ def pages(include_book=True, include_redirects=False):
         if not include_redirects:
             try:
                 with open(os.path.join(ROOT, rel), encoding='utf-8', errors='ignore') as fh:
-                    if _REDIRECT.search(fh.read()):
+                    if _is_stub(fh.read()):
                         continue
             except OSError:
                 pass

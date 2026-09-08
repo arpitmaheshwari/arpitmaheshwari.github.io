@@ -111,9 +111,8 @@ if __name__ == "__main__":
     pages = sys.argv[1:]
     if not pages:
         calibrate()
-        pages = [str(p) for p in sorted(pathlib.Path('.').rglob('*.html'))
-                 if not any(x.startswith('.') or x in ('prototypes','portfolio-sources','node_modules')
-                            for x in p.parts) and not p.name.startswith('_')]
+        from gatelib import pages as _pages   # the one definition of "a page"
+        pages = _pages()
     bad = 0
     for pg in pages:
         d = scan(pg)

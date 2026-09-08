@@ -2370,10 +2370,11 @@ html[data-theme="ember"] .chap-rose .chap-n{color:var(--rose)}
    #lab .lab3 terminal-listing block that had been silently dead since the
    consolidation moved id="lab" onto the kicker (lesson 10: rules matching 0
    elements get removed, not left to rot). Component declares its own ink. */
-html[data-theme="ember"] body.p-home .lab-row{margin-top:40px;padding-top:24px;border-top:1px solid var(--border);font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;line-height:1.9;color:var(--ink-muted)}
-html[data-theme="ember"] body.p-home .lab-row .lr-k{text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--amber)}
-html[data-theme="ember"] body.p-home .lab-row a{color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(245,237,230,.3)}
-html[data-theme="ember"] body.p-home .lab-row a:hover{color:var(--violet);border-bottom-color:var(--violet)}
+/* .lab-row is gone from the site: it moved from the design-system section into
+   the hero on 2026-09-08 and then merged into .cred the same day, so these 4
+   rules matched nothing. The one fact that survived, loop.js 42/42, is a link
+   inside .cred and keeps /lab/loop.html reachable from the homepage. */
+
 
 /* ============================================================
    HEADING RANKS (2026-08-30) — Arpit's pick: Option C with the
@@ -3066,40 +3067,25 @@ html[data-theme="ember"] body.p-home .hero .role-line{
    was already there, so the glance gets a receipt instead of four bare names.
    --amber on the hero ground, declared, not inherited: .cred is --dim and a
    <span> inside it would have come out muted, which is the opposite of the job. */
+/* THE FILM'S ROUTE IS NOW A CTA, so it speaks the house CTA grammar. It used to
+   be an inline link at the end of a caption sentence; when that sentence came off
+   on 2026-09-08 the link became the caption's only content and
+   cta-grammar-check correctly reported a second grammar — JetBrains Mono 11px,
+   no case, 0.4 tracking against the house's Source Sans 3 11.5px uppercase 0.9.
+   Nine CTAs, one grammar. */
+html[data-theme="ember"] body.p-home .hero .vid-hero-cap a{
+  font-family:"Source Sans 3",var(--sans);font-size:11.5px;font-weight:600;
+  letter-spacing:.9px;text-transform:uppercase;line-height:1.6;
+  /* and the house INK for a CTA on a dark ground. It was amber, which is this
+     hero's accent — but a CTA's grammar is site-wide, not per-section. */
+  color:var(--violet)}
 html[data-theme="ember"] body.p-home .hero .cred .cred-m{
   color:var(--amber);font-weight:500;white-space:nowrap}
 
-/* THE ENGINEERING RECEIPT, MOVED INTO THE GLANCE — 2026-09-08.
-   "loop.js — 42/42 tests · trustlint — 7 rules · this site — 0 build steps" was
-   the second-to-last line of the design-system section, at screen 9.4 of 18 on a
-   phone, where a 10-second reader and a 2-5 minute reader never arrive. It is
-   the only claim on the page a stranger can verify in thirty seconds, and
-   "42/42 tests" from a designer is a stranger fact than any outcome number.
-   In the hero it drops the section divider it carried down there (a rule under
-   the client strip would read as the end of the hero) and keeps its own ink,
-   because .hero sets --dim on .cred and the row would otherwise inherit it. */
-html[data-theme="ember"] body.p-home .hero .lab-row{
-  margin-top:12px;padding-top:0;border-top:0;
-  /* 11px is the scale's --fs-micro step, and it is what buys the line back: the
-     hero copy column is a fixed 612px and this row needs 737px unwrapped, so at
-     12px it took THREE lines and pushed the receipt below the fold at 1280x800
-     and 1440x1000. At 11px it is two, and the hero returns to roughly the one
-     viewport its own comment above promises. */
-  font-size:11px;line-height:1.8;color:var(--dim);max-width:none}
-/* The hero is documented above as filling EXACTLY one viewport (min-height:100svh
-   with the nav paid for in padding). Three extra lines took it to 947px against a
-   900px screen, so the receipt gets the full column instead of a 62ch measure —
-   it is a list of three facts, not a reading line — and the rhythm below the
-   sub-head tightens to pay for it. Measured back to one viewport at 1440. */
-html[data-theme="ember"] body.p-home .hero .cred{margin-top:clamp(16px,2.2vh,24px)}
-/* The label becomes its own kicker line. At 11px the three facts need 470px and
-   the column is 612px, so they fit on ONE line — but with the label inline the
-   wrap broke at the middle separator and wasted a third line on "trustlint — 7
-   rules". Kicker + one fact row is two lines instead of three. */
-html[data-theme="ember"] body.p-home .hero .lab-row .lr-k{
-  color:var(--amber);display:block;margin-bottom:4px}
-html[data-theme="ember"] body.p-home .hero .lab-row a{
-  color:var(--ink);border-bottom-color:rgba(245,237,230,.28)}
+/* The hero's .lab-row rules came out on 2026-09-08 with the row itself: the
+   42/42 fact merged into .cred, so the hero holds ONE evidence line instead of
+   two and 31 rule lines here matched nothing. */
+
 
 /* ONE NOMINATED DOOR. Reuses .range-lbl — same component, second instance —
    because the page already had a label for "here is a group of cases" and
@@ -3167,4 +3153,155 @@ html[data-theme="ember"] body.p-home main > section#patterns:has(.chap){
    evidence block instead of three loose strips. More air above the group, less
    inside it. */
 html[data-theme="ember"] body.p-home .hero .cred{margin-top:32px}
-html[data-theme="ember"] body.p-home .hero .lab-row{margin-top:8px}
+
+/* ============================================================================
+   THE WRITING INDEX — an index that previews (homepage, act 04 · 2)
+   ----------------------------------------------------------------------------
+   Replaces three stacked cards, each carrying its own excerpt, with a numbered
+   index whose hovered or FOCUSED entry writes itself into a panel beside the
+   list. Measured: 204 words visible dropped to 123, and the right column gained
+   a content role instead of being the leftover half of a capped paragraph.
+   The pattern is Codrops' index-with-content-preview.
+
+   NO JAVASCRIPT. /lab publishes "0 runtime deps" and "0 build steps" as
+   measured facts, so a hover-preview that needed a listener would have made one
+   of them false. The state lives in `:has()`, which this codebase already uses.
+   The panels sit INSIDE their own <li> so that below 860px they simply flow
+   under their title — the mobile layout is the no-JS, no-:has() layout, and it
+   is also the fallback anywhere `:has()` is unsupported.
+   ============================================================================ */
+html[data-theme="ember"] body.p-home #thoughts .ixw{
+  /* ONE value governs the split. The panel is absolutely positioned (it has to
+     be — it lives inside its own <li> so the phone layout can flow it under its
+     title, which means it cannot be a grid item of this wrapper), so its `left`
+     and this column ratio are two numbers that must agree. They agree because
+     there is only one. */
+  --ixl:55%;
+  position:relative;display:grid;grid-template-columns:var(--ixl) 1fr;gap:48px;
+  align-items:start;margin-top:40px;
+  border-top:1px solid var(--border);padding-top:8px}
+html[data-theme="ember"] body.p-home #thoughts .ixl{
+  list-style:none;margin:0;padding:0;grid-column:1}
+html[data-theme="ember"] body.p-home #thoughts .ixl > li{margin:0}
+html[data-theme="ember"] body.p-home #thoughts .ixi{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;
+  /* center, NOT baseline: a two-line title next to a one-line numeral snaps the
+     numeral to the title's FIRST line and strands it — the trap this repo's own
+     notes record. */
+  align-items:center;padding:24px 0;text-decoration:none;
+  border-bottom:1px solid rgba(245,237,230,.10);
+  min-height:44px}
+html[data-theme="ember"] body.p-home #thoughts .ixn{
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;
+  line-height:1.4;color:var(--dim)}
+html[data-theme="ember"] body.p-home #thoughts .ixt{
+  font-family:var(--serif);font-weight:300;font-size:clamp(19px,1.8vw,25px);
+  line-height:1.2;color:var(--ink)}
+/* the panel: one grid cell, all three stacked in it, one shown */
+@media (min-width:861px){
+  html[data-theme="ember"] body.p-home #thoughts .ixp{
+    position:absolute;top:8px;left:calc(var(--ixl) + 24px);right:0;
+    border-left:2px solid var(--rose);padding:4px 0 4px 24px;
+    opacity:0;visibility:hidden}
+  /* default: the newest piece previews itself, so the panel is never empty */
+  html[data-theme="ember"] body.p-home #thoughts .ixw:not(:hover):not(:focus-within) .ixl > li:first-child .ixp{
+    opacity:1;visibility:visible}
+  html[data-theme="ember"] body.p-home #thoughts .ixl > li:hover .ixp,
+  html[data-theme="ember"] body.p-home #thoughts .ixl > li:focus-within .ixp{
+    opacity:1;visibility:visible}
+  html[data-theme="ember"] body.p-home #thoughts .ixl > li:hover .ixt,
+  html[data-theme="ember"] body.p-home #thoughts .ixl > li:focus-within .ixt,
+  html[data-theme="ember"] body.p-home #thoughts .ixw:not(:hover):not(:focus-within) .ixl > li:first-child .ixt{
+    color:var(--rose)}
+  html[data-theme="ember"] body.p-home #thoughts .ixl > li:hover .ixn,
+  html[data-theme="ember"] body.p-home #thoughts .ixl > li:focus-within .ixn,
+  html[data-theme="ember"] body.p-home #thoughts .ixw:not(:hover):not(:focus-within) .ixl > li:first-child .ixn{
+    color:var(--rose)}
+}
+/* below 861: no preview mechanic at all — every entry carries its own text,
+   which is the layout a keyboard, a screen reader and a phone all get. */
+@media (max-width:860px){
+  html[data-theme="ember"] body.p-home #thoughts .ixw{
+    grid-template-columns:1fr;gap:0}
+  html[data-theme="ember"] body.p-home #thoughts .ixi{
+    /* start, not center: below 861 the entry carries its title AND its tag, date
+       and excerpt, so it is a tall block and a vertically centred numeral floats
+       in the middle of it. On desktop the entry is a title alone, one or two
+       lines, where centred is right. The content shape differs, so the alignment
+       does. */
+    align-items:start;border-bottom:0;padding:20px 0 8px}
+  html[data-theme="ember"] body.p-home #thoughts .ixn{padding-top:8px}
+  html[data-theme="ember"] body.p-home #thoughts .ixp{
+    padding:0 0 20px 0;border-bottom:1px solid rgba(245,237,230,.10)}
+}
+html[data-theme="ember"] body.p-home #thoughts .ixg{
+  margin:0 0 12px;font-family:var(--mono);font-size:10.5px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;line-height:1.5;color:var(--rose)}
+html[data-theme="ember"] body.p-home #thoughts .ixd{
+  display:block;color:var(--dim);letter-spacing:.12em;margin-top:4px}
+html[data-theme="ember"] body.p-home #thoughts .ixx{
+  margin:0;font-size:15px;line-height:1.65;color:var(--mut);max-width:46ch}
+
+/* ============================================================================
+   THE CATALOGUE SLIP — /writing's Substack list
+   ----------------------------------------------------------------------------
+   The piece stops being a paragraph and becomes an OBJECT: cream stock on the
+   heat, a serif index numeral, the publication date as a stamp, a dashed score
+   line. This is not a new visual language — it is the cream artifact set this
+   site already owns (boarding pass, the nutrition-label facts card, the paper
+   plates), used on writing for the first time. It gives the section a visual
+   without a photograph, which is the constraint.
+   THE DATE IS THE STAMP, deliberately: a tag would have meant composing a
+   taxonomy label for the new piece, and the date is fetched, factual, and tells
+   a reader the thing a "recent writing" list actually has to prove. A library
+   card is date-stamped anyway.
+   Palette is the DS's own cream set, every pair already measured there:
+   #221C10 ink ~13:1 · #5D5442 secondary ~5.6:1 · #A93A24 stamp ~4.9:1 on
+   #EFE7D2. Never #C2452D (4.1:1, fails small text).
+   ============================================================================ */
+html[data-theme="ember"] body.p-writing .slips{
+  list-style:none;margin:32px 0 0;padding:0;
+  /* TWO columns, not four. /writing's own container caps at 900px
+     (.xi-writing-004), so four tracks are 207px each and a 20px serif title
+     wraps to five lines in 159px of content. Two give 438px. */
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:640px){
+  html[data-theme="ember"] body.p-writing .slips{grid-template-columns:1fr;gap:16px}}
+html[data-theme="ember"] body.p-writing .slip{margin:0}
+html[data-theme="ember"] body.p-writing .slip > a{
+  display:grid;height:100%;background:#EFE7D2;color:#221C10;
+  border-radius:2px;padding:24px 24px 32px;text-decoration:none;
+  box-shadow:0 12px 30px rgba(0,0,0,.4);
+  transition:transform .2s var(--ease-out,ease-out),box-shadow .2s}
+/* artifact tilt, DS ceiling is 1.5 degrees */
+html[data-theme="ember"] body.p-writing .slip:nth-child(4n+1) > a{transform:rotate(-1.1deg)}
+html[data-theme="ember"] body.p-writing .slip:nth-child(4n+2) > a{transform:rotate(.6deg)}
+html[data-theme="ember"] body.p-writing .slip:nth-child(4n+3) > a{transform:rotate(-.5deg)}
+html[data-theme="ember"] body.p-writing .slip:nth-child(4n+4) > a{transform:rotate(.9deg)}
+html[data-theme="ember"] body.p-writing .slip > a:hover,
+html[data-theme="ember"] body.p-writing .slip > a:focus-visible{
+  transform:rotate(0deg) translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+html[data-theme="ember"] body.p-writing .slip-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-bottom:16px}
+html[data-theme="ember"] body.p-writing .slip-no{
+  font-family:var(--serif);font-size:32px;font-weight:300;line-height:1;
+  color:#A93A24}
+html[data-theme="ember"] body.p-writing .slip-stamp{
+  font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;line-height:1.4;color:#A93A24;
+  border:2px solid #A93A24;border-radius:3px;padding:4px 8px;
+  transform:rotate(-2.2deg);white-space:nowrap}
+html[data-theme="ember"] body.p-writing .slip-title{
+  font-family:var(--serif);font-weight:400;font-size:20px;line-height:1.22;
+  color:#221C10}
+html[data-theme="ember"] body.p-writing .slip-rule{
+  display:block;border-top:1px dashed rgba(34,28,16,.42);margin:16px 0}
+html[data-theme="ember"] body.p-writing .slip-x{
+  font-size:13px;line-height:1.6;color:#5D5442}
+/* the DS's reduced-motion contract: every tilt and transform comes off */
+@media (prefers-reduced-motion:reduce){
+  html[data-theme="ember"] body.p-writing .slip > a,
+  html[data-theme="ember"] body.p-writing .slip > a:hover,
+  html[data-theme="ember"] body.p-writing .slip > a:focus-visible,
+  html[data-theme="ember"] body.p-writing .slip-stamp{transform:none;transition:none}}
