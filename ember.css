@@ -3812,7 +3812,10 @@ html[data-theme="ember"] body.p-home .qvoices:has(#qv0:checked) #qvq0,
 html[data-theme="ember"] body.p-home .qvoices:has(#qv1:checked) #qvq1,
 html[data-theme="ember"] body.p-home .qvoices:has(#qv2:checked) #qvq2,
 html[data-theme="ember"] body.p-home .qvoices:has(#qv3:checked) #qvq3,
-html[data-theme="ember"] body.p-home .qvoices:has(#qv4:checked) #qvq4{display:block}
+html[data-theme="ember"] body.p-home .qvoices:has(#qv4:checked) #qvq4,
+html[data-theme="ember"] body.p-home .qvoices:has(#qv5:checked) #qvq5,
+html[data-theme="ember"] body.p-home .qvoices:has(#qv6:checked) #qvq6,
+html[data-theme="ember"] body.p-home .qvoices:has(#qv7:checked) #qvq7{display:block}
 /* no :has(): every quote shows, stacked under its own name. The information
    never depends on the mechanism. */
 @supports not selector(:has(*)){
@@ -3841,8 +3844,80 @@ html[data-theme="ember"] body.p-home .qt-solo{margin:8px 0 16px}
    585px away from its control. */
 @media (min-width:761px) and (hover:hover) and (pointer:fine){
   html[data-theme="ember"] body.p-home .qvoices{
-    grid-template-columns:minmax(230px,300px) minmax(0,1fr);
+    grid-template-columns:minmax(230px,340px) minmax(0,1fr);
     column-gap:48px;align-items:start}
-  html[data-theme="ember"] body.p-home .qv-t{grid-column:1}
-  html[data-theme="ember"] body.p-home .qt-solo{grid-column:2;grid-row:1/-1;align-self:start}
+  html[data-theme="ember"] body.p-home .qv-t{grid-column:1;padding:8px 16px}
+  /* At eight voices the index is 884px tall — taller than a laptop viewport —
+     so a top-aligned card meant clicking the eighth name changed something
+     already scrolled off. The card follows the list instead. Proximity again:
+     the effect has to be where the eye is, and on a pointer device that is
+     wherever the cursor has travelled to. */
+  html[data-theme="ember"] body.p-home .qt-solo{grid-column:2;grid-row:1/-1;
+    align-self:start;position:sticky;top:104px}
+  /* Sticky travel is (index height - card height). Once it runs out the card
+     rises with the page and slides under the FIXED nav: measured at 1440x700,
+     the quote's first line sat 44px behind it, with UL.nav-links painted over
+     the words. The last index row carries the clearance, so the travel always
+     outlasts the list and the card stays fully readable while the list is
+     still in play. Designed space with a job, not a gap. */
+  html[data-theme="ember"] body.p-home .qv-t:last-of-type{margin-bottom:160px}
+}
+
+/* ╔══════════════════════════════════════════════════════════════════════════╗
+   ║  THE NAV BAR AT VERY SMALL WIDTHS                         2026-09-08     ║
+   ╚══════════════════════════════════════════════════════════════════════════╝
+
+   Arpit: "the button overflows the container for very small size screen."
+   Measured at 280px: the toggle was 16px wide with 18px bars — the three lines
+   stuck 17px PAST their own button — and the logo was crushed from 36px to 12.
+
+   Two causes, and neither was a spacing value:
+
+   1. Every child of #nav was flex:0 1 auto, so all three were shrinkable. The
+      CTA's 189px of content made it the least compressible in practice, so the
+      logo and the TAP TARGET absorbed all the shrinkage. A declared 44px target
+      is a requirement, not a preference: it now refuses to shrink.
+   2. This skin had replaced the base's flex-column bars with
+      position:absolute; left:13px; width:18px. Absolute children do not shrink
+      with their box, so when the button was squeezed the bars simply left it.
+      The bars are laid out BY the button again — a flex column, centred — so
+      the box contains them whatever happens to it.
+
+   The bar needs 325px to hold logo + 44px target + a 189px pill without
+   compressing anything (measured, not guessed). Below 340px the pill leaves the
+   bar and the same action appears as the drawer's last item (.nav-cta-sm), so
+   the bar is a logo and a full-size target, and the action is one tap away
+   rather than a crushed 16px hamburger.
+*/
+html[data-theme="ember"] #nav .nav-logo,
+html[data-theme="ember"] .menu-toggle{flex:0 0 auto}
+html[data-theme="ember"] .menu-toggle{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;width:44px;height:44px;min-width:44px;min-height:44px;
+  padding:0;margin:0;position:relative}
+html[data-theme="ember"] .menu-toggle span{
+  position:static;left:auto;flex:0 0 auto;width:18px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--ember),var(--violet));
+  transition:transform .28s cubic-bezier(.2,.9,.3,1),opacity .18s}
+/* closed: three bars, spaced by the flex gap — no transform needed, so nothing
+   has to be undone to animate */
+html[data-theme="ember"] .menu-toggle span:nth-child(1),
+html[data-theme="ember"] .menu-toggle span:nth-child(3){transform:none}
+/* open: the outer two converge on the middle (gap 4 + bar 2 = 6px of travel)
+   and cross */
+html[data-theme="ember"] .menu-toggle[aria-expanded="true"] span:nth-child(1){
+  transform:translateY(6px) rotate(45deg)}
+html[data-theme="ember"] .menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+html[data-theme="ember"] .menu-toggle[aria-expanded="true"] span:nth-child(3){
+  transform:translateY(-6px) rotate(-45deg)}
+
+/* the drawer's copy of the action: present in the markup on every page, shown
+   only where the bar cannot hold the pill */
+html[data-theme="ember"] .nav-links .nav-cta-sm{display:none}
+@media (max-width:339px){
+  html[data-theme="ember"] #nav .nav-cta{display:none}
+  html[data-theme="ember"] .nav-links .nav-cta-sm{display:block}
+  html[data-theme="ember"] .nav-links .nav-cta-sm a{
+    display:inline-block;margin-top:8px;padding:12px 20px;border-radius:999px;
+    background:var(--g-hot);color:var(--cta-ink);font-weight:600;line-height:1.4}
 }
