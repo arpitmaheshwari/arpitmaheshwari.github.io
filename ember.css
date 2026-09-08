@@ -301,7 +301,6 @@ html[data-theme="ember"] body.p-home .errata .ek{font-family:var(--mono);font-si
 @media (prefers-reduced-motion:reduce){html[data-theme="ember"] body.p-home .errata .ek{transform:none}}
 html[data-theme="ember"] body.p-home .errata p{font-size:14px;color:var(--mut);max-width:66ch}
 html[data-theme="ember"] body.p-home .errata a{color:var(--amber);text-decoration:underline;text-underline-offset:3px}
-html[data-theme="ember"] body.p-home .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px}
 html[data-theme="ember"] body.p-home .qt{background:var(--card);border-radius:10px;padding:24px 24px}
 html[data-theme="ember"] body.p-home .qt blockquote{font-family:var(--serif);font-style:italic;font-size:16.5px;line-height:1.6;color:var(--ink)}
 html[data-theme="ember"] body.p-home .qt figcaption{margin-top:16px;font-family:var(--mono);font-size:12px;color:var(--mut)}
@@ -342,7 +341,6 @@ html[data-theme="ember"] body.p-home footer .wrap{display:flex;justify-content:s
 html[data-theme="ember"] body.p-home .who .wrap{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .contract .wrap{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .memos{grid-template-columns:1fr}
-html[data-theme="ember"] body.p-home .quotes{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .acts{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .close .wrap{grid-template-columns:1fr}}
 @media (max-width:640px){html[data-theme="ember"] body.p-home .rrow{grid-template-columns:1fr}
@@ -1376,15 +1374,10 @@ html[data-theme="ember"] body.p-home .rcell b .to{font-style:normal;color:var(--
    cannot"). Each card is labelled by the writer's RELATIONSHIP, because four
    angles on the same person is triangulation; four compliments is noise.
    ============================================================================ */
-html[data-theme="ember"] body.p-home .quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:40px;align-items:start}
 html[data-theme="ember"] body.p-home .qt{background:var(--card);border:1px solid var(--border);border-radius:12px;border-top:3px solid var(--heat,#FF8A5C);padding:24px 24px 20px;display:flex;flex-direction:column;height:100%}
-html[data-theme="ember"] body.p-home .quotes .qt:nth-child(1){--heat:#E86BFF}
-html[data-theme="ember"] body.p-home .quotes .qt:nth-child(2){--heat:#FFC46B}
-html[data-theme="ember"] body.p-home .quotes .qt:nth-child(3){--heat:#FF7AA8}
 html[data-theme="ember"] body.p-home .qt-view{font-family:var(--ff-label);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--heat,#FF8A5C);display:block;margin-bottom:16px}
 html[data-theme="ember"] body.p-home .qt blockquote{flex:1 1 auto;margin:0}
 html[data-theme="ember"] body.p-home .qt figcaption{margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
-@media (max-width:860px){html[data-theme="ember"] body.p-home .quotes{grid-template-columns:1fr}}
 /* the trust loop as wrapping HTML chips — the SVG version forced a 640px
    min-width, which is a horizontal scrollbar on every phone. Chips wrap. */
 html[data-theme="ember"] .loop-steps{display:flex;flex-wrap:wrap;align-items:stretch;gap:12px}
@@ -2091,7 +2084,6 @@ html[data-theme="ember"] body.p-home .memos{border-top:none}
 html[data-theme="ember"] body.p-home .memo .mk{margin:12px 0 0}
 html[data-theme="ember"] body.p-home .memo h3{margin:0 0 8px}
 /* 2 · VOICES — first quote is the anchor: bare, large, serif; the other three become a compact chorus */
-html[data-theme="ember"] body.p-home .quotes{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 /* the bare first-quote grammar retired 2026-09-02: the anchors band replaced it */
 /* 3 · THE LAB — cards become a terminal listing: mono rows on near-black, prompt glyphs */
 /* 4 · WRITING — cards become an editorial index: serif titles, inline excerpts, hairline rows */
@@ -2106,7 +2098,6 @@ html[data-theme="ember"] body.p-home .thought-excerpt{margin-top:8px}
 @media(max-width:860px){html[data-theme="ember"] body.p-home .memo{grid-template-columns:1fr;row-gap:4px}
 html[data-theme="ember"] body.p-home .memo>:is(*,p:not(.mk)){grid-column:1;grid-row:auto}
 html[data-theme="ember"] body.p-home .memo .mk{margin:0 0 4px} /* stacked: the cap-alignment offset has no partner column */
-html[data-theme="ember"] body.p-home .quotes{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .thought-card>*{grid-column:1;grid-row:auto}}
 /* Same trap as figure.vid-card above: .mascot is a <figure> inside .measure-c,
    so the spine's breakout force-widens it to 1040px and translates it -520.
@@ -2566,18 +2557,7 @@ html[data-theme="ember"] :is(body.p-case-studies-fintech,body.p-case-studies-vc-
    anchors — the client's CTO (authority) and the tech lead who sat beside him
    for five years (specificity) — now hold a full-bleed rose field, the act IV
    counterpart of act III's cream contract band; the chorus sits beneath.
-   ============================================================================ */
-html[data-theme="ember"] body.p-home .qt-anchors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:64px;
-  margin:48px calc(50% - 50vw) 8px;padding:64px calc(50vw - 50% + 0px) 48px;
-  background:linear-gradient(180deg,#2B1522,#1B1320);
-  border-top:1px solid rgba(245,237,230,.1);border-bottom:1px solid rgba(245,237,230,.1)}
-html[data-theme="ember"] body.p-home .qt-anchors .qt{background:none;border:none;border-radius:0;padding:0;display:flex;flex-direction:column}
-html[data-theme="ember"] body.p-home .qt-anchors .qt blockquote{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(17px,1.5vw,21px);line-height:1.55}
-html[data-theme="ember"] body.p-home .qt-anchors .qt:first-child .qt-view{color:var(--rose)}
-html[data-theme="ember"] body.p-home .qt-anchors .qt:last-child .qt-view{color:var(--amber)}
-html[data-theme="ember"] body.p-home .qt-anchors figcaption{margin-top:auto;padding-top:16px;border-top:1px solid rgba(245,237,230,.14)}
-html[data-theme="ember"] body.p-home .qt-anchors blockquote{margin-bottom:24px} /* captions share the band foot (lesson 7) */
-@media (max-width:900px){html[data-theme="ember"] body.p-home .qt-anchors{grid-template-columns:1fr;gap:40px;padding-top:48px;padding-bottom:40px}}
+   ============================================================================ */ /* captions share the band foot (lesson 7) */
 
 /* orgos: four vitals in a 3-col grid left the fourth alone on row 2 with a
    two-cell void (2026-09-02 sweep). Four vitals read as a 2x2. */
@@ -3743,7 +3723,6 @@ html[data-theme="ember"] .vg-sig li{--g:var(--v)}
 html[data-theme="ember"] .vg-allows li{--g:var(--u)}
 html[data-theme="ember"] .vg-conf{--g:.22}
 
-
 /* ── the instrument that opens a case page ────────────────────────────────
    Same component, one per case, sized to the page's reading measure rather
    than a card. It sits after the hero's prose so the principle still comes
@@ -3775,3 +3754,85 @@ html[data-theme="ember"] body.p-case-studies-ptc .vg-hero,
 html[data-theme="ember"] body.p-case-studies-orgos .vg-hero{--a:var(--amber)}
 html[data-theme="ember"] body.p-case-studies-o2 .vg-hero,
 html[data-theme="ember"] body.p-case-studies-planit .vg-hero{--a:var(--rose)}
+
+/* ╔══════════════════════════════════════════════════════════════════════════╗
+   ║  THE VOICES BAND — one voice at a time                    2026-09-08     ║
+   ╚══════════════════════════════════════════════════════════════════════════╝
+
+   Replaces two anchor quotes plus a three-card row. Arpit: "the layout of
+   testimonial section feels common place and templated." Same diagnosis as the
+   case board — five figures of equal weight, differentiated only by size — but
+   the content had a stronger structure the layout threw away: these five people
+   do not sit in a row, they SURROUND him. Client CTO and manager above, tech
+   lead and engineer beside, a designer at the next desk. The section already
+   labelled each voice by vantage point; only the layout ignored it.
+
+   Measured: the band goes from ~1,400px of stacked quotes to 428px at 1440 and
+   767px on a phone. One quote lands at display size instead of five competing,
+   which is the third section to earn the "reads heavy" complaint.
+
+   Radio inputs, not :target — a hash would hijack the URL and jump the page.
+   The radios sit inside their own labels, where they belong semantically, and
+   :has() reaches the stage from the shared ancestor. Zero script: with CSS
+   disabled all five quotes read in order.
+
+   A11y: .qv-list is a radiogroup, so arrow keys move between voices natively
+   and every quote is reachable by changing selection. The four unselected
+   panels are display:none — a screen-reader user meets five named controls and
+   hears whichever they select, rather than five quotes in a row.
+*/
+html[data-theme="ember"] body.p-home .qvoices{
+  display:grid;grid-template-columns:minmax(230px,300px) minmax(0,1fr);
+  column-gap:48px;align-items:start;margin-top:32px}
+html[data-theme="ember"] body.p-home .qv-list{display:grid;gap:4px;min-width:0}
+html[data-theme="ember"] body.p-home .qv-t{display:block;cursor:pointer;
+  padding:12px 16px;border-left:2px solid transparent;
+  transition:color .18s,border-color .18s,background .18s}
+/* the radio is operated through its label; kept in the a11y tree, off the page */
+html[data-theme="ember"] body.p-home .qv-t input{position:absolute;width:1px;height:1px;
+  opacity:0;pointer-events:none}
+html[data-theme="ember"] body.p-home .qv-n{display:block;font-family:var(--sans);
+  font-weight:600;font-size:13px;line-height:1.4;color:var(--ink-dim)}
+html[data-theme="ember"] body.p-home .qv-v{display:block;margin-top:4px;
+  font-family:var(--mono);font-style:normal;font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-dim);opacity:.8;line-height:1.4}
+html[data-theme="ember"] body.p-home .qv-t:hover .qv-n{color:var(--ink)}
+html[data-theme="ember"] body.p-home .qv-t:has(input:checked){
+  border-left-color:var(--rose);background:color-mix(in oklab,var(--rose) 8%,transparent)}
+html[data-theme="ember"] body.p-home .qv-t:has(input:checked) .qv-n{color:var(--ink)}
+html[data-theme="ember"] body.p-home .qv-t:has(input:focus-visible){
+  outline:2px solid var(--rose);outline-offset:2px}
+
+/* The band is act 04, so its quote card takes the rose heat rather than .qt's
+   ember fallback — the marked voice and the card's top edge were two different
+   accents in one component. */
+html[data-theme="ember"] body.p-home .qvoices{--heat:var(--rose)}
+/* The card was 804px around a 445px measure: 359px of void inside a bordered
+   box, which is the defect I keep writing rules about. Display type wants a
+   short measure, so the CARD hugs the measure instead of the measure stretching
+   to the card. */
+html[data-theme="ember"] body.p-home .qv-stage{min-width:0}
+html[data-theme="ember"] body.p-home .qt-solo{max-width:min(100%,600px)}
+html[data-theme="ember"] body.p-home .qt-solo{display:none;margin:0}
+html[data-theme="ember"] body.p-home .qvoices:has(#qv0:checked) #qvq0,
+html[data-theme="ember"] body.p-home .qvoices:has(#qv1:checked) #qvq1,
+html[data-theme="ember"] body.p-home .qvoices:has(#qv2:checked) #qvq2,
+html[data-theme="ember"] body.p-home .qvoices:has(#qv3:checked) #qvq3,
+html[data-theme="ember"] body.p-home .qvoices:has(#qv4:checked) #qvq4{display:block}
+/* no :has() support: every quote shows, stacked — the information survives */
+@supports not selector(:has(*)){
+  html[data-theme="ember"] body.p-home .qt-solo{display:block;margin-bottom:32px}
+  html[data-theme="ember"] body.p-home .qv-list{display:none}
+}
+html[data-theme="ember"] body.p-home .qt-solo blockquote{margin:0;font-family:var(--serif);
+  font-weight:300;font-style:normal;font-size:clamp(19px,2.1vw,26px);line-height:1.45;
+  color:var(--ink);max-width:40ch}
+html[data-theme="ember"] body.p-home .qt-solo figcaption{margin-top:20px;
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-dim);
+  line-height:1.4}
+html[data-theme="ember"] body.p-home .qt-solo figcaption b{font-family:var(--sans);
+  font-weight:600;font-size:14px;color:var(--ink);line-height:1.4}
+@media (max-width:760px){
+  html[data-theme="ember"] body.p-home .qvoices{grid-template-columns:minmax(0,1fr);row-gap:24px}
+}
