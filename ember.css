@@ -3796,9 +3796,16 @@ html[data-theme="ember"] body.p-home .qv-t input{position:absolute;width:1px;hei
   opacity:0;pointer-events:none}
 html[data-theme="ember"] body.p-home .qv-n{display:block;font-family:var(--sans);
   font-weight:600;font-size:13px;line-height:1.4;color:var(--ink-dim)}
-html[data-theme="ember"] body.p-home .qv-v{display:block;margin-top:4px;
-  font-family:var(--mono);font-style:normal;font-size:10.5px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--ink-dim);opacity:.8;line-height:1.4}
+/* Sentence case, not caps. The string this carries used to be .qt-view — a
+   one-off eyebrow above a single quote card, where uppercase mono is the house
+   label treatment and correct. Its JOB changed: it is now one of eight rows a
+   reader scans as a menu, and these are sentences of 30-36 characters, not
+   labels. Eight stacked lines of all-caps shout and read slower, and the
+   vantage line is the part doing the differentiating — so it gets the most
+   readable setting, and the hierarchy comes from weight and ink instead. */
+html[data-theme="ember"] body.p-home .qv-v{display:block;margin-top:3px;
+  font-family:var(--sans);font-style:normal;font-weight:400;font-size:12px;
+  letter-spacing:0;text-transform:none;color:var(--ink-dim);line-height:1.4}
 html[data-theme="ember"] body.p-home .qv-t:hover .qv-n{color:var(--ink)}
 html[data-theme="ember"] body.p-home .qv-t:has(input:checked){
   border-left-color:var(--rose);background:color-mix(in oklab,var(--rose) 8%,transparent)}
@@ -3806,7 +3813,12 @@ html[data-theme="ember"] body.p-home .qv-t:has(input:checked) .qv-n{color:var(--
 html[data-theme="ember"] body.p-home .qv-t:has(input:focus-visible){
   outline:2px solid var(--rose);outline-offset:2px}
 
-html[data-theme="ember"] body.p-home .qt-solo{display:none;margin:0;
+/* height:auto is DECLARED, not inherited: the base .qt sets height:100% — right
+   when it was three equal-height cards in a row, and wrong for one card at a
+   time. As a grid item spanning every row it resolved to the full span, so the
+   short quotes carried up to 168px of empty card. A component that inherits a
+   critical property renders differently in every context it lands in. */
+html[data-theme="ember"] body.p-home .qt-solo{display:none;margin:0;height:auto;
   max-width:min(100%,600px)}
 html[data-theme="ember"] body.p-home .qvoices:has(#qv0:checked) #qvq0,
 html[data-theme="ember"] body.p-home .qvoices:has(#qv1:checked) #qvq1,
@@ -3842,25 +3854,30 @@ html[data-theme="ember"] body.p-home .qt-solo{margin:8px 0 16px}
    accordion at every width: the effect must appear under the thing the thumb
    touched, and on a tablet the two-column version put the fifth voice's quote
    585px away from its control. */
-@media (min-width:761px) and (hover:hover) and (pointer:fine){
+/* 1000px, not 761: at 768 the card column is ~300px, which runs a 26px display
+   quote to 26 lines and stretches the eight label rows to match it. The
+   two-column master/detail needs real width; below that the accordion reads
+   better and keeps the effect under the control. */
+@media (min-width:1000px) and (hover:hover) and (pointer:fine){
+  /* ROWS MUST BE DECLARED. grid-row:1/-1 counts lines of the EXPLICIT grid, and
+     with no grid-template-rows there is only one line — so "1 / -1" silently
+     collapsed to row 1, the card inflated the FIRST label's row to its own 421px
+     height, and a 372px hole opened between the first name and the second. It
+     measured fine on every check I had (the card was in view, one quote showed,
+     nothing overflowed) because none of them asked whether the list was still a
+     list. Arpit saw it instantly.
+     One track per voice, so the card spans all of them and the sum of the label
+     rows carries its height. If a voice is added, add a track. */
   html[data-theme="ember"] body.p-home .qvoices{
     grid-template-columns:minmax(230px,340px) minmax(0,1fr);
+    grid-template-rows:repeat(8,auto);
     column-gap:48px;align-items:start}
   html[data-theme="ember"] body.p-home .qv-t{grid-column:1;padding:8px 16px}
-  /* At eight voices the index is 884px tall — taller than a laptop viewport —
-     so a top-aligned card meant clicking the eighth name changed something
-     already scrolled off. The card follows the list instead. Proximity again:
-     the effect has to be where the eye is, and on a pointer device that is
-     wherever the cursor has travelled to. */
-  html[data-theme="ember"] body.p-home .qt-solo{grid-column:2;grid-row:1/-1;
-    align-self:start;position:sticky;top:104px}
-  /* Sticky travel is (index height - card height). Once it runs out the card
-     rises with the page and slides under the FIXED nav: measured at 1440x700,
-     the quote's first line sat 44px behind it, with UL.nav-links painted over
-     the words. The last index row carries the clearance, so the travel always
-     outlasts the list and the card stays fully readable while the list is
-     still in play. Designed space with a job, not a gap. */
-  html[data-theme="ember"] body.p-home .qv-t:last-of-type{margin-bottom:160px}
+  html[data-theme="ember"] body.p-home .qt-solo{grid-column:2;grid-row:1/-1;align-self:start}
+  /* No sticky and no trailing clearance: both were treating the symptom of the
+     bug above. With the rows declared, the index is ~450px and the tallest card
+     ~421px — comparable, both inside one viewport, so nothing needs to follow
+     anything. */
 }
 
 /* ╔══════════════════════════════════════════════════════════════════════════╗
