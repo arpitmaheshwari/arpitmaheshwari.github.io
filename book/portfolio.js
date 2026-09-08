@@ -1864,7 +1864,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "Your model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. Staff / Principal or founding product-design lead for AI products — open to a hands-on director seat. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
+    }, "Your AI model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. Staff / Principal or founding product-design lead for AI products — open to a hands-on director seat. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-social",
       style: {
         marginTop: 24

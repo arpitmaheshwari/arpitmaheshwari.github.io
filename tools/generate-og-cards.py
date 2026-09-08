@@ -66,7 +66,7 @@ REG = [
     #     own scale and its italic gold clause (hero=1, em=...) rather than being flattened
     #     into the generic card; kicker chosen by Arpit on 2026-08-30 from three renders.
     ("home-og.png", "STAFF / PRINCIPAL PRODUCT DESIGNER \u00b7 AI & LLM PRODUCTS",
-     "Your model is right. Your users still won\u2019t bet on it.", "",
+     "Your AI model is right. Your users still won\u2019t bet on it.", "",
      "Arpit Maheshwari \u00b7 arpitmaheshwari.com",
      {"hero": "1", "em": "won\u2019t bet on it."}),
     # --- essays. The four essay cards were hand-made and outside this generator until

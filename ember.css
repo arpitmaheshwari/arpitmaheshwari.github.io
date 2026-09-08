@@ -2348,19 +2348,47 @@ html[data-theme="ember"] body.p-home .whoband .wl-lead p{max-width:none;margin-b
    numeral size/color/leading are set here, never inherited.
    Accent per act follows the site cycle: ember → violet → amber → rose.
    ============================================================ */
-html[data-theme="ember"] .chap{display:grid;grid-template-columns:auto auto 1fr;column-gap:20px;row-gap:12px;align-items:center;margin:0 0 40px}
-html[data-theme="ember"] .chap-n{font-family:var(--serif);font-weight:300;font-size:clamp(56px,7vw,88px);line-height:1;letter-spacing:-0.02em}
-html[data-theme="ember"] .chap-t{font-family:var(--mono);font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-muted);font-weight:500}
-html[data-theme="ember"] .chap-rule{height:1px;background:var(--border);min-width:48px}
+/* two columns now, not three: the decorative .chap-rule came out with the act
+   title's resize on 2026-09-08. It was a 48px dash drawn to sit beside a 12px
+   uppercase eyebrow; against a wrapping 26px serif line it stranded at the first
+   line's height, and the act boundary already carries a full-bleed hairline
+   (main > section:has(.chap)) — so it was a second, smaller, orphaned rule
+   saying the same thing. align-items:start, because a one-line numeral beside a
+   two-line title centres the numeral against the middle of the block. */
+html[data-theme="ember"] .chap{display:grid;grid-template-columns:auto 1fr;column-gap:16px;row-gap:12px;align-items:start;margin:0 0 40px}
+/* THE ACT NUMERAL WAS THE LOUDEST THING ON THE PAGE — 2026-09-08.
+   Arpit: "I still can't confidently scan it in a scroll." Instrument built for
+   it: step down the page half a viewport at a time and record the LARGEST piece
+   of text on screen, because that is what a scanning eye actually reads.
+   Result at 1440x900: EIGHT of nineteen scan positions had a bare "01" / "02" /
+   "03" / "04" as the biggest thing in view. At clamp(56px,7vw,88px) the numeral
+   rendered 88px — TWICE every section heading (42px) and larger than the h1's
+   own 83px. So the scan path was a list of numbers, not a list of claims, and
+   the eye was pulled off "By Friday of week one I've read your evals..." onto a
+   marker that says nothing.
+   The principle: in a scroll, the largest thing on screen must be the CLAIM, not
+   the marker. The numeral stays an act marker and stops out-shouting the
+   heading it introduces — capped below the 42px section h2. */
+html[data-theme="ember"] .chap-n{font-family:var(--serif);font-weight:300;font-size:clamp(18px,1.7vw,22px);line-height:1;letter-spacing:-0.02em}
+/* AND THE ACT'S TITLE IS THE ACT'S CLAIM, so it has to be readable at scan
+   scale. With the numeral shrunk, one scan position was still left reading a bare
+   "03": the act opener is on screen there but the section's own h2 is not yet, and
+   the title beside the numeral was 12px mono uppercase — an eyebrow, invisible to
+   a scanning eye. Serif at 26px puts the four act titles ("The person — who you'd
+   be hiring", "The method — the contract, then the work") into the scan path,
+   while staying under the 42px section h2 so the h2 still leads inside the act.
+   This changes the .chap component the design system documents as
+   "serif 300 numeral + mono 12px UC title"; DESIGN-SYSTEM-EMBER.md is updated to
+   match, because a rule I wrote down is not a fact I verified. */
+html[data-theme="ember"] .chap-t{font-family:var(--serif);font-size:clamp(20px,2vw,26px);font-weight:300;letter-spacing:-0.01em;line-height:1.25;text-transform:none;color:var(--ink)}
 html[data-theme="ember"] .chap-i{grid-column:1/-1;margin:0;font-family:var(--sans);font-size:16px;line-height:1.55;color:var(--ink-muted);max-width:600px}
 html[data-theme="ember"] .chap-ember .chap-n{color:#FF8A5C}
 html[data-theme="ember"] .chap-violet .chap-n{color:var(--violet)}
 html[data-theme="ember"] .chap-amber .chap-n{color:var(--amber)}
 html[data-theme="ember"] .chap-rose .chap-n{color:var(--rose)}
 @media (max-width:768px){
-  html[data-theme="ember"] .chap{grid-template-columns:auto 1fr;margin-bottom:32px}
-  html[data-theme="ember"] .chap-n{font-size:48px}
-  html[data-theme="ember"] .chap-rule{display:none}
+  html[data-theme="ember"] .chap{margin-bottom:32px}
+  html[data-theme="ember"] .chap-n{font-size:18px}
   html[data-theme="ember"] .chap-t{line-height:1.5}
 }
 
@@ -2536,7 +2564,6 @@ html[data-theme="ember"] body.p-home .contract{background:var(--cream);color:var
   --border:rgba(34,28,16,.2);--line:rgba(34,28,16,.2);
   --amber:#7E5A14;--violet:#6B3A99;--ember:#A93A24;--card:#E6DCC3;--bg-card:#E6DCC3;
   --link:#6B3A99;--link-hover:#57307D}
-html[data-theme="ember"] body.p-home .contract .chap-rule{background:rgba(34,28,16,.2)}
 /* the live demo stays a dark instrument ON the paper — it re-declares the dark
    set in full, so the section remap cannot reach inside it (lesson 4/11) */
 html[data-theme="ember"] body.p-home .contract .ccd{background:#241830;border-color:rgba(245,237,230,.14);
