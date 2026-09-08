@@ -6,15 +6,15 @@
 
   var CSS = "" +
     ".pd{border:1px solid var(--border);border-radius:8px;padding:22px 24px;background:var(--bg-card)}" +
-    ".pd__lead{font-family:var(--ff-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 14px}" +
+    ".pd__lead{font-family:var(--ff-mono);font-size:10px;letter-spacing:.02em;color:var(--ink-dim);margin:0 0 14px}" +
     ".pd__row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:14px}" +
     ".pd__chip{font-family:var(--ff-display);font-weight:300;font-size:34px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums lining-nums}" +
     ".pd__seg{display:flex;gap:6px;flex:1 1 auto;min-width:200px}" +
-    ".pd__btn{flex:1;padding:9px 6px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted);background:transparent;border:1px solid var(--border);border-radius:5px;cursor:pointer;transition:border-color .15s,color .15s,background .15s}" +
+    ".pd__btn{flex:1;padding:9px 6px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.02em;color:var(--ink-muted);background:transparent;border:1px solid var(--border);border-radius:5px;cursor:pointer;transition:border-color .15s,color .15s,background .15s}" +
     ".pd__btn:hover{border-color:var(--gold);color:var(--ink)}" +
     ".pd__btn.on{background:var(--gold);color:var(--bg);border-color:var(--gold)}" +
     ".pd__btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}" +
-    ".pd__go{padding:9px 16px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);background:transparent;border:1px solid var(--gold-dark);border-radius:5px;cursor:pointer;transition:background .15s,color .15s}" +
+    ".pd__go{padding:9px 16px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.02em;color:var(--gold);background:transparent;border:1px solid var(--gold-dark);border-radius:5px;cursor:pointer;transition:background .15s,color .15s}" +
     ".pd__go:hover{background:var(--gold);color:var(--bg)}" +
     ".pd__verdict{padding-top:14px;border-top:1px solid var(--border)}" +
     ".pd__verb{font-family:var(--ff-display);font-style:italic;font-size:21px;line-height:1.2;color:var(--gold);display:block;margin-bottom:5px}" +
