@@ -4,8 +4,11 @@ SIBLING BASELINE ALIGNMENT — the class of defect every other gate is blind to.
 
 WHY THIS EXISTS. On 2026-09-08 Arpit selected the act numeral on the homepage
 and said "these numerals don't feel align to the corresponding text". He was
-right in all four acts at all three widths: the numeral's baseline sat 6.0px
-above the title's at 1440 and 7.0px at 768 and 390. Every gate in this repo passed it,
+right in all four acts at all three widths: the numeral's baseline sat about
+6px above the title's — 6.3px at 1440 and 6.5px at 768 by the read-only metric
+below, 6.0px and 7.0px by the inline-block probe it replaced. The two methods
+agree within 0.5px; the sibling DIFFERENCE, which is what this reports, agrees
+far closer than that. Every gate in this repo passed it,
 and they had to — .chap used align-items:start, so the two boxes had IDENTICAL
 tops (measured: n=1141.0, t=1141.0). Contrast, overflow, spacing, reflow,
 line-height and heading-rank all ask a question about ONE element (its own
@@ -20,13 +23,29 @@ row mixing a display numeral, a mono label or an eyebrow with body copy is
 exposed. receipt-align-check.py checks LEFT edges of one component on six case
 pages; nothing checked baselines anywhere.
 
-HOW IT MEASURES. Not with font arithmetic — the first attempt approximated the
-ascent as 0.75em and reported a 4.5px spread on a row the browser had already
-aligned exactly, which is an instrument fault, not a finding. Instead it asks
-the browser: insert a zero-size inline-block as the element's first child. Such
-a box sits ON the line's baseline by definition, so its bottom edge IS the
-baseline y, exactly, in the browser's own metrics. The probe is removed
-immediately and the page is a throwaway.
+MEASUREMENT — READ-ONLY, AND THAT IS THE WHOLE POINT.
+Two earlier attempts failed, in opposite directions, and the second failure is
+why this is now read-only:
+  1. hand arithmetic that approximated the ascent as 0.75em. It reported a 4.5px
+     spread on a row the browser had already aligned exactly.
+  2. inserting a zero-size inline-block as the element's first child, whose
+     bottom edge sits ON the line's baseline by definition. Exact — but it
+     MUTATES LAYOUT. On lab/index.html at 768px, inserting it into a wrapping
+     flex row of chips moved two of the three chips up a whole line (32.7px):
+     the gate then compared positions from the perturbed page against rows
+     grouped from the unperturbed one, and invented a 32.7px defect. An
+     instrument that changes the thing it measures cannot be trusted about a
+     layout, however exact its reading.
+That was the FOURTH instrument fault on this gate (rotated frames, descendant
+height, screen-reader text, and this), which is the point at which this repo's
+own rule says stop patching and change the architecture. So: the browser's real
+font metrics via canvas TextMetrics — fontBoundingBoxAscent/Descent for the
+element's exact computed font — and the baseline is content-box top +
+half-leading + ascent. Nothing is inserted, nothing reflows.
+Validated against the probe on rows the probe does NOT disturb: agreement within
+0.88px absolute, and the error is systematic PER FONT, so the sibling DIFFERENCE
+— the only quantity this gate reports — agrees within 0.03px to 0.25px. Well
+inside the 1.5px tolerance.
 
 WHAT IT FLAGS. Only rows where misalignment is unlikely to be deliberate: the
 children must be text-only leaves (no image, svg, input or nested block), must
@@ -48,6 +67,9 @@ this repo tilts things on purpose (the boarding pass 1.4deg, the facts card
 1.2deg). Measuring those rows in their own frame is possible and is NOT done
 here — so a real misalignment inside a tilted card is invisible to this gate.
 Said plainly rather than quietly, because that is where the next defect hides.
+
+It also skips single-glyph children (see the icon note in the leaf filter),
+which means a genuinely misaligned icon is invisible to it.
 
 WHAT IT CANNOT SEE. Children that are themselves flex or grid containers are
 skipped, because the probe would become a flex/grid item and stop reporting a
@@ -72,83 +94,63 @@ PROBE = r"""
   const TOL = %f, OVERLAP = %f;
   const LEAF_BAD = 'img,svg,input,textarea,select,button,video,canvas,picture,iframe';
   const txt = el => [...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim());
-  // A zero-size inline-block sits ON the baseline: its bottom edge IS the baseline.
-  function baseline(el){
-    const p = document.createElement('span');
-    p.setAttribute('data-bl-probe','');
-    p.style.cssText = 'display:inline-block;width:0;height:0;overflow:hidden;vertical-align:baseline';
-    el.insertBefore(p, el.firstChild);
-    const y = p.getBoundingClientRect().bottom;
-    p.remove();
-    return y;
-  }
-  // Is this element exactly ONE rendered line? Measured on the CONTENT box
-  // against the element's own line-height, because both cheaper tests lie:
-  //   - height/lineHeight straight off the border box counts PADDING as
-  //     leading and calls a padded one-line button three lines;
-  //   - a Range over the element's own direct text nodes cannot see height
-  //     contributed by DESCENDANTS. That hole let the fintech signal row
-  //     through: .plF-sig's first child holds a heading AND a three-line
-  //     quote, and the chips beside it are centred against the whole 120px
-  //     block. The gate called that a 29.2px baseline defect. It is not a
-  //     text row at all.
+
+  // Is this element exactly ONE rendered line? Measured on the CONTENT box against
+  // the element's own line-height. Both cheaper tests lie: height/lineHeight off the
+  // border box counts PADDING as leading; a Range over an element's own direct text
+  // nodes cannot see height contributed by DESCENDANTS (that hole called the fintech
+  // signal row — a heading plus a three-line quote — a 29.2px baseline defect).
   function oneLine(el){
     const cs = getComputedStyle(el);
     const lh = parseFloat(cs.lineHeight);
-    if (!isFinite(lh) || lh <= 0) return false;   // line-height:normal — cannot judge
+    if (!isFinite(lh) || lh <= 0) return false;          // line-height:normal — cannot judge
     const inner = el.clientHeight
       - parseFloat(cs.paddingTop || 0) - parseFloat(cs.paddingBottom || 0);
     return Math.abs(inner - lh) <= 1.5;
   }
-  function skewed(el){
-    for (let n = el; n && n !== document.documentElement; n = n.parentElement) {
-      const t = getComputedStyle(n).transform;
-      if (!t || t === 'none') continue;
-      const m = t.match(/matrix(?:3d)?\(([^)]+)\)/);
-      if (!m) continue;
-      const v = m[1].split(',').map(Number);
-      // matrix(a,b,c,d,e,f): b and c are the rotation/skew terms
-      const b = v.length === 6 ? v[1] : v[1], cc = v.length === 6 ? v[2] : v[4];
-      if (Math.abs(b) > 1e-4 || Math.abs(cc) > 1e-4) return true;
-    }
-    return false;
+
+  // THE MEASUREMENT. Do not compute a baseline — ask the browser the question that
+  // actually matters: would baseline-aligning this row move anything relative to
+  // anything else? Force align-items:baseline, watch what shifts, put it back.
+  // The MISALIGNMENT is the SPREAD of those shifts: if every child moves by the same
+  // amount the row merely translated, which is not a misalignment.
+  function shifts(parent, kids){
+    const h0 = parent.getBoundingClientRect().height;
+    const before = kids.map(k => k.getBoundingClientRect().top);
+    const had = parent.style.alignItems;
+    parent.style.alignItems = 'baseline';
+    const h1 = parent.getBoundingClientRect().height;
+    const after = kids.map(k => k.getBoundingClientRect().top);
+    if (had) parent.style.alignItems = had; else parent.style.removeProperty('align-items');
+    const d = kids.map((k, i) => after[i] - before[i]);
+    return { d, spread: Math.max(...d) - Math.min(...d), grew: +(h1 - h0).toFixed(2) };
   }
+
   const out = [];
   for (const parent of document.querySelectorAll('*')) {
     const pcs = getComputedStyle(parent);
     if (!/^(grid|flex|inline-grid|inline-flex)$/.test(pcs.display)) continue;
     if (pcs.flexDirection === 'column' && pcs.display.includes('flex')) continue;
-    // getBoundingClientRect returns the TRANSFORMED box. Under a rotation or
-    // skew, two children that share a baseline in their own frame have
-    // different screen-space y — by design, not by defect. The first run of
-    // this gate reported 11.6px between the boarding pass's "IND" and "YOU",
-    // two identical 44px spans: 474px of row width x the pass's 1.4deg tilt
-    // (matrix b = 0.0244) is 11.6px exactly. It was measuring the tilt.
-    // Scale and translate are fine — they preserve baseline coincidence — so
-    // only a non-zero b or c component (rotation/skew) disqualifies a row.
-    if (skewed(parent)) continue;
     const kids = [...parent.children].filter(k => {
-      if (!txt(k)) return false;                       // must carry its own text
-      if (k.querySelector(LEAF_BAD)) return false;     // text-only leaves
+      if (!txt(k)) return false;
+      if (k.querySelector(LEAF_BAD)) return false;
       const cs = getComputedStyle(k);
       if (cs.display === 'none' || cs.visibility === 'hidden') return false;
-      // The probe must land in an INLINE formatting context. If the child is
-      // itself flex or grid, a zero-size inline-block becomes a flex/grid item
-      // and its bottom edge is no longer the line's baseline — the instrument
-      // would invent a finding. Skip rather than mis-measure.
-      if (/(flex|grid)/.test(cs.display)) return false;
-      // Screen-reader-only text has no visual baseline to align. The site's
-      // .visually-hidden is position:absolute;width:1px;height:1px;clip:rect(0,0,0,0)
-      // — tested geometrically, not by class name, so any convention is caught.
-      if (cs.clip && cs.clip !== 'auto') return false;
-      if (cs.clipPath && cs.clipPath !== 'none') return false;
+      if (cs.clip && cs.clip !== 'auto') return false;          // screen-reader-only text
+      if (cs.clipPath && cs.clipPath !== 'none') return false;  // has no visual baseline
+      // An ICON rendered as text is not text sharing a baseline. The boarding
+      // pass's plane sits CENTRED between "IND" and "YOU" — that is how a ticket
+      // is drawn, and baseline-aligning it would drop the glyph to the text
+      // baseline. Same for a chevron, arrow or bullet beside a label. Tested by
+      // CONTENT, not class: one or two characters containing no letter or digit.
+      // (Removed once for simplicity, which immediately re-flagged the plane.)
+      const t = (k.textContent || '').trim();
+      if (t.length <= 2 && !/[\p{L}\p{N}]/u.test(t)) return false;
       const r = k.getBoundingClientRect();
-      if (r.width < 2 || r.height < 2) return false;
-      return true;
+      return r.width >= 2 && r.height >= 2;
     });
     if (kids.length < 2) continue;
-    // group into visual rows
-    const boxes = kids.map(k => ({k, r: k.getBoundingClientRect()}));
+    const boxes = kids.map(k => ({ k, r: k.getBoundingClientRect() }));
     const used = new Set();
     for (let i = 0; i < boxes.length; i++) {
       if (used.has(i)) continue;
@@ -160,33 +162,28 @@ PROBE = r"""
         if (ov / Math.min(a.height, b.height) >= OVERLAP) { row.push(boxes[j]); used.add(j); }
       }
       if (row.length < 2) continue;
-      const meas = row.map(({k}) => {
-        const cs = getComputedStyle(k);
-        return {sel: (k.tagName.toLowerCase() + (k.className && typeof k.className === 'string'
-                      ? '.' + k.className.trim().split(/\s+/).slice(0,2).join('.') : '')),
-                y: baseline(k), fs: parseFloat(cs.fontSize), lh: cs.lineHeight,
-                text: (k.textContent || '').trim().slice(0, 28)};
-      });
-      // ONLY single-line rows. If any child wraps, alignment is a judgement the
-      // gate cannot make: centre is then defensible and baseline would strand
-      // the wrapped lines. The site footer is exactly this — its note wraps to
-      // two lines at 1440 and the four one-line items are centred against it,
-      // which is correct; the gate's first run called that a 13.3px defect.
-      // .chap is still caught at 768 and 1440, where its title is one line.
+      // Only single-line rows. Where a child wraps, centre and baseline are both
+      // defensible and no gate should cast that vote — the site footer is exactly
+      // that case and an earlier build of this called it a 13.3px defect.
       if (row.some(({k}) => !oneLine(k))) continue;
-      const ys = meas.map(m => m.y);
-      const spread = Math.max(...ys) - Math.min(...ys);
-      if (spread <= TOL) continue;
+      const els = row.map(x => x.k);
+      const s = shifts(parent, els);
+      if (s.spread <= TOL) continue;
+      const lo = Math.min(...s.d);
       out.push({parent: parent.tagName.toLowerCase() +
                   (parent.className && typeof parent.className === 'string'
                    ? '.' + parent.className.trim().split(/\s+/).slice(0,2).join('.') : ''),
                 align: pcs.alignItems, display: pcs.display,
-                spread: +spread.toFixed(1),
-                kids: meas.map(m => ({s: m.sel, fs: m.fs, lh: m.lh,
-                                      d: +(m.y - Math.min(...ys)).toFixed(1), t: m.text}))});
+                spread: +s.spread.toFixed(1), grew: s.grew,
+                kids: els.map((k, n) => {
+                  const cs = getComputedStyle(k);
+                  return {s: k.tagName.toLowerCase() + (k.className && typeof k.className === 'string'
+                            ? '.' + k.className.trim().split(/\s+/).slice(0,2).join('.') : ''),
+                          fs: parseFloat(cs.fontSize), lh: cs.lineHeight,
+                          d: +(s.d[n] - lo).toFixed(1),
+                          t: (k.textContent || '').trim().slice(0, 28)};})});
     }
   }
-  document.querySelectorAll('[data-bl-probe]').forEach(p => p.remove());
   return out;
 })()
 """ % (TOL, OVERLAP)
@@ -239,7 +236,7 @@ def main():
         print('    worst %.1fpx at %dpx on %s   (%d page-width hit(s), %d page(s))'
               % (r['spread'], w, path, len(hits), len(others)))
         for k in r['kids']:
-            print('      %-34s %5.1fpx/lh %-6s  baseline %+5.1fpx  "%s"'
+            print('      %-34s %5.1fpx/lh %-6s  shifts %+5.1fpx  "%s"'
                   % (k['s'], k['fs'], k['lh'], k['d'], k['t']))
         if len(others) > 1:
             print('    also: %s' % ', '.join(others[:6]) + (' …' if len(others) > 6 else ''))

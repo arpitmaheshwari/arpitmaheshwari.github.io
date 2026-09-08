@@ -3285,8 +3285,12 @@ html[data-theme="ember"] body.p-writing .slip:nth-child(4n+4) > a{transform:rota
 html[data-theme="ember"] body.p-writing .slip > a:hover,
 html[data-theme="ember"] body.p-writing .slip > a:focus-visible{
   transform:rotate(0deg) translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+/* baseline — the same call Arpit made on .chap and #thoughts .ixi: a big
+   numeral beside small text belongs on that text's line. Here a 32px "01"
+   sat 7.0px off a 10px date under align-items:center. Third instance of one
+   pattern, so this is his decision applied, not a new one. */
 html[data-theme="ember"] body.p-writing .slip-head{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
   margin-bottom:16px}
 html[data-theme="ember"] body.p-writing .slip-no{
   font-family:var(--serif);font-size:32px;font-weight:300;line-height:1;
