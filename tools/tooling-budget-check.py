@@ -53,7 +53,18 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #                       hash-versioned bumps in a row would both have produced `s1`: a
 #                       REPEATED cache key, which is the one failure that script exists to
 #                       prevent. It uses the content hash now.
-CEILING = 11_800
+# 2026-09-08: 11_800 -> 11_840. What the 40 lines bought: heading-rank-check now
+# takes its page set from gatelib instead of a private list, so it no longer
+# navigates folio/index.html (a script redirect stub), read the HOMEPAGE's DOM
+# mid-handover and reported the same six headings twice against a 1.5KB file —
+# the FOURTH gate to hit that bug. Plus the case-board heading ranks, registered
+# by component so 15/600 stays illegal everywhere else. The ratio went DOWN
+# (1.83x -> 1.82x): tooling did not grow relative to the site it governs.
+# OUTSTANDING DEBT: nine gates still discover pages themselves (ci-claim,
+# closed-state-cover, css-coverage, freshness-stamp, inline-style, jsonld,
+# link-integrity, social-title, wcag-reflow). Folding those into gatelib is the
+# repayment, and it retires this bug class rather than fixing it a fifth time.
+CEILING = 11_840
 
 
 def loc(paths):

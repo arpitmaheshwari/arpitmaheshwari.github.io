@@ -29,11 +29,20 @@ _cdp.ensure_server(8000)
 _s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__)))
 from cdp import Browser
 
-HOME = ["index.html", "folio/index.html"]
-SUB  = ["case-studies/adtech.html","case-studies/fintech.html","case-studies/vc-diligence.html",
+from gatelib import pages as _pages
+
+# gatelib is the single definition of "a page" and knows the redirect stubs.
+# folio/index.html is one: it hands over to the homepage by script, so this gate
+# navigated it, read the HOMEPAGE's DOM, and reported the same six headings twice
+# against a 1.5KB file. Fourth gate routed through gatelib for this same bug.
+_LIVE = {str(p) for p in _pages(include_book=False, include_redirects=False)}
+def _live(ps): return [p for p in ps if p in _LIVE]
+
+HOME = _live(["index.html", "folio/index.html"])
+SUB  = _live(["case-studies/adtech.html","case-studies/fintech.html","case-studies/vc-diligence.html",
         "case-studies/ptc.html","case-studies/o2.html","case-studies/orgos.html",
         "case-studies/planit.html","patterns/index.html","lab/index.html",
-        "process/index.html","fit/index.html"]
+        "process/index.html","fit/index.html"])
 
 JS = """JSON.stringify((function(){var out=[];
 document.querySelectorAll('main h2, main h3, body > section h2, body > section h3').forEach(function(e){
@@ -41,7 +50,7 @@ document.querySelectorAll('main h2, main h3, body > section h2, body > section h
   var cs=getComputedStyle(e);
   out.push({tag:e.tagName.toLowerCase(), sz:Math.round(parseFloat(cs.fontSize)), w:cs.fontWeight,
     cls:(e.className+''), in_vband:!!e.closest('.vband'), in_facts:!!e.closest('.facts'),
-    in_idx:!!e.closest('.idx'), in_lab:!!(e.closest('.labc')||e.closest('.lab3')),
+    in_bcard:!!e.closest('.bcard'), in_lead:!!e.closest('.bcard--lead'), in_lab:!!(e.closest('.labc')||e.closest('.lab3')),
     txt:e.textContent.trim().slice(0,36)});});
 return out;})())"""
 
@@ -49,7 +58,10 @@ def classify_home(r):
     if r['tag']=='h2': return r['sz'] in (42,56) and r['w']=='300'
     if 'rcpt-h' in r['cls']: return r['sz']==20 and r['w']=='400'
     if r['in_facts']: return r['sz']==20 and r['w']=='600'
-    if r['in_idx']: return r['sz']==14
+    # case board (2026-09-08), registered by COMPONENT not value so 15/600 stays
+    # illegal elsewhere: lead card = serif claim clamp(20,2vw,26); the six = 15/600.
+    if r['in_lead']: return 20 <= r['sz'] <= 26 and r['w']=='400'
+    if r['in_bcard']: return r['sz']==15 and r['w']=='600'
     return (r['sz'],r['w']) in ((22,'600'),(17,'600'))
 
 def classify_sub(r):

@@ -3332,14 +3332,48 @@ html[data-theme="ember"] body.p-writing .slip-x{
    Rows are 1 / 3 / 3 at desktop, 1 / 2 / 2 / 2 at tablet, one column on a
    phone. Measured leftover space in every row at nine widths: 0px. */
 html[data-theme="ember"] body.p-home .caseboard{
-  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;
   align-items:stretch;margin-top:16px}
 html[data-theme="ember"] body.p-home .bcard{grid-column:span 2}
+
+/* ── one eye level across the row (option D, 2026-09-08) ───────────────────
+   Arpit: "$1M per year, 4M+, zero managers, 60% faster … they don't appear at
+   the same eye level on desktop." Measured: 58px apart in the same row. The
+   cause was structural, not per-card — each instrument is a different height
+   and the number came AFTER it, so the number inherited whatever height the
+   instrument happened to be.
+
+   The fix is subgrid: the six cards borrow the board's row tracks, so number,
+   sector, title and instrument each sit on a shared line. Measured after:
+   numbers 0px apart, instruments 0px apart, no dead space inside any
+   instrument. It fixes the CLASS — the next title that wraps to three lines
+   cannot knock the row out of alignment, because the title track grows for
+   every card at once.
+
+   Rejected: stretching the instrument to fill (numbers still 20px apart and
+   79px of dead space INSIDE a bordered box) and bottom-aligning the
+   instruments (numbers level but instruments 58px apart, and the eye lands on
+   empty card-top first). */
+@supports (grid-template-rows: subgrid){
+  html[data-theme="ember"] body.p-home .caseboard{
+    grid-template-rows:auto auto auto auto auto}
+  html[data-theme="ember"] body.p-home .bcard--lead{grid-row:1}
+  html[data-theme="ember"] body.p-home .caseboard > .range-lbl{grid-row:2}
+  html[data-theme="ember"] body.p-home .bcard:not(.bcard--lead){
+    grid-row:span 4;display:grid;grid-template-rows:subgrid;align-content:stretch}
+  html[data-theme="ember"] body.p-home .bcard:not(.bcard--lead) .bcard-m{align-self:start}
+  html[data-theme="ember"] body.p-home .bcard:not(.bcard--lead) .bcard-s{align-self:start}
+  html[data-theme="ember"] body.p-home .bcard:not(.bcard--lead) h3{align-self:start}
+  html[data-theme="ember"] body.p-home .bcard:not(.bcard--lead) .vg{
+    align-self:start;margin:16px 0 0}
+}
+/* Without subgrid the cards simply stack in DOM order — number, sector, title,
+   instrument — which is still the right reading order, just unaligned. */
 html[data-theme="ember"] body.p-home .bcard--lead{grid-column:1/-1}
 /* the range label is a band across the board, not a tile in it — without the
    span it took two columns and pushed the six cards into 2/1/3/1 rows */
 html[data-theme="ember"] body.p-home .caseboard > .range-lbl{
-  grid-column:1/-1;margin:26px 0 2px}
+  grid-column:1/-1;margin:24px 0 2px}
 @media (max-width:1000px){
   html[data-theme="ember"] body.p-home .bcard{grid-column:span 3}
   html[data-theme="ember"] body.p-home .bcard.bcard--lead{grid-column:1/-1}}
@@ -3350,7 +3384,7 @@ html[data-theme="ember"] body.p-home .caseboard > .range-lbl{
 
 /* ── the card ─────────────────────────────────────────────────────────────── */
 html[data-theme="ember"] .bcard{position:relative;display:block;
-  padding:22px 24px 24px;border:1px solid var(--border);border-radius:4px;
+  padding:20px 24px 24px;border:1px solid var(--border);border-radius:4px;
   background:linear-gradient(180deg,color-mix(in oklab,var(--a) 9%,var(--bg-soft)),var(--bg-soft));
   transition:border-color .2s,transform .2s}
 html[data-theme="ember"] .bcard:hover{border-color:color-mix(in oklab,var(--a) 55%,transparent);
@@ -3362,18 +3396,18 @@ html[data-theme="ember"] .bcard-go:focus-visible{outline:none}
    link's accessible name is just the title */
 html[data-theme="ember"] .bcard-go::after{content:"";position:absolute;inset:0;
   border-radius:inherit;z-index:1}
-html[data-theme="ember"] .bcard .vg{position:relative;z-index:0;margin-bottom:18px}
+html[data-theme="ember"] .bcard .vg{position:relative;z-index:0;margin-bottom:16px}
 html[data-theme="ember"] .bcard--lead .vg{margin-bottom:0}
 
 /* the lead card uses its WIDTH: the case on the left, the instrument right */
-html[data-theme="ember"] .bcard--lead{padding:30px 34px;
+html[data-theme="ember"] .bcard--lead{padding:32px 32px;
   display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1fr);
-  column-gap:52px;align-items:center}
+  column-gap:48px;align-items:center}
 html[data-theme="ember"] .bcard--lead .bcard-txt{min-width:0}
 @media (max-width:1000px){
-  html[data-theme="ember"] .bcard--lead{grid-template-columns:minmax(0,1fr);row-gap:26px}}
+  html[data-theme="ember"] .bcard--lead{grid-template-columns:minmax(0,1fr);row-gap:24px}}
 @media (max-width:660px){
-  html[data-theme="ember"] .bcard--lead{padding:22px 20px 24px}}
+  html[data-theme="ember"] .bcard--lead{padding:20px 20px 24px}}
 
 /* the case line — declared here, never inherited (a component that inherits
    its ink renders differently on every page it lands on) */
@@ -3387,20 +3421,20 @@ html[data-theme="ember"] .bcard h3{margin:12px 0 0;font-size:15px;font-weight:60
   line-height:1.35;color:var(--ink)}
 html[data-theme="ember"] .bcard--lead h3{margin-top:16px;font-family:var(--serif);
   font-size:clamp(20px,2vw,26px);font-weight:400;line-height:1.25}
-html[data-theme="ember"] .bcard-d{margin:14px 0 0;font-size:13.5px;line-height:1.65;
+html[data-theme="ember"] .bcard-d{margin:12px 0 0;font-size:13.5px;line-height:1.65;
   color:var(--ink-muted);max-width:46ch}
 html[data-theme="ember"] .bcard-nom{position:absolute;top:0;right:24px;
   transform:translateY(-50%);margin:0;font-family:var(--mono);font-size:10px;
   letter-spacing:.16em;text-transform:uppercase;color:var(--bg);background:var(--a);
-  padding:5px 10px;border-radius:2px;line-height:1.4;z-index:2}
+  padding:4px 8px;border-radius:2px;line-height:1.4;z-index:2}
 @media (max-width:660px){html[data-theme="ember"] .bcard-nom{right:16px}}
 /* ── the instrument shell ─────────────────────────────────────────────────── */
 html[data-theme="ember"] .vg{margin:0;border:1px solid rgba(245,237,230,.11);border-radius:10px;
   background:linear-gradient(180deg,rgba(245,237,230,.055),rgba(245,237,230,.02));
   box-shadow:inset 0 1px 0 rgba(245,237,230,.055);
-  padding:15px 17px 17px;min-width:0}
-html[data-theme="ember"] .vg-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding-bottom:11px;margin-bottom:13px;border-bottom:1px solid rgba(245,237,230,.09)}
+  padding:16px 16px 16px;min-width:0}
+html[data-theme="ember"] .vg-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid rgba(245,237,230,.09)}
 html[data-theme="ember"] .vg-hd b{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;
   text-transform:uppercase;color:var(--ink);line-height:1.4;font-weight:400}
 html[data-theme="ember"] .vg-hd i, html[data-theme="ember"] .vg-count, html[data-theme="ember"] .vg-held{font-family:var(--mono);font-style:normal;
@@ -3408,18 +3442,18 @@ html[data-theme="ember"] .vg-hd i, html[data-theme="ember"] .vg-count, html[data
 html[data-theme="ember"] .vg-state{width:6px;height:6px;border-radius:50%;background:var(--a);flex:0 0 auto}
 
 /* ── 1 · WALL-E: a brief in, a plan computed, splits settled ─────────────── */
-html[data-theme="ember"] .vg-brief{margin:0 0 13px;padding-left:9px;position:relative;
+html[data-theme="ember"] .vg-brief{margin:0 0 12px;padding-left:8px;position:relative;
   font-family:var(--mono);font-size:10px;letter-spacing:.055em;
   color:var(--ink-muted);line-height:1.5}
 html[data-theme="ember"] .vg-brief::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:2px;
   border-radius:2px;background:color-mix(in oklab,var(--a) 60%,transparent)}
 
 html[data-theme="ember"] .vg-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;
-  margin-bottom:15px}
+  margin-bottom:16px}
 html[data-theme="ember"] .vg-met{position:relative;min-width:0}
 html[data-theme="ember"] .vg-met i{display:block;font-family:var(--mono);font-style:normal;font-size:9.5px;
   letter-spacing:.13em;text-transform:uppercase;color:var(--ink-dim);line-height:1.4;
-  margin-bottom:5px}
+  margin-bottom:4px}
 html[data-theme="ember"] .vg-met b{display:block;font-family:var(--mono);font-size:13.5px;font-weight:400;
   font-variant-numeric:tabular-nums;color:var(--ink);line-height:1.4;white-space:nowrap}
 /* the skeleton the value resolves out of — an absence, never a wrong number */
@@ -3429,7 +3463,7 @@ html[data-theme="ember"] .vg-met s{display:none;position:absolute;left:0;bottom:
 html[data-theme="ember"] .vg-met s::after{content:"";position:absolute;inset:0;
   background:linear-gradient(90deg,transparent,rgba(245,237,230,.16),transparent)}
 
-html[data-theme="ember"] .vg-rings{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+html[data-theme="ember"] .vg-rings{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 html[data-theme="ember"] .vg-ring{text-align:center;min-width:0}
 html[data-theme="ember"] .vg-ring svg{width:100%;max-width:46px;height:auto;transform:rotate(-90deg);display:inline-block}
 html[data-theme="ember"] .vg-ring circle{fill:none;stroke-width:4.2;stroke-linecap:butt}
@@ -3445,13 +3479,13 @@ html[data-theme="ember"] .vg-ring .r-s:nth-child(3){stroke:color-mix(in oklab,va
 html[data-theme="ember"] .vg-ring .r-s:nth-child(4){stroke:color-mix(in oklab,var(--a) 78%,transparent)}
 html[data-theme="ember"] .vg-ring .r-s:nth-child(5){stroke:color-mix(in oklab,var(--a) 34%,transparent)}
 html[data-theme="ember"] .vg-ring .r-s:nth-child(n+6){stroke:color-mix(in oklab,var(--a) 62%,transparent)}
-html[data-theme="ember"] .vg-ring span{display:block;margin-top:7px;font-family:var(--mono);font-size:9.5px;
+html[data-theme="ember"] .vg-ring span{display:block;margin-top:8px;font-family:var(--mono);font-size:9.5px;
   letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);line-height:1.4}
 
 /* ── 2 · the diligence dossier: signals clear a bar, one verdict lands ───── */
-html[data-theme="ember"] .vg-sig{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+html[data-theme="ember"] .vg-sig{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 html[data-theme="ember"] .vg-sig li{display:grid;grid-template-columns:34px minmax(0,1fr) 30px;
-  align-items:center;column-gap:9px}
+  align-items:center;column-gap:8px}
 html[data-theme="ember"] .vg-sig i{font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.08em;
   color:var(--ink-dim);line-height:1.4}
 html[data-theme="ember"] .vg-sig span{display:block;height:3px;border-radius:2px;
@@ -3460,8 +3494,8 @@ html[data-theme="ember"] .vg-sig span::after{content:"";position:absolute;inset:
   transform:scaleX(var(--v));border-radius:2px;background:var(--a)}
 html[data-theme="ember"] .vg-sig b{font-family:var(--mono);font-size:10px;font-weight:400;
   font-variant-numeric:tabular-nums;color:var(--ink-muted);line-height:1.4;text-align:right}
-html[data-theme="ember"] .vg-held{display:block;margin:11px 0 0}
-html[data-theme="ember"] .vg-verdict{display:flex;align-items:baseline;gap:8px;margin:13px 0 0;
+html[data-theme="ember"] .vg-held{display:block;margin:12px 0 0}
+html[data-theme="ember"] .vg-verdict{display:flex;align-items:baseline;gap:8px;margin:12px 0 0;
   padding-top:12px;border-top:1px solid rgba(245,237,230,.09)}
 html[data-theme="ember"] .vg-verdict i{font-family:var(--mono);font-style:normal;font-size:9.5px;
   letter-spacing:.13em;text-transform:uppercase;color:var(--ink-dim);line-height:1.4}
@@ -3477,24 +3511,24 @@ html[data-theme="ember"] .vg-verdict em{font-family:var(--mono);font-style:norma
    which at 68px gives three columns and wraps the fourth chip onto a lonely
    row. 88px gives a clean two-by-two either side of the bus, and four across
    once there is room. */
-html[data-theme="ember"] .vg-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:6px}
+html[data-theme="ember"] .vg-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:4px}
 html[data-theme="ember"] .vg-row b{font-family:var(--mono);font-size:9.5px;font-weight:400;letter-spacing:.05em;
   text-transform:uppercase;color:var(--ink-muted);line-height:1.4;text-align:center;
-  border:1px solid rgba(245,237,230,.13);border-radius:3px;padding:6px 2px;
+  border:1px solid rgba(245,237,230,.13);border-radius:3px;padding:4px 2px;
   background:rgba(245,237,230,.03)}
-html[data-theme="ember"] .vg-spine{position:relative;margin:11px 0;height:22px;display:grid;place-items:center}
+html[data-theme="ember"] .vg-spine{position:relative;margin:12px 0;height:22px;display:grid;place-items:center}
 html[data-theme="ember"] .vg-spine::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;
   background:color-mix(in oklab,var(--a) 34%,transparent)}
 html[data-theme="ember"] .vg-spine i{position:absolute;top:50%;left:0;width:34px;height:3px;margin-top:-1.5px;
   border-radius:3px;background:var(--a);filter:blur(.3px)}
 html[data-theme="ember"] .vg-spine span{position:relative;font-family:var(--mono);font-size:9.5px;
   letter-spacing:.13em;text-transform:uppercase;color:var(--ink);line-height:1.4;
-  background:#191021;padding:0 9px}
+  background:#191021;padding:0 8px}
 
 /* ── 4 · the failure state: a graceful unknown, and two ways out ─────────── */
 html[data-theme="ember"] .vg-q{margin:0 0 12px;font-family:var(--serif);font-size:16px;font-weight:400;
   line-height:1.35;color:var(--ink)}
-html[data-theme="ember"] .vg-conf{display:flex;align-items:center;gap:9px;margin:0 0 13px}
+html[data-theme="ember"] .vg-conf{display:flex;align-items:center;gap:8px;margin:0 0 12px}
 html[data-theme="ember"] .vg-conf i{font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.13em;
   text-transform:uppercase;color:var(--ink-dim);line-height:1.4;flex:0 0 auto}
 html[data-theme="ember"] .vg-conf span{flex:1 1 auto;height:3px;border-radius:2px;background:rgba(245,237,230,.10);
@@ -3503,10 +3537,10 @@ html[data-theme="ember"] .vg-conf span::after{content:"";position:absolute;inset
   transform:scaleX(.22);border-radius:2px;background:var(--a)}
 html[data-theme="ember"] .vg-conf em{font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.12em;
   text-transform:uppercase;color:var(--a);line-height:1.4;flex:0 0 auto}
-html[data-theme="ember"] .vg-routes{display:grid;gap:7px}
+html[data-theme="ember"] .vg-routes{display:grid;gap:8px}
 html[data-theme="ember"] .vg-routes b{font-family:var(--sans);font-size:11.5px;font-weight:600;color:var(--ink);
   line-height:1.4;border:1px solid color-mix(in oklab,var(--a) 40%,transparent);
-  border-radius:4px;padding:8px 11px;background:color-mix(in oklab,var(--a) 7%,transparent)}
+  border-radius:4px;padding:8px 12px;background:color-mix(in oklab,var(--a) 7%,transparent)}
 
 /* small tiles: the instrument sits above the case line */
 /* At 9.5px — my own legibility floor is 9px, and the chips were at 8 — the
@@ -3514,59 +3548,59 @@ html[data-theme="ember"] .vg-routes b{font-family:var(--sans);font-size:11.5px;f
    a 285px tile. Two chips per row in that context; four everywhere else. */
 
 @media (max-width:1000px){
-  html[data-theme="ember"] .bcard--lead{grid-template-columns:minmax(0,1fr);row-gap:26px}
+  html[data-theme="ember"] .bcard--lead{grid-template-columns:minmax(0,1fr);row-gap:24px}
   html[data-theme="ember"] .sb--three{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:660px){
   html[data-theme="ember"] .sb--three{grid-template-columns:minmax(0,1fr)}
   html[data-theme="ember"] .vg-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
-  html[data-theme="ember"] .vg-rings{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  html[data-theme="ember"] .vg-rings{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 }
 
 /* ═══════════════════ 5 · FinTech: a score, and its sources ═════════════════
    The case is "cites its sources", and the artefacts are explicit about the
    mechanism: "3 sources behind a score, inline — not in a tooltip". So the
    instrument is a score with its three sources attaching to it. */
-html[data-theme="ember"] .vg-score{display:flex;align-items:baseline;gap:10px;margin:0 0 13px}
+html[data-theme="ember"] .vg-score{display:flex;align-items:baseline;gap:8px;margin:0 0 12px}
 html[data-theme="ember"] .vg-score b{font-family:var(--serif);font-size:32px;font-weight:300;line-height:1;
   letter-spacing:-.02em;color:var(--a)}
 html[data-theme="ember"] .vg-score em{font-family:var(--mono);font-style:normal;font-size:9.5px;
   letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted);line-height:1.4;
   border:1px solid color-mix(in oklab,var(--a) 45%,transparent);
   border-radius:999px;padding:3px 8px}
-html[data-theme="ember"] .vg-srcs{list-style:none;margin:0;padding:0 0 0 13px;display:grid;gap:7px;position:relative}
+html[data-theme="ember"] .vg-srcs{list-style:none;margin:0;padding:0 0 0 12px;display:grid;gap:8px;position:relative}
 html[data-theme="ember"] .vg-srcs::before{content:"";position:absolute;left:3px;top:5px;bottom:6px;width:1px;
   background:color-mix(in oklab,var(--a) 38%,transparent)}
 html[data-theme="ember"] .vg-srcs li{position:relative;font-family:var(--mono);font-size:9.5px;
   letter-spacing:.04em;color:var(--ink-muted);line-height:1.45}
 html[data-theme="ember"] .vg-srcs li::before{content:"";position:absolute;left:-10px;top:.52em;width:6px;height:1px;
   background:color-mix(in oklab,var(--a) 55%,transparent)}
-html[data-theme="ember"] .vg-note{margin:12px 0 0;padding-top:11px;border-top:1px solid rgba(245,237,230,.09);
+html[data-theme="ember"] .vg-note{margin:12px 0 0;padding-top:12px;border-top:1px solid rgba(245,237,230,.09);
   font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--ink-dim);line-height:1.45}
 
 /* ═══════════════════ 6 · PTC: five platforms become one ═══════════════════
    The artefact names all five; the title says four products were killed. Which
    one survived is not in canon, so nothing is marked as the survivor and the
    result is unnamed — five converge into one. */
-html[data-theme="ember"] .vg-plats{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+html[data-theme="ember"] .vg-plats{list-style:none;margin:0;padding:0;display:grid;gap:4px}
 html[data-theme="ember"] .vg-plats li{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;
   color:var(--ink-muted);line-height:1.4;border:1px solid rgba(245,237,230,.13);
-  border-radius:3px;padding:6px 9px;background:rgba(245,237,230,.03)}
-html[data-theme="ember"] .vg-after{display:flex;align-items:baseline;gap:9px;margin:13px 0 0;padding-top:12px;
+  border-radius:3px;padding:4px 8px;background:rgba(245,237,230,.03)}
+html[data-theme="ember"] .vg-after{display:flex;align-items:baseline;gap:8px;margin:12px 0 0;padding-top:12px;
   border-top:1px solid rgba(245,237,230,.09)}
 html[data-theme="ember"] .vg-after i{font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.13em;
   text-transform:uppercase;color:var(--ink-dim);line-height:1.4}
 html[data-theme="ember"] .vg-after b{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.05em;
   color:var(--ink);line-height:1.4;border:1px solid color-mix(in oklab,var(--a) 52%,transparent);
-  border-radius:3px;padding:6px 11px;background:color-mix(in oklab,var(--a) 9%,transparent)}
+  border-radius:3px;padding:4px 12px;background:color-mix(in oklab,var(--a) 9%,transparent)}
 
 /* ═══════════════════ 7 · O2: the allowances screen ════════════════════════
    Real allowances off the shipped screen. The unlimited row carries no meter:
    a proportion of an unlimited allowance is undefined, and a bar there would
    be a number I made up. */
-html[data-theme="ember"] .vg-allows{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+html[data-theme="ember"] .vg-allows{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 html[data-theme="ember"] .vg-allows li{display:grid;grid-template-columns:minmax(0,1fr) auto;
-  grid-template-areas:"label value" "meter meter";row-gap:5px;column-gap:9px;align-items:baseline}
+  grid-template-areas:"label value" "meter meter";row-gap:4px;column-gap:8px;align-items:baseline}
 html[data-theme="ember"] .vg-allows i{grid-area:label;font-family:var(--mono);font-style:normal;font-size:9.5px;
   letter-spacing:.06em;color:var(--ink-dim);line-height:1.4}
 html[data-theme="ember"] .vg-allows b{grid-area:value;font-family:var(--mono);font-size:10px;font-weight:400;
@@ -3578,7 +3612,7 @@ html[data-theme="ember"] .vg-allows span::after{content:"";position:absolute;ins
 html[data-theme="ember"] .vg-allows .nobar span{background:repeating-linear-gradient(90deg,
   rgba(245,237,230,.14) 0 3px,transparent 3px 7px)}
 html[data-theme="ember"] .vg-allows .nobar span::after{display:none}
-html[data-theme="ember"] .vg-bill{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin:14px 0 0;
+html[data-theme="ember"] .vg-bill{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:12px 0 0;
   padding-top:12px;border-top:1px solid rgba(245,237,230,.09)}
 html[data-theme="ember"] .vg-bill i{font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.13em;
   text-transform:uppercase;color:var(--ink-dim);line-height:1.4}
@@ -3715,6 +3749,12 @@ html[data-theme="ember"] .vg-conf{--g:.22}
    than a card. It sits after the hero's prose so the principle still comes
    first, and it carries a caption because on a case page the artefact is
    being shown as evidence, not as an invitation. */
+/* Sized to the page's own reading measure. I briefly made the caption a rail
+   beside the specimen, having read a screenshot as showing 480px of dead space
+   to its right — but the measure here is 632px, not the 1040px a full-bleed
+   figure gets, so the real leftover was 72px of ordinary ragging. The rail
+   shrank the specimen to 450px and squeezed the label into 150px. Measure the
+   container before diagnosing a void. */
 html[data-theme="ember"] .vg-hero{margin:32px 0 8px;max-width:560px;
   --a:var(--ember)}
 /* The instrument is a <figure>, and case pages give every figure a full-bleed
