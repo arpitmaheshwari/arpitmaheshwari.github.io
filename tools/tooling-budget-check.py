@@ -99,7 +99,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # deleted (Arpit asked for the footer ship stamp gone — no reader value, and it cost
 # a re-stamp of 38 pages on every push) and build-partials lost the freshness()
 # function with it. A ceiling that only ever rises is a budget nobody keeps.
-CEILING = 12_030
+# 2026-09-09 (2): 12_030 -> 12060. What the lines bought: interaction-state-check
+# stopped failing on a control it cannot measure. It reported the nav toggle at
+# 1.25:1 on hover and focus across 41 pages — 82 findings — by grading a
+# text-less button's default black `color`. Pixels inside that control in that
+# state: 8.12:1. The toggle's glyph is three gradient-filled child spans, and the
+# gate's existing gradient flag only tested the element itself.
+CEILING = 12060
 
 
 def loc(paths):
