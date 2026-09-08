@@ -61,7 +61,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # by component so 15/600 stays illegal everywhere else. The ratio went DOWN
 # (1.83x -> 1.82x): tooling did not grow relative to the site it governs.
 # OUTSTANDING DEBT: nine gates still discover pages themselves (ci-claim,
-# closed-state-cover, css-coverage, freshness-stamp, inline-style, jsonld,
+# closed-state-cover, css-coverage, inline-style, jsonld,
 # link-integrity, social-title, wcag-reflow). Folding those into gatelib is the
 # repayment, and it retires this bug class rather than fixing it a fifth time.
 # 2026-09-08: 11_840 -> 12_100. What the 273 lines bought (251 of gate, the rest
@@ -82,8 +82,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # The ratio moved 1.74x -> 1.76x — tooling grew against the site it governs,
 # which is the cost this ceiling exists to make visible.
 # OUTSTANDING DEBT unchanged: nine gates still discover pages themselves
-# (ci-claim, closed-state-cover, css-coverage, freshness-stamp, inline-style,
-# jsonld, link-integrity, social-title, wcag-reflow). Folding those into gatelib
+# (ci-claim, closed-state-cover, css-coverage, inline-style, jsonld,
+# link-integrity, social-title, wcag-reflow) — eight now, not nine:
+# freshness-stamp was DELETED on 2026-09-09, not fixed. Arpit: "Remove the
+# stamp, that no value, it's an additional task for you to do." The cheapest
+# repayment on a gate is the one you retire. Folding the rest into gatelib
 # is the repayment, and it retires that bug class rather than fixing it a fifth
 # time.
 # 2026-09-08 (2): 12_100 -> 12_110. Ten lines: inline-style-check now strips
@@ -92,7 +95,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # harvested a px figure out of the prose, reporting a spacing value that no
 # rule contains. Every stylesheet here is mostly prose, so that false positive
 # was going to recur on every explanation written from now on.
-CEILING = 12_110
+# 2026-09-09: 12_110 -> 12_030. The ceiling comes DOWN for once: freshness-stamp.py
+# deleted (Arpit asked for the footer ship stamp gone — no reader value, and it cost
+# a re-stamp of 38 pages on every push) and build-partials lost the freshness()
+# function with it. A ceiling that only ever rises is a budget nobody keeps.
+CEILING = 12_030
 
 
 def loc(paths):

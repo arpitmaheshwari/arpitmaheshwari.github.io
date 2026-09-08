@@ -98,52 +98,6 @@ def footer_note(footer_html):
 SHIP_STAMP_MAX_AGE_DAYS = 45
 
 
-def freshness():
-    """The footer's ship stamp — derived, and silent when it would hurt.
-
-    It was hardcoded, and on 2026-09-03 it read "last shipped 2026-08-31 · 298
-    changes this month" on all 38 pages. Both halves were wrong in the way that
-    is hardest to see: 298 is the EXACT number of commits in August, under a
-    label that had come to mean September, where the real figure was 52.
-
-    Two design decisions, because a freshness signal is the one element that
-    turns against you by doing nothing:
-
-      * THE DATE ONLY, no change count. Two reasons. A count derived from git is
-        stale the instant you commit — the commit being pushed changes it — so
-        the pre-push drift check could never pass twice in a row. And a commit
-        volume on a personal site is ambiguous evidence anyway: "298 changes this
-        month" reads as ships-constantly to one reader and cannot-leave-it-alone
-        to another. The date carries the proof of life without the second reading.
-      * it SUPPRESSES ITSELF past SHIP_STAMP_MAX_AGE_DAYS. The upside of this
-        stamp is bounded and its downside is not: it helps while the work is
-        active and quietly advertises neglect the moment it stops — at exactly
-        the time nobody is looking at the site to notice. Silence is the correct
-        output then, and it needs no one to remember to remove it.
-
-    Returns the inner HTML for <span class="fresh">, or None to omit the span.
-    """
-    import datetime
-    iso = subprocess.run(['git', 'log', '-1', '--format=%cs'], cwd=ROOT,
-                         capture_output=True, text=True).stdout.strip()
-    if not iso:
-        return None
-    today = datetime.date.today()
-    # WORKING-TREE-AWARE, the same way build-sitemap.py derives lastmod. A stamp read
-    # from the last COMMIT is invalidated by the very commit that carries it: build on
-    # the 4th, commit on the 4th, and the page still says the 3rd — the hook then blocks
-    # the push for drift it created itself. If the tree is dirty we are mid-ship, so
-    # today is the honest answer and it matches what the commit is about to record.
-    dirty = bool(subprocess.run(['git', 'status', '--porcelain'], cwd=ROOT,
-                                capture_output=True, text=True).stdout.strip())
-    if dirty:
-        iso = today.isoformat()
-    last = datetime.date.fromisoformat(iso)
-    if (today - last).days > SHIP_STAMP_MAX_AGE_DAYS:
-        return None
-    return f'last shipped {iso}'
-
-
 def current_for(rel):
     """The nav destination this page IS, from its path. None if it is not one."""
     if rel == 'index.html':
@@ -178,11 +132,6 @@ def render(rel, existing_nav, existing_footer):
         nav = nav.replace(f'href="{root}index.html#contact"', 'href="#contact"')
     note = footer_note(existing_footer) if existing_footer else None
     foot = FOOTER.replace('{{ROOT}}', root)
-    fresh = freshness()
-    foot = (re.sub(r'<span class="fresh">.*?</span>\s*', '', foot, flags=re.S)
-            if fresh is None
-            else re.sub(r'(<span class="fresh">).*?(</span>)',
-                        lambda m: m.group(1) + fresh + m.group(2), foot, flags=re.S))
     foot = foot.replace('{{FOOTER_NOTE}}', note if note else
                         'No rights reserved — good patterns should travel')
     return nav, foot
@@ -265,6 +214,18 @@ def main():
                 n = s.count(frag)
                 if n != 1:
                     raise SystemExit(f'STAMP MULTIPLICITY: {rel} carries {n}× {frag!r} (must be exactly 1)')
+            # THE SHIP STAMP IS GONE TOO — 2026-09-09, Arpit: "Remove the stamp,
+            # that no value, it's an additional task for you to do". He is right on
+            # both counts. It said "last shipped <date>" in the footer of 38 pages,
+            # and no screener has ever decided anything on it — while it cost a
+            # re-stamp of every page on every push, its own drift check, a dedicated
+            # tool (tools/freshness-stamp.py, now deleted), and three rounds of
+            # correction in its short life. The freshness() function, the max-age
+            # self-suppression and the strip/rewrite branch are all removed rather
+            # than switched off, because a function that always returns None is
+            # worse than no function.
+            # tools/freshness-check.py STAYS: it guards dated claims in PROSE on 11
+            # pages, which is a different thing and still worth checking.
             # THE CHANT IS GONE EVERYWHERE as of 2026-09-08 — Arpit asked for it off,
             # and 68c2f75e removed the aside and the ten CSS rules that styled it.
             # History: it used to be stamped onto every page by the footer partial,
