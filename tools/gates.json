@@ -653,6 +653,17 @@
     "server"
    ],
    "note": "In the page's DEFAULT, untouched state, no viewport-anchored element may cover the content. Written after an unscoped `display:flex` at #nav specificity outranked @media(max-width:1100px){.nav-links{display:none}} and left the mobile drawer PERMANENTLY OPEN below 1100px on every page \u2014 an opaque panel over the top 475px with pointer-events:auto, eating every click under it. It laid out correctly at 1200+, so both menu gates (which OPEN the menu before looking) passed it. Swept across a width RANGE, mobile first, because the defect hid between the widths anyone checks. Two calibration plants: a fixed cover that must fire and an absolute one that must not."
+  },
+  {
+    "id": "baseline-align-check",
+    "cmd": [
+      "python3",
+      "tools/baseline-align-check.py"
+    ],
+    "stages": [
+      "pre-push"
+    ],
+    "note": "Compares two SIBLINGS to each other — the one thing no other gate here does. Arpit selected the homepage act numeral on 2026-09-08 and said the numerals do not align to their text. He was right in all four acts at every width: .chap used align-items:start, so the numeral and its title had IDENTICAL box tops (1141.0 and 1141.0) while their baselines sat 6.0px apart at 1440 and 7.0px at 768/390 — the numeral is solid-set (line-height:1), the title carries half-leading. Every gate passed it, and had to: contrast, overflow, spacing, reflow, leading, heading-rank and a11y each ask about ONE element's own properties or its place inside its own container. receipt-align-check was the only relative check and it tests LEFT edges of one component on six case pages. First sweep found four real defects beyond the reported one: footer .fresh carried a stacking margin into a flex row and sat 3.0px low on 34 pages; #thoughts .ixi and lab .dsg-type were centred where a baseline was wanted. Measures via a zero-size inline-block probe (the browser's own baseline) — NOT font arithmetic, which over-reported by 4px on a row the browser had already aligned exactly. ~110s for 59 pages x 3 widths; kept at all three because 390 is where layouts fail."
   }
  ],
  "manual": [

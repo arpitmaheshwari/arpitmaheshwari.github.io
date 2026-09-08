@@ -64,7 +64,29 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # closed-state-cover, css-coverage, freshness-stamp, inline-style, jsonld,
 # link-integrity, social-title, wcag-reflow). Folding those into gatelib is the
 # repayment, and it retires this bug class rather than fixing it a fifth time.
-CEILING = 11_840
+# 2026-09-08: 11_840 -> 12_100. What the 273 lines bought (251 of gate, the rest
+# this note): baseline-align-check,
+# a defect CLASS no gate in this repo could see. Arpit selected the homepage act
+# numeral and said "these numerals don't feel align to the corresponding text";
+# its baseline sat 6.0px above the act title's at 1440 and 7.0px at 768 and 390,
+# in all four acts, and every gate passed — .chap used align-items:start, so the two
+# boxes had identical tops (1141.0 and 1141.0). Contrast, overflow, spacing,
+# reflow, leading, heading-rank and a11y each ask about ONE element's own
+# properties or its place inside its own container; not one compares two
+# siblings to each other. receipt-align-check is the only relative check in the
+# repo and it tests LEFT edges of one component on six case pages.
+# Not folded into receipt-align-check: different axis (baselines vs left edges),
+# different scope (every grid/flex row on 59 pages vs .rcpt-r on six), and that
+# gate is 54 lines running nightly — folding would have saved nothing and made
+# one gate answer two unrelated questions.
+# The ratio moved 1.74x -> 1.76x — tooling grew against the site it governs,
+# which is the cost this ceiling exists to make visible.
+# OUTSTANDING DEBT unchanged: nine gates still discover pages themselves
+# (ci-claim, closed-state-cover, css-coverage, freshness-stamp, inline-style,
+# jsonld, link-integrity, social-title, wcag-reflow). Folding those into gatelib
+# is the repayment, and it retires that bug class rather than fixing it a fifth
+# time.
+CEILING = 12_100
 
 
 def loc(paths):
