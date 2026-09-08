@@ -3147,7 +3147,12 @@ html[data-theme="ember"] body.p-home #thoughts .ixt{
   font-family:var(--serif);font-weight:300;font-size:clamp(19px,1.8vw,25px);
   line-height:1.2;color:var(--ink)}
 /* the panel: one grid cell, all three stacked in it, one shown */
-@media (min-width:861px){
+/* The preview is a HOVER affordance, so it is gated on the input device and
+   not on width alone: 861-1023px is portrait-tablet territory, where there
+   is no hover, and the panel just sat on entry 01 and never answered a tap.
+   A touch device at any width gets the in-flow layout instead, where every
+   entry already carries its own tag, date and excerpt. */
+@media (min-width:861px) and (hover:hover) and (pointer:fine){
   html[data-theme="ember"] body.p-home #thoughts .ixp{
     position:absolute;top:8px;left:calc(var(--ixl) + 24px);right:0;
     border-left:2px solid var(--rose);padding:4px 0 4px 24px;
@@ -3759,36 +3764,34 @@ html[data-theme="ember"] body.p-case-studies-planit .vg-hero{--a:var(--rose)}
    ║  THE VOICES BAND — one voice at a time                    2026-09-08     ║
    ╚══════════════════════════════════════════════════════════════════════════╝
 
-   Replaces two anchor quotes plus a three-card row. Arpit: "the layout of
-   testimonial section feels common place and templated." Same diagnosis as the
-   case board — five figures of equal weight, differentiated only by size — but
-   the content had a stronger structure the layout threw away: these five people
-   do not sit in a row, they SURROUND him. Client CTO and manager above, tech
-   lead and engineer beside, a designer at the next desk. The section already
-   labelled each voice by vantage point; only the layout ignored it.
+   Replaces two anchor quotes plus a three-card row: five figures of equal
+   weight, differentiated only by size. Those five people do not sit in a row,
+   they SURROUND him — the client's CTO and the manager above, the tech lead and
+   the engineer beside, a designer at the next desk — and the section already
+   labelled every voice by vantage point.
 
-   Measured: the band goes from ~1,400px of stacked quotes to 428px at 1440 and
-   767px on a phone. One quote lands at display size instead of five competing,
-   which is the third section to earn the "reads heavy" complaint.
+   PROXIMITY IS THE WHOLE POINT OF THE MARKUP. The first version put the five
+   controls in one column and the quote in another. That reads at 1440 and is
+   broken on a phone: measured at 390, tapping the first name changed a card
+   283px BELOW it, so you tap and nothing appears to happen. Arpit found it in
+   minutes — "it is not following the laws of proximity."
 
-   Radio inputs, not :target — a hash would hijack the URL and jump the page.
-   The radios sit inside their own labels, where they belong semantically, and
-   :has() reaches the stage from the shared ancestor. Zero script: with CSS
-   disabled all five quotes read in order.
+   So every quote now sits immediately after the control that reveals it, which
+   is the correct order for a thumb and for a screen reader. On a phone that IS
+   the layout: the quote opens under the name you touched. From 761px up, grid
+   placement lifts the quotes into a second column — the markup never reorders,
+   only the geometry does.
 
-   A11y: .qv-list is a radiogroup, so arrow keys move between voices natively
-   and every quote is reachable by changing selection. The four unselected
-   panels are display:none — a screen-reader user meets five named controls and
-   hears whichever they select, rather than five quotes in a row.
+   Radios, not :target — a hash would hijack the URL and jump the page. :has()
+   reaches each quote from the shared ancestor. Zero script. Arrow keys move
+   between voices natively because it is a real radiogroup.
 */
 html[data-theme="ember"] body.p-home .qvoices{
-  display:grid;grid-template-columns:minmax(230px,300px) minmax(0,1fr);
-  column-gap:48px;align-items:start;margin-top:32px}
-html[data-theme="ember"] body.p-home .qv-list{display:grid;gap:4px;min-width:0}
+  --heat:var(--rose);display:grid;grid-template-columns:minmax(0,1fr);
+  gap:4px;margin-top:32px}
 html[data-theme="ember"] body.p-home .qv-t{display:block;cursor:pointer;
   padding:12px 16px;border-left:2px solid transparent;
   transition:color .18s,border-color .18s,background .18s}
-/* the radio is operated through its label; kept in the a11y tree, off the page */
 html[data-theme="ember"] body.p-home .qv-t input{position:absolute;width:1px;height:1px;
   opacity:0;pointer-events:none}
 html[data-theme="ember"] body.p-home .qv-n{display:block;font-family:var(--sans);
@@ -3803,26 +3806,17 @@ html[data-theme="ember"] body.p-home .qv-t:has(input:checked) .qv-n{color:var(--
 html[data-theme="ember"] body.p-home .qv-t:has(input:focus-visible){
   outline:2px solid var(--rose);outline-offset:2px}
 
-/* The band is act 04, so its quote card takes the rose heat rather than .qt's
-   ember fallback — the marked voice and the card's top edge were two different
-   accents in one component. */
-html[data-theme="ember"] body.p-home .qvoices{--heat:var(--rose)}
-/* The card was 804px around a 445px measure: 359px of void inside a bordered
-   box, which is the defect I keep writing rules about. Display type wants a
-   short measure, so the CARD hugs the measure instead of the measure stretching
-   to the card. */
-html[data-theme="ember"] body.p-home .qv-stage{min-width:0}
-html[data-theme="ember"] body.p-home .qt-solo{max-width:min(100%,600px)}
-html[data-theme="ember"] body.p-home .qt-solo{display:none;margin:0}
+html[data-theme="ember"] body.p-home .qt-solo{display:none;margin:0;
+  max-width:min(100%,600px)}
 html[data-theme="ember"] body.p-home .qvoices:has(#qv0:checked) #qvq0,
 html[data-theme="ember"] body.p-home .qvoices:has(#qv1:checked) #qvq1,
 html[data-theme="ember"] body.p-home .qvoices:has(#qv2:checked) #qvq2,
 html[data-theme="ember"] body.p-home .qvoices:has(#qv3:checked) #qvq3,
 html[data-theme="ember"] body.p-home .qvoices:has(#qv4:checked) #qvq4{display:block}
-/* no :has() support: every quote shows, stacked — the information survives */
+/* no :has(): every quote shows, stacked under its own name. The information
+   never depends on the mechanism. */
 @supports not selector(:has(*)){
-  html[data-theme="ember"] body.p-home .qt-solo{display:block;margin-bottom:32px}
-  html[data-theme="ember"] body.p-home .qv-list{display:none}
+  html[data-theme="ember"] body.p-home .qt-solo{display:block;margin:8px 0 24px}
 }
 html[data-theme="ember"] body.p-home .qt-solo blockquote{margin:0;font-family:var(--serif);
   font-weight:300;font-style:normal;font-size:clamp(19px,2.1vw,26px);line-height:1.45;
@@ -3833,6 +3827,22 @@ html[data-theme="ember"] body.p-home .qt-solo figcaption{margin-top:20px;
   line-height:1.4}
 html[data-theme="ember"] body.p-home .qt-solo figcaption b{font-family:var(--sans);
   font-weight:600;font-size:14px;color:var(--ink);line-height:1.4}
-@media (max-width:760px){
-  html[data-theme="ember"] body.p-home .qvoices{grid-template-columns:minmax(0,1fr);row-gap:24px}
+
+/* phone: the quote opens directly under the name you touched, so it needs a
+   little air from the control and from the next name */
+/* the accordion spacing is the default now, so it applies wherever the
+   two-column rule does not win */
+html[data-theme="ember"] body.p-home .qt-solo{margin:8px 0 16px}
+/* 761px up: the quotes lift into a second column and share one cell, so the
+   index stays a scannable list beside a single display quote */
+/* Two columns only where there is a pointer. A touch device keeps the
+   accordion at every width: the effect must appear under the thing the thumb
+   touched, and on a tablet the two-column version put the fifth voice's quote
+   585px away from its control. */
+@media (min-width:761px) and (hover:hover) and (pointer:fine){
+  html[data-theme="ember"] body.p-home .qvoices{
+    grid-template-columns:minmax(230px,300px) minmax(0,1fr);
+    column-gap:48px;align-items:start}
+  html[data-theme="ember"] body.p-home .qv-t{grid-column:1}
+  html[data-theme="ember"] body.p-home .qt-solo{grid-column:2;grid-row:1/-1;align-self:start}
 }
