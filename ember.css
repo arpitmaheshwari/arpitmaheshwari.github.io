@@ -973,7 +973,33 @@ html[data-theme="ember"] body.p-home .hero .cred{max-width:600px}
 /* 3. The wordmark was amber while the monogram beside it is the ember→violet
       gradient — two different brand colours touching. The name is not an
       accent; it takes the primary ink and lets the mark carry the colour. */
-html[data-theme="ember"] .nav-name{color:var(--ink)}
+/* NAV IDENTITY — Arpit's pick, direction C, 2026-09-08, chosen from four
+   rendered over the real nav (prototypes/renders/nav/).
+   He asked what the opinion was on the prominence of the mark and the
+   supporting text. Measured: the name was 14px/600 in var(--ink) — the same
+   colour as the nav links, one pixel larger and 200 weight units heavier. So
+   it read as an EMPHASISED MENU ITEM rather than as identity, and the two
+   objects competed instead of one leading. It also carried the one straight
+   defect on the bar: letter-spacing -0.5px on UPPERCASE text, while every
+   uppercase neighbour got +.08em. Uppercase needs air, not tightening; that is
+   why it looked cramped against the mark.
+   C separates the two by CATEGORY, not volume: the name goes quiet and
+   properly tracked, tucks in close to the mark, and a hairline divides the
+   identity cluster from the link row — so the name stops competing with the
+   links because it is visibly not one of them. The mark keeps its 40px and
+   stays the only colour in the cluster.
+   Scoped to #nav (.row-ic is a generic class used on 41 pages) and to
+   min-width:769px, which is exactly where `.nav-logo span{display:none}`
+   stops hiding the name — below that there is no name and a hairline after a
+   bare mark would be an orphan. Every property is declared on the component,
+   not inherited. */
+html[data-theme="ember"] #nav .nav-name{font-family:var(--ff-sans);font-size:13px;
+  font-weight:500;letter-spacing:.11em;color:var(--ink-muted);white-space:nowrap}
+@media (min-width:769px){
+  html[data-theme="ember"] #nav .nav-logo .row-ic{gap:9px}
+  html[data-theme="ember"] #nav .nav-logo{padding-right:20px;margin-right:4px;
+    border-right:1px solid rgba(245,237,230,.14)}
+}
 /* --- Writing section on the standard grammar ------------------------------
    The heading was a classic-theme numeral pattern (.section-numeral) that no
    other homepage section uses, and its aria-labelledby pointed at an id that
@@ -1694,7 +1720,13 @@ html[data-theme="ember"] body.p-lab .dsg-heats b{font-size:14px;font-weight:600;
 html[data-theme="ember"] body.p-lab .dsg-heats em{font-style:normal;font-size:12px;color:var(--ink-dim);display:block;margin-top:2px}
 html[data-theme="ember"] body.p-lab .dsg-heats span{margin-left:auto;font-family:var(--ff-mono);font-size:12px;color:#7FCF9E;white-space:nowrap}
 html[data-theme="ember"] body.p-lab .dsg-type{list-style:none;margin:0;padding:0;display:grid;gap:16px}
-html[data-theme="ember"] body.p-lab .dsg-type li{display:flex;align-items:center;gap:12px;justify-content:space-between}
+/* baseline, because this is a TYPE SPECIMEN: the demo word set in the face,
+   with the face name annotating it. Centring put an 11px label 5.0px below
+   the baseline of the 24px word it describes, and the four rows are four
+   different sizes, so nothing lined up down the card. A specimen reads as a
+   table only when the labels sit on the same line as the specimens.
+   Every row here is single-line, so there is no wrap to strand. */
+html[data-theme="ember"] body.p-lab .dsg-type li{display:flex;align-items:baseline;gap:12px;justify-content:space-between}
 html[data-theme="ember"] body.p-lab .dsg-type b{font-family:var(--ff-label);font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--ink-dim);text-align:right;flex:0 0 auto}
 html[data-theme="ember"] body.p-lab .dsg-serif{font-family:var(--ff-display);font-weight:300;font-size:24px;color:var(--ink)}
 html[data-theme="ember"] body.p-lab .dsg-sans{font-size:16px;color:var(--ink)}
@@ -2294,9 +2326,30 @@ html[data-theme="ember"] body.p-home .whoband .wl-lead p{max-width:none;margin-b
    uppercase eyebrow; against a wrapping 26px serif line it stranded at the first
    line's height, and the act boundary already carries a full-bleed hairline
    (main > section:has(.chap)) — so it was a second, smaller, orphaned rule
-   saying the same thing. align-items:start, because a one-line numeral beside a
-   two-line title centres the numeral against the middle of the block. */
-html[data-theme="ember"] .chap{display:grid;grid-template-columns:auto 1fr;column-gap:16px;row-gap:12px;align-items:start;margin:0 0 40px}
+   saying the same thing.
+
+   ALIGNMENT IS BASELINE, DELIBERATELY — 2026-09-08. Arpit: "these numerals
+   don't feel align to the corresponding text." He was right, in all four acts
+   at all three widths. align-items:start was chosen here to stop `center`
+   floating the numeral against the middle of a wrapping title — correct
+   reasoning, wrong remedy: `start` aligns the two BOXES, and the numeral's box
+   is solid-set (line-height:1) while the title's carries half-leading
+   (1.25 desktop / 1.5 mobile). Identical box tops (measured 1141.0 and 1141.0),
+   baselines 6.0px apart at 1440 and 7.0px at 768 and 390 — so the numeral rode
+   high and every geometry check passed, because they all compare an element to
+   its container and never two siblings to each other. Those figures are the
+   browser's own: a zero-size inline-block sits ON the baseline, so its bottom
+   edge is the baseline exactly. My first pass approximated the ascent as 0.75em
+   and reported 8.3px / 11.5px — wrong, and wrong in the direction that
+   flatters the finding. tools/baseline-align-check.py now measures this class
+   on every page, and its calibration is this defect, planted and watched go
+   red in all four acts.
+   `baseline` is the right answer and not the trap my own note warns about: a
+   baseline row breaks when you wanted vertical centring and a child wraps, but
+   here matching text baselines IS the intent — the numeral belongs ON the
+   title's first line, and first-baseline alignment is exactly what a wrapping
+   title should get. .chap-i sits at grid-column:1/-1 in row 2 and is untouched. */
+html[data-theme="ember"] .chap{display:grid;grid-template-columns:auto 1fr;column-gap:16px;row-gap:12px;align-items:baseline;margin:0 0 40px}
 /* THE ACT NUMERAL WAS THE LOUDEST THING ON THE PAGE — 2026-09-08.
    Arpit: "I still can't confidently scan it in a scroll." Instrument built for
    it: step down the page half a viewport at a time and record the LARGEST piece
@@ -2414,7 +2467,15 @@ html[data-theme="ember"] body.p-home .pass{transition:transform .3s cubic-bezier
 html[data-theme="ember"] body.p-home .pass-cta{margin-top:12px;font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B3A99;text-align:center}
 /* ^ 2026-08-31: #8A4FBF measured 4.31:1 on the pass cream by the pre-push pixel audit — darkened to clear 4.5 */
 /* the freshness line — measured by tools/freshness-stamp.py, never hand-typed */
-html[data-theme="ember"] footer .fresh{display:block;margin-top:8px;font-family:var(--mono),monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-dim)}
+/* no stacking margin: the footer is a flex container in both directions and
+   its own gap:24px owns every gap in it. This 8px margin-top was written when
+   .fresh sat as a block under the logo, and it survived the move into flex —
+   where in the 1440 ROW it made align-items:center offset the text 3.0px below
+   .footer-note, which is the same 11px/18.7px type, on all 34 pages carrying
+   the footer; and in the stacked COLUMN it gave .fresh 32px of space above it
+   while every sibling got 24px. One rule, wrong in both layouts, invisible to
+   every gate until baseline-align-check compared the two siblings. */
+html[data-theme="ember"] footer .fresh{display:block;font-family:var(--mono),monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-dim)}
 /* the lab's public source line (2026-08-31 — repo live, verified 200 before linking) */
 html[data-theme="ember"] .lab-src{font-family:var(--mono),monospace;font-size:12.5px;letter-spacing:.02em;color:var(--ink-muted);margin-top:12px}
 
@@ -3135,10 +3196,16 @@ html[data-theme="ember"] body.p-home #thoughts .ixl{
 html[data-theme="ember"] body.p-home #thoughts .ixl > li{margin:0}
 html[data-theme="ember"] body.p-home #thoughts .ixi{
   display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;
-  /* center, NOT baseline: a two-line title next to a one-line numeral snaps the
-     numeral to the title's FIRST line and strands it — the trap this repo's own
-     notes record. */
-  align-items:center;padding:24px 0;text-decoration:none;
+  /* BASELINE — Arpit's call, 2026-09-08, after seeing both rendered. The
+     previous comment here argued centre "because a two-line title next to a
+     one-line numeral snaps the numeral to the title's FIRST line and strands
+     it". Rendered side by side, centre is what strands it: "01" and "03" float
+     between their two title lines aligned to neither, and one-line "02" sits
+     5.7px below its own title's baseline. First-baseline alignment is what a
+     wrapping title should get — the numeral belongs where the reading starts.
+     Same call as .chap, so the two numeral components on this page now agree
+     instead of one being the odd one out. */
+  align-items:baseline;padding:24px 0;text-decoration:none;
   border-bottom:1px solid rgba(245,237,230,.10);
   min-height:44px}
 html[data-theme="ember"] body.p-home #thoughts .ixn{
@@ -3146,7 +3213,9 @@ html[data-theme="ember"] body.p-home #thoughts .ixn{
   line-height:1.4;color:var(--dim)}
 html[data-theme="ember"] body.p-home #thoughts .ixt{
   font-family:var(--serif);font-weight:300;font-size:clamp(19px,1.8vw,25px);
-  line-height:1.2;color:var(--ink)}
+  /* 1.28, not 1.20: these titles wrap to two and three lines, and the floor for
+     rendered 18-24px is 1.25. At the clamp's low end (19px) 1.20 was 22.8px. */
+  line-height:1.28;color:var(--ink)}
 /* the panel: one grid cell, all three stacked in it, one shown */
 /* The preview is a HOVER affordance, so it is gated on the input device and
    not on width alone: 861-1023px is portrait-tablet territory, where there
@@ -3247,8 +3316,10 @@ html[data-theme="ember"] body.p-writing .slip-stamp{
   text-transform:uppercase;line-height:1.4;color:#A93A24;
   border:2px solid #A93A24;border-radius:3px;padding:4px 8px;
   transform:rotate(-2.2deg);white-space:nowrap}
+/* 1.30, not 1.22: the writing index's slip titles wrap to two and three
+   lines at 20px, and the floor for rendered 18-24px is 1.25. */
 html[data-theme="ember"] body.p-writing .slip-title{
-  font-family:var(--serif);font-weight:400;font-size:20px;line-height:1.22;
+  font-family:var(--serif);font-weight:400;font-size:20px;line-height:1.30;
   color:#221C10}
 html[data-theme="ember"] body.p-writing .slip-rule{
   display:block;border-top:1px dashed rgba(34,28,16,.42);margin:16px 0}
@@ -3403,8 +3474,15 @@ html[data-theme="ember"] .bcard-m i{font-style:normal;opacity:.5;padding:0 .12em
 html[data-theme="ember"] .bcard--lead .bcard-m{font-size:clamp(40px,4.6vw,60px)}
 html[data-theme="ember"] .bcard-s{margin:8px 0 0;font-family:var(--mono);font-size:10.5px;
   letter-spacing:.15em;text-transform:uppercase;color:var(--ink-dim);line-height:1.5}
+/* 1.45, not 1.35: these titles wrap to two lines in six of seven cards, and
+   this repo's own floor for rendered text under 18px is 1.40. I declared 1.35
+   when I built the board and put a wrapping card title below my own floor.
+   line-height-check caught it (a.bcard-go 15px/20.25px = 1.35) — but only
+   because it was run by hand: that gate is NIGHTLY, so the pre-push suite went
+   22-of-23 green over it. Leading is invisible on one line, which is why a
+   card title is exactly where it hides. */
 html[data-theme="ember"] .bcard h3{margin:12px 0 0;font-size:15px;font-weight:600;
-  line-height:1.35;color:var(--ink)}
+  line-height:1.45;color:var(--ink)}
 html[data-theme="ember"] .bcard--lead h3{margin-top:16px;font-family:var(--serif);
   font-size:clamp(20px,2vw,26px);font-weight:400;line-height:1.25}
 html[data-theme="ember"] .bcard-d{margin:12px 0 0;font-size:13.5px;line-height:1.65;
@@ -3561,6 +3639,17 @@ html[data-theme="ember"] .vg-score em{font-family:var(--mono);font-style:normal;
   border:1px solid color-mix(in oklab,var(--a) 45%,transparent);
   border-radius:999px;padding:3px 8px}
 html[data-theme="ember"] .vg-srcs{list-style:none;margin:0;padding:0 0 0 12px;display:grid;gap:8px;position:relative}
+/* OPEN ANOMALY, not a fix. In the case-page instrument the same
+   three 14px items rendered 54px apart while the board card had them 22px
+   apart — the used grid-template-rows read 13.77px 45.77px 45.77px with only
+   one 14px item in each row, and I could not identify what was contributing
+   the extra 32px: no padding, no margin, no marker, white-space normal, three
+   auto-placed items and nothing else in the tree, and no rule anywhere in the
+   cascade sets grid-template-rows or a height on either element.
+   grid-auto-rows:min-content changed nothing, so I removed it rather than leave
+   a rule that does nothing (and it would have read as a fix). The spacing is
+   cosmetic and the content is correct in both contexts; the cause is still
+   unknown and is worth a second pair of eyes before anyone "fixes" it. */
 html[data-theme="ember"] .vg-srcs::before{content:"";position:absolute;left:3px;top:5px;bottom:6px;width:1px;
   background:color-mix(in oklab,var(--a) 38%,transparent)}
 html[data-theme="ember"] .vg-srcs li{position:relative;font-family:var(--mono);font-size:9.5px;
@@ -4077,34 +4166,23 @@ html[data-theme="ember"] body.p-home .bl-foot{margin:12px 0 0;font-family:var(--
    Brand review, 2026-09-08. The page had enormous proof and no PROMISE: the H1
    states the reader's problem, the sub stated Arpit's credentials, and nothing
    said what he does about it. The sub now carries the promise.
-   Two more conversion gaps closed here, both built only from what the receipts
-   and /screen already say — no new claims:
-     · the cost of inaction. The H1 raises a real pain and the page never
-       returned to it as a reason to act. Talon's own receipt says the model was
-       "already winning on the scoreboard" and the traders "overrode its
-       recommendations anyway" — that IS the cost, in his own evidence.
-     · what the first ninety days look like. For a Staff/Principal hire this is
-       the most persuasive artefact there is, and every beat of it was already
-       on the site in three different places. */
-html[data-theme="ember"] body.p-home .close .cost{margin:16px 0 0;max-width:56ch;
-  padding-left:16px;border-left:2px solid color-mix(in oklab,var(--rose) 45%,transparent);
-  font-family:var(--serif);font-weight:300;font-size:clamp(17px,1.7vw,20px);
-  line-height:1.45;color:var(--ink)}
-html[data-theme="ember"] body.p-home .close .first90{list-style:none;margin:24px 0 0;
-  padding:0;display:grid;gap:0;max-width:64ch;counter-reset:none}
-html[data-theme="ember"] body.p-home .close .first90 li{
-  display:grid;grid-template-columns:minmax(96px,auto) minmax(0,1fr);
-  column-gap:20px;align-items:baseline;padding:12px 0;
-  border-bottom:1px solid rgba(245,237,230,.10);
-  font-size:13.5px;line-height:1.6;color:var(--ink-muted)}
-html[data-theme="ember"] body.p-home .close .first90 li:first-child{
-  border-top:1px solid rgba(245,237,230,.10)}
-html[data-theme="ember"] body.p-home .close .first90 i{font-family:var(--mono);
-  font-style:normal;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--rose);line-height:1.5}
-@media (max-width:560px){
-  html[data-theme="ember"] body.p-home .close .first90 li{
-    grid-template-columns:minmax(0,1fr);row-gap:4px}}
+   AND TWO BLOCKS CAME BACK OUT — 2026-09-08. Arpit: "we removed the redundancy
+   from the contact form last time to make sure that it does his primary job,
+   now you have added content which should not be here." He was right, and the
+   justification I had written here convicted itself: I argued for the
+   first-90-days list on the grounds that "every beat of it was already on the
+   site in three different places". That is the redundancy he had removed.
+   Where each beat already lives:
+     · "five customer calls" → act 02's memo "Five calls in week one"
+     · the capability contract → act 03·1, which is entirely about writing it
+     · "watched someone fail to use it" → already on the page TWICE, in that
+       same act 02 memo and in .aiwork-close
+     · the Talon override (.cost) → act 01's AdTech card tells it with the
+       outcome attached; in front of the form it was the anecdote without it
+   So the answer to "where would you place it" is nowhere: it was a summary of
+   the page, printed at the one moment the reader is trying to act. The section
+   states the role, the logistics once, and the ways to start. Nothing else. */
+
 
 
 /* the close's right column carries the post-form matter ─────── 2026-09-08
@@ -4120,6 +4198,15 @@ html[data-theme="ember"] body.p-home .close .first90 i{font-family:var(--mono);
    grid-column:2 put them in ROWS 2-4, which begin after the 1026px left column
    ends — so they sat under the form instead of under the ticket. */
 html[data-theme="ember"] body.p-home .close .close-side{align-self:start;min-width:0}
+/* the column's own width IS the measure — 44ch was my void. The three text
+   blocks under the pass were capped at 44ch (306px at 14px) inside a 521px
+   column, stranding 215px beside each of them for 116px of vertical run: the
+   leftover-space defect, in the section whose one job is to be acted on. The
+   pass above them is 529px, so the cap made the column read as ragged rather
+   than composed. They run the column now — 521px is ~74ch at 14px, inside the
+   readable band — and the stack shares one left AND one right edge with the
+   pass. max-width is DECLARED, not deleted: .ps-line carries its own 48ch,
+   which would have quietly re-created a smaller version of the same void. */
 html[data-theme="ember"] body.p-home .close .close-side > :is(.contact-read,.sig,.ps-line){
-  max-width:44ch}
+  max-width:none}
 html[data-theme="ember"] body.p-home .close .close-side > .contact-read{margin-top:32px}

@@ -255,9 +255,9 @@
         ["Status", "Shipped 2021 · since deprecated"]
       ],
       "metrics": [
+        ["18 to 80", "Ages that navigated the same interface unaided"],
         ["0", "Usability complaints in the launch window"],
-        ["250", "Active users a month \u00b7 on 1,000 visitors"],
-        ["6", "Months, 0\u21921"]
+        ["250", "Active users a month \u00b7 on 1,000 visitors"]
       ],
       "plateNo": "7.1",
       "provenance": "The shipped product — his own screens, from a client project; the client is not named"
