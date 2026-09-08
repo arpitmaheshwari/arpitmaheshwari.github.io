@@ -105,7 +105,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # text-less button's default black `color`. Pixels inside that control in that
 # state: 8.12:1. The toggle's glyph is three gradient-filled child spans, and the
 # gate's existing gradient flag only tested the element itself.
-CEILING = 12060
+CEILING = 12_065
 
 
 def loc(paths):
