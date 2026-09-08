@@ -4072,3 +4072,54 @@ html[data-theme="ember"] body.p-home .bl-rows span{font-family:var(--mono);font-
   letter-spacing:.03em;color:var(--ink);line-height:1.5}
 html[data-theme="ember"] body.p-home .bl-foot{margin:12px 0 0;font-family:var(--sans);
   font-size:13px;line-height:1.6;color:var(--ink-muted)}
+
+/* ── the close: the cost of getting it wrong, and the first ninety days ──────
+   Brand review, 2026-09-08. The page had enormous proof and no PROMISE: the H1
+   states the reader's problem, the sub stated Arpit's credentials, and nothing
+   said what he does about it. The sub now carries the promise.
+   Two more conversion gaps closed here, both built only from what the receipts
+   and /screen already say — no new claims:
+     · the cost of inaction. The H1 raises a real pain and the page never
+       returned to it as a reason to act. Talon's own receipt says the model was
+       "already winning on the scoreboard" and the traders "overrode its
+       recommendations anyway" — that IS the cost, in his own evidence.
+     · what the first ninety days look like. For a Staff/Principal hire this is
+       the most persuasive artefact there is, and every beat of it was already
+       on the site in three different places. */
+html[data-theme="ember"] body.p-home .close .cost{margin:16px 0 0;max-width:56ch;
+  padding-left:16px;border-left:2px solid color-mix(in oklab,var(--rose) 45%,transparent);
+  font-family:var(--serif);font-weight:300;font-size:clamp(17px,1.7vw,20px);
+  line-height:1.45;color:var(--ink)}
+html[data-theme="ember"] body.p-home .close .first90{list-style:none;margin:24px 0 0;
+  padding:0;display:grid;gap:0;max-width:64ch;counter-reset:none}
+html[data-theme="ember"] body.p-home .close .first90 li{
+  display:grid;grid-template-columns:minmax(96px,auto) minmax(0,1fr);
+  column-gap:20px;align-items:baseline;padding:12px 0;
+  border-bottom:1px solid rgba(245,237,230,.10);
+  font-size:13.5px;line-height:1.6;color:var(--ink-muted)}
+html[data-theme="ember"] body.p-home .close .first90 li:first-child{
+  border-top:1px solid rgba(245,237,230,.10)}
+html[data-theme="ember"] body.p-home .close .first90 i{font-family:var(--mono);
+  font-style:normal;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--rose);line-height:1.5}
+@media (max-width:560px){
+  html[data-theme="ember"] body.p-home .close .first90 li{
+    grid-template-columns:minmax(0,1fr);row-gap:4px}}
+
+
+/* the close's right column carries the post-form matter ─────── 2026-09-08
+   Measured against the page's own pattern: the object in a two-column band runs
+   57% of its column in the hero, 49% in how-i-lead, 74% in patterns and 85% in
+   how-i-build. After today's copy additions the boarding pass was 30% of a
+   1209px column — 423px of empty column above it and 423px below, the only band
+   on the page under a third, and my additions are what pushed it there. The
+   three post-form blocks move right, which fills the column without disturbing
+   the reading order: they already came after the form, so a phone still reads
+   ask, then ticket, then footnotes. */
+/* One object in the right column, not four grid items: placing them with
+   grid-column:2 put them in ROWS 2-4, which begin after the 1026px left column
+   ends — so they sat under the form instead of under the ticket. */
+html[data-theme="ember"] body.p-home .close .close-side{align-self:start;min-width:0}
+html[data-theme="ember"] body.p-home .close .close-side > :is(.contact-read,.sig,.ps-line){
+  max-width:44ch}
+html[data-theme="ember"] body.p-home .close .close-side > .contact-read{margin-top:32px}
