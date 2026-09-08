@@ -4016,3 +4016,59 @@ html[data-theme="ember"] body.p-home .hero .k.role-line{max-width:none}
       wrap at x=100; .work has been 1040px at x=200 since before this work.
       Normalised to the majority, which is the rule when instances disagree. */
 html[data-theme="ember"] body.p-home .work .wrap{max-width:1240px}
+
+/* ── act 03·2 · the bar, as a READOUT ─────────────────────────── 2026-09-08
+   Was three prose columns with the design system leading the headline. The band
+   now shows the checking instead of describing it, the three old memos fold into
+   the lede, and the design system is a clause there — out of the headline at
+   Arpit's call. Every figure is from tools/teardown-facts.py or a gate's output.
+
+   TANDEM WITH 03·1 — the review Arpit asked for. Read together the two halves
+   work: the contract, then the verification of his own output, with the cream-to
+   -dark flip earning the boundary. Two things did not, both measured:
+
+   1. THE OBJECT FLIPPED SIDES. 03·1's widget sits at x=779 with prose left. My
+      first version of this band put its panel at x=140 — so the eye went right,
+      then left, and the halves mirrored instead of rhyming. Prose left, object
+      right, in both halves now.
+   2. THEY LOOKED LIKE ONE COMPONENT. Both were boxed cards: 1px border, 10-12px
+      radius, a mono header row, label/value rows beneath. On a dark ground the
+      second read as a repeat of the first. But they are not the same kind of
+      thing — 03·1's widget is a PRODUCT UI, it has chrome because it is
+      pretending to be software and you can click it; the bar is a MEASUREMENT of
+      his own work. So the bar is set as a printout: no box, no radius, hairline
+      rules, mono throughout. That is also why it does not borrow .vg from the
+      case board — those are product miniatures, and this is a readout. */
+html[data-theme="ember"] body.p-home .aiwork-two{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,420px);
+  column-gap:48px;align-items:start;margin-top:8px}
+html[data-theme="ember"] body.p-home .aiwork-prose{min-width:0}
+html[data-theme="ember"] body.p-home .aiwork-lede{max-width:62ch;margin:0}
+html[data-theme="ember"] body.p-home .aiwork-close{margin:20px 0 0;max-width:62ch;
+  font-size:13.5px;line-height:1.65;color:var(--ink-muted)}
+/* 1000px, matching 03·1's own breakpoint — the two halves of the act must flip
+   to one column at the same width or they disagree for 99px. */
+@media (max-width:1000px){
+  html[data-theme="ember"] body.p-home .aiwork-two{
+    grid-template-columns:minmax(0,1fr);row-gap:24px}}
+
+/* the readout: hairlines, no card */
+html[data-theme="ember"] body.p-home .barledger{margin:0;padding:0;border:0;background:none}
+html[data-theme="ember"] body.p-home .bl-hd{display:flex;align-items:baseline;
+  justify-content:space-between;gap:12px;padding-bottom:8px;
+  border-bottom:1px solid color-mix(in oklab,var(--amber) 40%,transparent)}
+html[data-theme="ember"] body.p-home .bl-hd b{font-family:var(--mono);font-weight:400;
+  font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);line-height:1.4}
+html[data-theme="ember"] body.p-home .bl-hd i{font-family:var(--mono);font-style:normal;
+  font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-dim);line-height:1.4}
+html[data-theme="ember"] body.p-home .bl-rows{list-style:none;margin:0;padding:0;display:grid}
+html[data-theme="ember"] body.p-home .bl-rows li{
+  display:grid;grid-template-columns:minmax(80px,auto) minmax(0,1fr);
+  column-gap:16px;align-items:baseline;padding:8px 0;
+  border-bottom:1px solid rgba(245,237,230,.10)}
+html[data-theme="ember"] body.p-home .bl-rows i{font-family:var(--mono);font-style:normal;
+  font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-dim);line-height:1.4}
+html[data-theme="ember"] body.p-home .bl-rows span{font-family:var(--mono);font-size:11.5px;
+  letter-spacing:.03em;color:var(--ink);line-height:1.5}
+html[data-theme="ember"] body.p-home .bl-foot{margin:12px 0 0;font-family:var(--sans);
+  font-size:13px;line-height:1.6;color:var(--ink-muted)}
