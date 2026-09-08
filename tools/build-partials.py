@@ -265,14 +265,19 @@ def main():
                 n = s.count(frag)
                 if n != 1:
                     raise SystemExit(f'STAMP MULTIPLICITY: {rel} carries {n}× {frag!r} (must be exactly 1)')
-            # The chant is HOMEPAGE ONLY as of 2026-09-03. It used to be stamped onto
-            # every page by the footer partial, where four lines of manifesto at the
-            # bottom of all 38 pages stopped reading as a payoff and started reading as
-            # wallpaper — and as assertion, on a site whose argument is that it measures
-            # rather than asserts. The homepage closes on the four-act block, which is
-            # where the acts structure makes it land. Same multiplicity discipline, new
-            # expectation: exactly one there, none anywhere else.
-            want_chant = 1 if rel == 'index.html' else 0
+            # THE CHANT IS GONE EVERYWHERE as of 2026-09-08 — Arpit asked for it off,
+            # and 68c2f75e removed the aside and the ten CSS rules that styled it.
+            # History: it used to be stamped onto every page by the footer partial,
+            # where four lines of manifesto at the bottom of all 38 pages stopped
+            # reading as a payoff and started reading as wallpaper — and as assertion,
+            # on a site whose argument is that it measures rather than asserts. On
+            # 2026-09-03 it became homepage-only; then it went entirely.
+            # This expectation was left at 1-on-the-homepage for five days after the
+            # removal and nobody noticed, because it only runs on a push that touches
+            # a page — so it demanded a block Arpit had asked to delete.
+            # The CHECK stays, at zero: five builds once put five chant lines on every
+            # page, so a resurrected aside anywhere is still worth blocking on.
+            want_chant = 0
             n = s.count('<aside class="chant')
             if n != want_chant:
                 raise SystemExit(f'CHANT PLACEMENT: {rel} carries {n} chant aside(s), '
