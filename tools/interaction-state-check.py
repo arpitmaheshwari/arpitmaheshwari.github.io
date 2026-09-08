@@ -59,7 +59,14 @@ HOVER = r"""(sel => {
   // called the book's page-turn arrows a failure at 4.01:1 when they pass.
   const visible = [...el.childNodes].filter(n => n.nodeType === 3)
                     .map(n => n.textContent.trim()).join('');
+  // An icon-only control whose glyph is painted by a BACKGROUND has no `color`
+  // to grade — `bi` only sees a gradient on the element itself, and the nav
+  // toggle's three bars are child spans. See the note in FOCUSED.
+  const painted = !visible && (bi || [...el.querySelectorAll('*')].some(k => {
+    const kc = getComputedStyle(k);
+    return kc.backgroundImage && kc.backgroundImage !== 'none'; }));
   return JSON.stringify({ratio:+r.toFixed(2), gradient:bi, ink:c.color, bg:bg,
+    paintedIcon: painted,
     needs: visible ? 4.5 : 3.0, iconOnly: !visible,
     what:(el.textContent||el.getAttribute('aria-label')||el.tagName)
            .trim().replace(/\s+/g,' ').slice(0,34)});
@@ -122,7 +129,11 @@ def main():
                 findings += len(hits)
 
     print(f'\n{findings} interaction-state problem(s)')
-    print('CANNOT SEE: hover states painted by a gradient or an overlay (this '
+    print('CANNOT SEE: controls whose glyph is painted by a background rather '
+          'than by `color` — the nav toggle is three gradient-filled bars and has '
+          'no text; grading its `color` gave 1.25:1 where pixels give 8.12:1, so '
+          'those are skipped and left to contrast-audit. Nor: hover states '
+          'painted by a gradient or an overlay (this '
           'reads computed styles, not pixels), states behind a real pointer '
           'gesture like drag, and anything requiring two steps.')
     return 1 if findings else 0
@@ -153,7 +164,8 @@ def tab_scan(br, steps=8):
         if not isinstance(d, dict) or d.get('what') in seen:
             continue
         seen.add(d['what'])
-        if d.get('ratio') is not None and d['ratio'] < 4.5 and not d.get('gradient'):
+        if (d.get('ratio') is not None and d['ratio'] < 4.5
+                and not d.get('gradient') and not d.get('paintedIcon')):
             out.append({'kind': 'FOCUS-CONTRAST', 'what': d['what'],
                         'detail': f"{d['ratio']}:1 while focused — "
                                   f"{d['ink']} on {d['bg']}"})
@@ -185,6 +197,26 @@ FOCUSED = r'''(() => {
     what: (e.textContent || e.getAttribute('aria-label') || e.tagName)
             .trim().replace(/\s+/g,' ').slice(0,34),
     ratio, gradient: grad, ink: c.color, bg,
+    // AN ICON PAINTED BY A BACKGROUND HAS NO `color` TO GRADE — 2026-09-09.
+    // The nav toggle renders no text at all: its glyph is three spans filled
+    // with an ember->violet gradient. This gate graded the BUTTON's `color`,
+    // which is the UA default black, against the page ground, and reported
+    // 1.25:1 on hover and focus across 41 pages — 82 findings. Sampled pixels
+    // inside the same control in the same state: 8.12:1. An impossible reading
+    // indicts the instrument, and this gate's own last line already admits it
+    // cannot see a state painted by a gradient. So say UNMEASURABLE and leave
+    // it to contrast-audit, which reads pixels. Failing on a measurement you
+    // cannot make is worse than not making it.
+    paintedIcon: (() => {
+      const vis = [...e.childNodes].filter(n => n.nodeType === 3)
+                    .map(n => n.textContent.trim()).join('');
+      if (vis) return false;                       // it has real text; grade it
+      if (grad) return true;                       // painted on itself
+      return [...e.querySelectorAll('*')].some(k => {
+        const kc = getComputedStyle(k);
+        return kc.backgroundImage && kc.backgroundImage !== 'none';
+      });
+    })(),
     outline: c.outline,
     // A positive outline-offset draws the ring OUTSIDE the element, on the
     // parent's ground — comparing it to the element's own fill called a
@@ -225,7 +257,9 @@ def hover_scan(br, only=None):
             br.cmd('CSS.forcePseudoState', nodeId=node, forcedPseudoClasses=[])
         except RuntimeError:
             pass
-        if (isinstance(r, dict) and not r.get('gradient')
+        # `gradient` catches a gradient on the element ITSELF; paintedIcon catches
+        # one on its children, which is how the nav toggle is drawn.
+        if (isinstance(r, dict) and not r.get('gradient') and not r.get('paintedIcon')
                 and r.get('ratio', 99) < r.get('needs', 4.5)):
             out.append({'kind': 'HOVER-CONTRAST', 'what': r['what'],
                         'detail': f"{r['ratio']}:1 on hover (needs "
