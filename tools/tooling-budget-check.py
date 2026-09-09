@@ -120,7 +120,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # buys a structural check on the TEXT — braces balance, @layer spans hold their
 # share — at pre-commit, because it needs no browser and takes 0.2s. The lines are
 # mostly the account of how the brace got there: a cut to "the next closing brace".
-CEILING = 12_456
+# 2026-09-10  +228  nontext-contrast-check.py (MANUAL). Arpit asked how the CTAs
+# were passing accessibility. They were not: the text passed, the button's boundary
+# sat at 2.84:1 against a 3:1 requirement, and no gate here had ever measured a
+# control's EDGE rather than its text. Manual rather than pre-push because scoped to
+# actions it still reports 153 controls — the site's --border token is 1.41:1 — and
+# that is a design decision, not a push blocker. Half the lines are the record of
+# five screenshot-sampling faults, so the next person computes from resolved colours.
+CEILING = 12_690
 
 
 def loc(paths):

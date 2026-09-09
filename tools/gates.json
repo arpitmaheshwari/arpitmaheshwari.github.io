@@ -694,6 +694,14 @@
  ],
  "manual": [
   {
+   "id": "nontext-contrast-check",
+   "cmd": [
+    "python3",
+    "tools/nontext-contrast-check.py"
+   ],
+   "manual_reason": "WCAG 1.4.11: can a reader SEE a control, not just read it. Written 2026-09-10 after Arpit said of the calls to action \"the cta are not very readable I am not sure how they are passing the accessibility test\". They were passing because nothing looked: the CTA TEXT was fine (contrast-audit graded 347 text nodes on a case page, 0 failures) while the BUTTON'S BOUNDARY sat at 2.84:1 where 1.4.11 needs 3:1 — 29 of 38 asks. All 48 gates measure text against its ground; none measured a control's edge. MANUAL, not pre-push, and that is the finding: scoped to the action family it still reports 153 controls across 17 components, because the site's own --border token measures 1.41:1 and --border-accent 2.89:1. Every card, input, toggle, checkbox, Subscribe button and the dyslexia toggle inherits that. Raising those tokens changes the look of the whole site, so it is Arpit's design call and not something a gate should block a push on — this file already records that a gate which fails on a plane is a gate people learn to skip. Run it when that decision gets made, then consider promoting it. The door itself now measures 7.36:1 worst-case, so the reported defect is fixed. Deliberately computes from RESOLVED COLOURS, never pixels: finding this cost five consecutive screenshot-sampling faults (rounded corners reading 1.00:1; antialiased glyph edges reading 1.47:1 against a 16.74:1 median; mobile emulation shifting the coordinate frame; scrollIntoView returning a stale rect under smooth scrolling; and sampling a button's centre, which hits the label, not the fill). A gradient's endpoints ARE its extremes, so the worst case is exact. Semi-transparent borders are composited over the real ground — discarding them made it fall through to the card fill and report 1.15:1 for every card on the site. Reports UNMEASURABLE rather than passing when an ancestor's background is an image or gradient; those belong to contrast-audit's pixels. --all lifts the action scope for the site-wide token conversation."
+  },
+  {
    "id": "ci-status-check",
    "cmd": [
     "python3",
