@@ -43,14 +43,13 @@ html[data-theme="ember"] #nav .nav-logo img{width:40px;height:40px}
    homepage body sets 1.65 and the inner pages 1.7, so the same nav computed 21.45px on
    home and 22.1px everywhere else and the bar was 0.4px shorter on one page out of 43.
    A component that inherits a critical property is a component that differs per page. */
-html[data-theme="ember"] #nav .nav-links a{line-height:1.7}
+html[data-theme="ember"] #nav .nav-links a:not(.cta){line-height:1.7}
 /* Same for the CTA pill: the homepage declared line-height:1 (44.00px tall) while the
    other 42 pages INHERITED ~1.7 (44.39px), so the bar was 0.39px shorter on one page.
    Declared once here at the value adtech computes, which is what Arpit asked every nav to
    match. Declared, not inherited — inheritance is what made them differ. */
-html[data-theme="ember"] #nav .nav-cta{line-height:1.7}
-html[data-theme="ember"] .nav-cta{background:var(--g-hot);color:var(--cta-ink);border:none;border-radius:999px;font-weight:600}
-html[data-theme="ember"] .nav-cta:hover{color:var(--cta-ink);transform:translateY(-2px)}
+/* the nav door composes .cta; only its lift is local to the nav */
+html[data-theme="ember"] .nav-cta:hover{transform:translateY(-2px)}
 html[data-theme="ember"] .nav-links a.nav-on{color:var(--ember)}
 html[data-theme="ember"] .nav-links a:hover{color:var(--ember)}
 /* hero diagnostic — first-class component, ember demo-box language */
@@ -446,7 +445,7 @@ html[data-theme="ember"] .hd-diag > a:hover{color:var(--amber)}
    wrapper a second sticky bar. The homepage now inherits .nav-links{gap:40px}
 . */
 /* nav CTA: the prototype pill sizing, not the classic block */
-html[data-theme="ember"] body.p-home .nav-cta{padding:12px 24px;white-space:nowrap;color:#1A0D08;font-weight:600}
+html[data-theme="ember"] body.p-home .nav-cta{white-space:nowrap}
 /* dark ink on the hot gradient: cream measured 2.21:1 */
 @media (max-width:640px){/* the QC slip is a rotated cream artifact — its rotated box overflowed the
      viewport by 23px at 390 (measured in a real viewport, not headless) */
@@ -833,6 +832,13 @@ html[data-theme="ember"] body:is([class*="p-lab"],.p-fit) .td-inline{color:var(-
 html[data-theme="ember"] :is(.btn-a,.lbl-badge-bg,.lbl-pill-bg){border-radius:999px}
 html[data-theme="ember"] .btn-a-ghost{border-radius:999px;border-color:var(--border-accent);color:var(--ink)}
 html[data-theme="ember"] .btn-a-ghost:hover{border-color:var(--heat,var(--ember))}
+
+/* CTA (2026-09-10) — the ask is ALWAYS the filled treatment. Measured: the
+   gradient reads 7.25:1 to 8.46:1 against the page, the outline it replaces
+   read 2.84:1, and WCAG 1.4.11 wants 3:1 for a component's boundary. The
+   --cta-ink token is the same near-black the other gradient pills already
+   carry, which the pre-push pixel audit has been grading for weeks. */
+/* the .cta component moved to the UNLAYERED TAIL of this file — see the end. */
 /* --- section rhythm: alternate bands so a long page has acts --- */
 html[data-theme="ember"] :is(body.p-patterns,body[class*="p-writing"],body[class*="p-resources"])
   main > section:nth-of-type(even){background:var(--bg-soft)}
@@ -897,7 +903,7 @@ html[data-theme="ember"]{--link:#E86BFF;--link-hover:#F2A3FF}
    a :not() argument carries its own specificity, so deleting one lowers these
    rules by 0,1,0 and could flip which rule wins on every link in main and
    footer. Inert is cheaper than a cascade change. */
-html[data-theme="ember"] :is(main,footer) a:not(.pill):not(.btn-a):not(.btn-a-ghost):not(.lane):hover{color:var(--link-hover)}
+html[data-theme="ember"] :is(main,footer) a:not(.pill):not(.btn-a):not(.btn-a-ghost):not(.lane):not(.cta):hover{color:var(--link-hover)}
 html[data-theme="ember"] .rfoot a,
 html[data-theme="ember"] .who p a,
 html[data-theme="ember"] .errata a,
@@ -1049,7 +1055,7 @@ html[data-theme="ember"] #nav .nav-name{font-family:var(--ff-sans);font-size:15p
     align-items:center;justify-content:initial}
   html[data-theme="ember"] #nav .nav-logo{grid-column:1;justify-self:start}
   html[data-theme="ember"] #nav .nav-links{grid-column:2;justify-self:center;gap:32px}
-  html[data-theme="ember"] #nav .nav-links a{font-size:14px;font-weight:500;color:var(--ink)}
+  html[data-theme="ember"] #nav .nav-links a:not(.cta){font-size:14px;font-weight:500;color:var(--ink)}
   html[data-theme="ember"] #nav .nav-cta{grid-column:3;justify-self:end}
 }
 /* --- Writing section on the standard grammar ------------------------------
@@ -1223,8 +1229,8 @@ html[data-theme="ember"] :is([class*="p-lab"],.p-fit) .lab-cards{margin-bottom:0
    A component must declare its own critical properties rather than inherit half of them
    from the treatment it is replacing. Padding is symmetric and on the 8px grid; the border
    is one colour on all four sides, the violet this rule always intended. */
-html[data-theme="ember"] .lab-links a{font-family:var(--ff-label);font-size:11.5px;font-weight:500;letter-spacing:.02em;color:var(--link);text-decoration:none;border:1px solid color-mix(in srgb, var(--link) 45%, transparent);border-radius:var(--radius);padding:8px 16px}
-html[data-theme="ember"] .lab-links a:hover{color:var(--link-hover);border-color:var(--link);background:transparent}
+html[data-theme="ember"] .lab-links a:not(.cta){font-family:var(--ff-label);font-size:11.5px;font-weight:500;letter-spacing:.02em;color:var(--link);text-decoration:none;border:1px solid color-mix(in srgb, var(--link) 45%, transparent);border-radius:var(--radius);padding:8px 16px}
+html[data-theme="ember"] .lab-links a:not(.cta):hover{color:var(--link-hover);border-color:var(--link);background:transparent}
 /* ================================================================
    SIMILARITY PASS (Playwright Gestalt audit, 2026-08-14)
    Four classes rendered at arbitrary different sizes/weights for the SAME
@@ -1256,7 +1262,7 @@ html[data-theme="ember"] .hand{display:inline-block;max-width:100%}
    ============================================================================ */
 html[data-theme="ember"] :is(.k,.eyebrow,.lbl-eyebrow,.ck,.mk,.lab-kicker,.opt-n,
   .thought-tag,.case-hero__kicker,.lbl-cap,.lbl-meta,.lbl-badge-bg,.lbl-badge-gold,
-  .go,.lab-go,.rcpt-btn,.contract-links a,.wr-more a,.contact-alt a,.lab-links a){font-family:var(--ff-label);font-weight:600;letter-spacing:.08em}
+  .go,.lab-go,.rcpt-btn,.contract-links a,.wr-more a,.contact-alt a,.lab-links a):not(.cta){font-family:var(--ff-label);font-weight:600;letter-spacing:.08em}
 /* code keeps the mono, and keeps its own tracking */
 html[data-theme="ember"] :is(code,pre,.t-code,.td-inline,.lab-code,.plA-stage,.plF-stage){font-family:var(--ff-mono);letter-spacing:0}
 /* CODE BLOCKS WRAP; THEY DO NOT SCROLL (2026-08-17, Arpit's pick) ----------
@@ -1944,7 +1950,7 @@ html[data-theme="ember"] body[class*="p-case-studies"] .case-hero figure{width:1
 @media (max-width:1100px){html[data-theme="ember"] body[class*="p-case-studies"] :is(.plA,.plF,.plM,.plO,.plP,.plV,
     .plA-caption,.plF-caption,.plM-caption,.plO-caption,.plP-caption,.plV-caption,
     .case-vitals,.recon,.measure-c figure){width:min(1040px,calc(100vw - 48px));margin-left:50%;margin-right:0;transform:translateX(-50%)}}
-html[data-theme="ember"] :is(main,footer) a:not(.pill):not(.btn-a):not(.btn-a-ghost):not(.lane):not(.labc):not(.hd-preset):not(.rcpt-btn):not(.hk-btn):not(.card-p28):not(.card-p32):not(.nav-cta):not(.hd-case-btn):not(.fit-cite){/* , 2026-08-17: the extracted .xi-* classes set color:var(--gold)
+html[data-theme="ember"] :is(main,footer) a:not(.pill):not(.btn-a):not(.btn-a-ghost):not(.lane):not(.labc):not(.hd-preset):not(.rcpt-btn):not(.hk-btn):not(.card-p28):not(.card-p32):not(.nav-cta):not(.cta):not(.hd-case-btn):not(.fit-cite){/* , 2026-08-17: the extracted .xi-* classes set color:var(--gold)
      on individual anchors, so this rule lost its own property on /lab/ and /patterns/
      and links there rendered amber while the token said violet. */
   color:var(--link)}
@@ -2070,7 +2076,7 @@ html[data-theme="ember"] :is(.cg-l,.lbl-pill-bg,.lbl-pill-gold,.lbl-eyebrow-500,
    .12em (correct for uppercase MONO, too loose for uppercase sans) and /hire/'s
    primary CTA still on the mono face. Caught by tools/cta-grammar-check.py. */
 html[data-theme="ember"] :is(.wr-more a,.contact-alt a,.lab-links a,.contract-links a,
-  .go,.rcpt-btn,.rcpt-more,.lbl-badge-bg,.lbl-badge-gold,.btn-a,.btn-a-ghost,.nav-cta,.pill){font-family:var(--ff-label);letter-spacing:.08em}
+  .go,.rcpt-btn,.rcpt-more,.lbl-badge-bg,.lbl-badge-gold,.btn-a,.btn-a-ghost,.nav-cta,.pill):not(.cta){font-family:var(--ff-label);letter-spacing:.08em}
 /* OPEN, 5px: patterns/ml-explainability's comparison table runs 5px past 390px.
    Tried and REJECTED, each re-measured: display:block on the table (broke two
    other pages' tables), table-layout:fixed + word-break (no change), reduced
@@ -2776,7 +2782,7 @@ html[data-theme="ember"] :is(.t-body,.u-body){
    assumed 44px, which is SC 2.5.5 (AAA) and a different requirement — the AA
    line at 24px had never been checked. */
 html[data-theme="ember"] :is(.inline-links a,.divert a,.btn-row a,.door-alt a,
-  .wr-more a,p.hand a,.hd-route a,.contract-links a,.scr-receipt a,.lab-row a){
+  .wr-more a,p.hand a,.hd-route a,.contract-links a,.scr-receipt a,.lab-row a):not(.cta){
   padding-block:4px;display:inline-block}
 html[data-theme="ember"] :is(button.rxa-why,button.rxf-explain,button.rxa-logged,
   .rx2-btn,.demo-btn,.ccd-q){min-height:24px;padding-block:4px}
@@ -4063,7 +4069,7 @@ html[data-theme="ember"] .nav-links .nav-cta-sm{display:none}
 @media (max-width:339px){
   html[data-theme="ember"] #nav .nav-cta{display:none}
   html[data-theme="ember"] .nav-links .nav-cta-sm{display:block}
-  html[data-theme="ember"] .nav-links .nav-cta-sm a{
+  html[data-theme="ember"] .nav-links .nav-cta-sm a:not(.cta){
     display:inline-block;margin-top:8px;padding:12px 20px;border-radius:999px;
     background:var(--g-hot);color:var(--cta-ink);font-weight:600;line-height:1.4}
 }
@@ -4285,3 +4291,52 @@ html[data-theme="ember"] body.p-home #contact .door-alt a{color:var(--ink-muted)
    it. Canon already recorded that his audience does not fill forms; email,
    LinkedIn, the resume and the call all remain. The Formspree endpoint left
    the site with it — git has the markup if he wants it back. */
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE DOOR — UNLAYERED ON PURPOSE                                2026-09-10
+   ═══════════════════════════════════════════════════════════════════════════
+   This block sits outside @layer base deliberately, because unlayered rules
+   outrank EVERY layered rule regardless of specificity. That is the mechanism
+   this stylesheet already uses when a component must win (the nav menu-toggle
+   rule does the same, for the same reason).
+
+   Why it needs to win: measured across 107 instances, the component was being
+   overridden by page context in four separate ways —
+     * .nav-cta re-declared font, size, tracking, padding, border and radius,
+       so the nav door rendered 48px tall at .08em while the same class
+       elsewhere rendered 44px at .02em;
+     * .lab-links a re-declared the whole pill (11.5px, radius 4px, 8px 16px);
+     * an :is(.wr-more a, .contact-alt a, .lab-links a, ...) group set .08em;
+     * a prose-link rule with an eleven-deep :not() chain set color:var(--link),
+       which painted MAGENTA TEXT on the gradient on 37 instances.
+   I patched those selectors one at a time and each fix revealed the next. The
+   honest fix is not a longer :not() chain — it is the component owning its own
+   properties, once, where nothing can reach it. Execution lesson 11.
+
+   The gradient is fixed here rather than var(--heat)/var(--heat2), which are
+   PER-PAGE accents: the "identical door" was painting orange on the homepage,
+   magenta on /lab/ and /fit/, pale orange on the case pages. --cta-grad is
+   used by nothing else. */
+html[data-theme="ember"]{--cta-grad:linear-gradient(92deg,#FF8A5C,#E86BFF)}
+html[data-theme="ember"] .cta{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 24px;min-height:44px;box-sizing:border-box;
+  font-family:var(--ff-mono);font-size:14px;font-weight:600;
+  letter-spacing:.02em;line-height:1.2;text-transform:none;
+  border:none;border-radius:999px;text-decoration:none;white-space:nowrap;
+  background:var(--cta-grad);color:var(--cta-ink)}
+html[data-theme="ember"] .cta::before{
+  content:"";flex:0 0 auto;width:16px;height:16px;display:block;
+  background-color:currentColor;
+  -webkit-mask:var(--cta-icon) center/contain no-repeat;
+          mask:var(--cta-icon) center/contain no-repeat}
+html[data-theme="ember"] .cta--bare::before{display:none}
+html[data-theme="ember"] .cta:hover{filter:brightness(1.06);color:var(--cta-ink)}
+html[data-theme="ember"] .cta:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+html[data-theme="ember"] .cta-quiet{
+  display:inline-block;padding:4px 0;min-height:24px;border:0;background:none;
+  font-family:var(--ff-label);font-size:12px;font-weight:500;letter-spacing:.02em;
+  color:var(--ink-muted);text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb, var(--ink-muted) 40%, transparent)}
+html[data-theme="ember"] .cta-quiet:hover{color:var(--ink);border-bottom-color:var(--ink-muted)}

@@ -112,14 +112,21 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;
 #nav.scrolled{background:rgba(10,10,10,.92);backdrop-filter:blur(16px);padding:16px 48px;border-bottom:1px solid var(--border)}
 .nav-logo{font-family:var(--ff-mono);font-size:13px;letter-spacing:.02em;color:var(--gold);white-space:nowrap}
 .nav-links{display:flex;gap:40px;list-style:none;align-items:center}
-.nav-links a{font-size:13px;letter-spacing:.02em;color:var(--ink-muted);position:relative;transition:color .2s;white-space:nowrap}
+.nav-links a:not(.cta){font-size:13px;letter-spacing:.02em;color:var(--ink-muted);position:relative;transition:color .2s;white-space:nowrap}
 .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s var(--ease-out)}
 .nav-links a:hover{color:var(--ink)}
 .nav-links a:hover::after{width:100%}
 .nav-links li.nav-book a{color:var(--gold)}
 .nav-links li.nav-book a:hover{color:var(--gold);opacity:.78}
-.nav-cta{font-family:var(--ff-mono);font-size:12px;letter-spacing:.02em;padding:12px 24px;min-height:44px;display:inline-flex;align-items:center;border:1px solid var(--gold-dark);color:var(--gold);border-radius:2px;transition:background .3s,color .3s}
-.nav-cta:hover{background:var(--gold);color:var(--bg)}
+/* 2026-09-10 — .nav-cta is PLACEMENT ONLY now. Appearance belongs to the .cta
+   component, which the nav door composes. Before this, .nav-cta (styles) plus
+   html[data-theme=ember] .nav-cta (ember) plus body.p-home .nav-cta between
+   them re-declared font, size, tracking, padding, border, radius, colour and
+   weight — so the nav door rendered 48px tall at .08em tracking while the same
+   component elsewhere rendered 44px at .02em. That is execution lesson 11: a
+   component that does not own its critical properties renders differently per
+   context. Measured before the fix: 5 different shapes across 71 instances. */
+.nav-cta{transition:background .3s,color .3s}
 /* order:1 puts the hamburger visually LAST (its original position) while the DOM keeps
    it before .nav-links, so Tab reaches the drawer it opens instead of skipping past it.
    The order property does not affect tab order — that is the point. */
@@ -238,7 +245,7 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .remote-grid{grid-template-columns:repeat(2,1fr)}}
 /* ----- Responsive: mobile + tablet hamburger (≤900px) ----- */
 @media(max-width:1100px){.nav-links{display:none;flex-direction:column;align-items:stretch;position:fixed;top:64px;left:0;right:0;background:rgba(10,10,10,0.97);padding:32px 24px;gap:24px;border-bottom:1px solid var(--border);z-index:99}
-.nav-links a{display:block;padding:12px 16px;font-size:15px;white-space:normal}
+.nav-links a:not(.cta){display:block;padding:12px 16px;font-size:15px;white-space:normal}
 .nav-links.nav-open{display:flex}
 .menu-toggle{display:flex}
 /* Once .nav-links hide, the bar holds only logo | CTA | hamburger — and space-between
@@ -250,7 +257,7 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 @media(max-width:768px){#nav{padding:16px 20px;gap:8px}
 .nav-logo span{display:none}
 #nav.scrolled{padding:12px 24px}
-.nav-cta{padding:8px 16px;font-size:11px;margin-left:auto;margin-right:16px}
+.nav-cta{margin-left:auto;margin-right:16px}
 /* the phone half of the dead prototype hero block (see ----- Hero ----- above)
    came out with it on 2026-09-07 */
 .thoughts-grid{grid-template-columns:1fr}
@@ -364,7 +371,7 @@ html,body{font-size:16px}
    still identifies the site and links home. */
 @media(max-width:360px){#nav{padding-left:16px;padding-right:16px;gap:8px}
 .nav-logo span{display:none}
-.nav-cta{padding:8px 12px;font-size:11px}}
+.nav-cta{margin-right:8px}}
 /* The method diagram needs the full column, not the 62ch text measure: at 595px the
    1280-unit viewBox downscaled to 0.465 and its labels rendered at 5.6px. */
 .process-fig{margin:32px 0;width:calc(100% + 300px);margin-left:-150px;max-width:none}
@@ -473,6 +480,65 @@ a{text-decoration:underline}}
 .rcpt-box{display:grid;gap:0;grid-template-columns:1fr;border:1px solid var(--border);border-radius:4px}
 .btn-a{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:2px}
 .btn-a-ghost{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:1px solid var(--gold-dark);border-radius:2px}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CTA — ONE COMPONENT, ICON + SHORT LABEL                       2026-09-10
+   ═══════════════════════════════════════════════════════════════════════════
+   Arpit: "I prefer to have a simple identical door everywhere, instead of
+   using the long label connect on linkedin update the design system to have
+   cta with the generic icon, in this case it will be LinkedIn icon usage.
+   Also the cta are not very readable I am not sure how they are passing the
+   accessibility test, or work on that."
+
+   He was right about the accessibility, and the reason the gates missed it is
+   worth writing down. Measured across all 36 pages: the CTA *text* passes —
+   contrast-audit graded 347 text nodes on a case page with 0 failures. What
+   fails is the BUTTON'S OWN BOUNDARY. The outline treatment
+   (.lbl-badge-gold, 19 instances) sits at 2.84:1 against the page and
+   .lbl-pill-gold at 2.86:1, where WCAG 1.4.11 needs 3:1 for the visual
+   boundary of a UI component. 29 of 38 asks failed it. Every gate here
+   measures TEXT on its ground; none measures a component's edge. So a button
+   nobody can find passes every check the repo owns.
+
+   The gradient-filled treatment measures 7.25:1 to 8.46:1 — it never had the
+   problem. So the fix is not a new colour, it is: the ask is always filled.
+
+   SIZE was the other half of "not very readable": the asks were 12px
+   (--fs-eyebrow) at weight 600. That tier is specified for "eyebrow / kicker
+   / label / meta / nav" — annotation, not the page's terminal action. The
+   door moves up one step to --fs-ui (14px).
+
+   THE ICON is a mask, not a sprite <use>, deliberately: #i-linkedin existed
+   in exactly ONE page's sprite, 18 pages had a sprite without it, and 33 had
+   no sprite at all. A mask defined once here needs nothing in the markup,
+   inherits currentColor, and cannot go missing on a page someone adds later.
+   The path data is the repo's own #i-linkedin symbol, unchanged.
+
+   The icon slot is GENERIC: set --cta-icon to any mask and the component
+   carries it. LinkedIn is today's door, not a hard-coded one. */
+.cta{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 24px;min-height:44px;box-sizing:border-box;
+  font-family:var(--ff-mono);font-size:var(--fs-ui);font-weight:600;
+  letter-spacing:.02em;line-height:1.2;
+  border:none;border-radius:999px;cursor:pointer;text-decoration:none;
+  background:var(--gold);color:var(--bg)}
+.cta::before{
+  content:"";flex:0 0 auto;width:16px;height:16px;
+  background-color:currentColor;
+  -webkit-mask:var(--cta-icon) center/contain no-repeat;
+          mask:var(--cta-icon) center/contain no-repeat}
+.cta--linkedin{--cta-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z'/%3E%3Crect width='4' height='12' x='2' y='9'/%3E%3Ccircle cx='4' cy='4' r='2'/%3E%3C/svg%3E")}
+/* no icon: the same component without the mask slot filled */
+.cta--bare::before{display:none}
+/* the reading-flow link is deliberately NOT a button any more — it is
+   convenience, and it was outranking the ask on 15 pages */
+.cta-quiet{
+  display:inline-block;padding:4px 0;min-height:24px;
+  font-family:var(--ff-label);font-size:12px;letter-spacing:.02em;
+  color:var(--ink-muted);text-decoration:none;
+  border-bottom:1px solid var(--border)}
+.cta-quiet:hover{color:var(--ink);border-bottom-color:var(--ink-muted)}
 .btn-b{padding:12px 24px;border:1px solid var(--gold-dark);border-radius:2px}
 .btn-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:48px}
 .chip-row{display:flex;flex-wrap:wrap;gap:8px}
@@ -1407,8 +1473,8 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
    button. A component copied per page is not a system, and the page that forgets a copy is
    the page that looks wrong. The attribute match covers every current and future p-lab-* page. */
 :where(body[class*="p-lab"],body.p-fit) .lab-links{display: flex;flex-wrap: wrap;gap:12px;margin-top:24px}
-:where(body[class*="p-lab"],body.p-fit) .lab-links a{font-family: var(--ff-mono);font-size: var(--fs-caption);letter-spacing: .04em;color: var(--gold);text-decoration: none;border: 1px solid var(--gold-dark);border-radius: var(--radius);padding:8px 16px;transition: background .15s, color .15s, border-color .15s}
-:where(body[class*="p-lab"],body.p-fit) .lab-links a:hover{background: var(--gold);color: var(--bg)}
+:where(body[class*="p-lab"],body.p-fit) .lab-links a:not(.cta){font-family: var(--ff-mono);font-size: var(--fs-caption);letter-spacing: .04em;color: var(--gold);text-decoration: none;border: 1px solid var(--gold-dark);border-radius: var(--radius);padding:8px 16px;transition: background .15s, color .15s, border-color .15s}
+:where(body[class*="p-lab"],body.p-fit) .lab-links a:not(.cta):hover{background: var(--gold);color: var(--bg)}
 @media (prefers-reduced-motion: reduce){:where(body.p-lab,body.p-fit) .lab-card{transition: none}
 :where(body.p-lab,body.p-fit) .lab-card:hover{transform: none}}
 :where(body.p-lab,body.p-fit) .ev-tiers{margin:16px 0 0}
