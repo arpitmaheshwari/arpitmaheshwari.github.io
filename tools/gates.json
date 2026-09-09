@@ -3,7 +3,7 @@
   "ONE list of gates. The pre-push hook and .github/workflows/ used to keep two",
   "hand-maintained lists, and nothing required them to agree. They stopped agreeing:",
   "the hook ran asset-load-check against two URLs while CI ran it against every page,",
-  "so a green hook said nothing about the gate that was failing \u2014 and the Contrast gate",
+  "so a green hook said nothing about the gate that was failing — and the Contrast gate",
   "was red on thirty consecutive pushes from 2026-08-30 to 2026-09-04 while every local",
   "run reported OK.",
   "",
@@ -13,9 +13,9 @@
   "",
   "stages : pre-push | ci     (a gate may be in both; at least one is required)",
   "needs  : server            (run-gates starts ONE for all of them and passes {BASE})",
-  "         network           (never run automatically \u2014 see manual_reason)",
+  "         network           (never run automatically — see manual_reason)",
   "stages : pre-push | ci | ci-always   (ci-always = canon-gate.yml, unfiltered)",
-  "         nightly           (nightly-sweep.yml \u2014 the multi-minute browser sweeps)",
+  "         nightly           (nightly-sweep.yml — the multi-minute browser sweeps)",
   "serial : run this gate alone (virtual-time drivers break under contention)",
   "cmd    : argv. {BASE} is substituted with the server origin.",
   "",
@@ -130,7 +130,7 @@
     "pre-push",
     "ci"
    ],
-   "note": "--selftest, not a bare run: it plants one violation per documented rule and refuses to report unless every rule fires. It was never wired in, so the calibration existed and never ran \u2014 and when finally invoked it failed with 'INVISIBLE: UNSPACED-DASH', a rule added to the list without being added to the fixture. A calibration nobody runs is a comment."
+   "note": "--selftest, not a bare run: it plants one violation per documented rule and refuses to report unless every rule fires. It was never wired in, so the calibration existed and never ran — and when finally invoked it failed with 'INVISIBLE: UNSPACED-DASH', a rule added to the list without being added to the fixture. A calibration nobody runs is a comment."
   },
   {
    "id": "freshness-check",
@@ -243,19 +243,19 @@
     "pre-push",
     "ci"
    ],
-   "note": "was wired to neither stage until 2026-09-04 \u2014 one of nine orphans the architecture review found"
+   "note": "was wired to neither stage until 2026-09-04 — one of nine orphans the architecture review found"
   },
   {
-    "id": "section-nav-check",
-    "cmd": [
-      "python3",
-      "tools/section-nav-check.py"
-    ],
-    "stages": [
-      "pre-push",
-      "ci"
-    ],
-    "note": "Two properties every other gate is blind to, because they compare elements to EACH OTHER instead of measuring one element: no two headings on a page say the same thing (o2 shipped its §01 stakes heading a second time over §04), and every section carrying its own h2 is reachable from the page's own jump nav (five of eight case studies had one that was not). Self-calibrates by planting a duplicate heading and by deleting a jump link. \u2014 stage 'ci', NOT 'ci-always': canon-gate.yml runs the ci-always stage with no Chrome and no pillow/websocket-client, because every other gate in it is pure text. Registering this browser-driven gate there turned the canon gate red on 5b92ef2c within minutes of the push \u2014 the gate could not start, which a workflow correctly reports as a failure."
+   "id": "section-nav-check",
+   "cmd": [
+    "python3",
+    "tools/section-nav-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ],
+   "note": "Two properties every other gate is blind to, because they compare elements to EACH OTHER instead of measuring one element: no two headings on a page say the same thing (o2 shipped its §01 stakes heading a second time over §04), and every section carrying its own h2 is reachable from the page's own jump nav (five of eight case studies had one that was not). Self-calibrates by planting a duplicate heading and by deleting a jump link. — stage 'ci', NOT 'ci-always': canon-gate.yml runs the ci-always stage with no Chrome and no pillow/websocket-client, because every other gate in it is pure text. Registering this browser-driven gate there turned the canon gate red on 5b92ef2c within minutes of the push — the gate could not start, which a workflow correctly reports as a failure."
   },
   {
    "id": "asset-reference-sweep",
@@ -285,7 +285,7 @@
    "needs": [
     "server"
    ],
-   "note": "the hook ran this against two URLs while CI ran --all; that divergence hid a five-day CI failure \u2014 executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason. \u2014 the HOOK narrows this one to the changed pages by passing $IMG_SCOPE directly (it is runner:false, so run-gates --scope never reaches it). ci and nightly run --all.",
+   "note": "the hook ran this against two URLs while CI ran --all; that divergence hid a five-day CI failure — executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason. — the HOOK narrows this one to the changed pages by passing $IMG_SCOPE directly (it is runner:false, so run-gates --scope never reaches it). ci and nightly run --all.",
    "runner": false
   },
   {
@@ -327,7 +327,7 @@
    "needs": [
     "server"
    ],
-   "note": "The pre-push hook invokes this through run-gates --only contrast-audit, so there is ONE command line. It previously spelled out its own and had drifted: --widths 1440 in the hook against 1440,390 in the manifest, with an exempt list two selectors shorter. runner:false is gone with it. \u2014 scoped: pre-push passes only the CHANGED pages (the hook falls back to every page when CSS, a partial or a tool changed). The full two-width sweep across all pages runs nightly. Only the page SET differs; widths, exemptions and force-visible come from this file either way. \u2014 --force-visible '.reveal' no longer describes anything on the SITE: the scroll-reveal was removed on 2026-09-07. It stays because canary C3 plants an element that hides itself and requires the pin machinery to surface it \u2014 PREP_JS SKIPS anything at opacity 0, and a skipped element is a silent pass. \u2014 OPEN 2026-09-05, AND STILL OPEN 2026-09-07: on a Linux runner this reports ten homepage failures that are NOT real. Every authored pair measures 6.4:1 to 10.7:1 from the stylesheet, and every ratio it reports is roughly half that \u2014 the signature of painted, partially-covered pixels being read as solid ink. It does not reproduce on macOS. Two attempted fixes did not clear it: an ALPHA_FLOOR guard (the alphas are above the floor) and a check comparing the recovered ink against the authored colour (too crude \u2014 it made 30 elements unmeasurable locally, because rgba() text and headings containing a gradient <em> are legitimately not their computed colour). RULED OUT SINCE: frame geometry (the camera calibration came back green on the runner, 16a07709) and the antialiasing-percentile bug (f3604213 graded the glyph core instead of its edge) \u2014 the nightly on 5b92ef2c reports the SAME ten. NEW EVIDENCE from that run's annotations, which are readable without auth at /actions/runs/<id>/jobs -> check_run_url + '/annotations': the recovered inks are not scattered, they CLUSTER ON VIOLET \u2014 #7E59FF, #885AFF, #8D5CFF, #7554FF against an authored #FF8A5C, and every one of those elements is a link, whose un-overridden token IS violet (--link). That is the signature of a CASCADE difference on the runner, not of noisy un-blend arithmetic: the .xi-* amber override winning locally and losing there. Next step is to dump the WINNING declaration for one of these anchors on the runner (getMatchedCSSRules order / stylesheet load order), not another alpha hypothesis. runner-diagnose.py and alpha-probe.py therefore STAY, and so does the tooling-budget ceiling they borrowed \u2014 the repayment recorded there is not due yet.",
+   "note": "The pre-push hook invokes this through run-gates --only contrast-audit, so there is ONE command line. It previously spelled out its own and had drifted: --widths 1440 in the hook against 1440,390 in the manifest, with an exempt list two selectors shorter. runner:false is gone with it. — scoped: pre-push passes only the CHANGED pages (the hook falls back to every page when CSS, a partial or a tool changed). The full two-width sweep across all pages runs nightly. Only the page SET differs; widths, exemptions and force-visible come from this file either way. — --force-visible '.reveal' no longer describes anything on the SITE: the scroll-reveal was removed on 2026-09-07. It stays because canary C3 plants an element that hides itself and requires the pin machinery to surface it — PREP_JS SKIPS anything at opacity 0, and a skipped element is a silent pass. — OPEN 2026-09-05, AND STILL OPEN 2026-09-07: on a Linux runner this reports ten homepage failures that are NOT real. Every authored pair measures 6.4:1 to 10.7:1 from the stylesheet, and every ratio it reports is roughly half that — the signature of painted, partially-covered pixels being read as solid ink. It does not reproduce on macOS. Two attempted fixes did not clear it: an ALPHA_FLOOR guard (the alphas are above the floor) and a check comparing the recovered ink against the authored colour (too crude — it made 30 elements unmeasurable locally, because rgba() text and headings containing a gradient <em> are legitimately not their computed colour). RULED OUT SINCE: frame geometry (the camera calibration came back green on the runner, 16a07709) and the antialiasing-percentile bug (f3604213 graded the glyph core instead of its edge) — the nightly on 5b92ef2c reports the SAME ten. NEW EVIDENCE from that run's annotations, which are readable without auth at /actions/runs/<id>/jobs -> check_run_url + '/annotations': the recovered inks are not scattered, they CLUSTER ON VIOLET — #7E59FF, #885AFF, #8D5CFF, #7554FF against an authored #FF8A5C, and every one of those elements is a link, whose un-overridden token IS violet (--link). That is the signature of a CASCADE difference on the runner, not of noisy un-blend arithmetic: the .xi-* amber override winning locally and losing there. Next step is to dump the WINNING declaration for one of these anchors on the runner (getMatchedCSSRules order / stylesheet load order), not another alpha hypothesis. runner-diagnose.py and alpha-probe.py therefore STAY, and so does the tooling-budget ceiling they borrowed — the repayment recorded there is not due yet.",
    "scoped": true
   },
   {
@@ -342,7 +342,7 @@
    "needs": [
     "server"
    ],
-   "note": "DIAGNOSED 2026-09-04 and returned to every-push CI: it was not a Linux defect and not a false positive \u2014 it was CPU contention between parallel virtual-time gates. MOVED OFF EVERY-PUSH 2026-09-04, UNEXPLAINED. Its CALIBRATION fails on the Linux runner \u2014 'planted 19px Georgia CTA did not add a signature (selector matched nothing, or probe blind)' \u2014 and a gate whose calibration fails is correctly refusing to report. It calibrates fine on macOS. Same treatment and same open question as theme-remnant-check. \u2014 serial: this gate CALIBRATES BY WRITING INTO ember.css \u2014 a shared source file. Two such gates at once clobber each other's read-modify-write restore and leave a canary rule on disk permanently, which is how theme-remnant-check came to report #515863, its OWN plant, on 40 pages in CI. Reproduced locally by running three of them concurrently: two planted rules left behind and the same 40-page failure. The REAL fix is gatelib.planted(), which holds a lock across plant -> scan -> restore and does not depend on who schedules the gates; serial is belt-and-braces for a bug that corrupted the working tree.",
+   "note": "DIAGNOSED 2026-09-04 and returned to every-push CI: it was not a Linux defect and not a false positive — it was CPU contention between parallel virtual-time gates. MOVED OFF EVERY-PUSH 2026-09-04, UNEXPLAINED. Its CALIBRATION fails on the Linux runner — 'planted 19px Georgia CTA did not add a signature (selector matched nothing, or probe blind)' — and a gate whose calibration fails is correctly refusing to report. It calibrates fine on macOS. Same treatment and same open question as theme-remnant-check. — serial: this gate CALIBRATES BY WRITING INTO ember.css — a shared source file. Two such gates at once clobber each other's read-modify-write restore and leave a canary rule on disk permanently, which is how theme-remnant-check came to report #515863, its OWN plant, on 40 pages in CI. Reproduced locally by running three of them concurrently: two planted rules left behind and the same 40-page failure. The REAL fix is gatelib.planted(), which holds a lock across plant -> scan -> restore and does not depend on who schedules the gates; serial is belt-and-braces for a bug that corrupted the working tree.",
    "serial": true
   },
   {
@@ -357,7 +357,7 @@
    "needs": [
     "server"
    ],
-   "note": "DIAGNOSED 2026-09-04 and returned to every-push CI: it was not a Linux defect and not a false positive \u2014 it was CPU contention between parallel virtual-time gates. MOVED OFF EVERY-PUSH 2026-09-04, UNEXPLAINED. It passes on macOS and fails on the Linux runner, and I could not reproduce it locally: it reports h1 colour #515863 'slate ink' on 40 pages, a value authored in NO stylesheet in this repo. Ruled out by measurement: ember.css not applying (disabling it gives 242,237,228, not slate), prefers-color-scheme (the site has no colour-scheme rules at all), and a load race (the probe waits 2.6s after iframe onload). This gate has now produced two false positives \u2014 it also convicted the correct paper gold on a cream ground \u2014 so it runs nightly, where a wrong answer costs a notification instead of a blocked push. The CI-only behaviour is open and needs diagnosing from the runner, not from here. \u2014 serial: this gate CALIBRATES BY WRITING INTO ember.css \u2014 a shared source file. Two such gates at once clobber each other's read-modify-write restore and leave a canary rule on disk permanently, which is how theme-remnant-check came to report #515863, its OWN plant, on 40 pages in CI. Reproduced locally by running three of them concurrently: two planted rules left behind and the same 40-page failure. The REAL fix is gatelib.planted(), which holds a lock across plant -> scan -> restore and does not depend on who schedules the gates; serial is belt-and-braces for a bug that corrupted the working tree.",
+   "note": "DIAGNOSED 2026-09-04 and returned to every-push CI: it was not a Linux defect and not a false positive — it was CPU contention between parallel virtual-time gates. MOVED OFF EVERY-PUSH 2026-09-04, UNEXPLAINED. It passes on macOS and fails on the Linux runner, and I could not reproduce it locally: it reports h1 colour #515863 'slate ink' on 40 pages, a value authored in NO stylesheet in this repo. Ruled out by measurement: ember.css not applying (disabling it gives 242,237,228, not slate), prefers-color-scheme (the site has no colour-scheme rules at all), and a load race (the probe waits 2.6s after iframe onload). This gate has now produced two false positives — it also convicted the correct paper gold on a cream ground — so it runs nightly, where a wrong answer costs a notification instead of a blocked push. The CI-only behaviour is open and needs diagnosing from the runner, not from here. — serial: this gate CALIBRATES BY WRITING INTO ember.css — a shared source file. Two such gates at once clobber each other's read-modify-write restore and leave a canary rule on disk permanently, which is how theme-remnant-check came to report #515863, its OWN plant, on 40 pages in CI. Reproduced locally by running three of them concurrently: two planted rules left behind and the same 40-page failure. The REAL fix is gatelib.planted(), which holds a lock across plant -> scan -> restore and does not depend on who schedules the gates; serial is belt-and-braces for a bug that corrupted the working tree.",
    "serial": true
   },
   {
@@ -424,7 +424,7 @@
    "needs": [
     "server"
    ],
-   "note": "pre-push only: slow, and CI covers the same class through cta-grammar-check \u2014 executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason.",
+   "note": "pre-push only: slow, and CI covers the same class through cta-grammar-check — executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason.",
    "runner": false
   },
   {
@@ -440,7 +440,7 @@
     "server"
    ],
    "runner": false,
-   "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
+   "note": "executed by .githooks/pre-push itself, which backgrounds the heavy gates to overlap their Chrome time; declared here so the list stays single. run-gates --audit fails if the hook stops invoking it. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
   },
   {
    "id": "fit-check-calibration",
@@ -489,7 +489,7 @@
    "needs": [
     "server"
    ],
-   "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
+   "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
   },
   {
    "id": "overflow-sweep-1024",
@@ -504,7 +504,7 @@
    "needs": [
     "server"
    ],
-   "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
+   "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
   },
   {
    "id": "overflow-sweep-768",
@@ -519,7 +519,7 @@
    "needs": [
     "server"
    ],
-   "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
+   "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
   },
   {
    "id": "line-height-check",
@@ -533,7 +533,7 @@
    "needs": [
     "server"
    ],
-   "note": "orphan until 2026-09-04; ~7 min, so CI is the authority rather than every push \u2014 moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
+   "note": "orphan until 2026-09-04; ~7 min, so CI is the authority rather than every push — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
   },
   {
    "id": "reachability-check",
@@ -547,7 +547,7 @@
    "needs": [
     "server"
    ],
-   "note": "orphan until 2026-09-04 \u2014 moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
+   "note": "orphan until 2026-09-04 — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
   },
   {
    "id": "overlap-check",
@@ -561,7 +561,7 @@
    "needs": [
     "server"
    ],
-   "note": "orphan until 2026-09-04 \u2014 moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
+   "note": "orphan until 2026-09-04 — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch."
   },
   {
    "id": "keyboard-sweep",
@@ -575,7 +575,7 @@
    "needs": [
     "server"
    ],
-   "note": "orphan until 2026-09-04. Page list from gatelib; the book has no shared chrome to tab through. \u2014 moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch.",
+   "note": "orphan until 2026-09-04. Page list from gatelib; the book has no shared chrome to tab through. — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch.",
    "pages": {
     "include_book": false
    }
@@ -594,7 +594,7 @@
    "needs": [
     "server"
    ],
-   "note": "orphan until 2026-09-04. Page list comes from gatelib. The book is excluded: it deliberately carries no shared nav or footer, so the landmark rule fails it by design \u2014 and its infinite animations were verified to clear under prefers-reduced-motion, which all three stylesheets honour. \u2014 moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason.",
+   "note": "orphan until 2026-09-04. Page list comes from gatelib. The book is excluded: it deliberately carries no shared nav or footer, so the landmark rule fails it by design — and its infinite animations were verified to clear under prefers-reduced-motion, which all three stylesheets honour. — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason.",
    "pages": {
     "include_book": false
    }
@@ -611,7 +611,7 @@
    "needs": [
     "server"
    ],
-   "note": "orphan until 2026-09-04 \u2014 moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore \u2014 which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. \u2014 was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
+   "note": "orphan until 2026-09-04 — moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
   },
   {
    "id": "tooling-budget-check",
@@ -623,7 +623,7 @@
     "pre-push",
     "ci"
    ],
-   "note": "Fix 04 from the architecture review, enforced rather than wished. tools/ is 1.98x the size of the site CSS it checks; the ceiling makes the next increase a decision someone records instead of a drift nobody notices. Raising CEILING is expected and fine \u2014 raising it silently is not."
+   "note": "Fix 04 from the architecture review, enforced rather than wished. tools/ is 1.98x the size of the site CSS it checks; the ceiling makes the next increase a decision someone records instead of a drift nobody notices. Raising CEILING is expected and fine — raising it silently is not."
   },
   {
    "id": "wcag-reflow-target",
@@ -637,7 +637,7 @@
    "needs": [
     "server"
    ],
-   "note": "WCAG 1.4.10 reflow at 320px and 2.5.8 target size at 24x24 \u2014 two AA requirements with no instrument in this repo before 2026-09-06. 320px is the actual requirement (1280px at 400% zoom, which is how a low-vision reader reads this site); every other gate here starts at 390, so reflow had never been measured. And the notes in this repo assumed 44px targets, which is SC 2.5.5 (AAA) and a different requirement, so the AA line was unchecked. Written on the cream branch and cherry-picked here because it is theme-agnostic."
+   "note": "WCAG 1.4.10 reflow at 320px and 2.5.8 target size at 24x24 — two AA requirements with no instrument in this repo before 2026-09-06. 320px is the actual requirement (1280px at 400% zoom, which is how a low-vision reader reads this site); every other gate here starts at 390, so reflow had never been measured. And the notes in this repo assumed 44px targets, which is SC 2.5.5 (AAA) and a different requirement, so the AA line was unchecked. Written on the cream branch and cherry-picked here because it is theme-agnostic."
   },
   {
    "id": "closed-state-cover",
@@ -652,18 +652,32 @@
    "needs": [
     "server"
    ],
-   "note": "In the page's DEFAULT, untouched state, no viewport-anchored element may cover the content. Written after an unscoped `display:flex` at #nav specificity outranked @media(max-width:1100px){.nav-links{display:none}} and left the mobile drawer PERMANENTLY OPEN below 1100px on every page \u2014 an opaque panel over the top 475px with pointer-events:auto, eating every click under it. It laid out correctly at 1200+, so both menu gates (which OPEN the menu before looking) passed it. Swept across a width RANGE, mobile first, because the defect hid between the widths anyone checks. Two calibration plants: a fixed cover that must fire and an absolute one that must not."
+   "note": "In the page's DEFAULT, untouched state, no viewport-anchored element may cover the content. Written after an unscoped `display:flex` at #nav specificity outranked @media(max-width:1100px){.nav-links{display:none}} and left the mobile drawer PERMANENTLY OPEN below 1100px on every page — an opaque panel over the top 475px with pointer-events:auto, eating every click under it. It laid out correctly at 1200+, so both menu gates (which OPEN the menu before looking) passed it. Swept across a width RANGE, mobile first, because the defect hid between the widths anyone checks. Two calibration plants: a fixed cover that must fire and an absolute one that must not."
   },
   {
-    "id": "baseline-align-check",
-    "cmd": [
-      "python3",
-      "tools/baseline-align-check.py"
-    ],
-    "stages": [
-      "pre-push"
-    ],
-    "note": "Compares two SIBLINGS to each other — the one thing no other gate here does. Arpit selected the homepage act numeral on 2026-09-08 and said the numerals do not align to their text. He was right in all four acts at every width: .chap used align-items:start, so the numeral and its title had IDENTICAL box tops (1141.0 and 1141.0) while their baselines sat 6.0px apart at 1440 and 7.0px at 768/390 — the numeral is solid-set (line-height:1), the title carries half-leading. Every gate passed it, and had to: contrast, overflow, spacing, reflow, leading, heading-rank and a11y each ask about ONE element's own properties or its place inside its own container. receipt-align-check was the only relative check and it tests LEFT edges of one component on six case pages. First sweep found four real defects beyond the reported one: footer .fresh carried a stacking margin into a flex row and sat 3.0px low on 34 pages; #thoughts .ixi and lab .dsg-type were centred where a baseline was wanted. Measures via a zero-size inline-block probe (the browser's own baseline) — NOT font arithmetic, which over-reported by 4px on a row the browser had already aligned exactly. ~110s for 59 pages x 3 widths; kept at all three because 390 is where layouts fail."
+   "id": "baseline-align-check",
+   "cmd": [
+    "python3",
+    "tools/baseline-align-check.py"
+   ],
+   "stages": [
+    "pre-push"
+   ],
+   "note": "Compares two SIBLINGS to each other — the one thing no other gate here does. Arpit selected the homepage act numeral on 2026-09-08 and said the numerals do not align to their text. He was right in all four acts at every width: .chap used align-items:start, so the numeral and its title had IDENTICAL box tops (1141.0 and 1141.0) while their baselines sat 6.0px apart at 1440 and 7.0px at 768/390 — the numeral is solid-set (line-height:1), the title carries half-leading. Every gate passed it, and had to: contrast, overflow, spacing, reflow, leading, heading-rank and a11y each ask about ONE element's own properties or its place inside its own container. receipt-align-check was the only relative check and it tests LEFT edges of one component on six case pages. First sweep found four real defects beyond the reported one: footer .fresh carried a stacking margin into a flex row and sat 3.0px low on 34 pages; #thoughts .ixi and lab .dsg-type were centred where a baseline was wanted. Measures via a zero-size inline-block probe (the browser's own baseline) — NOT font arithmetic, which over-reported by 4px on a row the browser had already aligned exactly. ~110s for 59 pages x 3 widths; kept at all three because 390 is where layouts fail."
+  },
+  {
+   "id": "grid-containment-check",
+   "cmd": [
+    "python3",
+    "tools/grid-containment-check.py"
+   ],
+   "stages": [
+    "pre-push"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "Prose that escaped its column. Arpit selected a homepage line on 2026-09-09: \"why is this line jumping off the grid and why couldn't you catch it\". I had moved that paragraph the same session and landed it as a SIBLING of .wrap rather than inside it, so it rendered 0..1440 where the column runs 140..1300 — and in the wrong section. Two causes: the move found its boundary with `.index('</div>')` (\"the next closing tag\", which the execution lessons forbid), and the verification asked whether the string was PRESENT. Presence is not placement. Three premises failed before this one: (1) \"every section has a .wrap\" — five column containers exist by page family; (2) \"a section's modal left edge IS its column\" — /fit/ has three legitimate left edges; (3) \"nothing legitimate spans >=90% of the viewport\" — true at 1440, false at 390 where the column is 358 of 390px, which produced 53 findings ALL reading exactly 92%: an identical reading across 53 elements indicts the instrument. So it compares an element to its own section SIBLINGS instead, which needs no column and behaves the same at every width. BOTH sides is the discriminator: the envelope test alone gives 61 hits and every legitimate one escapes on exactly ONE side (a title flush-left in a padded card left+24/right+0, an indented quote left+0/right+27, a rail eyebrow left+253/right+0) — those are alignments. Escaping left AND right means it is not in the column at all: 61 hits become 0, while the real defect still shows 140px a side at 1440 and 16px at 390. Blind to a paragraph shifted sideways at the same width as its siblings. ~43s, 70 page-widths, plants the real defect shape at both widths before reporting."
   }
  ],
  "manual": [
@@ -689,7 +703,7 @@
     "python3",
     "tools/balance-check.py"
    ],
-   "manual_reason": "Reports 2 findings that were verified BY EYE on 2026-09-04 and are false positives: index.html and folio/index.html hero, and the 'who you'd be hiring' band, are staggered TWO-COLUMN compositions \u2014 prose left, the process film / Candidate Facts card right \u2014 and they render balanced at 1440 (prototypes/renders/hero-1440.png, chap-i-1440.png). The gate's unit is the paragraph: a column that starts BELOW the headline leaves the eyebrow and h1 with nothing level with them, so they read as one-sided. Widening the test to the section was tried and REJECTED \u2014 it let the gate's own planted 400px defect through, and a check that cannot fail is not evidence. Kept manual rather than weakened, so it never blocks CI on a reading a human has already overruled. Re-run it by hand after any layout change."
+   "manual_reason": "Reports 2 findings that were verified BY EYE on 2026-09-04 and are false positives: index.html and folio/index.html hero, and the 'who you'd be hiring' band, are staggered TWO-COLUMN compositions — prose left, the process film / Candidate Facts card right — and they render balanced at 1440 (prototypes/renders/hero-1440.png, chap-i-1440.png). The gate's unit is the paragraph: a column that starts BELOW the headline leaves the eyebrow and h1 with nothing level with them, so they read as one-sided. Widening the test to the section was tried and REJECTED — it let the gate's own planted 400px defect through, and a check that cannot fail is not evidence. Kept manual rather than weakened, so it never blocks CI on a reading a human has already overruled. Re-run it by hand after any layout change."
   }
  ]
 }

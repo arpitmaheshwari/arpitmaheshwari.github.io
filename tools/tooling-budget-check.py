@@ -105,7 +105,16 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # text-less button's default black `color`. Pixels inside that control in that
 # state: 8.12:1. The toggle's glyph is three gradient-filled child spans, and the
 # gate's existing gradient flag only tested the element itself.
-CEILING = 12_065
+# 2026-09-09  +187  grid-containment-check.py. Arpit selected a homepage line and
+# asked "why is this line jumping off the grid and why couldn't you catch it". No gate
+# here compares one element to ANOTHER, so a paragraph sitting outside its column was
+# invisible to all 46. It buys the comparison class of check: prose outside its own
+# section siblings' envelope on BOTH sides. Three premises failed on the way (a .wrap
+# every section has; a section's modal left edge; a 90%-of-viewport width test that was
+# only ever measured at 1440 and produced 53 findings all reading exactly 92% at 390) —
+# 106 of those lines are that reasoning written down, so premise 4 is not attempted by
+# the next person from scratch.
+CEILING = 12_280
 
 
 def loc(paths):
