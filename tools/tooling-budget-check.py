@@ -114,7 +114,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # only ever measured at 1440 and produced 53 findings all reading exactly 92% at 390) —
 # 106 of those lines are that reasoning written down, so premise 4 is not attempted by
 # the next person from scratch.
-CEILING = 12_280
+# 2026-09-10  +170  css-structure-check.py. One orphan `}` closed @layer base
+# 161KB early, un-layering the bulk of ember.css and inverting the cascade for the
+# whole site; the only symptom any gate saw was one h2 at 44px instead of 42. This
+# buys a structural check on the TEXT — braces balance, @layer spans hold their
+# share — at pre-commit, because it needs no browser and takes 0.2s. The lines are
+# mostly the account of how the brace got there: a cut to "the next closing brace".
+CEILING = 12_456
 
 
 def loc(paths):

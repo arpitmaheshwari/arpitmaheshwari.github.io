@@ -678,6 +678,18 @@
     "server"
    ],
    "note": "Prose that escaped its column. Arpit selected a homepage line on 2026-09-09: \"why is this line jumping off the grid and why couldn't you catch it\". I had moved that paragraph the same session and landed it as a SIBLING of .wrap rather than inside it, so it rendered 0..1440 where the column runs 140..1300 — and in the wrong section. Two causes: the move found its boundary with `.index('</div>')` (\"the next closing tag\", which the execution lessons forbid), and the verification asked whether the string was PRESENT. Presence is not placement. Three premises failed before this one: (1) \"every section has a .wrap\" — five column containers exist by page family; (2) \"a section's modal left edge IS its column\" — /fit/ has three legitimate left edges; (3) \"nothing legitimate spans >=90% of the viewport\" — true at 1440, false at 390 where the column is 358 of 390px, which produced 53 findings ALL reading exactly 92%: an identical reading across 53 elements indicts the instrument. So it compares an element to its own section SIBLINGS instead, which needs no column and behaves the same at every width. BOTH sides is the discriminator: the envelope test alone gives 61 hits and every legitimate one escapes on exactly ONE side (a title flush-left in a padded card left+24/right+0, an indented quote left+0/right+27, a rail eyebrow left+253/right+0) — those are alignments. Escaping left AND right means it is not in the column at all: 61 hits become 0, while the real defect still shows 140px a side at 1440 and 16px at 390. Blind to a paragraph shifted sideways at the same width as its siblings. ~43s, 70 page-widths, plants the real defect shape at both widths before reporting."
+  },
+  {
+   "id": "css-structure-check",
+   "cmd": [
+    "python3",
+    "tools/css-structure-check.py"
+   ],
+   "stages": [
+    "pre-commit",
+    "pre-push"
+   ],
+   "note": "Braces balance, and @layer still wraps the share of its file it used to. Written 2026-09-10 after ONE orphan `}` in ember.css closed @layer base at char 29,123 instead of 191,305 — dumping ~161KB, the bulk of the stylesheet, OUT of the layer. Unlayered rules outrank layered ones regardless of specificity, so the cascade for the whole site inverted on one character. The only visible symptom was a single homepage h2 at 44px instead of 42 (.voices h2, higher specificity, previously layered and losing, started beating body.p-home main h2); heading-rank-check caught that pixel and nothing looked at the cause, which was sitting in plain text. The brace arrived because a media query was moved by cutting to `c.index('}\\n', ...)` — \"the next closing brace\", the CSS twin of \"the next closing tag\" that execution lesson 2 forbids by name, committed in the same session as a gate written about that mistake in HTML. Text only: no browser, no server, ~0.2s, so it runs at pre-COMMIT as well. Comments are blanked first, so a `}` in prose cannot fool it. Calibrated against the real defect, not a toy: goes red with 3 findings including \"@layer base wraps 8% of the file, baseline 57%\". Read the layer-share line to localise it — the negative-depth line number lands at the layer's real closing brace, not the typo, because an orphan brace inside a layer legally closes it. Blind to whether the layer ASSIGNMENT is correct, only that it did not change."
   }
  ],
  "manual": [
