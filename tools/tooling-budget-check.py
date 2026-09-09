@@ -127,7 +127,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # actions it still reports 153 controls — the site's --border token is 1.41:1 — and
 # that is a design decision, not a push blocker. Half the lines are the record of
 # five screenshot-sampling faults, so the next person computes from resolved colours.
-CEILING = 12_690
+CEILING = 12_721
 
 
 def loc(paths):

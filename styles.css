@@ -33,7 +33,7 @@ figure > img, figure > svg, figure > video, figure > picture{display:block;margi
    ============================================================ */
 
 /* ----- Design tokens (see DESIGN-SYSTEM.md — single source of truth) ----- */
-:root{--goldA:#D4A85E;--goldA-dk:#7E5A14;--bg:#0A0A0A;--bg-soft:#111111;--bg-card:#141414;--border:rgba(255,255,255,0.07);--border-accent:color-mix(in srgb, var(--goldA) 30%, transparent);--hairline:color-mix(in srgb, var(--goldA) 22%, transparent);--ink:#F2EDE4;--ink-muted:rgba(242,237,228,0.62);--ink-dim:rgba(242,237,228,0.62);/* retired alias of --ink-muted */
+:root{--goldA:#D4A85E;--goldA-dk:#7E5A14;--bg:#0A0A0A;--bg-soft:#111111;--bg-card:#141414;--border:rgba(255,255,255,0.34);--border-accent:color-mix(in srgb, var(--goldA) 30%, transparent);--hairline:color-mix(in srgb, var(--goldA) 22%, transparent);--ink:#F2EDE4;--ink-muted:rgba(242,237,228,0.62);--ink-dim:rgba(242,237,228,0.62);/* retired alias of --ink-muted */
   --gold:var(--goldA);--gold-light:#E8C88A;--gold-dark:#A07835;--copper:#4A6B5C;--copper-light:#6B8A7C;--ok:#5ED48E;--warn:#E8C88A;--err:#E0736B;/* semantic status (wireframes) */
   /* TYPE — Stack 1, "the superfamily" (2026-08-14). Source Serif 4 + Source Sans 3
      are drawn by one team to share proportions, so display and body read as one
@@ -169,7 +169,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;
      every surface by ~1 RGB unit. 6E6250 computes 4.54:1 against the cream TOKEN but renders at
      4.499:1 — a hairline AA failure on the most-used muted text on the site, and one no
      style-based checker can see. Size cream colours against the rendered pixel, never the token. */
-  --ink:#20180C;--ink-muted:#635848;--gold:var(--goldA-dk);--gold-dark:var(--goldA-dk);--gold-light:#6E4E1C;--border:rgba(32,24,12,.16);--border-accent:rgba(126,90,20,.5);--hairline:rgba(32,24,12,.14);--bg:#F1E8D6;--bg-card:#EAE0CA;/* Semantic status colours MUST be redefined here. The dark-theme values (#E0736B / #E8C88A /
+  --ink:#20180C;--ink-muted:#635848;--gold:var(--goldA-dk);--gold-dark:var(--goldA-dk);--gold-light:#6E4E1C;--border:rgba(32,24,12,.49);--border-accent:rgba(126,90,20,.75);--hairline:rgba(32,24,12,.14);--bg:#F1E8D6;--bg-card:#EAE0CA;/* Semantic status colours MUST be redefined here. The dark-theme values (#E0736B / #E8C88A /
      #5ED48E) are tuned for #0A0A0A and collapse on cream — /lab/eval.html rendered "do not ship"
      at 2.34:1 and its severity chips at 2.10:1 (2026-07-31, measured). These variants keep the
      hue and clear 4.5:1 on BOTH creams AND on each colour's own 14%-tint chip background, which
@@ -292,6 +292,13 @@ html,body{font-size:16px}
    (assets/recon-live.js) supplies the behavioral proof.
    Tokens re-point to the app-light context INSIDE the window; contrast audited on the real
    pixels. No uppercase, no bold shouting, no compensating shadows inside the window. */
+/* The .recon blocks are SIMULATIONS of a client's shipped product, and their
+   tokens are deliberately NOT raised with the rest of the site (2026-09-10).
+   Their borders measure 1.03:1 to 1.25:1, which fails WCAG 1.4.11 like the
+   others did — but these are depictions of what AdTech, FinTech, Org Design,
+   O2 and PTC actually looked like. Restyling them to pass would falsify the
+   evidence the case study rests on, which canon forbids. Flagged to Arpit as
+   a known, reasoned exception rather than silently fixed or silently left. */
 .recon{margin:32px 0 48px;border:1px solid rgba(255,255,255,0.12);border-radius:10px;overflow:hidden;position:relative;--bg:#FFFFFF;--bg-soft:#F4F5F7;--bg-card:#F4F5F7;--ink:#16181D;--ink-muted:#282B31;--ink-dim:#282B31;--gold:#8A6210;--gold-dark:#8A6210;--gold-light:#6B4C0C;--border:#E3E6EA;--border-accent:#C9CED6;--err:#B63D0B;--warn:var(--goldA-dk);--ok:#0E7A5F;--copper:#0E7A5F;background:var(--bg-soft);color:var(--ink);box-shadow:0 30px 64px rgba(0,0,0,0.45)}
 /* the chrome bar — same idiom as the plates: dark strip, three window dots, quiet title */
 /* WRAPS. This row is a flex nowrap containing a BARE TEXT NODE — the "Reconstruction —

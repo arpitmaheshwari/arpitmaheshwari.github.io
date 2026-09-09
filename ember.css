@@ -16,7 +16,7 @@
    ================================================================ */
 
 /* ---------- 1 · tokens: everything that flows through vars re-themes here */
-html[data-theme="ember"]{--bg:#120B14;--bg-soft:#1B1320;--bg-card:#241830;--border:rgba(245,237,230,.14);--border-accent:rgba(255,138,92,.5);--hairline:rgba(255,138,92,.28);--ink:#F5EDE6;--ink-muted:rgba(245,237,230,.76);--ink-dim:rgba(245,237,230,.62);/* amber inherits gold's job: links, CTAs, kickers — 12.3:1 on bg */
+html[data-theme="ember"]{--bg:#120B14;--bg-soft:#1B1320;--bg-card:#241830;--border:rgba(245,237,230,.37);--border-accent:rgba(255,138,92,.54);--hairline:rgba(255,138,92,.28);--ink:#F5EDE6;--ink-muted:rgba(245,237,230,.76);--ink-dim:rgba(245,237,230,.62);/* amber inherits gold's job: links, CTAs, kickers — 12.3:1 on bg */
   --gold:#FFC46B;--gold-light:#FFD28A;--gold-dark:#C98F3F;--copper:#FF8A5C;--copper-light:#FF8A5C;/* the four heats */
   --ember:#FF8A5C;/* 8.3:1 on bg */
   --violet:#E86BFF;/* 7.4:1 */
@@ -66,7 +66,7 @@ html[data-theme="ember"] .hd-reframe em{color:var(--ember)}
 html[data-theme="ember"] .hd-free input:focus{border-color:var(--ember)}
 /* ---------- 5 · the receipts act: cream peak -> plum band with the four heats */
 html[data-theme="ember"] .act-cream{/* re-point the act's own token re-mappings back to dark-stage values */
-  --bg:#1B1320;--bg-card:#241830;--ink:#F5EDE6;--ink-muted:rgba(245,237,230,.76);--gold:#FFC46B;--gold-dark:#C98F3F;--gold-light:#FFD28A;--border:rgba(245,237,230,.14);--border-accent:rgba(255,138,92,.5);--hairline:rgba(245,237,230,.14);--err:#FF7AA8;--warn:#FFC46B;--ok:#7FCF9E;background:var(--bg);color:var(--ink);position:relative}
+  --bg:#1B1320;--bg-card:#241830;--ink:#F5EDE6;--ink-muted:rgba(245,237,230,.76);--gold:#FFC46B;--gold-dark:#C98F3F;--gold-light:#FFD28A;--border:rgba(245,237,230,.37);--border-accent:rgba(255,138,92,.54);--hairline:rgba(245,237,230,.14);--err:#FF7AA8;--warn:#FFC46B;--ok:#7FCF9E;background:var(--bg);color:var(--ink);position:relative}
 html[data-theme="ember"] #chip-adtech{border-top-color:var(--ember)}
 html[data-theme="ember"] #chip-fintech{border-top-color:var(--violet)}
 html[data-theme="ember"] #chip-ptc{border-top-color:var(--amber)}
@@ -135,7 +135,7 @@ html[data-theme="ember"] .ccd-tag--out{color:var(--rose);border-color:var(--rose
    demo, QC stamp, contact form) keep their classic class names and are
    re-fitted after this block.
    ================================================================ */
-html[data-theme="ember"] body.p-home{--bg0:#120B14;--bg1:#1B1320;--card:#241830;--line:rgba(245,237,230,.16);--ink:#F5EDE6;--mut:rgba(245,237,230,.76);--dim:rgba(245,237,230,.62);--ember:#FF8A5C;--violet:#E86BFF;--amber:#FFC46B;--rose:#FF7AA8;--cream:#EFE7D2;--cream-ink:#221C10;--cream-mut:#5D5442;--cream-red:#A93A24;--serif:var(--ff-display),Georgia,serif;--sans:var(--ff-sans);--mono:var(--ff-mono),monospace;--hand:'Caveat',cursive}
+html[data-theme="ember"] body.p-home{--bg0:#120B14;--bg1:#1B1320;--card:#241830;--line:rgba(245,237,230,.37);--ink:#F5EDE6;--mut:rgba(245,237,230,.76);--dim:rgba(245,237,230,.62);--ember:#FF8A5C;--violet:#E86BFF;--amber:#FFC46B;--rose:#FF7AA8;--cream:#EFE7D2;--cream-ink:#221C10;--cream-mut:#5D5442;--cream-red:#A93A24;--serif:var(--ff-display),Georgia,serif;--sans:var(--ff-sans);--mono:var(--ff-mono),monospace;--hand:'Caveat',cursive}
 /* The prototype shipped a blanket *{margin:0;padding:0}
 . Scoped to body.p-home *
    it outranks EVERY single-class rule, so each classic artifact spliced into this
@@ -1229,7 +1229,7 @@ html[data-theme="ember"] :is([class*="p-lab"],.p-fit) .lab-cards{margin-bottom:0
    A component must declare its own critical properties rather than inherit half of them
    from the treatment it is replacing. Padding is symmetric and on the 8px grid; the border
    is one colour on all four sides, the violet this rule always intended. */
-html[data-theme="ember"] .lab-links a:not(.cta){font-family:var(--ff-label);font-size:11.5px;font-weight:500;letter-spacing:.02em;color:var(--link);text-decoration:none;border:1px solid color-mix(in srgb, var(--link) 45%, transparent);border-radius:var(--radius);padding:8px 16px}
+html[data-theme="ember"] .lab-links a:not(.cta){font-family:var(--ff-label);font-size:11.5px;font-weight:500;letter-spacing:.02em;color:var(--link);text-decoration:none;border:1px solid color-mix(in srgb, var(--link) 58%, transparent);border-radius:var(--radius);padding:8px 16px}
 html[data-theme="ember"] .lab-links a:not(.cta):hover{color:var(--link-hover);border-color:var(--link);background:transparent}
 /* ================================================================
    SIMILARITY PASS (Playwright Gestalt audit, 2026-08-14)
@@ -2596,14 +2596,14 @@ html[data-theme="ember"] body.p-home .thoughts{background:linear-gradient(180deg
    (#7E5A14 amber · #6B3A99 violet, 4.31:1 pass-cta precedent · --cream-red). */
 html[data-theme="ember"] body.p-home .contract{background:var(--cream);color:var(--cream-ink);
   --ink:#221C10;--mut:#5D5442;--ink-muted:#5D5442;--dim:#5D5442;
-  --border:rgba(34,28,16,.2);--line:rgba(34,28,16,.2);
+  --border:rgba(34,28,16,.5);--line:rgba(34,28,16,.5);
   --amber:#7E5A14;--violet:#6B3A99;--ember:#A93A24;--card:#E6DCC3;--bg-card:#E6DCC3;
   --link:#6B3A99;--link-hover:#57307D}
 /* the live demo stays a dark instrument ON the paper — it re-declares the dark
    set in full, so the section remap cannot reach inside it (lesson 4/11) */
 html[data-theme="ember"] body.p-home .contract .ccd{background:#241830;border-color:rgba(245,237,230,.14);
   --ink:#F5EDE6;--mut:rgba(245,237,230,.76);--ink-muted:rgba(245,237,230,.76);--dim:rgba(245,237,230,.62);
-  --border:rgba(245,237,230,.14);--line:rgba(245,237,230,.14);
+  --border:rgba(245,237,230,.37);--line:rgba(245,237,230,.37);
   --amber:#FFC46B;--violet:#E86BFF;--ember:#FF8A5C;--bg0:#1B1320;--card:#241830;--bg-card:#241830}
 
 /* Anchored arrivals clear the fixed nav (2026-09-02, Arpit's catch: "How I Lead"
@@ -4104,7 +4104,16 @@ html[data-theme="ember"] footer .footer-words{display:grid;gap:4px;min-width:0;
   justify-items:start}
 html[data-theme="ember"] footer .footer-tools{display:flex;align-items:center;
   gap:20px;flex:0 0 auto}
-html[data-theme="ember"] footer .footer-note{white-space:normal;max-width:64ch}
+/* 2026-09-10 — Arpit: "Why are you wrapping it in two lines for just a word".
+   Measured: max-width:64ch resolves to 422.4px at 11px mono, the sentence needs
+   498px on one line, and the footer row had 847px free. So a hard cap was
+   forcing a wrap that stranded exactly ONE of twelve words on line two, at
+   every width from 768 up, with 233-449px sitting empty to its right. That is
+   the leftover-space defect in the layout rule, in one line of copy.
+   No cap: it is one short sentence, not prose that needs a reading measure, and
+   the flex row already constrains it. text-wrap:pretty tells the browser to
+   avoid a short last line if the copy ever grows past the row. */
+html[data-theme="ember"] footer .footer-note{white-space:normal;max-width:none;text-wrap:pretty}
 @media (max-width:640px){
   html[data-theme="ember"] footer .footer-tools{gap:16px}}
 

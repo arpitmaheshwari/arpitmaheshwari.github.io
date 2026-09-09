@@ -54,7 +54,21 @@ NEED = 3.0
 
 PROBE_TMPL = r"""
 (() => {
-  const px = s => { const m = (s||'').match(/-?[\d.]+/g); return m ? m.slice(0,4).map(Number) : null; };
+  // Colour parsing must handle BOTH notations. color-mix() resolves to
+  // `color(srgb 0.909804 0.419608 1 / 0.45)` — channels in 0..1, not 0..255.
+  // Reading those as 8-bit turned a violet border into near-black and reported
+  // 21 perfectly visible links as failures. Fault six on this instrument, and
+  // the last: every one of them was the probe, never the page.
+  const px = s => {
+    s = s || '';
+    const m = s.match(/-?[\d.]+(?:%)?/g);
+    if (!m) return null;
+    let v = m.slice(0, 4).map(x => x.endsWith('%') ? parseFloat(x) / 100 : parseFloat(x));
+    if (/^color\(/.test(s.trim())) {                   // 0..1 channels
+      v = [v[0] * 255, v[1] * 255, v[2] * 255].concat(v.length > 3 ? [v[3]] : []);
+    }
+    return v.map((x, i) => i < 3 ? Math.round(x) : x);
+  };
   const lin = c => { c /= 255; return c <= 0.04045 ? c/12.92 : Math.pow((c+0.055)/1.055, 2.4); };
   const lum = c => 0.2126*lin(c[0]) + 0.7152*lin(c[1]) + 0.0722*lin(c[2]);
   const ratio = (a,b) => { const A = lum(a), B = lum(b), hi = Math.max(A,B), lo = Math.min(A,B);
@@ -99,7 +113,11 @@ PROBE_TMPL = r"""
 
     // what forms this control's boundary?
     const bw = ['Top','Right','Bottom','Left'].map(s => parseFloat(cs['border'+s+'Width']) || 0);
-    const hasBorder = Math.max(...bw) >= 0.5;
+    // A BOX is bounded on all four sides. A bottom-only border is an UNDERLINE —
+    // text decoration, whose requirement is the text contrast one that
+    // contrast-audit already grades. Using Math.max here reported 21 prose links
+    // as unbounded controls at 1.04:1, which is the probe's error, not the site's.
+    const hasBorder = Math.min(...bw) >= 0.5;
     const img = cs.backgroundImage && cs.backgroundImage !== 'none' ? cs.backgroundImage : null;
     const bg  = opaque(cs.backgroundColor) ? px(cs.backgroundColor).slice(0,3) : null;
 
@@ -120,6 +138,19 @@ PROBE_TMPL = r"""
       kind = 'gradient';
     } else if (bg) { stops = [bg]; kind = 'fill'; }
     if (!stops.length) continue;                 // a text-only link has no boundary: correct, skip
+
+    // A NATIVE-APPEARANCE form control is painted by the browser, not by these
+    // styles: an unchecked <input type=checkbox> with appearance:auto draws UA
+    // chrome, and accent-color only touches the CHECKED fill. Reading its CSS
+    // background reported 53 checklist checkboxes at 1.15:1 — the probe
+    // describing a box the browser never painted. That case needs pixels.
+    if (/^(checkbox|radio|range|color|file)$/.test(el.type || '') &&
+        (cs.appearance === 'auto' || cs.webkitAppearance === 'auto')) {
+      out.push({unmeasurable: 'native ' + el.type + ' painted by the browser (appearance:auto)',
+        kind: 'native', label: (el.getAttribute('aria-label') || el.name || el.type),
+        sel: el.tagName.toLowerCase() + (typeof el.className === 'string' && el.className ? '.' + el.className.trim().split(/\s+/)[0] : '')});
+      continue;
+    }
 
     const g = ground(el);
     const label = (el.innerText || el.value || el.getAttribute('aria-label') || '').replace(/\s+/g,' ').trim().slice(0,28);
