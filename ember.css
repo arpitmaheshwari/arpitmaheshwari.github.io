@@ -315,15 +315,22 @@ html[data-theme="ember"] body.p-home .close .field{position:absolute;inset:0;bac
   radial-gradient(900px 520px at 8% -10%, rgba(155,75,255,.42), transparent 62%),
   radial-gradient(800px 520px at 105% 108%, rgba(255,106,61,.45), transparent 62%),
   linear-gradient(200deg,#1E1022 0%,#120B14 60%)}
-html[data-theme="ember"] body.p-home .close .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
-html[data-theme="ember"] body.p-home .close .k{color:var(--ember)}
-html[data-theme="ember"] body.p-home .close h2{font-size:clamp(38px,4.8vw,64px);margin:16px 0 20px}
-html[data-theme="ember"] body.p-home .close h2 .grad{font-style:italic}
-html[data-theme="ember"] body.p-home .close .sub{color:var(--mut);max-width:46ch;line-height:1.75}
-html[data-theme="ember"] body.p-home .close .ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:32px}
-html[data-theme="ember"] body.p-home .close .sig{margin-top:32px;color:var(--amber);font-size:26px}
-html[data-theme="ember"] body.p-home .pass{background:var(--cream);color:var(--cream-ink);border-radius:8px;padding:24px 24px;font-family:var(--mono);box-shadow:0 30px 64px rgba(0,0,0,.55);transform:rotate(1.4deg)}
-@media (prefers-reduced-motion:reduce){html[data-theme="ember"] body.p-home .pass{transform:none}}
+/* DIRECTION A (2026-09-10, his pick of three): the closing section is one
+   centred column — pass, then the door, then the alternates. The eyebrow,
+   h2, standfirst, logistics line, signature and P.S. are GONE, not hidden:
+   he asked "do I need so much of text ... or can I simply very simple
+   boarding pass with supporting text and CTA and few supporting CTAs".
+   Every fact they carried is either in the pass now or still stated in Act
+   II (GMT+5:30 and both US coasts in #how-i-lead, remote and 4 weeks in the
+   hero) — checked before deleting, not assumed.
+   This is the ONE section on the homepage with no eyebrow and no visible
+   h2, which breaks the section grammar in DESIGN-SYSTEM.md on purpose: at
+   the moment of action the page stops narrating. Do not "restore" it. */
+html[data-theme="ember"] body.p-home .close .wrap{position:relative;z-index:2;display:block;max-width:720px;
+  margin-inline:auto;text-align:center}
+html[data-theme="ember"] body.p-home .close .door-stack{margin-top:32px}
+}
+html[data-theme="ember"] body.p-home .pass{background:var(--cream);color:var(--cream-ink);border-radius:8px;padding:24px 24px;font-family:var(--mono);box-shadow:0 30px 64px rgba(0,0,0,.55);margin-inline:auto;text-align:left}
 html[data-theme="ember"] body.p-home .pass .pk{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:.16em;color:var(--cream-mut)}
 html[data-theme="ember"] body.p-home .pass .pr{display:flex;justify-content:space-between;align-items:center;margin:16px 0}
 html[data-theme="ember"] body.p-home .pass .pc{font-family:var(--serif);font-size:44px}
@@ -333,6 +340,31 @@ html[data-theme="ember"] body.p-home .pass .grid b{display:block;font-size:12.5p
 html[data-theme="ember"] body.p-home .pass .stamp{display:inline-block;margin-top:16px;font-size:11px;letter-spacing:.02em;color:var(--cream-red);border:2px solid var(--cream-red);border-radius:4px;padding:4px 12px;transform:rotate(-3deg)}
 @media (prefers-reduced-motion:reduce){html[data-theme="ember"] body.p-home .pass .stamp{transform:none}}
 html[data-theme="ember"] body.p-home .pass .bar{margin-top:16px;height:36px;background:repeating-linear-gradient(90deg,var(--cream-ink),var(--cream-ink) 2px,transparent 2px,transparent 5px)}
+/* The pass is a 3-column ticket, and direction A gave its fields longer values
+   ("Staff · Principal · Founding" where it used to say "Full-time"). Measured
+   the rendered LINE COUNT of every field from 360px to 768px: at 520 and above
+   only CLASS wraps, which is how it renders at 1440 too and how he approved it.
+   Below 520 it falls apart — at 390, five of six fields wrap and both header
+   spans go to two lines. So the ticket becomes a 2-column stub under 520px.
+   520 is the measurement, not a guess; the usual 640 breakpoint is too late.
+   PLACED AFTER the .pass block on purpose: my first attempt put it above, and
+   `.pass .grid{grid-template-columns:repeat(3,1fr)}` 9 lines LOWER won on
+   source order — a media query adds no specificity. The .pk rule appeared to
+   work only because that base rule never re-declares flex-direction. */
+@media (max-width:519px){
+  html[data-theme="ember"] body.p-home .pass .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  html[data-theme="ember"] body.p-home .pass .pk{flex-direction:column;gap:4px}
+  html[data-theme="ember"] body.p-home .pass .pc{font-size:36px}
+}
+/* Small phones (360px Android, 375 SE) still wrapped CARRY-ON and STATUS at two
+   columns: the values need 127px and 134px and the cell was 126px. Buying those
+   8px by narrowing the ticket's own side padding beats shrinking the type — the
+   pass is already the smallest text on the page. CLASS goes to two lines at
+   every width including 1440, so that one is the design, not a defect. */
+@media (max-width:419px){
+  html[data-theme="ember"] body.p-home .pass{padding-inline:16px}
+  html[data-theme="ember"] body.p-home .pass .grid{gap:8px}
+}
 html[data-theme="ember"] body.p-home footer{border-top:1px solid var(--line);padding:24px 0;font-family:var(--mono);font-size:12px;color:var(--dim)}
 /* removed 2026-09-08: footer > .wrap does not exist on the homepage, so this
    matched nothing. The flex row comes from the footer element itself. */
@@ -340,8 +372,7 @@ html[data-theme="ember"] body.p-home footer{border-top:1px solid var(--line);pad
 html[data-theme="ember"] body.p-home .who .wrap{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .contract .wrap{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .memos{grid-template-columns:1fr}
-html[data-theme="ember"] body.p-home .acts{grid-template-columns:1fr}
-html[data-theme="ember"] body.p-home .close .wrap{grid-template-columns:1fr}}
+html[data-theme="ember"] body.p-home .acts{grid-template-columns:1fr}}
 @media (max-width:640px){html[data-theme="ember"] body.p-home .rrow{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .cols{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .wrap{padding:0 16px}}
@@ -368,7 +399,6 @@ html[data-theme="ember"] .hd-reframe em{background:linear-gradient(92deg,var(--e
 html[data-theme="ember"] .hd-case-btn{background:linear-gradient(92deg,var(--ember),var(--violet));color:#1A0D08;border-radius:999px;font-weight:600}
 html[data-theme="ember"] .hd-reset{color:var(--dim)}
 html[data-theme="ember"] .hd-reset:hover{color:var(--amber)}
-html[data-theme="ember"] .hd-err{color:var(--amber)}
 /* receipts: the expand buttons live inside the prototype cells */
 html[data-theme="ember"] body.p-home .rcell{display:flex;flex-direction:column;align-items:flex-start}
 html[data-theme="ember"] body.p-home .rcpt-btn{margin-top:16px;background:transparent;border:1px solid var(--line);border-radius:999px;color:var(--rc);font-family:var(--mono);font-size:11px;letter-spacing:.02em;padding:8px 16px;cursor:pointer}
@@ -394,14 +424,8 @@ html[data-theme="ember"] body.p-home .ccd-tag--in{color:#7FCF9E;border:1.5px sol
 html[data-theme="ember"] body.p-home .ccd-tag--out{color:var(--rose);border:1.5px solid var(--rose);border-radius:4px;padding:2px 8px;font-size:10px}
 html[data-theme="ember"] body.p-home .contract-links{margin-top:24px;display:flex;flex-wrap:wrap;gap:20px;font-family:var(--mono);font-size:11.5px;letter-spacing:.02em}
 html[data-theme="ember"] body.p-home .contract-links a{color:var(--amber);text-decoration:underline;text-underline-offset:3px}
-/* contact form */
-html[data-theme="ember"] body.p-home .form-slot{margin-top:24px;max-width:460px}
-html[data-theme="ember"] body.p-home .form-slot input,
-html[data-theme="ember"] body.p-home .form-slot textarea{width:100%;background:var(--card);border:1px solid var(--line);border-radius:8px;color:var(--ink);font-family:var(--sans);font-size:16px;padding:12px 16px;margin-bottom:12px}
-html[data-theme="ember"] body.p-home .form-slot input::placeholder,
-html[data-theme="ember"] body.p-home .form-slot textarea::placeholder{color:var(--dim)}
-html[data-theme="ember"] body.p-home .form-slot button{background:linear-gradient(92deg,var(--ember),var(--violet));color:#1A0D08;border:none;border-radius:999px;font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;font-weight:600;padding:16px 24px;cursor:pointer;width:100%;justify-content:center;display:inline-flex;align-items:center;gap:8px}
-html[data-theme="ember"] body.p-home .sig{margin-top:24px;color:var(--amber);font-size:26px}
+/* 2026-09-10: the whole .form-slot block, plus .sig (the "— Arpit"
+   signature), deleted with direction A. Verified 0 uses site-wide. */
 /* diagnostic list needs its own rhythm inside the prototype card */
 html[data-theme="ember"] .hd-presets{display:flex;flex-direction:column;gap:8px}
 html[data-theme="ember"] .hd-preset{display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:16px;line-height:1.5;text-decoration:none}
@@ -1877,11 +1901,8 @@ html[data-theme="ember"] body[class*="p-case-studies"] .case-card{background:var
    (1.000:1) and the hover never fired (the border shorthand won) --- */
 html[data-theme="ember"] body.p-writing .xi-writing-020{background:var(--bg-card);padding:24px 32px;transition:border-color .25s var(--ease-out),transform .25s var(--ease-out)}
 html[data-theme="ember"] body.p-writing .xi-writing-020:hover{border-color:var(--border-accent)}
-/* --- T2.6 · contact submit was the only CTA not in the Ember language
-   (flat amber slab reading as disabled, on the terminal action).
-   .xi-home-098 sets bg/radius/padding — must match it. --- */
-html[data-theme="ember"] body.p-home .form-slot button[type="submit"]{background:var(--g-hot);border-radius:999px;color:var(--cta-ink);padding:12px 24px}
-html[data-theme="ember"] body.p-home .form-slot :is(input,textarea){border-radius:8px}
+/* 2026-09-10: T2.6 (the contact submit re-skinned into the Ember language)
+   and the .form-slot input radii went with the form itself. */
 html[data-theme="ember"] body[class*="p-case-studies"] blockquote[class*="xi-case-studies-"]{border-left:3px solid var(--heat)}
 html[data-theme="ember"] body.p-lab-loop .lab-bin .lab-conf,
 html[data-theme="ember"] body.p-lab-loop .lab-legend i.xi-lab-loop-008{background:var(--violet)}
@@ -1896,9 +1917,9 @@ html[data-theme="ember"] body.p-writing .card-p32 p,
 html[data-theme="ember"] body.p-resources .card-p32 p{max-width:54ch}
 html[data-theme="ember"] body.p-writing .lead{max-width:46ch}
 html[data-theme="ember"] body.p-writing header.xi-writing-003{border-bottom:0}
-/* two deltas from the verification pass: submit sat 4px shorter than the nav
-   pill (40 vs 44), and .ccd still carried a 32px top margin after top:auto */
-html[data-theme="ember"] body.p-home .form-slot button[type="submit"]{padding:16px 24px}
+/* 2026-09-10: the submit-height delta noted here (40 vs the nav pill's 44)
+   was about a button that no longer exists. The .ccd margin half of that
+   note is fixed elsewhere and unaffected. */
 /* --- controls, sitewide under Ember --- */
 html[data-theme="ember"] :is(.btn-a,.lbl-badge-bg,.lbl-pill-bg){background:linear-gradient(92deg,var(--heat,var(--ember)),var(--heat2,var(--violet)));color:#1A0D08}
 /* CTA removed 2026-08-15 (Arpit): the whole row is the link; hover carries the
@@ -2295,9 +2316,6 @@ html[data-theme="ember"] body[class*="p-case-studies"] .vplate-shot{display:bloc
    screening facts and channels a recruiter needs, in plain text at the contact
    block. The email address is still assembled at runtime (privacy: never
    printed in served HTML); the resume PDF is the same artifact sent to ATSes. */
-html[data-theme="ember"] body.p-home .contact-facts{font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--mut);margin-top:16px}
-html[data-theme="ember"] body.p-home .contact-channels{font-family:var(--sans);font-size:11.5px;letter-spacing:.02em;color:var(--mut);margin-top:12px}
-html[data-theme="ember"] body.p-home .contact-channels a{color:var(--violet);text-decoration:underline;text-underline-offset:4px}
 
 /* ---------- the process walkthrough video (2026-08-29): self-hosted, no third party,
    no tracking — it reuses the .vid-main/.vid-frame component the AdTech film already
@@ -2483,16 +2501,11 @@ html[data-theme="ember"] .fig-shot-live figcaption b{color:var(--ink-muted);font
 html[data-theme="ember"] .scene{font-family:var(--serif);font-style:italic;font-weight:300;font-size:20px;line-height:1.6;color:var(--ink-muted);max-width:56ch;margin:20px 0 32px}
 /* small portrait in the hero kicker zone */
 html[data-theme="ember"] body.p-home .hero-face{width:56px;height:56px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(245,237,230,.35);margin-bottom:16px;display:block}
-/* P.S. under the signature (draft) */
-html[data-theme="ember"] body.p-home .ps-line{font-size:14px;line-height:1.7;color:var(--ink-dim);max-width:48ch;margin-top:8px}
-/* book-the-call: house CTA grammar, first among channels */
-html[data-theme="ember"] body.p-home .contact-channels .book-call{color:var(--amber)}
-/* the boarding pass finally boards */
-html[data-theme="ember"] body.p-home .pass-link{display:block;text-decoration:none;color:inherit}
-html[data-theme="ember"] body.p-home .pass-link:hover .pass{transform:rotate(0deg) translateY(-4px);box-shadow:0 24px 70px rgba(0,0,0,.5)}
-html[data-theme="ember"] body.p-home .pass{transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s}
-html[data-theme="ember"] body.p-home .pass-cta{margin-top:12px;font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.02em;color:#6B3A99;text-align:center}
-/* ^ 2026-08-31: #8A4FBF measured 4.31:1 on the pass cream by the pre-push pixel audit — darkened to clear 4.5 */
+/* 2026-09-10: .ps-line, .contact-channels .book-call, .pass-link (+ its hover
+   lift and the transition that served it) and .pass-cta all went with
+   direction A. The hover lift in particular was a false affordance once
+   Arpit said "keep the pass without the link": it animated on a div that
+   could not be clicked. */
 /* the lab's public source line (2026-08-31 — repo live, verified 200 before linking) */
 html[data-theme="ember"] .lab-src{font-family:var(--mono),monospace;font-size:12.5px;letter-spacing:.02em;color:var(--ink-muted);margin-top:12px}
 
@@ -2763,7 +2776,7 @@ html[data-theme="ember"] :is(.t-body,.u-body){
    on the block axis only, so nothing moves horizontally. This repo's notes
    assumed 44px, which is SC 2.5.5 (AAA) and a different requirement — the AA
    line at 24px had never been checked. */
-html[data-theme="ember"] :is(.inline-links a,.contact-channels a,.divert a,.btn-row a,
+html[data-theme="ember"] :is(.inline-links a,.divert a,.btn-row a,.door-alt a,
   .wr-more a,p.hand a,.hd-route a,.contract-links a,.scr-receipt a,.lab-row a){
   padding-block:4px;display:inline-block}
 html[data-theme="ember"] :is(button.rxa-why,button.rxf-explain,button.rxa-logged,
@@ -4231,22 +4244,10 @@ html[data-theme="ember"] body.p-home .bl-foot{margin:12px 0 0;font-family:var(--
    three post-form blocks move right, which fills the column without disturbing
    the reading order: they already came after the form, so a phone still reads
    ask, then ticket, then footnotes. */
-/* One object in the right column, not four grid items: placing them with
-   grid-column:2 put them in ROWS 2-4, which begin after the 1026px left column
-   ends — so they sat under the form instead of under the ticket. */
-html[data-theme="ember"] body.p-home .close .close-side{align-self:start;min-width:0}
-/* the column's own width IS the measure — 44ch was my void. The three text
-   blocks under the pass were capped at 44ch (306px at 14px) inside a 521px
-   column, stranding 215px beside each of them for 116px of vertical run: the
-   leftover-space defect, in the section whose one job is to be acted on. The
-   pass above them is 529px, so the cap made the column read as ragged rather
-   than composed. They run the column now — 521px is ~74ch at 14px, inside the
-   readable band — and the stack shares one left AND one right edge with the
-   pass. max-width is DECLARED, not deleted: .ps-line carries its own 48ch,
-   which would have quietly re-created a smaller version of the same void. */
-html[data-theme="ember"] body.p-home .close .close-side > :is(.contact-read,.sig,.ps-line){
-  max-width:none}
-html[data-theme="ember"] body.p-home .close .close-side > .contact-read{margin-top:32px}
+/* 2026-09-10: .close-side and everything about balancing two columns went
+   with direction A. The section is one centred column now, so there is no
+   right-hand stack to strand space beside — the void those rules were
+   fighting cannot occur. */
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -4280,19 +4281,8 @@ html[data-theme="ember"] body.p-home #contact .one-door:hover{filter:brightness(
 html[data-theme="ember"] body.p-home #contact .door-alt{
   display:block;margin-top:12px;font-size:12.5px;line-height:1.6;color:var(--ink-dim)}
 html[data-theme="ember"] body.p-home #contact .door-alt a{color:var(--ink-muted)}
-/* the form is folded, not deleted: canon records "recruiters don't fill forms",
-   which is evidence about his own audience, but someone who prefers writing a
-   longer note is one click away rather than gone */
-html[data-theme="ember"] body.p-home #contact .form-fold{
-  margin-top:24px;border-top:1px solid rgba(245,237,230,.10);padding-top:16px}
-html[data-theme="ember"] body.p-home #contact .form-fold summary{
-  cursor:pointer;font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;
-  color:var(--ink-dim);list-style:none;min-height:24px;display:flex;align-items:center}
-html[data-theme="ember"] body.p-home #contact .form-fold summary::-webkit-details-marker{display:none}
-html[data-theme="ember"] body.p-home #contact .form-fold summary::before{
-  content:"+";margin-right:8px;color:var(--ink-muted)}
-html[data-theme="ember"] body.p-home #contact .form-fold[open] summary::before{content:"\2212"}
-html[data-theme="ember"] body.p-home #contact .form-fold summary:hover{color:var(--ink-muted)}
-/* the pass keeps its craft and loses its link — it states the terms now,
-   it does not ask for a second action */
-html[data-theme="ember"] body.p-home .close .pass-link{display:block;text-decoration:none}
+/* 2026-09-10: the form is GONE, not folded. Direction A is pass + one door +
+   three text alternates, and Arpit picked it from a render with no form in
+   it. Canon already recorded that his audience does not fill forms; email,
+   LinkedIn, the resume and the call all remain. The Formspree endpoint left
+   the site with it — git has the markup if he wants it back. */
