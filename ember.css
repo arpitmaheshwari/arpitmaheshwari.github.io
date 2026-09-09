@@ -4247,3 +4247,52 @@ html[data-theme="ember"] body.p-home .close .close-side{align-self:start;min-wid
 html[data-theme="ember"] body.p-home .close .close-side > :is(.contact-read,.sig,.ps-line){
   max-width:none}
 html[data-theme="ember"] body.p-home .close .close-side > .contact-read{margin-top:32px}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ONE DOOR                                                       2026-09-09
+   ═══════════════════════════════════════════════════════════════════════════
+   Arpit: "there are multiple doors like email send me the role linkedin
+   another I want you to browse on the web and figure out which is the best
+   door and then you recommend me what should I do."
+   He was right that I had ADDED a door rather than chosen one. Counted: the
+   closing section offered TWELVE things to act on, including the same calendar
+   link twice and three links back INTO the site at the moment of decision.
+   The web evidence: a single CTA converts ~13.5%, two competing ~11.9%, three
+   or more ~10.5%, and cutting to one has lifted conversion up to 266% — choice
+   overload. In a hiring context LinkedIn replies run 17.1% against email's
+   5.0% across 4M+ messages. And mailto FAILS SILENTLY for the ~40% of visitors
+   with no mail client configured; the standard fix is printing the address as
+   copyable text, which Arpit ruled out ("I don't want to reveal my Internet
+   email address on the Internet") — so a mailto button is a door that quietly
+   does not open. That is what moved the recommendation off the "Email me" CTA
+   I had shipped an hour earlier, onto LinkedIn.
+   Twelve actions became five, one of which is the fold's own summary. Spacing
+   values are on the 4px grid — the prototype used 28px and 14px, which are not
+   steps on it. */
+html[data-theme="ember"] body.p-home #contact .one-door{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--g-hot);color:var(--cta-ink);border-radius:999px;
+  padding:16px 24px;font-family:var(--sans);font-size:13px;font-weight:600;
+  letter-spacing:.06em;text-decoration:none;min-height:44px;box-sizing:border-box}
+html[data-theme="ember"] body.p-home #contact .one-door:hover{filter:brightness(1.06)}
+/* the alternative is TEXT, not a rival button — that is the whole point */
+html[data-theme="ember"] body.p-home #contact .door-alt{
+  display:block;margin-top:12px;font-size:12.5px;line-height:1.6;color:var(--ink-dim)}
+html[data-theme="ember"] body.p-home #contact .door-alt a{color:var(--ink-muted)}
+/* the form is folded, not deleted: canon records "recruiters don't fill forms",
+   which is evidence about his own audience, but someone who prefers writing a
+   longer note is one click away rather than gone */
+html[data-theme="ember"] body.p-home #contact .form-fold{
+  margin-top:24px;border-top:1px solid rgba(245,237,230,.10);padding-top:16px}
+html[data-theme="ember"] body.p-home #contact .form-fold summary{
+  cursor:pointer;font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;
+  color:var(--ink-dim);list-style:none;min-height:24px;display:flex;align-items:center}
+html[data-theme="ember"] body.p-home #contact .form-fold summary::-webkit-details-marker{display:none}
+html[data-theme="ember"] body.p-home #contact .form-fold summary::before{
+  content:"+";margin-right:8px;color:var(--ink-muted)}
+html[data-theme="ember"] body.p-home #contact .form-fold[open] summary::before{content:"\2212"}
+html[data-theme="ember"] body.p-home #contact .form-fold summary:hover{color:var(--ink-muted)}
+/* the pass keeps its craft and loses its link — it states the terms now,
+   it does not ask for a second action */
+html[data-theme="ember"] body.p-home .close .pass-link{display:block;text-decoration:none}
