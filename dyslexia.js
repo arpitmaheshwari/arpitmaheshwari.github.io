@@ -26,14 +26,27 @@
     return clone;
   }
 
+  // THE PREFERENCE APPLIES WHETHER OR NOT A PAGE RENDERS A CONTROL — 2026-09-09.
+  // This used to live entirely inside start(), which returns early when there is
+  // no #dyslexiaToggle. So a reader who switched the font on, then opened /book/ —
+  // the one long-form reading surface on the site, and where it matters most —
+  // silently lost it, because the book renders its chrome from a compiled React
+  // app and has no toggle to find. Setting the body class and binding a button
+  // are two concerns; they are separate now.
+  function applyBody(on) {
+    document.body.classList.toggle('dyslexia-mode', on);
+  }
+
   function start() {
+    applyBody(read() === 'on');                      // first, and unconditionally
+
     var btn = document.getElementById('dyslexiaToggle');
     if (!btn || btn.dataset.dyslexiaBound) return;   // never bind twice
     btn = claim(btn);
     btn.dataset.dyslexiaBound = '1';
 
     function apply(on) {
-      document.body.classList.toggle('dyslexia-mode', on);
+      applyBody(on);
       btn.classList.toggle('active', on);
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
     }

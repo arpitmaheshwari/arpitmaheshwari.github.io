@@ -1163,3 +1163,17 @@ body {
   .bk-cover__open .dot{animation:none}
   .bk-opencue{animation:none}
 }
+
+
+/* THE DYSLEXIA-FRIENDLY READING FONT — added 2026-09-09.
+   The classic site's rule is scoped html[data-theme="ember"] and lives in
+   ember.css, which the book does not load; the book's <html> carries no
+   data-theme either. So body.dyslexia-mode was landing on the book and styling
+   nothing — the control worked on 35 pages and was silently inert on the one
+   page built for extended reading. Mirrors the ember declaration exactly,
+   including the code exemption: distinguishing l/1/O/0 is the whole point of a
+   monospace, so code, pre, kbd and samp keep theirs. */
+body.dyslexia-mode,
+body.dyslexia-mode *:not(code):not(pre):not(kbd):not(samp):not(code *):not(pre *){
+  font-family:'Atkinson Hyperlegible','Source Sans 3',sans-serif;
+  letter-spacing:.03em;word-spacing:.1em}
