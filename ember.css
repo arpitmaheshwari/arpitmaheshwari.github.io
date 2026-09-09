@@ -327,7 +327,14 @@ html[data-theme="ember"] body.p-home .close .field{position:absolute;inset:0;bac
    the moment of action the page stops narrating. Do not "restore" it. */
 html[data-theme="ember"] body.p-home .close .wrap{position:relative;z-index:2;display:block;max-width:720px;
   margin-inline:auto;text-align:center}
-html[data-theme="ember"] body.p-home .close .door-stack{margin-top:32px}
+/* The primary and secondary sit as ONE object. Measured before this rule: they
+   were inline-flex siblings, so the space between them was a TEXT SPACE — 3px,
+   which is not a step on the 4px grid — and at 360px they wrapped and touched
+   at 0px. A flex row with a declared gap fixes both, and wraps deliberately
+   rather than by accident. */
+html[data-theme="ember"] body.p-home .close .door-stack{
+  margin-top:32px;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;
+  align-items:center}
 html[data-theme="ember"] body.p-home .pass{background:var(--cream);color:var(--cream-ink);border-radius:8px;padding:24px 24px;font-family:var(--mono);box-shadow:0 30px 64px rgba(0,0,0,.55);margin-inline:auto;text-align:left}
 html[data-theme="ember"] body.p-home .pass .pk{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:.16em;color:var(--cream-mut)}
 html[data-theme="ember"] body.p-home .pass .pr{display:flex;justify-content:space-between;align-items:center;margin:16px 0}
@@ -2781,7 +2788,7 @@ html[data-theme="ember"] :is(.t-body,.u-body){
    on the block axis only, so nothing moves horizontally. This repo's notes
    assumed 44px, which is SC 2.5.5 (AAA) and a different requirement — the AA
    line at 24px had never been checked. */
-html[data-theme="ember"] :is(.inline-links a,.divert a,.btn-row a,.door-alt a,
+html[data-theme="ember"] :is(.inline-links a,.divert a,.btn-row a,
   .wr-more a,p.hand a,.hd-route a,.contract-links a,.scr-receipt a,.lab-row a):not(.cta){
   padding-block:4px;display:inline-block}
 html[data-theme="ember"] :is(button.rxa-why,button.rxf-explain,button.rxa-logged,
@@ -4292,9 +4299,6 @@ html[data-theme="ember"] body.p-home #contact .one-door{
   letter-spacing:.06em;text-decoration:none;min-height:44px;box-sizing:border-box}
 html[data-theme="ember"] body.p-home #contact .one-door:hover{filter:brightness(1.06)}
 /* the alternative is TEXT, not a rival button — that is the whole point */
-html[data-theme="ember"] body.p-home #contact .door-alt{
-  display:block;margin-top:12px;font-size:12.5px;line-height:1.6;color:var(--ink-dim)}
-html[data-theme="ember"] body.p-home #contact .door-alt a{color:var(--ink-muted)}
 /* 2026-09-10: the form is GONE, not folded. Direction A is pass + one door +
    three text alternates, and Arpit picked it from a render with no form in
    it. Canon already recorded that his audience does not fill forms; email,
@@ -4349,3 +4353,19 @@ html[data-theme="ember"] .cta-quiet{
   color:var(--ink-muted);text-decoration:none;
   border-bottom:1px solid color-mix(in srgb, var(--ink-muted) 40%, transparent)}
 html[data-theme="ember"] .cta-quiet:hover{color:var(--ink);border-bottom-color:var(--ink-muted)}
+
+/* THE SECONDARY DOOR (2026-09-10). Arpit, selecting the alternates line:
+   "Remove email and call, have a secondary set to download the resume."
+   So the closing section is pass -> primary -> secondary, and the three text
+   alternates are gone. The secondary is the SAME component geometry — same
+   font, size, tracking, padding, height, radius and icon slot — differing only
+   in fill, which is the point of a secondary rather than a second button.
+   It is an OUTLINE, and outlines are exactly what failed WCAG 1.4.11 at 2.84:1
+   this morning. It passes only because --border-accent was raised to .54
+   (3.17:1) in this same session: this treatment would have been a defect eight
+   hours ago. nontext-contrast-check guards it now. */
+html[data-theme="ember"] .cta--secondary{
+  background:none;border:1px solid var(--border-accent);color:var(--ink)}
+html[data-theme="ember"] .cta--secondary:hover{
+  filter:none;background:color-mix(in srgb, var(--ink) 8%, transparent);color:var(--ink)}
+html[data-theme="ember"] .cta--doc{--cta-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M10 9H8'/%3E%3Cpath d='M16 13H8'/%3E%3Cpath d='M16 17H8'/%3E%3C/svg%3E")}
