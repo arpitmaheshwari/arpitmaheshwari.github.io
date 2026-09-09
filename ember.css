@@ -991,12 +991,43 @@ html[data-theme="ember"] body.p-home .hero .cred{max-width:600px}
    stops hiding the name — below that there is no name and a hairline after a
    bare mark would be an orphan. Every property is declared on the component,
    not inherited. */
-html[data-theme="ember"] #nav .nav-name{font-family:var(--ff-sans);font-size:13px;
-  font-weight:500;letter-spacing:.02em;color:var(--ink-muted);white-space:nowrap}
+/* AND THE NAME CAME BACK UP — 2026-09-09, Arpit: "the logo and the links are no
+   longer looking prominent and their placement doesn't look symmetric". Both
+   true, and both mine: direction C above made the name quiet ON THE BASIS that
+   it was uppercase and tracked .11em, and hours later the site-wide uppercase
+   sweep removed exactly that. The name ended up smaller, dimmer AND lowercase
+   at once — measured 13px/500 at 0.76 alpha against links at 13px/400 at full
+   ink, so his own name read QUIETER than his menu. Option 2 of four rendered
+   over the real nav (prototypes/renders/nav2/): the name leads on size and
+   weight instead of on capitals, which is what keeps this inside the no-caps
+   decision rather than reversing it. */
+html[data-theme="ember"] #nav .nav-name{font-family:var(--ff-sans);font-size:15px;
+  font-weight:600;letter-spacing:.01em;color:var(--ink);white-space:nowrap}
 @media (min-width:769px){
   html[data-theme="ember"] #nav .nav-logo .row-ic{gap:8px}
   html[data-theme="ember"] #nav .nav-logo{padding-right:20px;margin-right:4px;
     border-right:1px solid rgba(245,237,230,.14)}
+}
+/* THREE ZONES, SO THE MENU CANNOT DRIFT — the bar was justify-content:space-between
+   with FOUR children (logo, links, CTA and the hamburger), so the link row landed
+   in whatever room was left over rather than at the centre: measured 46px left of
+   centre at 1101, 62px at 1200, 102px at 1440. It got worse the wider the screen,
+   which is why it read as asymmetric on a large display and not on a laptop.
+   A 1fr auto 1fr grid puts the links dead centre by construction, whatever the
+   logo and CTA measure, so there is no arithmetic left to drift.
+   THE BOUNDARY IS 1101px, NOT A ROUND NUMBER, and that matters: styles.css hides
+   .nav-links below 1100px, so the prototype's min-width:1000px would have hidden
+   the hamburger across 1000-1100px and left that band with NO navigation at all.
+   The hamburger is redundant above 1100 — every link and the CTA are already on
+   screen, nothing lives only in the drawer there, and as the last item in the row
+   it made the eye finish on a menu button instead of the booking button. */
+@media (min-width:1101px){
+  html[data-theme="ember"] #nav{display:grid;grid-template-columns:1fr auto 1fr;
+    align-items:center;justify-content:initial}
+  html[data-theme="ember"] #nav .nav-logo{grid-column:1;justify-self:start}
+  html[data-theme="ember"] #nav .nav-links{grid-column:2;justify-self:center;gap:28px}
+  html[data-theme="ember"] #nav .nav-links a{font-size:14px;font-weight:500;color:var(--ink)}
+  html[data-theme="ember"] #nav .nav-cta{grid-column:3;justify-self:end}
 }
 /* --- Writing section on the standard grammar ------------------------------
    The heading was a classic-theme numeral pattern (.section-numeral) that no
@@ -3072,7 +3103,13 @@ html[data-theme="ember"] body.p-home .hero .role-line{
    no case, 0.4 tracking against the house's Source Sans 3 11.5px uppercase 0.9.
    Nine CTAs, one grammar. */
 html[data-theme="ember"] body.p-home .hero .vid-hero-cap a{font-family:"Source Sans 3",var(--sans);font-size:11.5px;font-weight:600;
-  letter-spacing:.02em;line-height:1.6;
+  /* .08em, the house CTA tracking — NOT the .02em the uppercase sweep left here.
+     This CTA was the only one of the six set in capitals, so it was the only one
+     the sweep touched, and relaxing its tracking with the caps put it 0.7px off
+     its five siblings. cta-grammar-check caught it: 5/6 at 0.9px, this one at
+     0.2px. Normalised to the majority, which is what the comment below already
+     asks for. */
+  letter-spacing:.08em;line-height:1.6;
   /* and the house INK for a CTA on a dark ground. It was amber, which is this
      hero's accent — but a CTA's grammar is site-wide, not per-section. */
   color:var(--violet)}
@@ -3984,6 +4021,14 @@ html[data-theme="ember"] .menu-toggle{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:4px;width:44px;height:44px;min-width:44px;min-height:44px;
   padding:0;margin:0;position:relative}
+/* ...and hidden once the real link row appears. The rule above is UNLAYERED, so a
+   copy of this inside @layer base lost to it no matter how specific I made it —
+   ember.css layers most of itself into `base` and anything unlayered outranks the
+   whole layer. This lives beside the rule it has to beat, deliberately.
+   1101px, matching styles.css's own .nav-links breakpoint exactly: hiding the
+   toggle at a rounder 1000px would strand 1000-1100px with no navigation at all,
+   because the links are still display:none there. */
+@media (min-width:1101px){html[data-theme="ember"] #nav .menu-toggle{display:none}}
 html[data-theme="ember"] .menu-toggle span{
   position:static;left:auto;flex:0 0 auto;width:18px;height:2px;border-radius:2px;
   background:linear-gradient(90deg,var(--ember),var(--violet));
