@@ -4064,15 +4064,31 @@ html[data-theme="ember"] .nav-links .nav-cta-sm{display:none}
    noted where that happened, because the wrong version is the instructive part.
 */
 
-/* 1 · THE FOOTER BREAKS A DATE. All five cells are flex:0 1 auto, their natural
-      widths sum past the footer, so every one shrinks and wraps — at 1024, 1200
-      AND 1440. "last shipped 2026-" / "09-07" splits a date at its hyphen.
-      Only the sentence is allowed to wrap; the short mono labels never do. */
-html[data-theme="ember"] body.p-home footer > *{flex:0 0 auto;white-space:nowrap}
-html[data-theme="ember"] body.p-home footer > .footer-note{
-  flex:1 1 auto;min-width:0;white-space:normal}
-@media (max-width:860px){
-  html[data-theme="ember"] body.p-home footer > *{white-space:normal}}
+/* 1 · THE FOOTER WAS FOUR PEERS IN A ROW — recomposed 2026-09-09.
+      History: it held five cells, all flex:0 1 auto, whose natural widths summed
+      past the footer, so every one shrank and wrapped and "last shipped 2026-" /
+      "09-07" split a date at its hyphen. That was patched by pinning the short
+      labels and letting only the sentence wrap. Then the ship stamp was deleted,
+      which freed room, and the sentence stretched to 581px — more than twice any
+      neighbour, and the ONLY item at 76% ink while the rest sat at 62%. So the
+      least important text in the footer became the largest and brightest thing
+      in it. Arpit: "the footer looks busy now."
+      I offered four options that each adjusted brightness, borders or wrapping.
+      He rejected all four: "you are not thinking from the first principal, do I
+      need all this, can I have two buttons dyslexia and back to tap on the
+      right, and on the left can I have a two liner of text of name and the
+      second line is about copyright". He was right. There are TWO groups here —
+      words and controls — not four peers, and no amount of tuning a peer row
+      fixes a wrong grouping. The markup is regrouped in partials/footer.html;
+      this is the composition, and the old per-child pinning is deleted rather
+      than left to fight it. */
+html[data-theme="ember"] footer .footer-words{display:grid;gap:4px;min-width:0;
+  justify-items:start}
+html[data-theme="ember"] footer .footer-tools{display:flex;align-items:center;
+  gap:20px;flex:0 0 auto}
+html[data-theme="ember"] footer .footer-note{white-space:normal;max-width:64ch}
+@media (max-width:640px){
+  html[data-theme="ember"] footer .footer-tools{gap:16px}}
 
 /* 2 · THE PATTERNS WIDGET IS INSET AT 768. The slot is the full 688px column at
       x=40 like everything else — my first reading blamed the slot, and the slot
