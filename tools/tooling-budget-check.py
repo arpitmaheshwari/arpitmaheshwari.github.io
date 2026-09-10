@@ -146,7 +146,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # rule now lives at module level so the calibration provably exercises the same
 # code, and page disagreement is a finding. Verified by planting ?v=deadbeef on
 # one page and watching it name that page.
-CEILING = 12_816
+# 2026-09-10  +48  css-version-check gains the check it never had: a page's ?v=
+# must equal sha256(file)[:8]. Its manifest rule LAUNDERS that failure — it
+# re-records {version: page's OLD version, hash: file's CURRENT hash} on every
+# non-stale run, after which prev.hash == file.hash for ever and the sheet reads
+# clean. It reported "0 served stale" while index.html asked for styles.css
+# ?v=149ac7d3 against a file hashing to 3a6ed7ac, and the hook's own partials
+# check blocked the push over exactly that. The new rule needs no state, so it
+# cannot be laundered, and it covers JS as well as CSS.
+CEILING = 12_886
 
 
 def loc(paths):

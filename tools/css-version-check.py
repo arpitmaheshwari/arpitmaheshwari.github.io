@@ -93,6 +93,50 @@ def version_of(sheet):
     # the version the most pages agree on; disagreement is reported separately
     return max(vs, key=lambda v: len(vs[v]))
 
+def stamp_mismatches():
+    """Every ?v= in every page must equal sha256(that file)[:8]. No manifest involved.
+
+    THIS is the check that was missing, and the manifest-based rule below cannot
+    substitute for it — it LAUNDERS exactly this failure. Its rule is
+        prev.version == page.version AND prev.hash != file.hash
+    and it re-records state on every non-stale run. So once the manifest holds
+    {version: <the page's OLD version>, hash: <the file's CURRENT hash>},
+    prev.hash == file.hash, the sheet reads "not stale", and that same wrong
+    pairing is written back for ever. On 2026-09-10 index.html asked for
+    styles.css?v=149ac7d3 while styles.css hashed to 3a6ed7ac, ember.css likewise
+    — and this gate reported "0 stylesheet(s) served stale" while the pre-push
+    hook's own partials check blocked the push over it.
+
+    Both stampers (build-partials.py css_versions, bump-css-version.py) derive
+    the version as sha256(bytes)[:8], so the file IS the source of truth and no
+    recorded state is needed. Covers JS as well as CSS: every asset the pages
+    cache-bust.
+    """
+    bad = []
+    for page in sorted(pathlib.Path(".").rglob("*.html")):
+        if page.name.startswith("__"):
+            continue
+        rel = page.as_posix()
+        if rel.startswith((".", "node_modules", "prototypes/", "portfolio-sources/", "tests/")):
+            continue
+        text = page.read_text(encoding="utf-8")
+        for m in re.finditer(r'(?:href|src)="([^"?]+\.(?:css|js))\?v=([A-Za-z0-9.]+)"', text):
+            ref, want = m.group(1), m.group(2)
+            target = pathlib.Path(ref.lstrip("/"))
+            if not target.exists():
+                target = pathlib.Path(rel).parent / ref
+                target = pathlib.Path(target.as_posix().replace("../", ""))
+            if not target.exists():
+                continue                      # asset-reference-sweep owns missing files
+            real = hashlib.sha256(target.read_bytes()).hexdigest()[:8]
+            if want != real:
+                # key on the RESOLVED file, not the href: "/styles.css",
+                # "./styles.css" and "../styles.css" are one file, and grouping by
+                # the raw string reported each as "1 page(s)" instead of 41.
+                bad.append((rel, target.as_posix(), want, real))
+    return bad
+
+
 def stale_rule(prev, v, h):
     """THE rule. Defined once so the calibration below exercises the same code
     the sweep uses — the previous calibration compared a value with itself and
@@ -106,6 +150,17 @@ def digest(sheet):
 def main():
     state = json.loads(STATE.read_text()) if STATE.exists() else {}
     bad, rows = [], []
+
+    # the direct invariant first: it needs no state and cannot be laundered
+    stamps = stamp_mismatches()
+    if stamps:
+        byasset = {}
+        for rel, ref, want, real in stamps:
+            byasset.setdefault((ref, want, real), []).append(rel)
+        for (ref, want, real), pages in sorted(byasset.items(), key=lambda kv: -len(kv[1])):
+            bad.append(f"{ref}: {len(pages)} page(s) ask for ?v={want} but the file hashes to "
+                       f"{real} (e.g. {pages[0]}) — returning visitors get the cached copy. "
+                       f"Run: python3 tools/build-partials.py")
     for s in SHEETS:
         if sheet_path(s) is None:
             continue
@@ -145,6 +200,13 @@ def main():
     if not ok:
         print("Refusing to report: a check that cannot go red is not evidence.")
         sys.exit(2)
+
+    # and the stamp rule: a version that is not the file's hash MUST be caught
+    _probe_bad = "0" * 8
+    _real = hashlib.sha256(sheet_path(SHEETS[0]).read_bytes()).hexdigest()[:8]
+    stamp_ok = _probe_bad != _real
+    print(f"[calibration] {'PASS' if stamp_ok else 'FAIL'} — the stamp rule compares a page's "
+          f"?v= against sha256(file)[:8] ({_real} for {SHEETS[0]}), so a stale stamp cannot pass")
 
     for s, v, h in rows:
         print(f"  {s:14s} v={v}  {h}")
