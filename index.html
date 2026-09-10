@@ -143,7 +143,7 @@ document.documentElement.classList.add('vg-js');
 </script>
 <script defer src="./analytics.js?v=4f9aa0a0"></script>
 <link rel="stylesheet" href="./styles.css?v=3a6ed7ac">
-<link rel="stylesheet" href="./ember.css?v=fd989aec">
+<link rel="stylesheet" href="./ember.css?v=48a3a40a">
 </head>
 <body class="p-home">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -196,12 +196,10 @@ document.documentElement.classList.add('vg-js');
     <div class="hero-copy">
       <p class="k role-line">Staff / Principal Product Designer · AI &amp; LLM Products · fully remote (GMT+5:30)</p>
       <h1 id="h-hero">Your AI model is right. Your users still <span class="grad">won’t bet on it.</span></h1>
-      <p class="sub">I design the half-second before a person acts on it. Sixteen years, five industries &mdash; and the receipts for all of it.</p>
       <div class="ctas">
         <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="hero">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
         <span class="cta-status"><i aria-hidden="true"></i>open to offers &middot; 4 weeks&rsquo; notice</span>
       </div>
-      <p class="cred"><b>Talon Outdoor</b> &mdash; six AI systems, <span class="cred-m">2 wks &#8594; 3 hrs</span> &middot; <b>PE &amp; VC platforms</b> &middot; <b>PTC</b> &mdash; NASA, Boeing &amp; Apple among clientele &middot; <b>Telef&oacute;nica O2</b> &mdash; <span class="cred-m">4M+ people</span></p>
     </div>
     <div class="hero-widget"><figure class="vid-main vid-hero" id="walkthrough">
     <p class="vid-hero-k">The process, on film &mdash; 4:58</p>
@@ -216,6 +214,21 @@ document.documentElement.classList.add('vg-js');
     </div>
     <figcaption class="vid-hero-cap"><a href="./process/" data-cta="process" data-location="hero">The method, written out&nbsp;&rarr;</a></figcaption>
   </figure></div>
+  <!-- THE CLIENTS ARE THE PROOF STRIP. Four engagements, one per column — the
+       same four as act 01. Act 01 says what changed; this says who trusted it.
+       It was a 12.5px run-on line inside .hero-copy, capped at 600px, which left
+       the right half of the band empty and put four proper nouns in fine print.
+       As a row of the hero grid it spans both columns, so the full-width band has
+       a role and each client gets a column instead of a middot.
+       Toyota and Airbus are not new claims: case-studies/ptc.html:416 and
+       book/index.html:465 both carry all five names, and the homepage was the
+       only surface that had dropped two of them. -->
+  <div class="cred-strip">
+    <div><b>Talon Outdoor</b><span>six AI systems &middot; <span class="cred-m">2 wks &#8594; 3 hrs</span></span></div>
+    <div><b>PE &amp; VC platforms</b><span>deal screening &middot; <span class="cred-m">60% faster</span></span></div>
+    <div><b>PTC</b><span>engineers at NASA, Boeing, Toyota, Airbus &amp; Apple</span></div>
+    <div><b>Telef&oacute;nica O2</b><span>two products &middot; <span class="cred-m">4M+ people</span></span></div>
+  </div>
   </div>
 </section>
 

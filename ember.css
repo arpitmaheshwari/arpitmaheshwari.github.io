@@ -188,10 +188,10 @@ html[data-theme="ember"] body.p-home .hero .k{color:var(--ember)}
 html[data-theme="ember"] body.p-home .hero .k-open{font-family:var(--mono);font-size:11.5px;font-weight:400;letter-spacing:.02em;line-height:1.55;color:var(--amber);margin:8px 0 0}
 html[data-theme="ember"] body.p-home .hero h1{font-size:clamp(52px,7.2vw,106px);margin:24px 0 24px;max-width:13ch}
 html[data-theme="ember"] body.p-home .hero h1 .grad{font-style:italic}
-html[data-theme="ember"] body.p-home .hero .sub{font-size:clamp(16px,1.6vw,19px);color:var(--mut);max-width:52ch;line-height:1.75}
+/* .hero .sub retired 2026-09-11 with the paragraph it styled — 22 words whose
+   two halves are both said again within 130px (act 01's eyebrow: "four
+   industries"; the client strip: the four clients). Used on no other page. */
 html[data-theme="ember"] body.p-home .hero .ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:32px}
-html[data-theme="ember"] body.p-home .hero .cred{margin-top:40px;font-family:var(--mono);font-size:12.5px;color:var(--dim);line-height:2.1;max-width:62ch}
-html[data-theme="ember"] body.p-home .hero .cred b{color:var(--ink);font-weight:500}
 html[data-theme="ember"] body.p-home .hero .note{position:absolute;right:6%;bottom:16%;color:var(--amber);font-size:23px;transform:rotate(-3deg);z-index:2}
 @media (max-width:900px){html[data-theme="ember"] body.p-home .hero .note{display:none}}
 html[data-theme="ember"] body.p-home .receipts{background:var(--bg1);position:relative;padding:0 0 84px}
@@ -382,8 +382,21 @@ html[data-theme="ember"] body.p-home .acts{grid-template-columns:1fr}}
 html[data-theme="ember"] body.p-home .cols{grid-template-columns:1fr}
 html[data-theme="ember"] body.p-home .wrap{padding:0 16px}}
 /* ---------- EMBER HOMEPAGE · fitting the live widgets into the prototype layout ---------- */
-html[data-theme="ember"] body.p-home .hero .wrap.hero-split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);gap:48px;align-items:center}
-@media (max-width:1040px){html[data-theme="ember"] body.p-home .hero .wrap.hero-split{grid-template-columns:1fr;gap:40px}}
+/* The rail is a FIXED 340px, not .9fr. At .9fr the film took 45% of the band
+   and the claim was squeezed to 55%; the film is meant to be the small object
+   beside the claim, not its equal. align-items:start with the widget bottom-
+   aligned puts the rail's unavoidable empty half ABOVE the film, beside the
+   claim's first line, where a text column's right margin belongs. */
+html[data-theme="ember"] body.p-home .hero .wrap.hero-split{display:grid;grid-template-columns:minmax(0,1fr) clamp(260px,24vw,340px);column-gap:56px;row-gap:0;align-items:start}
+html[data-theme="ember"] body.p-home .hero .hero-widget{align-self:end;padding-bottom:6px}
+/* The split now survives to 900px, not 1040. At 1040 a 1024px laptop — a very
+   common width — fell to one column and the film became a 944px slab whose
+   POSTER repeats the h1 verbatim in larger type than the h1 itself: the same
+   sentence twice in one screen, and the client strip pushed to y1171. Below 900
+   the film still stacks, but capped so it stays the small object beside the
+   claim rather than a second hero. */
+@media (max-width:900px){html[data-theme="ember"] body.p-home .hero .wrap.hero-split{grid-template-columns:minmax(0,1fr);column-gap:0}
+  html[data-theme="ember"] body.p-home .hero .hero-widget{align-self:auto;padding-bottom:0;margin-top:40px;max-width:520px}}
 /* hero diagnostic — the one interactive Arpit named; ember demo-box language */
 html[data-theme="ember"] body.p-home .hero-demo{opacity:1;transform:none;animation:none;flex:none;max-width:none}
 html[data-theme="ember"] .hd-tag{font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--ember);margin-bottom:12px}
@@ -469,7 +482,6 @@ html[data-theme="ember"] body.p-home .hero{/* #nav is position:FIXED (styles.css
   --navh:93px;padding:calc(var(--navh) + clamp(24px,4vh,48px)) 0 clamp(48px,8vh,120px);min-height:100svh;display:flex;align-items:center}
 @media (max-width:900px){html[data-theme="ember"] body.p-home .hero{--navh:76px}}
 html[data-theme="ember"] body.p-home .hero h1{font-size:clamp(38px,min(7.2vw,9.2vh),106px);max-width:16ch;margin:clamp(16px,2.2vh,24px) 0 clamp(16px,2.2vh,24px)}
-html[data-theme="ember"] body.p-home .hero .cred{margin-top:clamp(20px,3.4vh,40px);line-height:1.9}
 html[data-theme="ember"] body.p-home .hero .ctas{margin-top:clamp(20px,3.2vh,32px)}
 @media (max-width:1040px){html[data-theme="ember"] body.p-home .hero{min-height:0;display:block}}
 /* the inline receipt panels use .rcpt-row / .rcpt-l / .rcpt-v — NOT the .rcpt-r*
@@ -1018,10 +1030,6 @@ html[data-theme="ember"] body.p-home p.contract-links a{display:inline-block;mar
    the whole contract section 397px wide inside a 390px viewport and scrolled
    the homepage sideways by 23px — a desktop fix that broke the phone. */
 @media (min-width:700px){html[data-theme="ember"] body.p-home p.contract-links a{white-space:nowrap}}
-/* 2. The credentials line was capped at 465px, which stranded "2019" alone on a
-      third line. Widened to the hero copy measure, and the year bound to its
-      phrase so it can never orphan again at another width. */
-html[data-theme="ember"] body.p-home .hero .cred{max-width:600px}
 /* 3. The wordmark was amber while the monogram beside it is the ember→violet
       gradient — two different brand colours touching. The name is not an
       accent; it takes the primary ink and lets the mark carry the colour. */
@@ -3137,8 +3145,10 @@ html[data-theme="ember"] body.p-home .hero .role-line{
 /* TWO NUMBERS IN THE FIRST SCREEN. Both already existed on the page — three
    screens down, on their own case cards. They attach to the client strip that
    was already there, so the glance gets a receipt instead of four bare names.
-   --amber on the hero ground, declared, not inherited: .cred is --dim and a
-   <span> inside it would have come out muted, which is the opposite of the job. */
+   --amber on the hero ground, declared, not inherited: the strip's captions are
+   --ink-dim and a <span> inside one would have come out muted, which is the
+   opposite of the job. (Was .cred until 2026-09-11; the metric survived the
+   run-on line it used to sit in.) */
 /* THE FILM'S ROUTE IS NOW A CTA, so it speaks the house CTA grammar. It used to
    be an inline link at the end of a caption sentence; when that sentence came off
    on 2026-09-08 the link became the caption's only content and
@@ -3156,12 +3166,12 @@ html[data-theme="ember"] body.p-home .hero .vid-hero-cap a{font-family:"Source S
   /* and the house INK for a CTA on a dark ground. It was amber, which is this
      hero's accent — but a CTA's grammar is site-wide, not per-section. */
   color:var(--violet)}
-html[data-theme="ember"] body.p-home .hero .cred .cred-m{
+html[data-theme="ember"] body.p-home .hero .cred-strip .cred-m{
   color:var(--amber);font-weight:500;white-space:nowrap}
 
 /* The hero's .lab-row rules came out on 2026-09-08 with the row itself: the
-   42/42 fact merged into .cred, so the hero holds ONE evidence line instead of
-   two and 31 rule lines here matched nothing. */
+   42/42 fact merged into .cred (now .cred-strip), so the hero holds ONE evidence
+   block instead of two and 31 rule lines here matched nothing. */
 
 /* ONE NOMINATED DOOR. Reuses .range-lbl — same component, second instance —
    because the page already had a label for "here is a group of cases" and
@@ -3218,13 +3228,72 @@ html[data-theme="ember"] body.p-home main > section.pat:has(.chap),
 html[data-theme="ember"] body.p-home main > section#patterns:has(.chap){
   border-top-color:rgba(34,28,16,.18)}
 
-/* THE HERO READ AS BUSY once the receipt joined it: six stacked blocks in the
-   left column, 622px, of which the last THREE are small-print rows in three
-   different inks — the availability line, the client strip, the engineering
-   receipt. Nothing is removed here; the three are grouped so they read as one
-   evidence block instead of three loose strips. More air above the group, less
-   inside it. */
-html[data-theme="ember"] body.p-home .hero .cred{margin-top:32px}
+/* ============================================================================
+   THE CLIENT STRIP — the hero's proof row (2026-09-11)
+   ----------------------------------------------------------------------------
+   Replaces .cred, which was a 12.5px monospace run-on line inside .hero-copy
+   capped at 600px. Two defects, one content and one composition:
+
+   CONTENT — it was the only place on the homepage that named a client, and it
+   named them in the smallest type on the page. Measured against the live page
+   with one instrument at 1440: 112 words in the first screen, of which the four
+   client names were 31 and set at 12.5px.
+
+   COMPOSITION — capped at 600px inside a 1160px band, so the right 48% of the
+   row was empty. My own layout rule calls that a defect, not breathing room:
+   whitespace is designed or it is left over.
+
+   So the strip is a ROW OF THE HERO GRID (grid-column 1/-1), not a paragraph in
+   the left column. Four clients, four columns, the full width used.
+
+   The rows are SHARED across the four cells (display:contents + explicit
+   grid-row) rather than each cell owning a 2-row grid. That is the whole point:
+   with per-cell grids the four captions align only where no client name wraps,
+   and one wrap at 768px stranded one caption 22px below its neighbour's —
+   lesson 7, inner elements in a row must align to ONE ANOTHER. Shared rows make
+   that alignment structural instead of coincidental. Measured 1 caption row at
+   1024 and 1440, 2 at 768 (a 2x2 grid), 4 at 390 (stacked, which is correct).
+
+   Every property is declared on the component, not inherited: --ff-mono and
+   --ink-dim, never --mono/--dim, which exist only on body.p-home and silently
+   fall back anywhere else. Leading is 1.4 on the 16px names and 1.65 on the
+   11.5px captions — both at or above the floor for their rendered size.
+   ========================================================================== */
+html[data-theme="ember"] body.p-home .hero .cred-strip{
+  grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-rows:auto auto;column-gap:28px;row-gap:0;
+  margin-top:clamp(32px,4.4vh,52px);padding-top:22px;border-top:1px solid var(--line)}
+html[data-theme="ember"] body.p-home .hero .cred-strip > div{display:contents}
+html[data-theme="ember"] body.p-home .hero .cred-strip > div > b{
+  grid-row:1;font-family:"Source Sans 3",var(--sans),system-ui;font-size:16px;
+  font-weight:600;letter-spacing:.005em;line-height:1.4;color:var(--ink)}
+html[data-theme="ember"] body.p-home .hero .cred-strip > div > span{
+  grid-row:2;font-family:var(--ff-mono),ui-monospace,monospace;font-size:11.5px;
+  letter-spacing:.01em;line-height:1.65;color:var(--ink-dim);padding-top:9px}
+
+/* two columns: the rows stay shared, so the two captions in a row still align
+   when one client name wraps and the one beside it does not */
+@media (max-width:900px){
+  html[data-theme="ember"] body.p-home .hero .cred-strip{
+    grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto auto auto auto;
+    column-gap:22px}
+  html[data-theme="ember"] body.p-home .hero .cred-strip > div:nth-child(-n+2) > b{grid-row:1}
+  html[data-theme="ember"] body.p-home .hero .cred-strip > div:nth-child(-n+2) > span{grid-row:2}
+  html[data-theme="ember"] body.p-home .hero .cred-strip > div:nth-child(n+3) > b{grid-row:3;padding-top:22px}
+  html[data-theme="ember"] body.p-home .hero .cred-strip > div:nth-child(n+3) > span{grid-row:4}
+}
+/* one column: each client is its own two-line block again, so the shared rows
+   must be RELEASED — leave them in place and four clients pair into two rows */
+@media (max-width:520px){
+  html[data-theme="ember"] body.p-home .hero .cred-strip{
+    grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:18px;
+    margin-top:clamp(28px,3.6vh,34px)}
+  html[data-theme="ember"] body.p-home .hero .cred-strip > div{display:grid}
+  html[data-theme="ember"] body.p-home .hero .cred-strip > div > b,
+  html[data-theme="ember"] body.p-home .hero .cred-strip > div > span{grid-row:auto}
+  html[data-theme="ember"] body.p-home .hero .cred-strip > div:nth-child(n+3) > b{padding-top:0}
+  html[data-theme="ember"] body.p-home .hero .cred-strip > div > b{font-size:15px}
+}
 
 /* ============================================================================
    THE WRITING INDEX — an index that previews (homepage, act 04 · 2)
