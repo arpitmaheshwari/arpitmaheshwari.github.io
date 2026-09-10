@@ -22,7 +22,25 @@ One server is started for every gate that needs one, not one per gate. Under Git
 Actions each failure is emitted as a ::error:: annotation, because job logs need admin
 rights to read and an unreadable failure is how the last one hid for five days.
 
-Exit 0 all passed · 1 a gate failed · 2 could not run.
+THE EXIT-CODE CONVENTION, which this runner now honours instead of merely claiming.
+A gate's exit code says WHICH KIND of answer it is:
+
+    0  clean
+    1  FOUND A DEFECT              — the site is wrong
+    2  CALIBRATION FAILED          — the instrument cannot go red; it reported nothing
+    3  COULD NOT MEASURE           — no server, navigation failed, zero nodes seen
+
+This line used to read "Exit 0 all passed · 1 a gate failed · 2 could not run" while
+the code did `if code != 0: failed.append(...)` — every non-zero collapsed into
+"failed". So on 2026-09-10 a push was blocked with "1 of 27 gate(s) failed:
+contrast-audit" when the truth was that two pages had never loaded, because I had
+killed the devserver mid-push. Three rounds went into hunting a CSS defect that did
+not exist. .githooks/pre-push learned this lesson for its background gates and wrote
+a comment about it; this runner never did.
+
+ALL THREE still block: an unmeasured gate is not a green gate. The difference is that
+the report now says where to look — at the site, or at the instrument, or at the
+server. Exit is 1 if anything found a real defect, else 2 if anything could not run.
 """
 import argparse
 import concurrent.futures as cf
@@ -232,7 +250,7 @@ def main():
         r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
         return g, r.returncode, (r.stdout or '') + (r.stderr or '')
 
-    failed = []
+    failed, broken, unmeasured = [], [], []
     try:
         # SERIAL GATES RUN ALONE. A gate driving Chrome with --dump-dom and
         # --virtual-time-budget is not safe to run beside another one: virtual time
@@ -261,17 +279,35 @@ def main():
         for g, code, out in results:
             print(f"\n=== {g['id']}")
             print(out.rstrip())
-            if code != 0:
+            if code == 1:
                 failed.append(g['id'])
-                annotate(f"{g['id']} failed", out)
+                annotate(f"{g['id']} found a defect", out)
+            elif code == 2:
+                broken.append(g['id'])
+                annotate(f"{g['id']} CALIBRATION FAILED — it reported nothing", out)
+            elif code != 0:
+                unmeasured.append((g['id'], code))
+                annotate(f"{g['id']} could not measure (exit {code}) — NOT a defect", out)
     finally:
         if proc:
             proc.terminate()
 
     print()
     if failed:
-        print(f'{len(failed)} of {total} gate(s) failed: {", ".join(failed)}')
-        sys.exit(1)
+        print(f'{len(failed)} of {total} gate(s) FOUND A DEFECT: {", ".join(failed)}')
+    if broken:
+        print(f'{len(broken)} gate(s) CALIBRATION FAILED and reported nothing: '
+              f'{", ".join(broken)}')
+        print('  Not a verdict on the site. The instrument could not prove it can go red.')
+    if unmeasured:
+        print(f'{len(unmeasured)} gate(s) COULD NOT MEASURE: '
+              f'{", ".join(f"{n} (exit {c})" for n, c in unmeasured)}')
+        print('  NOT a defect. Check the server and the page loaded before reading these '
+              'as findings — a killed devserver looks exactly like this.')
+    if failed or broken or unmeasured:
+        # all three block; the exit code says which kind, so a caller can tell a site
+        # problem from an instrument problem without reading the log
+        sys.exit(1 if failed else 2)
     print(f'all {total} gate(s) passed in stage {a.stage}')
     sys.exit(0)
 

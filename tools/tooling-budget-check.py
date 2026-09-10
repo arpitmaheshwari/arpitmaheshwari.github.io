@@ -177,7 +177,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # url:line:col and the function, which on a reproduction of the same message
 # resolved to "(inline):0:21 in boomHere()" — i.e. it tells you the throw came from
 # an INLINE script, which is exactly the fact that was missing.
-CEILING = 12_992
+# 2026-09-10  +50  the exit-code convention, made real in two places. Gates already
+# used 1/2/3 to mean defect / calibration-failed / could-not-measure, and BOTH
+# run-gates.py and contrast-audit.py documented that distinction while collapsing it
+# in code: run-gates did `if code != 0: failed.append(...)`, and contrast-audit
+# returned 2 for "could not measure" as well as for a failed calibration. That is how
+# a push came to be blocked with "1 of 27 gate(s) failed: contrast-audit" when two
+# pages had simply never loaded. Both now discriminate, and the runner was calibrated
+# with three planted gates, one per code.
+CEILING = 13_050
 
 
 def loc(paths):

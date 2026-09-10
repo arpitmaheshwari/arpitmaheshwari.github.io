@@ -60,8 +60,19 @@ USAGE
     python3 contrast-audit.py --all [--base http://localhost:8000]
     python3 contrast-audit.py --selftest URL          # calibration only
 
-EXIT CODE     0 = calibrated and clean · 1 = failures found, or calibration did not go red
-              2 = the instrument could not measure (distinct from "found a defect")
+EXIT CODE     0 = calibrated and clean
+              1 = FAILURES FOUND — a real contrast defect
+              2 = CALIBRATION FAILED — the instrument cannot go red, nothing reported
+              3 = COULD NOT MEASURE — no server, navigation failed, or zero text nodes
+
+              2 and 3 were BOTH exit 2 until 2026-09-10, which is how a push came to be
+              blocked with "1 of 27 gate(s) failed: contrast-audit" when the truth was
+              that two pages never loaded (I had killed the devserver mid-push). Three
+              rounds went into hunting a CSS defect that did not exist. The rest of the
+              suite already used 3 for this — runtime-error-check, interaction-state-
+              check, artifact-legibility-check and cta-viewport-check all do — so this
+              file was the odd one out, and the hook itself carries a comment about
+              exactly why the distinction matters.
 """
 import argparse, json, math, os, subprocess, sys
 
@@ -823,7 +834,10 @@ def main():
                   "the same pixels (graded as one) are NOT measured.")
     if failures:
         sys.exit(1)
-    sys.exit(2 if could_not_measure else 0)
+    # 3, not 2: "could not measure" is not "the instrument is broken" (2) and it is
+    # certainly not "found a defect" (1). A caller that cannot tell them apart hunts
+    # the site when it should be checking the server.
+    sys.exit(3 if could_not_measure else 0)
 
 if __name__ == "__main__":
     main()
