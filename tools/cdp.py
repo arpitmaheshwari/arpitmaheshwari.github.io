@@ -297,6 +297,28 @@ def ensure_server(port=8000, root=None):
             self.send_header("Cache-Control", "no-store")
             super().end_headers()
 
-    httpd = ThreadingHTTPServer(("127.0.0.1", port), Quiet)
+    class QuietServer(ThreadingHTTPServer):
+        """Silence CLIENT DISCONNECTS only — never a real server error.
+
+        Chrome closes connections aggressively (it stops reading as soon as it
+        has what it needs), so socketserver's default handle_error dumped a
+        20-line BrokenPipeError traceback from copyfile() into the middle of a
+        gate's output. A traceback inside a gate that then exits 0 is how people
+        learn to distrust green, which is the whole failure mode this session
+        kept hitting from the other direction.
+
+        Deliberately NOT a blanket except: a client hanging up is not an error,
+        anything else still prints. Silencing everything would make a genuine
+        server bug invisible — the same mistake as a check that cannot go red.
+        """
+        def handle_error(self, request, client_address):
+            import sys as _sys
+            exc = _sys.exc_info()[1]
+            if isinstance(exc, (BrokenPipeError, ConnectionResetError,
+                                ConnectionAbortedError)):
+                return
+            super().handle_error(request, client_address)
+
+    httpd = QuietServer(("127.0.0.1", port), Quiet)
     threading.Thread(target=httpd.serve_forever, daemon=True).start()
     return httpd.shutdown

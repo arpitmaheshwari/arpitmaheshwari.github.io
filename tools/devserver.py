@@ -23,4 +23,16 @@ if __name__ == '__main__':
     root = sys.argv[2] if len(sys.argv) > 2 else os.getcwd()
     os.chdir(root)
     print(f"serving {root} on :{port} with no-store (nothing here will be cached)")
-    ThreadingHTTPServer(('', port), NoCache).serve_forever()
+    class QuietServer(ThreadingHTTPServer):
+        # Same treatment as cdp.ensure_server: a browser that hangs up mid-response
+        # is not a server error, and its traceback in a gate's output teaches people
+        # to distrust green. Only connection teardown is swallowed; everything else
+        # still prints, because a silent server is worse than a noisy one.
+        def handle_error(self, request, client_address):
+            exc = sys.exc_info()[1]
+            if isinstance(exc, (BrokenPipeError, ConnectionResetError,
+                                ConnectionAbortedError)):
+                return
+            super().handle_error(request, client_address)
+
+    QuietServer(('', port), NoCache).serve_forever()

@@ -161,7 +161,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # rather than faking a pass. The real gap was that the eight hook-only gates
 # could not simply be run by hand before a push — the step whose absence cost
 # two blocked pushes today. Now they can.
-CEILING = 12_923
+# 2026-09-10  +14  QuietServer in cdp.ensure_server and devserver.py. Chrome hangs
+# up as soon as it has what it needs, so socketserver dumped a 20-line
+# BrokenPipeError traceback from copyfile() into the middle of a gate's output —
+# and a traceback in a gate that then exits 0 is how people learn to distrust
+# green. Silences CLIENT DISCONNECTS ONLY: calibrated by raising a genuine
+# RuntimeError through the same handler and confirming it still prints. A blanket
+# except would hide a real server bug, which is the same defect as a check that
+# cannot go red.
+CEILING = 12_965
 
 
 def loc(paths):
