@@ -135,7 +135,18 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # proved it, so the next person retargets from evidence instead of re-deriving it.
 # They also earned their keep on the spot: pointed at live classes, component-identity
 # found an unclosed <strong> that had swallowed the footer on two writing pages.
-CEILING = 12_757
+# 2026-09-10  +28  css-version-check, and not a new gate: two defects in the one
+# that already existed. Its calibration was a TAUTOLOGY —
+#   caught = probe["version"] == probe["version"] and probe["hash"] != "deadbeef…"
+# compares a value with itself, so it printed PASS on every run since 2026-08-15
+# without ever exercising the rule, while its docstring claimed it "requires the
+# check to fail". And version_of() read THREE hardcoded pages of the 41 that link
+# styles.css, returning the first hit — so pages drifting onto different versions,
+# the exact failure bump-css-version.py records from the wild, was invisible. The
+# rule now lives at module level so the calibration provably exercises the same
+# code, and page disagreement is a finding. Verified by planting ?v=deadbeef on
+# one page and watching it name that page.
+CEILING = 12_816
 
 
 def loc(paths):

@@ -62,16 +62,43 @@ def sheet_path(name):
 SHEETS = discover_sheets()
 STATE = pathlib.Path(".cssver.json")
 
-def version_of(sheet):
+def versions_in_pages(sheet):
+    """{version: [pages]} for every page that links this sheet.
+
+    This read THREE hardcoded pages (index, patterns/index, book/index) and
+    returned the FIRST hit, while 41 pages link styles.css. So pages sitting on
+    DIFFERENT versions of one sheet — the exact failure bump-css-version.py's
+    own docstring records from the wild, "e12 vs e26" — was invisible: the gate
+    sampled one page and called it the version. Read them all and make
+    disagreement a finding.
+    """
     stem = pathlib.Path(sheet).stem
-    for page in ("index.html", "patterns/index.html", "book/index.html"):
-        p = pathlib.Path(page)
-        if not p.exists():
+    out = {}
+    for p in pathlib.Path(".").rglob("*.html"):
+        if p.name.startswith("__"):
             continue
-        m = re.search(re.escape(stem) + r"\.css\?v=([A-Za-z0-9.]+)", p.read_text())
+        rel = p.as_posix()
+        if rel.startswith((".", "node_modules", "prototypes/", "portfolio-sources/", "tests/")):
+            continue
+        m = re.search(re.escape(stem) + r"\.css\?v=([A-Za-z0-9.]+)", p.read_text(encoding="utf-8"))
         if m:
-            return m.group(1)
-    return None
+            out.setdefault(m.group(1), []).append(rel)
+    return out
+
+
+def version_of(sheet):
+    vs = versions_in_pages(sheet)
+    if not vs:
+        return None
+    # the version the most pages agree on; disagreement is reported separately
+    return max(vs, key=lambda v: len(vs[v]))
+
+def stale_rule(prev, v, h):
+    """THE rule. Defined once so the calibration below exercises the same code
+    the sweep uses — the previous calibration compared a value with itself and
+    could not have caught a change to this logic."""
+    return bool(prev and prev["version"] == v and prev["hash"] != h)
+
 
 def digest(sheet):
     return hashlib.sha256(sheet_path(sheet).read_bytes()).hexdigest()[:16]
@@ -83,8 +110,14 @@ def main():
         if sheet_path(s) is None:
             continue
         v, h = version_of(s), digest(s)
+        spread = versions_in_pages(s)
+        if len(spread) > 1:
+            detail = "; ".join(f"?v={k} on {len(p)} page(s) (e.g. {p[0]})"
+                               for k, p in sorted(spread.items(), key=lambda kv: -len(kv[1])))
+            bad.append(f"{s}: pages disagree about the version — {detail}. "
+                       f"Run: python3 tools/bump-css-version.py {s}")
         prev = state.get(s)
-        stale = bool(prev and prev["version"] == v and prev["hash"] != h)
+        stale = stale_rule(prev, v, h)
         if stale:
             bad.append(f"{s}: content changed but ?v={v} did not — browsers will serve the old file")
         rows.append((s, v, h))
@@ -93,10 +126,25 @@ def main():
         if not stale:
             state[s] = {"version": v, "hash": h}
 
-    # calibration: a changed hash under an unchanged version MUST be caught
-    probe = dict(state.get(SHEETS[0], {"version": "x", "hash": "y"}))
-    caught = probe["version"] == probe["version"] and probe["hash"] != "deadbeefdeadbeef"
-    print(f"[calibration] {'PASS' if caught else 'FAIL'} — mismatch rule is live")
+    # CALIBRATION. The previous version of these four lines was a TAUTOLOGY:
+    #     caught = probe["version"] == probe["version"] and probe["hash"] != "deadbeef…"
+    # The left side compares a value with itself, so `caught` was True for every
+    # possible input and this gate printed PASS on every run since 2026-08-15
+    # without once exercising the rule it guards. The docstring claimed it
+    # "mutates a copy in memory and requires the check to fail". It did not.
+    # Now it does: run the real predicate over a planted state and require BOTH
+    # a red on a changed hash AND a green on an unchanged one.
+    planted = {"version": "v1", "hash": "a" * 16}
+    must_fire = stale_rule(planted, "v1", "b" * 16)      # content moved, version did not
+    must_not  = stale_rule(planted, "v1", "a" * 16)      # nothing moved
+    must_not2 = stale_rule(planted, "v2", "b" * 16)      # content moved AND version bumped
+    ok = must_fire and not must_not and not must_not2
+    print(f"[calibration] {'PASS' if ok else 'FAIL'} — planted a changed hash under an "
+          f"unchanged version and the rule fired ({must_fire}); it stays quiet when nothing "
+          f"moved ({not must_not}) and when the version was bumped with it ({not must_not2})")
+    if not ok:
+        print("Refusing to report: a check that cannot go red is not evidence.")
+        sys.exit(2)
 
     for s, v, h in rows:
         print(f"  {s:14s} v={v}  {h}")
