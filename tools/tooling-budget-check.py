@@ -127,7 +127,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # actions it still reports 153 controls — the site's --border token is 1.41:1 — and
 # that is a design decision, not a push blocker. Half the lines are the record of
 # five screenshot-sampling faults, so the next person computes from resolved colours.
-CEILING = 12_721
+# 2026-09-10  +8  not a new gate: the retargeting notes in cta-viewport-check and
+# component-identity-check. Both were pointed at classes deleted that morning —
+# cta-viewport planted its calibration on .pill and refused to report (correctly),
+# and component-identity printed "0 inconsistent" while SIX of its nine names no
+# longer existed. Eight lines record which names were dead and the page counts that
+# proved it, so the next person retargets from evidence instead of re-deriving it.
+# They also earned their keep on the spot: pointed at live classes, component-identity
+# found an unclosed <strong> that had swallowed the footer on two writing pages.
+CEILING = 12_757
 
 
 def loc(paths):
