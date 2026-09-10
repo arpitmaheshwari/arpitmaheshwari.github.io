@@ -29,7 +29,11 @@ import cdp
 import os
 
 CH = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
-SEL = ".pill,.nav-cta,.btn-a,.btn-a-ghost,.rcpt-btn,.lbl-pill-bg,.lbl-badge-gold"
+# 2026-09-10: five of the seven classes here died when 39 asks in six classes became
+# ONE component. Verified live-in-markup before editing: .pill 0 pages, .btn-a 0,
+# .btn-a-ghost 0, .lbl-pill-bg 0, .lbl-badge-gold 0 — .nav-cta 38, .rcpt-btn 1.
+# .cta (38) and .cta-quiet (17) are what a reader presses now.
+SEL = ".cta,.cta-quiet,.nav-cta,.rcpt-btn"
 PAGES = sys.argv[1:] or ["index.html", "case-studies/adtech.html", "case-studies/planit.html",
                          "patterns/index.html", "lab/index.html", "404.html"]
 
@@ -62,14 +66,14 @@ def sample(page, width, inject=""):
             os.unlink("__cv.html")
 
 INJECT = ("const s=d.createElement('style');"
-          "s.textContent='@media(max-width:640px){.pill{background:#00FF00!important}}';"
+          "s.textContent='@media(max-width:640px){.cta{background:#00FF00!important}}';"
           "d.head.appendChild(s);")
 
 def diff(a, b):
     return sorted(k for k in a if k != "__err" and a.get(k) != b.get(k))
 
 cdp.ensure_server(8000)
-print("[calibration] planting a viewport-specific fill on .pill …")
+print("[calibration] planting a viewport-specific fill on .cta …")
 cal_wide, cal_narrow = sample(PAGES[0], 1440, INJECT), sample(PAGES[0], 390, INJECT)
 if not diff(cal_wide, cal_narrow):
     print("[calibration] FAIL — planted override was not detected; refusing to report.")

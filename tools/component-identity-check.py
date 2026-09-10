@@ -15,8 +15,24 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdp
 
 # Components whose appearance is a design-system promise, not a page decision.
-COMPONENTS = ['btn-a', 'btn-primary', 'btn-a-ghost', 'lbl-pill-bg', 'lbl-badge-bg',
-              'btn-label', 'nav-cta', 'site-footer', 'nav-links']
+# 2026-09-10: SIX of the nine names here were DEAD, and the gate still printed
+# "0 component(s) render inconsistently" — a green verdict on a list it could not
+# find. Verified live-in-markup before editing: btn-a 0 pages, btn-a-ghost 0,
+# lbl-pill-bg 0, lbl-badge-bg 0, btn-label 0, site-footer 0.
+# .cta is now the component this gate exists for: one door on 38 pages, and the
+# whole point of collapsing 39 asks in six classes into one was that it renders
+# identically everywhere. Measured at 107 instances, one shape — this keeps it so.
+COMPONENTS = ['cta', 'cta-quiet', 'nav-cta', 'nav-links', 'btn-primary']
+# NOT in the list, on purpose: .footer-note and .footer-tools. I added them
+# speculatively on 2026-09-10 and they are WRAPPERS whose computed weight and
+# family are inherited, not declared — so this gate grades the page's cascade
+# through them rather than a component's own promise. Adding them did surface a
+# real defect (an unclosed <strong> on two writing pages had swallowed the whole
+# footer, rendering it bold — fixed), and it left a second, genuine finding worth
+# its own decision: the footer note renders MONO + dim on index.html and SANS +
+# full-ink on the other 37, because the ember footer rules are scoped
+# body.p-home and never reach the rest. That is execution lesson 11 again, and
+# changing it alters 37 pages, so it is Arpit's call and not a push blocker.
 # Properties that define "the same button". Size/position are layout, not identity.
 PROPS = ['background-image', 'background-color', 'color', 'border-radius',
          'font-family', 'font-weight', 'letter-spacing', 'text-transform']
@@ -28,7 +44,15 @@ document.querySelectorAll('*').forEach(e=>{
   const r=e.getBoundingClientRect(); if(!r.width||!r.height) return;
   const c=getComputedStyle(e);
   const sig={}; props.forEach(p=>sig[p]=c.getPropertyValue(p));
-  hit.forEach(h=>out.push({comp:h, sig:JSON.stringify(sig)}));
+  // A BEM modifier is a DIFFERENT component, not drift. .cta--secondary is a .cta,
+  // and on 2026-09-10 that made the closing section's outline secondary read as
+  // ".cta - 2 distinct appearances" on 1 page against 66. It is supposed to differ:
+  // that is what a secondary IS. Group by the modifier so each variant is graded
+  // against its own instances.
+  hit.forEach(h=>{
+    const mod = cl.find(x => x.startsWith(h + '--'));
+    out.push({comp: mod || h, sig: JSON.stringify(sig)});
+  });
 });
 return out;})()""" % (json.dumps(COMPONENTS), json.dumps(PROPS))
 
