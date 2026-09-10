@@ -387,8 +387,8 @@ html[data-theme="ember"] body.p-home .wrap{padding:0 16px}}
    beside the claim, not its equal. align-items:start with the widget bottom-
    aligned puts the rail's unavoidable empty half ABOVE the film, beside the
    claim's first line, where a text column's right margin belongs. */
-html[data-theme="ember"] body.p-home .hero .wrap.hero-split{display:grid;grid-template-columns:minmax(0,1fr) clamp(260px,24vw,340px);column-gap:56px;row-gap:0;align-items:start}
-html[data-theme="ember"] body.p-home .hero .hero-widget{align-self:end;padding-bottom:6px}
+html[data-theme="ember"] body.p-home .hero .wrap.hero-split{display:grid;grid-template-columns:minmax(0,1fr) clamp(260px,24vw,340px);column-gap:48px;row-gap:0;align-items:start}
+html[data-theme="ember"] body.p-home .hero .hero-widget{align-self:end;padding-bottom:4px}
 /* The split now survives to 900px, not 1040. At 1040 a 1024px laptop — a very
    common width — fell to one column and the film became a 944px slab whose
    POSTER repeats the h1 verbatim in larger type than the h1 itself: the same
@@ -3261,33 +3261,33 @@ html[data-theme="ember"] body.p-home main > section#patterns:has(.chap){
    ========================================================================== */
 html[data-theme="ember"] body.p-home .hero .cred-strip{
   grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-  grid-template-rows:auto auto;column-gap:28px;row-gap:0;
-  margin-top:clamp(32px,4.4vh,52px);padding-top:22px;border-top:1px solid var(--line)}
+  grid-template-rows:auto auto;column-gap:32px;row-gap:0;
+  margin-top:clamp(32px,4.4vh,48px);padding-top:24px;border-top:1px solid var(--line)}
 html[data-theme="ember"] body.p-home .hero .cred-strip > div{display:contents}
 html[data-theme="ember"] body.p-home .hero .cred-strip > div > b{
   grid-row:1;font-family:"Source Sans 3",var(--sans),system-ui;font-size:16px;
   font-weight:600;letter-spacing:.005em;line-height:1.4;color:var(--ink)}
 html[data-theme="ember"] body.p-home .hero .cred-strip > div > span{
   grid-row:2;font-family:var(--ff-mono),ui-monospace,monospace;font-size:11.5px;
-  letter-spacing:.01em;line-height:1.65;color:var(--ink-dim);padding-top:9px}
+  letter-spacing:.01em;line-height:1.65;color:var(--ink-dim);padding-top:8px}
 
 /* two columns: the rows stay shared, so the two captions in a row still align
    when one client name wraps and the one beside it does not */
 @media (max-width:900px){
   html[data-theme="ember"] body.p-home .hero .cred-strip{
     grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto auto auto auto;
-    column-gap:22px}
+    column-gap:24px}
   html[data-theme="ember"] body.p-home .hero .cred-strip > div:nth-child(-n+2) > b{grid-row:1}
   html[data-theme="ember"] body.p-home .hero .cred-strip > div:nth-child(-n+2) > span{grid-row:2}
-  html[data-theme="ember"] body.p-home .hero .cred-strip > div:nth-child(n+3) > b{grid-row:3;padding-top:22px}
+  html[data-theme="ember"] body.p-home .hero .cred-strip > div:nth-child(n+3) > b{grid-row:3;padding-top:24px}
   html[data-theme="ember"] body.p-home .hero .cred-strip > div:nth-child(n+3) > span{grid-row:4}
 }
 /* one column: each client is its own two-line block again, so the shared rows
    must be RELEASED — leave them in place and four clients pair into two rows */
 @media (max-width:520px){
   html[data-theme="ember"] body.p-home .hero .cred-strip{
-    grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:18px;
-    margin-top:clamp(28px,3.6vh,34px)}
+    grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:20px;
+    margin-top:clamp(24px,3.6vh,32px)}
   html[data-theme="ember"] body.p-home .hero .cred-strip > div{display:grid}
   html[data-theme="ember"] body.p-home .hero .cred-strip > div > b,
   html[data-theme="ember"] body.p-home .hero .cred-strip > div > span{grid-row:auto}
