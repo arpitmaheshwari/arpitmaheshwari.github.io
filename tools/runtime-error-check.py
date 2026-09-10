@@ -70,7 +70,17 @@ def collect(br):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--base', default='http://localhost:8899')
+    # BASE as the default (2026-09-10). The pre-push hook already passes
+    # --base http://localhost:$PORT explicitly, so this gate has always been
+    # correct UNDER THE HOOK — I wrongly reported it as ignoring the hook's
+    # server. The real gap was narrower: a standalone run with no flag looked
+    # for :8899, found nothing and exited 3, which is honest ("nothing was
+    # measured", never a false pass) but meant the eight hook-only gates could
+    # not simply be run by hand before a push — the step whose absence cost two
+    # blocked pushes today. Honouring BASE and starting a server if none is up
+    # makes that pass runnable, matching component-identity-check.
+    ap.add_argument('--base',
+                    default=os.environ.get('BASE', 'http://localhost:8899'))
     ap.add_argument('--selftest', action='store_true')
     ap.add_argument('pages', nargs='*')
     a = ap.parse_args()
@@ -91,11 +101,16 @@ def main():
     # site. Exit 3 (could not measure) so the pre-push hook reports it honestly instead of
     # as findings. Same failure mode as artifact-legibility-check, fixed the same way.
     import urllib.request
+    try:                                   # a standalone run should just work
+        cdp.ensure_server(int(a.base.rsplit(':', 1)[1]))
+    except Exception:
+        pass                               # the probe below is the real verdict
     try:
         urllib.request.urlopen(a.base + '/', timeout=3)
     except Exception as e:
         print(f'runtime-error-check: no server on {a.base} ({e.__class__.__name__}). '
-              f'Start one:  python3 tools/devserver.py 8899')
+              f'Start one:  python3 tools/devserver.py '
+              f'{a.base.rsplit(chr(58), 1)[1]}')
         print('This is NOT a finding — nothing was measured.')
         return 3
 

@@ -154,7 +154,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # ?v=149ac7d3 against a file hashing to 3a6ed7ac, and the hook's own partials
 # check blocked the push over exactly that. The new rule needs no state, so it
 # cannot be laundered, and it covers JS as well as CSS.
-CEILING = 12_886
+# 2026-09-10  +22  runtime-error-check and interaction-state-check now default
+# --base to $BASE and start a server if none is up. NOT the correctness bug I
+# reported to Arpit: the hook already passes --base explicitly, so both were
+# always right under the hook, and both exit 3 saying "nothing was measured"
+# rather than faking a pass. The real gap was that the eight hook-only gates
+# could not simply be run by hand before a push — the step whose absence cost
+# two blocked pushes today. Now they can.
+CEILING = 12_923
 
 
 def loc(paths):
