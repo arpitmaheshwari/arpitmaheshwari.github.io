@@ -264,7 +264,17 @@ abbr[title]:hover::before,abbr[title]:focus::before,abbr[title]:active::before{o
 .remote-grid{grid-template-columns:1fr;gap:16px}
 html,body{font-size:16px}
 /* was keyed on the style attribute itself; retargeted at extraction (theme-swap migration) */
-  footer{flex-direction:column;gap:16px;text-align:center}
+  /* 2026-09-10: was text-align:center. Arpit specified this footer himself —
+     "on the left can I have a two liner of text of name and the second line is
+     about copyright" — and centring it below 768px contradicted that: the note
+     wrapped to two centred lines whose second line sat indented, reading as a
+     ragged block rather than a two-liner. Left is his arrangement at every width.
+     align-items:flex-start is the other half and the reason my first attempt
+     looked fixed on the homepage only: this is a flex COLUMN, so align-items
+     centred each child BOX. text-align only governs text inside the box. On the
+     homepage .footer-words is full width, so centring it was invisible; on the
+     other 37 it shrink-fits to 266px and was pushed to x=62. */
+  footer{flex-direction:column;gap:16px;text-align:left;align-items:flex-start}
 .footer-logo,.footer-note,.footer-back{font-size:13px;min-height:44px;display:inline-flex;align-items:center;padding:4px 4px}}
 /* ----- Responsive: small mobile (≤480px) ----- */
 @media(max-width:480px){h1,h2,h3{scroll-margin-top:120px}}

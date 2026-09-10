@@ -782,6 +782,24 @@ html[data-theme="ember"] body[class*="p-case-studies"] :is(.note-gold,.note-gold
 
 /* --- FOOTER · text was touching the frame edges --- */
 html[data-theme="ember"] footer{padding:40px 48px;gap:24px}
+/* 2026-09-10 — the footer's TYPOGRAPHY now applies to every page, not just the
+   homepage. It was declared only on `body.p-home footer` (mono 12px, dim), so the
+   other 37 footers inherited the body's sans 16px. Nothing VISIBLE differed —
+   .footer-note, .footer-logo, .footer-back and .dyslexia-toggle all declare their
+   own font, and I overstated this to Arpit as a visible defect before measuring;
+   only .footer-tools, a wrapper holding no text of its own, drifted. But that is a
+   loaded gun: the first bare text anyone adds to the footer would render mono on
+   the homepage and sans on 37 others. Execution lesson 11 — declare, do not
+   inherit. Padding and the border stay where they were; this is type only.
+   USES --ff-mono / --ink-dim, NOT --mono / --dim. The homepage rule this copies
+   spells them --mono and --dim, and those two custom properties are declared
+   ONLY on `body.p-home`. In an all-pages rule they are undefined, so the
+   declarations are invalid at computed-value time and fall back to inherited —
+   silently. My first version did exactly that: font-size applied on all 38
+   pages while family and colour applied on one, which is the same drift wearing
+   a different hat. --ff-mono and --ink-dim are declared at the theme root. */
+html[data-theme="ember"] footer{font-family:var(--ff-mono),ui-monospace,monospace;
+  font-size:12px;color:var(--ink-dim)}
 html[data-theme="ember"] body.p-home footer{max-width:1240px;margin:0 auto;padding-left:40px;padding-right:40px}
 @media (max-width:640px){html[data-theme="ember"] footer{padding:32px 20px;flex-wrap:wrap}
 html[data-theme="ember"] body.p-home footer{padding-left:20px;padding-right:20px}}
