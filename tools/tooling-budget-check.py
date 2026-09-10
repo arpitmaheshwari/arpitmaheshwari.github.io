@@ -185,7 +185,16 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # a push came to be blocked with "1 of 27 gate(s) failed: contrast-audit" when two
 # pages had simply never loaded. Both now discriminate, and the runner was calibrated
 # with three planted gates, one per code.
-CEILING = 13_050
+# 2026-09-10  +160  contrast-algebra-test.py (152) and audit()'s named outcomes.
+# The algebra was the only part of contrast-audit with no test: four constants set
+# after incidents, verified only by four canaries needing a browser, a server and
+# 12MB of screenshots to check three lines of arithmetic. These construct the frames
+# instead, run in milliseconds, and are calibrated by perturbation — dropping
+# ALPHA_FLOOR to .3 or removing the 1/alpha division each turns them red. Includes a
+# standing regression for the exact false failure (#1A0D08 on #F67E99, 7.57:1,
+# reported as 2.49:1). audit() now names its four failure modes instead of returning
+# None for all of them, so 'bad-camera' can exit 2 while a dead server exits 3.
+CEILING = 13_264
 
 
 def loc(paths):

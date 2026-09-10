@@ -397,7 +397,22 @@ def _measure(im_a, im_b, im_c, rect, band):
 def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
     """Measure one URL at one width, viewport by viewport.
 
-    Returns (rows, notes) — rows is None only if the page could not be driven at all."""
+    Returns (rows, notes, outcome). `outcome` names WHY there are no rows, because
+    "rows is None" collapsed FOUR different conditions into one and the caller could
+    not tell the site's problem from the instrument's:
+
+        'ok'          rows is a list (possibly empty)
+        'nav-failed'  the page never loaded — the ENVIRONMENT (no server, bad URL)
+        'no-text'     loaded, but nothing eligible to grade — nothing to say
+        'no-band'     fixed chrome leaves under 200px of viewport — the SITE's own
+                      condition, and a real one, but not gradeable here
+        'bad-camera'  the screenshot geometry disagrees with the viewport — the
+                      INSTRUMENT is broken in this environment, so refuse
+
+    That distinction is the same one run-gates.py and this file's exit codes were
+    collapsing on 2026-09-10, when a push blocked with "1 of 27 gate(s) failed:
+    contrast-audit" because two pages had never loaded. Fixed at the exit-code
+    level that day; this is the same fix one level down, where it originates."""
     from PIL import Image
     import base64, io as _io
     notes = []
@@ -418,7 +433,7 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
         try:
             br.navigate(url, settle=2.0)
         except Exception:
-            return None, ["navigation failed"]
+            return None, ["navigation failed"], "nav-failed"
         if canary:
             br.eval("(function(){var s=document.createElement('div');s.innerHTML=%s;"
                     "while(s.firstChild)document.body.appendChild(s.firstChild);})()"
@@ -428,13 +443,13 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
         prep = PREP_JS.replace("EXEMPT_SEL", json.dumps(exempt) if exempt else "null")
         data = br.eval_json("JSON.stringify((%s)(%s))" % (prep, json.dumps(force_visible)))
         if not data or not data.get("els"):
-            return None, ["no eligible text found — page did not render?"]
+            return None, ["no eligible text found — page did not render?"], "no-text"
         els = {e["id"]: e for e in data["els"]}
         page_h = int(data["h"])
         band = (int(data["top"]) + BAND_PAD, VIEWPORT_H - int(data["bot"]) - BAND_PAD)
         usable = band[1] - band[0]
         if usable < 200:
-            return None, [f"fixed chrome leaves only {usable}px of viewport — refusing to grade"]
+            return None, [f"fixed chrome leaves only {usable}px of viewport — refusing to grade"], "no-band"
 
         # After settle, future transitions serve nobody and poison the frame set:
         # nav links carry `transition: color .2s`, so restoring ink from the magenta
@@ -527,7 +542,7 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
         if (_probe.width, _probe.height) != (int(_vw), int(_vh)):
             return None, [f"UNCALIBRATED CAMERA: frame is {_probe.width}x{_probe.height} "
                           f"but the viewport reports {_vw}x{_vh} (dpr {_dpr}). Every rect "
-                          f"is in CSS pixels; grading would sample the wrong region."]
+                          f"is in CSS pixels; grading would sample the wrong region."], "bad-camera"
         if (_probe.width, _probe.height) != (width, VIEWPORT_H):
             notes.append(f"viewport is {_probe.width}x{_probe.height}, asked for "
                          f"{width}x{VIEWPORT_H} — frame and rects agree, so grading is "
@@ -701,14 +716,24 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
             notes.append(f"{len(missing)} text node(s) at {width}px could not be placed in any "
                          f"viewport stop — their contrast is UNKNOWN, not passing. "
                          f"First few: {missing[:5]}")
-    return rows, notes
+    return rows, notes, "ok"
 
 # ---------------------------------------------------------------- calibration
 
 def selftest(url, width, exempt=None, force_visible=".reveal"):
-    rows, _ = audit(url, width, exempt=exempt, canary=True, force_visible=force_visible)
+    rows, _, outcome = audit(url, width, exempt=exempt, canary=True,
+                             force_visible=force_visible)
     if rows is None:
-        return False, "could not instrument the page at all (is it served same-origin over http?)"
+        # name the reason: "could not instrument" sent me chasing a CSS defect
+        # for three rounds when the answer was that the server was gone.
+        why = {"nav-failed": "the page never loaded — is a server running and the "
+                             "URL right?",
+               "no-text": "the page loaded but has no eligible text to plant against",
+               "no-band": "fixed chrome leaves under 200px of viewport to grade in",
+               "bad-camera": "the screenshot geometry disagrees with the viewport — "
+                             "the instrument is broken in this environment"}.get(
+                   outcome, outcome)
+        return False, f"could not instrument the page ({outcome}): {why}"
     def flagged(prefix):
         hits = [r for r in rows if r["text"].startswith(prefix[:18])]
         if not hits:
@@ -780,15 +805,22 @@ def main():
 
     failures = 0
     could_not_measure = False
+    instrument_broken = False
     for url in a.urls:
         measured = 0
         bad, exempt_bad, notes, unmeasurable = [], [], [], []
         for width in widths:
-            rows, wnotes = audit(url, width, exempt=a.exempt, force_visible=fv)
+            rows, wnotes, outcome = audit(url, width, exempt=a.exempt, force_visible=fv)
             notes += [f"@{width}px: {n}" for n in (wnotes or [])]
             if rows is None:
-                notes.append(f"@{width}px could not be measured")
-                could_not_measure = True
+                notes.append(f"@{width}px could not be measured ({outcome})")
+                # 'bad-camera' is the INSTRUMENT failing, not the environment: it must
+                # exit 2 (calibration/instrument) rather than 3 (could not measure), or
+                # a broken camera reads as a missing server and nobody checks the camera.
+                if outcome == "bad-camera":
+                    instrument_broken = True
+                else:
+                    could_not_measure = True
                 continue
             measured += len(rows)
             unmeasurable += [r for r in rows if r.get("unmeasurable")]
@@ -837,6 +869,8 @@ def main():
     # 3, not 2: "could not measure" is not "the instrument is broken" (2) and it is
     # certainly not "found a defect" (1). A caller that cannot tell them apart hunts
     # the site when it should be checking the server.
+    if instrument_broken:
+        sys.exit(2)
     sys.exit(3 if could_not_measure else 0)
 
 if __name__ == "__main__":

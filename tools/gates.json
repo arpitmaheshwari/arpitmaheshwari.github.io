@@ -304,6 +304,18 @@
    "note": "was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
   },
   {
+   "id": "contrast-algebra-test",
+   "cmd": [
+    "python3",
+    "tools/contrast-algebra-test.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ],
+   "note": "Unit tests for contrast-audit's ink algebra — the only part of it that had none. Its correctness rests on four constants (ALPHA_CORE .7, ALPHA_FLOOR .5, CORE_BAND .10, DIFF_T 24), each set after a specific incident, and the ONLY verification was four end-to-end canaries on a live page: a browser, a server, a scroll loop and 12MB of screenshots to check arithmetic three lines long. Runs in milliseconds with no browser and no server, because it CONSTRUCTS the frames instead of photographing them — for ink I on ground G at coverage a, B=G, A=a*I+(1-a)*G, C=a*MAGENTA+(1-a)*G, which is exactly what the browser produces, so _measure cannot tell the difference and the expected answer is known in advance, which a live page can never give you. 17 assertions. The load-bearing ones: recovery is exact at full coverage; within 0.25 at ALPHA_CORE and 0.60 at ALPHA_FLOOR (the claim the floor rests on, previously untested); and BELOW the floor it returns UNMEASURABLE rather than convicting — that is the exact regime that produced ten false Linux failures, where #1A0D08 on #F67E99 (7.57:1) came back as #B1330C at 2.49:1, a colour in no stylesheet. A standing regression test now asserts that pair stays above 4.5 at four coverage levels. CALIBRATED by perturbation, not assumed: dropping ALPHA_FLOOR to 0.3 turns the below-floor assertion red, and removing the 1/alpha division turns the ALPHA_CORE recovery red. Restored bit-identical after both. It also corrected the v3 docstring, which conflates two invisibilities: ink==ground (frames A and B agree, but C still keys the glyph, so it grades 1.00:1 — a failure) and nothing-painted-at-all (no glyph in any frame — the real no-ink flag). My first version asserted the docstring and failed; the tool was right."
+  },
+  {
    "id": "contrast-audit",
    "cmd": [
     "python3",
