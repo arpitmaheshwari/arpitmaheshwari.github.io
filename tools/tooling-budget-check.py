@@ -169,7 +169,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # RuntimeError through the same handler and confirming it still prints. A blanket
 # except would hide a real server bug, which is the same defect as a check that
 # cannot go red.
-CEILING = 12_965
+# 2026-09-10  +18  runtime-error-check now reports WHERE an exception was thrown.
+# It kept only the first line of the description, so a push blocked on
+# "ReferenceError: nothing is not defined" in book/index.html with no url, no line
+# and no stack — an identifier that appears in NO served file and did not reproduce
+# in six clean loads or three 44-page sweeps. Nothing left to chase. Now it prints
+# url:line:col and the function, which on a reproduction of the same message
+# resolved to "(inline):0:21 in boomHere()" — i.e. it tells you the throw came from
+# an INLINE script, which is exactly the fact that was missing.
+CEILING = 12_992
 
 
 def loc(paths):

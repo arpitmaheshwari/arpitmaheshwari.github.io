@@ -45,7 +45,26 @@ def collect(br):
             d = p.get('exceptionDetails', {})
             txt = (d.get('exception', {}).get('description')
                    or d.get('text') or 'threw')
-            out.append(('EXCEPTION', txt.split('\n')[0][:150]))
+            # WHERE it threw, not just what. This kept only the first line of the
+            # description and discarded the stack, so on 2026-09-10 a push blocked
+            # on "ReferenceError: nothing is not defined" in book/index.html with no
+            # source, no line, and no stack — the identifier appears in NO served
+            # file and the error did not reproduce in six clean loads, so there was
+            # nothing left to chase. An exception with no origin is undiagnosable.
+            frames = (d.get('stackTrace') or {}).get('callFrames') or []
+            top = frames[0] if frames else {}
+            where = (top.get('url') or d.get('url') or '')
+            line = top.get('lineNumber', d.get('lineNumber'))
+            col = top.get('columnNumber', d.get('columnNumber'))
+            loc = ''
+            if where or line is not None:
+                loc = '  at %s:%s:%s' % (where.rsplit('/', 1)[-1] or '(inline)',
+                                         line if line is not None else '?',
+                                         col if col is not None else '?')
+            fn = top.get('functionName')
+            if fn:
+                loc += ' in %s()' % fn
+            out.append(('EXCEPTION', txt.split('\n')[0][:150] + loc))
         elif m == 'Runtime.consoleAPICalled' and p.get('type') == 'error':
             txt = ' '.join(str(a.get('value', a.get('description', '')))
                            for a in p.get('args', []))[:150]
