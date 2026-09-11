@@ -10,6 +10,14 @@ Two files:
                   max-width, because media queries answer to the viewport and a
                   narrowed container would leave the desktop layout in place.
 
+ONLY THE UNSHIPPED DIRECTIONS ARE OFFERED. live.html is generated FROM
+index.html, so once a direction ships into the real page its injection runs a
+SECOND time on top of itself. Driving every button on 2026-09-11 caught exactly
+that: with positions 1-3 already live, "Position 1+2+3" read 1,710 words against
+today's 1,562 — a second scope line under every card, a second scope band, a
+second provenance note. A comparison that shows a doubled page is worse than no
+comparison. When a direction ships, delete it from DIRECTIONS and DIRS here.
+
 PATHS. live.html sits two directories down, so every relative asset reference
 has to move with it. Generating hero-cplus.html taught this three times:
 rewriting only href and src 404s the video poster; requiring the "./" prefix
@@ -67,9 +75,11 @@ def fix(html):
 
 html = fix(open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read())
 
-DIRECTIONS = {'now': '', 'i1': I1, 'i3': I3, 'i4': I4, 'all': I4 + I1 + I3,
-              'b1': B1, 'b2': B2, 'b3': B3, 'ball': BALL,
-              'p1': P1, 'p2': P2, 'p3': P3, 'pall': PALL}
+# SHIPPED, so deliberately absent: I1 (artifact index), B1 (voices frame),
+# P1/P2/P3 (card scope, scope band, role line). They are on index.html, which is
+# this page's own source, so injecting them again doubles them.
+DIRECTIONS = {'now': '', 'i3': I3, 'i4': I4, 'b2': B2, 'b3': B3,
+              'rest': I4 + B2 + B3 + I3}
 
 BOOT = """
 <style id="ia-css">%(css)s
@@ -85,15 +95,9 @@ body{padding-top:22px !important}
   const FN = %(fns)s;
   const NAME = {now:'as it ships today', i1:'idea 1 \\u2014 ask the artifact, not me',
     i3:'idea 3 \\u2014 one engagement, one object', i4:'idea 4 \\u2014 the eligibility line',
-    all:'ideas 4 + 1 + 3 together',
-    b1:'brand 1 - the frame stops apologising',
     b2:'brand 2 - the forward-looking slot (PLACEHOLDER copy)',
     b3:'brand 3 - the back half comes down',
-    ball:'brand 1 + 2 + 3 together',
-    p1:'position 1 - a scope line on every case card',
-    p2:'position 2 - the portfolio-scope band',
-    p3:'position 3 - the role line itself (PICK A VARIANT)',
-    pall:'position 1 + 2 + 3 together'};
+    rest:'everything still unshipped, together'};
   const key = () => {
     const k = (location.hash || '#now').slice(1).split('&')[0];
     return FN[k] !== undefined ? k : 'now';
@@ -160,24 +164,21 @@ COMPARE = """<!doctype html>
 </header>
 <main id="stage"></main>
 <script>
-const DIRS=[['now','Today'],
-            ['p3','Pos 3 \u00b7 role line'],['p1','Pos 1 \u00b7 card scope'],
-            ['p2','Pos 2 \u00b7 scope band'],['pall','Position 1+2+3'],
-            ['b1','Brand 1 \u00b7 frame'],['b2','Brand 2 \u00b7 what next'],
-            ['b3','Brand 3 \u00b7 shorter'],['ball','Brand 1+2+3'],
-            ['i1','Idea 1 \u00b7 artifact index'],['i3','Idea 3 \u00b7 engagement object'],
-            ['i4','Idea 4 \u00b7 eligibility']];
+const DIRS=[['now','Today (as shipped)'],
+            ['i4','Idea 4 \u00b7 eligibility line'],
+            ['b2','Brand 2 \u00b7 what I want next'],
+            ['b3','Brand 3 \u00b7 shorter back half'],
+            ['i3','Idea 3 \u00b7 engagement object'],
+            ['rest','All four']];
 const DRAFTS=[['a','Draft A \u00b7 the product'],['b','Draft B \u00b7 the thesis'],
               ['c','Draft C \u00b7 the function']];
 const ROLEV=[['a','A \u00b7 minimal'],['b','B \u00b7 explicit'],['c','C \u00b7 additive']];
-const DRAFTS=[['a','Draft A \u00b7 the product'],['b','Draft B \u00b7 the thesis'],
-              ['c','Draft C \u00b7 the function']];
 const WIDS=[390,768,1024,1440];
 const VIEWS=[['side','Side by side with today'],['solo','On its own']];
 const JUMPS=[['','Top'],['#h-hero','Hero'],['#how-i-lead','Act 02'],
              ['#how-i-build','Code band'],['#voices','Voices'],
              ['#thoughts','Writing'],['#contact','Closing']];
-let dir='pall', wid=390, view='side', jump='', draft='a', rolev='a', panes=[], lockUntil=0;
+let dir='i4', wid=390, view='side', jump='', draft='a', rolev='a', panes=[], lockUntil=0;
 
 const mk=(host,items,get,set)=>{
   host.querySelectorAll('button').forEach(b=>b.remove());
@@ -251,10 +252,10 @@ function draw(){
   mk(document.getElementById('jumps'),JUMPS,()=>jump,v=>jump=v);
   // the draft picker only means anything while brand 2 is on screen
   const dh=document.getElementById('drafts');
-  dh.hidden = !(dir==='b2'||dir==='ball');
+  dh.hidden = !(dir==='b2'||dir==='rest');
   if(!dh.hidden) mk(dh,DRAFTS,()=>draft,v=>draft=v);
   const rh=document.getElementById('rolev');
-  rh.hidden = !(dir==='p3'||dir==='pall');
+  rh.hidden = true;   // the role line shipped; no variant left to pick
   if(!rh.hidden) mk(rh,ROLEV,()=>rolev,v=>rolev=v);
   const s=document.getElementById('stage'); s.textContent=''; panes=[]; lockUntil=0;
   const two = view==='side' && dir!=='now';
