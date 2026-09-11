@@ -7,7 +7,7 @@ whole-frame click-to-play binds automatically. Idempotent: skips a page that
 already has .vband-film. Duration comes from the pipeline's durations.json —
 never hand-typed.
 """
-import json, pathlib, re, subprocess, sys
+import json, pathlib, re, subprocess, sys, os
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 VID = ROOT / 'portfolio-sources' / 'video'
@@ -40,9 +40,19 @@ for c in CASES:
     ASSETS.mkdir(parents=True, exist_ok=True)
     dst = ASSETS / f'case-{c}.mp4'
     dst.write_bytes(web.read_bytes())
+    # THE POSTER IS NO LONGER A FRAME OF THE FILM. Extracting frame 1 baked the
+    # film's title overlay into the still, and when the role line changed on
+    # 2026-09-11 that put "STAFF / PRINCIPAL PRODUCT DESIGNER" on seven case
+    # pages where no text search could find it. The posters are now real title
+    # cards built by portfolio-sources/video/build-case-posters.py from the live
+    # page. Re-running this tool must not clobber them.
     poster = ASSETS / f'case-{c}-poster.jpg'
-    subprocess.run([str(FF), '-y', '-ss', '1', '-i', str(web), '-frames:v', '1', '-q:v', '4', str(poster)],
-                   check=True, capture_output=True)
+    if poster.exists() and not os.environ.get('REEXTRACT_POSTERS'):
+        print(f'  keeping the built title card: {poster.name} '
+              f'(REEXTRACT_POSTERS=1 to go back to a film frame)')
+    else:
+        subprocess.run([str(FF), '-y', '-ss', '1', '-i', str(web), '-frames:v', '1',
+                        '-q:v', '4', str(poster)], check=True, capture_output=True)
     size_mb = dst.stat().st_size / 1e6
     block = f'''<!-- the case, narrated — summary film above the slip (Arpit's placement, 2026-08-30) -->
 <section class="vband-film" aria-label="The case, narrated — {dur} video summary">
