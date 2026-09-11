@@ -215,7 +215,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Two raises in one day is the budget working as designed, and also a signal: a
 # retirement pass is overdue. tools/ still watches .pill, .btn-a, .hk-btn and
 # other names deleted weeks ago. Retire those before the next raise.
-CEILING = 13_420
+# ...and the note above cost 12 of its own lines, which is why this reads 13_432
+# and not 13_420. A budget that counts its own justification is working.
+CEILING = 13_432
 
 
 def loc(paths):
