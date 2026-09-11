@@ -1364,9 +1364,19 @@ html[data-theme="ember"] :is(.plA,.plF,.plM,.plO,.plP,.plV,.fig-paper,.recon,
 /* A wide comparison table on patterns/ml-explainability pushes 4px past the
    edge at 390. `display:block` on <table> was tried and made it WORSE (broke
    two other pages' tables), so the table keeps its display and the cells wrap
-   instead — measured, not assumed. */
+   instead — measured, not assumed.
+   word-break:break-word REMOVED 2026-09-12. It breaks at any character to
+   minimise width, so words that FITTED were split anyway: a phone walk of the
+   site found 24 of them across six pages — "Act|ion", "Revi|ew", "Ign|ore",
+   "Confid|ence", "Underst|andabil|ity" — and word-break inherits, so the split
+   reached <strong> and <i> inside the cells too. overflow-wrap:break-word is
+   the property that was doing the real work: it breaks a word only when the
+   word cannot fit its column at all, which is the case this rule was written
+   for. The 4px it was added beside is unaffected — the ceiling comes from
+   table-layout:fixed, and the note at the foot of this file records that
+   word-break made no difference to it when it was tried. */
 @media (max-width:640px){html[data-theme="ember"] main table{table-layout:fixed;width:100%}
-html[data-theme="ember"] main :is(td,th){overflow-wrap:break-word;word-break:break-word}}
+html[data-theme="ember"] main :is(td,th){overflow-wrap:break-word}}
 /* ============================================================================
    /patterns/ FEATURE CARDS — my call, per Arpit "you decide".
    The two lead cards are 1180px wide while their content used ~430px, leaving
@@ -2841,6 +2851,44 @@ html[data-theme="ember"] :is(button.rxa-why,button.rxf-explain,button.rxa-logged
     width:100%;max-width:100%;overflow-x:visible}
   html[data-theme="ember"] .loopfig .loop-steps{flex-wrap:wrap;min-width:0}
   html[data-theme="ember"] .loopfig .loop-steps > *{min-width:0;max-width:100%}
+}
+
+/* ============================================================================
+   WIREFRAMES ON A PHONE (2026-09-12, found by walking every page at 390)
+   The four .card-wire mock UIs spend 80px of a 342px card on padding, leaving
+   260px of content. patterns/ai-failure-states then split that into two 120px
+   columns, so its two mock buttons held 45px and 43px of text in 30px boxes and
+   read "Searc Web" and "Ask Expe"; its answer line ran 57px wide in 54px, and
+   confidence-scores' "Moderate" chip 47px in 40px. Measured, not inferred.
+
+   The min-width:0 rule above is what LETS a leaf shrink below its own text, and
+   it stays: it exists to stop a grid track taking the whole page sideways, which
+   is the worse defect. So this stops the squeeze instead of fighting it — the
+   card gives its padding back, the two-panel comparison stacks, and a mock row
+   wraps before it crushes a label. A row only wraps when it must, so nothing
+   moves where the space was already there.
+   Verified after: zero runs of text wider than their own box at 390, 480 and
+   560, all four wireframes; nothing changes at 561px and up. */
+@media (max-width:560px){
+  html[data-theme="ember"] main .card-wire{padding:20px}
+  /* the before/after comparison becomes two full-width panels */
+  html[data-theme="ember"] main .card-wire > div{flex-direction:column}
+  /* inert unless the element is a flex row; then it wraps rather than squeeze */
+  html[data-theme="ember"] main .card-wire :is([class*="xi-"],.row-ic){flex-wrap:wrap}
+}
+
+/* Same class, found by the same sweep: the four writing essays end on a two-up
+   "Continue exploring" pair, 1fr 1fr with a 20px gap, which is 161px a column at
+   390. "The Explainability Layer" needs 146px of min-content in a 127px title box,
+   so on writing/failure-states the card's own heading ran past its card. The other
+   three pages carry shorter titles and are one long word from the same defect, so
+   the pair stacks rather than each title being taught to break. Every other card
+   grid on the site (patterns, resources, writing index) is already single-column
+   at this width — checked, all eight/three/four of them — so this rule is scoped
+   to the essay pages and is a no-op anywhere it also matches. */
+@media (max-width:560px){
+  html[data-theme="ember"] body[class*="p-writing"] main
+    [class*="xi-"]:has(> a > .card-title){grid-template-columns:1fr}
 }
 
 /* ============================================================
