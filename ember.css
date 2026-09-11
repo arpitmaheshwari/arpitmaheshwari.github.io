@@ -1656,7 +1656,7 @@ html[data-theme="ember"] body.p-404 .kick{font-family:var(--ff-label);font-weigh
 html[data-theme="ember"] body.p-404 h1{font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,56px);color:var(--ink);margin:12px 0 16px}
 html[data-theme="ember"] body.p-404 h1 em{font-style:italic;background:linear-gradient(92deg,var(--ember),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
 html[data-theme="ember"] body.p-404 .lede{color:rgba(245,237,230,.76);max-width:60ch;line-height:1.7}
-html[data-theme="ember"] body.p-404 .btn{background:var(--g-hot);color:var(--cta-ink);border:none;border-radius:999px;padding:12px 20px;font-family:var(--ff-label);font-weight:600;font-size:12px;letter-spacing:.02em;text-decoration:none}
+html[data-theme="ember"] body.p-404 .btn{background:var(--cta-grad);color:var(--cta-ink);border:none;border-radius:999px;padding:12px 20px;font-family:var(--ff-label);font-weight:600;font-size:12px;letter-spacing:.02em;text-decoration:none}
 html[data-theme="ember"] body.p-404 .btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
 html[data-theme="ember"] body.p-404 .inline-links{color:rgba(245,237,230,.62);font-size:13.5px}
 html[data-theme="ember"] body.p-404 .inline-links a{color:var(--link);border-bottom:1px solid var(--border-accent)}
@@ -1862,7 +1862,7 @@ html[data-theme="ember"] body.p-fit .fit-actions{display:flex;flex-wrap:wrap;ali
    save contrast. Empty until the JS writes it, so it takes no space in the normal flow. */
 html[data-theme="ember"] body.p-fit .fit-status{margin-top:12px;font-size:15px;color:var(--ink)}
 html[data-theme="ember"] body.p-fit .fit-status:empty{margin-top:0}
-html[data-theme="ember"] body.p-fit .btn-primary{font-family:var(--ff-label);font-size:12px;font-weight:600;letter-spacing:.02em;color:#241206;background:var(--g-hot);border:1px solid transparent;border-radius:999px;padding:16px 24px;cursor:pointer}
+html[data-theme="ember"] body.p-fit .btn-primary{font-family:var(--ff-label);font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--cta-ink);background:var(--cta-grad);border:1px solid transparent;border-radius:999px;padding:16px 24px;cursor:pointer}
 html[data-theme="ember"] body.p-fit .btn-ghost{font-family:var(--ff-label);font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--ink-muted);background:none;border:1px solid var(--border-accent);border-radius:999px;padding:16px 24px;cursor:pointer}
 html[data-theme="ember"] body.p-fit .btn-ghost:hover{color:var(--ink);border-color:var(--amber)}
 /* --- the read --- */
@@ -2240,7 +2240,7 @@ html[data-theme="ember"] :is(.btn-a,.lbl-pill-bg,.btn-label,.lbl-badge-bg){backg
    painted cream on gold at 1.36:1 — and the focus ring was gold on gold,
    i.e. invisible. Same disease as the CTA: a component that does not
    declare its own ink at a specificity that holds. */
-html[data-theme="ember"] .skip-link{background:var(--g-hot);color:var(--cta-ink);outline-color:var(--cta-ink);outline-offset:2px}
+html[data-theme="ember"] .skip-link{background:var(--cta-grad);color:var(--cta-ink);outline-color:var(--cta-ink);outline-offset:2px}
 
 /* DYSLEXIA MODE — the toggle set body.dyslexia-mode{font-family:'Lexend'} in
    styles.css, and html[data-theme="ember"] body.p-home{font-family:var(--sans)}
@@ -4529,7 +4529,13 @@ html[data-theme="ember"] body.p-home #contact .one-door:hover{filter:brightness(
    PER-PAGE accents: the "identical door" was painting orange on the homepage,
    magenta on /lab/ and /fit/, pale orange on the case pages. --cta-grad is
    used by nothing else. */
-html[data-theme="ember"]{--cta-grad:linear-gradient(92deg,#FF8A5C,#E86BFF)}
+/* EMBER -> AMBER, not ember -> violet. The old fill travelled 43 hue-degrees
+   UNDER the label — every point on it cleared 4.5:1, which is all the old
+   gradient rule asked, and the word still had to be read across two hues on a
+   64%-saturated ground. Staying inside the warm family cuts the travel to 9
+   degrees and lifts the worst point from 7.24:1 to 9.40:1. The gradient stays,
+   because "energy from heat" is the identity; the violet was the damage. */
+html[data-theme="ember"]{--cta-grad:linear-gradient(92deg,#FF8A5C,#FFC46B)}
 html[data-theme="ember"] .cta{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   padding:12px 24px;min-height:44px;box-sizing:border-box;
