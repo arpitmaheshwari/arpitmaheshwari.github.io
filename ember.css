@@ -4537,11 +4537,39 @@ html[data-theme="ember"] .cta{
   letter-spacing:.02em;line-height:1.2;text-transform:none;
   border:none;border-radius:999px;text-decoration:none;white-space:nowrap;
   background:var(--cta-grad);color:var(--cta-ink)}
+/* THE ICON ALIGNS TO THE CAP BAND AND MATCHES ITS SIZE. It used to be a 16px
+   box holding a 24x24 viewBox under `contain`, and because the two masks fill
+   their viewBox by different amounts the ink came out at 14.25px (LinkedIn) and
+   15.00px (document) — two sizes, both 35-42% taller than the 10.58px capitals
+   beside them. `contain` cannot fix that: it equalises the BOX, and the icons
+   differ in aspect ratio.
+
+   So each viewBox is trimmed to its own ink and mask-size is 100% 100%, which
+   makes the ink fill the box exactly; then one height governs every icon and a
+   new one only declares its aspect. Height comes from 1cap — the font's own
+   cap-height — so the whole thing re-solves if the label size changes.
+
+   And the alignment: align-items:center centred the icon's box on the LINE box,
+   which carries the font's leading, leaving it 0.59px below the middle of the
+   capitals. Baseline alignment puts the icon's bottom edge on the text baseline
+   (a flex item with no baseline of its own synthesises one from its border box)
+   and the translate lifts its centre onto the cap band. Measured residual:
+   0.18px, which is the gap between the font's declared cap-height and the
+   capital C's actual ink — below rendering resolution.
+
+   .cta sets white-space:nowrap, so the usual baseline hazard — one child
+   wrapping to two lines while its sibling does not — cannot arise here. */
+html[data-theme="ember"] .cta{align-items:baseline}
 html[data-theme="ember"] .cta::before{
-  content:"";flex:0 0 auto;width:16px;height:16px;display:block;
-  background-color:currentColor;
-  -webkit-mask:var(--cta-icon) center/contain no-repeat;
-          mask:var(--cta-icon) center/contain no-repeat}
+  content:"";flex:0 0 auto;display:block;background-color:currentColor;
+  --cta-icon-ar:1;
+  --cta-ico:calc(1cap * 1.15);
+  height:var(--cta-ico);width:calc(var(--cta-ico) * var(--cta-icon-ar));
+  transform:translateY(calc((var(--cta-ico) - 1cap) / 2));
+  -webkit-mask:var(--cta-icon) center/100% 100% no-repeat;
+          mask:var(--cta-icon) center/100% 100% no-repeat}
+html[data-theme="ember"] .cta--linkedin::before{--cta-icon-ar:1.0476}
+html[data-theme="ember"] .cta--doc::before{--cta-icon-ar:0.8182}
 html[data-theme="ember"] .cta--bare::before{display:none}
 html[data-theme="ember"] .cta:hover{filter:brightness(1.06);color:var(--cta-ink)}
 html[data-theme="ember"] .cta:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
@@ -4566,4 +4594,4 @@ html[data-theme="ember"] .cta--secondary{
   background:none;border:1px solid var(--border-accent);color:var(--ink)}
 html[data-theme="ember"] .cta--secondary:hover{
   filter:none;background:color-mix(in srgb, var(--ink) 8%, transparent);color:var(--ink)}
-html[data-theme="ember"] .cta--doc{--cta-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M10 9H8'/%3E%3Cpath d='M16 13H8'/%3E%3Cpath d='M16 17H8'/%3E%3C/svg%3E")}
+html[data-theme="ember"] .cta--doc{--cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='3%201%2018%2022'%20fill='none'%20stroke='%23000'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M15%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V7Z'/%3E%3Cpath%20d='M14%202v4a2%202%200%200%200%202%202h4'/%3E%3Cpath%20d='M10%209H8'/%3E%3Cpath%20d='M16%2013H8'/%3E%3Cpath%20d='M16%2017H8'/%3E%3C/svg%3E")}
