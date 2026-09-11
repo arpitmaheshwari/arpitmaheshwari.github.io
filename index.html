@@ -143,7 +143,7 @@ document.documentElement.classList.add('vg-js');
 </script>
 <script defer src="./analytics.js?v=4f9aa0a0"></script>
 <link rel="stylesheet" href="./styles.css?v=3a6ed7ac">
-<link rel="stylesheet" href="./ember.css?v=61d77bb8">
+<link rel="stylesheet" href="./ember.css?v=3954cb53">
 </head>
 <body class="p-home">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -460,7 +460,6 @@ document.documentElement.classList.add('vg-js');
       <h2 id="h-who">By Friday of week one I’ve read your evals and sat in on your customer calls; by launch, the interface I drew is the code I shipped.</h2>
       <p><b class="skim">I read the model at the eval layer.</b> I shape what gets measured. I ship the front-end.</p>
       <p><b class="skim">Designing for someone who isn’t you starts by becoming them.</b> <a href="./case-studies/ptc.html#the-miss">That project started as my documented miss →</a></p>
-      <p>Before rebuilding this site I went looking for the study behind the famous six-second portfolio scan. <b class="skim">It does not exist</b> &mdash; the closest real figure is a 2012 eye-tracking study of r&eacute;sum&eacute;s. What twenty-three practitioner and eight academic sources actually describe is four readers with four different budgets, and this site is built for them. <a href="https://arpitmaheshwari.substack.com/p/nobody-reads-your-portfolio-fifteen" target="_blank" rel="noopener noreferrer" data-cta="article" data-location="who-audit">The audit, and what I changed&nbsp;&rarr;<span class="visually-hidden"> (opens in a new tab)</span></a></p>
       <p class="meta">Fully remote · GMT+5:30 · both US coasts, daily</p>
     </div>
     <div class="facts" role="group" aria-label="Candidate facts summary">
@@ -481,9 +480,9 @@ document.documentElement.classList.add('vg-js');
     <p class="k"><span class="k-idx k-idx-violet">02 · 2</span>How I lead — come argue with me</p>
     <h3 id="h-lead">I lead the way I design: evidence before opinion, overrides as signal.</h3>
     <div class="memos">
-      <div class="memo m1"><p class="mk">With engineering</p><h3>Eval design before interface design</h3><p>The front-end I own ships in the PR — commented and ready for review. When we disagree on feasibility, the cheapest experiment goes first and settles it.</p></div>
-      <div class="memo m2"><p class="mk">With product / founder</p><h3>Outcomes, not deliverables</h3><p>I’ll contest the roadmap when the numbers contradict it. The design doc is mine to write; the spec is yours.</p></div>
-      <div class="memo m3"><p class="mk">With customers</p><h3>Five calls in week one</h3><p>One a week forever after, and I read the raw support tickets myself. No AI feature ships until I’ve personally watched someone fail to use it.</p></div>
+      <div class="memo m1"><p class="mk">With engineering</p><h3>Eval design before interface design</h3></div>
+      <div class="memo m2"><p class="mk">With product / founder</p><h3>Outcomes, not deliverables</h3></div>
+      <div class="memo m3"><p class="mk">With customers</p><h3>Five calls in week one</h3></div>
     </div>
     <div class="errata">
       <span class="ek">Errata</span>
@@ -531,9 +530,21 @@ document.documentElement.classList.add('vg-js');
     <p class="k"><span class="k-idx k-idx-amber">03 · 2</span>How I build with AI — the workflow, not the tool list</p>
     <h2 id="h-aiwork">The quality bar is code.</h2>
     <div class="aiwork-two">
-      <div class="aiwork-prose">
-        <p class="lede aiwork-lede">Contrast, overflow and legibility are measured from rendered pixels on every push that touches a page, its styles or the tooling &mdash; the same gates that ship this site. Prototypes are working HTML/CSS/JS from the start, usability-tested as real code, and that same code is what goes to production. A client&rsquo;s design system is encoded as an installable plugin: two shipped across client orgs, one public.</p>
-        <p class="aiwork-close">The judgment stays mine: no AI feature ships until I&rsquo;ve personally watched someone fail to use it. The teardown is below &mdash; <a href="./lab/teardown.html" data-cta="teardown" data-location="how-i-build">this site, torn down&nbsp;&rarr;</a></p>
+      <!-- ASK THE ARTIFACT, NOT ME. The three sentences that were in .aiwork-lede
+           are rows 2-4 here, each now standing beside the thing that proves it;
+           row 1 is the memo body it replaces. Nothing is new copy. Deliberately
+           NO gate count and no test counts: the CI ledger below states the first
+           and the proof row states the second, and a fact gets one home. -->
+      <div class="arts">
+        <div class="art"><b>The front-end I own ships in the PR</b>
+          <p class="art-r"><i>commented and ready for review &mdash; when we disagree on feasibility, the cheapest experiment settles it</i><a href="./lab/" data-cta="lab" data-location="how-i-build">The code &rarr;</a></p></div>
+        <div class="art"><b>Contrast, overflow and legibility are measured from rendered pixels</b>
+          <p class="art-r"><i>on every push that touches a page, its styles or the tooling</i><a href="./lab/teardown.html" data-cta="teardown" data-location="how-i-build">The teardown &rarr;</a></p></div>
+        <div class="art"><b>Prototypes are working HTML/CSS/JS from the start</b>
+          <p class="art-r"><i>usability-tested as real code &mdash; 8 patterns, 9 of them drivable &mdash; and that same code is what goes to production</i><a href="./patterns/" data-cta="patterns" data-location="how-i-build">The patterns &rarr;</a></p></div>
+        <div class="art"><b>This same site again, in my own React</b>
+          <p class="art-r"><i>self-hosted from the repository &mdash; no CDN, no third-party runtime</i><a href="./book/" data-cta="switch-book" data-location="how-i-build">The book edition &rarr;</a></p></div>
+        <p class="art-note">A client&rsquo;s design system, encoded as an installable plugin: two shipped across client orgs, one public.</p>
       </div>
       <figure class="barledger">
         <div class="bl-hd"><b>The bar, in CI</b><i>23 gates &middot; before a push</i></div>

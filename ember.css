@@ -2342,8 +2342,6 @@ html[data-theme="ember"] body[class*="p-case-studies"] .vplate-cap{font-family:v
 /* ---------- how-i-build section (2026-08-29, phase 2 of the evidence plan).
    Reuses .labrow rhythm and the .memo component verbatim (identity gate:
    one component, one rendering). Only the closing line is new. */
-html[data-theme="ember"] body.p-home .aiwork-close{margin-top:32px;font-size:14px;line-height:1.7;color:var(--mut);max-width:66ch}
-html[data-theme="ember"] body.p-home .aiwork-close a{color:var(--amber)}
 
 /* ---------- vplate image variant (2026-08-29): PlanIt's band carries a real
    shipped screen instead of a text reconstruction. Cropped from the top so the
@@ -4286,13 +4284,58 @@ html[data-theme="ember"] body.p-home .work .wrap{max-width:1240px}
       his own work. So the bar is set as a printout: no box, no radius, hairline
       rules, mono throughout. That is also why it does not borrow .vg from the
       case board — those are product miniatures, and this is a readout. */
+/* ============================================================================
+   THE ARTIFACT INDEX — act 03 · 2 stops asserting and starts pointing
+   ----------------------------------------------------------------------------
+   Replaces .aiwork-prose: a 62-word lede and a 34-word close, both of which
+   CLAIMED things the repo can be asked instead. The three sentences of the lede
+   are rows 2-4, each standing beside the artifact that settles it. It occupies
+   the slot .aiwork-prose held, so the band keeps its two-column composition and
+   the CI readout beside it is not left alone in a two-column grid.
+
+   NO NUMBERS IN THE ROWS. The CI ledger to the right already publishes the gate
+   count and the proof row below publishes the test counts; repeating either here
+   would be the defect the fact-uniqueness prototype was written to catch. A row
+   earns its place with a claim and a link, not with a statistic.
+
+   Every property declared on the component: --ff-mono and --ink-dim, never
+   --mono/--dim, which exist only on body.p-home. Leading is 1.4 on the 16px
+   claim and 1.65 on the 11.5px receipt, both at or above the floor for their
+   rendered size.
+   ========================================================================== */
+html[data-theme="ember"] body.p-home .arts{min-width:0;border-top:1px solid var(--line)}
+html[data-theme="ember"] body.p-home .art{padding:16px 0;border-bottom:1px solid var(--line)}
+html[data-theme="ember"] body.p-home .art > b{display:block;
+  font-family:"Source Sans 3",var(--sans),system-ui;font-size:16px;font-weight:600;
+  letter-spacing:.005em;line-height:1.4;color:var(--ink)}
+/* A GRID, NOT A FLEX ROW. With flex and space-between, a receipt that wraps to
+   two lines eats a different amount of the line, so the four doors landed at
+   three different right edges — 798, 825 and 828px. Four instances of one
+   component must align to ONE ANOTHER, not merely sit inside correct bounds.
+   An auto column is as wide as the widest door and every door shares it.
+   Baseline alignment keeps the door on the receipt's FIRST line when it wraps. */
+html[data-theme="ember"] body.p-home .art-r{display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:baseline;gap:4px 20px;margin:8px 0 0}
+html[data-theme="ember"] body.p-home .art-r > i{font-style:normal;
+  font-family:var(--ff-mono),ui-monospace,monospace;font-size:11.5px;
+  letter-spacing:.01em;line-height:1.65;color:var(--ink-dim)}
+/* the house CTA grammar, declared: Source Sans 3, 11.5px, 600, .08em, violet —
+   the same six properties the film's caption had to be normalised onto */
+html[data-theme="ember"] body.p-home .art-r > a{justify-self:end;
+  font-family:"Source Sans 3",var(--sans),system-ui;font-size:11.5px;font-weight:600;
+  letter-spacing:.08em;line-height:1.6;color:var(--violet);white-space:nowrap}
+html[data-theme="ember"] body.p-home .art-note{margin:16px 0 0;
+  font-family:var(--ff-mono),ui-monospace,monospace;font-size:11.5px;
+  letter-spacing:.01em;line-height:1.65;color:var(--ink-dim)}
+/* one column on a phone: the door drops under its receipt, left-aligned */
+@media (max-width:560px){
+  html[data-theme="ember"] body.p-home .art-r{grid-template-columns:minmax(0,1fr)}
+  html[data-theme="ember"] body.p-home .art-r > a{justify-self:start;margin-top:4px}
+}
 html[data-theme="ember"] body.p-home .aiwork-two{
   display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,420px);
   column-gap:48px;align-items:start;margin-top:8px}
-html[data-theme="ember"] body.p-home .aiwork-prose{min-width:0}
-html[data-theme="ember"] body.p-home .aiwork-lede{max-width:62ch;margin:0}
-html[data-theme="ember"] body.p-home .aiwork-close{margin:20px 0 0;max-width:62ch;
-  font-size:13.5px;line-height:1.65;color:var(--ink-muted)}
 /* 1000px, matching 03·1's own breakpoint — the two halves of the act must flip
    to one column at the same width or they disagree for 99px. */
 @media (max-width:1000px){
