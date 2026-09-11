@@ -4333,6 +4333,71 @@ html[data-theme="ember"] body.p-home .art-note{margin:16px 0 0;
   html[data-theme="ember"] body.p-home .art-r{grid-template-columns:minmax(0,1fr)}
   html[data-theme="ember"] body.p-home .art-r > a{justify-self:start;margin-top:4px}
 }
+/* ============================================================================
+   WHAT HE OWNED — the scope line on a case card, and act 01's scope band
+   ----------------------------------------------------------------------------
+   Both exist because of one measurement: on 2026-09-11 I counted every
+   product-leadership term on the homepage by whether a HUMAN can see it without
+   clicking. "roadmap" 0 visible / 2 behind a click. "product definition" 0 / 3.
+   "prioritisation", "backlog", "product lead" 0 anywhere. "designer" 4 visible.
+   The only visible claims to vision and strategy were inside someone else's
+   testimonial, and the only place "Product Roadmapping" appeared in the served
+   source was the JSON-LD knowsAbout array — the page told Google he does
+   product management and did not tell a human.
+
+   Meanwhile four clicks away: "Owned product definition, roadmap, and
+   end-to-end design across all six systems", "the quarterly release roadmap
+   (2016-2019), the 5->1 consolidation strategy and its four sunsets",
+   "subscriptions went 0% -> 64% of new bookings in a year". The receipts
+   pattern had filed WHAT HE OWNED in the same drawer as how-it-was-measured.
+   For a Staff engineer that is right; for product leadership the scope is the
+   headline, not the footnote.
+
+   Both components DECLARE their ink, family, size and leading: --ff-mono and
+   --ink-dim / --amber, never --mono/--dim, which exist only on body.p-home.
+   ========================================================================== */
+html[data-theme="ember"] body.p-home .bcard-own{margin:6px 0 0;
+  font-family:var(--ff-mono),ui-monospace,monospace;font-size:11px;
+  letter-spacing:.02em;line-height:1.6;color:var(--amber)}
+
+/* The band is act 01's own four-column grid, a second time. Rows are SHARED
+   across the cells (display:contents + explicit grid-row) so the four
+   provenance lines align to one another at every width even when one headline
+   wraps — per-cell grids align only where nothing wraps. .scope-k is itself a
+   grid item in row 1, which is why the cell selectors count from nth-child(2). */
+html[data-theme="ember"] body.p-home .scope{margin-top:clamp(32px,4.4vh,48px);
+  padding-top:24px;border-top:1px solid var(--line);display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto auto;
+  column-gap:32px;row-gap:0}
+html[data-theme="ember"] body.p-home .scope-k{grid-column:1 / -1;margin:0 0 20px;
+  font-family:var(--ff-mono),ui-monospace,monospace;font-size:10.5px;
+  letter-spacing:.16em;line-height:1.7;color:var(--amber);text-transform:uppercase}
+html[data-theme="ember"] body.p-home .scope > div{display:contents}
+html[data-theme="ember"] body.p-home .scope > div > b{grid-row:2;
+  font-family:var(--ff-serif),Georgia,serif;font-size:30px;font-weight:400;
+  line-height:1.15;color:var(--ink)}
+html[data-theme="ember"] body.p-home .scope > div > span{grid-row:3;
+  font-family:var(--ff-mono),ui-monospace,monospace;font-size:11px;
+  letter-spacing:.01em;line-height:1.65;color:var(--ink-dim);padding-top:8px}
+@media (max-width:900px){
+  html[data-theme="ember"] body.p-home .scope{grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-rows:auto auto auto auto auto;column-gap:24px}
+  html[data-theme="ember"] body.p-home .scope > div:nth-child(-n+3) > b{grid-row:2}
+  html[data-theme="ember"] body.p-home .scope > div:nth-child(-n+3) > span{grid-row:3}
+  html[data-theme="ember"] body.p-home .scope > div:nth-child(n+4) > b{grid-row:4;padding-top:24px}
+  html[data-theme="ember"] body.p-home .scope > div:nth-child(n+4) > span{grid-row:5}
+}
+/* one column: each fact is its own block again, so the shared rows are RELEASED
+   — leave them in place and four facts pair into two rows */
+@media (max-width:520px){
+  html[data-theme="ember"] body.p-home .scope{grid-template-columns:minmax(0,1fr);
+    grid-template-rows:none;row-gap:20px}
+  html[data-theme="ember"] body.p-home .scope > div{display:grid}
+  html[data-theme="ember"] body.p-home .scope > div > b,
+  html[data-theme="ember"] body.p-home .scope > div > span{grid-row:auto}
+  html[data-theme="ember"] body.p-home .scope > div:nth-child(n+4) > b{padding-top:0}
+  html[data-theme="ember"] body.p-home .scope > div > b{font-size:26px}
+}
 html[data-theme="ember"] body.p-home .aiwork-two{
   display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,420px);
   column-gap:48px;align-items:start;margin-top:8px}
