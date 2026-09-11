@@ -19,6 +19,35 @@ OUT = 'prototypes/renders/ia'
 os.makedirs(OUT, exist_ok=True)
 
 CSS = r"""
+/* ══ BRAND CHANGE 1 — the frame stops apologising ═════════════════════════ */
+.b1 .voices .chap-i{display:none !important}
+
+/* ══ BRAND CHANGE 2 — the forward-looking slot ════════════════════════════ */
+/* PLACEHOLDER COPY. Three candidate drafts, each RECOMBINED from sentences
+   already on this page — not Arpit's stated ambition, which only he can supply.
+   The design being prototyped is the SLOT: where it sits, how big it is, what
+   weight it carries. The words are his to write. */
+/* text-align DECLARED: the closing section centres its children, so a slot that
+   did not say otherwise came out centred with a left rule beside it. */
+.b2 .nxt{margin:0 0 40px;padding:0 0 0 18px;border-left:2px solid var(--amber);
+  max-width:52ch;text-align:left}
+.b2 .nxt-k{margin:0 0 8px;font-family:var(--ff-mono),ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.16em;line-height:1.7;color:var(--amber);
+  text-transform:uppercase}
+.b2 .nxt-p{margin:0;font-family:var(--ff-serif),Georgia,serif;font-size:21px;
+  line-height:1.5;color:var(--ink)}
+.b2 .nxt-d{margin:10px 0 0;font-family:var(--ff-mono),ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.06em;line-height:1.7;color:var(--ink-dim)}
+@media(max-width:560px){ .b2 .nxt-p{font-size:18px} }
+
+/* ══ BRAND CHANGE 3 — the back half comes down ════════════════════════════ */
+/* The article PREVIEWS go, the articles stay: three titles, all three still one
+   click away, and "Writing" is a nav destination in its own right. */
+.b3 #thoughts .ixp,.b3 #thoughts .lede{display:none !important}
+/* the voices band spends 1,488px on a phone to show ONE 380px quote — the other
+   seven are behind the radio group. The frame comes down, not the evidence. */
+.b3 .voices .chap-i,.b3 .voices .lede{display:none !important}
+
 /* ── IDEA 4 — the eligibility filter gets its own line ───────────────────── */
 /* It sits in the hero GRID, not in .hero-copy — inside the left column its rule
    stopped at 748px while the client strip's rule below ran the full 1160, two
@@ -232,6 +261,12 @@ I3 = """
     btn.parentNode.insertAdjacentElement('afterend', o);
   });
 """ % (json.dumps(ROWS), PANELS)
+
+
+B1 = '\n  document.body.classList.add(\'b1\');\n  // his own words, recombined: "eight people, eight vantage points" (the chapeau\n  // this replaces) and "The full set, unedited, on LinkedIn" (the band\'s own\n  // closing link). Same evidence, declarative frame.\n  const h = document.querySelector(\'#h-voices\');\n  h.textContent = \'Eight people who worked with me, unedited.\';\n'
+B2 = '\n  document.body.classList.add(\'b2\');\n  const D = [["A &middot; the product", "What I want next: one AI product to own end to end &mdash; the eval layer, what gets measured, and the interface that ships.", "recombined from &ldquo;I read the model at the eval layer. I shape what gets measured. I ship the front-end.&rdquo; (act 02)"], ["B &middot; the thesis", "What I want next: to draw the edges on a model that millions of people will actually bet on.", "recombined from the h1 and &ldquo;A language model has no edges. So I draw them.&rdquo; (act 03)"], ["C &middot; the function", "What I want next: to build the design function around a product like these &mdash; the patterns, the bar in CI, and the team that keeps both.", "recombined from &ldquo;8 patterns in production&rdquo;, &ldquo;The quality bar is code&rdquo; and &ldquo;the 4-person design team&rdquo;"]];\n  const i = (location.hash.match(/draft=([abc])/i) || [,\'a\'])[1].toLowerCase();\n  const d = D[\'abc\'.indexOf(i)] || D[0];\n  const host = document.querySelector(\'.close .wrap\') || document.querySelector(\'.close\');\n  host.insertAdjacentHTML(\'afterbegin\',\n    \'<div class="nxt"><p class="nxt-k">Draft \' + d[0] + \' &mdash; placeholder, not his words</p>\'\n    + \'<p class="nxt-p">\' + d[1] + \'</p>\'\n    + \'<p class="nxt-d">\' + d[2] + \'</p></div>\');\n'
+B3 = "\n  document.body.classList.add('b3');\n"
+BALL = '\n  document.body.classList.add(\'b1\');\n  // his own words, recombined: "eight people, eight vantage points" (the chapeau\n  // this replaces) and "The full set, unedited, on LinkedIn" (the band\'s own\n  // closing link). Same evidence, declarative frame.\n  const h = document.querySelector(\'#h-voices\');\n  h.textContent = \'Eight people who worked with me, unedited.\';\n\n  document.body.classList.add(\'b2\');\n  const D = [["A &middot; the product", "What I want next: one AI product to own end to end &mdash; the eval layer, what gets measured, and the interface that ships.", "recombined from &ldquo;I read the model at the eval layer. I shape what gets measured. I ship the front-end.&rdquo; (act 02)"], ["B &middot; the thesis", "What I want next: to draw the edges on a model that millions of people will actually bet on.", "recombined from the h1 and &ldquo;A language model has no edges. So I draw them.&rdquo; (act 03)"], ["C &middot; the function", "What I want next: to build the design function around a product like these &mdash; the patterns, the bar in CI, and the team that keeps both.", "recombined from &ldquo;8 patterns in production&rdquo;, &ldquo;The quality bar is code&rdquo; and &ldquo;the 4-person design team&rdquo;"]];\n  const i = (location.hash.match(/draft=([abc])/i) || [,\'a\'])[1].toLowerCase();\n  const d = D[\'abc\'.indexOf(i)] || D[0];\n  const host = document.querySelector(\'.close .wrap\') || document.querySelector(\'.close\');\n  host.insertAdjacentHTML(\'afterbegin\',\n    \'<div class="nxt"><p class="nxt-k">Draft \' + d[0] + \' &mdash; placeholder, not his words</p>\'\n    + \'<p class="nxt-p">\' + d[1] + \'</p>\'\n    + \'<p class="nxt-d">\' + d[2] + \'</p></div>\');\n\n  document.body.classList.add(\'b3\');\n'
 
 WORDS = r"""
 (() => {

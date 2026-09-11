@@ -31,6 +31,7 @@ exec(src[:src.index('WORDS = r"""')], {'__file__': os.path.join(HERE, 'ideas.py'
                                        'base64': __import__('base64'),
                                        'io': __import__('io')}, ns)
 CSS, I1, I3, I4 = ns['CSS'], ns['I1'], ns['I3'], ns['I4']
+B1, B2, B3, BALL = ns['B1'], ns['B2'], ns['B3'], ns['BALL']
 
 # ── rewrite every relative reference for a page two levels down ───────────────
 ATTRS = ('href', 'src', 'poster', 'data-src', 'content')
@@ -65,7 +66,8 @@ def fix(html):
 
 html = fix(open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read())
 
-DIRECTIONS = {'now': '', 'i1': I1, 'i3': I3, 'i4': I4, 'all': I4 + I1 + I3}
+DIRECTIONS = {'now': '', 'i1': I1, 'i3': I3, 'i4': I4, 'all': I4 + I1 + I3,
+              'b1': B1, 'b2': B2, 'b3': B3, 'ball': BALL}
 
 BOOT = """
 <style id="ia-css">%(css)s
@@ -81,7 +83,11 @@ body{padding-top:22px !important}
   const FN = %(fns)s;
   const NAME = {now:'as it ships today', i1:'idea 1 \\u2014 ask the artifact, not me',
     i3:'idea 3 \\u2014 one engagement, one object', i4:'idea 4 \\u2014 the eligibility line',
-    all:'ideas 4 + 1 + 3 together'};
+    all:'ideas 4 + 1 + 3 together',
+    b1:'brand 1 - the frame stops apologising',
+    b2:'brand 2 - the forward-looking slot (PLACEHOLDER copy)',
+    b3:'brand 3 - the back half comes down',
+    ball:'brand 1 + 2 + 3 together'};
   const key = () => {
     const k = (location.hash || '#now').slice(1).split('&')[0];
     return FN[k] !== undefined ? k : 'now';
@@ -142,17 +148,24 @@ COMPARE = """<!doctype html>
   <div class="grp" id="wids"><b>width</b></div>
   <div class="grp" id="views"><b>view</b></div>
   <div class="grp" id="jumps"><b>jump to</b></div>
+  <div class="grp" id="drafts" hidden><b>brand 2 draft</b></div>
   <span class="note" id="note"></span>
 </header>
 <main id="stage"></main>
 <script>
-const DIRS=[['now','Today'],['i4','Idea 4 \u00b7 eligibility line'],
-            ['i1','Idea 1 \u00b7 artifact index'],
-            ['i3','Idea 3 \u00b7 engagement object'],['all','All three']];
+const DIRS=[['now','Today'],
+            ['b1','Brand 1 \u00b7 frame'],['b2','Brand 2 \u00b7 what next'],
+            ['b3','Brand 3 \u00b7 shorter'],['ball','Brand 1+2+3'],
+            ['i4','Idea 4 \u00b7 eligibility'],['i1','Idea 1 \u00b7 artifact index'],
+            ['i3','Idea 3 \u00b7 engagement object'],['all','Ideas 4+1+3']];
+const DRAFTS=[['a','Draft A \u00b7 the product'],['b','Draft B \u00b7 the thesis'],
+              ['c','Draft C \u00b7 the function']];
 const WIDS=[390,768,1024,1440];
 const VIEWS=[['side','Side by side with today'],['solo','On its own']];
-const JUMPS=[['','Top'],['#h-hero','Hero'],['#how-i-lead','Act 02'],['#how-i-build','Code band']];
-let dir='i4', wid=390, view='side', jump='', panes=[], lockUntil=0;
+const JUMPS=[['','Top'],['#h-hero','Hero'],['#how-i-lead','Act 02'],
+             ['#how-i-build','Code band'],['#voices','Voices'],
+             ['#thoughts','Writing'],['#contact','Closing']];
+let dir='ball', wid=390, view='side', jump='', draft='a', panes=[], lockUntil=0;
 
 const mk=(host,items,get,set)=>{
   host.querySelectorAll('button').forEach(b=>b.remove());
@@ -176,7 +189,7 @@ function pane(d,label,scale,vh){
   // A REAL viewport width, then scaled. A CSS max-width would leave the desktop
   // media queries in force and show the wrong layout at 390.
   i.width=wid; i.height=vh; i.style.transform='scale('+scale+')';
-  i.src='live.html#'+d+(jump?jump:'');
+  i.src='live.html#'+d+'&draft='+draft+(jump?jump:'');
   i.onload=()=>{
     try{
       const doc=i.contentDocument, win=i.contentWindow;
@@ -224,6 +237,10 @@ function draw(){
   mk(document.getElementById('wids'),WIDS.map(w=>[w,w+'px']),()=>wid,v=>wid=+v);
   mk(document.getElementById('views'),VIEWS,()=>view,v=>view=v);
   mk(document.getElementById('jumps'),JUMPS,()=>jump,v=>jump=v);
+  // the draft picker only means anything while brand 2 is on screen
+  const dh=document.getElementById('drafts');
+  dh.hidden = !(dir==='b2'||dir==='ball');
+  if(!dh.hidden) mk(dh,DRAFTS,()=>draft,v=>draft=v);
   const s=document.getElementById('stage'); s.textContent=''; panes=[]; lockUntil=0;
   const two = view==='side' && dir!=='now';
   const avail = innerWidth - 28 - (two?18:0);

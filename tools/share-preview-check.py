@@ -80,16 +80,19 @@ def main():
     a = ap.parse_args()
     root = os.path.abspath(a.root)
 
-    # Only audit what actually DEPLOYS. Gitignored working folders
-    # (portfolio-sources/, prototypes/) exist on this machine and never reach
-    # the host, so auditing them produced 40 findings about pages no prospect
-    # can open — and, worse, would have hidden the ones that matter.
+    # Only audit what actually DEPLOYS. This list USED to be a private tuple that
+    # left out prototypes/ on the assumption that it is gitignored — and on
+    # 2026-09-11 two force-added prototypes walked straight into the audit and
+    # reported six findings about pages no prospect can open, including a
+    # DUPLICATE title against the homepage they were generated from. A gate with
+    # its own idea of what a page is will drift from every other gate, so this
+    # one now shares gatelib's list.
     import subprocess
+    from gatelib import NOT_PAGES
     shipped = set(subprocess.run(['git', 'ls-files', '*.html'], cwd=root,
                                  capture_output=True, text=True).stdout.split())
     pages = sorted(os.path.join(root, f) for f in shipped
-                   if not f.startswith(('partials/', 'tests/', 'node_modules/',
-                                       'assets/og-images/')))
+                   if not f.startswith(NOT_PAGES + ('node_modules/', 'assets/og-images/')))
     findings, titles, descs = [], collections.defaultdict(list), \
         collections.defaultdict(list)
     seps = collections.defaultdict(list)
