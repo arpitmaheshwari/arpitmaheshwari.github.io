@@ -127,7 +127,7 @@ const CV_EXP = [{
 }, {
   yr: "2014–19",
   role: "Product & Design Lead",
-  org: "PTC Inc. · PTC University — Learning Connector · 550k+ registered, 350k+ active · NASA, Boeing, Toyota, Airbus & Apple"
+  org: "PTC Inc. · PTC University — Learning Connector · 550k+ registered, 350k+ active · NASA, Boeing, Toyota, Airbus, Apple, GE & Samsung"
 }, {
   yr: "2012–14",
   role: "Front End Specialist",
