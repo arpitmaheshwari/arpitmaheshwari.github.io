@@ -37,15 +37,21 @@
   <div class="grp" id="views"><b>view</b></div>
   <div class="grp" id="jumps"><b>jump to</b></div>
   <div class="grp" id="drafts" hidden><b>brand 2 draft</b></div>
+  <div class="grp" id="rolev" hidden><b>role line</b></div>
   <span class="note" id="note"></span>
 </header>
 <main id="stage"></main>
 <script>
 const DIRS=[['now','Today'],
+            ['p3','Pos 3 · role line'],['p1','Pos 1 · card scope'],
+            ['p2','Pos 2 · scope band'],['pall','Position 1+2+3'],
             ['b1','Brand 1 · frame'],['b2','Brand 2 · what next'],
             ['b3','Brand 3 · shorter'],['ball','Brand 1+2+3'],
-            ['i4','Idea 4 · eligibility'],['i1','Idea 1 · artifact index'],
-            ['i3','Idea 3 · engagement object'],['all','Ideas 4+1+3']];
+            ['i1','Idea 1 · artifact index'],['i3','Idea 3 · engagement object'],
+            ['i4','Idea 4 · eligibility']];
+const DRAFTS=[['a','Draft A · the product'],['b','Draft B · the thesis'],
+              ['c','Draft C · the function']];
+const ROLEV=[['a','A · minimal'],['b','B · explicit'],['c','C · additive']];
 const DRAFTS=[['a','Draft A · the product'],['b','Draft B · the thesis'],
               ['c','Draft C · the function']];
 const WIDS=[390,768,1024,1440];
@@ -53,7 +59,7 @@ const VIEWS=[['side','Side by side with today'],['solo','On its own']];
 const JUMPS=[['','Top'],['#h-hero','Hero'],['#how-i-lead','Act 02'],
              ['#how-i-build','Code band'],['#voices','Voices'],
              ['#thoughts','Writing'],['#contact','Closing']];
-let dir='ball', wid=390, view='side', jump='', draft='a', panes=[], lockUntil=0;
+let dir='pall', wid=390, view='side', jump='', draft='a', rolev='a', panes=[], lockUntil=0;
 
 const mk=(host,items,get,set)=>{
   host.querySelectorAll('button').forEach(b=>b.remove());
@@ -77,7 +83,7 @@ function pane(d,label,scale,vh){
   // A REAL viewport width, then scaled. A CSS max-width would leave the desktop
   // media queries in force and show the wrong layout at 390.
   i.width=wid; i.height=vh; i.style.transform='scale('+scale+')';
-  i.src='live.html#'+d+'&draft='+draft+(jump?jump:'');
+  i.src='live.html#'+d+'&draft='+draft+'&role='+rolev+(jump?jump:'');
   i.onload=()=>{
     try{
       const doc=i.contentDocument, win=i.contentWindow;
@@ -129,6 +135,9 @@ function draw(){
   const dh=document.getElementById('drafts');
   dh.hidden = !(dir==='b2'||dir==='ball');
   if(!dh.hidden) mk(dh,DRAFTS,()=>draft,v=>draft=v);
+  const rh=document.getElementById('rolev');
+  rh.hidden = !(dir==='p3'||dir==='pall');
+  if(!rh.hidden) mk(rh,ROLEV,()=>rolev,v=>rolev=v);
   const s=document.getElementById('stage'); s.textContent=''; panes=[]; lockUntil=0;
   const two = view==='side' && dir!=='now';
   const avail = innerWidth - 28 - (two?18:0);

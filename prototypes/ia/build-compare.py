@@ -32,6 +32,7 @@ exec(src[:src.index('WORDS = r"""')], {'__file__': os.path.join(HERE, 'ideas.py'
                                        'io': __import__('io')}, ns)
 CSS, I1, I3, I4 = ns['CSS'], ns['I1'], ns['I3'], ns['I4']
 B1, B2, B3, BALL = ns['B1'], ns['B2'], ns['B3'], ns['BALL']
+P1, P2, P3, PALL = ns['P1'], ns['P2'], ns['P3'], ns['PALL']
 
 # ── rewrite every relative reference for a page two levels down ───────────────
 ATTRS = ('href', 'src', 'poster', 'data-src', 'content')
@@ -67,7 +68,8 @@ def fix(html):
 html = fix(open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read())
 
 DIRECTIONS = {'now': '', 'i1': I1, 'i3': I3, 'i4': I4, 'all': I4 + I1 + I3,
-              'b1': B1, 'b2': B2, 'b3': B3, 'ball': BALL}
+              'b1': B1, 'b2': B2, 'b3': B3, 'ball': BALL,
+              'p1': P1, 'p2': P2, 'p3': P3, 'pall': PALL}
 
 BOOT = """
 <style id="ia-css">%(css)s
@@ -87,7 +89,11 @@ body{padding-top:22px !important}
     b1:'brand 1 - the frame stops apologising',
     b2:'brand 2 - the forward-looking slot (PLACEHOLDER copy)',
     b3:'brand 3 - the back half comes down',
-    ball:'brand 1 + 2 + 3 together'};
+    ball:'brand 1 + 2 + 3 together',
+    p1:'position 1 - a scope line on every case card',
+    p2:'position 2 - the portfolio-scope band',
+    p3:'position 3 - the role line itself (PICK A VARIANT)',
+    pall:'position 1 + 2 + 3 together'};
   const key = () => {
     const k = (location.hash || '#now').slice(1).split('&')[0];
     return FN[k] !== undefined ? k : 'now';
@@ -149,15 +155,21 @@ COMPARE = """<!doctype html>
   <div class="grp" id="views"><b>view</b></div>
   <div class="grp" id="jumps"><b>jump to</b></div>
   <div class="grp" id="drafts" hidden><b>brand 2 draft</b></div>
+  <div class="grp" id="rolev" hidden><b>role line</b></div>
   <span class="note" id="note"></span>
 </header>
 <main id="stage"></main>
 <script>
 const DIRS=[['now','Today'],
+            ['p3','Pos 3 \u00b7 role line'],['p1','Pos 1 \u00b7 card scope'],
+            ['p2','Pos 2 \u00b7 scope band'],['pall','Position 1+2+3'],
             ['b1','Brand 1 \u00b7 frame'],['b2','Brand 2 \u00b7 what next'],
             ['b3','Brand 3 \u00b7 shorter'],['ball','Brand 1+2+3'],
-            ['i4','Idea 4 \u00b7 eligibility'],['i1','Idea 1 \u00b7 artifact index'],
-            ['i3','Idea 3 \u00b7 engagement object'],['all','Ideas 4+1+3']];
+            ['i1','Idea 1 \u00b7 artifact index'],['i3','Idea 3 \u00b7 engagement object'],
+            ['i4','Idea 4 \u00b7 eligibility']];
+const DRAFTS=[['a','Draft A \u00b7 the product'],['b','Draft B \u00b7 the thesis'],
+              ['c','Draft C \u00b7 the function']];
+const ROLEV=[['a','A \u00b7 minimal'],['b','B \u00b7 explicit'],['c','C \u00b7 additive']];
 const DRAFTS=[['a','Draft A \u00b7 the product'],['b','Draft B \u00b7 the thesis'],
               ['c','Draft C \u00b7 the function']];
 const WIDS=[390,768,1024,1440];
@@ -165,7 +177,7 @@ const VIEWS=[['side','Side by side with today'],['solo','On its own']];
 const JUMPS=[['','Top'],['#h-hero','Hero'],['#how-i-lead','Act 02'],
              ['#how-i-build','Code band'],['#voices','Voices'],
              ['#thoughts','Writing'],['#contact','Closing']];
-let dir='ball', wid=390, view='side', jump='', draft='a', panes=[], lockUntil=0;
+let dir='pall', wid=390, view='side', jump='', draft='a', rolev='a', panes=[], lockUntil=0;
 
 const mk=(host,items,get,set)=>{
   host.querySelectorAll('button').forEach(b=>b.remove());
@@ -189,7 +201,7 @@ function pane(d,label,scale,vh){
   // A REAL viewport width, then scaled. A CSS max-width would leave the desktop
   // media queries in force and show the wrong layout at 390.
   i.width=wid; i.height=vh; i.style.transform='scale('+scale+')';
-  i.src='live.html#'+d+'&draft='+draft+(jump?jump:'');
+  i.src='live.html#'+d+'&draft='+draft+'&role='+rolev+(jump?jump:'');
   i.onload=()=>{
     try{
       const doc=i.contentDocument, win=i.contentWindow;
@@ -241,6 +253,9 @@ function draw(){
   const dh=document.getElementById('drafts');
   dh.hidden = !(dir==='b2'||dir==='ball');
   if(!dh.hidden) mk(dh,DRAFTS,()=>draft,v=>draft=v);
+  const rh=document.getElementById('rolev');
+  rh.hidden = !(dir==='p3'||dir==='pall');
+  if(!rh.hidden) mk(rh,ROLEV,()=>rolev,v=>rolev=v);
   const s=document.getElementById('stage'); s.textContent=''; panes=[]; lockUntil=0;
   const two = view==='side' && dir!=='now';
   const avail = innerWidth - 28 - (two?18:0);
