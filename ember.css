@@ -4356,6 +4356,9 @@ html[data-theme="ember"] body.p-home .art-note{margin:16px 0 0;
    Both components DECLARE their ink, family, size and leading: --ff-mono and
    --ink-dim / --amber, never --mono/--dim, which exist only on body.p-home.
    ========================================================================== */
+/* the two metadata lines are ONE grid item — see index.html. align-self moves
+   with them, or the pair sits centred in a track sized for something else. */
+html[data-theme="ember"] body.p-home .bcard:not(.bcard--lead) .bcard-meta{align-self:start}
 html[data-theme="ember"] body.p-home .bcard-own{margin:8px 0 0;
   font-family:var(--ff-mono),ui-monospace,monospace;font-size:11px;
   letter-spacing:.02em;line-height:1.6;color:var(--amber)}
