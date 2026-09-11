@@ -248,9 +248,17 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #     cells painting no ink); SQUEEZED and WORDBREAK both passed it, because the page
 #     does not overflow — the wrapper scrolls. The table now restacks as cards, the
 #     house pattern, and the rule refuses any table needing a gesture at <=420px.
-#   * and 32 of the 84 are this note. The budget counting its own justification is
-#     the same behaviour recorded above; it is why this reads 13_535.
-CEILING = 13_535
+#   * 26 more, same day: /fit told every reader "Four of the seven cases are under NDA"
+#     when three are. The count was right until AdTech shipped as a named client on
+#     2026-08-14 and was never derived again — 29 days on the one page whose whole
+#     argument is that it will not overstate what it can show. build-fit-index.py now
+#     COUNTS the case-facts tags instead of carrying a typed number, its spelled-out-count
+#     check reads the constraint strings as well as the evidence claims (it was written
+#     for this exact sentence and could not see it), and canon-lint bans the typed form.
+#     Lines that delete a class of fact are the cheapest lines in this directory.
+#   * and 40 of the 110 are this note. The budget counting its own justification is
+#     the same behaviour recorded above; it is why this reads 13_569.
+CEILING = 13_569
 
 
 def loc(paths):

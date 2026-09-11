@@ -216,8 +216,12 @@ CONSTRAINTS = [
     ["Location", "India, GMT+5:30 — remote, with daily overlap with both US coasts."],
     ["Work authorisation", "No US work authorisation. Roles requiring on-site US presence or "
                            "US employment eligibility are not a fit, whatever the skills match."],
-    ["Confidentiality", "Four of the seven cases are under NDA. Outcomes and decisions are "
-                        "published; client screens and identities are not."],
+    # Confidentiality is DERIVED in main() from the case-facts tags, not typed. It read
+    # "Four of the seven cases are under NDA" for the 29 days after AdTech became a named
+    # client (canon 2026-08-14, "only adtech changed") — the number was written once and
+    # never derived again, and /fit told every reader four when the answer was three.
+    # The check below for spelled-out counts was written for this exact sentence and
+    # could not see it: it reads EVIDENCE claims, and this line is not one.
 ]
 
 CONTRACT = dict(
@@ -277,6 +281,13 @@ def main():
                 errs.append(f"{e['id']}: claim says \"of the {m.group(1)} cases\" but "
                             f"case-facts defines {ncases}")
 
+    # the same rule, over the constraint strings — the surface that escaped it
+    for label, text in CONSTRAINTS:
+        m = re.search(r"of the (\w+) (?:published )?cases", text, re.I)
+        if m and WORDS.get(m.group(1).lower()) != ncases:
+            errs.append(f"constraint {label!r} says \"of the {m.group(1)} cases\" but "
+                        f"case-facts defines {ncases}")
+
     ids = {e["id"] for e in EVIDENCE}
     for k in LEXICON:
         if k is not None and not k.startswith("!") and k not in ids:
@@ -291,6 +302,15 @@ def main():
             print("  ✗", x)
         return 1
 
+    # NDA count, counted rather than remembered: a tag saying "NDA" and not "Non-NDA".
+    SPELLED = {1:"One",2:"Two",3:"Three",4:"Four",5:"Five",6:"Six",7:"Seven",8:"Eight"}
+    nda = [k for k in facts["order"]
+           if re.search(r"(?<!Non-)\bNDA\b", facts["cases"][k]["tag"])]
+    constraints = CONSTRAINTS + [[
+        "Confidentiality",
+        f"{SPELLED[len(nda)]} of the {SPELLED[ncases].lower()} cases are under NDA. "
+        f"Outcomes and decisions are published; client screens and identities are not."]]
+
     terms = []
     for eid, words in LEXICON.items():
         for w in words:
@@ -300,7 +320,7 @@ def main():
     OUT.write_text(json.dumps(dict(
         generated=str(pathlib.Path(__file__).name),
         note="Generated from this site's published pages. Nothing here is unpublished.",
-        constraints=CONSTRAINTS, contract=CONTRACT,
+        constraints=constraints, contract=CONTRACT,
         evidence={e["id"]: e for e in EVIDENCE}, terms=terms,
     ), indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"data/fit-index.json  {len(EVIDENCE)} claims  {len(terms)} terms  "

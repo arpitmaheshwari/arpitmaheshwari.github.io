@@ -110,6 +110,12 @@ BANNED = [
      'the invented locale list ("added pt-BR, ko, ru") — ru is Russian (retired) and locale names '
      'are not canon; print only "9 → 11 locales"',
      "PTC locale-list removal 2026-08-06"),
+    (r"(?i)\b(?:four|4)\s+of\s+the\s+seven\s+cases\s+are\s+under\s+NDA",
+     'the stale NDA count. THREE are under NDA — FinTech, Org Design, VC/PE — and the count '
+     'became three the day AdTech shipped as a named client. /fit said four for 29 days after '
+     'that. The number is now DERIVED in tools/build-fit-index.py from the case-facts tags; '
+     'this rule is here so a typed one cannot come back',
+     "§AdTech named 2026-08-14 · Arpit confirmed three, 2026-09-12"),
 ]
 
 # CASE_SENSITIVE rules must NOT be scanned with re.I — the first version of this file ran every
