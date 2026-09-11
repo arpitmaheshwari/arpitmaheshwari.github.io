@@ -87,6 +87,19 @@ SELECTORISH = re.compile(r'^[.#\[]|[>~]|\[[a-z-]+[\]=]'
 JS_ESCAPES = {r'\n': ' ', r'\t': ' ', r"\'": "'", r'\"': '"', r'\\': '\\'}
 
 
+# LEAKED-INSTRUCTION. A relative .html path has no business in visible copy —
+# real copy links through an href. On 2026-09-02 a bulk "96 of 97 review findings
+# applied" pass pasted one of the instructions INTO a heading instead of carrying
+# it out, and /fit shipped an <h2> reading "Add one line under the heading: '…'
+# (linking 'capability contract' to ../patterns/capability-contract.html)". It was
+# live for nine days. Twenty-nine gates and a prose sweep over 59 pages all passed
+# it, because every rule here asks whether the prose is WELL FORMED, never whether
+# it is prose at all. Scored against the real corpus before being added: this
+# fires on the leak and zero times on the 36 clean pages, where an instruction-verb
+# heuristic flagged a diagram description.
+AUTHORING_PATH = re.compile(r'(?:\.\.?/)[\w./-]+\.html')
+
+
 def js_prose(path):
     """Display strings from a shipped .js file, one per line.
 
@@ -232,6 +245,11 @@ def main():
             ctx = ' '.join(text[max(0, m.start()-38):m.end()+38].split())
             findings.append((rel, 'UNSPACED-DASH',
                              f'{m.group(0)!r} — the site spaces its em dashes: …{ctx}…'))
+        for m in AUTHORING_PATH.finditer(text):
+            ctx = ' '.join(text[max(0, m.start()-52):m.end()+20].split())
+            findings.append((rel, 'LEAKED-INSTRUCTION',
+                             f'{m.group(0)!r} is an authoring path in VISIBLE copy — '
+                             f'real copy links through an href: …{ctx}…'))
         for m in MISMATCHED.finditer(text):
             ctx = ' '.join(text[max(0, m.start()-30):m.end()+30].split())
             findings.append((rel, 'MISMATCHED-QUOTE',

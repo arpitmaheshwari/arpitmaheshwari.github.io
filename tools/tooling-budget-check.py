@@ -203,7 +203,19 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # sample above a silence floor rather than by assuming it. 26 lines of headroom
 # left, which is the same order as the 17 this replaced — the next addition has
 # to justify itself too.
-CEILING = 13_400
+# 2026-09-11, the SECOND raise today: 13_400 -> 13_420. What the 16 lines bought:
+# a LEAKED-INSTRUCTION rule inside prose-check.py — no new file — after /fit
+# shipped an <h2> that read "Add one line under the heading: '...' (linking
+# 'capability contract' to ../patterns/capability-contract.html)" and stayed live
+# for NINE DAYS. Twenty-nine gates and a 59-page prose sweep passed it, because
+# every rule here asked whether the prose was well formed, never whether it was
+# prose at all. The rule was scored on the real corpus first: it catches the leak
+# and fires zero times on the 36 clean pages.
+#
+# Two raises in one day is the budget working as designed, and also a signal: a
+# retirement pass is overdue. tools/ still watches .pill, .btn-a, .hk-btn and
+# other names deleted weeks ago. Retire those before the next raise.
+CEILING = 13_420
 
 
 def loc(paths):
