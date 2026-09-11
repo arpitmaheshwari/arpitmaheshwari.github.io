@@ -547,6 +547,21 @@
    "note": "moved off every-push on 2026-09-04: the ci stage had grown to 34 gates and took 28 minutes, and a 28-minute feedback loop is one people learn to ignore — which is how a red gate went unnoticed for five days in the first place. Runs nightly in nightly-sweep.yml, and on demand via workflow_dispatch. — was marked serial on 2026-09-04 under a diagnosis that turned out to be WRONG (CPU contention starving --virtual-time-budget). The real cause was a shared-file race in three CALIBRATIONS, which this gate does not have. Serial removed; it costs wall-clock for no reason."
   },
   {
+   "id": "overflow-sweep-390",
+   "cmd": [
+    "python3",
+    "tools/overflow-sweep.py",
+    "390"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "added 2026-09-12. The sweep ran at 1440, 1024 and 768 and never at a phone width \u2014 on a site whose QA rule is mobile-first \u2014 so the width where layouts actually fail had no gate. It carries the two rules written the same day: SQUEEZED (a leaf's own text wider than its own box) and WORDBREAK (prose computing word-break:break-all/break-word). Both were calibrated by replanting the real defects and watching this go red, then green."
+  },
+  {
    "id": "line-height-check",
    "cmd": [
     "python3",

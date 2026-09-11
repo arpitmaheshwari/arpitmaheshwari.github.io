@@ -15,6 +15,9 @@ are, in the first ten seconds, before they reach any of the work.
   STRAIGHT-QUOTE  ' or " inside prose on a site that otherwise sets curly
   UNSPACED-DASH   an em dash with no space around it, against 1,193 that have it
                   quotes — visible as a typographic wobble
+  LEAKED-INSTRUCTION  copy that instructs someone to change the page, published as
+                  the page: an authoring path in prose, or a line that opens with an
+                  authoring verb and names page furniture ("Add … the heading")
 
 Two kinds of surface are read:
   * HTML — visible copy only. Script, style, comments and attribute values are stripped
@@ -98,6 +101,21 @@ JS_ESCAPES = {r'\n': ' ', r'\t': ' ', r"\'": "'", r'\"': '"', r'\\': '\\'}
 # fires on the leak and zero times on the 36 clean pages, where an instruction-verb
 # heuristic flagged a diagram description.
 AUTHORING_PATH = re.compile(r'(?:\.\.?/)[\w./-]+\.html')
+# The path half of that rule missed two more from the SAME commit, because neither
+# carried a path: a glossary <h2> reading "Add his coinages as entries using existing
+# site language, e.g.: …" (live a month) and lab/teardown's "Add to the fonts block:
+# What it costs: …". Both were found by walking the site on a phone, not by a gate.
+# What all three share is not a path — it is an imperative aimed at the artifact:
+# an authoring verb, then the name of a piece of page furniture. Scored before being
+# added: 3 of 3 real leaks, and ZERO hits across all 36 pages plus the shipped .js
+# surfaces. The looser shape tried first — verb plus a colon — fired on "Add a
+# fallback:" in a checklist, which is real copy, so it was rejected.
+AUTHORING_IMPERATIVE = re.compile(
+    r'(?m)^\s*(?:Add|Replace|Insert|Change|Update|Remove|Delete|Swap|Link|Rewrite|Reword'
+    r'|Rename|Restore|Merge|Split|Shorten|Expand|Tighten|Trim|Move|Note)\b[^\n]{0,200}?'
+    r'\b(?:heading|headline|subhead|eyebrow|caption|copy|paragraph|sentence|line|entry'
+    r'|entries|wording|site language|e\.g\.|linking|tooltip|alt text|label|bullet|block'
+    r'|this page|this section)\b')
 
 
 def js_prose(path):
@@ -218,7 +236,8 @@ def main():
             # nothing. A calibration that hides the defect it calibrates for is worse than
             # no calibration.
             text += (' quombulate quombulate "quombulate" \'quombulate\u2019'
-                     ' quombulate\u2014quombulate ')
+                     ' quombulate\u2014quombulate '
+                     '\nAdd the quombulate heading: ../patterns/quombulate.html\n')
         for m in DOUBLED.finditer(text):
             w = m.group(1).lower()
             if w in OK_DOUBLE or not w.isalpha() or len(w) < 3:
@@ -245,6 +264,10 @@ def main():
             ctx = ' '.join(text[max(0, m.start()-38):m.end()+38].split())
             findings.append((rel, 'UNSPACED-DASH',
                              f'{m.group(0)!r} — the site spaces its em dashes: …{ctx}…'))
+        for m in AUTHORING_IMPERATIVE.finditer(text):
+            findings.append((rel, 'LEAKED-INSTRUCTION',
+                             f'{" ".join(m.group(0).split())[:96]!r} reads as an instruction '
+                             f'to change the page, not as the page'))
         for m in AUTHORING_PATH.finditer(text):
             ctx = ' '.join(text[max(0, m.start()-52):m.end()+20].split())
             findings.append((rel, 'LEAKED-INSTRUCTION',
@@ -333,11 +356,14 @@ def main():
         # asserted the other two, so nothing ever noticed, and the gate reported
         # "0 findings" over 68 straight marks in book/. A rule outside the selftest
         # is a rule that can quietly stop existing.
-        want = {'DOUBLED-WORD', 'STRAIGHT-QUOTE', 'MISMATCHED-QUOTE', 'UNSPACED-DASH'}
+        # LEAKED-INSTRUCTION was documented and run for nine days with no plant, so
+        # nobody had watched it fire; the plant below exercises both of its halves.
+        want = {'DOUBLED-WORD', 'STRAIGHT-QUOTE', 'MISMATCHED-QUOTE', 'UNSPACED-DASH',
+                'LEAKED-INSTRUCTION'}
         absent = sorted(want - got)
         ok = not absent and any(
             'quombulate' in v for _, k, v in findings if k == 'SUSPECT-SPELL')
-        detail = ('all four rules fire' if ok else
+        detail = ('all five rules fire' if ok else
                   f'INVISIBLE: {", ".join(absent) or "SUSPECT-SPELL"}')
         print(f'[calibration] {"PASS" if ok else "FAIL"} — {detail}')
         if not ok:

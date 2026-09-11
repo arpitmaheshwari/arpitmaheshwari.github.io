@@ -217,7 +217,40 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # other names deleted weeks ago. Retire those before the next raise.
 # ...and the note above cost 12 of its own lines, which is why this reads 13_432
 # and not 13_420. A budget that counts its own justification is working.
-CEILING = 13_432
+#
+# 2026-09-12: 13_432 -> 13_502. The retirement pass the note above demanded was
+# CHECKED FIRST and there is nothing left to retire: every surviving mention of
+# .pill, .btn-a and .hk-btn in tools/ is a COMMENT recording that the watcher was
+# already removed ("verified live-in-markup: btn-a 0 pages"), and the watching
+# itself went on 2026-09-10. The note was stale, not the code. The only other
+# candidates are one-off migration scripts (extract-inline, css-layerize,
+# nav-normalise) and deleting those to buy budget would be optimising this number
+# rather than the codebase — which is the failure this file's own CANNOT SEE line
+# names. So: a raise, and what the 70 lines bought.
+#   * 26 in prose-check.py — LEAKED-INSTRUCTION grew a second half. The path rule
+#     added yesterday missed two more leaks from the SAME 2026-09-02 commit, both
+#     without paths: a glossary <h2> reading "Add his coinages as entries using
+#     existing site language, e.g.: …" (live a MONTH) and lab/teardown's "Add to
+#     the fonts block: What it costs: …". The new half — an authoring verb, then
+#     the name of a piece of page furniture — catches 3 of 3 and fires zero times
+#     on all 36 pages plus the shipped .js. It also found the third leak itself,
+#     which is the first time a rule here has found one before a human did.
+#     LEAKED-INSTRUCTION also had no --selftest plant for nine days; it has one now.
+#   * 29 in overflow-sweep.py + 15 in gates.json — SQUEEZED and WORDBREAK, and the
+#     390 instance that runs them. This sweep ran at 1440, 1024 and 768 and never
+#     at a phone width, on a site whose QA rule is mobile-first; the two defects
+#     they catch were both found by hand at 390 (a mock button holding 45px of text
+#     in 30px, and 24 words split by word-break on six pages).
+#   * 14 more in overflow-sweep.py — TABLE-SCROLL, added an hour later because the
+#     word-break fix above CAUSED a regression: releasing td/th let ml-explainability's
+#     four-column table take its natural 434px inside a 342px wrapper and the whole
+#     "Best For" column went behind a sideways scroll. contrast-audit found it (six
+#     cells painting no ink); SQUEEZED and WORDBREAK both passed it, because the page
+#     does not overflow — the wrapper scrolls. The table now restacks as cards, the
+#     house pattern, and the rule refuses any table needing a gesture at <=420px.
+#   * and 32 of the 84 are this note. The budget counting its own justification is
+#     the same behaviour recorded above; it is why this reads 13_535.
+CEILING = 13_535
 
 
 def loc(paths):

@@ -75,7 +75,50 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
  // half: an element whose box escapes the viewport fails even when the page cannot scroll
  // (because something clipped it), so a genuine escape cannot hide behind a zero here.
  var ox=Math.max(0, canScroll);
- document.title='R:'+JSON.stringify({vw,ox:ox,bad:out.slice(0,6),tight:tight.slice(0,5)});
+ // TWO WAYS A WORD IS UNREADABLE WITHOUT THE PAGE EVER OVERFLOWING (2026-09-12).
+ // Both were found by walking the site at 390 by hand, and neither could be seen from
+ // here before: every rule above asks whether a BOX escapes the VIEWPORT.
+ //  squeeze — a leaf's own text is wider than its own content box. Cause on the day:
+ //    a wireframe's two mock buttons were flex:1 basis:0 inside a 70px column, so
+ //    "Search Web" held 45px of text in 30px and the neighbour painted over the rest.
+ //  wordbreak — prose that computes word-break:break-all/break-word. That property
+ //    breaks to MINIMISE width rather than only when a token cannot fit, so a table
+ //    cell collapses and "Act|ion", "Revi|ew", "Confid|ence" split with room to spare:
+ //    24 of them across six pages at 390 on the day, from one rule on every td/th.
+ //    The rendered test was tried first and does not work — once the property is on,
+ //    the COLUMN collapses too, so the word genuinely no longer fits its box and a
+ //    "does it fit?" probe sees nothing wrong. The cause is the property; check that.
+ //    Monospace surfaces (a JSON dump, a lint excerpt) set it deliberately and are
+ //    exempt — a code identifier has no spaces and must be allowed to break anywhere.
+ const sq=[],sp=[];
+ const srOnly=e=>{for(let x=e;x&&x!==d.body;x=x.parentElement){const c=w.getComputedStyle(x);
+  if((c.clip||'').startsWith('rect(0')||c.clipPath==='inset(50%%)')return true;}return false;};
+ d.querySelectorAll('body *').forEach(el=>{
+  if(el.children.length||!el.textContent.trim()||srOnly(el))return;
+  if(/^(TEXTAREA|INPUT|SELECT|PRE|CODE|OPTION)$/.test(el.tagName))return;
+  const cs=w.getComputedStyle(el); if(cs.display==='none'||cs.visibility==='hidden')return;
+  if(/(auto|scroll)/.test(cs.overflowX))return;
+  const cw=el.clientWidth; if(cw<=1)return;
+  if(el.scrollWidth>cw+1) sq.push({c:(el.tagName+'.'+((el.className+'').trim().split(/\s+/)[0]||'')).slice(0,34),
+    t:el.textContent.trim().slice(0,22),sw:el.scrollWidth,cw});
+  if(/break-(all|word)/.test(cs.wordBreak)&&!/mono/i.test(cs.fontFamily))
+   sp.push({c:(el.tagName+'.'+((el.className+'').trim().split(/\s+/)[0]||'')).slice(0,34),
+     t:el.textContent.trim().slice(0,22),wb:cs.wordBreak});});
+ // A TABLE THAT NEEDS A SIDEWAYS GESTURE ON A PHONE. This site's answer to a wide
+ // comparison table at phone width is to restack it as cards (.ba-table/.td-table),
+ // never to park a column behind a scroll — a reader cannot know to look there. The
+ // rule exists because removing word-break from td/th on 2026-09-12 released
+ // patterns/ml-explainability's four-column table to its natural 434px inside a 342px
+ // wrapper, and the whole "Best For" column went off-screen. contrast-audit caught it
+ // (six cells painting no ink); every rule above passed it, because the PAGE does not
+ // overflow — the wrapper scrolls. Only at phone widths: at 768 and up the scroll is
+ // the right affordance and is exempt above.
+ const tb=vw<=420?[...d.querySelectorAll('table')].filter(t=>{
+   const p=t.parentElement; return p&&p.scrollWidth>p.clientWidth+1;
+  }).map(t=>({c:('table.'+((t.className+'').trim().split(/\s+/)[0]||'')).slice(0,34),
+   need:t.parentElement.scrollWidth,got:t.parentElement.clientWidth})):[];
+ document.title='R:'+JSON.stringify({vw,ox:ox,bad:out.slice(0,6),tight:tight.slice(0,5),
+   squeeze:sq.slice(0,5),split:sp.slice(0,5),tscroll:tb.slice(0,3)});
 }catch(e){document.title='R:{"err":"'+String(e).slice(0,90)+'"}'}},2600);};
 </script></body></html>"""
 fails=0
@@ -90,9 +133,12 @@ for pg in PAGES:
     except Exception as e: d={"err":str(e)[:80]}
     finally:
         if os.path.exists("__ov.html"): os.unlink("__ov.html")
-    if d.get("err") or d.get("bad") or d.get("tight") or d.get("ox",0)>2:
+    if d.get("err") or d.get("bad") or d.get("tight") or d.get("ox",0)>2 or d.get("squeeze") or d.get("split") or d.get("tscroll"):
         fails+=1; print(f"FAIL {pg} @{W}px  ox={d.get('ox')}  {d.get('err','')}")
         for b in d.get("bad",[]): print(f"       {b['c']:38} left={b['l']:>6} right={b['r']:>6} w={b['w']:>5} ml={b['ml']} {b['tf']}")
+        for q in d.get("squeeze",[]): print(f"       SQUEEZED {q['c']:29} {q['t']!r} needs {q['sw']}px in {q['cw']}px")
+        for q in d.get("split",[]):   print(f"       WORDBREAK {q['c']:28} {q['t']!r} computes word-break:{q['wb']} on prose")
+        for q in d.get("tscroll",[]): print(f"       TABLE-SCROLL {q['c']:25} needs {q['need']}px in {q['got']}px — restack it, do not hide a column")
         for t in d.get("tight",[]): print(f"       section '{t['sec']}' — first text only {t['gap']}px from its own top edge")
     else: print(f"ok   {pg}")
 print(f"\n{fails} page(s) with content escaping the viewport at {W}px.")
