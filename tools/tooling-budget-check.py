@@ -194,7 +194,16 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # standing regression for the exact false failure (#1A0D08 on #F67E99, 7.57:1,
 # reported as 2.49:1). audit() now names its four failure modes instead of returning
 # None for all of them, so 'bad-camera' can exit 2 while a dead server exits 3.
-CEILING = 13_264
+# 2026-09-11: 13_264 -> 13_400. What the 127 lines bought: tools/build-captions.py,
+# which authored 216 WebVTT cues across nine narrated videos from the build data
+# already in portfolio-sources — closing a WCAG 2.1 SC 1.2.2 failure at LEVEL A
+# that had shipped on every video on the site. Nothing was transcribed: cue text
+# is the narration script, cue timing is each sentence's own measured bounds, and
+# the zero offset was established by decoding the audio and finding the first
+# sample above a silence floor rather than by assuming it. 26 lines of headroom
+# left, which is the same order as the 17 this replaced — the next addition has
+# to justify itself too.
+CEILING = 13_400
 
 
 def loc(paths):

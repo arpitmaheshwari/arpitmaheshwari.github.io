@@ -65,6 +65,19 @@
    "note": "ci-always: runs in canon-gate.yml, which has NO paths filter, so a push that touches only prose or a tool is still checked. contrast-gate.yml is paths-filtered."
   },
   {
+   "id": "captions-fresh",
+   "cmd": [
+    "python3",
+    "tools/build-captions.py",
+    "--check"
+   ],
+   "stages": [
+    "pre-push",
+    "ci-always"
+   ],
+   "note": "Nine narrated videos shipped with no <track> at all \u2014 WCAG 2.1 SC 1.2.2 at level A \u2014 until 2026-09-11. The captions are GENERATED from portfolio-sources/video/build*/{durations,seg-NN-bounds}.json, so the failure mode now is drift: a re-recorded segment changes the script and the timings while the .vtt on disk keeps the old ones, and a caption that disagrees with the audio is worse than none. Calibrated by planting an edited cue and watching it go red. ci-always because the sources live outside the paths filter."
+  },
+  {
    "id": "case-surface-inventory",
    "cmd": [
     "python3",

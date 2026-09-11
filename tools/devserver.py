@@ -10,6 +10,11 @@ import sys, os
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
 class NoCache(SimpleHTTPRequestHandler):
+    # Python's map has no .vtt, so captions were served as application/octet-stream.
+    # Chrome parses them anyway; the HTML spec says a <track> resource must be
+    # text/vtt, and stricter engines have refused the wrong type — so testing
+    # against octet-stream would have proved nothing about a real host.
+    extensions_map = {**SimpleHTTPRequestHandler.extensions_map, '.vtt': 'text/vtt'}
     def end_headers(self):
         self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
         self.send_header('Pragma', 'no-cache')
