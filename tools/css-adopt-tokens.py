@@ -153,6 +153,9 @@ LITERALS = {
     # the menu bar is a bookend surface with the page showing through
     'rgba(10,10,10,.6)': 'MIX:--surface-page:60', 'rgba(10,10,10,.92)': 'MIX:--surface-page:92',
     'rgba(10,10,10,0.97)': 'MIX:--surface-page:97',
+    # the ember nav and its drawer: the page ground showing through, on whichever ground
+    'rgba(18,11,20,.97)': 'MIX:--surface-page:97', 'rgba(18,11,20,.92)': 'MIX:--surface-page:92',
+    'rgba(18,11,20,.72)': 'MIX:--surface-page:72',
 }
 ALPHA_INK = re.compile(r'rgba\((?:245,237,230|242,237,228|245,237,232),(0?\.\d+)\)')
 LIFT = re.compile(r'rgba\(0,0,0,0?\.\d+\)')

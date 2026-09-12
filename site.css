@@ -1789,7 +1789,7 @@ body::before{display:none}
 /* ...and the nav dissolves into the page instead of ending in a hard 1px line. Same call.
    Specificity note: this beats styles.css `#nav.scrolled` (1,1,1 vs 1,1,0), so it governs
    both the resting and the scrolled state — checked, not assumed. */
-#nav{background:linear-gradient(180deg,rgba(18,11,20,.92),rgba(18,11,20,.72));backdrop-filter:blur(10px);border-bottom:0}
+#nav{background:linear-gradient(180deg,color-mix(in srgb, var(--surface-page) 92%, transparent),color-mix(in srgb, var(--surface-page) 72%, transparent));backdrop-filter:blur(10px);border-bottom:0}
 /*
    /fit/ was hand-written and got none, so its logo fell back to intrinsic size (45px) and
    made that one nav 1px taller than the other 42. Sized here instead, so the nav is a
@@ -2360,7 +2360,7 @@ body[class*="p-case-studies"] .framed{max-width:76ch}
 (0,1,0), so the drawer was permanently open: the toggle fired correctly
    (class + aria both flipped, measured) but nothing ever hid. Restore the
    drawer behaviour at the classic breakpoint. */
-@media (max-width:1100px){body.p-home .nav-links{display:none;flex-direction:column;align-items:stretch;position:fixed;top:64px;left:0;right:0;background:rgba(18,11,20,.97);padding:32px 24px;gap:24px;border-bottom:1px solid var(--border-strong);z-index:99}
+@media (max-width:1100px){body.p-home .nav-links{display:none;flex-direction:column;align-items:stretch;position:fixed;top:64px;left:0;right:0;background:color-mix(in srgb, var(--surface-page) 97%, transparent);padding:32px 24px;gap:24px;border-bottom:1px solid var(--border-strong);z-index:99}
 body.p-home .nav-links.nav-open{display:flex}}
 /* ================================================================
    GESTALT PASS — 52 measured findings, independently re-verified,
@@ -6774,7 +6774,4 @@ a.cta-quiet:hover, button.cta-quiet:hover, .cta-quiet:hover { color:var(--text-b
 .nav-cta:hover { transform:translateY(-2px); }
 @media (prefers-reduced-motion:reduce) { .nav-cta:hover { transform:none; } }
 
-}
-.zz-parse-canary-a{color:red
-.zz-parse-canary-b{color:blue}
 }
