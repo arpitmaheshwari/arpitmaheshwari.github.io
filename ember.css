@@ -5020,28 +5020,69 @@ html[data-theme="ember"] body.p-home :is(.receipts,.work,.who,.contract,.aiwork,
    separate decision about a live page. (Lesson 10: a dead selector beside a live one
    is worse than dead code, because nobody can see which is which.) */
 
-/* the film card is a screen and keeps the dark theme whole — the o2 pilot's rule,
-   which was scoped to that page. The homepage carries .vg cards too, and without
-   this its labels took A1's paper ink onto their own dark ground at 1.46:1. The
-   alias --a is re-declared here for the same reason it was there: it resolves at
-   .vg-hero, above the card. */
+/* ============================================================================
+   THE INSTRUMENT PANELS, REDRAWN FOR PAPER. Arpit's call after seeing the first
+   attempt: seven .vg cards given an explicit dark ground read as heavy slabs on
+   cream, and the work grid became a row of black rectangles.
+   ----------------------------------------------------------------------------
+   WHY A DARK GROUND WAS THE WRONG ANSWER. These are not screenshots. The comment
+   at line ~3958 calls .vg "the instrument shell" — they are Arpit's own
+   diagrammatic instruments, in his own palette, not reconstructions of somebody
+   else's product. The reconstruction plates earn a dark chrome bar because they
+   are quoting a client's UI; an instrument does not. The asset audit's rule for
+   this class was never "keep it dark" — it was the CHART rule: on paper there is
+   nothing behind a bar, so a bar needs a visible track.
+   WHAT THE FAMILY ACTUALLY NEEDED. 60 rules carry a colour and all but sixteen
+   already use tokens. The sixteen are cream-at-low-alpha surfaces that only exist
+   because the ground is dark: the shell, the header rule, five bar tracks, four
+   section rules, two chip surfaces, a shimmer, a striped "no bar", and one flat
+   #191021. Every one is translated to ink below; nothing else in the family moves.
+   THE INTERIOR IS SOLVED, NOT PICKED. #F8F3E9 is the page paper lifted 30% toward
+   white: 1.04:1 against the page, so the card is a distinct surface, and the
+   reading ink lands at 11.12:1 — inside the 9-12 band A1 was chosen for. The
+   plates' own #F4F5F7 was tried first and rejected: it puts their #16181D ink at
+   16.28:1, which is the glare number this palette exists to avoid. The card
+   becomes an object by its EDGE — the solved --border #847A6A, 3.66:1 against the
+   page — rather than by changing hue, so it stays inside the palette.
+   ============================================================================ */
 html[data-theme="ember"] body.p-home .vg{
-  /* AND IT NEEDS ITS OWN GROUND. Only .vg-hero .vg paints a background; a .vg inside
-     .bcard is transparent and relied on the dark PAGE showing through. On paper it
-     showed paper, and its (correctly light) ink went to 1.10-1.19:1 — 9 labels of the
-     AdTech plan card. A component that borrows its ground from the page cannot
-     survive the page changing colour, which is the whole lesson of this pilot in one
-     rule. */
-  background:linear-gradient(180deg,color-mix(in oklab,#FF8A5C 7%,#1B1320),#1B1320);
-  border-radius:12px;
+  background:#F8F3E9;
+  border:1px solid #847A6A;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55);
+  /* the alias is re-declared here because it resolves at .vg-hero, one level up —
+     the lesson the o2 pilot cost five iterations to find */
   --a:var(--ember);
-  --bg:#120B14; --bg-soft:#1B1320; --bg-card:#241830; --card:#241830;
-  --ink:#F5EDE6; --mut:rgba(245,237,230,.76); --dim:rgba(245,237,230,.62);
-  --ink-muted:rgba(245,237,230,.76); --ink-dim:rgba(245,237,230,.62);
-  --border:rgba(245,237,230,.37); --line:rgba(245,237,230,.37);
-  --ember:#FF8A5C; --copper:#FF8A5C; --violet:#E86BFF; --amber:#FFC46B; --rose:#FF7AA8;
-  --gold:#FFC46B; --gold-dark:#C98F3F; --goldA:#FFC46B;
-  --link:#E86BFF; --link-hover:#F2A3FF; --heat:#A96BFF; --heat2:#E86BFF}
+  --ink:#3F3322; --mut:#584E3C; --dim:#5F5648;
+  --ink-muted:#584E3C; --ink-dim:#5F5648;
+  --ember:#B33300; --copper:#B33300; --violet:#A500C4;
+  --amber:#7D4B00; --rose:#C30044; --gold:#7D4B00}
+/* the header is a ruled strip now, not a lift */
+html[data-theme="ember"] body.p-home .vg .vg-hd{border-bottom-color:rgba(63,51,34,.20)}
+/* EVERY BAR GETS A TRACK. On the dark field an unfilled bar read as absence; on
+   paper there is nothing behind it, so the groove has to be drawn. 1.21:1 against
+   the interior — visible as a channel, quiet enough not to read as a filled bar. */
+html[data-theme="ember"] body.p-home .vg :is(.vg-met s,.vg-sig span,.vg-conf span,
+  .vg-allows span){background:rgba(63,51,34,.11)}
+/* the sweep that a resolving value comes out of: light on dark, ink on paper */
+html[data-theme="ember"] body.p-home .vg .vg-met s::after{
+  background:linear-gradient(90deg,transparent,rgba(63,51,34,.16),transparent)}
+/* the section rules */
+html[data-theme="ember"] body.p-home .vg :is(.vg-verdict,.vg-note,.vg-after,.vg-bill){
+  border-top-color:rgba(63,51,34,.18)}
+/* the raised chips — a platform, a row label, a route */
+html[data-theme="ember"] body.p-home .vg :is(.vg-row b,.vg-plats li){
+  border-color:rgba(63,51,34,.22); background:rgba(63,51,34,.045)}
+/* the one flat dark literal in the family (#191021, which read 1.46:1 on paper) */
+html[data-theme="ember"] body.p-home .vg .vg-spine span{
+  background:#EFE8DC; color:var(--ink)}
+/* "no bar" is an ABSENCE, and on paper an absence is drawn in ink, not in light */
+html[data-theme="ember"] body.p-home .vg .vg-allows .nobar span{
+  background:repeating-linear-gradient(90deg,rgba(63,51,34,.17) 0 3px,transparent 3px 7px)}
+/* and the hero-mounted instrument keeps its own ground rather than the dark
+   gradient cast from --bg-soft, which on paper resolved to cream-on-cream */
+html[data-theme="ember"] body.p-home .vg-hero .vg{
+  background:#F8F3E9}
+
 /* one more light-ink literal, the same class as the prose one: ember.css:1531 sets
    .voices .lede to rgba(245,237,230,.76). On paper it measured 1.00:1 — ink and
    ground the same colour, which is the signature reading for this mistake. */
