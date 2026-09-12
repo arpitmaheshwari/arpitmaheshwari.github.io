@@ -27,7 +27,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <link rel="stylesheet" href="../amber.css?v=98ff7c0c">
-<link rel="stylesheet" href="../site.css?v=2b2020bd">
+<link rel="stylesheet" href="../site.css?v=41a4e788">
 
 <script defer src="../analytics.js?v=4f9aa0a0"></script>
 </head>
@@ -104,27 +104,27 @@
       <p class="eyebrow">Decisions</p>
       <h2 class="section-title">Five choices, and what each one cost</h2>
 
-      <div class="td-block xi-lab-teardown-005">
+      <div class="td-block xi-lab-teardown-005" data-tint>
         <h3>No build step, and therefore no build to break</h3>
-        <div class="lab-body">
+        <div class="lab-body" data-tint>
           <p>There is no bundler, no transpiler, no CI pipeline. A file I edit is the file the browser receives. The benefit is that this site cannot rot: no dependency will publish a breaking major, and nothing in it needs a lockfile to reproduce in three years.</p>
           <p>One qualification, added when the nav and footer became shared: they now live in <span class="td-inline">partials/</span> and a script stamps them into every page. Nothing runs at deploy &mdash; GitHub Pages still serves the committed file, and the file in the repo is the file you receive. But there is a generator between editing a partial and committing, and cache versions are now content hashes it computes rather than numbers I bump by hand. Before that, the nav existed in 37 copies which had all quietly diverged.</p>
           <p><strong>What it costs:</strong> no tree-shaking, no automatic minification, and cache-busting done by hand — you can see the manual query strings, <span class="td-inline">styles.css?v=1ac23489</span>, in the source of every page. On a site of this size that is the right trade. On a product it would not be, and I would not defend it there.</p>
         </div>
       </div>
 
-      <div class="td-block">
+      <div class="td-block" data-tint>
         <h3>The stylesheet is modular, on native cascade layers</h3>
-        <div class="lab-body">
+        <div class="lab-body" data-tint>
           <p>Priority is declared once, at the top of the file, in one line: <span class="td-inline">@layer base, utilities;</span>. A rule in a later layer wins outright, whatever its specificity, so the cascade is something you read rather than something you reverse-engineer. Base holds the system and the theme; utilities holds the single-purpose classes that have to sit above both.</p>
           <p>It is plain CSS. No preprocessor, no framework, no naming convention borrowed from a build tool &mdash; <span class="td-inline">@layer</span> has been in every major browser since 2022, and it replaces the thing most stylesheets use instead, which is volume.</p>
           <p>There is no <span class="td-inline">!important</span> in the stylesheet. A declaration marked important is not claiming importance, it is claiming precedence over some other rule &mdash; which is the thing a layer states outright &mdash; so those declarations sit in a layer named <span class="td-inline">emphasis</span> instead of shouting from wherever they happened to be written.</p>
           <p><strong>What it costs:</strong> layers invert for <span class="td-inline">!important</span>, so if one is ever added back, an important declaration in an <em>earlier</em> layer will beat a later one &mdash; the reverse of the usual rule, and a trap worth knowing about. Splitting rules across layers also resolves one button two pixels wider on eleven pages; that was measured at 8&times; and accepted rather than discovered later. Both notes are at the top of the stylesheet, where the next person meets them before they meet the consequences.</p>
         </div>
       </div>
-      <div class="td-block">
+      <div class="td-block" data-tint>
         <h3>Fonts are served from this origin, not a third party</h3>
-        <div class="lab-body">
+        <div class="lab-body" data-tint>
           <p>Nine <span class="td-inline">woff2</span> files, latin subsets only, preloaded for the two faces that gate the first paint. No <span class="td-inline">preconnect</span>, no Google Fonts, no request leaving this domain for type. <span class="td-inline">font-display:swap</span> paints text immediately in the fallback and re-renders when the face arrives.</p>
           <p><strong>What it costs:</strong> nine files of my own to subset, preload and version by hand &mdash; and the gaps list below records that hand-bumped versions have been forgotten before.</p>
         </div>
@@ -135,17 +135,17 @@
 &lt;link rel="stylesheet" href="/fonts.css"&gt;</code></pre>
       </div>
 
-      <div class="td-block">
+      <div class="td-block" data-tint>
         <h3>One type scale, written down, enforced by refusal</h3>
-        <div class="lab-body">
+        <div class="lab-body" data-tint>
           <p>Every size on the classic site comes from twelve custom properties — <span class="td-inline">--fs-eyebrow</span> through <span class="td-inline">--fs-display-xl</span> — declared once in <span class="td-inline">styles.css</span> and documented in a 174-line spec in the repository. The rule in that file is one sentence: <strong>if a value isn’t in this file, it doesn’t ship.</strong> Roughly twenty earlier one-off sizes are listed explicitly as retired, so a stray <span class="td-inline">font-size: 17px</span> reads as a bug rather than a preference.</p>
           <p>Writing this page is what caught the drift described at the bottom of it.</p>
         </div>
       </div>
 
-      <div class="td-block">
+      <div class="td-block" data-tint>
         <h3>The documents are the same HTML, printed</h3>
-        <div class="lab-body">
+        <div class="lab-body" data-tint>
           <p>The portfolio PDF and the résumé are not designed twice. They are HTML pages with an <span class="td-inline">@page</span> rule and millimetre units, printed to PDF by Chrome — which is why a wording change reaches the PDF in one step. The ATS-readable <span class="td-inline">.docx</span> is generated by a 107-line Node script using the <span class="td-inline">docx</span> library: the only npm dependency anywhere near this project, and it is offline tooling that never ships to a browser.</p>
         </div>
       </div>
@@ -157,7 +157,7 @@
     <div class="lab-wrap">
       <p class="eyebrow">One honest exception</p>
       <h2 class="section-title">The book view does use React</h2>
-      <div class="lab-body">
+      <div class="lab-body" data-tint>
         <p>“Zero dependencies” is true of the classic site you are reading and false of <a class="xi-lab-teardown-006" href="../book/">the book edition</a>, which is a React application — around 120 KB of my own code plus React and React DOM, <strong>self-hosted from the repository rather than a CDN</strong>, so the page still has no third-party runtime.</p>
         <p>Two views of one portfolio, built two ways, was a deliberate exercise: the classic site proves I can work without a framework, and the book proves I can work with one. It also means I have opinions about both that came from shipping, not reading.</p>
       </div>

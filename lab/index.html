@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../amber.css?v=98ff7c0c">
-<link rel="stylesheet" href="../site.css?v=2b2020bd">
+<link rel="stylesheet" href="../site.css?v=41a4e788">
 
 <script defer src="../analytics.js?v=4f9aa0a0"></script>
 </head>
@@ -108,7 +108,7 @@
     <div class="lab-wrap">
       <p class="eyebrow">The system I leave behind</p>
       <h2 class="section-title">A design system a machine can read is one that actually gets applied</h2>
-      <div class="lab-body">
+      <div class="lab-body" data-tint>
         <p>Six products at Talon had grown one at a time and looked like six companies had made them &mdash; a problem for a company selling an integrated platform. I introduced a design system across the line, so Plato, Ada and Atlas read as rooms of one building. Then I encoded it, so it stops depending on who remembers it.</p>
         <dl class="ev-tiers">
           <dt>One family</dt>
@@ -152,7 +152,7 @@
         </div>
       </div>
 
-      <div class="lab-body">
+      <div class="lab-body" data-tint>
         <p>The public one is MIT, and its reference page runs that same audit on itself &mdash;
            failures included.</p>
         <pre class="lab-code"><code>/plugin marketplace add arpitmaheshwari/ember-design-system
@@ -170,7 +170,7 @@
     <div class="lab-wrap">
       <p class="eyebrow">Why a lab at all</p>
       <h2 class="section-title">A principle with no failing state is a preference</h2>
-      <div class="lab-body">
+      <div class="lab-body" data-tint>
         <p>The eight patterns in <a class="xi-lab-005" href="../patterns/">the pattern library</a> came out of production work, and for years they lived where design principles usually live: in slides, in review comments, in my head. Reasonable people agreed with all of them and then shipped the naked confidence score anyway — because a principle you can nod at costs nothing to ignore.</p>
         <p>Written as code, the same rules acquire a failing state. <code>decide()</code> reports <code>review-without-reasons</code> as a violation rather than a suggestion. <code>calibrate()</code> returns <code>insufficient-data</code> instead of a flattering number when the sample is thin. <code>trustlint</code> refuses to score truthfulness at all, and says why in its own output.</p>
         <p>That is what The Lab is for: taking judgments I keep making in review and giving them somewhere to fail, so they can run without me in the room.</p>
@@ -196,7 +196,7 @@
     <div class="lab-wrap">
       <p class="eyebrow">The evidence boundary</p>
       <h2 class="section-title">These prove less than they look like they prove</h2>
-      <div class="lab-body">
+      <div class="lab-body" data-tint>
         <p>Three different things get called evidence, and only the first one lives on this page:</p>
         <dl class="ev-tiers">
           <dt>Implementation</dt>
@@ -269,8 +269,8 @@ document.addEventListener('click', (e) => {
    drift from the system the way a screenshot would. Alpha is composited against the real ground
    before the ratio is taken; a translucent ink is not a colour until you do that. */
 (function(){
-  var heats=[['--ember','Ember','action, emphasis'],['--violet','Violet','contrast within a set'],
-              ['--amber','Amber','links, kickers, CTAs'],['--rose','Rose','the fourth voice']];
+  var heats=[['--acc-copper','Ember','action, emphasis'],['--acc-violet','Violet','contrast within a set'],
+              ['--acc-amber','Amber','links, kickers, CTAs'],['--acc-rose','Rose','the fourth voice']];
   var ul=document.getElementById('dsg-heats'); if(!ul) return;
   function parse(c){var m=c.match(/rgba?\(([^)]+)\)/);if(!m)return null;
     var p=m[1].split(',').map(parseFloat);return {r:p[0],g:p[1],b:p[2],a:p.length>3?p[3]:1};}
@@ -282,11 +282,11 @@ document.addEventListener('click', (e) => {
     return (hi+0.05)/(lo+0.05);}
   function tok(name){var p=document.createElement('span');p.style.color='var('+name+')';
     document.body.appendChild(p);var c=parse(getComputedStyle(p).color);p.remove();return c;}
-  // Measured against --bg AS RESOLVED ON THIS PAGE. That is #1B1320 here, while the published
+  // Measured against --surface-page AS RESOLVED ON THIS PAGE. That is #1B1320 here, while the published
   // skill quotes its ratios against #120B14 — so ember reads 8.3 here and 8.0 there. Both are
   // correct; they are different grounds. The fix is to SAY which ground, not to force the
   // numbers to agree, because a ratio without its ground is the thing this system argues against.
-  var ground=tok('--bg')||parse(getComputedStyle(document.body).backgroundColor)||{r:18,g:11,b:20,a:1};
+  var ground=tok('--surface-page')||parse(getComputedStyle(document.body).backgroundColor)||{r:18,g:11,b:20,a:1};
   function hex(c){return '#'+[c.r,c.g,c.b].map(function(x){
     return ('0'+Math.round(x).toString(16)).slice(-2).toUpperCase();}).join('');}
   heats.forEach(function(h){

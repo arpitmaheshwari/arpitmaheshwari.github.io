@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
-"""Fail if any page still PAINTS a colour from the retired classic palette
-while the Ember theme is active.
+"""Fail if any page still PAINTS a colour from a RETIRED palette.
 
-This is the answer to "how can I be confident the port is complete?" — it does
-not read CSS or count classes, it reads the colour each element actually
-renders, so a component Ember never restyled shows up as a hard failure.
+Three palettes have been retired on this site: the 2026-07 classic (slate inks, dated
+gold), the ember dark theme (plum grounds, the four heats, the cream ink) and, on
+2026-09-12, every literal that the amber system replaced with a role. A colour from
+any of them rendering anywhere outside a reconstruction plate or a paper object is a
+rule that never got ported — this reads the colour each element actually renders, so
+a component no stylesheet restyled shows up as a hard failure rather than a hunch.
+
+The reconstruction plates (.plA-… .recon, the paper receipts, the sticky notes) quote
+somebody else's product or are objects; they keep their own palette and are exempt by
+class. Everything else takes the system's roles, on paper AND on a bookend.
 Self-calibrating: plants a known remnant and requires the check to go red.
 """
 import sys as _gl_s, os as _gl_o
@@ -33,16 +39,28 @@ from cdp import NO_TRACKING_FLAG
 
 CH = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 # classic-theme values that must never render under ember
-RETIRED = {"#515863":"slate ink","#e3e6ea":"slate line","#16181d":"slate bg",
-  "#0e7a5f":"classic green","#0e6e56":"classic green dk","#7e5a14":"dark gold",
-  "#7a5410":"dark gold","#d4a85e":"muted gold","#8b93a1":"slate dim",
-  "#464c56":"slate 2","#3a3f48":"slate 3","#2e323a":"slate 4","#22252b":"slate 5",
-  "#f4f5f7":"slate paper"}
+RETIRED = {
+  # classic (2026-07)
+  "#515863":"slate ink","#e3e6ea":"slate line","#16181d":"slate bg","#0e7a5f":"classic green",
+  "#0e6e56":"classic green dk","#7e5a14":"dark gold","#7a5410":"dark gold","#d4a85e":"muted gold",
+  "#8b93a1":"slate dim","#464c56":"slate 2","#3a3f48":"slate 3","#2e323a":"slate 4","#22252b":"slate 5",
+  "#f4f5f7":"slate paper","#0a0a0a":"classic bg","#111111":"classic bg-soft","#141414":"classic card",
+  "#e8c88a":"gold light","#a07835":"gold dark","#f2ede4":"classic ink","#4a6b5c":"classic copper",
+  "#6b8a7c":"classic copper lt","#5ed48e":"classic ok","#e0736b":"classic err",
+  # ember (2026-08 .. 2026-09-12)
+  "#120b14":"plum bg","#1b1320":"plum soft","#241830":"plum card","#1e1022":"plum field",
+  "#f5ede6":"ember ink","#ff8a5c":"heat ember","#ff6a3d":"heat adtech","#e86bff":"heat violet",
+  "#c64bff":"heat fintech","#a96bff":"heat o2","#ffc46b":"heat amber","#ff7aa8":"heat rose",
+  "#ff5fa2":"heat ptc","#c98f3f":"ember gold-dark","#ffd28a":"ember gold-light","#ffb08e":"heat2",
+  "#ffe0a8":"heat2 amber","#ff9dc6":"heat2 rose","#7fcf9e":"ember ok","#ff9f8a":"ember cannot",
+  "#1a0d08":"ember cta ink","#f1e8d6":"cream act bg","#eae0ca":"cream act card","#e6dcc3":"contract card",
+  "#20180c":"cream act ink","#221c10":"contract ink","#635848":"cream act muted","#5d5442":"contract muted",
+  "#a93a24":"cream red"}
 # elements inside a deliberately cream/paper artifact keep the classic palette
 # artifacts that DEPICT the real product keep the paper palette on purpose:
 # the plate mockups (.plA-*…), the paper figures, the boarding-pass card.
 EXEMPT_ANCESTORS = ["fig-paper","recon","pass","plate","paper","mock","artifact","browser",
-  "pla-","plf-","plm-","plo-","plp-","plv-"]
+  "pla-","plf-","plm-","plo-","plp-","plv-","stick","rcpt-box","psc","lug","env","qc"]
 
 PROBE = """<!doctype html><html><body><script>
 const RET=%s, EX=%s;
@@ -75,14 +93,8 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
   if(exempt(el))return;
   ['color','backgroundColor','borderTopColor','borderLeftColor'].forEach(p=>{
    const h=hex(cs[p]); if(h&&RET[h]){
-    // Ink on a light ground is the paper palette doing its job, not a remnant — and
-    // that is as true of a BORDER as of text. This test used to read p==='color', so a
-    // 3px border-top in the paper gold #7E5A14 on the cream .contract section of the
-    // homepage was reported as a retired-palette remnant on 2026-09-04. It is the
-    // documented, contrast-checked correct value there (5.62:1 on cream). The rule is
-    // the surface, not the property: only backgroundColor is exempt from the exemption,
-    // because there the element IS the ground rather than sitting on one.
-    if(p!=='backgroundColor'&&ground(el)>0.5)return;
+    // (2026-09-12) the light-ground exemption that lived here is gone: under amber the page
+    // IS light, so a retired heat on paper is the remnant this gate exists to find.
     // border colours only count when the border is actually drawn
     if(p.startsWith('border')&&parseFloat(cs[p.replace('Color','Width')])===0)return;
     const k=h+'|'+p+'|'+(el.tagName+'.'+((el.className+'').trim().split(/\\s+/)[0]||''));
@@ -112,7 +124,7 @@ def calibrate():
         red = bool(scan("index.html"))
     if not red:
         print("[calibration] FAIL — planted remnant #515863 on h1 was NOT caught.\n             Either the check is blind or the browser served a cached ember.css."); sys.exit(2)
-    print("[calibration] PASS — planted classic-palette remnant caught")
+    print("[calibration] PASS — planted retired-palette remnant caught")
 
 if __name__ == "__main__":
     pages = sys.argv[1:]
@@ -131,5 +143,5 @@ if __name__ == "__main__":
                 print(f"       {RETIRED.get(h,h):14} {h}  {prop:16} ×{n:<4} {who}")
         else:
             print(f"ok   {pg}")
-    print(f"\n{bad} page(s) still painting the retired classic palette under Ember.")
+    print(f"\n{bad} page(s) still painting a retired palette.")
     sys.exit(1 if bad else 0)

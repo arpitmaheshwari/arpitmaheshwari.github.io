@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../amber.css?v=98ff7c0c">
-<link rel="stylesheet" href="../site.css?v=2b2020bd">
+<link rel="stylesheet" href="../site.css?v=41a4e788">
 
 <script defer src="../analytics.js?v=4f9aa0a0"></script>
 </head>
@@ -228,15 +228,15 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
       <h2 class="section-title">What overrides what</h2>
       <p class="lab-lede xi-lab-loop-005">The module encodes a precedence — when two rules disagree, one is written to win. That order is the design; the functions just enforce it.</p>
       <div class="rcpt-box xi-lab-loop-010">
-        <div class="rcpt-r xi-lab-loop-011">
+        <div class="rcpt-r xi-lab-loop-011" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">Reversibility &gt; confidence</div>
           <div class="t-ui xi-lab-loop-013">If the action cannot be undone, the model does not get to auto-act at any score &mdash; <code class="t-code">decide()</code> demotes act to review.</div>
         </div>
-        <div class="rcpt-r">
+        <div class="rcpt-r" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">Insufficient data &gt; a flattering number</div>
           <div class="t-ui xi-lab-loop-013">Below thirty observations <code class="t-code">calibrate()</code> refuses a verdict &mdash; a track record you cannot support is just another confident claim.</div>
         </div>
-        <div class="rcpt-r xi-lab-loop-011">
+        <div class="rcpt-r xi-lab-loop-011" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">Humility &gt; fluency</div>
           <div class="t-ui xi-lab-loop-013"><code class="t-code">abstain()</code> defaults fail toward refusal: every claim carries a source, two corroborate, a clear majority agree &mdash; or the system says what is missing instead of speaking.</div>
         </div>
@@ -248,19 +248,19 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
 
       <h2 class="section-title xi-lab-loop-015">Key decisions, and what each one buys</h2>
       <div class="rcpt-box xi-lab-loop-016">
-        <div class="rcpt-r xi-lab-loop-011">
+        <div class="rcpt-r xi-lab-loop-011" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">Zero dependencies</div>
           <div class="t-ui xi-lab-loop-013">One standard ES module, no framework, no install step. Nothing here can rot when someone else publishes a breaking major.</div>
         </div>
-        <div class="rcpt-r">
+        <div class="rcpt-r" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">No UI shipped</div>
           <div class="t-ui xi-lab-loop-013">The visual layer is deliberately left to you &mdash; the verb matters more than the chip it ships in.</div>
         </div>
-        <div class="rcpt-r xi-lab-loop-011">
+        <div class="rcpt-r xi-lab-loop-011" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">Thresholds are options, not constants</div>
           <div class="t-ui xi-lab-loop-013">Where each band starts is a product decision someone owns and revisits &mdash; the code only enforces that the decision exists.</div>
         </div>
-        <div class="rcpt-r">
+        <div class="rcpt-r" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">Violations, not suggestions</div>
           <div class="t-ui xi-lab-loop-013"><code class="t-code">decide()</code> reports review-without-reasons as a violation. A principle has no failing state; a function does.</div>
         </div>
