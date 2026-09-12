@@ -6752,6 +6752,12 @@ body.p-home .labrow [data-ground="bookend"], body.p-home .labrow [data-tint]{--a
 body.p-home .qvoices [data-ground="bookend"], body.p-home .qvoices [data-tint]{--act:var(--acc-rose)}
 /* the display ink on a bookend: the warm white, not the reading grey */
 [data-ground="bookend"] :is(h1, .case-hero h1, .hero h1){color:var(--neutral-50)}
+/* Arpit, 2026-09-13: "#CFC4B4 is looking dull". On a dark ground the system's reading ink
+   is neutral-200 and everything below the headline shared it. Lift each ink one stop so the
+   hero reads in three levels: headline (50) · names and body (100) · quiet mono lines (200).
+   Contrast only rises (14.29 / 11.16:1). */
+[data-ground="bookend"] { --text-body:var(--neutral-100); --text-muted:var(--neutral-100); --text-faint:var(--neutral-200); }
+body.p-home .hero .cred-strip > div > b { color:var(--neutral-50); }
 /* /patterns/ — the rule block's meta ("Read the rule", the date) sat centred in the
    300px column beside a 66ch prose block: an element centred in leftover space. It is
    a metadata RAIL: it starts at the top of the prose and reads as a margin note. */
@@ -6841,16 +6847,22 @@ body.p-home .wl-lead .errata-block{max-width:none}
    Fill and face are the two decisions still open to Arpit (prototypes/amber-buttons.html);
    these two tokens are where his pick lands. */
 :root, [data-ground="bookend"], [data-tint] {
-  --cta-fill: var(--acc-copper);            /* F — Arpit, 2026-09-12: the copper fill; on a bookend copper-100 with dark ink */
+  --cta-fill: var(--acc-copper);            /* F — Arpit, 2026-09-12: the copper fill (copper-600, cream label on paper) */
   --cta-fill-hover: var(--cta-fill-hover-copper);
   --cta-face: var(--type-label);           /* D: the system's label face */
 }
+/* B — Arpit, 2026-09-13: on a dark ground the system's "read upward" rule had stepped the
+   fill to copper-100, a pastel that reads as disabled; hover went paler still. The bookend
+   now takes the bright copper (copper-500, dark label 4.49:1) and hover brightens. */
+[data-ground="bookend"] { --cta-fill: var(--copper-500); --cta-fill-hover: var(--copper-400); }
 /* a.cta/button.cta: (0,1,1), so a generic `body.p-home a{color:inherit}` (0,1,1) declared
    earlier can no longer strip the label — the button outranks element selectors, lesson 4. */
 a.cta, button.cta, .cta {
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  min-height:44px; padding:0 24px; box-sizing:border-box;
-  font:var(--cta-face); font-weight:600; line-height:1; letter-spacing:.02em; text-transform:none;
+  display:inline-flex; align-items:baseline; justify-content:center; gap:8px;
+  /* baseline, deliberately (lesson 7): the icon is an empty box whose baseline is its bottom
+     edge, so it sits ON the label's baseline as Arpit asked; nowrap keeps it one line. */
+  min-height:0; padding:14.5px 26px; box-sizing:border-box;   /* 15 label + 29 + 2 border = the 46px pill; padding centres it, so the baseline can align the icon */
+  font:var(--cta-face); font-size:15px; font-weight:600; line-height:1; letter-spacing:.02em; text-transform:none;
   white-space:nowrap; text-decoration:none; cursor:pointer;
   border:1px solid transparent; border-radius:var(--radius-pill);
   background:var(--cta-fill); color:var(--btn-fill-ink);
@@ -6860,15 +6872,15 @@ a.cta:hover, button.cta:hover, .cta:hover { background:var(--cta-fill-hover); co
 a.cta:focus-visible, button.cta:focus-visible, .cta:focus-visible { outline:2px solid var(--border-focus); outline-offset:3px; }
 .cta::before {
   content:""; flex:0 0 auto; display:block; background-color:currentColor;
-  --cta-icon-ar:1; --cta-ico:calc(1cap * 1.15);
+  --cta-icon-ar:1; --cta-ico:1cap;   /* solid glyphs sit cap-high on the baseline (Arpit, 2026-09-13) */
   height:var(--cta-ico); width:calc(var(--cta-ico) * var(--cta-icon-ar));
   -webkit-mask:var(--cta-icon) center/100% 100% no-repeat; mask:var(--cta-icon) center/100% 100% no-repeat;
 }
 .cta:not([class*="cta--"])::before, .cta--bare::before { display:none; }
-.cta--linkedin::before { --cta-icon-ar:1.0476; }
-.cta--doc::before { --cta-icon-ar:0.8182; }
-.cta--linkedin { --cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='1%201%2022%2021'%20fill='none'%20stroke='%23000'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M16%208a6%206%200%200%201%206%206v7h-4v-7a2%202%200%200%200-2-2%202%202%200%200%200-2%202v7h-4v-7a6%206%200%200%201%206-6z'/%3E%3Crect%20width='4'%20height='12'%20x='2'%20y='9'/%3E%3Ccircle%20cx='4'%20cy='4'%20r='2'/%3E%3C/svg%3E"); }
-.cta--doc { --cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='3%201%2018%2022'%20fill='none'%20stroke='%23000'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M15%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V7Z'/%3E%3Cpath%20d='M14%202v4a2%202%200%200%200%202%202h4'/%3E%3Cpath%20d='M10%209H8'/%3E%3Cpath%20d='M16%2013H8'/%3E%3Cpath%20d='M16%2017H8'/%3E%3C/svg%3E"); }
+.cta--linkedin::before { --cta-icon-ar:1; }
+.cta--doc::before { --cta-icon-ar:0.8; }
+.cta--linkedin { --cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M20.45%2020.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85%200-2.14%201.45-2.14%202.94v5.67H9.35V9h3.41v1.56h.05c.48-.9%201.64-1.85%203.37-1.85%203.6%200%204.27%202.37%204.27%205.46v6.28zM5.34%207.43a2.06%202.06%200%201%201%200-4.13%202.06%202.06%200%200%201%200%204.13zM7.12%2020.45H3.56V9h3.56v11.45zM22.22%200H1.77C.79%200%200%20.77%200%201.73v20.54C0%2023.23.79%2024%201.77%2024h20.45c.98%200%201.78-.77%201.78-1.73V1.73C24%20.77%2023.2%200%2022.22%200z'/%3E%3C/svg%3E"); }
+.cta--doc { --cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2020'%3E%3Cpath%20fill-rule='evenodd'%20d='M2%200h8l6%206v12a2%202%200%200%201-2%202H2a2%202%200%200%201-2-2V2a2%202%200%200%201%202-2zm7%201.5V7h5.5L9%201.5zM3.5%2010h9v1.5h-9zm0%203.5h9V15h-9z'/%3E%3C/svg%3E"); }
 a.cta--secondary, button.cta--secondary, .cta--secondary { background:none; border-color:var(--btn-line); color:var(--btn-line-ink); }
 a.cta--secondary:hover, button.cta--secondary:hover, .cta--secondary:hover { background:var(--ink-wash); color:var(--btn-line-ink); }
 a.cta-quiet, button.cta-quiet, .cta-quiet {
