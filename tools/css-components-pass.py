@@ -85,7 +85,8 @@ BUTTON = '''
 /* B — Arpit, 2026-09-13: on a dark ground the system's "read upward" rule had stepped the
    fill to copper-100, a pastel that reads as disabled; hover went paler still. The bookend
    now takes the bright copper (copper-500, dark label 4.49:1) and hover brightens. */
-[data-ground="bookend"] { --cta-fill: var(--copper-500); --cta-fill-hover: var(--copper-400); }
+[data-ground="bookend"] { --cta-fill: color-mix(in srgb, var(--copper-500) 90%, var(--copper-400)); --cta-fill-hover: var(--copper-400); }
+/* 90/10 toward copper-400: pure copper-500 under the dark label measured 4.48:1 in contrast-audit (the token note said 4.49); the mix reads 4.63:1 and is not a visible shift */
 /* a.cta/button.cta: (0,1,1), so a generic `body.p-home a{color:inherit}` (0,1,1) declared
    earlier can no longer strip the label — the button outranks element selectors, lesson 4. */
 a.cta, button.cta, .cta {
