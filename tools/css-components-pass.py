@@ -128,6 +128,9 @@ a.cta-quiet:hover, button.cta-quiet:hover, .cta-quiet:hover { color:var(--text-p
 # the button block goes at the END of the components layer, after every page rule
 # the button is the last word: END of the overrides layer, after the homepage's own
 # body.p-home a{color:inherit} (0,1,1), which would otherwise strip its label
+DEAD_RULES = [r'body\.p-home \.who \.meta\{[^}]*\}']   # 2026-09-13: Arpit — the remote/time-zone line in Act 02 repeated the hero eyebrow and the boarding pass; the element went, so does its rule
+for _pat in DEAD_RULES:   # positional edits below: remove text BEFORE measuring any position
+    out, _n = re.subn(_pat, '', out); assert _n == 1, ('dead rule not found once', _pat, _n)
 _blank = re.sub(r'/\*@@\d+@@\*/', lambda m: ' ' * len(m.group(0)), out)
 k = _blank.rindex('}')   # overrides' closing brace (comments are placeholders here)
 out = out[:k] + '\n' + BUTTON + '\n' + out[k:]
