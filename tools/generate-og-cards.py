@@ -50,10 +50,10 @@ REG = [
     # --- the last three hand-made cards, brought in 2026-08-30. Each keeps its own design.
     ("book-og.png", "", "", "", "", {"template": "assets/og-images/_book-og.template.html"}),
     ("lab-og.png", "THE LAB \u00b7 ZERO DEPENDENCIES \u00b7 MIT",
-     "Where the code is the deliverable.",
+     "The code is the deliverable. Run it.",
      "decide()  calibrate()  abstain()  disclose()  \u00b7  42/42 passing",
      "arpitmaheshwari.com/lab",
-     {"hero": "1", "em": "the deliverable.", "sub": "mono", "subem": "42/42 passing"}),
+     {"hero": "1", "em": "Run it.", "sub": "mono", "subem": "42/42 passing"}),
     ("screen-og.png", "HIRING \u00b7 BEFORE THE FIRST CALL",
      "The technical screen, pre-answered.",
      "Evals \u00b7 abstention \u00b7 calibration \u00b7 ownership \u2014 in writing, with receipts",

@@ -89,21 +89,22 @@ BUTTON = '''
 /* a.cta/button.cta: (0,1,1), so a generic `body.p-home a{color:inherit}` (0,1,1) declared
    earlier can no longer strip the label — the button outranks element selectors, lesson 4. */
 a.cta, button.cta, .cta {
-  display:inline-flex; align-items:baseline; justify-content:center; gap:8px;
-  /* baseline, deliberately (lesson 7): the icon is an empty box whose baseline is its bottom
-     edge, so it sits ON the label's baseline as Arpit asked; nowrap keeps it one line. */
-  min-height:0; padding:14.5px 26px; box-sizing:border-box;   /* 15 label + 29 + 2 border = the 46px pill; padding centres it, so the baseline can align the icon */
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  /* G3 — Arpit, 2026-09-13 ("linkedin icon is not legible"): a 1.35em solid glyph centred on
+     the label's x-height, and the pill lifts on hover. Chosen from three rendered directions. */
+  min-height:46px; padding:0 26px; box-sizing:border-box;   /* one 46px pill whether or not it carries a glyph; centre alignment does the rest */
   font:var(--cta-face); font-size:15px; font-weight:600; line-height:1; letter-spacing:.02em; text-transform:none;
   white-space:nowrap; text-decoration:none; cursor:pointer;
   border:1px solid transparent; border-radius:var(--radius-pill);
   background:var(--cta-fill); color:var(--btn-fill-ink);
-  transition:background var(--dur-quick) var(--ease-standard), color var(--dur-quick) var(--ease-standard);
+  transition:background var(--dur-quick) var(--ease-standard), color var(--dur-quick) var(--ease-standard), transform var(--dur-quick) var(--ease-standard), box-shadow var(--dur-quick) var(--ease-standard);
 }
-a.cta:hover, button.cta:hover, .cta:hover { background:var(--cta-fill-hover); color:var(--btn-fill-ink); filter:none; }
+a.cta:hover, button.cta:hover, .cta:hover { background:var(--cta-fill-hover); color:var(--btn-fill-ink); filter:none; transform:translateY(-2px); box-shadow:0 10px 24px -10px color-mix(in srgb, var(--copper-500) 70%, transparent); }
+@media (prefers-reduced-motion:reduce) { a.cta:hover, button.cta:hover, .cta:hover { transform:none; } }
 a.cta:focus-visible, button.cta:focus-visible, .cta:focus-visible { outline:2px solid var(--border-focus); outline-offset:3px; }
 .cta::before {
   content:""; flex:0 0 auto; display:block; background-color:currentColor;
-  --cta-icon-ar:1; --cta-ico:1cap;   /* solid glyphs sit cap-high on the baseline (Arpit, 2026-09-13) */
+  --cta-icon-ar:1; --cta-ico:1.35em;   /* G3: the glyph is legible at a glance — 20px beside a 15px label */
   height:var(--cta-ico); width:calc(var(--cta-ico) * var(--cta-icon-ar));
   -webkit-mask:var(--cta-icon) center/100% 100% no-repeat; mask:var(--cta-icon) center/100% 100% no-repeat;
 }
@@ -113,7 +114,7 @@ a.cta:focus-visible, button.cta:focus-visible, .cta:focus-visible { outline:2px 
 .cta--linkedin { --cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M20.45%2020.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85%200-2.14%201.45-2.14%202.94v5.67H9.35V9h3.41v1.56h.05c.48-.9%201.64-1.85%203.37-1.85%203.6%200%204.27%202.37%204.27%205.46v6.28zM5.34%207.43a2.06%202.06%200%201%201%200-4.13%202.06%202.06%200%200%201%200%204.13zM7.12%2020.45H3.56V9h3.56v11.45zM22.22%200H1.77C.79%200%200%20.77%200%201.73v20.54C0%2023.23.79%2024%201.77%2024h20.45c.98%200%201.78-.77%201.78-1.73V1.73C24%20.77%2023.2%200%2022.22%200z'/%3E%3C/svg%3E"); }
 .cta--doc { --cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2020'%3E%3Cpath%20fill-rule='evenodd'%20d='M2%200h8l6%206v12a2%202%200%200%201-2%202H2a2%202%200%200%201-2-2V2a2%202%200%200%201%202-2zm7%201.5V7h5.5L9%201.5zM3.5%2010h9v1.5h-9zm0%203.5h9V15h-9z'/%3E%3C/svg%3E"); }
 a.cta--secondary, button.cta--secondary, .cta--secondary { background:none; border-color:var(--btn-line); color:var(--btn-line-ink); }
-a.cta--secondary:hover, button.cta--secondary:hover, .cta--secondary:hover { background:var(--ink-wash); color:var(--btn-line-ink); }
+a.cta--secondary:hover, button.cta--secondary:hover, .cta--secondary:hover { background:var(--ink-wash); color:var(--btn-line-ink); box-shadow:none; }
 a.cta-quiet, button.cta-quiet, .cta-quiet {
   display:inline-block; min-height:24px; padding:4px 0; border:0; background:none; border-radius:0;
   font:var(--type-label); font-weight:600; letter-spacing:.02em; color:var(--door-ink); text-decoration:none;
@@ -155,7 +156,12 @@ body.p-home .wrap > :first-child, .section > :first-child, .section-inner > :fir
 body.p-home .wrap > :last-child, .section > :last-child, .section-inner > :last-child, .lab-wrap > :last-child, .measure-c > :last-child { margin-bottom: 0; }   /* nor a last child to its bottom */
 main > :is([class]) > section { margin-bottom: var(--rhythm-chapter); }           /* case + pattern chapters (was 80 / 64, fixed) */
 .measure-c > section[class*="xi-case-studies-"] { padding-top: 24px; }           /* a ruled chapter: the line sits 24 above its heading (was 40) */
-main > :is([class]) > h2.section-title { margin-top: var(--rhythm-chapter); }     /* writing + resources chapters (was 48, fixed) */
+main > :is([class]) > h2.section-title { margin-top: var(--rhythm-chapter); }
+/* Arpit, 2026-09-13 (copy review, group B): a case chapter's spine label — The stakes / The test /
+   The mechanism / Falsifiable evidence — used to be glued to the heading with a colon, so the H2
+   read as a form field. It is now the chapter's eyebrow, same words, and the sentence stands alone.
+   The span declares every property it needs (lesson 11); it inherits nothing from the display face. */
+.section-title > .chapter-k { display:block; font-family:var(--ff-mono); font-size:var(--fs-eyebrow); font-weight:500; letter-spacing:.02em; line-height:1.5; color:var(--accent-text); margin:0 0 10px; text-transform:none; }     /* writing + resources chapters (was 48, fixed) */
 :is([class*="p-lab"], .p-fit) main > :is(section, header).section:not(.lab-hero) { padding-top: var(--rhythm-act); padding-bottom: var(--rhythm-act); }   /* Lab + Fit acts (was 88 fixed) */
 /* Arpit, 2026-09-13: "#CFC4B4 is looking dull". On a dark ground the system's reading ink
    is neutral-200 and everything below the headline shared it. Lift each ink one stop so the
