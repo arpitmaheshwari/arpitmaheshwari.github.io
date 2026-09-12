@@ -3034,9 +3034,26 @@ html[data-theme="ember"] .artalt{display:none}
      #463E33 (detail)   8.94:1 · 8.32:1        #5A3A1A (prevents) 8.69:1 · 8.09:1
      #7A5410 (eyebrow)  5.75:1 · 5.36:1        #8A3A1C (abstain)  6.61:1 · 6.15:1
      #5A4A2A (cost)     7.30:1 · 6.79:1
-   The plate's own accent, #C0512B, is NOT reused: it measures 4.01:1 on its own
-   paper and 3.73:1 on its cards, which is under AA. That is a real finding about
-   the SVGs themselves and it is not repeated here. */
+   The plate's own accent, #C0512B, is NOT reused here: it measures 4.01:1 on its
+   own paper and 3.73:1 on its cards.
+   2026-09-12, CHASED AND CLOSED: that was recorded as "a real finding about the
+   SVGs themselves". It is not one any more, and it is worth saying why so nobody
+   spends another afternoon on it. Graded all 410 <text> runs inside the 24
+   drawings against the shape each one actually sits on: ZERO now compute to
+   #C0512B. All four <text fill="#C0512B"> had since been given an inline
+   style="fill:…" (#76321A, #D97856), and in SVG a style attribute beats a
+   presentation attribute — so the fill attributes are dead weight, not live ink.
+   Where #C0512B survives is strokes and shape fills: arrows, connectors, rules,
+   node outlines, 56 of them. For a graphical object WCAG 1.4.11 asks 3:1, and
+   4.01:1 and 3.73:1 both clear it. Nothing to fix.
+   (Two readings did come back red and both were the probe, not the page: a
+   <path fill> whose BOUNDING BOX contains a label is not the ground painted
+   behind it — that gave exactly 1.00:1 on /process, whose real pair is #D4A85E
+   on #0A0A0A at 9.01:1 — and a label with no host shape fell through to the
+   svg's transparent background and got graded against black, where the true
+   pair is #494338 on #F4ECDA at 8.33:1.)
+   What IS live in these drawings is the SIZE of that text, which no gate had an
+   opinion about until tools/svg-text-size-check.py. See its docstring. */
 @media (max-width:999px){
   /* SCOPED TO THE ONES THAT HAVE A REPLACEMENT. The first version hid every
      .art-svg below 1000px while only fintech carried a typeset rendering — so

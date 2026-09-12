@@ -783,6 +783,14 @@
     "tools/balance-check.py"
    ],
    "manual_reason": "Reports 2 findings that were verified BY EYE on 2026-09-04 and are false positives: index.html and folio/index.html hero, and the 'who you'd be hiring' band, are staggered TWO-COLUMN compositions — prose left, the process film / Candidate Facts card right — and they render balanced at 1440 (prototypes/renders/hero-1440.png, chap-i-1440.png). The gate's unit is the paragraph: a column that starts BELOW the headline leaves the eyebrow and h1 with nothing level with them, so they read as one-sided. Widening the test to the section was tried and REJECTED — it let the gate's own planted 400px defect through, and a check that cannot fail is not evidence. Kept manual rather than weakened, so it never blocks CI on a reading a human has already overruled. Re-run it by hand after any layout change."
+  },
+  {
+   "id": "svg-text-size-check",
+   "cmd": [
+    "python3",
+    "tools/svg-text-size-check.py"
+   ],
+   "manual_reason": "Registered MANUAL, not pre-push, and the reason is the point: it currently reports 24 of 24 art diagrams — 586 labels between 8.13px and 12.23px effective against a 12.5px floor — so wiring it to a push would block every push on a decision nobody has taken yet. Measured 2026-09-12: the labels are set at 10-15 USER UNITS inside 1180- and 1280-unit viewBoxes that render at 976-1120px, a scale of 0.65 to 0.88. Raising the font-size alone cannot reach the floor at 1024px (it would need up to 1.94x), and a flat 12.5u target — the minimum that works at all — was simulated across 131 labels and overflows 7 boxes and collides 15 labels, because the layouts are hand-placed and the y coordinates do not move with the type. So the real options are a redraw of 24 diagrams or showing the typeset .artalt block at more widths, and both are Arpit's call on his own artwork. FLIPS TO pre-push the day that call is made and the drawings clear the floor. Until then it is the measurement, kept runnable, rather than a wish in a comment."
   }
  ]
 }

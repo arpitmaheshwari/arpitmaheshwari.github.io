@@ -282,7 +282,28 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #   * 14 in gates.json to declare it at pre-push + ci-always.
 #   * and 25 of the 214 are this note — which is why the first attempt at this
 #     number, 13_782, came in nine lines short of its own paragraph.
-CEILING = 13_792
+#
+# 2026-09-12 (third): 13_792 -> below. RETIREMENT AND FOLDING CHECKED, NEITHER AVAILABLE.
+#   * 213 in svg-text-size-check.py. The site enforces a 12.5px type floor in three
+#     gates and not one of them walks into an <svg>, so the 24 inlined art diagrams had
+#     never been measured. They set their labels at 10-15 USER UNITS inside 1180- and
+#     1280-unit viewBoxes rendered at 976-1120px: effective sizes 8.13px to 12.23px, all
+#     24 under the floor, 586 labels. contrast-audit grades the same glyphs and passes
+#     them — correctly, the ink is fine — which is the shape of a missing AXIS, not a
+#     broken check.
+#     THE FOLD CANDIDATE WAS contrast-audit, which already visits every one of these
+#     text nodes and could carry a size column in a dozen lines. Rejected for a reason
+#     worth keeping: contrast-audit is the instrument this repo treats as ground truth
+#     for pixels, it is 877 lines and the most load-bearing tool in here, and bolting an
+#     unrelated verdict onto it means every future change to the size rule risks the
+#     contrast rule. Separate axes, separate exit codes, separate blast radius.
+#     Registered MANUAL, not pre-push: it reports all 24 today and the fix is a design
+#     decision on Arpit's own artwork. A gate that blocks every push on a decision
+#     nobody has taken is how people learn to pass --no-verify.
+#   * 14 in gates.json to declare it and to say why it is manual.
+#   * the 18 lines closing the #C0512B finding are in ember.css, not tools/, and cost
+#     this budget nothing.
+CEILING = 14_040
 
 
 def loc(paths):
