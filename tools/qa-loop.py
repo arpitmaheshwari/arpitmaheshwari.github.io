@@ -48,9 +48,13 @@ def pipeline_running():
     return [l for l in ps.splitlines() if PIPELINE.search(l) and 'qa-loop' not in l]
 
 
+RECORDERS = ('.cssver.json',)   # files a gate itself rewrites as a record of the run — not a moving target
+
+
 def tree_state():
-    return subprocess.run(['git', 'status', '--porcelain'], cwd=ROOT, capture_output=True, text=True).stdout + \
-        subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT, capture_output=True, text=True).stdout
+    st = subprocess.run(['git', 'status', '--porcelain'], cwd=ROOT, capture_output=True, text=True).stdout
+    st = '\n'.join(l for l in st.splitlines() if not l.endswith(RECORDERS))
+    return st + subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT, capture_output=True, text=True).stdout
 
 
 def per_gate_from_runner(out):
