@@ -1443,7 +1443,7 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 :where(body.p-lab-eval) .lint-rule{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.02em;display:inline-block;padding:3px 8px;border-radius:2px;margin-bottom:8px}
 :where(body.p-lab-eval) .sev-high{background:var(--status-neg-bg);color:var(--status-negative)}
 :where(body.p-lab-eval) .sev-medium{background:var(--status-cau-bg);color:var(--status-caution)}
-:where(body.p-lab-eval) .sev-low{background:var(--ink-wash);color:var(--text-muted)}
+:where(body.p-lab-eval) .sev-low{background:var(--bar-track);color:var(--text-muted)}
 :where(body.p-lab-eval) .sev-info{background:rgba(94,212,142,0.13);color:var(--status-positive)}
 :where(body.p-lab-eval) .lint-excerpt{display:block;font-family:var(--ff-mono);font-size:var(--fs-caption);line-height:1.6;color:var(--text-body);margin:0 0 4px;word-break:break-word}
 :where(body.p-lab-eval) .lint-why{display:block;font-size:var(--fs-ui);line-height:1.6;color:var(--text-muted);margin:0}
@@ -2435,7 +2435,7 @@ body.p-lab-loop .lab-fn .lab-json{font-size:var(--fs-caption);line-height:1.7;ma
    gold card not closing evenly --- */
 body.p-patterns .card-p28{display:flex;flex-direction:column}
 body.p-patterns .card-p28 .lbl-cap{margin-top:auto}
-.card-wire .row-ic > div:first-child{background:var(--ink-wash);opacity:1}
+.card-wire .row-ic > div:first-child{background:var(--bar-track);opacity:1}
 .card-wire .row-ic > div + div{background:var(--border-hairline)}
 .card-gold{background:var(--surface-card);border-color:var(--border-strong);border-left:3px solid var(--acc-amber);border-radius:var(--radius-2)}
 .card-gold > :last-child,
@@ -3901,31 +3901,7 @@ body.dyslexia-mode *:not(code):not(pre):not(kbd):not(samp):not(code *):not(pre *
    manually starting a server on :8000, so nobody saw it.
    The grammar now belongs to the component, not to one page. Layout (gap, margin) stays
    per-page: a row under a rule and a row inside the hero want different spacing. */
-.contract-links{font-family:var(--mono);font-size:11.5px;letter-spacing:.02em}
-/* ── SYSTEM ADOPTION — what the bridge used to do, now stated once and by role ──
-   A reconstruction plate quotes somebody else's product; it owns its whole interior,
-   ink and edges alike, and the system's roles are re-pointed at ITS palette so every
-   rule inside it resolves against the plate rather than the page. */
-:is(.plA, .plF, .plM, .plO, .plP, .plV, .recon, [class*="-app"], [class*="-paper"]){--text-body:#16181D;--text-muted:#282B31;--text-faint:#3C4148;--border-hairline:#E3E6EA;--border-strong:#C6CBD2;box-shadow:0 0 0 1px color-mix(in srgb, var(--text-primary) 14%, transparent),
-              0 1px 2px color-mix(in srgb, var(--text-primary) 8%, transparent);filter:none}
-/* the site's own instruments are charts, not screenshots: on paper a bar needs a track */
-main .vg{background:var(--surface-card);border:1px solid var(--border-strong);--a:var(--act)}
-main .vg-hero .vg{background:var(--surface-card)}
-main .vg .vg-hd{border-bottom-color:var(--border-hairline)}
-main .vg :is(.vg-verdict, .vg-note, .vg-after, .vg-bill){border-top-color:var(--border-hairline)}
-main .vg :is(.vg-met s, .vg-sig span, .vg-conf span, .vg-allows span){background:var(--bar-track)}
-main .vg .vg-met s::after{background:linear-gradient(90deg, transparent, var(--bar-track), transparent)}
-main .vg :is(.vg-row b, .vg-plats li){border-color:var(--border-hairline);background:var(--ink-wash)}
-main .vg .vg-spine span{background:var(--surface-sunken);color:var(--text-body)}
-main .vg .vg-allows .nobar span{background:repeating-linear-gradient(90deg, var(--bar-track) 0 3px, transparent 3px 7px)}
-main :is(.hd-track, .plM-track, .lug-meter){background:var(--bar-track)}
-/* the homepage's acts each name an act accent — the system's six are interchangeable */
-body.p-home .work{--act:var(--acc-copper)}
-body.p-home .who{--act:var(--acc-violet)}
-body.p-home .aiwork{--act:var(--acc-amber)}
-body.p-home .voices{--act:var(--acc-rose)}
-body.p-home .contract{--act:var(--acc-amber)}
-body.p-home .labrow{--act:var(--acc-violet)}}
+.contract-links{font-family:var(--mono);font-size:11.5px;letter-spacing:.02em}}
 @layer utilities{/* ----- Responsive: mobile (≤768px) ----- */
 @media(max-width:768px){.xi-patterns-019{grid-template-columns:1fr}}
 /* ===== CASCADE REPAIR (must stay LAST) =====
@@ -5035,11 +5011,11 @@ body[class*="p-patterns"] .xi-patterns-018{margin:8px 0 64px}
    its own accent, fading back to base so sections hand over quietly.
    ============================================================================ */
 body.p-home .receipts,
-body.p-home .work{background:linear-gradient(180deg,#221218,var(--surface-sunken))}
-body.p-home .who{background:linear-gradient(180deg,#211531,var(--surface-sunken))}
-body.p-home .aiwork{background:linear-gradient(180deg,#241713,var(--surface-sunken))}
+body.p-home .work{background:linear-gradient(180deg, color-mix(in srgb, var(--act) 7%, var(--surface-page)), var(--surface-page))}
+body.p-home .who{background:linear-gradient(180deg, color-mix(in srgb, var(--act) 7%, var(--surface-page)), var(--surface-page))}
+body.p-home .aiwork{background:linear-gradient(180deg, color-mix(in srgb, var(--act) 7%, var(--surface-page)), var(--surface-page))}
 body.p-home .voices,
-body.p-home .thoughts{background:linear-gradient(180deg,#241320,var(--surface-sunken))}
+body.p-home .thoughts{background:linear-gradient(180deg, color-mix(in srgb, var(--act) 7%, var(--surface-page)), var(--surface-page))}
 /* Act III inverts to paper — the contract is a document, and it reads on the
    site's own cream (the boarding-pass palette). Every token the section's
    components read is redeclared here; accents use the paper-proven darks
@@ -5971,8 +5947,8 @@ body.p-home .bcard.bcard--lead{grid-column:span 1}}
 .vg-met i{display:block;font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.02em;color:var(--text-faint);line-height:1.4;margin-bottom:4px}
 .vg-met b{display:block;font-family:var(--mono);font-size:13.5px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--text-body);line-height:1.4;white-space:nowrap}
 /* the skeleton the value resolves out of — an absence, never a wrong number */
-.vg-met s{display:none;position:absolute;left:0;bottom:2px;height:11px;width:78%;border-radius:2px;text-decoration:none;overflow:hidden;background:var(--ink-wash)}
-.vg-met s::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--ink-wash),transparent)}
+.vg-met s{display:none;position:absolute;left:0;bottom:2px;height:11px;width:78%;border-radius:2px;text-decoration:none;overflow:hidden;background:var(--bar-track)}
+.vg-met s::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--bar-track),transparent)}
 .vg-rings{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .vg-ring{text-align:center;min-width:0}
 .vg-ring svg{width:100%;max-width:46px;height:auto;transform:rotate(-90deg);display:inline-block}
@@ -5992,7 +5968,7 @@ body.p-home .bcard.bcard--lead{grid-column:span 1}}
 .vg-sig{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .vg-sig li{display:grid;grid-template-columns:34px minmax(0,1fr) 30px;align-items:center;column-gap:8px}
 .vg-sig i{font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.08em;color:var(--text-faint);line-height:1.4}
-.vg-sig span{display:block;height:3px;border-radius:2px;background:var(--ink-wash);position:relative;overflow:hidden}
+.vg-sig span{display:block;height:3px;border-radius:2px;background:var(--bar-track);position:relative;overflow:hidden}
 .vg-sig span::after{content:"";position:absolute;inset:0;transform-origin:left center;transform:scaleX(var(--v));border-radius:2px;background:var(--a)}
 .vg-sig b{font-family:var(--mono);font-size:10px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--text-muted);line-height:1.4;text-align:right}
 .vg-held{display:block;margin:12px 0 0}
@@ -6021,7 +5997,7 @@ body.p-home .bcard.bcard--lead{grid-column:span 1}}
 .vg-q{margin:0 0 12px;font-family:var(--serif);font-size:16px;font-weight:400;line-height:1.35;color:var(--text-body)}
 .vg-conf{display:flex;align-items:center;gap:8px;margin:0 0 12px}
 .vg-conf i{font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.02em;color:var(--text-faint);line-height:1.4;flex:0 0 auto}
-.vg-conf span{flex:1 1 auto;height:3px;border-radius:2px;background:var(--ink-wash);position:relative;overflow:hidden}
+.vg-conf span{flex:1 1 auto;height:3px;border-radius:2px;background:var(--bar-track);position:relative;overflow:hidden}
 .vg-conf span::after{content:"";position:absolute;inset:0;transform-origin:left center;transform:scaleX(.22);border-radius:2px;background:var(--a)}
 .vg-conf em{font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.02em;color:var(--a);line-height:1.4;flex:0 0 auto}
 .vg-routes{display:grid;gap:8px}
@@ -6076,10 +6052,10 @@ body.p-home .bcard.bcard--lead{grid-column:span 1}}
 .vg-allows li{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"label value" "meter meter";row-gap:4px;column-gap:8px;align-items:baseline}
 .vg-allows i{grid-area:label;font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.06em;color:var(--text-faint);line-height:1.4}
 .vg-allows b{grid-area:value;font-family:var(--mono);font-size:10px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--text-body);line-height:1.4;white-space:nowrap}
-.vg-allows span{grid-area:meter;display:block;height:3px;border-radius:2px;background:var(--ink-wash);position:relative;overflow:hidden}
+.vg-allows span{grid-area:meter;display:block;height:3px;border-radius:2px;background:var(--bar-track);position:relative;overflow:hidden}
 .vg-allows span::after{content:"";position:absolute;inset:0;transform-origin:left center;transform:scaleX(var(--u,0));border-radius:2px;background:var(--a)}
 .vg-allows .nobar span{background:repeating-linear-gradient(90deg,
-  var(--ink-wash) 0 3px,transparent 3px 7px)}
+  var(--bar-track) 0 3px,transparent 3px 7px)}
 .vg-allows .nobar span::after{display:none}
 .vg-bill{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:12px 0 0;padding-top:12px;border-top:1px solid var(--border-hairline)}
 .vg-bill i{font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.02em;color:var(--text-faint);line-height:1.4}
@@ -6700,6 +6676,38 @@ body.p-home #contact .one-door:hover{filter:brightness(1.06)}
 /* no hover, no tooltip: on touch the box could only appear clipped off-viewport;
    the surrounding prose (and the glossary) carry the definitions (2026-09-02 sweep) */
 @media(hover:none){abbr[title]::after,abbr[title]::before{display:none}}
+/* ── SYSTEM ADOPTION — what the bridge used to do, now stated once and by role ──
+   A reconstruction plate quotes somebody else's product; it owns its whole interior,
+   ink and edges alike, and the system's roles are re-pointed at ITS palette so every
+   rule inside it resolves against the plate rather than the page. */
+:is(.plA, .plF, .plM, .plO, .plP, .plV, .recon, [class*="-app"], [class*="-paper"]){
+  --text-body: #16181D; --text-muted: #282B31; --text-faint: #3C4148;
+  --border-hairline: #E3E6EA; --border-strong: #C6CBD2;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--text-primary) 14%, transparent),
+              0 1px 2px color-mix(in srgb, var(--text-primary) 8%, transparent);
+  filter: none;
+}
+/* the site's own instruments are charts, not screenshots: on paper a bar needs a track.
+   Not scoped to main: on the case pages the panels sit outside it (found live, 2026-09-12). */
+.vg{ background: var(--surface-card); border: 1px solid var(--border-strong);
+  --a: var(--act); }
+.vg-hero .vg{ background: var(--surface-card); }
+.vg .vg-hd{ border-bottom-color: var(--border-hairline); }
+.vg :is(.vg-verdict, .vg-note, .vg-after, .vg-bill){ border-top-color: var(--border-hairline); }
+.vg :is(.vg-met s, .vg-sig span, .vg-conf span, .vg-allows span){ background: var(--bar-track); }
+.vg .vg-met s::after{ background: linear-gradient(90deg, transparent, var(--bar-track), transparent); }
+.vg :is(.vg-row b, .vg-plats li){ border-color: var(--border-hairline); background: var(--ink-wash); }
+.vg .vg-spine span{ background: var(--surface-sunken); color: var(--text-body); }
+.vg .vg-allows .nobar span{
+  background: repeating-linear-gradient(90deg, var(--bar-track) 0 3px, transparent 3px 7px); }
+:is(.hd-track, .plM-track, .lug-meter){ background: var(--bar-track); }
+/* the homepage's acts each name an act accent — the system's six are interchangeable */
+body.p-home .work{ --act: var(--acc-copper); }
+body.p-home .who{ --act: var(--acc-violet); }
+body.p-home .aiwork{ --act: var(--acc-amber);  }
+body.p-home .voices{ --act: var(--acc-rose);   }
+body.p-home .contract{ --act: var(--acc-amber);  }
+body.p-home .labrow{ --act: var(--acc-violet); }
 /* ── THE ACT ACCENT RE-RESOLVES BENEATH ITS FAMILY (see css-adopt-tokens.py, step 11) ── */
 body[class*="p-case-studies"] [data-ground="bookend"], body[class*="p-case-studies"] [data-tint]{--act:var(--acc-copper)}
 body.p-case-studies-adtech [data-ground="bookend"], body.p-case-studies-adtech [data-tint]{--act:var(--acc-copper)}
@@ -6723,6 +6731,30 @@ body.p-home .labrow [data-ground="bookend"], body.p-home .labrow [data-tint]{--a
 body.p-home .qvoices [data-ground="bookend"], body.p-home .qvoices [data-tint]{--act:var(--acc-rose)}
 /* the display ink on a bookend: the warm white, not the reading grey */
 [data-ground="bookend"] :is(h1, .case-hero h1, .hero h1){color:var(--neutral-50)}
+/* /patterns/ — the rule block's meta ("Read the rule", the date) sat centred in the
+   300px column beside a 66ch prose block: an element centred in leftover space. It is
+   a metadata RAIL: it starts at the top of the prose and reads as a margin note. */
+body[class*="p-patterns"] .xi-patterns-017{align-self:start;padding-top:4px}
+/* CASE HERO, desktop: the solo variant capped an 880px column and let the paragraph run
+   ~500px wide beside nothing — half the band empty (layout rule: whitespace is designed
+   or it is a defect). The stats already belong to the hero; they become its right rail,
+   stacked, top-aligned with the paragraph. Kicker and headline still span the band.
+   The hero's content sits in ONE inner wrapper, so the grid is declared on that. */
+@media (min-width:1100px){
+  body[class*="p-case-studies"] .case-hero__in--solo{max-width:1180px;grid-template-columns:1fr}
+  body[class*="p-case-studies"] .case-hero__in--solo > div{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);column-gap:clamp(40px,5vw,72px);row-gap:0;align-items:start}
+  body[class*="p-case-studies"] .case-hero__in--solo > div > :is(.case-hero__kicker,h1){grid-column:1/-1}
+  body[class*="p-case-studies"] .case-hero__in--solo > div > .case-hero__hook{grid-column:1;grid-row:3;margin-top:0}
+  body[class*="p-case-studies"] .case-hero__in--solo > div > .hand{grid-column:1;grid-row:4}
+  body[class*="p-case-studies"] .case-hero__in--solo > div > .case-stats{grid-column:2;grid-row:3/span 2;display:flex;flex-direction:column;flex-wrap:nowrap;gap:16px;margin-top:0}
+  body[class*="p-case-studies"] .case-hero__in--solo > div > .case-stats > .case-stat{flex:0 0 auto;min-width:0}
+}
+/* card titles: 22px at 1.15 was under the 1.25 floor on two-line titles (line-height-check);
+   the system's title leading is 1.3 */
+.card-title{line-height:1.3}
+/* the close band's heading is display type too */
+[data-ground="bookend"] .close h2, [data-ground="bookend"] .page-head h1{color:var(--neutral-50)}
+
 
 /* ── THE BUTTON. One component, 110 instances, 38 pages; it declares every critical
    property itself (execution lessons 4 and 11) and reads only the system's tokens, so

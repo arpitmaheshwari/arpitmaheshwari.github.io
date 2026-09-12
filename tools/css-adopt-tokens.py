@@ -91,7 +91,8 @@ FAMILY_ACT = {
 def _alpha_role(alpha, prop):
     a = float(alpha)
     if prop.startswith('background'):
-        return '--border-hairline' if a >= .3 else '--ink-wash'
+        if a >= .3: return '--border-hairline'
+        return '--bar-track' if a >= .06 else '--ink-wash'   # a .09 track is a track, not a 5% wash
     if a >= .7: return '--text-muted'
     if a >= .55: return '--text-faint'
     if a >= .4: return '--text-disabled'
@@ -173,19 +174,20 @@ ADOPTION = '''
               0 1px 2px color-mix(in srgb, var(--text-primary) 8%, transparent);
   filter: none;
 }
-/* the site's own instruments are charts, not screenshots: on paper a bar needs a track */
-main .vg { background: var(--surface-card); border: 1px solid var(--border-strong);
+/* the site's own instruments are charts, not screenshots: on paper a bar needs a track.
+   Not scoped to main: on the case pages the panels sit outside it (found live, 2026-09-12). */
+.vg { background: var(--surface-card); border: 1px solid var(--border-strong);
   --a: var(--act); }
-main .vg-hero .vg { background: var(--surface-card); }
-main .vg .vg-hd { border-bottom-color: var(--border-hairline); }
-main .vg :is(.vg-verdict, .vg-note, .vg-after, .vg-bill) { border-top-color: var(--border-hairline); }
-main .vg :is(.vg-met s, .vg-sig span, .vg-conf span, .vg-allows span) { background: var(--bar-track); }
-main .vg .vg-met s::after { background: linear-gradient(90deg, transparent, var(--bar-track), transparent); }
-main .vg :is(.vg-row b, .vg-plats li) { border-color: var(--border-hairline); background: var(--ink-wash); }
-main .vg .vg-spine span { background: var(--surface-sunken); color: var(--text-body); }
-main .vg .vg-allows .nobar span {
+.vg-hero .vg { background: var(--surface-card); }
+.vg .vg-hd { border-bottom-color: var(--border-hairline); }
+.vg :is(.vg-verdict, .vg-note, .vg-after, .vg-bill) { border-top-color: var(--border-hairline); }
+.vg :is(.vg-met s, .vg-sig span, .vg-conf span, .vg-allows span) { background: var(--bar-track); }
+.vg .vg-met s::after { background: linear-gradient(90deg, transparent, var(--bar-track), transparent); }
+.vg :is(.vg-row b, .vg-plats li) { border-color: var(--border-hairline); background: var(--ink-wash); }
+.vg .vg-spine span { background: var(--surface-sunken); color: var(--text-body); }
+.vg .vg-allows .nobar span {
   background: repeating-linear-gradient(90deg, var(--bar-track) 0 3px, transparent 3px 7px); }
-main :is(.hd-track, .plM-track, .lug-meter) { background: var(--bar-track); }
+:is(.hd-track, .plM-track, .lug-meter) { background: var(--bar-track); }
 /* the homepage's acts each name an act accent — the system's six are interchangeable */
 body.p-home .work     { --act: var(--acc-copper); }
 body.p-home .who      { --act: var(--acc-violet); }
@@ -389,7 +391,7 @@ def main():
     # the bridge section is replaced wholesale by the hand-written adoption block
     i = src.index('/* ── from amber-bridge.css ── */')
     j = src.index('\n}\n\n@layer utilities {', i)
-    src = src[:i] + ADOPTION + src[j:]
+    src = src[:i] + src[j:]     # the adoption block is appended to the END of overrides below
     prot, table = protect(src)
     stats = collections.Counter(); stats['kept'] = collections.Counter(); stats['kept_where'] = collections.defaultdict(list)
     out = walk(prot, '', stats)
@@ -409,7 +411,7 @@ def main():
                  + '\n'.join(f'{sel} [data-ground="bookend"], {sel} [data-tint]{{--act:var(--acc-{acc})}}'
                               for sel, acc in fam.items()) + '\n')
     ob = blank(out).rindex('}')                      # the overrides layer's closing brace
-    out = out[:ob] + act_block + out[ob:]
+    out = out[:ob] + ADOPTION + act_block + out[ob:]   # adoption LAST, so its tracks and panels win
     # 12. THE TYPE SCALE IS THE SYSTEM'S (Arpit, 2026-09-12: "B — adopt the system's scale").
     #     DESIGN-SYSTEM.md recorded body 16 / section 31; the system measured 18 / 35–46 for
     #     reading comfort on its pilots and he chose it. The site's --fs-* names stay (hundreds
@@ -427,6 +429,15 @@ def main():
     #     bookend — the reading ink neutral-200 read grey at display size.
     ob = blank(out).rindex('}')
     out = out[:ob] + '\n/* the display ink on a bookend: the warm white, not the reading grey */\n[data-ground="bookend"] :is(h1, .case-hero h1, .hero h1){color:var(--neutral-50)}\n' + out[ob:]
+    # 14. THE HOMEPAGE ACT GROUNDS, translated. Arpit's 2026-09-01 pick: "each act sits on a
+    #     ground cast from its own accent, fading back to base". On the dark theme that was a
+    #     plum cast; on paper the same idea is a faint wash of the act accent fading to paper —
+    #     the ink follows the paper and the acts still hand over quietly. (Found on the phone
+    #     walk: act headings were dark ink on the dark cast, invisible.)
+    cast = 'linear-gradient(180deg, color-mix(in srgb, var(--act) 7%, var(--surface-page)), var(--surface-page))'
+    out, n = re.subn(r'(body\.p-home \.(?:receipts|work|who|aiwork|voices|thoughts)(?:,\s*body\.p-home \.\w+)*)\{background:linear-gradient\(180deg,#[0-9A-Fa-f]{6},var\(--surface-sunken\)\)\}',
+                     lambda m: f'{m.group(1)}{{background:{cast}}}', out)
+    stats['act-grounds'] = n
     # the tokens layer goes right after the layer-order statement
     k = out.index('@layer reset, tokens, ground, type, layout, components, utilities, overrides;\n')
     k += len('@layer reset, tokens, ground, type, layout, components, utilities, overrides;\n')
