@@ -3925,59 +3925,7 @@ body.p-home .who{--act:var(--acc-violet)}
 body.p-home .aiwork{--act:var(--acc-amber)}
 body.p-home .voices{--act:var(--acc-rose)}
 body.p-home .contract{--act:var(--acc-amber)}
-body.p-home .labrow{--act:var(--acc-violet)}
-
-/* ── THE BUTTON. One component, 110 instances, 38 pages; it declares every critical
-   property itself (execution lessons 4 and 11) and reads only the system's tokens, so
-   the bookend and the paper resolve the same rule against their own roles.
-   Variants: .cta (fill) · .cta--secondary (outline) · .cta-quiet (a text link that
-   behaves like a control). Icon via --cta-icon on a modifier (.cta--linkedin, .cta--doc);
-   .cta--bare drops it.
-   Fill and face are the two decisions still open to Arpit (prototypes/amber-buttons.html);
-   these two tokens are where his pick lands. */
-:root, [data-ground="bookend"], [data-tint] {
-  --cta-fill: var(--btn-fill-bg);          /* B (system default). A/D: var(--cta-grad) */
-  --cta-fill-hover: var(--btn-fill-bg-hover);
-  --cta-face: var(--type-label);           /* B/D. A/C: 600 14px/1 var(--font-mono) */
-}
-/* a.cta/button.cta: (0,1,1), so a generic `body.p-home a{color:inherit}` (0,1,1) declared
-   earlier can no longer strip the label — the button outranks element selectors, lesson 4. */
-a.cta, button.cta, .cta {
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  min-height:44px; padding:0 24px; box-sizing:border-box;
-  font:var(--cta-face); font-weight:600; line-height:1; letter-spacing:.02em; text-transform:none;
-  white-space:nowrap; text-decoration:none; cursor:pointer;
-  border:1px solid transparent; border-radius:var(--radius-pill);
-  background:var(--cta-fill); color:var(--btn-fill-ink);
-  transition:background var(--dur-quick) var(--ease-standard), color var(--dur-quick) var(--ease-standard);
-}
-a.cta:hover, button.cta:hover, .cta:hover { background:var(--cta-fill-hover); color:var(--btn-fill-ink); filter:none; }
-a.cta:focus-visible, button.cta:focus-visible, .cta:focus-visible { outline:2px solid var(--border-focus); outline-offset:3px; }
-.cta::before {
-  content:""; flex:0 0 auto; display:block; background-color:currentColor;
-  --cta-icon-ar:1; --cta-ico:calc(1cap * 1.15);
-  height:var(--cta-ico); width:calc(var(--cta-ico) * var(--cta-icon-ar));
-  -webkit-mask:var(--cta-icon) center/100% 100% no-repeat; mask:var(--cta-icon) center/100% 100% no-repeat;
-}
-.cta:not([class*="cta--"])::before, .cta--bare::before { display:none; }
-.cta--linkedin::before { --cta-icon-ar:1.0476; }
-.cta--doc::before { --cta-icon-ar:0.8182; }
-.cta--linkedin { --cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='1%201%2022%2021'%20fill='none'%20stroke='%23000'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M16%208a6%206%200%200%201%206%206v7h-4v-7a2%202%200%200%200-2-2%202%202%200%200%200-2%202v7h-4v-7a6%206%200%200%201%206-6z'/%3E%3Crect%20width='4'%20height='12'%20x='2'%20y='9'/%3E%3Ccircle%20cx='4'%20cy='4'%20r='2'/%3E%3C/svg%3E"); }
-.cta--doc { --cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='3%201%2018%2022'%20fill='none'%20stroke='%23000'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M15%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V7Z'/%3E%3Cpath%20d='M14%202v4a2%202%200%200%200%202%202h4'/%3E%3Cpath%20d='M10%209H8'/%3E%3Cpath%20d='M16%2013H8'/%3E%3Cpath%20d='M16%2017H8'/%3E%3C/svg%3E"); }
-a.cta--secondary, button.cta--secondary, .cta--secondary { background:none; border-color:var(--btn-line); color:var(--btn-line-ink); }
-a.cta--secondary:hover, button.cta--secondary:hover, .cta--secondary:hover { background:var(--ink-wash); color:var(--btn-line-ink); }
-a.cta-quiet, button.cta-quiet, .cta-quiet {
-  display:inline-block; min-height:24px; padding:4px 0; border:0; background:none; border-radius:0;
-  font:var(--type-label); font-weight:500; letter-spacing:.02em; color:var(--text-muted); text-decoration:none;
-  border-bottom:1px solid color-mix(in srgb, var(--text-muted) 40%, transparent);
-}
-a.cta-quiet:hover, button.cta-quiet:hover, .cta-quiet:hover { color:var(--text-body); border-bottom-color:var(--text-muted); }
-/* the nav door composes .cta; only its placement is local */
-.nav-cta { transition:background .3s, color .3s; }
-.nav-cta:hover { transform:translateY(-2px); }
-@media (prefers-reduced-motion:reduce) { .nav-cta:hover { transform:none; } }
-
-}
+body.p-home .labrow{--act:var(--acc-violet)}}
 @layer utilities{/* ----- Responsive: mobile (≤768px) ----- */
 @media(max-width:768px){.xi-patterns-019{grid-template-columns:1fr}}
 /* ===== CASCADE REPAIR (must stay LAST) =====
@@ -6774,4 +6722,59 @@ body.p-home .contract [data-ground="bookend"], body.p-home .contract [data-tint]
 body.p-home .labrow [data-ground="bookend"], body.p-home .labrow [data-tint]{--act:var(--acc-violet)}
 body.p-home .qvoices [data-ground="bookend"], body.p-home .qvoices [data-tint]{--act:var(--acc-rose)}
 /* the display ink on a bookend: the warm white, not the reading grey */
-[data-ground="bookend"] :is(h1, .case-hero h1, .hero h1){color:var(--neutral-50)}}
+[data-ground="bookend"] :is(h1, .case-hero h1, .hero h1){color:var(--neutral-50)}
+
+/* ── THE BUTTON. One component, 110 instances, 38 pages; it declares every critical
+   property itself (execution lessons 4 and 11) and reads only the system's tokens, so
+   the bookend and the paper resolve the same rule against their own roles.
+   Variants: .cta (fill) · .cta--secondary (outline) · .cta-quiet (a text link that
+   behaves like a control). Icon via --cta-icon on a modifier (.cta--linkedin, .cta--doc);
+   .cta--bare drops it.
+   Fill and face are the two decisions still open to Arpit (prototypes/amber-buttons.html);
+   these two tokens are where his pick lands. */
+:root, [data-ground="bookend"], [data-tint] {
+  --cta-fill: var(--btn-fill-bg);          /* B (system default). A/D: var(--cta-grad) */
+  --cta-fill-hover: var(--btn-fill-bg-hover);
+  --cta-face: var(--type-label);           /* B/D. A/C: 600 14px/1 var(--font-mono) */
+}
+/* a.cta/button.cta: (0,1,1), so a generic `body.p-home a{color:inherit}` (0,1,1) declared
+   earlier can no longer strip the label — the button outranks element selectors, lesson 4. */
+a.cta, button.cta, .cta {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  min-height:44px; padding:0 24px; box-sizing:border-box;
+  font:var(--cta-face); font-weight:600; line-height:1; letter-spacing:.02em; text-transform:none;
+  white-space:nowrap; text-decoration:none; cursor:pointer;
+  border:1px solid transparent; border-radius:var(--radius-pill);
+  background:var(--cta-fill); color:var(--btn-fill-ink);
+  transition:background var(--dur-quick) var(--ease-standard), color var(--dur-quick) var(--ease-standard);
+}
+a.cta:hover, button.cta:hover, .cta:hover { background:var(--cta-fill-hover); color:var(--btn-fill-ink); filter:none; }
+a.cta:focus-visible, button.cta:focus-visible, .cta:focus-visible { outline:2px solid var(--border-focus); outline-offset:3px; }
+.cta::before {
+  content:""; flex:0 0 auto; display:block; background-color:currentColor;
+  --cta-icon-ar:1; --cta-ico:calc(1cap * 1.15);
+  height:var(--cta-ico); width:calc(var(--cta-ico) * var(--cta-icon-ar));
+  -webkit-mask:var(--cta-icon) center/100% 100% no-repeat; mask:var(--cta-icon) center/100% 100% no-repeat;
+}
+.cta:not([class*="cta--"])::before, .cta--bare::before { display:none; }
+.cta--linkedin::before { --cta-icon-ar:1.0476; }
+.cta--doc::before { --cta-icon-ar:0.8182; }
+.cta--linkedin { --cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='1%201%2022%2021'%20fill='none'%20stroke='%23000'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M16%208a6%206%200%200%201%206%206v7h-4v-7a2%202%200%200%200-2-2%202%202%200%200%200-2%202v7h-4v-7a6%206%200%200%201%206-6z'/%3E%3Crect%20width='4'%20height='12'%20x='2'%20y='9'/%3E%3Ccircle%20cx='4'%20cy='4'%20r='2'/%3E%3C/svg%3E"); }
+.cta--doc { --cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='3%201%2018%2022'%20fill='none'%20stroke='%23000'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M15%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V7Z'/%3E%3Cpath%20d='M14%202v4a2%202%200%200%200%202%202h4'/%3E%3Cpath%20d='M10%209H8'/%3E%3Cpath%20d='M16%2013H8'/%3E%3Cpath%20d='M16%2017H8'/%3E%3C/svg%3E"); }
+a.cta--secondary, button.cta--secondary, .cta--secondary { background:none; border-color:var(--btn-line); color:var(--btn-line-ink); }
+a.cta--secondary:hover, button.cta--secondary:hover, .cta--secondary:hover { background:var(--ink-wash); color:var(--btn-line-ink); }
+a.cta-quiet, button.cta-quiet, .cta-quiet {
+  display:inline-block; min-height:24px; padding:4px 0; border:0; background:none; border-radius:0;
+  font:var(--type-label); font-weight:500; letter-spacing:.02em; color:var(--text-muted); text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb, var(--text-muted) 40%, transparent);
+}
+a.cta-quiet:hover, button.cta-quiet:hover, .cta-quiet:hover { color:var(--text-body); border-bottom-color:var(--text-muted); }
+/* the nav door composes .cta; only its placement is local */
+.nav-cta { transition:background .3s, color .3s; }
+.nav-cta:hover { transform:translateY(-2px); }
+@media (prefers-reduced-motion:reduce) { .nav-cta:hover { transform:none; } }
+
+}
+.zz-parse-canary-a{color:red
+.zz-parse-canary-b{color:blue}
+}
