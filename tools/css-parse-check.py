@@ -44,7 +44,7 @@ def norm(sel):
     s = re.sub(r'\s+', ' ', sel).strip()
     s = re.sub(r'\s*([>+~,])\s*', r'\1', s)
     s = s.replace('::before', ':before').replace('::after', ':after')  # Chrome serialises either form
-    s = s.replace('*:before', ':before').replace('*:after', ':after')   # and drops the universal before a pseudo
+    s = re.sub(r'\*(?=:)', '', s)                                          # and drops the universal before any pseudo
     return s.lower()
 
 
@@ -59,6 +59,7 @@ def text_selectors(path):
     for m in re.finditer(r'(?:^|(?<=[;{}]))\s*([^{};@][^{};]*?)\s*\{', src):   # lookbehind: the previous match's { is not consumed
         sel = m.group(1).strip()
         if not sel or sel.startswith('@') or re.match(r'^(\d+%|from|to)$', sel): continue
+        if re.search(r'::?-(moz|ms|webkit)-', sel): continue      # another engine's pseudo: Chrome drops it by design
         if ':' in sel and not re.search(r'[.#\[]|::?[a-z-]+\(|^[a-z*]', sel): continue   # a declaration, not a selector
         found.append(sel)
     return found

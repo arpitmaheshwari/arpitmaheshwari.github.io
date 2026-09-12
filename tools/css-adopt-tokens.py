@@ -73,7 +73,7 @@ DELETE_DECL = set(RENAME.values()) - {'--act', '--cta-grad'}
 # scopes that are somebody else's product, or a paper OBJECT on the page: they own their palette
 PLATE = re.compile(r'\.pl[AFMOPV]\b|\.recon|\.rx[a-z0-9]|\.rl-|-app\b|-paper\b|\.fig-paper|\.pass\b|'
                    r'\.rcpt-box|\.slip\b|\.stamp|\.ticket|\.letter|\.qc\b|\.psc|\.env\b|\.lug\b|'
-                   r'\.spec-hole|p-404|p-hire|\.hire-|\.paper\b|\.stick\b')
+                   r'\.spec-hole|p-404|\.paper\b|\.stick\b')
 
 # 3 · page family -> act accent (hue family preserved where the system has one)
 FAMILY_ACT = {
@@ -103,7 +103,7 @@ LITERALS = {
     # the light ink and its variants — the "ink" role, whichever ground it sits on
     '#F5EDE6': '--text-primary', '#F5EDE5': '--text-primary', '#F2EDE4': '--text-primary',
     '#F5EEE3': '--text-primary', '#F9F1E7': '--text-primary', '#FAF2E8': '--text-primary',
-    '#F7EFE7': '--text-primary',
+    '#F7EFE7': '--text-primary', '#E2DBD3': '--text-body',   # the long-form reading ink, softened for dark 
     # the heats -> act accents
     '#FF8A5C': '--acc-copper', '#FF6A3D': '--acc-copper', '#FFB08E': '--acc-copper',
     '#E86BFF': '--acc-violet', '#C64BFF': '--acc-violet',
@@ -207,6 +207,20 @@ TOKENS_LAYER = '''
 }
 }
 '''
+
+
+OBJ_RENAME = [('--paper-rule', '--obj-paper-rule'), ('--paper-soft', '--obj-paper-soft'),
+              ('--paper-ink', '--obj-paper-ink'), ('--paper-2', '--obj-paper-2'), ('--paper', '--obj-paper')]
+
+
+def rename_paper_objects(css):
+    """9. The receipts, boarding pass and QC slip are paper OBJECTS with their own five tokens
+    named --paper*. The system's tier-1 ground token is ALSO --paper, and the site's :root
+    declaration shadowed it: --surface-page became #F7F3EC everywhere (found by the sweep:
+    830 prose nodes at 1.24:1). Objects keep their palette under a name that says so."""
+    for old, new in OBJ_RENAME:
+        css = re.sub(re.escape(old) + r'(?![A-Za-z0-9_-])', new, css)
+    return css
 
 
 def blank(css):
@@ -377,6 +391,22 @@ def main():
     stats = collections.Counter(); stats['kept'] = collections.Counter(); stats['kept_where'] = collections.defaultdict(list)
     out = walk(prot, '', stats)
     out = restore(out, table)
+    out = rename_paper_objects(out)
+    # 10. under the dark theme the case hero was transparent so the dark body showed through;
+    #     under amber the body is paper, so a bookend that does not paint is a paper hero
+    out, n = re.subn(r'(body\[class\*="p-case-studies"\] \.case-hero\{[^}]*?)background:transparent;?', r'\1', out)
+    stats['hero-transparent'] = n
+    # 11. --act resolves where it is declared: set on <body> it is the PAPER value by the time a
+    #     bookend inherits it (2.99:1 on a hero statistic). Every bookend and tint beneath a
+    #     family re-declares it — generated from the table, never scraped from the text.
+    fam = dict(FAMILY_ACT); fam.update({'body.p-home .work': 'copper', 'body.p-home .who': 'violet',
+        'body.p-home .aiwork': 'amber', 'body.p-home .voices': 'rose', 'body.p-home .contract': 'amber',
+        'body.p-home .labrow': 'violet', 'body.p-home .qvoices': 'rose'})
+    act_block = ('\n/* ── THE ACT ACCENT RE-RESOLVES BENEATH ITS FAMILY (see css-adopt-tokens.py, step 11) ── */\n'
+                 + '\n'.join(f'{sel} [data-ground="bookend"], {sel} [data-tint]{{--act:var(--acc-{acc})}}'
+                              for sel, acc in fam.items()) + '\n')
+    ob = blank(out).rindex('}')                      # the overrides layer's closing brace
+    out = out[:ob] + act_block + out[ob:]
     # the tokens layer goes right after the layer-order statement
     k = out.index('@layer reset, tokens, ground, type, layout, components, utilities, overrides;\n')
     k += len('@layer reset, tokens, ground, type, layout, components, utilities, overrides;\n')
@@ -407,7 +437,8 @@ def main():
     print(f"  renamed refs; deleted {stats['deleted']} palette declarations, {stats['selfref']} map lines, "
           f"{stats['emptied']} emptied rules; {stats['act']} families -> --act; "
           f"{stats['literal']} raw colours -> roles; {stats['lift']} lifts -> --elev-2; "
-          f"{stats['glow']} fields -> --glow, {stats['glow-deleted']} mid-page fields deleted")
+          f"{stats['glow']} fields -> --glow, {stats['glow-deleted']} mid-page fields deleted; "
+          f"hero transparent removed x{stats['hero-transparent']}; --act re-declared beneath {len(fam)} families")
     kept = stats['kept']
     print(f"  raw colours still painted outside plates/print: {sum(kept.values())} in {len(kept)} literals")
     for lit, n in kept.most_common(30):

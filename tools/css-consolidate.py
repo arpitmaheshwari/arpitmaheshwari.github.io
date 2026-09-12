@@ -25,7 +25,9 @@ WHAT THIS DOES — and, deliberately, what it does NOT.
                    order, so specificity and position settle exactly as today
        utilities   the .xi-* extracted classes (they beat components, as their
                    !important once did)
-       overrides   what used to be !important
+       overrides   ember.css's unlayered half (2026-08-29 onward), which beat the
+                 utilities by position and keeps that standing here; then what
+                 used to be !important
   It changes NO declaration values. Colours, spacing and type are untouched; this
   step is judged by tools/render-census.py reporting an empty diff, and the places
   it is NOT empty are where the unlayered tail had been beating the system's own
@@ -242,13 +244,24 @@ def main():
     pe, _ = protect_comments(raw_e, table)
     pb, _ = protect_comments(raw_b, table)
     styles = L.unwrap_layers(ps)
-    ember = L.unwrap_layers(pe)
+    # ember.css was two files in one: a LAYERED half (base + emphasis, from the 2026-08-19
+    # layering) and 2,400 lines appended after it, OUTSIDE any layer, from 2026-08-29 on. The
+    # unlayered half beat every layer by position, including the extracted .xi-* utilities;
+    # its rules were written knowing that. It therefore goes to `overrides` — the system's
+    # last-word layer — not to `components` beneath utilities, where an extracted
+    # display:block would re-show a drawing beside its typeset twin (found 2026-09-12).
+    items = L.split_rules(pe)
+    last_layer = max(i for i, (k, h, b) in enumerate(items) if k == 'at' and _bare(h).startswith('@layer'))
+    layered = '\n'.join(f'{h}{{{b}}}' if k != 'stmt' else h for k, h, b in items[:last_layer + 1])
+    ember_tail = '\n'.join(f'{h}{{{b}}}' if k != 'stmt' else h for k, h, b in items[last_layer + 1:])
+    ember = L.unwrap_layers(layered)
     bridge = pb
     n_before = count_rules(styles) + count_rules(ember) + count_rules(bridge)
 
     base_s, xi = L.partition(styles)
     base_s, emph_s = L.split_emphasis(base_s)
     ember_n, emph_e = L.split_emphasis(strip_prefix(ember))
+    tail_n, emph_t = L.split_emphasis(strip_prefix(ember_tail))
     bridge_n, emph_b = L.split_emphasis(strip_prefix(bridge))
 
     site = (HEADER
@@ -257,7 +270,11 @@ def main():
             + '\n\n/* ── from ember.css ── */\n' + ember_n
             + '\n\n/* ── from amber-bridge.css ── */\n' + bridge_n
             + '\n}\n\n@layer utilities {\n' + L.strip_important(xi) + '\n}\n'
-            + '\n@layer overrides {\n' + '\n'.join(x for x in (emph_s, emph_e, emph_b) if x.strip()) + '\n}\n')
+            + '\n@layer overrides {\n'
+            + '/* ── ember.css, the unlayered half (2026-08-29 →): the last word, by position then and by layer now ── */\n'
+            + tail_n
+            + '\n\n/* ── what used to be !important ── */\n'
+            + '\n'.join(x for x in (emph_s, emph_e, emph_t, emph_b) if x.strip()) + '\n}\n')
     site = restore_comments(site, table)
 
     ok = True

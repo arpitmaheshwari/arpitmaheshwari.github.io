@@ -34,7 +34,7 @@ html[data-theme="ember"]{--cta-ink:#1A0D08}
    Specificity note: this beats styles.css `#nav.scrolled` (1,1,1 vs 1,1,0), so it governs
    both the resting and the scrolled state — checked, not assumed. */
 html[data-theme="ember"] #nav{background:linear-gradient(180deg,rgba(18,11,20,.92),rgba(18,11,20,.72));backdrop-filter:blur(10px);border-bottom:0}
-.
+/*
    /fit/ was hand-written and got none, so its logo fell back to intrinsic size (45px) and
    made that one nav 1px taller than the other 42. Sized here instead, so the nav is a
    component and a new page cannot forget it. */
@@ -602,7 +602,9 @@ html[data-theme="ember"] .hd-case-btn{margin-top:20px}
      the svg then simply fills it. */
   html[data-theme="ember"] :is(body[class*="p-patterns"],body.p-process) figure:has(svg.art-svg){--art-w:min(1120px,calc(100vw - 128px))}
 html[data-theme="ember"] :is(body[class*="p-patterns"],body.p-process) figure:has(svg.art-svg) svg.art-svg{width:100%;height:auto;max-width:none;margin:0}}
-) which threw the pair
+/* (a duplicated fragment of the note above, restored as a comment on 2026-09-12 — it had lost
+   its opener and the browser read it as a selector, dropping .btn-row's alignment rule)
+   ) which threw the pair
    to opposite ends of a 632px column — 283px apart, so they stopped reading as a pair —
    while planit had no such class and sat them together. Two arrangements for one component
    across eight pages, which is the same complaint as the nine fills. Arpit's call: the
