@@ -158,6 +158,10 @@ body.p-home .wrap > :last-child, .section > :last-child, .section-inner > :last-
 main > :is([class]) > section { margin-bottom: var(--rhythm-chapter); }           /* case + pattern chapters (was 80 / 64, fixed) */
 .measure-c > section[class*="xi-case-studies-"] { padding-top: 24px; }           /* a ruled chapter: the line sits 24 above its heading (was 40) */
 main > :is([class]) > h2.section-title { margin-top: var(--rhythm-chapter); }
+/* journey-check, 2026-09-13: jump anchors landed 8px UNDER the 94px fixed nav — the site carried
+   scroll-margin-top 80/96/120 in three places. One clearance for every anchor target: the bar plus a
+   breath, so the heading a reader jumped to is the first thing they see. */
+main [id] { scroll-margin-top: 120px; }
 /* Arpit, 2026-09-13 (copy review, group B): a case chapter's spine label — The stakes / The test /
    The mechanism / Falsifiable evidence — used to be glued to the heading with a colon, so the H2
    read as a form field. It is now the chapter's eyebrow, same words, and the sentence stands alone.

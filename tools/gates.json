@@ -806,6 +806,17 @@
     "nightly"
    ],
    "note": "2026-09-13: Arpit — 'the negative space between and within sections is not proper'. The system named one act rhythm and nothing consumed it: homepage acts carried five paddings, the seam line added 96px, a first card added 40px, so the blank between acts ran ~200px on a phone. Every spacing check read ONE declared value; the blank is the SUM across a boundary. This measures the boundary: act padding == --rhythm-act both sides, no first/last-child margin, h2-led chapters == --rhythm-chapter. Calibrates by planting an off-rhythm act."
+  },
+  {
+   "id": "journey-check",
+   "cmd": [
+    "python3",
+    "tools/journey-check.py"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "note": "2026-09-13: Arpit — 'test the entire journey'. Every other gate grades a page on load; this one navigates: primary nav (drawer on a phone), jump anchors landing below the fixed bar, the next-case door, receipt panels opening, every visible image painted after a scroll-through, every internal link and fragment resolving. Calibrates by planting a broken image and a dead jump link. First run found anchors landing 8px under the nav bar on two cases."
   }
  ],
  "manual": [
