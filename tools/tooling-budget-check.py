@@ -258,7 +258,31 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #     Lines that delete a class of fact are the cheapest lines in this directory.
 #   * and 40 of the 110 are this note. The budget counting its own justification is
 #     the same behaviour recorded above; it is why this reads 13_569.
-CEILING = 13_569
+#
+# 2026-09-12 (later): 13_569 -> 13_782. RETIREMENT AND FOLDING WERE BOTH CHECKED FIRST
+# and both were wrong, for a reason worth recording rather than re-deriving.
+#   * 199 in markup-dup-attr-check.py, one rule: the same attribute twice on one start
+#     tag. Seven inlined art diagrams carried TWO role="img" and TWO aria-label
+#     attributes each — 14 duplicated attributes, across five case studies, live for 28
+#     days since 1b376e0c inlined the drawings onto tags that already had them. A parser
+#     keeps the FIRST and drops the rest with no error, no console warning and no visual
+#     difference, so in five of the seven the longer, better description — one of them
+#     carrying the scope line the drawing prints in its own footer — had never been
+#     spoken to a single screen-reader user.
+#     THE FOLD CANDIDATE WAS a11y-sweep, and a11y-sweep is the gate that MISSED this:
+#     its own docstring says it measures the rendered DOM rather than the source text,
+#     and by the time there is a DOM the parser has already resolved the duplicate down
+#     to one perfectly correct-looking attribute. Every gate in this directory reads a
+#     RESOLVED property — computed colour, final box, announced name — so this class is
+#     invisible to all of them by construction. It is also nightly and needs a browser,
+#     where this is text-only, runs in under a second, and belongs on every push.
+#     Nothing was retirable: the three one-off migration scripts are the only other
+#     candidates and deleting those to buy budget is optimising this number instead of
+#     the codebase, which is the failure this file's own CANNOT SEE line names.
+#   * 14 in gates.json to declare it at pre-push + ci-always.
+#   * and 25 of the 214 are this note — which is why the first attempt at this
+#     number, 13_782, came in nine lines short of its own paragraph.
+CEILING = 13_792
 
 
 def loc(paths):
