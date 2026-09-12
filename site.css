@@ -33,6 +33,7 @@
   --act-2: var(--acc-violet);                 /* the second stop of a two-accent gradient */
   --cta-grad: linear-gradient(92deg, var(--acc-copper), var(--acc-amber));
   --cta-grad-hover: linear-gradient(92deg, var(--copper-700), var(--amber-700));   /* one stop deeper on paper */
+  --cta-fill-hover-copper: var(--copper-700);   /* F: one stop deeper on paper */
   --ink-wash: color-mix(in srgb, var(--text-primary) 5%, transparent);   /* a raised fill */
   --act-wash: color-mix(in srgb, var(--act) 8%, transparent);            /* a hover fill */
   --link-ink: var(--acc-violet);              /* this site's links are violet, by decision */
@@ -42,7 +43,7 @@
 /* a control edge on the bookend owes 1.4.11 its 3:1; the system's 37% cream measured 2.83:1
    on this site's #140C16 (nontext-contrast-check) — 42% clears it. Logged for the system. */
 [data-ground="bookend"]{--border-strong:color-mix(in srgb, var(--neutral-100) 42%, transparent); --door-ink:var(--violet-100);
-  --cta-grad-hover:linear-gradient(92deg, var(--copper-50), var(--amber-50))}
+  --cta-grad-hover:linear-gradient(92deg, var(--copper-50), var(--amber-50)); --cta-fill-hover-copper:var(--copper-50)}
 /* one stop lighter on a bookend */}
 @layer components{/* ── from styles.css ── */
 /* A figure image centres in its figure. An img is inline-level, so one
@@ -6798,6 +6799,33 @@ body.p-home .hero .vid-hero-cap a, .contract-links a{font-size:var(--fs-ui);lett
    were capped at 720px with 580px of nothing beside them at 1440 (balance-check). They are
    rows of short items, not reading prose; they span the wrap. */
 body.p-home .lab-row, body.p-home .contact-read, body.p-home .voices .lede{max-width:none}   /* the voices lede takes the work act's own treatment (.work .lede{max-width:none}) rather than a cap with a void */
+/* ── HOMEPAGE, as information architecture (Arpit, 2026-09-12: "sections looking orphaned") ──
+   1 · the hero filled the viewport and then padded 120px more under the client strip: a dead
+       dark band before act 01. The band ends with the strip. */
+body.p-home .hero{padding-bottom:clamp(32px,5vh,64px)}
+/* 2 · one opener rhythm for every act and sub-act: eyebrow, 16px, title, 20px, lede — the
+       eyebrow→title gap ran 80px on the acts and 40px on the sub-acts, so each opener read as
+       three floating lines instead of one unit. */
+body.p-home .chap{margin-bottom:16px}
+body.p-home :is(.work,.who,.contract,.aiwork,.voices) .wrap > h2,
+body.p-home .chap + h2, body.p-home .chap + .chap-i + h2{margin-top:0}
+body.p-home .chap-i{margin:0 0 20px}
+body.p-home .k{margin-bottom:12px}
+body.p-home .wrap > .k + :is(h2,h3,.lede){margin-top:0}
+/* 3 · the work sub-act now opens like 02·2, 03·2 and 04·2: its eyebrow uses its own first clause.
+       The index chip takes the act's accent, like its siblings. */
+body.p-home .k-idx-ember{color:var(--acc-copper)}
+body.p-home .work .lede{max-width:66ch}
+/* 4 · one card grammar in act 01: the case cards took a muddy tint while the receipt cards
+       beside them are paper with a coloured top rule. Normalised to the receipt card. */
+.bcard{background:var(--surface-card);border-top:3px solid var(--a)}
+/* ── CASE PAGES: the section links (case-jump) sat 186px left of the reading column and wore
+   underlines; they align to the column and speak the door ink, no underline (Arpit). */
+body[class*="p-case-studies"] .case-jump{width:auto;max-width:656px;margin:0 auto 32px;padding:0;box-sizing:border-box;transform:none;left:auto}   /* 656 = the 704 column minus its 24px paddings: the first link starts where the prose starts */
+/* eight links in a 656px column wrapped 7 + 1 and orphaned "The public record": two rows of four */
+@media (min-width:560px){body[class*="p-case-studies"] .case-jump:has(> a:nth-child(7)){display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:16px;row-gap:4px}}
+.case-jump a{border-bottom:0;color:var(--door-ink);font-weight:600;padding:8px 0}
+.case-jump a:hover{color:var(--text-primary)}
 /* the close band's heading is display type too */
 [data-ground="bookend"] .close h2, [data-ground="bookend"] .page-head h1{color:var(--neutral-50)}
 
@@ -6811,8 +6839,8 @@ body.p-home .lab-row, body.p-home .contact-read, body.p-home .voices .lede{max-w
    Fill and face are the two decisions still open to Arpit (prototypes/amber-buttons.html);
    these two tokens are where his pick lands. */
 :root, [data-ground="bookend"], [data-tint] {
-  --cta-fill: var(--cta-grad);              /* D — Arpit's pick, 2026-09-12: copper→amber, both accent-family stops */
-  --cta-fill-hover: var(--cta-grad-hover);
+  --cta-fill: var(--acc-copper);            /* F — Arpit, 2026-09-12: the copper fill; on a bookend copper-100 with dark ink */
+  --cta-fill-hover: var(--cta-fill-hover-copper);
   --cta-face: var(--type-label);           /* D: the system's label face */
 }
 /* a.cta/button.cta: (0,1,1), so a generic `body.p-home a{color:inherit}` (0,1,1) declared

@@ -228,6 +228,7 @@ TOKENS_LAYER = '''
   --act-2: var(--acc-violet);                 /* the second stop of a two-accent gradient */
   --cta-grad: linear-gradient(92deg, var(--acc-copper), var(--acc-amber));
   --cta-grad-hover: linear-gradient(92deg, var(--copper-700), var(--amber-700));   /* one stop deeper on paper */
+  --cta-fill-hover-copper: var(--copper-700);   /* F: one stop deeper on paper */
   --ink-wash: color-mix(in srgb, var(--text-primary) 5%, transparent);   /* a raised fill */
   --act-wash: color-mix(in srgb, var(--act) 8%, transparent);            /* a hover fill */
   --link-ink: var(--acc-violet);              /* this site's links are violet, by decision */
@@ -236,7 +237,7 @@ TOKENS_LAYER = '''
 }/* a control edge on the bookend owes 1.4.11 its 3:1; the system's 37% cream measured 2.83:1
    on this site's #140C16 (nontext-contrast-check) — 42% clears it. Logged for the system. */
 [data-ground="bookend"]{--border-strong:color-mix(in srgb, var(--neutral-100) 42%, transparent); --door-ink:var(--violet-100);
-  --cta-grad-hover:linear-gradient(92deg, var(--copper-50), var(--amber-50))}   /* one stop lighter on a bookend */
+  --cta-grad-hover:linear-gradient(92deg, var(--copper-50), var(--amber-50)); --cta-fill-hover-copper:var(--copper-50)}   /* one stop lighter on a bookend */
 }
 '''
 
