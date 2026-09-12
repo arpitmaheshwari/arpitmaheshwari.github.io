@@ -6815,7 +6815,7 @@ body.p-home .wrap > .k + :is(h2,h3,.lede){margin-top:0}
 /* 3 · the work sub-act now opens like 02·2, 03·2 and 04·2: its eyebrow uses its own first clause.
        The index chip takes the act's accent, like its siblings. */
 body.p-home .k-idx-ember{color:var(--acc-copper)}
-body.p-home .work .lede{max-width:66ch}
+body.p-home .work .lede{max-width:none}   /* under its eyebrow the sub-act lede spans the band, as the voices lede does; a 66ch cap left 710px of nothing beside it (balance-check) */
 /* 4 · one card grammar in act 01: the case cards took a muddy tint while the receipt cards
        beside them are paper with a coloured top rule. Normalised to the receipt card. */
 .bcard{background:var(--surface-card);border-top:3px solid var(--a)}
@@ -6826,6 +6826,8 @@ body[class*="p-case-studies"] .case-jump{width:auto;max-width:656px;margin:0 aut
 @media (min-width:560px){body[class*="p-case-studies"] .case-jump:has(> a:nth-child(7)){display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:16px;row-gap:4px}}
 .case-jump a{border-bottom:0;color:var(--door-ink);font-weight:600;padding:8px 0}
 .case-jump a:hover{color:var(--text-primary)}
+/* the errata box stopped 200px short of the memo columns above it (balance-check): it shares their width */
+body.p-home .wl-lead .errata-block{max-width:none}
 /* the close band's heading is display type too */
 [data-ground="bookend"] .close h2, [data-ground="bookend"] .page-head h1{color:var(--neutral-50)}
 

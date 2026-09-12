@@ -55,6 +55,7 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
      n=n.parentElement;}
    // a label line (an eyebrow, a role line) is not reading prose: under 14px it is not judged
    if(parseFloat(cs.fontSize)<14)return false;
+   if(/mono|JetBrains/i.test(cs.fontFamily))return false;   // a mono line is a label or a receipt row, not reading prose (the hero's role line)
    return p.textContent.trim().length>80 && p.getBoundingClientRect().width>120;});
  if(ps.length<3){document.title='R:{"skip":1,"n":'+ps.length+'}';return;}
  const med=a=>a.slice().sort((x,y)=>x-y)[Math.floor(a.length/2)];
