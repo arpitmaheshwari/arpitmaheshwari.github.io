@@ -324,7 +324,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # of 20 rules passed every text gate on 2026-09-12).
 # +192: tools/paper-object-check.py — a paper object paints paper wherever it sits (the
 # boarding pass went black in a bookend, 2026-09-12).
-CEILING = 15_417
+CEILING = 15_761   # 2026-09-13 +344: rhythm-check (the boundary SUM no spacing gate measured) and css-components-pass moved into tools/ so the pipeline is reproducible from the repo
 
 
 def loc(paths):

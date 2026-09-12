@@ -6752,6 +6752,27 @@ body.p-home .labrow [data-ground="bookend"], body.p-home .labrow [data-tint]{--a
 body.p-home .qvoices [data-ground="bookend"], body.p-home .qvoices [data-tint]{--act:var(--acc-rose)}
 /* the display ink on a bookend: the warm white, not the reading grey */
 [data-ground="bookend"] :is(h1, .case-hero h1, .hero h1){color:var(--neutral-50)}
+/* ── RHYTHM (Arpit, 2026-09-13: "the negative space between and within sections is not
+   proper"). The system names ONE act rhythm (--act-rhythm, 80px; the hero exempt) and
+   says every act in a sequence shares it — nothing on the site consumed it. Measured:
+   homepage acts carried 84/88/92/96/120 and the seam line added 96px of its own on top,
+   so the blank between two acts ran ~200px at phone and desktop alike; case chapters sat
+   120px apart at every width, pattern chapters 64, writing chapters 68; the Lab's first
+   card in a section added 40px to the section's 88. Two numbers now, each stepping with
+   the viewport: the ACT (between bands) and the CHAPTER (between h2 groups inside one
+   article). A first child never adds its own top margin to the band's padding. */
+:root { --rhythm-act: var(--act-rhythm); --rhythm-chapter: 64px; --section-y: var(--rhythm-act); }
+@media (max-width:900px) { :root { --rhythm-act: 64px; --rhythm-chapter: 56px; } }
+@media (max-width:600px) { :root { --rhythm-act: 48px; --rhythm-chapter: 48px; } }
+body.p-home :is(.receipts, .work, .who, .contract, .labrow, .voices, .close) { padding-top: var(--rhythm-act); padding-bottom: var(--rhythm-act); }
+body.p-home section:has(> :is(.seam, .seam-up)) { padding-top: 0; }           /* the seam line sits on the boundary… */
+body.p-home :is(.seam, .seam-up) { margin-bottom: var(--rhythm-act); }         /* …and carries the act's top space itself */
+body.p-home .wrap > :first-child, .section > :first-child, .section-inner > :first-child, .lab-wrap > :first-child, .measure-c > :first-child { margin-top: 0; }
+body.p-home .wrap > :last-child, .section > :last-child, .section-inner > :last-child, .lab-wrap > :last-child, .measure-c > :last-child { margin-bottom: 0; }   /* nor a last child to its bottom */
+main > :is([class]) > section { margin-bottom: var(--rhythm-chapter); }           /* case + pattern chapters (was 80 / 64, fixed) */
+.measure-c > section[class*="xi-case-studies-"] { padding-top: 24px; }           /* a ruled chapter: the line sits 24 above its heading (was 40) */
+main > :is([class]) > h2.section-title { margin-top: var(--rhythm-chapter); }     /* writing + resources chapters (was 48, fixed) */
+:is([class*="p-lab"], .p-fit) main > :is(section, header).section:not(.lab-hero) { padding-top: var(--rhythm-act); padding-bottom: var(--rhythm-act); }   /* Lab + Fit acts (was 88 fixed) */
 /* Arpit, 2026-09-13: "#CFC4B4 is looking dull". On a dark ground the system's reading ink
    is neutral-200 and everything below the headline shared it. Lift each ink one stop so the
    hero reads in three levels: headline (50) · names and body (100) · quiet mono lines (200).

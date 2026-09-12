@@ -75,7 +75,7 @@
     "pre-push",
     "ci-always"
    ],
-   "note": "Nine narrated videos shipped with no <track> at all \u2014 WCAG 2.1 SC 1.2.2 at level A \u2014 until 2026-09-11. The captions are GENERATED from portfolio-sources/video/build*/{durations,seg-NN-bounds}.json, so the failure mode now is drift: a re-recorded segment changes the script and the timings while the .vtt on disk keeps the old ones, and a caption that disagrees with the audio is worse than none. Calibrated by planting an edited cue and watching it go red. ci-always because the sources live outside the paths filter."
+   "note": "Nine narrated videos shipped with no <track> at all — WCAG 2.1 SC 1.2.2 at level A — until 2026-09-11. The captions are GENERATED from portfolio-sources/video/build*/{durations,seg-NN-bounds}.json, so the failure mode now is drift: a re-recorded segment changes the script and the timings while the .vtt on disk keeps the old ones, and a caption that disagrees with the audio is worse than none. Calibrated by planting an edited cue and watching it go red. ci-always because the sources live outside the paths filter."
   },
   {
    "id": "case-surface-inventory",
@@ -559,7 +559,7 @@
    "needs": [
     "server"
    ],
-   "note": "added 2026-09-12. The sweep ran at 1440, 1024 and 768 and never at a phone width \u2014 on a site whose QA rule is mobile-first \u2014 so the width where layouts actually fail had no gate. It carries the two rules written the same day: SQUEEZED (a leaf's own text wider than its own box) and WORDBREAK (prose computing word-break:break-all/break-word). Both were calibrated by replanting the real defects and watching this go red, then green."
+   "note": "added 2026-09-12. The sweep ran at 1440, 1024 and 768 and never at a phone width — on a site whose QA rule is mobile-first — so the width where layouts actually fail had no gate. It carries the two rules written the same day: SQUEEZED (a leaf's own text wider than its own box) and WORDBREAK (prose computing word-break:break-all/break-word). Both were calibrated by replanting the real defects and watching this go red, then green."
   },
   {
    "id": "line-height-check",
@@ -730,7 +730,18 @@
    ],
    "note": "Braces balance, and @layer still wraps the share of its file it used to. Written 2026-09-10 after ONE orphan `}` in ember.css closed @layer base at char 29,123 instead of 191,305 — dumping ~161KB, the bulk of the stylesheet, OUT of the layer. Unlayered rules outrank layered ones regardless of specificity, so the cascade for the whole site inverted on one character. The only visible symptom was a single homepage h2 at 44px instead of 42 (.voices h2, higher specificity, previously layered and losing, started beating body.p-home main h2); heading-rank-check caught that pixel and nothing looked at the cause, which was sitting in plain text. The brace arrived because a media query was moved by cutting to `c.index('}\\n', ...)` — \"the next closing brace\", the CSS twin of \"the next closing tag\" that execution lesson 2 forbids by name, committed in the same session as a gate written about that mistake in HTML. Text only: no browser, no server, ~0.2s. It WOULD be cheap enough for pre-commit and I registered it with a \"pre-commit\" stage on 2026-09-10 — but run-gates only accepts pre-push/ci/ci-always/nightly and there is no .githooks/pre-commit at all, so nothing ever ran it there. A declared stage that no runner honours is a false claim; corrected to pre-push, which is where it actually runs. Adding a pre-commit hook is Arpit's call, not something to invent inside a gate registration. Comments are blanked first, so a `}` in prose cannot fool it. Calibrated against the real defect, not a toy: goes red with 3 findings including \"@layer base wraps 8% of the file, baseline 57%\". Read the layer-share line to localise it — the negative-depth line number lands at the layer's real closing brace, not the typo, because an orphan brace inside a layer legally closes it. Blind to whether the layer ASSIGNMENT is correct, only that it did not change."
   },
-  {"id": "css-parse-check", "cmd": ["python3", "tools/css-parse-check.py"], "stages": ["pre-push", "ci"], "note": "2026-09-12: twenty rules were inserted inside another rule's declaration list; braces balanced, layer shares held, css-structure-check said clean, and the browser discarded all twenty. This asks the only question that catches that: does the CSSOM contain every rule the text contains? Self-calibrating with a planted swallowed rule."},
+  {
+   "id": "css-parse-check",
+   "cmd": [
+    "python3",
+    "tools/css-parse-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ],
+   "note": "2026-09-12: twenty rules were inserted inside another rule's declaration list; braces balanced, layer shares held, css-structure-check said clean, and the browser discarded all twenty. This asks the only question that catches that: does the CSSOM contain every rule the text contains? Self-calibrating with a planted swallowed rule."
+  },
   {
    "id": "nontext-contrast-check",
    "cmd": [
@@ -745,7 +756,17 @@
    ],
    "note": "WCAG 1.4.11: can a reader SEE a control, not just read it. Written 2026-09-10 after Arpit said of the calls to action \"the cta are not very readable I am not sure how they are passing the accessibility test\". They were passing because nothing looked: the CTA TEXT was fine (contrast-audit graded 347 text nodes on a case page, 0 failures) while the BUTTON'S BOUNDARY sat at 2.84:1 where 1.4.11 needs 3:1 — 29 of 38 asks. All 48 gates measured text against its ground; none measured a control's edge, so a button nobody could find passed every one of them. It ran MANUAL for one afternoon because it reported 153 controls across 17 components — the site's own tokens, not the CTAs: --border 1.41:1, --border-accent 2.89:1, and every card, input, toggle and Subscribe button inherited one. Arpit's call was to raise them site-wide, so the alphas were SOLVED for rather than guessed (ember --border .14 -> .37, --line .16 -> .37, --border-accent .5 -> .54, cream .2 -> .5, styles :root .07 -> .34, styles light .16 -> .49 and its accent .5 -> .75, the lab link outline 45% -> 58%). Now clean at 70 page-widths, so it is a regression guard. ONE reasoned exception: the .recon blocks are simulations of clients' shipped products (1.03:1 to 1.25:1) and are NOT raised — restyling them would falsify the evidence the case studies rest on. The check's own scope excludes them, and styles.css records why. Computes from RESOLVED COLOURS, never pixels. That rule cost SIX consecutive instrument faults, every one of them the probe and never the page: rounded corners read as 1.00:1; antialiased glyph edges read 1.47:1 against a 16.74:1 median; mobile emulation shifted the screenshot frame so every 390px reading was exactly 1.00:1; scrollIntoView returned a stale rect under smooth scrolling; sampling a button's centre hit its LABEL not its fill; and finally color-mix() resolves to color(srgb 0.9 0.4 1 / .45) whose channels are 0..1, which read as 8-bit turned a violet border into near-black and reported 21 visible links as failures. A gradient's endpoints ARE its extremes, so the worst case is exact. Semi-transparent borders are composited over the real ground — discarding them made it fall through to the card fill and report 1.15:1 for every card on the site. A boundary needs all FOUR sides: a bottom-only border is an underline, whose requirement is the text one. Native appearance:auto controls (53 checkboxes, 6 ranges) are reported UNMEASURABLE, not failed: the browser paints them and accent-color only touches the checked fill. --all lifts the action-family scope."
   },
-  {"id": "paper-object-check", "cmd": ["python3", "tools/paper-object-check.py"], "stages": ["nightly"], "note": "2026-09-12: the boarding pass in the closing bookend went black — a paper object had been mapped onto PAGE roles, and on a bookend the page ground is dark. Every colour gate asks about ink against ground; none asked whether an OBJECT keeps its own ground. This one does, on every classic page, and calibrates by planting a dark pass."},
+  {
+   "id": "paper-object-check",
+   "cmd": [
+    "python3",
+    "tools/paper-object-check.py"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "note": "2026-09-12: the boarding pass in the closing bookend went black — a paper object had been mapped onto PAGE roles, and on a bookend the page ground is dark. Every colour gate asks about ink against ground; none asked whether an OBJECT keeps its own ground. This one does, on every classic page, and calibrates by planting a dark pass."
+  },
   {
    "id": "markup-dup-attr-check",
    "cmd": [
@@ -774,6 +795,17 @@
     "server"
    ],
    "note": "The floor nothing else measured. The site enforces 12.5px rendered type in three gates and none of them walks into an <svg>, so the 24 art diagrams were never measured: 10-15 USER UNITS inside 1180- and 1280-unit viewBoxes rendered at 976-1120px, which put every one of 586 labels between 8.13px and 12.23px. contrast-audit grades the same glyphs and passes them, correctly — the ink is fine, the size was not. Now clean at 390/768/1024/1440/1600, so this is a regression guard rather than a backlog: the drawing is shown only above the width where its own smallest label clears the floor, and below that the typeset .artalt block takes over (ember.css, the ARTALT block). Scoped to the 17 of 36 pages whose source contains '<text>', which took it from 49s to 30s — its blind spot is therefore an <svg> whose text is injected by script. ci+nightly rather than pre-push, following a11y-sweep: it drives a browser, and the note there records a 28-minute suite being why a red gate went unnoticed for five days. Effective px is computed from each element's own getScreenCTM(), never renderedWidth/viewBox, which ignores preserveAspectRatio and any transform on a group between the svg and the text."
+  },
+  {
+   "id": "rhythm-check",
+   "cmd": [
+    "python3",
+    "tools/rhythm-check.py"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "note": "2026-09-13: Arpit — 'the negative space between and within sections is not proper'. The system named one act rhythm and nothing consumed it: homepage acts carried five paddings, the seam line added 96px, a first card added 40px, so the blank between acts ran ~200px on a phone. Every spacing check read ONE declared value; the blank is the SUM across a boundary. This measures the boundary: act padding == --rhythm-act both sides, no first/last-child margin, h2-led chapters == --rhythm-chapter. Calibrates by planting an off-rhythm act."
   }
  ],
  "manual": [
