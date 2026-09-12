@@ -313,7 +313,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #     were widened. The scoping took the size gate from 49s to 30s by not loading the 19
 #     pages with nothing to measure — and a gate slow enough to route around is the
 #     failure mode this directory already has a story about.
-CEILING = 14_112
+CEILING = 14_117
 
 
 def loc(paths):

@@ -58,7 +58,9 @@
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../styles.css?v=1ac23489">
-<link rel="stylesheet" href="../ember.css?v=dffc0662">
+<link rel="stylesheet" href="../ember.css?v=4c0a9bae">
+<link rel="stylesheet" href="../amber.css?v=98ff7c0c">
+<link rel="stylesheet" href="../amber-bridge.css?v=7f693bf9">
 
 <!-- Mockup-plate ink darkened 2026-08-01: #5C6470 -> #282B31 and the stage chip
      #C2410C -> #B63D0B. Measured from RENDERED pixels, these sat at 4.06-4.39:1 against a
@@ -76,7 +78,7 @@
   
 </svg>
 
-<nav id="nav" role="navigation" aria-label="Main navigation">
+<nav id="nav" data-ground="bookend" role="navigation" aria-label="Main navigation">
   <div class="nav-logo"><a class="row-ic nav-home" href="../index.html"><img class="site-logo" src="../assets/logo-ember.svg" alt="Arpit Maheshwari Logo"><span class="nav-name">Arpit Maheshwari</span></a></div>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-links"><li><a href="../index.html#featured-case-studies" aria-current="true">Work</a></li><li><a href="../index.html#how-i-lead">How I Lead</a></li><li><a href="../patterns/">Patterns</a></li><li><a href="../lab/">Code</a></li><li><a href="../writing/">Writing</a></li><li class="nav-book"><a href="../book/" onclick="try{localStorage.setItem('am-view','book')}catch(e){}" data-cta="switch-book" data-location="nav">Read as a book</a></li><li class="nav-cta-sm"><a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="nav-drawer">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a></li></ul>
@@ -97,9 +99,9 @@
       <p class="case-hero__hook">Traders watched an algorithm beat them and played their hunches anyway. The fix wasn’t a better model — it was letting them argue back: plans they could reshape in one click, every edit teaching next week’s recommendations.</p>
       <p class="hand xi-case-studies-adtech-005" aria-hidden="true">they stopped fighting the model the day it started listening</p>
       <div class="case-stats">
-        <div class="case-stat"><b>2 wks → 3 hrs</b><span>campaign planning, once traders bet on the model</span></div>
-        <div class="case-stat"><b>£69k</b><span>average media-value uplift per client</span></div>
-        <div class="case-stat"><b>plans, not picks</b><span>every recommendation a full campaign plan — KPIs attached, one click to customise</span></div>
+        <div class="case-stat" data-ground="bookend"><b>2 wks → 3 hrs</b><span>campaign planning, once traders bet on the model</span></div>
+        <div class="case-stat" data-ground="bookend"><b>£69k</b><span>average media-value uplift per client</span></div>
+        <div class="case-stat" data-ground="bookend"><b>plans, not picks</b><span>every recommendation a full campaign plan — KPIs attached, one click to customise</span></div>
       </div>
     </div>
   </div>
@@ -272,7 +274,7 @@
 
     <p class="t-body xi-case-studies-adtech-007">The whole case fits in one card. Pick a planning priority and watch the plan re-shape — then open the reasoning, then customise it:</p>
     <section class="recon" id="recon-adtech" role="group" aria-label="Interactive reconstruction: a recommended campaign plan that re-shapes by priority, with visible KPIs and one-click customisation">
-    <div class="recon-badge">Reconstruction — anonymised, rebuilt from memory for illustration · client under NDA · figures synthetic</div>
+    <div class="recon-badge" data-ground="bookend">Reconstruction — anonymised, rebuilt from memory for illustration · client under NDA · figures synthetic</div>
     <div class="recon-stage">
       
       <div class="rxa-presets" role="group" aria-label="Planning priority">
@@ -485,7 +487,7 @@
   </div>
 </div></main>
 
-<footer>
+<footer data-ground="bookend">
   <!-- The back-to-top button is the ONLY consumer of this symbol, so the symbol travels
        with it. It used to live in a page-level sprite that 17 shipped pages did not have,
        so on those pages <use href="#i-chevron-up"> resolved to nothing: the SVG reserved

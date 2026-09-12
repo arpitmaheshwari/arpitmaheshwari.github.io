@@ -146,7 +146,12 @@ def render(rel, existing_nav, existing_footer):
 # scroll-fade was added and returning readers would have kept the old stylesheet.
 # Same failure as fonts.css earlier this session — a stylesheet outside this list is a
 # stylesheet nobody is stamping.
-VERSIONED = ('styles.css', 'ember.css', 'fonts.css', 'book/book.css',
+# amber.css is VENDORED from amber-design-system (see its header) and amber-bridge.css
+# is this site's map onto it. Both are stamped here for the same reason book.css was
+# added after shipping stale on a hand-typed ?v=: a stylesheet outside this list is a
+# stylesheet nobody is stamping.
+VERSIONED = ('styles.css', 'ember.css', 'amber.css', 'amber-bridge.css',
+             'fonts.css', 'book/book.css',
              'analytics.js', 'clarity.js', 'attention.js', 'fit.js', 'dyslexia.js', 'nav-inert.js',
              'patterns/demos.js', 'data/case-facts.js',
              'lab/loop.js', 'lab/loop.test.js', 'lab/trustlint.js',

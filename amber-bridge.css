@@ -1,0 +1,358 @@
+/* ============================================================================
+   AMBER BRIDGE — the consumer's map onto the design system.
+   ----------------------------------------------------------------------------
+   WHAT THIS FILE IS, AND WHY IT IS SMALL.
+   amber.css ships seven measured colour ramps, a semantic role layer and a grid.
+   This site does not use the system's token names: it grew its own three families
+   (the theme set on html[data-theme], a --heat pair per page family, and a
+   nineteen-token set on body.p-home). So the whole job of adopting the system is
+   to point this site's names at the system's roles — once, here.
+
+   This replaces 390 hand-written rules. The A1 pilots proved the palette page by
+   page and paid for it in special cases: a card tint that cost the accent its AA
+   margin, a receipt row that cost the quiet ink its own, a tinted plate row, a
+   screen that borrowed its ground from the page. Every one of those is now a stop
+   on a ramp with its contrast recorded, so the mapping below is a mapping and not
+   a re-solve.
+
+   WHY A BRIDGE AND NOT A REWRITE. ember.css carries 2,354 unlayered lines, and an
+   unlayered declaration beats every cascade layer regardless of specificity — so
+   amber.css cannot win a fight with it and is not asked to. What it CAN do is
+   supply custom properties, because a custom property is resolved by the last
+   declaration wins and amber.css loads last. So the system arrives as tokens, this
+   file maps them, and the existing rules follow without being touched.
+   Fully layering ember.css is a migration of its own and is not this change.
+
+   LOAD ORDER, which is load-bearing:
+     fonts.css → styles.css → ember.css → amber.css → amber-bridge.css
+   ============================================================================ */
+
+/* ── 1 · THE GROUND RULE. Paper between the bookends, and the bookends keep the
+   identity paper cannot afford. This is the system's central idea applied to this
+   site's actual structure: the nav, the hero and the closing section are the
+   bookends on every page type; everything between them reads on paper. */
+html[data-theme="ember"] body :is(main, .measure-c) {
+  /* the theme family */
+  --bg: var(--surface-page);
+  --bg-soft: var(--surface-sunken);
+  --bg-card: var(--surface-card);
+  --ink: var(--text-body);              /* 9.15:1 — the band, not the glare */
+  --ink-muted: var(--text-muted);
+  --ink-dim: var(--text-faint);
+  --border: var(--border-strong);       /* 3.49:1 — a control edge owes 1.4.11 its 3:1 */
+  --border-accent: var(--accent-text);
+  --hairline: var(--border-hairline);
+  --gold: var(--accent-text);
+  --gold-light: var(--accent-text);
+  --gold-dark: var(--accent-fill);
+  --goldA: var(--accent-text);
+  --goldA-dk: var(--accent-fill);
+  --ember: var(--acc-copper);
+  --copper: var(--acc-copper);
+  --copper-light: var(--acc-copper);
+  --violet: var(--acc-violet);
+  --amber: var(--acc-amber);
+  --rose: var(--acc-rose);
+  --link: var(--acc-violet);
+  --link-hover: var(--accent-fill);
+  --heat: var(--act);
+  --heat2: var(--acc-violet);
+  --cta-ink: var(--text-on-accent);
+  --cta-grad: linear-gradient(92deg, var(--acc-copper), var(--acc-amber));
+  --g-hot: linear-gradient(92deg, var(--acc-copper), var(--acc-violet));
+
+  /* the homepage family, which declares its own nineteen on body.p-home */
+  --bg0: var(--surface-page);
+  --bg1: var(--surface-sunken);
+  --card: var(--surface-card);
+  --line: var(--border-strong);
+  --mut: var(--text-muted);
+  --dim: var(--text-faint);
+  --cream: var(--surface-page);
+  --cream-ink: var(--text-body);
+  --cream-mut: var(--text-muted);
+  --cream-red: var(--acc-copper);
+
+  background: var(--surface-page);
+  color: var(--text-body);
+}
+
+/* ── 2 · THE SAME MAP, INSIDE A BOOKEND. Written twice on purpose, and the reason is
+   worth stating because it took a 1.78:1 reading to find.
+   Block 1 maps THIS SITE's token names onto the system's roles, scoped to `main`.
+   On most page types the hero and the closing band are INSIDE main, so they inherit
+   that mapping — and inheritance beats nothing: [data-ground="bookend"] re-declares
+   the SYSTEM's roles on the carrier, but this site's names (--gold, --ink, --ember)
+   were still pointing at whatever main had set, which is paper. So paper accents
+   painted on the bookend ground.
+   The declarations below are identical to block 1. They resolve differently because
+   a var() is resolved per element, and on this element tier 2 is the bookend's.
+   CSS has no mixin; if it did, this would be one. */
+html[data-theme="ember"] body [data-ground="bookend"] {
+  /* the theme family */
+  --bg: var(--surface-page);
+  --bg-soft: var(--surface-sunken);
+  --bg-card: var(--surface-card);
+  --ink: var(--text-body);              /* 9.15:1 — the band, not the glare */
+  --ink-muted: var(--text-muted);
+  --ink-dim: var(--text-faint);
+  --border: var(--border-strong);       /* 3.49:1 — a control edge owes 1.4.11 its 3:1 */
+  --border-accent: var(--accent-text);
+  --hairline: var(--border-hairline);
+  --gold: var(--accent-text);
+  --gold-light: var(--accent-text);
+  --gold-dark: var(--accent-fill);
+  --goldA: var(--accent-text);
+  --goldA-dk: var(--accent-fill);
+  --ember: var(--acc-copper);
+  --copper: var(--acc-copper);
+  --copper-light: var(--acc-copper);
+  --violet: var(--acc-violet);
+  --amber: var(--acc-amber);
+  --rose: var(--acc-rose);
+  --link: var(--acc-violet);
+  --link-hover: var(--accent-fill);
+  --heat: var(--act);
+  --heat2: var(--acc-violet);
+  --cta-ink: var(--text-on-accent);
+  --cta-grad: linear-gradient(92deg, var(--acc-copper), var(--acc-amber));
+  --g-hot: linear-gradient(92deg, var(--acc-copper), var(--acc-violet));
+
+  /* the homepage family, which declares its own nineteen on body.p-home */
+  --bg0: var(--surface-page);
+  --bg1: var(--surface-sunken);
+  --card: var(--surface-card);
+  --line: var(--border-strong);
+  --mut: var(--text-muted);
+  --dim: var(--text-faint);
+  --cream: var(--surface-page);
+  --cream-ink: var(--text-body);
+  --cream-mut: var(--text-muted);
+  --cream-red: var(--acc-copper);
+
+}
+
+/* ── 3 · THE LITERALS A TOKEN CANNOT REACH. Measured across both stylesheets: 208
+   rules set `color` to a literal and 35 of those are light inks that only read on a
+   dark ground. On paper each is invisible. These are the ones that land inside a
+   reading ground; the rest sit in bookends and are correct where they are.
+   The most important is the body prose itself — ember.css hardcodes #E2DBD3 with a
+   comment explaining it was softened for sustained DARK reading. Under this system
+   the reading ink IS the softened value, so the special case disappears. */
+html[data-theme="ember"] body main :is(.t-body, .u-body) { color: var(--text-body); }
+html[data-theme="ember"] body main .thesis .t-l { color: var(--acc-amber); }
+html[data-theme="ember"] body main .thesis p em { color: var(--acc-violet); }
+html[data-theme="ember"] body main .counter .c-l { color: var(--acc-rose); }
+html[data-theme="ember"] body.p-home .voices .lede { color: var(--text-muted); }
+
+/* ── 4 · SHADOWS ARE A DARK-GROUND IDIOM. A 64px rgba(0,0,0,.45) lift is invisible
+   on dark; on paper it darkens the page under its own caption — a figure caption
+   measured 2.55:1 against a ground nothing in the DOM declares, because the pixels
+   under the glyph were paper darkened by the shadow above. On paper a surface is
+   raised by an EDGE. */
+html[data-theme="ember"] body main :is(.plA, .plF, .plM, .plO, .plP, .plV,
+  .fig-paper, .recon, .rcpt-box, .card-p28, .card-p32, .hd-card) {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--text-primary) 14%, transparent),
+              0 1px 2px color-mix(in srgb, var(--text-primary) 8%, transparent);
+  filter: none;
+}
+
+/* ── 5 · A SCREEN QUOTING SOMEBODY ELSE'S PRODUCT KEEPS THEIR INTERIOR. The
+   reconstruction plates are not this system's surfaces — they are evidence, and
+   restyling them would falsify it. They own their ink. */
+html[data-theme="ember"] body main :is(.plA, .plF, .plM, .plO, .plP, .plV, .recon,
+  [class*="-app"], [class*="-paper"]) {
+  --ink: #16181D; --ink-muted: #282B31; --ink-dim: #3C4148;
+  --mut: #282B31; --dim: #3C4148;
+}
+
+/* ── 6 · THE INSTRUMENT PANELS. This site's own diagrammatic instruments (.vg-*),
+   which are NOT screenshots: they carry no client's UI, so they take the chart
+   verdict rather than the screen one. On paper there is nothing behind a bar, so
+   every bar needs a track — the system ships --bar-track for exactly this. The
+   interior is a raised surface, and it is raised by an edge. */
+html[data-theme="ember"] body main .vg {
+  background: var(--surface-card);
+  border: 1px solid var(--border-strong);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 55%, transparent);
+  /* --a is an ALIAS declared on .vg-hero, one level up, and a custom property
+     resolves where it is declared — so re-pointing --ember underneath does nothing.
+     Re-declared here, at the point of use. */
+  --a: var(--act);
+  --ink: var(--text-body); --mut: var(--text-muted); --dim: var(--text-faint);
+  --ink-muted: var(--text-muted); --ink-dim: var(--text-faint);
+}
+html[data-theme="ember"] body main .vg-hero .vg { background: var(--surface-card); }
+html[data-theme="ember"] body main .vg .vg-hd { border-bottom-color: var(--border-hairline); }
+html[data-theme="ember"] body main .vg :is(.vg-verdict, .vg-note, .vg-after, .vg-bill) {
+  border-top-color: var(--border-hairline);
+}
+html[data-theme="ember"] body main .vg :is(.vg-met s, .vg-sig span, .vg-conf span,
+  .vg-allows span) { background: var(--bar-track); }
+html[data-theme="ember"] body main .vg .vg-met s::after {
+  background: linear-gradient(90deg, transparent, var(--bar-track), transparent);
+}
+html[data-theme="ember"] body main .vg :is(.vg-row b, .vg-plats li) {
+  border-color: var(--border-hairline);
+  background: color-mix(in srgb, var(--text-primary) 4%, transparent);
+}
+html[data-theme="ember"] body main .vg .vg-spine span {
+  background: var(--surface-sunken); color: var(--ink);
+}
+/* an absence is drawn in ink on paper, not in light */
+html[data-theme="ember"] body main .vg .vg-allows .nobar span {
+  background: repeating-linear-gradient(90deg, var(--bar-track) 0 3px, transparent 3px 7px);
+}
+
+/* ── 7 · CHART TRACKS on the page itself, same rule. */
+html[data-theme="ember"] body main :is(.hd-track, .plM-track, .lug-meter) {
+  background: var(--bar-track);
+}
+
+/* ── 8 · NO MID-PAGE FIELDS. A radial field is additive light: it only reads
+   because there is dark underneath, which is why the system resolves --glow to
+   none on paper and re-declares it on the bookend. "Fields are bookends, not
+   wallpaper" is this site's own phrase; the glare it measured at 16.74:1 came from
+   making a bookend the whole page. */
+html[data-theme="ember"] body main > :is(section, div)::before { background: none; }
+
+/* ── 9 · WHICH BANDS ARE PAPER. The system supplies two grounds; it cannot know
+   which of this site's bands are which. ember casts an act ground per section
+   (~line 2470, "each act now sits on a ground cast from its own accent"), all of
+   them dark — so without this the acts kept their gradients while inheriting paper
+   ink, which is the 1.78:1 reading that found it.
+   Paper between the bookends; the bookends carry [data-ground="bookend"] and keep
+   everything paper cannot afford. `.labrow` and not `.thoughts`: .thoughts matches
+   zero elements on this site, which is a dead selector in ember.css and not mine to
+   delete here. */
+html[data-theme="ember"] body.p-home :is(.receipts, .work, .who, .contract,
+  .aiwork, .voices, .labrow) {
+  background: var(--surface-page);
+  color: var(--text-body);
+}
+/* and the act accent each band names, mapped onto the system's interchangeable six */
+html[data-theme="ember"] body.p-home .work    { --act: var(--acc-copper); }
+html[data-theme="ember"] body.p-home .who     { --act: var(--acc-violet); }
+html[data-theme="ember"] body.p-home .aiwork  { --act: var(--acc-amber);  }
+html[data-theme="ember"] body.p-home .voices  { --act: var(--acc-rose);   }
+html[data-theme="ember"] body.p-home .contract{ --act: var(--acc-amber);  }
+html[data-theme="ember"] body.p-home .labrow  { --act: var(--acc-violet); }
+
+/* ── 10 · THE TINTED CARDS TAKE THE ONE-STOP RULE. The system ships it as
+   [data-tint]; these are this site's tinted surfaces, so they get it by class
+   rather than by editing 40 pages of markup. Measured: the accent read 3.81:1 on
+   the darkest of them and 5.31:1 one stop down. */
+html[data-theme="ember"] body :is(.bcard, .rcpt-r, .rcpt-r-tight, .card-p28,
+  .card-p32, .hd-card, .plM-caption, .case-vitals) {
+  --text-muted:    var(--neutral-800);
+  --text-faint:    var(--neutral-700);
+  --accent-text:   var(--amber-700);
+  --acc-amber:     var(--amber-700);
+  --acc-copper:    var(--copper-700);
+  --acc-violet:    var(--violet-700);
+  --acc-rose:      var(--rose-700);
+  --border-strong: var(--neutral-600);
+  /* and this site's names, re-pointed at the stepped roles */
+  --ink-muted: var(--text-muted); --ink-dim: var(--text-faint);
+  --mut: var(--text-muted);       --dim: var(--text-faint);
+  --gold: var(--accent-text);     --goldA: var(--accent-text);
+  --amber: var(--acc-amber);      --ember: var(--acc-copper);
+  --copper: var(--acc-copper);    --violet: var(--acc-violet);
+  --rose: var(--acc-rose);        --heat: var(--act);
+}
+
+/* ── 11 · FALLBACKS INSIDE var() ARE A SECOND PALETTE. ember writes
+   `background: var(--card, #241830)` in nine places: when --card is not set on that
+   element's chain the FALLBACK paints, and a fallback is a literal no theme can
+   reach. It read 1.56:1 — paper ink on a dark card. Setting the token on the
+   component itself is the fix; deleting the fallbacks is a job in ember.css. */
+html[data-theme="ember"] body :is(.hd-card, .hd-preset, .bcard, .qv-t, .qvoices) {
+  --card: var(--surface-card);
+  --line: var(--border-strong);
+}
+/* the accent-tinted voice labels take the one-stop rule too */
+html[data-theme="ember"] body :is(.qv-t, .qv-v, .qvoices label) {
+  --text-faint: var(--neutral-700);
+  --ink-dim: var(--neutral-700);
+  --dim: var(--neutral-700);
+}
+
+
+/* ── 12 · THE SELECTORS THAT RE-DECLARE TOKENS BELOW main.
+   Swept both stylesheets: 24 selectors re-declare a theme token. Eighteen sit on
+   <body> or above and are harmless — block 1 scopes to `main`, which is below them.
+   These SIX sit below main and therefore overrode the mapping, which is why a
+   .fit-col computed --bg-card as #241830 while main had it as #FFF7EA:
+
+     .act-cream            the cream-act mechanism (/fit/, /lab/, patterns)
+     .contract, #thoughts  the homepage acts that carry their own sets
+     .qvoices, .ccd        components that re-declare rather than inherit
+     .vslip                the case-study video slip
+
+   `body` is in the selector so this outranks `html[data-theme="ember"] .act-cream`
+   on specificity as well as order. The plates and .recon are deliberately NOT here
+   — they are evidence and keep their own interiors (block 5).
+   ---------------------------------------------------------------------------- */
+html[data-theme="ember"] body :is(.act-cream, .contract, #thoughts, .qvoices,
+  .ccd, .vslip) {
+  /* the theme family */
+  --bg: var(--surface-page);
+  --bg-soft: var(--surface-sunken);
+  --bg-card: var(--surface-card);
+  --ink: var(--text-body);              /* 9.15:1 — the band, not the glare */
+  --ink-muted: var(--text-muted);
+  --ink-dim: var(--text-faint);
+  --border: var(--border-strong);       /* 3.49:1 — a control edge owes 1.4.11 its 3:1 */
+  --border-accent: var(--accent-text);
+  --hairline: var(--border-hairline);
+  --gold: var(--accent-text);
+  --gold-light: var(--accent-text);
+  --gold-dark: var(--accent-fill);
+  --goldA: var(--accent-text);
+  --goldA-dk: var(--accent-fill);
+  --ember: var(--acc-copper);
+  --copper: var(--acc-copper);
+  --copper-light: var(--acc-copper);
+  --violet: var(--acc-violet);
+  --amber: var(--acc-amber);
+  --rose: var(--acc-rose);
+  --link: var(--acc-violet);
+  --link-hover: var(--accent-fill);
+  --heat: var(--act);
+  --heat2: var(--acc-violet);
+  --cta-ink: var(--text-on-accent);
+  --cta-grad: linear-gradient(92deg, var(--acc-copper), var(--acc-amber));
+  --g-hot: linear-gradient(92deg, var(--acc-copper), var(--acc-violet));
+
+  /* the homepage family, which declares its own nineteen on body.p-home */
+  --bg0: var(--surface-page);
+  --bg1: var(--surface-sunken);
+  --card: var(--surface-card);
+  --line: var(--border-strong);
+  --mut: var(--text-muted);
+  --dim: var(--text-faint);
+  --cream: var(--surface-page);
+  --cream-ink: var(--text-body);
+  --cream-mut: var(--text-muted);
+  --cream-red: var(--acc-copper);
+
+}
+
+/* ── 13 · .ccd PAINTS A LITERAL, so the token map cannot reach it. ember writes
+   `html[data-theme="ember"] body.p-home .contract .ccd{background:#241830}` — and
+   the comment above that rule in ember.css says it exists because "a token cannot
+   reach inside it (lesson 4/11)". Under the system it can: the surface is a role. */
+html[data-theme="ember"] body.p-home .contract .ccd,
+html[data-theme="ember"] body .ccd { background: var(--surface-card); }
+
+/* ── 14 · THE LIGHT-INK LITERALS THAT MEAN SOMETHING. Two of the 35 light inks are
+   not decoration — they are status: #7FCF9E is "can / positive" and #FF9F8A is
+   "cannot / negative", both chosen to read on a dark ground. On paper the green
+   measured 1.74:1. The system has roles for both, so this is a semantic mapping
+   rather than another re-solve: forest-600 at 4.59:1, rose-700 at 5.65:1 on a tint. */
+html[data-theme="ember"] body main :is(.ccd-cap b, .ccd-tag--in, .dsg-heats span,
+  .fit-can .fit-col-k) { color: var(--status-positive); }
+html[data-theme="ember"] body main .fit-can li::before { color: var(--status-positive); }
+html[data-theme="ember"] body main :is(.fit-cannot .fit-col-k,
+  .fit-group--block .fit-group-n) { color: var(--status-negative); }
+html[data-theme="ember"] body main .fit-cannot li::before { color: var(--status-negative); }
