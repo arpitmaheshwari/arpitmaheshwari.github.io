@@ -35,11 +35,12 @@
   --ink-wash: color-mix(in srgb, var(--text-primary) 5%, transparent);   /* a raised fill */
   --act-wash: color-mix(in srgb, var(--act) 8%, transparent);            /* a hover fill */
   --link-ink: var(--acc-violet);              /* this site's links are violet, by decision */
+  --door-ink: var(--violet-700);              /* a quiet door: one stop deeper than a link, so it reads the same on paper and on a tint (cta-grammar-check saw two inks for one component) */
   --link-ink-hover: color-mix(in srgb, var(--acc-violet) 78%, var(--text-primary));
 }
 /* a control edge on the bookend owes 1.4.11 its 3:1; the system's 37% cream measured 2.83:1
    on this site's #140C16 (nontext-contrast-check) — 42% clears it. Logged for the system. */
-[data-ground="bookend"]{--border-strong:color-mix(in srgb, var(--neutral-100) 42%, transparent)}}
+[data-ground="bookend"]{--border-strong:color-mix(in srgb, var(--neutral-100) 42%, transparent); --door-ink:var(--violet-100)}}
 @layer components{/* ── from styles.css ── */
 /* A figure image centres in its figure. An img is inline-level, so one
    given a max-width narrower than its figure sits hard LEFT and leaves
@@ -1447,7 +1448,7 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 :where(body.p-lab-eval) .sev-high{background:var(--status-neg-bg);color:var(--status-negative)}
 :where(body.p-lab-eval) .sev-medium{background:var(--status-cau-bg);color:var(--status-caution)}
 :where(body.p-lab-eval) .sev-low{background:var(--bar-track);color:var(--text-muted)}
-:where(body.p-lab-eval) .sev-info{background:rgba(94,212,142,0.13);color:var(--status-positive)}
+:where(body.p-lab-eval) .sev-info{background:var(--status-pos-bg);color:var(--status-positive)}
 :where(body.p-lab-eval) .lint-excerpt{display:block;font-family:var(--ff-mono);font-size:var(--fs-caption);line-height:1.6;color:var(--text-body);margin:0 0 4px;word-break:break-word}
 :where(body.p-lab-eval) .lint-why{display:block;font-size:var(--fs-ui);line-height:1.6;color:var(--text-muted);margin:0}
 :where(body.p-lab-eval) .lint-clean{font-size:var(--fs-ui);line-height:1.7;color:var(--text-muted);margin:0}
@@ -2244,7 +2245,7 @@ body.p-case-studies-adtech{--act:var(--acc-copper)}
 body.p-case-studies-fintech{--act:var(--acc-violet)}
 body.p-case-studies-vc-diligence{--act:var(--acc-amber)}
 body.p-case-studies-ptc{--act:var(--acc-rose)}
-body.p-case-studies-o2{--act:var(--acc-indigo)}
+body.p-case-studies-o2{--act:var(--acc-violet)}
 body.p-case-studies-orgos{--act:var(--acc-copper)}
 /* --- hero: the gradient field, tinted by the case's heat --- */
 body[class*="p-case-studies"] .case-hero{position:relative;overflow:hidden;padding:calc(93px + clamp(24px,4vh,48px)) 0 clamp(48px,8vh,96px)}
@@ -2511,7 +2512,7 @@ body.p-home footer{padding-left:20px;padding-right:20px}}
 body.p-patterns{--act:var(--acc-amber)}
 :is(body[class*="p-lab"],body.p-fit){--act:var(--acc-violet)}
 body.p-screen{--act:var(--acc-rose)}
-body[class*="p-writing"]{--act:var(--acc-indigo)}
+body[class*="p-writing"]{--act:var(--acc-violet)}
 body[class*="p-resources"]{--act:var(--acc-copper)}
 /* --- shared: every ported page gets the hero field + heat accents --- */
 :is(body.p-patterns,body[class*="p-lab"],body.p-fit,body.p-hire,body.p-screen,
@@ -3159,7 +3160,7 @@ body.p-home .qt figcaption{margin-top:20px;padding-top:16px;border-top:1px solid
 .lstep span{font-size:11.5px;color:var(--text-faint);line-height:1.5}
 .lstep-hot{border-color:var(--acc-violet)}
 .larr{align-self:center;color:var(--text-disabled);font-size:16px}
-.lback{flex-basis:100%;font-size:11.5px;color:var(--acc-violet);border-top:1px dashed rgba(232,107,255,.4);padding-top:12px;margin-top:4px}
+.lback{flex-basis:100%;font-size:11.5px;color:var(--acc-violet);border-top:1px dashed color-mix(in srgb, var(--acc-violet) 60%, transparent);padding-top:12px;margin-top:4px}
 /* the arrows only mean something on ONE line: from 640-849 the row wrapped 3+1
    with a dangling third arrow (2026-09-02 sweep) — below the single-line width
    the tiles carry the sequence on their own */
@@ -4294,9 +4295,9 @@ body.dyslexia-mode *:not(code):not(pre):not(kbd):not(samp):not(code *):not(pre *
 .xi-patterns-ai-failure-states-015{background:var(--surface-sunken)}
 .xi-patterns-ai-failure-states-016{margin-bottom:24px;text-align:center}
 .xi-patterns-ai-failure-states-017{display:flex;gap:20px;align-items:stretch}
-.xi-patterns-ai-failure-states-018{flex:1;background:var(--surface-card);border:1px solid rgba(224,115,107,0.25);border-radius:6px;padding:24px;opacity:0.8;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.xi-patterns-ai-failure-states-018{flex:1;background:var(--surface-card);border:1px solid color-mix(in srgb, var(--status-negative) 40%, transparent);border-radius:6px;padding:24px;opacity:0.8;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
 .xi-patterns-ai-failure-states-019{margin-bottom:16px}
-.xi-patterns-ai-failure-states-020{width:40px;height:40px;border-radius:50%;background:rgba(224,115,107,0.12);color:var(--status-negative);display:flex;align-items:center;justify-content:center;font-size:var(--fs-lead);margin-bottom:16px}
+.xi-patterns-ai-failure-states-020{width:40px;height:40px;border-radius:50%;background:var(--status-neg-bg);color:var(--status-negative);display:flex;align-items:center;justify-content:center;font-size:var(--fs-lead);margin-bottom:16px}
 .xi-patterns-ai-failure-states-021{margin-bottom:8px;font-optical-sizing:auto;font-variant-ligatures:common-ligatures contextual}
 .xi-patterns-ai-failure-states-022{font-family:var(--ff-sans);font-size:var(--fs-caption);color:var(--text-muted)}
 .xi-patterns-ai-failure-states-023{flex:1;background:var(--surface-card);border:1px solid var(--accent-text);border-radius:6px;padding:24px;box-shadow:var(--elev-2)}
@@ -6683,7 +6684,8 @@ body.p-home #contact .one-door:hover{filter:brightness(1.06)}
    A reconstruction plate quotes somebody else's product; it owns its whole interior,
    ink and edges alike, and the system's roles are re-pointed at ITS palette so every
    rule inside it resolves against the plate rather than the page. */
-:is(.plA, .plF, .plM, .plO, .plP, .plV, .recon, [class*="-app"], [class*="-paper"]){
+:is(.plA, .plF, .plM, .plO, .plP, .plV, .recon, [class*="-app"], [class*="-paper"],
+    .plA-caption, .plF-caption, .plM-caption, .plO-caption, .plP-caption, .plV-caption, .recon-caption){
   --text-body: #16181D; --text-muted: #282B31; --text-faint: #3C4148;
   --border-hairline: #E3E6EA; --border-strong: #C6CBD2;
   --accent-text: #5C420E; --accent-fill: #5C420E; --acc-amber: #7A5410;   /* the plate's own gold: a caption over its grey chrome read 2.83:1 in the page amber */
@@ -6718,12 +6720,12 @@ body.p-case-studies-adtech [data-ground="bookend"], body.p-case-studies-adtech [
 body.p-case-studies-fintech [data-ground="bookend"], body.p-case-studies-fintech [data-tint]{--act:var(--acc-violet)}
 body.p-case-studies-vc-diligence [data-ground="bookend"], body.p-case-studies-vc-diligence [data-tint]{--act:var(--acc-amber)}
 body.p-case-studies-ptc [data-ground="bookend"], body.p-case-studies-ptc [data-tint]{--act:var(--acc-rose)}
-body.p-case-studies-o2 [data-ground="bookend"], body.p-case-studies-o2 [data-tint]{--act:var(--acc-indigo)}
+body.p-case-studies-o2 [data-ground="bookend"], body.p-case-studies-o2 [data-tint]{--act:var(--acc-violet)}
 body.p-case-studies-orgos [data-ground="bookend"], body.p-case-studies-orgos [data-tint]{--act:var(--acc-copper)}
 body.p-patterns [data-ground="bookend"], body.p-patterns [data-tint]{--act:var(--acc-amber)}
 :is(body[class*="p-lab"],body.p-fit) [data-ground="bookend"], :is(body[class*="p-lab"],body.p-fit) [data-tint]{--act:var(--acc-violet)}
 body.p-screen [data-ground="bookend"], body.p-screen [data-tint]{--act:var(--acc-rose)}
-body[class*="p-writing"] [data-ground="bookend"], body[class*="p-writing"] [data-tint]{--act:var(--acc-indigo)}
+body[class*="p-writing"] [data-ground="bookend"], body[class*="p-writing"] [data-tint]{--act:var(--acc-violet)}
 body[class*="p-resources"] [data-ground="bookend"], body[class*="p-resources"] [data-tint]{--act:var(--acc-copper)}
 body.p-home #thoughts [data-ground="bookend"], body.p-home #thoughts [data-tint]{--act:var(--acc-violet)}
 body.p-home .work [data-ground="bookend"], body.p-home .work [data-tint]{--act:var(--acc-copper)}
@@ -6738,7 +6740,12 @@ body.p-home .qvoices [data-ground="bookend"], body.p-home .qvoices [data-tint]{-
 /* /patterns/ — the rule block's meta ("Read the rule", the date) sat centred in the
    300px column beside a 66ch prose block: an element centred in leftover space. It is
    a metadata RAIL: it starts at the top of the prose and reads as a margin note. */
-body[class*="p-patterns"] .xi-patterns-017{align-self:start;padding-top:4px}
+@media (min-width:861px){
+  body[class*="p-patterns"] :is(.xi-patterns-012,.xi-patterns-018).is-paper{display:grid}
+  body[class*="p-patterns"] :is(.xi-patterns-012,.xi-patterns-018).is-paper{grid-template-columns:minmax(0,66ch) 300px;justify-content:space-between;column-gap:48px}   /* the grid had been switched off by a display:block that outranked it — measured: display:block at 1440, so its areas never applied */
+  body[class*="p-patterns"] .xi-patterns-017{grid-area:meta;align-self:start;align-items:flex-start;text-align:left;padding-top:4px}   /* an extracted grid-row:1/span 20 had overridden the named area */
+  body[class*="p-patterns"] :is(.xi-patterns-012,.xi-patterns-018) > :is(.eyebrow,.section-title){grid-column:1/-1}
+}
 /* CASE HERO, desktop: the solo variant capped an 880px column and let the paragraph run
    ~500px wide beside nothing — half the band empty (layout rule: whitespace is designed
    or it is a defect). The stats already belong to the hero; they become its right rail,
@@ -6770,6 +6777,9 @@ body[class*="p-patterns"] .xi-patterns-017{align-self:start;padding-top:4px}
    at 390: 520px in 294px) — the restack's own selector loses to :where(body) table.td-table on
    specificity; released here, where the layer decides */
 @media (max-width:860px){:where(body.p-lab-teardown) table.td-table{min-width:0}}
+/* the two caption doors (the film caption on the hero, the method's receipts link on /process/)
+   spoke at 11.5px against the house 14px — one door grammar (cta-grammar-check) */
+body.p-home .hero .vid-hero-cap a, .contract-links a{font-size:var(--fs-ui);letter-spacing:.02em;color:var(--door-ink)}   /* 16 of 21 doors track at .02em; these two held .08em */
 /* the close band's heading is display type too */
 [data-ground="bookend"] .close h2, [data-ground="bookend"] .page-head h1{color:var(--neutral-50)}
 
@@ -6815,10 +6825,10 @@ a.cta--secondary, button.cta--secondary, .cta--secondary { background:none; bord
 a.cta--secondary:hover, button.cta--secondary:hover, .cta--secondary:hover { background:var(--ink-wash); color:var(--btn-line-ink); }
 a.cta-quiet, button.cta-quiet, .cta-quiet {
   display:inline-block; min-height:24px; padding:4px 0; border:0; background:none; border-radius:0;
-  font:var(--type-label); font-weight:500; letter-spacing:.02em; color:var(--link-ink); text-decoration:none;
-  border-bottom:1px solid color-mix(in srgb, var(--link-ink) 45%, transparent);   /* the house link colour: a quiet door is still a door (cta-grammar-check) */
+  font:var(--type-label); font-weight:500; letter-spacing:.02em; color:var(--door-ink); text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb, var(--door-ink) 45%, transparent);   /* one ink for the quiet door on paper and on a tint (cta-grammar-check) */
 }
-a.cta-quiet:hover, button.cta-quiet:hover, .cta-quiet:hover { color:var(--link-ink-hover); border-bottom-color:var(--link-ink); }
+a.cta-quiet:hover, button.cta-quiet:hover, .cta-quiet:hover { color:var(--text-primary); border-bottom-color:var(--door-ink); }
 /* the nav door composes .cta; only its placement is local */
 .nav-cta { transition:background .3s, color .3s; }
 .nav-cta:hover { transform:translateY(-2px); }

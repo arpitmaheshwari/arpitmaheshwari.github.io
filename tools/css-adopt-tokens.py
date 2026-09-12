@@ -75,14 +75,15 @@ PLATE = re.compile(r'\.pl[AFMOPV]\b|\.recon|\.rx[a-z0-9]|\.rl-|-app\b|-paper\b|\
                    r'\.rcpt-box|\.slip\b|\.stamp|\.ticket|\.letter|\.qc\b|\.psc|\.env\b|\.lug\b|'
                    r'\.spec-hole|\.paper\b|\.stick\b')
 
-# 3 · page family -> act accent (hue family preserved where the system has one)
+# 3 · page family -> act accent (hue family preserved where the system has one; o2 and writing
+#     were indigo until cta-grammar-check showed their doors speaking a second voice — violet)
 FAMILY_ACT = {
     'body[class*="p-case-studies"]': 'copper', 'body.p-case-studies-adtech': 'copper',
     'body.p-case-studies-fintech': 'violet', 'body.p-case-studies-vc-diligence': 'amber',
-    'body.p-case-studies-ptc': 'rose', 'body.p-case-studies-o2': 'indigo',
+    'body.p-case-studies-ptc': 'rose', 'body.p-case-studies-o2': 'violet',
     'body.p-case-studies-orgos': 'copper', 'body.p-patterns': 'amber',
     ':is(body[class*="p-lab"],body.p-fit)': 'violet', 'body.p-screen': 'rose',
-    'body[class*="p-writing"]': 'indigo', 'body[class*="p-resources"]': 'copper',
+    'body[class*="p-writing"]': 'violet', 'body[class*="p-resources"]': 'copper',
     'body.p-home #thoughts': 'violet',
 }
 
@@ -161,6 +162,9 @@ LITERALS = {
     'rgba(27,19,32,.6)': '--surface-page',
     # the thesis card: an accent edge and a two-accent wash
     'rgba(255,122,168,.05)': 'MIX:--acc-rose:6',   # the counter's rose wash
+    'rgba(232,107,255,.4)': 'MIX:--acc-violet:60',  # the case pages' dashed back-link rule
+    'rgba(224,115,107,0.25)': 'MIX:--status-negative:40',   # a wireframe card's warning edge
+    'rgba(94,212,142,0.13)': '--status-pos-bg', 'rgba(224,115,107,0.12)': '--status-neg-bg',   # status washes
     'rgba(255,196,107,.4)': '--accent', 'rgba(255,196,107,.07)': '--act-wash', 'rgba(232,107,255,.05)': '--ink-wash',
 }
 ALPHA_INK = re.compile(r'rgba\((?:245,237,230|242,237,228|245,237,232),(0?\.\d+)\)')
@@ -215,10 +219,11 @@ TOKENS_LAYER = '''
   --ink-wash: color-mix(in srgb, var(--text-primary) 5%, transparent);   /* a raised fill */
   --act-wash: color-mix(in srgb, var(--act) 8%, transparent);            /* a hover fill */
   --link-ink: var(--acc-violet);              /* this site's links are violet, by decision */
+  --door-ink: var(--violet-700);              /* a quiet door: one stop deeper than a link, so it reads the same on paper and on a tint (cta-grammar-check saw two inks for one component) */
   --link-ink-hover: color-mix(in srgb, var(--acc-violet) 78%, var(--text-primary));
 }/* a control edge on the bookend owes 1.4.11 its 3:1; the system's 37% cream measured 2.83:1
    on this site's #140C16 (nontext-contrast-check) — 42% clears it. Logged for the system. */
-[data-ground="bookend"]{--border-strong:color-mix(in srgb, var(--neutral-100) 42%, transparent)}
+[data-ground="bookend"]{--border-strong:color-mix(in srgb, var(--neutral-100) 42%, transparent); --door-ink:var(--violet-100)}
 }
 '''
 

@@ -145,8 +145,11 @@ if __name__ == "__main__":
     # blind signature made two correct inks read as two grammars, the majority
     # of a 2-CTA sample picked the paper one, and the calibration canary could
     # only swap a signature, never add one).
-    HOUSE_INK = {"dark": "rgb(232, 107, 255)",    # --link on dark grounds
-                 "paper": "rgb(107, 58, 153)"}    # --link inside the cream act
+    # 2026-09-12: the amber system's door ink. On paper a quiet door is violet-700 (one stop
+    # deeper than a link, so it reads the same on a tint); on a bookend it is violet-100.
+    # The ember values this held (#E86BFF / #6B3A99) were retired with the theme.
+    HOUSE_INK = {"dark": "rgb(255, 189, 255)",
+                 "paper": "rgb(123, 41, 135)"}
     allsigs = collections.Counter(r["sig"] for rows in per_page.values() for r in rows)
     if not allsigs:
         print("no arrow-CTAs found — probe broken?"); sys.exit(2)
