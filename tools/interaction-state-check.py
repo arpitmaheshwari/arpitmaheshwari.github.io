@@ -47,11 +47,19 @@ HOVER = r"""(sel => {
     return 0.2126*f[0] + 0.7152*f[1] + 0.0722*f[2]; };
   const el = document.querySelector(sel); if (!el) return 'null';
   const c = getComputedStyle(el);
-  let bg = c.backgroundColor, n = el;
+  // Any colour syntax the browser can paint, read back as rgb(a): color-mix() results
+  // serialise as oklab()/color(srgb …), which a digit-regex turned into 1.09:1 (2026-09-13).
+  const norm = s => { try { const cv = document.createElement('canvas'); cv.width = cv.height = 1;
+    const g = cv.getContext('2d'); g.clearRect(0,0,1,1); g.fillStyle = s; g.fillRect(0,0,1,1);
+    const d = g.getImageData(0,0,1,1).data; return `rgba(${d[0]}, ${d[1]}, ${d[2]}, ${(d[3]/255).toFixed(2)})`; } catch (e) { return s; } };
+  let bg = c.backgroundColor, n = el, throughGradient = false;
   while (n && /rgba\(0, 0, 0, 0\)|transparent/.test(bg)) {
-    n = n.parentElement; if (!n) break; bg = getComputedStyle(n).backgroundColor; }
+    n = n.parentElement; if (!n) break;
+    const nc = getComputedStyle(n); if (nc.backgroundImage && nc.backgroundImage !== 'none') throughGradient = true;
+    bg = nc.backgroundColor; }
+  bg = norm(bg);
   const bi = c.backgroundImage && c.backgroundImage !== 'none';
-  const x = lum(c.color), y = lum(bg);
+  const x = lum(norm(c.color)), y = lum(bg);
   if (x === null || y === null) return 'null';
   const r = (Math.max(x,y)+0.05)/(Math.min(x,y)+0.05);
   // An icon-only control carries no text, so WCAG asks 3:1 of it, not 4.5:1.
@@ -65,7 +73,7 @@ HOVER = r"""(sel => {
   const painted = !visible && (bi || [...el.querySelectorAll('*')].some(k => {
     const kc = getComputedStyle(k);
     return kc.backgroundImage && kc.backgroundImage !== 'none'; }));
-  return JSON.stringify({ratio:+r.toFixed(2), gradient:bi, ink:c.color, bg:bg,
+  return JSON.stringify({ratio:+r.toFixed(2), gradient:bi, ink:norm(c.color), bg:bg, throughGradient,
     paintedIcon: painted,
     needs: visible ? 4.5 : 3.0, iconOnly: !visible,
     what:(el.textContent||el.getAttribute('aria-label')||el.tagName)
@@ -179,6 +187,13 @@ def tab_scan(br, steps=8):
         if not isinstance(d, dict) or d.get('what') in seen:
             continue
         seen.add(d['what'])
+        if (d.get('ratio') is not None and d['ratio'] < 4.5 and d.get('throughGradient')
+                and not d.get('gradient') and not d.get('paintedIcon')):
+            br.eval("(()=>{const e=document.activeElement;if(e)e.setAttribute('data-isfocus','1');return 1})()")
+            pr = pixel_ratio(br, '[data-isfocus="1"]', d['ink'])
+            br.eval("(()=>{const e=document.querySelector('[data-isfocus]');if(e)e.removeAttribute('data-isfocus');return 1})()")
+            if pr:
+                d['ratio'], d['bg'] = pr[0], pr[1] + ' (pixels)'
         if (d.get('ratio') is not None and d['ratio'] < 4.5
                 and not d.get('gradient') and not d.get('paintedIcon')):
             out.append({'kind': 'FOCUS-CONTRAST', 'what': d['what'],
@@ -198,20 +213,26 @@ FOCUSED = r'''(() => {
     const f = m.slice(0,3).map(v => { v = v/255;
       return v <= 0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4); });
     return 0.2126*f[0] + 0.7152*f[1] + 0.0722*f[2]; };
-  let bg = c.backgroundColor, n = e;
+  const norm = s => { try { const cv = document.createElement('canvas'); cv.width = cv.height = 1;
+    const g = cv.getContext('2d'); g.clearRect(0,0,1,1); g.fillStyle = s; g.fillRect(0,0,1,1);
+    const d = g.getImageData(0,0,1,1).data; return `rgba(${d[0]}, ${d[1]}, ${d[2]}, ${(d[3]/255).toFixed(2)})`; } catch (er) { return s; } };
+  let bg = c.backgroundColor, n = e, throughGradient = false;
   // the ground BEHIND the element, for an offset ring
   let outer = e.parentElement ? getComputedStyle(e.parentElement).backgroundColor : bg;
   while (n && /rgba\(0, 0, 0, 0\)|transparent/.test(bg)) {
-    n = n.parentElement; if (!n) break; bg = getComputedStyle(n).backgroundColor; }
+    n = n.parentElement; if (!n) break;
+    const nc = getComputedStyle(n); if (nc.backgroundImage && nc.backgroundImage !== 'none') throughGradient = true;
+    bg = nc.backgroundColor; }
+  bg = norm(bg);
   const grad = c.backgroundImage && c.backgroundImage !== 'none';
-  const x = lum(c.color), y = lum(bg);
+  const x = lum(norm(c.color)), y = lum(bg);
   const ratio = (x === null || y === null) ? null
     : +(((Math.max(x,y)+0.05)/(Math.min(x,y)+0.05)).toFixed(2));
   const ring = (c.outlineColor || '').trim();
   return JSON.stringify({
     what: (e.textContent || e.getAttribute('aria-label') || e.tagName)
             .trim().replace(/\s+/g,' ').slice(0,34),
-    ratio, gradient: grad, ink: c.color, bg,
+    ratio, gradient: grad, ink: norm(c.color), bg, throughGradient,
     // AN ICON PAINTED BY A BACKGROUND HAS NO `color` TO GRADE — 2026-09-09.
     // The nav toggle renders no text at all: its glyph is three spans filled
     // with an ember->violet gradient. This gate graded the BUTTON's `color`,
@@ -246,6 +267,44 @@ FOCUSED = r'''(() => {
 })()'''
 
 
+def pixel_ratio(br, sel, ink):
+    """Ground by PIXELS: hide the control, photograph its box, take the median colour, compare
+    to the (normalised) ink. Used only where the style walk met a gradient ancestor — lesson 9:
+    when two instruments disagree, the one that samples pixels wins."""
+    import base64, io, json as _j
+    try:
+        from PIL import Image
+    except ImportError:
+        return None
+    r = json_or(br.eval(f"(()=>{{const e=document.querySelector({_j.dumps(sel)});if(!e)return 'null';"
+                        # a control inside a FIXED bar is painted at the viewport, not in the document: a
+                        # clip aimed at the document's end (where the hover pass left the page) cannot
+                        # contain it. Scroll such a page to the top first; everything else centres.
+                        "let f=e,fixed=false;while(f&&f!==document.body){if(getComputedStyle(f).position==='fixed'){fixed=true;break}f=f.parentElement}"
+                        "if(fixed)scrollTo(0,0);else e.scrollIntoView({block:'center'});const b=e.getBoundingClientRect();"
+                        "e.style.setProperty('visibility','hidden','important');"
+                        # a screenshot clip is in DOCUMENT coordinates: add the scroll, or a scrolled
+                        # page photographs the wrong band (three resources pages read cream, 2026-09-13)
+                        "return JSON.stringify({x:b.left+scrollX,y:b.top+scrollY,w:b.width,h:b.height})})()"))
+    if not isinstance(r, dict) or r['w'] < 2 or r['h'] < 2:
+        return None
+    try:
+        shot = br.cmd('Page.captureScreenshot', format='png',
+                      clip={'x': r['x'], 'y': r['y'], 'width': r['w'], 'height': r['h'], 'scale': 1})
+    finally:
+        br.eval(f"(()=>{{const e=document.querySelector({_j.dumps(sel)});if(e)e.style.removeProperty('visibility');return 1}})()")
+    im = Image.open(io.BytesIO(base64.b64decode(shot['data']))).convert('RGB')
+    px = sorted(im.getdata()); med = px[len(px) // 2]
+    def lum(rgb):
+        f = [(v / 255) / 12.92 if v / 255 <= 0.03928 else ((v / 255 + 0.055) / 1.055) ** 2.4 for v in rgb]
+        return 0.2126 * f[0] + 0.7152 * f[1] + 0.0722 * f[2]
+    m = [float(v) for v in __import__('re').findall(r'[\d.]+', ink)[:3]]
+    if len(m) < 3:
+        return None
+    a, b = lum(m), lum(med)
+    return round((max(a, b) + 0.05) / (min(a, b) + 0.05), 2), f'rgb{med}'
+
+
 def hover_scan(br, only=None):
     """Force :hover via CDP and read the resulting ink-on-ground ratio."""
     import json
@@ -274,6 +333,17 @@ def hover_scan(br, only=None):
             pass
         # `gradient` catches a gradient on the element ITSELF; paintedIcon catches
         # one on its children, which is how the nav toggle is drawn.
+        if (isinstance(r, dict) and not r.get('gradient') and not r.get('paintedIcon')
+                and r.get('ratio', 99) < r.get('needs', 4.5) and r.get('throughGradient')):
+            # re-force hover for the shot: the walk met a translucent gradient (the fixed nav)
+            try:
+                br.cmd('CSS.forcePseudoState', nodeId=node, forcedPseudoClasses=['hover'])
+                pr = pixel_ratio(br, sel, r['ink'])
+                br.cmd('CSS.forcePseudoState', nodeId=node, forcedPseudoClasses=[])
+            except RuntimeError:
+                pr = None
+            if pr:
+                r['ratio'], r['bg'] = pr[0], pr[1] + ' (pixels)'
         if (isinstance(r, dict) and not r.get('gradient') and not r.get('paintedIcon')
                 and r.get('ratio', 99) < r.get('needs', 4.5)):
             out.append({'kind': 'HOVER-CONTRAST', 'what': r['what'],

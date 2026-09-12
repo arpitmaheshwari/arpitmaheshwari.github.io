@@ -326,6 +326,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # boarding pass went black in a bookend, 2026-09-12).
 CEILING = 15_761   # 2026-09-13 +344: rhythm-check (the boundary SUM no spacing gate measured) and css-components-pass moved into tools/ so the pipeline is reproducible from the repo
 CEILING = 16_101   # 2026-09-13 +340: journey-check (the first gate that NAVIGATES — nav, drawer, anchors, doors, painted images, live links) and qa-loop (runs the whole system N times and reports what repeats)
+CEILING = 16_140   # 2026-09-13 +39: qa-loop's moving-target guard learned the file a gate rewrites as its own record
 
 
 def loc(paths):

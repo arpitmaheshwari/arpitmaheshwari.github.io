@@ -7,7 +7,7 @@
   var CSS = "" +
     ".pd{border:1px solid var(--border-strong);border-radius:8px;padding:22px 24px;background:var(--surface-card)}" +
     ".pd__lead{font-family:var(--ff-mono);font-size:10px;letter-spacing:.02em;color:var(--text-faint);margin:0 0 14px}" +
-    ".pd__row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:14px}" +
+    ".pd__row{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:14px}"   /* baseline, deliberately: a chip and a text button in one row share the label's baseline (baseline-align-check, 2026-09-13); nothing in the row wraps */ +
     ".pd__chip{font-family:var(--ff-display);font-weight:300;font-size:34px;line-height:1;color:var(--text-body);font-variant-numeric:tabular-nums lining-nums}" +
     ".pd__seg{display:flex;gap:6px;flex:1 1 auto;min-width:200px}" +
     ".pd__btn{flex:1;padding:9px 6px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.02em;color:var(--text-muted);background:transparent;border:1px solid var(--border-strong);border-radius:5px;cursor:pointer;transition:border-color .15s,color .15s,background .15s}" +

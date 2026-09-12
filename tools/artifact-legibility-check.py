@@ -200,11 +200,31 @@ def main():
         sys.exit(0)
 
     # ---- CALIBRATION: make one artifact's text match its own box, demand RED ----
-    probe_page = pages[0]
-    plant = ("const st=d.createElement('style');"
-             "st.textContent='svg text{fill:#F5EDE6 !important}';d.head.appendChild(st);")
+    # The probe must be a page where the scan can MEASURE something: since the artifacts
+    # gained typeset twins (the SVG hidden, real text shown), a page can hold <svg><text>
+    # in its markup and render none of it — measured 0, and a plant into nothing can never
+    # go red (2026-09-13). Walk the pages for the first one with measurable artifact text.
+    probe_page, clean_probe = None, None
+    for cand in pages:
+        probe = scan(cand, port)
+        if probe and probe.get("measured", 0) > 0:
+            probe_page, clean_probe = cand, probe
+            break
+    if probe_page is None:
+        print("artifact-legibility: no page renders measurable SVG text (every artifact has a typeset twin) — nothing to check")
+        sys.exit(0)
+    # The plant paints every artifact text in the colour of the box BEHIND it — the exact
+    # defect this gate exists for — using the scan's own "smallest covering rect" rule. It
+    # used to plant a fixed old-paper hex (#F5EDE6): after the amber re-skin no box carried
+    # that colour any more, so the plant was visible, the calibration failed, and the gate
+    # refused to report (2026-09-13). A plant must track the palette, not remember one.
+    plant = ("d.querySelectorAll('svg text').forEach(t=>{const tb=t.getBoundingClientRect();"
+             "const svg=t.ownerSVGElement;if(!svg)return;"
+             "const cov=[...svg.querySelectorAll('rect')].map(r=>({r,b:r.getBoundingClientRect(),f:w.getComputedStyle(r).fill}))"
+             ".filter(o=>!/rgba\\(0, 0, 0, 0\\)|none/.test(o.f)&&o.b.width>2&&o.b.height>2&&o.b.left<=tb.left+2&&o.b.right>=tb.right-2&&o.b.top<=tb.top+2&&o.b.bottom>=tb.bottom-2)"
+             ".sort((a,b)=>(a.b.width*a.b.height)-(b.b.width*b.b.height))[0];"
+             "if(cov)t.style.setProperty('fill',cov.f,'important');});")
     planted = scan(probe_page, port, plant)
-    clean_probe = scan(probe_page, port)
     if not planted or not clean_probe:
         print("[calibration] FAIL — probe returned no data; refusing to report")
         sys.exit(1)
@@ -212,6 +232,7 @@ def main():
     if not caught:
         print("[calibration] FAIL — a planted invisible-text defect was NOT caught. "
               "A check that cannot fail is not evidence.")
+        print(f"   probe {probe_page}: planted={planted} clean={clean_probe}")
         sys.exit(1)
     print(f"[calibration] PASS — planted invisible text caught "
           f"({len(planted['items'])} findings vs {len(clean_probe['items'])} clean)")

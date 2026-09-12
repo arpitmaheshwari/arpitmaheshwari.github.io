@@ -90,10 +90,10 @@ BUTTON = '''
 /* a.cta/button.cta: (0,1,1), so a generic `body.p-home a{color:inherit}` (0,1,1) declared
    earlier can no longer strip the label — the button outranks element selectors, lesson 4. */
 a.cta, button.cta, .cta {
-  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  display:inline-flex; align-items:center; justify-content:center; gap:12px;
   /* G3 — Arpit, 2026-09-13 ("linkedin icon is not legible"): a 1.35em solid glyph centred on
      the label's x-height, and the pill lifts on hover. Chosen from three rendered directions. */
-  min-height:46px; padding:0 26px; box-sizing:border-box;   /* one 46px pill whether or not it carries a glyph; centre alignment does the rest */
+  min-height:46px; padding:0 24px; box-sizing:border-box;   /* one 46px pill whether or not it carries a glyph; centre alignment does the rest */
   font:var(--cta-face); font-size:15px; font-weight:600; line-height:1; letter-spacing:.02em; text-transform:none;
   white-space:nowrap; text-decoration:none; cursor:pointer;
   border:1px solid transparent; border-radius:var(--radius-pill);
@@ -166,7 +166,7 @@ main [id] { scroll-margin-top: 120px; }
    The mechanism / Falsifiable evidence — used to be glued to the heading with a colon, so the H2
    read as a form field. It is now the chapter's eyebrow, same words, and the sentence stands alone.
    The span declares every property it needs (lesson 11); it inherits nothing from the display face. */
-.section-title > .chapter-k { display:block; font-family:var(--ff-mono); font-size:var(--fs-eyebrow); font-weight:500; letter-spacing:.02em; line-height:1.5; color:var(--accent-text); margin:0 0 10px; text-transform:none; }     /* writing + resources chapters (was 48, fixed) */
+.section-title > .chapter-k { display:block; font-family:var(--ff-mono); font-size:var(--fs-eyebrow); font-weight:500; letter-spacing:.02em; line-height:1.5; color:var(--accent-text); margin:0 0 12px; text-transform:none; }     /* writing + resources chapters (was 48, fixed) */
 :is([class*="p-lab"], .p-fit) main > :is(section, header).section:not(.lab-hero) { padding-top: var(--rhythm-act); padding-bottom: var(--rhythm-act); }   /* Lab + Fit acts (was 88 fixed) */
 /* Arpit, 2026-09-13: "#CFC4B4 is looking dull". On a dark ground the system's reading ink
    is neutral-200 and everything below the headline shared it. Lift each ink one stop so the
@@ -190,7 +190,7 @@ body.p-home .hero .cred-strip > div > b { color:var(--neutral-50); }
    The hero's content sits in ONE inner wrapper, so the grid is declared on that. */
 @media (min-width:1100px){
   body[class*="p-case-studies"] .case-hero__in--solo{max-width:1180px;grid-template-columns:1fr}
-  body[class*="p-case-studies"] .case-hero__in--solo > div{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);column-gap:clamp(40px,5vw,72px);row-gap:0;align-items:start}
+  body[class*="p-case-studies"] .case-hero__in--solo > div{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);column-gap:clamp(40px,5vw,80px);row-gap:0;align-items:start}
   body[class*="p-case-studies"] .case-hero__in--solo > div > :is(.case-hero__kicker,h1){grid-column:1/-1}
   body[class*="p-case-studies"] .case-hero__in--solo > div > .case-hero__hook{grid-column:1;grid-row:3;margin-top:0}
   body[class*="p-case-studies"] .case-hero__in--solo > div > .hand{grid-column:1;grid-row:4}
