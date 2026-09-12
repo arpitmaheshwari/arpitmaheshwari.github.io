@@ -108,7 +108,7 @@ def calibrate():
     # Under gatelib.planted: this used to read-modify-write ember.css unguarded, and
     # running beside another gate that does the same left the plant on disk — which is
     # exactly how this gate came to report #515863, its OWN canary, on 40 pages.
-    with planted("ember.css", '\nhtml[data-theme="ember"] h1{color:#515863!important}\n'):
+    with planted("site.css", '\nh1{color:#515863!important}\n'):
         red = bool(scan("index.html"))
     if not red:
         print("[calibration] FAIL — planted remnant #515863 on h1 was NOT caught.\n             Either the check is blind or the browser served a cached ember.css."); sys.exit(2)

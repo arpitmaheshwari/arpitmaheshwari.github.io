@@ -14,7 +14,7 @@ A tool that silently covers one of four inputs is worse than no tool, because it
 USAGE
     bump-css-version.py                      bump every sheet the gate reports STALE
     bump-css-version.py styles.css           force-bump one sheet
-    bump-css-version.py ember.css styles.css force-bump several
+    bump-css-version.py site.css amber.css force-bump several
     bump-css-version.py --all                force-bump every sheet present
     bump-css-version.py styles.css --version p99   set an explicit version (one sheet only)
 

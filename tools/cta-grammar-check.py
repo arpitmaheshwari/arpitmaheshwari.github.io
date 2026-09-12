@@ -115,8 +115,8 @@ def calibrate():
               "need >=2 so the canary can differ from a witness."); sys.exit(2)
     # Under gatelib.planted — locked plant -> scan -> restore. Unguarded, this raced with
     # theme-remnant-check and balance-check, which plant into the same file.
-    with planted("ember.css",
-                 '\nhtml[data-theme="ember"] #patterns .contract-links a'
+    with planted("site.css",
+                 '\n#patterns .contract-links a'
                  '{font-family:Georgia,serif!important;font-size:19px!important}\n'):
         rows = scan("index.html")
         sigs = collections.Counter(r["sig"] for r in rows)

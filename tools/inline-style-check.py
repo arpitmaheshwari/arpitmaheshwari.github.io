@@ -58,7 +58,7 @@ def off_scale_spacing(root):
     # and get their own 0.5mm grid (see below).
     pats = ['*.html','*/index.html','case-studies/*.html','patterns/*.html','lab/*.html',
             'assets/og-images/*.html',
-            'styles.css','ember.css','book/book.css','book/index.html']
+            'site.css','book/book.css','book/index.html']
     # ember.css added 2026-08-13: the second design system was invisible to this gate
     # for its whole first day, so ~90 off-grid values landed unseen. A gate that cannot
     # see a stylesheet cannot govern it.

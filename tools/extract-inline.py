@@ -20,7 +20,7 @@ v2 therefore:
     classes (animations override normal declarations but lose to !important);
   - onmouseover/onmouseout pairs -> dedicated .hv-<slug>-N:hover rules.
 
-Usage: python3 tools/extract-inline.py <page.html> [--css styles.css]
+Usage: python3 tools/extract-inline.py <page.html> [--css site.css]
 Verify each page with a pixel diff against the classic-v1 tag before trusting it.
 """
 import re, sys, os, argparse
@@ -243,7 +243,7 @@ def run(page, cssfile):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('pages', nargs='+')
-    ap.add_argument('--css', default='styles.css')
+    ap.add_argument('--css', default='site.css')
     a = ap.parse_args()
     for p in a.pages:
         run(p, a.css)

@@ -313,7 +313,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #     were widened. The scoping took the size gate from 49s to 30s by not loading the 19
 #     pages with nothing to measure — and a gate slow enough to route around is the
 #     failure mode this directory already has a story about.
-CEILING = 14_117
+# 2026-09-12: +460 for tools/render-census.py (the before/after census that judged
+# folding three stylesheets into site.css — lesson 12 for CSS: a structural change
+# needs a BEFORE measurement) and tools/css-consolidate.py, which made the fold and
+# still reproduces it from prototypes/legacy/. css-layerize.py retired into csslib.py.
+# ...and tools/render-pages.py, the full-page renderer Phase C looks at (+84).
+# (+41: the raise notes above count against the total they justify; 40 of margin so the
+# next honest note does not trip it.)
+CEILING = 14_702
 
 
 def loc(paths):

@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Rebuild the stylesheets on cascade layers and delete every !important.
+"""csslib.py — the one CSS parser the stylesheet tools share.
+
+Split a stylesheet into top-level items, partition the extracted .xi-* classes,
+lift !important declarations, unwrap @layer blocks. Extracted 2026-09-12 from
+css-layerize.py, which rebuilt styles.css and ember.css on cascade layers and
+retired when those two files were folded into site.css (tools/css-consolidate.py).
+Its history is kept here because the lessons still govern this parser:
 
 WHY (2026-08-19, Arpit: "fix the mess that you created")
 The Lab invites a reader to open the code. What they currently find is 3,053
@@ -24,27 +30,13 @@ Each step is blocked by the other two. @layer is the only mechanism that beats
 specificity outright, which is what lets !important go — so layering and
 de-importanting are a single operation.
 
-THE MODEL (ITCSS order; later layers win, regardless of specificity)
-    settings  generic  elements  objects  components  theme  utilities
-  styles.css non-.xi  -> components   (order preserved exactly)
-  ember.css           -> theme        (beats components without !important)
-  styles.css .xi-*    -> utilities    (beats theme, as its !important did)
-This reproduces today's precedence with position instead of volume.
-
-USAGE  css-layerize.py [--check]     --check writes nothing, just reports
+KNOWN LIMIT, found the day this file was extracted: split_rules scans for braces
+WITHOUT blanking comments first, so a comment that quotes a rule (`.pass .grid{...}`
+in prose) opens a phantom rule. Callers protect comments with placeholders before
+splitting (css-consolidate.protect_comments) — do the same in any new caller.
 """
 import re, sys, pathlib
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
-# TWO layers, not seven — and the reason is measured, not stylistic.
-# Putting styles.css in `components` and ember.css in a later `theme` layer
-# made the theme beat styles.css ALWAYS, even where styles.css had the higher
-# specificity and legitimately won today (e.g. :where(body.p-case-studies-x)
-# .plF at (0,2,0) over a plain ember class). That broke 74 of 80 pages.
-# styles.css and ember.css must therefore share ONE layer, where specificity
-# and source order settle things exactly as they do now. Only the extracted
-# classes move up — they are the ones whose !important was doing real work.
-ORDER = "@layer base, utilities, emphasis;\n"
 
 
 def split_rules(css):
@@ -168,72 +160,3 @@ def unwrap_layers(css):
         else:
             out.append(head)
     return '\n'.join(out)
-
-
-def main():
-    check = '--check' in sys.argv
-    styles = unwrap_layers((ROOT / 'styles.css').read_text(encoding='utf-8'))
-    ember = unwrap_layers((ROOT / 'ember.css').read_text(encoding='utf-8'))
-    before = styles.count('!important') + ember.count('!important')
-
-    base, util = partition(styles)
-    base, emph_s = split_emphasis(base)
-    ember_normal, emph_e = split_emphasis(ember)
-    emphasis = (emph_s + '\n' + emph_e).strip()
-    out_styles = (
-        '/* CASCADE LAYERS — the priority order, declared once, and the only\n'
-        '   thing that decides which rule wins.\n'
-        '     base       the system, then the theme; they settle between\n'
-        '                themselves by specificity and source order\n'
-        '     utilities  single-purpose classes, above both\n'
-        '     emphasis   what used to be written !important\n'
-        '\n'
-        '   There is no !important in this file. There were 2,990. Each one\n'
-        '   meant "I must beat that other rule", which is what a layer says\n'
-        '   structurally, so they were lifted into `emphasis` rather than\n'
-        '   deleted — same outcome, no shouting. A rule carrying both kinds is\n'
-        '   emitted twice: ordinary declarations stay put, important ones move\n'
-        '   up a layer.\n'
-        '\n'
-        '   Known cost, measured rather than assumed: splitting a rule that way\n'
-        '   resolves one button 2px wider on 11 of 80 rendered pages. Verified\n'
-        '   at 8x magnification and accepted deliberately; everything else is\n'
-        '   pixel-identical. tools/css-layerize.py rebuilds this file and\n'
-        '   records why it had to be one change rather than three. */\n'
-        + ORDER
-        # NOT strip_important(base). The blanket removal broke 74 of 80 pages
-        # under two different layer models — identical count both times, which
-        # is the tell that layers were never the cause. A layer only replaces
-        # the !important that was fighting ACROSS files; the ~170 inside
-        # styles.css and ember.css are fighting rules in their OWN layer, where
-        # specificity still decides and !important is still the only lever.
-        # Those stay. The 2,820 on .xi-* go, because the utilities layer now
-        # does that job structurally.
-        + '\n@layer base {\n' + base + '\n}\n'
-        + '\n@layer utilities {\n' + strip_important(util) + '\n}\n'
-        + '\n@layer emphasis {\n' + emph_s + '\n}\n')
-    # ember.css joins the SAME base layer; it is loaded after styles.css, so
-    # within the layer it keeps exactly the position it has today.
-    out_ember = ('/* Wrapped into the cascade layers declared in styles.css.\n'
-                 '   The comments below explain why particular rules must out-declare\n'
-                 '   the per-page extracted classes. They used to say "!important"\n'
-                 '   because that was the mechanism; they now name the `emphasis`\n'
-                 '   layer, which is. The reasoning did not change, only the lever. */\n'
-                 '@layer base {\n' + ember_normal + '\n}\n'
-                 + '\n@layer emphasis {\n' + emph_e + '\n}\n')
-
-    after = out_styles.count('!important') + out_ember.count('!important')
-    print(f"  !important: {before} -> {after}")
-    print(f"  base layer (styles): {len(base.splitlines())} lines")
-    print(f"  utilities layer:  {len(util.splitlines())} lines")
-    print(f"  base layer (ember):  {len(ember.splitlines())} lines")
-    if check:
-        print("  --check: nothing written"); return 0
-    (ROOT / 'styles.css').write_text(out_styles, encoding='utf-8')
-    (ROOT / 'ember.css').write_text(out_ember, encoding='utf-8')
-    print("  written")
-    return 0
-
-
-if __name__ == '__main__':
-    sys.exit(main())

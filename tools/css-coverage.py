@@ -36,7 +36,7 @@ _s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__)))
 from cdp import Browser
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SHEET = ROOT / 'ember.css'
+SHEET = ROOT / 'site.css'
 
 def all_pages():
     out = []
@@ -161,14 +161,14 @@ def main():
     delete = '--delete' in sys.argv
     # calibration: plant a dead rule
     orig = SHEET.read_text()
-    canary = '\nhtml[data-theme="ember"] .zz-canary-dead-rule{color:red}\n'
+    canary = '\n.zz-canary-dead-rule{color:red}\n'
     SHEET.write_text(orig + canary)
     try:
         print('collecting rendered coverage (all pages × 2 widths)…')
         used_sels = collect_coverage()
         rules = parse_sheet_rules()
         unused = [r for r in rules if r['sel'] not in used_sels]
-        print(f'ember.css rules: {len(rules)} · unused in coverage: {len(unused)}')
+        print(f'site.css rules: {len(rules)} · unused in coverage: {len(unused)}')
         # base-alive pseudo variants are alive
         used_bases = {re.sub(r'::?[a-zA-Z-]+(\([^)]*\))?','',s).strip() for s in used_sels}
         cands = [r for r in unused
@@ -197,7 +197,7 @@ def main():
             for r in sorted((x for x in final if 'zz-canary' not in x['sel']), key=lambda x:-x['start']):
                 css = css[:r['start']] + css[r['end']:]
             SHEET.write_text(css)
-            print(f'deleted {len(final)-1} rule(s) from ember.css')
+            print(f'deleted {len(final)-1} rule(s) from site.css')
             return
     finally:
         if not delete:

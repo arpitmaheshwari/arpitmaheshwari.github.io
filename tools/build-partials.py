@@ -150,7 +150,7 @@ def render(rel, existing_nav, existing_footer):
 # is this site's map onto it. Both are stamped here for the same reason book.css was
 # added after shipping stale on a hand-typed ?v=: a stylesheet outside this list is a
 # stylesheet nobody is stamping.
-VERSIONED = ('styles.css', 'ember.css', 'amber.css', 'amber-bridge.css',
+VERSIONED = ('site.css', 'amber.css',
              'fonts.css', 'book/book.css',
              'analytics.js', 'clarity.js', 'attention.js', 'fit.js', 'dyslexia.js', 'nav-inert.js',
              'patterns/demos.js', 'data/case-facts.js',

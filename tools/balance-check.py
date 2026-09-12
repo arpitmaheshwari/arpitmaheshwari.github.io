@@ -99,8 +99,8 @@ def calibrate():
     # Under gatelib.planted, which holds a lock for the whole plant -> scan -> restore
     # window. Unguarded, two gates doing this at once clobber each other's restore and
     # leave a canary rule in ember.css permanently.
-    with planted("ember.css",
-                 '\nhtml[data-theme="ember"] body.p-home main p{margin-right:400px!important}\n'):
+    with planted("site.css",
+                 '\nbody.p-home main p{margin-right:400px!important}\n'):
         d = scan("index.html")
     if d.get("skew",0) <= TOL:
         print(f"[calibration] FAIL — planted 400px one-sided margin gave skew "
