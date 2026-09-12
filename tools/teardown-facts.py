@@ -78,16 +78,17 @@ facts={
  # 43 -> 41. Same species as the stylesheet row: an accurate count of the wrong set,
  # under a label that says "pages".
  "html_pages": len(tracked('*.html',('book/','prototypes/','partials/','assets/','tests/'))),
- # EVERY stylesheet a classic page loads, not just one of them. This measured styles.css
+ # EVERY stylesheet a classic page loads, not just one of them. (Since 2026-09-12 that is
+ # fonts.css + amber.css + site.css; before, styles.css + ember.css.) This measured styles.css
  # alone and the page published it as "Stylesheet, entire site" — 280.4 KB, when the three
  # files a page actually links total 510.1 KB. It understated the site by 82% on the one
  # page whose whole argument is that it can be inspected, and it never moved when ember.css
  # changed, which is what finally gave it away. book/book.css is excluded on purpose: the
  # book is a separate surface and no classic page loads it.
  "stylesheet_bytes": sum(os.path.getsize(os.path.join(R,f))
-                        for f in ('fonts.css','styles.css','ember.css')),
+                        for f in ('fonts.css','amber.css','site.css')),
  "stylesheet_gzip": sum(len(__import__('gzip').compress(open(os.path.join(R,f),'rb').read()))
-                        for f in ('fonts.css','styles.css','ember.css')),
+                        for f in ('fonts.css','amber.css','site.css')),
  "runtime_deps": 0 if not os.path.exists(os.path.join(R,'package.json')) else -1,
  # Measured, not asserted. The previous version grepped index.html and
  # intersected it with a hardcoded set of three domain names, so it could only
@@ -115,7 +116,7 @@ facts={
  # Atkinson Hyperlegible 400/700. Nothing counts a self-hosted font, so nothing noticed.
  "self_hosted_fonts": len(set(re.findall(r"url\('(/assets/fonts-web/[^']+)'\)",
      ''.join(open(os.path.join(R,f),encoding='utf-8').read()
-             for f in ('fonts.css','styles.css','ember.css'))))),
+             for f in ('fonts.css','amber.css','site.css'))))),
  "demos_js_kb": round(os.path.getsize(os.path.join(R,'patterns/demos.js'))/1024,1),
  "demos_js_imports": len(re.findall(r'import |require\(|fetch\(',open(os.path.join(R,'patterns/demos.js')).read())),
  "og_cards": len(tracked('assets/og-images/*.png')),

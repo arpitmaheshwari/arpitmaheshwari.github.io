@@ -407,6 +407,23 @@ def main():
                               for sel, acc in fam.items()) + '\n')
     ob = blank(out).rindex('}')                      # the overrides layer's closing brace
     out = out[:ob] + act_block + out[ob:]
+    # 12. THE TYPE SCALE IS THE SYSTEM'S (Arpit, 2026-09-12: "B — adopt the system's scale").
+    #     DESIGN-SYSTEM.md recorded body 16 / section 31; the system measured 18 / 35–46 for
+    #     reading comfort on its pilots and he chose it. The site's --fs-* names stay (hundreds
+    #     of rules read them) and now point at the system's stops, declared where the old
+    #     :root declared them so nothing else has to change.
+    TYPE = {'--fs-body': '18px', '--fs-lead': '21px', '--fs-card': '22px', '--fs-title': 'clamp(35px,2.9vw,46px)',
+            '--fs-title-lg': 'clamp(40px,5vw,55px)', '--fs-hero': 'clamp(40px,5.5vw,64px)', '--fs-ui': '14px',
+            '--fs-caption': '13px', '--fs-eyebrow': '12px', '--fs-micro': '12px'}
+    for name, val in TYPE.items():
+        out, n = re.subn(r'(?<![\w-])' + re.escape(name) + r':[^;}]+', f'{name}:{val}', out, count=1)
+        stats['type-scale'] += n
+    out = out.replace(':is(.t-body,.u-body){font-size:17px;', ':is(.t-body,.u-body){font-size:var(--fs-body);')
+    # 13. THE HEADLINE INK ON A BOOKEND (my call, asked for by Arpit 2026-09-12 with "WOW factor,
+    #     accessibility and legibility"): the warmest light stop, neutral-50, 15.9:1 on the
+    #     bookend — the reading ink neutral-200 read grey at display size.
+    ob = blank(out).rindex('}')
+    out = out[:ob] + '\n/* the display ink on a bookend: the warm white, not the reading grey */\n[data-ground="bookend"] :is(h1, .case-hero h1, .hero h1){color:var(--neutral-50)}\n' + out[ob:]
     # the tokens layer goes right after the layer-order statement
     k = out.index('@layer reset, tokens, ground, type, layout, components, utilities, overrides;\n')
     k += len('@layer reset, tokens, ground, type, layout, components, utilities, overrides;\n')
@@ -438,7 +455,8 @@ def main():
           f"{stats['emptied']} emptied rules; {stats['act']} families -> --act; "
           f"{stats['literal']} raw colours -> roles; {stats['lift']} lifts -> --elev-2; "
           f"{stats['glow']} fields -> --glow, {stats['glow-deleted']} mid-page fields deleted; "
-          f"hero transparent removed x{stats['hero-transparent']}; --act re-declared beneath {len(fam)} families")
+          f"hero transparent removed x{stats['hero-transparent']}; --act re-declared beneath {len(fam)} families; "
+          f"type tokens re-pointed {stats['type-scale']}")
     kept = stats['kept']
     print(f"  raw colours still painted outside plates/print: {sum(kept.values())} in {len(kept)} literals")
     for lit, n in kept.most_common(30):

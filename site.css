@@ -50,7 +50,7 @@ figure > img, figure > svg, figure > video, figure > picture{display:block;margi
    ============================================================ */
 
 /* ----- Design tokens (see DESIGN-SYSTEM.md — single source of truth) ----- */
-:root{--ff-display:'Source Serif 4',Georgia,'Times New Roman',serif;--ff-sans:'Source Sans 3',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--ff-label:'Source Sans 3',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--ff-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--ease-out:cubic-bezier(0.16,1,0.3,1);--space-2:2px;--fs-micro:11px;--fs-eyebrow:12px;--fs-caption:13px;--fs-ui:14px;--fs-body:16px;--fs-lead:21px;--fs-card:24px;--fs-title:clamp(24px,3.2vw,31px);--fs-title-lg:clamp(28px,3.6vw,39px);--fs-hero:clamp(36px,5.5vw,52px);--fs-metric:clamp(38px,4.4vw,48px);--fs-metric-sm:24px;--section-y:90px;--page-x:64px;--inner-max:1180px;--measure:62ch;--radius:4px}
+:root{--ff-display:'Source Serif 4',Georgia,'Times New Roman',serif;--ff-sans:'Source Sans 3',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--ff-label:'Source Sans 3',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--ff-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--ease-out:cubic-bezier(0.16,1,0.3,1);--space-2:2px;--fs-micro:12px;--fs-eyebrow:12px;--fs-caption:13px;--fs-ui:14px;--fs-body:18px;--fs-lead:21px;--fs-card:22px;--fs-title:clamp(35px,2.9vw,46px);--fs-title-lg:clamp(40px,5vw,55px);--fs-hero:clamp(40px,5.5vw,64px);--fs-metric:clamp(38px,4.4vw,48px);--fs-metric-sm:24px;--section-y:90px;--page-x:64px;--inner-max:1180px;--measure:62ch;--radius:4px}
 @media(max-width:900px){:root{--section-y:64px;--page-x:32px}}
 @media(max-width:600px){:root{--section-y:48px;--page-x:24px}}
 /* ----- Reset + base ----- */
@@ -1791,10 +1791,8 @@ body::before{display:none}
    both the resting and the scrolled state — checked, not assumed. */
 #nav{background:linear-gradient(180deg,rgba(18,11,20,.92),rgba(18,11,20,.72));backdrop-filter:blur(10px);border-bottom:0}
 /*
-   /fit/ was hand-written and got none,
-so its logo fell back to intrinsic size (45px) and
-   made that one nav 1px taller than the other 42. Sized here instead,
-so the nav is a
+   /fit/ was hand-written and got none, so its logo fell back to intrinsic size (45px) and
+   made that one nav 1px taller than the other 42. Sized here instead, so the nav is a
    component and a new page cannot forget it. */
 #nav .nav-logo img{width:40px;height:40px}
 /* ...and the links declare their own line-height instead of inheriting the page's. The
@@ -2301,8 +2299,7 @@ body[class*="p-case-studies"] blockquote{border-left:3px solid var(--act);backgr
    while planit had no such class and sat them together. Two arrangements for one component
    across eight pages, which is the same complaint as the nine fills. Arpit's call: the
    two sit at the ENDS of the block — the arrangement seven of the eight already had.
-   (I first normalised to flex-start,
-which was my preference substituted for his; the
+   (I first normalised to flex-start, which was my preference substituted for his; the
    majority arrangement was the one to normalise TO.) Primary left, secondary right. */
 body[class*="p-case-studies"] .btn-row{align-items:center;gap:16px}
 /* .measure-c caps the whole case body at 595px — right for prose, wrong for the
@@ -5204,7 +5201,7 @@ body.p-home .qt-src a{font-family:var(--ff-label);font-weight:600;font-size:11.5
    ============================================================ */
 body[class*="p-case-studies"] .measure-c :is(p,li,blockquote){max-width:68ch}
 body[class*="p-case-studies"] .measure-c :is(h2,h3){max-width:34ch}
-:is(.t-body,.u-body){font-size:17px;color:var(--text-body)}
+:is(.t-body,.u-body){font-size:var(--fs-body);color:var(--text-body)}
 /* ============================================================
    WCAG 1.4.10 REFLOW at 320px, and 2.5.8 TARGET SIZE
    (found by tools/wcag-reflow-target-check.py, cherry-picked 2026-09-06)
@@ -6775,4 +6772,6 @@ body.p-home .aiwork [data-ground="bookend"], body.p-home .aiwork [data-tint]{--a
 body.p-home .voices [data-ground="bookend"], body.p-home .voices [data-tint]{--act:var(--acc-rose)}
 body.p-home .contract [data-ground="bookend"], body.p-home .contract [data-tint]{--act:var(--acc-amber)}
 body.p-home .labrow [data-ground="bookend"], body.p-home .labrow [data-tint]{--act:var(--acc-violet)}
-body.p-home .qvoices [data-ground="bookend"], body.p-home .qvoices [data-tint]{--act:var(--acc-rose)}}
+body.p-home .qvoices [data-ground="bookend"], body.p-home .qvoices [data-tint]{--act:var(--acc-rose)}
+/* the display ink on a bookend: the warm white, not the reading grey */
+[data-ground="bookend"] :is(h1, .case-hero h1, .hero h1){color:var(--neutral-50)}}
