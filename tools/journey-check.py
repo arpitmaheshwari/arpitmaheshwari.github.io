@@ -90,6 +90,10 @@ def journey(br, width, urls, defects, plant=False):
     br.cmd('Network.enable')
 
     # 1 · the primary nav from home
+    br.navigate(BASE + '/?view=classic', settle=2); br.eval("(()=>{try{localStorage.clear();sessionStorage.clear()}catch(e){}return 1})()")
+    # a FRESH reader per pass: the site remembers 'read as a book' (am-view) and, by design, sends a
+    # desktop reader who chose the book back to it from the homepage — the previous pass's visit to
+    # the book would otherwise redirect this one and every nav query would answer 0.
     br.navigate(BASE + '/?jc=' + str(width), settle=3); errors(br)   # a distinct URL per width forces a real load, not a same-URL reload mid-eval
     nav = []
     for _ in range(20):   # the nav is static markup, but a same-document reload can answer the first query with the unloading page
