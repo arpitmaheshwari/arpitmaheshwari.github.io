@@ -3054,7 +3054,33 @@ html[data-theme="ember"] .artalt{display:none}
    pair is #494338 on #F4ECDA at 8.33:1.)
    What IS live in these drawings is the SIZE of that text, which no gate had an
    opinion about until tools/svg-text-size-check.py. See its docstring. */
-@media (max-width:999px){
+/* ----------------------------------------------------------------------------
+   2026-09-12: 999px -> 1439px. THE DRAWING IS SHOWN ONLY WHERE IT CAN BE READ.
+   The note above says "no CSS can fix that" and it is right about the font size.
+   What it never measured is how far the drawing itself is downscaled. These are
+   1180- and 1280-unit viewBoxes rendered at 976-1120px, so the label a reader
+   meets is 0.65-0.88 of the authored size. Measured across all 410 labels
+   (tools/svg-text-size-check.py): 8.13px at 1024, and only 11.35-12.23px at 1440.
+   Every one of the 24 was under the 12.5px floor at every width it was shown.
+   So this extends the rule /process already applies (styles.css:396 — "an
+   unreadable diagram is worse than no diagram") with a measured threshold rather
+   than a round number. 1440 is the ceiling on purpose: it is the widest width
+   this site is designed and QA'd at, and inventing new behaviour past it would be
+   designing for a screen nobody has tested.
+   WHAT CLEARS AT 1440, with the figures widened below: the ten patterns and
+   /process drawings whose bottom tier is 13-14u, and the six case-study drawings
+   whose bottom tier is 11-13u. Sixteen of twenty-four.
+   WHAT STAYS TYPESET AT EVERY WIDTH: the eight whose bottom tier is 10-12u —
+   reversibility-safe-to-act, fintech-3, vc-diligence-1 and -2, adtech-1 and -2,
+   o2-1, ptc-3. A 10-unit label needs the drawing upscaled 1.3x to reach 13px,
+   which is a 1534-1664px figure and a 1582-1712px viewport. Raising those labels
+   to 12.5u would bring all eight back at 1440; that is an artwork change and it
+   has not been made.
+   Either way nobody loses the content: the typeset block is real text at 14-21px
+   that reflows, and every string in it is copied verbatim from that diagram's own
+   <text> nodes.
+   ---------------------------------------------------------------------------- */
+@media (max-width:1439px){
   /* SCOPED TO THE ONES THAT HAVE A REPLACEMENT. The first version hid every
      .art-svg below 1000px while only fintech carried a typeset rendering — so
      adtech, o2, orgos, ptc, vc-diligence and eleven pattern pages showed NOTHING
@@ -3062,6 +3088,7 @@ html[data-theme="ember"] .artalt{display:none}
      0 text runs at 390 where it should have measured dozens; an instrument going
      quiet is a reading to chase, not to accept. */
   html[data-theme="ember"] .art-svg:has(+ .artalt){display:none}
+  html[data-theme="ember"] .art-svg + .artalt{display:grid}
   /* /process hides its poster outright below 1040px (styles.css:376) — so a phone
      reader got NOTHING there, not even the unreadable version. The figure comes
      back when it holds a typeset rendering, with the poster's own breakout
@@ -3077,6 +3104,21 @@ html[data-theme="ember"] .artalt{display:none}
      viewport, figure at 384..1104, 336px of horizontal scroll. Keep the
      translate, drop only the filter. */
   html[data-theme="ember"] .fig-paper:has(> .artalt){transform:translateX(-50%);filter:none}
+}
+/* ----------------------------------------------------------------------------
+   THE COMPONENT'S OWN STYLING IS NOT WIDTH-GATED, and that is a fix, not a tidy-up.
+   Everything below used to sit inside the media query above. The moment eight
+   drawings were made to keep their typeset block at >=1440px, those blocks
+   rendered with NONE of this: raw numbered lists in white-ish text straight on the
+   dark page, no cream panel, no cards, no hierarchy. Rendered it and looked, which
+   is the only reason I saw it — the same way the var(--bg-card) mistake recorded
+   above was caught.
+   A component that is displayed at some width must be PAINTED at every width it can
+   be displayed at. Only the three rules left in the query above are genuinely
+   width-specific: the drawing's display toggle, and the two figure containers whose
+   breakout has to be neutralised when they hold a text block instead of a drawing.
+   Harmless while .artalt is display:none, which is its default (line ~3051).
+   ---------------------------------------------------------------------------- */
   /* GRID GAP, not `> * + * {margin-top}`. The margin version did not land: every
      part below sets `margin:0` and those rules come later, so they won every
      cascade and the measured gap between group-level siblings was 0 at 390 AND
@@ -3089,7 +3131,11 @@ html[data-theme="ember"] .artalt{display:none}
        inherited centring there and rendered every card centre-aligned while the
        case pages looked correct — the same component in two shapes. Third time
        today that leaning on an inherited property cost a defect. */
-    display:grid;gap:24px;background:#F4ECDA;color:#2C2620;text-align:left;
+    /* display is NOT set here. It was, and moving this rule out of the media query
+       took `display:grid` with it, overriding the .artalt{display:none} default and
+       showing every typeset block next to its own drawing on six pages. Paint
+       belongs at every width; the decision to SHOW belongs only where it is made. */
+    gap:24px;background:#F4ECDA;color:#2C2620;text-align:left;
     border:1px solid rgba(44,38,32,.16);border-radius:2px;padding:24px}
   html[data-theme="ember"] .artalt-k{margin:0;font-family:var(--ff-label,var(--ff-mono));font-size:var(--fs-eyebrow);
     font-weight:600;letter-spacing:.02em;
@@ -3182,6 +3228,56 @@ html[data-theme="ember"] .artalt{display:none}
      number — and it keeps the headline from being stranded in a 670px column. */
   html[data-theme="ember"] body[class*="p-case-studies"] .measure-c .artalt .artalt-h{
     max-width:34ch}
+/* THE DRAWINGS COME BACK AT 1440, and the figure widths are arithmetic rather than
+   preference: a label clears the floor when 12.5 / labelUnits <= figureWidth /
+   viewBoxWidth. Targeted at 13px, not 12.5px, because a first pass computed the
+   exact width and sub-pixel layout delivered 12.48px — a floor needs headroom, not
+   a knife edge.
+     patterns + /process   1280px of figure -> 13u reads 13.0px, 14u reads 14.0px
+     case studies          1360px of figure -> 11u reads 12.7px, 13u reads 13.8px
+   Scoped with :has(> svg.art-svg) so the shared 1040px breakout — the
+   reconstruction plates, .case-vitals, .recon, and the case nav deliberately
+   aligned to them (see the note at ~1428) — is left alone. */
+@media (min-width:1440px){
+  html[data-theme="ember"] :is(body[class*="p-patterns"],body.p-process)
+    figure:has(> svg.art-svg){--art-w:min(1280px,calc(100vw - 96px))}
+  html[data-theme="ember"] body[class*="p-case-studies"]
+    .measure-c figure:has(> svg.art-svg){width:min(1360px,calc(100vw - 80px))}
+  /* patterns/index.html hangs its drawing inside an <a>, not a <figure>, so
+     neither --art-w nor the figure rule reaches it. Measured: 1180px and a 0.867
+     scale where its siblings got 1231px. Named rather than left to inherit a rule
+     that does not match it — the same trap as a per-page .xi- class. */
+  html[data-theme="ember"] body[class*="p-patterns"] a.is-paper:has(> svg.art-svg){
+    width:min(1280px,calc(100vw - 96px));max-width:none;
+    margin-left:calc((100% - min(1280px,calc(100vw - 96px)))/2);
+    margin-right:calc((100% - min(1280px,calc(100vw - 96px)))/2)}
+}
+/* The eight that still cannot clear it stay typeset at every width. Listed by
+   drawing, not by page: ptc and fintech and vc-diligence each carry both a drawing
+   that clears and one that does not, so a page-level rule would be wrong. */
+@media (min-width:1440px){
+  html[data-theme="ember"] :is(#art-adtech-1,#art-adtech-2,#art-o2-1,#art-ptc-3,
+    #art-fintech-3,#art-vc-diligence-1,#art-vc-diligence-2,
+    #art-reversibilit-1):has(+ .artalt){display:none}
+  html[data-theme="ember"] :is(#art-adtech-1,#art-adtech-2,#art-o2-1,#art-ptc-3,
+    #art-fintech-3,#art-vc-diligence-1,#art-vc-diligence-2,
+    #art-reversibilit-1) + .artalt{display:grid}
+  /* AND THE FIGURE GIVES UP THE BREAKOUT, because it is now holding a text block.
+     Without this the typeset version inherited the drawing's 1360px band while its
+     own lines stay capped at 64ch — 900px of dead space down the right of every
+     card. The void is milder but already present at 1024 (976px band, same cap);
+     this stops the widened band from making it 384px worse.
+     All four declarations together, deliberately: the house breakout is
+     margin-left:50% + translateX(-50%), and the note in the query above records
+     that `transform:none` ALONE once shoved every figure half a parent-width to
+     the right. Dropping the translate is only safe with the margin dropped too. */
+  html[data-theme="ember"] body[class*="p-case-studies"] .measure-c
+    figure:has(> :is(#art-adtech-1,#art-adtech-2,#art-o2-1,#art-ptc-3,#art-fintech-3,
+    #art-vc-diligence-1,#art-vc-diligence-2)){
+      width:100%;margin-left:0;margin-right:0;transform:none;filter:none}
+  html[data-theme="ember"] body[class*="p-patterns"]
+    figure:has(> #art-reversibilit-1){
+      --art-w:100%;width:100%;margin-left:0;margin-right:0}
 }
 
 /* ============================================================================

@@ -96,6 +96,18 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
  d.querySelectorAll('body *').forEach(el=>{
   if(el.children.length||!el.textContent.trim()||srOnly(el))return;
   if(/^(TEXTAREA|INPUT|SELECT|PRE|CODE|OPTION)$/.test(el.tagName))return;
+  // SVG IS EXEMPT FROM BOTH RULES BELOW, and it is a correctness fix rather than a
+  // convenience. clientWidth and scrollWidth are HTMLElement properties; on an SVG
+  // element they do not describe anything. Measured on case-studies/fintech.html:
+  // the label "Deal" reports clientWidth 13 and scrollWidth 28 while its real bbox is
+  // 26.8 user units, it renders 28px wide, and its right edge sits 670px inside the
+  // drawing — it is not clipped by anything. SQUEEZED has been reporting that phantom
+  // since it was added on 2026-09-12, and widening the drawings later the same day
+  // turned 3 phantoms into 11. An SVG <text> has no CSS box to overflow: it is placed
+  // by x/y in user units and clipped only by the viewBox. Its size is a real question
+  // and it has its own instrument — tools/svg-text-size-check.py measures the rendered
+  // effective px, which is the thing that actually matters there.
+  if(el.namespaceURI==='http://www.w3.org/2000/svg')return;
   const cs=w.getComputedStyle(el); if(cs.display==='none'||cs.visibility==='hidden')return;
   if(/(auto|scroll)/.test(cs.overflowX))return;
   const cw=el.clientWidth; if(cw<=1)return;

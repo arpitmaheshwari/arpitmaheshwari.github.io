@@ -206,10 +206,35 @@ def main():
     ap.add_argument('--selftest', action='store_true')
     ap.add_argument('--report', action='store_true')
     a = ap.parse_args()
+    root = os.path.abspath('.')
 
     ensure_server(8000)
-    urls = a.urls or page_urls()
     widths = [int(x) for x in a.widths.split(',')]
+    if a.urls:
+        urls = a.urls
+    else:
+        # ONLY THE PAGES THAT HAVE SVG TEXT TO MEASURE. The unfiltered sweep spent 49s
+        # over 36 pages when 17 carry a drawing; half the wall clock was loading pages
+        # with nothing in them, and a slow gate is a gate people route around (the note
+        # on a11y-sweep in gates.json records a 28-minute suite being the reason a red
+        # gate went unnoticed for five days).
+        # The filter is the SOURCE text, so its blind spot is an <svg> whose <text> is
+        # injected by script after load. Nothing on this site does that today; if
+        # something does, it is invisible to this gate and that is worth knowing.
+        import os.path as _p
+        keep = []
+        for u in page_urls():
+            rel = u.replace('http://localhost:8000/', '') or 'index.html'
+            if rel.endswith('/'):
+                rel += 'index.html'
+            try:
+                with open(_p.join(root, rel), encoding='utf-8', errors='ignore') as fh:
+                    if '<text' in fh.read():
+                        keep.append(u)
+            except OSError:
+                keep.append(u)      # cannot read it: measure it rather than skip it
+        urls = keep
+        print(f'  {len(keep)} of {len(page_urls())} shipped pages carry SVG text')
 
     cal = selftest(urls, widths, a.floor)
     if cal is None:

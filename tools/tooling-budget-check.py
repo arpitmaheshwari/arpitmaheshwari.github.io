@@ -303,7 +303,17 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #   * 14 in gates.json to declare it and to say why it is manual.
 #   * the 18 lines closing the #C0512B finding are in ember.css, not tools/, and cost
 #     this budget nothing.
-CEILING = 14_040
+#   * +37 later the same day, once the drawings were fixed and the gate went green:
+#     14 exempting SVG from overflow-sweep's SQUEEZED and WORDBREAK rules, and 23
+#     scoping svg-text-size-check to the pages that have SVG text. Both are corrections
+#     to instruments added hours earlier. SQUEEZED read clientWidth/scrollWidth, which
+#     are HTMLElement properties and describe nothing on an SVG element: it reported the
+#     label "Deal" as needing 28px "in" 13px while the glyphs rendered 670px inside the
+#     drawing's own edge. Three phantoms on the day it shipped, eleven once the drawings
+#     were widened. The scoping took the size gate from 49s to 30s by not loading the 19
+#     pages with nothing to measure — and a gate slow enough to route around is the
+#     failure mode this directory already has a story about.
+CEILING = 14_087
 
 
 def loc(paths):

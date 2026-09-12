@@ -757,6 +757,21 @@
     "ci-always"
    ],
    "note": "The class no other gate can see. Every check in tools/ reads a RESOLVED property — computed colour, final box, announced name — and a duplicate attribute is resolved by the parser keeping the first and dropping the rest, with no error and no visual difference. a11y-sweep was the obvious home and is the gate that MISSED this: its own docstring says it measures the rendered DOM, where the duplicate is already gone. Seven art diagrams shipped two aria-labels each for 28 days and in five of them the better description was never spoken. Text-only, under a second, so every push; ci-always because a markup-only push must not fall into a paths-filtered workflow's blind spot."
+  },
+  {
+   "id": "svg-text-size-check",
+   "cmd": [
+    "python3",
+    "tools/svg-text-size-check.py"
+   ],
+   "stages": [
+    "ci",
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "The floor nothing else measured. The site enforces 12.5px rendered type in three gates and none of them walks into an <svg>, so the 24 art diagrams were never measured: 10-15 USER UNITS inside 1180- and 1280-unit viewBoxes rendered at 976-1120px, which put every one of 586 labels between 8.13px and 12.23px. contrast-audit grades the same glyphs and passes them, correctly — the ink is fine, the size was not. Now clean at 390/768/1024/1440/1600, so this is a regression guard rather than a backlog: the drawing is shown only above the width where its own smallest label clears the floor, and below that the typeset .artalt block takes over (ember.css, the ARTALT block). Scoped to the 17 of 36 pages whose source contains '<text>', which took it from 49s to 30s — its blind spot is therefore an <svg> whose text is injected by script. ci+nightly rather than pre-push, following a11y-sweep: it drives a browser, and the note there records a 28-minute suite being why a red gate went unnoticed for five days. Effective px is computed from each element's own getScreenCTM(), never renderedWidth/viewBox, which ignores preserveAspectRatio and any transform on a group between the svg and the text."
   }
  ],
  "manual": [
@@ -783,14 +798,6 @@
     "tools/balance-check.py"
    ],
    "manual_reason": "Reports 2 findings that were verified BY EYE on 2026-09-04 and are false positives: index.html and folio/index.html hero, and the 'who you'd be hiring' band, are staggered TWO-COLUMN compositions — prose left, the process film / Candidate Facts card right — and they render balanced at 1440 (prototypes/renders/hero-1440.png, chap-i-1440.png). The gate's unit is the paragraph: a column that starts BELOW the headline leaves the eyebrow and h1 with nothing level with them, so they read as one-sided. Widening the test to the section was tried and REJECTED — it let the gate's own planted 400px defect through, and a check that cannot fail is not evidence. Kept manual rather than weakened, so it never blocks CI on a reading a human has already overruled. Re-run it by hand after any layout change."
-  },
-  {
-   "id": "svg-text-size-check",
-   "cmd": [
-    "python3",
-    "tools/svg-text-size-check.py"
-   ],
-   "manual_reason": "Registered MANUAL, not pre-push, and the reason is the point: it currently reports 24 of 24 art diagrams — 586 labels between 8.13px and 12.23px effective against a 12.5px floor — so wiring it to a push would block every push on a decision nobody has taken yet. Measured 2026-09-12: the labels are set at 10-15 USER UNITS inside 1180- and 1280-unit viewBoxes that render at 976-1120px, a scale of 0.65 to 0.88. Raising the font-size alone cannot reach the floor at 1024px (it would need up to 1.94x), and a flat 12.5u target — the minimum that works at all — was simulated across 131 labels and overflows 7 boxes and collides 15 labels, because the layouts are hand-placed and the y coordinates do not move with the type. So the real options are a redraw of 24 diagrams or showing the typeset .artalt block at more widths, and both are Arpit's call on his own artwork. FLIPS TO pre-push the day that call is made and the drawings clear the floor. Until then it is the measurement, kept runnable, rather than a wish in a comment."
   }
  ]
 }
