@@ -6780,6 +6780,10 @@ body.p-home .qvoices [data-ground="bookend"], body.p-home .qvoices [data-tint]{-
 /* the two caption doors (the film caption on the hero, the method's receipts link on /process/)
    spoke at 11.5px against the house 14px — one door grammar (cta-grammar-check) */
 body.p-home .hero .vid-hero-cap a, .contract-links a{font-size:var(--fs-ui);letter-spacing:.02em;color:var(--door-ink)}   /* 16 of 21 doors track at .02em; these two held .08em */
+/* two ledger lines on the homepage — the receipts line and the "rather read first?" links —
+   were capped at 720px with 580px of nothing beside them at 1440 (balance-check). They are
+   rows of short items, not reading prose; they span the wrap. */
+body.p-home .lab-row, body.p-home .contact-read, body.p-home .voices .lede{max-width:none}   /* the voices lede takes the work act's own treatment (.work .lede{max-width:none}) rather than a cap with a void */
 /* the close band's heading is display type too */
 [data-ground="bookend"] .close h2, [data-ground="bookend"] .page-head h1{color:var(--neutral-50)}
 
@@ -6825,10 +6829,10 @@ a.cta--secondary, button.cta--secondary, .cta--secondary { background:none; bord
 a.cta--secondary:hover, button.cta--secondary:hover, .cta--secondary:hover { background:var(--ink-wash); color:var(--btn-line-ink); }
 a.cta-quiet, button.cta-quiet, .cta-quiet {
   display:inline-block; min-height:24px; padding:4px 0; border:0; background:none; border-radius:0;
-  font:var(--type-label); font-weight:500; letter-spacing:.02em; color:var(--door-ink); text-decoration:none;
-  border-bottom:1px solid color-mix(in srgb, var(--door-ink) 45%, transparent);   /* one ink for the quiet door on paper and on a tint (cta-grammar-check) */
+  font:var(--type-label); font-weight:600; letter-spacing:.02em; color:var(--door-ink); text-decoration:none;
+  /* Arpit, 2026-09-12: coloured, no underline. The colour is the affordance; hover deepens it. */
 }
-a.cta-quiet:hover, button.cta-quiet:hover, .cta-quiet:hover { color:var(--text-primary); border-bottom-color:var(--door-ink); }
+a.cta-quiet:hover, button.cta-quiet:hover, .cta-quiet:hover { color:var(--text-primary); }
 /* the nav door composes .cta; only its placement is local */
 .nav-cta { transition:background .3s, color .3s; }
 .nav-cta:hover { transform:translateY(-2px); }

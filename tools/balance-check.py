@@ -53,6 +53,8 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
    let n=p; while(n&&n.tagName!=='BODY'){const c=(n.className+'').toLowerCase();
      if(/pl[a-z]-|fig-paper|recon|pass|mock|browser|card|note|gate|vitals/.test(c))return false;
      n=n.parentElement;}
+   // a label line (an eyebrow, a role line) is not reading prose: under 14px it is not judged
+   if(parseFloat(cs.fontSize)<14)return false;
    return p.textContent.trim().length>80 && p.getBoundingClientRect().width>120;});
  if(ps.length<3){document.title='R:{"skip":1,"n":'+ps.length+'}';return;}
  const med=a=>a.slice().sort((x,y)=>x-y)[Math.floor(a.length/2)];
@@ -62,7 +64,11 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
  // look for any painted element beside it, overlapping its vertical band.
  const all=[...d.querySelectorAll('body *')].map(e=>({e,r:e.getBoundingClientRect()}))
    .filter(o=>o.r.width>24&&o.r.height>16&&w.getComputedStyle(o.e).visibility!=='hidden');
+ // A ledger row carries its own door at the right edge, INSIDE the paragraph (the homepage's
+ // "The code →" rows): the row is composed end to end, so a right-aligned descendant counts.
+ const rowEnded=p=>{const pr=p.getBoundingClientRect();return [...p.querySelectorAll('a,span,b')].some(k=>{const kr=k.getBoundingClientRect();return kr.width>16&&pr.right-kr.right<24&&kr.left-pr.left>pr.width*0.5;});};
  const lonely=ps.filter(p=>{const pr=p.getBoundingClientRect();
+   if(rowEnded(p))return false;
    return !all.some(o=>o.e!==p&&!p.contains(o.e)&&!o.e.contains(p)
      && o.r.top<pr.bottom-4 && o.r.bottom>pr.top+4
      && (o.r.left>=pr.right+24 || o.r.right<=pr.left-24));});
