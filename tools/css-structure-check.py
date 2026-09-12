@@ -73,7 +73,17 @@ def brace_report(src):
 
 
 def layer_shares(src):
-    """{name: span/filesize} for each top-level @layer block, by brace depth"""
+    """{name: {share, chars}} for each top-level @layer block, by brace depth.
+
+    THE SHARE ALONE HAS A FALSE POSITIVE, found 2026-09-12. A share falls for two
+    completely different reasons: the layer shrank (the defect this gate exists for —
+    an orphan `}` closing it early) or the FILE GREW while the layer stayed put. Adding
+    27KB of rules to ember.css's unlayered tail dropped @layer base from 53.8% to 50.1%
+    and the gate reported "rules moved in or out of the layer", which had not happened:
+    base's span was unchanged to the character, +0. So the absolute span is recorded
+    alongside the share, and a share drift with an unchanged span is not a finding.
+    The share is still the primary signal, because it is what survives ordinary edits.
+    """
     s = decomment(src)
     out = {}
     for m in re.finditer(r'@layer\s+([\w, ]+)\s*\{', s):
@@ -87,7 +97,8 @@ def layer_shares(src):
                     break
             i += 1
         name = m.group(1).strip()
-        out.setdefault(name, round((i - m.start()) / float(len(s)), 3))
+        out.setdefault(name, {'share': round((i - m.start()) / float(len(s)), 3),
+                              'chars': i - m.start()})
     return out
 
 
@@ -138,15 +149,29 @@ def main():
         sh = layer_shares(src)
         if sh:
             cur[rel] = sh
-            for name, share in sh.items():
+            for name, info in sh.items():
+                share, chars = info['share'], info['chars']
                 want = (base.get(rel) or {}).get(name)
                 if want is None:
                     continue
-                if abs(share - want) > TOL:
-                    findings.append('%s: @layer %s wraps %.0f%% of the file, baseline %.0f%% '
-                                    '(%+.0f points) — rules moved in or out of the layer, which '
-                                    'reorders the whole cascade'
-                                    % (rel, name, 100 * share, 100 * want, 100 * (share - want)))
+                # a baseline recorded before this gate kept spans is a bare float
+                want_share = want['share'] if isinstance(want, dict) else want
+                want_chars = want.get('chars') if isinstance(want, dict) else None
+                if abs(share - want_share) <= TOL:
+                    continue
+                if want_chars is not None and chars == want_chars:
+                    # the layer is byte-identical; the file grew around it. Not the
+                    # defect this checks for, and saying so is more use than silence.
+                    print('  note %s: @layer %s share moved %.0f%% -> %.0f%% but its span '
+                          'is unchanged (%d chars) — the file grew around it, nothing moved '
+                          'in or out.' % (rel, name, 100 * want_share, 100 * share, chars))
+                    continue
+                delta = '' if want_chars is None else ' (span %+d chars)' % (chars - want_chars)
+                findings.append('%s: @layer %s wraps %.0f%% of the file, baseline %.0f%% '
+                                '(%+.0f points)%s — rules moved in or out of the layer, which '
+                                'reorders the whole cascade'
+                                % (rel, name, 100 * share, 100 * want_share,
+                                   100 * (share - want_share), delta))
 
     if a.record:
         json.dump(cur, open(BASELINE, 'w'), indent=1, sort_keys=True)

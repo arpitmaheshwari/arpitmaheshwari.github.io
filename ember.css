@@ -4935,3 +4935,114 @@ html[data-theme="ember"] .cta--secondary{
 html[data-theme="ember"] .cta--secondary:hover{
   filter:none;background:color-mix(in srgb, var(--ink) 8%, transparent);color:var(--ink)}
 html[data-theme="ember"] .cta--doc{--cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='3%201%2018%2022'%20fill='none'%20stroke='%23000'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M15%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V7Z'/%3E%3Cpath%20d='M14%202v4a2%202%200%200%200%202%202h4'/%3E%3Cpath%20d='M10%209H8'/%3E%3Cpath%20d='M16%2013H8'/%3E%3Cpath%20d='M16%2017H8'/%3E%3C/svg%3E")}
+
+/* NOTE ON PLACEMENT: this block sits at the END of the file on purpose. Inserted
+   further up it lost to the ACT GROUNDS rule (~line 2801, .receipts/.work/.who
+   gradients) which has identical specificity and comes later — so the paper was
+   declared and the dark gradient still painted. Unlayered is necessary but not
+   sufficient; inside the tail, source order decides. */
+/* ============================================================================
+   A1 AMBER — HOMEPAGE. The second pilot, so the roll-out decision has the two
+   pages that matter: a case study (o2) and the front door.
+   ----------------------------------------------------------------------------
+   THE HOMEPAGE ALREADY KNEW HOW TO DO THIS, which is why this block is shorter
+   than the o2 one. Act III (.contract, #patterns) has inverted to paper since
+   2026-09-01, and the comment above it says "every token the section's
+   components read is redeclared here". That IS the A1 mechanism, already proven
+   on this page. This extends it from one act to every act between the bookends,
+   with A1's solved values instead of the older cream ones.
+   MEASURED, and it is the argument for doing it: the existing cream act runs
+   #221C10 on #EFE7D2 = 13.72:1. That is the same glare the dark theme has at
+   16.74:1, just inverted — both outside the 9-12:1 band the reading comparison
+   settled on. A1 is 10.64:1. And the two PAPERS are 1.07:1 apart, which is to
+   say indistinguishable: the ground was already right, the ink never was.
+   WHAT STAYS DARK: #nav, .hero and .close (#contact), plus footer. A1's own
+   rule is "fields are bookends, not wallpaper", and those are the bookends —
+   .close keeps its two radial fields, .hero keeps its ground. Everything
+   between them becomes paper, and the mid-page fields go: the asset audit put
+   the 15 radial fields at "bookends only, as now", and this is what that meant.
+   ============================================================================ */
+html[data-theme="ember"] body.p-home :is(.receipts,.work,.who,.contract,.aiwork,
+  .voices,.labrow){
+  background:#F5EEDF; color:#3F3322;
+  /* the homepage's own family */
+  --bg0:#F5EEDF; --bg1:#EFE7D6; --card:#EEE7D7; --line:#847A6A;
+  --ink:#3F3322; --mut:#584E3C; --dim:#5F5648;
+  --cream:#F5EEDF; --cream-ink:#3F3322; --cream-mut:#584E3C; --cream-red:#B33300;
+  /* the theme family */
+  --bg:#F5EEDF; --bg-soft:#E8E1D2; --bg-card:#EEE7D7;
+  --ink-muted:#584E3C; --ink-dim:#5F5648;
+  --border:#847A6A; --border-accent:#8C5400; --hairline:rgba(63,51,34,.34);
+  /* the four heats, hue kept, lightness solved against the card — same values
+     the o2 pilot solved, so the two pages cannot drift apart */
+  --ember:#B33300; --copper:#B33300; --copper-light:#B33300;
+  --violet:#A500C4; --amber:#7D4B00; --rose:#C30044;
+  --gold:#7D4B00; --gold-light:#7D4B00; --gold-dark:#6D4200;
+  --goldA:#7D4B00; --goldA-dk:#6D4200;
+  --link:#A500C4; --link-hover:#7A0091;
+  --heat:#7919FF; --heat2:#A500C4;
+  --cta-ink:#F5EEDF;
+  --cta-grad:linear-gradient(92deg,#B33300,#8C5400);
+  --g-hot:linear-gradient(92deg,#B33300,#A500C4);
+}
+/* THE MID-PAGE FIELDS GO. .who casts a 40%/40% orange radial at .18 alpha —
+   additive light, which is the one thing that cannot survive a paper ground: it
+   only reads as a glow because there is dark underneath. The bookends keep
+   theirs. */
+html[data-theme="ember"] body.p-home :is(.receipts,.work,.who,.contract,.aiwork,
+  .voices,.labrow)::before{background:none}
+/* #thoughts sets its own --heat (line ~965), declared on the section itself, so
+   it has to be re-declared at the same level rather than inherited. This is the
+   alias lesson from the o2 pilot: a per-element token override wins over an
+   ancestor's, however specific the ancestor. */
+html[data-theme="ember"] body.p-home #thoughts{--heat:#A500C4}
+/* the prose literal — ember.css:2841 hardcodes #E2DBD3 for sustained DARK
+   reading, so no token can reach it. A1's reading ink is already the softened
+   value at 10.64:1. */
+html[data-theme="ember"] body.p-home :is(.receipts,.work,.who,.contract,.aiwork,
+  .voices,.labrow) :is(.t-body,.u-body){color:var(--ink)}
+/* paper has no depth to cast into — the lift becomes a hairline, exactly as the
+   o2 pilot found when a 64px shadow darkened the paper under its own caption */
+html[data-theme="ember"] body.p-home :is(.receipts,.work,.who,.contract,.aiwork,
+  .voices,.labrow) :is(.fig-paper,.recon,.card-p28,.card-p32,.hd-card){
+  box-shadow:0 0 0 1px rgba(63,51,34,.22), 0 1px 2px rgba(63,51,34,.10)}
+/* and any screen component keeps its own ink: it has a light interior of its own
+   and the audit's verdict was that it needs nothing */
+html[data-theme="ember"] body.p-home :is(.receipts,.work,.who,.contract,.aiwork,
+  .voices,.labrow) :is(.plA,.plF,.plM,.plO,.plP,.plV,.recon,[class*="-app"]){
+  --ink:#16181D; --ink-muted:#282B31; --ink-dim:#3C4148}
+
+/* THE DEAD SELECTOR. ember.css:2805 gives .thoughts an act ground, and .thoughts
+   matches ZERO elements on this page — #thoughts carries class="labrow". So one of
+   the seven acts has never had the ground the 2026-09-01 act-grounds pass gave it,
+   and has been inheriting the page base instead. A1 uses .labrow, which is what the
+   markup actually says; the dead rule is left where it is, since deleting it is a
+   separate decision about a live page. (Lesson 10: a dead selector beside a live one
+   is worse than dead code, because nobody can see which is which.) */
+
+/* the film card is a screen and keeps the dark theme whole — the o2 pilot's rule,
+   which was scoped to that page. The homepage carries .vg cards too, and without
+   this its labels took A1's paper ink onto their own dark ground at 1.46:1. The
+   alias --a is re-declared here for the same reason it was there: it resolves at
+   .vg-hero, above the card. */
+html[data-theme="ember"] body.p-home .vg{
+  /* AND IT NEEDS ITS OWN GROUND. Only .vg-hero .vg paints a background; a .vg inside
+     .bcard is transparent and relied on the dark PAGE showing through. On paper it
+     showed paper, and its (correctly light) ink went to 1.10-1.19:1 — 9 labels of the
+     AdTech plan card. A component that borrows its ground from the page cannot
+     survive the page changing colour, which is the whole lesson of this pilot in one
+     rule. */
+  background:linear-gradient(180deg,color-mix(in oklab,#FF8A5C 7%,#1B1320),#1B1320);
+  border-radius:12px;
+  --a:var(--ember);
+  --bg:#120B14; --bg-soft:#1B1320; --bg-card:#241830; --card:#241830;
+  --ink:#F5EDE6; --mut:rgba(245,237,230,.76); --dim:rgba(245,237,230,.62);
+  --ink-muted:rgba(245,237,230,.76); --ink-dim:rgba(245,237,230,.62);
+  --border:rgba(245,237,230,.37); --line:rgba(245,237,230,.37);
+  --ember:#FF8A5C; --copper:#FF8A5C; --violet:#E86BFF; --amber:#FFC46B; --rose:#FF7AA8;
+  --gold:#FFC46B; --gold-dark:#C98F3F; --goldA:#FFC46B;
+  --link:#E86BFF; --link-hover:#F2A3FF; --heat:#A96BFF; --heat2:#E86BFF}
+/* one more light-ink literal, the same class as the prose one: ember.css:1531 sets
+   .voices .lede to rgba(245,237,230,.76). On paper it measured 1.00:1 — ink and
+   ground the same colour, which is the signature reading for this mistake. */
+html[data-theme="ember"] body.p-home .voices .lede{color:var(--mut)}
