@@ -44,6 +44,8 @@ def norm(sel):
     s = re.sub(r'\s+', ' ', sel).strip()
     s = re.sub(r'\s*([>+~,])\s*', r'\1', s)
     s = re.sub(r'\(\s+', '(', s); s = re.sub(r'\s+\)', ')', s)     # `:is( .a` and `:is(.a` are one selector
+    s = s.replace(':nth-of-type(even)', ':nth-of-type(2n)').replace(':nth-of-type(odd)', ':nth-of-type(2n+1)')
+    s = s.replace(':nth-child(even)', ':nth-child(2n)').replace(':nth-child(odd)', ':nth-child(2n+1)')   # Chrome serialises the keywords as An+B
     s = s.replace('::before', ':before').replace('::after', ':after')  # Chrome serialises either form
     s = re.sub(r'\*(?=:)', '', s)                                          # and drops the universal before any pseudo
     return s.lower()

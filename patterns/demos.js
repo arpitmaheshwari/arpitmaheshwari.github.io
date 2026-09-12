@@ -18,7 +18,7 @@
     ".pd__go:hover{background:var(--accent-text);color:var(--surface-page)}" +
     ".pd__verdict{padding-top:14px;border-top:1px solid var(--border-strong)}" +
     ".pd__verb{font-family:var(--ff-display);font-style:italic;font-size:21px;line-height:1.2;color:var(--accent-text);display:block;margin-bottom:5px}" +
-    ".pd__verb--status-positive{color:#7ea88f}" +
+    ".pd__verb--status-positive{color:var(--status-positive)}" +
     ".pd__sub{font-size:13px;line-height:1.55;color:var(--text-muted)}" +
     ".pd__panel{margin:12px 0 0;padding:12px 0 0;border-top:1px solid var(--border-strong);list-style:none}" +
     ".pd__panel li{font-size:13px;color:var(--text-muted);padding:3px 0}" +

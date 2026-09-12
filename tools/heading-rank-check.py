@@ -66,12 +66,14 @@ def classify_home(r):
 
 def classify_sub(r):
     if r['tag']=='h2':
-        if r['in_vband'] or 'card-title' in r['cls']: return r['sz']==24 and r['w']=='400'
-        return r['sz']==31 and r['w']=='400'
-    if 't-card-title' in r['cls']: return r['sz']==24
+        # 2026-09-12: the system's scale governs (Arpit's pick) — section h2 clamp(35px,2.9vw,46px),
+        # card titles 22. The 31/24 grammar this gate encoded is the August record, superseded.
+        if r['in_vband'] or 'card-title' in r['cls']: return r['sz'] in (22,24) and r['w']=='400'
+        return 35 <= r['sz'] <= 46 and r['w']=='400'
+    if 't-card-title' in r['cls']: return r['sz'] in (22,24)
     if r['in_lab'] or r['sz']==14: return r['sz']==14
     if 'rcpt-h' in r['cls']: return r['sz']==20
-    return (r['sz'],r['w']) in ((22,'600'),(17,'600'),(24,'400'),(20,'400'))
+    return (r['sz'],r['w']) in ((22,'600'),(17,'600'),(24,'400'),(22,'400'),(20,'400'))
 
 def sweep(br, plant=None):
     bad_all=[]

@@ -36,7 +36,10 @@
   --act-wash: color-mix(in srgb, var(--act) 8%, transparent);            /* a hover fill */
   --link-ink: var(--acc-violet);              /* this site's links are violet, by decision */
   --link-ink-hover: color-mix(in srgb, var(--acc-violet) 78%, var(--text-primary));
-}}
+}
+/* a control edge on the bookend owes 1.4.11 its 3:1; the system's 37% cream measured 2.83:1
+   on this site's #140C16 (nontext-contrast-check) — 42% clears it. Logged for the system. */
+[data-ground="bookend"]{--border-strong:color-mix(in srgb, var(--neutral-100) 42%, transparent)}}
 @layer components{/* ── from styles.css ── */
 /* A figure image centres in its figure. An img is inline-level, so one
    given a max-width narrower than its figure sits hard LEFT and leaves
@@ -785,7 +788,7 @@ to{opacity:1;transform:translateY(0)}}
 .hv-home-2:hover{border-color:var(--accent);color:var(--text-body)}
 .hv-home-3:hover{color:var(--accent-text)}
 /* ===== EXTRACTED FROM 404.html (theme-swap migration; scoped body.p-404) ===== */
-body:where(.p-404){--obj-paper:#F7F3EC;--p-ink:#1B1917;--p-soft:#544F44;--p-rule:rgba(27,25,23,0.35);--stamp-red:#A33B25;/* Type scale — aligned to the shared ramp (see DESIGN-SYSTEM.md §1) */--fs-eyebrow:12px;--radius:4px}
+body:where(.p-404){--obj-paper:#F7F3EC;--p-ink:#1B1917;--p-soft:#544F44;--p-rule:rgba(27,25,23,0.35);--stamp-red:#A33B25;--fs-eyebrow:12px;--radius:4px}
 :where(body.p-404) *{box-sizing:border-box;margin:0;padding:0}
 html:where(:has(body.p-404)){font-size:16px;overflow-x:hidden}
 body:where(.p-404){background:var(--surface-page);color:var(--text-body);font-family:var(--ff-sans);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -1884,7 +1887,7 @@ body.p-home :is(h1,h2,h3,h4,h5,h6,p,figure,blockquote,dl,dd,dt,ul,ol){margin:0}
 body.p-home :is(ul,ol):where(.hd-presets,.rrow){padding:0}
 body.p-home{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){body.p-home{scroll-behavior:auto}}
-body.p-home{background:var(--surface-page);color:var(--text-body);font-family:var(--sans);font-size:16px;line-height:1.7}
+body.p-home{background:var(--surface-page);color:var(--text-body);font-family:var(--sans);font-size:var(--fs-body);line-height:1.7}
 body.p-home a{color:inherit;text-decoration:none}
 body.p-home :focus-visible{outline:2px solid var(--acc-amber);outline-offset:3px;border-radius:2px}
 body.p-home .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
@@ -3113,13 +3116,13 @@ body[class*="p-case-studies"] :is(.fig-paper figcaption,
    case exists to prove — and keeps the strongest objection in a counter block.
    Six cases, six different principles: the portfolio as a system of ideas.
    ============================================================================ */
-.thesis{border:1px solid rgba(255,196,107,.4);border-radius:12px;padding:40px;margin:40px 0;background:linear-gradient(160deg,rgba(255,196,107,.07),rgba(232,107,255,.05));text-align:center}
+.thesis{border:1px solid var(--accent);border-radius:12px;padding:40px;margin:40px 0;background:linear-gradient(160deg,var(--act-wash),var(--ink-wash));text-align:center}
 .thesis .t-l{font-family:var(--ff-label);font-weight:600;font-size:11.5px;letter-spacing:.02em;color:var(--acc-amber);display:block;margin-bottom:16px}
 .thesis p{font-family:var(--ff-display);font-weight:300;font-size:clamp(21px,2.4vw,28px);line-height:1.25;letter-spacing:-.01em;color:var(--text-body);max-width:30ch;margin:0 auto}
 .thesis p em{font-style:italic;color:var(--acc-violet)}
-.counter{border-left:3px solid var(--acc-rose);padding:20px 24px;margin:32px 0;background:rgba(255,122,168,.05);border-radius:0 8px 8px 0}
+.counter{border-left:3px solid var(--acc-rose);padding:20px 24px;margin:32px 0;background:color-mix(in srgb, var(--acc-rose) 6%, transparent);border-radius:0 8px 8px 0}
 .counter .c-l{font-family:var(--ff-label);font-weight:600;font-size:11px;letter-spacing:.02em;color:var(--acc-rose);display:block;margin-bottom:8px}
-.loopfig{margin:32px 0;border:1px solid var(--border-hairline);border-radius:12px;padding:32px;background:rgba(27,19,32,.6);overflow-x:auto}
+.loopfig{margin:32px 0;border:1px solid var(--border-hairline);border-radius:12px;padding:32px;background:var(--surface-page);overflow-x:auto}
 .loopfig figcaption{font-family:var(--ff-sans);font-size:12px;color:var(--text-faint);margin-top:16px;line-height:1.6}
 /* ============================================================================
    RECEIPT CHIP — show the TRANSITION, not just the endpoint (2026-08-14)
@@ -3302,17 +3305,17 @@ body.p-404{background:var(--surface-page);color:var(--text-body)}
    house nav and footer it needs the same top offset every other page has */
 body.p-404 .wrap{padding-top:120px}
 body.p-404 footer{margin-top:64px}
-body.p-404 .ghost{color:rgba(245,237,230,.04);font-family:var(--serif)}
+body.p-404 .ghost{color:var(--ink-wash);font-family:var(--serif)}
 body.p-404 .kick{font-family:var(--ff-label);font-weight:600;font-size:12px;letter-spacing:.02em;color:var(--acc-copper)}
 body.p-404 h1{font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,56px);color:var(--text-body);margin:12px 0 16px}
 body.p-404 h1 em{font-style:italic;background:linear-gradient(92deg,var(--acc-copper),var(--acc-violet));-webkit-background-clip:text;background-clip:text;color:transparent}
-body.p-404 .lede{color:rgba(245,237,230,.76);max-width:60ch;line-height:1.7}
+body.p-404 .lede{color:var(--text-muted);max-width:60ch;line-height:1.7}
 body.p-404 .btn{background:var(--cta-grad);color:var(--btn-fill-ink);border:none;border-radius:999px;padding:12px 20px;font-family:var(--ff-label);font-weight:600;font-size:12px;letter-spacing:.02em;text-decoration:none}
 body.p-404 .btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
-body.p-404 .inline-links{color:rgba(245,237,230,.62);font-size:13.5px}
+body.p-404 .inline-links{color:var(--text-faint);font-size:13.5px}
 body.p-404 .inline-links a{color:var(--link-ink);border-bottom:1px solid var(--accent)}
 body.p-404 .hand{font-family:'Caveat',cursive;font-size:20px;color:var(--acc-amber)}
-body.p-404 .meta-note{color:rgba(245,237,230,.6);font-size:13.5px;line-height:1.7}
+body.p-404 .meta-note{color:var(--text-faint);font-size:13.5px;line-height:1.7}
 body.p-404 .meta-note a{color:var(--link-ink)}
 /* the claim ticket stays PAPER on purpose — it is a printed artifact in a dark room,
    the same grammar the case studies use for document exhibits */
@@ -3325,7 +3328,7 @@ body.p-404 .lug-fill{background:var(--acc-copper)}
 body.p-404 .divert{color:#B84A1F;border-color:rgba(184,74,31,.5)}
 body.p-404 .lug-claim{color:rgba(36,24,48,.75)}
 body.p-404 .lug-claim .rt{color:#B84A1F}
-body.p-404 footer{color:rgba(245,237,230,.45);border-top:1px solid var(--border-strong)}
+body.p-404 footer{color:var(--text-disabled);border-top:1px solid var(--border-strong)}
 /* ── PlanIt: the mascot row ──────────────────────────────────────────────
    The character is the case's argument, so it gets a component, not inline
    styles. Two things it must declare for itself: its WIDTH (the page-level
@@ -3745,7 +3748,7 @@ body.p-home :is(.k,.go,.ck,.mk,.ek,.lk,.ak,.meta,
    .12em (correct for uppercase MONO, too loose for uppercase sans) and /hire/'s
    primary CTA still on the mono face. Caught by tools/cta-grammar-check.py. */
 :is(.wr-more a,.contact-alt a,.lab-links a,.contract-links a,
-  .go,.rcpt-btn,.rcpt-more,.lbl-badge-gold,,.nav-cta):not(.cta){font-family:var(--ff-label);letter-spacing:.08em}
+  .go,.rcpt-btn,.rcpt-more,.lbl-badge-gold,.nav-cta):not(.cta){font-family:var(--ff-label);letter-spacing:.08em}
 /* OPEN, 5px: patterns/ml-explainability's comparison table runs 5px past 390px.
    Tried and REJECTED, each re-measured: display:block on the table (broke two
    other pages' tables), table-layout:fixed + word-break (no change), reduced
@@ -6683,6 +6686,7 @@ body.p-home #contact .one-door:hover{filter:brightness(1.06)}
 :is(.plA, .plF, .plM, .plO, .plP, .plV, .recon, [class*="-app"], [class*="-paper"]){
   --text-body: #16181D; --text-muted: #282B31; --text-faint: #3C4148;
   --border-hairline: #E3E6EA; --border-strong: #C6CBD2;
+  --accent-text: #5C420E; --accent-fill: #5C420E; --acc-amber: #7A5410;   /* the plate's own gold: a caption over its grey chrome read 2.83:1 in the page amber */
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--text-primary) 14%, transparent),
               0 1px 2px color-mix(in srgb, var(--text-primary) 8%, transparent);
   filter: none;
@@ -6752,6 +6756,20 @@ body[class*="p-patterns"] .xi-patterns-017{align-self:start;padding-top:4px}
 /* card titles: 22px at 1.15 was under the 1.25 floor on two-line titles (line-height-check);
    the system's title leading is 1.3 */
 .card-title{line-height:1.3}
+/* lab/eval severity chips: amber ink on the amber soft fill read 4.03:1 — the chip's ink is
+   one stop deeper than the word colour, the same one-stop rule a tint obeys */
+:where(body.p-lab-eval) .sev-medium{color:var(--amber-800)}
+:where(body.p-lab-eval) .sev-high{color:var(--rose-800)}
+/* the nav links declare their tracking; inheriting the page's -0.003em made the same nav
+   compute two values across 35 pages (component-identity-check) */
+#nav .nav-links{letter-spacing:0}
+#nav .nav-links a:not(.cta){letter-spacing:.02em}
+/* a control edge owes 3:1: the lab door's 58% link-ink border read 2.47:1 */
+.lab-links a:not(.cta){border-color:var(--link-ink)}
+/* the teardown's measured table held min-width:520px through the phone restack (overflow-sweep
+   at 390: 520px in 294px) — the restack's own selector loses to :where(body) table.td-table on
+   specificity; released here, where the layer decides */
+@media (max-width:860px){:where(body.p-lab-teardown) table.td-table{min-width:0}}
 /* the close band's heading is display type too */
 [data-ground="bookend"] .close h2, [data-ground="bookend"] .page-head h1{color:var(--neutral-50)}
 
@@ -6797,10 +6815,10 @@ a.cta--secondary, button.cta--secondary, .cta--secondary { background:none; bord
 a.cta--secondary:hover, button.cta--secondary:hover, .cta--secondary:hover { background:var(--ink-wash); color:var(--btn-line-ink); }
 a.cta-quiet, button.cta-quiet, .cta-quiet {
   display:inline-block; min-height:24px; padding:4px 0; border:0; background:none; border-radius:0;
-  font:var(--type-label); font-weight:500; letter-spacing:.02em; color:var(--text-muted); text-decoration:none;
-  border-bottom:1px solid color-mix(in srgb, var(--text-muted) 40%, transparent);
+  font:var(--type-label); font-weight:500; letter-spacing:.02em; color:var(--link-ink); text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb, var(--link-ink) 45%, transparent);   /* the house link colour: a quiet door is still a door (cta-grammar-check) */
 }
-a.cta-quiet:hover, button.cta-quiet:hover, .cta-quiet:hover { color:var(--text-body); border-bottom-color:var(--text-muted); }
+a.cta-quiet:hover, button.cta-quiet:hover, .cta-quiet:hover { color:var(--link-ink-hover); border-bottom-color:var(--link-ink); }
 /* the nav door composes .cta; only its placement is local */
 .nav-cta { transition:background .3s, color .3s; }
 .nav-cta:hover { transform:translateY(-2px); }

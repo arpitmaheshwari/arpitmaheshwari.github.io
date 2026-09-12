@@ -73,7 +73,7 @@ DELETE_DECL = set(RENAME.values()) - {'--act', '--cta-grad'}
 # scopes that are somebody else's product, or a paper OBJECT on the page: they own their palette
 PLATE = re.compile(r'\.pl[AFMOPV]\b|\.recon|\.rx[a-z0-9]|\.rl-|-app\b|-paper\b|\.fig-paper|\.pass\b|'
                    r'\.rcpt-box|\.slip\b|\.stamp|\.ticket|\.letter|\.qc\b|\.psc|\.env\b|\.lug\b|'
-                   r'\.spec-hole|p-404|\.paper\b|\.stick\b')
+                   r'\.spec-hole|\.paper\b|\.stick\b')
 
 # 3 · page family -> act accent (hue family preserved where the system has one)
 FAMILY_ACT = {
@@ -157,6 +157,11 @@ LITERALS = {
     # the ember nav and its drawer: the page ground showing through, on whichever ground
     'rgba(18,11,20,.97)': 'MIX:--surface-page:97', 'rgba(18,11,20,.92)': 'MIX:--surface-page:92',
     'rgba(18,11,20,.72)': 'MIX:--surface-page:72',
+    # the loop figure is a bookend object: it paints its ground solid, not a 60% plum over paper
+    'rgba(27,19,32,.6)': '--surface-page',
+    # the thesis card: an accent edge and a two-accent wash
+    'rgba(255,122,168,.05)': 'MIX:--acc-rose:6',   # the counter's rose wash
+    'rgba(255,196,107,.4)': '--accent', 'rgba(255,196,107,.07)': '--act-wash', 'rgba(232,107,255,.05)': '--ink-wash',
 }
 ALPHA_INK = re.compile(r'rgba\((?:245,237,230|242,237,228|245,237,232),(0?\.\d+)\)')
 LIFT = re.compile(r'rgba\(0,0,0,0?\.\d+\)')
@@ -167,9 +172,11 @@ ADOPTION = '''
    A reconstruction plate quotes somebody else's product; it owns its whole interior,
    ink and edges alike, and the system's roles are re-pointed at ITS palette so every
    rule inside it resolves against the plate rather than the page. */
-:is(.plA, .plF, .plM, .plO, .plP, .plV, .recon, [class*="-app"], [class*="-paper"]) {
+:is(.plA, .plF, .plM, .plO, .plP, .plV, .recon, [class*="-app"], [class*="-paper"],
+    .plA-caption, .plF-caption, .plM-caption, .plO-caption, .plP-caption, .plV-caption, .recon-caption) {
   --text-body: #16181D; --text-muted: #282B31; --text-faint: #3C4148;
   --border-hairline: #E3E6EA; --border-strong: #C6CBD2;
+  --accent-text: #5C420E; --accent-fill: #5C420E; --acc-amber: #7A5410;   /* the plate's own gold: a caption over its grey chrome read 2.83:1 in the page amber */
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--text-primary) 14%, transparent),
               0 1px 2px color-mix(in srgb, var(--text-primary) 8%, transparent);
   filter: none;
@@ -209,7 +216,9 @@ TOKENS_LAYER = '''
   --act-wash: color-mix(in srgb, var(--act) 8%, transparent);            /* a hover fill */
   --link-ink: var(--acc-violet);              /* this site's links are violet, by decision */
   --link-ink-hover: color-mix(in srgb, var(--acc-violet) 78%, var(--text-primary));
-}
+}/* a control edge on the bookend owes 1.4.11 its 3:1; the system's 37% cream measured 2.83:1
+   on this site's #140C16 (nontext-contrast-check) — 42% clears it. Logged for the system. */
+[data-ground="bookend"]{--border-strong:color-mix(in srgb, var(--neutral-100) 42%, transparent)}
 }
 '''
 
@@ -335,7 +344,7 @@ def restore(css, table):
 
 
 TINT_CLASSES = ['bcard', 'rcpt-r', 'rcpt-r-tight', 'card-p28', 'card-p32', 'hd-card', 'case-vitals',
-                'measure-t', 'lab-body', 'td-block', 'lint-grid', 'section-inner', 'philosophy-cards', 'card-wire']
+                'measure-t', 'lab-body', 'td-block', 'lint-grid', 'section-inner', 'philosophy-cards', 'card-wire', 'thesis', 'scr-close']
 
 
 def stamp_tints(check):
@@ -424,6 +433,9 @@ def main():
         out, n = re.subn(r'(?<![\w-])' + re.escape(name) + r':[^;}]+', f'{name}:{val}', out, count=1)
         stats['type-scale'] += n
     out = out.replace(':is(.t-body,.u-body){font-size:17px;', ':is(.t-body,.u-body){font-size:var(--fs-body);')
+    # the homepage body was pinned to 16px while every other page reads at --fs-body (18): one
+    # reading size, and the nav stops computing two trackings (component-identity-check)
+    out, n = re.subn(r'(body\.p-home\{[^}]*?)font-size:16px', r'\1font-size:var(--fs-body)', out, count=1); stats['type-scale'] += n
     # 13. THE HEADLINE INK ON A BOOKEND (my call, asked for by Arpit 2026-09-12 with "WOW factor,
     #     accessibility and legibility"): the warmest light stop, neutral-50, 15.9:1 on the
     #     bookend — the reading ink neutral-200 read grey at display size.

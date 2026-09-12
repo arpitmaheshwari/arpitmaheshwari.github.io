@@ -60,7 +60,7 @@ RETIRED = {
 # artifacts that DEPICT the real product keep the paper palette on purpose:
 # the plate mockups (.plA-*…), the paper figures, the boarding-pass card.
 EXEMPT_ANCESTORS = ["fig-paper","recon","pass","plate","paper","mock","artifact","browser",
-  "pla-","plf-","plm-","plo-","plp-","plv-","stick","rcpt-box","psc","lug","env","qc"]
+  "pla-","plf-","plm-","plo-","plp-","plv-","stick","rcpt-box","psc","lug","env","qc","slip"]
 
 PROBE = """<!doctype html><html><body><script>
 const RET=%s, EX=%s;
