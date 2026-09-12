@@ -322,7 +322,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # next honest note does not trip it.)
 # +523: tools/css-parse-check.py — the browser-kept-vs-written rule check (a swallowed block
 # of 20 rules passed every text gate on 2026-09-12).
-CEILING = 15_225
+# +192: tools/paper-object-check.py — a paper object paints paper wherever it sits (the
+# boarding pass went black in a bookend, 2026-09-12).
+CEILING = 15_417
 
 
 def loc(paths):

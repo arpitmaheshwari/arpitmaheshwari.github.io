@@ -185,6 +185,17 @@ ADOPTION = '''
               0 1px 2px color-mix(in srgb, var(--text-primary) 8%, transparent);
   filter: none;
 }
+/* A PAPER OBJECT paints paper wherever it sits. The boarding pass in the closing bookend read
+   var(--cream) → the page ground, which on a bookend is dark: a cream ticket went black (Arpit
+   caught it, 2026-09-12). Objects read the object tokens, and re-point the roles their
+   interiors use so nothing inside them follows the page. */
+:is(.pass, .bp, .qc, .psc, .cf, .env, .spec-tag, .lug) {
+  background: var(--obj-paper); color: var(--obj-paper-ink);
+  --surface-page: var(--obj-paper); --surface-card: var(--obj-paper-2); --text-primary: var(--obj-paper-ink);
+  --text-body: var(--obj-paper-ink); --text-muted: var(--obj-paper-soft); --text-faint: var(--obj-paper-soft);
+  --border-strong: var(--obj-paper-rule); --border-hairline: var(--obj-paper-rule);
+  --acc-copper: var(--stamp-red); --accent-text: var(--stamp-red);
+}
 /* the site's own instruments are charts, not screenshots: on paper a bar needs a track.
    Not scoped to main: on the case pages the panels sit outside it (found live, 2026-09-12). */
 .vg { background: var(--surface-card); border: 1px solid var(--border-strong);
@@ -216,6 +227,7 @@ TOKENS_LAYER = '''
 :root, [data-ground="bookend"], [data-tint], .a-tinted {
   --act-2: var(--acc-violet);                 /* the second stop of a two-accent gradient */
   --cta-grad: linear-gradient(92deg, var(--acc-copper), var(--acc-amber));
+  --cta-grad-hover: linear-gradient(92deg, var(--copper-700), var(--amber-700));   /* one stop deeper on paper */
   --ink-wash: color-mix(in srgb, var(--text-primary) 5%, transparent);   /* a raised fill */
   --act-wash: color-mix(in srgb, var(--act) 8%, transparent);            /* a hover fill */
   --link-ink: var(--acc-violet);              /* this site's links are violet, by decision */
@@ -223,7 +235,8 @@ TOKENS_LAYER = '''
   --link-ink-hover: color-mix(in srgb, var(--acc-violet) 78%, var(--text-primary));
 }/* a control edge on the bookend owes 1.4.11 its 3:1; the system's 37% cream measured 2.83:1
    on this site's #140C16 (nontext-contrast-check) — 42% clears it. Logged for the system. */
-[data-ground="bookend"]{--border-strong:color-mix(in srgb, var(--neutral-100) 42%, transparent); --door-ink:var(--violet-100)}
+[data-ground="bookend"]{--border-strong:color-mix(in srgb, var(--neutral-100) 42%, transparent); --door-ink:var(--violet-100);
+  --cta-grad-hover:linear-gradient(92deg, var(--copper-50), var(--amber-50))}   /* one stop lighter on a bookend */
 }
 '''
 
