@@ -320,7 +320,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # ...and tools/render-pages.py, the full-page renderer Phase C looks at (+84).
 # (+41: the raise notes above count against the total they justify; 40 of margin so the
 # next honest note does not trip it.)
-CEILING = 14_702
+# +523: tools/css-parse-check.py — the browser-kept-vs-written rule check (a swallowed block
+# of 20 rules passed every text gate on 2026-09-12).
+CEILING = 15_225
 
 
 def loc(paths):

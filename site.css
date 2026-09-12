@@ -26,20 +26,17 @@
    ============================================================================ */
 @layer reset, tokens, ground, type, layout, components, utilities, overrides;
 
-@layer tokens {
-/* ── the site's own tokens, declared on every carrier the system re-derives tier 2 on,
+@layer tokens{/* ── the site's own tokens, declared on every carrier the system re-derives tier 2 on,
    so they resolve against THAT carrier's roles: paper on the page, light on a bookend,
    one stop deeper on a tint. A custom property resolves where it is declared. */
-:root, [data-ground="bookend"], [data-tint], .a-tinted {
+:root, [data-ground="bookend"], [data-tint], .a-tinted{
   --act-2: var(--acc-violet);                 /* the second stop of a two-accent gradient */
   --cta-grad: linear-gradient(92deg, var(--acc-copper), var(--acc-amber));
   --ink-wash: color-mix(in srgb, var(--text-primary) 5%, transparent);   /* a raised fill */
   --act-wash: color-mix(in srgb, var(--act) 8%, transparent);            /* a hover fill */
   --link-ink: var(--acc-violet);              /* this site's links are violet, by decision */
   --link-ink-hover: color-mix(in srgb, var(--acc-violet) 78%, var(--text-primary));
-}
-}
-
+}}
 @layer components{/* ── from styles.css ── */
 /* A figure image centres in its figure. An img is inline-level, so one
    given a max-width narrower than its figure sits hard LEFT and leaves
@@ -266,7 +263,7 @@ html,body{font-size:16px}
    P19-B · VISUAL EVIDENCE SYSTEM (case pages)
    ============================================================ */
 /* Vitals strip — the 10-second layer at the top of every case */
-.case-vitals{display:flex;flex-wrap:wrap;gap:0;margin:0 0 40px;border:1px solid var(--border-strong);border-radius:4px;overflow:hidden}
+.case-vitals{display:flex;flex-wrap:wrap;gap:0;margin:0 0 40px;border:1px solid var(--border-strong);border-radius:var(--radius-2);overflow:hidden}
 .case-vitals > div{flex:1 1 160px;min-width:140px;padding:16px 16px;border-right:1px solid var(--border-strong);background:var(--surface-card)}
 .case-vitals > div:last-child{border-right:none}
 .case-vitals dt{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-muted);margin:0 0 4px}
@@ -430,18 +427,14 @@ a{text-decoration:underline}}
 .lbl-ink{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:500;letter-spacing:.02em;color:var(--text-body)}
 .lbl-cap{font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.02em;color:var(--text-muted)}
 .lbl-cap-plain{font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.08em;color:var(--text-muted)}
-.lbl-badge-bg{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.02em;color:var(--surface-page)}
 .lbl-badge-gold{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.02em;color:var(--accent-text)}
 .lbl-badge-ink{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.02em;color:var(--text-body)}
 /* the wordmark beside the logo, previously an unnamed span in 27 files */
 .nav-name{font-family:var(--ff-sans);font-size:14px;font-weight:600;letter-spacing:-0.5px}
-/* round 2 — the next 16 repeated signatures (82 more elements) */
-.btn-label{font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:600;letter-spacing:.05em;color:var(--surface-page)}
 .t-ui-muted-tight{font-size:var(--fs-ui);color:var(--text-muted);line-height:1.6}
 .t-quote{font-family:var(--ff-display);font-size:var(--fs-card);font-style:italic;color:var(--text-body);line-height:1.6}
 .t-ui-175{font-size:var(--fs-ui);color:var(--text-body);line-height:1.75}
 .t-quote-sm{font-family:var(--ff-display);font-size:var(--fs-body);font-style:italic;color:var(--text-muted);line-height:1.6}
-.lbl-pill-bg{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.02em;color:var(--surface-page)}
 .lbl-pill-gold{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.02em;color:var(--accent-text)}
 /* 0.9em is RELATIVE on purpose — inline code sits inside text of varying size (a 21px lead
    paragraph and a 16px body paragraph both host it). Substituting the fixed --fs-ui token here
@@ -480,65 +473,16 @@ a{text-decoration:underline}}
 .rcpt-r-tight{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;padding:12px 20px;border-bottom:1px solid var(--border-strong)}
 .rcpt-r-last{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;padding:16px 20px}
 .rcpt-r-tight-last{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;padding:12px 20px}
-.rcpt-box{display:grid;gap:0;grid-template-columns:1fr;border:1px solid var(--border-strong);border-radius:4px}
-.btn-a{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:2px}
-.btn-a-ghost{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:1px solid var(--accent-fill);border-radius:2px}
-/* ═══════════════════════════════════════════════════════════════════════════
-   CTA — ONE COMPONENT, ICON + SHORT LABEL                       2026-09-10
-   ═══════════════════════════════════════════════════════════════════════════
-   Arpit: "I prefer to have a simple identical door everywhere, instead of
-   using the long label connect on linkedin update the design system to have
-   cta with the generic icon, in this case it will be LinkedIn icon usage.
-   Also the cta are not very readable I am not sure how they are passing the
-   accessibility test, or work on that."
-
-   He was right about the accessibility, and the reason the gates missed it is
-   worth writing down. Measured across all 36 pages: the CTA *text* passes —
-   contrast-audit graded 347 text nodes on a case page with 0 failures. What
-   fails is the BUTTON'S OWN BOUNDARY. The outline treatment
-   (.lbl-badge-gold, 19 instances) sits at 2.84:1 against the page and
-   .lbl-pill-gold at 2.86:1, where WCAG 1.4.11 needs 3:1 for the visual
-   boundary of a UI component. 29 of 38 asks failed it. Every gate here
-   measures TEXT on its ground; none measures a component's edge. So a button
-   nobody can find passes every check the repo owns.
-
-   The gradient-filled treatment measures 7.25:1 to 8.46:1 — it never had the
-   problem. So the fix is not a new colour, it is: the ask is always filled.
-
-   SIZE was the other half of "not very readable": the asks were 12px
-   (--fs-eyebrow) at weight 600. That tier is specified for "eyebrow / kicker
-   / label / meta / nav" — annotation, not the page's terminal action. The
-   door moves up one step to --fs-ui (14px).
-
-   THE ICON is a mask, not a sprite <use>, deliberately: #i-linkedin existed
-   in exactly ONE page's sprite, 18 pages had a sprite without it, and 33 had
-   no sprite at all. A mask defined once here needs nothing in the markup,
-   inherits currentColor, and cannot go missing on a page someone adds later.
-   The path data is the repo's own #i-linkedin symbol, unchanged.
-
-   The icon slot is GENERIC: set --cta-icon to any mask and the component
-   carries it. LinkedIn is today's door, not a hard-coded one. */
-.cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;min-height:44px;box-sizing:border-box;font-family:var(--ff-mono);font-size:var(--fs-ui);font-weight:600;letter-spacing:.02em;line-height:1.2;border:none;border-radius:999px;cursor:pointer;text-decoration:none;background:var(--accent-text);color:var(--surface-page)}
-.cta::before{content:"";flex:0 0 auto;width:16px;height:16px;background-color:currentColor;-webkit-mask:var(--cta-icon) center/contain no-repeat;mask:var(--cta-icon) center/contain no-repeat}
-.cta--linkedin{--cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='1%201%2022%2021'%20fill='none'%20stroke='%23000'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M16%208a6%206%200%200%201%206%206v7h-4v-7a2%202%200%200%200-2-2%202%202%200%200%200-2%202v7h-4v-7a6%206%200%200%201%206-6z'/%3E%3Crect%20width='4'%20height='12'%20x='2'%20y='9'/%3E%3Ccircle%20cx='4'%20cy='4'%20r='2'/%3E%3C/svg%3E")}
-/* no icon: the same component without the mask slot filled */
-.cta--bare::before{display:none}
-/* secondary = the same component, a different fill (2026-09-10) */
-.cta--secondary{background:none;border:1px solid var(--accent);color:var(--text-body)}
-/* the reading-flow link is deliberately NOT a button any more — it is
-   convenience, and it was outranking the ask on 15 pages */
-.cta-quiet{display:inline-block;padding:4px 0;min-height:24px;font-family:var(--ff-label);font-size:12px;letter-spacing:.02em;color:var(--text-muted);text-decoration:none;border-bottom:1px solid var(--border-strong)}
-.cta-quiet:hover{color:var(--text-body);border-bottom-color:var(--text-muted)}
-.btn-b{padding:12px 24px;border:1px solid var(--accent-fill);border-radius:2px}
+.rcpt-box{display:grid;gap:0;grid-template-columns:1fr;border:1px solid var(--border-strong);border-radius:var(--radius-2)}
 .btn-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:48px}
 .chip-row{display:flex;flex-wrap:wrap;gap:8px}
 .meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:20px}
-.card-gold{margin-bottom:64px;padding:32px;border:1px solid color-mix(in srgb, var(--accent-text) 10%, transparent);border-radius:4px}
+.card-gold{margin-bottom:64px;padding:32px;border:1px solid color-mix(in srgb, var(--accent-text) 10%, transparent);border-radius:var(--radius-2)}
 .card-p28{display:block;padding:24px;border:1px solid var(--border-strong);border-radius:4px}
 .card-p32{display:block;padding:32px;border:1px solid var(--border-strong);border-radius:4px}
 .card-seg{flex:1;padding:12px 16px;border:1px solid var(--border-strong);border-radius:2px}
-.framed{border:1px solid var(--border-strong);border-radius:4px;width:100%}
-.framed-blk{display:block;margin-bottom:16px;border:1px solid var(--border-strong);border-radius:3px;width:100%}
+.framed{border:1px solid var(--border-strong);border-radius:var(--radius-2);width:100%}
+.framed-blk{display:block;margin-bottom:16px;border:1px solid var(--border-strong);border-radius:var(--radius-2);width:100%}
 .framed-tight{margin:20px 0 0;border:1px solid var(--border-strong);border-radius:4px}
 .note-gold{margin:40px 0 64px;padding:32px;border:1px solid var(--border-strong);border-radius:4px;border-left:3px solid var(--accent-text)}
 .note-gold-b{margin-bottom:80px;padding:24px 24px;border:1px solid var(--border-strong);border-radius:4px;border-left:3px solid var(--accent-text)}
@@ -557,8 +501,6 @@ a{text-decoration:underline}}
 .hko{filter:drop-shadow(0 16px 28px rgba(0,0,0,0.5))}
 .hko--tl{transform:rotate(-1.6deg)}
 .hko--tr{transform:rotate(1.8deg)}
-.hk-btn{font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.02em;color:var(--surface-page);background:var(--accent-text);border:none;padding:16px 24px;cursor:pointer;font-weight:600}
-.hk-btn[disabled]{opacity:.5;cursor:default}
 .hk-ghost{font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.02em;color:var(--accent-text);background:transparent;border:1px solid var(--accent-text);padding:16px 24px;cursor:pointer;font-weight:500}
 .hk-ghost[disabled]{opacity:.5;cursor:default}
 /* — the shared receipt paper — */
@@ -661,7 +603,7 @@ a{text-decoration:underline}}
    status greens/reds are the cream-safe tokens, never the dark-theme ones (DESIGN-SYSTEM). — */
 .idea-zone{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:64px;align-items:start}
 .idea-main{min-width:0}
-.ccd{background:var(--surface-card);border:1px solid var(--border-hairline);box-shadow:0 16px 28px rgba(32,24,12,0.22);padding:24px;position:sticky;top:104px}
+.ccd{background:var(--surface-card);border:1px solid var(--border-hairline);box-shadow:var(--elev-2);padding:24px;position:sticky;top:104px}
 .ccd-cap{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-muted);margin:0 0 16px;display:flex;justify-content:space-between}
 .ccd-cap b{color:var(--status-positive);font-weight:500}
 .ccd-ctr{border:1px solid var(--border-hairline);padding:12px 16px;font-family:var(--ff-mono);font-size:11px;line-height:1.7;margin-bottom:16px;background:var(--surface-page);color:var(--text-primary)}
@@ -726,7 +668,7 @@ a{text-decoration:underline}}
 /* ===== EXTRACTED FROM index.html (theme-swap migration; scoped body.p-home) ===== */
 :where(body.p-home) .hero-demo{flex:0 1 448px;align-self:center;opacity:0;transform:translateY(20px);animation:reveal .5s var(--ease-out) .5s forwards}
 :where(body.p-home,body.p-patterns) .hd-tag{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.02em;color:var(--accent-text);margin-bottom:12px}
-:where(body.p-home,body.p-patterns) .hd-card{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:8px;padding:24px 24px 20px;box-shadow:var(--elev-2)}
+:where(body.p-home,body.p-patterns) .hd-card{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:var(--radius-2);padding:24px 24px 20px;box-shadow:var(--elev-2)}
 :where(body.p-home,body.p-patterns) .hd-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
 :where(body.p-home,body.p-patterns) .hd-name{font-family:var(--ff-mono);font-size:11px;letter-spacing:.04em;color:var(--text-muted)}
 :where(body.p-home,body.p-patterns) .hd-score{font-family:var(--ff-display);font-weight:300;font-size:46px;line-height:.9;color:var(--text-body);font-optical-sizing:auto;font-variant-numeric:tabular-nums lining-nums}
@@ -765,8 +707,6 @@ a{text-decoration:underline}}
 :where(body.p-home,body.p-patterns) .hd-rule{width:44px;height:2px;background:var(--accent-text);opacity:.5;margin:16px 0}
 :where(body.p-home,body.p-patterns) .hd-reframe{font-family:var(--ff-display);font-weight:300;font-size:clamp(21px,2.3vw,26px);line-height:1.28;color:var(--text-body);margin:0 0 24px;letter-spacing:-.01em}
 :where(body.p-home,body.p-patterns) .hd-reframe em{font-style:italic;color:var(--accent-text)}
-:where(body.p-home,body.p-patterns) .hd-case-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--accent-text);color:var(--surface-page);font-family:var(--ff-sans);font-weight:600;font-size:13px;letter-spacing:.02em;border-radius:2px;text-decoration:none;transition:background .3s,transform .2s}
-:where(body.p-home,body.p-patterns) .hd-case-btn:hover{background:var(--accent-text);transform:translateY(-2px)}
 :where(body.p-home,body.p-patterns) .hd-reset{display:block;background:none;border:none;color:var(--text-faint);font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.02em;cursor:pointer;padding:0;margin-top:16px;transition:color .2s}
 :where(body.p-home,body.p-patterns) .hd-reset:hover{color:var(--accent-text)}
 :where(body.p-home,body.p-patterns) #hd-answer[hidden]{display:none}
@@ -898,7 +838,7 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 :where(body.p-hire) .hire-pos{font-family:var(--ff-display);font-weight:300;font-style:italic;font-size:var(--fs-lead);line-height:1.4;color:var(--text-body);margin:0 0 32px}
 :where(body.p-hire) .hire-sec{font-family:var(--ff-display);font-weight:400;font-size:var(--fs-title);line-height:1.15;letter-spacing:-0.01em;text-transform:none;color:var(--text-body);margin:48px 0 16px;padding-top:24px;border-top:1px solid var(--border-strong)}
 :where(body.p-hire) .hire-receipts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:16px}
-:where(body.p-hire) .hire-receipt{padding:16px 24px;background:var(--surface-card);border:1px solid var(--border-strong);border-radius:var(--radius)}
+:where(body.p-hire) .hire-receipt{padding:16px 24px;background:var(--surface-card);border:1px solid var(--border-strong);border-radius:var(--radius-2)}
 :where(body.p-hire) .hire-receipt b{display:block;font-family:var(--ff-display);font-weight:300;font-size:var(--fs-metric-sm);line-height:0.92;letter-spacing:-0.02em;color:var(--accent-text);margin-bottom:8px}
 :where(body.p-hire) .hire-receipt span{display:block;font-family:var(--ff-sans);font-size:var(--fs-ui);color:var(--text-body);line-height:1.6}
 :where(body.p-hire) .hire-receipt small{display:block;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.02em;color:var(--text-muted);margin-top:8px}
@@ -1871,13 +1811,12 @@ so the nav is a
 .nav-links a.nav-on{color:var(--acc-copper)}
 .nav-links a:hover{color:var(--acc-copper)}
 /* hero diagnostic — first-class component, ember demo-box language */
-.hd-card{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:12px;box-shadow:var(--elev-2);position:relative;overflow:hidden}
+.hd-card{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:var(--radius-2);box-shadow:var(--elev-2);position:relative;overflow:hidden}
 .hd-tag{color:var(--acc-copper)}
 .hd-preset{border-radius:10px;border-color:var(--border-strong)}
 .hd-preset:hover{border-color:var(--acc-copper);background:var(--act-wash)}
 .hd-preset span{color:var(--acc-copper)}
 .hd-preset::after{color:var(--acc-copper)}
-.hd-case-btn{background:var(--cta-grad);color:var(--btn-fill-ink);border-radius:999px}
 .hd-rule{background:var(--acc-copper)}
 .hd-reframe em{color:var(--acc-copper)}
 .hd-free input:focus{border-color:var(--acc-copper)}
@@ -1903,29 +1842,17 @@ so the nav is a
 .verbs .verb:nth-child(2) .verb-word{color:var(--acc-violet)}
 .verbs .verb:nth-child(3){border-top-color:var(--acc-copper)}
 .verbs .verb:nth-child(3) .verb-word{color:var(--acc-copper)}
-.ccd{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:12px;position:relative;overflow:hidden}
+.ccd{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:var(--radius-2);position:relative;overflow:hidden}
 .ccd-q{border-radius:10px}
 .ccd-q:hover{border-color:var(--acc-copper)}
 /* ---------- 8 · sections rhythm: lead band on bg-soft, breathing black between */
 #how-i-lead{background:var(--surface-sunken);position:relative;overflow:hidden}
 #contact{position:relative;overflow:hidden}
 #contact > *{position:relative}
-/* ---------- 9 · buttons + links sitewide */
-.btn-a,
-.hd-case-btn,
-[data-cta="send-role"]{border-radius:999px}
-button[type="submit"].btn-label,
-.btn-label{border-radius:999px}
 .footer-back:hover{color:var(--acc-copper)}
 /* ---------- 10 · reduced motion: ember adds no new exceptions */
 @media (prefers-reduced-motion:reduce){.proof-cell:hover{transform:none}
 .nav-cta:hover{transform:none}}
-/* ---------- 11 · brand assets under ember */
-/* The `content:url()` override that used to live here is gone: the markup now points at
-   assets/logo-ember.svg directly. It was doing real work — every ember page PAINTED the
-   right mark — but it also meant the HTML said one thing and the browser drew another,
-   which is how "the site logo is the dated gold one" stayed invisible. 2026-08-17. */
-.hk-btn{border-radius:999px;background:var(--cta-grad);color:var(--btn-fill-ink)}
 /* ---------- 12 · the contract demo hardcodes cream-stage inks (tuned for the
    cream act, which Ember turns plum). Re-ink for the dark card. Measured by the
    pixel audit: #635848/#7E5A14/#2E6A46 on #241830 = 2.4-2.7:1. */
@@ -1969,13 +1896,9 @@ body.p-home h1,
 body.p-home h2,
 body.p-home h3{font-family:var(--serif);font-weight:300;letter-spacing:-.015em}
 body.p-home .grad{background:linear-gradient(92deg,var(--acc-copper),var(--acc-violet));-webkit-background-clip:text;background-clip:text;color:transparent}
-body.p-home .pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:16px 24px;font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;transition:transform .2s}
 body.p-home .pill:hover{transform:translateY(-2px)}
-body.p-home .pill-hot{background:linear-gradient(92deg,var(--acc-copper),var(--acc-violet));color:var(--btn-fill-ink);font-weight:600}
-body.p-home .pill-line{border:1.5px solid var(--accent);color:var(--text-body)}
 body.p-home .pill-line:hover{border-color:var(--acc-copper)}
-@media (prefers-reduced-motion:reduce){body.p-home .pill{transition:none}
-body.p-home .pill:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){body.p-home .pill:hover{transform:none}}
 body.p-home .seam{height:110px;clip-path:polygon(0 62%,100% 8%,100% 100%,0 100%);margin-top:-60px;position:relative;z-index:1}
 body.p-home .seam-up{clip-path:polygon(0 8%,100% 62%,100% 100%,0 100%)}
 body.p-home .hero{position:relative;overflow:hidden;padding:96px 0 150px}
@@ -2191,7 +2114,7 @@ body.p-home .hero .hero-widget{align-self:auto;padding-bottom:0;margin-top:40px;
 /* hero diagnostic — the one interactive Arpit named; ember demo-box language */
 body.p-home .hero-demo{opacity:1;transform:none;animation:none;flex:none;max-width:none}
 .hd-tag{font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--acc-copper);margin-bottom:12px}
-.hd-card{background:var(--surface-card,var(--surface-card));border:1px solid var(--border-strong,var(--border-hairline));border-radius:12px;padding:24px;box-shadow:var(--elev-2);position:relative;overflow:hidden}
+.hd-card{background:var(--surface-card,var(--surface-card));border:1px solid var(--border-strong,var(--border-hairline));border-radius:var(--radius-2);padding:24px;box-shadow:var(--elev-2);position:relative;overflow:hidden}
 .hd-diag-q{font-family:var(--serif);font-weight:300;font-size:21px;line-height:1.3;color:var(--text-body);margin:0 0 16px}
 .hd-preset{border:1px solid var(--border-strong,var(--border-hairline));border-radius:10px;background:transparent;color:var(--text-body);position:relative;z-index:1}
 .hd-preset:hover{border-color:var(--acc-copper);background:rgba(255,138,92,.08)}
@@ -2204,7 +2127,6 @@ body.p-home .hero-demo{opacity:1;transform:none;animation:none;flex:none;max-wid
 .hd-rule{background:var(--acc-copper)}
 .hd-reframe{color:var(--text-body)}
 .hd-reframe em{background:linear-gradient(92deg,var(--acc-copper),var(--acc-violet));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hd-case-btn{background:var(--cta-grad);color:var(--btn-fill-ink);border-radius:999px;font-weight:600}
 .hd-reset{color:var(--text-faint)}
 .hd-reset:hover{color:var(--acc-amber)}
 /* receipts: the expand buttons live inside the prototype cells */
@@ -2216,7 +2138,7 @@ body.p-home .rcpt h3{font-size:20px;margin-bottom:12px}
 body.p-home .rcpt-l{flex:0 0 140px;font-family:var(--mono);font-size:11px;letter-spacing:.02em;color:var(--text-faint)}
 body.p-home .rcpt-v{color:var(--text-muted);font-size:14px}
 /* contract demo */
-body.p-home .demo-slot .ccd{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:12px;padding:24px;position:relative;overflow:hidden}
+body.p-home .demo-slot .ccd{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:var(--radius-2);padding:24px;position:relative;overflow:hidden}
 body.p-home .ccd-cap{font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;color:var(--text-faint);display:flex;justify-content:space-between;margin-bottom:16px}
 body.p-home .ccd-cap b{color:var(--acc-amber)}
 body.p-home .ccd-ctr{background:var(--surface-page);border:1px solid var(--border-strong);border-radius:8px;color:var(--text-muted);padding:16px 16px;font-family:var(--mono);font-size:12.5px;line-height:1.9;margin-bottom:12px}
@@ -2324,7 +2246,7 @@ body.p-case-studies-ptc{--act:var(--acc-rose)}
 body.p-case-studies-o2{--act:var(--acc-indigo)}
 body.p-case-studies-orgos{--act:var(--acc-copper)}
 /* --- hero: the gradient field, tinted by the case's heat --- */
-body[class*="p-case-studies"] .case-hero{position:relative;overflow:hidden;background:transparent;padding:calc(93px + clamp(24px,4vh,48px)) 0 clamp(48px,8vh,96px)}
+body[class*="p-case-studies"] .case-hero{position:relative;overflow:hidden;padding:calc(93px + clamp(24px,4vh,48px)) 0 clamp(48px,8vh,96px)}
 body[class*="p-case-studies"] .case-hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:var(--glow)}
 body[class*="p-case-studies"] .case-hero__in{position:relative;z-index:1}
 body[class*="p-case-studies"] .case-hero__kicker{color:var(--act)}
@@ -2340,17 +2262,17 @@ body[class*="p-case-studies"] .case-stats{display:grid;grid-template-columns:rep
 body[class*="p-case-studies"] .case-stats > *:nth-child(3):last-child{grid-column:1/-1}}
 @media (max-width:560px){body[class*="p-case-studies"] .case-stats{grid-template-columns:1fr}
 body[class*="p-case-studies"] .case-stats > *:nth-child(3):last-child{grid-column:auto}}
-body[class*="p-case-studies"] .case-stat{background:var(--surface-card);border:none;border-top:3px solid var(--act);border-radius:10px;padding:20px}
+body[class*="p-case-studies"] .case-stat{background:var(--surface-card);border:none;border-top:3px solid var(--act);border-radius:var(--radius-2);padding:20px}
 body[class*="p-case-studies"] .case-stat b{display:block;font-family:var(--ff-display);font-weight:400;font-size:clamp(24px,2.4vw,34px);line-height:1.15;color:var(--act)}
 body[class*="p-case-studies"] .case-stat span{display:block;margin-top:8px;font-family:var(--ff-label);font-size:11.5px;letter-spacing:.02em;color:var(--text-muted);line-height:1.8}
 /* --- vitals: a quiet card strip, not a bare dl --- */
-body[class*="p-case-studies"] .case-vitals{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:12px;padding:20px 24px;gap:24px 32px}
+body[class*="p-case-studies"] .case-vitals{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:var(--radius-2);padding:20px 24px;gap:24px 32px}
 body[class*="p-case-studies"] .case-vitals dt{font-family:var(--ff-label);font-size:11px;letter-spacing:.02em;color:var(--text-faint)}
 body[class*="p-case-studies"] .case-vitals dd{color:var(--text-body);margin-top:4px}
 body[class*="p-case-studies"] .case-vitals .gold{color:var(--act)}
 /* --- ownership + receipt blocks: bordered cards with the label column --- */
 body[class*="p-case-studies"] .framed-tight,
-body[class*="p-case-studies"] .framed{background:var(--surface-card);border:1px solid var(--border-strong);border-left:3px solid var(--act);border-radius:0 12px 12px 0;padding:8px 24px}
+body[class*="p-case-studies"] .framed{background:var(--surface-card);border:1px solid var(--border-strong);border-left:3px solid var(--act);border-radius:var(--radius-2);padding:8px 24px}
 body[class*="p-case-studies"] :is(.rcpt-r,.rcpt-r-tight,.rcpt-r-last,.rcpt-r-tight-last){display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--border-strong)}
 body[class*="p-case-studies"] :is(.rcpt-r-last,.rcpt-r-tight-last){border-bottom:none}
 body[class*="p-case-studies"] .lbl-eyebrow{color:var(--text-faint);line-height:1.8}
@@ -2358,19 +2280,6 @@ body[class*="p-case-studies"] .lbl-eyebrow{color:var(--text-faint);line-height:1
 /* --- pull quotes: the heat rail --- */
 body[class*="p-case-studies"] .t-quote,
 body[class*="p-case-studies"] blockquote{border-left:3px solid var(--act);background:var(--surface-card);border-radius:0 10px 10px 0;padding:20px 24px}
-/* --- CTAs --- */
-/* ONE fill for the filled button, 2026-08-17 (Arpit's call).
-   This used to be linear-gradient(92deg,var(--heat),var(--heat2)) — the PAGE'S
-   decorative accent — so the same two buttons rendered in NINE different colours
-   across seven case studies: gold on vc-diligence, pink on ptc, violet on fintech,
-   purple on o2, orange on adtech. The nav CTA meanwhile was one gradient on all 47
-   pages. A button is a component, not a place: it takes the system's primary-action
-   fill (--g-hot, the nav's) and --cta-ink. Decoration belongs to the page, not the
-   control. */
-/* The diagnostic answer touched its own button — #hd-reframe bottom and #hd-case top
-   measured the same y. Only visible after you drive the widget, which is why no gate
-   saw it (they all read the page as loaded). 20px, on the spacing grid. */
-.hd-case-btn{margin-top:20px}
 /* DIAGRAMS GET THE ROOM THEY WERE DRAWN FOR (Arpit: "it feels like squeezed", 2026-08-17).
    Measured, not felt: patterns/reversibility-safe-to-act.html draws at viewBox 1280x400
    and rendered 493px wide — scale 0.385, so a 14px label painted at 5.4px. The inner
@@ -2394,10 +2303,6 @@ body[class*="p-case-studies"] blockquote{border-left:3px solid var(--act);backgr
 which was my preference substituted for his; the
    majority arrangement was the one to normalise TO.) Primary left, secondary right. */
 body[class*="p-case-studies"] .btn-row{align-items:center;gap:16px}
-:is(body[class*="p-case-studies"],body.p-screen) .btn-a,
-:is(body[class*="p-case-studies"],body.p-screen) .lbl-pill-bg,
-:is(body[class*="p-case-studies"],body.p-screen) .btn-label,
-body.p-screen .lbl-badge-bg{border-radius:999px}
 /* .measure-c caps the whole case body at 595px — right for prose, wrong for the
    card components, which sat centred in a narrow column with dead space either
    side. Widen the container; give the PROSE its measure back explicitly; pin the
@@ -2496,7 +2401,7 @@ body.p-home .demo-slot .ccd{top:auto}
 body[class*="p-case-studies"] .case-stat span{max-width:none}
 /* --- T3.11 · .rcpt-box was byte-identical to .framed-tight in classic;
    Ember promoted one to a rail-card and left the other bare --- */
-body[class*="p-case-studies"] .rcpt-box{background:var(--surface-card);border:1px solid var(--border-strong);border-left:3px solid var(--act);border-radius:0 12px 12px 0;padding:8px 24px}
+body[class*="p-case-studies"] .rcpt-box{background:var(--surface-card);border:1px solid var(--border-strong);border-left:3px solid var(--act);border-radius:var(--radius-2);padding:8px 24px}
 /* --- T3.12 · quote cards drawn twice: my rule hit both parent and child,
    giving two identical 3px rails 24px apart --- */
 body[class*="p-case-studies"] :is(figure,blockquote) .t-quote{background:none;border:0;border-radius:0;padding:0;max-width:none}
@@ -2533,7 +2438,7 @@ body.p-patterns .card-p28{display:flex;flex-direction:column}
 body.p-patterns .card-p28 .lbl-cap{margin-top:auto}
 .card-wire .row-ic > div:first-child{background:var(--ink-wash);opacity:1}
 .card-wire .row-ic > div + div{background:var(--border-hairline)}
-.card-gold{background:var(--surface-card);border-color:var(--border-strong);border-left:3px solid var(--acc-amber);border-radius:0 4px 4px 0}
+.card-gold{background:var(--surface-card);border-color:var(--border-strong);border-left:3px solid var(--acc-amber);border-radius:var(--radius-2)}
 .card-gold > :last-child,
 .card-gold > :last-child > :last-child{margin-bottom:0}
 @media (max-width:600px){body.p-writing .xi-writing-018{letter-spacing:.1em}}
@@ -2542,11 +2447,6 @@ body.p-patterns .card-p28 .lbl-cap{margin-top:auto}
    colour, so the PARENT is muted instead. --- */
 body.p-hire .hand + .hire-receipts,
 body.p-screen .hand + .scr-q{margin-top:24px}
-/* --- T4.25 · control shape language. NOT applying the plan's
-   `.btn-a{border:1px solid transparent}
-`: it adds 2px to every .btn-a
-   sitewide, which is a regression risk across nav/hero/case CTAs. --- */
-:is(.btn-a-ghost,.btn-b){border-radius:999px;border-color:var(--accent)}
 .card-seg{border-radius:8px}
 body.p-home .demo-slot .ccd{margin-top:0}
 /* ================================================================
@@ -2624,13 +2524,11 @@ body:is([class*="p-lab"],.p-fit) .lab-hero,
 body[class*="p-writing"] header,
 body.p-hire .hire-head{position:relative;overflow:hidden;padding-top:calc(93px + clamp(24px,4vh,48px));padding-bottom:clamp(40px,6vh,80px)}
 :is(body.p-patterns main > section:first-of-type,
-  body[class*="p-lab"] .lab-hero, body.p-fit .lab-hero, body[class*="p-writing"] header, body.p-hire .hire-head)::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(900px 440px at 88% -16%, color-mix(in srgb, var(--act) 34%, transparent), transparent 62%),
-    radial-gradient(700px 480px at -6% 112%, rgba(155,75,255,.26), transparent 62%),
-    linear-gradient(160deg,#1E1022 0%,#120B14 58%,#190D10 100%)}
+  body[class*="p-lab"] .lab-hero, body.p-fit .lab-hero, body[class*="p-writing"] header, body.p-hire .hire-head)::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:var(--glow)}
 :is(body.p-patterns main > section:first-of-type,
   body[class*="p-lab"] .lab-hero, body.p-fit .lab-hero, body[class*="p-writing"] header, body.p-hire .hire-head) > *{position:relative;z-index:1}
 /* --- card shells: the Ember card, not a 4px-radius outline --- */
-:is(.card-p28,.card-p32,.framed-blk,.hire-receipt,.hire-quote,.ckl){background:var(--surface-card);border:1px solid var(--border-strong);border-radius:12px}
+:is(.card-p28,.card-p32,.framed-blk,.hire-receipt,.hire-quote,.ckl){background:var(--surface-card);border:1px solid var(--border-strong);border-radius:var(--radius-2)}
 :is(.card-p28,.card-p32){padding:24px}
 .card-p32{padding:32px}
 :is(.card-p28,.card-p32,.framed-blk):hover{border-color:var(--accent)}
@@ -2639,16 +2537,13 @@ body.p-hire .hire-head{position:relative;overflow:hidden;padding-top:calc(93px +
 :is(body.p-patterns,body[class*="p-writing"],body[class*="p-resources"])
   :is(.card-p28,.card-p32){border-left:3px solid var(--act);border-radius:0 12px 12px 0}
 /* --- /screen/ : each answered question is a card, not a hairline --- */
-body.p-screen .scr-q{background:var(--surface-card);border:1px solid var(--border-strong);border-left:3px solid var(--act);border-radius:0 12px 12px 0;padding:24px 32px;margin:0 0 20px}
+body.p-screen .scr-q{background:var(--surface-card);border:1px solid var(--border-strong);border-left:3px solid var(--act);border-radius:var(--radius-2);padding:24px 32px;margin:0 0 20px}
 body.p-screen .scr-close{background:var(--surface-sunken);border-radius:12px;padding:32px;margin-top:32px}
 /* --- /lab/ : the code surfaces --- */
-body:is([class*="p-lab"],.p-fit) :is(.lab-note,.lab-links,.lab-body){border-radius:12px}
-body:is([class*="p-lab"],.p-fit) .lab-note{background:var(--surface-card);border:1px solid var(--border-strong);border-left:3px solid var(--act);border-radius:0 12px 12px 0;padding:20px 24px}
+body:is([class*="p-lab"],.p-fit) :is(.lab-note,.lab-links,.lab-body){border-radius:var(--radius-2)}
+body:is([class*="p-lab"],.p-fit) .lab-note{background:var(--surface-card);border:1px solid var(--border-strong);border-left:3px solid var(--act);border-radius:var(--radius-2);padding:20px 24px}
 body:is([class*="p-lab"],.p-fit) .t-code,
 body:is([class*="p-lab"],.p-fit) .td-inline{color:var(--acc-amber)}
-/* --- controls, sitewide under Ember --- */
-:is(.btn-a,.lbl-badge-bg,.lbl-pill-bg){border-radius:999px}
-.btn-a-ghost{border-radius:999px;border-color:var(--accent);color:var(--text-body)}
 .btn-a-ghost:hover{border-color:var(--act,var(--acc-copper))}
 /* CTA (2026-09-10) — the ask is ALWAYS the filled treatment. Measured: the
    gradient reads 7.25:1 to 8.46:1 against the page, the outline it replaces
@@ -2718,7 +2613,7 @@ body[class*="p-case-studies"] :is(.note-gold,.note-gold-b,.case-gate,.framed,.rc
    a :not() argument carries its own specificity, so deleting one lowers these
    rules by 0,1,0 and could flip which rule wins on every link in main and
    footer. Inert is cheaper than a cascade change. */
-:is(main,footer) a:not(.pill):not(.btn-a):not(.btn-a-ghost):not(.lane):not(.cta):hover{color:var(--link-ink-hover)}
+:is(main,footer) a:not(.lane):not(.cta):hover{color:var(--link-ink-hover)}
 .rfoot a,
 .who p a,
 .errata a,
@@ -3051,7 +2946,7 @@ button.footer-back{line-height:1.4}
    spacing than uppercase mono to breathe, and more than it needs looks shouted.
    ============================================================================ */
 :is(.k,.eyebrow,.lbl-eyebrow,.ck,.mk,.lab-kicker,.opt-n,
-  .thought-tag,.case-hero__kicker,.lbl-cap,.lbl-meta,.lbl-badge-bg,.lbl-badge-gold,
+  .thought-tag,.case-hero__kicker,.lbl-cap,.lbl-meta,.lbl-badge-gold,
   .go,.lab-go,.rcpt-btn,.contract-links a,.wr-more a,.contact-alt a,.lab-links a):not(.cta){font-family:var(--ff-label);font-weight:600;letter-spacing:.08em}
 /* code keeps the mono, and keeps its own tracking */
 :is(code,pre,.t-code,.td-inline,.lab-code,.plA-stage,.plF-stage){font-family:var(--ff-mono);letter-spacing:0}
@@ -3096,7 +2991,7 @@ body.p-home :is(.k,.go,.ck,.mk,.ek,.lk,.ak,.meta,
 /* body-sized label text should not be semibold — only the uppercase micro-labels are */
 body.p-home :is(.meta,.ccd-q,.ccd-idle,.ccd-note,.lede){font-weight:400;letter-spacing:0}
 /* the remaining label classes on inner pages — same treatment, same exemptions */
-:is(.cg-l,.lbl-pill-bg,.lbl-pill-gold,.lbl-eyebrow-500,
+:is(.cg-l,.lbl-pill-gold,.lbl-eyebrow-500,
   .hire-role,.hire-print-note,.lab-num,.ev-tiers dt,figcaption .lbl-eyebrow){font-weight:600;letter-spacing:.08em}
 /* case-study prose at 82 characters: pull the spine in to the reading band */
 body[class*="p-case-studies"] .measure-c{max-width:680px}
@@ -3257,7 +3152,7 @@ body.p-home .qt figcaption{margin-top:20px;padding-top:16px;border-top:1px solid
 /* the trust loop as wrapping HTML chips — the SVG version forced a 640px
    min-width, which is a horizontal scrollbar on every phone. Chips wrap. */
 .loop-steps{display:flex;flex-wrap:wrap;align-items:stretch;gap:12px}
-.lstep{flex:1 1 140px;min-width:140px;background:rgba(18,11,20,.8);border:1px solid var(--border-hairline);border-radius:8px;padding:12px 16px}
+.lstep{flex:1 1 140px;min-width:140px;background:color-mix(in srgb, var(--surface-card) 80%, transparent);border:1px solid var(--border-hairline);border-radius:8px;padding:12px 16px}
 .lstep b{display:block;font-family:var(--ff-sans);font-weight:600;font-size:13px;color:var(--text-body);margin-bottom:4px}
 .lstep span{font-size:11.5px;color:var(--text-faint);line-height:1.5}
 .lstep-hot{border-color:var(--acc-violet)}
@@ -3597,7 +3492,7 @@ body.p-lab .dsg-note{margin-top:auto;padding-top:20px;font-size:12.5px;color:var
 /* can vs cannot is a COMPARISON — it has to sit side by side to read as one. At 320px the
    pair needed 660 and the Lab measure is 653, so auto-fit silently stacked them. */
 body.p-fit .fit-contract{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(272px,100%),1fr));gap:20px;margin:32px 0 0}
-body.p-fit .fit-col{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:12px;padding:24px}
+body.p-fit .fit-col{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:var(--radius-2);padding:24px}
 body.p-fit .fit-col-k{font-family:var(--ff-label);font-size:11px;font-weight:600;letter-spacing:.02em;margin:0 0 16px}
 body.p-fit .fit-can .fit-col-k{color:var(--status-positive)}
 body.p-fit .fit-cannot .fit-col-k{color:var(--status-negative)}
@@ -3655,11 +3550,6 @@ body.p-fit .fit-close{margin-top:48px;padding-top:32px;border-top:1px solid var(
 body.p-fit .fit-close-p{max-width:70ch;font-size:15px;line-height:1.7;color:var(--text-muted);margin:0}
 body.p-fit .fit-close-p b{color:var(--text-body)}
 body.p-fit .fit-close .lab-links{margin-top:20px}
-/* The nav logo was sized by a PER-PAGE extracted class — .xi-home-003, .xi-lab-002,
-   .xi-patterns-003, .xi-screen-002 … each{width:40px;height:40px}
-/* pills for the hero CTAs (the two links carry xi classes; target by data-cta) */
-[data-cta="send-role"][data-location="hero"]{background:var(--cta-grad);color:var(--btn-fill-ink);border-radius:999px}
-[data-cta="see-work"][data-location="hero"]{border:1.5px solid var(--accent);border-radius:999px;color:var(--text-body)}
 [data-cta="see-work"][data-location="hero"]:hover{border-color:var(--acc-copper);color:var(--text-body)}
 /* DIAGRAMS GET THE ROOM THEY WERE DRAWN FOR (Arpit: "it feels like squeezed", 2026-08-17).
    Measured, not felt: patterns/reversibility-safe-to-act.html draws at viewBox 1280x400
@@ -3712,11 +3602,6 @@ body.p-writing .card-p32 p,
 body.p-resources .card-p32 p{max-width:54ch}
 body.p-writing .lead{max-width:46ch}
 body.p-writing header.xi-writing-003{border-bottom:0}
-/* 2026-09-10: the submit-height delta noted here (40 vs the nav pill's 44)
-   was about a button that no longer exists. The .ccd margin half of that
-   note is fixed elsewhere and unaffected. */
-/* --- controls, sitewide under Ember --- */
-:is(.btn-a,.lbl-badge-bg,.lbl-pill-bg){background:linear-gradient(92deg,var(--act,var(--acc-copper)),var(--act-2,var(--acc-violet)));color:var(--btn-fill-ink)}
 /* CTA removed 2026-08-15 (Arpit): the whole row is the link; hover carries the
    affordance (bg tint + border heat already defined on .lane:hover) */
 /* Objects that earn the full width break the spine, centred on it.
@@ -3740,7 +3625,7 @@ body[class*="p-case-studies"] .case-hero figure{width:100%;margin-left:0;margin-
 @media (max-width:1100px){body[class*="p-case-studies"] :is(.plA,.plF,.plM,.plO,.plP,.plV,
     .plA-caption,.plF-caption,.plM-caption,.plO-caption,.plP-caption,.plV-caption,
     .case-vitals,.recon,.measure-c figure){width:min(1040px,calc(100vw - 48px));margin-left:50%;margin-right:0;transform:translateX(-50%)}}
-:is(main,footer) a:not(.pill):not(.btn-a):not(.btn-a-ghost):not(.lane):not(.labc):not(.hd-preset):not(.rcpt-btn):not(.hk-btn):not(.card-p28):not(.card-p32):not(.nav-cta):not(.cta):not(.hd-case-btn):not(.fit-cite){color:var(--link-ink)}
+:is(main,footer) a:not(.lane):not(.labc):not(.hd-preset):not(.rcpt-btn):not(.card-p28):not(.card-p32):not(.nav-cta):not(.cta):not(.fit-cite){color:var(--link-ink)}
 /* --- three fixes from review, each measured before and after ---------------- */
 
 /* 1. The pattern links sat in a 386px box inside an 875px parent, so both long
@@ -3855,13 +3740,13 @@ body.p-home main > section :is(h2,h3) + *{margin-top:0}
 body.p-home :is(.k,.go,.ck,.mk,.ek,.lk,.ak,.meta,
   .rcpt-btn,.rcpt-more,.ccd-q,.ccd-idle,.ccd-note,.thought-tag,.lede,.errata-l){font-family:var(--ff-label)}
 /* the remaining label classes on inner pages — same treatment, same exemptions */
-:is(.cg-l,.lbl-pill-bg,.lbl-pill-gold,.lbl-eyebrow-500,
+:is(.cg-l,.lbl-pill-gold,.lbl-eyebrow-500,
   .hire-role,.hire-print-note,.lab-num,.ev-tiers dt,figcaption .lbl-eyebrow){font-family:var(--ff-label)}
 /* One tracking for every CTA. The type change left three components on the old
    .12em (correct for uppercase MONO, too loose for uppercase sans) and /hire/'s
    primary CTA still on the mono face. Caught by tools/cta-grammar-check.py. */
 :is(.wr-more a,.contact-alt a,.lab-links a,.contract-links a,
-  .go,.rcpt-btn,.rcpt-more,.lbl-badge-bg,.lbl-badge-gold,.btn-a,.btn-a-ghost,.nav-cta,.pill):not(.cta){font-family:var(--ff-label);letter-spacing:.08em}
+  .go,.rcpt-btn,.rcpt-more,.lbl-badge-gold,,.nav-cta):not(.cta){font-family:var(--ff-label);letter-spacing:.08em}
 /* OPEN, 5px: patterns/ml-explainability's comparison table runs 5px past 390px.
    Tried and REJECTED, each re-measured: display:block on the table (broke two
    other pages' tables), table-layout:fixed + word-break (no change), reduced
@@ -3976,7 +3861,7 @@ body.p-home .thought-card>*{grid-column:1;grid-row:auto}}
 /* Same trap as figure.vid-card above: .mascot is a <figure> inside .measure-c,
    so the spine's breakout force-widens it to 1040px and translates it -520.
    The ROW breaks out as one object; the plates inside obey their tracks. */
-body.p-case-studies-planit .mascot-row .mascot{width:auto;max-width:none;margin:0;transform:none
+body.p-case-studies-planit .mascot-row .mascot{width:auto;max-width:none;margin:0;transform:none}
 /* ── THE ACT ACCENT RE-RESOLVES BENEATH ITS FAMILY. A custom property resolves where
    it is declared: --act set on <body> is copper-600 by the time a bookend inside that
    body inherits it, so the hero's statistic painted the paper value on the dark ground
@@ -4061,13 +3946,6 @@ body.p-home .voices [data-ground="bookend"], body.p-home .voices [data-tint]{--a
 body.p-home .contract [data-ground="bookend"], body.p-home .contract [data-tint]{--act:var(--acc-amber)}
 body.p-home .labrow [data-ground="bookend"], body.p-home .labrow [data-tint]{--act:var(--acc-violet)}
 body.p-home .qvoices [data-ground="bookend"], body.p-home .qvoices [data-tint]{--act:var(--acc-rose)}
-}
-/* The design system beats a per-page extraction. These declarations
-   carried !important; when it was deleted they landed at the end of
-   @layer base, where .xi-* in @layer utilities outranked them and six
-   case studies went back to a flat gold slab. This is what emphasis is
-   for: the layer above the page-level utilities. */
-:is(.btn-a,.lbl-pill-bg,.btn-label,.lbl-badge-bg){background:var(--cta-grad);color:var(--btn-fill-ink);border-radius:999px;font-family:var(--ff-label);letter-spacing:.02em;font-size:var(--fs-eyebrow);font-weight:600}
 /* The first thing a keyboard reader meets on every page. It declared
    color:var(--bg) in styles.css, but an ember link rule outranked it and
    painted cream on gold at 1.36:1 — and the focus ring was gold on gold,
@@ -4131,7 +4009,7 @@ body.p-home .range-lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.
 body[class*="p-case-studies"] .vband{padding:0 0 clamp(40px,6vh,64px)}
 body[class*="p-case-studies"] .vband-in{max-width:1040px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,4vw,48px);align-items:start}
 @media (max-width:900px){body[class*="p-case-studies"] .vband-in{grid-template-columns:1fr}}
-body[class*="p-case-studies"] .vslip{position:relative;background:var(--surface-page);color:var(--text-body);border-radius:12px;padding:24px 32px 20px;box-shadow:var(--elev-2);transform:rotate(-.5deg)}
+body[class*="p-case-studies"] .vslip{position:relative;background:var(--surface-page);color:var(--text-body);border-radius:var(--radius-2);padding:24px 32px 20px;box-shadow:var(--elev-2);transform:rotate(-.5deg)}
 body[class*="p-case-studies"] .vslip-stamp{position:absolute;top:20px;right:20px;border:2px solid var(--acc-copper);color:var(--acc-copper);font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;padding:4px 8px;transform:rotate(3deg)}
 body[class*="p-case-studies"] .vslip-k{font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;color:var(--acc-copper);padding-right:118px}
 body[class*="p-case-studies"] .vslip-title{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.2;letter-spacing:0;color:var(--text-body);margin:8px 0 4px;max-width:20ch}
@@ -4858,7 +4736,7 @@ main figure:not(.measure-c figure){width:auto}}
        today that leaning on an inherited property cost a defect. *//* display is NOT set here. It was, and moving this rule out of the media query
        took `display:grid` with it, overriding the .artalt{display:none} default and
        showing every typeset block next to its own drawing on six pages. Paint
-       belongs at every width; the decision to SHOW belongs only where it is made. */gap:24px;background:#F4ECDA;color:var(--text-primary);text-align:left;border:1px solid var(--border-hairline);border-radius:2px;padding:24px}
+       belongs at every width; the decision to SHOW belongs only where it is made. */gap:24px;background:var(--surface-card);color:var(--text-primary);text-align:left;border:1px solid var(--border-hairline);border-radius:var(--radius-2);padding:24px}
 .artalt-k{margin:0;font-family:var(--ff-label,var(--ff-mono));font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.02em;line-height:1.4;color:var(--accent-fill)}
 /* A STANDFIRST IS NOT AN EYEBROW. The pattern diagrams put a full sentence
      under their title ("One score, one action — a number never reaches the screen
@@ -5303,7 +5181,7 @@ body.p-home .bcard.bcard--lead{grid-column:1/-1}}
 body.p-home .bcard,
 body.p-home .bcard.bcard--lead{grid-column:span 1}}
 /* ── the card ─────────────────────────────────────────────────────────────── */
-.bcard{position:relative;display:block;padding:20px 24px 24px;border:1px solid var(--border-strong);border-radius:4px;background:linear-gradient(180deg,color-mix(in oklab,var(--a) 9%,var(--surface-sunken)),var(--surface-sunken));transition:border-color .2s,transform .2s}
+.bcard{position:relative;display:block;padding:20px 24px 24px;border:1px solid var(--border-strong);border-radius:var(--radius-2);background:linear-gradient(180deg,color-mix(in oklab,var(--a) 9%,var(--surface-sunken)),var(--surface-sunken));transition:border-color .2s,transform .2s}
 .bcard:hover{border-color:color-mix(in oklab,var(--a) 55%,transparent);transform:translateY(-2px)}
 .bcard:has(.bcard-go:focus-visible){outline:2px solid var(--a);outline-offset:3px}
 .bcard-go{color:inherit;text-decoration:none}
@@ -5337,7 +5215,7 @@ body.p-home .bcard.bcard--lead{grid-column:span 1}}
 .bcard-nom{position:absolute;top:0;right:24px;transform:translateY(-50%);margin:0;font-family:var(--mono);font-size:10px;letter-spacing:.02em;color:var(--surface-page);background:var(--a);padding:4px 8px;border-radius:2px;line-height:1.4;z-index:2}
 @media (max-width:660px){.bcard-nom{right:16px}}
 /* ── the instrument shell ─────────────────────────────────────────────────── */
-.vg{margin:0;border:1px solid var(--border-hairline);border-radius:10px;background:linear-gradient(180deg,var(--ink-wash),var(--ink-wash));box-shadow:inset 0 1px 0 rgba(245,237,230,.055);padding:16px 16px 16px;min-width:0}
+.vg{margin:0;border:1px solid var(--border-hairline);border-radius:10px;background:linear-gradient(180deg,var(--ink-wash),var(--ink-wash));padding:16px 16px 16px;min-width:0}
 .vg-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid var(--border-hairline)}
 .vg-hd b{font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;color:var(--text-body);line-height:1.4;font-weight:400}
 .vg-hd i,
@@ -5749,8 +5627,7 @@ body.p-home .qt-solo{grid-column:2;grid-row:1/-1;align-self:start}
    only where the bar cannot hold the pill */
 .nav-links .nav-cta-sm{display:none}
 @media (max-width:339px){#nav .nav-cta{display:none}
-.nav-links .nav-cta-sm{display:block}
-.nav-links .nav-cta-sm a:not(.cta){display:inline-block;margin-top:8px;padding:12px 20px;border-radius:999px;background:var(--cta-grad);color:var(--btn-fill-ink);font-weight:600;line-height:1.4}}
+.nav-links .nav-cta-sm{display:block}}
 /* ╔══════════════════════════════════════════════════════════════════════════╗
    ║  THE EIGHT WALK FINDINGS                                  2026-09-08     ║
    ╚══════════════════════════════════════════════════════════════════════════╝
@@ -6057,51 +5934,7 @@ body.p-home #contact .one-door:hover{filter:brightness(1.06)}
    degrees and lifts the worst point from 7.24:1 to 9.40:1. The gradient stays,
    because "energy from heat" is the identity; the violet was the damage. */
 :root{--cta-grad:linear-gradient(92deg,var(--acc-copper),var(--acc-amber))}
-.cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;min-height:44px;box-sizing:border-box;font-family:var(--ff-mono);font-size:14px;font-weight:600;letter-spacing:.02em;line-height:1.2;text-transform:none;border:none;border-radius:999px;text-decoration:none;white-space:nowrap;background:var(--cta-grad);color:var(--btn-fill-ink)}
-/* THE ICON ALIGNS TO THE CAP BAND AND MATCHES ITS SIZE. It used to be a 16px
-   box holding a 24x24 viewBox under `contain`, and because the two masks fill
-   their viewBox by different amounts the ink came out at 14.25px (LinkedIn) and
-   15.00px (document) — two sizes, both 35-42% taller than the 10.58px capitals
-   beside them. `contain` cannot fix that: it equalises the BOX, and the icons
-   differ in aspect ratio.
-
-   So each viewBox is trimmed to its own ink and mask-size is 100% 100%, which
-   makes the ink fill the box exactly; then one height governs every icon and a
-   new one only declares its aspect. Height comes from 1cap — the font's own
-   cap-height — so the whole thing re-solves if the label size changes.
-
-   And the alignment: align-items:center centred the icon's box on the LINE box,
-   which carries the font's leading, leaving it 0.59px below the middle of the
-   capitals. Baseline alignment puts the icon's bottom edge on the text baseline
-   (a flex item with no baseline of its own synthesises one from its border box)
-   and the translate lifts its centre onto the cap band. Measured residual:
-   0.18px, which is the gap between the font's declared cap-height and the
-   capital C's actual ink — below rendering resolution.
-
-   .cta sets white-space:nowrap, so the usual baseline hazard — one child
-   wrapping to two lines while its sibling does not — cannot arise here. */
-.cta{align-items:baseline}
-.cta::before{content:"";flex:0 0 auto;display:block;background-color:currentColor;--cta-icon-ar:1;--cta-ico:calc(1cap * 1.15);height:var(--cta-ico);width:calc(var(--cta-ico) * var(--cta-icon-ar));transform:translateY(calc((var(--cta-ico) - 1cap) / 2));-webkit-mask:var(--cta-icon) center/100% 100% no-repeat;mask:var(--cta-icon) center/100% 100% no-repeat}
-.cta--linkedin::before{--cta-icon-ar:1.0476}
-.cta--doc::before{--cta-icon-ar:0.8182}
-.cta--bare::before{display:none}
-.cta:hover{filter:brightness(1.06);color:var(--btn-fill-ink)}
-.cta:focus-visible{outline:2px solid var(--text-body);outline-offset:3px}
-.cta-quiet{display:inline-block;padding:4px 0;min-height:24px;border:0;background:none;font-family:var(--ff-label);font-size:12px;font-weight:500;letter-spacing:.02em;color:var(--text-muted);text-decoration:none;border-bottom:1px solid color-mix(in srgb, var(--text-muted) 40%, transparent)}
-.cta-quiet:hover{color:var(--text-body);border-bottom-color:var(--text-muted)}
-/* THE SECONDARY DOOR (2026-09-10). Arpit, selecting the alternates line:
-   "Remove email and call, have a secondary set to download the resume."
-   So the closing section is pass -> primary -> secondary, and the three text
-   alternates are gone. The secondary is the SAME component geometry — same
-   font, size, tracking, padding, height, radius and icon slot — differing only
-   in fill, which is the point of a secondary rather than a second button.
-   It is an OUTLINE, and outlines are exactly what failed WCAG 1.4.11 at 2.84:1
-   this morning. It passes only because --border-accent was raised to .54
-   (3.17:1) in this same session: this treatment would have been a defect eight
-   hours ago. nontext-contrast-check guards it now. */
-.cta--secondary{background:none;border:1px solid var(--accent);color:var(--text-body)}
 .cta--secondary:hover{filter:none;background:color-mix(in srgb, var(--text-body) 8%, transparent);color:var(--text-body)}
-.cta--doc{--cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='3%201%2018%2022'%20fill='none'%20stroke='%23000'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M15%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V7Z'/%3E%3Cpath%20d='M14%202v4a2%202%200%200%200%202%202h4'/%3E%3Cpath%20d='M10%209H8'/%3E%3Cpath%20d='M16%2013H8'/%3E%3Cpath%20d='M16%2017H8'/%3E%3C/svg%3E")}
 /* ============================================================================
    THE A1 RULES THAT WERE HERE NOW LIVE IN THE DESIGN SYSTEM.
    ----------------------------------------------------------------------------
@@ -6146,7 +5979,59 @@ body.p-home .who{--act:var(--acc-violet)}
 body.p-home .aiwork{--act:var(--acc-amber)}
 body.p-home .voices{--act:var(--acc-rose)}
 body.p-home .contract{--act:var(--acc-amber)}
-body.p-home .labrow{--act:var(--acc-violet)}}
+body.p-home .labrow{--act:var(--acc-violet)}
+
+/* ── THE BUTTON. One component, 110 instances, 38 pages; it declares every critical
+   property itself (execution lessons 4 and 11) and reads only the system's tokens, so
+   the bookend and the paper resolve the same rule against their own roles.
+   Variants: .cta (fill) · .cta--secondary (outline) · .cta-quiet (a text link that
+   behaves like a control). Icon via --cta-icon on a modifier (.cta--linkedin, .cta--doc);
+   .cta--bare drops it.
+   Fill and face are the two decisions still open to Arpit (prototypes/amber-buttons.html);
+   these two tokens are where his pick lands. */
+:root, [data-ground="bookend"], [data-tint] {
+  --cta-fill: var(--btn-fill-bg);          /* B (system default). A/D: var(--cta-grad) */
+  --cta-fill-hover: var(--btn-fill-bg-hover);
+  --cta-face: var(--type-label);           /* B/D. A/C: 600 14px/1 var(--font-mono) */
+}
+/* a.cta/button.cta: (0,1,1), so a generic `body.p-home a{color:inherit}` (0,1,1) declared
+   earlier can no longer strip the label — the button outranks element selectors, lesson 4. */
+a.cta, button.cta, .cta {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  min-height:44px; padding:0 24px; box-sizing:border-box;
+  font:var(--cta-face); font-weight:600; line-height:1; letter-spacing:.02em; text-transform:none;
+  white-space:nowrap; text-decoration:none; cursor:pointer;
+  border:1px solid transparent; border-radius:var(--radius-pill);
+  background:var(--cta-fill); color:var(--btn-fill-ink);
+  transition:background var(--dur-quick) var(--ease-standard), color var(--dur-quick) var(--ease-standard);
+}
+a.cta:hover, button.cta:hover, .cta:hover { background:var(--cta-fill-hover); color:var(--btn-fill-ink); filter:none; }
+a.cta:focus-visible, button.cta:focus-visible, .cta:focus-visible { outline:2px solid var(--border-focus); outline-offset:3px; }
+.cta::before {
+  content:""; flex:0 0 auto; display:block; background-color:currentColor;
+  --cta-icon-ar:1; --cta-ico:calc(1cap * 1.15);
+  height:var(--cta-ico); width:calc(var(--cta-ico) * var(--cta-icon-ar));
+  -webkit-mask:var(--cta-icon) center/100% 100% no-repeat; mask:var(--cta-icon) center/100% 100% no-repeat;
+}
+.cta:not([class*="cta--"])::before, .cta--bare::before { display:none; }
+.cta--linkedin::before { --cta-icon-ar:1.0476; }
+.cta--doc::before { --cta-icon-ar:0.8182; }
+.cta--linkedin { --cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='1%201%2022%2021'%20fill='none'%20stroke='%23000'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M16%208a6%206%200%200%201%206%206v7h-4v-7a2%202%200%200%200-2-2%202%202%200%200%200-2%202v7h-4v-7a6%206%200%200%201%206-6z'/%3E%3Crect%20width='4'%20height='12'%20x='2'%20y='9'/%3E%3Ccircle%20cx='4'%20cy='4'%20r='2'/%3E%3C/svg%3E"); }
+.cta--doc { --cta-icon:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='3%201%2018%2022'%20fill='none'%20stroke='%23000'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M15%202H6a2%202%200%200%200-2%202v16a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V7Z'/%3E%3Cpath%20d='M14%202v4a2%202%200%200%200%202%202h4'/%3E%3Cpath%20d='M10%209H8'/%3E%3Cpath%20d='M16%2013H8'/%3E%3Cpath%20d='M16%2017H8'/%3E%3C/svg%3E"); }
+a.cta--secondary, button.cta--secondary, .cta--secondary { background:none; border-color:var(--btn-line); color:var(--btn-line-ink); }
+a.cta--secondary:hover, button.cta--secondary:hover, .cta--secondary:hover { background:var(--ink-wash); color:var(--btn-line-ink); }
+a.cta-quiet, button.cta-quiet, .cta-quiet {
+  display:inline-block; min-height:24px; padding:4px 0; border:0; background:none; border-radius:0;
+  font:var(--type-label); font-weight:500; letter-spacing:.02em; color:var(--text-muted); text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb, var(--text-muted) 40%, transparent);
+}
+a.cta-quiet:hover, button.cta-quiet:hover, .cta-quiet:hover { color:var(--text-body); border-bottom-color:var(--text-muted); }
+/* the nav door composes .cta; only its placement is local */
+.nav-cta { transition:background .3s, color .3s; }
+.nav-cta:hover { transform:translateY(-2px); }
+@media (prefers-reduced-motion:reduce) { .nav-cta:hover { transform:none; } }
+
+}
 @layer utilities{/* ----- Responsive: mobile (≤768px) ----- */
 @media(max-width:768px){.xi-patterns-019{grid-template-columns:1fr}}
 /* ===== CASCADE REPAIR (must stay LAST) =====

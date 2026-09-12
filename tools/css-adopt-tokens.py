@@ -316,7 +316,7 @@ def restore(css, table):
 
 
 TINT_CLASSES = ['bcard', 'rcpt-r', 'rcpt-r-tight', 'card-p28', 'card-p32', 'hd-card', 'case-vitals',
-                'measure-t', 'lab-body', 'td-block', 'lint-grid', 'section-inner', 'philosophy-cards']
+                'measure-t', 'lab-body', 'td-block', 'lint-grid', 'section-inner', 'philosophy-cards', 'card-wire']
 
 
 def stamp_tints(check):
