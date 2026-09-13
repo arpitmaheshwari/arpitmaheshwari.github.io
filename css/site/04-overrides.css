@@ -73,7 +73,6 @@ body[class*="p-case-studies"] .vplate-shot{display:block;width:100%;height:auto;
 .vid-walk{max-width:1000px;margin-left:auto;margin-right:auto}
 .vid-meta{font-family:var(--ff-mono),monospace;font-size:12px;letter-spacing:.02em;color:var(--text-muted,var(--text-muted))}
 .vid-note-t{font-size:14px;line-height:1.65;color:var(--text-muted,var(--text-muted));max-width:68ch}
-.vid-note-t a{color:var(--acc-amber,var(--acc-amber))}
 .vid-fallback{padding:24px;font-size:14px;color:var(--text-muted,var(--text-muted))}
 body.p-process .vid-walk{margin-top:24px;margin-bottom:40px}
 /* /process has a narrow prose column (~493px at 1440), which rendered the walkthrough
@@ -86,7 +85,6 @@ body.p-process .vid-walk{--vw-w:min(1000px, calc(100vw - 80px));width:var(--vw-w
 body.p-process .vid-kick{--vw-w:min(1000px, calc(100vw - 80px));margin-left:calc((100% - var(--vw-w)) / 2)}
 /* The whole video frame is clickable (attention.js toggles play) — say so with the cursor. */
 .vid-frame video{cursor:pointer}
-body.p-home .cta-watch{align-self:center;font-family:var(--sans);font-size:11.5px;letter-spacing:.02em;color:var(--acc-violet);text-decoration:underline;text-underline-offset:4px}
 /* ---------- consolidated bands (2026-08-29): twelve homepage sections became ten, so
    each reader question is answered once. Two merges need layout, not new components.
    1) WHO + HOW-I-LEAD share one band: the who half keeps its two-column grid, the lead
@@ -233,8 +231,6 @@ body[class*="p-case-studies"] .measure-c figure.fig-shot-live{width:100%;max-wid
    ============================================================ */
 /* the scene — one cinematic threshold line atop each flagship essay */
 .scene{font-family:var(--serif);font-style:italic;font-weight:300;font-size:20px;line-height:1.6;color:var(--text-muted);max-width:56ch;margin:20px 0 32px}
-/* small portrait in the hero kicker zone */
-body.p-home .hero-face{width:56px;height:56px;border-radius:50%;object-fit:cover;border:1.5px solid var(--border-strong);margin-bottom:16px;display:block}
 /* 2026-09-10: .ps-line, .contact-channels .book-call, .pass-link (+ its hover
    lift and the transition that served it) and .pass-cta all went with
    direction A. The hover lift in particular was a false affordance once
@@ -764,7 +760,6 @@ main figure:not(.measure-c figure){width:auto}}
 .artalt-set > li{margin:0;background:var(--surface-sunken);border-left:2px solid var(--accent-fill);padding:16px}
 .artalt-n{margin:0 0 8px;font-family:var(--ff-label,var(--ff-mono));font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:.02em;line-height:1.4;color:var(--accent-fill)}
 .artalt-t{margin:0;font-size:var(--fs-body);font-weight:600;line-height:1.4;color:var(--text-primary)}
-.artalt-t--warn{color:var(--status-negative)}
 .artalt-d{margin:8px 0 0;font-size:var(--fs-ui);line-height:1.5;color:var(--text-muted)}
 .artalt-p{margin:8px 0 0;font-size:var(--fs-caption);line-height:1.5;font-style:italic;color:#5A3A1A}
 /* ONLY a set item carries a fill. Everything else sits on the paper and is
@@ -887,15 +882,6 @@ body.p-home .hero .vid-hero-cap a{font-family:"Source Sans 3",var(--sans);font-s
      0.2px. Normalised to the majority, which is what the comment below already
      asks for. */letter-spacing:.08em;line-height:1.6;color:var(--acc-violet)}
 body.p-home .hero .cred-strip .cred-m{color:var(--acc-amber);font-weight:500;white-space:nowrap}
-/* The hero's .lab-row rules came out on 2026-09-08 with the row itself: the
-   42/42 fact merged into .cred (now .cred-strip), so the hero holds ONE evidence
-   block instead of two and 31 rule lines here matched nothing. */
-
-/* ONE NOMINATED DOOR. Reuses .range-lbl — same component, second instance —
-   because the page already had a label for "here is a group of cases" and
-   inventing a second one is how a system drifts. It sits directly above .lanes,
-   which carries its own 48px top margin, so this one gives that back. */
-body.p-home .range-lbl--first{color:var(--acc-amber);margin-top:32px;margin-bottom:-32px}
 /* Six in the strip, not four: 4 columns left a 4+2 row with two orphans. Three
    columns give 3+3 — but ONLY above 1000px. Declared without the media query it
    sat later in the file than the existing 2-column (<=1000) and 1-column (<=560)
@@ -1302,9 +1288,8 @@ body.p-home .bcard.bcard--lead{grid-column:span 1}}
    longest real module name ("Onboarding") needs ~62px, more than a quarter of
    a 285px tile. Two chips per row in that context; four everywhere else. */
 
-@media (max-width:1000px){.bcard--lead{grid-template-columns:minmax(0,1fr);row-gap:24px}
-.sb--three{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:660px){.sb--three{grid-template-columns:minmax(0,1fr)}
+@media (max-width:1000px){.bcard--lead{grid-template-columns:minmax(0,1fr);row-gap:24px}}
+@media (max-width:660px){
 .vg-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
 .vg-rings{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
 /* ═══════════════════ 5 · FinTech: a score, and its sources ═════════════════
@@ -2158,8 +2143,6 @@ body[class*="p-case-studies"] .case-jump{width:auto;max-width:656px;margin:0 aut
 @media (min-width:560px){body[class*="p-case-studies"] .case-jump:has(> a:nth-child(7)){display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:16px;row-gap:4px}}
 .case-jump a{border-bottom:0;color:var(--door-ink);font-weight:600;padding:8px 0}
 .case-jump a:hover{color:var(--text-primary)}
-/* the errata box stopped 200px short of the memo columns above it (balance-check): it shares their width */
-body.p-home .wl-lead .errata-block{max-width:none}
 /* the close band's heading is display type too */
 [data-ground="bookend"] .close h2, [data-ground="bookend"] .page-head h1{color:var(--neutral-50)}
 

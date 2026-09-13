@@ -31,14 +31,32 @@ def main():
     for f in SRC:
         s = open(f, encoding='utf-8').read()
         blank = re.sub(r'/\*.*?\*/', lambda m: ' ' * len(m.group(0)), s, flags=re.S)
-        out, i = [], 0
-        for m in re.finditer(r'(?<![\w\-.#:>+~\[\]()\s])?(?:^|(?<=[;{}\n]))\s*([^{}@;][^{};]*?)\s*\{([^{}]*)\}', blank, flags=re.M):
-            sel = re.sub(r'\s+', ' ', m.group(1).strip())
-            if want.get(sel, 0) > 0:
-                want[sel] -= 1
-                out.append(s[i:m.start()]); i = m.end(); removed += 1; log.append((os.path.basename(f), sel))
-        out.append(s[i:])
-        if apply and removed: open(f, 'w', encoding='utf-8').write(''.join(out))
+        # linear walk: every LEAF rule (a brace pair with no nested braces) as (selector, start, end)
+        leaves, stack, i, n = [], [], 0, len(blank)
+        while i < n:
+            c = blank[i]
+            if c == '{':
+                # prelude runs back to the previous ; { or }
+                k = i - 1
+                while k >= 0 and blank[k] not in ';{}': k -= 1
+                stack.append((k + 1, i))
+            elif c == '}':
+                if stack:
+                    ps, pe = stack.pop()
+                    body = blank[pe + 1:i]
+                    if '{' not in body:
+                        leaves.append((re.sub(r'\s+', ' ', blank[ps:pe].strip()), ps, i + 1))
+            i += 1
+        cut = []
+        for sel, a, b in leaves:
+            if want.get(sel, 0) > 0 and not sel.startswith('@'):
+                want[sel] -= 1; cut.append((a, b)); removed += 1; log.append((os.path.basename(f), sel))
+        if cut:
+            out, pos = [], 0
+            for a, b in sorted(cut):
+                out.append(s[pos:a]); pos = b
+            out.append(s[pos:])
+            if apply: open(f, 'w', encoding='utf-8').write(''.join(out))
     left = sum(v for v in want.values() if v > 0)
     print(f'{removed} rule(s) {"removed" if apply else "would be removed"}; {left} plan entr(ies) not found as exact selectors (left alone)')
     for f, sel in log[:12]: print(f'   {f}: {sel[:70]}')
