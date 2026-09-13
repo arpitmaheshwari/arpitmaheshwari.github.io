@@ -6776,6 +6776,15 @@ main > :is([class]) > h2.section-title { margin-top: var(--rhythm-chapter); }
    scroll-margin-top 80/96/120 in three places. One clearance for every anchor target: the bar plus a
    breath, so the heading a reader jumped to is the first thing they see. */
 main [id] { scroll-margin-top: 120px; }
+/* explore-loop, 2026-09-13: the process page stacked three centred widths — text 555, video 1000,
+   diagram 1280 — so eyebrows and captions began at three left edges. Wide objects now share the
+   video's width (min(1000px, 100vw − 80px)); the reading measure stays the third edge, by design. */
+body.p-process .process-fig { --vw-w: min(1000px, calc(100vw - 80px)); width: var(--vw-w); max-width: none; margin-left: calc((100% - var(--vw-w)) / 2); margin-right: calc((100% - var(--vw-w)) / 2); }
+/* explore-loop, 2026-09-13: on the patterns hub at tablet width the SVG hides (≤1040) and its typeset
+   twin shows — in a 480px grid cell, three cards stacked, the panel's right half empty. The twin takes
+   the SVG's place (the full-width image area) and lays its cards in a row wherever three fit. */
+body[class*="p-patterns"] :is(.xi-patterns-012, .xi-patterns-018) .artalt { grid-area: img; }
+body[class*="p-patterns"] :is(.xi-patterns-012, .xi-patterns-018) .artalt-set { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 /* Arpit, 2026-09-13 (copy review, group B): a case chapter's spine label — The stakes / The test /
    The mechanism / Falsifiable evidence — used to be glued to the heading with a colon, so the H2
    read as a form field. It is now the chapter's eyebrow, same words, and the sentence stands alone.
