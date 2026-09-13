@@ -1,0 +1,220 @@
+<!--page body_class="p-resources-ai-design-checklist" footer_note="No rights reserved — good patterns should travel"-->
+<!--head-->  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>53 Things to Check Before Shipping AI — Arpit Maheshwari</title>
+  <meta name="description" content="Comprehensive pre-launch checklist for AI products: functionality, performance, security, accessibility, user trust, and edge cases.">
+  <meta property="og:title" content="53 Things to Check Before Shipping AI">
+  <meta property="og:description" content="Comprehensive pre-launch checklist for AI products: functionality, performance, security, accessibility, user trust, and edge cases.">
+  <meta property="og:url" content="https://arpitmaheshwari.com/resources/ai-design-checklist.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://arpitmaheshwari.com/resources/ai-design-checklist.html">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f0312437">
+<noscript></noscript>
+<link rel="stylesheet" href="../amber.css?v=fb751bd1">
+<link rel="stylesheet" href="../site.css?v=711c7c1c">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/ai-design-checklist-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/ai-design-checklist-og.png">
+
+
+<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<!--/head-->
+<!--pre-nav--><div role="banner">
+<!--/pre-nav-->
+<!--content-->
+</div>
+
+<div class="page-head" data-ground="bookend">
+  <div class="xi-process-004">
+    <h1 class="xi-resources-ai-design-checklist-006">53 Things to Check Before Shipping AI</h1>
+    <p class="xi-resources-ai-design-checklist-007">Checklist · Shipping · Production Ready</p>
+  </div>
+</div>
+
+<main id="main" class="section page-bg"><div class="xi-process-004">
+
+  <p class="lead xi-resources-ai-design-checklist-009">First pass two weeks before production launch; final pass one week out, with a fresh pair of eyes — the Launch Ritual below. Ship nothing without checking all four categories. Happy path demo ≠ production ready.</p>
+  <p class="u-ui xi-resources-ai-design-checklist-010">Where these 53 come from, honestly: distilled from six shipped products and the pattern library they produced — one designer’s production scars, organised. Opinionated, not an ISO standard. Disagree with an item? That’s the correct way to use it.</p>
+  <div class="xi-resources-ai-design-checklist-011"><span class="xi-resources-ai-design-checklist-012" id="ckl-progress"></span><button class="xi-resources-ai-design-checklist-013" id="ckl-reset" type="button">Reset</button><span class="xi-resources-ai-design-checklist-014">progress saves in your browser · print for the paper version</span></div>
+
+  <h2 class="section-title xi-resources-ai-design-checklist-015">Human-in-the-Loop Design — AI-specific (14 items)</h2>
+  <p class="u-ui xi-resources-ai-design-checklist-016">The half this checklist exists for. Each item maps to a pattern in <a class="link-gold" href="../patterns/">the field guide</a>.</p>
+  <ul class="xi-resources-ai-design-checklist-018">
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Every confidence score resolves to a verb — act, review, or ignore — never a naked %</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Abstention state shipped: the model can say “I’m not sure” instead of bluffing</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>The interface claims no more certainty than the eval supports</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Where the verb bands sit is owned as a product decision — and revisited against real outcomes, because the same score can mean act in one domain and review in another.</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>The score’s track record is visible — and doesn’t reset when the model retrains</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Failure states designed: what happens when the AI is wrong or uncertain?</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Override mechanism clear (how do users say “AI, you’re wrong”?) — logged, and fed back to training</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Capability boundary stated in the interface — what it can’t do, before it fails</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Data provenance shown (where did these inputs come from?) — one click from claim to source</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>AI actions reversible: undo/rollback designed before the recommendation ships</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>AI latency states honest: the wait tells the user what the model is doing</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Bias awareness: does the AI make different decisions for different demographics?</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Edge cases designed: what if the user’s data doesn’t match the training data?</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Legal review done (especially if financial, medical, or decision-making product)</span></label></li>
+  </ul>
+  <h2 class="section-title xi-resources-ai-design-checklist-015">Product &amp; UX fundamentals (14 items)</h2>
+  <ul class="xi-resources-ai-design-checklist-018">
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>All happy paths tested with real user workflows (not demo data)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Edge cases tested: empty states, boundary values, invalid inputs</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Error messages are human-readable, not error codes</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Loading states show progress (spinner, percentage, ETA)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Timeout handling: what happens if the API doesn’t respond in 30 sec?</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Mobile responsive tested at 375px, 768px, 1280px</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Keyboard navigation works (Tab, Enter, Escape)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>No console errors in DevTools</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Performance: page interactive < 2.5 sec, interactions < 100ms</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Forms autosave progress so data isn’t lost on network failure</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Confirmation dialogs for destructive actions (delete, publish)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>All external links work and open in new tab (_blank)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Copy/paste works (text selection, clipboard permission)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Date/time inputs work across browsers (no custom date pickers with bugs)</span></label></li>
+  </ul>
+  <h2 class="section-title xi-resources-ai-design-checklist-015">Accessibility (9 items)</h2>
+  <ul class="xi-resources-ai-design-checklist-018">
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Color contrast ≥ 4.5:1 (WCAG AA minimum)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>All form inputs have associated labels (not just placeholders)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Focus indicators visible (not outline: none without replacement)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Screen reader tested: page structure logical, images have alt text</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>No autoplay videos or sounds (user controls media)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Reduced motion supported (animations disabled if prefers-reduced-motion)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Font size adjustable (users can zoom, minimum 16px on mobile to prevent auto-zoom)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>No text as images (always use actual text + alt text for diagrams)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Beta tester feedback incorporated (did anyone report confusion?)</span></label></li>
+  </ul>
+  <h2 class="section-title xi-resources-ai-design-checklist-015">Engineering hygiene (16 items)</h2>
+  <p class="u-ui xi-resources-ai-design-checklist-016">Not design’s to own — but design’s to ask about. Run this pass sitting next to your engineer.</p>
+  <ul class="xi-resources-ai-design-checklist-018">
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Load tested with realistic data volume (10x expected day-1 volume)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Database queries optimised (no N+1 queries, indexes added)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>API rate limiting implemented (prevent DDoS, accidental abuse)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>API responses are efficient (gzip, JSON not XML, pagination for large datasets)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Sensitive data encrypted (passwords, tokens, PII in transit and at rest)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>No API secrets in code or client-side (use server-side env vars only)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>CORS headers locked down (only allow expected origins)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>SQL injection / XSS prevention audited (use parameterised queries, sanitise inputs)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Authentication is required (no public endpoints that should be private)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Authorisation is correct (user A can’t see user B’s data)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Logging captures: errors, suspicious activity, API latency</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Monitoring in place: alerts for 5xx errors, slow queries, high memory</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Rollback plan documented (what if this deploy breaks?)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Database backups tested (can you restore from them?)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Third-party dependencies checked for known vulnerabilities (npm audit)</span></label></li>
+    <li class="xi-resources-ai-design-checklist-019"><label class="xi-resources-ai-design-checklist-020 hv-resources-ai-design-checklist-1"><input type="checkbox" class="ckl xi-resources-ai-design-checklist-021"><span>Privacy policy updated (what data do you collect? How long do you keep it?)</span></label></li>
+  </ul>
+
+  <div class="xi-resources-ai-design-checklist-022">
+    <p class="xi-resources-ai-design-checklist-023"><strong>If you can’t check an item, you’re not ready to ship.</strong> Unchecked items are debt. You’ll pay for it in support tickets, churn, and regret.</p>
+  </div>
+
+  <h2 class="section-title xi-resources-ai-design-checklist-015">Launch Ritual</h2>
+  <p class="xi-resources-ai-design-checklist-024">One week before launch: run through this checklist with a fresh pair of eyes (not the builder). Have them use the product as a user would. Every item unchecked = one day delay. No exceptions.</p>
+
+
+  <!-- The same close the nine pattern pages already carry. Added 2026-09-03: the four
+       essays and three resources are the most shareable pages on the site and the ones
+       most likely to be found cold, and they ended with "next essay" and no ask at all —
+       7 of 16 SEO-facing pages with no way out except the nav. -->
+  <div class="btn-row">
+    <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="resource-bottom">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
+  </div>
+</div></main>
+
+<!--/content-->
+<!--tail-->
+
+<script>
+// Mobile menu toggle
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+}
+
+// Reading mode toggle
+
+
+// GA4 events
+document.querySelectorAll('[data-cta]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'cta_click', {
+        cta_type: el.dataset.cta,
+        location: el.dataset.location || 'unknown',
+        page: window.location.pathname
+      });
+    }
+  });
+});
+</script>
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+
+<script>
+(function(){
+  var boxes=[].slice.call(document.querySelectorAll('input.ckl'));
+  if(!boxes.length) return;
+  var KEY='am-checklist-v1';
+  var saved=[];
+  try{ saved=JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){}
+  boxes.forEach(function(b,i){ if(saved[i]) b.checked=true; });
+  var bar=document.getElementById('ckl-progress');
+  function paint(){
+    var done=boxes.filter(function(b){return b.checked;}).length;
+    if(bar) bar.textContent=done+' of '+boxes.length+' checked'+(done===boxes.length?' — ship it.':'');
+    try{ localStorage.setItem(KEY, JSON.stringify(boxes.map(function(b){return b.checked?1:0;}))); }catch(e){}
+  }
+  boxes.forEach(function(b){ b.addEventListener('change', paint); });
+  var reset=document.getElementById('ckl-reset');
+  if(reset) reset.addEventListener('click', function(){ boxes.forEach(function(b){ b.checked=false; }); paint(); });
+  paint();
+})();
+</script>
+<script defer src="../attention.js?v=2fa8260a"></script>
+<script defer src="../clarity.js?v=9e4df576"></script>
+<!--/tail-->

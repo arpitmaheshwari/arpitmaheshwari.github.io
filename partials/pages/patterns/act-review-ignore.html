@@ -1,0 +1,372 @@
+<!--page body_class="p-patterns-act-review-ignore" footer_note="No copyright · Design is for all"-->
+<!--head--><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Act / Review / Ignore Rule — AI Trust — Arpit Maheshwari</title>
+<meta name="description" content="One score, one action. The rule that binds every AI confidence score to a verb — act, review or ignore — before it ever reaches a screen.">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/patterns/act-review-ignore.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Act / Review / Ignore Rule — AI Design | Arpit Maheshwari">
+<meta property="og:description" content="An unexplained 87% is a shrug with decimals. The rule for resolving any AI score into one of three verbs the user can act on: act, review, or ignore.">
+<meta property="og:url" content="https://arpitmaheshwari.com/patterns/act-review-ignore.html">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/act-review-ignore-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Act / Review / Ignore Rule">
+<meta name="twitter:description" content="The rule I hold confidence surfaces to: one score, one action.">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/act-review-ignore-og.png">
+<meta name="twitter:image:alt" content="The rule I hold confidence surfaces to: one score, one action.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f0312437">
+<noscript></noscript>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"TechArticle",
+  "headline":"The Act / Review / Ignore Rule",
+  "description":"Bind each AI score to an explicit next state rather than a bare percentage — in shipped work, act, review, or ignore.",
+  "author":{"@type":"Person","name":"Arpit Maheshwari"},
+  "datePublished":"2026-06-11",
+  "dateModified":"2026-06-11"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://arpitmaheshwari.com/"},
+    {"@type":"ListItem","position":2,"name":"Patterns","item":"https://arpitmaheshwari.com/#patterns"},
+    {"@type":"ListItem","position":3,"name":"The Act / Review / Ignore Rule","item":"https://arpitmaheshwari.com/patterns/act-review-ignore.html"}
+  ]
+}
+</script>
+<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../amber.css?v=fb751bd1">
+<link rel="stylesheet" href="../site.css?v=711c7c1c">
+<!--/head-->
+<!--pre-nav--><svg class="xi-home-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  
+</svg>
+
+<div role="banner">
+<!--/pre-nav-->
+<!--content-->
+</div>
+
+<div class="page-head" data-ground="bookend">
+  <div class="xi-process-004">
+    <div class="meta-row">
+      <h1 class="t-hero xi-patterns-act-review-ignore-006">The Act / Review / Ignore Rule</h1>
+      <span class="lbl-badge-ink xi-patterns-act-review-ignore-007">In production</span>
+    </div>
+    <p class="lbl-cap">AI Design · The named framework behind the patterns · Last updated September 2026</p>
+    <p class="lbl-cap xi-patterns-act-review-ignore-008">Part of <a class="link-gold" href="./">A Field Guide to Trust</a> · updated September 2026</p>
+    <p class="lbl-cap">Seen in production: <a class="link-gold" href="../case-studies/adtech.html">the AdTech case&nbsp;&rarr;</a> &middot; <a class="link-gold" href="../case-studies/fintech.html">the FinTech case&nbsp;&rarr;</a></p>
+    <p class="hand hand-note" aria-hidden="true">not invented in a workshop — named after it kept recurring</p>
+  </div>
+</div>
+
+<main id="main" class="section page-bg"><div class="xi-process-004">
+
+  <section class="xi-process-012">
+    <figure class="xi-patterns-act-review-ignore-013">
+      <svg id="art-act-review-i-1" class="framed xi-case-studies-ptc-037 art-svg" data-art-scoped viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+  <title id="t">The Act / Review / Ignore rule</title>
+  <desc id="d">Three model scores — ninety-two, sixty-one and twenty-three — each resolving to exactly one verb: act with a visible override, review with the reasons named, or ignore where the model declines to bluff.</desc>
+  <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
+
+  <!-- Title block -->
+  <text x="36" y="74" font-family="'Source Serif 4', Georgia, serif" font-size="40" font-weight="bold" fill="#2C2620">The Act / Review / Ignore Rule</text>
+  <text x="36" y="106" font-family="'Source Sans 3', system-ui, sans-serif" font-size="19" fill="#2C2722">One score, one action &#8212; a number never reaches the screen alone.</text>
+  <line x1="36" y1="126" x2="1244" y2="126" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+  <!-- ===== ACT ===== -->
+  <g transform="translate(40,150)">
+    <rect x="0" y="0" width="380" height="214" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <text x="24" y="38" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#4D4538">Score 92 · high</text>
+    <text x="24" y="98" font-family="'Source Serif 4', Georgia, serif" font-size="44" font-weight="bold" fill="#24473F">&#8594; Act</text>
+    <text x="24" y="132" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="#2C2722">signals named &#183; safe to run</text>
+    <rect x="24" y="154" width="150" height="34" rx="6" fill="#24473F"/>
+    <text x="46" y="176" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#F4ECDA">Apply</text>
+    <rect x="186" y="154" width="132" height="34" rx="6" fill="none" stroke="#24473F" stroke-width="1.5"/>
+    <text x="204" y="176" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#24473F">Override &#8630;</text>
+  </g>
+
+  <!-- ===== REVIEW ===== -->
+  <g transform="translate(450,150)">
+    <rect x="0" y="0" width="380" height="214" rx="10" fill="#EEE4CE" stroke="#7F560B" stroke-width="1.5"/>
+    <text x="24" y="38" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#4D4538">Score 61 · mixed</text>
+    <text x="24" y="98" font-family="'Source Serif 4', Georgia, serif" font-size="44" font-weight="bold" fill="#7F560B">&#8594; Review</text>
+    <text x="24" y="132" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="#2C2722">reasons on the card, not a tooltip:</text>
+    <line x1="24" y1="150" x2="356" y2="150" stroke="rgba(44,38,32,0.15)" stroke-width="1"/>
+    <text x="24" y="172" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#595144">&#8212; recency conflict, panels 12 &amp; 14</text>
+    <text x="24" y="194" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#595144">&#8212; surfaced for a human &#183; never auto-run</text>
+  </g>
+
+  <!-- ===== IGNORE ===== -->
+  <g transform="translate(860,150)">
+    <rect x="0" y="0" width="380" height="214" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1" stroke-dasharray="6 5"/>
+    <text x="24" y="38" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#4D4538">Score 23 · low</text>
+    <text x="24" y="98" font-family="'Source Serif 4', Georgia, serif" font-size="44" font-weight="bold" fill="#6F6350">Ignore</text>
+    <text x="24" y="132" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="#2C2722">below the line, the model</text>
+    <text x="24" y="154" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="#2C2722">declines to bluff &#8212; the honest no</text>
+    <text x="24" y="176" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="#2C2722">is what makes the act believable.</text>
+  </g>
+</svg>
+      <div class="artalt">
+        <p class="artalt-h">The Act / Review / Ignore Rule</p>
+        <p class="artalt-sub">One score, one action &#8212; a number never reaches the screen alone.</p>
+        <ol class="artalt-set">
+          <li>
+            <p class="artalt-n">Score 92 &#183; high</p>
+            <p class="artalt-t">&#8594; Act</p>
+            <p class="artalt-d">signals named &#183; safe to run</p>
+            <p class="artalt-chips">Apply &#183; Override &#8630;</p>
+          </li>
+          <li>
+            <p class="artalt-n">Score 61 &#183; mixed</p>
+            <p class="artalt-t">&#8594; Review</p>
+            <p class="artalt-d">reasons on the card, not a tooltip: &#8212; recency conflict, panels 12 &amp; 14 &#8212; surfaced for a human &#183; never auto-run</p>
+          </li>
+          <li>
+            <p class="artalt-n">Score 23 &#183; low</p>
+            <p class="artalt-t">Ignore</p>
+            <p class="artalt-d">below the line, the model declines to bluff &#8212; the honest no is what makes the act believable.</p>
+          </li>
+        </ol>
+      </div>
+
+
+    </figure>
+  </section>
+
+
+  <section class="xi-process-012">
+    <p class="lead xi-patterns-act-review-ignore-015">In the 'Where the rule earned its name' AdTech bullet: 'the roomful of traders from the first line of this page — recommendations shipped as full plans with KPIs and one-click customisation; their accept-adjust-reject rhythm is what later crystallised into the three verbs.'</p>
+    <p class="u-body xi-process-005">An unexplained 87% is a shrug with decimals. It reports the model’s mood and assigns the user all of the work: is 87 high for this kind of call? High enough to spend money on? Higher than my own hunch? While the person does that math, the moment to act expires — and a recommendation nobody acts on rounds down to zero, whatever the model’s accuracy says.</p>
+    <p class="u-body">The rule: a confidence score should never reach the screen alone. It resolves into an explicit next state before the user sees it — across the products I&rsquo;ve shipped, three verbs covered the production cases — <strong class="xi-process-016">act</strong>, <strong class="xi-process-016">review</strong>, or <strong class="xi-process-016">ignore</strong>.</p>
+  </section>
+
+  <div class="thesis" data-tint>
+    <span class="t-l">The rule, in one sentence</span>
+    <p>A score never reaches the screen without resolving to a <em>verb</em> &mdash; and a person owns where the verbs begin.</p>
+  </div>
+
+  <!-- LIVE DEMO — the rule, working -->
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Try it — the rule, live</h2>
+    <p class="u-ui xi-case-studies-adtech-016">Three scores from the same model. Watch each one resolve to a verb with its reasons — never a naked number. Synthetic data; nothing leaves the page.</p>
+    <div data-demo="verbs"></div>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">1. The score resolves to a verb — not a number</h2>
+    <p class="u-body xi-process-005"><strong class="xi-process-016">Act.</strong> Confidence clears the threshold where the cost of checking exceeds the cost of being wrong. The interface makes acting one motion. <strong class="xi-process-016">Review.</strong> The model has a position but not the standing to hold it alone — the interface opens the reasoning, not the spinner. <strong class="xi-process-016">Ignore.</strong> Below the floor, a recommendation is noise wearing a number; the interface says so and steps aside.</p>
+    <div class="xi-patterns-act-review-ignore-021">
+      <table class="t-cap xi-patterns-act-review-ignore-022">
+        <thead>
+          <tr class="xi-patterns-act-review-ignore-023"><th class="lbl-ink xi-patterns-act-review-ignore-024">Confidence band</th><th class="lbl-ink xi-patterns-act-review-ignore-024">Action</th><th class="lbl-ink xi-patterns-act-review-ignore-024">What the interface does</th></tr>
+        </thead>
+        <tbody>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong class="xi-process-016">High</strong></td><td class="xi-patterns-act-review-ignore-025">Act</td><td class="xi-patterns-act-review-ignore-025">Offers a default the user accepts in one motion, undo always in reach.</td></tr>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong class="xi-process-016">Medium</strong></td><td class="xi-patterns-act-review-ignore-025">Review</td><td class="xi-patterns-act-review-ignore-025">Opens the reasoning and hands the call to a person. The system declines to decide alone.</td></tr>
+          <tr><td class="xi-patterns-act-review-ignore-025"><strong class="xi-process-016">Low</strong></td><td class="xi-patterns-act-review-ignore-025">Ignore</td><td class="xi-patterns-act-review-ignore-025">Holds the recommendation back rather than guess, and points to the manual path.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="u-body">Where each band starts is a product decision someone owns, argues for, and revisits against real outcomes — that ownership is the point a raw score lets nobody take. The rule isn&rsquo;t the cutoffs. The rule is that a score lands on an explicit next state, never on the reader.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">2. “Review” forces the reasoning surface to exist</h2>
+    <p class="u-body xi-process-005">A verb of <em>review</em> is empty without something to review. So the moment a score lands there, the interface owes the user the handful of signals that drove it, in language the person can test against their own judgment. Build the rule and you have to build the reasoning panel; there is no skipping it.</p>
+    <p class="u-body">Even when the user overrules the model, they should see <em>how</em> it got there. A review without a reason is a shrug with extra steps. (See the <a class="link-gold" href="./ml-explainability.html">ML Explainability</a> and <a class="link-gold" href="./confidence-scores.html">Confidence Score</a> patterns for the surfaces that do this.)</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">3. The override stops being a failure mode</h2>
+    <p class="u-body xi-process-005">An <em>act</em> the user can’t undo is a bet they never agreed to make. So every recommended action carries a first-class override — not a buried setting, but a path visible at the point of decision.</p>
+    <p class="u-body">A user correcting the model inside a review state is not the system breaking; it is the training data the next version needs. Log it, feed it back, and show people their fingerprints on next week’s calls. The first time someone watches their own pushback sharpen the model, the override flips from a fight into coaching. (This is the <a class="link-gold" href="./human-in-loop.html">Human-in-Loop</a> pattern in practice.)</p>
+  </section>
+
+  <div class="counter">
+    <span class="c-l">The strongest objection, kept in</span>
+    <p class="u-body">&ldquo;The band edges are arbitrary.&rdquo; They are &mdash; that is the feature. A raw score lets nobody own the cutoff; the rule forces someone to set it, defend it, and revisit it against real outcomes. Arbitrary-and-owned beats precise-and-orphaned in every deployment I&rsquo;ve shipped.</p>
+  </div>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Ship it: the checklist.</h2>
+    <ul class="u-body xi-patterns-act-review-ignore-026">
+      <li class="xi-patterns-act-review-ignore-027"><strong>Bind every score to exactly one verb</strong> — act, review, or ignore — before it reaches the screen.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Write down where each band starts, and who owns that call.</strong> Band edges are a product decision, not a stats default.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Build the surface “review” demands.</strong> Reasons named on the call itself — not in a tooltip, not in the docs.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Give “act” a visible override</strong> — one click, logged, and fed back to the model as training signal.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Let “ignore” say the honest no.</strong> Below the line, the model declines to bluff — the honest no is what makes the act believable.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Revisit the band edges against real outcomes</strong> on a schedule, not when someone complains.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Audit your screens:</strong> any score not bound to a verb is decoration. Delete it or finish it.</li>
+    </ul>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Where it has run</h2>
+    <p class="u-body">PE screening and technical diligence run the rule as shipped; media buying ran its ancestor — plans a trader could accept, adjust, or reject. PE screening: 60% faster once analysts stopped re-deriving the score. Technical diligence: three-week cycles to four days. Different stakes, same three verbs &mdash; and it holds for agents too: a tool call is an <strong class="xi-process-016">act</strong>, a draft is a <strong class="xi-process-016">review</strong>, an abstention is an honest <strong class="xi-process-016">ignore</strong>. If a score or an action on your screen doesn’t bind to <strong class="xi-process-016">act</strong>, <strong class="xi-process-016">review</strong>, or <strong class="xi-process-016">ignore</strong>, with a reason for every review and an override for every act, it’s decoration. Delete it or finish it.</p>
+  </section>
+
+  <section class="card-gold xi-patterns-act-review-ignore-028">
+    <h3 class="card-title xi-process-005">Where the rule earned its name</h3>
+    <p class="t-cap-loose xi-case-studies-adtech-016">No single product taught me this rule — the same pattern kept recurring across the AI work until it earned a name. It runs across these case studies:</p>
+    <ul class="t-cap-loose xi-case-studies-adtech-052">
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> the ancestor, not an instance — recommendations shipped as full plans with KPIs and one-click customisation; the accept-adjust-reject rhythm there is what later crystallised into the three verbs.</li>
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> a score that opens its own reasoning when it hits review, never a bare verdict the analyst has to take on faith.</li>
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/vc-diligence.html">Due Diligence You Can&rsquo;t Rubber-Stamp</a>:</strong> the same three verbs took the diligence cycle from 3 wks → 4 days.</li>
+    </ul>
+  </section>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section class="card-gold xi-patterns-act-review-ignore-028">
+    <div class="eyebrow xi-process-013">Get AI design patterns in your inbox</div>
+    <p class="u-ui xi-case-studies-adtech-016">One pattern per month with tradeoffs and the templates I use.</p>
+    <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+      <input class="t-sans-ui card-seg xi-patterns-act-review-ignore-031" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
+      <button class="cta cta--secondary xi-patterns-act-review-ignore-032" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
+    </form>
+  </section>
+
+  <section class="measure-t" data-tint>
+    <div class="xi-patterns-act-review-ignore-035">
+      <div class="eyebrow xi-process-013">Where this breaks — do not use it here</div>
+      <p class="u-body xi-process-017">Skip the rule when every output is safe to auto-apply (no verb needed but Act) or when the volume is so low a human reviews everything anyway — three bands with nothing in them is ceremony. And if the model can’t be calibrated well enough to place the two thresholds honestly, fix that first; verbs on top of noise just launder the noise.</p>
+    </div>
+  </section>
+
+  <div class="btn-row">
+    <a class="cta-quiet" href="./confidence-scores.html">Read the Confidence Score patterns →</a>
+    <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="pattern-bottom">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
+  </div>
+</div></main>
+
+<!--/content-->
+<!--tail-->
+
+<script>
+const toggle = document.getElementById('dyslexiaToggle');
+if (toggle) {
+  const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on';
+  if (isDyslexic) {
+    document.body.classList.add('dyslexia-mode');
+    toggle.setAttribute('aria-pressed', 'true');
+  }
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dyslexia-mode');
+    const isOn = document.body.classList.contains('dyslexia-mode');
+    toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+    localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off');
+  });
+}
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+// Mobile menu (consolidated handler with aria-expanded + Escape support)
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+
+  navLinks.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+document.addEventListener('click', (e) => {
+  const cta = e.target.closest('[data-cta]');
+  if (cta && typeof gtag === 'function') {
+    gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' });
+  }
+});
+
+const scrollDepthHits = new Set();
+function trackScrollDepth() {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (docHeight <= 0) return;
+  const pct = Math.min(100, Math.floor((window.scrollY / docHeight) * 100));
+  [25, 50, 75, 100].forEach(threshold => {
+    if (pct >= threshold && !scrollDepthHits.has(threshold)) {
+      scrollDepthHits.add(threshold);
+      if (typeof gtag === 'function') gtag('event', 'scroll_depth', { percent: threshold });
+    }
+  });
+}
+window.addEventListener('scroll', trackScrollDepth, { passive: true });
+
+const sectionViewObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.viewed) {
+      entry.target.dataset.viewed = '1';
+      if (typeof gtag === 'function') {
+        gtag('event', 'section_view', { section_id: entry.target.id });
+      }
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s));
+</script>
+
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script src="./demos.js?v=023e3327" defer></script>
+<script defer src="../attention.js?v=2fa8260a"></script>
+<script defer src="../clarity.js?v=9e4df576"></script>
+<!--/tail-->

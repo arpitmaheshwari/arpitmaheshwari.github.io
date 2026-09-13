@@ -1,0 +1,174 @@
+<!--page body_class="p-writing-explainability" footer_note="No rights reserved — good patterns should travel"-->
+<!--head-->  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ML Explainability — Arpit Maheshwari</title>
+  <meta name="description" content="Designing the &quot;why&quot; surface for ML systems. How to make algorithmic decisions verifiable without overwhelming non-technical users.">
+  <meta property="og:title" content="The Explainability Layer: Making AI Legible">
+  <meta property="og:description" content="Users don't trust black boxes. I design explainability into interfaces—showing confidence, data provenance, what the model weighted, why it could be wrong.">
+  <meta property="og:url" content="https://arpitmaheshwari.com/writing/explainability.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/explainability-og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/explainability-og.png">
+  <meta property="article:published_time" content="2026-05-11">
+  <meta property="article:modified_time" content="2026-05-16">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://arpitmaheshwari.com/writing/explainability.html">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f0312437">
+<noscript></noscript>
+<link rel="stylesheet" href="../amber.css?v=fb751bd1">
+<link rel="stylesheet" href="../site.css?v=711c7c1c">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Explainability Layer: Making AI Legible",
+    "description": "Users don't trust black boxes. I design explainability into interfaces—showing confidence, data provenance, what the model weighted, why it could be wrong. Transparency is the product.",
+    "author": {
+      "@type": "Person",
+      "name": "Arpit Maheshwari",
+      "url": "https://arpitmaheshwari.com"
+    },
+    "datePublished": "2026-05-11",
+    "dateModified": "2026-05-16",
+    "image": "https://arpitmaheshwari.com/assets/og-images/explainability-og.png"
+  }
+  </script>
+<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<!--/head-->
+<!--pre-nav--><div role="banner">
+<!--/pre-nav-->
+<!--content-->
+</div>
+
+<div class="page-head" data-ground="bookend">
+  <div class="xi-process-004">
+    <h1 class="xi-resources-ai-design-checklist-006">The Explainability Layer: Making AI Legible</h1>
+    <p class="xi-resources-ai-design-checklist-007">Essay · May 2026</p>
+    <p class="hand hand-note" aria-hidden="true">everything here answers one word: why</p>
+  </div>
+</div>
+
+<main id="main" class="section page-bg"><div class="xi-process-004">
+
+  <p class="lead xi-resources-founder-questions-009">“Your algorithm says this trade is risky. I need to know why.” The model had an answer — a number — and no way to defend it. She overrode it. The trade went through, and it went badly. The model had been right. The interface just couldn’t say so.</p>
+
+  <h2 class="section-title xi-resources-founder-questions-010">The question the system couldn’t answer</h2>
+  <p class="u-body xi-case-studies-adtech-016">In 2021 a compliance officer put that question to me directly, and I didn’t have a good answer. The risk model flagged a trade as high-risk. She wasn’t refusing to listen — she was doing her job, which is to never sign off on something she can’t explain to an auditor. The system gave her a number and a recommendation and nothing in between. So she did the only defensible thing and waved the model away. The trade went through unsupervised, and it cost the firm.</p>
+  <p class="u-body xi-case-studies-adtech-016">Here’s the part that stayed with me: the model wasn’t wrong. It had caught the risk. The failure was entirely on the interface — nobody had designed the layer that turns a score into a reason. And a score without a reason is, to an expert who’s accountable for the decision, just noise with a confident font. Everything I’ve shipped since holds to one rule — a number never reaches the screen alone. The patterns library names it the Act / Review / Ignore rule.</p>
+
+  <h2 class="section-title xi-resources-founder-questions-010">What she actually needed</h2>
+  <p class="u-body xi-case-studies-adtech-016">I used to think <a class="link-gold" href="../resources/intelligent-systems-glossary.html#ml-explainability">explainability</a> meant exposing the machinery — model weights, feature vectors, the architecture. It doesn’t. The compliance officer didn’t want a lecture on the model. She wanted an answer to one human question: <em>why this, and not that?</em> When I rebuilt the surface, that’s the only question I designed around. The recommendation moved down the page. The reasoning moved up: this counterparty has failed repeatedly in the last two years, and this position is several times their normal size. Suddenly she wasn’t being asked to trust a number. She was being handed a case she could check, argue with, and put her name next to.</p>
+
+  <div class="xi-resources-ai-design-checklist-022">
+    <p class="lead xi-writing-explainability-015"><strong>Explainability isn’t a data-science problem. It’s a design problem.</strong> You can ship the best model in the world; if the person on the hook for the decision can’t see why it decided, they won’t use it — and they’ll be right not to.</p>
+  </div>
+
+  <h2 class="section-title xi-resources-founder-questions-010">Why I design the explanation first</h2>
+  <p class="u-body xi-case-studies-adtech-016">The most useful habit I took from that engagement is to design the explanation surface <em>before</em> the model is finished. It sounds backwards, but it does something quietly powerful: when the interface has to show <em>why</em>, the model is forced to produce reasons a person can actually read — not just an output, but the handful of signals behind it, and the boundary at which the answer would flip. Demand legibility from the UI and you end up demanding it from the model too.</p>
+  <p class="u-body xi-case-studies-adtech-016">The sophisticated systems rarely fail because the math is wrong. They fail at the explanation layer, in front of a person who has to be accountable for what they approve. Interpretability is the bridge between a model that’s correct and a model anyone is willing to act on. Most teams build the model and bolt the bridge on later. I’d rather build the bridge first and let it shape the model.</p>
+
+  <div class="xi-writing-confidence-scoring-016">
+    <div class="eyebrow xi-patterns-act-review-ignore-027">The reference version</div>
+    <p class="u-ui xi-writing-013">Want the playbook, not the story? The ML-explainability patterns I design from — provenance, feature importance, counterfactuals — with the do’s, don’ts, and worked examples.</p>
+    <a class="xi-writing-confidence-scoring-019" href="../patterns/ml-explainability.html" data-cta="pattern-reference" data-location="essay-body">See the pattern reference: ML Explainability Patterns →</a>
+  </div>
+
+  <div class="xi-writing-015">
+    <p class="eyebrow xi-process-005">Continue exploring</p>
+    <div class="xi-writing-confidence-scoring-022">
+      <a class="xi-writing-confidence-scoring-023 hv-writing-explainability-1" href="./human-in-loop.html" data-cta="next-essay" data-location="essay-footer">
+        <div class="xi-writing-confidence-scoring-024">Next essay</div>
+        <div class="card-title">Human-in-the-Loop</div>
+      </a>
+      <a class="xi-writing-confidence-scoring-023 hv-writing-explainability-1" href="./index.html" data-cta="back-to-writing" data-location="essay-footer">
+        <div class="xi-writing-confidence-scoring-024">All essays</div>
+        <div class="card-title">Back to Writing</div>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- The same close the nine pattern pages already carry. Added 2026-09-03: the four
+       essays and three resources are the most shareable pages on the site and the ones
+       most likely to be found cold, and they ended with "next essay" and no ask at all —
+       7 of 16 SEO-facing pages with no way out except the nav. -->
+  <div class="btn-row">
+    <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="essay-bottom">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
+  </div>
+</div></main>
+
+<!--/content-->
+<!--tail-->
+
+<script>
+// Mobile menu toggle
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+}
+
+// Reading mode toggle
+
+
+// GA4 events
+document.querySelectorAll('[data-cta]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'cta_click', {
+        cta_type: el.dataset.cta,
+        location: el.dataset.location || 'unknown',
+        page: window.location.pathname
+      });
+    }
+  });
+});
+</script>
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script defer src="../attention.js?v=2fa8260a"></script>
+<script defer src="../clarity.js?v=9e4df576"></script>
+<!--/tail-->

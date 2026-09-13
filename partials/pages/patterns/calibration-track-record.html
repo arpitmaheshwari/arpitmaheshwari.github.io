@@ -1,0 +1,361 @@
+<!--page body_class="p-patterns-calibration-track-record" footer_note="No copyright · Design is for all"-->
+<!--head--><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calibration &amp; Track Record — Arpit Maheshwari</title>
+<meta name="description" content="An AI design pattern — show whether the model's confidence has actually been right before, so people learn how hard to lean and trust is earned, not assumed.">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/patterns/calibration-track-record.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Calibration &amp; Track Record | Arpit Maheshwari">
+<meta property="og:description" content="Showing whether &quot;80% sure&quot; has actually been right 80% of the time — confidence with a memory.">
+<meta property="og:url" content="https://arpitmaheshwari.com/patterns/calibration-track-record.html">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/calibration-track-record-og.png">
+<meta property="og:image:width" content="926">
+<meta property="og:image:height" content="1273">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calibration &amp; Track Record">
+<meta name="twitter:description" content="Confidence that shows its receipts.">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/calibration-track-record-og.png">
+<meta name="twitter:image:alt" content="Confidence that shows its receipts.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f0312437">
+<noscript></noscript>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","headline":"Calibration & Track Record","description":"An AI design pattern — show whether the model's confidence has actually been right before, so people learn how hard to lean and trust is earned, not assumed.","author":{"@type":"Person","name":"Arpit Maheshwari"},"datePublished":"2026-06-19","dateModified":"2026-06-19"}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://arpitmaheshwari.com/"},
+    {"@type":"ListItem","position":2,"name":"Patterns","item":"https://arpitmaheshwari.com/#patterns"},
+    {"@type":"ListItem","position":3,"name":"Calibration & Track Record","item":"https://arpitmaheshwari.com/patterns/calibration-track-record.html"}
+  ]
+}
+</script>
+<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../amber.css?v=fb751bd1">
+<link rel="stylesheet" href="../site.css?v=711c7c1c">
+<!--/head-->
+<!--pre-nav--><svg class="xi-home-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  
+</svg>
+
+<div role="banner">
+<!--/pre-nav-->
+<!--content-->
+</div>
+
+<div class="page-head" data-ground="bookend">
+  <div class="xi-process-004">
+    <div class="meta-row">
+      <h1 class="t-hero xi-patterns-act-review-ignore-006">Calibration &amp; Track Record</h1>
+      <span class="lbl-badge-ink xi-patterns-act-review-ignore-007">In production</span>
+    </div>
+    <p class="lbl-cap">AI Design · Earned trust · Last updated September 2026</p>
+    <p class="lbl-cap xi-patterns-act-review-ignore-008">Part of <a class="link-gold" href="./">A Field Guide to Trust</a> · updated September 2026</p>
+    <p class="lbl-cap">Seen in production: <a class="link-gold" href="../case-studies/fintech.html">the FinTech case&nbsp;&rarr;</a> &middot; <a class="link-gold" href="../case-studies/vc-diligence.html">the due-diligence case&nbsp;&rarr;</a></p>
+    <p class="hand hand-note" aria-hidden="true">confidence with a memory</p>
+  </div>
+</div>
+
+<main id="main" class="section page-bg"><div class="xi-process-004">
+
+  <section class="xi-process-012">
+    <p class="lead xi-patterns-act-review-ignore-015">A confidence number is a claim; its track record is the evidence. Calibration shows whether “80% sure” has actually been right about 80% of the time — so a person can learn exactly how hard to lean on the model, and watch that judgment improve as the history grows.</p>
+  </section>
+
+  <div class="thesis" data-tint>
+    <span class="t-l">The principle this page proves</span>
+    <p>&ldquo;80% sure&rdquo; is a promise. Show whether it has been <em>kept</em>.</p>
+  </div>
+
+  <figure class="xi-patterns-calibration-track-record-014">
+    <svg id="art-calibration--1" class="framed xi-case-studies-ptc-037 art-svg" data-art-scoped viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+  <title id="t">Calibration &amp; Track Record pattern</title>
+  <desc id="d">A stated confidence beside a calibration plot of predicted-versus-actual accuracy and a per-case-type accuracy breakdown that exposes the weaker slice.</desc>
+  <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
+
+  <!-- Title block -->
+  <text x="36" y="74" font-family="'Source Serif 4', Georgia, serif" font-size="40" font-weight="bold" fill="#2C2620">Calibration &amp; Track Record</text>
+  <text x="36" y="106" font-family="'Source Sans 3', system-ui, sans-serif" font-size="19" fill="#2C2722">Is the confidence actually right? Show the receipts.</text>
+  <line x1="36" y1="126" x2="1244" y2="126" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+  <!-- ===== LEFT: Stated confidence ===== -->
+  <g transform="translate(40,150)">
+    <rect x="0" y="0" width="386" height="214" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#494338">Confidence</text>
+
+    <!-- big stated number -->
+    <text x="193" y="138" text-anchor="middle" font-family="'Source Serif 4', Georgia, serif" font-size="92" font-weight="bold" fill="#2C2620">94%</text>
+
+    <!-- High pill -->
+    <rect x="143" y="158" width="100" height="32" rx="16" fill="#24473F"/>
+    <text x="193" y="180" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="16" font-weight="bold" fill="#F4ECDA">High</text>
+
+    <text x="193" y="74" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#494338">stated confidence</text>
+  </g>
+
+  <!-- connector -->
+  <path d="M 434 257 H 480" fill="none" stroke="rgba(44,38,32,0.12)" stroke-width="2"/>
+  <path d="M 474 251 L 482 257 L 474 263 Z" fill="#494338"/>
+
+  <!-- ===== MIDDLE: Calibration plot ===== -->
+  <g transform="translate(490,150)">
+    <rect x="0" y="0" width="386" height="214" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#494338">Reliability</text>
+
+    <!-- plot area: square from (64,54) to (204,194) -> 140x140 -->
+    <rect x="64" y="54" width="140" height="140" fill="#F4ECDA" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+    <!-- axes -->
+    <line x1="64" y1="194" x2="204" y2="194" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <line x1="64" y1="54" x2="64" y2="194" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+    <!-- perfect calibration diagonal (dotted) bottom-left to top-right -->
+    <line x1="64" y1="194" x2="204" y2="54" stroke="#494338" stroke-width="1.5" stroke-dasharray="3 4"/>
+
+    <!-- predicted-vs-actual dots sitting close to the diagonal -->
+    <circle cx="84" cy="178" r="5" fill="#C0512B"/>
+    <circle cx="112" cy="148" r="5" fill="#C0512B"/>
+    <circle cx="138" cy="124" r="5" fill="#C0512B"/>
+    <circle cx="166" cy="90" r="5" fill="#C0512B"/>
+    <circle cx="190" cy="66" r="5" fill="#C0512B"/>
+
+    <!-- axis hints -->
+    <text x="134" y="212" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" fill="#494338">predicted</text>
+    <text x="54" y="128" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" fill="#494338" transform="rotate(-90 54 128)">actual</text>
+
+    <!-- legend / read-out on the right -->
+    <line x1="244" y1="62" x2="268" y2="62" stroke="#494338" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <text x="278" y="67" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#2C2722">perfect</text>
+
+    <circle cx="256" cy="92" r="5" fill="#C0512B"/>
+    <text x="278" y="97" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#2C2722">observed</text>
+
+    <text x="244" y="142" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#2C2620">Tracks the line:</text>
+    <text x="244" y="166" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#2C2620">confidence <tspan font-weight="bold" fill="#24473F">earns</tspan></text>
+    <text x="244" y="186" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#2C2620">its trust.</text>
+  </g>
+
+  <!-- connector -->
+  <path d="M 884 257 H 930" fill="none" stroke="rgba(44,38,32,0.12)" stroke-width="2"/>
+  <path d="M 924 251 L 932 257 L 924 263 Z" fill="#494338"/>
+
+  <!-- ===== RIGHT: Accuracy by case type ===== -->
+  <g transform="translate(940,150)">
+    <rect x="0" y="0" width="304" height="214" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <text x="22" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#494338">By case type</text>
+
+    <!-- Type A 96% -->
+    <text x="22" y="76" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="#2C2620">Type A</text>
+    <rect x="22" y="84" width="216" height="14" rx="7" fill="#F4ECDA" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <rect x="22" y="84" width="207" height="14" rx="7" fill="#24473F"/>
+    <text x="282" y="96" text-anchor="end" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" font-weight="bold" fill="#24473F">96%</text>
+
+    <!-- Type B 91% -->
+    <text x="22" y="128" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="#2C2620">Type B</text>
+    <rect x="22" y="136" width="216" height="14" rx="7" fill="#F4ECDA" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <rect x="22" y="136" width="197" height="14" rx="7" fill="#24473F"/>
+    <text x="282" y="148" text-anchor="end" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" font-weight="bold" fill="#24473F">91%</text>
+
+    <!-- Type C 72% (weaker, surfaced) -->
+    <text x="22" y="180" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="#2C2620">Type C</text>
+    <circle cx="72" cy="175" r="5" fill="#CE9230"/>
+    <rect x="22" y="188" width="216" height="14" rx="7" fill="#F4ECDA" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <rect x="22" y="188" width="156" height="14" rx="7" fill="#CE9230"/>
+    <text style="fill:#5F4416" x="282" y="200" text-anchor="end" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" font-weight="bold" fill="#CE9230">72%</text>
+  </g>
+</svg>
+      <div class="artalt">
+        <p class="artalt-h">Calibration &amp; Track Record</p>
+        <p class="artalt-sub">Is the confidence actually right? Show the receipts.</p>
+        <ol class="artalt-set">
+          <li>
+            <p class="artalt-n">Confidence</p>
+            <p class="artalt-t">94% &#183; High</p>
+            <p class="artalt-d">stated confidence</p>
+          </li>
+          <li>
+            <p class="artalt-n">Reliability</p>
+            <p class="artalt-t">predicted &#183; actual</p>
+            <p class="artalt-d">perfect &#183; observed</p>
+            <p class="artalt-p">Tracks the line: confidence earns its trust.</p>
+          </li>
+          <li>
+            <p class="artalt-n">By case type</p>
+            <dl class="artalt-factors">
+              <dt>Type A</dt><dd>96%</dd>
+              <dt>Type B</dt><dd>91%</dd>
+              <dt>Type C</dt><dd>72%</dd>
+            </dl>
+          </li>
+        </ol>
+      </div>
+
+
+  </figure>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">Show the hit rate beside the number</h2>
+    <p class="u-body xi-process-005">A confidence score with no history is a stranger’s opinion. The same number gets believable the moment it sits next to its own record: “high confidence — right on 94% of the last 200 calls like this.” Now the person isn’t trusting the model’s self-assessment; they’re trusting its receipts.</p>
+    <p class="u-body">This is the single cheapest trust-builder in AI UX and the most often skipped. Teams ship the confidence number and never ship the thing that makes it mean something — the evidence that the confidence has been honest before.</p>
+  </section>
+  <!-- LIVE DEMO — same demo as the book's field guide -->
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Try it — the pattern, live</h2>
+    <p class="u-ui xi-case-studies-adtech-016">The same live demo that runs in the book edition’s field guide. Synthetic data; nothing leaves the page.</p>
+    <div data-demo="calib"></div>
+  </section>
+
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">Break it down by the kind of case</h2>
+    <p class="u-body xi-process-005">A single global accuracy figure hides the cases that matter. A model can be 90% accurate overall and reliably wrong on a specific, important slice. Calibration that’s worth anything is segmented: accuracy by case type, by confidence band, by the conditions a user actually faces.</p>
+    <p class="u-body">Reliability diagrams — confidence on one axis, actual hit rate on the other — make over- and under-confidence visible at a glance. The goal is a person who knows not just how sure the model is, but where its sureness can be trusted and where it can’t.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">Earn it in the open</h2>
+    <p class="u-body xi-process-005">Track record is only persuasive if it updates honestly, in public. Let the history accumulate where the user can see it; don’t quietly reset the counter every time the model is retrained. A record that resets on every release is one nobody believes.</p>
+    <p class="u-body">Done right, calibration turns trust into something the model earns over time rather than demands on day one. The number stops being a claim and becomes a relationship — one the person can watch get better.</p>
+  </section>
+
+  <div class="counter">
+    <span class="c-l">The strongest objection, kept in</span>
+    <p class="u-body">&ldquo;Showing the model&rsquo;s misses will scare users away.&rdquo; The opposite happened: a confidence number with its own track record beside it is the only number an expert stops re-deriving. Hiding the misses doesn&rsquo;t make users trust the model &mdash; it makes them build a shadow process to check it, which costs you the whole speed win.</p>
+  </div>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Ship it: the checklist.</h2>
+    <ul class="u-body xi-patterns-act-review-ignore-026">
+      <li class="xi-patterns-act-review-ignore-027">Show the model’s historical hit rate beside its current confidence — every number with its baseline and its window.</li>
+      <li class="xi-patterns-act-review-ignore-027">Segment accuracy by case type and confidence band, not one global average.</li>
+      <li class="xi-patterns-act-review-ignore-027">Use a reliability view so over/under-confidence is visible at a glance.</li>
+      <li class="xi-patterns-act-review-ignore-027">Let the history accumulate in the open; don’t silently reset on retrain.</li>
+      <li class="xi-patterns-act-review-ignore-027">Check: can a user tell where the model’s confidence can be trusted, and where not?</li>
+    </ul>
+  </section>
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Trade-offs by Approach</h2>
+    <div class="xi-patterns-calibration-track-record-022">
+      <table class="t-cap xi-patterns-act-review-ignore-022">
+        <thead>
+          <tr class="xi-patterns-act-review-ignore-023"><th class="lbl-ink xi-patterns-act-review-ignore-024">Choice</th><th class="lbl-ink xi-patterns-act-review-ignore-024">Best For</th><th class="lbl-ink xi-patterns-act-review-ignore-024">Trade-off</th></tr>
+        </thead>
+        <tbody>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong>Global hit rate</strong></td><td class="xi-patterns-act-review-ignore-025">A single, simple trust signal</td><td class="xi-patterns-act-review-ignore-025">Averages away the cases where the model is reliably wrong</td></tr>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong>Per-case-type record</strong></td><td class="xi-patterns-act-review-ignore-025">Experts who know the domain’s segments</td><td class="xi-patterns-act-review-ignore-025">More to render; needs enough history per segment</td></tr>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong>Rolling window (30–90d)</strong></td><td class="xi-patterns-act-review-ignore-025">Models that retrain often</td><td class="xi-patterns-act-review-ignore-025">Short windows swing; long ones hide recent drift</td></tr>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong>Persistent across retrains</strong></td><td class="xi-patterns-act-review-ignore-025">Long-term trust; the record is the product</td><td class="xi-patterns-act-review-ignore-025">A bad release is visible to everyone — by design</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <section class="card-gold xi-patterns-act-review-ignore-028">
+    <h3 class="card-title xi-process-005">Where this pattern earned its keep</h3>
+    <ul class="t-cap-loose xi-case-studies-adtech-052">
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> buyers acted on a recommended plan only once its projected KPIs sat beside what the last campaigns had actually returned.</li>
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> the score proved itself over enough deals that analysts stopped re-verifying every machine claim by hand — screening ran 60% faster, measured pre- vs post-rollout.</li>
+    </ul>
+  </section>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section class="card-gold xi-patterns-act-review-ignore-028">
+    <div class="eyebrow xi-process-013">Get AI design patterns in your inbox</div>
+    <p class="u-ui xi-case-studies-adtech-016">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
+    <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+      <input class="t-sans-ui card-seg xi-patterns-act-review-ignore-031" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
+      <button class="cta cta--secondary xi-patterns-act-review-ignore-032" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
+    </form>
+  </section>
+
+  <section class="measure-t" data-tint>
+    <div class="xi-patterns-act-review-ignore-035">
+      <div class="eyebrow xi-process-013">Where this breaks — do not use it here</div>
+      <p class="u-body xi-process-017">A track record needs history — a young product showing three data points as a ‘record’ is costume jewelry. Wait until the sample is honest, and never reset the record silently when the model changes; a visible break in the line is more credible than an unbroken lie.</p>
+    </div>
+  </section>
+
+  <div class="btn-row">
+    <a class="cta-quiet" href="./reversibility-safe-to-act.html">Next pattern / Reversibility →</a>
+    <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="pattern-bottom">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
+  </div>
+</div></main>
+
+<!--/content-->
+<!--tail-->
+
+<script>
+const toggle = document.getElementById('dyslexiaToggle');
+if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on'; if (isDyslexic) { document.body.classList.add('dyslexia-mode'); toggle.setAttribute('aria-pressed', 'true'); } toggle.addEventListener('click', () => { document.body.classList.toggle('dyslexia-mode'); const isOn = document.body.classList.contains('dyslexia-mode'); toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false'); localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off'); }); }
+document.addEventListener('click', (e) => { const cta = e.target.closest('[data-cta]'); if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' }); });
+
+// Scroll depth — fires once per threshold (25/50/75/100)
+const scrollDepthHits = new Set();
+function trackScrollDepth() {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (docHeight <= 0) return;
+  const pct = Math.min(100, Math.floor((window.scrollY / docHeight) * 100));
+  [25, 50, 75, 100].forEach(threshold => {
+    if (pct >= threshold && !scrollDepthHits.has(threshold)) {
+      scrollDepthHits.add(threshold);
+      if (typeof gtag === 'function') gtag('event', 'scroll_depth', { percent: threshold });
+    }
+  });
+}
+window.addEventListener('scroll', trackScrollDepth, { passive: true });
+
+// Section visibility — fires once per section when 50% in viewport
+const sectionViewObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.viewed) {
+      entry.target.dataset.viewed = '1';
+      if (typeof gtag === 'function') {
+        gtag('event', 'section_view', { section_id: entry.target.id });
+      }
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s));
+</script>
+
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script src="./demos.js?v=023e3327" defer></script>
+<script defer src="../attention.js?v=2fa8260a"></script>
+<script defer src="../clarity.js?v=9e4df576"></script>
+<!--/tail-->

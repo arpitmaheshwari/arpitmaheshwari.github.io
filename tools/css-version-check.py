@@ -33,7 +33,7 @@ def discover_sheets():
             continue
 
         rel = p.as_posix()
-        if rel.startswith((".", "node_modules", "prototypes/", "portfolio-sources/", "tests/")):
+        if rel.startswith((".", "node_modules", "prototypes/", "portfolio-sources/", "tests/", "partials/")):
             continue
         for m in re.finditer(r'href="[^"]*?([A-Za-z0-9_-]+\.css)\?v=', p.read_text(encoding="utf-8")):
             found.add(m.group(1))
@@ -53,7 +53,7 @@ def sheet_path(name):
         return p
     for cand in pathlib.Path(".").rglob(name):
         s = cand.as_posix()
-        if s.startswith((".", "node_modules", "prototypes/", "tests/")):
+        if s.startswith((".", "node_modules", "prototypes/", "tests/", "partials/")):
             continue
         return cand
     return None
@@ -78,7 +78,7 @@ def versions_in_pages(sheet):
         if p.name.startswith("__"):
             continue
         rel = p.as_posix()
-        if rel.startswith((".", "node_modules", "prototypes/", "portfolio-sources/", "tests/")):
+        if rel.startswith((".", "node_modules", "prototypes/", "portfolio-sources/", "tests/", "partials/")):
             continue
         m = re.search(re.escape(stem) + r"\.css\?v=([A-Za-z0-9.]+)", p.read_text(encoding="utf-8"))
         if m:
@@ -117,7 +117,7 @@ def stamp_mismatches():
         if page.name.startswith("__"):
             continue
         rel = page.as_posix()
-        if rel.startswith((".", "node_modules", "prototypes/", "portfolio-sources/", "tests/")):
+        if rel.startswith((".", "node_modules", "prototypes/", "portfolio-sources/", "tests/", "partials/")):
             continue
         text = page.read_text(encoding="utf-8")
         for m in re.finditer(r'(?:href|src)="([^"?]+\.(?:css|js))\?v=([A-Za-z0-9.]+)"', text):

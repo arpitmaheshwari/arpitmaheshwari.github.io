@@ -87,7 +87,7 @@ def main():
     a = ap.parse_args()
     files = [f for f in subprocess.run(['git', 'ls-files', '*.html'],
                                        capture_output=True, text=True).stdout.split()
-             if not f.startswith(('tests/', 'assets/og-images/'))]
+             if not f.startswith(('tests/', 'assets/og-images/', 'partials/'))]
     total, touched, skipped = 0, 0, []
     for f in files:
         src = open(f, encoding='utf-8').read()

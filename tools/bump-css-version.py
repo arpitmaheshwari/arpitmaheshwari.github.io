@@ -49,7 +49,7 @@ def discover_sheets():
             continue
 
         rel = p.as_posix()
-        if rel.startswith((".", "node_modules", "prototypes/", "portfolio-sources/", "tests/")):
+        if rel.startswith((".", "node_modules", "prototypes/", "portfolio-sources/", "tests/", "partials/")):
             continue
         for m in re.finditer(r'href="[^"]*?([A-Za-z0-9_-]+\.css)\?v=', p.read_text(encoding="utf-8")):
             found.add(m.group(1))
@@ -69,7 +69,7 @@ def sheet_path(name):
         return p
     for cand in pathlib.Path(".").rglob(name):
         s = cand.as_posix()
-        if s.startswith((".", "node_modules", "prototypes/", "tests/")):
+        if s.startswith((".", "node_modules", "prototypes/", "tests/", "partials/")):
             continue
         return cand
     return None
@@ -84,7 +84,7 @@ GATE_PAGES = ("index.html", "patterns/index.html", "book/index.html")
 
 def pages():
     return [p for p in pathlib.Path(".").rglob("*.html")
-            if not any(x.startswith(".") or x in ("prototypes", "node_modules", "portfolio-sources")
+            if not any(x.startswith(".") or x in ("prototypes", "node_modules", "portfolio-sources", "partials")
                        for x in p.parts)]
 
 

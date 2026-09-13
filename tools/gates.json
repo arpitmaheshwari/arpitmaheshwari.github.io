@@ -858,6 +858,20 @@
    "note": "2026-09-13 (architecture review #4): was hook-only — the push that a green run-gates could not predict (memory: green suite ≠ green push). Now in the manifest."
   },
   {
+   "id": "pages-built-check",
+   "cmd": [
+    "python3",
+    "tools/build-pages.py",
+    "--check"
+   ],
+   "stages": [
+    "pre-push",
+    "ci",
+    "ci-always"
+   ],
+   "note": "2026-09-13 (architecture review #7): every classic page is rendered from partials/pages/<path> into partials/pages/_layout.html by build-pages.py. An output page edited by hand is a page nobody will be able to rebuild; this fails until the edit is moved into its source."
+  },
+  {
    "id": "build-css",
    "cmd": [
     "python3",
@@ -867,6 +881,17 @@
     "build"
    ],
    "note": "BUILD STEP (writes): site.css from css/site/. Run before partials."
+  },
+  {
+   "id": "build-pages",
+   "cmd": [
+    "python3",
+    "tools/build-pages.py"
+   ],
+   "stages": [
+    "build"
+   ],
+   "note": "BUILD STEP (writes): the 35 classic pages from pages/ + the layout, nav and footer from partials/, cache stamps applied. Order: build-css → build-pages → build-partials (404 and the book's versions) → build-sitemap."
   },
   {
    "id": "build-partials",

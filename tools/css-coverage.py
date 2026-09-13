@@ -42,7 +42,7 @@ def all_pages():
     out = []
     for p in sorted(ROOT.rglob('*.html')):
         parts = p.relative_to(ROOT).parts
-        if any(x.startswith('.') or x in ('prototypes','portfolio-sources','node_modules','book','tests') for x in parts):
+        if any(x.startswith('.') or x in ('prototypes','portfolio-sources','node_modules','book','tests','partials') for x in parts):
             continue
         if p.name.startswith('_'): continue
         out.append(str(p.relative_to(ROOT)))

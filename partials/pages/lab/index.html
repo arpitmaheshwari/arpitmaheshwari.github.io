@@ -1,0 +1,280 @@
+<!--page body_class="p-lab" footer_note="No rights reserved — good patterns should travel"-->
+<!--head--><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Lab — Trust Patterns as Running Code — Arpit Maheshwari</title>
+<meta name="description" content="Four artifacts where the code is the deliverable: loop.js (trust-pattern decision logic, 42 tests), trustlint, a measured teardown of this site, and the design system as an installable plugin.">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/lab/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Lab — Trust Patterns as Running Code">
+<meta property="og:description" content="The rules I argue for in design reviews, written as functions so they can be tested instead of debated. Zero dependencies, 42 tests, live in your browser.">
+<meta property="og:url" content="https://arpitmaheshwari.com/lab/">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/lab-og.png">
+<meta property="og:image:alt" content="The Lab — trust patterns as running code. Arpit Maheshwari.">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta property="og:locale" content="en_IN" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Lab — Trust Patterns as Running Code">
+<meta name="twitter:description" content="Three artifacts where the code is the deliverable, not a description of code.">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/lab-og.png">
+<meta name="twitter:image:alt" content="The Lab — trust patterns as running code. Arpit Maheshwari.">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f0312437">
+<noscript></noscript>
+<link rel="stylesheet" href="../amber.css?v=fb751bd1">
+<link rel="stylesheet" href="../site.css?v=711c7c1c">
+
+<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<!--/head-->
+<!--pre-nav-->
+<div role="banner">
+<!--/pre-nav-->
+<!--content-->
+</div>
+
+<main id="main">
+
+  <section class="section lab-hero" data-ground="bookend">
+    <div class="lab-wrap">
+      <p class="lab-kicker">The Lab</p>
+      <h1 class="section-title xi-lab-003">The code is the deliverable. Run it.</h1>
+      <p class="lab-lede">Everywhere else on this site, code is a means: the pages, the demos, the documents. Here it is the thing itself. Four artifacts, all running in the open — because <strong>a designer claiming to ship code should hand you some</strong> rather than describe the experience of having done so.</p>
+      <p class="lab-src">Source, in public: <a href="https://github.com/arpitmaheshwari/the-lab" target="_blank" rel="noopener noreferrer" data-cta="github" data-location="lab-index">github.com/arpitmaheshwari/the-lab<span class="visually-hidden"> (opens in a new tab)</span></a> &mdash; the same files that run here, MIT, verbatim.</p>
+      <p class="hand hand-note" aria-hidden="true">no rights reserved — take what works</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="lab-wrap">
+      <p class="eyebrow">Four things you can run</p>
+      <h2 class="section-title xi-lab-006">A demo you can&rsquo;t run is a screenshot with ambitions</h2>
+      <div class="lab-cards">
+
+        <a class="lab-card" href="./loop.html" data-cta="lab-card" data-location="lab-index">
+          <p class="lab-num">01</p>
+          <h3>loop.js</h3>
+          <p><strong>A design opinion becomes falsifiable the day it compiles.</strong> The decision logic behind four trust patterns, as tested functions: Act/Review/Ignore (which verb a confidence score becomes), whether that confidence has earned belief (Brier score, expected calibration error), when to refuse to answer, and what to show while the model thinks.</p>
+          <div class="lab-tags"><span>0 dependencies</span><span>42 tests</span><span>ES module</span></div>
+          <span class="lab-go">Read it, run it, break it →</span>
+        </a>
+
+        <a class="lab-card" href="./eval.html" data-cta="lab-card" data-location="lab-index">
+          <p class="lab-num">02</p>
+          <h3>trustlint</h3>
+          <p><strong>Trust properties are lintable; truth is not.</strong> A deterministic linter for the shape of an AI answer — uncited figures, absolutes, hedging used as decoration, and the expensive failure of asserting confidently with nothing to assert from. It also states plainly what it cannot do: judge whether the answer is true.</p>
+          <div class="lab-tags"><span>7 rules</span><span>No network</span><span>Runs in-tab</span></div>
+          <span class="lab-go">Paste an answer, audit it →</span>
+        </a>
+
+        <a class="lab-card" href="./teardown.html" data-cta="lab-card" data-location="lab-index">
+          <p class="lab-num">03</p>
+          <h3>This site, torn down</h3>
+          <p><strong>A site that argues for evidence must be willing to be inspected.</strong> How the thing you are reading is built, measured rather than described: no build step, a 584.1&nbsp;KB stylesheet, two third-party services across four domains, one enforced type scale — and an honest list of the gaps, including the one this page caught.</p>
+          <div class="lab-tags"><span>Measured</span><span>Commands shown</span><span>Gaps included</span></div>
+          <span class="lab-go">See the receipts →</span>
+        </a>
+
+        <a class="lab-card" href="#design-system" data-cta="lab-card" data-location="lab-index">
+          <p class="lab-num">04</p>
+          <h3>ember-design-system</h3>
+          <p><strong>A design system a machine can read is one that actually gets applied.</strong> The stylesheet that paints this page, encoded as an installable Claude plugin &mdash; contrast, overflow and legibility measured from rendered pixels on every push that touches the rendered site. Its public reference page runs the same audit on itself, failures included.</p>
+          <div class="lab-tags"><span>MIT</span><span>/plugin install</span><span>Self-audited</span></div>
+          <span class="lab-go">The system, in full ↓</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- The design system, on the Lab rather than the homepage (Arpit's call, 2026-08-17): this
+       page is where the artifacts live, and an installable system is an artifact, not a claim. -->
+  <section class="section" id="design-system">
+    <div class="lab-wrap">
+      <p class="eyebrow">The system I leave behind</p>
+      <h2 class="section-title">A design system a machine can read is one that actually gets applied</h2>
+      <div class="lab-body" data-tint>
+        <p>Six products at Talon had grown one at a time and looked like six companies had made them &mdash; a problem for a company selling an integrated platform. I introduced a design system across the line, so Plato, Ada and Atlas read as rooms of one building. Then I encoded it, so it stops depending on who remembers it.</p>
+        <dl class="ev-tiers">
+          <dt>One family</dt>
+          <dd>Not a coat of paint &mdash; family resemblance. For a company selling an integrated
+              platform, looking integrated is the claim, made visible.</dd>
+          <dt>Encoded, not documented</dt>
+          <dd>Two shipped as installable plugins across client organisations. A system in a Figma
+              library gets applied by whoever remembers it; one a machine reads gets applied every
+              time.</dd>
+          <dt>Enforced</dt>
+          <dd>Contrast measured from rendered pixels before every push; overflow and legibility swept nightly &mdash;
+              and the interface I design is the front-end I ship in the PR.</dd>
+        </dl>
+      </div>
+
+      <!-- The specimen. Moved off the homepage (Arpit's call, 2026-08-17) into the band that
+           argues for it: claim -> the three properties -> SEE IT -> take it. Nothing below is a
+           picture of the system; it is the system, painted by the stylesheet running this page. -->
+      <p class="dsg-cap">Below is the system itself, not a picture of it &mdash; the same stylesheet
+         that paints this page, with every contrast ratio measured on load rather than quoted.</p>
+
+      <div class="dsg-grid">
+        <div class="dsg-card">
+          <p class="dsg-k">Four heats &middot; semantic, never decorative</p>
+          <ul class="dsg-heats" id="dsg-heats"></ul>
+        </div>
+        <div class="dsg-card">
+          <p class="dsg-k">Three families &middot; one job each</p>
+          <ul class="dsg-type">
+            <li><span class="dsg-spec dsg-serif">Announces</span><b>Source Serif 4</b></li>
+            <li><span class="dsg-spec dsg-sans">Is read</span><b>Source Sans 3</b></li>
+            <li><span class="dsg-spec dsg-label">Labels</span><b>600 &middot; .08em &middot; upper</b></li>
+            <li><span class="dsg-spec dsg-mono">code()</span><b>JetBrains Mono &mdash; code only</b></li>
+          </ul>
+        </div>
+        <div class="dsg-card">
+          <p class="dsg-k">One spacing grid &middot; enforced by a gate</p>
+          <ul class="dsg-steps" id="dsg-steps"></ul>
+          <p class="dsg-note">Below 4 is an optical nudge, above 80 is structural. Anything between
+            that is off-grid fails the build.</p>
+        </div>
+      </div>
+
+      <div class="lab-body" data-tint>
+        <p>The public one is MIT, and its reference page runs that same audit on itself &mdash;
+           failures included.</p>
+        <pre class="lab-code"><code>/plugin marketplace add arpitmaheshwari/ember-design-system
+/plugin install ember-design-system</code></pre>
+      </div>
+      <div class="lab-links">
+        <a href="https://github.com/arpitmaheshwari/ember-design-system" target="_blank" rel="noopener" data-cta="design-system" data-location="lab-ds">The repository&nbsp;&#8599;<span class="visually-hidden"> (opens in a new tab)</span></a>
+        <a href="./plugin.html" data-cta="design-system-page" data-location="lab-ds">What it encodes&nbsp;&rarr;</a>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="lab-wrap">
+      <p class="eyebrow">Why a lab at all</p>
+      <h2 class="section-title">A principle with no failing state is a preference</h2>
+      <div class="lab-body" data-tint>
+        <p>The eight patterns in <a class="xi-process-020" href="../patterns/">the pattern library</a> came out of production work, and for years they lived where design principles usually live: in slides, in review comments, in my head. Reasonable people agreed with all of them and then shipped the naked confidence score anyway — because a principle you can nod at costs nothing to ignore.</p>
+        <p>Written as code, the same rules acquire a failing state. <code>decide()</code> reports <code>review-without-reasons</code> as a violation rather than a suggestion. <code>calibrate()</code> returns <code>insufficient-data</code> instead of a flattering number when the sample is thin. <code>trustlint</code> refuses to score truthfulness at all, and says why in its own output.</p>
+        <p>That is what The Lab is for: taking judgments I keep making in review and giving them somewhere to fail, so they can run without me in the room.</p>
+
+
+        <p class="lab-note">The thresholds here are defaults, not findings. Where a band starts
+           is a product decision someone owns and revisits &mdash; the rule is only that a score
+           lands on one verb, never that 0.7 is the right place to put the line.</p>
+      </div>
+      <div class="lab-links">
+        <a href="../patterns/" data-cta="lab-patterns" data-location="lab-foot">The eight patterns, with live demos →</a>
+        <a href="../screen/" data-cta="lab-screen" data-location="lab-foot">The technical screen →</a>
+        <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="lab-foot">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- IA, 2026-08-17: this lived inside the 2,000-word "why a lab" essay. It is the most
+       load-bearing honesty device on the page — the answer to "what do these tests actually
+       prove" — and a reader who stops mid-essay never reaches it. Its own section now, so a
+       skimmer still lands on it. -->
+  <section class="section" id="what-this-proves">
+    <div class="lab-wrap">
+      <p class="eyebrow">The evidence boundary</p>
+      <h2 class="section-title">These prove less than they look like they prove</h2>
+      <div class="lab-body" data-tint>
+        <p>Three different things get called evidence, and only the first one lives on this page:</p>
+        <dl class="ev-tiers">
+          <dt>Implementation</dt>
+          <dd>The code does what it says. 76 assertions across 42 tests, run in your browser above, on the same
+              module the demos import. This is what the tests prove &mdash; nothing more.</dd>
+          <dt>Usage</dt>
+          <dd>The rules came out of shipped products, not a notebook: the verbs, the abstention,
+              the logged override and the citation gate were each argued for and built inside
+              the work in <a href="../index.html#featured-case-studies">the case studies</a>.
+              The code here is my re-statement of those decisions, not the client&rsquo;s source.</dd>
+          <dt>Outcome</dt>
+          <dd>Whether a pattern moves adoption is a claim about a product, not about a function.
+              Where I have a measured before-and-after I put it on the case, with its baseline
+              and window. A green test says nothing about it, and I won&rsquo;t let a passing
+              suite stand where a result belongs.</dd>
+        </dl>
+      <div class="lab-note">
+        <b>Where the line sits.</b> I ship the front-end of what I design, in the PR under my name, with senior engineers reviewing. These artifacts are pure functions by choice, not by ceiling — logic any stack can adopt and any test can pin down; the stateful counterpart is <a class="xi-process-020" href="../book/">the book edition</a> of this site, ~150KB of my own React. What I don’t claim is the backend. That is the honest boundary, and it is the same one I give on <a class="xi-process-020" href="../screen/">the technical screen</a>.
+      </div>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+
+<!--/content-->
+<!--tail-->
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { if (nav) nav.classList.toggle('scrolled', window.scrollY > 60); });
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = navLinks.classList.toggle('nav-open'); menuBtn.setAttribute('aria-expanded', String(isOpen)); });
+  document.addEventListener('click', (e) => { if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) { navLinks.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); } });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) { navLinks.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.focus(); } });
+}
+if (localStorage.getItem('dyslexia-mode') === 'on') document.body.classList.add('dyslexia-mode');
+document.addEventListener('click', (e) => {
+  const cta = e.target.closest('[data-cta]');
+  if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' });
+});
+</script>
+<script defer src="../attention.js?v=2fa8260a"></script>
+<script defer src="../clarity.js?v=9e4df576"></script>
+<script>
+/* The specimen paints itself from the live tokens and measures its own contrast — so it can never
+   drift from the system the way a screenshot would. Alpha is composited against the real ground
+   before the ratio is taken; a translucent ink is not a colour until you do that. */
+(function(){
+  var heats=[['--acc-copper','Ember','action, emphasis'],['--acc-violet','Violet','contrast within a set'],
+              ['--acc-amber','Amber','links, kickers, CTAs'],['--acc-rose','Rose','the fourth voice']];
+  var ul=document.getElementById('dsg-heats'); if(!ul) return;
+  function parse(c){var m=c.match(/rgba?\(([^)]+)\)/);if(!m)return null;
+    var p=m[1].split(',').map(parseFloat);return {r:p[0],g:p[1],b:p[2],a:p.length>3?p[3]:1};}
+  function over(f,b){return {r:f.r*f.a+b.r*(1-f.a),g:f.g*f.a+b.g*(1-f.a),b:f.b*f.a+b.b*(1-f.a),a:1};}
+  function lum(c){var v=[c.r,c.g,c.b].map(function(x){x/=255;
+    return x<=0.03928?x/12.92:Math.pow((x+0.055)/1.055,2.4);});
+    return 0.2126*v[0]+0.7152*v[1]+0.0722*v[2];}
+  function ratio(a,b){var la=lum(a),lb=lum(b),hi=Math.max(la,lb),lo=Math.min(la,lb);
+    return (hi+0.05)/(lo+0.05);}
+  function tok(name){var p=document.createElement('span');p.style.color='var('+name+')';
+    document.body.appendChild(p);var c=parse(getComputedStyle(p).color);p.remove();return c;}
+  // Measured against --surface-page AS RESOLVED ON THIS PAGE. That is #1B1320 here, while the published
+  // skill quotes its ratios against #120B14 — so ember reads 8.3 here and 8.0 there. Both are
+  // correct; they are different grounds. The fix is to SAY which ground, not to force the
+  // numbers to agree, because a ratio without its ground is the thing this system argues against.
+  var ground=tok('--surface-page')||parse(getComputedStyle(document.body).backgroundColor)||{r:18,g:11,b:20,a:1};
+  function hex(c){return '#'+[c.r,c.g,c.b].map(function(x){
+    return ('0'+Math.round(x).toString(16)).slice(-2).toUpperCase();}).join('');}
+  heats.forEach(function(h){
+    var c=tok(h[0]); if(!c) return;
+    var solid=c.a<1?over(c,ground):c;
+    var li=document.createElement('li');
+    li.innerHTML='<i style="background:var('+h[0]+')"></i>'+
+      '<span style="flex:1 1 auto"><b>'+h[1]+'</b><em>'+h[2]+'</em></span>'+
+      '<span>'+ratio(solid,ground).toFixed(1)+':1</span>';
+    ul.appendChild(li);
+  });
+  var k=document.querySelector('.dsg-card .dsg-k');
+  if(k) k.textContent='Four heats · measured on '+hex(ground);
+
+  var steps=document.getElementById('dsg-steps');
+  [4,8,12,16,20,24,32,40,48,64,80].forEach(function(n){
+    var li=document.createElement('li');
+    li.innerHTML='<i style="width:'+n+'px"></i><span>'+n+'</span>';
+    steps.appendChild(li);
+  });
+})();
+</script>
+
+<!--/tail-->

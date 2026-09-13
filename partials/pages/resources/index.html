@@ -1,0 +1,134 @@
+<!--page body_class="p-resources" footer_note="No rights reserved — good patterns should travel"-->
+<!--head-->  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources & Tools — Arpit Maheshwari</title>
+  <meta name="description" content="Reference tools for designing intelligent systems: AI design checklist, glossary of core terms, and founder questions guide.">
+  <meta property="og:title" content="Resources & Tools — Arpit Maheshwari">
+  <meta property="og:description" content="Reference tools for designing intelligent systems: AI design checklist, glossary of core terms, and founder questions guide.">
+  <meta property="og:url" content="https://arpitmaheshwari.com/resources/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Arpit Maheshwari Portfolio" />
+  <meta property="og:locale" content="en_IN" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Resources & Tools — Arpit Maheshwari">
+  <meta name="twitter:description" content="Reference tools for designing intelligent systems: AI design checklist, glossary of core terms, and founder questions guide.">
+  <link rel="canonical" href="https://arpitmaheshwari.com/resources/">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f0312437">
+<noscript></noscript>
+<link rel="stylesheet" href="../amber.css?v=fb751bd1">
+<link rel="stylesheet" href="../site.css?v=711c7c1c">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/resources-index-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/resources-index-og.png">
+<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<!--/head-->
+<!--pre-nav--><div role="banner">
+<!--/pre-nav-->
+<!--content-->
+</div>
+
+<div class="xi-resources-003">
+  <div class="xi-resources-004">
+    <h1 class="xi-resources-005">The lists I check against before shipping AI — yours to take.</h1>
+    <p class="lead">The checklists, definitions, and questions I actually use when I ship AI products. This is how I think — pulled out of my head so you can borrow it, or use it to judge whether I’d be a good hire.</p>
+  </div>
+</div>
+
+<main id="main" class="section page-bg"><div class="xi-resources-004">
+  <div class="xi-resources-007">
+
+    <a class="card-p32 xi-resources-008 hv-resources-1" href="./ai-design-checklist.html" data-cta="resource-click" data-location="resources-checklist" data-tint>
+      <div class="eyebrow xi-process-013">Checklist · Shipping</div>
+      <h2 class="card-title xi-process-013">53 Things to Check Before Shipping AI</h2>
+      <p class="t-ui-muted-loose xi-process-005">53 items distilled from six shipped products — one designer’s production scars, organised. A happy-path demo is not production ready.</p>
+    </a>
+
+    <a class="card-p32 xi-resources-008 hv-resources-1" href="./founder-questions.html" data-cta="resource-click" data-location="resources-founder-questions" data-tint>
+      <div class="eyebrow xi-process-013">Guide · Hiring</div>
+      <h2 class="card-title xi-process-013">12 Questions Every Founder Should Ask</h2>
+      <p class="t-ui-muted-loose xi-process-005">The 12 questions I give founders to ask any AI-design candidate. I sit the same exam myself, in writing, at the technical screen.</p>
+    </a>
+
+    <a class="card-p32 xi-resources-008 hv-resources-1" href="./intelligent-systems-glossary.html" data-cta="resource-click" data-location="resources-glossary" data-tint>
+      <div class="eyebrow xi-process-013">Reference · Terminology</div>
+      <h2 class="card-title xi-process-013">Intelligent Systems Glossary</h2>
+      <p class="t-ui-muted-loose xi-process-005">15 terms in plain language for non-technical founders — explainability, distribution shift, confidence layers. I add terms as the work turns them up.</p>
+    </a>
+
+  </div>
+</div></main>
+
+<!--/content-->
+<!--tail-->
+
+<script>
+// Mobile menu toggle
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+}
+
+// Reading mode toggle
+
+
+// GA4 events
+document.querySelectorAll('[data-cta]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'cta_click', {
+        cta_type: el.dataset.cta,
+        location: el.dataset.location || 'unknown',
+        page: window.location.pathname
+      });
+    }
+  });
+});
+</script>
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script defer src="../attention.js?v=2fa8260a"></script>
+<script defer src="../clarity.js?v=9e4df576"></script>
+<!--/tail-->

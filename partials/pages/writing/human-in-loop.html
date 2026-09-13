@@ -1,0 +1,173 @@
+<!--page body_class="p-writing-human-in-loop" footer_note="No rights reserved — good patterns should travel"-->
+<!--head-->  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human-in-Loop Patterns — Arpit Maheshwari</title>
+  <meta name="description" content="Designing human-in-loop AI: when to surface override paths, how to design dissent as a feature, and what analyst behavior reveals about trust.">
+  <meta property="og:title" content="Human-in-the-Loop: When to Ask, When to Override">
+  <meta property="og:description" content="Asking a person to confirm everything gets you their judgment on nothing. I design systems that spend the ask only where a human&rsquo;s input would change the answer.">
+  <meta property="og:url" content="https://arpitmaheshwari.com/writing/human-in-loop.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/human-in-loop-og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/human-in-loop-og.png">
+  <meta property="article:published_time" content="2026-05-12">
+  <meta property="article:modified_time" content="2026-05-16">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://arpitmaheshwari.com/writing/human-in-loop.html">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f0312437">
+<noscript></noscript>
+<link rel="stylesheet" href="../amber.css?v=fb751bd1">
+<link rel="stylesheet" href="../site.css?v=711c7c1c">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Human-in-the-Loop: When to Ask, When to Override",
+    "description": "Asking a person to confirm everything gets you their judgment on nothing. I design systems that spend the ask only where a human’s input would change the answer.",
+    "author": {
+      "@type": "Person",
+      "name": "Arpit Maheshwari",
+      "url": "https://arpitmaheshwari.com"
+    },
+    "datePublished": "2026-05-12",
+    "dateModified": "2026-05-16",
+    "image": "https://arpitmaheshwari.com/assets/og-images/human-in-loop-og.png"
+  }
+  </script>
+<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<!--/head-->
+<!--pre-nav--><div role="banner">
+<!--/pre-nav-->
+<!--content-->
+</div>
+
+<div class="page-head" data-ground="bookend">
+  <div class="xi-process-004">
+    <h1 class="xi-resources-founder-questions-006">Human-in-the-Loop: When to Ask, When to Override</h1>
+    <p class="xi-resources-ai-design-checklist-007">Pattern · May 2026</p>
+    <p class="hand hand-note" aria-hidden="true">accurate, and ignored anyway — that gap is the job</p>
+  </div>
+</div>
+
+<main id="main" class="section page-bg"><div class="xi-process-004">
+
+  <p class="lead xi-resources-founder-questions-009">The recommender was good. The students skipped it most of the time anyway. Not because it was wrong — because we’d made them click “confirm” so often they’d stopped reading. We’d asked for their judgment so relentlessly that we’d trained them to switch it off.</p>
+
+  <h2 class="section-title xi-writing-human-in-loop-011">Death by “are you sure?”</h2>
+  <p class="u-body xi-case-studies-adtech-016">In 2019 I was looking at a learning platform that, on paper, was doing everything right. It recommended the next course. It asked the student to confirm. It kept the human in the loop. And it was quietly failing — the engine was accurate, and most of its recommendations got skipped anyway. When I watched a few students go through it, the reason was almost embarrassing: they weren’t disagreeing with the recommendations. They were exhausted by them. “Do you want to take this course?” appeared so often it had become wallpaper, and the muscle-memory answer to wallpaper is <em>skip</em>.</p>
+  <p class="u-body xi-case-studies-adtech-016">That’s the trap hiding inside good intentions. We add the confirmation step to respect the user’s autonomy. But ask for a person’s judgment on everything and you get their judgment on nothing — the prompts blur together, attention drains out, and people start clicking on reflex. The thing we added to keep the human in control was the exact thing pushing them out of it.</p>
+
+  <h2 class="section-title xi-resources-ai-design-checklist-015">Spend the asks where they count</h2>
+  <p class="u-body xi-case-studies-adtech-016">The shift that fixed it was to stop treating every recommendation as equally worth interrupting someone for. A confirmation is a withdrawal from a finite account of attention. So I started spending those asks only where the model was genuinely unsure and a human’s input would actually change the answer. Where the model was confident, it just acted, and the student could undo it if they cared to. Where the model was lost, it said so plainly and got out of the way. That three-way split is the one my patterns library names the Act / Review / Ignore rule — it kept recurring until it earned a name. The asks that remained landed, because they’d become rare enough to mean something.</p>
+
+  <div class="xi-resources-ai-design-checklist-022">
+    <p class="lead xi-writing-human-in-loop-015"><strong>Ask for a person&rsquo;s judgment on everything and you get their judgment on nothing.</strong> The best human-in-the-loop systems spend the ask only where a human&rsquo;s input would change the answer &mdash; a tap that rare is a tap the system has earned.</p>
+  </div>
+
+  <h2 class="section-title xi-resources-ai-design-checklist-015">What I believe now</h2>
+  <p class="u-body xi-case-studies-adtech-016">Human-in-the-loop was never about making people verify every decision a machine makes. It’s about choosing the one moment where their attention is worth more than the friction of asking for it — and protecting that moment by refusing to spend it anywhere else.</p>
+
+  <div class="xi-writing-confidence-scoring-016">
+    <div class="eyebrow xi-patterns-act-review-ignore-027">The reference version</div>
+    <p class="u-ui xi-writing-013">Want the playbook, not the story? The human-in-the-loop patterns I design from — confidence thresholds, undo-don’t-confirm, edit-not-approve — with the do’s, don’ts, and worked examples.</p>
+    <a class="xi-writing-confidence-scoring-019" href="../patterns/human-in-loop.html" data-cta="pattern-reference" data-location="essay-body">See the pattern reference: Human-in-the-Loop Patterns →</a>
+  </div>
+
+  <div class="xi-writing-015">
+    <p class="eyebrow xi-process-005">Continue exploring</p>
+    <div class="xi-writing-confidence-scoring-022">
+      <a class="xi-writing-confidence-scoring-023 hv-writing-human-in-loop-1" href="./confidence-scoring.html" data-cta="next-essay" data-location="essay-footer">
+        <div class="eyebrow xi-case-studies-adtech-026">Next essay</div>
+        <div class="card-title">The Model Was Right</div>
+      </a>
+      <a class="xi-writing-confidence-scoring-023 hv-writing-human-in-loop-1" href="./index.html" data-cta="back-to-writing" data-location="essay-footer">
+        <div class="eyebrow xi-case-studies-adtech-026">All essays</div>
+        <div class="card-title">Back to Writing</div>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- The same close the nine pattern pages already carry. Added 2026-09-03: the four
+       essays and three resources are the most shareable pages on the site and the ones
+       most likely to be found cold, and they ended with "next essay" and no ask at all —
+       7 of 16 SEO-facing pages with no way out except the nav. -->
+  <div class="btn-row">
+    <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="essay-bottom">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
+  </div>
+</div></main>
+
+<!--/content-->
+<!--tail-->
+
+<script>
+// Mobile menu toggle
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+}
+
+// Reading mode toggle
+
+
+// GA4 events
+document.querySelectorAll('[data-cta]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'cta_click', {
+        cta_type: el.dataset.cta,
+        location: el.dataset.location || 'unknown',
+        page: window.location.pathname
+      });
+    }
+  });
+});
+</script>
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script defer src="../attention.js?v=2fa8260a"></script>
+<script defer src="../clarity.js?v=9e4df576"></script>
+<!--/tail-->

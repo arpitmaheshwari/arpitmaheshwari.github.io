@@ -1,0 +1,420 @@
+<!--page body_class="p-patterns-ml-explainability" footer_note="No copyright · Design is for all"-->
+<!--head--><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML Explainability: Why the Algorithm Decided — Arpit Maheshwari</title>
+<meta name="description" content="ML explainability UX patterns. Designing the &quot;why&quot; surface so a non-technical person can act on an algorithmic decision without a stats degree.">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/patterns/ml-explainability.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ML Explainability Patterns | Arpit Maheshwari">
+<meta property="og:description" content="Patterns for showing a person why the machine decided, at a depth they can use.">
+<meta property="og:url" content="https://arpitmaheshwari.com/patterns/ml-explainability.html">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/ml-explainability-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ML Explainability Patterns">
+<meta name="twitter:description" content="Five patterns for turning model logic into something a person can read and act on.">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/ml-explainability-og.png">
+<meta name="twitter:image:alt" content="Five patterns for turning model logic into something a person can read and act on.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f0312437">
+<noscript></noscript>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","headline":"ML Explainability Patterns","description":"Design patterns for explaining machine learning decisions to users.","author":{"@type":"Person","name":"Arpit Maheshwari"},"datePublished":"2026-05-09","dateModified":"2026-05-24"}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://arpitmaheshwari.com/"},
+    {"@type":"ListItem","position":2,"name":"Patterns","item":"https://arpitmaheshwari.com/#patterns"},
+    {"@type":"ListItem","position":3,"name":"ML Explainability: Why the Algorithm Decided","item":"https://arpitmaheshwari.com/patterns/ml-explainability.html"}
+  ]
+}
+</script>
+<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../amber.css?v=fb751bd1">
+<link rel="stylesheet" href="../site.css?v=711c7c1c">
+<!--/head-->
+<!--pre-nav--><svg class="xi-home-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  
+</svg>
+
+<div role="banner">
+<!--/pre-nav-->
+<!--content-->
+</div>
+
+<div class="page-head" data-ground="bookend">
+  <div class="xi-process-004">
+    <div class="meta-row">
+      <h1 class="t-hero xi-patterns-act-review-ignore-006">ML Explainability: Reasons on the Card, Not in a Tooltip</h1>
+      <span class="lbl-badge-ink xi-patterns-act-review-ignore-007">In production</span>
+    </div>
+    <p class="lbl-cap">AI Design · Showing the Why · Last updated September 2026</p>
+    <p class="lbl-cap xi-patterns-act-review-ignore-008">Part of <a class="link-gold" href="./">A Field Guide to Trust</a> · updated September 2026</p>
+    <p class="lbl-cap">Seen in production: <a class="link-gold" href="../case-studies/adtech.html">the AdTech case&nbsp;&rarr;</a> &middot; <a class="link-gold" href="../case-studies/fintech.html">the FinTech case&nbsp;&rarr;</a></p>
+    <p class="hand hand-note" aria-hidden="true">reasons on the card, not in a tooltip</p>
+  </div>
+</div>
+
+<main id="main" class="section page-bg"><div class="xi-process-004">
+
+  <section class="xi-process-012">
+    <p class="lead xi-patterns-act-review-ignore-015">A recommendation you can trace back to evidence is one you’ll stand behind. One you can’t is one you’ll override — and then you rebuild your own process beside it. These patterns show a person why the machine decided. Not the full math, not the model internals. Just enough of the reasoning to act on it without a stats degree.</p>
+    
+    <!-- Abstract UI Diagram: Feature Importance -->
+    <div class="card-wire xi-patterns-ai-failure-states-015" data-tint>
+      <div class="lbl-eyebrow xi-patterns-ai-failure-states-016">Wireframe: Feature Importance</div>
+      
+      <div class="xi-patterns-ml-explainability-016">
+        <div class="lbl-meta xi-process-005">Key Decision Drivers</div>
+        
+        <div class="xi-patterns-ml-explainability-018">
+          <!-- Feature 1 -->
+          <div>
+            <div class="xi-patterns-ml-explainability-019">
+              <div class="t-sans-ui">Historical Default Rate (Industry)</div>
+              <div class="lbl-cap-bold xi-patterns-ml-explainability-020">45%</div>
+            </div>
+            <div class="xi-patterns-ml-explainability-021">
+              <div class="xi-patterns-ml-explainability-022"></div>
+            </div>
+          </div>
+          
+          <!-- Feature 2 -->
+          <div>
+            <div class="xi-patterns-ml-explainability-019">
+              <div class="t-sans-ui">Customer Concentration > 40%</div>
+              <div class="lbl-cap-bold xi-patterns-ml-explainability-020">30%</div>
+            </div>
+            <div class="xi-patterns-ml-explainability-021">
+              <div class="xi-patterns-ml-explainability-023"></div>
+            </div>
+          </div>
+
+          <!-- Feature 3 -->
+          <div>
+            <div class="xi-patterns-ml-explainability-019">
+              <div class="t-sans-ui">Liquidity Ratio < 1.0</div>
+              <div class="lbl-cap-bold xi-patterns-ml-explainability-020">15%</div>
+            </div>
+            <div class="xi-patterns-ml-explainability-021">
+              <div class="xi-patterns-ml-explainability-024"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <figure class="xi-case-studies-ptc-036">
+      <svg id="art-ml-explainab-1" class="framed xi-case-studies-ptc-037 art-svg" data-art-scoped viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+  <title id="t">Explainability pattern</title>
+  <desc id="d">A wide left-to-right banner: a final score on the right is traced back to the two or three inputs that drove it via an explanation drawer, with an “I disagree” affordance as a first-class action.</desc>
+  <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
+
+  <!-- header -->
+  <text x="36" y="62" font-family="'Source Serif 4', Georgia, serif" font-size="34" fill="#2C2620">Explainability</text>
+  <text x="36" y="92" font-family="'Source Sans 3', system-ui, sans-serif" font-size="17" fill="#2C2722">Turn a black-box output into an auditable argument.</text>
+  <line x1="36" y1="110" x2="1244" y2="110" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+  <!-- LEFT: the three inputs that drove the output -->
+  <text x="36" y="158" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#494338">Drivers</text>
+
+  <!-- driver 1 -->
+  <g>
+    <rect x="36" y="174" width="300" height="48" rx="8" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <rect x="36" y="174" width="5" height="48" rx="2.5" fill="#C0512B"/>
+    <text x="58" y="196" font-family="'Source Sans 3', system-ui, sans-serif" font-size="16" fill="#2C2620">Payment history</text>
+    <text x="58" y="214" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" fill="#2C2722">weight +0.42</text>
+    <rect x="232" y="190" width="92" height="7" rx="3.5" fill="rgba(44,38,32,0.12)"/>
+    <rect x="232" y="190" width="78" height="7" rx="3.5" fill="#C0512B"/>
+  </g>
+
+  <!-- driver 2 -->
+  <g>
+    <rect x="36" y="234" width="300" height="48" rx="8" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <rect x="36" y="234" width="5" height="48" rx="2.5" fill="#CE9230"/>
+    <text x="58" y="256" font-family="'Source Sans 3', system-ui, sans-serif" font-size="16" fill="#2C2620">Account age</text>
+    <text x="58" y="274" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" fill="#2C2722">weight +0.27</text>
+    <rect x="232" y="250" width="92" height="7" rx="3.5" fill="rgba(44,38,32,0.12)"/>
+    <rect x="232" y="250" width="50" height="7" rx="3.5" fill="#CE9230"/>
+  </g>
+
+  <!-- driver 3 -->
+  <g>
+    <rect x="36" y="294" width="300" height="48" rx="8" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <rect x="36" y="294" width="5" height="48" rx="2.5" fill="#24473F"/>
+    <text x="58" y="316" font-family="'Source Sans 3', system-ui, sans-serif" font-size="16" fill="#2C2620">Recent inquiries</text>
+    <text x="58" y="334" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" fill="#2C2722">weight -0.15</text>
+    <rect x="232" y="310" width="92" height="7" rx="3.5" fill="rgba(44,38,32,0.12)"/>
+    <rect x="232" y="310" width="28" height="7" rx="3.5" fill="#24473F"/>
+  </g>
+
+  <!-- MIDDLE: explanation drawer / why-this surface, tracing lines converge right -->
+  <text x="470" y="158" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#494338">Why this output</text>
+  <rect x="470" y="174" width="360" height="168" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+  <line x1="470" y1="212" x2="830" y2="212" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+  <circle cx="492" cy="194" r="4" fill="#C0512B"/>
+  <text x="506" y="199" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="#2C2620">Explanation drawer</text>
+
+  <!-- contribution rows inside the drawer -->
+  <text x="492" y="244" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#2C2722">Payment history</text>
+  <rect x="640" y="234" width="160" height="9" rx="4.5" fill="rgba(44,38,32,0.12)"/>
+  <rect x="640" y="234" width="132" height="9" rx="4.5" fill="#C0512B"/>
+
+  <text x="492" y="280" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#2C2722">Account age</text>
+  <rect x="640" y="270" width="160" height="9" rx="4.5" fill="rgba(44,38,32,0.12)"/>
+  <rect x="640" y="270" width="86" height="9" rx="4.5" fill="#CE9230"/>
+
+  <text x="492" y="316" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#2C2722">Recent inquiries</text>
+  <rect x="640" y="306" width="160" height="9" rx="4.5" fill="rgba(44,38,32,0.12)"/>
+  <rect x="640" y="306" width="48" height="9" rx="4.5" fill="#24473F"/>
+
+  <!-- tracing connectors: drivers -> drawer -->
+  <path d="M336 198 C 400 198, 412 200, 470 220" fill="none" stroke="#C0512B" stroke-width="2"/>
+  <path d="M336 258 C 400 258, 412 265, 470 270" fill="none" stroke="#CE9230" stroke-width="2"/>
+  <path d="M336 318 C 400 318, 412 312, 470 320" fill="none" stroke="#24473F" stroke-width="2"/>
+
+  <!-- tracing connector: drawer -> output score (the trace-back arrow, drawn left from output) -->
+  <path d="M1004 250 C 920 250, 905 252, 830 252" fill="none" stroke="#2C2620" stroke-width="2" stroke-dasharray="2 6"/>
+  <polygon points="830,252 844,246 844,258" fill="#2C2620"/>
+  <text x="858" y="378" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" fill="#494338">traced back from the score</text>
+
+  <!-- RIGHT: the output / score -->
+  <text x="1004" y="158" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#494338">Output</text>
+  <rect x="1004" y="174" width="240" height="120" rx="12" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+  <circle cx="1124" cy="232" r="46" fill="none" stroke="rgba(44,38,32,0.12)" stroke-width="10"/>
+  <path d="M1124 186 A 46 46 0 1 1 1085 257" fill="none" stroke="#C0512B" stroke-width="10" stroke-linecap="round"/>
+  <text x="1124" y="226" text-anchor="middle" font-family="'Source Serif 4', Georgia, serif" font-size="36" fill="#2C2620">724</text>
+  <text x="1124" y="248" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" fill="#2C2722">risk score</text>
+
+  <!-- "I disagree" first-class affordance -->
+  <rect x="1004" y="306" width="240" height="44" rx="10" fill="#F4ECDA" stroke="#C0512B" stroke-width="2"/>
+  <path d="M1028 322 l8 8 14 -16" fill="none" stroke="#C0512B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text style="fill:#76321A" x="1062" y="334" font-family="'Source Sans 3', system-ui, sans-serif" font-size="17" font-weight="600" fill="#C0512B">I disagree</text>
+
+  <text x="1004" y="378" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" fill="#494338">a first-class action, not a footnote</text>
+</svg>
+      <div class="artalt">
+        <p class="artalt-h">Explainability</p>
+        <p class="artalt-sub">Turn a black-box output into an auditable argument.</p>
+        <ol class="artalt-set">
+          <li>
+            <p class="artalt-n">Drivers</p>
+            <dl class="artalt-factors">
+              <dt>Payment history</dt><dd>weight +0.42</dd>
+              <dt>Account age</dt><dd>weight +0.27</dd>
+              <dt>Recent inquiries</dt><dd>weight -0.15</dd>
+            </dl>
+          </li>
+          <li>
+            <p class="artalt-n">Why this output</p>
+            <p class="artalt-t">Explanation drawer</p>
+            <p class="artalt-d">Payment history &#183; Account age &#183; Recent inquiries</p>
+          </li>
+          <li>
+            <p class="artalt-n">Output</p>
+            <p class="artalt-t">724</p>
+            <p class="artalt-d">risk score</p>
+          </li>
+        </ol>
+        <p class="artalt-flow">traced back from the score</p>
+        <p class="artalt-bar"><b>I disagree</b> &#8212; a first-class action, not a footnote</p>
+      </div>
+
+
+    </figure>
+  </section>
+
+  <div class="thesis" data-tint>
+    <span class="t-l">The principle this page proves</span>
+    <p>A recommendation you can trace, you&rsquo;ll defend. One you can&rsquo;t, you&rsquo;ll quietly <em>rebuild around</em>.</p>
+  </div>
+  <!-- LIVE DEMO — same demo as the book's field guide -->
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Try it — the pattern, live</h2>
+    <p class="u-ui xi-case-studies-adtech-016">The same live demo that runs in the book edition’s field guide. Synthetic data; nothing leaves the page.</p>
+    <div data-demo="branch"></div>
+  </section>
+
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">1. Feature Importance (What Mattered Most)</h2>
+    <p class="u-body xi-process-005">After the example, add: 'In production this was the reasoning printed on the plan itself — which audiences, which environments, what trade-off against the brief.' The person reads three reasons, not a black box.</p>
+    <p class="u-ui xi-patterns-act-review-ignore-027"><strong>Strengths:</strong> Cheap to build. The user can check the work. Repeated exposure trains their intuition.</p>
+    <p class="u-ui"><strong>Weaknesses:</strong> It hides <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="How changes in one input variable affect the impact of another input variable on the decision &mdash; for example, job title and industry may interact, making both more important together than separately">feature interactions</abbr>. When features are correlated, the ranking lies.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">2. Counterfactual Reasoning (“What If”)</h2>
+    <p class="u-body xi-process-005">Show the one input that flips the call. “The system rated this lead high-value. Change [one thing] and it drops to medium-value.” Or: “You’re 3 steps away from the next tier. Here’s what closes the gap.”</p>
+    <p class="u-body xi-process-005">A <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="A hypothetical scenario showing what would change if one input variable were different, revealing causal relationships and decision boundaries">counterfactual</abbr> lands because the person reads it as a causal story, not a verdict. The decision stops feeling fixed. They know exactly what lever to pull.</p>
+    <p class="u-ui"><strong>Choose it when the user can act:</strong> sales (close a deal), education (lift a score), recommendations (steer toward better picks).</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">3. Comparative Explanation (“How It Compares”)</h2>
+    <p class="u-body xi-process-005">Set the pick against its rivals. “I recommended Option A. It beats Option B on [dimension 1] and loses to it on [dimension 2].”</p>
+    <p class="u-body">A person reads a comparison faster than an absolute score. The trade-off is right there: Option A is riskier with more upside, Option B is the safe call.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">4. Reasoning Path (“Step by Step”)</h2>
+    <p class="u-body xi-process-005">Walk the chain in order. “To predict conversion, I checked industry (SaaS), then company size (50–200), then engagement (high), then landed on 73%.”</p>
+    <p class="u-body xi-process-005">It reads the way a human analyst would talk through the case. The person follows the branch, step by step.</p>
+    <p class="u-ui"><strong>Works for:</strong> <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="Machine learning models like decision trees, random forests, and gradient boosting that split data into interpretable branches, making decisions traceable step-by-step">tree-based models</abbr>, decision trees, rule-based systems — anything with a real path to trace. <strong>Breaks for:</strong> <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="Deep learning models with multiple layers of interconnected nodes whose decision logic is mathematically complex and not easily interpretable by humans">neural networks</abbr>. There’s no path to show, and inventing one is hand-waving with a UI.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">5. Confidence + Uncertainty Bands</h2>
+    <p class="u-body xi-process-005">Ship the prediction with its range. “Predicted revenue: $45K (±$15K). Past errors put the real number between $30K–$60K.”</p>
+    <p class="u-body">A band is an honest surface. It says: the model’s best guess is $45K, it isn’t 100% sure, and here’s the spread it usually misses by. This one doesn’t explain <em>why</em> — it tells the person <em>how hard to lean</em>.</p>
+  </section>
+
+  <div class="counter">
+    <span class="c-l">The strongest objection, kept in</span>
+    <p class="u-body">&ldquo;Experts don&rsquo;t have time to read explanations.&rdquo; Correct &mdash; which is why the pattern is three reasons on the card, not a stats lecture behind a link. The depth is the design decision: enough to argue with, never enough to drown in. The users who &ldquo;had no time&rdquo; for reasons were the same ones spending hours re-deriving scores the interface refused to explain.</p>
+  </div>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Ship it: the checklist.</h2>
+    <ul class="u-body xi-patterns-act-review-ignore-026">
+      <li class="xi-patterns-act-review-ignore-027"><strong>Pick the explanation type</strong> from the domain — feature importance, counterfactual, or comparative.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Compute it:</strong> tree models give you importance for free; neural networks need <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="LIME (Local Interpretable Model-agnostic Explanations) and SHAP (SHapley Additive exPlanations) are mathematical methods that explain neural network predictions by attributing each decision to individual input features">LIME/SHAP</abbr>; rule-based systems trace the rules.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Say it in plain words:</strong> &ldquo;Feature X has importance 0.34&rdquo; becomes “Job title was the strongest signal — 34% of the decision.”</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Watch a real user read it:</strong> can they say <em>why</em> the model decided? Do they lean on it more after?</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Don’t fake it:</strong> if you can’t follow the model’s logic, don’t write a story that pretends you can.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong><abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="A design pattern where complex information is hidden initially to reduce cognitive load, then revealed on user action to avoid overwhelming them">Progressive disclosure</abbr>:</strong> top 3 features by default, the rest one click away.</li>
+    </ul>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Trade-offs: Accuracy vs. Understandability</h2>
+    <div class="td-scroll xi-patterns-calibration-track-record-022">
+      <table class="t-cap td-table xi-patterns-act-review-ignore-022" role="table">
+        <thead role="rowgroup">
+          <tr role="row" class="xi-patterns-act-review-ignore-023"><th scope="col" role="columnheader" class="lbl-ink xi-patterns-act-review-ignore-024">Method</th><th scope="col" role="columnheader" class="lbl-ink xi-patterns-act-review-ignore-024">Accuracy</th><th scope="col" role="columnheader" class="lbl-ink xi-patterns-act-review-ignore-024">Understandability</th><th scope="col" role="columnheader" class="lbl-ink xi-patterns-act-review-ignore-024">Best For</th></tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row" class="xi-patterns-act-review-ignore-023"><td role="cell" class="xi-patterns-act-review-ignore-025"><strong>Feature Importance</strong></td><td role="cell" data-label="Accuracy" class="xi-patterns-act-review-ignore-025">Partial &mdash; hides interactions</td><td role="cell" data-label="Understandability" class="xi-patterns-act-review-ignore-025">Highest</td><td role="cell" data-label="Best For" class="xi-patterns-act-review-ignore-025">Expert users</td></tr>
+          <tr role="row" class="xi-patterns-act-review-ignore-023"><td role="cell" class="xi-patterns-act-review-ignore-025"><strong>Counterfactual</strong></td><td role="cell" data-label="Accuracy" class="xi-patterns-act-review-ignore-025">Good</td><td role="cell" data-label="Understandability" class="xi-patterns-act-review-ignore-025">High</td><td role="cell" data-label="Best For" class="xi-patterns-act-review-ignore-025">Action-oriented users</td></tr>
+          <tr role="row" class="xi-patterns-act-review-ignore-023"><td role="cell" class="xi-patterns-act-review-ignore-025"><strong>Comparative</strong></td><td role="cell" data-label="Accuracy" class="xi-patterns-act-review-ignore-025">High</td><td role="cell" data-label="Understandability" class="xi-patterns-act-review-ignore-025">High</td><td role="cell" data-label="Best For" class="xi-patterns-act-review-ignore-025">Choice / trade-off scenarios</td></tr>
+          <tr role="row" class="xi-patterns-act-review-ignore-023"><td role="cell" class="xi-patterns-act-review-ignore-025"><strong>Reasoning Path</strong></td><td role="cell" data-label="Accuracy" class="xi-patterns-act-review-ignore-025">Exact for tree models</td><td role="cell" data-label="Understandability" class="xi-patterns-act-review-ignore-025">Low</td><td role="cell" data-label="Best For" class="xi-patterns-act-review-ignore-025">Compliance / critical decisions</td></tr>
+          <tr role="row" class="xi-patterns-act-review-ignore-023"><td role="cell" class="xi-patterns-act-review-ignore-025"><strong>Full network details</strong></td><td role="cell" data-label="Accuracy" class="xi-patterns-act-review-ignore-025">Exact</td><td role="cell" data-label="Understandability" class="xi-patterns-act-review-ignore-025">Near zero</td><td role="cell" data-label="Best For" class="xi-patterns-act-review-ignore-025">Required by law / research only</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="xi-patterns-ml-explainability-038">*If tree-based.</p>
+  </section>
+
+  <section class="card-gold xi-patterns-act-review-ignore-028">
+    <h3 class="card-title xi-process-005">Where this pattern earned its keep</h3>
+    <ul class="t-cap-loose xi-case-studies-adtech-052">
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> the surface that let analysts pull a score apart and see why the model ranked a deal.</li>
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> the reasoning printed on the plan itself — which audiences, which environments, what trade-off against the brief.</li>
+    </ul>
+  </section>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section class="card-gold xi-patterns-act-review-ignore-028">
+    <div class="eyebrow xi-process-013">Get AI design patterns in your inbox</div>
+    <p class="u-ui xi-case-studies-adtech-016">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
+    <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+      <input class="t-sans-ui card-seg xi-patterns-act-review-ignore-031" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
+      <button class="cta cta--secondary xi-patterns-act-review-ignore-032" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
+    </form>
+  </section>
+
+  <section class="xi-patterns-ai-failure-states-046">
+    <div class="eyebrow xi-process-013">Companion essay</div>
+    <a class="xi-patterns-ai-failure-states-047" href="../writing/explainability.html">The Explainability Layer: Making AI Legible →</a>
+  </section>
+
+  <section class="measure-t" data-tint>
+    <div class="xi-patterns-act-review-ignore-035">
+      <div class="eyebrow xi-process-013">Where this breaks — do not use it here</div>
+      <p class="u-body xi-process-017">Reasons the user can’t verify or act on become noise — by week three, unread explanation chips are pixels. Rotate to showing reasons only when they’d change the decision (low confidence, high stakes, disagreement), not on every card. Explaining everything equally is the same as explaining nothing.</p>
+    </div>
+  </section>
+
+  <div class="btn-row">
+    <a class="cta-quiet" href="./human-in-loop.html">Next pattern / Human-in-Loop →</a>
+    <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="pattern-bottom">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
+  </div>
+</div></main>
+
+<!--/content-->
+<!--tail-->
+
+<script>
+const toggle = document.getElementById('dyslexiaToggle');
+if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on'; if (isDyslexic) { document.body.classList.add('dyslexia-mode'); toggle.setAttribute('aria-pressed', 'true'); } toggle.addEventListener('click', () => { document.body.classList.toggle('dyslexia-mode'); const isOn = document.body.classList.contains('dyslexia-mode'); toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false'); localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off'); }); }
+document.addEventListener('click', (e) => { const cta = e.target.closest('[data-cta]'); if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' }); });
+
+// Scroll depth — fires once per threshold (25/50/75/100)
+const scrollDepthHits = new Set();
+function trackScrollDepth() {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (docHeight <= 0) return;
+  const pct = Math.min(100, Math.floor((window.scrollY / docHeight) * 100));
+  [25, 50, 75, 100].forEach(threshold => {
+    if (pct >= threshold && !scrollDepthHits.has(threshold)) {
+      scrollDepthHits.add(threshold);
+      if (typeof gtag === 'function') gtag('event', 'scroll_depth', { percent: threshold });
+    }
+  });
+}
+window.addEventListener('scroll', trackScrollDepth, { passive: true });
+
+// Section visibility — fires once per section when 50% in viewport
+const sectionViewObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.viewed) {
+      entry.target.dataset.viewed = '1';
+      if (typeof gtag === 'function') {
+        gtag('event', 'section_view', { section_id: entry.target.id });
+      }
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s));
+</script>
+
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script src="./demos.js?v=023e3327" defer></script>
+<script defer src="../attention.js?v=2fa8260a"></script>
+<script defer src="../clarity.js?v=9e4df576"></script>
+<!--/tail-->

@@ -131,7 +131,7 @@ if __name__ == "__main__":
     if not pages:
         calibrate()
         pages = [str(p) for p in sorted(pathlib.Path('.').rglob('*.html'))
-                 if not any(x.startswith('.') or x in ('prototypes','portfolio-sources','node_modules')
+                 if not any(x.startswith('.') or x in ('prototypes','portfolio-sources','node_modules','partials')
                     for x in p.parts) and not p.name.startswith('_')]
     bad = 0
     for pg in pages:

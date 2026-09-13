@@ -22,7 +22,7 @@ from html.parser import HTMLParser
 
 SHIPPED = set()
 SKIP_SCHEMES = ('mailto:', 'tel:', 'javascript:', 'data:', 'sms:')
-EXCLUDE_DIRS = ('node_modules/', 'tests/', 'prototypes/', '.git/')
+EXCLUDE_DIRS = ('node_modules/', 'tests/', 'prototypes/', '.git/', 'partials/')   # partials/pages/ are page SOURCES, not pages (2026-09-13)
 # Gates write __cv.html / __al.html into the repo root while they run.
 TEMP_PAGE = '__'
 

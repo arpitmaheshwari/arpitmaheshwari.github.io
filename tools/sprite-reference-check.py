@@ -29,7 +29,7 @@ IDS = re.compile(r'\sid="([^"]+)"')
 def pages(root):
     out = subprocess.run(['git', 'ls-files', '*.html'], cwd=root,
                          capture_output=True, text=True).stdout.split()
-    return [f for f in out if not f.startswith(('tests/', 'prototypes/'))]
+    return [f for f in out if not f.startswith(('tests/', 'prototypes/', 'partials/'))]
 
 
 def scan(root, extra_text=None):

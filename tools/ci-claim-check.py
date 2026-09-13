@@ -41,7 +41,7 @@ for f in sorted(glob.glob(os.path.join(ROOT, '**/*.html'), recursive=True)):
     if os.path.basename(f).startswith('__'):
         continue
     rel = os.path.relpath(f, ROOT)
-    if rel.startswith(('prototypes/', 'portfolio-sources/', 'tests/', 'assets/', 'book/')):
+    if rel.startswith(('prototypes/', 'portfolio-sources/', 'tests/', 'assets/', 'book/', 'partials/')):
         continue
     text = re.sub(r'<[^>]+>', ' ', open(f, encoding='utf-8').read())
     for m in CLAIMS.finditer(text):

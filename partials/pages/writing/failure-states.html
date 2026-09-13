@@ -1,0 +1,173 @@
+<!--page body_class="p-writing-failure-states" footer_note="No rights reserved — good patterns should travel"-->
+<!--head-->  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design the Failure State First — Arpit Maheshwari</title>
+  <meta name="description" content="How to design what an AI product says when it cannot deliver — honest failure states that keep users from leaving.">
+  <meta property="og:title" content="Design the Failure State First">
+  <meta property="og:description" content="The failure state is where trust is won or lost — so I design it first.">
+  <meta property="og:url" content="https://arpitmaheshwari.com/writing/failure-states.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/failure-states-og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/failure-states-og.png">
+  <meta property="article:published_time" content="2026-05-10">
+  <meta property="article:modified_time" content="2026-05-16">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://arpitmaheshwari.com/writing/failure-states.html">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f0312437">
+<noscript></noscript>
+<link rel="stylesheet" href="../amber.css?v=fb751bd1">
+<link rel="stylesheet" href="../site.css?v=711c7c1c">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Design the Failure State First",
+    "description": "A model demoed beautifully, then met real deal data it had never seen and became a coin-flip. The failure state—when confidence is low, data is missing, or the model is uncertain—is what I design first.",
+    "author": {
+      "@type": "Person",
+      "name": "Arpit Maheshwari",
+      "url": "https://arpitmaheshwari.com"
+    },
+    "datePublished": "2026-05-10",
+    "dateModified": "2026-05-16"
+  }
+  </script>
+<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<!--/head-->
+<!--pre-nav--><div role="banner">
+<!--/pre-nav-->
+<!--content-->
+</div>
+
+<div class="page-head" data-ground="bookend">
+  <div class="xi-process-004">
+    <h1 class="xi-resources-ai-design-checklist-006">Design the Failure State First</h1>
+    <p class="xi-resources-ai-design-checklist-007">Methodology · May 2026</p>
+    <p class="hand hand-note" aria-hidden="true">the demo always goes perfectly — that’s the trap</p>
+  </div>
+</div>
+
+<main id="main" class="section page-bg"><div class="xi-process-004">
+
+  <p class="lead xi-resources-founder-questions-009">The demo went perfectly. Everyone in the room left convinced. Three months later, on real deal data, the answers stopped holding. The model hadn’t changed. We’d just never designed the part where it’s wrong.</p>
+
+  <h2 class="section-title xi-resources-ai-design-checklist-015">The room that left impressed</h2>
+  <p class="u-body xi-case-studies-adtech-016">In 2020 I sat in on a machine-learning team presenting a new model to a private-equity client. It was a clean demo — curated inputs, a confident number, a tidy answer. The client was sold. So was I, for about a week. Then the model met deal data it had never seen, and that confident number became a coin-flip with delusions of certainty. The failure wasn’t dramatic.</p>
+  <p class="u-body xi-case-studies-adtech-016">What stuck with me wasn’t that the model was wrong sometimes — every model is. It was that the interface had no language for being wrong. It had been designed entirely around the demo: the happy path, the case where the data is clean and the answer is obvious. The cases where the model is uncertain, the inputs are missing, or the world has drifted away from the training set (what a data scientist would call <a class="link-gold" href="../resources/intelligent-systems-glossary.html#distribution-shift">distribution shift</a>) — none of that had a screen. And that is exactly where the client’s trust either held or evaporated.</p>
+
+  <div class="xi-resources-ai-design-checklist-022">
+    <p class="lead xi-writing-explainability-015"><strong>Designing the failure state isn&rsquo;t error handling. It&rsquo;s trust recovery.</strong> When the system stumbles, the user needs to know why and what to do next. Get that moment wrong and the good answers stop mattering.</p>
+  </div>
+
+  <h2 class="section-title xi-resources-ai-design-checklist-015">So now I start at the bottom</h2>
+  <p class="u-body xi-case-studies-adtech-016">After that project I changed the order I design in. I no longer start with the case where the model is right. I start with the question almost nobody asks until production forces it: <em>what does this look like when it’s wrong?</em> Low confidence, missing data, a user whose situation the model has never seen &mdash; I design those screens first, because they&rsquo;re the ones that decide whether anyone trusts the good answers later. The patterns library names this the capability contract: what the system is for, where it taps out, and what it hands back to a human. I draw those edges before any happy path.</p>
+  <p class="u-body xi-case-studies-adtech-016">The reflex everywhere else is to treat the unhappy path as a rounding error. “Edge cases are too rare to be worth it.” They are rare, right up until the day production hands the system something it’s never seen — and by then the trust that took months to build is gone in an afternoon. The happy path is the smaller half of the real work. The rest is the part nobody demos, and it’s the part that decides whether a business will run on what you built.</p>
+
+  <h2 class="section-title xi-resources-ai-design-checklist-015">What I believe now</h2>
+  <p class="u-body xi-case-studies-adtech-016">Every intelligent system I design now opens with one question, asked before a single happy-path screen: “What happens when this fails?” Not as a polish pass at the end. As the first design problem, because it’s the one the user will actually judge you on.</p>
+
+  <div class="xi-writing-confidence-scoring-016">
+    <div class="eyebrow xi-patterns-act-review-ignore-027">The reference version</div>
+    <p class="u-ui xi-writing-013">Want the playbook, not the story? The failure-state patterns I design from — prevention, transparency, recovery — with the do’s, don’ts, and worked examples.</p>
+    <a class="xi-writing-confidence-scoring-019" href="../patterns/ai-failure-states.html" data-cta="pattern-reference" data-location="essay-body">See the pattern reference: AI Failure State Patterns →</a>
+  </div>
+
+  <div class="xi-writing-015">
+    <p class="eyebrow xi-process-005">Continue exploring</p>
+    <div class="xi-writing-confidence-scoring-022">
+      <a class="xi-writing-confidence-scoring-023 hv-writing-failure-states-1" href="./explainability.html" data-cta="next-essay" data-location="essay-footer">
+        <div class="xi-writing-confidence-scoring-024">Next essay</div>
+        <div class="card-title">The Explainability Layer</div>
+      </a>
+      <a class="xi-writing-confidence-scoring-023 hv-writing-failure-states-1" href="./index.html" data-cta="back-to-writing" data-location="essay-footer">
+        <div class="xi-writing-confidence-scoring-024">All essays</div>
+        <div class="card-title">Back to Writing</div>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- The same close the nine pattern pages already carry. Added 2026-09-03: the four
+       essays and three resources are the most shareable pages on the site and the ones
+       most likely to be found cold, and they ended with "next essay" and no ask at all —
+       7 of 16 SEO-facing pages with no way out except the nav. -->
+  <div class="btn-row">
+    <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="essay-bottom">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
+  </div>
+</div></main>
+
+<!--/content-->
+<!--tail-->
+
+<script>
+// Mobile menu toggle
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+}
+
+// Reading mode toggle
+
+
+// GA4 events
+document.querySelectorAll('[data-cta]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'cta_click', {
+        cta_type: el.dataset.cta,
+        location: el.dataset.location || 'unknown',
+        page: window.location.pathname
+      });
+    }
+  });
+});
+</script>
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script defer src="../attention.js?v=2fa8260a"></script>
+<script defer src="../clarity.js?v=9e4df576"></script>
+<!--/tail-->

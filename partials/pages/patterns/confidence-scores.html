@@ -1,0 +1,510 @@
+<!--page body_class="p-patterns-confidence-scores" footer_note="No copyright · Design is for all"-->
+<!--head--><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Confidence Scores: 5 UI Patterns — Arpit Maheshwari</title>
+<meta name="description" content="Learn how to design AI confidence scores that build user trust. 5 reusable UI patterns for algorithmic confidence, ML explainability, and intelligent systems.">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/patterns/confidence-scores.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Confidence Score Patterns — AI Design | Arpit Maheshwari">
+<meta property="og:description" content="How to design interfaces that help users understand and trust algorithmic recommendations. Five patterns with trade-offs.">
+<meta property="og:url" content="https://arpitmaheshwari.com/patterns/confidence-scores.html">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/confidence-scores-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Confidence Score Patterns">
+<meta name="twitter:description" content="Five reusable patterns for communicating AI confidence to users.">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/confidence-scores-og.png">
+<meta name="twitter:image:alt" content="Five reusable patterns for communicating AI confidence to users.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f0312437">
+<noscript></noscript>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"TechArticle",
+  "headline":"Confidence Score Patterns",
+  "description":"Five reusable design patterns for communicating AI confidence levels to users.",
+  "author":{"@type":"Person","name":"Arpit Maheshwari"},
+  "datePublished":"2026-05-09",
+  "dateModified":"2026-05-24"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://arpitmaheshwari.com/"},
+    {"@type":"ListItem","position":2,"name":"Patterns","item":"https://arpitmaheshwari.com/#patterns"},
+    {"@type":"ListItem","position":3,"name":"AI Confidence Scores: 5 UI Patterns","item":"https://arpitmaheshwari.com/patterns/confidence-scores.html"}
+  ]
+}
+</script>
+<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../amber.css?v=fb751bd1">
+<link rel="stylesheet" href="../site.css?v=711c7c1c">
+<!--/head-->
+<!--pre-nav--><svg class="xi-home-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  
+</svg>
+
+<div role="banner">
+<!--/pre-nav-->
+<!--content-->
+</div>
+
+<div class="page-head" data-ground="bookend">
+  <div class="xi-process-004">
+    <div class="meta-row">
+      <h1 class="t-hero xi-patterns-act-review-ignore-006">Confidence Scores That End in a Verb</h1>
+      <span class="lbl-badge-ink xi-patterns-act-review-ignore-007">In production</span>
+    </div>
+    <p class="lbl-cap">AI Design · Trust Patterns · Last updated September 2026</p>
+    <p class="lbl-cap xi-patterns-act-review-ignore-008">Part of <a class="link-gold" href="./">A Field Guide to Trust</a> · updated September 2026</p>
+    <p class="lbl-cap">Seen in production: <a class="link-gold" href="../case-studies/fintech.html">the FinTech case&nbsp;&rarr;</a> &middot; <a class="link-gold" href="../case-studies/vc-diligence.html">the due-diligence case&nbsp;&rarr;</a></p>
+    <p class="hand hand-note" aria-hidden="true">never ship the naked number</p>
+  </div>
+</div>
+
+<main id="main" class="section page-bg"><div class="xi-process-004">
+
+  <section class="xi-process-012">
+    <p class="lead xi-patterns-act-review-ignore-015">I watched private-equity analysts meet a deal score they had no way to interrogate &mdash; and quietly re-derive the whole thing by hand. The number wasn&rsquo;t the problem; the number was good. The problem was that 87% is not an instruction. These five patterns are the ways I&rsquo;ve made a score resolve into something a professional will actually move on &mdash; each with its trade-off written down.</p>
+
+    <div class="thesis" data-tint>
+      <span class="t-l">The principle this page proves</span>
+      <p>An unexplained 87% is a shrug with decimals. A score earns its pixels only when it resolves to a <em>verb</em>.</p>
+    </div>
+    <figure class="xi-case-studies-ptc-036">
+      <svg id="art-confidence-s-1" class="framed xi-case-studies-ptc-037 art-svg" data-art-scoped viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+  <title id="t">Confidence Scores pattern</title>
+  <desc id="d">A confidence gauge reading mapped to a three-band action scale of act, review and ignore, beside a thirty-day track-record sparkline.</desc>
+  <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
+
+  <!-- Title block -->
+  <text x="36" y="74" font-family="'Source Serif 4', Georgia, serif" font-size="40" font-weight="bold" fill="#2C2620">Confidence Scores</text>
+  <text x="36" y="106" font-family="'Source Sans 3', system-ui, sans-serif" font-size="19" fill="#2C2722">A number anchored to an action &#8212; with its own track record.</text>
+  <line x1="36" y1="126" x2="1244" y2="126" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+  <!-- ===== LEFT: Confidence gauge ===== -->
+  <g transform="translate(40,150)">
+    <rect x="0" y="0" width="430" height="214" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#494338">Confidence</text>
+
+    <!-- Gauge arc, semicircle centered at (215,168) r=128 -->
+    <!-- track -->
+    <path d="M 87 168 A 128 128 0 0 1 343 168" fill="none" stroke="rgba(44,38,32,0.12)" stroke-width="14" stroke-linecap="round"/>
+    <!-- value arc to ~78% (sweep across 180deg -> angle 180*0.78=140.4deg from left) -->
+    <!-- end point: cx + r*cos(180-140.4), cy - r*sin(140.4)... compute: theta from left=140.4deg -->
+    <path d="M 87 168 A 128 128 0 0 1 313.4 107.6" fill="none" stroke="#C0512B" stroke-width="14" stroke-linecap="round"/>
+
+    <!-- needle to 78% -->
+    <line x1="215" y1="168" x2="313.4" y2="107.6" stroke="#2C2620" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="215" cy="168" r="7" fill="#2C2620"/>
+
+    <!-- value -->
+    <text x="215" y="156" text-anchor="middle" font-family="'Source Serif 4', Georgia, serif" font-size="52" font-weight="bold" fill="#2C2620">78</text>
+    <text x="215" y="182" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="#2C2722">% confident</text>
+
+    <!-- end labels -->
+    <text x="78" y="200" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" fill="#494338">0</text>
+    <text x="352" y="200" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" fill="#494338">100</text>
+  </g>
+
+  <!-- connector -->
+  <path d="M 478 257 H 524" fill="none" stroke="rgba(44,38,32,0.12)" stroke-width="2"/>
+  <path d="M 518 251 L 526 257 L 518 263 Z" fill="#494338"/>
+
+  <!-- ===== MIDDLE: Action scale (3 bands) ===== -->
+  <g transform="translate(534,150)">
+    <rect x="0" y="0" width="386" height="214" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <text x="24" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#494338">Action</text>
+
+    <!-- ACT band (active) -->
+    <rect x="24" y="54" width="338" height="40" rx="7" fill="#24473F"/>
+    <circle cx="48" cy="74" r="6" fill="#F4ECDA"/>
+    <text x="66" y="80" font-family="'Source Sans 3', system-ui, sans-serif" font-size="17" font-weight="bold" fill="#F4ECDA">Act</text>
+    <text x="338" y="80" text-anchor="end" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#F4ECDA">75&#8211;100</text>
+
+    <!-- REVIEW band -->
+    <rect x="24" y="100" width="338" height="40" rx="7" fill="#F4ECDA" stroke="#CE9230" stroke-width="1.5"/>
+    <circle cx="48" cy="120" r="6" fill="#CE9230"/>
+    <text x="66" y="126" font-family="'Source Sans 3', system-ui, sans-serif" font-size="17" fill="#2C2620">Review</text>
+    <text x="338" y="126" text-anchor="end" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#2C2722">40&#8211;74</text>
+
+    <!-- IGNORE band -->
+    <rect x="24" y="146" width="338" height="40" rx="7" fill="#F4ECDA" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <circle cx="48" cy="166" r="6" fill="#494338"/>
+    <text x="66" y="172" font-family="'Source Sans 3', system-ui, sans-serif" font-size="17" fill="#2C2722">Ignore</text>
+    <text x="338" y="172" text-anchor="end" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#494338">0&#8211;39</text>
+
+    <!-- pointer marking 78 -> Act band -->
+    <path d="M 8 74 L 20 68 L 20 80 Z" fill="#C0512B"/>
+  </g>
+
+  <!-- connector -->
+  <path d="M 928 257 H 974" fill="none" stroke="rgba(44,38,32,0.12)" stroke-width="2"/>
+  <path d="M 968 251 L 976 257 L 968 263 Z" fill="#494338"/>
+
+  <!-- ===== RIGHT: 30-day track record sparkline ===== -->
+  <g transform="translate(984,150)">
+    <rect x="0" y="0" width="260" height="214" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <text x="22" y="36" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#494338">30-day track record</text>
+
+    <!-- baseline -->
+    <line x1="22" y1="150" x2="238" y2="150" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+    <!-- sparkline: calibration accuracy over time, gently rising -->
+    <polyline points="22,128 46,134 70,120 94,124 118,108 142,114 166,98 190,104 214,90 238,86"
+              fill="none" stroke="#C0512B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="238" cy="86" r="5" fill="#C0512B"/>
+
+    <!-- subtle dots on a few nodes -->
+    <circle cx="70" cy="120" r="2.5" fill="#494338"/>
+    <circle cx="118" cy="108" r="2.5" fill="#494338"/>
+    <circle cx="166" cy="98" r="2.5" fill="#494338"/>
+
+    <text x="22" y="178" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" fill="#494338">Day 1</text>
+    <text x="238" y="178" text-anchor="end" font-family="'Source Sans 3', system-ui, sans-serif" font-size="13" fill="#494338">Day 30</text>
+    <text x="22" y="198" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#2C2620">Calibration: <tspan font-weight="bold" fill="#24473F">91%</tspan></text>
+  </g>
+</svg>
+      <div class="artalt">
+        <p class="artalt-h">Confidence Scores</p>
+        <p class="artalt-sub">A number anchored to an action &#8212; with its own track record.</p>
+        <ol class="artalt-set">
+          <li>
+            <p class="artalt-n">Confidence</p>
+            <p class="artalt-t">78</p>
+            <p class="artalt-d">% confident &#183; 0 to 100</p>
+          </li>
+          <li>
+            <p class="artalt-n">Action</p>
+            <dl class="artalt-factors">
+              <dt>Act</dt><dd>75&#8211;100</dd>
+              <dt>Review</dt><dd>40&#8211;74</dd>
+              <dt>Ignore</dt><dd>0&#8211;39</dd>
+            </dl>
+          </li>
+          <li>
+            <p class="artalt-n">30-day track record</p>
+            <p class="artalt-t">Calibration: 91%</p>
+            <p class="artalt-d">Day 1 to Day 30</p>
+          </li>
+        </ol>
+      </div>
+
+
+    </figure>
+  </section>
+  <!-- LIVE DEMO — same demo as the book's field guide -->
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Try it — the pattern, live</h2>
+    <p class="u-ui xi-case-studies-adtech-016">The same live demo that runs in the book edition’s field guide. Synthetic data; nothing leaves the page.</p>
+    <div data-demo="gauge"></div>
+  </section>
+
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">1. Numeric Score with Threshold Hiding</h2>
+    <p class="u-body xi-process-005">Show a confidence percentage (0–100%) only when it clears a <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="The numeric boundary (e.g., 65%) below which the system either hides output or flags uncertainty to the user">threshold</abbr> (typically 60–70%). Below that line, say “Low confidence” or drop the number entirely.</p>
+    <ul class="u-body xi-case-studies-adtech-052">
+      <li class="xi-patterns-act-review-ignore-027"><strong>Stops the freeze:</strong> A user never stares at a 42% score and stalls. The system says “I’m not confident enough to recommend this,” and the decision moves on.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Trusts the expert:</strong> High confidence earns a number; low confidence becomes a “flag for review” instead.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Quiets the screen:</strong> Not every recommendation needs a number on it.</li>
+    </ul>
+    <div class="xi-patterns-act-review-ignore-021">
+      <table class="t-cap xi-patterns-act-review-ignore-022">
+        <thead>
+          <tr class="xi-patterns-act-review-ignore-023"><th class="lbl-ink xi-patterns-act-review-ignore-024">Confidence</th><th class="lbl-ink xi-patterns-act-review-ignore-024">Display</th><th class="lbl-ink xi-patterns-act-review-ignore-024">User Interpretation</th></tr>
+        </thead>
+        <tbody>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025">90%+</td><td class="xi-patterns-act-review-ignore-025">“92% confident” (number + badge)</td><td class="xi-patterns-act-review-ignore-025">“I should trust this”</td></tr>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025">70–89%</td><td class="xi-patterns-act-review-ignore-025">“Moderate confidence” (label only)</td><td class="xi-patterns-act-review-ignore-025">“Reasonable but worth verifying”</td></tr>
+          <tr><td class="xi-patterns-act-review-ignore-025">&lt;70%</td><td class="xi-patterns-act-review-ignore-025">Hidden or “Low confidence” warning</td><td class="xi-patterns-act-review-ignore-025">“Manually verify this”</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Abstract UI Diagram: Confidence Badges -->
+    <div class="card-wire xi-patterns-ai-failure-states-015" data-tint>
+      <div class="lbl-eyebrow xi-patterns-ai-failure-states-016">Wireframe: Threshold-Based Badges</div>
+      
+      <div class="xi-patterns-confidence-scores-030">
+        <!-- High Confidence -->
+        <div class="xi-patterns-confidence-scores-031">
+          <div class="row-ic">
+            <div class="xi-patterns-confidence-scores-032"></div>
+            <div class="xi-patterns-confidence-scores-033"></div>
+          </div>
+          <div class="xi-patterns-confidence-scores-034">
+            <div class="xi-patterns-confidence-scores-035"></div>
+            <div class="xi-patterns-confidence-scores-036">92%</div>
+          </div>
+        </div>
+
+        <!-- Medium Confidence -->
+        <div class="xi-patterns-confidence-scores-031">
+          <div class="row-ic">
+            <div class="xi-patterns-confidence-scores-032"></div>
+            <div class="xi-patterns-confidence-scores-037"></div>
+          </div>
+          <div class="xi-patterns-confidence-scores-038">
+            <div class="xi-patterns-confidence-scores-039"></div>
+            <div class="xi-patterns-confidence-scores-040">Moderate</div>
+          </div>
+        </div>
+
+        <!-- Low Confidence -->
+        <div class="xi-patterns-confidence-scores-031">
+          <div class="row-ic">
+            <div class="xi-patterns-confidence-scores-032"></div>
+            <div class="xi-patterns-confidence-scores-041"></div>
+          </div>
+          <div class="xi-patterns-confidence-scores-042">
+            <div class="xi-patterns-confidence-scores-043">Low confidence</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="u-ui"><strong>Use when</strong> confidence varies recommendation to recommendation (ML models), the user has the expertise to override, and a false negative is expensive. <strong>Avoid when</strong> every recommendation lands at the same confidence, or the user has no domain knowledge to check the call.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">2. Color Gradient (Red → Yellow → Green)</h2>
+    <p class="u-body xi-process-005">Map confidence onto three colors. &lt;50% = red. 50–80% = yellow. 80%+ = green. It reads instantly because the user already knows red = warning, green = go — you borrow a meaning they arrived with.</p>
+    <p class="u-ui xi-patterns-act-review-ignore-027"><strong>Strengths:</strong> Scans fast down a long list; reads at a glance; carries straight into color-coded reports.</p>
+    <p class="u-ui xi-patterns-act-review-ignore-027"><strong>Weaknesses:</strong> <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="People with color vision deficiency who cannot distinguish certain colors, typically red and green">Colorblind</abbr> users can’t tell red from green, so color always rides with a number or an icon. Color alone misleads when “safe enough” shifts by context. And red doesn’t read as danger everywhere on the map.</p>
+    <p class="u-ui"><strong>Use when</strong> the workflow is bulk review, scanning beats reading, and the user is sighted and color-aware. <strong>Avoid when</strong> accessibility leads the brief, or the context that makes a score “safe” isn’t on screen.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">3. Confidence Language (Qualitative Labels)</h2>
+    <p class="u-body xi-process-005">Drop “87% confident” for “Very likely,” “Likely,” “Possible,” or “Unlikely.” For a non-technical user, words beat numbers — they already say “likely” when they mean it, so the label needs no translation.</p>
+    <div class="xi-patterns-act-review-ignore-021">
+      <table class="t-cap xi-patterns-act-review-ignore-022">
+        <thead>
+          <tr class="xi-patterns-act-review-ignore-023"><th class="lbl-ink xi-patterns-act-review-ignore-024">Range</th><th class="lbl-ink xi-patterns-act-review-ignore-024">Label</th><th class="lbl-ink xi-patterns-act-review-ignore-024">When It Fits</th></tr>
+        </thead>
+        <tbody>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025">90%+</td><td class="xi-patterns-act-review-ignore-025">“Very likely”</td><td class="xi-patterns-act-review-ignore-025">Medical, high-stakes</td></tr>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025">70–89%</td><td class="xi-patterns-act-review-ignore-025">“Likely”</td><td class="xi-patterns-act-review-ignore-025">Medium-stakes</td></tr>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025">50–69%</td><td class="xi-patterns-act-review-ignore-025">“Possible”</td><td class="xi-patterns-act-review-ignore-025">Exploratory search</td></tr>
+          <tr><td class="xi-patterns-act-review-ignore-025">&lt;50%</td><td class="xi-patterns-act-review-ignore-025">“Unlikely”</td><td class="xi-patterns-act-review-ignore-025">Flag for review</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="u-ui"><strong>Strength:</strong> A non-technical user gets it on sight. <strong>Weakness:</strong> “Likely” carries different odds in different fields, so the labels need calibrating per domain.</p>
+  </section>
+
+  <div class="counter">
+    <span class="c-l">The strongest objection, kept in</span>
+    <p class="u-body">&ldquo;Showing low confidence makes the product look weak.&rdquo; Backwards, in every deployment I&rsquo;ve shipped: the product that says &ldquo;I&rsquo;m not sure&rdquo; is the one experts stop double-checking. In the private-equity screening tool, low-confidence claims were flagged as abstentions rather than bluffed &mdash; and analysts went from ignoring the model to leading their deal memos with it. Confidence you can&rsquo;t doubt is confidence you can&rsquo;t trust.</p>
+  </div>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">4. Confidence + Reasoning (Show the “Why”)</h2>
+    <p class="u-body xi-process-005">Attach 1–3 reasons to the score — the signals the model actually leaned on. Example: “87% confident this is a quality lead. Reasons: (1) Similar to your top 10% of past leads, (2) High engagement in past campaigns, (3) Matches target industry.”</p>
+    <p class="u-body xi-process-005">Reasons turn a bare number into a decision the user can argue with. They may still reject the call &mdash; but now they can see how the model got there, and reject it for a reason. In the deal-screening tool this is the surface that ended the re-deriving: once the reasons sat on the card, analysts stopped rebuilding the score by hand.</p>
+    <p class="u-ui"><strong>Shines for</strong> expert users who want the model’s logic in front of them — finance, healthcare, legal. <strong>Fails on</strong> mobile, where there’s no room; on non-experts, who drown in it; and where the reasoning is proprietary and can’t be shown.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">5. Confidence Spectrum (Range / Distribution)</h2>
+    <p class="u-body xi-process-005">Show confidence as a range, not a fixed point: “We’re 60–80% confident this lead is qualified.” The range tells the truth about uncertainty without faking <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="Displaying a confidence score with more decimal places (e.g., 76.32%) than the model&rsquo;s actual certainty warrants, misleading users about precision">false precision</abbr>.</p>
+    <p class="u-body xi-process-005">Or plot a histogram: “Past leads with similar confidence scores had a 75% conversion rate. Conversions ranged from 60% to 85%.” Now the user knows what a score like this one has actually meant before.</p>
+    <p class="u-ui"><strong>Strength:</strong> Honest about uncertainty — it won’t claim 1% precision when the model’s real spread is ±15%. <strong>Weakness:</strong> More to render, and the user has to be taught how to read it.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Ship it: the checklist.</h2>
+    <ul class="u-body xi-patterns-act-review-ignore-026">
+      <li class="xi-patterns-act-review-ignore-027"><strong>Set the ranges</strong> your domain runs on (usually 50%, 70%, 90%).</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Tie it to an action.</strong> Show what the user should <em>do</em> with the score, not just the number.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Show the <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="The alignment between predicted confidence and actual accuracy; a 70% confidence score should be correct approximately 70% of the time">calibration</abbr>.</strong> “Previous leads with 85% confidence had 78% conversion.”</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Leave an override.</strong> Confidence isn’t the final decision. The user dismisses or flags.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Watch a user use it.</strong> Does 75% feel “safe to act on”? Run the research — intuitions vary.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong><abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="The design principle of making interfaces usable by people with disabilities including vision, hearing, motor, and cognitive disabilities">Accessibility</abbr>.</strong> Color never travels alone — pair it with a number, label, or icon.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Mobile.</strong> Scores eat space — collapse to an icon when the screen’s tight.</li>
+    </ul>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Every pattern charges rent: the trade-offs.</h2>
+    <div class="xi-patterns-calibration-track-record-022">
+      <table class="t-cap xi-patterns-act-review-ignore-022">
+        <thead>
+          <tr class="xi-patterns-act-review-ignore-023"><th class="lbl-ink xi-patterns-act-review-ignore-024">Pattern</th><th class="lbl-ink xi-patterns-act-review-ignore-024">Best For</th><th class="lbl-ink xi-patterns-act-review-ignore-024">Trade-off</th></tr>
+        </thead>
+        <tbody>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong>Numeric</strong></td><td class="xi-patterns-act-review-ignore-025">Expert users; finance, health</td><td class="xi-patterns-act-review-ignore-025">False precision; confuses non-experts</td></tr>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong>Color gradient</strong></td><td class="xi-patterns-act-review-ignore-025">Visual scanning, dashboards</td><td class="xi-patterns-act-review-ignore-025">Inaccessible without backup</td></tr>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong>Qualitative</strong></td><td class="xi-patterns-act-review-ignore-025">Consumer apps, non-technical</td><td class="xi-patterns-act-review-ignore-025">Ambiguous across domains</td></tr>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong>Reasoning</strong></td><td class="xi-patterns-act-review-ignore-025">Building trust, expert workflows</td><td class="xi-patterns-act-review-ignore-025">Space intensive</td></tr>
+          <tr><td class="xi-patterns-act-review-ignore-025"><strong>Range</strong></td><td class="xi-patterns-act-review-ignore-025">Honest uncertainty</td><td class="xi-patterns-act-review-ignore-025">Visual complexity; user education</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card-gold xi-patterns-act-review-ignore-028">
+    <h3 class="card-title xi-process-005">Where these patterns earned their keep</h3>
+        <ul class="t-cap-loose xi-case-studies-adtech-052">
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> the recommendation arrived as a full campaign plan with its KPIs attached, so a buyer judged the case in front of them rather than a bare number.</li>
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> Scores analysts could cross-examine before staking a recommendation on them.</li>
+    </ul>
+  </section>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section class="card-gold xi-patterns-act-review-ignore-028">
+    <div class="eyebrow xi-process-013">Get AI design patterns in your inbox</div>
+    <p class="u-ui xi-case-studies-adtech-016">One pattern a month — the tradeoffs I paid for, plus the templates I use.</p>
+    <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+      <input class="t-sans-ui card-seg xi-patterns-act-review-ignore-031" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
+      <button class="cta cta--secondary xi-patterns-act-review-ignore-032" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
+    </form>
+  </section>
+
+  <section class="measure-t" data-tint>
+    <div class="xi-patterns-act-review-ignore-035">
+      <div class="eyebrow xi-process-013">Where this breaks — do not use it here</div>
+      <p class="u-body xi-process-017">Don’t show a score when the user can’t act differently on 62 versus 68 — a number without a decision attached is decoration that invites false precision. And never surface confidence from an uncalibrated model: score theater is worse than no score, because it teaches users to trust a liar with good posture.</p>
+    </div>
+  </section>
+
+  <div class="btn-row">
+    <a class="cta-quiet" href="./ai-failure-states.html">Next pattern / AI Failure States →</a>
+    <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="pattern-bottom">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
+  </div>
+</div></main>
+
+<!--/content-->
+<!--tail-->
+
+<script>
+const toggle = document.getElementById('dyslexiaToggle');
+if (toggle) {
+  const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on';
+  if (isDyslexic) {
+    document.body.classList.add('dyslexia-mode');
+    toggle.setAttribute('aria-pressed', 'true');
+  }
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dyslexia-mode');
+    const isOn = document.body.classList.contains('dyslexia-mode');
+    toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+    localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off');
+  });
+}
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+// Mobile menu (consolidated handler with aria-expanded + Escape support)
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close drawer when clicking outside it
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close drawer on Escape key + return focus to hamburger
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
+
+  // Close drawer when any link OR the reading toggle inside it is clicked
+  navLinks.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      navLinks.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+document.addEventListener('click', (e) => {
+  const cta = e.target.closest('[data-cta]');
+  if (cta && typeof gtag === 'function') {
+    gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' });
+  }
+});
+
+// Scroll depth — fires once per threshold (25/50/75/100)
+const scrollDepthHits = new Set();
+function trackScrollDepth() {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (docHeight <= 0) return;
+  const pct = Math.min(100, Math.floor((window.scrollY / docHeight) * 100));
+  [25, 50, 75, 100].forEach(threshold => {
+    if (pct >= threshold && !scrollDepthHits.has(threshold)) {
+      scrollDepthHits.add(threshold);
+      if (typeof gtag === 'function') gtag('event', 'scroll_depth', { percent: threshold });
+    }
+  });
+}
+window.addEventListener('scroll', trackScrollDepth, { passive: true });
+
+// Section visibility — fires once per section when 50% in viewport
+const sectionViewObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.viewed) {
+      entry.target.dataset.viewed = '1';
+      if (typeof gtag === 'function') {
+        gtag('event', 'section_view', { section_id: entry.target.id });
+      }
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s));
+</script>
+
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script src="./demos.js?v=023e3327" defer></script>
+<script defer src="../attention.js?v=2fa8260a"></script>
+<script defer src="../clarity.js?v=9e4df576"></script>
+<!--/tail-->

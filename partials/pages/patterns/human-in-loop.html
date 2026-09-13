@@ -1,0 +1,406 @@
+<!--page body_class="p-patterns-human-in-loop" footer_note="No copyright · Design is for all"-->
+<!--head--><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human-in-Loop Patterns: Approve/Reject/Override — Arpit Maheshwari</title>
+<meta name="description" content="Five patterns for human-in-the-loop AI systems — approve/reject, editable recommendations, expert overrides, escalation ladders, and feedback loops.">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/patterns/human-in-loop.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Human-in-the-Loop Patterns | Arpit Maheshwari">
+<meta property="og:description" content="Five patterns for designing systems where humans and AI work together iteratively.">
+<meta property="og:url" content="https://arpitmaheshwari.com/patterns/human-in-loop.html">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/human-in-loop-pattern-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Human-in-the-Loop Patterns">
+<meta name="twitter:description" content="How to design AI systems where humans verify, modify, and override.">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/human-in-loop-pattern-og.png">
+<meta name="twitter:image:alt" content="How to design AI systems where humans verify, modify, and override.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f0312437">
+<noscript></noscript>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","headline":"Human-in-the-Loop Patterns","description":"Design patterns for human-AI collaborative workflows.","author":{"@type":"Person","name":"Arpit Maheshwari"},"datePublished":"2026-05-09","dateModified":"2026-05-24"}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://arpitmaheshwari.com/"},
+    {"@type":"ListItem","position":2,"name":"Patterns","item":"https://arpitmaheshwari.com/#patterns"},
+    {"@type":"ListItem","position":3,"name":"Human-in-Loop Patterns: Approve/Reject/Override","item":"https://arpitmaheshwari.com/patterns/human-in-loop.html"}
+  ]
+}
+</script>
+<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../amber.css?v=fb751bd1">
+<link rel="stylesheet" href="../site.css?v=711c7c1c">
+<!--/head-->
+<!--pre-nav--><svg class="xi-home-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  
+</svg>
+
+<div role="banner">
+<!--/pre-nav-->
+<!--content-->
+</div>
+
+<div class="page-head" data-ground="bookend">
+  <div class="xi-process-004">
+    <div class="meta-row">
+      <h1 class="t-hero xi-patterns-act-review-ignore-006">Human-in-the-Loop: The Override Is Training Data</h1>
+      <span class="lbl-badge-ink xi-patterns-act-review-ignore-007">In production</span>
+    </div>
+    <p class="lbl-cap">AI Design · Collaborative Workflows · Last updated September 2026</p>
+    <p class="lbl-cap xi-patterns-act-review-ignore-008">Part of <a class="link-gold" href="./">A Field Guide to Trust</a> · updated September 2026</p>
+    <p class="lbl-cap">Seen in production: <a class="link-gold" href="../case-studies/adtech.html">the AdTech case&nbsp;&rarr;</a> &middot; <a class="link-gold" href="../case-studies/fintech.html">the FinTech case&nbsp;&rarr;</a></p>
+    <p class="hand hand-note" aria-hidden="true">the override is data, not defiance</p>
+  </div>
+</div>
+
+<main id="main" class="section page-bg"><div class="xi-process-004">
+
+  <section class="xi-process-012">
+    <p class="lead xi-patterns-act-review-ignore-015">An override is the user telling you what the training data missed. The room at the UK’s largest out-of-home advertiser called that heresy — “letting users overrule the model undermines it” — until a buyer watched their own override sharpen the following week’s recommendations. Treat the override as noise and you throw the lesson away. Every pattern here keeps the person in command when the stakes outgrow the model’s confidence — and logs what they do about it.</p>
+    
+    <!-- Abstract UI Diagram: The Override Modal -->
+    <div class="card-wire xi-patterns-ai-failure-states-015" data-tint>
+      <div class="lbl-eyebrow xi-patterns-ai-failure-states-016">Wireframe: The Respectful Override</div>
+      
+      <div class="xi-patterns-human-in-loop-016">
+        <div class="xi-patterns-human-in-loop-017">
+          <div>
+            <div class="xi-patterns-human-in-loop-018">Override Recommendation</div>
+            <div class="xi-patterns-human-in-loop-019">Tell the model why. Your reason trains the next call.</div>
+          </div>
+          <div class="xi-patterns-human-in-loop-020"></div>
+        </div>
+        
+        <div class="xi-patterns-human-in-loop-021">
+          <div class="xi-patterns-human-in-loop-022">AI Suggested</div>
+          <div class="xi-patterns-human-in-loop-023">Approve Loan (High Confidence)</div>
+        </div>
+
+        <div class="xi-case-studies-adtech-016">
+          <div class="xi-patterns-human-in-loop-025">Reason for override</div>
+          <div class="chip-row">
+            <div class="xi-patterns-human-in-loop-026">Missing context</div>
+            <div class="xi-patterns-human-in-loop-027">Recent market shift</div>
+            <div class="xi-patterns-human-in-loop-026">Client relationship</div>
+          </div>
+        </div>
+
+        <div class="xi-patterns-human-in-loop-028">
+          <div class="xi-patterns-human-in-loop-029">Cancel</div>
+          <div class="xi-patterns-human-in-loop-030">Confirm Override</div>
+        </div>
+      </div>
+    </div>
+    <figure class="xi-case-studies-ptc-036">
+      <svg id="art-human-in-loo-1" class="framed xi-case-studies-ptc-037 art-svg" data-art-scoped xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="t d">
+  <title id="t">Human-in-the-Loop pattern</title>
+  <desc id="d">A wide editorial diagram: the model suggests, the human overrides and edits, and the correction feeds back as a training signal to improve the next suggestion.</desc>
+  <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#C0512B"/>
+    </marker>
+    <marker id="arrowPine" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#24473F"/>
+    </marker>
+  </defs>
+
+  <!-- Title block -->
+  <text x="36" y="60" font-family="'Source Serif 4', Georgia, serif" font-size="34" font-weight="600" fill="#2C2620">Human-in-the-Loop</text>
+  <text x="36" y="90" font-family="'Source Sans 3', system-ui, sans-serif" font-size="17" fill="#2C2722">Override should feel like authorship &#8212; corrections become the next training signal.</text>
+
+  <!-- baseline hairline -->
+  <line x1="36" y1="108" x2="1244" y2="108" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+
+  <!-- ============ STAGE 1: MODEL SUGGESTS ============ -->
+  <g>
+    <text x="160" y="170" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#2C2722">01 · model</text>
+    <rect x="56" y="186" width="208" height="132" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+    <!-- suggestion lines -->
+    <line x1="84" y1="218" x2="236" y2="218" stroke="#494338" stroke-width="6" stroke-linecap="round"/>
+    <line x1="84" y1="244" x2="212" y2="244" stroke="#494338" stroke-width="6" stroke-linecap="round"/>
+    <line x1="84" y1="270" x2="236" y2="270" stroke="#494338" stroke-width="6" stroke-linecap="round"/>
+    <!-- confidence dot -->
+    <circle cx="240" cy="206" r="6" fill="#CE9230"/>
+    <text x="160" y="354" text-anchor="middle" font-family="'Source Serif 4', Georgia, serif" font-size="22" fill="#2C2620">Suggests</text>
+  </g>
+
+  <!-- arrow stage1 -> stage2 -->
+  <line x1="276" y1="252" x2="392" y2="252" stroke="#C0512B" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- ============ STAGE 2: HUMAN OVERRIDES / EDITS ============ -->
+  <g>
+    <text x="510" y="170" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#2C2722">02 · human</text>
+    <rect x="406" y="186" width="208" height="132" rx="10" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+    <!-- original line (struck through) -->
+    <line x1="434" y1="218" x2="566" y2="218" stroke="#494338" stroke-width="6" stroke-linecap="round"/>
+    <line x1="430" y1="218" x2="572" y2="218" stroke="#C0512B" stroke-width="2.5"/>
+    <!-- corrected line in ember -->
+    <line x1="434" y1="248" x2="586" y2="248" stroke="#C0512B" stroke-width="6" stroke-linecap="round"/>
+    <line x1="434" y1="274" x2="540" y2="274" stroke="#C0512B" stroke-width="6" stroke-linecap="round"/>
+    <!-- pen / cursor mark -->
+    <path d="M566 270 l24 -24 14 14 -24 24 -18 4 z" fill="#2C2620"/>
+    <path d="M566 270 l8 8" stroke="#F4ECDA" stroke-width="1.5"/>
+    <text x="510" y="354" text-anchor="middle" font-family="'Source Serif 4', Georgia, serif" font-size="22" fill="#2C2620">Overrides &amp; edits</text>
+  </g>
+
+  <!-- arrow stage2 -> stage3 -->
+  <line x1="626" y1="252" x2="742" y2="252" stroke="#C0512B" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- ============ STAGE 3: NEXT RESULT (IMPROVED) ============ -->
+  <g>
+    <text x="860" y="170" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#2C2722">03 · next result</text>
+    <rect x="756" y="186" width="208" height="132" rx="10" fill="#EEE4CE" stroke="#24473F" stroke-width="2"/>
+    <line x1="784" y1="218" x2="936" y2="218" stroke="#24473F" stroke-width="6" stroke-linecap="round"/>
+    <line x1="784" y1="244" x2="912" y2="244" stroke="#24473F" stroke-width="6" stroke-linecap="round"/>
+    <line x1="784" y1="270" x2="936" y2="270" stroke="#24473F" stroke-width="6" stroke-linecap="round"/>
+    <!-- check mark -->
+    <path d="M926 200 l7 8 14 -16" fill="none" stroke="#24473F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="860" y="354" text-anchor="middle" font-family="'Source Serif 4', Georgia, serif" font-size="22" fill="#2C2620">Improved</text>
+  </g>
+
+  <!-- ============ FEEDBACK LOOP: correction feeds the next suggestion ============ -->
+  <!-- big return arc from stage 3 (top) back over to stage 1 (top), in pine -->
+  <path d="M860 186 C 860 124, 700 124, 510 124 C 320 124, 160 124, 160 186"
+        fill="none" stroke="#24473F" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" marker-end="url(#arrowPine)"/>
+  <text x="510" y="116" text-anchor="middle" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="#24473F">correction &#8594; next training signal</text>
+
+  <!-- ============ RIGHT RAIL: the principle restated, anchoring the far right ============ -->
+  <line x1="1012" y1="150" x2="1012" y2="330" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+  <text x="1044" y="186" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" letter-spacing="0.2" fill="#2C2722">The loop</text>
+  <g font-family="'Source Serif 4', Georgia, serif" font-size="21" fill="#2C2620">
+    <circle cx="1052" cy="224" r="4" fill="#C0512B"/>
+    <text x="1068" y="230">Suggest</text>
+    <circle cx="1052" cy="262" r="4" fill="#C0512B"/>
+    <text x="1068" y="268">Override</text>
+    <circle cx="1052" cy="300" r="4" fill="#24473F"/>
+    <text x="1068" y="306">Re-learn</text>
+  </g>
+</svg>
+      <div class="artalt">
+        <p class="artalt-h">Human-in-the-Loop</p>
+        <p class="artalt-sub">Override should feel like authorship &#8212; corrections become the next training signal.</p>
+        <ol class="artalt-set">
+          <li><p class="artalt-n">01 &#183; Model</p><p class="artalt-t">Suggests</p></li>
+          <li><p class="artalt-n">02 &#183; Human</p><p class="artalt-t">Overrides &amp; edits</p></li>
+          <li><p class="artalt-n">03 &#183; Next result</p><p class="artalt-t">Improved</p></li>
+        </ol>
+        <p class="artalt-flow">correction &#8594; next training signal</p>
+        <p class="artalt-bar"><b>THE LOOP</b> &#8212; Suggest &#183; Override &#183; Re-learn</p>
+      </div>
+
+
+    </figure>
+  </section>
+
+  <div class="thesis" data-tint>
+    <span class="t-l">The principle this page proves</span>
+    <p>An override is not defiance. It is the training data the next version <em>needs</em>.</p>
+  </div>
+  <!-- LIVE DEMO — same demo as the book's field guide -->
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Try it — the pattern, live</h2>
+    <p class="u-ui xi-case-studies-adtech-016">The same live demo that runs in the book edition’s field guide. Synthetic data; nothing leaves the page.</p>
+    <div data-demo="loop"></div>
+  </section>
+
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">1. The Approve / Reject / Flag Interface</h2>
+    <p class="u-body xi-process-005">The model proposes; the person approves, rejects, or flags. It is the simplest loop there is — and the easiest to ship as a rubber stamp, because most teams collect the click and throw away the reason.</p>
+    <p class="u-body">The model carries the load — pulling the data, running the inference. The person carries the judgment: read the recommendation, then bless it or question it.</p>
+    <p class="u-body xi-patterns-human-in-loop-036"><strong>Choose it for</strong> high-volume, low-friction calls — content moderation, fraud detection, segmentation. <strong>Where it bit me:</strong> people click through without reading. On anything high-stakes, put a confirmation between the click and the consequence.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">2. The Editable Recommendation</h2>
+    <p class="u-body xi-process-005">The model hands over a draft — an email, a document, a decision. The person edits it before it ships. “AI suggested this email subject. You modified it. Predicted open rate increased from 22% to 25%. Ship it?”</p>
+    <p class="u-body">A draft you can edit respects the expertise you brought to the screen. You verify the model’s thinking <em>while</em> you improve it. After a few rounds you know its blind spots, and you edit for them on sight.</p>
+    <p class="u-body xi-patterns-human-in-loop-036"><strong>Choose it for</strong> personalised content like email, drafting like documents and code, or creative output like design suggestions.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">3. The Expert Override</h2>
+    <p class="u-body xi-process-005">The model recommends action X at high confidence. The user overrides with action Y. The system logs the swap and asks <em>why</em>. “You chose Y instead of X. Why?” → the user explains → the model has a new lesson.</p>
+    <p class="u-body">An override is not a failure. It is the user pointing at something the model couldn’t see. Track the overrides and the patterns surface: “90% of the time users override Prediction B, they cite Domain Concern X. Add that to the model.”</p>
+    <p class="u-body xi-patterns-human-in-loop-036"><strong>Choose it when</strong> you want the model to get better in production. Log the override, name the missing feature, retrain, repeat.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">4. The <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="The process of routing uncertain or high-risk decisions to increasingly senior reviewers based on confidence levels">Escalation</abbr> Ladder</h2>
+    <p class="u-body xi-process-005">Clear the top <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="The numeric score or percentage that determines whether a decision is confident enough for automated approval or requires human review">confidence threshold</abbr> and the system auto-approves. Fall below it and the call goes to a human. Fall below a second, lower line and it goes to a senior one. Risk earns review; certainty earns speed.</p>
+    <div class="xi-patterns-act-review-ignore-021">
+      <table class="t-cap xi-patterns-act-review-ignore-022">
+        <thead>
+          <tr class="xi-patterns-act-review-ignore-023"><th class="lbl-ink xi-patterns-act-review-ignore-024">Confidence</th><th class="lbl-ink xi-patterns-act-review-ignore-024">Action</th><th class="lbl-ink xi-patterns-act-review-ignore-024">Speed</th></tr>
+        </thead>
+        <tbody>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025">90%+</td><td class="xi-patterns-act-review-ignore-025">Auto-approve</td><td class="xi-patterns-act-review-ignore-025">Instant</td></tr>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025">70–89%</td><td class="xi-patterns-act-review-ignore-025">Queue for analyst review</td><td class="xi-patterns-act-review-ignore-025">1–4 hours</td></tr>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025">50–69%</td><td class="xi-patterns-act-review-ignore-025">Queue for senior review</td><td class="xi-patterns-act-review-ignore-025">4–24 hours</td></tr>
+          <tr><td class="xi-patterns-act-review-ignore-025">&lt;50%</td><td class="xi-patterns-act-review-ignore-025">Reject or request more data</td><td class="xi-patterns-act-review-ignore-025">N/A</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="u-body">It scales without straining: confident calls clear instantly, doubtful ones get human eyes in proportion to what they could cost.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">5. The Feedback Loop (Learn From Corrections)</h2>
+    <p class="u-body xi-process-005">Every correction a person makes — a reject, an edit, a line of explanation — is a small lesson the model hasn’t learned yet. Catch it the moment it happens, and once a month let the month’s worth of lessons retrain the thing.</p>
+    <p class="u-body">“The monthly note should read like this specimen: &ldquo;In May, you corrected 120 recommendations. Top theme: you rejected deals in healthcare when industry was <2 years old. We&rsquo;ve added &lsquo;company age&rsquo; as a feature. Accuracy improved from 81% to 85% in June.&rdquo;.”</p>
+    <p class="u-body xi-patterns-human-in-loop-036"><strong>The loop pays off:</strong> the model sharpens, the user trusts it more, the trust buys more feedback, and the feedback sharpens it again.</p>
+  </section>
+
+  <div class="counter">
+    <span class="c-l">The strongest objection, kept in</span>
+    <p class="u-body">&ldquo;Letting users overrule the model undermines it.&rdquo; That was the room&rsquo;s position at the UK&rsquo;s largest out-of-home advertiser, and it dissolved the first time a buyer watched their own override sharpen the following week&rsquo;s recommendations. An unchallengeable system doesn&rsquo;t read as authoritative &mdash; it reads as unaccountable, and experts decline to stake their name on the unaccountable.</p>
+  </div>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Ship it: the checklist.</h2>
+    <ul class="u-body xi-patterns-act-review-ignore-026">
+      <li class="xi-patterns-act-review-ignore-027"><strong>Name the human’s role:</strong> verifier who approves or rejects, editor who modifies, or expert who overrides with a reason?</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Draw the decision boundary:</strong> what does the model decide alone, what needs a review, what needs an expert?</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Log every decision:</strong> the recommendation, the human’s call, the confidence, the reasoning.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Read the divergence:</strong> weekly, see where humans override; monthly, find the patterns; quarterly, ship the fixes and <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="To update and improve a machine learning model by feeding it new data from user corrections and feedback">retrain</abbr>.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Close the loop out loud:</strong> tell users “Your feedback improved accuracy by X%.”</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Guard against <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="Cognitive overload and decreased decision quality that occurs when users must make too many approval decisions in succession">approval fatigue</abbr>:</strong> don’t make a person rubber-stamp 100 low-risk items a day.</li>
+    </ul>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Trade-offs: Automation vs. Control</h2>
+    <div class="td-scroll xi-patterns-calibration-track-record-022">
+      <table class="t-cap td-table xi-patterns-act-review-ignore-022" role="table">
+        <thead role="rowgroup">
+          <tr role="row" class="xi-patterns-act-review-ignore-023"><th scope="col" role="columnheader" class="lbl-ink xi-patterns-act-review-ignore-024">Approach</th><th scope="col" role="columnheader" class="lbl-ink xi-patterns-act-review-ignore-024">Speed</th><th scope="col" role="columnheader" class="lbl-ink xi-patterns-act-review-ignore-024">Trust</th><th scope="col" role="columnheader" class="lbl-ink xi-patterns-act-review-ignore-024">Best For</th></tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row" class="xi-patterns-act-review-ignore-023"><td role="cell" class="xi-patterns-act-review-ignore-025"><strong>Full automation</strong></td><td role="cell" data-label="Speed" class="xi-patterns-act-review-ignore-025">Instant</td><td role="cell" data-label="Trust" class="xi-patterns-act-review-ignore-025">Low</td><td role="cell" data-label="Best For" class="xi-patterns-act-review-ignore-025">Low-stakes, internal</td></tr>
+          <tr role="row" class="xi-patterns-act-review-ignore-023"><td role="cell" class="xi-patterns-act-review-ignore-025"><strong>Approve/Reject</strong></td><td role="cell" data-label="Speed" class="xi-patterns-act-review-ignore-025">Fast</td><td role="cell" data-label="Trust" class="xi-patterns-act-review-ignore-025">High</td><td role="cell" data-label="Best For" class="xi-patterns-act-review-ignore-025">High-volume, moderate-stakes</td></tr>
+          <tr role="row" class="xi-patterns-act-review-ignore-023"><td role="cell" class="xi-patterns-act-review-ignore-025"><strong>Editable</strong></td><td role="cell" data-label="Speed" class="xi-patterns-act-review-ignore-025">Medium</td><td role="cell" data-label="Trust" class="xi-patterns-act-review-ignore-025">Very high</td><td role="cell" data-label="Best For" class="xi-patterns-act-review-ignore-025">Creative, personalisation</td></tr>
+          <tr role="row"><td role="cell" class="xi-patterns-act-review-ignore-025"><strong>Expert review</strong></td><td role="cell" data-label="Speed" class="xi-patterns-act-review-ignore-025">Slow</td><td role="cell" data-label="Trust" class="xi-patterns-act-review-ignore-025">Very high</td><td role="cell" data-label="Best For" class="xi-patterns-act-review-ignore-025">Critical decisions</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card-gold xi-patterns-act-review-ignore-028">
+    <h3 class="card-title xi-process-005">Where this pattern earned its keep</h3>
+    <ul class="t-cap-loose xi-case-studies-adtech-052">
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> analysts read the model’s scores and override them with domain expertise.</li>
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> media buyers approve or reject the algorithm’s calls, and the rejections train the next ones.</li>
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/orgos.html">OrgOS</a>:</strong> peer review and feedback loops running at the scale of a whole company.</li>
+    </ul>
+  </section>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section class="card-gold xi-patterns-act-review-ignore-028">
+    <div class="eyebrow xi-process-013">Get AI design patterns in your inbox</div>
+    <p class="u-ui xi-case-studies-adtech-016">One pattern a month, with the tradeoffs I paid for and the templates I use.</p>
+    <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+      <input class="t-sans-ui card-seg xi-patterns-act-review-ignore-031" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
+      <button class="cta cta--secondary xi-patterns-act-review-ignore-032" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
+    </form>
+  </section>
+
+  <section class="xi-patterns-ai-failure-states-046">
+    <div class="eyebrow xi-process-013">Companion essay</div>
+    <a href="../writing/human-in-loop.html" class="card-title xi-patterns-human-in-loop-052">Human-in-the-Loop: When to Ask, When to Override →</a>
+  </section>
+
+  <section class="measure-t" data-tint>
+    <div class="xi-patterns-act-review-ignore-035">
+      <div class="eyebrow xi-process-013">Where this breaks — do not use it here</div>
+      <p class="u-body xi-process-017">Watch the override rate: near zero means the loop is theater and the human is a rubber stamp — retire the review step or raise its stakes. Under volume pressure, review queues decay into approve-all; if you can’t staff the loop honestly, narrow what enters it instead of pretending.</p>
+    </div>
+  </section>
+
+  <div class="btn-row">
+    <a class="cta-quiet" href="./provenance-citations.html">Next pattern / Provenance &amp; Citations →</a>
+    <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="pattern-bottom">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
+  </div>
+</div></main>
+
+<!--/content-->
+<!--tail-->
+
+<script>
+const toggle = document.getElementById('dyslexiaToggle');
+if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on'; if (isDyslexic) { document.body.classList.add('dyslexia-mode'); toggle.setAttribute('aria-pressed', 'true'); } toggle.addEventListener('click', () => { document.body.classList.toggle('dyslexia-mode'); const isOn = document.body.classList.contains('dyslexia-mode'); toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false'); localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off'); }); }
+document.addEventListener('click', (e) => { const cta = e.target.closest('[data-cta]'); if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' }); });
+
+// Scroll depth — fires once per threshold (25/50/75/100)
+const scrollDepthHits = new Set();
+function trackScrollDepth() {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (docHeight <= 0) return;
+  const pct = Math.min(100, Math.floor((window.scrollY / docHeight) * 100));
+  [25, 50, 75, 100].forEach(threshold => {
+    if (pct >= threshold && !scrollDepthHits.has(threshold)) {
+      scrollDepthHits.add(threshold);
+      if (typeof gtag === 'function') gtag('event', 'scroll_depth', { percent: threshold });
+    }
+  });
+}
+window.addEventListener('scroll', trackScrollDepth, { passive: true });
+
+// Section visibility — fires once per section when 50% in viewport
+const sectionViewObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.viewed) {
+      entry.target.dataset.viewed = '1';
+      if (typeof gtag === 'function') {
+        gtag('event', 'section_view', { section_id: entry.target.id });
+      }
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s));
+</script>
+
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script src="./demos.js?v=023e3327" defer></script>
+<script defer src="../attention.js?v=2fa8260a"></script>
+<script defer src="../clarity.js?v=9e4df576"></script>
+<!--/tail-->

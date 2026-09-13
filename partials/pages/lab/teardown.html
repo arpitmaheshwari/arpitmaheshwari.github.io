@@ -1,0 +1,202 @@
+<!--page body_class="p-lab-teardown" footer_note="No rights reserved — good patterns should travel"-->
+<!--head--><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How This Site Is Built — A Teardown — Arpit Maheshwari</title>
+<meta name="description" content="How this site is built, measured rather than described: no build step, one enforced type scale, and an honest list of the gaps.">
+<meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/lab/teardown.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How This Site Is Built — A Teardown">
+<meta property="og:description" content="No build step, no framework on the classic site, two third-party services, one type scale — and an honest list of what is still missing.">
+<meta property="og:url" content="https://arpitmaheshwari.com/lab/teardown.html">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/lab-og.png">
+<meta property="og:image:alt" content="How this site is built — a teardown">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta property="og:locale" content="en_IN" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How This Site Is Built — A Teardown">
+<meta name="twitter:description" content="No build step, no framework on the classic site, two third-party services — and what is still missing.">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/lab-og.png">
+<meta name="twitter:image:alt" content="How this site is built — a teardown">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f0312437">
+<link rel="stylesheet" href="../amber.css?v=fb751bd1">
+<link rel="stylesheet" href="../site.css?v=711c7c1c">
+
+<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<!--/head-->
+<!--pre-nav-->
+<div role="banner">
+<!--/pre-nav-->
+<!--content-->
+</div>
+
+<main id="main">
+
+  <section class="section lab-hero" data-ground="bookend">
+    <div class="lab-wrap">
+      <p class="lab-kicker">The Lab · 03 · Teardown</p>
+      <h1 class="section-title xi-lab-006">This site, torn down</h1>
+      <p class="lab-lede">A designer’s portfolio is a strange artifact: it is the one deliverable where the medium is also the sample. So here is the build, measured rather than described — <strong>what it costs, what it depends on, and what is still missing</strong>.</p>
+      <p class="hand hand-note" aria-hidden="true">measured, not estimated — every number</p>
+      <div class="lab-note">
+        <b>Every number on this page was measured, not estimated.</b> The commands are printed beside the results so you can run them against the repository yourself. Where something is unmeasured, it says so.
+      </div>
+      <div class="lab-links">
+        <a href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io" data-cta="lab-github" data-location="teardown-hero">The whole repository</a>
+        <a href="./loop.html" data-cta="lab-loop" data-location="teardown-hero">loop.js →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section"><div class="lab-wrap">
+  <div class="thesis" data-tint>
+    <span class="t-l">The principle this artifact proves</span>
+    <p>A site that argues for evidence must be willing to be <em>inspected</em> itself.</p>
+  </div>
+  </div></section>
+
+  <!-- ===================== THE NUMBERS ===================== -->
+  <section class="section act-cream">
+    <div class="lab-wrap">
+      <p class="eyebrow">Measured</p>
+      <h2 class="section-title">The whole thing, in numbers</h2>
+      <div class="td-scroll">
+        <table class="td-table" role="table">
+          <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">What</th><th scope="col" role="columnheader">Measured</th><th scope="col" role="columnheader">How</th></tr></thead>
+          <tbody role="rowgroup">
+            <tr role="row"><td role="cell">Hand-written HTML pages</td><td role="cell" data-label="Measured"><b>41</b></td><td role="cell" data-label="How"><span class="td-inline">find . -name "*.html"</span>, excluding the book, print sources and the two OG-card templates &mdash; those render to PNG and no visitor can reach them. This read 43 until 2026-09-03, when the templates were still counted as pages.</td></tr>
+            <tr role="row"><td role="cell">Stylesheet, entire site</td><td role="cell" data-label="Measured"><b>584.1 KB</b> on disk &middot; <b>162.1 KB</b> gzipped</td><td role="cell" data-label="How"><span class="td-inline">cat fonts.css amber.css site.css | wc -c</span> &rarr; 598,164 bytes, unminified, across the three sheets every content page links; gzipped they are 165,999 bytes over the wire. Counted all three after 2026-09-03, when this row measured styles.css alone and still called it &ldquo;entire site&rdquo; &mdash; it understated the CSS by 82%, and never moved when ember.css changed. book/book.css (71,850 bytes) is excluded: no classic page loads it. Unminified because there is no build step &mdash; gzip is what a reader pays, the disk number is what the choice costs me. The rendered-coverage instrument that earlier passes waited for now exists (tools/css-coverage.py): a rule is called dead only when Chrome&rsquo;s rule-usage tracking, a DOM census of every page, and a JS-token sweep all agree &mdash; and the instrument is calibrated with a planted dead rule each run. Its first pass removed 115 rules from the ember sheet with zero geometry change on the sampled pages. This classic sheet keeps its dead weight by design: the coverage harness can only exercise the active theme, so deleting here would be a guess again.</td></tr>
+            <tr role="row"><td role="cell">Renders without JavaScript</td><td role="cell" data-label="Measured"><b>100%</b> on the reading pages &middot; <b>68%</b> on /fit/</td><td role="cell" data-label="How">Scripts disabled via CDP and <span class="td-inline">&lt;main&gt;</span> word counts diffed across nine pages on 2026-09-03. Identical with and without: the homepage (2,782 words), the AdTech case (3,417), /patterns/, /writing/, /screen/ and /resources/. Three are not. /fit/ keeps 305 of 447 &mdash; the matcher is client-side, and that page says so in its own copy. /book/ keeps 4,483 of 4,540 and /lab/ 1,114 of 1,145, both losing only scroll-revealed labels. This row read &ldquo;100% of the copy&rdquo; until 2026-09-03, generalised from two pages to the whole site. A <span class="td-inline">noscript</span> fallback restores the scroll-reveal elements. Increasingly relevant: in a 72-portfolio field review, nine sites served an empty shell to any non-browser reader &mdash; this one reads complete to a text-only or AI screener.</td></tr>
+            <tr role="row"><td role="cell">Runtime dependencies, classic site</td><td role="cell" data-label="Measured"><b>0</b></td><td role="cell" data-label="How">No root <span class="td-inline">package.json</span>, no <span class="td-inline">node_modules</span>, no bundler config</td></tr>
+            <tr role="row"><td role="cell">Third-party domains serving code</td><td role="cell" data-label="Measured"><b>2</b></td><td role="cell" data-label="How">Google Analytics and Microsoft Clarity (heatmaps, added 2026-08-15; honours Do-Not-Track). Attention measurement (scroll depth, section dwell) is first-party: <span class="td-inline">attention.js</span>, 159 lines, no network of its own. Both load async and gate nothing on first paint. Google Fonts left on 2026-08-14 when the nine font files then in use moved to this origin; the dyslexia typeface added two more on 2026-08-28.</td></tr>
+            <tr role="row"><td role="cell">Interactive pattern demos</td><td role="cell" data-label="Measured"><b>9</b></td><td role="cell" data-label="How">All in <span class="td-inline">patterns/demos.js</span> — 234 lines, 12.8 KB</td></tr>
+            <tr role="row"><td role="cell">Its imports, requires, fetches</td><td role="cell" data-label="Measured"><b>0</b></td><td role="cell" data-label="How"><span class="td-inline"><code>grep -nE "import |require\(|fetch\("</code></span> → no matches</td></tr>
+            <tr role="row"><td role="cell">Open Graph share cards</td><td role="cell" data-label="Measured"><b>32</b></td><td role="cell" data-label="How">All exactly 1200×630, verified with <span class="td-inline">sips -g pixelWidth</span></td></tr>
+            <tr role="row"><td role="cell">Pages carrying a skip link</td><td role="cell" data-label="Measured"><b>37</b></td><td role="cell" data-label="How"><span class="td-inline">grep -rl skip-link</span></td></tr>
+            <tr role="row"><td role="cell">Build steps between edit and deploy</td><td role="cell" data-label="Measured"><b>0</b></td><td role="cell" data-label="How">Commit to <span class="td-inline">master</span>; GitHub Pages serves the files as written</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DECISIONS ===================== -->
+  <section class="section">
+    <div class="lab-wrap">
+      <p class="eyebrow">Decisions</p>
+      <h2 class="section-title">Five choices, and what each one cost</h2>
+
+      <div class="td-block xi-case-studies-o2-028" data-tint>
+        <h3>No build step, and therefore no build to break</h3>
+        <div class="lab-body" data-tint>
+          <p>There is no bundler, no transpiler, no CI pipeline. A file I edit is the file the browser receives. The benefit is that this site cannot rot: no dependency will publish a breaking major, and nothing in it needs a lockfile to reproduce in three years.</p>
+          <p>One qualification, added when the nav and footer became shared: they now live in <span class="td-inline">partials/</span> and a script stamps them into every page. Nothing runs at deploy &mdash; GitHub Pages still serves the committed file, and the file in the repo is the file you receive. But there is a generator between editing a partial and committing, and cache versions are now content hashes it computes rather than numbers I bump by hand. Before that, the nav existed in 37 copies which had all quietly diverged.</p>
+          <p><strong>What it costs:</strong> no tree-shaking, no automatic minification, and cache-busting done by hand — you can see the manual query strings, <span class="td-inline">site.css?v=711c7c1c</span>, in the source of every page. On a site of this size that is the right trade. On a product it would not be, and I would not defend it there.</p>
+        </div>
+      </div>
+
+      <div class="td-block" data-tint>
+        <h3>The stylesheet is modular, on native cascade layers</h3>
+        <div class="lab-body" data-tint>
+          <p>Two stylesheets, one order, declared once in one line: <span class="td-inline">@layer reset, tokens, ground, type, layout, components, utilities, overrides;</span>. <span class="td-inline">amber.css</span> is the design system, generated in its own repository and copied here unedited; <span class="td-inline">site.css</span> is everything this site adds, on the same layers. A rule in a later layer wins outright, whatever its specificity, so the cascade is something you read rather than something you reverse-engineer: the system fills the early layers, the site’s components sit above them, the extracted single-purpose classes above those, and <span class="td-inline">overrides</span> is the last word.</p>
+          <p>It is plain CSS. No preprocessor, no framework, no naming convention borrowed from a build tool &mdash; <span class="td-inline">@layer</span> has been in every major browser since 2022, and it replaces the thing most stylesheets use instead, which is volume.</p>
+          <p>There is no <span class="td-inline">!important</span> in <span class="td-inline">site.css</span>. A declaration marked important is not claiming importance, it is claiming precedence over some other rule &mdash; which is the thing a layer states outright &mdash; so what used to be written that way sits at the end of <span class="td-inline">overrides</span> instead of shouting from wherever it happened to be written. The one <span class="td-inline">!important</span> a page loads is the system’s own, in its reset, for readers who ask for reduced motion.</p>
+          <p><strong>What it costs:</strong> layers invert for <span class="td-inline">!important</span>, so if one is ever added back, an important declaration in an <em>earlier</em> layer will beat a later one &mdash; the reverse of the usual rule, and a trap worth knowing about. Splitting rules across layers also resolves one button two pixels wider on eleven pages; that was measured at 8&times; and accepted rather than discovered later. Both notes are at the top of the stylesheet, where the next person meets them before they meet the consequences.</p>
+        </div>
+      </div>
+      <div class="td-block" data-tint>
+        <h3>Fonts are served from this origin, not a third party</h3>
+        <div class="lab-body" data-tint>
+          <p>Nine <span class="td-inline">woff2</span> files, latin subsets only, preloaded for the two faces that gate the first paint. No <span class="td-inline">preconnect</span>, no Google Fonts, no request leaving this domain for type. <span class="td-inline">font-display:swap</span> paints text immediately in the fallback and re-renders when the face arrives.</p>
+          <p><strong>What it costs:</strong> nine files of my own to subset, preload and version by hand &mdash; and the gaps list below records that hand-bumped versions have been forgotten before.</p>
+        </div>
+        <pre class="lab-code"><code>&lt;link rel="preload" as="font" type="font/woff2" crossorigin
+      href="/assets/fonts-web/source-sans-3-normal-400.woff2"&gt;
+&lt;link rel="preload" as="font" type="font/woff2" crossorigin
+      href="/assets/fonts-web/source-serif-4-normal-300_600.woff2"&gt;
+&lt;link rel="stylesheet" href="/fonts.css"&gt;</code></pre>
+      </div>
+
+      <div class="td-block" data-tint>
+        <h3>One type scale, written down, enforced by refusal</h3>
+        <div class="lab-body" data-tint>
+          <p>Every size on the classic site comes from twelve custom properties — <span class="td-inline">--fs-eyebrow</span> through <span class="td-inline">--fs-display-xl</span> — declared once in <span class="td-inline">styles.css</span> and documented in a 174-line spec in the repository. The rule in that file is one sentence: <strong>if a value isn’t in this file, it doesn’t ship.</strong> Roughly twenty earlier one-off sizes are listed explicitly as retired, so a stray <span class="td-inline">font-size: 17px</span> reads as a bug rather than a preference.</p>
+          <p>Writing this page is what caught the drift described at the bottom of it.</p>
+        </div>
+      </div>
+
+      <div class="td-block" data-tint>
+        <h3>The documents are the same HTML, printed</h3>
+        <div class="lab-body" data-tint>
+          <p>The portfolio PDF and the résumé are not designed twice. They are HTML pages with an <span class="td-inline">@page</span> rule and millimetre units, printed to PDF by Chrome — which is why a wording change reaches the PDF in one step. The ATS-readable <span class="td-inline">.docx</span> is generated by a 107-line Node script using the <span class="td-inline">docx</span> library: the only npm dependency anywhere near this project, and it is offline tooling that never ships to a browser.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THE BOOK CAVEAT ===================== -->
+  <section class="section">
+    <div class="lab-wrap">
+      <p class="eyebrow">One honest exception</p>
+      <h2 class="section-title">The book view does use React</h2>
+      <div class="lab-body" data-tint>
+        <p>“Zero dependencies” is true of the classic site you are reading and false of <a class="xi-process-020" href="../book/">the book edition</a>, which is a React application — around 120 KB of my own code plus React and React DOM, <strong>self-hosted from the repository rather than a CDN</strong>, so the page still has no third-party runtime.</p>
+        <p>Two views of one portfolio, built two ways, was a deliberate exercise: the classic site proves I can work without a framework, and the book proves I can work with one. It also means I have opinions about both that came from shipping, not reading.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHAT'S MISSING ===================== -->
+  <section class="section act-cream">
+    <div class="lab-wrap">
+      <p class="eyebrow">What’s missing</p>
+      <div class="counter">
+        <span class="c-l">The strongest objection, kept in</span>
+        <p>&ldquo;A hand-built static site doesn&rsquo;t prove you can ship a modern stack.&rdquo; The book edition of this same site runs React &mdash; the stack shows up where the job needs it and stays out where it doesn&rsquo;t. That allocation, not the absence of a framework, is the decision on display here.</p>
+      </div>
+      <h2 class="section-title">The gaps, before you find them</h2>
+      <p class="lab-lede">A teardown that only lists strengths is a brochure. These are the errata for the build itself — real, and the next things I would fix.</p>
+      <ul class="td-gaps">
+        <li><b>There were no automated tests at all until the 76 assertions behind loop.js landed.</b> The repository contained zero test files and an empty CI directory; verification was a manual checklist — every page at two widths, no overflow, console clean. <span class="xi-process-016">Those 76 assertions, across 42 tests of <a class="xi-process-020" href="./loop.html">loop.js</a>, are the first tests in this codebase</span>, which is a genuine gap being closed, not a strength.</li>
+        <li class="is-fixed"><b>No continuous integration.</b> Nothing ran those 42 tests on push. A <a class="xi-process-020" href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io/blob/master/.github/workflows/test-lab.yml">GitHub Action</a> now runs <span class="td-inline">node lab/loop.test.js</span> on every push and pull request touching <span class="td-inline">lab/</span> — this repository’s first CI job.</li>
+        <li><b>Cache-busting is manual.</b> Version query strings are bumped by hand, which means they can be forgotten — and have been.</li>
+        <li class="is-fixed"><b>Two third-party domains gated the first paint.</b> Fixed 2026-08-14: all eleven font files are now served from this origin, Google Fonts is gone from the critical path, and two third-party services remain — Google Analytics and Microsoft Clarity, which request two loader domains directly and reach two more (google-analytics.com, bing.com) once those loaders run. Neither is loaded anywhere but the live domain. The type stack changed with it — Source Serif 4 and Source Sans 3, a superfamily, replacing a mix that had monospace carrying 34 labels a page.</li>
+        <li class="is-fixed"><b>A token had drifted out of sync with its own spec.</b> The design system documented <span class="td-inline">--fs-display</span> while the stylesheet defined <span class="td-inline">--fs-display-xl</span> — a rename that never reached the document. Found while writing this page, and fixed in the commit that published it.</li>
+      </ul>
+      <div class="lab-links">
+        <a href="./index.html" data-cta="lab-home" data-location="teardown-foot">← Everything in The Lab</a>
+        <a href="../screen/" data-cta="lab-screen" data-location="teardown-foot">The technical screen, pre-answered →</a>
+        <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="teardown-foot">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!--/content-->
+<!--tail-->
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { if (nav) nav.classList.toggle('scrolled', window.scrollY > 60); });
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = navLinks.classList.toggle('nav-open'); menuBtn.setAttribute('aria-expanded', String(isOpen)); });
+  document.addEventListener('click', (e) => { if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) { navLinks.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); } });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) { navLinks.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.focus(); } });
+}
+if (localStorage.getItem('dyslexia-mode') === 'on') document.body.classList.add('dyslexia-mode');
+document.addEventListener('click', (e) => {
+  const cta = e.target.closest('[data-cta]');
+  if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' });
+});
+</script>
+<script defer src="../attention.js?v=2fa8260a"></script>
+<script defer src="../clarity.js?v=9e4df576"></script>
+<!--/tail-->

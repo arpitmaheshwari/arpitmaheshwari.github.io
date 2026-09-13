@@ -109,7 +109,7 @@ def pages_with_artifacts():
             continue
 
         s = str(p)
-        if any(x in s for x in ("node_modules", ".claude/", ".git/", "prototypes/",
+        if any(x in s for x in ("node_modules", ".claude/", ".git/", "prototypes/", "partials/",
                                 "portfolio-sources", "__", "backup")):
             continue
         try:

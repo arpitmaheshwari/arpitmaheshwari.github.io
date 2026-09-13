@@ -1,0 +1,404 @@
+<!--page body_class="p-patterns-ai-failure-states" footer_note="No copyright · Design is for all"-->
+<!--head--><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Failure States: Graceful Error UX Patterns — Arpit Maheshwari</title>
+<meta name="description" content="Users forgive a model for being wrong; never for bluffing. Five patterns for what the screen says when the model cannot deliver."><meta name="author" content="Arpit Maheshwari">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="canonical" href="https://arpitmaheshwari.com/patterns/ai-failure-states.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Failure State Patterns | Arpit Maheshwari">
+<meta property="og:description" content="Five patterns for communicating AI uncertainty without breaking user trust.">
+<meta property="og:url" content="https://arpitmaheshwari.com/patterns/ai-failure-states.html">
+<meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/ai-failure-states-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Arpit Maheshwari Portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Failure State Patterns">
+<meta name="twitter:description" content="How to design failure states that maintain trust when algorithms fail.">
+<meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/ai-failure-states-og.png">
+<meta name="twitter:image:alt" content="How to design failure states that maintain trust when algorithms fail.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
+<link rel="stylesheet" href="/fonts.css?v=f0312437">
+<noscript></noscript>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","headline":"AI Failure State Patterns","description":"Design patterns for communicating AI uncertainty and failure to users.","author":{"@type":"Person","name":"Arpit Maheshwari"},"datePublished":"2026-05-09","dateModified":"2026-05-24"}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://arpitmaheshwari.com/"},
+    {"@type":"ListItem","position":2,"name":"Patterns","item":"https://arpitmaheshwari.com/#patterns"},
+    {"@type":"ListItem","position":3,"name":"AI Failure States: Graceful Error UX Patterns","item":"https://arpitmaheshwari.com/patterns/ai-failure-states.html"}
+  ]
+}
+</script>
+<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../amber.css?v=fb751bd1">
+<link rel="stylesheet" href="../site.css?v=711c7c1c">
+<!--/head-->
+<!--pre-nav--><svg class="xi-home-001" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  
+</svg>
+
+<div role="banner">
+<!--/pre-nav-->
+<!--content-->
+</div>
+
+<div class="page-head" data-ground="bookend">
+  <div class="xi-process-004">
+    <div class="meta-row">
+      <h1 class="t-hero xi-patterns-act-review-ignore-006">AI Failure States: Where the Next Ten Interactions Are Won</h1>
+      <span class="lbl-badge-ink xi-patterns-act-review-ignore-007">In production</span>
+    </div>
+    <p class="lbl-cap">AI Design · <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="A system design approach where functionality degrades gracefully when failures occur, offering reduced but still-useful alternatives rather than failing completely">Graceful Degradation</abbr> · Last updated September 2026</p>
+    <p class="lbl-cap xi-patterns-act-review-ignore-008">Part of <a class="link-gold" href="./">A Field Guide to Trust</a> · updated September 2026</p>
+    <p class="lbl-cap">Seen in production: <a class="link-gold" href="../case-studies/adtech.html">the AdTech case&nbsp;&rarr;</a> &middot; <a class="link-gold" href="../case-studies/orgos.html">the OrgOS case&nbsp;&rarr;</a></p>
+    <p class="hand hand-note" aria-hidden="true">nothing ships without its failure state — house rule</p>
+  </div>
+</div>
+
+<main id="main" class="section page-bg"><div class="xi-process-004">
+
+  <section class="xi-process-012">
+    <p class="lead xi-patterns-act-review-ignore-015">A failure state is not a footnote. It’s where the next ten interactions are won or lost — I’ve shipped an error state people triggered on purpose, because the product was sorry in a way they wanted to see. This is sharpest with a language model, which will happily hallucinate a fluent, confident answer rather than admit it doesn’t know — so the design has to make abstention, the honest “I’m not sure,” the easy path. Handle your own uncertainty out loud and the user gives you another shot. Fail quietly — or fail confidently wrong — and the user leaves. So design the wrong answer before you design the right one. The five patterns below are the ones I keep reaching for.</p>
+    
+    <!-- Abstract UI Diagram: Failure State Comparison -->
+    <div class="card-wire xi-patterns-ai-failure-states-015" data-tint>
+      <div class="lbl-eyebrow xi-patterns-ai-failure-states-016">Wireframe: The Honest Failure State</div>
+      
+      <div class="xi-patterns-ai-failure-states-017">
+        <!-- The Bad Way -->
+        <div class="xi-patterns-ai-failure-states-018">
+          <div class="lbl-meta xi-process-005">Standard Error</div>
+          <div class="xi-patterns-ai-failure-states-020">✕</div>
+          <div class="t-serif-body-plain xi-patterns-ai-failure-states-021">Error 500</div>
+          <div class="xi-patterns-ai-failure-states-022">Something went wrong.</div>
+        </div>
+
+        <!-- The Good Way -->
+        <div class="xi-patterns-ai-failure-states-023">
+          <div class="lbl-eyebrow xi-patterns-ai-failure-states-024">Honest AI Fallback</div>
+          <div class="xi-patterns-ai-failure-states-025">
+            <div class="xi-patterns-ai-failure-states-026"></div>
+            <div>
+              <div class="xi-patterns-ai-failure-states-027">I couldn’t find a confident answer</div>
+              <div class="xi-patterns-ai-failure-states-028">This query requires data outside my current training cutoff.</div>
+            </div>
+          </div>
+          <div class="xi-case-studies-adtech-049">
+            <div class="lbl-meta xi-process-013">Suggested actions:</div>
+            <div class="xi-patterns-ai-failure-states-031">
+              <div class="xi-patterns-ai-failure-states-032">Search Web</div>
+              <div class="xi-patterns-ai-failure-states-033">Ask Expert</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <figure class="xi-case-studies-ptc-036">
+      <svg id="art-ai-failure-s-1" class="framed xi-case-studies-ptc-037 art-svg" data-art-scoped xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">Failure States pattern</title>
+  <desc id="dsc">A wide cream editorial banner. On the left, a UI card in a graceful low-confidence state where the model declines to bluff and admits uncertainty. On the right, clear recovery actions: try another source, or ask a human.</desc>
+
+  <rect x="0" y="0" width="1280" height="400" fill="#F4ECDA"/>
+
+  <!-- ============ LEFT: heading block ============ -->
+  <text x="64" y="120" font-family="'Source Serif 4', Georgia, serif" font-size="52" font-weight="700" fill="#2C2620">Failure States</text>
+  <text x="66" y="158" font-family="'Source Sans 3', system-ui, sans-serif" font-size="22" fill="#2C2722">Design the wrong-answer screen first.</text>
+
+  <!-- accent rule under subtitle -->
+  <rect x="66" y="180" width="300" height="3" rx="1.5" fill="#C0512B"/>
+
+  <!-- small low-confidence badge under heading -->
+  <g font-family="'Source Sans 3', system-ui, sans-serif">
+    <rect x="66" y="226" width="232" height="46" rx="23" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+    <circle cx="92" cy="249" r="9" fill="none" stroke="#CE9230" stroke-width="2.5"/>
+    <path d="M92 244 v6" stroke="#CE9230" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="92" cy="254" r="1.6" fill="#CE9230"/>
+    <text x="112" y="255" font-size="18" fill="#2C2722">Not confident enough</text>
+  </g>
+
+  <!-- arrow from card toward recovery, spanning the middle -->
+  <g stroke="#C0512B" stroke-width="2.5" fill="none">
+    <path d="M664 200 H792" stroke-dasharray="2 9" stroke-linecap="round"/>
+    <path d="M786 192 l12 8 l-12 8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ============ CENTER-LEFT: low-confidence UI card ============ -->
+  <g>
+    <!-- card body -->
+    <rect x="382" y="84" width="282" height="232" rx="16" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+
+    <!-- card title bar -->
+    <text x="408" y="124" font-family="'Source Sans 3', system-ui, sans-serif" font-size="17" fill="#494338">Your question</text>
+    <line x1="408" y1="140" x2="638" y2="140" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+
+    <!-- model "I'm not sure" face / signal -->
+    <circle cx="431" cy="186" r="22" fill="none" stroke="#CE9230" stroke-width="3"/>
+    <path d="M431 174 v8" stroke="#CE9230" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="431" cy="194" r="2.2" fill="#CE9230"/>
+
+    <!-- the honest message -->
+    <text x="470" y="180" font-family="'Source Serif 4', Georgia, serif" font-size="24" font-weight="700" fill="#2C2620">I’m not sure</text>
+    <text x="470" y="206" font-family="'Source Sans 3', system-ui, sans-serif" font-size="16" fill="#2C2722">about this one.</text>
+
+    <!-- declining-to-bluff: low confidence meter -->
+    <text x="408" y="248" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="#494338">Confidence</text>
+    <rect x="408" y="258" width="230" height="10" rx="5" fill="#F4ECDA" stroke="rgba(44,38,32,0.12)" stroke-width="1"/>
+    <rect x="408" y="258" width="64" height="10" rx="5" fill="#CE9230"/>
+    <text x="610" y="252" font-family="'Source Sans 3', system-ui, sans-serif" font-size="15" fill="#2C2722" text-anchor="end">Low</text>
+
+    <!-- faint suppressed "answer" lines — the bluff it chose NOT to give -->
+    <line x1="408" y1="288" x2="560" y2="288" stroke="rgba(44,38,32,0.12)" stroke-width="6" stroke-linecap="round"/>
+    <line x1="408" y1="302" x2="500" y2="302" stroke="rgba(44,38,32,0.12)" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- ============ RIGHT: recovery affordances ============ -->
+  <g font-family="'Source Sans 3', system-ui, sans-serif">
+    <text x="822" y="120" font-family="'Source Serif 4', Georgia, serif" font-size="22" font-weight="700" fill="#2C2620">What now?</text>
+
+    <!-- option 1: try another source -->
+    <rect x="822" y="146" width="394" height="68" rx="14" fill="#EEE4CE" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+    <g stroke="#24473F" stroke-width="2.5" fill="none">
+      <path d="M858 180 a16 16 0 1 1 -0.01 0" />
+      <path d="M848 173 l8 5 l-3 9" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="894" y="176" font-size="19" font-weight="600" fill="#2C2620">Try another source</text>
+    <text x="894" y="198" font-size="15" fill="#2C2722">Search a different reference</text>
+
+    <!-- option 2: ask a human (primary, ember) -->
+    <rect x="822" y="226" width="394" height="68" rx="14" fill="#EEE4CE" stroke="#C0512B" stroke-width="2"/>
+    <g stroke="#C0512B" stroke-width="2.5" fill="none">
+      <circle cx="858" cy="252" r="8"/>
+      <path d="M845 276 a13 13 0 0 1 26 0" stroke-linecap="round"/>
+    </g>
+    <text style="fill:#76321A" x="894" y="256" font-size="19" font-weight="600" fill="#C0512B">Ask a human</text>
+    <text x="894" y="278" font-size="15" fill="#2C2722">Route to a person who knows</text>
+  </g>
+
+  <!-- baseline hairline grounding the banner -->
+  <line x1="64" y1="350" x2="1216" y2="350" stroke="rgba(44,38,32,0.12)" stroke-width="1.5"/>
+  <text x="64" y="376" font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#494338">A graceful unknown beats a confident wrong answer.</text>
+</svg>
+      <div class="artalt">
+        <p class="artalt-h">Failure States</p>
+        <p class="artalt-sub">Design the wrong-answer screen first.</p>
+        <ol class="artalt-set">
+          <li>
+            <p class="artalt-n">Your question</p>
+            <p class="artalt-t">I&#8217;m not sure about this one.</p>
+            <p class="artalt-d">Confidence &#183; Low &#8212; not confident enough</p>
+          </li>
+          <li>
+            <p class="artalt-n">What now?</p>
+            <p class="artalt-t">Try another source</p>
+            <p class="artalt-d">Search a different reference</p>
+          </li>
+          <li>
+            <p class="artalt-t">Ask a human</p>
+            <p class="artalt-d">Route to a person who knows</p>
+          </li>
+        </ol>
+        <p class="artalt-note">A graceful unknown beats a confident wrong answer.</p>
+      </div>
+
+
+    </figure>
+  </section>
+
+  <div class="thesis" data-tint>
+    <span class="t-l">The principle this page proves</span>
+    <p>Users forgive a model for being wrong. They never forgive it for <em>bluffing</em>.</p>
+  </div>
+  <!-- LIVE DEMO — same demo as the book's field guide -->
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Try it — the pattern, live</h2>
+    <p class="u-ui xi-case-studies-adtech-016">The same live demo that runs in the book edition’s field guide. Synthetic data; nothing leaves the page.</p>
+    <div data-demo="alert"></div>
+  </section>
+
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">1. The Honest “I Don’t Know”</h2>
+    <p class="u-body xi-process-005">Your model’s confidence drops below the <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="The numeric boundary (e.g., 65%) below which the system either hides output or flags uncertainty to the user">threshold</abbr>. Say so: “I couldn’t find a confident answer. This might be because [reason].” Don’t fake it. A plausible hallucination costs more than an honest blank.</p>
+    <p class="u-body xi-process-005"><strong>Example language:</strong></p>
+    <ul class="u-body xi-case-studies-adtech-052">
+      <li class="xi-patterns-act-review-ignore-027">“I’m not confident enough in my answer. Try rephrasing your question or checking your data.”</li>
+      <li class="xi-patterns-act-review-ignore-027">“This document is outside my training data. I recommend manual review.”</li>
+      <li class="xi-patterns-act-review-ignore-027">“The system encountered an edge case. Please contact support with this reference ID: XYZ.”</li>
+    </ul>
+    <p class="u-body">It comes down to <strong>specificity</strong>. “Something went wrong” tells the user nothing. “Your query matches fewer than 3 historical examples, so I can’t predict with confidence” tells them <em>why</em> — and what to change. Choose this pattern wherever the model can name the reason it fell short.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">2. The Graduated Fallback</h2>
+    <p class="u-body xi-process-005">A dead end ends the session. A ladder keeps it going. “I can’t give a precise recommendation, but here are three alternatives: (A) Use the default, (B) See similar historical cases, (C) Talk to an expert.” Each rung is more degraded than the last, and every rung still moves the user forward. That’s <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="A secondary plan or option that activates when the primary solution fails, ensuring the user can still proceed">fallback</abbr> design at scale.</p>
+    <p class="u-body xi-process-005"><strong>Fallback hierarchy (best to worst):</strong></p>
+    <ol class="u-body xi-case-studies-adtech-052">
+      <li class="xi-case-studies-adtech-026">Primary: AI recommendation (high confidence)</li>
+      <li class="xi-case-studies-adtech-026">Secondary: AI recommendation (low confidence) + disclaimer</li>
+      <li class="xi-case-studies-adtech-026">Tertiary: Historical baseline (“The average case similar to yours…”)</li>
+      <li class="xi-case-studies-adtech-026">Quaternary: Manual process (“Contact support for expert review”)</li>
+      <li class="xi-case-studies-adtech-026">Null: System unavailable (offline / maintenance)</li>
+    </ol>
+    <p class="u-body">The user always has <em>something</em> in hand. Trust in the model can wait; the work doesn’t have to. Reach for this whenever a hard failure would otherwise strand someone mid-task.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">3. The Error Context Card</h2>
+    <p class="u-body xi-process-005">When something breaks, “Error” tells the user nothing they can use. Show a card that carries four things:</p>
+    <ul class="u-body xi-case-studies-adtech-052">
+      <li class="xi-patterns-act-review-ignore-027"><strong>What failed:</strong> “Data processing timed out”</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Why it might have failed:</strong> “Your dataset is very large (500MB). Try a smaller file or contact support for batch processing.”</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>What you can do:</strong> Retry, View guide, Contact support</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Reference code:</strong> If error persists, users can reference this code with support</li>
+    </ul>
+    <p class="u-body">The card turns a cryptic stop into a failure the user can act on. Use it wherever an error has a knowable cause and a next step.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">4. The Confidence-Based Disclosure</h2>
+    <p class="u-body xi-process-005">Let the interface show where confidence breaks down. High (&gt;80%): show the result plainly. Middle (50–80%): keep the result, attach a warning banner. Low (&lt;50%): hide the result and run the fallback instead.</p>
+    <p class="u-body xi-process-005">The system never snaps from working to broken. It gets less certain, says so as it goes, and the user watches the confidence fade in real time. Choose this when a single accuracy number hides a wide spread of certainty underneath.</p>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-process-014">5. The Transparency Log</h2>
+    <p class="u-body xi-process-005">Keep a log the user can read: “When I said X, here’s what actually happened,” or “Last time I was wrong about Y, here’s why.” A system that owns its past misses earns trust the next time it speaks up.</p>
+    <ul class="u-body xi-case-studies-adtech-052">
+      <li class="xi-patterns-act-review-ignore-027">“Last week I recommended this lead with 85% confidence. You marked it low-quality. Updated confidence: 72%.”</li>
+      <li class="xi-patterns-act-review-ignore-027">“I’ve been wrong about churn 3× this month. Recent model updates should reduce this. Accuracy now: 77% (was 71%).”</li>
+      <li class="xi-patterns-act-review-ignore-027">“This is a new product category I haven’t seen before. I’ll learn from this case. Current uncertainty: ±25%.”</li>
+    </ul>
+    <p class="u-body">The log doesn’t bury the miss. It converts it into something the user watched the model learn from. People lean on systems that admit error and visibly improve. Reach for this in any product a user returns to across sessions. This is &ldquo;show the miss&rdquo; shipped as a feature: the model&rsquo;s documented misses, kept where the user can read them.</p>
+  </section>
+
+  <div class="counter">
+    <span class="c-l">The strongest objection, kept in</span>
+    <p class="u-body">&ldquo;A model that admits failure looks weaker than one that always answers.&rdquo; The private-equity screening tool shipped able to say &ldquo;I&rsquo;m not sure&rdquo; &mdash; abstention as a feature, not an error state &mdash; and that is the product analysts went from ignoring to leading their deal memos with. The always-answering model is the one they quietly stopped believing.</p>
+  </div>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018">Ship it: the checklist.</h2>
+    <ul class="u-body xi-patterns-act-review-ignore-026">
+      <li class="xi-patterns-act-review-ignore-027"><strong>Identify failure modes:</strong> Write down 5–10 ways your system can fail.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Design each failure UI:</strong> A specific state for each, never a generic “Error 500”.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Add a fallback:</strong> Decide what the user does when the AI can’t.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>User-test failures:</strong> Put people in front of the error states. Do they follow? Do they know the next move?</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Monitor failure rates:</strong> Watch which errors get hit most. Fix the common ones first.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Transparency-first language:</strong> Plain words, no jargon.</li>
+    </ul>
+  </section>
+
+  <section class="card-gold xi-patterns-act-review-ignore-028">
+    <h3 class="card-title xi-process-005">Where this pattern earned its keep</h3>
+    <ul class="t-cap-loose xi-case-studies-adtech-052">
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> What the screen says when the recommendation can’t clear the bar.</li>
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/orgos.html">OrgOS</a>:</strong> Saying it plainly when a complex system hits its limits.</li>
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/planit.html">The App People Broke on Purpose</a>:</strong> The furthest this pattern has ever gone &mdash; an error state people triggered on purpose, because the product was sorry in a way they wanted to see.</li>
+    </ul>
+  </section>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section class="card-gold xi-patterns-act-review-ignore-028">
+    <div class="eyebrow xi-process-013">Get AI design patterns in your inbox</div>
+    <p class="u-ui xi-case-studies-adtech-016">One pattern a month, with the tradeoffs spelled out and the templates I use.</p>
+    <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+      <input class="t-sans-ui card-seg xi-patterns-act-review-ignore-031" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
+      <button class="cta cta--secondary xi-patterns-act-review-ignore-032" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
+    </form>
+  </section>
+
+  <section class="xi-patterns-ai-failure-states-046">
+    <div class="eyebrow xi-patterns-act-review-ignore-027">Companion essay</div>
+    <a class="xi-patterns-ai-failure-states-047" href="../writing/failure-states.html">Design the Failure State First →</a>
+  </section>
+
+  <section class="measure-t" data-tint>
+    <div class="xi-patterns-act-review-ignore-035">
+      <div class="eyebrow xi-process-013">Where this breaks — do not use it here</div>
+      <p class="u-body xi-process-017">If failure is frequent, the fix is the system, not the copy — a beautifully-worded error shown hourly is an apology habit. And over-apologising reads as instability: past a point, the honest ‘I’m not sure’ should get quieter and rarer, not more charming.</p>
+    </div>
+  </section>
+
+  <div class="btn-row">
+    <a class="cta-quiet" href="./ml-explainability.html">Next pattern / ML Explainability →</a>
+    <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="pattern-bottom">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
+  </div>
+</div></main>
+
+<!--/content-->
+<!--tail-->
+
+<script>
+const toggle = document.getElementById('dyslexiaToggle');
+if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on'; if (isDyslexic) { document.body.classList.add('dyslexia-mode'); toggle.setAttribute('aria-pressed', 'true'); } toggle.addEventListener('click', () => { document.body.classList.toggle('dyslexia-mode'); const isOn = document.body.classList.contains('dyslexia-mode'); toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false'); localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off'); }); }
+document.addEventListener('click', (e) => { const cta = e.target.closest('[data-cta]'); if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' }); });
+
+// Scroll depth — fires once per threshold (25/50/75/100)
+const scrollDepthHits = new Set();
+function trackScrollDepth() {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (docHeight <= 0) return;
+  const pct = Math.min(100, Math.floor((window.scrollY / docHeight) * 100));
+  [25, 50, 75, 100].forEach(threshold => {
+    if (pct >= threshold && !scrollDepthHits.has(threshold)) {
+      scrollDepthHits.add(threshold);
+      if (typeof gtag === 'function') gtag('event', 'scroll_depth', { percent: threshold });
+    }
+  });
+}
+window.addEventListener('scroll', trackScrollDepth, { passive: true });
+
+// Section visibility — fires once per section when 50% in viewport
+const sectionViewObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.viewed) {
+      entry.target.dataset.viewed = '1';
+      if (typeof gtag === 'function') {
+        gtag('event', 'section_view', { section_id: entry.target.id });
+      }
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s));
+</script>
+
+<script>
+// a11y: mark current nav item
+(function(){
+  const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
+  const matches = {
+    '/case-studies/': 'Work',
+    '/patterns/': 'Patterns',
+    '/writing/': 'Writing',
+    '/resources/': 'Resources',
+  };
+  let active = null;
+  for (const [prefix, label] of Object.entries(matches)) {
+    if (path.includes(prefix)) { active = label; break; }
+  }
+  if (active) {
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.textContent.trim() === active || (active === 'Work' && a.getAttribute('href')?.includes('featured-case-studies'))) {
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+})();
+</script>
+<script src="./demos.js?v=023e3327" defer></script>
+<script defer src="../attention.js?v=2fa8260a"></script>
+<script defer src="../clarity.js?v=9e4df576"></script>
+<!--/tail-->
