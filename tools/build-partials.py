@@ -133,7 +133,7 @@ def render(rel, existing_nav, existing_footer):
     note = footer_note(existing_footer) if existing_footer else None
     foot = FOOTER.replace('{{ROOT}}', root)
     foot = foot.replace('{{FOOTER_NOTE}}', note if note else
-                        'No rights reserved — good patterns should travel')
+                        'No copyright · Design is for all')   # Arpit, 2026-09-14: one note everywhere
     return nav, foot
 
 
