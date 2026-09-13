@@ -53,6 +53,7 @@ PAGE_STATE = r"""(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.
 
 
 def state(br):
+    settled(br)   # a click may still be navigating on a real network (production, 2026-09-13)
     br.eval("(()=>{if(!document.getElementById('__jc')){const s=document.createElement('style');s.id='__jc';s.textContent='html,body{scroll-behavior:auto!important}';document.head.appendChild(s)}return 1})()")
     br.eval(SCROLL, await_promise=True)
     return br.eval_json(PAGE_STATE)
@@ -85,17 +86,30 @@ def click(br, js_find):
     return br.eval_json("(()=>{const e=%s;if(!e)return null;const h=e.getAttribute('href');e.scrollIntoView({block:'center'});e.click();return JSON.stringify({href:h})})()" % js_find)
 
 
+def settled(br, tries=25):
+    """A real document, not a redirect stub mid-flight: production's /?view=classic hands over by script,
+    and an eval that lands during that hand-over sees no <body> and throws (2026-09-13)."""
+    for _ in range(tries):
+        try:
+            if br.eval("!!(document.body && document.head) && document.readyState==='complete'"):
+                return True
+        except RuntimeError:
+            pass
+        time.sleep(0.2)
+    return False
+
+
 def journey(br, width, urls, defects, plant=False):
     mobile = width < 700
     br.viewport(width, 844 if mobile else 900)
     br.cmd('Network.enable')
 
     # 1 · the primary nav from home
-    br.navigate(BASE + '/?view=classic', settle=2); br.eval("(()=>{try{localStorage.clear();sessionStorage.clear()}catch(e){}return 1})()")
+    br.navigate(BASE + '/?view=classic', settle=2); settled(br); br.eval("(()=>{try{localStorage.clear();sessionStorage.clear()}catch(e){}return 1})()")
     # a FRESH reader per pass: the site remembers 'read as a book' (am-view) and, by design, sends a
     # desktop reader who chose the book back to it from the homepage — the previous pass's visit to
     # the book would otherwise redirect this one and every nav query would answer 0.
-    br.navigate(BASE + '/?jc=' + str(width), settle=3); errors(br)   # a distinct URL per width forces a real load, not a same-URL reload mid-eval
+    br.navigate(BASE + '/?jc=' + str(width), settle=3); settled(br); errors(br)   # a distinct URL per width forces a real load, not a same-URL reload mid-eval
     nav = []
     for _ in range(20):   # the nav is static markup, but a same-document reload can answer the first query with the unloading page
         nav = br.eval_json("JSON.stringify([...document.querySelectorAll('#nav .nav-links a')].map(a=>a.getAttribute('href')))")
@@ -104,7 +118,7 @@ def journey(br, width, urls, defects, plant=False):
     if not nav: defects.append((f'home@{width}', 'no primary nav links found'))
     for href in nav:
         if href.startswith('http') and not href.startswith(BASE): continue   # the Connect door leaves the site; link-integrity owns external URLs
-        br.navigate(BASE + '/', settle=2.5); errors(br)
+        br.navigate(BASE + '/', settle=2.5); settled(br); errors(br)
         if mobile:
             br.eval("document.getElementById('menuToggle').click()")
             time.sleep(0.4)
@@ -113,7 +127,7 @@ def journey(br, width, urls, defects, plant=False):
             if expanded != 'true' or not vis:
                 defects.append((f'home@{width}', f'drawer did not open (aria-expanded={expanded}, links visible={vis})')); continue
         click(br, "[...document.querySelectorAll('#nav .nav-links a')].find(a=>a.getAttribute('href')===%s)" % json.dumps(href))
-        time.sleep(0.8)
+        time.sleep(0.8); settled(br)
         landed = br.eval('location.href')
         want = urllib.parse.urljoin(BASE + '/', href)
         if landed.split('#')[0].rstrip('/') != want.split('#')[0].rstrip('/'):
@@ -136,7 +150,7 @@ def journey(br, width, urls, defects, plant=False):
         for j in jumps:
             if not j.startswith('#'): continue
             click(br, "[...document.querySelectorAll('.case-jump a')].find(a=>a.getAttribute('href')===%s)" % json.dumps(j))
-            time.sleep(0.9)
+            time.sleep(0.9); settled(br)
             got = br.eval_json("(()=>{const t=document.getElementById(location.hash.slice(1));if(!t)return JSON.stringify({hash:location.hash,found:false});const r=t.getBoundingClientRect();const maxed=Math.ceil(scrollY)>=document.documentElement.scrollHeight-innerHeight-2;return JSON.stringify({hash:location.hash,found:true,top:Math.round(r.top),vh:innerHeight,maxed})})()")
             if got['hash'] != j: defects.append((label, f'jump {j}: hash became {got["hash"] or "(none)"}'))
             elif not got['found']: defects.append((label, f'jump {j}: no element with that id'))
@@ -149,7 +163,7 @@ def journey(br, width, urls, defects, plant=False):
             if not br.eval("!!document.querySelector('h1')"): defects.append((label, f'next door {nxt.replace(BASE, "")} has no <h1>'))
 
     # 3 · home receipts open
-    br.navigate(BASE + '/', settle=2.5); errors(br)
+    br.navigate(BASE + '/', settle=2.5); settled(br); errors(br)
     n = br.eval("document.querySelectorAll('.rcpt-btn').length")
     for i in range(n):
         r = br.eval_json("(()=>{const b=document.querySelectorAll('.rcpt-btn')[%d];b.scrollIntoView({block:'center'});b.click();return new Promise(res=>setTimeout(()=>{const p=document.getElementById(b.getAttribute('aria-controls'));const rr=p?p.getBoundingClientRect():{height:0};res(JSON.stringify({exp:b.getAttribute('aria-expanded'),h:Math.round(rr.height),vis:p?getComputedStyle(p).visibility:'none'}))},700))})()" % i, await_promise=True)

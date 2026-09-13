@@ -52,7 +52,7 @@ OBSERVE = r"""(()=>{const vw=innerWidth,vh=innerHeight,touch=vw<820;const out=[]
  for(const i of document.images){ if(!vis(i)||!i.naturalWidth||/\.svg(\?|$)/.test(i.currentSrc))continue;   /* an SVG keeps its own aspect inside any box */ const r=i.getBoundingClientRect(); const a=r.width/r.height,b=i.naturalWidth/i.naturalHeight;
    if(Math.abs(a/b-1)>0.05&&getComputedStyle(i).objectFit==='fill') out.push(['DISTORTED',`${(i.currentSrc||'').split('/').pop().slice(0,40)} drawn ${a.toFixed(2)} vs natural ${b.toFixed(2)}`]); }
  const boxes=[...document.querySelectorAll('main h1,main h2,main h3,main p,main li,main a.cta,main button,main figcaption,main dt,main dd')].filter(vis).map(e=>({e,r:e.getBoundingClientRect()}));
- for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){const A=boxes[i],B=boxes[j]; if(A.e.contains(B.e)||B.e.contains(A.e))continue;
+ for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){const A=boxes[i],B=boxes[j]; if(A.e.contains(B.e)||B.e.contains(A.e))continue; if(getComputedStyle(A.e).position==='absolute'||getComputedStyle(B.e).position==='absolute')continue; /* an overlay control (a Close button) sits on its panel by design */
    const ox=Math.min(A.r.right,B.r.right)-Math.max(A.r.left,B.r.left), oy=Math.min(A.r.bottom,B.r.bottom)-Math.max(A.r.top,B.r.top);
    if(ox>4&&oy>4) out.push(['TOUCHING',`${A.e.tagName.toLowerCase()} “${A.e.textContent.trim().slice(0,20)}” ∩ ${B.e.tagName.toLowerCase()} “${B.e.textContent.trim().slice(0,20)}” ${Math.round(ox)}×${Math.round(oy)}`]); if(out.length>40)break;}
  // void: rows of the viewport with no content box at all
@@ -66,11 +66,24 @@ OBSERVE = r"""(()=>{const vw=innerWidth,vh=innerHeight,touch=vw<820;const out=[]
  return JSON.stringify({obs:out.slice(0,40),url:location.pathname+location.hash,scrollY:Math.round(scrollY),title:document.title.slice(0,40)})})()"""
 
 
+def settled(br, tries=25):
+    """A real document, not a redirect stub mid-flight: production's /?view=classic hands over by script,
+    and an eval that lands during that hand-over sees no <body> and throws (2026-09-13)."""
+    for _ in range(tries):
+        try:
+            if br.eval("!!(document.body && document.head) && document.readyState==='complete'"):
+                return True
+        except RuntimeError:
+            pass
+        time.sleep(0.2)
+    return False
+
+
 def fresh_reader(br, width):
     br.viewport(width, 844 if width < 700 else 900)
-    br.navigate(BASE + '/?view=classic', settle=2)
+    br.navigate(BASE + '/?view=classic', settle=2); settled(br)
     br.eval("(()=>{try{localStorage.clear();sessionStorage.clear()}catch(e){}return 1})()")
-    br.navigate(BASE + '/', settle=3)
+    br.navigate(BASE + '/', settle=3); settled(br)
 
 
 def shot(br):
@@ -118,6 +131,7 @@ def step(br, rng, width, log):
             label = 'back'; br.eval("history.back()"); time.sleep(1.2)
     except RuntimeError as e:
         log.append(('ERROR', f'{label}: {str(e)[:80]}'))
+    settled(br)
     after = br.eval_json("JSON.stringify({u:location.href,exp:[...document.querySelectorAll('[aria-expanded=\"true\"]')].length,y:scrollY})")
     if kind in ('link', 'nav', 'open') and after == before:
         log.append(('STUCK', f'{label} changed nothing'))
@@ -137,6 +151,7 @@ def session(seed, steps, out_dir):
         for n in range(steps + 1):
             notebook_step = []
             if n: label, width = step(br, rng, width, notebook_step)
+            settled(br)   # on a real network a click may still be navigating
             o = br.eval_json(OBSERVE)
             im = shot(br)
             scale = 420 / im.width
