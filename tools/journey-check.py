@@ -39,7 +39,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdp
 from gatelib import page_urls
 
-BASE = 'http://localhost:8000'
+import os as _os
+BASE = _os.environ.get('BASE', 'http://localhost:8000')   # BASE=https://arpitmaheshwari.com to explore production
 SCROLL = ("(async()=>{const h=document.documentElement.scrollHeight;for(let y=0;y<h;y+=600){scrollTo(0,y);"
           "await new Promise(r=>setTimeout(r,25));}scrollTo(0,0);await new Promise(r=>setTimeout(r,120));"
           "await Promise.all([...document.images].map(i=>i.complete?1:new Promise(r=>{i.onload=i.onerror=r;setTimeout(r,2500)})));return 1})()")
@@ -177,10 +178,10 @@ def main():
     ap.add_argument('--no-selftest', action='store_true')
     a = ap.parse_args()
     try:
-        cdp.ensure_server(8000)
+        if 'localhost' in BASE: cdp.ensure_server(8000)
     except Exception as e:
         print('COULD NOT MEASURE:', e); return 3
-    urls = page_urls(include_book=False)
+    urls = page_urls(base=BASE, include_book=False)
     widths = [int(w) for w in a.widths.split(',')]
     with cdp.Browser() as br:
         if not a.no_selftest:

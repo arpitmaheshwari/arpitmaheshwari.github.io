@@ -39,7 +39,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdp
 from PIL import Image, ImageDraw
 
-BASE = 'http://localhost:8000'
+import os as _os
+BASE = _os.environ.get('BASE', 'http://localhost:8000')   # BASE=https://arpitmaheshwari.com to explore production
 WIDTHS = [390, 412, 768, 820, 1024, 1280, 1440]
 OBSERVE = r"""(()=>{const vw=innerWidth,vh=innerHeight,touch=vw<820;const out=[];
  const vis=e=>{const r=e.getBoundingClientRect();return r.width>0&&r.height>0&&r.bottom>0&&r.top<vh&&getComputedStyle(e).visibility!=='hidden'};
@@ -161,7 +162,7 @@ def main():
     ap.add_argument('--sessions', type=int, default=3)
     ap.add_argument('--steps', type=int, default=14)
     a = ap.parse_args()
-    cdp.ensure_server(8000)
+    if 'localhost' in BASE: cdp.ensure_server(8000)
     ts = datetime.datetime.now().strftime('%Y-%m-%d_%H%M')
     out_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'prototypes', 'explore', ts)
     os.makedirs(out_dir, exist_ok=True)

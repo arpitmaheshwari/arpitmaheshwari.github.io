@@ -6547,4 +6547,19 @@ a.cta-quiet:hover, button.cta-quiet:hover, .cta-quiet:hover { color:var(--text-p
 .nav-cta:hover { transform:translateY(-2px); }
 @media (prefers-reduced-motion:reduce) { .nav-cta:hover { transform:none; } }
 
+
+/* ── ACT OPENERS AS LANDMARKS (Arpit, 2026-09-13: "when you scroll the homepage you miss the start of
+   the next section"). The opener was a light numeral and a light serif line at body weight. Now: a
+   3px rule in the act's own colour across the reading width, the act numeral large and in that colour,
+   the act name in small mono caps beside it (below it on a phone); a sub-act repeats the idea at one
+   third the size. Scoped to the acts — the hero's eyebrow shares the .k class and stays as it is.
+   Chosen from three rendered directions (H1 numeral + H2's rule). */
+body.p-home main > section:not(.hero) .chap{grid-template-columns:auto 1fr;align-items:baseline;column-gap:20px;padding-top:20px;border-top:3px solid var(--act);margin-bottom:10px}
+body.p-home main > section:not(.hero) .chap-n{font-size:clamp(44px,5vw,72px);font-weight:300;color:var(--act);line-height:.9;letter-spacing:-.03em}
+body.p-home main > section:not(.hero) .chap-t{font-family:var(--ff-mono);font-size:clamp(12px,1vw,14px);font-weight:500;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;color:var(--text-muted)}
+body.p-home main > section:not(.hero) .k{padding-top:14px;border-top:1px solid var(--act)}
+body.p-home main > section:not(.hero) .k-idx{color:var(--act);font-weight:600}
+@media (max-width:600px){
+  body.p-home main > section:not(.hero) .chap{grid-template-columns:1fr;row-gap:8px}
+}
 }
