@@ -24,6 +24,20 @@
  ],
  "gates": [
   {
+   "id": "css-build-check",
+   "cmd": [
+    "python3",
+    "tools/build-css.py",
+    "--check"
+   ],
+   "stages": [
+    "pre-push",
+    "ci",
+    "ci-always"
+   ],
+   "note": "2026-09-13 (architecture review #1): site.css is the concatenation of css/site/*.css and nothing else. A hand edit to site.css that is not in its sources is the old 'no source, only a recipe' debt returning; this fails the push until the edit is moved to css/site/."
+  },
+  {
    "id": "canon-lint",
    "cmd": [
     "python3",

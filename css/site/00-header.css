@@ -1,0 +1,29 @@
+/* ============================================================================
+   SITE.CSS — this site's own stylesheet, on the design system's cascade layers.
+   ----------------------------------------------------------------------------
+   Loads AFTER amber.css and shares its layer order, which is the whole contract:
+
+     reset → tokens → ground → type → layout → components → utilities → overrides
+
+   A later layer beats an earlier one regardless of specificity, and within one
+   layer specificity and source order decide as they always did. amber.css fills
+   the early layers and the generic half of `components`; this file fills:
+
+     components  the site's own components — page layouts, cards, instruments,
+                 the reconstruction plates. Where both files style the same thing
+                 in this layer, this file is later and wins ties; where the system
+                 is more specific it wins, which is the point of sharing a layer
+                 rather than stacking one on the other.
+     utilities   the extracted single-purpose classes (.xi-*), above components
+     overrides   the last word — what once had to be written !important
+
+   There is no theme attribute. There is one look, and its dark passages are the
+   two bookends the system defines ([data-ground="bookend"]), not a mode.
+
+   SOURCE: css/site/ — one file per layer below, concatenated by tools/build-css.py.
+   Edit those files, never this one; `build-css.py --check` is a gate. (It was first
+   folded from styles.css, ember.css and amber-bridge.css on 2026-09-12; that generator
+   preserved every declaration value; everything after that date is a decision.
+   ============================================================================ */
+@layer reset, tokens, ground, type, layout, components, utilities, overrides;
+

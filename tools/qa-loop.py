@@ -17,8 +17,7 @@ WHAT ONE ITERATION RUNS
   4. journey-check.py                  (navigation, drawer, jump anchors, receipts, images
                                         painted, every internal link resolves)
 
-GUARDS. Refuses to start while the CSS pipeline (css-consolidate / css-adopt-tokens /
-css-components-pass) is running; refuses if the working tree changes between iterations
+GUARDS. Refuses to start while the CSS build (build-css / build-partials) is running; refuses if the working tree changes between iterations
 (a moving target makes "flaky" meaningless). Every gate keeps its own calibration.
 
 REPORT. Per gate: PASS/FAIL per iteration, then STABLE PASS · STABLE FAIL · FLAKY. Written to
@@ -29,7 +28,7 @@ fails stably (an instrument problem to chase, not a site defect).
 import argparse, datetime, json, os, re, subprocess, sys, time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PIPELINE = re.compile(r'css-consolidate\.py|css-adopt-tokens\.py|css-components-pass\.py|components-pass\.py')
+PIPELINE = re.compile(r'build-css\.py|build-partials\.py')
 
 
 def sh(cmd, log, timeout=3600):

@@ -1,0 +1,19 @@
+@layer tokens{/* ── the site's own tokens, declared on every carrier the system re-derives tier 2 on,
+   so they resolve against THAT carrier's roles: paper on the page, light on a bookend,
+   one stop deeper on a tint. A custom property resolves where it is declared. */
+:root, [data-ground="bookend"], [data-tint], .a-tinted{
+  --act-2: var(--acc-violet);                 /* the second stop of a two-accent gradient */
+  --cta-grad: linear-gradient(92deg, var(--acc-copper), var(--acc-amber));
+  --cta-grad-hover: linear-gradient(92deg, var(--copper-700), var(--amber-700));   /* one stop deeper on paper */
+  --cta-fill-hover-copper: var(--copper-700);   /* F: one stop deeper on paper */
+  --ink-wash: color-mix(in srgb, var(--text-primary) 5%, transparent);   /* a raised fill */
+  --act-wash: color-mix(in srgb, var(--act) 8%, transparent);            /* a hover fill */
+  --link-ink: var(--acc-violet);              /* this site's links are violet, by decision */
+  --door-ink: var(--violet-700);              /* a quiet door: one stop deeper than a link, so it reads the same on paper and on a tint (cta-grammar-check saw two inks for one component) */
+  --link-ink-hover: color-mix(in srgb, var(--acc-violet) 78%, var(--text-primary));
+}
+/* a control edge on the bookend owes 1.4.11 its 3:1; the system's 37% cream measured 2.83:1
+   on this site's #140C16 (nontext-contrast-check) — 42% clears it. Logged for the system. */
+[data-ground="bookend"]{--border-strong:color-mix(in srgb, var(--neutral-100) 42%, transparent); --door-ink:var(--violet-100);
+  --cta-grad-hover:linear-gradient(92deg, var(--copper-50), var(--amber-50)); --cta-fill-hover-copper:var(--copper-50)}
+/* one stop lighter on a bookend */}

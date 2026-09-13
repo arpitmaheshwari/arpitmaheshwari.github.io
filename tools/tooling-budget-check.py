@@ -317,6 +317,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # folding three stylesheets into site.css — lesson 12 for CSS: a structural change
 # needs a BEFORE measurement) and tools/css-consolidate.py, which made the fold and
 # still reproduces it from prototypes/legacy/. css-layerize.py retired into csslib.py.
+# 2026-09-13: the fold (css-consolidate, css-adopt-tokens, css-components-pass, ~1,145 lines)
+# RETIRED — site.css now has a source (css/site/) and a 40-line build-css.py. The ceiling is not
+# lowered to match: it is a ceiling, and the headroom is what lets the next honest gate in.
 # ...and tools/render-pages.py, the full-page renderer Phase C looks at (+84).
 # (+41: the raise notes above count against the total they justify; 40 of margin so the
 # next honest note does not trip it.)

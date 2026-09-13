@@ -99,7 +99,7 @@ def collect_coverage():
 yield_sel = set()
 
 def parse_sheet_rules():
-    """Top-level and media-nested rules of ember.css as (selector, span)."""
+    """Top-level and media/supports/layer-nested rules of site.css as (selector, span)."""
     css = SHEET.read_text()
     rules = []
     i, n = 0, len(css)
@@ -113,8 +113,8 @@ def parse_sheet_rules():
             continue
         head = tok[:-1].strip()
         if head.startswith('@'):
-            if head.startswith(('@media','@supports')):
-                stack.append('@'); continue
+            if head.startswith(('@media','@supports','@layer')):   # @layer added 2026-09-13: the sheet went
+                stack.append('@'); continue                        # layered on 09-12 and this saw 3 rules of 3,500
             # @keyframes/@font-face/@page: skip its whole block
             depth = 1
             while i < n and depth:
