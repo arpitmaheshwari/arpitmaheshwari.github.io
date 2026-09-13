@@ -192,3 +192,31 @@ def planted(path, addition, timeout=300):
             os.unlink(LOCK)
         except FileNotFoundError:
             pass
+
+
+# ── colour maths, once. Five tools had their own copy (2026-09-13 architecture review #5). ──
+def luminance(rgb):
+    """WCAG relative luminance of an (r, g, b) triple in 0..255."""
+    def f(v):
+        v = v / 255.0
+        return v / 12.92 if v <= 0.03928 else ((v + 0.055) / 1.055) ** 2.4
+    r, g, b = rgb[:3]
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
+
+
+def contrast(rgb_a, rgb_b):
+    """WCAG contrast ratio between two (r, g, b) triples."""
+    la, lb = luminance(rgb_a), luminance(rgb_b)
+    return (max(la, lb) + 0.05) / (min(la, lb) + 0.05)
+
+
+def parse_rgb(text):
+    """'rgb(1, 2, 3)' / 'rgba(1, 2, 3, .5)' / '#aabbcc' -> (r, g, b) or None."""
+    import re as _re
+    if text.startswith('#') and len(text) in (4, 7):
+        h = text[1:]
+        if len(h) == 3: h = ''.join(c * 2 for c in h)
+        return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+    m = _re.findall(r'[\d.]+', text)
+    return tuple(int(float(x)) for x in m[:3]) if len(m) >= 3 else None
+

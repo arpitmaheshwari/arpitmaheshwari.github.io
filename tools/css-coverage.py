@@ -160,13 +160,16 @@ def js_tokens():
 def main():
     delete = '--delete' in sys.argv
     # calibration: plant a dead rule
-    orig = SHEET.read_text()
-    canary = '\n.zz-canary-dead-rule{color:red}\n'
-    SHEET.write_text(orig + canary)
+    # CALIBRATION WITHOUT TOUCHING THE FILE (2026-09-13): the canary used to be appended to
+    # site.css and stripped afterwards; a build and a commit during one run shipped it. The
+    # canary is now a synthetic rule added to the PARSED list — it matches nothing on any page,
+    # so the dead-rule verdict must find it, and the served stylesheet is never written.
+    canary_sel = '.zz-canary-dead-rule'
     try:
         print('collecting rendered coverage (all pages × 2 widths)…')
         used_sels = collect_coverage()
         rules = parse_sheet_rules()
+        rules.append({'sel': canary_sel, 'start': -1, 'end': -1})
         unused = [r for r in rules if r['sel'] not in used_sels]
         print(f'site.css rules: {len(rules)} · unused in coverage: {len(unused)}')
         # base-alive pseudo variants are alive
@@ -196,20 +199,10 @@ def main():
             # delete from the ORIGINAL text, matching by exact rule text spans recomputed
             for r in sorted((x for x in final if 'zz-canary' not in x['sel']), key=lambda x:-x['start']):
                 css = css[:r['start']] + css[r['end']:]
-            SHEET.write_text(css)
-            print(f'deleted {len(final)-1} rule(s) from site.css')
+            print('--delete is retired (2026-09-13): site.css is built from css/site/. Run tools/dead-rules-delete.py on the report instead.')
             return
     finally:
-        if not delete:
-            # NEVER restore over a file someone edited while we ran (2026-08-30:
-            # a mid-run edit was silently clobbered by this restore). If the
-            # sheet no longer equals snapshot+canary, strip only our canary.
-            cur = SHEET.read_text()
-            if cur == orig + canary:
-                SHEET.write_text(orig)
-            elif canary in cur:
-                SHEET.write_text(cur.replace(canary, ''))
-                print('NOTE: sheet changed during the run — canary stripped, edits preserved.')
+        pass   # nothing to restore: the file was never written
 
 if __name__ == '__main__':
     main()

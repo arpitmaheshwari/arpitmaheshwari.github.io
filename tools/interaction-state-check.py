@@ -295,14 +295,11 @@ def pixel_ratio(br, sel, ink):
         br.eval(f"(()=>{{const e=document.querySelector({_j.dumps(sel)});if(e)e.style.removeProperty('visibility');return 1}})()")
     im = Image.open(io.BytesIO(base64.b64decode(shot['data']))).convert('RGB')
     px = sorted(im.getdata()); med = px[len(px) // 2]
-    def lum(rgb):
-        f = [(v / 255) / 12.92 if v / 255 <= 0.03928 else ((v / 255 + 0.055) / 1.055) ** 2.4 for v in rgb]
-        return 0.2126 * f[0] + 0.7152 * f[1] + 0.0722 * f[2]
-    m = [float(v) for v in __import__('re').findall(r'[\d.]+', ink)[:3]]
-    if len(m) < 3:
+    from gatelib import contrast, parse_rgb
+    m = parse_rgb(ink)
+    if not m:
         return None
-    a, b = lum(m), lum(med)
-    return round((max(a, b) + 0.05) / (min(a, b) + 0.05), 2), f'rgb{med}'
+    return round(contrast(m, med), 2), f'rgb{med}'
 
 
 def hover_scan(br, only=None):
