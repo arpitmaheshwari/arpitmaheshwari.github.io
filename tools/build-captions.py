@@ -36,6 +36,7 @@ OUT  = os.path.join(ROOT, 'assets', 'video')
 # build folder -> the shipped video it narrates
 BUILDS = {
     'build':              'process-walkthrough',
+    'build-walkthrough-short': 'process-walkthrough-short',
     'build-adtech':       'case-adtech',
     'build-fintech':      'case-fintech',
     'build-o2':           'case-o2',
