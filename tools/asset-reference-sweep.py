@@ -33,7 +33,7 @@ _cdp.ensure_server(8000)
 SCAN_EXT = {".html", ".css", ".js", ".json", ".txt", ".xml", ".md", ".svg"}
 ASSET_EXT = {".png", ".jpg", ".jpeg", ".svg", ".webp", ".avif", ".gif", ".ico",
              ".woff", ".woff2", ".ttf", ".otf", ".mp4", ".webm", ".pdf", ".js", ".css"}
-SKIP_DIRS = {"prototypes", "portfolio-sources", "node_modules", ".git", ".claude",
+SKIP_DIRS = {"prototypes", "portfolio-sources", "node_modules", ".git", ".claude", "partials",   # partials/ are templates and page SOURCES; their relative paths resolve from the rendered page, not from here (2026-09-14)
              ".playwright-mcp", ".requirements", ".github"}
 
 # EXTENSION-DRIVEN, not key-driven. The first version keyed off href|src|url(|srcset|content

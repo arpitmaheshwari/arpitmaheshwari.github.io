@@ -120,7 +120,7 @@ facts={
  "demos_js_kb": round(os.path.getsize(os.path.join(R,'patterns/demos.js'))/1024,1),
  "demos_js_imports": len(re.findall(r'import |require\(|fetch\(',open(os.path.join(R,'patterns/demos.js')).read())),
  "og_cards": len(tracked('assets/og-images/*.png')),
- "skip_link_pages": len([f for f in tracked('*.html',('prototypes/',)) if 'skip-link' in open(os.path.join(R,f),encoding='utf-8',errors='ignore').read()]),
+ "skip_link_pages": len([f for f in tracked('*.html',('prototypes/','partials/')) if 'skip-link' in open(os.path.join(R,f),encoding='utf-8',errors='ignore').read()]),
  "build_steps": 0,
  "loop_tests": int(re.search(r'(\d+)/\d+ passed',sh("node lab/loop.test.js")).group(1)),
  # The runner prints "42/42 passed" and that 42 is a count of test() blocks. Two
