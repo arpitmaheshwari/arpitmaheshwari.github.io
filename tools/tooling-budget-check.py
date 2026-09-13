@@ -332,6 +332,7 @@ CEILING = 16_101   # 2026-09-13 +340: journey-check (the first gate that NAVIGAT
 CEILING = 16_140   # 2026-09-13 +39: qa-loop's moving-target guard learned the file a gate rewrites as its own record
 CEILING = 16_205   # 2026-09-13 +65: interaction-state-check samples PIXELS behind a gradient ancestor and normalises any colour syntax (617 phantom findings → 0); artifact-legibility walks to a measurable probe page
 CEILING = 16_400   # 2026-09-13 +195: explore-loop — seeded unscripted reader sessions, photographed, with a notebook of facts no gate owns (found two compositions on its first run)
+CEILING = 16_475   # 2026-09-14 +75: nav-clearance-check — the first content clears the fixed nav on every page and width (the patterns eyebrow sat under the bar; found by Arpit, not a gate)
 
 
 def loc(paths):

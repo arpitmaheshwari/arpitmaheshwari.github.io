@@ -822,6 +822,20 @@
    "note": "2026-09-13: Arpit — 'the negative space between and within sections is not proper'. The system named one act rhythm and nothing consumed it: homepage acts carried five paddings, the seam line added 96px, a first card added 40px, so the blank between acts ran ~200px on a phone. Every spacing check read ONE declared value; the blank is the SUM across a boundary. This measures the boundary: act padding == --rhythm-act both sides, no first/last-child margin, h2-led chapters == --rhythm-chapter. Calibrates by planting an off-rhythm act."
   },
   {
+   "id": "nav-clearance-check",
+   "cmd": [
+    "python3",
+    "tools/nav-clearance-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "nightly"
+   ],
+   "runner": true,
+   "serial": false,
+   "note": "2026-09-14: Arpit on /patterns/ — 'sticking to header, you missed in exploratory setting'. The eyebrow sat 4px under the 94px fixed nav at 1440; lab/plugin sat 29px under it at every width. journey-check clears the bar for JUMP anchors and never asked about the top of the page; every other gate reads ONE element's padding, and this defect is the DIFFERENCE between the nav's rendered bottom and the first content's rendered top. Every classic page × 4 widths, floor 24px; the rule is padding-top: calc(var(--nav-h) + 32px) on every first band. Calibrates by forcing a first band to 0."
+  },
+  {
    "id": "journey-check",
    "cmd": [
     "python3",

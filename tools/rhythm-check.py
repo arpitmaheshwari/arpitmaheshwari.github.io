@@ -30,12 +30,12 @@ JS = r"""(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>0&
  const main=document.querySelector('main')||document.body;
  // CLASS 1 — acts: full-width bands, the direct <section> children of main
  const bands=[...main.children].filter(e=>e.tagName==='SECTION'&&vis(e));
- if(bands.length>=2&&rhythm!==null) bands.forEach((b,i)=>{ if(i===0&&/hero/.test(b.className)) return; const c=getComputedStyle(b); const seam=b.querySelector(':scope > .seam, :scope > .seam-up');
+ if(bands.length>=2&&rhythm!==null) bands.forEach((b,i)=>{ const first=i===0; if(first&&/hero/.test(b.className)) return; const c=getComputedStyle(b); const seam=b.querySelector(':scope > .seam, :scope > .seam-up');
    const pt=parseFloat(c.paddingTop)+(seam?parseFloat(getComputedStyle(seam).marginBottom):0), pb=parseFloat(c.paddingBottom);
    let box=b; while([...box.children].filter(vis).length===1) box=[...box.children].filter(vis)[0];
    const kids=[...box.children].filter(k=>vis(k)&&!k.matches('.seam,.seam-up')); const f=kids[0], l=kids[kids.length-1];
    const mt=f?parseFloat(getComputedStyle(f).marginTop):0, mb=l?parseFloat(getComputedStyle(l).marginBottom):0;
-   const bad=[]; if(Math.abs(pt-rhythm)>1) bad.push(`top ${pt}`); if(Math.abs(pb-rhythm)>1) bad.push(`bottom ${pb}`); if(mt>0) bad.push(`first-child margin ${mt}`); if(mb>0) bad.push(`last-child margin ${mb}`);
+   const bad=[]; if(!first&&Math.abs(pt-rhythm)>1) bad.push(`top ${pt}`); /* a first band's top clears the fixed nav (nav-clearance-check owns it) */ if(Math.abs(pb-rhythm)>1) bad.push(`bottom ${pb}`); if(mt>0) bad.push(`first-child margin ${mt}`); if(mb>0) bad.push(`last-child margin ${mb}`);
    if(bad.length) out.push({band:'act .'+(b.className||b.id||'section').toString().split(' ')[0], bad}); });
  // CLASS 2 — chapters: an h2-led <section> inside a single-column article; the gap below it is one number
  let m=main; while([...m.children].filter(vis).length===1) m=[...m.children].filter(vis)[0];

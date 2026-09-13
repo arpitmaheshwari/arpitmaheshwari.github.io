@@ -2239,3 +2239,18 @@ body.p-home main > section.close .chap{display:block;border-top:0;padding-top:0;
 body.p-home main > section.close .chap-n{display:none}
 body.p-home main > section.close .chap-t{display:block;color:var(--text-muted)}
 }
+
+/* ── THE FIRST BAND CLEARS THE NAV (2026-09-14, Arpit on /patterns/: "sticking to header, you
+   missed in exploratory setting"). The fixed nav renders 94/86/78px tall (its padding steps at
+   1024 and 768); every page's first band had a typed padding — 104, 100, 96, 90, or the act
+   rhythm's 48 — so the gap under the bar ran from 26px down to −29px (lab/plugin) and the
+   patterns eyebrow sat 4px under the bar at 1440. One token, one rule, every first band: the
+   nav's height plus one 32px breath. Case heroes and the homepage hero keep their own, larger
+   openings. Measured by tools/nav-clearance-check.py (floor 24px) so the token cannot drift
+   from the nav it mirrors without going red. */
+:root{--nav-h:94px}
+@media (max-width:1024px){:root{--nav-h:86px}}
+@media (max-width:768px){:root{--nav-h:78px}}
+.page-head, .xi-patterns-004, .xi-resources-003, header.xi-writing-003,
+:where(body.p-lab,body.p-fit,body.p-lab-eval,body.p-lab-loop,body.p-lab-teardown) main#main > .lab-hero,
+body.p-lab-plugin main#main > .section:first-child { padding-top: calc(var(--nav-h) + 32px); }
