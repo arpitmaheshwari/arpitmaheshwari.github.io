@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
-<link rel="stylesheet" href="../site.css?v=a60c3559">
+<link rel="stylesheet" href="../site.css?v=54ab1769">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -58,47 +58,47 @@
 </div>
 
 <div class="page-head" data-ground="bookend">
-  <div class="xi-writing-explainability-005">
-    <h1 class="xi-writing-explainability-006">The Explainability Layer: Making AI Legible</h1>
-    <p class="xi-writing-explainability-007">Essay · May 2026</p>
+  <div class="xi-process-004">
+    <h1 class="xi-resources-ai-design-checklist-006">The Explainability Layer: Making AI Legible</h1>
+    <p class="xi-resources-ai-design-checklist-007">Essay · May 2026</p>
     <p class="hand hand-note" aria-hidden="true">everything here answers one word: why</p>
   </div>
 </div>
 
-<main id="main" class="section page-bg"><div class="xi-writing-explainability-005">
+<main id="main" class="section page-bg"><div class="xi-process-004">
 
-  <p class="lead xi-writing-explainability-010">“Your algorithm says this trade is risky. I need to know why.” The model had an answer — a number — and no way to defend it. She overrode it. The trade went through, and it went badly. The model had been right. The interface just couldn’t say so.</p>
+  <p class="lead xi-resources-founder-questions-009">“Your algorithm says this trade is risky. I need to know why.” The model had an answer — a number — and no way to defend it. She overrode it. The trade went through, and it went badly. The model had been right. The interface just couldn’t say so.</p>
 
-  <h2 class="section-title xi-writing-explainability-011">The question the system couldn’t answer</h2>
-  <p class="u-body xi-writing-explainability-012">In 2021 a compliance officer put that question to me directly, and I didn’t have a good answer. The risk model flagged a trade as high-risk. She wasn’t refusing to listen — she was doing her job, which is to never sign off on something she can’t explain to an auditor. The system gave her a number and a recommendation and nothing in between. So she did the only defensible thing and waved the model away. The trade went through unsupervised, and it cost the firm.</p>
-  <p class="u-body xi-writing-explainability-012">Here’s the part that stayed with me: the model wasn’t wrong. It had caught the risk. The failure was entirely on the interface — nobody had designed the layer that turns a score into a reason. And a score without a reason is, to an expert who’s accountable for the decision, just noise with a confident font. Everything I’ve shipped since holds to one rule — a number never reaches the screen alone. The patterns library names it the Act / Review / Ignore rule.</p>
+  <h2 class="section-title xi-resources-founder-questions-010">The question the system couldn’t answer</h2>
+  <p class="u-body xi-case-studies-adtech-016">In 2021 a compliance officer put that question to me directly, and I didn’t have a good answer. The risk model flagged a trade as high-risk. She wasn’t refusing to listen — she was doing her job, which is to never sign off on something she can’t explain to an auditor. The system gave her a number and a recommendation and nothing in between. So she did the only defensible thing and waved the model away. The trade went through unsupervised, and it cost the firm.</p>
+  <p class="u-body xi-case-studies-adtech-016">Here’s the part that stayed with me: the model wasn’t wrong. It had caught the risk. The failure was entirely on the interface — nobody had designed the layer that turns a score into a reason. And a score without a reason is, to an expert who’s accountable for the decision, just noise with a confident font. Everything I’ve shipped since holds to one rule — a number never reaches the screen alone. The patterns library names it the Act / Review / Ignore rule.</p>
 
-  <h2 class="section-title xi-writing-explainability-011">What she actually needed</h2>
-  <p class="u-body xi-writing-explainability-012">I used to think <a class="link-gold" href="../resources/intelligent-systems-glossary.html#ml-explainability">explainability</a> meant exposing the machinery — model weights, feature vectors, the architecture. It doesn’t. The compliance officer didn’t want a lecture on the model. She wanted an answer to one human question: <em>why this, and not that?</em> When I rebuilt the surface, that’s the only question I designed around. The recommendation moved down the page. The reasoning moved up: this counterparty has failed repeatedly in the last two years, and this position is several times their normal size. Suddenly she wasn’t being asked to trust a number. She was being handed a case she could check, argue with, and put her name next to.</p>
+  <h2 class="section-title xi-resources-founder-questions-010">What she actually needed</h2>
+  <p class="u-body xi-case-studies-adtech-016">I used to think <a class="link-gold" href="../resources/intelligent-systems-glossary.html#ml-explainability">explainability</a> meant exposing the machinery — model weights, feature vectors, the architecture. It doesn’t. The compliance officer didn’t want a lecture on the model. She wanted an answer to one human question: <em>why this, and not that?</em> When I rebuilt the surface, that’s the only question I designed around. The recommendation moved down the page. The reasoning moved up: this counterparty has failed repeatedly in the last two years, and this position is several times their normal size. Suddenly she wasn’t being asked to trust a number. She was being handed a case she could check, argue with, and put her name next to.</p>
 
-  <div class="xi-writing-explainability-014">
+  <div class="xi-resources-ai-design-checklist-022">
     <p class="lead xi-writing-explainability-015"><strong>Explainability isn’t a data-science problem. It’s a design problem.</strong> You can ship the best model in the world; if the person on the hook for the decision can’t see why it decided, they won’t use it — and they’ll be right not to.</p>
   </div>
 
-  <h2 class="section-title xi-writing-explainability-011">Why I design the explanation first</h2>
-  <p class="u-body xi-writing-explainability-012">The most useful habit I took from that engagement is to design the explanation surface <em>before</em> the model is finished. It sounds backwards, but it does something quietly powerful: when the interface has to show <em>why</em>, the model is forced to produce reasons a person can actually read — not just an output, but the handful of signals behind it, and the boundary at which the answer would flip. Demand legibility from the UI and you end up demanding it from the model too.</p>
-  <p class="u-body xi-writing-explainability-012">The sophisticated systems rarely fail because the math is wrong. They fail at the explanation layer, in front of a person who has to be accountable for what they approve. Interpretability is the bridge between a model that’s correct and a model anyone is willing to act on. Most teams build the model and bolt the bridge on later. I’d rather build the bridge first and let it shape the model.</p>
+  <h2 class="section-title xi-resources-founder-questions-010">Why I design the explanation first</h2>
+  <p class="u-body xi-case-studies-adtech-016">The most useful habit I took from that engagement is to design the explanation surface <em>before</em> the model is finished. It sounds backwards, but it does something quietly powerful: when the interface has to show <em>why</em>, the model is forced to produce reasons a person can actually read — not just an output, but the handful of signals behind it, and the boundary at which the answer would flip. Demand legibility from the UI and you end up demanding it from the model too.</p>
+  <p class="u-body xi-case-studies-adtech-016">The sophisticated systems rarely fail because the math is wrong. They fail at the explanation layer, in front of a person who has to be accountable for what they approve. Interpretability is the bridge between a model that’s correct and a model anyone is willing to act on. Most teams build the model and bolt the bridge on later. I’d rather build the bridge first and let it shape the model.</p>
 
-  <div class="xi-writing-explainability-016">
-    <div class="eyebrow xi-writing-explainability-017">The reference version</div>
-    <p class="u-ui xi-writing-explainability-018">Want the playbook, not the story? The ML-explainability patterns I design from — provenance, feature importance, counterfactuals — with the do’s, don’ts, and worked examples.</p>
-    <a class="xi-writing-explainability-019" href="../patterns/ml-explainability.html" data-cta="pattern-reference" data-location="essay-body">See the pattern reference: ML Explainability Patterns →</a>
+  <div class="xi-writing-confidence-scoring-016">
+    <div class="eyebrow xi-patterns-act-review-ignore-027">The reference version</div>
+    <p class="u-ui xi-writing-013">Want the playbook, not the story? The ML-explainability patterns I design from — provenance, feature importance, counterfactuals — with the do’s, don’ts, and worked examples.</p>
+    <a class="xi-writing-confidence-scoring-019" href="../patterns/ml-explainability.html" data-cta="pattern-reference" data-location="essay-body">See the pattern reference: ML Explainability Patterns →</a>
   </div>
 
-  <div class="xi-writing-explainability-020">
-    <p class="eyebrow xi-writing-explainability-021">Continue exploring</p>
-    <div class="xi-writing-explainability-022">
-      <a class="xi-writing-explainability-023 hv-writing-explainability-1" href="./human-in-loop.html" data-cta="next-essay" data-location="essay-footer">
-        <div class="xi-writing-explainability-024">Next essay</div>
+  <div class="xi-writing-015">
+    <p class="eyebrow xi-process-005">Continue exploring</p>
+    <div class="xi-writing-confidence-scoring-022">
+      <a class="xi-writing-confidence-scoring-023 hv-writing-explainability-1" href="./human-in-loop.html" data-cta="next-essay" data-location="essay-footer">
+        <div class="xi-writing-confidence-scoring-024">Next essay</div>
         <div class="card-title">Human-in-the-Loop</div>
       </a>
-      <a class="xi-writing-explainability-023 hv-writing-explainability-1" href="./index.html" data-cta="back-to-writing" data-location="essay-footer">
-        <div class="xi-writing-explainability-024">All essays</div>
+      <a class="xi-writing-confidence-scoring-023 hv-writing-explainability-1" href="./index.html" data-cta="back-to-writing" data-location="essay-footer">
+        <div class="xi-writing-confidence-scoring-024">All essays</div>
         <div class="card-title">Back to Writing</div>
       </a>
     </div>

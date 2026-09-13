@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
-<link rel="stylesheet" href="../site.css?v=a60c3559">
+<link rel="stylesheet" href="../site.css?v=54ab1769">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -57,47 +57,47 @@
 </div>
 
 <div class="page-head" data-ground="bookend">
-  <div class="xi-writing-failure-states-005">
-    <h1 class="xi-writing-failure-states-006">Design the Failure State First</h1>
-    <p class="xi-writing-failure-states-007">Methodology · May 2026</p>
+  <div class="xi-process-004">
+    <h1 class="xi-resources-ai-design-checklist-006">Design the Failure State First</h1>
+    <p class="xi-resources-ai-design-checklist-007">Methodology · May 2026</p>
     <p class="hand hand-note" aria-hidden="true">the demo always goes perfectly — that’s the trap</p>
   </div>
 </div>
 
-<main id="main" class="section page-bg"><div class="xi-writing-failure-states-005">
+<main id="main" class="section page-bg"><div class="xi-process-004">
 
-  <p class="lead xi-writing-failure-states-010">The demo went perfectly. Everyone in the room left convinced. Three months later, on real deal data, the answers stopped holding. The model hadn’t changed. We’d just never designed the part where it’s wrong.</p>
+  <p class="lead xi-resources-founder-questions-009">The demo went perfectly. Everyone in the room left convinced. Three months later, on real deal data, the answers stopped holding. The model hadn’t changed. We’d just never designed the part where it’s wrong.</p>
 
-  <h2 class="section-title xi-writing-failure-states-011">The room that left impressed</h2>
-  <p class="u-body xi-writing-failure-states-012">In 2020 I sat in on a machine-learning team presenting a new model to a private-equity client. It was a clean demo — curated inputs, a confident number, a tidy answer. The client was sold. So was I, for about a week. Then the model met deal data it had never seen, and that confident number became a coin-flip with delusions of certainty. The failure wasn’t dramatic.</p>
-  <p class="u-body xi-writing-failure-states-012">What stuck with me wasn’t that the model was wrong sometimes — every model is. It was that the interface had no language for being wrong. It had been designed entirely around the demo: the happy path, the case where the data is clean and the answer is obvious. The cases where the model is uncertain, the inputs are missing, or the world has drifted away from the training set (what a data scientist would call <a class="link-gold" href="../resources/intelligent-systems-glossary.html#distribution-shift">distribution shift</a>) — none of that had a screen. And that is exactly where the client’s trust either held or evaporated.</p>
+  <h2 class="section-title xi-resources-ai-design-checklist-015">The room that left impressed</h2>
+  <p class="u-body xi-case-studies-adtech-016">In 2020 I sat in on a machine-learning team presenting a new model to a private-equity client. It was a clean demo — curated inputs, a confident number, a tidy answer. The client was sold. So was I, for about a week. Then the model met deal data it had never seen, and that confident number became a coin-flip with delusions of certainty. The failure wasn’t dramatic.</p>
+  <p class="u-body xi-case-studies-adtech-016">What stuck with me wasn’t that the model was wrong sometimes — every model is. It was that the interface had no language for being wrong. It had been designed entirely around the demo: the happy path, the case where the data is clean and the answer is obvious. The cases where the model is uncertain, the inputs are missing, or the world has drifted away from the training set (what a data scientist would call <a class="link-gold" href="../resources/intelligent-systems-glossary.html#distribution-shift">distribution shift</a>) — none of that had a screen. And that is exactly where the client’s trust either held or evaporated.</p>
 
-  <div class="xi-writing-failure-states-014">
-    <p class="lead xi-writing-failure-states-015"><strong>Designing the failure state isn&rsquo;t error handling. It&rsquo;s trust recovery.</strong> When the system stumbles, the user needs to know why and what to do next. Get that moment wrong and the good answers stop mattering.</p>
+  <div class="xi-resources-ai-design-checklist-022">
+    <p class="lead xi-writing-explainability-015"><strong>Designing the failure state isn&rsquo;t error handling. It&rsquo;s trust recovery.</strong> When the system stumbles, the user needs to know why and what to do next. Get that moment wrong and the good answers stop mattering.</p>
   </div>
 
-  <h2 class="section-title xi-writing-failure-states-011">So now I start at the bottom</h2>
-  <p class="u-body xi-writing-failure-states-012">After that project I changed the order I design in. I no longer start with the case where the model is right. I start with the question almost nobody asks until production forces it: <em>what does this look like when it’s wrong?</em> Low confidence, missing data, a user whose situation the model has never seen &mdash; I design those screens first, because they&rsquo;re the ones that decide whether anyone trusts the good answers later. The patterns library names this the capability contract: what the system is for, where it taps out, and what it hands back to a human. I draw those edges before any happy path.</p>
-  <p class="u-body xi-writing-failure-states-012">The reflex everywhere else is to treat the unhappy path as a rounding error. “Edge cases are too rare to be worth it.” They are rare, right up until the day production hands the system something it’s never seen — and by then the trust that took months to build is gone in an afternoon. The happy path is the smaller half of the real work. The rest is the part nobody demos, and it’s the part that decides whether a business will run on what you built.</p>
+  <h2 class="section-title xi-resources-ai-design-checklist-015">So now I start at the bottom</h2>
+  <p class="u-body xi-case-studies-adtech-016">After that project I changed the order I design in. I no longer start with the case where the model is right. I start with the question almost nobody asks until production forces it: <em>what does this look like when it’s wrong?</em> Low confidence, missing data, a user whose situation the model has never seen &mdash; I design those screens first, because they&rsquo;re the ones that decide whether anyone trusts the good answers later. The patterns library names this the capability contract: what the system is for, where it taps out, and what it hands back to a human. I draw those edges before any happy path.</p>
+  <p class="u-body xi-case-studies-adtech-016">The reflex everywhere else is to treat the unhappy path as a rounding error. “Edge cases are too rare to be worth it.” They are rare, right up until the day production hands the system something it’s never seen — and by then the trust that took months to build is gone in an afternoon. The happy path is the smaller half of the real work. The rest is the part nobody demos, and it’s the part that decides whether a business will run on what you built.</p>
 
-  <h2 class="section-title xi-writing-failure-states-011">What I believe now</h2>
-  <p class="u-body xi-writing-failure-states-012">Every intelligent system I design now opens with one question, asked before a single happy-path screen: “What happens when this fails?” Not as a polish pass at the end. As the first design problem, because it’s the one the user will actually judge you on.</p>
+  <h2 class="section-title xi-resources-ai-design-checklist-015">What I believe now</h2>
+  <p class="u-body xi-case-studies-adtech-016">Every intelligent system I design now opens with one question, asked before a single happy-path screen: “What happens when this fails?” Not as a polish pass at the end. As the first design problem, because it’s the one the user will actually judge you on.</p>
 
-  <div class="xi-writing-failure-states-016">
-    <div class="eyebrow xi-writing-failure-states-017">The reference version</div>
-    <p class="u-ui xi-writing-failure-states-018">Want the playbook, not the story? The failure-state patterns I design from — prevention, transparency, recovery — with the do’s, don’ts, and worked examples.</p>
-    <a class="xi-writing-failure-states-019" href="../patterns/ai-failure-states.html" data-cta="pattern-reference" data-location="essay-body">See the pattern reference: AI Failure State Patterns →</a>
+  <div class="xi-writing-confidence-scoring-016">
+    <div class="eyebrow xi-patterns-act-review-ignore-027">The reference version</div>
+    <p class="u-ui xi-writing-013">Want the playbook, not the story? The failure-state patterns I design from — prevention, transparency, recovery — with the do’s, don’ts, and worked examples.</p>
+    <a class="xi-writing-confidence-scoring-019" href="../patterns/ai-failure-states.html" data-cta="pattern-reference" data-location="essay-body">See the pattern reference: AI Failure State Patterns →</a>
   </div>
 
-  <div class="xi-writing-failure-states-020">
-    <p class="eyebrow xi-writing-failure-states-021">Continue exploring</p>
-    <div class="xi-writing-failure-states-022">
-      <a class="xi-writing-failure-states-023 hv-writing-failure-states-1" href="./explainability.html" data-cta="next-essay" data-location="essay-footer">
-        <div class="xi-writing-failure-states-024">Next essay</div>
+  <div class="xi-writing-015">
+    <p class="eyebrow xi-process-005">Continue exploring</p>
+    <div class="xi-writing-confidence-scoring-022">
+      <a class="xi-writing-confidence-scoring-023 hv-writing-failure-states-1" href="./explainability.html" data-cta="next-essay" data-location="essay-footer">
+        <div class="xi-writing-confidence-scoring-024">Next essay</div>
         <div class="card-title">The Explainability Layer</div>
       </a>
-      <a class="xi-writing-failure-states-023 hv-writing-failure-states-1" href="./index.html" data-cta="back-to-writing" data-location="essay-footer">
-        <div class="xi-writing-failure-states-024">All essays</div>
+      <a class="xi-writing-confidence-scoring-023 hv-writing-failure-states-1" href="./index.html" data-cta="back-to-writing" data-location="essay-footer">
+        <div class="xi-writing-confidence-scoring-024">All essays</div>
         <div class="card-title">Back to Writing</div>
       </a>
     </div>

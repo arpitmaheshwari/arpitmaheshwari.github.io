@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
-<link rel="stylesheet" href="../site.css?v=a60c3559">
+<link rel="stylesheet" href="../site.css?v=54ab1769">
 
 <script defer src="../analytics.js?v=4f9aa0a0"></script>
 </head>
@@ -55,7 +55,7 @@
   <section class="section lab-hero" data-ground="bookend">
     <div class="lab-wrap">
       <p class="lab-kicker">The Lab · 01 · MIT licensed</p>
-      <h1 class="section-title xi-lab-loop-003">loop.js</h1>
+      <h1 class="section-title xi-lab-eval-003">loop.js</h1>
       <p class="lab-lede">The rules I argue for in design reviews, written as functions so they can be <strong>tested instead of debated</strong>. Four decisions that sit between a model and a person: which verb a score becomes, whether its confidence has earned belief, when to say nothing at all, and what to show while it thinks.</p>
       <p class="hand hand-note" aria-hidden="true">the tests run right on this page — check them</p>
       <div class="lab-note">
@@ -81,7 +81,7 @@
     <div class="lab-wrap">
       <p class="eyebrow">Use it</p>
       <h2 class="section-title">No install step, because there is nothing to install</h2>
-      <p class="lab-lede xi-lab-loop-005">One file, no dependencies, standard ES module. Copy it into a project or import it from here.</p>
+      <p class="lab-lede xi-case-studies-fintech-027">One file, no dependencies, standard ES module. Copy it into a project or import it from here.</p>
       <pre class="lab-code"><code><span class="c">// A score never reaches a screen naked — it becomes a verb first.</span>
 <span class="k">import</span> { decide, calibrate, abstain, disclose } <span class="k">from</span> './loop.js';
 
@@ -123,10 +123,10 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
               <input type="range" id="d-review" min="0" max="1" step="0.01" value="0.55">
             </div>
             <div class="lab-ctl">
-              <span class="lab-inline"><input type="checkbox" id="d-rev" checked><label class="t-sans-ui-reset xi-lab-loop-007" for="d-rev">Action is reversible</label></span>
+              <span class="lab-inline"><input type="checkbox" id="d-rev" checked><label class="t-sans-ui-reset xi-process-017" for="d-rev">Action is reversible</label></span>
             </div>
             <div class="lab-ctl">
-              <span class="lab-inline"><input type="checkbox" id="d-sig" checked><label class="t-sans-ui-reset xi-lab-loop-007" for="d-sig">Signals were named</label></span>
+              <span class="lab-inline"><input type="checkbox" id="d-sig" checked><label class="t-sans-ui-reset xi-process-017" for="d-sig">Signals were named</label></span>
             </div>
           </div>
           <div class="lab-out" aria-live="polite">
@@ -153,7 +153,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
                 <button type="button" data-set="thin">Too few</button>
               </div>
             </div>
-            <p class="lab-explain xi-lab-loop-007" id="c-desc"></p>
+            <p class="lab-explain xi-process-017" id="c-desc"></p>
           </div>
           <div class="lab-out" aria-live="polite">
             <div class="lab-bins" id="c-bins" role="img" aria-label="Reliability diagram: stated confidence versus measured accuracy per bin"></div>
@@ -207,7 +207,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
               <input type="range" id="s-budget" min="200" max="5000" step="100" value="1000">
             </div>
             <div class="lab-ctl">
-              <span class="lab-inline"><input type="checkbox" id="s-partial"><label class="t-sans-ui-reset xi-lab-loop-007" for="s-partial">A partial answer exists</label></span>
+              <span class="lab-inline"><input type="checkbox" id="s-partial"><label class="t-sans-ui-reset xi-process-017" for="s-partial">A partial answer exists</label></span>
             </div>
           </div>
           <div class="lab-out" aria-live="polite">
@@ -226,47 +226,47 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
     <div class="lab-wrap">
       <p class="eyebrow">Decisions, on the record</p>
       <h2 class="section-title">What overrides what</h2>
-      <p class="lab-lede xi-lab-loop-005">The module encodes a precedence — when two rules disagree, one is written to win. That order is the design; the functions just enforce it.</p>
+      <p class="lab-lede xi-case-studies-fintech-027">The module encodes a precedence — when two rules disagree, one is written to win. That order is the design; the functions just enforce it.</p>
       <div class="rcpt-box xi-lab-loop-010">
-        <div class="rcpt-r xi-lab-loop-011" data-tint>
+        <div class="rcpt-r xi-case-studies-adtech-009" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">Reversibility &gt; confidence</div>
-          <div class="t-ui xi-lab-loop-013">If the action cannot be undone, the model does not get to auto-act at any score &mdash; <code class="t-code">decide()</code> demotes act to review.</div>
+          <div class="t-ui xi-case-studies-adtech-011">If the action cannot be undone, the model does not get to auto-act at any score &mdash; <code class="t-code">decide()</code> demotes act to review.</div>
         </div>
         <div class="rcpt-r" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">Insufficient data &gt; a flattering number</div>
-          <div class="t-ui xi-lab-loop-013">Below thirty observations <code class="t-code">calibrate()</code> refuses a verdict &mdash; a track record you cannot support is just another confident claim.</div>
+          <div class="t-ui xi-case-studies-adtech-011">Below thirty observations <code class="t-code">calibrate()</code> refuses a verdict &mdash; a track record you cannot support is just another confident claim.</div>
         </div>
-        <div class="rcpt-r xi-lab-loop-011" data-tint>
+        <div class="rcpt-r xi-case-studies-adtech-009" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">Humility &gt; fluency</div>
-          <div class="t-ui xi-lab-loop-013"><code class="t-code">abstain()</code> defaults fail toward refusal: every claim carries a source, two corroborate, a clear majority agree &mdash; or the system says what is missing instead of speaking.</div>
+          <div class="t-ui xi-case-studies-adtech-011"><code class="t-code">abstain()</code> defaults fail toward refusal: every claim carries a source, two corroborate, a clear majority agree &mdash; or the system says what is missing instead of speaking.</div>
         </div>
         <div class="rcpt-r-last xi-lab-loop-014">
           <div class="lbl-eyebrow xi-lab-loop-012">A sentence &gt; another rotation</div>
-          <div class="t-ui xi-lab-loop-013">Past the latency budget <code class="t-code">disclose()</code> owes the user words, not a spinner &mdash; silence indistinguishable from failure is a trust cost, not a performance one.</div>
+          <div class="t-ui xi-case-studies-adtech-011">Past the latency budget <code class="t-code">disclose()</code> owes the user words, not a spinner &mdash; silence indistinguishable from failure is a trust cost, not a performance one.</div>
         </div>
       </div>
 
       <h2 class="section-title xi-lab-loop-015">Key decisions, and what each one buys</h2>
-      <div class="rcpt-box xi-lab-loop-016">
-        <div class="rcpt-r xi-lab-loop-011" data-tint>
+      <div class="rcpt-box xi-case-studies-adtech-008">
+        <div class="rcpt-r xi-case-studies-adtech-009" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">Zero dependencies</div>
-          <div class="t-ui xi-lab-loop-013">One standard ES module, no framework, no install step. Nothing here can rot when someone else publishes a breaking major.</div>
+          <div class="t-ui xi-case-studies-adtech-011">One standard ES module, no framework, no install step. Nothing here can rot when someone else publishes a breaking major.</div>
         </div>
         <div class="rcpt-r" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">No UI shipped</div>
-          <div class="t-ui xi-lab-loop-013">The visual layer is deliberately left to you &mdash; the verb matters more than the chip it ships in.</div>
+          <div class="t-ui xi-case-studies-adtech-011">The visual layer is deliberately left to you &mdash; the verb matters more than the chip it ships in.</div>
         </div>
-        <div class="rcpt-r xi-lab-loop-011" data-tint>
+        <div class="rcpt-r xi-case-studies-adtech-009" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">Thresholds are options, not constants</div>
-          <div class="t-ui xi-lab-loop-013">Where each band starts is a product decision someone owns and revisits &mdash; the code only enforces that the decision exists.</div>
+          <div class="t-ui xi-case-studies-adtech-011">Where each band starts is a product decision someone owns and revisits &mdash; the code only enforces that the decision exists.</div>
         </div>
         <div class="rcpt-r" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">Violations, not suggestions</div>
-          <div class="t-ui xi-lab-loop-013"><code class="t-code">decide()</code> reports review-without-reasons as a violation. A principle has no failing state; a function does.</div>
+          <div class="t-ui xi-case-studies-adtech-011"><code class="t-code">decide()</code> reports review-without-reasons as a violation. A principle has no failing state; a function does.</div>
         </div>
-        <div class="rcpt-r-last xi-lab-loop-011">
+        <div class="rcpt-r-last xi-case-studies-adtech-009">
           <div class="lbl-eyebrow xi-lab-loop-012">Tests live on the page</div>
-          <div class="t-ui xi-lab-loop-013">The suite runs in this browser tab and under Node in CI, exiting non-zero on failure &mdash; what you read is what the function returns.</div>
+          <div class="t-ui xi-case-studies-adtech-011">The suite runs in this browser tab and under Node in CI, exiting non-zero on failure &mdash; what you read is what the function returns.</div>
         </div>
       </div>
     </div>
@@ -276,8 +276,8 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
     <div class="lab-wrap">
       <p class="eyebrow">Proof</p>
       <h2 class="section-title">The tests, running now, in your browser</h2>
-      <p class="lab-lede xi-lab-loop-005">The same file runs under Node with <code class="t-code">node lab/loop.test.js</code> and exits non-zero on failure. There is no test framework, because adding a dependency to a zero-dependency library would be the joke telling itself — the runner is about forty lines at the top of the file.</p>
-      <p class="lab-lede xi-lab-loop-005">Two kinds of proof, kept separate on purpose. <strong class="xi-lab-loop-017">Implementation proof</strong> is below: the assertions, in this tab and under Node in CI on every push that touches lab/. <strong class="xi-lab-loop-017">Product proof</strong> lives elsewhere &mdash; each of these patterns ran in a production product, documented in <a class="xi-lab-loop-018" href="../patterns/">the pattern library</a> and the case studies. Passing tests prove the rules hold; the case studies argue the rules are worth holding.</p>
+      <p class="lab-lede xi-case-studies-fintech-027">The same file runs under Node with <code class="t-code">node lab/loop.test.js</code> and exits non-zero on failure. There is no test framework, because adding a dependency to a zero-dependency library would be the joke telling itself — the runner is about forty lines at the top of the file.</p>
+      <p class="lab-lede xi-case-studies-fintech-027">Two kinds of proof, kept separate on purpose. <strong class="xi-process-016">Implementation proof</strong> is below: the assertions, in this tab and under Node in CI on every push that touches lab/. <strong class="xi-process-016">Product proof</strong> lives elsewhere &mdash; each of these patterns ran in a production product, documented in <a class="xi-process-020" href="../patterns/">the pattern library</a> and the case studies. Passing tests prove the rules hold; the case studies argue the rules are worth holding.</p>
       <div class="lab-testhead">
         <span class="lab-tally" id="t-tally">…</span>
         <span class="lab-tallynote" id="t-note">running</span>
@@ -295,9 +295,9 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
         <p>&ldquo;It&rsquo;s a hundred lines of if-statements.&rdquo; Exactly &mdash; and that is the entire point. The same decisions usually live in a slide deck where they can only be believed or ignored. Here they are versioned, testable, and able to fail loudly. The day a threshold is wrong, a test goes red &mdash; a deck has never once done that.</p>
       </div>
       <h2 class="section-title">A rule you can run beats a rule you can argue with</h2>
-      <p class="t-body-muted xi-lab-loop-019">Every one of these decisions used to be a slide. “Don’t show a naked confidence score.” “Fail toward humility.” “Reversibility outranks confidence.” Reasonable people nodded, and then shipped the naked number anyway, because a principle has no failing state.</p>
-      <p class="t-body-muted xi-lab-loop-019">Written as functions, the same rules get a failing state &mdash; the record above is those slides, versioned and able to go red. That is the whole argument for this file existing: human-in-the-loop design is a set of decisions, and decisions can be tested.</p>
-      <p class="t-body-muted xi-lab-loop-007">The eight patterns these come from are documented, with live demos, in <a class="xi-lab-loop-018" href="../patterns/">the pattern library</a> — and each one is running in a production product. This is their logic, extracted and made checkable.</p>
+      <p class="t-body-muted xi-process-015">Every one of these decisions used to be a slide. “Don’t show a naked confidence score.” “Fail toward humility.” “Reversibility outranks confidence.” Reasonable people nodded, and then shipped the naked number anyway, because a principle has no failing state.</p>
+      <p class="t-body-muted xi-process-015">Written as functions, the same rules get a failing state &mdash; the record above is those slides, versioned and able to go red. That is the whole argument for this file existing: human-in-the-loop design is a set of decisions, and decisions can be tested.</p>
+      <p class="t-body-muted xi-process-017">The eight patterns these come from are documented, with live demos, in <a class="xi-process-020" href="../patterns/">the pattern library</a> — and each one is running in a production product. This is their logic, extracted and made checkable.</p>
       <div class="lab-links">
         <a href="./index.html" data-cta="lab-home" data-location="loop-foot">← Everything in The Lab</a>
         <a href="./eval.html" data-cta="lab-eval" data-location="loop-foot">trustlint — audit an AI answer →</a>
