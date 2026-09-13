@@ -831,6 +831,75 @@
     "nightly"
    ],
    "note": "2026-09-13: Arpit — 'test the entire journey'. Every other gate grades a page on load; this one navigates: primary nav (drawer on a phone), jump anchors landing below the fixed bar, the next-case door, receipt panels opening, every visible image painted after a scroll-through, every internal link and fragment resolving. Calibrates by planting a broken image and a dead jump link. First run found anchors landing 8px under the nav bar on two cases."
+  },
+  {
+   "id": "partials-fresh",
+   "cmd": [
+    "python3",
+    "tools/build-partials.py",
+    "--check"
+   ],
+   "stages": [
+    "pre-push",
+    "ci"
+   ],
+   "note": "2026-09-13 (architecture review #4): the hook ran this privately; declared here so the manifest is the one list. Every page's nav/footer and ?v= stamps must equal what build-partials would write."
+  },
+  {
+   "id": "sitemap-freshness",
+   "cmd": [
+    "python3",
+    "tools/build-sitemap.py",
+    "--check"
+   ],
+   "stages": [
+    "pre-push"
+   ],
+   "note": "2026-09-13 (architecture review #4): was hook-only — the push that a green run-gates could not predict (memory: green suite ≠ green push). Now in the manifest."
+  },
+  {
+   "id": "build-css",
+   "cmd": [
+    "python3",
+    "tools/build-css.py"
+   ],
+   "stages": [
+    "build"
+   ],
+   "note": "BUILD STEP (writes): site.css from css/site/. Run before partials."
+  },
+  {
+   "id": "build-partials",
+   "cmd": [
+    "python3",
+    "tools/build-partials.py"
+   ],
+   "stages": [
+    "build"
+   ],
+   "note": "BUILD STEP (writes): stamps nav/footer partials and ?v= cache versions into every page."
+  },
+  {
+   "id": "build-sitemap",
+   "cmd": [
+    "python3",
+    "tools/build-sitemap.py"
+   ],
+   "stages": [
+    "build"
+   ],
+   "note": "BUILD STEP (writes): sitemap lastmod from git."
+  },
+  {
+   "id": "build-fit-index",
+   "cmd": [
+    "python3",
+    "tools/build-fit-index.py"
+   ],
+   "stages": [
+    "build"
+   ],
+   "note": "BUILD STEP (writes): the fit-check index from the pages."
   }
  ],
  "manual": [

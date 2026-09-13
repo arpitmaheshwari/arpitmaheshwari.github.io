@@ -173,7 +173,7 @@ def audit(data):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--stage', choices=['pre-push', 'ci', 'ci-always', 'nightly'])
+    ap.add_argument('--stage', choices=['build', 'pre-push', 'ci', 'ci-always', 'nightly'])   # build = the steps that WRITE, in manifest order
     ap.add_argument('--audit', action='store_true')
     ap.add_argument('--list', action='store_true')
     ap.add_argument('--port', type=int, default=8000)
