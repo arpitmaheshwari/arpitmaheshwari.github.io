@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
-<link rel="stylesheet" href="../site.css?v=74b18c39">
+<link rel="stylesheet" href="../site.css?v=dc173a6d">
 
 <script defer src="../analytics.js?v=4f9aa0a0"></script>
 </head>
@@ -52,15 +52,27 @@
 <main id="main">
 
   <section class="section lab-hero" data-ground="bookend">
-    <div class="lab-wrap">
+    <div class="lab-wrap lab-hero-grid">
+      <div class="lh-l">
       <p class="lab-kicker">The Lab</p>
       <h1 class="section-title xi-lab-003">The code is the deliverable. Run it.</h1>
       <p class="lab-lede">Every other page here tells you what I decided. This one lets you check. Four pieces of working code, in the open, because <strong>a designer who says they ship code should hand you some to run</strong>, not describe having done it. If you are the engineer on the panel wondering whether a designer&rsquo;s code survives contact, start here.</p>
       <p class="lab-src">Source, in public: <a href="https://github.com/arpitmaheshwari/the-lab" target="_blank" rel="noopener noreferrer" data-cta="github" data-location="lab-index">github.com/arpitmaheshwari/the-lab<span class="visually-hidden"> (opens in a new tab)</span></a> &mdash; the same files that run here, MIT, verbatim.</p>
       <p class="hand hand-note" aria-hidden="true">no rights reserved — take what works</p>
+      </div>
+      <!-- A — Arpit, 2026-09-14, from three rendered directions: the hero's right half RUNS the code the
+           page is about. This panel imports loop.test.js (the same module loop.html runs) and reports
+           what it returns; nothing is mocked and no number is typed. -->
+      <div class="lh-r">
+        <div class="lh-inst" id="lh-inst" aria-live="polite">
+          <div class="lh-hd"><span>loop.test.js · running in this tab</span><span id="lh-ms">—</span></div>
+          <p class="lh-tally"><span id="lh-n">0</span>/<span id="lh-t">42</span><small id="lh-s">tests · 76 assertions · 0 dependencies</small></p>
+          <ul class="lh-log" id="lh-log" aria-label="the first tests, as they pass"><li class="lab-nojs">Enable JavaScript to run the suite here, or read the assertions on the loop.js page.</li></ul>
+          <p class="lh-foot">Nothing mocked: this panel imports the same module the demos use and reports what it returns. <a href="./loop.html" data-cta="lab-hero-tests" data-location="lab-hero">Every assertion, named →</a></p>
+        </div>
+      </div>
     </div>
   </section>
-
   <section class="section">
     <div class="lab-wrap">
       <p class="eyebrow">Four things you can run</p>
@@ -86,17 +98,17 @@
         <a class="lab-card" href="./teardown.html" data-cta="lab-card" data-location="lab-index">
           <p class="lab-num">03</p>
           <h3>This site, torn down</h3>
-          <p><strong>A site that asks for evidence should stand being inspected.</strong> How the page you are reading is built, measured rather than described: no framework and no bundler, a 585.8&nbsp;KB stylesheet, two third-party services across four domains, one type scale, and the gaps, including the one this page caught in itself.</p>
+          <p><strong>A site that asks for evidence should stand being inspected.</strong> How the page you are reading is built, measured rather than described: no framework and no bundler, a 590.0&nbsp;KB stylesheet, two third-party services across four domains, one type scale, and the gaps, including the one this page caught in itself.</p>
           <div class="lab-tags"><span>Measured</span><span>Commands shown</span><span>Gaps included</span></div>
           <span class="lab-go">See the receipts →</span>
         </a>
 
-        <a class="lab-card" href="#design-system" data-cta="lab-card" data-location="lab-index">
+        <a class="lab-card" href="./plugin.html" data-cta="lab-card" data-location="lab-index">
           <p class="lab-num">04</p>
           <h3>ember-design-system</h3>
           <p><strong>A design system a machine can read is one that gets applied.</strong> The public twin of the plugin I shipped inside a client: the tokens with their measured contrast, one type scale, the spacing grid, and the rules a component library cannot hold. Its reference page runs the same audit on itself, failures included. The system painting this page is its successor, and it is public too.</p>
-          <div class="lab-tags"><span>MIT</span><span>/plugin install</span><span>Self-audited</span></div>
-          <span class="lab-go">The system, in full ↓</span>
+          <div class="lab-tags"><span>ten checks</span><span>MIT</span><span>/plugin install</span></div>
+          <span class="lab-go">Install it, read it →</span>
         </a>
       </div>
     </div>
@@ -104,12 +116,75 @@
 
   <!-- The design system, on the Lab rather than the homepage (Arpit's call, 2026-08-17): this
        page is where the artifacts live, and an installable system is an artifact, not a claim. -->
+  <section class="section" id="what-this-proves">
+    <div class="lab-wrap">
+      <p class="eyebrow">The evidence boundary</p>
+      <h2 class="section-title">These prove less than they look like they prove</h2>
+      <div class="lab-body lb-two" data-tint>
+        <div class="lb-main">
+        <p>Three different things get called evidence. Only the first lives on this page.</p>
+        </div>
+        <div class="lb-side">
+        <dl class="ev-tiers">
+          <dt>Implementation</dt>
+          <dd>The code does what it says. 76 assertions across 42 tests, run in your browser above, on the same
+              module the demos import. That is all a green test proves.</dd>
+          <dt>Usage</dt>
+          <dd>The rules came out of shipped products, not a notebook. The verbs, the abstention,
+              the logged override and the citation gate were each argued for and built inside
+              <a href="../index.html#featured-case-studies">the case studies</a>.
+              The code here is my restatement of those decisions, not the client&rsquo;s source.</dd>
+          <dt>Outcome</dt>
+          <dd>Whether a pattern moves adoption is a claim about a product, not about a function.
+              Where I have a measured before-and-after, it sits on the case with its baseline
+              and window. A passing suite will never stand in for a result here.</dd>
+        </dl>
+        </div>
+      <div class="lab-note">
+        <b>Where the line sits.</b> I ship the front-end of what I design, in the pull request under my name, with senior engineers reviewing. These artifacts are pure functions by choice, not by ceiling: logic any stack can adopt and any test can pin down. The stateful counterpart is <a class="xi-process-020" href="../book/">the book edition</a> of this site, about 150&nbsp;KB of my own React. What I don’t claim is the backend. That is the honest boundary, and it is the same one I give on <a class="xi-process-020" href="../screen/">the technical screen</a>.
+      </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="section">
+    <div class="lab-wrap">
+      <p class="eyebrow">Why a lab at all</p>
+      <h2 class="section-title">A principle with no failing state is a preference</h2>
+      <div class="lab-body lb-two">
+        <div class="lb-main">
+        <p>The eight patterns in <a class="xi-process-020" href="../patterns/">the pattern library</a> came out of shipped products, and for years they lived where principles usually live: in slides, in review comments, in my head. Reasonable people agreed with every one of them and shipped the naked confidence score anyway. A principle you can nod at costs nothing to ignore.</p>
+        <p>Written as code, the same rules get a way to fail. <code>decide()</code> reports a review with no reasons as a violation, not a suggestion. <code>calibrate()</code> returns <code>insufficient-data</code> instead of a flattering number when the sample is thin. <code>trustlint</code> refuses to score truth at all, and says so in its own output.</p>
+        <p>That is what the Lab is for: the judgments I keep making in design reviews, given somewhere to fail, so they hold when I am not in the room.</p>
+        </div>
+        <aside class="lb-side">        <p class="lab-note">The thresholds here are defaults, not findings. Where a band starts
+           is a product decision someone owns and revisits &mdash; the rule is only that a score
+           lands on one verb, never that 0.7 is the right place to put the line.</p>
+      <div class="lab-links">
+        <a href="../patterns/" data-cta="lab-patterns" data-location="lab-foot">The eight patterns, with live demos →</a>
+        <a href="../screen/" data-cta="lab-screen" data-location="lab-foot">The technical screen →</a>
+        <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="lab-foot">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
+      </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- IA, 2026-08-17: this lived inside the 2,000-word "why a lab" essay. It is the most
+       load-bearing honesty device on the page — the answer to "what do these tests actually
+       prove" — and a reader who stops mid-essay never reaches it. Its own section now, so a
+       skimmer still lands on it. -->
   <section class="section" id="design-system">
     <div class="lab-wrap">
       <p class="eyebrow">The system I leave behind</p>
-      <h2 class="section-title">A design system a machine can read is one that actually gets applied</h2>
-      <div class="lab-body" data-tint>
+      <h2 class="section-title">The system I leave behind is one a machine can read</h2>
+      <div class="lab-body lb-two" data-tint>
+        <div class="lb-main">
         <p>Six products at Talon had grown one at a time and looked like six companies had made them. For a company selling one integrated platform, that was the claim failing in plain sight. I introduced one design system across the line, so Plato, Ada and Atlas read as rooms of one building. Then I encoded it as a Claude plugin, so it stopped depending on who remembered it.</p>
+        </div>
+        <div class="lb-side">
         <dl class="ev-tiers">
           <dt>One family</dt>
           <dd>Family resemblance, not a coat of paint. For a company selling an integrated
@@ -122,6 +197,7 @@
           <dd>Contrast measured from rendered pixels before every push; overflow and legibility swept nightly.
               The interface I design is the front-end I ship in the pull request.</dd>
         </dl>
+        </div>
       </div>
 
       <!-- The specimen. Moved off the homepage (Arpit's call, 2026-08-17) into the band that
@@ -162,60 +238,6 @@
         <a href="https://github.com/arpitmaheshwari/ember-design-system" target="_blank" rel="noopener" data-cta="design-system" data-location="lab-ds">The repository&nbsp;&#8599;<span class="visually-hidden"> (opens in a new tab)</span></a>
         <a href="./plugin.html" data-cta="design-system-page" data-location="lab-ds">What it encodes&nbsp;&rarr;</a>
         <a href="https://github.com/arpitmaheshwari/amber-design-system" target="_blank" rel="noopener" data-cta="design-system-amber" data-location="lab-ds">The system painting this page&nbsp;&#8599;<span class="visually-hidden"> (opens in a new tab)</span></a>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="section">
-    <div class="lab-wrap">
-      <p class="eyebrow">Why a lab at all</p>
-      <h2 class="section-title">A principle with no failing state is a preference</h2>
-      <div class="lab-body" data-tint>
-        <p>The eight patterns in <a class="xi-process-020" href="../patterns/">the pattern library</a> came out of shipped products, and for years they lived where principles usually live: in slides, in review comments, in my head. Reasonable people agreed with every one of them and shipped the naked confidence score anyway. A principle you can nod at costs nothing to ignore.</p>
-        <p>Written as code, the same rules get a way to fail. <code>decide()</code> reports a review with no reasons as a violation, not a suggestion. <code>calibrate()</code> returns <code>insufficient-data</code> instead of a flattering number when the sample is thin. <code>trustlint</code> refuses to score truth at all, and says so in its own output.</p>
-        <p>That is what the Lab is for: the judgments I keep making in design reviews, given somewhere to fail, so they hold when I am not in the room.</p>
-
-
-        <p class="lab-note">The thresholds here are defaults, not findings. Where a band starts
-           is a product decision someone owns and revisits &mdash; the rule is only that a score
-           lands on one verb, never that 0.7 is the right place to put the line.</p>
-      </div>
-      <div class="lab-links">
-        <a href="../patterns/" data-cta="lab-patterns" data-location="lab-foot">The eight patterns, with live demos →</a>
-        <a href="../screen/" data-cta="lab-screen" data-location="lab-foot">The technical screen →</a>
-        <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="lab-foot">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- IA, 2026-08-17: this lived inside the 2,000-word "why a lab" essay. It is the most
-       load-bearing honesty device on the page — the answer to "what do these tests actually
-       prove" — and a reader who stops mid-essay never reaches it. Its own section now, so a
-       skimmer still lands on it. -->
-  <section class="section" id="what-this-proves">
-    <div class="lab-wrap">
-      <p class="eyebrow">The evidence boundary</p>
-      <h2 class="section-title">These prove less than they look like they prove</h2>
-      <div class="lab-body" data-tint>
-        <p>Three different things get called evidence. Only the first lives on this page.</p>
-        <dl class="ev-tiers">
-          <dt>Implementation</dt>
-          <dd>The code does what it says. 76 assertions across 42 tests, run in your browser above, on the same
-              module the demos import. That is all a green test proves.</dd>
-          <dt>Usage</dt>
-          <dd>The rules came out of shipped products, not a notebook. The verbs, the abstention,
-              the logged override and the citation gate were each argued for and built inside
-              <a href="../index.html#featured-case-studies">the case studies</a>.
-              The code here is my restatement of those decisions, not the client&rsquo;s source.</dd>
-          <dt>Outcome</dt>
-          <dd>Whether a pattern moves adoption is a claim about a product, not about a function.
-              Where I have a measured before-and-after, it sits on the case with its baseline
-              and window. A passing suite will never stand in for a result here.</dd>
-        </dl>
-      <div class="lab-note">
-        <b>Where the line sits.</b> I ship the front-end of what I design, in the pull request under my name, with senior engineers reviewing. These artifacts are pure functions by choice, not by ceiling: logic any stack can adopt and any test can pin down. The stateful counterpart is <a class="xi-process-020" href="../book/">the book edition</a> of this site, about 150&nbsp;KB of my own React. What I don’t claim is the backend. That is the honest boundary, and it is the same one I give on <a class="xi-process-020" href="../screen/">the technical screen</a>.
-      </div>
       </div>
     </div>
   </section>
@@ -310,5 +332,21 @@ document.addEventListener('click', (e) => {
 })();
 </script>
 
+<script type="module">
+/* the hero panel — imports the suite loop.html runs, reports what it returns */
+import { run } from './loop.test.js?v=8290c61b';
+const r = run(), t0 = performance.now();
+const $ = id => document.getElementById(id);
+if ($('lh-inst')) {
+  $('lh-ms').textContent = Math.max(1, Math.round(performance.now() - t0)) + ' ms';
+  $('lh-t').textContent = r.total;
+  const log = $('lh-log'); log.innerHTML = '';
+  (r.results || []).slice(0, 12).forEach((x, k) => { const li = document.createElement('li'); li.style.animationDelay = (k * 70) + 'ms';
+    li.innerHTML = '<b>' + (x.ok === false || x.error ? '✗' : '✓') + '</b><span></span>'; li.lastChild.textContent = x.name || String(x); log.appendChild(li); });
+  let n = 0; const step = () => { n = Math.min(r.passed, n + 3); $('lh-n').textContent = n; if (n < r.passed) requestAnimationFrame(step); }; step();
+  $('lh-s').textContent = (r.failed ? r.failed + ' failing · ' : '0 failing · ') + r.total + ' tests · 76 assertions · 0 dependencies';
+  if (r.failed) $('lh-inst').classList.add('is-err');
+}
+</script>
 </body>
 </html>

@@ -6600,4 +6600,46 @@ body.p-lab-plugin main#main > .section:first-child { padding-top: calc(var(--nav
    floor the primary button already clears). Same look, taller box: the padding stays, the pill grows. */
 body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode,
 :where(body[class*="p-lab"],body.p-fit) .lab-links a:not(.cta) { min-height:44px; display:inline-flex; align-items:center; box-sizing:border-box; }
+/* ── THE LAB HERO RUNS THE CODE (2026-09-14, Arpit: "fix the empty right half of the lab hero", A of
+   three rendered directions). The band is a 7/5 grid at the inner width: the claim left, a panel right
+   that imports loop.test.js and reports the tally. Below the hero, the Lab's list sections are two
+   columns from 1024 (claim | list; prose | aside) so no band is a 62ch column beside 700px of nothing. */
+:where(body.p-lab) .lab-hero .lab-hero-grid{max-width:var(--inner-max);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:72px;align-items:center}
+:where(body.p-lab) .lab-hero .lab-hero-grid > *{min-width:0}
+:where(body.p-lab) .lab-hero .lab-lede{max-width:none}
+@media (max-width:960px){:where(body.p-lab) .lab-hero .lab-hero-grid{grid-template-columns:minmax(0,1fr);row-gap:40px}}
+.lh-inst{border:1px solid color-mix(in srgb, var(--neutral-50) 14%, transparent);border-radius:12px;background:color-mix(in srgb, var(--neutral-50) 4%, transparent);padding:20px 22px;font-family:var(--ff-mono),ui-monospace,monospace;color:var(--neutral-100)}
+.lh-hd{display:flex;justify-content:space-between;gap:16px;align-items:baseline;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--neutral-300);border-bottom:1px solid color-mix(in srgb, var(--neutral-50) 12%, transparent);padding-bottom:12px;margin-bottom:14px}
+.lh-tally{margin:0;font-family:var(--ff-display);font-size:clamp(40px,4vw,64px);line-height:1;color:var(--copper-300);letter-spacing:-.02em}
+.lh-tally small{font:500 12px/1.6 var(--ff-mono),ui-monospace,monospace;letter-spacing:.06em;color:var(--neutral-200);display:block;margin-top:10px;text-transform:uppercase}
+.lh-inst.is-err .lh-tally{color:var(--status-negative,#E17149)}
+.lh-log{list-style:none;margin:16px 0 0;padding:0;font-size:12.5px;line-height:1.75;max-height:262px;overflow:hidden;position:relative}
+.lh-log li{display:flex;gap:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;animation:lh-in .25s forwards}
+.lh-log li.lab-nojs{white-space:normal;opacity:1;animation:none;color:var(--neutral-200)}
+.lh-log li b{color:#7FCF9E;font-weight:600;flex:0 0 auto}
+.lh-log li span{color:var(--neutral-200);overflow:hidden;text-overflow:ellipsis}
+.lh-log::after{content:"";position:absolute;left:0;right:0;bottom:0;height:60px;background:linear-gradient(to bottom, transparent, var(--surface-page));pointer-events:none}
+@keyframes lh-in{to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.lh-log li{opacity:1;animation:none}}
+.lh-foot{margin:14px 0 0;font-size:11px;line-height:1.6;color:var(--neutral-300);letter-spacing:.02em}
+.lh-foot a{color:var(--copper-200)}
+/* the two-column list bands */
+@media (min-width:1024px){
+  /* the band that holds a two-column body opens to the inner width — otherwise the columns split a 62ch measure and the right half of the page stays empty */
+  :where(body.p-lab) .lab-wrap:has(> .lab-body.lb-two){max-width:var(--inner-max)}
+  :where(body.p-lab) .lab-body.lb-two{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:64px;align-items:start;max-width:var(--inner-max)}
+  :where(body.p-lab) .lab-body.lb-two > .lb-main > p{max-width:none}
+  :where(body.p-lab) .lab-body.lb-two > .lb-side{min-width:0}
+  :where(body.p-lab) .lab-body.lb-two > .lb-side .lab-note{margin-top:0}
+  :where(body.p-lab) .lab-body.lb-two > .lb-side .ev-tiers{margin-top:0}
+  /* claim | list, with the closing note under the claim at desktop — in the source it follows the list, so a phone reads claim, list, note */
+  :where(body.p-lab) .lab-body.lb-two{grid-template-areas:"main side" "note side"}
+  :where(body.p-lab) .lab-body.lb-two > .lb-main{grid-area:main}
+  :where(body.p-lab) .lab-body.lb-two > .lb-side{grid-area:side}
+  :where(body.p-lab) .lab-body.lb-two > .lab-note{grid-area:note;margin-top:32px}
+  /* prose | aside (the "why a lab" essay): the essay takes the wider column and the thresholds note rides beside it */
+  :where(body.p-lab) .lab-body.lb-two:has(> aside){grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+  :where(body.p-lab) .lab-body.lb-two > aside.lb-side{position:sticky;top:calc(var(--nav-h) + 24px)}
+  :where(body.p-lab) .lab-body.lb-two > aside.lb-side .lab-links{margin-top:24px;flex-direction:column;align-items:stretch}
+}
 }
