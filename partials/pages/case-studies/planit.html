@@ -289,34 +289,7 @@ window.addEventListener('scroll', () => {
 });
 
 // Mobile menu
-const menuBtn = document.getElementById('menuToggle');
-const navLinks = document.querySelector('.nav-links');
-if (menuBtn && navLinks) {
-  menuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = navLinks.classList.toggle('nav-open');
-    menuBtn.setAttribute('aria-expanded', String(isOpen));
-  });
-  document.addEventListener('click', (e) => {
-    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
-      navLinks.classList.remove('nav-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
-      navLinks.classList.remove('nav-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.focus();
-    }
-  });
-  navLinks.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') {
-      navLinks.classList.remove('nav-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-}
+// Mobile menu: the shared dyslexia.js binder owns it (click, outside click, Escape); the inline copy removed 2026-09-15 left aria-expanded="true" after Escape.
 </script>
 <script data-cfasync="false">
 // a11y: mark current nav item

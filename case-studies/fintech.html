@@ -826,42 +826,8 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 });
 
-// Mobile menu (consolidated handler with aria-expanded + Escape support)
-const menuBtn = document.getElementById('menuToggle');
-const navLinks = document.querySelector('.nav-links');
-
-if (menuBtn && navLinks) {
-  menuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = navLinks.classList.toggle('nav-open');
-    menuBtn.setAttribute('aria-expanded', String(isOpen));
-  });
-
-  // Close drawer when clicking outside it
-  document.addEventListener('click', (e) => {
-    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
-      navLinks.classList.remove('nav-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // Close drawer on Escape key + return focus to hamburger
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
-      navLinks.classList.remove('nav-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.focus();
-    }
-  });
-
-  // Close drawer when any link OR the reading toggle inside it is clicked
-  navLinks.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') {
-      navLinks.classList.remove('nav-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-}
+// Mobile menu: handled by the shared dyslexia.js binder (click, outside click, Escape) and nav-inert.js (page inert while open).
+// The inline copy that lived here until 2026-09-15 bound its Escape handler to a button the shared binder had replaced, so Escape closed the drawer visually and left aria-expanded="true".
 
 // GA4 event tracking
 document.addEventListener('click', (e) => {

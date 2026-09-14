@@ -73,7 +73,11 @@
     btn.dataset.menuBound = '1';
     function close() {
       links.classList.remove('nav-open');
-      btn.setAttribute('aria-expanded', 'false');
+      // 2026-09-15 keyboard walk: Escape removed the class but the live button kept aria-expanded="true"
+      // — the `btn` closed over here can be a node claim() has since replaced. Address the live one.
+      var live = document.getElementById('menuToggle') || btn;
+      live.setAttribute('aria-expanded', 'false');
+      btn = live;
     }
     btn.addEventListener('click', function (e) {
       e.stopPropagation();

@@ -650,51 +650,8 @@ window.addEventListener('scroll', () => {
 
 
 
-// Mobile menu (consolidated handler with aria-expanded + Escape support)
-const menuBtn = document.getElementById('menuToggle');
-const navLinks = document.querySelector('.nav-links');
-
-if (menuBtn && navLinks) {
-  menuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = navLinks.classList.toggle('nav-open');
-    menuBtn.setAttribute('aria-expanded', String(isOpen));
-  });
-
-  // Close drawer when clicking outside it
-  document.addEventListener('click', (e) => {
-    if (navLinks.classList.contains('nav-open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
-      navLinks.classList.remove('nav-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // Close drawer on Escape key + return focus to hamburger
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
-      navLinks.classList.remove('nav-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.focus();
-    }
-  });
-
-  // Close drawer when any link is clicked
-  navLinks.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') {
-      navLinks.classList.remove('nav-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // Focus trap within open nav
-  navLinks.addEventListener('keydown', e => {
-    if (!navLinks.classList.contains('nav-open') || e.key !== 'Tab') return;
-    const focusable = [...navLinks.querySelectorAll('a, button, [tabindex="0"]')].filter(el => !el.disabled);
-    const first = focusable[0], last = focusable[focusable.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  });
-}
+// Mobile menu: handled by the shared dyslexia.js binder (click, outside click, Escape) and nav-inert.js (page inert while open).
+// The inline copy that lived here until 2026-09-15 bound its Escape handler to a button the shared binder had replaced, so Escape closed the drawer visually and left aria-expanded="true".
 
 // Active nav highlight on scroll
 const secs = document.querySelectorAll('section[id]');

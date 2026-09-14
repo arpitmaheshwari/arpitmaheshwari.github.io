@@ -2644,9 +2644,12 @@ function App() {
         exitSection();
         return;
       }
-      const fwd = e.key === "ArrowRight",
+      // Space turns the page too — the cover says "tap or press space" (2026-09-15 keyboard walk found it did not) — unless a control has focus
+      const onControl = /^(INPUT|TEXTAREA|SELECT|BUTTON|A)$/.test((e.target && e.target.tagName) || "");
+      const fwd = e.key === "ArrowRight" || (e.key === " " && !onControl),
         back = e.key === "ArrowLeft";
       if (!fwd && !back) return;
+      if (e.key === " ") e.preventDefault();
       if (mobileRef.current) stepMobile(fwd ? 1 : -1);else goIndex(locRef.current.i + (fwd ? 1 : -1));
     };
     window.addEventListener("keydown", onKey);
@@ -2956,7 +2959,9 @@ function App() {
       onClick: () => goIndex(curSpread + 1),
       disabled: nextDisabled
     }), /*#__PURE__*/React.createElement("div", {
-      className: "bk-progress"
+      className: "bk-progress",
+      role: "navigation",
+      "aria-label": "Pages"
     }, inSection ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", null, sp.crumb, " \xB7 ", sp.idxLabel), /*#__PURE__*/React.createElement("span", {
       className: "bk-progress__dots"
     }, deck.map((_, i) => /*#__PURE__*/React.createElement("button", {
@@ -3061,7 +3066,9 @@ function App() {
     }, isCover ? pg.cover : /*#__PURE__*/React.createElement(React.Fragment, null, pg.content, pg.folio && pg.folio !== "\u2014" ? /*#__PURE__*/React.createElement("div", {
       className: "bk-m-folio"
     }, "\xB7 ", pg.crumb ? pg.crumb + " " + pg.folio : pg.folio, " \xB7") : null)), /*#__PURE__*/React.createElement("div", {
-      className: "bk-m-nav"
+      className: "bk-m-nav",
+      role: "navigation",
+      "aria-label": "Pages"
     }, /*#__PURE__*/React.createElement("button", {
       className: "bk-m-btn",
       onClick: () => stepMobile(-1),
