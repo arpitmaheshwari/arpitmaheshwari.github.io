@@ -11,10 +11,10 @@ main static site at `/`. Self-contained: cover → contents → chapters, with a
 - `image-slot.js` — graceful image-placeholder custom element for figures/plates
 
 ## Locked theme
-Accent **claret `#8E3942`**, type pairing **Playfair Display · Spectral**,
+Accent **claret `#8E3942`**, type pairing **Newsreader · Spectral**,
 paper warmth 70%, comfy margins. The authoring "tweaks" panel was removed for
-the shipped build. Only 4 font families load: Playfair Display, Spectral,
-Caveat (margin notes), Spline Sans Mono (labels).
+the shipped build. Only 4 font families load: Newsreader, Spectral,
+Caveat (margin notes), IBM Plex Mono (labels).
 
 ## Rebuilding `portfolio.js`
 `portfolio.js` is the JSX (book content + app shell) transpiled once with Babel

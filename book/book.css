@@ -1065,11 +1065,11 @@ body {
 .bk-device__mark svg { width: 32px; height: 23px; display: block; }
 /* wraps to two lines under the device mark; at 8px it inherited the book's
    display leading and set solid. The only leading breach in the book. */
-.bk-device__label {font-family: var(--bk-mono); font-size: 8px; line-height: 1.45; letter-spacing:.02em; color: var(--bk-ink-faint)}
+.bk-device__label {font-family: var(--bk-mono); font-size: 11px; line-height: 1.45; letter-spacing:.02em; color: var(--bk-ink-faint)}
 .bk-device--on-dark .bk-device__mark { background: var(--bk-paper); color: #241830; }
 /* The AM device is a logotype — WCAG 1.4.3 exempts text that is part of a logo or brand name,
    so the reduced alpha here stays (measured 2.1:1, deliberately unfixed, 2026-07-31). */
-.bk-device--on-dark .bk-device__label { color: rgba(244,236,218,0.6); }
+.bk-device--on-dark .bk-device__label { color: #FFF8EC; } /* declares its own ink like .bk-cover__imprint: the 0.6 tint read 2.6:1 and 0.92 read 4.1:1 on the terracotta */ /* 2026-09-15: 0.6 read 2.6:1 on the cover; text is text */
 
 /* ============================================================
    EPHEMERA — taped photo, sticky note, coffee ring. The scrapbook
@@ -1188,3 +1188,33 @@ body.dyslexia-mode,
 body.dyslexia-mode *:not(code):not(pre):not(kbd):not(samp):not(code *):not(pre *){
   font-family:'Atkinson Hyperlegible','Source Sans 3',sans-serif;
   letter-spacing:.03em;word-spacing:.1em}
+
+/* ── 2026-09-15 · book review ────────────────────────────────────────────────────────────────
+   The hub's headline figures carry how they were measured (the classic site did this on 09-14). */
+.bk-item__basis {font-family: var(--bk-mono); font-size: 10px; letter-spacing:.02em; color: var(--bk-ink-faint); flex: 1; min-width: 0; margin-left: 6px; line-height: 1.3; align-self: center}
+.bk-item__basis::before {content: "· "; }
+.bk-cv--facts .bk-cv__row {padding: 4px 0; grid-template-columns: 180px 1fr}   /* labels are words here, not years */
+.bk-fine {font-size: 12.5px}
+.bk-small {font-size: 13.5px}
+.bk-small--13 {font-size: 13px}
+/* Phone: the book inherited the desktop's density. Body text meets a 16px floor, labels an 11px one,
+   and the two controls a reader taps first clear 44px. The desktop spreads keep their own sizes. */
+@media (max-width: 1024px) {
+  .bk-m-page .bk-body, .bk-m-page .bk-lede { font-size: 17px; line-height: 1.6; }
+  .bk-m-page .bk-fine, .bk-m-page .bk-small, .bk-m-page .bk-small--13 { font-size: 16px; }
+  .bk-m-page .bk-cv--facts .bk-cv__row { grid-template-columns: 104px 1fr; gap: 10px; }
+  .bk-m-page .bk-cv--facts .bk-cv__yr { white-space: normal; }
+  .bk-m-page .bk-item__top { flex-wrap: wrap; }
+  .bk-m-page .bk-item__basis { flex-basis: 100%; order: 3; margin: 2px 0 0; }   /* on a phone the receipt takes its own line under the tag instead of wrapping in a sliver */
+  .bk-m-page .bk-principle p, .bk-m-page .bk-item p, .bk-m-page .bk-list--volume .bk-item p,
+  .bk-m-page .bk-writing p, .bk-m-page .bk-cv__org, .bk-m-page .bk-pattern p, .bk-m-page .bk-move p,
+  .bk-m-page .bk-boundary p, .bk-m-page .bk-plate__cap, .bk-m-page .bk-note { font-size: 16px; line-height: 1.55; }
+  .bk-m-page .bk-principle h4, .bk-m-page .bk-cv__role { font-size: 18px; }
+  .bk-m-page .bk-item__tag, .bk-m-page .bk-item__basis, .bk-m-page .bk-item__case, .bk-m-page .bk-pattern__go,
+  .bk-m-page .bk-cv__sub, .bk-m-page .bk-meta dt, .bk-m-page .bk-metric__l, .bk-m-page .bk-ledger__lbl,
+  .bk-m-page .bk-plate__no, .bk-m-page .bk-figure__tag, .bk-m-page .bk-device__label, .bk-m-page .bk-kicker,
+  .bk-m-page .bk-cv__yr, .bk-m-page .bk-writing__date, .bk-m-page .bk-chip, .bk-m-page .bk-feature__more { font-size: 12px; }
+  .bk-cover__skim { font-size: 13px; }
+  .bk-cover__skimlink, .bk-cover__open { min-height: 44px; display: inline-flex; align-items: center; }
+  .bk-m-top button, .bk-menu-btn { min-height: 44px; }
+}

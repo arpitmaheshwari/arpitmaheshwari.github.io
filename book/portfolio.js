@@ -14,36 +14,43 @@ const WORK = [{
   tag: "AdTech · Named client",
     title: "An Ad Agency Became the Market’s Aggregator",
     metric: "2 wks → 3 hrs",
+    basis: "per campaign · vs the 2-week manual baseline",
     desc: "Traders watched the algorithm win and still played hunches — until plans they could argue with turned a media agency into the market’s aggregator: six systems, one platform, all public."
 }, {
   tag: "FinTech · NDA",
     title: "Deal-Screening AI That Cites Its Sources",
     metric: "60% faster",
+    basis: "pre/post rollout",
     desc: "Analysts are paid to doubt confident numbers, so the score shipped already able to explain itself."
 }, {
   tag: "VC/PE · NDA",
     title: "Due Diligence You Can’t Rubber-Stamp",
     metric: "3 wks → 4 days",
+    basis: "measured across engagements",
     desc: "Partners stake millions on claims they can’t verify. So sign-off stays locked until the evidence is read."
 }, {
   tag: "Org Design · NDA",
     title: "The Software That Replaced the Org Chart",
     metric: "200",
+    basis: "designed for 200 · 250 today",
     desc: "Eight modules doing the coordination work a management layer usually does — built for 200 people, zero managers; 250 run on it today."
 }, {
   tag: "EdTech · Non-NDA",
     title: "The Redesign That Asked PTC to Kill Four Products",
     metric: "$1M/yr",
+    basis: "recurring · vs 2016 print budget",
     desc: "Five learning platforms, one survivor, eleven languages. Drawing the screens was easy; the case for retiring four products was the work that mattered."
 }, {
   tag: "Telecom · Non-NDA",
     title: "Two O2 UK Products, Four Million People",
     metric: "4M+",
+    basis: "O2’s figure, not mine",
     desc: "Two O2 UK products at national scale. Every screen co-designed, every screen coded by me — mobile web."
 }, {
   tag: "Consumer · PlanIt",
   title: "The App People Broke on Purpose",
   metric: "0 complaints",
+  basis: "launch window · no tutorial",
   desc: "The same client’s data, pointed at a commuter. People triggered the error screen on purpose, just to watch the little train be sorry — the failure state became the reason they came back."
 }];
 const PRINCIPLES = [{
@@ -258,6 +265,7 @@ const NDA_CASES = [{
 }, {
   no: "04",
   img: "../assets/shots/adtech-planner.png",
+  redacted: false, // named client, public record — the "client is unnamed" foot does not apply (2026-09-15)
   tag: CF.get("adtech").tag,
   title: CF.get("adtech").title,
   standfirst: "The algorithm beat the traders, and they ignored it — until they could argue back. Every edit taught next week’s calls.",
@@ -334,27 +342,24 @@ const NDA_CASES = [{
   redacted: false,
   ph: "PlanIt — the quietness chart and the suggested travel windows, mobile web",
   title: CF.get("planit").title,
-  standfirst: "The prediction was already right. Nobody moved — because choosing a slower train is not a calculation, it is a nerve. So the interface paid what the model could not.",
+  standfirst: "The prediction was right and nobody moved: a slower train is a nerve, not a calculation. The interface paid what the model could not.",
   meta: cfMeta("planit"),
-  context: "The same client, the same data, a different bet: the footfall the AdTech platform generated, pointed at a commuter. It could say which carriages would be empty — and that changed nothing, because the people who most needed a quiet carriage were the least likely to accept a slower journey on the word of a number. Elderly travellers, expecting mothers told to avoid stress, anyone with a stroller or a mobility need, anyone still wary after a pandemic. Not commuters in general. Designing for the frightened, not the busy, decided everything downstream.",
+  context: "The same client, the same data, a different bet: the AdTech platform’s footfall, pointed at a commuter. It could say which carriages would be empty — and that changed nothing, because the people who most needed a quiet carriage were the least likely to accept a slower journey on the word of a number. Designing for the frightened, not the busy, decided everything downstream.",
   moves: [{
     h: "One score, not a data stream",
-    p: "Crowd data collapsed into Quietness, 1–10, so a route could be judged at a glance. Green, amber, red — softened away from neon, because a warning that induces panic defeats a product built to lower it."
+    p: "Crowd data collapsed into Quietness, 1–10, so a route could be judged at a glance. Green, amber, red — softened away from neon; a warning that induces panic defeats the product."
   }, {
     h: "A voice instead of a readout",
-    p: "\u201CFootfall density: high\u201D tells an anxious person to brace. \u201CQuietness: 3/10 \u2013 very busy. Imagine Platform 9\u00BE on the first day at Hogwarts\u201D hands them a picture they already hold. And where the category issues instructions, this made offers: a quieter time is coming up, bring your book."
+    p: "\u201CFootfall density: high\u201D tells an anxious person to brace. \u201CQuietness: 3/10 \u2013 very busy. Imagine Platform 9\u00BE on the first day at Hogwarts\u201D hands them a picture they already hold."
   }, {
-    h: "A mascot doing real work",
-    p: "A train with a face, greeting the traveller, approving a clear route, and visibly feeling bad when something went wrong. A face answers in milliseconds the question the product needed settled before it could sell a slower journey: is this thing on my side?"
-  }, {
-    h: "The failure state, sought out",
-    p: "In testing and again in the wild, people entered journeys they knew would fail, just to watch the little train be sorry about it. The screen every team treats as damage control had become the thing users went looking for — and a failure people seek out is a failure that costs no trust."
+    h: "A mascot doing the failure state\u2019s work",
+    p: "A train with a face greeted the traveller and visibly felt bad when something went wrong. In testing and in the wild, people entered journeys they knew would fail just to watch it be sorry \u2014 the failure state became the screen users went looking for, and a failure people seek out costs no trust."
   }],
   plateNo: CF.get("planit").plateNo,
   plateCn: CF.get("planit").provenance,
   ledger: CF.metrics("planit"),
   note: "paid the emotional cost in the interface, not the model",
-  boundary: "Warmth cannot rescue a weak signal — a mascot on top of bad data is a lie with a face on it. And charm is not a moat: the affection users had for the train would not have survived a competitor with better data and a warmer product. PlanIt found a small loyal base and was switched off within months. Showing it is the point: the six-month build and the shutdown are the same skill.",
+  boundary: "Warmth cannot rescue a weak signal — a mascot on top of bad data is a lie with a face on it. And charm is not a moat: PlanIt was switched off within months.",
   stamp: { t: "0 Complaints", v: "ok" }
 }];
 const PATTERN_PAGES = {
@@ -1381,7 +1386,7 @@ function buildBook(ctx) {
       className: "bk-cover__rule"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-cover__byline"
-    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Staff / principal product designer for AI products \xB7 shipped to 4M+"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "Read the classic site instead \u2192"), /*#__PURE__*/React.createElement("button", {
+    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Product & Design Lead \xB7 AI & LLM Products \xB7 shipped to 4M+"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "Read the classic site instead \u2192"), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1),
       "aria-label": "Open the book \u2014 tap or press space"
@@ -1437,9 +1442,8 @@ function buildBook(ctx) {
     }, "Sixteen years, five industries, the same half-second: the model surfaces something true, and the person at the screen pauses — not because the model is wrong, but because they don’t know how to bet on it yet. This book is everything I’ve worked out about that pause."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("p", {
-      className: "bk-body",
+      className: "bk-body bk-small--13",
       style: {
-        fontSize: 13,
         color: "var(--bk-ink-faint)"
       }
     }, "Set in Newsreader & Spectral \xB7 Indore, India \xB7 MMXXVI")),
@@ -1512,13 +1516,7 @@ function buildBook(ctx) {
       style: {
         marginTop: 20
       }
-    }, "the miss, written down: my first accessibility pass buried screen-reader users in verbose ARIA labels — a usability study showed they skim, not listen. A week with the monitor off, then I recoded it."), /*#__PURE__*/React.createElement("div", {
-      className: "bk-coffee",
-      "aria-hidden": "true",
-      style: {
-        marginTop: 32
-      }
-    })),
+    }, "the miss, written down: my first accessibility pass buried screen-reader users in verbose ARIA labels — a usability study showed they skim, not listen. A week with the monitor off, then I recoded it."), null),
     right: /*#__PURE__*/React.createElement("div", {
       className: "bk-reveal"
     }, /*#__PURE__*/React.createElement("div", {
@@ -1548,7 +1546,7 @@ function buildBook(ctx) {
       /*#__PURE__*/React.createElement("img", {
         src: "../assets/visuals/method-book.svg",
         alt: "The method in three acts: the wager (desirable, feasible, viable), the spiral of four moves, and the open loop from MVP to version n",
-        style: { width: "100%", maxWidth: 430, display: "block", margin: "22px 0 0" }
+        style: { width: "100%", display: "block", margin: "22px 0 0" }
       }),
       /*#__PURE__*/React.createElement("div", { className: "bk-note", style: { marginTop: 20 } },
         "the same shape on every project, whatever the industry")),
@@ -1564,7 +1562,7 @@ function buildBook(ctx) {
           /*#__PURE__*/React.createElement("div", null,
             /*#__PURE__*/React.createElement("h4", null, m[1]),
             /*#__PURE__*/React.createElement("p", null, m[2]))))),
-      /*#__PURE__*/React.createElement("p", { className: "bk-lede", style: { marginTop: 20, fontStyle: "italic" } },
+      /*#__PURE__*/React.createElement("p", { className: "bk-lede", style: { marginTop: 28, fontStyle: "italic" } },
         "\u201CConfidence is earned in loops, not declared in launches.\u201D"))
   }, /* 4 · CHAPTER I — SELECTED WORK (hub) */
   {
@@ -1606,10 +1604,9 @@ function buildBook(ctx) {
       }
     }, WORK[0].title), /*#__PURE__*/React.createElement("div", {
       className: "bk-feature__metric"
-    }, WORK[0].metric), /*#__PURE__*/React.createElement("p", {
-      className: "bk-body",
+    }, WORK[0].metric), /*#__PURE__*/React.createElement("div", { className: "bk-item__basis" }, WORK[0].basis), /*#__PURE__*/React.createElement("p", {
+      className: "bk-body bk-small",
       style: {
-        fontSize: 13.5,
         marginTop: 8
       }
     }, WORK[0].desc), /*#__PURE__*/React.createElement("div", {
@@ -1650,17 +1647,12 @@ function buildBook(ctx) {
         className: "bk-item__top"
       }, /*#__PURE__*/React.createElement("span", {
         className: "bk-item__tag"
-      }, w.tag), /*#__PURE__*/React.createElement("span", {
+      }, w.tag), /*#__PURE__*/React.createElement("span", { className: "bk-item__basis" }, w.basis), /*#__PURE__*/React.createElement("span", {
         className: "bk-item__metric"
       }, w.metric)), /*#__PURE__*/React.createElement("h4", null, w.title, /*#__PURE__*/React.createElement("span", {
         className: "bk-item__case"
       }, "open \u2197")), /*#__PURE__*/React.createElement("p", null, w.desc));
-    })), /*#__PURE__*/React.createElement("div", {
-      className: "bk-note bk-note--r",
-      style: {
-        marginTop: 12 // was 20; trimmed with .bk-list--volume so the note clears the page edge
-      }
-    }, "four are redacted — the logos are just shy."))
+    })))
   }, /* 4 · CHAPTER III — A FIELD GUIDE TO TRUST (hub) */
   {
     kind: "spread",
@@ -1686,10 +1678,22 @@ function buildBook(ctx) {
       style: {
         marginTop: 20
       }
-    }, "open a pattern to go a level deeper \u2197"), /*#__PURE__*/React.createElement(Device, {
+    }, "open a pattern to go a level deeper \u2197"), /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv__sub"
+    }, "The decision grammar \u2014 defaults, not findings"), /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv bk-cv--facts"
+    }, [["Act", "75\u2013100 \u00B7 safe to act, always overridable"], ["Review", "40\u201374 \u00B7 a person weighs it, reasons on the card"], ["Ignore", "0\u201339 \u00B7 below the line, and says so"]].map((f, i) => /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv__row",
+      key: i
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv__yr"
+    }, f[0]), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
+      className: "bk-cv__org",
+      style: { marginTop: 0 }
+    }, f[1]))))), /*#__PURE__*/React.createElement(Device, {
       label: "prior art: PAIR \u00B7 HAX \u2014 this is the production-side report",
       style: {
-        marginTop: 32
+        marginTop: 24
       }
     })),
     right: /*#__PURE__*/React.createElement("div", {
@@ -1796,12 +1800,18 @@ function buildBook(ctx) {
       className: "bk-body"
     }, "The facts, in order — for the founder who checks the work before the call. Every number arrives holding its baseline."), /*#__PURE__*/React.createElement("div", {
       className: "bk-cv__sub"
-    }, "What I do"), /*#__PURE__*/React.createElement("div", {
-      className: "bk-chips"
-    }, CV_SKILLS.map((s, i) => /*#__PURE__*/React.createElement("span", {
-      className: "bk-chip",
+    }, "Experience"), /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv"
+    }, CV_EXP.map((r, i) => /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv__row",
       key: i
-    }, s))), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv__yr"
+    }, r.yr), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
+      className: "bk-cv__role"
+    }, r.role), /*#__PURE__*/React.createElement("p", {
+      className: "bk-cv__org"
+    }, r.org))))), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
@@ -1816,19 +1826,6 @@ function buildBook(ctx) {
       style: {
         marginTop: 0
       }
-    }, "Experience"), /*#__PURE__*/React.createElement("div", {
-      className: "bk-cv"
-    }, CV_EXP.map((r, i) => /*#__PURE__*/React.createElement("div", {
-      className: "bk-cv__row",
-      key: i
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "bk-cv__yr"
-    }, r.yr), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
-      className: "bk-cv__role"
-    }, r.role), /*#__PURE__*/React.createElement("p", {
-      className: "bk-cv__org"
-    }, r.org))))), /*#__PURE__*/React.createElement("div", {
-      className: "bk-cv__sub"
     }, "Education & recognition"), /*#__PURE__*/React.createElement("div", {
       className: "bk-cv"
     }, CV_EDU.map((r, i) => /*#__PURE__*/React.createElement("div", {
@@ -1840,7 +1837,25 @@ function buildBook(ctx) {
       className: "bk-cv__role"
     }, r.role), /*#__PURE__*/React.createElement("p", {
       className: "bk-cv__org"
-    }, r.org))))))
+    }, r.org))))), /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv__sub"
+    }, "Candidate facts"), /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv bk-cv--facts"
+    }, [["Experience", "16 yrs"], ["Industries", "5"], ["Patterns in production", "8"], ["Act / Review / Ignore", "1 rule"], ["Users shipped", "4M+ \u00B7 public"]].map((f, i) => /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv__row",
+      key: i
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv__yr"
+    }, f[0]), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
+      className: "bk-cv__role"
+    }, f[1]))))), /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv__sub"
+    }, "What I do"), /*#__PURE__*/React.createElement("div", {
+      className: "bk-chips"
+    }, CV_SKILLS.map((s, i) => /*#__PURE__*/React.createElement("span", {
+      className: "bk-chip",
+      key: i
+    }, s))))
   }, /* COLOPHON & CONTACT */
   {
     kind: "spread",
@@ -1864,7 +1879,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "Your AI model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. Staff / Principal or founding product-design lead for AI products — open to a hands-on director seat. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
+    }, "Your AI model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. Product & Design Lead for AI & LLM products — definition, roadmap, and the interface that ships. Open to a hands-on director seat. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-social",
       style: {
         marginTop: 24
@@ -1907,7 +1922,19 @@ function buildBook(ctx) {
       target: "_blank",
       rel: "noopener",
       style: { color: "var(--bk-ember-ink, #B04A24)" }
-    }, "book 30 minutes \u2197")), /*#__PURE__*/React.createElement("p", { style: { marginTop: 12, fontSize: 12.5, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "I do human-in-the-loop design for AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
+    }, "book 30 minutes \u2197")), /*#__PURE__*/React.createElement("p", { className: "bk-fine", style: { marginTop: 8, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "I do human-in-the-loop design for AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv__sub"
+    }, "Colophon"), /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv bk-cv--facts"
+    }, [["Set in", "Newsreader & Spectral \u00B7 hand notes in Caveat \u00B7 labels in IBM Plex Mono"], ["Built as", "one static page \u00B7 React 18 \u00B7 no framework beyond it"], ["Edition", "Human in the Loop \u00B7 MMXXVI \u00B7 arpitmaheshwari.com/book/"], ["Rights", "No copyright \u00B7 Design is for all"]].map((f, i) => /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv__row",
+      key: i
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "bk-cv__yr"
+    }, f[0]), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
+      className: "bk-cv__org",
+      style: { marginTop: 0 }
+    }, f[1]))))), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement(Device, {
       label: "fin.",
@@ -1929,11 +1956,12 @@ function buildBook(ctx) {
       style: {
         marginBottom: 12
       }
-    }, "A line about the role and the stage, or just a link — I reply within 48 hours. Prefer email? ", /*#__PURE__*/React.createElement("a", {
-      href: "#",
-      onClick: function (e) { var u = "maheshwari.arpit" + "88", d = "gmail.com"; e.currentTarget.href = "mailto:" + u + "@" + d + "?subject=Role%20for%20Arpit"; },
+    }, "A line about the role and the stage, or just a link — I reply within 48 hours. Prefer a message? ", /*#__PURE__*/React.createElement("a", {
+      href: "https://www.linkedin.com/in/arpitmaheshwariprofile/",
+      target: "_blank",
+      rel: "noopener",
       style: { color: "var(--bk-ember-ink, #B04A24)" }
-    }, "write to me directly \u2192")), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
+    }, "message me on LinkedIn \u2192")), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: { marginTop: "auto", textAlign: "center", paddingTop: 16 }
     }, "thanks for reading to the end ♥"))
@@ -1946,9 +1974,9 @@ function buildBook(ctx) {
       label: "Selected Work",
       kind: "Case study",
       items: [{
-        crumb: "Talon Outdoor",
+        crumb: "AdTech",
         idxLabel: "walk-through",
-        runheadR: "Talon Outdoor · An Ad Agency Became the Market’s Aggregator",
+        runheadR: "AdTech · An Ad Agency Became the Market’s Aggregator",
         folioL: "1",
         folioR: "2",
         ...ndaPages[2]
