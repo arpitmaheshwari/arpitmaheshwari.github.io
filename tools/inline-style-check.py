@@ -108,10 +108,14 @@ def signatures(root):
     pats = ['*.html','*/index.html','case-studies/*.html','patterns/*.html','lab/*.html',
             'assets/og-images/*.html',
             'portfolio-sources/*.html']
-    files = sorted({p for pat in pats for p in glob.glob(os.path.join(root, pat))})
+    files = sorted({p for pat in pats for p in glob.glob(os.path.join(root, pat))
+                    if '__' not in os.path.basename(p)})   # another gate's calibration canary, never a page
     sig = collections.Counter(); where = collections.defaultdict(set)
     for f in files:
-        s = open(f, encoding='utf-8').read()
+        try:
+            s = open(f, encoding='utf-8').read()
+        except FileNotFoundError:
+            continue   # 2026-09-15: canon-lint planted and removed __canon_canary_c.html between our glob and our read; a vanished file is not a finding
         for m in re.finditer(r'style="([^"]*)"', s):
             d = m.group(1); props = []
             for p in TYPE:
