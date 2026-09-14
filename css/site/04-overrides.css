@@ -1956,7 +1956,12 @@ body.p-home #contact .one-door:hover{filter:brightness(1.06)}
 /* ── what used to be !important ── */
 /* no hover, no tooltip: on touch the box could only appear clipped off-viewport;
    the surrounding prose (and the glossary) carry the definitions (2026-09-02 sweep) */
-@media(hover:none){abbr[title]::after,abbr[title]::before{display:none}}
+@media(hover:none){
+  abbr[title]::before{display:none}
+  abbr[title]::after{display:none}
+  /* 2026-09-15: a tap focuses the term (tabindex=0); the definition appears as a fixed sheet that cannot clip */
+  abbr[title]:focus::after{display:block;position:fixed;left:16px;right:16px;bottom:16px;top:auto;width:auto;max-width:none;transform:none;opacity:1;font-size:15px;line-height:1.5;padding:12px 16px;z-index:1000;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+}
 /* ── SYSTEM ADOPTION — what the bridge used to do, now stated once and by role ──
    A reconstruction plate quotes somebody else's product; it owns its whole interior,
    ink and edges alike, and the system's roles are re-pointed at ITS palette so every
