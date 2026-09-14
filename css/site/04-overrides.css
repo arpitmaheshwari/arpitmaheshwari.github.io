@@ -2368,4 +2368,23 @@ body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode, :where(body.p-lab-eva
    contrast audit's browser resolved to neutral-800 on the amber-700 fill (1.34:1) while the pane showed
    cream. A control's ink on its own fill is a constant, not a page token. */
 :where(body.p-lab-eval) .lint-seg button.on{color:var(--neutral-50);background:var(--amber-700);border-color:var(--amber-700)}
+/* ── THE HOMEPAGE, TWO BANDS RECOMPOSED (2026-09-15, Arpit, from rendered directions; branch home-ia).
+   HERO A: the band was 900px tall and the film 338px wide in a column that filled a quarter of the height.
+   The grid is 7 | 5 with both columns centred on each other, so the film is the size of the claim.
+   WRITING A: three pieces, one blurb visible until hover; the right half of the band was empty for two of
+   them. Three cards, each with its own tags, date and blurb — no hover, nothing hidden. */
+@media (min-width:901px){
+  body.p-home .hero .wrap.hero-split{grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:64px;align-items:center}
+  body.p-home .hero .hero-widget{align-self:center;padding-bottom:0}
+}
+@media (min-width:861px){
+  body.p-home #thoughts .ixw{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border-top:0;padding-top:0}
+  body.p-home #thoughts .ixl{display:contents}
+  body.p-home #thoughts .ixl > li{display:flex;flex-direction:column;min-width:0;background:var(--surface-card);border:1px solid var(--border-strong);border-top:3px solid var(--acc-rose);border-radius:12px;padding:24px}
+  body.p-home #thoughts .ixi{display:block}
+  body.p-home #thoughts .ixp{position:static;opacity:1;visibility:visible;border-left:0;padding:16px 0 0;margin-top:auto}
+  body.p-home #thoughts .ixx{max-width:none}
+  body.p-home #thoughts .ixw:not(:hover):not(:focus-within) .ixl > li:first-child .ixt,
+  body.p-home #thoughts .ixw:not(:hover):not(:focus-within) .ixl > li:first-child .ixn{color:inherit}
+}
 }
