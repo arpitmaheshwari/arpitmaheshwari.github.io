@@ -850,6 +850,19 @@
    "note": "2026-09-15: Arpit — 'fix the empty right half of the lab hero … it has many fundamental gaps', then 'fix architectural gap across all the pages'. The Lab hero and 22 more pages set their text in a 45% column and left every band's remainder empty while contrast, spacing, rhythm and clearance stayed green — each measures ONE element. This measures the band against its contents: NARROW-BAND (<50% cover at 1440/1024), NAKED-HERO (first band <60% with no object), DOUBLE-ENDING (lead sentence reused as a heading), MIXED-GRID (cards of two kinds). Exemptions are listed with their decision date. Calibrates by forcing a band to 40% width."
   },
   {
+   "id": "rule-density-check",
+   "cmd": [
+    "python3",
+    "tools/rule-density-check.py"
+   ],
+   "stages": [
+    "nightly"
+   ],
+   "runner": true,
+   "serial": false,
+   "note": "2026-09-15: Arpit, twice in one evening — 'too many rule lines' on How I lead (five separators in 300px), then 'it's about repetitive patterns' on The quality bar (eleven rules: list rows + ledger rows + underlined links). Every gate reads one element or one band's padding; none counts how often one visual device repeats inside a band. This counts painted horizontal rules per innermost section (a four-sided border is a box, not a rule): DENSE >4, DOUBLED two different rules within 40px. Ledgers, tables, instruments and reconstructions are exempt by name with their reason. Nightly, not pre-push: the remaining findings are judgement calls for Arpit's eye, and the gate's job is to put them in front of him."
+  },
+  {
    "id": "journey-check",
    "cmd": [
     "python3",

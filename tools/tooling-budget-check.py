@@ -334,6 +334,7 @@ CEILING = 16_205   # 2026-09-13 +65: interaction-state-check samples PIXELS behi
 CEILING = 16_400   # 2026-09-13 +195: explore-loop — seeded unscripted reader sessions, photographed, with a notebook of facts no gate owns (found two compositions on its first run)
 CEILING = 16_475   # 2026-09-14 +75: nav-clearance-check — the first content clears the fixed nav on every page and width (the patterns eyebrow sat under the bar; found by Arpit, not a gate)
 CEILING = 16_575   # 2026-09-15 +100: composition-check — a band measured against its own contents (narrow band, naked hero, double ending, mixed grid); the Lab's empty half and 22 pages' 45% columns had passed every per-element gate
+CEILING = 16_665   # 2026-09-15 +90: rule-density-check — one separator device repeated until a band is a grid of lines (five rules in 300px on How I lead, eleven on The quality bar; both found by Arpit, not a gate)
 
 
 def loc(paths):
