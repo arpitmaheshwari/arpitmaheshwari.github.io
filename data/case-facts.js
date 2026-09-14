@@ -68,11 +68,11 @@
           "Saved on print + shipping"
         ],
         [
-          "5→1",
+          "5 → 1",
           "Platforms consolidated"
         ],
         [
-          "9→11",
+          "9 → 11",
           "Languages, one pipeline"
         ],
         [
