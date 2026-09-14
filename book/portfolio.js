@@ -224,7 +224,7 @@ const NDA_CASES = [{
   context: "The one move: own both sides of the handoff — design every screen with a co-designer, then code alone the front-end that ships it, so nothing is lost in translation. The cost of that scale: a rounding error has a population. The proof isn’t sign-ups; it’s the 2.5M who came back.",
   moves: [{
     h: "MyO2 — the whole account, alone",
-    p: "O2 UK’s self-service app: data and usage, the bill, a tariff change, an upgrade — the whole account without dialing anyone. A replatforming, not a fresh start: the legacy system made responsive — iOS, Android, Windows Phone, web — moved cautiously, millions of subscribers aboard, in step with Telefónica’s brand and copy teams."
+    p: "O2 UK’s self-service app: data and usage, the bill, a tariff change, an upgrade — the whole account without dialing anyone. A replatforming, not a fresh start: the legacy system made responsive across iOS, Android, Windows Phone and web, moved cautiously with millions of subscribers aboard."
   }, {
     h: "Priority Moments — a reason to open it",
     p: "O2's loyalty programme: a geolocated list of rewards near you — Odeon, M&S, Caffè Nero — every redemption a reason to stay. Launched July 2011; 2.6M registrations in year one, 2.5M+ active. The launch figures are O2's record — I joined in 2013 and owned the reward and offer screens."
@@ -245,7 +245,7 @@ const NDA_CASES = [{
   title: CF.get("fintech").title,
   standfirst: "The LLM shipped already able to defend its own scores. Then screening sped up 60%.",
   meta: cfMeta("fintech"),
-  context: "An LLM read the deal docs and scored the risk. The first release already carried a cited source on every claim, and an abstention on thin cases — a confident hallucination nobody signs is dead on arrival. I owned product definition and the abstention and citation UX; accuracy is the ML team’s result to defend. One analysis, two reading modes — a written report, or a conversation that interrogates it — over a pipeline-wide scoring dashboard.",
+  context: "An LLM read the deal docs and scored the risk. The first release already carried a cited source on every claim, and an abstention on thin cases — a confident hallucination nobody signs is dead on arrival. I owned product definition and the abstention and citation UX; accuracy is the ML team’s result to defend.",
   moves: [{
     h: "Explain before the verdict",
     p: "An “explain this score” surface: pull a rating into its signals, challenge the weighting, watch it answer — sources beside the number."
@@ -321,19 +321,19 @@ const NDA_CASES = [{
   context: "An LLM read the code and docs. No verdict ships without a cited source (retrieval) — unaudited, it’s a confident hallucination.",
   moves: [{
     h: "Score at the signal level",
-    p: "Confidence carried per signal — a finding crossed into a signal only when the analysis cleared the confidence bar, each one holding the evidence behind it — never one opaque verdict."
+    p: "Confidence per signal: a finding became a signal only when it cleared the bar, each holding its evidence — never one opaque verdict."
   }, {
     h: "Provenance on every claim",
-    p: "Each score named the signals that drove it, with a clean drill from summary to source, before a partner committed capital."
+    p: "Each score named the signals that drove it, with a drill from summary to source before capital moved."
   }, {
     h: "Dissent on record",
-    p: "Analyst overrides fed back into the model; partner sign-off was real workflow, not a rubber stamp."
+    p: "Analyst overrides fed back into the model; partner sign-off was real workflow, not a stamp."
   }],
   plateNo: CF.get("vc-diligence").plateNo,
   plateCn: CF.get("vc-diligence").provenance,
   ledger: CF.metrics("vc-diligence"),
   note: "made the model’s verdict auditable enough to bet on",
-  boundary: "Deliberate friction survives only when the person clicking is personally accountable for the verdict. A user with no downside routes around it.",
+  boundary: "Deliberate friction survives only when the person clicking is accountable for the verdict; a user with no downside routes around it.",
   stamp: { t: "4-Day DD", v: "" }
 }, {
   no: "07",
@@ -1054,7 +1054,7 @@ function caseWalk(c) {
         fontStyle: "italic",
         color: "var(--bk-ink-faint)"
       }
-    }, "What you see is a reconstruction or a schematic, never a client’s live screen: names and figures on it are synthetic and the client is unnamed. The moves, outcomes and principles are public; I’ll walk through the real artifacts — service blueprints included — and numbers on a call under mutual NDA.") : null)
+    }, "What you see is a reconstruction or a schematic, never a client’s live screen: names and figures on it are synthetic and the client is unnamed. The moves, outcomes and principles are public; I’ll walk through the real artifacts and numbers on a call under mutual NDA.") : null)
   };
 }
 
@@ -1562,7 +1562,7 @@ function buildBook(ctx) {
           /*#__PURE__*/React.createElement("div", null,
             /*#__PURE__*/React.createElement("h4", null, m[1]),
             /*#__PURE__*/React.createElement("p", null, m[2]))))),
-      /*#__PURE__*/React.createElement("p", { className: "bk-lede", style: { marginTop: 28, fontStyle: "italic" } },
+      /*#__PURE__*/React.createElement("p", { className: "bk-lede", style: { marginTop: 32, fontStyle: "italic" } },
         "\u201CConfidence is earned in loops, not declared in launches.\u201D"))
   }, /* 4 · CHAPTER I — SELECTED WORK (hub) */
   {
