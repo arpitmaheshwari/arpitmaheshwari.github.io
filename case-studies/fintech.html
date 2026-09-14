@@ -79,7 +79,7 @@
     <div>
       <p class="case-hero__kicker">FinTech · AI-assisted private equity · one case, one stealable principle</p>
       <h1>For expert skeptics, provenance is the product.</h1>
-      <p class="case-hero__hook">Private-equity analysts get paid to doubt confident numbers — a score they can’t cross-examine is a smooth pitch with no references, and experts walk past smooth pitches. So this product refused to launch as a naked score: from day one, every claim carried its source, and thin evidence drew an honest “I’m not sure.” Screening ran 60% faster — because the machine came with references.</p>
+      <p class="case-hero__hook">Private-equity analysts get paid to doubt confident numbers — a score they can’t cross-examine is a smooth pitch with no references, and experts walk past smooth pitches. So this product refused to launch as a naked score: from day one, every claim carried its source &mdash; its provenance, where it came from &mdash;, and thin evidence drew an honest “I’m not sure.” Screening ran 60% faster — because the machine came with references.</p>
       <p class="hand xi-case-studies-adtech-005" aria-hidden="true">it shipped already knowing how to say ‘I’m not sure’</p>
       <div class="case-stats">
         <div class="case-stat" data-ground="bookend"><b>60% faster</b><span>deal screening · pre/post rollout</span></div>
@@ -186,8 +186,8 @@
     <h2 class="section-title xi-case-studies-adtech-015"><span class="chapter-k">The stakes<span class="visually-hidden">:</span></span> An accurate score that added work instead of removing it.</h2>
     <p class="scene">The analysts never worried the machine might be wrong. They worried it might be fluent &mdash; a confident number with nothing underneath, arriving faster than anyone could doubt it.</p>
     <p class="t-body xi-case-studies-adtech-016">Doubt is the job here, and these analysts are very good at it. A score they couldn’t cross-examine wasn’t a tool — it was a liability with a UI, and they treated it like one. It didn’t help that the number came out of a large language model reading messy deal documents: the same technology that, pushed too far, will invent a confident answer it can’t back up.</p>
-    <p class="t-body xi-case-studies-adtech-016">The LLM read board packs, statements and interview notes like a junior analyst, and scored deal risk accurately. But on screen, a ninety-percent-confident score looked identical to a fifty-percent guess, and nothing said whether a claim came from a real document or was quietly made up. So analysts built parallel scorecards by hand and demoted the AI to sanity check.</p>
-    <p class="t-body">The accuracy is the ML team’s result to defend. Mine is everything that made an accurate score acted on: the evidence beside the number, the abstention state, the override logged instead of lost. The job was to make a correct score survive cross-examination by the most skeptical reader in the building — and to hold the launch until it could.</p>
+    <p class="t-body xi-case-studies-adtech-016">The LLM &mdash; the kind of AI that reads documents and writes like a person &mdash; read board packs, statements and interview notes like a junior analyst, and scored deal risk accurately. But on screen, a ninety-percent-confident score looked identical to a fifty-percent guess, and nothing said whether a claim came from a real document or was quietly made up. So analysts built parallel scorecards by hand and demoted the AI to sanity check.</p>
+    <p class="t-body">The accuracy is the ML team’s result to defend. Mine is everything that made an accurate score acted on: the evidence beside the number, the abstention state &mdash; the model saying &ldquo;I&rsquo;m not sure&rdquo; instead of guessing &mdash; the override logged instead of lost. The job was to make a correct score survive cross-examination by the most skeptical reader in the building — and to hold the launch until it could.</p>
   </section>
 
   <!-- §02 — THE STAKES -->
@@ -329,7 +329,7 @@
     <p class="t-body xi-case-studies-adtech-016"><strong class="xi-process-016 lead-in" role="heading" aria-level="3">Above the single deal sat the scoring dashboard.</strong> The whole pipeline scored side-by-side — the multi-deal view where screening actually starts — and any deal drills down into the per-signal breakdown, the written analysis, and the conversation. One analysis, three surfaces, no forced workflow.</p>
     <p class="t-body xi-case-studies-adtech-016"><strong class="xi-process-016 lead-in" role="heading" aria-level="3">So I built an &ldquo;explain this score&rdquo; surface that grounds the model in its evidence.</strong> An analyst could pull any rating apart into the signals behind it, challenge the weighting, and watch the score answer back — and every signal came stapled to the exact document it was retrieved from, so no claim floated free of a source. Making the model survive that, before release rather than after, is the argument the whole project hung on — and the reason it took the weeks it did.</p>
     <p class="t-body xi-case-studies-adtech-016"><strong class="xi-process-016 lead-in" role="heading" aria-level="3">Three things were non-negotiable:</strong> a cited source behind every generated number; a visible &ldquo;I’m not sure about this one&rdquo; where the model abstains instead of bluffing — an LLM’s worst failure is a fluent wrong claim; and a logged override when the analyst disagreed. The override drew the longest fight: logging disagreement felt exposing. It was actually the moat. Every correction became structured data the system learns from, so the platform comes to reflect how <em>this firm</em> thinks. A rented model any competitor can rent too; a record of the firm’s own judgment, nobody can.</p>
-    <p class="t-body xi-case-studies-adtech-016"><strong class="xi-process-016 lead-in" role="heading" aria-level="3">The abstention threshold was a design argument, not just a statistical one.</strong> Every claim carried its own confidence; run low, and it rendered as &ldquo;I’m not sure about this one&rdquo; — a signal promoted from the eval dashboard to a state the analyst can act on. The pitch is the whole difficulty: too eager and analysts learn to skim past the crying wolf; too shy and one fluent wrong claim burns the trust bank. The threshold fails toward humility — the cheaper mistake.</p>
+    <p class="t-body xi-case-studies-adtech-016"><strong class="xi-process-016 lead-in" role="heading" aria-level="3">The abstention threshold was a design argument, not just a statistical one.</strong> Every claim carried its own confidence; run low, and it rendered as &ldquo;I’m not sure about this one&rdquo; — a signal promoted from the eval dashboard &mdash; the tests that score the model&rsquo;s answers &mdash; to a state the analyst can act on. The pitch is the whole difficulty: too eager and analysts learn to skim past the crying wolf; too shy and one fluent wrong claim burns the trust bank. The threshold fails toward humility — the cheaper mistake.</p>
     <p class="t-body xi-case-studies-adtech-016"><strong class="xi-process-016 lead-in" role="heading" aria-level="3">Trust also had to be cheap to enter.</strong> Deal flow lives in email — decks, spreadsheets, forwarded intros — and no analyst re-keys email into a system. So the platform meets them inside Outlook: tag a message, drag an attachment, get <em>&ldquo;Received, thanks&rdquo;</em> while agents stitch the pile into a deal profile — and the prequalification score surfaces back in the inbox, where prioritisation actually happens. The fuzziest judgment got the same discipline: management quality — pure gut feel, traditionally — became a scorecard of leadership tenure, employee sentiment and filed financials on one timeline, every input traceable.</p>
     <!-- PLATE — production-fidelity reconstruction, synthetic data -->
     
@@ -690,7 +690,7 @@
   <!-- §04 — WHAT IT COST · the objection kept in -->
   <section class="xi-case-studies-adtech-019" id="cost">
     <h2 class="section-title xi-case-studies-adtech-015">
-      What holding the principle cost — and the objection it had to survive.
+      What it cost — and the objection it survived.
     </h2>
     <div class="counter">
       <span class="c-l">The strongest objection, kept in</span>
@@ -757,13 +757,14 @@
   </section>
 
   <!-- NDA CALENDLY CTA — locked phase 11E -->
-  <section class="note-gold xi-case-studies-adtech-038">
-    <p class="t-standfirst xi-case-studies-adtech-042">Want the full version of this work?</p>
-    <p class="t-body-muted xi-case-studies-adtech-043">Details are confidential; I’ll walk through the artifacts — the service blueprint included — and numbers on a call under mutual NDA.</p>
-  </section>
 
 
   <!-- RELATED PATTERNS -->
+  <section class="note-gold xi-case-studies-adtech-038">
+    <p class="t-standfirst xi-case-studies-adtech-042">If your experts audit your model by hand, put the source beside the number before you touch accuracy.</p>
+    <p class="t-body-muted xi-case-studies-adtech-043">Details are confidential; I&rsquo;ll walk through the artifacts &mdash; the service blueprint included &mdash; and numbers on a call under mutual NDA.</p>
+  </section>
+
   <section class="xi-case-studies-adtech-051 case-card">
     <h3 class="t-card-title xi-process-005">Design Patterns Used in This Case</h3>
     <p class="t-ui-muted-loose xi-case-studies-adtech-016">This project produced two patterns I now reach for whenever AI meets domain experts:</p>
