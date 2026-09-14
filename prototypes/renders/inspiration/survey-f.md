@@ -11,7 +11,7 @@ Method: headless Chrome, 1440×900, one hero screenshot per site + DOM probe (gr
 - **Most-repeated template patterns, named precisely:**
   1. **The dark-SaaS uniform** — near-black ground, 60–80px centered grotesk promise, one neon accent (lime/violet/yellow), glowing product-UI screenshot below the fold: trigger.dev, wope.com, twingate, usedropshot, usetool.bar, unicorn.studio, daybox.
   2. **The Apple paragraph** — huge quiet sans/serif manifesto sentence + hardware/phone render on black: umbrel, usedaybox, tiempo, supercommon.
-  3. **The preloader-counter ritual** — 0→100% counter or progress blocks as the entire first screen (therobot 00%, thomasmonavon 08%, utsubo 1%, ylliramadani 94/100, watson "0", yinger's blocks). So common it's now a genre marker, not a signature.
+  3. **The preloader-counter ritual** — 0 → 100% counter or progress blocks as the entire first screen (therobot 00%, thomasmonavon 08%, utsubo 1%, ylliramadani 94/100, watson "0", yinger's blocks). So common it's now a genre marker, not a signature.
   4. **The masonry video wall** — dark grid of autoplaying case films with a rail nav (twicetwice, studiosentempo, thelinestudio).
   5. **The serif-on-dark prestige play** — hairline display serif over black/film (v7labs, thenetworkstate, yourmajesty does it best).
 

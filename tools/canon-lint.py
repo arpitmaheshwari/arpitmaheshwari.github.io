@@ -189,6 +189,10 @@ _REFERENCE_CONCEPT_REASON = (
     "misrepresent what the tool actually produced; the README carries the full fabrication audit."
 )
 ALLOW = {
+    "data/fit-index.json":
+        "SEARCH ALIASES, not copy: the fit checker matches a pasted role against synonym lists, and "
+        "\"0\u21921\" sits beside \"0 to 1\" and \"0-1\" so a recruiter's unspaced spelling still "
+        "matches. Spacing it would break the match, and nothing here is rendered as prose (2026-09-15).",
     "prototypes/reference-concepts/ai-product-designer/Portfolio Concepts.dc.html": _REFERENCE_CONCEPT_REASON,
     "prototypes/reference-concepts/redesign-concept/0500.dc.html": _REFERENCE_CONCEPT_REASON,
     "prototypes/reference-concepts/redesign-concept/Concepts.dc.html": _REFERENCE_CONCEPT_REASON,
