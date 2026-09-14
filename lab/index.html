@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
-<link rel="stylesheet" href="../site.css?v=17894e8a">
+<link rel="stylesheet" href="../site.css?v=55e05786">
 
 <script defer src="../analytics.js?v=4f9aa0a0"></script>
 </head>
@@ -98,7 +98,7 @@
         <a class="lab-card" href="./teardown.html" data-cta="lab-card" data-location="lab-index">
           <p class="lab-num">03</p>
           <h3>This site, torn down</h3>
-          <p><strong>A site that asks for evidence should stand being inspected.</strong> How the page you are reading is built, measured rather than described: no framework and no bundler, a 598.2&nbsp;KB stylesheet, two third-party services across four domains, one type scale, and the gaps, including the one this page caught in itself.</p>
+          <p><strong>A site that asks for evidence should stand being inspected.</strong> How the page you are reading is built, measured rather than described: no framework and no bundler, a 598.1&nbsp;KB stylesheet, two third-party services across four domains, one type scale, and the gaps, including the one this page caught in itself.</p>
           <div class="lab-tags"><span>Measured</span><span>Commands shown</span><span>Gaps included</span></div>
           <span class="lab-go">See the receipts →</span>
         </a>
@@ -341,7 +341,7 @@ if ($('lh-inst')) {
   $('lh-ms').textContent = Math.max(1, Math.round(performance.now() - t0)) + ' ms';
   $('lh-t').textContent = r.total;
   const log = $('lh-log'); log.innerHTML = '';
-  (r.results || []).slice(0, 12).forEach((x, k) => { const li = document.createElement('li'); li.style.animationDelay = (k * 70) + 'ms';
+  (r.results || []).slice(0, 8).forEach((x, k) => { const li = document.createElement('li'); li.style.animationDelay = (k * 70) + 'ms';
     li.innerHTML = '<b>' + (x.ok === false || x.error ? '✗' : '✓') + '</b><span></span>'; li.lastChild.textContent = x.name || String(x); log.appendChild(li); });
   let n = 0; const step = () => { n = Math.min(r.passed, n + 3); $('lh-n').textContent = n; if (n < r.passed) requestAnimationFrame(step); }; step();
   $('lh-s').textContent = (r.failed ? r.failed + ' failing · ' : '0 failing · ') + r.total + ' tests · 76 assertions · 0 dependencies';
