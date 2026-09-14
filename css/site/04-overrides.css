@@ -2309,9 +2309,9 @@ body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode,
 .ia-k{margin:0 0 12px;font:600 11px/1.6 var(--ff-mono),ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
 .ia-toc{list-style:none;margin:0;padding:0;border-left:1px solid var(--border-strong)}
 .ia-toc li a{display:block;padding:8px 0 8px 16px;margin-left:-1px;border-left:2px solid transparent;font:500 13px/1.5 var(--ff-sans),system-ui,sans-serif;color:var(--text-muted);text-decoration:none;transition:color var(--dur-quick) var(--ease-standard),border-color var(--dur-quick) var(--ease-standard)}
-.ia-toc li a:hover, .ia-toc li a.is-here{color:var(--accent-text);border-left-color:var(--accent-fill)}
+.ia-toc li a:hover, .ia-toc li a.is-here{color:var(--amber-700);border-left-color:var(--accent-fill)}
 .ia-m{margin:16px 0 0;font:400 13px/1.7 var(--ff-sans),system-ui,sans-serif;color:var(--text-muted)}
-.ia-m a{color:var(--accent-text);text-decoration:none}
+.ia-m a{color:var(--amber-700);text-decoration:none}   /* amber-600 read 4.46:1 on the tinted act grounds; one stop deeper clears it everywhere */
 .ph-card .ia-k, .lh-side .ia-k{color:var(--neutral-300);margin-top:16px}
 .ph-card .ia-toc, .lh-side .ia-toc{border-left-color:color-mix(in srgb, var(--neutral-50) 20%, transparent)}
 .ph-card .ia-toc li a, .lh-side .ia-toc li a{color:var(--neutral-100);padding:4px 0 4px 16px}
@@ -2330,6 +2330,11 @@ body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode,
   main.has-rail{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,7fr);column-gap:64px;align-items:start;max-width:var(--inner-max);margin-left:auto;margin-right:auto}
   main.has-rail > .xi-process-004{margin:0;max-width:var(--measure)}
   main.has-rail > .ia-rail{position:sticky;top:calc(var(--nav-h) + 24px)}
+  /* a diagram beside a rail spills RIGHT into the free margin, never left over the rail — the centred
+     1280px breakout ran the page 31px past the viewport at 1440 and put the rail under the drawing */
+  main.has-rail figure:has(svg.art-svg), main.has-rail .process-fig, main.has-rail .vid-main{--art-w:min(1280px, calc((min(var(--inner-max), 100vw) - 2 * var(--page-x) - 64px) * 0.7));--vw-w:var(--art-w);width:var(--art-w);max-width:none;margin-left:0;margin-right:calc(100% - var(--art-w))}   /* the figure fills its grid track: (inner width − gap) × 7/10, so it never crosses the inner edge at any width */
+  main.has-rail .process-fig{width:var(--vw-w);margin-right:calc(100% - var(--vw-w))}
+  main.has-rail .vid-main{transform:none}
   /* Lab tool pages: hero claim | instrument; body heading | content */
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) .lab-hero .lab-wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:64px;align-items:center}
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) .lab-hero .lab-wrap > *{min-width:0}
@@ -2337,7 +2342,7 @@ body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode,
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,7fr);column-gap:64px;grid-auto-flow:row dense;align-items:start}
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > *{grid-column:2;max-width:none;min-width:0}
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > :is(h2.section-title,.eyebrow){grid-column:1}
-  :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > h2.section-title{position:sticky;top:calc(var(--nav-h) + 24px);font-size:26px;line-height:1.2;margin-top:0}
+  :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > h2.section-title{position:sticky;top:calc(var(--nav-h) + 24px);margin-top:0}   /* the registered h2 size stays — heading-rank-check owns the scale */
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap:has(> :only-child) > *{grid-column:1 / -1}
   /* instruments, code, tables and test lists need the whole width; prose stays in the reading column */
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > :is(.lab-fn,.lab-tests,pre,.td-block,.td-scroll,.lint-grid,.rule-list,table,figure,.rcpt-box,.fit-results,.fit-form){grid-column:1 / -1}
