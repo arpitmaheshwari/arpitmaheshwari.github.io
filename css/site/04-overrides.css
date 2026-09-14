@@ -2396,4 +2396,22 @@ body.p-home .hero .hero-stake{margin:20px 0 0;max-width:56ch;font-family:var(--s
    more within 300px. The kicker's rule stays; the rest go. The memo's coloured label is its marker. */
 body.p-home .whoband .wrap.wl-lead{border-top:0;padding-top:0}
 body.p-home .memo{border-top:0;padding-top:0}
+/* ── THE QUALITY BAR, ONE DEVICE NOT ELEVEN (2026-09-15, Arpit: "this section has too many horizontal rules —
+   it's about repetitive patterns"; A of three rendered layouts). Four list rows, five ledger rows and three
+   underlined links drew eleven rules in one band. Now: numerals separate the claims, the ledger is four
+   label–value pairs in one soft card, the proof links are chips. Every word unchanged. */
+body.p-home #how-i-build .art, body.p-home #how-i-build .arts, body.p-home #how-i-build .bl-rows li, body.p-home #how-i-build .barledger, body.p-home #how-i-build .bl-hd, body.p-home #how-i-build .aiwork-two, body.p-home #how-i-build .lab-row{border:0;box-shadow:none}
+body.p-home #how-i-build .arts{counter-reset:art}
+body.p-home #how-i-build .art{counter-increment:art;display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:16px;padding:0 0 32px}
+body.p-home #how-i-build .art::before{content:counter(art,decimal-leading-zero);grid-row:1 / span 2;font-family:var(--ff-display);font-size:34px;line-height:1;color:var(--acc-amber)}
+body.p-home #how-i-build .art > b{grid-column:2}
+body.p-home #how-i-build .art > .art-r{grid-column:2;padding:8px 0 0}
+body.p-home #how-i-build .barledger{background:var(--surface-card);border-radius:12px;padding:24px}
+body.p-home #how-i-build .bl-rows{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;margin:16px 0 0;padding:0;list-style:none}
+body.p-home #how-i-build .bl-rows li{display:block;padding:0}
+body.p-home #how-i-build .bl-rows li i{display:block;font-style:normal;font-family:var(--ff-mono),ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px}
+body.p-home #how-i-build .bl-rows li span{font-family:var(--ff-display);font-size:20px;line-height:1.25;color:var(--text-body)}
+body.p-home #how-i-build .bl-foot{margin-top:20px}
+body.p-home #how-i-build .lab-row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding-top:0}
+body.p-home #how-i-build .lab-row a{border-bottom:0;text-decoration:none;background:color-mix(in srgb, var(--acc-amber) 10%, transparent);padding:8px 12px;border-radius:999px;color:var(--accent-text)}
 }
