@@ -256,14 +256,17 @@ def check_against_canon(root, facts):
     return findings
 
 
-def check(root, facts_override=None, classic_override=None):
+def check(root, facts_override=None, classic_override=None, book_override=None):
     """Compare each CLASSIC page against the single source in data/case-facts.js.
 
     The BOOK is no longer compared field-by-field: since the single-source refactor it RENDERS
     from that file, so book-vs-source drift is structurally impossible. What can still drift is
     the hand-written classic HTML, and the provenance rule — so that is what is checked."""
     facts = facts_override if facts_override is not None else load_facts(root)
-    book = read(root, "book/portfolio.js")
+    # book_override: calibration plants into THIS TEXT, never into the served file — on push 42 the
+    # runtime-error gate loaded /book/ while the on-disk plant ("window.CASE_FACTS" -> "nothing") was
+    # live and reported a ReferenceError that no visitor could ever see (2026-09-15).
+    book = book_override if book_override is not None else read(root, "book/portfolio.js")
     findings = []
 
     # canon outranks the single source; if they disagree, canon is right
@@ -378,16 +381,10 @@ def selftest(root):
     findings = check(root, facts_override=facts,
                      classic_override=None)
     saved = read(root, "book/portfolio.js")
-    try:
-        tmp = saved.replace("CF.get(", "XX_BYPASSED(").replace("window.CASE_FACTS", "nothing")
-        with open(os.path.join(root, "book/portfolio.js"), "w", encoding="utf-8") as fh:
-            fh.write(tmp)
-        if not any("bypassed" in f.lower() or "no longer reads" in f.lower()
-                   for f in check(root)):
-            return False, "SENSITIVITY: a book that stopped reading the single source was not caught"
-    finally:
-        with open(os.path.join(root, "book/portfolio.js"), "w", encoding="utf-8") as fh:
-            fh.write(saved)
+    tmp = saved.replace("CF.get(", "XX_BYPASSED(").replace("window.CASE_FACTS", "nothing")
+    if not any("bypassed" in f.lower() or "no longer reads" in f.lower()
+               for f in check(root, book_override=tmp)):
+        return False, "SENSITIVITY: a book that stopped reading the single source was not caught"
 
     return True, ("sensitivity OK (classic drift, canon-vs-source title + role, lying "
                   "provenance, book bypassing the source) "
