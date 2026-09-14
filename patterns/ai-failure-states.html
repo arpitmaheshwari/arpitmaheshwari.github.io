@@ -45,7 +45,7 @@
 <link rel="apple-touch-icon" href="../assets/favicon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
-<link rel="stylesheet" href="../site.css?v=55e05786">
+<link rel="stylesheet" href="../site.css?v=c521f086">
 </head>
 <body class="p-patterns-ai-failure-states">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -240,14 +240,14 @@
   </div>
   <!-- LIVE DEMO — same demo as the book's field guide -->
   <section class="xi-process-012">
-    <h2 class="section-title xi-patterns-act-review-ignore-018">Try it — the pattern, live</h2>
+    <h2 class="section-title xi-patterns-act-review-ignore-018" id="try-it-the-pattern-live">Try it — the pattern, live</h2>
     <p class="u-ui xi-case-studies-adtech-016">The same live demo that runs in the book edition’s field guide. Synthetic data; nothing leaves the page.</p>
     <div data-demo="alert"></div>
   </section>
 
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">1. The Honest “I Don’t Know”</h2>
+    <h2 class="section-title xi-process-014" id="the-honest-i-dont-know">1. The Honest “I Don’t Know”</h2>
     <p class="u-body xi-process-005">Your model’s confidence drops below the <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="The numeric boundary (e.g., 65%) below which the system either hides output or flags uncertainty to the user">threshold</abbr>. Say so: “I couldn’t find a confident answer. This might be because [reason].” Don’t fake it. A plausible hallucination costs more than an honest blank.</p>
     <p class="u-body xi-process-005"><strong>Example language:</strong></p>
     <ul class="u-body xi-case-studies-adtech-052">
@@ -259,7 +259,7 @@
   </section>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">2. The Graduated Fallback</h2>
+    <h2 class="section-title xi-process-014" id="the-graduated-fallback">2. The Graduated Fallback</h2>
     <p class="u-body xi-process-005">A dead end ends the session. A ladder keeps it going. “I can’t give a precise recommendation, but here are three alternatives: (A) Use the default, (B) See similar historical cases, (C) Talk to an expert.” Each rung is more degraded than the last, and every rung still moves the user forward. That’s <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="A secondary plan or option that activates when the primary solution fails, ensuring the user can still proceed">fallback</abbr> design at scale.</p>
     <p class="u-body xi-process-005"><strong>Fallback hierarchy (best to worst):</strong></p>
     <ol class="u-body xi-case-studies-adtech-052">
@@ -273,7 +273,7 @@
   </section>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">3. The Error Context Card</h2>
+    <h2 class="section-title xi-process-014" id="the-error-context-card">3. The Error Context Card</h2>
     <p class="u-body xi-process-005">When something breaks, “Error” tells the user nothing they can use. Show a card that carries four things:</p>
     <ul class="u-body xi-case-studies-adtech-052">
       <li class="xi-patterns-act-review-ignore-027"><strong>What failed:</strong> “Data processing timed out”</li>
@@ -285,13 +285,13 @@
   </section>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">4. The Confidence-Based Disclosure</h2>
+    <h2 class="section-title xi-process-014" id="the-confidence-based-disclosure">4. The Confidence-Based Disclosure</h2>
     <p class="u-body xi-process-005">Let the interface show where confidence breaks down. High (&gt;80%): show the result plainly. Middle (50–80%): keep the result, attach a warning banner. Low (&lt;50%): hide the result and run the fallback instead.</p>
     <p class="u-body xi-process-005">The system never snaps from working to broken. It gets less certain, says so as it goes, and the user watches the confidence fade in real time. Choose this when a single accuracy number hides a wide spread of certainty underneath.</p>
   </section>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">5. The Transparency Log</h2>
+    <h2 class="section-title xi-process-014" id="the-transparency-log">5. The Transparency Log</h2>
     <p class="u-body xi-process-005">Keep a log the user can read: “When I said X, here’s what actually happened,” or “Last time I was wrong about Y, here’s why.” A system that owns its past misses earns trust the next time it speaks up.</p>
     <ul class="u-body xi-case-studies-adtech-052">
       <li class="xi-patterns-act-review-ignore-027">“Last week I recommended this lead with 85% confidence. You marked it low-quality. Updated confidence: 72%.”</li>
@@ -307,7 +307,7 @@
   </div>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-patterns-act-review-ignore-018">Ship it: the checklist.</h2>
+    <h2 class="section-title xi-patterns-act-review-ignore-018" id="ship-it-the-checklist">Ship it: the checklist.</h2>
     <ul class="u-body xi-patterns-act-review-ignore-026">
       <li class="xi-patterns-act-review-ignore-027"><strong>Identify failure modes:</strong> Write down 5–10 ways your system can fail.</li>
       <li class="xi-patterns-act-review-ignore-027"><strong>Design each failure UI:</strong> A specific state for each, never a generic “Error 500”.</li>
@@ -436,7 +436,7 @@ document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s))
 })();
 </script>
 <script src="./demos.js?v=023e3327" defer></script>
-<script defer src="../ia-rail.js?v=77e37f76"></script>
+<script defer src="../ia-rail.js?v=efbbf77f"></script>
 <script defer src="../attention.js?v=cc700788"></script>
 <script defer src="../clarity.js?v=9e4df576"></script>
 </body>

@@ -333,6 +333,7 @@ CEILING = 16_140   # 2026-09-13 +39: qa-loop's moving-target guard learned the f
 CEILING = 16_205   # 2026-09-13 +65: interaction-state-check samples PIXELS behind a gradient ancestor and normalises any colour syntax (617 phantom findings → 0); artifact-legibility walks to a measurable probe page
 CEILING = 16_400   # 2026-09-13 +195: explore-loop — seeded unscripted reader sessions, photographed, with a notebook of facts no gate owns (found two compositions on its first run)
 CEILING = 16_475   # 2026-09-14 +75: nav-clearance-check — the first content clears the fixed nav on every page and width (the patterns eyebrow sat under the bar; found by Arpit, not a gate)
+CEILING = 16_575   # 2026-09-15 +100: composition-check — a band measured against its own contents (narrow band, naked hero, double ending, mixed grid); the Lab's empty half and 22 pages' 45% columns had passed every per-element gate
 
 
 def loc(paths):

@@ -247,41 +247,41 @@
   </div>
   <!-- LIVE DEMO — same demo as the book's field guide -->
   <section class="xi-process-012">
-    <h2 class="section-title xi-patterns-act-review-ignore-018">Try it — the pattern, live</h2>
+    <h2 class="section-title xi-patterns-act-review-ignore-018" id="try-it-the-pattern-live">Try it — the pattern, live</h2>
     <p class="u-ui xi-case-studies-adtech-016">The same live demo that runs in the book edition’s field guide. Synthetic data; nothing leaves the page.</p>
     <div data-demo="branch"></div>
   </section>
 
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">1. Feature Importance (What Mattered Most)</h2>
+    <h2 class="section-title xi-process-014" id="feature-importance-what-mattered-most">1. Feature Importance (What Mattered Most)</h2>
     <p class="u-body xi-process-005">After the example, add: 'In production this was the reasoning printed on the plan itself — which audiences, which environments, what trade-off against the brief.' The person reads three reasons, not a black box.</p>
     <p class="u-ui xi-patterns-act-review-ignore-027"><strong>Strengths:</strong> Cheap to build. The user can check the work. Repeated exposure trains their intuition.</p>
     <p class="u-ui"><strong>Weaknesses:</strong> It hides <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="How changes in one input variable affect the impact of another input variable on the decision &mdash; for example, job title and industry may interact, making both more important together than separately">feature interactions</abbr>. When features are correlated, the ranking lies.</p>
   </section>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">2. Counterfactual Reasoning (“What If”)</h2>
+    <h2 class="section-title xi-process-014" id="counterfactual-reasoning-what-if">2. Counterfactual Reasoning (“What If”)</h2>
     <p class="u-body xi-process-005">Show the one input that flips the call. “The system rated this lead high-value. Change [one thing] and it drops to medium-value.” Or: “You’re 3 steps away from the next tier. Here’s what closes the gap.”</p>
     <p class="u-body xi-process-005">A <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="A hypothetical scenario showing what would change if one input variable were different, revealing causal relationships and decision boundaries">counterfactual</abbr> lands because the person reads it as a causal story, not a verdict. The decision stops feeling fixed. They know exactly what lever to pull.</p>
     <p class="u-ui"><strong>Choose it when the user can act:</strong> sales (close a deal), education (lift a score), recommendations (steer toward better picks).</p>
   </section>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">3. Comparative Explanation (“How It Compares”)</h2>
+    <h2 class="section-title xi-process-014" id="comparative-explanation-how-it-compares">3. Comparative Explanation (“How It Compares”)</h2>
     <p class="u-body xi-process-005">Set the pick against its rivals. “I recommended Option A. It beats Option B on [dimension 1] and loses to it on [dimension 2].”</p>
     <p class="u-body">A person reads a comparison faster than an absolute score. The trade-off is right there: Option A is riskier with more upside, Option B is the safe call.</p>
   </section>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">4. Reasoning Path (“Step by Step”)</h2>
+    <h2 class="section-title xi-process-014" id="reasoning-path-step-by-step">4. Reasoning Path (“Step by Step”)</h2>
     <p class="u-body xi-process-005">Walk the chain in order. “To predict conversion, I checked industry (SaaS), then company size (50–200), then engagement (high), then landed on 73%.”</p>
     <p class="u-body xi-process-005">It reads the way a human analyst would talk through the case. The person follows the branch, step by step.</p>
     <p class="u-ui"><strong>Works for:</strong> <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="Machine learning models like decision trees, random forests, and gradient boosting that split data into interpretable branches, making decisions traceable step-by-step">tree-based models</abbr>, decision trees, rule-based systems — anything with a real path to trace. <strong>Breaks for:</strong> <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="Deep learning models with multiple layers of interconnected nodes whose decision logic is mathematically complex and not easily interpretable by humans">neural networks</abbr>. There’s no path to show, and inventing one is hand-waving with a UI.</p>
   </section>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">5. Confidence + Uncertainty Bands</h2>
+    <h2 class="section-title xi-process-014" id="confidence-uncertainty-bands">5. Confidence + Uncertainty Bands</h2>
     <p class="u-body xi-process-005">Ship the prediction with its range. “Predicted revenue: $45K (±$15K). Past errors put the real number between $30K–$60K.”</p>
     <p class="u-body">A band is an honest surface. It says: the model’s best guess is $45K, it isn’t 100% sure, and here’s the spread it usually misses by. This one doesn’t explain <em>why</em> — it tells the person <em>how hard to lean</em>.</p>
   </section>
@@ -292,7 +292,7 @@
   </div>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-patterns-act-review-ignore-018">Ship it: the checklist.</h2>
+    <h2 class="section-title xi-patterns-act-review-ignore-018" id="ship-it-the-checklist">Ship it: the checklist.</h2>
     <ul class="u-body xi-patterns-act-review-ignore-026">
       <li class="xi-patterns-act-review-ignore-027"><strong>Pick the explanation type</strong> from the domain — feature importance, counterfactual, or comparative.</li>
       <li class="xi-patterns-act-review-ignore-027"><strong>Compute it:</strong> tree models give you importance for free; neural networks need <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="LIME (Local Interpretable Model-agnostic Explanations) and SHAP (SHapley Additive exPlanations) are mathematical methods that explain neural network predictions by attributing each decision to individual input features">LIME/SHAP</abbr>; rule-based systems trace the rules.</li>
@@ -304,7 +304,7 @@
   </section>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-patterns-act-review-ignore-018">Trade-offs: Accuracy vs. Understandability</h2>
+    <h2 class="section-title xi-patterns-act-review-ignore-018" id="trade-offs-accuracy-vs-understandability">Trade-offs: Accuracy vs. Understandability</h2>
     <div class="td-scroll xi-patterns-calibration-track-record-022">
       <table class="t-cap td-table xi-patterns-act-review-ignore-022" role="table">
         <thead role="rowgroup">

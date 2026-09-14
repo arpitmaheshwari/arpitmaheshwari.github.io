@@ -13,7 +13,7 @@
     return h.textContent.trim() && !h.closest('.lab-tests') && !h.closest('[hidden]');
   });
   if (heads.length < 2) return;
-  heads.forEach(function (h, i) { if (!h.id) h.id = 's-' + (i + 1); });
+  heads.forEach(function (h, i) { if (!h.id) h.id = 's-' + (i + 1); });   // ids are set in the source at build time; this is only a fallback
   function list() {
     var ol = document.createElement('ol');
     ol.className = 'ia-toc';

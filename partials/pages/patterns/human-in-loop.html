@@ -220,35 +220,35 @@
   </div>
   <!-- LIVE DEMO — same demo as the book's field guide -->
   <section class="xi-process-012">
-    <h2 class="section-title xi-patterns-act-review-ignore-018">Try it — the pattern, live</h2>
+    <h2 class="section-title xi-patterns-act-review-ignore-018" id="try-it-the-pattern-live">Try it — the pattern, live</h2>
     <p class="u-ui xi-case-studies-adtech-016">The same live demo that runs in the book edition’s field guide. Synthetic data; nothing leaves the page.</p>
     <div data-demo="loop"></div>
   </section>
 
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">1. The Approve / Reject / Flag Interface</h2>
+    <h2 class="section-title xi-process-014" id="the-approve-reject-flag-interface">1. The Approve / Reject / Flag Interface</h2>
     <p class="u-body xi-process-005">The model proposes; the person approves, rejects, or flags. It is the simplest loop there is — and the easiest to ship as a rubber stamp, because most teams collect the click and throw away the reason.</p>
     <p class="u-body">The model carries the load — pulling the data, running the inference. The person carries the judgment: read the recommendation, then bless it or question it.</p>
     <p class="u-body xi-patterns-human-in-loop-036"><strong>Choose it for</strong> high-volume, low-friction calls — content moderation, fraud detection, segmentation. <strong>Where it bit me:</strong> people click through without reading. On anything high-stakes, put a confirmation between the click and the consequence.</p>
   </section>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">2. The Editable Recommendation</h2>
+    <h2 class="section-title xi-process-014" id="the-editable-recommendation">2. The Editable Recommendation</h2>
     <p class="u-body xi-process-005">The model hands over a draft — an email, a document, a decision. The person edits it before it ships. “AI suggested this email subject. You modified it. Predicted open rate increased from 22% to 25%. Ship it?”</p>
     <p class="u-body">A draft you can edit respects the expertise you brought to the screen. You verify the model’s thinking <em>while</em> you improve it. After a few rounds you know its blind spots, and you edit for them on sight.</p>
     <p class="u-body xi-patterns-human-in-loop-036"><strong>Choose it for</strong> personalised content like email, drafting like documents and code, or creative output like design suggestions.</p>
   </section>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">3. The Expert Override</h2>
+    <h2 class="section-title xi-process-014" id="the-expert-override">3. The Expert Override</h2>
     <p class="u-body xi-process-005">The model recommends action X at high confidence. The user overrides with action Y. The system logs the swap and asks <em>why</em>. “You chose Y instead of X. Why?” → the user explains → the model has a new lesson.</p>
     <p class="u-body">An override is not a failure. It is the user pointing at something the model couldn’t see. Track the overrides and the patterns surface: “90% of the time users override Prediction B, they cite Domain Concern X. Add that to the model.”</p>
     <p class="u-body xi-patterns-human-in-loop-036"><strong>Choose it when</strong> you want the model to get better in production. Log the override, name the missing feature, retrain, repeat.</p>
   </section>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">4. The <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="The process of routing uncertain or high-risk decisions to increasingly senior reviewers based on confidence levels">Escalation</abbr> Ladder</h2>
+    <h2 class="section-title xi-process-014" id="the-escalation-ladder">4. The <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="The process of routing uncertain or high-risk decisions to increasingly senior reviewers based on confidence levels">Escalation</abbr> Ladder</h2>
     <p class="u-body xi-process-005">Clear the top <abbr class="xi-patterns-ai-failure-states-008" tabindex="0" title="The numeric score or percentage that determines whether a decision is confident enough for automated approval or requires human review">confidence threshold</abbr> and the system auto-approves. Fall below it and the call goes to a human. Fall below a second, lower line and it goes to a senior one. Risk earns review; certainty earns speed.</p>
     <div class="xi-patterns-act-review-ignore-021">
       <table class="t-cap xi-patterns-act-review-ignore-022">
@@ -267,7 +267,7 @@
   </section>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-process-014">5. The Feedback Loop (Learn From Corrections)</h2>
+    <h2 class="section-title xi-process-014" id="the-feedback-loop-learn-from-corrections">5. The Feedback Loop (Learn From Corrections)</h2>
     <p class="u-body xi-process-005">Every correction a person makes — a reject, an edit, a line of explanation — is a small lesson the model hasn’t learned yet. Catch it the moment it happens, and once a month let the month’s worth of lessons retrain the thing.</p>
     <p class="u-body">“The monthly note should read like this specimen: &ldquo;In May, you corrected 120 recommendations. Top theme: you rejected deals in healthcare when industry was <2 years old. We&rsquo;ve added &lsquo;company age&rsquo; as a feature. Accuracy improved from 81% to 85% in June.&rdquo;.”</p>
     <p class="u-body xi-patterns-human-in-loop-036"><strong>The loop pays off:</strong> the model sharpens, the user trusts it more, the trust buys more feedback, and the feedback sharpens it again.</p>
@@ -279,7 +279,7 @@
   </div>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-patterns-act-review-ignore-018">Ship it: the checklist.</h2>
+    <h2 class="section-title xi-patterns-act-review-ignore-018" id="ship-it-the-checklist">Ship it: the checklist.</h2>
     <ul class="u-body xi-patterns-act-review-ignore-026">
       <li class="xi-patterns-act-review-ignore-027"><strong>Name the human’s role:</strong> verifier who approves or rejects, editor who modifies, or expert who overrides with a reason?</li>
       <li class="xi-patterns-act-review-ignore-027"><strong>Draw the decision boundary:</strong> what does the model decide alone, what needs a review, what needs an expert?</li>
@@ -291,7 +291,7 @@
   </section>
 
   <section class="xi-process-012">
-    <h2 class="section-title xi-patterns-act-review-ignore-018">Trade-offs: Automation vs. Control</h2>
+    <h2 class="section-title xi-patterns-act-review-ignore-018" id="trade-offs-automation-vs-control">Trade-offs: Automation vs. Control</h2>
     <div class="td-scroll xi-patterns-calibration-track-record-022">
       <table class="t-cap td-table xi-patterns-act-review-ignore-022" role="table">
         <thead role="rowgroup">

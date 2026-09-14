@@ -836,6 +836,20 @@
    "note": "2026-09-14: Arpit on /patterns/ — 'sticking to header, you missed in exploratory setting'. The eyebrow sat 4px under the 94px fixed nav at 1440; lab/plugin sat 29px under it at every width. journey-check clears the bar for JUMP anchors and never asked about the top of the page; every other gate reads ONE element's padding, and this defect is the DIFFERENCE between the nav's rendered bottom and the first content's rendered top. Every classic page × 4 widths, floor 24px; the rule is padding-top: calc(var(--nav-h) + 32px) on every first band. Calibrates by forcing a first band to 0."
   },
   {
+   "id": "composition-check",
+   "cmd": [
+    "python3",
+    "tools/composition-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "nightly"
+   ],
+   "runner": true,
+   "serial": false,
+   "note": "2026-09-15: Arpit — 'fix the empty right half of the lab hero … it has many fundamental gaps', then 'fix architectural gap across all the pages'. The Lab hero and 22 more pages set their text in a 45% column and left every band's remainder empty while contrast, spacing, rhythm and clearance stayed green — each measures ONE element. This measures the band against its contents: NARROW-BAND (<50% cover at 1440/1024), NAKED-HERO (first band <60% with no object), DOUBLE-ENDING (lead sentence reused as a heading), MIXED-GRID (cards of two kinds). Exemptions are listed with their decision date. Calibrates by forcing a band to 40% width."
+  },
+  {
    "id": "journey-check",
    "cmd": [
     "python3",

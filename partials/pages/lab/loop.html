@@ -75,7 +75,7 @@
   <section class="section">
     <div class="lab-wrap">
       <p class="eyebrow">Use it</p>
-      <h2 class="section-title">No install step, because there is nothing to install</h2>
+      <h2 class="section-title" id="no-install-step-because-there-is-nothing-to-install">No install step, because there is nothing to install</h2>
       <p class="lab-lede xi-case-studies-fintech-027">One file, no dependencies, standard ES module. Copy it into a project or import it from here.</p>
       <pre class="lab-code"><code><span class="c">// A score never reaches a screen naked — it becomes a verb first.</span>
 <span class="k">import</span> { decide, calibrate, abstain, disclose } <span class="k">from</span> './loop.js';
@@ -95,7 +95,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
   <section class="section act-cream">
     <div class="lab-wrap">
       <p class="eyebrow">The four decisions</p>
-      <h2 class="section-title">Every control below runs the real module</h2>
+      <h2 class="section-title" id="every-control-below-runs-the-real-module">Every control below runs the real module</h2>
       <p class="lab-lede xi-lab-loop-006">Nothing here is mocked. The page imports <code class="t-code">loop.js</code> and calls it as you move the inputs, so what you read is what the function returns.</p>
 
       <!-- decide -->
@@ -220,7 +220,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
   <section class="section">
     <div class="lab-wrap">
       <p class="eyebrow">Decisions, on the record</p>
-      <h2 class="section-title">What overrides what</h2>
+      <h2 class="section-title" id="what-overrides-what">What overrides what</h2>
       <p class="lab-lede xi-case-studies-fintech-027">The module encodes a precedence — when two rules disagree, one is written to win. That order is the design; the functions just enforce it.</p>
       <div class="rcpt-box xi-lab-loop-010">
         <div class="rcpt-r xi-case-studies-adtech-009" data-tint>
@@ -241,7 +241,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
         </div>
       </div>
 
-      <h2 class="section-title xi-lab-loop-015">Key decisions, and what each one buys</h2>
+      <h2 class="section-title xi-lab-loop-015" id="key-decisions-and-what-each-one-buys">Key decisions, and what each one buys</h2>
       <div class="rcpt-box xi-case-studies-adtech-008">
         <div class="rcpt-r xi-case-studies-adtech-009" data-tint>
           <div class="lbl-eyebrow xi-lab-loop-012">Zero dependencies</div>
@@ -270,7 +270,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
   <section class="section">
     <div class="lab-wrap">
       <p class="eyebrow">Proof</p>
-      <h2 class="section-title">The tests, running now, in your browser</h2>
+      <h2 class="section-title" id="the-tests-running-now-in-your-browser">The tests, running now, in your browser</h2>
       <p class="lab-lede xi-case-studies-fintech-027">The same file runs under Node with <code class="t-code">node lab/loop.test.js</code> and exits non-zero on failure. There is no test framework, because adding a dependency to a zero-dependency library would be the joke telling itself — the runner is about forty lines at the top of the file.</p>
       <p class="lab-lede xi-case-studies-fintech-027">Two kinds of proof, kept separate on purpose. <strong class="xi-process-016">Implementation proof</strong> is below: the assertions, in this tab and under Node in CI on every push that touches lab/. <strong class="xi-process-016">Product proof</strong> lives elsewhere &mdash; each of these patterns ran in a production product, documented in <a class="xi-process-020" href="../patterns/">the pattern library</a> and the case studies. Passing tests prove the rules hold; the case studies argue the rules are worth holding.</p>
       <div class="lab-testhead">
@@ -289,7 +289,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
         <span class="c-l">The strongest objection, kept in</span>
         <p>&ldquo;It&rsquo;s a hundred lines of if-statements.&rdquo; Exactly &mdash; and that is the entire point. The same decisions usually live in a slide deck where they can only be believed or ignored. Here they are versioned, testable, and able to fail loudly. The day a threshold is wrong, a test goes red &mdash; a deck has never once done that.</p>
       </div>
-      <h2 class="section-title">A rule you can run beats a rule you can argue with</h2>
+      <h2 class="section-title" id="a-rule-you-can-run-beats-a-rule-you-can-argue-with">A rule you can run beats a rule you can argue with</h2>
       <p class="t-body-muted xi-process-015">Every one of these decisions used to be a slide. “Don’t show a naked confidence score.” “Fail toward humility.” “Reversibility outranks confidence.” Reasonable people nodded, and then shipped the naked number anyway, because a principle has no failing state.</p>
       <p class="t-body-muted xi-process-015">Written as functions, the same rules get a failing state &mdash; the record above is those slides, versioned and able to go red. That is the whole argument for this file existing: human-in-the-loop design is a set of decisions, and decisions can be tested.</p>
       <p class="t-body-muted xi-process-017">The eight patterns these come from are documented, with live demos, in <a class="xi-process-020" href="../patterns/">the pattern library</a> — and each one is running in a production product. This is their logic, extracted and made checkable.</p>
