@@ -2335,6 +2335,7 @@ body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode,
   main.has-rail figure:has(svg.art-svg), main.has-rail .process-fig, main.has-rail .vid-main{--art-w:min(1280px, calc((min(var(--inner-max), 100vw) - 2 * var(--page-x) - 64px) * 0.7));--vw-w:var(--art-w);width:var(--art-w);max-width:none;margin-left:0;margin-right:calc(100% - var(--art-w))}   /* the figure fills its grid track: (inner width − gap) × 7/10, so it never crosses the inner edge at any width */
   main.has-rail .process-fig{width:var(--vw-w);margin-right:calc(100% - var(--vw-w))}
   main.has-rail .vid-main{transform:none}
+  main.has-rail .vid-kick{width:100%;margin-left:0;margin-right:0;transform:none}   /* the film's eyebrow carried the film's old centred breakout */
   /* Lab tool pages: hero claim | instrument; body heading | content */
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) .lab-hero .lab-wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:64px;align-items:center}
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) .lab-hero .lab-wrap > *{min-width:0}
@@ -2346,6 +2347,10 @@ body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode,
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap:has(> :only-child) > *{grid-column:1 / -1}
   /* instruments, code, tables and test lists need the whole width; prose stays in the reading column */
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > :is(.lab-fn,.lab-tests,pre,.td-block,.td-scroll,.lint-grid,.rule-list,table,figure,.rcpt-box,.fit-results,.fit-form){grid-column:1 / -1}
+  /* a heading stays put in a band that holds a spanning instrument — sticky, it slid over the instrument
+     as the reader scrolled and its letters landed inside a pressed button (contrast-audit read them as the
+     button's ink: 1.34:1). Sticky only where everything else sits in the reading column. */
+  :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap:has(> :is(.lab-fn,.lab-tests,pre,.td-block,.td-scroll,.lint-grid,.rule-list,table,figure,.rcpt-box,.fit-results,.fit-form)) > h2.section-title{position:static}
 }
 /* ── THE INSTRUMENT PANEL ON PAPER (2026-09-14, contrast-audit: the Fit check's hero is paper, not a bookend,
    and the panel had declared bookend inks — 1.2:1 to 1.9:1). A component declares its ink on its own ground
@@ -2360,4 +2365,8 @@ body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode,
 .lab-hero:not([data-ground="bookend"]) .lh-side .ia-toc{border-left-color:var(--border-strong)}
 .lab-hero:not([data-ground="bookend"]) .lh-side .ia-toc li a{color:var(--text-muted)}
 .lab-hero:not([data-ground="bookend"]) .lh-side .ia-toc li a:hover{color:var(--accent-text);border-left-color:var(--accent-fill)}
+/* trustlint's pressed preset declares its own ink (lesson 4): it read var(--surface-page), which the
+   contrast audit's browser resolved to neutral-800 on the amber-700 fill (1.34:1) while the pane showed
+   cream. A control's ink on its own fill is a constant, not a page token. */
+:where(body.p-lab-eval) .lint-seg button.on{color:var(--neutral-50);background:var(--amber-700);border-color:var(--amber-700)}
 }
