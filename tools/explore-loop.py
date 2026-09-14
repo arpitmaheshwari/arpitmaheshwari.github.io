@@ -18,6 +18,7 @@ reader action chosen at random:
 After every step: a viewport screenshot (into a contact sheet per session) and a notebook of
 OBSERVATIONS — each a fact about this screen, never a verdict:
     TAP-TARGET   a link/button smaller than 44×44 on a touch width
+    REPEATED-DEVICE  more than five painted horizontal rules on one screen (boxes and ledgers excluded)
     CLIPPED      text inside an element that hides its own overflow while its content is wider
     DISTORTED    an image drawn at an aspect ratio >5% off its natural one
     TOUCHING     two text-bearing siblings whose boxes intersect
@@ -51,6 +52,10 @@ OBSERVE = r"""(()=>{const vw=innerWidth,vh=innerHeight,touch=vw<820;const out=[]
    if(/hidden|clip/.test(c.overflowX)&&e.scrollWidth>e.clientWidth+2&&hasText(e)&&!e.matches('pre,code,.recon,.recon *,.visually-hidden,.sr-only')) out.push(['CLIPPED',`${e.tagName.toLowerCase()}.${(e.className||'').toString().split(' ')[0]} content ${e.scrollWidth}px in ${e.clientWidth}px`]); }
  for(const i of document.images){ if(!vis(i)||!i.naturalWidth||/\.svg(\?|$)/.test(i.currentSrc))continue;   /* an SVG keeps its own aspect inside any box */ const cs=getComputedStyle(i); const pw=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight)+parseFloat(cs.borderLeftWidth)+parseFloat(cs.borderRightWidth), ph=parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom)+parseFloat(cs.borderTopWidth)+parseFloat(cs.borderBottomWidth); const r=i.getBoundingClientRect(); const a=(r.width-pw)/(r.height-ph),   /* the CONTENT box — a framed image with 24px side padding is not distorted, its frame is */b=i.naturalWidth/i.naturalHeight;
    if(Math.abs(a/b-1)>0.05&&getComputedStyle(i).objectFit==='fill') out.push(['DISTORTED',`${(i.currentSrc||'').split('/').pop().slice(0,40)} drawn ${a.toFixed(2)} vs natural ${b.toFixed(2)}`]); }
+ /* REPEATED-DEVICE (2026-09-15, Arpit: 'it's about repetitive patterns'): painted horizontal rules in THIS viewport, boxes and ledgers excluded — more than five on one screen is a grid of lines, not a layout */
+ {const ys=[];for(const e of document.querySelectorAll('main *')){if(!vis(e)||e.closest('table,.rcpt-rows,.rcpt-r,.rcpt-r-tight,.rcpt-box,.fr,.td-block,.ia-toc,.lh-log,.lint-findings,.rule-list,pre,code,button,.cta,[class*="-chrome"]'))continue;const c=getComputedStyle(e);const r=e.getBoundingClientRect();if(r.width<vw*0.4)continue;if(parseFloat(c.borderLeftWidth)>=1&&parseFloat(c.borderRightWidth)>=1)continue;
+   if(parseFloat(c.borderTopWidth)>=1&&c.borderTopStyle!=='none')ys.push(Math.round(r.top));if(parseFloat(c.borderBottomWidth)>=1&&c.borderBottomStyle!=='none')ys.push(Math.round(r.bottom));}
+  const d=[...new Set(ys)].sort((a,b)=>a-b).filter((y,i,a)=>i===0||y-a[i-1]>2);if(d.length>5)out.push(['REPEATED-DEVICE',`${d.length} horizontal rules on one screen`]);}
  const boxes=[...document.querySelectorAll('main h1,main h2,main h3,main p,main li,main a.cta,main button,main figcaption,main dt,main dd')].filter(vis).map(e=>({e,r:e.getBoundingClientRect()}));
  for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){const A=boxes[i],B=boxes[j]; if(A.e.contains(B.e)||B.e.contains(A.e))continue; if(getComputedStyle(A.e).position==='absolute'||getComputedStyle(B.e).position==='absolute')continue; /* an overlay control (a Close button) sits on its panel by design */
    const ox=Math.min(A.r.right,B.r.right)-Math.max(A.r.left,B.r.left), oy=Math.min(A.r.bottom,B.r.bottom)-Math.max(A.r.top,B.r.top);

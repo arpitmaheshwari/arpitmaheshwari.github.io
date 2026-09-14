@@ -30,7 +30,7 @@ EXEMPT = {
     'table,tr,td,th': 'a table is rows by definition',
     '.ia-toc,.ia-rail,.lh-side,.lh-log': 'the rails list sections; their left rule is the device',
     '.rcpt-rows,.rcpt-r,.rcpt-r-tight,.rcpt-box': 'the receipt is a ledger the reader opened on purpose (2026-08); the case pages carry the same ledger inline',
-    '.rule-list': "trustlint's seven rules ARE a list; the rows are the content",
+    '.rule-list,.lint-findings,.lint-stats': "trustlint's rules and findings ARE lists; the rows are the content",
     '.fr': "the Candidate Facts card is a nutrition label by design (2026-08)",
     '.td-block,.td-scroll': 'the teardown table is measurements in rows',
     '.lab-fn,.vg,.lh-inst,.dsg-card,.recon,.rxp-cat,.rxo-panel,.hero-demo,.hd-card,.pd,.vid-frame,.card-wire,.artalt,.thesis,.card-gold,.fig-paper,.bp,.boarding,[class*="-chrome"],[class*="pl"][class*="-bar"]': 'an instrument or reconstruction draws its own internal lines',
