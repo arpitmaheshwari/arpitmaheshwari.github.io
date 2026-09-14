@@ -2342,4 +2342,17 @@ body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode,
   /* instruments, code, tables and test lists need the whole width; prose stays in the reading column */
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > :is(.lab-fn,.lab-tests,pre,.td-block,.td-scroll,.lint-grid,.rule-list,table,figure,.rcpt-box,.fit-results,.fit-form){grid-column:1 / -1}
 }
+/* ── THE INSTRUMENT PANEL ON PAPER (2026-09-14, contrast-audit: the Fit check's hero is paper, not a bookend,
+   and the panel had declared bookend inks — 1.2:1 to 1.9:1). A component declares its ink on its own ground
+   (lesson 4): these are the paper values; the bookend values above stay for every dark hero. */
+.lab-hero:not([data-ground="bookend"]) .lh-inst{border-color:var(--border-strong);background:var(--surface-card);color:var(--text-body)}
+.lab-hero:not([data-ground="bookend"]) .lh-hd{color:var(--text-muted);border-bottom-color:var(--border-strong)}
+.lab-hero:not([data-ground="bookend"]) .lh-tally{color:var(--copper-600)}
+.lab-hero:not([data-ground="bookend"]) .lh-tally small{color:var(--text-muted)}
+.lab-hero:not([data-ground="bookend"]) .lh-foot{color:var(--text-muted)}
+.lab-hero:not([data-ground="bookend"]) .lh-foot a{color:var(--accent-text)}
+.lab-hero:not([data-ground="bookend"]) .lh-side .ia-k{color:var(--text-faint)}
+.lab-hero:not([data-ground="bookend"]) .lh-side .ia-toc{border-left-color:var(--border-strong)}
+.lab-hero:not([data-ground="bookend"]) .lh-side .ia-toc li a{color:var(--text-muted)}
+.lab-hero:not([data-ground="bookend"]) .lh-side .ia-toc li a:hover{color:var(--accent-text);border-left-color:var(--accent-fill)}
 }
