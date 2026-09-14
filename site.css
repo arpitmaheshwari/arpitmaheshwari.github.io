@@ -4814,7 +4814,8 @@ main figure:not(.measure-c figure){width:auto}}
    assumed 44px, which is SC 2.5.5 (AAA) and a different requirement — the AA
    line at 24px had never been checked. */
 :is(.inline-links a,.divert a,.btn-row a,
-  .wr-more a,p.hand a,.hd-route a,.contract-links a,.scr-receipt a,.lab-row a):not(.cta){padding-block:4px;display:inline-block}
+  .wr-more a,p.hand a,.hd-route a,.contract-links a,.scr-receipt a,.lab-row a,
+  .lab-note a):not(.cta),a.link-gold,a.lbl-eyebrow{padding-block:4px;display:inline-block}   /* 2026-09-15 sweep: the pattern pages' "Part of" link (18px), the Writing eyebrow link and the fit page's JSON link (20px) sat under the 24px AA line */
 :is(button.rxa-why,button.rxf-explain,button.rxa-logged,
   .rx2-btn,.demo-btn,.ccd-q){min-height:24px;padding-block:4px}
 /* The last reflow failure: div.pat-hero is a grid whose container is 272px at

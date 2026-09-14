@@ -105,7 +105,7 @@
   ]
 }
 </script>
-<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<script defer src="../analytics.js?v=4f9aa0a0" data-cfasync="false"></script>
 <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
@@ -211,7 +211,7 @@
 <!--/content-->
 <!--tail-->
 
-<script>
+<script data-cfasync="false">
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => { if (nav) nav.classList.toggle('scrolled', window.scrollY > 60); });
 const menuBtn = document.getElementById('menuToggle');
@@ -227,6 +227,6 @@ document.addEventListener('click', (e) => {
   if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' });
 });
 </script>
-<script defer src="../attention.js?v=2fa8260a"></script>
-<script defer src="../clarity.js?v=9e4df576"></script>
+<script defer src="../attention.js?v=2fa8260a" data-cfasync="false"></script>
+<script defer src="../clarity.js?v=9e4df576" data-cfasync="false"></script>
 <!--/tail-->

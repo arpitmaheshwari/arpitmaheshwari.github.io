@@ -35,8 +35,8 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="book.css?v=9bdd302e" />
-<script defer src="scroll-hint.js"></script>
-<script defer src="image-slot.js"></script>
+<script defer src="scroll-hint.js" data-cfasync="false"></script>
+<script defer src="image-slot.js" data-cfasync="false"></script>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -54,7 +54,7 @@
      book_navigate (every spread change, deduped by deck+index), book_depth (beacon on unload,
      carrying the deepest spine spread reached this visit + time spent) — see portfolio-sources/
      analytics/analyse.py for the report side once real traffic exists. -->
-<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<script defer src="../analytics.js?v=4f9aa0a0" data-cfasync="false"></script>
 <style id="bk-fulltext-style">
 /* No-script / pre-rendered full-text edition — hidden when JS runs, shown (via the noscript style below) when it doesn't. Always present in source for crawlers & AI screeners. */
 #bk-fulltext{max-width:680px;margin:0 auto;padding:48px 24px 96px;font-family:'Spectral',Georgia,'Times New Roman',serif;color:#2C2620;background:#F4ECDA;line-height:1.65;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-variant-ligatures:common-ligatures contextual}
@@ -488,13 +488,13 @@
 <!-- The locked case facts, shared with the classic pages via tools/case-sync-check.py.
      Must load BEFORE portfolio.js, which throws rather than render a case with missing
      facts. Plain script, no build step — this site ships as static files on purpose. -->
-<script src="../data/case-facts.js?v=4f4babba"></script>
-<script defer src="./vendor/react.production.min.js"></script>
-<script defer src="./vendor/react-dom.production.min.js"></script>
-<script src="monograph-icons.js" defer></script>
-<script src="portfolio.js?v=398e792d" defer></script>
-<script defer src="../dyslexia.js"></script>
-  <script defer src="../attention.js?v=cc700788"></script>
-<script defer src="../clarity.js?v=9e4df576"></script>
+<script src="../data/case-facts.js?v=4f4babba" data-cfasync="false"></script>
+<script defer src="./vendor/react.production.min.js" data-cfasync="false"></script>
+<script defer src="./vendor/react-dom.production.min.js" data-cfasync="false"></script>
+<script src="monograph-icons.js" defer data-cfasync="false"></script>
+<script src="portfolio.js?v=398e792d" defer data-cfasync="false"></script>
+<script defer src="../dyslexia.js" data-cfasync="false"></script>
+  <script defer src="../attention.js?v=cc700788" data-cfasync="false"></script>
+<script defer src="../clarity.js?v=9e4df576" data-cfasync="false"></script>
 </body>
 </html>

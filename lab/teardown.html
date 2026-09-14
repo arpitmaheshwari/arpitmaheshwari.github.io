@@ -27,9 +27,9 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-serif-4-normal-300_600.woff2">
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
-<link rel="stylesheet" href="../site.css?v=9a781111">
+<link rel="stylesheet" href="../site.css?v=56bd5465">
 
-<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<script defer src="../analytics.js?v=4f9aa0a0" data-cfasync="false"></script>
 </head>
 <body class="p-lab-teardown">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -117,7 +117,7 @@
         <div class="lab-body" data-tint>
           <p>There is no bundler, no transpiler, no CI pipeline. A file I edit is the file the browser receives. The benefit is that this site cannot rot: no dependency will publish a breaking major, and nothing in it needs a lockfile to reproduce in three years.</p>
           <p>One qualification, added when the nav and footer became shared: they now live in <span class="td-inline">partials/</span> and a script stamps them into every page. Nothing runs at deploy &mdash; GitHub Pages still serves the committed file, and the file in the repo is the file you receive. But there is a generator between editing a partial and committing, and cache versions are now content hashes it computes rather than numbers I bump by hand. Before that, the nav existed in 37 copies which had all quietly diverged.</p>
-          <p><strong>What it costs:</strong> no tree-shaking, no automatic minification, and cache-busting done by hand — you can see the manual query strings, <span class="td-inline">site.css?v=9a781111</span>, in the source of every page. On a site of this size that is the right trade. On a product it would not be, and I would not defend it there.</p>
+          <p><strong>What it costs:</strong> no tree-shaking, no automatic minification, and cache-busting done by hand — you can see the manual query strings, <span class="td-inline">site.css?v=56bd5465</span>, in the source of every page. On a site of this size that is the right trade. On a product it would not be, and I would not defend it there.</p>
         </div>
       </div>
 
@@ -218,11 +218,11 @@
   </button>
     <button class="footer-back" onclick="window.scrollTo({top:0,behavior:window.matchMedia&amp;&amp;window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})" aria-label="Back to top"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
   </div>
-  <script defer src="../dyslexia.js"></script>
-  <script defer src="../nav-inert.js"></script>
+  <script defer src="../dyslexia.js" data-cfasync="false"></script>
+  <script defer src="../nav-inert.js" data-cfasync="false"></script>
 </footer>
 
-<script>
+<script data-cfasync="false">
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => { if (nav) nav.classList.toggle('scrolled', window.scrollY > 60); });
 const menuBtn = document.getElementById('menuToggle');
@@ -238,8 +238,8 @@ document.addEventListener('click', (e) => {
   if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' });
 });
 </script>
-<script defer src="../ia-rail.js?v=efbbf77f"></script>
-<script defer src="../attention.js?v=cc700788"></script>
-<script defer src="../clarity.js?v=9e4df576"></script>
+<script defer src="../ia-rail.js?v=efbbf77f" data-cfasync="false"></script>
+<script defer src="../attention.js?v=cc700788" data-cfasync="false"></script>
+<script defer src="../clarity.js?v=9e4df576" data-cfasync="false"></script>
 </body>
 </html>

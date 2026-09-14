@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
 <link rel="stylesheet" href="../site.css?v=711c7c1c">
 
-<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<script defer src="../analytics.js?v=4f9aa0a0" data-cfasync="false"></script>
 <!--/head-->
 <!--pre-nav-->
 <div role="banner">
@@ -306,7 +306,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
 <!--/content-->
 <!--tail-->
 
-<script>
+<script data-cfasync="false">
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => { if (nav) nav.classList.toggle('scrolled', window.scrollY > 60); });
 const menuBtn = document.getElementById('menuToggle');
@@ -323,7 +323,7 @@ document.addEventListener('click', (e) => {
 });
 </script>
 
-<script type="module">
+<script type="module" data-cfasync="false">
 import { decide, calibrate, abstain, disclose } from './loop.js?v=39712d35';
 import { run } from './loop.test.js?v=8290c61b';
 
@@ -459,10 +459,10 @@ renderAbstain();
 renderDisclose();
 renderTests();
 </script>
-<script defer src="../ia-rail.js?v=00000000"></script>
-<script defer src="../attention.js?v=2fa8260a"></script>
-<script defer src="../clarity.js?v=9e4df576"></script>
-<script type="module">
+<script defer src="../ia-rail.js?v=00000000" data-cfasync="false"></script>
+<script defer src="../attention.js?v=2fa8260a" data-cfasync="false"></script>
+<script defer src="../clarity.js?v=9e4df576" data-cfasync="false"></script>
+<script type="module" data-cfasync="false">
 /* the hero panel — imports the suite this page runs below, reports what it returns */
 import { run } from './loop.test.js?v=00000000';
 const r = run(), t0 = performance.now(); const $ = id => document.getElementById(id);

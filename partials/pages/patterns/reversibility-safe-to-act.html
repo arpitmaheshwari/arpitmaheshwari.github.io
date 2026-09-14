@@ -38,7 +38,7 @@
   ]
 }
 </script>
-<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<script defer src="../analytics.js?v=4f9aa0a0" data-cfasync="false"></script>
 <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="../assets/favicon.png">
@@ -300,7 +300,7 @@
 <!--/content-->
 <!--tail-->
 
-<script>
+<script data-cfasync="false">
 const toggle = document.getElementById('dyslexiaToggle');
 if (toggle) { const isDyslexic = localStorage.getItem('dyslexia-mode') === 'on'; if (isDyslexic) { document.body.classList.add('dyslexia-mode'); toggle.setAttribute('aria-pressed', 'true'); } toggle.addEventListener('click', () => { document.body.classList.toggle('dyslexia-mode'); const isOn = document.body.classList.contains('dyslexia-mode'); toggle.setAttribute('aria-pressed', isOn ? 'true' : 'false'); localStorage.setItem('dyslexia-mode', isOn ? 'on' : 'off'); }); }
 document.addEventListener('click', (e) => { const cta = e.target.closest('[data-cta]'); if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' }); });
@@ -334,7 +334,7 @@ const sectionViewObs = new IntersectionObserver((entries) => {
 document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s));
 </script>
 
-<script>
+<script data-cfasync="false">
 // a11y: mark current nav item
 (function(){
   const path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/index\.html$/, '');
@@ -357,8 +357,8 @@ document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s))
   }
 })();
 </script>
-<script src="./demos.js?v=023e3327" defer></script>
-<script defer src="../ia-rail.js?v=00000000"></script>
-<script defer src="../attention.js?v=2fa8260a"></script>
-<script defer src="../clarity.js?v=9e4df576"></script>
+<script src="./demos.js?v=023e3327" defer data-cfasync="false"></script>
+<script defer src="../ia-rail.js?v=00000000" data-cfasync="false"></script>
+<script defer src="../attention.js?v=2fa8260a" data-cfasync="false"></script>
+<script defer src="../clarity.js?v=9e4df576" data-cfasync="false"></script>
 <!--/tail-->

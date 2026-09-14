@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
 <link rel="stylesheet" href="../site.css?v=711c7c1c">
 
-<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<script defer src="../analytics.js?v=4f9aa0a0" data-cfasync="false"></script>
 <!--/head-->
 <!--pre-nav-->
 <div role="banner">
@@ -189,7 +189,7 @@
 <!--/content-->
 <!--tail-->
 
-<script>
+<script data-cfasync="false">
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => { if (nav) nav.classList.toggle('scrolled', window.scrollY > 60); });
 const menuBtn = document.getElementById('menuToggle');
@@ -205,7 +205,7 @@ document.addEventListener('click', (e) => {
   if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' });
 });
 </script>
-<script defer src="../ia-rail.js?v=00000000"></script>
-<script defer src="../attention.js?v=2fa8260a"></script>
-<script defer src="../clarity.js?v=9e4df576"></script>
+<script defer src="../ia-rail.js?v=00000000" data-cfasync="false"></script>
+<script defer src="../attention.js?v=2fa8260a" data-cfasync="false"></script>
+<script defer src="../clarity.js?v=9e4df576" data-cfasync="false"></script>
 <!--/tail-->

@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
 <link rel="stylesheet" href="../site.css?v=711c7c1c">
 
-<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<script defer src="../analytics.js?v=4f9aa0a0" data-cfasync="false"></script>
 <!--/head-->
 <!--pre-nav-->
 <div role="banner">
@@ -135,7 +135,7 @@
 <!--/content-->
 <!--tail-->
 
-<script>
+<script data-cfasync="false">
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => { if (nav) nav.classList.toggle('scrolled', window.scrollY > 60); });
 const menuBtn = document.getElementById('menuToggle');
@@ -152,7 +152,7 @@ document.addEventListener('click', (e) => {
 });
 </script>
 
-<script type="module">
+<script type="module" data-cfasync="false">
 import { lint, RULES } from './trustlint.js?v=bd3eb187';
 
 const $ = (id) => document.getElementById(id);
@@ -218,7 +218,7 @@ $('rule-list').innerHTML = RULES.map((r) =>
 $('lint-input').value = PRESETS.bad;
 render();
 </script>
-<script defer src="../ia-rail.js?v=00000000"></script>
-<script defer src="../attention.js?v=2fa8260a"></script>
-<script defer src="../clarity.js?v=9e4df576"></script>
+<script defer src="../ia-rail.js?v=00000000" data-cfasync="false"></script>
+<script defer src="../attention.js?v=2fa8260a" data-cfasync="false"></script>
+<script defer src="../clarity.js?v=9e4df576" data-cfasync="false"></script>
 <!--/tail-->

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>
+<script data-cfasync="false">
 /* The case-board instruments animate only when this class is present, so with
    JavaScript off every one of them renders in its resolved state. Set before
    first paint to avoid a flash of the finished instrument. */
@@ -141,9 +141,9 @@ document.documentElement.classList.add('vg-js');
   ]
 }
 </script>
-<script defer src="./analytics.js?v=4f9aa0a0"></script>
+<script defer src="./analytics.js?v=4f9aa0a0" data-cfasync="false"></script>
 <link rel="stylesheet" href="./amber.css?v=fb751bd1">
-<link rel="stylesheet" href="./site.css?v=9a781111">
+<link rel="stylesheet" href="./site.css?v=56bd5465">
 </head>
 <body class="p-home">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -645,15 +645,15 @@ document.documentElement.classList.add('vg-js');
   </button>
     <button class="footer-back" onclick="window.scrollTo({top:0,behavior:window.matchMedia&amp;&amp;window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})" aria-label="Back to top"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-chevron-up"/></svg> Back to top</button>
   </div>
-  <script defer src="./dyslexia.js"></script>
-  <script defer src="./nav-inert.js"></script>
+  <script defer src="./dyslexia.js" data-cfasync="false"></script>
+  <script defer src="./nav-inert.js" data-cfasync="false"></script>
 </footer>
 <!-- The inline email assembler lived here until 2026-09-10. It wired #em-l
      and #em-c to a runtime-assembled mailto so the address was never in the
      served HTML. Arpit removed the email door from the closing section, so
      both targets are gone and the script wired nothing. Its generalised
      successor went with it. Both are in git if the email door returns. -->
-<script>
+<script data-cfasync="false">
 // Scroll policy: reloads start at top. (Its original cause — a restored mid-page
 // position outrunning the scroll-reveal observer, which painted a black page — went
 // away with the reveal on 2026-09-07; the reset stays because an anchored arrival
@@ -986,11 +986,11 @@ if (canvas && !prefersReducedMotion) {
 
 // Inline receipts removed 2026-09-15 (Arpit: "remove all the CTA buttons and keep the card clickable"); the ledger lives on each case page.
 </script>
-<script>
+<script data-cfasync="false">
 /* Hero diagnostic: name the problem → reframe + first moves → the Act/Review/Ignore slider as the live payoff */
 /* hero diagnostic moved to /patterns/ (2026-09-01, with the H-B hero) */
 </script>
-<script>
+<script data-cfasync="false">
 /* Hook objects: the printer (proof act) and the stamp (errata). 2026-08-04. */
 (function(){
   var ans=document.getElementById('ccd-ans');
@@ -1015,8 +1015,8 @@ if (canvas && !prefersReducedMotion) {
   }
 })();
 </script>
-<script defer src="./instruments.js"></script>
-<script defer src="./attention.js?v=cc700788"></script>
-<script defer src="./clarity.js?v=9e4df576"></script>
+<script defer src="./instruments.js" data-cfasync="false"></script>
+<script defer src="./attention.js?v=cc700788" data-cfasync="false"></script>
+<script defer src="./clarity.js?v=9e4df576" data-cfasync="false"></script>
 </body>
 </html>

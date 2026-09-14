@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
 <link rel="stylesheet" href="../site.css?v=711c7c1c">
 
-<script defer src="../analytics.js?v=4f9aa0a0"></script>
+<script defer src="../analytics.js?v=4f9aa0a0" data-cfasync="false"></script>
 <!--/head-->
 <!--pre-nav-->
 <div role="banner">
@@ -235,7 +235,7 @@
 <!--/content-->
 <!--tail-->
 
-<script>
+<script data-cfasync="false">
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => { if (nav) nav.classList.toggle('scrolled', window.scrollY > 60); });
 const menuBtn = document.getElementById('menuToggle');
@@ -251,9 +251,9 @@ document.addEventListener('click', (e) => {
   if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' });
 });
 </script>
-<script defer src="../attention.js?v=2fa8260a"></script>
-<script defer src="../clarity.js?v=9e4df576"></script>
-<script>
+<script defer src="../attention.js?v=2fa8260a" data-cfasync="false"></script>
+<script defer src="../clarity.js?v=9e4df576" data-cfasync="false"></script>
+<script data-cfasync="false">
 /* The specimen paints itself from the live tokens and measures its own contrast — so it can never
    drift from the system the way a screenshot would. Alpha is composited against the real ground
    before the ratio is taken; a translucent ink is not a colour until you do that. */
@@ -299,7 +299,7 @@ document.addEventListener('click', (e) => {
 })();
 </script>
 
-<script type="module">
+<script type="module" data-cfasync="false">
 /* the hero panel — imports the suite loop.html runs, reports what it returns */
 import { run } from './loop.test.js?v=00000000';
 const r = run(), t0 = performance.now();
