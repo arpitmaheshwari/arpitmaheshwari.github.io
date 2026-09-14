@@ -109,7 +109,7 @@ def signatures(root):
             'assets/og-images/*.html',
             'portfolio-sources/*.html']
     files = sorted({p for pat in pats for p in glob.glob(os.path.join(root, pat))
-                    if '__' not in os.path.basename(p)})   # another gate's calibration canary, never a page
+                    if not (os.path.basename(p).startswith('__') and '__isc_' not in os.path.basename(p))})   # other gates' calibration canaries are never pages; our own plant (__isc_canary.html) must stay visible or calibration cannot go red
     sig = collections.Counter(); where = collections.defaultdict(set)
     for f in files:
         try:
