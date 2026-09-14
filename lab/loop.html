@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
-<link rel="stylesheet" href="../site.css?v=dc173a6d">
+<link rel="stylesheet" href="../site.css?v=fb314a55">
 
 <script defer src="../analytics.js?v=4f9aa0a0"></script>
 </head>
@@ -54,6 +54,7 @@
   <!-- ===================== HERO ===================== -->
   <section class="section lab-hero" data-ground="bookend">
     <div class="lab-wrap">
+      <div class="lh-l">
       <p class="lab-kicker">The Lab · 01 · MIT licensed</p>
       <h1 class="section-title xi-lab-eval-003">loop.js</h1>
       <p class="lab-lede">The rules I argue for in design reviews, written as functions so they can be <strong>tested instead of debated</strong>. Four decisions that sit between a model and a person: which verb a score becomes, whether its confidence has earned belief, when to say nothing at all, and what to show while it thinks.</p>
@@ -65,6 +66,13 @@
         <a href="./loop.js" data-cta="lab-source" data-location="loop-hero">Read the source →</a>
         <a href="./loop.test.js" data-cta="lab-tests" data-location="loop-hero">Read the tests →</a>
         <a href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io/blob/master/lab/loop.js" data-cta="lab-github" data-location="loop-hero">On GitHub</a>
+      </div>
+      </div>
+      <div class="lh-r">
+        <div class="lh-inst lh-side" id="lh-inst" aria-live="polite">
+          <div class="lh-hd"><span>loop.test.js · running in this tab</span><span id="lh-ms">—</span></div>
+          <p class="lh-tally"><span id="lh-n">0</span>/<span id="lh-t">42</span><small id="lh-s">tests · 76 assertions · 0 dependencies</small></p>
+        </div>
       </div>
     </div>
   </section>
@@ -484,7 +492,17 @@ renderAbstain();
 renderDisclose();
 renderTests();
 </script>
+<script defer src="../ia-rail.js?v=77e37f76"></script>
 <script defer src="../attention.js?v=cc700788"></script>
 <script defer src="../clarity.js?v=9e4df576"></script>
+<script type="module">
+/* the hero panel — imports the suite this page runs below, reports what it returns */
+import { run } from './loop.test.js?v=8290c61b';
+const r = run(), t0 = performance.now(); const $ = id => document.getElementById(id);
+if ($('lh-inst')) { $('lh-ms').textContent = Math.max(1, Math.round(performance.now() - t0)) + ' ms'; $('lh-t').textContent = r.total;
+  let n = 0; const step = () => { n = Math.min(r.passed, n + 3); $('lh-n').textContent = n; if (n < r.passed) requestAnimationFrame(step); }; step();
+  $('lh-s').textContent = (r.failed ? r.failed + ' failing · ' : '0 failing · ') + r.total + ' tests · 76 assertions · 0 dependencies';
+  if (r.failed) $('lh-inst').classList.add('is-err'); }
+</script>
 </body>
 </html>

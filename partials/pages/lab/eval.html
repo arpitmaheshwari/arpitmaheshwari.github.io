@@ -40,16 +40,24 @@
 
   <section class="section lab-hero" data-ground="bookend">
     <div class="lab-wrap">
+      <div class="lh-l">
       <p class="lab-kicker">The Lab · 02 · MIT licensed</p>
       <h1 class="section-title xi-lab-eval-003">trustlint</h1>
       <p class="lab-lede">A fluent answer can be untrustworthy before anyone checks a fact. trustlint reads the shape of one and flags what gives fluency away: figures with no source, absolutes no evidence can support, hedging used as decoration, and the expensive one &mdash; asserting confidently when there was nothing to assert from. Deterministic, no model, no network.</p>
       <p class="hand hand-note" aria-hidden="true">it can’t judge truth, and says so up front</p>
       <div class="lab-note">
-        <b>It cannot tell you whether the answer is true.</b> There is no model here and no retrieval — it reads text with regular expressions. That makes it a linter, not a benchmark: the same relationship ESLint has to correctness. A clean pass means the answer is <em>shaped</em> honestly, and nothing more. A tool that claimed to score truthfulness from regexes would be committing the exact sin it audits, so this one says its limit out loud and returns it in the payload &mdash; a capability contract, stated in the interface at the point of use. — a capability contract, stated in the interface at the point of use.
+        <b>It cannot tell you whether the answer is true.</b> There is no model here and no retrieval — it reads text with regular expressions. That makes it a linter, not a benchmark: the same relationship ESLint has to correctness. A clean pass means the answer is <em>shaped</em> honestly, and nothing more. A tool that claimed to score truthfulness from regexes would be committing the exact sin it audits, so this one says its limit out loud and returns it in the payload &mdash; a capability contract, stated in the interface at the point of use.
       </div>
       <div class="lab-links">
         <a href="./trustlint.js" data-cta="lab-source" data-location="eval-hero">Read the source →</a>
         <a href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io/blob/master/lab/trustlint.js" data-cta="lab-github" data-location="eval-hero">On GitHub</a>
+      </div>
+      </div>
+      <div class="lh-r">
+        <div class="lh-inst lh-side">
+          <div class="lh-hd"><span>trustlint · runs in this tab</span><span>no network</span></div>
+          <p class="lh-tally">7<small>rules · deterministic · it cannot judge truth, and says so</small></p>
+        </div>
       </div>
     </div>
   </section>
@@ -210,6 +218,7 @@ $('rule-list').innerHTML = RULES.map((r) =>
 $('lint-input').value = PRESETS.bad;
 render();
 </script>
+<script defer src="../ia-rail.js?v=00000000"></script>
 <script defer src="../attention.js?v=2fa8260a"></script>
 <script defer src="../clarity.js?v=9e4df576"></script>
 <!--/tail-->

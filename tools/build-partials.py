@@ -152,7 +152,7 @@ def render(rel, existing_nav, existing_footer):
 # stylesheet nobody is stamping.
 VERSIONED = ('site.css', 'amber.css',
              'fonts.css', 'book/book.css',
-             'analytics.js', 'clarity.js', 'attention.js', 'fit.js', 'dyslexia.js', 'nav-inert.js',
+             'analytics.js', 'clarity.js', 'attention.js', 'ia-rail.js', 'fit.js', 'dyslexia.js', 'nav-inert.js',
              'patterns/demos.js', 'data/case-facts.js',
              'lab/loop.js', 'lab/loop.test.js', 'lab/trustlint.js',
              'book/portfolio.js', 'book/scroll-hint.js')
