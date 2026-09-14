@@ -6756,4 +6756,10 @@ body.p-home #how-i-build .bl-rows li span{font-family:var(--ff-display);font-siz
 body.p-home #how-i-build .bl-foot{margin-top:20px}
 body.p-home #how-i-build .lab-row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding-top:0}
 body.p-home #how-i-build .lab-row a{border-bottom:0;text-decoration:none;background:color-mix(in srgb, var(--acc-amber) 10%, transparent);padding:8px 12px;border-radius:999px;color:var(--accent-text)}
+/* ── THE WHOLE CARD IS THE DOOR (2026-09-15, Arpit: "remove all the CTA buttons and keep the card clickable").
+   The title link already stretches over its card (.bcard-go::after above); the card lifts on hover. No button. */
+body.p-home .bcard{transition:transform var(--dur-quick) var(--ease-standard), box-shadow var(--dur-quick) var(--ease-standard)}
+body.p-home .bcard:hover{transform:translateY(-2px);box-shadow:var(--elev-2)}
+body.p-home .bcard:hover .bcard-go{color:var(--a)}
+@media (prefers-reduced-motion:reduce){body.p-home .bcard:hover{transform:none}}
 }
