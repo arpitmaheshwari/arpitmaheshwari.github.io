@@ -36,7 +36,15 @@ line-height and computed 21.45px on one page and 22.1px on the rest.
 COVERS the classic site AND /book/ — they are separate stylesheets and the book
 was never audited for this.
 
+AND THE DYSLEXIA READING MODE (added 2026-09-16). The toggle swaps the type face
+site-wide, so every wrap point moves; until now every gate here ran with it off,
+which means the mode a dyslexic reader actually uses had never been measured. The
+extra pass runs at the narrowest width only — mobile-first, where wrapping fails
+first — and asserts the body class is really on before it reports anything, because
+a pass that silently ran in plain mode would report "clean" about nothing.
+
 USAGE  line-height-check.py [--all] [URL…] [--widths 390,768,1024,1440]
+       --no-dyslexia   skip the reading-mode pass
 """
 import argparse, json, os, shutil, signal, subprocess, sys, tempfile, time, urllib.request, pathlib
 import websocket
@@ -126,7 +134,7 @@ CANARY = ("<h2 id='__lhc' style='font-size:32px;line-height:1.02;width:260px'>"
           "CANARY a heading set solid that wraps onto a second line</h2>")
 
 
-def run(urls, widths):
+def run(urls, widths, dyslexia=True):
     # shared harness — see tools/cdp.py
     sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
     from cdp import Browser
@@ -157,9 +165,38 @@ def run(urls, widths):
             return 2
         print("[calibration] PASS — planted solid-set wrapped heading caught")
 
+        # The reading mode is a STATE, and a state is only proven by asserting it is on.
+        # localStorage is per-origin, so one write covers every page in the pass; the
+        # canary is replanted with the mode live, because a check that has only ever gone
+        # red in one mode is not calibrated for the other.
+        passes = [("plain", widths, "")]
+        if dyslexia:
+            passes.append(("dyslexia", [min(widths)], "localStorage.setItem('dyslexia-mode','on')"))
+
         bad, census = 0, {}
-        for u in urls:
-            for w in widths:
+        for mode, mode_widths, setup in passes:
+          if setup:
+            cmd("Runtime.evaluate", expression=setup + ";1")
+            cmd("Page.navigate", url=urls[0]); time.sleep(1.8)
+            on = cmd("Runtime.evaluate", returnByValue=True, expression=
+                     "document.body.classList.contains('dyslexia-mode')")["result"]["value"]
+            if not on:
+                print("[calibration] FAILED — the dyslexia body class did not apply, so this "
+                      "pass would report 'clean' about plain mode. Refusing a verdict.")
+                return 2
+            cmd("Runtime.evaluate", returnByValue=True, expression=(
+                "(()=>{const d=document.createElement('div');d.id='__lhcw';"
+                f"d.innerHTML={json.dumps(CANARY)};document.querySelector('main,body').prepend(d);return 1}})()"))
+            time.sleep(.3)
+            got = json.loads(cmd("Runtime.evaluate", expression=probe,
+                                 returnByValue=True)["result"]["value"])
+            cmd("Runtime.evaluate", expression="document.getElementById('__lhcw').remove()")
+            if not any("CANARY" in t["text"] for t in got["tight"]):
+                print("[calibration] FAILED — the canary was not caught in dyslexia mode.")
+                return 2
+            print("[calibration] PASS — canary caught with the dyslexia face live")
+          for u in urls:
+            for w in mode_widths:
                 cmd("Emulation.setDeviceMetricsOverride", width=w, height=900,
                     deviceScaleFactor=1, mobile=w < 700)
                 # "did not load" is a NAVIGATION failure, not a short page. Body
@@ -178,8 +215,11 @@ def run(urls, widths):
                 res = json.loads(cmd("Runtime.evaluate", expression=probe,
                                      returnByValue=True)["result"]["value"])
                 for sig, ratios in res["census"].items():
-                    census.setdefault(sig, set()).update(ratios)
-                tag = f'{u.split("8000")[-1] or "/"} @{w}'
+                    # drift is compared WITHIN a mode: the two faces have different metrics,
+                    # so one component legitimately differs between them.
+                    census.setdefault((mode, sig), set()).update(ratios)
+                tag = (f'{u.split("8000")[-1] or "/"} @{w}'
+                       + ("" if mode == "plain" else "  [dyslexia]"))
                 if res["tight"]:
                     bad += len(res["tight"])
                     print(f"FAIL {tag}")
@@ -190,7 +230,8 @@ def run(urls, widths):
                 else:
                     print(f"ok   {tag}")
 
-        drift = {k: sorted(v) for k, v in census.items() if len(v) > 1}
+        drift = {(k[1] if k[0] == "plain" else f"{k[1]} [{k[0]}]"): sorted(v)
+                 for k, v in census.items() if len(v) > 1}
         print()
         print(f"{bad} element(s) set below the leading floor while wrapped.")
         if drift:
@@ -200,9 +241,14 @@ def run(urls, widths):
             for k, v in sorted(drift.items(), key=lambda x: -len(x[1]))[:14]:
                 print(f"    {k:<30} {v}")
         print("\nCANNOT SEE: whether a value ABOVE the floor is well chosen, optical")
-        print("tightness from a specific face's descenders, and text not rendered on load.")
+        print("tightness from a specific face's descenders, text not rendered on load, and")
+        print("the dyslexia mode at widths other than the narrowest.")
         return 1 if bad else 0
     finally:
+        try:
+            cmd("Runtime.evaluate", expression="localStorage.removeItem('dyslexia-mode');1")
+        except Exception:
+            pass
         br.close()
 
 
@@ -212,6 +258,8 @@ def main():
     ap.add_argument("--all", action="store_true")
     ap.add_argument("--widths", default="390,768,1024,1440")
     ap.add_argument("--base", default="http://localhost:8000")
+    ap.add_argument("--no-dyslexia", action="store_true",
+                    help="skip the reading-mode pass (default: run it at the narrowest width)")
     a = ap.parse_args()
     urls = list(a.urls)
     if a.all or not urls:
@@ -223,7 +271,7 @@ def main():
             if p.name.startswith("__"):
                 continue
             urls.append(f"{a.base}/{rel}")
-    return run(urls, [int(x) for x in a.widths.split(",")])
+    return run(urls, [int(x) for x in a.widths.split(",")], dyslexia=not a.no_dyslexia)
 
 
 if __name__ == "__main__":
