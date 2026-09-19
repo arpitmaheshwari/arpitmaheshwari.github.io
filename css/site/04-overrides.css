@@ -2442,3 +2442,18 @@ body.p-home .bcard:hover{transform:translateY(-2px);box-shadow:var(--elev-2)}
 body.p-home .bcard:hover .bcard-go{color:var(--a)}
 @media (prefers-reduced-motion:reduce){body.p-home .bcard:hover{transform:none}}
 }
+
+/* WHAT I OWNED — attribution on the case itself.
+   An outside review asked the question a senior portfolio has to answer in five seconds:
+   "did he do this, or was he the senior person standing near it?" Verified 2026-09-19:
+   four of nine cases contained no first-person ownership statement at all, and where one
+   existed (PTC has six) it was buried in prose several screens down.
+   The line already existed as .bcard-own on the HOMEPAGE cards — in Arpit's own words —
+   but a reader arriving from a job application or a shared link lands on the case and
+   never sees the homepage, so the attribution was missing exactly where it counts.
+   Same wording, carried onto the case. Nothing here is newly claimed. */
+.case-own{font-family:var(--ff-mono),ui-monospace,monospace;font-size:13px;line-height:1.5;
+  color:var(--neutral-50);margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
+.case-own__k{font-family:"Source Sans 3",var(--sans),system-ui;font-size:11px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--acc-amber);white-space:nowrap}
+@media (max-width:520px){.case-own{font-size:12px}}
