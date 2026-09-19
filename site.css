@@ -5312,6 +5312,21 @@ body.p-home .hero .cred-strip > div:nth-child(n+3) > b{grid-row:3;padding-top:24
 body.p-home .hero .cred-strip > div:nth-child(n+3) > span{grid-row:4}}
 /* one column: each client is its own two-line block again, so the shared rows
    must be RELEASED — leave them in place and four clients pair into two rows */
+/* PROOF BEFORE THE FILM ON A STACKED LAYOUT.
+   Measured 2026-09-19 at 390x844: the hero stacks below 900px, so source order puts the
+   3:29 film (258px of it) between the copy and the numbers, and the credibility strip
+   began at y=844 in an 844px screen — every business outcome on the page was off-screen
+   for a phone reader, who is the reader QA starts with. Desktop was never affected: there
+   the film sits BESIDE the copy and the strip lands at y=699, comfortably in view.
+   The film is what a reader chooses to watch; the numbers are what make them want to, so
+   below 900px the numbers come first. `order` and not a DOM move, because the strip is
+   grid-column 1/-1 on desktop and reordering the source would drop it between the copy
+   and the film there. Safe for focus order: the strip holds no focusable element. */
+@media (max-width:900px){
+  body.p-home .hero .wrap.hero-split > .hero-copy{order:1}
+  body.p-home .hero .wrap.hero-split > .cred-strip{order:2}
+  body.p-home .hero .wrap.hero-split > .hero-widget{order:3}
+}
 @media (max-width:520px){body.p-home .hero .cred-strip{grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:20px;margin-top:clamp(24px,3.6vh,32px)}
 body.p-home .hero .cred-strip > div{display:grid}
 body.p-home .hero .cred-strip > div > b,
