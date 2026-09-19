@@ -160,6 +160,18 @@
    "note": "--selftest, not a bare run: it plants one violation per documented rule and refuses to report unless every rule fires. It was never wired in, so the calibration existed and never ran — and when finally invoked it failed with 'INVISIBLE: UNSPACED-DASH', a rule added to the list without being added to the fixture. A calibration nobody runs is a comment."
   },
   {
+   "id": "draft-note-check",
+   "cmd": [
+    "python3",
+    "tools/draft-note-check.py"
+   ],
+   "stages": [
+    "pre-push",
+    "ci-always"
+   ],
+   "note": "An outside reviewer found an editing note Arpit had written to himself rendered as the PTC pull-quote, on the page carrying his strongest business outcomes. Every gate passed it because nothing about it is malformed: valid markup, correct spelling, good contrast, sane leading. The question none of them asks is whether a sentence is addressed to the READER or to the AUTHOR. ci-always because a prose-only push must still be checked — contrast-gate.yml is paths-filtered and would skip it."
+  },
+  {
    "id": "freshness-check",
    "cmd": [
     "python3",

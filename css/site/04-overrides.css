@@ -970,6 +970,21 @@ body.p-home .hero .cred-strip > div:nth-child(n+3) > b{grid-row:3;padding-top:24
 body.p-home .hero .cred-strip > div:nth-child(n+3) > span{grid-row:4}}
 /* one column: each client is its own two-line block again, so the shared rows
    must be RELEASED — leave them in place and four clients pair into two rows */
+/* PROOF BEFORE THE FILM ON A STACKED LAYOUT.
+   Measured 2026-09-19 at 390x844: the hero stacks below 900px, so source order puts the
+   3:29 film (258px of it) between the copy and the numbers, and the credibility strip
+   began at y=844 in an 844px screen — every business outcome on the page was off-screen
+   for a phone reader, who is the reader QA starts with. Desktop was never affected: there
+   the film sits BESIDE the copy and the strip lands at y=699, comfortably in view.
+   The film is what a reader chooses to watch; the numbers are what make them want to, so
+   below 900px the numbers come first. `order` and not a DOM move, because the strip is
+   grid-column 1/-1 on desktop and reordering the source would drop it between the copy
+   and the film there. Safe for focus order: the strip holds no focusable element. */
+@media (max-width:900px){
+  body.p-home .hero .wrap.hero-split > .hero-copy{order:1}
+  body.p-home .hero .wrap.hero-split > .cred-strip{order:2}
+  body.p-home .hero .wrap.hero-split > .hero-widget{order:3}
+}
 @media (max-width:520px){body.p-home .hero .cred-strip{grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:20px;margin-top:clamp(24px,3.6vh,32px)}
 body.p-home .hero .cred-strip > div{display:grid}
 body.p-home .hero .cred-strip > div > b,
@@ -2426,4 +2441,27 @@ body.p-home .bcard{transition:transform var(--dur-quick) var(--ease-standard), b
 body.p-home .bcard:hover{transform:translateY(-2px);box-shadow:var(--elev-2)}
 body.p-home .bcard:hover .bcard-go{color:var(--a)}
 @media (prefers-reduced-motion:reduce){body.p-home .bcard:hover{transform:none}}
+
+/* WHAT I OWNED — attribution on the case itself.
+   An outside review asked the question a senior portfolio has to answer in five seconds:
+   "did he do this, or was he the senior person standing near it?" Verified 2026-09-19:
+   four of nine cases contained no first-person ownership statement at all, and where one
+   existed (PTC has six) it was buried in prose several screens down.
+   The line already existed as .bcard-own on the HOMEPAGE cards — in Arpit's own words —
+   but a reader arriving from a job application or a shared link lands on the case and
+   never sees the homepage, so the attribution was missing exactly where it counts.
+   Same wording, carried onto the case. Nothing here is newly claimed. */
+.case-own{font-family:var(--ff-mono),ui-monospace,monospace;font-size:13px;line-height:1.5;
+  color:var(--neutral-50);margin:16px 0 0;display:flex;flex-wrap:wrap;gap:4px 12px}
+/* The label takes its OWN line on every case, always. Measured at 1440 with the first
+   version, which let it sit inline when it fitted: four cases rendered the label beside
+   the value and three rendered it above, because the values run from 34 to 104 characters.
+   One component, two appearances, decided by sentence length — the same defect as a
+   button drawn nine ways. flex-basis:100% rather than a shorter value, so length can
+   never decide layout again. align-items:baseline is gone with it: nothing shares a line
+   now, so it was doing nothing except waiting to strand a wrapped sibling. */
+.case-own__k{flex:0 0 100%;font-family:"Source Sans 3",var(--sans),system-ui;font-size:11px;
+  font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--acc-amber);
+  white-space:nowrap}
+@media (max-width:520px){.case-own{font-size:12px}}
 }
