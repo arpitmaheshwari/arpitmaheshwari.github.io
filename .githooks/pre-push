@@ -129,9 +129,20 @@ curl -sf -o /dev/null "http://localhost:$PORT/" || { echo "pre-push: local serve
 # OK; a fifteen-minute wait is the fastest route back to that.
 # The sample is not decoration. Four pages that between them carry the dark hero, a case
 # study, an index and the Lab cover the distinct grounds a rendering change can break.
+# A CHANGED FILE IS NOT NECESSARILY A PAGE. This scope used to hand every changed .html
+# straight to the page gates, which fed contrast-audit six files under partials/pages/ —
+# TEMPLATES. They carry literal {{ROOT}} placeholders no browser can resolve, so they load
+# with no stylesheet, the content overflows, Chrome widens the layout viewport to fit, and
+# the camera assertion correctly refused to grade a frame whose size no longer matched the
+# rects. The gate was right; the list it was given was wrong. gatelib.NOT_PAGES is the one
+# definition of "not a shipped page" and it is read from there rather than retyped here,
+# because a definition that lives in two places is two definitions.
+NOT_PAGES=$(python3 -c "import sys; sys.path.insert(0,'tools'); from gatelib import NOT_PAGES; print('|'.join('^'+d for d in NOT_PAGES))" 2>/dev/null)
+[ -z "$NOT_PAGES" ] && NOT_PAGES='^partials/|^prototypes/|^assets/|^portfolio-sources/|^tests/'
+
 if printf '%s\n' "$CHANGED" | grep -qE '\.(css|js)$|^partials/'; then
   IMG_SCOPE="http://localhost:$PORT/ http://localhost:$PORT/case-studies/adtech.html http://localhost:$PORT/writing/ http://localhost:$PORT/lab/teardown.html"
-  CHANGED_HTML=$(printf '%s\n' "$CHANGED" | grep -E '\.html$' \
+  CHANGED_HTML=$(printf '%s\n' "$CHANGED" | grep -E '\.html$' | grep -vE "$NOT_PAGES" \
                  | sed "s|^|http://localhost:$PORT/|" | tr '\n' ' ')
   [ -n "$CHANGED_HTML" ] && IMG_SCOPE="$IMG_SCOPE $CHANGED_HTML"
   echo "pre-push: rendering assets changed — four representative pages here, all 44 nightly"
@@ -139,7 +150,7 @@ elif printf '%s\n' "$CHANGED" | grep -qE '^(tools/|\.githooks/)'; then
   IMG_SCOPE="http://localhost:$PORT/ http://localhost:$PORT/case-studies/adtech.html http://localhost:$PORT/writing/ http://localhost:$PORT/lab/teardown.html"
   echo "pre-push: a gate changed — four representative pages here, all 44 nightly"
 else
-  IMG_SCOPE=$(printf '%s\n' "$CHANGED" | grep -E '\.html$' \
+  IMG_SCOPE=$(printf '%s\n' "$CHANGED" | grep -E '\.html$' | grep -vE "$NOT_PAGES" \
               | sed "s|^|http://localhost:$PORT/|" | tr '\n' ' ')
   [ -z "$IMG_SCOPE" ] && IMG_SCOPE="--all"
   echo "pre-push: scoping page gates to the changed pages"
