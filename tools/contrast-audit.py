@@ -379,7 +379,14 @@ def _measure(im_a, im_b, im_c, im_d, rect, band):
     # cannot see clearly must say so; inventing a colour and convicting the page on it
     # is the worst thing it could do, because the fix would be to damage a design that
     # is already accessible.
-    if max_a < ALPHA_FLOOR:
+    # ONE 8-BIT STEP OF TOLERANCE, because that is the precision coverage HAS.
+    # Alpha is now a difference of two 8-bit frames divided by 255, so it lands on a
+    # 1/255 grid and a true 0.500 can quantise to 0.498. Comparing that against a floor
+    # of exactly 0.500 rejects a measurement for being less precise than 8 bits allow —
+    # contrast-algebra-test caught it immediately at alpha 0.50, which is the floor
+    # itself and therefore the one value that had to keep working. This is not the floor
+    # being loosened: it is the comparison being made at the resolution of the number.
+    if max_a < ALPHA_FLOOR - 1.5 / 255.0:
         return (None, False, "-", "-", 0)
     # GRADE THE GLYPH CORE, NOT ITS ANTIALIASING.
     #
@@ -409,7 +416,12 @@ def _measure(im_a, im_b, im_c, im_d, rect, band):
     # over THAT. Per-pixel ink is retained inside the band, which keeps gradient text
     # (the old blind spot, canary #2) honest — it just stops asking edge pixels what
     # colour the text is.
-    bar = max(ALPHA_FLOOR, max_a - CORE_BAND)
+    # Same 8-bit tolerance as the floor above, and for the same reason: with a true
+    # coverage of 0.500 every pixel quantises to 0.498, so a bar pinned at exactly
+    # ALPHA_FLOOR excluded ALL of them and the element came back as painting no ink
+    # at all — a legibility FAILURE invented by rounding. contrast-algebra-test found
+    # it in milliseconds; on a live page it would have looked like a real defect.
+    bar = max(ALPHA_FLOOR - 1.5 / 255.0, max_a - CORE_BAND)
     core = []
     for alpha, pa, pb in glyphs:
         if alpha < bar:

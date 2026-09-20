@@ -171,6 +171,19 @@
    "note": "An outside reviewer found an editing note Arpit had written to himself rendered as the PTC pull-quote, on the page carrying his strongest business outcomes. Every gate passed it because nothing about it is malformed: valid markup, correct spelling, good contrast, sane leading. The question none of them asks is whether a sentence is addressed to the READER or to the AUTHOR. ci-always because a prose-only push must still be checked — contrast-gate.yml is paths-filtered and would skip it."
   },
   {
+   "id": "narrow-art-fresh",
+   "cmd": [
+    "python3",
+    "tools/build-narrow-art.py",
+    "--check"
+   ],
+   "stages": [
+    "pre-push",
+    "ci-always"
+   ],
+   "note": "The nine portrait drawings are INLINED into their pages by tools/build-narrow-art.py, so the page holds the only copy on disk and nothing stops a hand edit drifting from the generator. --check regenerates all nine and fails if any page no longer matches. They are not kept as .svg files because orphan-asset-check correctly refused that: an inlined drawing is referenced by nothing, so the files were build intermediates sitting in the served-assets folder."
+  },
+  {
    "id": "freshness-check",
    "cmd": [
     "python3",

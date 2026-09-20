@@ -42,6 +42,7 @@ exec(compile(_src, 'contrast-audit.py', 'exec'), CA)
 _measure   = CA['_measure']
 ratio      = CA['ratio']
 MAGENTA    = CA['MAGENTA']
+GREEN      = CA['GREEN']        # the second key; see frames()
 ALPHA_CORE = CA['ALPHA_CORE']
 ALPHA_FLOOR = CA['ALPHA_FLOOR']
 CORE_BAND  = CA['CORE_BAND']
@@ -56,19 +57,26 @@ def blend(fg, bg, a):
 
 
 def frames(ink, ground, alpha, ground_right=None):
-    """Three frames for a solid block of `ink` on `ground` at coverage `alpha`.
+    """Four frames for a solid block of `ink` on `ground` at coverage `alpha`.
 
     ground_right, if given, makes the ground a horizontal gradient so the
-    percentile's real job — grading at the WEAKEST position — can be tested."""
-    a_im, b_im, c_im = (Image.new("RGB", (W, H)) for _ in range(3))
-    pa, pb, pc = a_im.load(), b_im.load(), c_im.load()
+    percentile's real job — grading at the WEAKEST position — can be tested.
+
+    FOUR, not three, since 2026-09-20: coverage is now read as the difference between
+    TWO keyed frames rather than the distance one keyed frame travelled from the
+    ground, so that the ground cancels and the page's own palette can never collide
+    with the key. The browser paints exactly these four, so _measure cannot tell the
+    difference between this and a photograph — and here the answer is known in advance."""
+    a_im, b_im, c_im, d_im = (Image.new("RGB", (W, H)) for _ in range(4))
+    pa, pb, pc, pd = a_im.load(), b_im.load(), c_im.load(), d_im.load()
     for x in range(W):
         g = ground if ground_right is None else blend(ground_right, ground, x / (W - 1.0))
         for y in range(H):
             pb[x, y] = g
             pa[x, y] = blend(ink, g, alpha)
             pc[x, y] = blend(MAGENTA, g, alpha)
-    return a_im, b_im, c_im
+            pd[x, y] = blend(GREEN, g, alpha)
+    return a_im, b_im, c_im, d_im
 
 
 def hexc(h):
@@ -141,7 +149,9 @@ def main():
     #        to key, so there is no glyph anywhere. THAT is no-ink — obscured, or
     #        never rendered — and it must be reported, never silently skipped.
     flat = Image.new("RGB", (W, H), ground)
-    got, noink, _, _, n = _measure(flat, flat.copy(), flat.copy(), RECT, BAND)
+    # four identical frames: nothing painted, nothing keyed — the no-ink case
+    got, noink, _, _, n = _measure(flat, flat.copy(), flat.copy(), flat.copy(),
+                                   RECT, BAND)
     check("no glyph in any frame is reported as no-ink", noink, True)
     check("no-ink carries ratio 1.0 so it cannot pass a requirement", got, 1.0, 0.001)
     check("no-ink reports zero core pixels", n, 0)

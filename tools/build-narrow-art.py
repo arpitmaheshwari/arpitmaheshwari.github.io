@@ -24,7 +24,6 @@ import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, 'assets', 'art-narrow')
 W = 360
 
 # TYPE SIZED FOR THE SCALE IT ACTUALLY GETS, not the scale the artboard implies.
@@ -419,43 +418,14 @@ ALL = [('process', process), ('calibration', calibration), ('confidence', confid
        ('ai-failure-states', failure_states), ('human-in-loop', human_in_loop)]
 
 
-def main():
-    check = '--check' in sys.argv
-    os.makedirs(OUT, exist_ok=True)
-    stale = []
-    for name, fn in ALL:
-        body = fn().svg()
-        path = os.path.join(OUT, name + '.svg')
-        old = open(path, encoding='utf-8').read() if os.path.exists(path) else None
-        if old == body:
-            continue
-        if check:
-            stale.append(name)
-            continue
-        open(path, 'w', encoding='utf-8').write(body)
-        print(f'  wrote {os.path.relpath(path, ROOT)}  ({len(body)} bytes)')
-    if check and stale:
-        print(f'  STALE: {", ".join(stale)} — run without --check')
-        return 1
-    print(f'{len(ALL)} portrait drawing(s) {"checked" if check else "built"}.')
-    print('CANNOT SEE: whether a drawing READS well — only that it was written. '
-          'Every one must be rendered and looked at.')
-    return 0
-
-
-if __name__ == '__main__':
-    sys.exit(main())
-
-
 # ── wiring: place each portrait drawing into its page, behind the .artalt hook ──
 # The hook already exists in 04-overrides.css and is used by six case studies:
 #   @media (max-width:1439px){ .art-svg:has(+ .artalt){display:none}
 #                              .art-svg + .artalt{display:grid} }
-# so a portrait drawing wrapped in .artalt, placed as the art's NEXT SIBLING,
-# swaps itself in below 1440px and needs no new CSS at all. /process additionally
-# has `.process-fig:has(> .artalt){display:block;...}`, which un-hides the figure
-# it otherwise drops below 1040px.
-
+# so a portrait drawing wrapped in .artalt, placed as the art's NEXT SIBLING, swaps
+# itself in below 1440px and needs no new CSS at all. /process additionally has
+# `.process-fig:has(> .artalt){display:block;...}`, which un-hides the figure it
+# otherwise drops below 1040px.
 PAGES = {
     'process': ('process/index.html', 'art-index-1'),
     'calibration': ('patterns/calibration-track-record.html', 'art-calibration--1'),
@@ -471,15 +441,41 @@ MARK_OPEN = '<div class="artalt artalt--drawn">'
 MARK_CLOSE = '</div>'
 
 
-def wire(check=False):
+def main():
+    check = '--check' in sys.argv
+    drawings = {name: fn().svg() for name, fn in ALL}
+    changed, missing = wire(drawings, check=check)
+    for c in changed:
+        print(f'  {"STALE" if check else "wired"}  {c}')
+    for m in missing:
+        print(f'  MISSING  {m}')
+    if missing:
+        return 2
+    if check and changed:
+        print(f'\n{len(changed)} page(s) no longer match the generator — run without --check.')
+        return 1
+    print(f'{len(ALL)} portrait drawing(s) {"checked" if check else "wired"}.')
+    print('CANNOT SEE: whether a drawing READS well — only that it was written. '
+          'Every one must be rendered and looked at.')
+    return 0
+
+
+def wire(drawings, check=False):
+    """Inline each drawing into its page. Nothing is written to assets/.
+
+    An earlier version kept the nine .svg files there and orphan-asset-check refused the
+    push: the pages INLINE these drawings, so the files were referenced by nothing —
+    build intermediates sitting in the folder for served files. The gate read the
+    situation more honestly than I did. The generator is the single source; the only copy
+    on disk is the one inside each page.
+    """
     import re
     changed, missing = [], []
     for name, (page, aid) in PAGES.items():
-        art = os.path.join(OUT, name + '.svg')
-        if not os.path.exists(art):
+        if name not in drawings:
             missing.append(name)
             continue
-        drawing = open(art, encoding='utf-8').read().strip()
+        drawing = drawings[name].strip()
         for base in ('', os.path.join('partials', 'pages')):
             path = os.path.join(ROOT, base, page)
             if not os.path.exists(path):
@@ -501,3 +497,7 @@ def wire(check=False):
             open(path, 'w', encoding='utf-8').write(new)
             changed.append(os.path.relpath(path, ROOT))
     return changed, missing
+
+
+if __name__ == '__main__':
+    sys.exit(main())
