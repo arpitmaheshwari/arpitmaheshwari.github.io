@@ -6806,4 +6806,25 @@ body.p-home .bcard:hover .bcard-go{color:var(--a)}
   font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--acc-amber);
   white-space:nowrap}
 @media (max-width:520px){.case-own{font-size:12px}}
+
+/* PORTRAIT COMPANIONS for the nine rail-page drawings (assets/art-narrow, built by
+   tools/build-narrow-art.py). They ride the .artalt hook that already existed for the
+   case studies, so the swap itself needs no new rule — only a size cap.
+   Without one a 360-unit drawing stretched to the full column: 532px wide and 975px
+   tall at 1024, which is a poster, not a diagram. Capped at 380px and centred, so it
+   reads at a constant size from 390 up to the 1440 handover. Measured, not guessed. */
+.artalt--drawn{justify-items:center}
+.artalt--drawn > svg.art-narrow{width:100%;max-width:380px;height:auto;display:block}
+/* PHONE: the column leaves 260px, which renders a 360-unit artboard at 0.72 and puts
+   its 13-unit captions at 9.4px — WORSE than the 7px landscape version this replaces,
+   which would have made the whole exercise a regression. Measured at 390x844 before
+   this rule existed. The drawing takes the viewport's own width instead, less a 16px
+   gutter each side: 358px, scale ~0.99, smallest label ~12.9px. The breakout is safe
+   here because below 1024px there is no rail and the column is genuinely centred —
+   the same maths against the offset rail column is what put 12px of the page past the
+   right edge earlier today. Horizontal scroll re-checked at 320, 390 and 768. */
+@media (max-width:640px){
+  .artalt--drawn{margin-inline:calc(50% - 50vw + 16px);width:calc(100vw - 32px)}
+  .artalt--drawn > svg.art-narrow{max-width:none}
+}
 }
