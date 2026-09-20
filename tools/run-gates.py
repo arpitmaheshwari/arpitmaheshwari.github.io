@@ -247,7 +247,19 @@ def main():
             from gatelib import page_urls
             kw = {} if pages_opt is True else dict(pages_opt)
             cmd = cmd + page_urls(base or 'http://localhost:8000', **kw)
-        r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
+        # HAND THE GATE THE SERVER WE ACTUALLY STARTED. Tools read BASE from the
+        # environment and default to http://localhost:8000; the runner starts its server
+        # on --port, which is 8931 for a local run and 8000 only by coincidence. Five
+        # browser gates therefore passed for months by talking to whatever happened to be
+        # listening on 8000 — a stale devserver from an earlier session. The moment those
+        # were cleaned up, all five died with ERR_CONNECTION_REFUSED on a port the runner
+        # never used. A gate that only works when an unrelated process is alive is not a
+        # gate; substituting {BASE} into argv was never enough because these tools take
+        # no URL argument.
+        env = dict(os.environ)
+        if base:
+            env['BASE'] = base
+        r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, env=env)
         return g, r.returncode, (r.stdout or '') + (r.stderr or '')
 
     failed, broken, unmeasured = [], [], []

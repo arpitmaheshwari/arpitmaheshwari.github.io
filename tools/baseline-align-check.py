@@ -82,6 +82,13 @@ line only, which is the correct reference for a wrapping title but says nothing
 about the lines below it.
 """
 import sys, os, json, argparse
+
+# The runner exports BASE for the server it actually started; 8000 is only a
+# fallback for running this by hand. Hardcoding the port meant this gate talked to
+# whatever stale process happened to own 8000 — it passed for months that way and
+# died the moment those were cleaned up.
+import os as _os
+BASE = _os.environ.get('BASE', 'http://localhost:8000')
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from cdp import Browser, ensure_server
 from gatelib import pages as _pages
@@ -204,7 +211,7 @@ def main():
         b = Browser()
         b.viewport(w, 900)
         for path in paths:
-            b.navigate('http://localhost:8000/' + path.lstrip('/'))
+            b.navigate(BASE.rstrip('/') + '/' + path.lstrip('/'))
             b.pump(0.5)
             # resolve every play-once instrument so pre-state opacity never hides a row
             b.eval("document.querySelectorAll('.bcard,.vg-hero').forEach(e=>e.classList.add('live'))")

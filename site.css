@@ -2990,7 +2990,7 @@ body.p-case-studies-planit .mascot-row{display:grid;grid-template-columns:repeat
    The ROW breaks out as one object; the plates inside obey their tracks. */
 body.p-case-studies-planit .mascot-row .mascot{min-width:0;display:flex;flex-direction:column;align-items:center;gap:12px;background:#FFF6E9;border:1px solid var(--border-hairline);border-radius:16px;padding:20px 16px 12px}
 body.p-case-studies-planit .mascot-row .mascot img{width:116px;height:auto;border:0;display:block}
-body.p-case-studies-planit .mascot-row .mascot span{font-family:var(--ff-label);font-size:11px;font-weight:600;letter-spacing:.02em;color:rgba(32,24,12,.62);text-align:center;margin:0}
+body.p-case-studies-planit .mascot-row .mascot span{font-family:var(--ff-label);font-size:11px;font-weight:600;letter-spacing:.02em;color:rgba(32,24,12,.78);text-align:center;margin:0}  /* .62 -> .78, 2026-09-20. The nightly measured these 11px captions at 4.30-4.34:1 against a 4.5 floor on cream. Note the gap between theory and pixels: .62 COMPUTES to 4.82:1, and the painted result is 4.33 — this page carries overlay texture that no style-based sum can see, so the alpha was raised until the AUDIT cleared it, not until the arithmetic did. */
 /* Headings sat almost on top of their first paragraph — the base
    .section-title carries no bottom margin because elsewhere a kicker or grid
    supplies the gap. On this page nothing does. */
@@ -6639,6 +6639,25 @@ body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode, :where(body.p-lab-eva
 .lh-log li.lab-nojs{white-space:normal;opacity:1;animation:none;color:var(--neutral-200)}
 .lh-log li b{color:#7FCF9E;font-weight:600;flex:0 0 auto}
 .lh-log li span{color:var(--neutral-200);overflow:hidden;text-overflow:ellipsis}
+/* ON A PHONE THE ASSERTIONS MUST BE READABLE, which is the entire point of the panel.
+   Found by exploratory testing on the live site at 390px, 2026-09-20: all EIGHT lines
+   were truncated mid-sentence — "decide: low score resolves to i…" — the worst hiding
+   244px of 358. A reader on a phone learned only that eight things begin with "decide:",
+   under a heading that says ASSERTIONS. Every gate passed it: each element's own
+   properties are fine, and nothing measures whether a sentence can be READ.
+   nowrap is gone at EVERY width, not just on phones. The comment it replaces warned
+   that a clipped-and-faded tail once read to contrast-audit as text with no ink — but
+   that regression was caused BY the clipping, so removing the clipping cannot bring it
+   back. Tested rather than assumed: /lab/ measures 303 text nodes at 1440 and 390 with
+   0 failures, and 0 rows clipped at 390, 430, 699, 768 or 1440.
+   Desktop was truncating too, just less visibly: six of the eight lines lost between
+   23px and 126px of their tails, so "irreversible actions never auto-act, however"
+   stopped before the word that qualifies it. The list is taller now — 416px at 1440,
+   534px at 390 — and that is the correct trade for a panel whose whole purpose is
+   showing what the tests assert. The check mark aligns to the first line of its own
+   assertion. */
+.lh-log li{white-space:normal;overflow:visible;text-overflow:clip;align-items:flex-start}
+.lh-log li span{overflow:visible;text-overflow:clip}
 @keyframes lh-in{to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.lh-log li{opacity:1;animation:none}}
 .lh-foot{margin:16px 0 0;font-size:11px;line-height:1.6;color:var(--neutral-300);letter-spacing:.02em}

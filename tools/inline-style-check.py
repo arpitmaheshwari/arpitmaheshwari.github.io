@@ -66,11 +66,20 @@ def off_scale_spacing(root):
     # same-origin to be instrumentable), named __ca_*.html. Running the two gates concurrently
     # made this gate read the OTHER gate's scratch file and report a phantom 6px off-grid
     # value — a failure in code that does not exist. Measured 2026-08-08, not assumed.
+    # EVERY gate's scratch file, not just contrast-audit's. The exclusion was
+    # '__ca_' — contrast-audit's canary — and on 2026-09-20 this gate died on
+    # canon-lint's '__canon_canary_a.html' instead: globbed while it existed, deleted
+    # before the read, FileNotFoundError reported as a gate that found a defect. The
+    # convention across this repo is that a gate's scratch file starts with '__', so
+    # that is what is skipped now rather than one gate's spelling of it.
     files = sorted({p for pat in pats for p in glob.glob(os.path.join(root, pat))
-                    if not os.path.basename(p).startswith('__ca_')})
+                    if not os.path.basename(p).startswith('__')})
     bad = collections.Counter(); where = collections.defaultdict(set)
     for f in files:
-        s = open(f, encoding='utf-8').read()
+        try:
+            s = open(f, encoding='utf-8').read()
+        except FileNotFoundError:
+            continue   # another gate removed its scratch file mid-sweep; not this gate's business
         for m in re.finditer(SPACE_PROPS + r'\s*:\s*([^;"}]+)', _decomment(s)):
             for tok in re.findall(r'(?<![\w.-])(\d+)px', m.group(1)):
                 v = int(tok)
