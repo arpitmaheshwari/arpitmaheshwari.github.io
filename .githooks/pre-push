@@ -119,9 +119,22 @@ curl -sf -o /dev/null "http://localhost:$PORT/" || { echo "pre-push: local serve
 # This mattered: every commit for hours touched tools/, so every push paid the ~25-minute
 # full sweep while I reported pre-push as fixed. It was fixed for ordinary pushes and I
 # never took the path I was actually using.
+# 2026-09-20, Arpit's call: the full sweep moves to the NIGHTLY and the push keeps the
+# changed pages. The trade, stated plainly rather than buried: a css/js/partials change
+# really can alter every page, so a regression on a page nobody touched will now ship and
+# be caught the next morning instead of before it leaves the machine. That is a real risk
+# and it was accepted for a real reason — the pre-push run had grown past fifteen minutes,
+# and a gate people learn to skip catches nothing at all. This suite exists because the
+# Contrast gate once stayed red for thirty consecutive pushes while every local run said
+# OK; a fifteen-minute wait is the fastest route back to that.
+# The sample is not decoration. Four pages that between them carry the dark hero, a case
+# study, an index and the Lab cover the distinct grounds a rendering change can break.
 if printf '%s\n' "$CHANGED" | grep -qE '\.(css|js)$|^partials/'; then
-  IMG_SCOPE="--all"
-  echo "pre-push: rendering assets changed — full sweep"
+  IMG_SCOPE="http://localhost:$PORT/ http://localhost:$PORT/case-studies/adtech.html http://localhost:$PORT/writing/ http://localhost:$PORT/lab/teardown.html"
+  CHANGED_HTML=$(printf '%s\n' "$CHANGED" | grep -E '\.html$' \
+                 | sed "s|^|http://localhost:$PORT/|" | tr '\n' ' ')
+  [ -n "$CHANGED_HTML" ] && IMG_SCOPE="$IMG_SCOPE $CHANGED_HTML"
+  echo "pre-push: rendering assets changed — four representative pages here, all 44 nightly"
 elif printf '%s\n' "$CHANGED" | grep -qE '^(tools/|\.githooks/)'; then
   IMG_SCOPE="http://localhost:$PORT/ http://localhost:$PORT/case-studies/adtech.html http://localhost:$PORT/writing/ http://localhost:$PORT/lab/teardown.html"
   echo "pre-push: a gate changed — four representative pages here, all 44 nightly"
