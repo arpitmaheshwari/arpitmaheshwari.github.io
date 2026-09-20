@@ -587,9 +587,20 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
         # _measure() clamps crops to the image (min(x+w, im.width)), so a mismatch
         # cannot raise — it can only silently grade the wrong region. Hence an explicit
         # assertion, before anything is graded, that refuses rather than reports.
-        _probe = shot()
-        _vw, _vh, _dpr = br.eval_json(
-            "JSON.stringify([innerWidth,innerHeight,devicePixelRatio])")
+        # RE-PROBE BEFORE CONVICTING. The frame and the viewport can disagree for one
+        # frame after a resize: setDeviceMetricsOverride is asynchronous, and with four
+        # gates driving Chrome at once the first capture can land before the new metrics
+        # have applied. Measured 2026-09-20 — every width matches when the audit runs
+        # alone, and 390px reported bad-camera repeatedly under --parallel 4. A transient
+        # mismatch is timing; a mismatch that survives three probes is the real defect
+        # this assertion exists to catch, and it still refuses in that case.
+        for _try in range(3):
+            _probe = shot()
+            _vw, _vh, _dpr = br.eval_json(
+                "JSON.stringify([innerWidth,innerHeight,devicePixelRatio])")
+            if (_probe.width, _probe.height) == (int(_vw), int(_vh)):
+                break
+            br.pump(0.35)
         if (_probe.width, _probe.height) != (int(_vw), int(_vh)):
             return None, [f"UNCALIBRATED CAMERA: frame is {_probe.width}x{_probe.height} "
                           f"but the viewport reports {_vw}x{_vh} (dpr {_dpr}). Every rect "
