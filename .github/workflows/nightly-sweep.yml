@@ -124,6 +124,12 @@ jobs:
       #   * the ten clear                   -> it was, and the assertion also fixed it
       #   * the ten persist, calibration green -> the camera is EXONERATED, and the
       #     next suspect is which rect the audit believes each element occupies
+      # Fired 2026-09-20 against the TWO-KEY coverage fix. This workflow has failed on
+      # its schedule for eight consecutive nights (13-20 Sept) and nobody looked — which
+      # is the exact condition that let the Contrast gate stay red for thirty pushes. Its
+      # last three findings were 3.99, 4.36 and 4.46 against a 4.5 floor on cream grounds;
+      # all three clear locally under the new algebra, and Linux is where the phantom
+      # readings always lived, so this run is the test that matters.
       - name: Sweeps (from tools/gates.json)
         # Re-fired 2026-09-05 to verify the two contrast fixes on Linux: the
         # ALPHA_FLOOR guard against noisy un-blends, and sr-only recognition. Both
