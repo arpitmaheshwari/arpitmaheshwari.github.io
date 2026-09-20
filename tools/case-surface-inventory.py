@@ -48,6 +48,14 @@ KNOWN_SCOPES = {
     "data/":         "case-sync-check.py (it IS the source)",
     "404.html":      "canon-lint",
     "sitemap.xml":   "canon-lint",
+    # TEMPLATES, not a surface a reader can reach: partials/pages/** is the SOURCE
+    # that build-pages.py renders into the shipped page, and every one of those
+    # shipped pages is already scoped above. pages-built-check.py fails the build
+    # whenever a shipped page stops matching the partial it was built from, so a
+    # case claim cannot be introduced here without appearing in a scoped page.
+    # Auditing both is double-counting, and it left this gate permanently red —
+    # which is how a gate stops being read at all.
+    "partials/":     "pages-built-check.py (the rendered page it produces is scoped above)",
 }
 
 def tracked():

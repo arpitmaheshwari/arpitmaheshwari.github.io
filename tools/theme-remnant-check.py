@@ -59,8 +59,18 @@ RETIRED = {
 # elements inside a deliberately cream/paper artifact keep the classic palette
 # artifacts that DEPICT the real product keep the paper palette on purpose:
 # the plate mockups (.plA-*…), the paper figures, the boarding-pass card.
+# 2026-09-20: three more DEPICTIONS, found by this gate failing in CI on every build.
+#   card-wire  — the wireframes on the pattern pages that illustrate an AI UI. The green
+#                pill behind "92%" is the depicted product's confidence colour.
+#   bk-device  — the device mark in the book: a drawing of hardware, not site chrome.
+#   lh-log / lh-inst — the Lab's test-run log. Its checkmarks are green because a passing
+#                test is green; repainting those to the amber system would make the
+#                instrument LIE about what a terminal shows.
+# The test for this list is not "does the gate go quiet" — it is whether the element
+# DEPICTS something (a product, a document, a console) or IS the site. All three depict.
 EXEMPT_ANCESTORS = ["fig-paper","recon","pass","plate","paper","mock","artifact","browser",
-  "pla-","plf-","plm-","plo-","plp-","plv-","stick","rcpt-box","psc","lug","env","qc","slip"]
+  "pla-","plf-","plm-","plo-","plp-","plv-","stick","rcpt-box","psc","lug","env","qc","slip",
+  "card-wire","bk-device","lh-log","lh-inst"]
 
 PROBE = """<!doctype html><html><body><script>
 const RET=%s, EX=%s;

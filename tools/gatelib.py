@@ -22,7 +22,25 @@ import time
 
 # Re-exported so a tool needs one import, not three. cdp owns the Chrome and server
 # details; this module owns what a gate is pointed AT.
-from cdp import Browser, ensure_server  # noqa: F401
+#
+# RE-EXPORTED LAZILY, and that matters. This used to be a plain
+# `from cdp import Browser, ensure_server`, which made importing gatelib import cdp,
+# which imports the third-party `websocket` module. Every gate that touches gatelib
+# therefore needed a browser library installed — including the ones that never open a
+# browser. On 2026-09-20 draft-note-check and markup-dup-attr-check, both of which do
+# nothing but read HTML as text, died at import in canon-gate.yml with
+# ModuleNotFoundError: No module named 'websocket', and reported as gates that had
+# FOUND A DEFECT. That is the exact failure this repo has already paid for once: a gate
+# that dies at import is indistinguishable, in a log, from a gate that is failing, and
+# it hid a real problem for five days.
+#
+# A module-level __getattr__ keeps the API identical — `from gatelib import Browser`
+# still works — while a text-only gate pays nothing for a browser it never opens.
+def __getattr__(name):
+    if name in ('Browser', 'ensure_server'):
+        import cdp
+        return getattr(cdp, name)
+    raise AttributeError(f'module {__name__!r} has no attribute {name!r}')
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
