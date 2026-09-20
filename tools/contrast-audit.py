@@ -147,13 +147,40 @@ HIDE_TEXT_CSS = (":root *{color:transparent!important;text-shadow:none!important
 # any pixel-picked estimate reads dark (measured 2026-09-03: three labels with
 # authored ratios 5.1-6.1 read as 3.7-4.0 — phantom failures, the exact
 # disease this rewrite exists to cure).
+# TWO KEYS, NOT ONE — 2026-09-20. Coverage used to be read as the distance frame C
+# travelled from the GROUND toward magenta: alpha = |C - B| / |MAGENTA - B|. That makes
+# coverage depend on what colour the page is, and this page is an ember theme built from
+# pinks, magentas and oranges — so the key colour sits INSIDE the palette it is supposed
+# to be foreign to. Where ink or ground is already near magenta the keyed frame barely
+# differs from the shipped one, the denominator goes soft, and the recovered ink drifts.
+# That is the shape of the ten homepage failures: grounds read pixel-exactly right,
+# recovered inks came back violet-blue where the authored colour is magenta-pink.
+#
+# Key the text TWICE instead, in two colours, and subtract one frame from the other:
+#     C1 = a*K1 + (1-a)*B
+#     C2 = a*K2 + (1-a)*B
+#     C1 - C2 = a*(K1 - K2)      ->   a = |C1 - C2| / |K1 - K2|
+# The ground CANCELS. Coverage no longer depends on the page's colours at all, so no
+# palette can ever collide with the key again. With magenta and green every channel has
+# the full 255 steps of separation, which is as well-conditioned as this can be, and the
+# `abs(denom) >= 48` guard that existed to skip soft channels is no longer needed.
+# Cost: one more frame per viewport stop.
 MAGENTA = (255, 0, 255)
+GREEN = (0, 255, 0)
+KEY_SPAN = tuple(MAGENTA[i] - GREEN[i] for i in range(3))   # (255, -255, 255)
 INK_KEY_CSS = (":root *{color:#FF00FF!important;text-shadow:none!important;"
                "text-decoration-color:transparent!important;caret-color:transparent!important;"
                "-webkit-text-fill-color:#FF00FF!important}"
                ":root svg text,:root svg tspan{fill:#FF00FF!important}"
                ":root [data-ca-gt]{background:#FF00FF!important;"
                "-webkit-background-clip:text!important;background-clip:text!important}")
+
+INK_KEY2_CSS = (":root *{color:#00FF00!important;text-shadow:none!important;"
+                "text-decoration-color:transparent!important;caret-color:transparent!important;"
+                "-webkit-text-fill-color:#00FF00!important}"
+                ":root svg text,:root svg tspan{fill:#00FF00!important}"
+                ":root [data-ca-gt]{background:#00FF00!important;"
+                "-webkit-background-clip:text!important;background-clip:text!important}")
 
 # --------------------------------------------------------------------- colour
 
@@ -283,7 +310,7 @@ SETTLE_JS = """(async()=>{
 })()"""
 
 
-def _measure(im_a, im_b, im_c, rect, band):
+def _measure(im_a, im_b, im_c, im_d, rect, band):
     """Grade one element from three frames: A shipped, B ink removed, C ink keyed magenta.
 
     Per pixel, coverage a = |C - B| / |MAGENTA - B| (channel-wise, well-conditioned
@@ -302,19 +329,23 @@ def _measure(im_a, im_b, im_c, rect, band):
     a_px = im_a.crop((x0, y0, x1, y1)).load()
     b_px = im_b.crop((x0, y0, x1, y1)).load()
     c_px = im_c.crop((x0, y0, x1, y1)).load()
+    d_px = im_d.crop((x0, y0, x1, y1)).load()
     W, H = x1 - x0, y1 - y0
     glyphs = []          # (alpha, a_pixel, b_pixel)
     for j in range(H):
         for i in range(W):
-            pb, pc = b_px[i, j], c_px[i, j]
-            # coverage from frame C: how far this pixel moved toward pure magenta
+            pb, pc, pd = b_px[i, j], c_px[i, j], d_px[i, j]
+            # COVERAGE FROM THE DIFFERENCE OF TWO KEYED FRAMES, so the ground cancels:
+            #   C1 = a*MAGENTA + (1-a)*B ; C2 = a*GREEN + (1-a)*B
+            #   C1 - C2 = a*(MAGENTA - GREEN)
+            # Every channel of KEY_SPAN is +/-255, so there is no ill-conditioned channel
+            # to skip and no dependence on what colour the page happens to be. See the
+            # note beside KEY_SPAN for the ten failures that came of asking B.
             alphas = []
             for ch in range(3):
-                denom = MAGENTA[ch] - pb[ch]
-                if abs(denom) >= 48:
-                    al = (pc[ch] - pb[ch]) / float(denom)
-                    if -0.15 <= al <= 1.2:
-                        alphas.append(min(1.0, max(0.0, al)))
+                al = (pc[ch] - pd[ch]) / float(KEY_SPAN[ch])
+                if -0.15 <= al <= 1.2:
+                    alphas.append(min(1.0, max(0.0, al)))
             if not alphas:
                 continue
             alpha = sorted(alphas)[len(alphas) // 2]
@@ -482,6 +513,9 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
         br.eval("(function(){var st=document.createElement('style');st.id='__ca_key';"
                 "st.media='not all';st.textContent=%s;document.head.appendChild(st);})()"
                 % json.dumps(INK_KEY_CSS))
+        br.eval("(function(){var st=document.createElement('style');st.id='__ca_key2';"
+                "st.media='not all';st.textContent=%s;document.head.appendChild(st);})()"
+                % json.dumps(INK_KEY2_CSS))
 
         def shot():
             r = br.cmd("Page.captureScreenshot", format="png")
@@ -501,10 +535,15 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
                     "document.getElementById('__ca_key').media='all'")
             br.pump(0.08)
             c = shot()
-            br.eval("document.getElementById('__ca_key').media='not all'")
+
+            br.eval("document.getElementById('__ca_key').media='not all';"
+                    "document.getElementById('__ca_key2').media='all'")
+            br.pump(0.08)
+            d = shot()
+            br.eval("document.getElementById('__ca_key2').media='not all'")
             br.pump(0.08)
             a2 = shot()
-            return a, b, c, a2
+            return a, b, c, d, a2
 
         def _stable(im1, im2, rect, band):
             x, y, w, h = rect
@@ -616,13 +655,13 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
                     here[ik] = ("band", r)
             if not here:
                 continue
-            im_a, im_b, im_c, im_a2 = _frames(br, shot)
+            im_a, im_b, im_c, im_d, im_a2 = _frames(br, shot)
             for i, (scope, r) in here.items():
                 e = els[i]
                 use_band = (0, VIEWPORT_H) if scope == "full" else band
                 if not _stable(im_a, im_a2, r, use_band):
                     continue          # animated here; the targeted pass gets another shot
-                res = _measure(im_a, im_b, im_c, r, use_band)
+                res = _measure(im_a, im_b, im_c, im_d, r, use_band)
                 if res is None:
                     continue
                 got, no_ink, fg, bg, n = res
@@ -675,10 +714,10 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
                 if not r1 or r1[2] < 2 or r1[3] < 2:
                     break
                 use_band = (0, VIEWPORT_H) if els[i].get("fx") else band
-                im_a, im_b, im_c, im_a2 = _frames(br, shot)
+                im_a, im_b, im_c, im_d, im_a2 = _frames(br, shot)
                 if not _stable(im_a, im_a2, r1, use_band):
                     continue
-                res = _measure(im_a, im_b, im_c, r1, use_band)
+                res = _measure(im_a, im_b, im_c, im_d, r1, use_band)
                 if res is None:
                     break
                 got, no_ink, fg, bg, n = res
