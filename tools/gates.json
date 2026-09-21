@@ -826,6 +826,21 @@
    "note": "The class no other gate can see. Every check in tools/ reads a RESOLVED property — computed colour, final box, announced name — and a duplicate attribute is resolved by the parser keeping the first and dropping the rest, with no error and no visual difference. a11y-sweep was the obvious home and is the gate that MISSED this: its own docstring says it measures the rendered DOM, where the duplicate is already gone. Seven art diagrams shipped two aria-labels each for 28 days and in five of them the better description was never spoken. Text-only, under a second, so every push; ci-always because a markup-only push must not fall into a paths-filtered workflow's blind spot."
   },
   {
+   "id": "art-collision-check",
+   "cmd": [
+    "python3",
+    "tools/art-collision-check.py"
+   ],
+   "stages": [
+    "ci",
+    "nightly"
+   ],
+   "needs": [
+    "server"
+   ],
+   "note": "The other half of svg-text-size-check, which says in its own docstring that it cannot see whether raising a label would collide with its neighbours. On 2026-09-21 raising nine artboards to the 12.5px floor cleared that gate and created 95 collisions, and the first drawing re-laid by eye still had 18 faults a measurement found — including a 29px overlap and two day-labels 2u out of line with each other that had been wrong before any of this. Reports OVERLAP (two <text> boxes intersecting) and ESCAPE (a label crossing out of, or sitting flush against, the smallest <rect> enclosing it; flush reads as broken even when nothing technically overlaps). ci+nightly beside svg-text-size-check because it drives a browser. Blind to strokes, paths, arcs and circles: a needle drawn through a numeral was found by eye and re-laid by hand."
+  },
+  {
    "id": "svg-text-size-check",
    "cmd": [
     "python3",
