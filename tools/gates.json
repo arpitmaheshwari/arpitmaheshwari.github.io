@@ -159,6 +159,18 @@
    "note": "--selftest, not a bare run: it plants one violation per documented rule and refuses to report unless every rule fires. It was never wired in, so the calibration existed and never ran — and when finally invoked it failed with 'INVISIBLE: UNSPACED-DASH', a rule added to the list without being added to the fixture. A calibration nobody runs is a comment."
   },
   {
+   "id": "design-doc-mirror",
+   "cmd": [
+    "python3",
+    "tools/design-doc-mirror.py",
+    "--check"
+   ],
+   "stages": [
+    "pre-push"
+   ],
+   "note": "DESIGN-SYSTEM.md and DESIGN-SYSTEM-EMBER.md are gitignored here on purpose \u2014 50d2edea (2026-08-17) untracked them and added the ignore rule in one change, because this repo IS the public site and they would otherwise be served (they 404 there, correctly). That left the design system as two untracked files on one laptop with no history and no backup, so they are mirrored into the private folio-private repo at portfolio-sources/design-system/. This fails when the mirror has drifted from the source. A mirror that drifts is worse than no mirror: the Cream design system's copy at prototypes/cream-system/ is a stale v1.0 import that has to be remembered as stale every time anyone opens it. pre-push only, and it SKIPS rather than fails when portfolio-sources/ is absent \u2014 CI does not check that repo out, the same reason canon-lint cannot see the PDFs that live there."
+  },
+  {
    "id": "draft-note-check",
    "cmd": [
     "python3",
