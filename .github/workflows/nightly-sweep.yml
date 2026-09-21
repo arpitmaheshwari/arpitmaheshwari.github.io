@@ -33,6 +33,12 @@ on:
     - cron: '0 2 * * *'
   workflow_dispatch:
 
+# The default GITHUB_TOKEN is read-only on this repo, so the reporting step below could
+# not file anything. It is granted exactly one extra scope and no more.
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   sweep:
     runs-on: ubuntu-latest
@@ -140,7 +146,11 @@ jobs:
         # concurrency is safe again; the first run of this workflow reported ten
         # homepage contrast failures and predates that fix, so its verdict is being
         # re-taken rather than acted on.
-        run: python3 tools/run-gates.py --stage nightly --parallel 3
+        shell: bash
+        run: |
+          set -o pipefail
+          python3 tools/run-gates.py --stage nightly --parallel 3 2>&1 \
+            | tee "$RUNNER_TEMP/nightly.log"
 
       - name: Fail if a gate left a wrapper file behind
         if: always()
@@ -148,4 +158,58 @@ jobs:
           if ls __al_*.html >/dev/null 2>&1 || ls __al_canary_*.svg >/dev/null 2>&1; then
             echo "::error::a gate left temp files behind — its cleanup path is broken"
             exit 1
+          fi
+
+      # WHY THIS EXISTS (2026-09-22, Arpit: "fix the nightly so failures reach me").
+      # This workflow failed on its schedule for EIGHT consecutive nights, 13-20 Sept, and
+      # nobody looked — the same condition that let the Contrast gate stay red for thirty
+      # pushes. A red run that nobody reads is not a gate, and the defect was never the
+      # checking: it was that a failure had nowhere to arrive. svg-text-size-check had been
+      # red for eight days holding 132 unreadable labels and was found by accident.
+      #
+      # A GitHub issue, not email: email needs an SMTP secret, and the built-in token can
+      # already open an issue. An issue also notifies, persists, and carries a thread.
+      #
+      # ONE issue, reused. Eight red nights must not be eight issues, so a run that fails
+      # comments on the open one if there is one; a run that passes closes it. The issue is
+      # therefore a live status, not a pile — if it is open, the nightly is red right now.
+      - name: Make the result arrive somewhere
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STATUS: ${{ job.status }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          TITLE='Nightly sweep is red'
+          WHEN=$(date -u '+%Y-%m-%d %H:%M UTC')
+          NUM=$(gh issue list --state open --limit 50 --json number,title \
+                  --jq "[.[] | select(.title==\"$TITLE\")] | .[0].number // empty")
+
+          if [ "$STATUS" = 'success' ]; then
+            if [ -n "$NUM" ]; then
+              gh issue close "$NUM" --comment "Green again, $WHEN. $RUN_URL"
+              echo "closed #$NUM — the nightly is green"
+            else
+              echo 'green, and nothing was open'
+            fi
+            exit 0
+          fi
+
+          # the sweep's own summary line, rather than a second opinion about it
+          FAILED=$(grep -hoE '[0-9]+ of [0-9]+ gate\(s\) FOUND A DEFECT:.*' \
+                     "$RUNNER_TEMP/nightly.log" 2>/dev/null | tail -1)
+          [ -n "$FAILED" ] || FAILED='The sweep printed no gate summary: it died before reporting, or an earlier step failed. The run log is the only record.'
+
+          BODY=$(printf '%s\n\n%s\n\n%s\n\n%s\n' \
+            "The nightly sweep failed at $WHEN." \
+            "$FAILED" \
+            "$RUN_URL" \
+            'This issue closes itself when a nightly run passes. While it is open, the nightly is red.')
+
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --body "$BODY"
+            echo "commented on #$NUM"
+          else
+            gh issue create --title "$TITLE" --body "$BODY"
           fi
