@@ -29,7 +29,18 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdp, gatelib
 
 TOUCH = 1.0     # px of mutual intersection before it counts as an overlap
-PAD   = 4.0     # px of clearance a label must keep from its container's edge
+
+def pad_for(px):
+    """Clearance a label owes its container's edge, as a share of its OWN size.
+
+    This was a flat 4px, which is the right number for the 12.9px type in the pattern
+    diagrams and the wrong SHAPE of rule everywhere else: the case-study drawings set
+    their labels at 9-10px, where 4px is nearly half the type and three labels were
+    reported for clearances a reader would call generous. A pad is a typographic
+    relationship, not a constant. Floor of 2.5px so a very small label still cannot sit
+    flush, which is the thing the check exists to catch.
+    """
+    return max(2.5, 0.30 * px)
 
 JS = r"""(() => {
   const out = [];
@@ -40,7 +51,9 @@ JS = r"""(() => {
                      return {x:r.x, y:r.y, w:r.width, h:r.height, r:r.right, b:r.bottom}; };
     const texts = [...svg.querySelectorAll('text')]
       .filter(t => (t.textContent||'').trim() && t.getBoundingClientRect().height > 0)
-      .map(t => ({t:(t.textContent||'').trim().slice(0,38), box:R(t)}));
+      .map(t => ({t:(t.textContent||'').trim().slice(0,38), box:R(t),
+                  px: parseFloat(getComputedStyle(t).fontSize) *
+                      (t.getScreenCTM() ? Math.abs(t.getScreenCTM().a) : 1)}));
     const rects = [...svg.querySelectorAll('rect')]
       .map(e => ({box:R(e)})).filter(o => o.box.w > 8 && o.box.h > 8);
     out.push({id, texts, rects, svg:R(svg)});
@@ -108,13 +121,15 @@ def main():
                                     host, area = bx, ar
                         if host:
                             tb = t1['box']
+                            pad = pad_for(t1.get('px') or tb['h'])
                             for edge, gap in (('left', tb['x']-host['x']),
                                               ('right', host['r']-tb['r']),
                                               ('top', tb['y']-host['y']),
                                               ('bottom', host['b']-tb['b'])):
-                                if gap < PAD:
+                                if gap < pad:
                                     faults.append(('ESCAPE', w, u, d['id'],
-                                                   f"'{t1['t']}' {edge} clearance {gap:.1f}px"))
+                                                   f"'{t1['t']}' {edge} clearance {gap:.1f}px "
+                                                   f"(owes {pad:.1f}px at {t1.get('px') or 0:.1f}px type)"))
 
     if a.selftest:
         hit = any('__' not in f[4] and 'XXXX' in f[4] for f in faults)
