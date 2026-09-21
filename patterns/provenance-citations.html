@@ -214,6 +214,21 @@
  .n-card{fill:#181510;stroke:#8A6E3E;stroke-width:1}
  .n-band{fill:#1E1A12;stroke:#D4A85E;stroke-width:1}
  .n-node{fill:#0A0A0A;stroke:#D4A85E;stroke-width:1.5}
+ /* DYSLEXIA MODE HAS TO REACH INSIDE THE DRAWING. The site swaps every face with
+    body.dyslexia-mode *{font-family:'Atkinson Hyperlegible'...} in @layer components,
+    but an inlined SVG carries its own style element and an UNLAYERED rule outranks
+    every layer -- NO ANGLE BRACKETS IN THIS BLOCK, not even inside a comment: the
+    landscape drawing carries the same warning and I wrote one anyway. The parser
+    stopped at it and silently dropped every rule after, so this very rule existed in
+    the served HTML, matched 23 elements by querySelectorAll, and never applied. 14 of
+    15 rules parsed. Check sheet.cssRules.length, not the file text.
+    So the page changed and these nine drawings stayed in Georgia. Found by
+    exploratory testing on the live site, 2026-09-21: toggling the mode at 390px moved
+    body and prose to Atkinson and left the diagram untouched. That matters more here
+    than anywhere: these drawings exist FOR the narrow viewport, and a reader who turns
+    on a legibility mode is exactly the reader they were built for.
+    Scoped to .art-narrow so it cannot leak to the rest of the document. */
+ body.dyslexia-mode .art-narrow text{font-family:'Atkinson Hyperlegible','Source Sans 3',sans-serif;letter-spacing:.03em}
 </style>
 <rect x="-16" y="-16" width="392" height="552" fill="#0A0A0A"/>
 <text class="n-ttl" x="0" y="24">Provenance &amp; Citations</text>
