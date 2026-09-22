@@ -6846,4 +6846,25 @@ body.p-home .bcard:hover .bcard-go{color:var(--a)}
   .artalt--drawn{margin-inline:calc(50% - 50vw + 16px);width:calc(100vw - 32px)}
   .artalt--drawn > svg.art-narrow{max-width:none}
 }
+
+/* ── RULE DENSITY: three devices that are correct wide and become a ladder narrow ──
+   rule-density-check, 2026-09-22. Not thresholds being appeased: each of these is one
+   separator repeated inside a single band once the layout stacks.
+
+   1. #patterns' three columns each carry a 3px coloured top rule. Side by side that is a
+      card device and reads correctly. Stacked on a phone the three become a ladder of
+      thick amber, violet and copper bars 125px apart. The colour CODES the column, so it
+      stays — as a short tab rather than a full-width rule, which is also under the 40%
+      span the gate counts as a rule at all.
+   2. #thoughts separates its intro from the list with a rule AND 40px of space. On a
+      phone that is five rules in the band; the space alone already does the work.
+   3. writing/'s two blocks are divided by a rule as well as 64px of margin, and they are
+      now two bands rather than one, so the rule is the redundant half.
+   (2026-09-22) */
+@media (max-width:768px){
+  body.p-home .col{border-top:0;padding-top:0}
+  body.p-home .col::before{content:"";display:block;width:40px;height:3px;background:var(--cc);margin-bottom:14px}
+  body.p-home #thoughts .ixw{border-top:0;padding-top:0}
+}
+.xi-writing-015{border-top:0}
 }
