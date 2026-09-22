@@ -76,21 +76,31 @@ def main():
                             selector='[data-cascade-probe="1"]')['nodeId']
                 m = b.cmd('CSS.getMatchedStylesForNode', nodeId=nid)
                 print('  declarations setting `color`, in cascade order (LAST WINS):')
-                any_rule = False
+                any_rule, winners = False, []
                 for entry in m.get('matchedCSSRules', []):
                     rule = entry['rule']
                     for p in rule['style'].get('cssProperties', []):
                         if p['name'] == 'color' and p.get('text'):
                             any_rule = True
                             sheet = rule.get('styleSheetId', '')
+                            winners.append(f"{rule['selectorList']['text'][:40]}{{{p['text'][:30]}}}")
                             print(f"    {rule['selectorList']['text'][:58]:60s} {p['text'][:34]:36s} sheet={sheet}")
                 inline = m.get('inlineStyle') or {}
                 for p in inline.get('cssProperties', []):
                     if p['name'] == 'color':
                         any_rule = True
+                        winners.append(f"inline{{{p.get('text','')[:30]}}}")
                         print(f"    {'(inline style attribute)':60s} {p.get('text', '')[:34]}")
                 if not any_rule:
                     print('    none — the colour is inherited')
+                # A DIAGNOSTIC NOBODY CAN READ IS NOT A DIAGNOSTIC. A workflow's log needs
+                # auth; its check annotations do not, and that is how the ten phantom
+                # readings were read in the first place. The answer goes in an annotation.
+                winner = winners[-1] if winners else '(inherited)'
+                note = (f"{page} '{text[:28]}' computed={info['color']} "
+                        f"winner={winner} "
+                        + ' '.join(f'{k}={v}' for k, v in info['vars'].items()))
+                print('::notice title=cascade-probe::' + note.replace('\n', ' '))
         except Exception as e:                       # a diagnosis never reddens a build
             print(f'  probe failed: {type(e).__name__}: {e}')
     print('\nCANNOT SEE: what the runner PAINTS — this reads the cascade, not pixels.')
