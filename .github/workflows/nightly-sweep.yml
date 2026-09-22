@@ -115,6 +115,20 @@ jobs:
           python3 tools/alpha-probe.py "What the two weeks held" || true
           python3 tools/alpha-probe.py "Send me the role" || true
 
+      # THE STEP THE NOTE ASKED FOR. gates.json has said since 2026-09-05 that the next
+      # move on the ten phantom contrast failures is to "dump the WINNING declaration for
+      # one of these anchors on the runner (getMatchedCSSRules order / stylesheet load
+      # order), not another alpha hypothesis". It was never run, because it needs the
+      # runner. Locally the winner is .xi-process-020{color:var(--accent-text)} resolving
+      # to rgb(144,92,12) — 4.884:1, well over the floor, while this runner grades the
+      # same glyphs at 4.42. A different winner here, or the same winner resolving to a
+      # different value, is the answer; an identical dump exonerates the cascade and
+      # leaves the un-blend arithmetic as the only suspect left.
+      # Non-blocking, like the two probes above: a diagnosis must never redden a build.
+      - name: Diagnose — which colour declaration wins on the runner
+        continue-on-error: true
+        run: python3 tools/cascade-probe.py
+
       # Re-fired 2026-09-05 (fourth time) with the pixel-SELECTION step rewritten. The
       # camera calibration came back green, which exonerated frame geometry and left
       # exactly one suspect: the audit chose the 10th-percentile WORST ratio among every
