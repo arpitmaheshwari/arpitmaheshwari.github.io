@@ -172,6 +172,20 @@ def main():
             bad.append(f"{s}: pages disagree about the version — {detail}. "
                        f"Run: python3 tools/bump-css-version.py {s}")
         prev = state.get(s)
+        # A RECORD CAPTURED MID-BUILD IS NOT EVIDENCE. The version is the stamp the pages
+        # carry and build-css derives it from the file's own hash, so a healthy record
+        # always has version == hash[:8] (amber, book and fonts all do). A run that lands
+        # between build-css writing the file and build-partials restamping the pages
+        # records the OLD stamp against the NEW hash — a pair that cannot be true — and
+        # because this gate refuses to record a failing state, that pair then deadlocks it
+        # the moment a later hash happens to start with the stale version. That is not
+        # hypothetical: it blocked a push on 2026-09-22 and again on 2026-09-24, and the
+        # only way out was to edit the stylesheet until its hash changed prefix. A record
+        # that violates the invariant is discarded rather than compared against.
+        if prev and prev.get("version") != prev.get("hash", "")[:8]:
+            print(f"  {s}: discarding a mid-build record "
+                  f"(v={prev.get('version')} against hash={prev.get('hash','')[:8]}…)")
+            prev = None
         stale = stale_rule(prev, v, h)
         if stale:
             bad.append(f"{s}: content changed but ?v={v} did not — browsers will serve the old file")

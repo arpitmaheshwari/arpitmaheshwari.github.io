@@ -6860,10 +6860,19 @@ body.p-home .bcard:hover .bcard-go{color:var(--a)}
       phone that is five rules in the band; the space alone already does the work.
    3. writing/'s two blocks are divided by a rule as well as 64px of margin, and they are
       now two bands rather than one, so the rule is the redundant half.
-   (2026-09-22) */
-@media (max-width:768px){
+   (2026-09-22)
+
+   BOTH BREAKPOINTS ARE THE COMPONENT'S OWN, not a round number. A single
+   max-width:768px was wrong twice: .cols stack at 640, so 641-768 rendered three
+   side-by-side columns wearing the stacked treatment; and #thoughts .ixw is single
+   column up to 860 (above 861 its rule is already removed at ~2421), so 769-860 kept
+   the ladder. rule-density-check samples 1440 and 390 and can see neither band —
+   testing two widths is not testing the range between them. */
+@media (max-width:640px){
   body.p-home .col{border-top:0;padding-top:0}
   body.p-home .col::before{content:"";display:block;width:40px;height:3px;background:var(--cc);margin-bottom:12px}
+}
+@media (max-width:860px){
   body.p-home #thoughts .ixw{border-top:0;padding-top:0}
 }
 .xi-writing-015{border-top:0}

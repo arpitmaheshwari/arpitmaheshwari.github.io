@@ -326,15 +326,23 @@ def act_review_ignore():
     a.text('signals named · safe to run', 'n-cap', x=16, dy=20)
     a.text('Apply', 'n-act', x=16, dy=20); a.text('Override ↶', 'n-act', x=86, dy=0)
     a.y += 20
-    a.card(118, dy=14)
+    # The Review card holds TWO bullets in the landscape original. This one used to be
+    # emitted after the card closed and at the outer margin, so it landed in the gap
+    # between Review and Ignore reading as a stray line — and it starts with the same
+    # em-dash as the bullet inside the card, which is what makes it look wrong rather
+    # than like the group captions elsewhere in these drawings. The card grows to hold
+    # it; card() takes a fixed height and does not stretch to its contents.
+    a.card(156, dy=14)
     a.text('Score 61 · mixed', 'n-cap', x=16, dy=24)
     a.text('→ Review', 'n-mv', x=16, dy=26)
     a.text('reasons on the card,', 'n-cap', x=16, dy=20)
     a.text('not a tooltip:', 'n-cap', x=16, dy=16)
     a.text('— recency conflict, panels 12 & 14', 'n-cap', x=16, dy=18)
-    a.y += 24
-    a.text('— surfaced for a human · never auto-run', 'n-cap', dy=22)
-    a.card(60, dy=16)
+    # wraps, because at x=16 the single line overran the card's right edge by 6u —
+    # measured, not eyeballed. Same break the landscape drawing uses.
+    a.text('— surfaced for a human ·', 'n-cap', x=16, dy=18)
+    a.text('never auto-run', 'n-cap', x=16, dy=18)
+    a.card(60, dy=50)
     a.text('Score 23 · low', 'n-cap', x=16, dy=24)
     a.text('Ignore', 'n-mv', x=16, dy=26)
     a.y += 26
