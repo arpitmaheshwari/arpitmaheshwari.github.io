@@ -112,8 +112,25 @@ jobs:
       - name: Diagnose — alpha recovery on the runner
         continue-on-error: true
         run: |
-          python3 tools/alpha-probe.py "What the two weeks held" || true
-          python3 tools/alpha-probe.py "Send me the role" || true
+          # POINTED AT THE ANCHORS THAT ACTUALLY FAIL HERE. It used to probe two homepage
+          # strings that no longer exist, so it bailed before printing and its annotation
+          # never appeared — three weeks of a diagnostic that ran and said nothing.
+          #
+          # The cascade is now ruled out: cascade-probe prints the same winning
+          # declaration and the same #905C0C on this runner as on macOS, so both machines
+          # agree what colour the text IS. What differs is what contrast-audit recovers
+          # from the painted pixels, and it recovers LIGHTER — and lighter by an amount
+          # that tracks text size (#9A5C06 at 12px/390, #A45705 at 12px/1440, #A45C05 at
+          # 18px). That is the signature of coverage, not of colour.
+          #
+          # THE NUMBER THAT SETTLES IT is `max` in the alpha distribution. On macOS these
+          # glyphs reach alpha=1.000 and recovery returns #905C0C exactly, ratio 4.88. If
+          # max is below 1 here, no pixel is ever fully inked, every recovery is an
+          # extrapolation from a blend, and the ink comes back light — which is the whole
+          # phantom, and a property of Linux glyph rasterisation rather than of the site.
+          python3 tools/alpha-probe.py "the pattern library" http://localhost:8000/lab/loop.html 1440 || true
+          python3 tools/alpha-probe.py "Get AI design patterns in your inbox" http://localhost:8000/patterns/act-review-ignore.html 1440 || true
+          python3 tools/alpha-probe.py "My role" http://localhost:8000/case-studies/o2.html 1440 || true
 
       # THE STEP THE NOTE ASKED FOR. gates.json has said since 2026-09-05 that the next
       # move on the ten phantom contrast failures is to "dump the WINNING declaration for
