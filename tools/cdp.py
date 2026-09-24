@@ -92,6 +92,22 @@ class Browser:
             [CHROME, "--headless=new", f"--remote-debugging-port={self.port}",
              f"--user-data-dir={self.profile}", "--no-first-run",
              "--remote-allow-origins=*", "--hide-scrollbars",
+             # GREYSCALE ANTIALIASING, SO EVERY MACHINE PAINTS THE SAME PIXELS.
+             # 2026-09-25, and it closes a question open since 2026-09-05. The Linux
+             # runner reported ten hairline contrast failures that never reproduced here.
+             # cascade-probe ruled out the cascade: it resolves the same declaration to
+             # the same #905C0C there. alpha-probe then ruled out coverage: max alpha is
+             # 1.000 on the runner too, so glyphs DO fully ink. What it also printed is
+             # the answer — the core pixels of one glyph read (144,92,12), (147,92,12),
+             # (150,92,12), (156,92,12), (144,92,44), and the magenta key frame came back
+             # (254,0,255) and (255,0,251) rather than pure magenta. Channels rasterised
+             # at different coverage is SUBPIXEL (LCD) text antialiasing; macOS headless
+             # uses greyscale, where the core pixels are exact. contrast-audit recovers
+             # ink by un-blending against that key, so per-channel fringing walks the
+             # recovered colour lighter, and further at small sizes where edge pixels
+             # dominate. Measured: this flag changes ZERO pixels on macOS, so it costs
+             # nothing here and makes the runner render the way the arithmetic assumes.
+             "--disable-lcd-text",
              "--force-device-scale-factor=1", NO_TRACKING_FLAG,
              # A GitHub runner runs as root in a container: Chrome refuses to start
              # without --no-sandbox, and /dev/shm is 64MB there, which crashes the
@@ -135,6 +151,10 @@ class Browser:
                     [CHROME, "--headless=new", f"--remote-debugging-port={self.port}",
                      f"--user-data-dir={self.profile}", "--no-first-run",
                      "--remote-allow-origins=*", "--hide-scrollbars",
+                     # the retry path renders like the first one or it is worse than
+                     # useless: a browser that only sometimes uses greyscale AA turns a
+                     # reproducible reading into an intermittent one
+                     "--disable-lcd-text",
                      "--force-device-scale-factor=1", NO_TRACKING_FLAG,
                      "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu",
                      *extra_flags, "about:blank"],
