@@ -1,0 +1,68 @@
+#!/bin/sh
+# Derive BEFORE the commit, so the pre-push gates never block on bookkeeping.
+#
+# WHY THIS EXISTS (2026-09-25). Three pushes in a row were blocked by the pre-push
+# gates — not on a design defect, but on derived files that were simply out of date:
+# sitemap.xml's <lastmod>, and the Lab's published stylesheet size. Both are computed
+# from the repo by a tool that already exists. Blocking a push to make a human run
+# that tool by hand is the wrong order: DERIVE at commit time, VERIFY at push time.
+# A gate should catch what a build cannot fix, not the thing the build forgot to run.
+#
+# Rules, deliberately:
+#   * FAIL-OPEN. A missing builder or a builder that errors must never block a commit;
+#     the pre-push gates still have the final say. This hook is a convenience, not a
+#     guard.
+#   * ONLY stages files the builders themselves rewrote, and only tracked ones —
+#     never `git add -A`, which has swept a planted canary into a commit before.
+#   * Runs only when something it can affect is staged.
+#   * Escape hatch: SKIP_DERIVE=1 git commit
+#
+# NOT auto-fixable, and so still a pre-push block: tools/teardown-facts.py only
+# MEASURES. The Lab states its numbers in prose, which a human has to edit. That is
+# correct — a sentence about a measurement should not be rewritten by a script.
+
+set -u
+
+[ "${SKIP_DERIVE:-0}" = "1" ] && { echo "pre-commit: derive skipped (SKIP_DERIVE=1)"; exit 0; }
+
+ROOT=$(git rev-parse --show-toplevel) || exit 0
+cd "$ROOT" || exit 0
+
+# Nothing staged that these builders read? Then there is nothing to derive.
+STAGED=$(git diff --cached --name-only 2>/dev/null)
+case "$STAGED" in
+  *partials/*|*css/site/*|*.html|*data/*) ;;
+  *) exit 0 ;;
+esac
+
+# The builders are not commutative: build-pages can emit markup that build-partials
+# then rewrites, and either can move a date that build-sitemap reads. Iterate to a
+# fixpoint rather than assuming one pass settles it. Three is the observed ceiling;
+# the loop exits as soon as a pass changes nothing.
+BEFORE=""
+i=0
+while [ $i -lt 3 ]; do
+  for t in build-css build-pages build-partials build-sitemap; do
+    [ -f "tools/$t.py" ] && python3 "tools/$t.py" >/dev/null 2>&1
+  done
+  AFTER=$(git status --porcelain 2>/dev/null)
+  [ "$AFTER" = "$BEFORE" ] && break
+  BEFORE="$AFTER"
+  i=$((i + 1))
+done
+
+# Stage only what the builders rewrote, and only files git already tracks. An
+# untracked file appearing mid-build is a scratch artifact or a planted probe,
+# and it does not belong in the commit.
+CHANGED=$(git diff --name-only 2>/dev/null)
+[ -z "$CHANGED" ] && exit 0
+
+printf '%s\n' "$CHANGED" | while IFS= read -r f; do
+  [ -n "$f" ] || continue
+  git ls-files --error-unmatch -- "$f" >/dev/null 2>&1 && git add -- "$f"
+done
+
+echo "pre-commit: derived files refreshed and staged:"
+printf '%s\n' "$CHANGED" | sed 's/^/           /'
+
+exit 0
