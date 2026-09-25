@@ -6890,4 +6890,16 @@ body.p-home .bcard:hover .bcard-go{color:var(--a)}
 .fit-skip{margin:0 0 20px}
 .fit-skip a{font-family:var(--ff-label,var(--ff-mono));font-size:var(--fs-ui);font-weight:600;color:var(--accent-text)}
 @media (min-width:1024px){.fit-skip{display:none}}
+
+/* HERO EYEBROW — TWO LINES ON PURPOSE (2026-09-26, Arpit's call).
+   As one run-on string it wrapped at 1440 and stranded the single word "ships"
+   on its own line — an orphan, and the kind of thing no per-element gate sees.
+   The break is now structural, not a wrap: each .rl-l is its own block, so the
+   two halves stay two halves at every width instead of re-breaking wherever the
+   column happens to end. Line two is sentence-capped because it is a sentence of
+   its own now, not a trailing clause.
+   Leading is declared here rather than inherited: this is a component and a
+   component states its own critical properties. 1.45 clears the <18px floor of
+   1.40, and it only matters at all because this text now always wraps. */
+.role-line .rl-l{display:block;line-height:1.45}
 }
