@@ -134,9 +134,52 @@ facts={
  "trustlint_rules": len(re.findall(r"\{\s*id:\s*'",open(os.path.join(R,'lab/trustlint.js')).read())),
 }
 facts["stylesheet_kb"]=round(facts["stylesheet_bytes"]/1024,1)
+facts["stylesheet_gzip_kb"]=round(facts["stylesheet_gzip"]/1024,1)
 
 WORD = {1:'one',2:'two',3:'three',4:'four',5:'five',6:'six',7:'seven',8:'eight',
         9:'nine',10:'ten',11:'eleven',12:'twelve'}
+
+# ─── --sync ────────────────────────────────────────────────────────────────────
+# WHY (2026-09-26). Three pushes in four days were blocked here, each time because a
+# CSS edit moved the stylesheet size by under a kilobyte and the Lab still published
+# last week's reading. Every one of those blocks was correct and every one was fixed
+# by a human retyping a number a tool had just measured.
+#
+# The sentence is Arpit's; the figure inside it is a READING. Those are separable, and
+# only the reading is the machine's business. A figure a tool may refresh is marked in
+# the SOURCE partial as <span data-fact="KEY">…</span>; --sync rewrites the text inside
+# those spans and touches nothing else — not a word, not the punctuation, not an
+# unmarked number. A number nobody marked stays a human's problem, deliberately: a new
+# claim should be read by a person before a script starts maintaining it.
+#
+# Editing the partial rather than the built page is the point. The builders propagate
+# it, so the page and its source can never disagree.
+FMT = {
+    "stylesheet_kb":      lambda v: f"{v}",
+    "stylesheet_gzip_kb": lambda v: f"{v}",
+    "stylesheet_bytes":   lambda v: f"{v:,}",
+}
+if '--sync' in sys.argv:
+    import glob
+    changed = []
+    for src in sorted(glob.glob(os.path.join(R, 'partials', 'pages', 'lab', '*.html'))):
+        body = open(src, encoding='utf-8').read()
+        before = body
+        # A key with no formatter, or no measurement, is left exactly as written.
+        body = re.sub(
+            r'(?s)(<span data-fact="([a-z_]+)"\s*>)(.*?)(</span>)',
+            lambda m: (m.group(1) + FMT[m.group(2)](facts[m.group(2)]) + m.group(4)
+                       if m.group(2) in FMT and m.group(2) in facts else m.group(0)),
+            body)
+        if body != before:
+            open(src, 'w', encoding='utf-8').write(body)
+            changed.append(os.path.relpath(src, R))
+    marked = sum(len(re.findall(r'<span data-fact="', open(f, encoding='utf-8').read()))
+                 for f in glob.glob(os.path.join(R, 'partials', 'pages', 'lab', '*.html')))
+    print(f"  {marked} marked figure(s); {len(changed)} file(s) rewritten"
+          + (": " + ", ".join(changed) if changed else ""))
+    print("  Unmarked numbers are untouched by design — they are read by a human, not a script.")
+    sys.exit(0)
 
 if '--check' in sys.argv:
     # Check EACH page separately. The first version concatenated both files, so a stale
@@ -186,8 +229,19 @@ if '--check' in sys.argv:
 
     for path,checks in expect.items():
         page=open(os.path.join(R,path),encoding='utf-8').read().replace('&nbsp;',' ')
+        # TWO VIEWS OF THE SAME PAGE, and both are needed.
+        # Since 2026-09-26 the volatile figures are wrapped in <span data-fact> so
+        # --sync can refresh them. Against RAW html the needle '613.6 KB' then stops
+        # matching, so a stale number would go green forever. But stripping tags
+        # breaks the other direction: 'html pages' is checked as '>41<', which IS
+        # markup and vanishes the moment tags are removed. Stripping globally turned
+        # three green checks red the first time I tried it.
+        # So: a needle passes if it appears in EITHER view, and the contradiction
+        # scan — which reads a sentence — runs on the text a reader actually sees.
+        text=re.sub(r'<[^>]+>','',page)
         for label,needle in checks:
-            if needle.replace('&nbsp;',' ') not in page:
+            n=needle.replace('&nbsp;',' ')
+            if n not in page and n not in text:
                 bad.append(f"{path}: {label} — reality is {needle}, page does not say it")
         # CONTRADICTION check (added 2026-08-12). The presence checks above only ask
         # "does the right number appear SOMEWHERE" — so a WRONG copy of the same number
@@ -197,7 +251,7 @@ if '--check' in sys.argv:
         # to 60.5 KB — the 170%-wrong figure the docstring above says was already fixed,
         # still being served to Google and every social share. Scan for EVERY claim of
         # the stylesheet's size and require each one to match reality.
-        for m in re.finditer(r'(\d[\d.]*)\s*KB stylesheet', page):
+        for m in re.finditer(r'(\d[\d.]*)\s*KB stylesheet', text):
             if m.group(1) != str(facts['stylesheet_kb']):
                 bad.append(f"{path}: contradictory stylesheet size — page says "
                            f"{m.group(1)} KB, reality is {facts['stylesheet_kb']} KB")

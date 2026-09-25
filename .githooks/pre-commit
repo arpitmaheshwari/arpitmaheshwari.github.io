@@ -17,9 +17,13 @@
 #   * Runs only when something it can affect is staged.
 #   * Escape hatch: SKIP_DERIVE=1 git commit
 #
-# NOT auto-fixable, and so still a pre-push block: tools/teardown-facts.py only
-# MEASURES. The Lab states its numbers in prose, which a human has to edit. That is
-# correct — a sentence about a measurement should not be rewritten by a script.
+# 2026-09-26, same day: the Lab's stylesheet size joined the list. It had blocked
+# three pushes in four days, every time because a CSS edit moved it by under a
+# kilobyte. The sentence around the figure is Arpit's and no script touches it; the
+# FIGURE is a reading, and readings are the machine's job. Marked figures carry
+# <span data-fact="KEY"> in the source partial. An UNMARKED number stays a human's
+# problem on purpose — a new claim should be read by a person before a script starts
+# maintaining it, and it still blocks at push time.
 
 set -u
 
@@ -42,6 +46,10 @@ esac
 BEFORE=""
 i=0
 while [ $i -lt 3 ]; do
+  # teardown-facts --sync runs FIRST and only rewrites the text inside a
+  # <span data-fact> in the lab partials — the reading, never the sentence. It
+  # must precede the builders so the refreshed figure is what gets built.
+  [ -f "tools/teardown-facts.py" ] && python3 tools/teardown-facts.py --sync >/dev/null 2>&1
   for t in build-css build-pages build-partials build-sitemap; do
     [ -f "tools/$t.py" ] && python3 "tools/$t.py" >/dev/null 2>&1
   done
