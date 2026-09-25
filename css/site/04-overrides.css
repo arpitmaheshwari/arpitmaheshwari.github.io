@@ -2534,4 +2534,11 @@ body.p-home .bcard:hover .bcard-go{color:var(--a)}
   body.p-home #thoughts .ixw{border-top:0;padding-top:0}
 }
 .xi-writing-015{border-top:0}
+
+/* The fit page is a TOOL, not an article: its control sits 3,262px down at 390px and
+   the contents card that links to it is desktop-only by design (ia-rail.js). This is
+   the phone's route to it, and it disappears exactly where the rail takes over. */
+.fit-skip{margin:0 0 20px}
+.fit-skip a{font-family:var(--ff-label,var(--ff-mono));font-size:var(--fs-ui);font-weight:600;color:var(--accent-text)}
+@media (min-width:1024px){.fit-skip{display:none}}
 }

@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
-<link rel="stylesheet" href="../site.css?v=ec8e0410">
+<link rel="stylesheet" href="../site.css?v=ec987c2d">
 
 <script defer src="../analytics.js?v=4f9aa0a0" data-cfasync="false"></script>
 
@@ -64,6 +64,13 @@
       <div class="lh-l">
       <p class="lab-kicker">Fit check</p>
       <h1 class="section-title">Paste the role. It answers with evidence, or says it can&rsquo;t.</h1>
+      <!-- A ROUTE TO THE TOOL ON A PHONE. ia-rail.js does not render the rail below
+           1024px — "a phone reads the page in source order" — which is right for the
+           sixteen article pages and wrong for the one page that is a TOOL. Measured:
+           the paste box sits 3,262px down at 390px, behind 314 words, and on a phone
+           there was no link to it anywhere on the first screen while desktop had one
+           in the contents card. Plain anchor, no script, hidden where the rail exists. -->
+      <p class="fit-skip"><a href="#h-input">Skip to the paste box &rarr;</a></p>
       <p class="lab-lede">Every portfolio argues it is a fit for everything. This one will tell you where it isn&rsquo;t. Paste a job description and it matches your words against an index built from the pages of this site &mdash; <strong>each claim comes with the page you can check it on</strong>, and every term it recognises but cannot back up is listed as exactly that. It knows 275 terms; a requirement outside them is not matched, and not counted against him either.</p>
       <div class="lab-note">
         <b>It matches. It does not generate.</b> There is no model here and no text is written on the fly. It is a lexicon and a fixed index, both readable in <a href="/data/fit-index.json">the JSON it loads</a>. That is deliberate: a tool that made up an answer about someone&rsquo;s experience would be the exact failure the rest of this site is about.
