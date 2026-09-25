@@ -3469,7 +3469,14 @@ body.p-case-studies-planit .mascot-row .mascot{width:auto;max-width:none;margin:
    components here deliberately declare their own family rather than inherit.
    Code keeps its monospace: distinguishing l/1/O/0 is the whole point there. */
 body.dyslexia-mode,
-body.dyslexia-mode *:not(code):not(pre):not(kbd):not(samp):not(code *):not(pre *){font-family:'Atkinson Hyperlegible','Source Sans 3',sans-serif;letter-spacing:.03em;word-spacing:.1em}
+/* A READER'S ACCESSIBILITY PREFERENCE OUTRANKS THE DESIGN. Measured 2026-09-25:
+   without !important this rule reached only 76-92% of the text on a page. Anything
+   whose font-family is set by a more specific selector kept its original face — the
+   nav on every page, every .eyebrow and .lbl-cap, .case-hero__kicker, and on the
+   homepage .hero-stake, which is the single sentence the site is built around. A
+   dyslexic reader turned the feature on and the hardest-to-read lines did not move.
+   Code, pre, kbd and samp stay excluded: monospace IS the meaning there. */
+body.dyslexia-mode *:not(code):not(pre):not(kbd):not(samp):not(code *):not(pre *){font-family:'Atkinson Hyperlegible','Source Sans 3',sans-serif !important;letter-spacing:.03em !important;word-spacing:.1em}
 /* .section-title rendered at 1.15 on 139 elements and 1.30 on 54 — the 1.30
    coming from per-page .xi-* classes in @layer utilities, which outrank the
    design system in @layer base. Arpit's call: 1.15, the system's own answer.
