@@ -55,7 +55,8 @@
        at every viewport it is shown at, so a 692-unit viewBox renders at scale 1.000
        and a 14px label reaches the reader at 14px. The previous board was 1280 units
        in the same 692px, a scale of 0.539, which painted its 13px labels at 7.00px. */
-    #art-index-1 .ttl{font-family:Georgia,'Times New Roman',serif;font-size:24px;fill:#F2EDE4}
+    /* THESE SIX SIZES STAY IN px, DELIBERATELY (2026-09-26). Everything else on the site moved to reader-relative units so a person who enlarges their text gets larger text. These do not, because they are labels inside a drawing: an SVG is laid out in its own coordinate system, and a label that grows while the boxes, rules and arrows around it do not is a label that leaves its box. That is the exact defect art-collision-check exists to catch. A diagram scales as a picture, with the artboard — which it already does at every width. Do not 'finish the conversion' here. */
+#art-index-1 .ttl{font-family:Georgia,'Times New Roman',serif;font-size:24px;fill:#F2EDE4}
     #art-index-1 .act{font-family:ui-monospace,'Courier New',monospace;font-size:15px;letter-spacing:0.2px;fill:#D4A85E}
     #art-index-1 .cap{font-family:ui-monospace,'Courier New',monospace;font-size:14px;letter-spacing:0.2px;fill:#A89B84}
     #art-index-1 .mv{font-family:Georgia,'Times New Roman',serif;font-size:20px;fill:#F2EDE4}
