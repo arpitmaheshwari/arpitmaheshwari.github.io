@@ -1879,7 +1879,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "Your AI model is right. Your users still won’t bet on it. That half-second of doubt is the only thing I design. Product & Design Lead for AI & LLM products — definition, roadmap, and the interface that ships. Open to a hands-on director seat. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
+    }, "Six systems became one platform. Product & Design Lead for AI & LLM products — definition, roadmap, and the interface that ships. Open to a hands-on director seat. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-social",
       style: {
         marginTop: 24

@@ -65,10 +65,10 @@ REG = [
     #     a defect no text gate can ever see, on the site's most-shared image. It keeps its
     #     own scale and its italic gold clause (hero=1, em=...) rather than being flattened
     #     into the generic card; kicker chosen by Arpit on 2026-08-30 from three renders.
-    ("home-og.png", "STAFF / PRINCIPAL PRODUCT DESIGNER \u00b7 AI & LLM PRODUCTS",
-     "Your AI model is right. Your users still won\u2019t bet on it.", "",
+    ("home-og.png", "FOUNDING / STAFF PRODUCT DESIGNER \u00b7 AI PRODUCTS",
+     "Six systems became one platform.", "",
      "Arpit Maheshwari \u00b7 arpitmaheshwari.com",
-     {"hero": "1", "em": "won\u2019t bet on it."}),
+     {"hero": "1", "em": "one platform."}),
     # --- essays. The four essay cards were hand-made and outside this generator until
     #     2026-08-30, when the confidence-scoring essay was rewritten to the attested AdTech
     #     story and its card still carried the retired "How I Design Confidence Scores"
@@ -182,8 +182,22 @@ def render(out_name, kicker, title, subtitle, byline, docroot, extra=None):
     args = [CHROME, "--headless=new", NO_TRACKING_FLAG, "--disable-gpu", "--hide-scrollbars",
             "--window-size=1200,630", "--virtual-time-budget=4000",
             f"--screenshot={out_path}", url]
+    before = os.path.getmtime(out_path) if os.path.exists(out_path) else 0
     r = subprocess.run(args, capture_output=True, text=True, timeout=60)
-    ok = r.returncode == 0 and os.path.exists(out_path)
+    # JUDGE THE ARTIFACT, NOT THE EXIT CODE (2026-09-26).
+    # Chrome on this machine writes the screenshot correctly and THEN dies in teardown
+    # ("Teardown watchdog expired"), exiting non-zero. Reading that as failure reported
+    # "0/32 cards rendered" through five consecutive runs while every file on disk was
+    # being written correctly — an instrument declaring a verdict about work it did not
+    # measure. What matters is whether a plausible PNG was produced by THIS run: it
+    # exists, it is big enough to contain a card, and its timestamp moved. A stale file
+    # left by an earlier run no longer counts as a pass.
+    fresh = os.path.exists(out_path) and os.path.getmtime(out_path) > before
+    big_enough = fresh and os.path.getsize(out_path) > 5000
+    ok = fresh and big_enough
+    if ok and r.returncode != 0:
+        print(f"      (chrome exited {r.returncode} after writing the file \u2014 teardown "
+              f"noise, not a render failure)")
     return ok, out_path
 
 
@@ -197,6 +211,14 @@ def serve(docroot):
         pass
     os.chdir(docroot)
     handler = http.server.SimpleHTTPRequestHandler
+    # ALLOW THE PORT TO BE REUSED. Without this, socketserver refuses to bind for about a
+    # minute after ANY previous server on 8000 closes — the socket sits in the OS's
+    # TIME_WAIT window — and every other tool in this repo serves on 8000. On 2026-09-26
+    # that made this generator fail five times in a row with "Address already in use"
+    # while lsof showed nothing listening, which reads like a mystery and is just a
+    # missing flag. The failure mode is worse than an error: it reported "0/32 cards
+    # rendered" and exited 0, so a caller that trusts exit codes ships stale cards.
+    socketserver.TCPServer.allow_reuse_address = True
     httpd = socketserver.TCPServer(("", 8000), handler)
     t = threading.Thread(target=httpd.serve_forever, daemon=True)
     t.start()
@@ -245,6 +267,9 @@ def main():
             if ok:
                 ok_count += 1
         print(f"\n{ok_count}/{len(REG)} cards rendered.")
+        if ok_count == 0:
+            print("  NOTHING RENDERED. This is the instrument failing, not the cards being "
+                  "fine \u2014 do not read a clean run into it.")
         sys.exit(0 if ok_count == len(REG) else 1)
     finally:
         if httpd:
