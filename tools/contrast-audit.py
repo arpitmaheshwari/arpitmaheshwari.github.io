@@ -831,6 +831,9 @@ def main():
     ap.add_argument("--all", action="store_true",
                     help="discover every shipped page from git and check all of them")
     ap.add_argument("--widths", default="1440,1024,768")
+    ap.add_argument("--jobs", type=int, default=4,
+                    help="page measurements to run at once. Each takes its own browser "
+                         "and its own temp profile; 1 restores the old serial order.")
     ap.add_argument("--exempt", default=None,
                     help='CSS selector for WCAG 1.4.3-exempt text, e.g. ".logo, .wordmark"')
     ap.add_argument("--docroot", default=os.getcwd(),
@@ -865,6 +868,36 @@ def main():
         if a.selftest:
             sys.exit(0)
 
+    # MEASURE IN PARALLEL, REPORT IN ORDER.
+    # Timed 2026-09-26: this gate was 1,189.9s of a 1,195s pre-push suite — it WAS the
+    # suite, and every other gate finished inside its shadow. The cost is not the
+    # arithmetic, which is three lines; it is 88 sequential Chrome launches (44 pages x
+    # 2 widths), each paying startup, navigation and a settle before a single pixel is
+    # read. That is waiting, not working, and waiting is the one cost you can overlap
+    # without giving up a single measurement.
+    #
+    # Safe to overlap because audit() is self-contained: it opens its OWN browser, and
+    # cdp.Browser already takes a fresh temp profile and an OS-assigned free port per
+    # instance — the shared-profile lock that silently broke parallel gates before
+    # cannot happen here.
+    #
+    # Coverage is UNCHANGED. Every page, every width, same assertions. Only the waiting
+    # is shared. Results are keyed by (url, width) and read back in manifest order, so
+    # the log is byte-identical to the serial run and a reviewer cannot tell which mode
+    # produced it.
+    jobs = [(u, w) for u in a.urls for w in widths]
+    results = {}
+    if a.jobs > 1 and len(jobs) > 1:
+        import concurrent.futures as _cf
+        with _cf.ThreadPoolExecutor(max_workers=a.jobs) as ex:
+            fut = {ex.submit(audit, u, w, exempt=a.exempt, force_visible=fv): (u, w)
+                   for u, w in jobs}
+            for f in _cf.as_completed(fut):
+                results[fut[f]] = f.result()
+    else:
+        for u, w in jobs:
+            results[(u, w)] = audit(u, w, exempt=a.exempt, force_visible=fv)
+
     failures = 0
     could_not_measure = False
     instrument_broken = False
@@ -872,7 +905,7 @@ def main():
         measured = 0
         bad, exempt_bad, notes, unmeasurable = [], [], [], []
         for width in widths:
-            rows, wnotes, outcome = audit(url, width, exempt=a.exempt, force_visible=fv)
+            rows, wnotes, outcome = results[(url, width)]
             notes += [f"@{width}px: {n}" for n in (wnotes or [])]
             if rows is None:
                 notes.append(f"@{width}px could not be measured ({outcome})")

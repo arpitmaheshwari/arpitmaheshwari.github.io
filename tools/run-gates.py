@@ -259,9 +259,12 @@ def main():
         env = dict(os.environ)
         if base:
             env['BASE'] = base
+        t0 = time.monotonic()
         r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, env=env)
+        g['_secs'] = round(time.monotonic() - t0, 1)
         return g, r.returncode, (r.stdout or '') + (r.stderr or '')
 
+    t_start = time.monotonic()
     failed, broken, unmeasured = [], [], []
     try:
         # SERIAL GATES RUN ALONE. A gate driving Chrome with --dump-dom and
@@ -289,7 +292,7 @@ def main():
             results = [run_one(g) for g in parallel_gates]
         results = results + [run_one(g) for g in serial_gates]
         for g, code, out in results:
-            print(f"\n=== {g['id']}")
+            print(f"\n=== {g['id']}  [{g.get('_secs', 0)}s]")
             print(out.rstrip())
             if code == 1:
                 failed.append(g['id'])
@@ -305,6 +308,17 @@ def main():
             proc.terminate()
 
     print()
+    slow = sorted((g for g, _, _ in results), key=lambda g: -g.get('_secs', 0))[:8]
+    if slow and slow[0].get('_secs', 0) > 0:
+        wall = round(time.monotonic() - t_start, 1)
+        cpu = round(sum(g.get('_secs', 0) for g, _, _ in results), 1)
+        print(f'  {wall}s wall, {cpu}s of gate time across {total} gate(s) '
+              f'at --parallel {a.parallel}. The slowest:')
+        for g in slow:
+            print(f"    {g.get('_secs', 0):7.1f}s  {g['id']}")
+        print('  A gate that is slow because it WAITS costs wall clock and no CPU; one '
+              'that is slow because it RENDERS costs both. Read the pair before cutting '
+              'anything — the checking is rarely the expense.')
     if failed:
         print(f'{len(failed)} of {total} gate(s) FOUND A DEFECT: {", ".join(failed)}')
     if broken:
