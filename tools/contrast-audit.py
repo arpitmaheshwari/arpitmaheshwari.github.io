@@ -831,9 +831,12 @@ def main():
     ap.add_argument("--all", action="store_true",
                     help="discover every shipped page from git and check all of them")
     ap.add_argument("--widths", default="1440,1024,768")
-    ap.add_argument("--jobs", type=int, default=4,
+    ap.add_argument("--jobs", type=int, default=int(os.environ.get("GATE_JOBS", "2")),
                     help="page measurements to run at once. Each takes its own browser "
-                         "and its own temp profile; 1 restores the old serial order.")
+                         "and its own temp profile; 1 restores the old serial order. "
+                         "Defaults to 2, or $GATE_JOBS: run-gates is ALREADY running "
+                         "several gates at once, so this multiplies with it — 4 inside "
+                         "4 was sixteen Chromes and one of them died mid-capture.")
     ap.add_argument("--exempt", default=None,
                     help='CSS selector for WCAG 1.4.3-exempt text, e.g. ".logo, .wordmark"')
     ap.add_argument("--docroot", default=os.getcwd(),
@@ -887,16 +890,34 @@ def main():
     # produced it.
     jobs = [(u, w) for u in a.urls for w in widths]
     results = {}
+
+    def one(u, w):
+        """A DEAD BROWSER IS NOT A CONTRAST FAILURE.
+        First parallel run (2026-09-26) a Chrome's websocket closed mid-capture and the
+        exception escaped the pool, killing the whole gate — which run-gates then
+        reported as "contrast-audit FOUND A DEFECT". It had found nothing; it had died.
+        Convicting the site of a failure the tool never measured is the worst thing a
+        gate can do, worse than being slow, so: retry once with a fresh browser, and if
+        it dies again return the could-not-measure outcome this file already has an
+        exit code for (3), not a verdict.
+        """
+        for attempt in (1, 2):
+            try:
+                return audit(u, w, exempt=a.exempt, force_visible=fv)
+            except Exception as e:
+                if attempt == 2:
+                    return None, [f"the browser died twice ({type(e).__name__}: {e})"], "browser-died"
+        return None, ["unreachable"], "browser-died"
+
     if a.jobs > 1 and len(jobs) > 1:
         import concurrent.futures as _cf
         with _cf.ThreadPoolExecutor(max_workers=a.jobs) as ex:
-            fut = {ex.submit(audit, u, w, exempt=a.exempt, force_visible=fv): (u, w)
-                   for u, w in jobs}
+            fut = {ex.submit(one, u, w): (u, w) for u, w in jobs}
             for f in _cf.as_completed(fut):
                 results[fut[f]] = f.result()
     else:
         for u, w in jobs:
-            results[(u, w)] = audit(u, w, exempt=a.exempt, force_visible=fv)
+            results[(u, w)] = one(u, w)
 
     failures = 0
     could_not_measure = False
