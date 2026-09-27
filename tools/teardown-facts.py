@@ -158,6 +158,7 @@ FMT = {
     "stylesheet_kb":      lambda v: f"{v}",
     "stylesheet_gzip_kb": lambda v: f"{v}",
     "stylesheet_bytes":   lambda v: f"{v:,}",
+    "demos_js_kb":        lambda v: f"{v}",
 }
 if '--sync' in sys.argv:
     import glob
