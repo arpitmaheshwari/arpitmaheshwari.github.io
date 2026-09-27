@@ -67,30 +67,16 @@
   <!-- THE CAPABILITY CONTRACT, before the input rather than after the answer. The pattern is
        argued at /patterns/capability-contract.html; a page that argues for it and then hides
        its own limits until after you have used it would be arguing against itself. -->
-  <section class="section act-cream" aria-labelledby="h-contract">
-    <div class="lab-wrap">
-      <p class="eyebrow">Before you type</p>
-      <h2 class="section-title" id="h-contract">What this can and cannot tell you</h2>
-      <div class="lab-body" data-tint>
-        <p>This is the <a href="../patterns/capability-contract.html">capability contract</a> &mdash; the pattern argued in the field guide &mdash; stated before you type, not after the first failure.</p>
-      </div>
-      <div class="fit-contract">
-        <div class="fit-col fit-can">
-          <p class="fit-col-k">It can</p>
-          <ul id="fit-can"></ul>
-        </div>
-        <div class="fit-col fit-cannot">
-          <p class="fit-col-k">It cannot</p>
-          <ul id="fit-cannot"></ul>
-        </div>
-      </div>
-
-      <p class="fit-constraints-k">True before any match runs</p>
-      <dl class="ev-tiers" id="fit-constraints"></dl>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="h-input">
+    <!-- THE TOOL COMES FIRST (2026-09-27). Measured at 390px: the paste box sat at
+       3,311px of a 3,998px page — 83% down, four screens of the author reassuring
+       the reader before they could use the thing the page exists for. The caveats
+       are good writing and they are not a gate; a reader who wants them scrolls,
+       and the result section repeats the honest limits anyway. Swapped in the DOM
+       rather than with CSS order, so keyboard and screen-reader order match what
+       is on screen — a visual-only reorder lies to everyone not using their eyes.
+       The eyebrow said "Before you type", which is no longer true; the section's
+       own h2 already says what it is. -->
+<section class="section" aria-labelledby="h-input">
     <div class="lab-wrap">
       <p class="eyebrow">The role</p>
       <h2 class="section-title" id="h-input">Paste it whole &mdash; requirements, nice-to-haves and all</h2>
@@ -120,6 +106,29 @@
              unhiding before rendering), so the empty path should speak too. -->
         <p class="fit-status" id="fit-status" role="status" aria-live="polite"></p>
       </form>
+    </div>
+  </section>
+
+<section class="section act-cream" aria-labelledby="h-contract">
+    <div class="lab-wrap">
+      <p class="eyebrow">The honest limits</p>
+      <h2 class="section-title" id="h-contract">What this can and cannot tell you</h2>
+      <div class="lab-body" data-tint>
+        <p>This is the <a href="../patterns/capability-contract.html">capability contract</a> &mdash; the pattern argued in the field guide &mdash; stated before you type, not after the first failure.</p>
+      </div>
+      <div class="fit-contract">
+        <div class="fit-col fit-can">
+          <p class="fit-col-k">It can</p>
+          <ul id="fit-can"></ul>
+        </div>
+        <div class="fit-col fit-cannot">
+          <p class="fit-col-k">It cannot</p>
+          <ul id="fit-cannot"></ul>
+        </div>
+      </div>
+
+      <p class="fit-constraints-k">True before any match runs</p>
+      <dl class="ev-tiers" id="fit-constraints"></dl>
     </div>
   </section>
 
