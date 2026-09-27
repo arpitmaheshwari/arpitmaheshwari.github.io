@@ -116,7 +116,19 @@ def journey(br, width, urls, defects, plant=False):
         if nav: break
         time.sleep(0.15)
     if not nav: defects.append((f'home@{width}', 'no primary nav links found'))
+    # A DOWNLOAD LINK IS NOT A NAVIGATION (2026-09-27). The nav's Résumé link carries
+    # `download`, so a click saves the file and the page correctly does NOT move — which
+    # this check read as "landed on /" and reported as a defect on every width. The right
+    # assertion for a download is that the file EXISTS and is served, not that the browser
+    # went somewhere. link-integrity already fetches every internal href, so that is where
+    # it belongs; here it is skipped with its reason stated rather than silently passed.
+    downloads = set(br.eval_json(
+        "JSON.stringify([...document.querySelectorAll('#nav .nav-links a[download]')]"
+        ".map(a=>a.getAttribute('href')))") or [])
+    if downloads:
+        print(f"  skipped (download, no navigation expected): {', '.join(sorted(downloads))}")
     for href in nav:
+        if href in downloads: continue
         if href.startswith('http') and not href.startswith(BASE): continue   # the Connect door leaves the site; link-integrity owns external URLs
         br.navigate(BASE + '/', settle=2.5); settled(br); errors(br)
         if mobile:

@@ -65,6 +65,32 @@ PROBE = r"""(() => {
     shadow: cs.boxShadow === 'none' ? '' : cs.boxShadow.slice(0, 60),
     hiddenAncestor: !!a.closest('[aria-hidden="true"],[hidden]'),
     zeroArea: r.width < 1 || r.height < 1,
+    // THE RING IS OFTEN NOT ON THE FOCUSED ELEMENT (2026-09-27).
+    // A card whose whole body is the target paints its indicator on the CARD under
+    // :focus-within, not on the <a> inside it. Reading only the focused element's own
+    // outline reported the seven homepage case-study links as ring-less; a real Tab
+    // press shows the parent drawing outline:solid 2px. This is the second time that
+    // exact mistake has been made here, so it is measured rather than remembered.
+    // Walk up while the ancestor matches :focus-within and take the first painted ring.
+    ancestorRing: (() => {
+      let e = a.parentElement, hops = 0;
+      while (e && hops < 4) {
+        let fw = false; try { fw = e.matches(':focus-within'); } catch (_) {}
+        if (fw) {
+          const s = getComputedStyle(e);
+          if (s.outlineStyle !== 'none' && parseFloat(s.outlineWidth) > 0)
+            return `${s.outlineWidth} ${s.outlineStyle} ${s.outlineColor} @${e.tagName.toLowerCase()}`;
+          if (s.boxShadow && s.boxShadow !== 'none') return `shadow @${e.tagName.toLowerCase()}`;
+        }
+        e = e.parentElement; hops++;
+      }
+      return '';
+    })(),
+    // A CLOSED SHADOW ROOT CANNOT BE GRADED. <video controls> owns several tab stops
+    // and nothing outside may read what is focused inside it, so its ring is not
+    // absent — it is UNMEASURABLE, and reporting it as a defect is a verdict about
+    // something never measured.
+    closedHost: ['video','audio','iframe','embed','object'].includes(a.tagName.toLowerCase()),
   };
 })()"""
 
@@ -166,13 +192,29 @@ def sweep(url, max_tabs=250, mods=0):
             return a.dataset.kbuid;})()""")
         sig = st["sel"] + "::" + st.get("name", "")
         ident = uid or sig
-        if seq and ident == seq[-1].get("ident"):
+        # A HOST THAT HOLDS FOCUS INTERNALLY IS NOT A TRAP AND NOT A CYCLE (2026-09-27).
+        # <video controls> has a CLOSED shadow root: Tab walks play -> timeline -> mute ->
+        # fullscreen -> menu, and document.activeElement reports the same <video> for every
+        # one of them, because nothing outside may see in. Treating the repeat as "revisited
+        # this element" closed the ring at the video and reported everything after it as
+        # unreachable — on the homepage that was all seven case-study links, the Connect CTA
+        # and the accessibility toggle, "13 of 55 reached". A real 45-press walk reaches 43.
+        # Every page with a film was reporting the same phantom, which is most of them.
+        # So: consecutive repeats of one host are ONE logical stop. A cycle is only a cycle
+        # when focus returns to something seen BEFORE the current run.
+        same_as_prev = bool(seq) and ident == seq[-1].get("ident")
+        internal_host = st.get("sel", "").split(".")[0].split("#")[0] in ("video", "audio", "iframe", "embed", "object")
+        if same_as_prev:
             stuck += 1
-            if stuck >= 3:
+            # a media host legitimately owns several stops; anything else repeating is stuck
+            limit = 10 if internal_host else 3
+            if stuck >= limit:
                 st["TRAP"] = True
                 seq.append({**st, "sig": sig, "ident": ident}); break
-        else:
-            stuck = 0
+            st["sig"] = sig; st["ident"] = ident
+            seq.append({**st, "INTERNAL": internal_host})
+            continue
+        stuck = 0
         st["sig"] = sig
         st["ident"] = ident
         seq.append(st)
@@ -205,8 +247,15 @@ def main():
                     print(f"  {n:3} {s['sel']}")
                     continue
                 flags = []
-                if not s["outline"] and not s["shadow"]:
+                # A ring counts wherever it is PAINTED: on the focused element, or on an
+                # ancestor that matches :focus-within (the card-as-target pattern). And a
+                # closed shadow host is not graded at all — it is unmeasurable, not bare.
+                if s.get("closedHost"):
+                    flags.append("(media controls \u2014 ring not readable)")
+                elif not s["outline"] and not s["shadow"] and not s.get("ancestorRing"):
                     flags.append("NO-RING"); noring.append(s["sig"])
+                elif not s["outline"] and not s["shadow"] and s.get("ancestorRing"):
+                    flags.append("ring on ancestor")
                 if s["zeroArea"]:
                     flags.append("ZERO-AREA"); zero.append(s["sig"])
                 elif not s["inView"]:

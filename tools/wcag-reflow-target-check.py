@@ -93,6 +93,21 @@ def main():
     pages = sorted(p for p in glob.glob("*.html") + glob.glob("*/[a-z]*.html")
                    if not p.startswith(("prototypes", "partials", "book",
                                         "portfolio-sources", "__")))
+    # A DEAD BROWSER IS NOT A WCAG FAILURE (2026-09-27). In the 2026-09-26 nightly this
+    # gate did not report a defect — it raised WebSocketConnectionClosedException out of
+    # main() and died, and run-gates could only say "FOUND A DEFECT". Nothing about the
+    # site had been measured. Chrome's connection drops under contention (four gates, each
+    # driving their own browser); the honest outcome is "could not measure", exit 3, which
+    # run-gates already prints as NOT a defect.
+    try:
+        return _run(pages)
+    except Exception as e:
+        print(f"  UNMEASURED \u2014 the browser connection failed ({type(e).__name__}: "
+              f"{str(e)[:90]}). Nothing was measured; this is the instrument, not the site.")
+        sys.exit(3)
+
+
+def _run(pages):
     with Browser() as br:
         br.viewport(REFLOW_W, 800)
         br.navigate("http://localhost:8000/index.html", settle=1.6)

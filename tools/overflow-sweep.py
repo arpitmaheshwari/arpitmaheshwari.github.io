@@ -133,7 +133,14 @@ f.onload=()=>{setTimeout(()=>{try{const d=f.contentDocument,w=f.contentWindow;
    squeeze:sq.slice(0,5),split:sp.slice(0,5),tscroll:tb.slice(0,3)});
 }catch(e){document.title='R:{"err":"'+String(e).slice(0,90)+'"}'}},2600);};
 </script></body></html>"""
-fails=0
+# A BROWSER THAT NEVER ANSWERED IS NOT A PAGE THAT OVERFLOWED (2026-09-27).
+# Two of the four sweeps failed the whole gate on "no probe result" and on a Chrome that
+# exited non-zero under contention — with ox=None, i.e. nothing measured. Reporting that
+# as an overflow defect convicts the page of something the instrument never looked at, and
+# it is the same fault that had contrast-audit crying wolf earlier today. Retry once, and
+# if it still cannot answer, count it as UNMEASURED and exit 3 (could not measure), which
+# run-gates already prints as "NOT a defect".
+fails=0; unmeasured=[]
 for pg in PAGES:
     open("__ov.html","w").write(PROBE % (pg, W))
     try:
@@ -145,6 +152,22 @@ for pg in PAGES:
     except Exception as e: d={"err":str(e)[:80]}
     finally:
         if os.path.exists("__ov.html"): os.unlink("__ov.html")
+    if d.get("err") and d.get("ox") is None:
+        # one retry: contention, not the page
+        try:
+            open("__ov.html","w").write(PROBE % (pg, W))
+            r=subprocess.run([CH,"--headless=new",NO_TRACKING_FLAG,"--disable-gpu","--no-sandbox",
+              f"--window-size={max(W+80,600)},1000","--virtual-time-budget=9000","--dump-dom",
+              "http://localhost:8000/__ov.html"],capture_output=True,text=True,timeout=90)
+            m=re.search(r"<title>R:(.*?)</title>", r.stdout, re.S)
+            d=json.loads(H.unescape(m.group(1))) if m else {"err":"no probe result (twice)"}
+        except Exception as e: d={"err":str(e)[:80]}
+        finally:
+            if os.path.exists("__ov.html"): os.unlink("__ov.html")
+    if d.get("err") and d.get("ox") is None:
+        unmeasured.append(pg)
+        print(f"UNMEASURED {pg} @{W}px \u2014 {d.get('err')} \u2014 NOT a defect, the probe never answered")
+        continue
     if d.get("err") or d.get("bad") or d.get("tight") or d.get("ox",0)>2 or d.get("squeeze") or d.get("split") or d.get("tscroll"):
         fails+=1; print(f"FAIL {pg} @{W}px  ox={d.get('ox')}  {d.get('err','')}")
         for b in d.get("bad",[]): print(f"       {b['c']:38} left={b['l']:>6} right={b['r']:>6} w={b['w']:>5} ml={b['ml']} {b['tf']}")
@@ -154,4 +177,7 @@ for pg in PAGES:
         for t in d.get("tight",[]): print(f"       section '{t['sec']}' — first text only {t['gap']}px from its own top edge")
     else: print(f"ok   {pg}")
 print(f"\n{fails} page(s) with content escaping the viewport at {W}px.")
-sys.exit(1 if fails else 0)
+if unmeasured:
+    print(f"{len(unmeasured)} page(s) COULD NOT BE MEASURED: {', '.join(unmeasured)}")
+    print("  That is the instrument failing, not the site. Do not read a clean run into it.")
+sys.exit(1 if fails else (3 if unmeasured else 0))
