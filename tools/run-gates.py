@@ -171,7 +171,72 @@ def audit(data):
     return 0
 
 
+
+# ── THE INSTRUMENT FAILED, THE SITE DID NOT ────────────────────────────────────
+# 2026-09-27. On 2026-09-26 the nightly reported NINE defects and not one of them
+# was the site: a browser died mid-run, a probe returned nothing, a closed shadow
+# root could not be read, a download link did not navigate. Every one surfaced as
+# "FOUND A DEFECT", because exit 1 is the only word 44 of the 47 browser-driving
+# tools know. Exit 3 ("could not measure") already exists here and almost nothing
+# uses it, so the fix belongs where the classifying happens — once — rather than
+# in 44 files, which is 44 chances to get it wrong and a 45th the next time a tool
+# is written.
+#
+# A gate is RECLASSIFIED only when BOTH hold:
+#   1. its output carries a signature that only an instrument failure produces, and
+#   2. it reported no finding of its own.
+# The second condition is what stops this from hiding real defects: a run that
+# found something AND hit a crash still counts as a defect, because the finding is
+# real regardless of what happened afterwards. When in doubt it stays a defect.
+#
+# The reclassification is always printed with the evidence that caused it. A quiet
+# downgrade would be the same disease as the false alarm: a verdict nobody can check.
+INSTRUMENT_SIGNS = (
+    "WebSocketConnectionClosedException", "socket is already closed",
+    "Address already in use", "ERR_CONNECTION_REFUSED", "ERR_EMPTY_RESPONSE",
+    "no probe result", "Target closed", "Session closed",
+    "BrokenPipeError", "ConnectionResetError", "TimeoutError: timed out",
+    "could not start a server", "chrome not found", "the browser died",
+)
+FINDING_SIGNS = ("FOUND A DEFECT", "DEFECT ", "FAIL ", "STALE ", "MISSING ",
+                 "UNREACHED", "OVERLAP", "NO-RING", "DARK ", "TIGHT ")
+
+
+def instrument_failure(out):
+    """Return the signature if this output is an instrument failing with no finding."""
+    if any(f in out for f in FINDING_SIGNS):
+        return None                      # it found something; that stands
+    for s in INSTRUMENT_SIGNS:
+        if s in out:
+            return s
+    return None
+
+
+
+
+# CALIBRATED ON EVERY RUN, in microseconds. A classifier that can downgrade a finding
+# is more dangerous than the false alarms it replaces, so it proves itself before it is
+# trusted — including the case that matters most: a gate that CRASHED and also FOUND
+# something stays a defect, because the finding is real whatever happened afterwards.
+_CLASSIFIER_CASES = [
+    ("crash, nothing found",      "WebSocketConnectionClosedException: socket is already closed", True),
+    ("crash AND a real finding",  "FAIL index.html ox=412\nWebSocketConnectionClosedException",  False),
+    ("an ordinary defect",        "DEFECT nav landed on /\n2 journey defect(s)",                 False),
+    ("port clash, nothing found", "OSError: [Errno 48] Address already in use\n0/32 rendered.",  True),
+    ("exit 1, no signature",      "ok index.html\n0 page(s) escaping the viewport.",             False),
+]
+
+
+def selftest_classifier():
+    bad = [n for n, out, want in _CLASSIFIER_CASES
+           if bool(instrument_failure(out)) is not want]
+    if bad:
+        print("  CLASSIFIER SELFTEST FAILED on: " + ", ".join(bad))
+        print("  Refusing to run: a broken classifier can hide a real defect.")
+        sys.exit(2)
+
 def main():
+    selftest_classifier()
     ap = argparse.ArgumentParser()
     ap.add_argument('--stage', choices=['build', 'pre-push', 'ci', 'ci-always', 'nightly'])   # build = the steps that WRITE, in manifest order
     ap.add_argument('--audit', action='store_true')
@@ -294,7 +359,14 @@ def main():
         for g, code, out in results:
             print(f"\n=== {g['id']}  [{g.get('_secs', 0)}s]")
             print(out.rstrip())
-            if code == 1:
+            sign = instrument_failure(out) if code == 1 else None
+            if sign:
+                unmeasured.append((g['id'], f"1 -> reclassified: {sign}"))
+                print(f"  RECLASSIFIED as COULD NOT MEASURE \u2014 this gate exited 1 but its "
+                      f"output carries {sign!r} and it reported no finding of its own. "
+                      f"The instrument failed; nothing about the site was measured.")
+                annotate(f"{g['id']} could not measure ({sign}) — NOT a defect", out)
+            elif code == 1:
                 failed.append(g['id'])
                 annotate(f"{g['id']} found a defect", out)
             elif code == 2:

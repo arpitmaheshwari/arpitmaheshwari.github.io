@@ -238,3 +238,27 @@ def parse_rgb(text):
     m = _re.findall(r'[\d.]+', text)
     return tuple(int(float(x)) for x in m[:3]) if len(m) >= 3 else None
 
+
+def unmeasured(reason, exit_code=3):
+    """Say "I could not measure that" and mean it — the word 44 gates did not have.
+
+    A gate has three honest outcomes and most of them only ever used two:
+        exit 0  the thing is fine
+        exit 1  the thing is BROKEN            <- the only word most tools knew
+        exit 3  I COULD NOT LOOK               <- this
+        exit 2  my instrument is miscalibrated
+
+    Use this whenever the answer is unknown rather than bad: the browser died, the
+    server never answered, the value sits behind a closed shadow root, the page did
+    not load. Reporting that as a defect convicts the site of something nobody
+    measured, which is how the 2026-09-26 nightly produced nine findings and zero
+    real ones. run-gates prints exit 3 as "NOT a defect" and will not block a push
+    on it, so this is safe to reach for and wrong to avoid.
+
+        if rows is None:
+            gatelib.unmeasured("the page never loaded — is a server running?")
+    """
+    import sys as _s
+    print(f"  UNMEASURED \u2014 {reason}")
+    print("  Nothing about the site was measured here. Do not read a clean run into it.")
+    _s.exit(exit_code)
