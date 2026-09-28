@@ -38,6 +38,13 @@ import argparse, json, pathlib, sys
 import sys as _s, os as _o
 _s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__)))
 import cdp as _cdp
+# THE SHIPPED-PAGE LIST LIVES IN ONE PLACE (2026-09-28). This filter was written out
+# below, character-identical, in three gates, with two more variants elsewhere: five
+# hand-kept copies of one rule, two of which EDIT files. Nothing had drifted yet —
+# five places that must stay in sync forever is itself the defect. gatelib.pages()
+# derives the same set from `git ls-files`, so an ignored directory can never enter,
+# and it drops the redirect stubs that race their own navigation when a gate loads them.
+from gatelib import pages as _shipped_pages
 _cdp.ensure_server(8000)
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
@@ -162,10 +169,8 @@ CANARY = ("(()=>{const i=document.createElement('img');i.id='__imgcan';"
 def pages(base):
     root = pathlib.Path(__file__).resolve().parent.parent
     out = []
-    for p in sorted(root.rglob("*.html")):
-        rel = p.relative_to(root).as_posix()
-        if any(rel.startswith(x) for x in ("prototypes/", "portfolio-sources/", "partials/", "tests/", ".")):
-            continue
+    for rel in _shipped_pages(include_book=False):
+        p = root / rel
         if p.name.startswith("__") or "og-images" in rel:
             continue
         out.append(f"{base}/{rel}")
