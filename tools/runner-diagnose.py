@@ -33,7 +33,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdp  # noqa: E402
 from cdp import NO_TRACKING_FLAG  # noqa: E402
 
-CH = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+from cdp import CHROME as CH   # resolved once in cdp.py: honours $CHROME, then the macOS bundle, then
+                             # the Linux binaries. This file hardcoded the macOS path,
+                             # which is a FileNotFoundError on every CI runner.
 BASE = os.environ.get("BASE", "http://localhost:8000")
 PATH = sys.argv[1] if len(sys.argv) > 1 else "process/"
 

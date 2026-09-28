@@ -35,7 +35,9 @@ BASE = (sys.argv[1] if len(sys.argv) > 1 else "http://localhost:8000").rstrip("/
 # $CHROME first: every CI runner is Linux and this path is macOS-only.
 # Eleven tools pinned it, so fixing cdp.py alone would only have moved the
 # CI failure to the next step that launches Chrome.
-CHROME = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+from cdp import CHROME   # resolved once in cdp.py: honours $CHROME, then the macOS bundle, then
+                             # the Linux binaries. This file hardcoded the macOS path,
+                             # which is a FileNotFoundError on every CI runner.
 # (name, jd, assertion) — assertion gets the parsed result dict
 CASES = [
     ("control: pastry chef — must match NOTHING",

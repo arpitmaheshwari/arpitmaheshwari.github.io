@@ -28,7 +28,9 @@ sys.path.insert(0, __import__("os").path.dirname(__file__))
 import cdp
 import os
 
-CH = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+from cdp import CHROME as CH   # resolved once in cdp.py: honours $CHROME, then the macOS bundle, then
+                             # the Linux binaries. This file hardcoded the macOS path,
+                             # which is a FileNotFoundError on every CI runner.
 # 2026-09-10: five of the seven classes here died when 39 asks in six classes became
 # ONE component. Verified live-in-markup before editing: .pill 0 pages, .btn-a 0,
 # .btn-a-ghost 0, .lbl-pill-bg 0, .lbl-badge-gold 0 — .nav-cta 38, .rcpt-btn 1.

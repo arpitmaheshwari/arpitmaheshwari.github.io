@@ -64,7 +64,9 @@ _cdp.ensure_server(8000)
 
 # CI failure to the next step that launches Chrome.
 
-CHROME = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+from cdp import CHROME   # resolved once in cdp.py: honours $CHROME, then the macOS bundle, then
+                             # the Linux binaries. This file hardcoded the macOS path,
+                             # which is a FileNotFoundError on every CI runner.
 # leading is a deliberate design choice inside these: a printed-docket metaphor,
 # a code block set to a fixed grid, or a mark drawn as type.
 ALLOW = ["rcpt", "rcell", "rfoot", "stamp", "boarding", "lab-code", "nav-logo",

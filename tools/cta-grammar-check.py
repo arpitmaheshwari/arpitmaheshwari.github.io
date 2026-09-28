@@ -37,7 +37,9 @@ from cdp import NO_TRACKING_FLAG
 
 # CI failure to the next step that launches Chrome.
 
-CH = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+from cdp import CHROME as CH   # resolved once in cdp.py: honours $CHROME, then the macOS bundle, then
+                             # the Linux binaries. This file hardcoded the macOS path,
+                             # which is a FileNotFoundError on every CI runner.
 PROBE = """<!doctype html><html><body><script>
 const f=document.createElement('iframe');f.src='http://localhost:8000/%s?cb='+Date.now();
 f.style.cssText='width:1440px;height:900px;border:0';document.body.appendChild(f);

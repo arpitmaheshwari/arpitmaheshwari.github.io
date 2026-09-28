@@ -202,33 +202,20 @@ def render(out_name, kicker, title, subtitle, byline, docroot, extra=None):
 
 
 def serve(docroot):
-    """Reuse a server already listening on 8000 (common in dev); only start one if needed."""
-    import http.server, socketserver, threading, urllib.request
-    try:
-        urllib.request.urlopen("http://localhost:8000/", timeout=0.5)
-        return None  # already serving — assume it's this docroot, as every tool in this repo does
-    except Exception:
-        pass
-    os.chdir(docroot)
-    handler = http.server.SimpleHTTPRequestHandler
-    # ALLOW THE PORT TO BE REUSED. Without this, socketserver refuses to bind for about a
-    # minute after ANY previous server on 8000 closes — the socket sits in the OS's
-    # TIME_WAIT window — and every other tool in this repo serves on 8000. On 2026-09-26
-    # that made this generator fail five times in a row with "Address already in use"
-    # while lsof showed nothing listening, which reads like a mystery and is just a
-    # missing flag. The failure mode is worse than an error: it reported "0/32 cards
-    # rendered" and exited 0, so a caller that trusts exit codes ships stale cards.
-    socketserver.TCPServer.allow_reuse_address = True
-    httpd = socketserver.TCPServer(("", 8000), handler)
-    t = threading.Thread(target=httpd.serve_forever, daemon=True)
-    t.start()
-    for _ in range(40):
-        try:
-            urllib.request.urlopen("http://localhost:8000/", timeout=0.5)
-            break
-        except Exception:
-            time.sleep(0.25)
-    return httpd
+    """Serve `docroot` on :8000, reusing whatever is already there.
+
+    Was a private copy of this logic — its own reuse flag, its own probe, its own
+    threading. It failed five runs in a row on 2026-09-27 with "Address already in
+    use" while nothing was listening, and the cure turned out not to be the flag it
+    grew: cdp.ensure_server's stopper ended the serving LOOP without closing the
+    socket, so a tool that had politely stopped still held the port. Fixed there on
+    2026-09-28, which fixes it for everything at once. Keeping a second copy here
+    would mean keeping a second place for that bug to live.
+    """
+    import sys as _sys, os as _os
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    import cdp
+    return cdp.ensure_server(8000, root=docroot)
 
 
 def main():
@@ -273,7 +260,7 @@ def main():
         sys.exit(0 if ok_count == len(REG) else 1)
     finally:
         if httpd:
-            httpd.shutdown()
+            httpd()
 
 
 if __name__ == "__main__":

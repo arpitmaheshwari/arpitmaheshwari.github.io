@@ -50,8 +50,9 @@ _cdp.ensure_server(8000)
 _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
 from cdp import NO_TRACKING_FLAG
 
-CHROME = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-
+from cdp import CHROME   # resolved once in cdp.py: honours $CHROME, then the macOS bundle, then
+                             # the Linux binaries. This file hardcoded the macOS path,
+                             # which is a FileNotFoundError on every CI runner.
 # The probe runs INSIDE a same-origin wrapper hosting the target in an iframe, so the page gets a
 # true CSS viewport (headless clamps a real window to ~500px and would lie below that).
 WRAPPER = r"""<!doctype html><meta charset=utf-8>

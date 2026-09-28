@@ -341,4 +341,16 @@ def ensure_server(port=8000, root=None):
 
     httpd = QuietServer(("127.0.0.1", port), Quiet)
     threading.Thread(target=httpd.serve_forever, daemon=True).start()
-    return httpd.shutdown
+
+    # THE STOPPER MUST ALSO CLOSE THE SOCKET (2026-09-28). This returned httpd.shutdown,
+    # which ends the serve_forever LOOP and leaves the listening socket open — so a caller
+    # that dutifully stopped its server still held :8000, and the next tool to start one
+    # died with "Address already in use" while lsof showed nothing serving. That is what
+    # made generate-og-cards fail five runs in a row, and SO_REUSEADDR was not the cure:
+    # ThreadingHTTPServer already sets allow_reuse_address, and the bind failed anyway
+    # because the old socket was never closed at all. Proven by binding, stopping, and
+    # rebinding the same port immediately — which raises before this change and passes after.
+    def stop():
+        httpd.shutdown()
+        httpd.server_close()
+    return stop

@@ -43,7 +43,9 @@ from cdp import NO_TRACKING_FLAG
 
 # CI failure to the next step that launches Chrome.
 
-CH = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+from cdp import CHROME as CH   # resolved once in cdp.py: honours $CHROME, then the macOS bundle, then
+                             # the Linux binaries. This file hardcoded the macOS path,
+                             # which is a FileNotFoundError on every CI runner.
 HARD = 2.0          # below this, a human cannot read it — hard failure
 # SC 1.4.4 has no absolute floor, but nothing this small is readable at arm's
 # length, and it is the size a case-page diagram actually renders at on a phone.

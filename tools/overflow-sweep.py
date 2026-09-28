@@ -21,7 +21,9 @@ from cdp import NO_TRACKING_FLAG
 # $CHROME first: every CI runner is Linux and this path is macOS-only.
 # Eleven tools pinned it, so fixing cdp.py alone would only have moved the
 # CI failure to the next step that launches Chrome.
-CH = os.environ.get("CHROME") or "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+from cdp import CHROME as CH   # resolved once in cdp.py: honours $CHROME, then the macOS bundle, then
+                             # the Linux binaries. This file hardcoded the macOS path,
+                             # which is a FileNotFoundError on every CI runner.
 W=int(sys.argv[1]) if len(sys.argv)>1 else 1440
 # One definition of "a shipped page", in gatelib. This used to be a private rglob
 # with its own exclusion tuple — one of three such copies, which is how partials/
