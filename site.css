@@ -6746,6 +6746,20 @@ body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode, :where(body.p-lab-eva
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,7fr);column-gap:64px;grid-auto-flow:row dense;align-items:start}
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > *{grid-column:2;max-width:none;min-width:0}
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > :is(h2.section-title,.eyebrow){grid-column:1}
+  /* THE RAIL HOLDS TWO THINGS, SO THE PROSE BESIDE IT MUST COVER BOTH (2026-09-27).
+     Seen at 1024 on /lab/plugin.html, by looking: the heading "Two skills: the system, and
+     the floor it has to clear" sat below the entire prose block with the bottom-right of
+     the band empty. Mechanism, read off the grid rather than guessed: the eyebrow takes
+     column 1 row 1 and .lab-body takes column 2 row 1, so the heading — also pinned to
+     column 1 — can only start row 2, which begins where the prose ends. Bands whose second
+     child is a table, figure or code block never showed it, because those span 1 / -1 and
+     open a fresh row of their own. Spanning .lab-body across both rows puts the eyebrow and
+     heading back together in the rail, which is what the sticky heading assumed all along.
+     Scoped to .lab-body deliberately: a broader rule touched bands that were already right.
+     Verified by photographing all six pages at 768/1024/1440 before and after and requiring
+     that ONLY this one move — every derived metric I built for this defect was wrong in a
+     different way, and pixels do not have that failure mode. */
+  :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > .lab-body{grid-row:1 / span 2}
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > h2.section-title{position:sticky;top:calc(var(--nav-h) + 24px);margin-top:0}   /* the registered h2 size stays — heading-rank-check owns the scale */
   :is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap:has(> :only-child) > *{grid-column:1 / -1}
   /* instruments, code, tables and test lists need the whole width; prose stays in the reading column */
