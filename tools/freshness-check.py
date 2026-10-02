@@ -38,6 +38,19 @@ def visible_main(blob):
     return re.sub(r'\s+', ' ', html.unescape(s)).strip()
 
 
+def shallow_clone():
+    """True when this checkout has no history to walk.
+
+    On 2026-10-01 CI reported the glossary as stale against a claim that was correct. The
+    page had not changed: actions/checkout defaults to fetch-depth 1, so `git log -- path`
+    returned the single pushed commit and every page looked like its prose changed that day.
+    The gate was not wrong about the data it had — it had no data and said "defect" anyway.
+    That is exit 3's whole job, so it is wired here as well as fixed in the workflow.
+    """
+    return subprocess.run(['git', 'rev-parse', '--is-shallow-repository'],
+                          capture_output=True, text=True).stdout.strip() == 'true'
+
+
 def last_prose_change(path):
     """(year, month) of the newest revision whose visible main text differs from the next."""
     log = [l.split() for l in subprocess.run(
@@ -112,6 +125,12 @@ def main():
             return 2
     if selftest:
         return 0
+
+    if shallow_clone():
+        print("\nUNMEASURED — this is a shallow checkout, so there is no history to compare a\n"
+              "claim against. Every page would read as changed today. Fix the checkout\n"
+              "(fetch-depth: 0), do not trust a verdict from here.")
+        return 3
 
     findings, checked = scan()
     for rel, claimed, real in findings:
