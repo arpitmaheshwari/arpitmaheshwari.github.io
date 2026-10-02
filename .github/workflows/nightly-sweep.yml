@@ -58,7 +58,7 @@ jobs:
       # in this job drives Chrome through cdp. Omitting it once already cost five days of
       # a gate that died at import and looked like a gate that was failing.
       - name: Install Python dependencies (pillow, websocket-client)
-        run: python -m pip install --quiet --upgrade pillow websocket-client
+        run: python -m pip install --quiet --upgrade pillow websocket-client numpy
 
       - uses: browser-actions/setup-chrome@v2
         id: setup-chrome
