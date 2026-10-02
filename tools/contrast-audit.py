@@ -297,6 +297,15 @@ RECTS_JS = """(function(ids){
 SETTLE_JS = """(async()=>{
   const dl=new Promise(r=>setTimeout(r,4000));
   const work=(async()=>{
+    // EVERY stylesheet must have produced a CSSOM sheet before a single pixel is graded.
+    // fonts/images/animations were all waited on here; the stylesheets never were, so a
+    // slow runner could grade a page styled by whatever had loaded — which is the shape
+    // of the ten homepage "failures" that only ever appear on Linux, every one a link
+    // recovered at the violet --link token that amber.css overrides.
+    try{await Promise.all([].slice.call(
+      document.querySelectorAll('link[rel="stylesheet"]')).map(l=>l.sheet?0:
+        new Promise(r=>{l.addEventListener('load',r,{once:true});
+                        l.addEventListener('error',r,{once:true});})));}catch(e){}
     try{await document.fonts.ready;}catch(e){}
     // eager-load and decode every image: lazy images once grew the page mid-capture
     try{await Promise.all([].slice.call(document.images).map(i=>{
