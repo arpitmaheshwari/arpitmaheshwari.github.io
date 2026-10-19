@@ -85,7 +85,7 @@
         <a class="lab-card" href="./teardown.html" data-cta="lab-card" data-location="lab-index">
           <p class="lab-num">03</p>
           <h3>This site, torn down</h3>
-          <p><strong>A site that asks for evidence should stand being inspected.</strong> How the page you are reading is built, measured rather than described: no framework and no bundler, a <span data-fact="stylesheet_kb">618.0</span>&nbsp;KB stylesheet, two third-party services across four domains, one type scale, and the gaps, including the one this page caught in itself.</p>
+          <p><strong>A site that asks for evidence should stand being inspected.</strong> How the page you are reading is built, measured rather than described: no framework and no bundler, a <span data-fact="stylesheet_kb">622.3</span>&nbsp;KB stylesheet, two third-party services across four domains, one type scale, and the gaps, including the one this page caught in itself.</p>
           <div class="lab-tags"><span>0 typed numbers</span><span>Commands shown</span><span>Gaps included</span></div>
           <span class="lab-go">See the receipts →</span>
         </a>
@@ -103,6 +103,44 @@
 
   <!-- The design system, on the Lab rather than the homepage (Arpit's call, 2026-08-17): this
        page is where the artifacts live, and an installable system is an artifact, not a claim. -->
+  <section class="section" id="the-quality-bar" aria-labelledby="h-quality-bar">
+    <div class="lab-wrap">
+      <p class="eyebrow">The bar everything here ships against</p>
+      <h2 class="section-title" id="h-quality-bar">The quality bar is code.</h2>
+      <!-- MOVED FROM THE HOMEPAGE (2026-10-19, Arpit: "move the quality bar to the lab
+           page"). Same rows, same ledger; only the links were re-pathed for /lab/ and
+           the row that linked to this page lost its self-link. -->
+      <div class="aiwork-two">
+      <!-- ASK THE ARTIFACT, NOT ME. The three sentences that were in .aiwork-lede
+           are rows 2-4 here, each now standing beside the thing that proves it;
+           row 1 is the memo body it replaces. Nothing is new copy. Deliberately
+           NO gate count and no test counts: the CI ledger below states the first
+           and the proof row states the second, and a fact gets one home. -->
+      <div class="arts">
+        <div class="art"><b>The front-end I own ships in the PR</b>
+          <p class="art-r"><i>commented and ready for review &mdash; when we disagree on feasibility, the cheapest experiment settles it</i></p></div>
+        <div class="art"><b>Contrast, overflow and legibility are measured from rendered pixels</b>
+          <p class="art-r"><i>on every push that touches a page, its styles or the tooling</i><a href="./teardown.html" data-cta="teardown" data-location="lab-bar">The teardown &rarr;</a></p></div>
+        <div class="art"><b>Prototypes are working HTML/CSS/JS from the start</b>
+          <p class="art-r"><i>usability-tested as real code &mdash; 8 patterns and one rule, all 9 drivable &mdash; and that same code is what goes to production</i><a href="../patterns/" data-cta="patterns" data-location="lab-bar">The patterns &rarr;</a></p></div>
+        <div class="art"><b>This same site again, in my own React</b>
+          <p class="art-r"><i>self-hosted from the repository &mdash; no CDN, no third-party runtime</i><a href="../book/" data-cta="switch-book" data-location="lab-bar">The book edition &rarr;</a></p></div>
+        <p class="art-note">A client&rsquo;s design system, encoded as an installable plugin: two shipped across client orgs, one public.</p>
+      </div>
+      <figure class="barledger">
+        <div class="bl-hd"><b>The bar, in CI</b><i>23 gates &middot; before a push</i></div>
+        <ul class="bl-rows">
+          <li><i>Contrast</i><span>rendered pixels, not tokens</span></li>
+          <li><i>Overflow</i><span>41 pages &times; 5 widths</span></li>
+          <li><i>Legibility</i><span>nightly, every diagram</span></li>
+          <li><i>Prose</i><span>59 pages</span></li>
+        </ul>
+        <p class="bl-foot">When a gate and my eye disagree, the pixels win.</p>
+      </figure>
+    </div>
+    </div>
+  </section>
+
   <section class="section" id="what-this-proves">
     <div class="lab-wrap">
       <p class="eyebrow">The evidence boundary</p>

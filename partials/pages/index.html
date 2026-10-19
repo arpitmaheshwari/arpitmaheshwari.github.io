@@ -184,6 +184,7 @@ document.documentElement.classList.add('vg-js');
       <p class="k role-line"><span class="rl-l">Founding / Staff Product Designer &middot; AI products</span><span class="rl-l">My unit of ownership is the product, not the screen</span></p>
       <h1 id="h-hero">Six systems became <span class="grad">one platform.</span></h1>
       <p class="hero-stake">I owned the product definition and the roadmap across trading, audience data, creative, reporting and booking &mdash; then shipped the front-end. Campaign planning went from two weeks to three hours.</p>
+      <p class="hero-skills"><span class="hs-k">Skills</span> <span class="hs-i">Product definition &amp; roadmap</span> &middot; <span class="hs-i">user research &amp; usability testing</span> &middot; <span class="hs-i">interaction &amp; UI design</span> &middot; <span class="hs-i">web design</span> &middot; <span class="hs-i">design systems</span> &middot; <span class="hs-i">Figma</span> &middot; <span class="hs-i">prototyping in code (HTML, CSS, JavaScript)</span> &middot; <span class="hs-i">AI &amp; LLM product design</span></p>
             <!-- THE POINT OF VIEW LINE WAS HERE AND IS GONE (2026-09-27, Arpit's call).
            "Your AI model is right. Your users still won't bet on it." It was the hero
            claim until 2026-09-26, then demoted to a second layer, then cut — because
@@ -486,34 +487,36 @@ document.documentElement.classList.add('vg-js');
 
 <section class="labrow aiwork" data-tint id="how-i-build" aria-labelledby="h-aiwork">
   <div class="wrap">
-    <p class="k"><span class="k-idx k-idx-amber">03 · 2</span>How I build with AI — the workflow, not the tool list</p>
-    <h2 id="h-aiwork">The quality bar is code.</h2>
+    <p class="k"><span class="k-idx k-idx-amber">03 · 2</span>How I build with AI — where it helps, where I decide</p>
+    <h2 id="h-aiwork">AI drafts. I decide.</h2>
     <div class="aiwork-two">
-      <!-- ASK THE ARTIFACT, NOT ME. The three sentences that were in .aiwork-lede
-           are rows 2-4 here, each now standing beside the thing that proves it;
-           row 1 is the memo body it replaces. Nothing is new copy. Deliberately
-           NO gate count and no test counts: the CI ledger below states the first
-           and the proof row states the second, and a fact gets one home. -->
+      <!-- WHERE AI HELPS, WHERE I DECIDE (2026-10-19, Arpit's call). Storyline's 2026
+           hiring survey: 69% of reviewers say AI changed what they look for, and what
+           they look for is the split: where AI helped, where judgement took over. The
+           block that stood here (the quality bar: gates, PRs, React) answered "is he
+           rigorous", not that question, and moved to /lab/#the-quality-bar. Every line
+           below is from the two Substack posts and lab/plugin.html; nothing is new fact. -->
       <div class="arts">
-        <div class="art"><b>The front-end I own ships in the PR</b>
-          <p class="art-r"><i>commented and ready for review &mdash; when we disagree on feasibility, the cheapest experiment settles it</i><a href="./lab/" data-cta="lab" data-location="how-i-build">The code &rarr;</a></p></div>
-        <div class="art"><b>Contrast, overflow and legibility are measured from rendered pixels</b>
-          <p class="art-r"><i>on every push that touches a page, its styles or the tooling</i><a href="./lab/teardown.html" data-cta="teardown" data-location="how-i-build">The teardown &rarr;</a></p></div>
-        <div class="art"><b>Prototypes are working HTML/CSS/JS from the start</b>
-          <p class="art-r"><i>usability-tested as real code &mdash; 8 patterns and one rule, all 9 drivable &mdash; and that same code is what goes to production</i><a href="./patterns/" data-cta="patterns" data-location="how-i-build">The patterns &rarr;</a></p></div>
-        <div class="art"><b>This same site again, in my own React</b>
-          <p class="art-r"><i>self-hosted from the repository &mdash; no CDN, no third-party runtime</i><a href="./book/" data-cta="switch-book" data-location="how-i-build">The book edition &rarr;</a></p></div>
-        <p class="art-note">A client&rsquo;s design system, encoded as an installable plugin: two shipped across client orgs, one public.</p>
+        <div class="art"><b>I write the brief; AI builds from it</b>
+          <p class="art-r"><i>personas, a service blueprint, the structure, text wireframes and real content come first &mdash; each step is about ten times cheaper to change than the next</i><a href="https://arpitmaheshwari.substack.com/p/the-prompt-i-paste-before-every-single" target="_blank" rel="noopener noreferrer" data-cta="article" data-location="how-i-build">The prompt &rarr;<span class="visually-hidden"> (opens in a new tab)</span></a></p></div>
+        <div class="art"><b>AI follows a design system it cannot skip</b>
+          <p class="art-r"><i>tokens, layout rules and checks it reads before it draws &mdash; so the work comes back on-system instead of corrected afterwards</i><a href="./lab/plugin.html" data-cta="lab" data-location="how-i-build">The plugin &rarr;</a></p></div>
+        <div class="art"><b>AI answers the thousand small questions; I judge the ten that matter</b>
+          <p class="art-r"><i>composition &mdash; how two things sit side by side &mdash; is judged by eye on the rendered page at four widths, never left to the model</i><a href="./lab/#the-quality-bar" data-cta="lab" data-location="how-i-build">The checks &rarr;</a></p></div>
+        <div class="art"><b>What ships is mine</b>
+          <p class="art-r"><i>the front-end I own goes into the pull request under my name, commented and ready for engineers to review</i><a href="./lab/" data-cta="lab" data-location="how-i-build">The code &rarr;</a></p></div>
       </div>
       <figure class="barledger">
-        <div class="bl-hd"><b>The bar, in CI</b><i>23 gates &middot; before a push</i></div>
-        <ul class="bl-rows">
-          <li><i>Contrast</i><span>rendered pixels, not tokens</span></li>
-          <li><i>Overflow</i><span>41 pages &times; 5 widths</span></li>
-          <li><i>Legibility</i><span>nightly, every diagram</span></li>
-          <li><i>Prose</i><span>59 pages</span></li>
-        </ul>
-        <p class="bl-foot">When a gate and my eye disagree, the pixels win.</p>
+        <div class="bl-hd"><b>The brief, in order</b><i>before any code</i></div>
+        <ol class="bl-rows bl-steps">
+          <li><i>Step 0</i><span>The design system</span></li>
+          <li><i>Step 1</i><span>Personas</span></li>
+          <li><i>Step 2</i><span>Service blueprint</span></li>
+          <li><i>Step 3</i><span>Information architecture</span></li>
+          <li><i>Step 4</i><span>Text wireframes</span></li>
+          <li><i>Step 5</i><span>Real content</span></li>
+        </ol>
+        <figcaption class="bl-foot">Then the build. Every gap left in the brief gets filled with the most average assumption available.</figcaption>
       </figure>
     </div>
     <p class="lab-row" id="lab"><span class="lr-k">Proof, not philosophy:</span> <a href="./lab/loop.html" data-cta="lab" data-location="how-i-build-row">loop.js &mdash; 42/42 tests</a> &middot; <a href="./lab/eval.html" data-cta="lab" data-location="how-i-build-row">trustlint &mdash; 7 rules</a> &middot; <a href="./lab/teardown.html" data-cta="lab" data-location="how-i-build-row">this site &mdash; 0 build steps</a></p>

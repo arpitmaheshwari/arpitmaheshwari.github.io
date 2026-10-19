@@ -1764,24 +1764,27 @@ body.p-home .work .wrap{max-width:1240px}
    claim and 1.65 on the 11.5px receipt, both at or above the floor for their
    rendered size.
    ========================================================================== */
-body.p-home .arts{min-width:0;border-top:1px solid var(--border-strong)}
-body.p-home .art{padding:16px 0;border-bottom:1px solid var(--border-strong)}
-body.p-home .art > b{display:block;font-family:"Source Sans 3",var(--sans),system-ui;font-size:1rem;font-weight:600;letter-spacing:.005em;line-height:1.4;color:var(--text-body)}
+/* the font aliases these rules read (--mono, --sans) are defined on body.p-home only; the band
+   declares them itself on the Lab, where it moved 2026-10-19, instead of inheriting and hoping */
+body.p-lab #the-quality-bar{--serif:var(--ff-display),Georgia,serif;--sans:var(--ff-sans);--mono:var(--ff-mono),monospace}
+:is(body.p-home,body.p-lab) .arts{min-width:0;border-top:1px solid var(--border-strong)}
+:is(body.p-home,body.p-lab) .art{padding:16px 0;border-bottom:1px solid var(--border-strong)}
+:is(body.p-home,body.p-lab) .art > b{display:block;font-family:"Source Sans 3",var(--sans),system-ui;font-size:1rem;font-weight:600;letter-spacing:.005em;line-height:1.4;color:var(--text-body)}
 /* A GRID, NOT A FLEX ROW. With flex and space-between, a receipt that wraps to
    two lines eats a different amount of the line, so the four doors landed at
    three different right edges — 798, 825 and 828px. Four instances of one
    component must align to ONE ANOTHER, not merely sit inside correct bounds.
    An auto column is as wide as the widest door and every door shares it.
    Baseline alignment keeps the door on the receipt's FIRST line when it wraps. */
-body.p-home .art-r{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:4px 20px;margin:8px 0 0}
-body.p-home .art-r > i{font-style:normal;font-family:var(--ff-mono),ui-monospace,monospace;font-size:0.71875rem;letter-spacing:.01em;line-height:1.65;color:var(--text-faint)}
+:is(body.p-home,body.p-lab) .art-r{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:4px 20px;margin:8px 0 0}
+:is(body.p-home,body.p-lab) .art-r > i{font-style:normal;font-family:var(--ff-mono),ui-monospace,monospace;font-size:0.71875rem;letter-spacing:.01em;line-height:1.65;color:var(--text-faint)}
 /* the house CTA grammar, declared: Source Sans 3, 11.5px, 600, .08em, violet —
    the same six properties the film's caption had to be normalised onto */
-body.p-home .art-r > a{justify-self:end;font-family:"Source Sans 3",var(--sans),system-ui;font-size:0.71875rem;font-weight:600;letter-spacing:.08em;line-height:1.6;color:var(--acc-violet);white-space:nowrap}
-body.p-home .art-note{margin:16px 0 0;font-family:var(--ff-mono),ui-monospace,monospace;font-size:0.71875rem;letter-spacing:.01em;line-height:1.65;color:var(--text-faint)}
+:is(body.p-home,body.p-lab) .art-r > a{justify-self:end;font-family:"Source Sans 3",var(--sans),system-ui;font-size:0.71875rem;font-weight:600;letter-spacing:.08em;line-height:1.6;color:var(--acc-violet);white-space:nowrap}
+:is(body.p-home,body.p-lab) .art-note{margin:16px 0 0;font-family:var(--ff-mono),ui-monospace,monospace;font-size:0.71875rem;letter-spacing:.01em;line-height:1.65;color:var(--text-faint)}
 /* one column on a phone: the door drops under its receipt, left-aligned */
-@media (max-width:560px){body.p-home .art-r{grid-template-columns:minmax(0,1fr)}
-body.p-home .art-r > a{justify-self:start;margin-top:4px}}
+@media (max-width:560px){:is(body.p-home,body.p-lab) .art-r{grid-template-columns:minmax(0,1fr)}
+:is(body.p-home,body.p-lab) .art-r > a{justify-self:start;margin-top:4px}}
 /* ============================================================================
    WHAT HE OWNED — the scope line on a case card, and act 01's scope band
    ----------------------------------------------------------------------------
@@ -1832,20 +1835,21 @@ body.p-home .scope > div > b,
 body.p-home .scope > div > span{grid-row:auto}
 body.p-home .scope > div:nth-child(n+4) > b{padding-top:0}
 body.p-home .scope > div > b{font-size:1.625rem}}
-body.p-home .aiwork-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,420px);column-gap:48px;align-items:start;margin-top:8px}
+:is(body.p-home,body.p-lab) .aiwork-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,420px);column-gap:48px;align-items:start;margin-top:8px}
 /* 1000px, matching 03·1's own breakpoint — the two halves of the act must flip
    to one column at the same width or they disagree for 99px. */
-@media (max-width:1000px){body.p-home .aiwork-two{grid-template-columns:minmax(0,1fr);row-gap:24px}}
+@media (max-width:1000px){:is(body.p-home,body.p-lab) .aiwork-two{grid-template-columns:minmax(0,1fr);row-gap:24px}}
+@media (max-width:1199px){body.p-lab .aiwork-two{grid-template-columns:minmax(0,1fr);row-gap:24px}}   /* the Lab's wider gutters leave the rows too little room beside a 420px ledger until ~1200 (a 20px sweep: 185px rows at 1010, a 119px description at 1040); stacked, they read at full measure */
 /* the readout: hairlines, no card */
-body.p-home .barledger{margin:0;padding:0;border:0;background:none}
-body.p-home .bl-hd{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:8px;border-bottom:1px solid color-mix(in oklab,var(--acc-amber) 40%,transparent)}
-body.p-home .bl-hd b{font-family:var(--mono);font-weight:400;font-size:0.6875rem;letter-spacing:.02em;color:var(--acc-amber);line-height:1.4}
-body.p-home .bl-hd i{font-family:var(--mono);font-style:normal;font-size:0.65625rem;letter-spacing:.02em;color:var(--text-faint);line-height:1.4}
-body.p-home .bl-rows{list-style:none;margin:0;padding:0;display:grid}
-body.p-home .bl-rows li{display:grid;grid-template-columns:minmax(80px,auto) minmax(0,1fr);column-gap:16px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--border-hairline)}
-body.p-home .bl-rows i{font-family:var(--mono);font-style:normal;font-size:0.65625rem;letter-spacing:.02em;color:var(--text-faint);line-height:1.4}
-body.p-home .bl-rows span{font-family:var(--mono);font-size:0.71875rem;letter-spacing:.03em;color:var(--text-body);line-height:1.5}
-body.p-home .bl-foot{margin:12px 0 0;font-family:var(--sans);font-size:0.8125rem;line-height:1.6;color:var(--text-muted)}
+:is(body.p-home,body.p-lab) .barledger{margin:0;padding:0;border:0;background:none}
+:is(body.p-home,body.p-lab) .bl-hd{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:8px;border-bottom:1px solid color-mix(in oklab,var(--acc-amber) 40%,transparent)}
+:is(body.p-home,body.p-lab) .bl-hd b{font-family:var(--mono);font-weight:400;font-size:0.6875rem;letter-spacing:.02em;color:var(--acc-amber);line-height:1.4}
+:is(body.p-home,body.p-lab) .bl-hd i{font-family:var(--mono);font-style:normal;font-size:0.65625rem;letter-spacing:.02em;color:var(--text-faint);line-height:1.4}
+:is(body.p-home,body.p-lab) .bl-rows{list-style:none;margin:0;padding:0;display:grid}
+:is(body.p-home,body.p-lab) .bl-rows li{display:grid;grid-template-columns:minmax(80px,auto) minmax(0,1fr);column-gap:16px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--border-hairline)}
+:is(body.p-home,body.p-lab) .bl-rows i{font-family:var(--mono);font-style:normal;font-size:0.65625rem;letter-spacing:.02em;color:var(--text-faint);line-height:1.4}
+:is(body.p-home,body.p-lab) .bl-rows span{font-family:var(--mono);font-size:0.71875rem;letter-spacing:.03em;color:var(--text-body);line-height:1.5}
+:is(body.p-home,body.p-lab) .bl-foot{margin:12px 0 0;font-family:var(--sans);font-size:0.8125rem;line-height:1.6;color:var(--text-muted)}
 /* ── the close: the cost of getting it wrong, and the first ninety days ──────
    Brand review, 2026-09-08. The page had enormous proof and no PROMISE: the H1
    states the reader's problem, the sub stated Arpit's credentials, and nothing
@@ -2324,6 +2328,7 @@ body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode, :where(body.p-lab-eva
 @media (min-width:1024px){
   /* the band that holds a two-column body opens to the inner width — otherwise the columns split a 62ch measure and the right half of the page stays empty */
   :where(body.p-lab) .lab-wrap:has(> .lab-body.lb-two){max-width:var(--inner-max)}
+  :where(body.p-lab) .lab-wrap:has(> .aiwork-two){max-width:var(--inner-max)}   /* the quality bar (moved from the homepage 2026-10-19) is a rows-plus-ledger band, same reason */
   :where(body.p-lab) .lab-body.lb-two{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:64px;align-items:start;max-width:var(--inner-max)}
   :where(body.p-lab) .lab-body.lb-two > .lb-main > p{max-width:none}
   :where(body.p-lab) .lab-body.lb-two > .lb-side{min-width:0}
@@ -2454,20 +2459,20 @@ body.p-home .memo{border-top:0;padding-top:0}
    it's about repetitive patterns"; A of three rendered layouts). Four list rows, five ledger rows and three
    underlined links drew eleven rules in one band. Now: numerals separate the claims, the ledger is four
    label–value pairs in one soft card, the proof links are chips. Every word unchanged. */
-body.p-home #how-i-build .art, body.p-home #how-i-build .arts, body.p-home #how-i-build .bl-rows li, body.p-home #how-i-build .barledger, body.p-home #how-i-build .bl-hd, body.p-home #how-i-build .aiwork-two, body.p-home #how-i-build .lab-row{border:0;box-shadow:none}
-body.p-home #how-i-build .arts{counter-reset:art}
-body.p-home #how-i-build .art{counter-increment:art;display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:16px;padding:0 0 32px}
-body.p-home #how-i-build .art::before{content:counter(art,decimal-leading-zero);grid-row:1 / span 2;font-family:var(--ff-display);font-size:2.125rem;line-height:1;color:var(--acc-amber)}
-body.p-home #how-i-build .art > b{grid-column:2}
-body.p-home #how-i-build .art > .art-r{grid-column:2;padding:8px 0 0}
-body.p-home #how-i-build .barledger{background:var(--surface-card);border-radius:12px;padding:24px}
-body.p-home #how-i-build .bl-rows{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;margin:16px 0 0;padding:0;list-style:none}
-body.p-home #how-i-build .bl-rows li{display:block;padding:0}
-body.p-home #how-i-build .bl-rows li i{display:block;font-style:normal;font-family:var(--ff-mono),ui-monospace,monospace;font-size:0.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px}
-body.p-home #how-i-build .bl-rows li span{font-family:var(--ff-display);font-size:1.25rem;line-height:1.25;color:var(--text-body)}
-body.p-home #how-i-build .bl-foot{margin-top:20px}
-body.p-home #how-i-build .lab-row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding-top:0}
-body.p-home #how-i-build .lab-row a{border-bottom:0;text-decoration:none;background:color-mix(in srgb, var(--acc-amber) 10%, transparent);padding:8px 12px;border-radius:999px;color:var(--accent-text)}
+:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .art, :is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .arts, :is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .bl-rows li, :is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .barledger, :is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .bl-hd, :is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .aiwork-two, :is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .lab-row{border:0;box-shadow:none}
+:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .arts{counter-reset:art}
+:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .art{counter-increment:art;display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:16px;padding:0 0 32px}
+:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .art::before{content:counter(art,decimal-leading-zero);grid-row:1 / span 2;font-family:var(--ff-display);font-size:2.125rem;line-height:1;color:var(--acc-amber)}
+:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .art > b{grid-column:2}
+:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .art > .art-r{grid-column:2;padding:8px 0 0}
+:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .barledger{background:var(--surface-card);border-radius:12px;padding:24px}
+:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .bl-rows{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;margin:16px 0 0;padding:0;list-style:none}
+:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .bl-rows li{display:block;padding:0}
+:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .bl-rows li i{display:block;font-style:normal;font-family:var(--ff-mono),ui-monospace,monospace;font-size:0.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px}
+:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .bl-rows li span{font-family:var(--ff-display);font-size:1.25rem;line-height:1.25;color:var(--text-body)}
+:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .bl-foot{margin-top:20px}
+:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .lab-row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding-top:0}
+:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .lab-row a{border-bottom:0;text-decoration:none;background:color-mix(in srgb, var(--acc-amber) 10%, transparent);padding:8px 12px;border-radius:999px;color:var(--accent-text)}
 /* ── THE WHOLE CARD IS THE DOOR (2026-09-15, Arpit: "remove all the CTA buttons and keep the card clickable").
    The title link already stretches over its card (.bcard-go::after above); the card lifts on hover. No button. */
 body.p-home .bcard{transition:transform var(--dur-quick) var(--ease-standard), box-shadow var(--dur-quick) var(--ease-standard)}
@@ -2572,4 +2577,35 @@ body.p-home .bcard:hover .bcard-go{color:var(--a)}
    A rule whose selector matches nothing is not harmless: one generic line in a
    dead block silently retargeted onto a live component here before and held a
    nav 16px out of line for weeks. Deleted, not commented out. */
+
+/* SKILLS LINE (2026-10-19, Arpit's call). Storyline's 2026 hiring survey: recruiters
+   are the largest group reading portfolios, and "unclear skills" is a named reason
+   one fails. The homepage never said "Figma" or "research". One plain line, in the
+   words a recruiter searches, under the stake. Arpit confirmed every item. It declares
+   its own ink, size and leading because it sits on the dark hero ground. */
+body.p-home .hero .hero-skills{margin:20px 0 0;max-width:none;font-family:var(--sans);font-style:normal;font-weight:400;font-size:0.875rem;letter-spacing:.005em;line-height:1.6;color:var(--neutral-300)}
+/* THE BRIEF, IN ORDER — a sequence reads down one column. The band's ledger
+   grid is two columns of facts; a numbered order laid out in two columns asks the
+   reader whether 0→1 runs across or down. Label and step share a BASELINE on
+   purpose: the label belongs beside the first line of its step if the step wraps. */
+body.p-home #how-i-build .bl-rows.bl-steps{grid-template-columns:minmax(0,1fr);gap:0}
+body.p-home #how-i-build .bl-rows.bl-steps li{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--border-hairline)}
+body.p-home #how-i-build .bl-rows.bl-steps li i{margin-bottom:0}
+body.p-home #how-i-build .bl-hd{flex-wrap:wrap}
+body.p-home .hero .hero-skills .hs-i{white-space:nowrap}   /* a skill never splits across lines: "web / design" read as two skills */
+body.p-home .hero .hero-skills .hs-k{margin-right:8px;font-family:var(--mono),monospace;font-size:0.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--acc-copper)}
+/* THE LAB'S QUALITY BAR IS A BAND, NOT A RAIL (2026-10-19, Arpit: "fix the lab page
+   gap"). Beside the rows, the four-fact ledger stood 314px tall against 506px of rows
+   and left a 192px void under it at 1440. A taller ledger would be padding, so the
+   section is recomposed instead: the four claims read as a 2x2 grid across the full
+   measure, and the ledger closes the band as one strip of four facts. The homepage's
+   band keeps its rail, because its six-step ledger matches its rows' height. */
+@media (min-width:1024px){
+  body.p-lab #the-quality-bar .bl-rows{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (min-width:1200px){
+  body.p-lab #the-quality-bar .aiwork-two{grid-template-columns:minmax(0,1fr);row-gap:24px}
+  body.p-lab #the-quality-bar .arts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px;align-items:start}
+  body.p-lab #the-quality-bar .art-note{grid-column:1 / -1;margin:0}
+}
 }
