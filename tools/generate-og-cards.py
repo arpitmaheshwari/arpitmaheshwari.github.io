@@ -66,9 +66,9 @@ REG = [
     #     own scale and its italic gold clause (hero=1, em=...) rather than being flattened
     #     into the generic card; kicker chosen by Arpit on 2026-08-30 from three renders.
     ("home-og.png", "FOUNDING / STAFF PRODUCT DESIGNER \u00b7 AI PRODUCTS",
-     "Six systems became one platform.", "",
+     "Users forgive a model for being wrong; never for bluffing.", "",
      "Arpit Maheshwari \u00b7 arpitmaheshwari.com",
-     {"hero": "1", "em": "one platform."}),
+     {"hero": "1", "em": "never for bluffing."}),
     # --- essays. The four essay cards were hand-made and outside this generator until
     #     2026-08-30, when the confidence-scoring essay was rewritten to the attested AdTech
     #     story and its card still carried the retired "How I Design Confidence Scores"

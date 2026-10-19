@@ -6972,4 +6972,27 @@ body.p-home .hero .hero-skills .hs-k{margin-right:8px;font-family:var(--mono),mo
   body.p-lab #the-quality-bar .arts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px;align-items:start}
   body.p-lab #the-quality-bar .art-note{grid-column:1 / -1;margin:0}
 }
+
+/* ── THE HERO (2026-10-22, Arpit's call; prototype prototypes/hero-wow-A1.html,
+   rendered at 390/1024/1440 before landing). The headline is his own published
+   sentence, so the hero asserts nothing and the receipt under it does the
+   proving. Each piece DECLARES its own ink and size on the dark hero ground
+   rather than inheriting — this component has twice been caught rendering
+   differently per page through inheritance. Spacing is on the 4/8/12/16/20/24
+   grid; the inline-style gate rejects anything off it. */
+body.p-home .hero h1.h1-said{font-size:clamp(28px,min(3.8vw,5.2vh),56px);line-height:1.18;max-width:22ch;letter-spacing:-.005em}
+body.p-home .hero .h-attr{margin:16px 0 0}
+body.p-home .hero .h-attr a{font-family:var(--mono),monospace;font-size:0.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--acc-amber);text-decoration:none;line-height:1.6;border-bottom:1px solid transparent}
+body.p-home .hero .h-attr a:hover,body.p-home .hero .h-attr a:focus-visible{border-bottom-color:var(--acc-amber)}
+body.p-home .hero .h-stake{margin:24px 0 0;max-width:56ch;font-family:var(--ff-sans);font-size:1rem;line-height:1.65;color:var(--neutral-200)}
+body.p-home .hero .h-stake b{font-weight:600;color:var(--acc-amber)}
+body.p-home .hero .h-prov{margin:12px 0 0;font-family:var(--mono),monospace;font-size:0.8125rem;letter-spacing:.04em;line-height:1.6;color:var(--text-faint)}
+body.p-home .hero .h-go{color:var(--acc-violet);text-decoration:none;border-bottom:1px solid transparent}
+body.p-home .hero .h-go:hover,body.p-home .hero .h-go:focus-visible{border-bottom-color:var(--acc-violet)}
+/* The skills line moved out of the hero to the work band's intro, behind a
+   hairline: still high for a scanning recruiter, no longer interrupting the
+   first screen. Arpit's content, Arpit's call — only its position changed. */
+body.p-home .work .hero-skills{margin:24px 0 0;padding-top:20px;border-top:1px solid var(--border-hairline);max-width:none;font-family:var(--sans);font-style:normal;font-weight:400;font-size:0.875rem;letter-spacing:.005em;line-height:1.6;color:var(--text-muted)}
+body.p-home .work .hero-skills .hs-i{white-space:nowrap}
+body.p-home .work .hero-skills .hs-k{margin-right:8px;font-family:var(--mono),monospace;font-size:0.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--acc-copper)}
 }
