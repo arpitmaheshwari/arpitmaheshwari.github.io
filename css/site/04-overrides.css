@@ -2628,7 +2628,12 @@ body.p-home .hero .h-go:hover,body.p-home .hero .h-go:focus-visible{border-botto
 /* The skills line moved out of the hero to the work band's intro, behind a
    hairline: still high for a scanning recruiter, no longer interrupting the
    first screen. Arpit's content, Arpit's call — only its position changed. */
-body.p-home .work .hero-skills{margin:24px 0 0;padding-top:20px;border-top:1px solid var(--border-hairline);max-width:none;font-family:var(--sans);font-style:normal;font-weight:400;font-size:0.875rem;letter-spacing:.005em;line-height:1.6;color:var(--text-muted)}
+/* A two-column lede (h2 beside its intro paragraph) was tried here to save
+   header height and MEASURED AS A LOSS — recorded so it is not re-attempted.
+   In a 639px column the h2 grew 99px → 149px and the intro 92px → 214px: 220px
+   side by side against 207px stacked. Narrowing a column makes its text
+   taller; two-up only pays when both blocks are already short. */
+body.p-home .work .hero-skills{margin:40px 0 0;padding-top:20px;border-top:1px solid var(--border-hairline);max-width:none;font-family:var(--sans);font-style:normal;font-weight:400;font-size:0.875rem;letter-spacing:.005em;line-height:1.6;color:var(--text-muted)}
 body.p-home .work .hero-skills .hs-i{white-space:nowrap}
 body.p-home .work .hero-skills .hs-k{margin-right:8px;font-family:var(--mono),monospace;font-size:0.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--acc-copper)}
 }
