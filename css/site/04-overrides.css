@@ -2642,4 +2642,30 @@ body.p-home .hero .h-go:hover,body.p-home .hero .h-go:focus-visible{border-botto
 body.p-home .work .hero-skills{margin:40px 0 0;padding-top:20px;border-top:1px solid var(--border-hairline);max-width:none;font-family:var(--sans);font-style:normal;font-weight:400;font-size:0.875rem;letter-spacing:.005em;line-height:1.6;color:var(--text-muted)}
 body.p-home .work .hero-skills .hs-i{white-space:nowrap}
 body.p-home .work .hero-skills .hs-k{margin-right:8px;font-family:var(--mono),monospace;font-size:0.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--acc-copper)}
+
+/* CAREER STRIP + WRITING DOOR (2026-10-24, homepage Option B — Arpit's pick).
+   Each component declares its own ink, size and leading (lessons 4, 11): nothing
+   here is inherited from the band. Prototyped in prototypes/homepage-cut/. */
+body.p-home .who .wrap.career{display:block;margin-top:64px;padding-top:32px;border-top:1px solid var(--border-strong)}
+body.p-home .career-k{margin:0 0 20px;font-family:var(--ff-mono),ui-monospace,monospace;font-size:0.75rem;letter-spacing:.04em;text-transform:uppercase;line-height:1.5;color:var(--text-faint)}
+body.p-home .career-row{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:32px;row-gap:24px}
+body.p-home .career-row li{display:flex;flex-direction:column;gap:8px;min-width:0}
+body.p-home .career-row b{font-family:var(--serif);font-weight:300;font-size:1.75rem;line-height:1.15;letter-spacing:-.01em;color:var(--text-body)}
+body.p-home .career-row span{font-family:var(--ff-mono),ui-monospace,monospace;font-size:0.71875rem;letter-spacing:.01em;line-height:1.65;color:var(--text-faint)}
+@media (max-width:900px){body.p-home .career-row{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}}
+@media (max-width:480px){body.p-home .career-row{grid-template-columns:1fr;row-gap:20px}}
+body.p-home .doors--tight{padding:48px 0 64px}
+body.p-home .doors-l{margin:0;font-family:var(--sans);font-size:0.9375rem;line-height:1.6;color:var(--text-muted);max-width:70ch}
+body.p-home .doors-l a,body.p-home .doors-list a{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
+body.p-home .doors-list{list-style:none;margin:16px 0 20px;padding:0;display:flex;flex-direction:column;gap:12px}
+body.p-home .doors-list li{font-family:var(--serif);font-weight:300;font-size:1.25rem;line-height:1.35;color:var(--text-body)}
+body.p-home .doors-list li::before{content:"\2014\00a0";color:var(--text-faint)}
+/* Desktop: the band is full width, so the links line takes the right column
+   instead of leaving it empty (layout rule: whitespace is designed, not left). */
+@media (min-width:1024px){
+body.p-home .doors--tight .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);column-gap:64px;row-gap:0;align-items:start}
+body.p-home .doors--tight .k{grid-column:1 / -1}
+body.p-home .doors--tight .doors-list{grid-column:1;margin-top:8px}
+body.p-home .doors--tight .doors-l{grid-column:2;margin-top:8px}
+}
 }
