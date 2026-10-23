@@ -2618,8 +2618,14 @@ body.p-home .hero .hero-skills .hs-k{margin-right:8px;font-family:var(--mono),mo
    grid; the inline-style gate rejects anything off it. */
 body.p-home .hero h1.h1-said{font-size:clamp(28px,min(3.8vw,5.2vh),56px);line-height:1.18;max-width:22ch;letter-spacing:-.005em}
 body.p-home .hero .h-attr{margin:16px 0 0}
-body.p-home .hero .h-attr a{font-family:var(--mono),monospace;font-size:0.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--acc-amber);text-decoration:none;line-height:1.6;border-bottom:1px solid transparent}
-body.p-home .hero .h-attr a:hover,body.p-home .hero .h-attr a:focus-visible{border-bottom-color:var(--acc-amber)}
+/* HOUSE CTA GRAMMAR (cta-grammar-check, 2026-10-23). Every arrow link on the
+   site speaks Source Sans 3 / 14px / no transform / .02em tracking — 21 of 22
+   of them. This one shipped in uppercase mono 12px and was the single outlier
+   the gate found across 34 checks. Inconsistency is invisible to colour and
+   geometry gates because every value it used was legal; it is only visible as
+   a diff of the same component against its siblings. */
+body.p-home .hero .h-attr a{font-family:var(--ff-sans);font-size:0.875rem;letter-spacing:.02em;text-transform:none;color:var(--acc-violet);text-decoration:none;line-height:1.6;border-bottom:1px solid transparent}
+body.p-home .hero .h-attr a:hover,body.p-home .hero .h-attr a:focus-visible{border-bottom-color:var(--acc-violet)}
 body.p-home .hero .h-stake{margin:24px 0 0;max-width:56ch;font-family:var(--ff-sans);font-size:1rem;line-height:1.65;color:var(--neutral-200)}
 body.p-home .hero .h-stake b{font-weight:600;color:var(--acc-amber)}
 body.p-home .hero .h-prov{margin:12px 0 0;font-family:var(--mono),monospace;font-size:0.8125rem;letter-spacing:.04em;line-height:1.6;color:var(--text-faint)}
