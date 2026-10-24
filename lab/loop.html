@@ -87,7 +87,7 @@
 
   <section class="section"><div class="lab-wrap">
   <div class="thesis" data-tint>
-    <span class="t-l">The principle this artifact proves</span>
+    <span class="t-l">The principle this artefact proves</span>
     <p>A design opinion becomes <em>falsifiable</em> the day it compiles.</p>
   </div>
   </div></section>
@@ -157,7 +157,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
       <div class="lab-fn">
         <h3>calibrate(history, options)</h3>
         <p class="lab-pat">Pattern · Calibration &amp; Track Record</p>
-        <p>“80% sure” only means something if, across every time it said 80%, it was right about 80% of the time. This computes the standard measures of that — <strong>Brier score</strong>, <strong>expected calibration error</strong> and the worst single bin — from a history of confidence/outcome pairs. Below thirty observations it refuses to render a verdict at all, because a track record you cannot support is just another confident claim.</p>
+        <p>“80% sure” only means something if, across every time it said 80%, it was right about 80% of the time. This computes the standard measures of that — <strong>Brier score</strong>, <strong>expected calibration error</strong> and the worst single bin (how far the stated odds sat from the hit rate) — from a history of confidence/outcome pairs. Below thirty observations it refuses to render a verdict at all, because a track record you cannot support is just another confident claim.</p>
         <div class="lab-play" id="play-calib">
           <div class="lab-controls">
             <div class="lab-ctl">
@@ -292,7 +292,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
     <div class="lab-wrap">
       <p class="eyebrow">Proof</p>
       <h2 class="section-title" id="the-tests-running-now-in-your-browser">The tests, running now, in your browser</h2>
-      <p class="lab-lede xi-case-studies-fintech-027">The same file runs under Node with <code class="t-code">node lab/loop.test.js</code> and exits non-zero on failure. There is no test framework, because adding a dependency to a zero-dependency library would be the joke telling itself — the runner is about forty lines at the top of the file.</p>
+      <p class="lab-lede xi-case-studies-fintech-027">The same file runs under Node with <code class="t-code">node lab/loop.test.js</code> and exits non-zero on failure. There is no test framework. Adding a dependency to a zero-dependency library would be the joke telling itself. The runner is about forty lines at the top of the file.</p>
       <p class="lab-lede xi-case-studies-fintech-027">Two kinds of proof, kept separate on purpose. <strong class="xi-process-016">Implementation proof</strong> is below: the assertions, in this tab and under Node in CI on every push that touches lab/. <strong class="xi-process-016">Product proof</strong> lives elsewhere &mdash; each of these patterns ran in a production product, documented in <a class="xi-process-020" href="../patterns/">the pattern library</a> and the case studies. Passing tests prove the rules hold; the case studies argue the rules are worth holding.</p>
       <div class="lab-testhead">
         <span class="lab-tally" id="t-tally">…</span>

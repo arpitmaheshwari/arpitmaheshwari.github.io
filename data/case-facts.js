@@ -131,7 +131,7 @@
       "meta": [
         [
           "Role",
-          "Lead Product Designer"
+          "Product & Design Lead"
         ],
         [
           "Team",
@@ -171,7 +171,7 @@
       "meta": [
         [
           "Role",
-          "Lead Product Designer"
+          "Product & Design Lead"
         ],
         [
           "Team",

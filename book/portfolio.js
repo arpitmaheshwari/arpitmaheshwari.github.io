@@ -109,11 +109,11 @@ const WRITING = [{
 }, {
   d: "2026 · Field note",
   h: "The AI Fight Club",
-  p: "Weaponizing Claude and Gemini for Bulletproof Products. A practical method for stress-testing AI interfaces."
+  p: "Weaponising Claude and Gemini for Bulletproof Products. A practical method for stress-testing AI interfaces."
 }, {
   d: "2026 · Essay",
   h: "The New Renaissance",
-  p: "How agentic AI is shifting knowledge work from executing tasks to exercising judgment."
+  p: "How agentic AI is shifting knowledge work from executing tasks to exercising judgement."
 }, {
   d: "2026 · Essay",
   h: "AI as Your Startup Cofounder",
@@ -224,7 +224,7 @@ const NDA_CASES = [{
   context: "The one move: own both sides of the handoff — design every screen with a co-designer, then code alone the front-end that ships it, so nothing is lost in translation. The cost of that scale: a rounding error has a population. The proof isn’t sign-ups; it’s the 2.5M who came back.",
   moves: [{
     h: "MyO2 — the whole account, alone",
-    p: "O2 UK’s self-service app: data and usage, the bill, a tariff change, an upgrade — the whole account without dialing anyone. A replatforming, not a fresh start: the legacy system made responsive across iOS, Android, Windows Phone and web, moved cautiously with millions of subscribers aboard."
+    p: "O2 UK’s self-service app: data and usage, the bill, a tariff change, an upgrade — the whole account without dialling anyone. A replatforming, not a fresh start: the legacy system made responsive across iOS, Android, Windows Phone and web, moved cautiously with millions of subscribers aboard."
   }, {
     h: "Priority Moments — a reason to open it",
     p: "O2's loyalty programme: a geolocated list of rewards near you — Odeon, M&S, Caffè Nero — every redemption a reason to stay. Launched July 2011; 2.6M registrations in year one, 2.5M+ active. The launch figures are O2's record — I joined in 2013 and owned the reward and offer screens."
@@ -477,7 +477,7 @@ const PATTERN_PAGES = {
     k: "calib",
     h: "Calibration & Track Record",
     principle: "A confident score with no track record is a stranger asking you to bet your reputation on their word.",
-    def: "A confidence number is a claim; its track record is the evidence. Show whether “80% sure” has actually been right about 80% of the time — so a person learns how hard to lean, and watches that judgment improve as the history grows.",
+    def: "A confidence number is a claim; its track record is the evidence. Show whether “80% sure” has actually been right about 80% of the time — so a person learns how hard to lean, and watches that judgement improve as the history grows.",
     note: "confidence with a memory gets acted on; confidence alone doesn’t",
     dos: ["Show the model’s hit rate beside its current confidence.", "Break the record down by the kind of case, not one global average.", "Let the history update in the open, so trust is earned, not assumed."],
     donts: ["Show a confidence number with no past to back it.", "Average away the cases where the model is reliably wrong.", "Reset the track record silently every time the model changes."],
@@ -1054,7 +1054,7 @@ function caseWalk(c) {
         fontStyle: "italic",
         color: "var(--bk-ink-faint)"
       }
-    }, "What you see is a reconstruction or a schematic, never a client’s live screen: names and figures on it are synthetic and the client is unnamed. The moves, outcomes and principles are public; I’ll walk through the real artifacts and numbers on a call under mutual NDA.") : null)
+    }, "What you see is a reconstruction or a schematic, never a client’s live screen: names and figures on it are synthetic and the client is unnamed. The moves, outcomes and principles are public; I’ll walk through the real artefacts and numbers on a call under mutual NDA.") : null)
   };
 }
 
@@ -1673,7 +1673,7 @@ function buildBook(ctx) {
       }
     }, "A Field", /*#__PURE__*/React.createElement("br", null), "Guide to", /*#__PURE__*/React.createElement("br", null), "Trust"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body bk-drop"
-    }, "A working system for trusting and governing AI agents \u2014 one decision grammar, eight interaction patterns, and the code that implements them. Everything here ran in production, failed somewhere specific, and came back stronger — the tradeoffs are written down because I paid for them once, so you don’t have to."), /*#__PURE__*/React.createElement("div", {
+    }, "A working system for trusting and governing AI agents \u2014 one decision grammar, eight interaction patterns, and the code that implements them. Everything here ran in production, failed somewhere specific, and came back stronger — the trade-offs are written down because I paid for them once, so you don’t have to."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
         marginTop: 20

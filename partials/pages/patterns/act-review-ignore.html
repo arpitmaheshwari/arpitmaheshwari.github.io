@@ -223,8 +223,7 @@
 
 
   <section class="xi-process-012">
-    <p class="lead xi-patterns-act-review-ignore-015">In the 'Where the rule earned its name' AdTech bullet: 'the roomful of traders from the first line of this page — recommendations shipped as full plans with KPIs and one-click customisation; their accept-adjust-reject rhythm is what later crystallised into the three verbs.'</p>
-    <p class="u-body xi-process-005">An unexplained 87% is a shrug with decimals. It reports the model’s mood and assigns the user all of the work: is 87 high for this kind of call? High enough to spend money on? Higher than my own hunch? While the person does that math, the moment to act expires — and a recommendation nobody acts on rounds down to zero, whatever the model’s accuracy says.</p>
+    <p class="lead xi-patterns-act-review-ignore-015">An unexplained 87% is a shrug with decimals. It reports the model’s mood and assigns the user all of the work: is 87 high for this kind of call? High enough to spend money on? Higher than my own hunch? While the person does that math, the moment to act expires — and a recommendation nobody acts on rounds down to zero, whatever the model’s accuracy says.</p>
     <p class="u-body">The rule: a confidence score should never reach the screen alone. It resolves into an explicit next state before the user sees it — across the products I&rsquo;ve shipped, three verbs covered the production cases — <strong class="xi-process-016">act</strong>, <strong class="xi-process-016">review</strong>, or <strong class="xi-process-016">ignore</strong>.</p>
   </section>
 
@@ -260,20 +259,52 @@
 
   <section class="xi-process-012">
     <h2 class="section-title xi-process-014" id="review-forces-the-reasoning-surface-to-exist">2. “Review” forces the reasoning surface to exist</h2>
-    <p class="u-body xi-process-005">A verb of <em>review</em> is empty without something to review. So the moment a score lands there, the interface owes the user the handful of signals that drove it, in language the person can test against their own judgment. Build the rule and you have to build the reasoning panel; there is no skipping it.</p>
+    <p class="u-body xi-process-005">A verb of <em>review</em> is empty without something to review. So the moment a score lands there, the interface owes the user the handful of signals that drove it, in language the person can test against their own judgement. Build the rule and you have to build the reasoning panel; there is no skipping it.</p>
     <p class="u-body">Even when the user overrules the model, they should see <em>how</em> it got there. A review without a reason is a shrug with extra steps. (See the <a class="link-gold" href="./ml-explainability.html">ML Explainability</a> and <a class="link-gold" href="./confidence-scores.html">Confidence Score</a> patterns for the surfaces that do this.)</p>
   </section>
 
   <section class="xi-process-012">
     <h2 class="section-title xi-process-014" id="the-override-stops-being-a-failure-mode">3. The override stops being a failure mode</h2>
     <p class="u-body xi-process-005">An <em>act</em> the user can’t undo is a bet they never agreed to make. So every recommended action carries a first-class override — not a buried setting, but a path visible at the point of decision.</p>
-    <p class="u-body">A user correcting the model inside a review state is not the system breaking; it is the training data the next version needs. Log it, feed it back, and show people their fingerprints on next week’s calls. The first time someone watches their own pushback sharpen the model, the override flips from a fight into coaching. (This is the <a class="link-gold" href="./human-in-loop.html">Human-in-Loop</a> pattern in practice.)</p>
+    <p class="u-body">A user correcting the model inside a review state is not the system breaking; it is the training data the next version needs. Log it, feed it back, and show people their fingerprints on next week’s calls. The first time someone watches their own pushback sharpen the model, the override flips from a fight into coaching. (This is the <a class="link-gold" href="./human-in-loop.html">Human-in-the-Loop</a> pattern in practice.)</p>
   </section>
 
   <div class="counter">
     <span class="c-l">The strongest objection, kept in</span>
     <p class="u-body">&ldquo;The band edges are arbitrary.&rdquo; They are &mdash; that is the feature. A raw score lets nobody own the cutoff; the rule forces someone to set it, defend it, and revisit it against real outcomes. Arbitrary-and-owned beats precise-and-orphaned in every deployment I&rsquo;ve shipped.</p>
   </div>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018" id="where-it-has-run">Where it has run</h2>
+    <p class="u-body">PE screening and technical diligence run the rule as shipped; media buying ran its ancestor — plans a trader could accept, adjust, or reject. PE screening: 60% faster once analysts stopped re-deriving the score, measured pre- vs post-rollout. Technical diligence: three-week cycles to four days across VC and PE engagements. Different stakes, same three verbs &mdash; and it holds for agents too: a tool call is an <strong class="xi-process-016">act</strong>, a draft is a <strong class="xi-process-016">review</strong>, an abstention is an honest <strong class="xi-process-016">ignore</strong>. If a score or an action on your screen doesn’t bind to <strong class="xi-process-016">act</strong>, <strong class="xi-process-016">review</strong>, or <strong class="xi-process-016">ignore</strong>, with a reason for every review and an override for every act, it’s decoration. Delete it or finish it.</p>
+  </section>
+
+  <section class="card-gold xi-patterns-act-review-ignore-028">
+    <h3 class="card-title xi-process-005">Where the rule earned its name</h3>
+    <p class="t-cap-loose xi-case-studies-adtech-016">No single product taught me this rule — the same pattern kept recurring across the AI work until it earned a name. It runs across these case studies:</p>
+    <ul class="t-cap-loose xi-case-studies-adtech-052">
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> the ancestor, not an instance — recommendations shipped as full plans with KPIs and one-click customisation; the accept-adjust-reject rhythm there is what later crystallised into the three verbs.</li>
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> a score that opens its own reasoning when it hits review, never a bare verdict the analyst has to take on faith.</li>
+      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/vc-diligence.html">Due Diligence You Can&rsquo;t Rubber-Stamp</a>:</strong> the same three verbs took the diligence cycle from 3 wks → 4 days across VC and PE engagements.</li>
+    </ul>
+  </section>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section class="card-gold xi-patterns-act-review-ignore-028">
+    <div class="eyebrow xi-process-013">Get AI design patterns in your inbox</div>
+    <p class="u-ui xi-case-studies-adtech-016">One pattern a month. The trade-offs I paid for, plus the templates I use.</p>
+    <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+      <input class="t-sans-ui card-seg xi-patterns-act-review-ignore-031" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
+      <button class="cta cta--secondary xi-patterns-act-review-ignore-032" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
+    </form>
+  </section>
+
+  <section class="measure-t" data-tint>
+    <div class="xi-patterns-act-review-ignore-035">
+      <div class="eyebrow xi-process-013">Where this breaks — do not use it here</div>
+      <p class="u-body xi-process-017">Skip the rule when every output is safe to auto-apply (no verb needed but Act) or when the volume is so low a human reviews everything anyway — three bands with nothing in them is ceremony. And if the model can’t be calibrated well enough to place the two thresholds honestly, fix that first; verbs on top of noise just launder the noise.</p>
+    </div>
+  </section>
 
   <section class="xi-process-012">
     <h2 class="section-title xi-patterns-act-review-ignore-018" id="ship-it-the-checklist">Ship it: the checklist.</h2>
@@ -286,38 +317,6 @@
       <li class="xi-patterns-act-review-ignore-027"><strong>Revisit the band edges against real outcomes</strong> on a schedule, not when someone complains.</li>
       <li class="xi-patterns-act-review-ignore-027"><strong>Audit your screens:</strong> any score not bound to a verb is decoration. Delete it or finish it.</li>
     </ul>
-  </section>
-
-  <section class="xi-process-012">
-    <h2 class="section-title xi-patterns-act-review-ignore-018" id="where-it-has-run">Where it has run</h2>
-    <p class="u-body">PE screening and technical diligence run the rule as shipped; media buying ran its ancestor — plans a trader could accept, adjust, or reject. PE screening: 60% faster once analysts stopped re-deriving the score. Technical diligence: three-week cycles to four days. Different stakes, same three verbs &mdash; and it holds for agents too: a tool call is an <strong class="xi-process-016">act</strong>, a draft is a <strong class="xi-process-016">review</strong>, an abstention is an honest <strong class="xi-process-016">ignore</strong>. If a score or an action on your screen doesn’t bind to <strong class="xi-process-016">act</strong>, <strong class="xi-process-016">review</strong>, or <strong class="xi-process-016">ignore</strong>, with a reason for every review and an override for every act, it’s decoration. Delete it or finish it.</p>
-  </section>
-
-  <section class="card-gold xi-patterns-act-review-ignore-028">
-    <h3 class="card-title xi-process-005">Where the rule earned its name</h3>
-    <p class="t-cap-loose xi-case-studies-adtech-016">No single product taught me this rule — the same pattern kept recurring across the AI work until it earned a name. It runs across these case studies:</p>
-    <ul class="t-cap-loose xi-case-studies-adtech-052">
-      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/adtech.html">An Ad Agency Became the Market&rsquo;s Aggregator</a>:</strong> the ancestor, not an instance — recommendations shipped as full plans with KPIs and one-click customisation; the accept-adjust-reject rhythm there is what later crystallised into the three verbs.</li>
-      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/fintech.html">Deal-Screening AI That Cites Its Sources</a>:</strong> a score that opens its own reasoning when it hits review, never a bare verdict the analyst has to take on faith.</li>
-      <li class="xi-process-013"><strong><a class="link-gold" href="../case-studies/vc-diligence.html">Due Diligence You Can&rsquo;t Rubber-Stamp</a>:</strong> the same three verbs took the diligence cycle from 3 wks → 4 days.</li>
-    </ul>
-  </section>
-
-  <!-- NEWSLETTER SIGNUP -->
-  <section class="card-gold xi-patterns-act-review-ignore-028">
-    <div class="eyebrow xi-process-013">Get AI design patterns in your inbox</div>
-    <p class="u-ui xi-case-studies-adtech-016">One pattern per month with tradeoffs and the templates I use.</p>
-    <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
-      <input class="t-sans-ui card-seg xi-patterns-act-review-ignore-031" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
-      <button class="cta cta--secondary xi-patterns-act-review-ignore-032" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
-    </form>
-  </section>
-
-  <section class="measure-t" data-tint>
-    <div class="xi-patterns-act-review-ignore-035">
-      <div class="eyebrow xi-process-013">Where this breaks — do not use it here</div>
-      <p class="u-body xi-process-017">Skip the rule when every output is safe to auto-apply (no verb needed but Act) or when the volume is so low a human reviews everything anyway — three bands with nothing in them is ceremony. And if the model can’t be calibrated well enough to place the two thresholds honestly, fix that first; verbs on top of noise just launder the noise.</p>
-    </div>
   </section>
 
   <div class="btn-row">

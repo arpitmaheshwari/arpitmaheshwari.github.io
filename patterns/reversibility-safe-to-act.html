@@ -97,7 +97,7 @@
 <main id="main" class="section page-bg"><div class="xi-process-004">
 
   <section class="xi-process-012">
-    <p class="lead xi-patterns-act-review-ignore-015">Reversibility outranks confidence: a person will act on a suggestion they can undo before a better one they can’t. Make the action cheap to walk back — one click to reverse, a clear path back, no permanent damage — and people will try the recommendation they’d otherwise ignore. Reversibility buys you the first action; accuracy keeps the rest.</p>
+    <p class="lead xi-patterns-act-review-ignore-015">A one-click override that cost nothing to walk back is what got buyers to act on the algorithm at all. Reversibility outranks confidence: a person will act on a suggestion they can undo before a better one they can’t. Make the action cheap to walk back — one click to reverse, a clear path back, no permanent damage — and people will try the recommendation they’d otherwise ignore. Reversibility buys you the first action; accuracy keeps the rest.</p>
   </section>
 
   <div class="thesis" data-tint>
@@ -258,17 +258,6 @@
     <span class="c-l">The strongest objection, kept in</span>
     <p class="u-body">&ldquo;Undo is an engineering luxury we&rsquo;ll add later.&rdquo; Reversibility is not a convenience feature &mdash; it is the price of the first yes. If acting on your product&rsquo;s suggestion can&rsquo;t be walked back, you have priced the trial run beyond what a rational professional will pay, and no amount of model accuracy buys it back.</p>
   </div>
-
-  <section class="xi-process-012">
-    <h2 class="section-title xi-patterns-act-review-ignore-018" id="ship-it-the-checklist">Ship it: the checklist.</h2>
-    <ul class="u-body xi-patterns-act-review-ignore-026">
-      <li class="xi-patterns-act-review-ignore-027"><strong>Make acting on a recommendation one click to reverse.</strong></li>
-      <li class="xi-patterns-act-review-ignore-027"><strong>Show the path back before the person commits</strong>, not after a mistake.</li>
-      <li class="xi-patterns-act-review-ignore-027"><strong>For irreversible changes, stage the rollout</strong> so it can be halted mid-flight.</li>
-      <li class="xi-patterns-act-review-ignore-027"><strong>Protect affected users with a grace period</strong>, not a hard cutover.</li>
-      <li class="xi-patterns-act-review-ignore-027"><strong>Measure first-action rate, not just accuracy</strong> — reversibility moves the former.</li>
-    </ul>
-  </section>
   <section class="xi-process-012">
     <h2 class="section-title xi-patterns-act-review-ignore-018" id="trade-offs-by-approach">Trade-offs by Approach</h2>
     <div class="xi-patterns-calibration-track-record-022">
@@ -278,7 +267,7 @@
         </thead>
         <tbody>
           <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong>One-click undo</strong></td><td class="xi-patterns-act-review-ignore-025">Frequent, low-cost actions</td><td class="xi-patterns-act-review-ignore-025">Needs true reversal underneath, not a cosmetic toast</td></tr>
-          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong>Grace window (undo for 30s)</strong></td><td class="xi-patterns-act-review-ignore-025">Sends, posts, purchases</td><td class="xi-patterns-act-review-ignore-025">Delays the action; a window that’s too short is theater</td></tr>
+          <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong>Grace window (undo for 30s)</strong></td><td class="xi-patterns-act-review-ignore-025">Sends, posts, purchases</td><td class="xi-patterns-act-review-ignore-025">Delays the action; a window that’s too short is theatre</td></tr>
           <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong>Staged rollout / halt</strong></td><td class="xi-patterns-act-review-ignore-025">Big, systemic changes</td><td class="xi-patterns-act-review-ignore-025">Slower to full effect; needs progress visibility</td></tr>
           <tr class="xi-patterns-act-review-ignore-023"><td class="xi-patterns-act-review-ignore-025"><strong>Preview before commit</strong></td><td class="xi-patterns-act-review-ignore-025">First-time or high-stakes acts</td><td class="xi-patterns-act-review-ignore-025">Adds a step; friction where trust is already high</td></tr>
         </tbody>
@@ -298,7 +287,7 @@
   <!-- NEWSLETTER SIGNUP -->
   <section class="card-gold xi-patterns-act-review-ignore-028">
     <div class="eyebrow xi-process-013">Get AI design patterns in your inbox</div>
-    <p class="u-ui xi-case-studies-adtech-016">One pattern a month. The tradeoffs I paid for, plus the templates I use.</p>
+    <p class="u-ui xi-case-studies-adtech-016">One pattern a month. The trade-offs I paid for, plus the templates I use.</p>
     <form class="chip-row" action="https://arpitmaheshwari.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
       <input class="t-sans-ui card-seg xi-patterns-act-review-ignore-031" type="email" name="email" required placeholder="you@company.com" aria-label="Email address">
       <button class="cta cta--secondary xi-patterns-act-review-ignore-032" type="submit" data-cta="newsletter" data-location="pattern-newsletter">Subscribe</button>
@@ -310,6 +299,17 @@
       <div class="eyebrow xi-process-013">Where this breaks — do not use it here</div>
       <p class="u-body xi-process-017">In genuinely irreversible domains — payments sent, emails delivered, trades executed — a fake undo is worse than none. Sometimes friction is the correct design; make the last step deliberately heavy instead of pretending it can be unwound.</p>
     </div>
+  </section>
+
+  <section class="xi-process-012">
+    <h2 class="section-title xi-patterns-act-review-ignore-018" id="ship-it-the-checklist">Ship it: the checklist.</h2>
+    <ul class="u-body xi-patterns-act-review-ignore-026">
+      <li class="xi-patterns-act-review-ignore-027"><strong>Make acting on a recommendation one click to reverse.</strong></li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Show the path back before the person commits</strong>, not after a mistake.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>For irreversible changes, stage the rollout</strong> so it can be halted mid-flight.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Protect affected users with a grace period</strong>, not a hard cutover.</li>
+      <li class="xi-patterns-act-review-ignore-027"><strong>Measure first-action rate, not just accuracy</strong> — reversibility moves the former.</li>
+    </ul>
   </section>
 
   <div class="btn-row">

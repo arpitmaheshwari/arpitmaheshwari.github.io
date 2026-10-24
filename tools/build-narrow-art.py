@@ -221,22 +221,22 @@ def calibration():
 
 def confidence():
     a = Art('art-confidence-narrow', 'Confidence Scores pattern',
-            'A score of 78 out of 100 sits on a scale, and each band of the scale names '
-            'the action it licenses: act at 75 to 100, review at 40 to 74, ignore at 0 to 39. '
+            'A score of 92 out of 100 sits on a scale, and each band of the scale names '
+            'the action it licenses: act at 90 to 100, review at 70 to 89, ignore at 0 to 69. '
             'Beneath it a 30-day track record reports 91 per cent calibration.')
     a.head('Confidence Scores',
            ['A number anchored to an action —', 'with its own track record.'])
     a.card(86, dy=22)
     a.text('Confidence', 'n-act', x=16, dy=26)
-    a.text('78', 'n-num', x=16, dy=34); a.text('% confident', 'n-cap', x=58, dy=0)
+    a.text('92', 'n-num', x=16, dy=34); a.text('% confident', 'n-cap', x=58, dy=0)
     bar = a.y + 18
     a.raw(f'<rect class="n-rule" x="16" y="{bar}" width="328" height="8" rx="4"/>')
-    a.raw(f'<rect class="n-band" x="16" y="{bar}" width="256" height="8" rx="4"/>')
+    a.raw(f'<rect class="n-band" x="16" y="{bar}" width="302" height="8" rx="4"/>')
     a.raw(f'<text class="n-cap" x="16" y="{bar+22}">0</text>')
     a.raw(f'<text class="n-cap" x="330" y="{bar+22}">100</text>')
     a.y = bar + 22
     a.text('Action', 'n-act', dy=34)
-    for name, rng in (('Act', '75–100'), ('Review', '40–74'), ('Ignore', '0–39')):
+    for name, rng in (('Act', '90–100'), ('Review', '70–89'), ('Ignore', '0–69')):
         a.card(38, dy=10)
         a.text(name, 'n-qn', x=16, dy=25)
         a.text(rng, 'n-cap', x=140, dy=0)
