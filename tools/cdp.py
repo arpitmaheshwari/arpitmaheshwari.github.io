@@ -70,6 +70,10 @@ TRACKER_HOSTS = [
     "*.clarity.ms", "clarity.ms",
     "c.bing.com", "bat.bing.com",
     "stats.g.doubleclick.net", "*.doubleclick.net",
+    # Cloudflare injects its own Web Analytics beacon into every proxied page — it is in
+    # no file in this repo, so the list above never saw it. Found 2026-10-24 when a
+    # production sweep was counted as ~35 visits before the gap was noticed.
+    "static.cloudflareinsights.com", "cloudflareinsights.com", "*.cloudflareinsights.com",
 ]
 NO_TRACKING_FLAG = "--host-resolver-rules=" + ",".join(
     f"MAP {h} ~NOTFOUND" for h in TRACKER_HOSTS)
