@@ -29,6 +29,7 @@ CALIBRATION
     and requires the loss to be reported.
 """
 import argparse, glob, os, re, sys, struct, collections
+import html as html_mod
 
 META = re.compile(r'<meta\s+[^>]*>', re.I)
 ATTR = re.compile(r'(\w[\w:-]*)\s*=\s*"([^"]*)"', re.I)
@@ -122,7 +123,8 @@ def main():
         if 'noindex' in m.get('robots', ''):
             continue
 
-        t = (TITLE.search(html).group(1).strip() if TITLE.search(html) else '')
+        # measure what a card SHOWS: entities decode (&amp; is one glyph, not five)
+        t = (html_mod.unescape(TITLE.search(html).group(1).strip()) if TITLE.search(html) else '')
         if not t:
             findings.append((rel, 'NO-TITLE', ''))
         else:

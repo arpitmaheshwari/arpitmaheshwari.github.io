@@ -67,7 +67,7 @@ for c in CASES:
       </video>
     </div>
     <figcaption class="vid-cap-row">
-      <span class="vid-meta">{dur} &middot; the case, narrated &middot; rather read? &mdash; the 60-second slip is next</span>
+      <span class="vid-meta">{dur} &middot; the case, narrated &middot; rather read? &mdash; the full case is below</span>
       <span class="vid-meta">synthetic voice for now</span>
     </figcaption>
   </figure>

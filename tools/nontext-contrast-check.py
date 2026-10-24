@@ -220,7 +220,7 @@ def main():
     for w in widths:
         b.viewport(w, 900)
         for p in paths:
-            b.navigate('http://localhost:8000/' + p, settle=1.0); b.pump(0.35)
+            b.navigate('http://localhost:8000/' + p, settle=1.0); b.open_disclosures(); b.pump(0.35)
             checked += 1
             for r in (b.eval_json(PROBE) or []):
                 if 'unmeasurable' in r:

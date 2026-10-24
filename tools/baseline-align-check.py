@@ -212,6 +212,7 @@ def main():
         b.viewport(w, 900)
         for path in paths:
             b.navigate(BASE.rstrip('/') + '/' + path.lstrip('/'))
+            b.open_disclosures()
             b.pump(0.5)
             # resolve every play-once instrument so pre-state opacity never hides a row
             b.eval("document.querySelectorAll('.bcard,.vg-hero').forEach(e=>e.classList.add('live'))")

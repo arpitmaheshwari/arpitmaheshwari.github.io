@@ -77,7 +77,7 @@ def main():
         for w in WIDTHS:
             br.viewport(w, 900)
             for rel in pages(include_book=False):
-                br.navigate(f'{BASE}/{rel}', settle=1.2)
+                br.navigate(f'{BASE}/{rel}', settle=1.2); br.open_disclosures()
                 d = br.eval_json(JS)
                 ex = EXEMPT.get(rel, [])
                 for b in d['bands']:

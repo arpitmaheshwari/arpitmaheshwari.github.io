@@ -65,7 +65,7 @@ REG = [
     #     a defect no text gate can ever see, on the site's most-shared image. It keeps its
     #     own scale and its italic gold clause (hero=1, em=...) rather than being flattened
     #     into the generic card; kicker chosen by Arpit on 2026-08-30 from three renders.
-    ("home-og.png", "FOUNDING / STAFF PRODUCT DESIGNER \u00b7 AI PRODUCTS",
+    ("home-og.png", "PRODUCT & DESIGN LEAD \u00b7 AI & DATA-INTENSIVE PRODUCTS",
      "Users forgive a model for being wrong; never for bluffing.", "",
      "Arpit Maheshwari \u00b7 arpitmaheshwari.com",
      {"hero": "1", "em": "never for bluffing."}),

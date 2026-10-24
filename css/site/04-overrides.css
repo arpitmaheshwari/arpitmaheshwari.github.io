@@ -18,7 +18,7 @@ body.p-home .range-lbl{font-family:var(--mono);font-size:0.71875rem;letter-spaci
    VC-diligence to follow. The slip declares its own cream tokens (component
    declares its critical properties; the p-home token scope does not reach
    case pages). All inks below are pre-computed pairs from the system table. */
-body[class*="p-case-studies"] .vband{padding:0 0 clamp(40px,6vh,64px)}
+body[class*="p-case-studies"] .vband{padding:clamp(40px,6vh,64px) 0}
 body[class*="p-case-studies"] .vband-in{max-width:1040px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,4vw,48px);align-items:start}
 @media (max-width:900px){body[class*="p-case-studies"] .vband-in{grid-template-columns:1fr}}
 body[class*="p-case-studies"] .vslip{position:relative;background:var(--surface-page);color:var(--text-body);border-radius:var(--radius-2);padding:24px 32px 20px;box-shadow:var(--elev-2);transform:rotate(-.5deg)}
@@ -208,10 +208,10 @@ body.p-home .k-idx-rose{color:var(--acc-rose)}
    click-to-play binds automatically. The section is its own band
    so the film doesn't crowd the slip's cream card.
    ============================================================ */
-.vband-film{padding:48px 40px 8px}
+.vband-film{padding:0 40px 8px}
 .vband-film .vid-case{max-width:1000px;margin:0 auto}
 .vband-film .vid-cap-row{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;margin-top:12px}
-@media (max-width:768px){.vband-film{padding:32px 24px 8px}}
+@media (max-width:768px){.vband-film{padding:0 24px 8px}}
 /* live-capture evidence figure (2026-08-30, closes the review's 'no real
    artifact' finding — Arpit's call: the live platform as a longevity receipt,
    framed honestly as today's product, not his screens) */
@@ -2668,4 +2668,27 @@ body.p-home .doors--tight .k{grid-column:1 / -1}
 body.p-home .doors--tight .doors-list{grid-column:1;margin-top:8px}
 body.p-home .doors--tight .doors-l{grid-column:2;margin-top:8px}
 }
+/* ============================================================
+   DEEP READ (2026-10-24, UXfolio review: length is the #2 weakness
+   reviewers name). The slip answers the screener; the film sits
+   second; the long story is folded behind one native <details>.
+   The component declares its own ink, ground and leading (lesson 11).
+   ============================================================ */
+body[class*="p-case-studies"] .deep-read{margin:0;border-top:2px solid var(--text-body)}
+body[class*="p-case-studies"] .deep-read-sum{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"k k" "t t" "s s";gap:4px 24px;padding:24px 0;background:var(--surface-page);color:var(--text-body)}
+body[class*="p-case-studies"] .deep-read-sum::-webkit-details-marker{display:none}
+body[class*="p-case-studies"] .deep-read-sum:focus-visible{outline:2px solid var(--acc-copper);outline-offset:4px}
+body[class*="p-case-studies"] .deep-read-k{grid-area:k;font-family:var(--mono);font-size:0.71875rem;letter-spacing:.02em;line-height:1.4;color:var(--acc-copper)}
+body[class*="p-case-studies"] .deep-read-t{grid-area:t;font-family:var(--serif);font-weight:400;font-size:1.5rem;line-height:1.2;letter-spacing:0;color:var(--text-body)}
+body[class*="p-case-studies"] .deep-read-t::after{content:"\00a0\2193";color:var(--acc-copper);display:inline-block;transition:transform .2s ease}
+body[class*="p-case-studies"] .deep-read[open] .deep-read-t::after{transform:rotate(180deg)}
+body[class*="p-case-studies"] .deep-read-open{display:none}
+body[class*="p-case-studies"] .deep-read[open] .deep-read-open{display:inline}
+body[class*="p-case-studies"] .deep-read[open] .deep-read-closed{display:none}
+body[class*="p-case-studies"] .deep-read-sub{grid-area:s;font-size:0.8125rem;line-height:1.5;color:var(--text-muted)}
+@media (hover:hover){body[class*="p-case-studies"] .deep-read-sum:hover .deep-read-t{color:var(--acc-copper)}}
+body[class*="p-case-studies"] .deep-read-body{padding-top:40px}
+/* inside the fold the first chapter already carries its own rule; drop the
+   doubled top rule it would draw against the summary */
+body[class*="p-case-studies"] .deep-read-body>section:first-child{border-top:0;padding-top:0}
 }

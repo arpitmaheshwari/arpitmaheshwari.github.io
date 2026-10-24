@@ -262,6 +262,17 @@ class Browser:
         v = self.eval(expression, await_promise)
         return json.loads(v) if isinstance(v, str) else v
 
+    def open_disclosures(self):
+        """Open every <details> so a grading gate sees the text a reader can reach.
+        2026-10-24: the case pages fold their long story behind one <details>; the
+        contrast audit then reported ~250 text nodes per page as UNKNOWN because a
+        closed fold has no rendered rects. A fold is a reader design, not a hiding
+        place — gates that grade text or layout call this after navigate(). Gates
+        that test the CLOSED state on purpose (closed-state-cover, reachability)
+        must not."""
+        self.eval("(function(){var n=0;document.querySelectorAll('details:not([open])')"
+                  ".forEach(function(d){d.open=true;n++});return n})()")
+
     def scroll_through(self, step=500, pause=12):
         """Walk the page so IntersectionObservers fire, then return to the top."""
         self.eval(

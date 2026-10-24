@@ -490,6 +490,7 @@ def audit(url, width, exempt=None, canary=False, force_visible=".reveal"):
             br.eval("(function(){var s=document.createElement('div');s.innerHTML=%s;"
                     "while(s.firstChild)document.body.appendChild(s.firstChild);})()"
                     % json.dumps(CANARY_HTML))
+        br.open_disclosures()   # grade the folded case text too (see cdp.open_disclosures)
         br.eval(SETTLE_JS, await_promise=True)
         br.pump(0.3)
         prep = PREP_JS.replace("EXEMPT_SEL", json.dumps(exempt) if exempt else "null")
