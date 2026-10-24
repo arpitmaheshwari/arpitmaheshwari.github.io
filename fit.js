@@ -22,6 +22,7 @@
   'use strict';
 
   var IDX = null;
+  var ready = null;          // the word-list fetch, so an early press can wait for it
   var form = document.getElementById('fit-form');
   if (!form) return;
 
@@ -248,6 +249,13 @@
       document.getElementById('fit-jd').focus();
       return;
     }
+    if (!IDX) {
+      // the word list arrives a moment after the page; pressing the button before it lands
+      // used to crash with an empty results panel. Say so, then run as soon as it is here.
+      if (status) status.textContent = 'Still loading the word list. Your results will appear in a moment.';
+      if (ready) ready.then(function () { if (IDX) run(); });
+      return;
+    }
     if (status) status.textContent = '';
     var res = document.getElementById('fit-results');
     res.hidden = false;           // unhide BEFORE rendering: content injected into a hidden
@@ -271,7 +279,7 @@
     document.getElementById('fit-jd').focus();
   });
 
-  fetch('../data/fit-index.json')
+  ready = fetch('../data/fit-index.json')
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (j) { IDX = j; paintContract(); })
     .catch(function () {
