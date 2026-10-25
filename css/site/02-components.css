@@ -400,19 +400,19 @@ a{text-decoration:underline}}
 .ccd{background:var(--surface-card);border:1px solid var(--border-hairline);box-shadow:var(--elev-2);padding:24px;position:sticky;top:104px}
 .ccd-cap{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-muted);margin:0 0 16px;display:flex;justify-content:space-between}
 .ccd-cap b{color:var(--status-positive);font-weight:500}
-.ccd-ctr{border:1px solid var(--border-hairline);padding:12px 16px;font-family:var(--ff-mono);font-size:0.6875rem;line-height:1.7;margin-bottom:16px;background:var(--surface-page);color:var(--text-primary)}
+.ccd-ctr{border:1px solid var(--border-hairline);padding:12px 16px;font-family:var(--ff-mono);font-size:var(--fs-micro);line-height:1.7;margin-bottom:16px;background:var(--surface-page);color:var(--text-primary)}
 .ccd-ctr b{font-weight:600}
 .ccd-qs{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
 .ccd-q{background:none;border:1px solid var(--accent-fill);color:var(--accent-fill);font-family:var(--ff-mono);font-size:0.75rem;padding:12px;text-align:left;letter-spacing:.02em;cursor:pointer;transition:background .2s}
 .ccd-q:hover{background:var(--act-wash)}
 .ccd-q:focus-visible{outline:2px solid var(--accent-fill);outline-offset:2px}
 .ccd-ans{min-height:96px;border-top:1px dashed var(--border-strong);padding-top:12px;font-size:0.84375rem;line-height:1.6;color:var(--text-primary)}
-.ccd-idle{font-family:var(--ff-mono);font-size:0.6875rem;color:var(--text-muted)}
+.ccd-idle{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--text-muted)}
 .ccd-tag{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.02em;display:inline-block;padding:3px 8px;margin-bottom:8px;font-weight:600}
 .ccd-tag--in{color:var(--status-positive);border:1.5px solid var(--status-positive)}
 .ccd-tag--out{color:var(--status-negative);border:1.5px solid var(--status-negative)}
-.ccd-src{display:block;font-family:var(--ff-mono);font-size:0.625rem;color:var(--text-muted);margin-top:8px}
-.ccd-note{font-family:var(--ff-mono);font-size:0.625rem;color:var(--text-muted);letter-spacing:.06em;margin:12px 0 0;text-align:center}
+.ccd-src{display:block;font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--text-muted);margin-top:8px}
+.ccd-note{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--text-muted);letter-spacing:.06em;margin:12px 0 0;text-align:center}
 @media(max-width:1100px){
 .ccd{position:static;max-width:440px;margin:8px auto 0}}
 @media(max-width:1100px){}
@@ -421,7 +421,7 @@ a{text-decoration:underline}}
    shadowed, captioned like an artifact pulled from the case file, not a band of foreign UI. */
 .fig-paper{margin:32px auto 8px;max-width:720px;border:none;background:none;overflow:visible;transform:rotate(-1.2deg);filter:drop-shadow(0 16px 28px rgba(0,0,0,0.5))}
 .fig-paper img{display:block;width:100%;height:auto;border:1px solid rgba(32,24,12,0.2)}
-.fig-paper figcaption{background:var(--obj-paper);color:var(--obj-paper-soft);border-top:1px dashed var(--obj-paper-rule);font-family:var(--ff-mono);font-size:0.6875rem;letter-spacing:.05em;text-transform:none;padding:8px 16px}
+.fig-paper figcaption{background:var(--obj-paper);color:var(--obj-paper-soft);border-top:1px dashed var(--obj-paper-rule);font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.05em;text-transform:none;padding:8px 16px}
 .fig-paper--r{transform:rotate(1.2deg)}
 .hk-bp-link:hover{transform:translateY(-4px)}
 .hk-bp-link:focus-visible{outline:2px solid var(--accent-text);outline-offset:4px}
@@ -515,15 +515,15 @@ body:where(.p-404){background:var(--surface-page);color:var(--text-body);font-fa
 :where(body.p-404) .lug{position:relative;z-index:1;background:var(--obj-paper);color:var(--p-ink);font-family:var(--ff-mono);padding:24px;transform:rotate(1.6deg);filter:drop-shadow(0 16px 28px rgba(0,0,0,0.55))}
 :where(body.p-404) .lug-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.5px solid var(--p-ink);padding-bottom:8px;margin-bottom:12px}
 :where(body.p-404) .lug-head b{font-size:0.78125rem;letter-spacing:.02em;font-weight:600}
-:where(body.p-404) .lug-head span{font-size:0.65625rem;color:var(--p-soft)}
+:where(body.p-404) .lug-head span{font-size:var(--fs-micro);color:var(--p-soft)}
 :where(body.p-404) .lug-row{display:flex;justify-content:space-between;gap:12px;font-size:0.75rem;padding:8px 0;border-bottom:1px dashed var(--p-rule)}
 :where(body.p-404) .lug-row b{font-weight:600;text-align:right}
 :where(body.p-404) .lug-row--last{border-bottom:none}
 :where(body.p-404) .lug-meter{height:3px;background:rgba(27,25,23,0.12);border-radius:2px;overflow:hidden;margin:8px 0 0}
 :where(body.p-404) .lug-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent-fill),var(--accent-text));border-radius:2px;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
 :where(body.p-404) .divert{position:absolute;left:96px;top:188px;border:2.5px solid var(--stamp-red);color:var(--stamp-red);border-radius:4px;font-size:0.8125rem;letter-spacing:.02em;font-weight:600;padding:8px 12px;transform:rotate(-9deg);opacity:.85}
-:where(body.p-404) .lug-claim{font-size:0.6875rem;margin:16px 0 0;line-height:1.8}
-:where(body.p-404) .lug-claim b{font-weight:600;display:block;font-size:0.625rem;letter-spacing:.02em;color:var(--p-soft);margin-bottom:4px}
+:where(body.p-404) .lug-claim{font-size:var(--fs-micro);margin:16px 0 0;line-height:1.8}
+:where(body.p-404) .lug-claim b{font-weight:600;display:block;font-size:var(--fs-micro);letter-spacing:.02em;color:var(--p-soft);margin-bottom:4px}
 :where(body.p-404) .lug-claim .rt{text-decoration:underline;text-underline-offset:3px;color:var(--accent-fill)}
 :where(body.p-404) .lug-bar{height:28px;margin-top:16px;background:repeating-linear-gradient(90deg,
     var(--p-ink) 0 2px,transparent 2px 3px,var(--p-ink) 3px 8px,transparent 8px 12px,
@@ -764,37 +764,37 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 :where(body.p-case-studies-o2) .plM *{box-sizing:border-box}
 :where(body.p-case-studies-o2) .plM-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-o2) .plM-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
-:where(body.p-case-studies-o2) .plM-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:0.625rem;letter-spacing:.1em;color:#8D95A3}
+:where(body.p-case-studies-o2) .plM-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.1em;color:#8D95A3}
 :where(body.p-case-studies-o2) .plM-stage{background:#22252B;padding:24px 16px;display:grid;grid-template-columns:repeat(3,minmax(0,250px));gap:16px;justify-content:center}
 @media(max-width:700px){:where(body.p-case-studies-o2) .plM-stage{grid-template-columns:minmax(0,250px)}}
 :where(body.p-case-studies-o2) .plM-phone{width:100%;max-width:250px;background:#14161B;border-radius:22px;padding:8px 8px 12px;box-shadow:0 14px 30px rgba(0,0,0,.5)}
 :where(body.p-case-studies-o2) .plM-ear{width:36px;height:4px;border-radius:2px;background:#2E323A;margin:2px auto 8px}
 :where(body.p-case-studies-o2) .plM-screen{background:#F4F5F7;color:#16181D;border-radius:5px;overflow:hidden;display:flex;flex-direction:column;min-height:352px}
-:where(body.p-case-studies-o2) .plM-status{display:flex;justify-content:space-between;padding:4px 8px;background:#16181D;color:#9BA3B0;font-family:var(--ff-mono);font-size:0.5625rem;letter-spacing:.06em}
+:where(body.p-case-studies-o2) .plM-status{display:flex;justify-content:space-between;padding:4px 8px;background:#16181D;color:#9BA3B0;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.06em}
 :where(body.p-case-studies-o2) .plM-hdr{padding:12px 12px;background:#11318F;color:#fff;font-weight:600;font-size:0.84375rem}
 :where(body.p-case-studies-o2) .plM-body{padding:12px;flex:1 1 auto}
 :where(body.p-case-studies-o2) .plM-big{font-size:1.9375rem;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums;margin:4px 0 2px}
-:where(body.p-case-studies-o2) .plM-sub{font-size:0.65625rem;color:#282B31;margin:0 0 8px}
-:where(body.p-case-studies-o2) .plM-info{font-size:0.65625rem;line-height:1.5;color:#0019A5;background:#E6E9F8;border-radius:4px;padding:8px 8px;margin-bottom:8px}
+:where(body.p-case-studies-o2) .plM-sub{font-size:var(--fs-micro);color:#282B31;margin:0 0 8px}
+:where(body.p-case-studies-o2) .plM-info{font-size:var(--fs-micro);line-height:1.5;color:#0019A5;background:#E6E9F8;border-radius:4px;padding:8px 8px;margin-bottom:8px}
 :where(body.p-case-studies-o2) .plM-btn{display:block;width:100%;padding:12px 0;background:#11318F;border-radius:4px;color:#fff;font-weight:600;font-size:0.78125rem;text-align:center;margin-bottom:8px}
 :where(body.p-case-studies-o2) .plM-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 8px;background:#fff;border:1px solid #E3E6EA;border-radius:4px;font-size:0.75rem;font-weight:600;color:#16181D;margin-bottom:4px}
 :where(body.p-case-studies-o2) .plM-row i{font-style:normal;color:#6A7280}
 :where(body.p-case-studies-o2) .plM-nav{display:flex;border-top:1px solid #E3E6EA;background:#fff}
-:where(body.p-case-studies-o2) .plM-nav b{flex:1;padding:8px 0;text-align:center;font-family:var(--ff-mono);font-size:0.53125rem;letter-spacing:.02em;font-weight:400;color:#6A7280}
+:where(body.p-case-studies-o2) .plM-nav b{flex:1;padding:8px 0;text-align:center;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.02em;font-weight:400;color:#6A7280}
 :where(body.p-case-studies-o2) .plM-nav b.on{color:#11318F;font-weight:700;box-shadow:inset 0 2px 0 #11318F}
-:where(body.p-case-studies-o2) .plM-mlabel{display:flex;justify-content:space-between;align-items:baseline;font-size:0.71875rem;font-weight:600;color:#16181D;margin:8px 0 4px}
-:where(body.p-case-studies-o2) .plM-mlabel small{font-weight:400;font-size:0.65625rem;color:#282B31;font-variant-numeric:tabular-nums}
+:where(body.p-case-studies-o2) .plM-mlabel{display:flex;justify-content:space-between;align-items:baseline;font-size:var(--fs-micro);font-weight:600;color:#16181D;margin:8px 0 4px}
+:where(body.p-case-studies-o2) .plM-mlabel small{font-weight:400;font-size:var(--fs-micro);color:#282B31;font-variant-numeric:tabular-nums}
 :where(body.p-case-studies-o2) .plM-track{height:8px;border-radius:4px;background:#E3E6EA;overflow:hidden}
 :where(body.p-case-studies-o2) .plM-track i{display:block;height:100%;background:#11318F;border-radius:4px}
 :where(body.p-case-studies-o2) .plM-track i.mut{background:#C4C9D2}
-:where(body.p-case-studies-o2) .plM-msub{font-size:0.59375rem;color:#282B31;margin:4px 0 0}
-:where(body.p-case-studies-o2) .plM-tag{display:inline-block;font-family:var(--ff-mono);font-size:0.5625rem;letter-spacing:.14em;color:#0019A5;background:#E6E9F8;border-radius:3px;padding:3px 8px;margin-bottom:8px}
+:where(body.p-case-studies-o2) .plM-msub{font-size:var(--fs-micro);color:#282B31;margin:4px 0 0}
+:where(body.p-case-studies-o2) .plM-tag{display:inline-block;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.14em;color:#0019A5;background:#E6E9F8;border-radius:3px;padding:3px 8px;margin-bottom:8px}
 :where(body.p-case-studies-o2) .plM-otitle{font-size:0.90625rem;font-weight:600;line-height:1.35;margin:0 0 3px}
-:where(body.p-case-studies-o2) .plM-osub{font-size:0.65625rem;color:#282B31;margin:0 0 12px}
+:where(body.p-case-studies-o2) .plM-osub{font-size:var(--fs-micro);color:#282B31;margin:0 0 12px}
 :where(body.p-case-studies-o2) .plM-code{border:1.5px dashed #9BA3B0;border-radius:5px;padding:12px 8px;text-align:center;background:#fff;margin-bottom:8px}
 :where(body.p-case-studies-o2) .plM-code b{display:block;font-family:var(--ff-mono);font-size:0.9375rem;letter-spacing:.08em;font-weight:600;color:#16181D}
-:where(body.p-case-studies-o2) .plM-code span{display:block;font-size:0.59375rem;color:#282B31;margin-top:4px}
-:where(body.p-case-studies-o2) .plM-match{font-family:var(--ff-mono);font-size:0.5625rem;letter-spacing:.05em;color:#6A7280;padding:8px 12px;border-top:1px solid #E3E6EA;background:#fff}
+:where(body.p-case-studies-o2) .plM-code span{display:block;font-size:var(--fs-micro);color:#282B31;margin-top:4px}
+:where(body.p-case-studies-o2) .plM-match{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.05em;color:#6A7280;padding:8px 12px;border-top:1px solid #E3E6EA;background:#fff}
 :where(body.p-case-studies-o2) .plM-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 24px;transform:translateX(-50%)}
 :where(body.p-case-studies-o2) #recon-o2 .rx2-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:600px;margin:0 auto}
 :where(body.p-case-studies-o2) #recon-o2 .rx2-phone{border:2px solid var(--border-strong);border-radius:24px;background:var(--surface-page);padding:12px 12px 12px}
@@ -851,26 +851,26 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 :where(body.p-case-studies-orgos) .plO *{box-sizing:border-box}
 :where(body.p-case-studies-orgos) .plO-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-orgos) .plO-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
-:where(body.p-case-studies-orgos) .plO-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:0.625rem;letter-spacing:.1em;color:#8D95A3}
+:where(body.p-case-studies-orgos) .plO-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.1em;color:#8D95A3}
 :where(body.p-case-studies-orgos) .plO-app{background:#F4F5F7;color:#16181D}
 :where(body.p-case-studies-orgos) .plO-bar{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#fff;border-bottom:1px solid #E3E6EA;flex-wrap:wrap}
 :where(body.p-case-studies-orgos) .plO-brand{font-weight:600;font-size:0.8125rem;color:#16181D}
 :where(body.p-case-studies-orgos) .plO-tabs{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
-:where(body.p-case-studies-orgos) .plO-tab{font-size:0.71875rem;color:#282B31;padding:4px 8px;border-radius:3px}
+:where(body.p-case-studies-orgos) .plO-tab{font-size:var(--fs-micro);color:#282B31;padding:4px 8px;border-radius:3px}
 :where(body.p-case-studies-orgos) .plO-tab.on{color:#0A6961;background:#E2F1EF;font-weight:600}
-:where(body.p-case-studies-orgos) .plO-count{margin-left:auto;font-family:var(--ff-mono);font-size:0.625rem;letter-spacing:.06em;color:#282B31;background:#F4F5F7;border:1px solid #E3E6EA;border-radius:3px;padding:3px 8px;white-space:nowrap}
+:where(body.p-case-studies-orgos) .plO-count{margin-left:auto;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.06em;color:#282B31;background:#F4F5F7;border:1px solid #E3E6EA;border-radius:3px;padding:3px 8px;white-space:nowrap}
 :where(body.p-case-studies-orgos) .plO-body{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:16px}
 @media(max-width:700px){:where(body.p-case-studies-orgos) .plO-body{grid-template-columns:1fr}}
-:where(body.p-case-studies-orgos) .plO-colh{font-family:var(--ff-mono);font-size:0.59375rem;letter-spacing:.02em;color:#282B31;margin-bottom:8px}
+:where(body.p-case-studies-orgos) .plO-colh{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.02em;color:#282B31;margin-bottom:8px}
 :where(body.p-case-studies-orgos) .plO-colh b{color:#16181D;font-weight:600}
 :where(body.p-case-studies-orgos) .plO-card{background:#fff;border:1px solid #E3E6EA;border-radius:6px;padding:12px 12px;margin-bottom:8px}
 :where(body.p-case-studies-orgos) .plO-ct{font-size:0.78125rem;font-weight:600;color:#16181D;line-height:1.45}
-:where(body.p-case-studies-orgos) .plO-cx{font-size:0.6875rem;color:#282B31;line-height:1.5;margin-top:3px}
-:where(body.p-case-studies-orgos) .plO-cf{display:flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:0.625rem;color:#282B31;margin-top:8px;padding-top:8px;border-top:1px solid #E3E6EA}
-:where(body.p-case-studies-orgos) .plO-av{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#E2F1EF;color:#0A6961;font-family:var(--ff-mono);font-size:0.5625rem;font-weight:600;flex:0 0 auto}
-:where(body.p-case-studies-orgos) .plO-pick{display:inline-block;font-family:var(--ff-mono);font-size:0.59375rem;letter-spacing:.04em;color:#0E7A5F;background:#E6F3EE;border-radius:3px;padding:3px 8px;margin-top:8px}
-:where(body.p-case-studies-orgos) .plO-dec{font-family:var(--ff-mono);font-size:0.59375rem;letter-spacing:.02em;color:var(--accent-fill);background:#FCF2DC;border-radius:3px;padding:2px 8px}
-:where(body.p-case-studies-orgos) .plO-foot{font-family:var(--ff-mono);font-size:0.625rem;letter-spacing:.04em;color:#282B31;background:#fff;border-top:1px solid #E3E6EA;padding:12px 16px;text-align:center}
+:where(body.p-case-studies-orgos) .plO-cx{font-size:var(--fs-micro);color:#282B31;line-height:1.5;margin-top:3px}
+:where(body.p-case-studies-orgos) .plO-cf{display:flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:var(--fs-micro);color:#282B31;margin-top:8px;padding-top:8px;border-top:1px solid #E3E6EA}
+:where(body.p-case-studies-orgos) .plO-av{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#E2F1EF;color:#0A6961;font-family:var(--ff-mono);font-size:var(--fs-micro);font-weight:600;flex:0 0 auto}
+:where(body.p-case-studies-orgos) .plO-pick{display:inline-block;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.04em;color:#0E7A5F;background:#E6F3EE;border-radius:3px;padding:3px 8px;margin-top:8px}
+:where(body.p-case-studies-orgos) .plO-dec{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--accent-fill);background:#FCF2DC;border-radius:3px;padding:2px 8px}
+:where(body.p-case-studies-orgos) .plO-foot{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.04em;color:#282B31;background:#fff;border-top:1px solid #E3E6EA;padding:12px 16px;text-align:center}
 :where(body.p-case-studies-orgos) .plO-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 24px;transform:translateX(-50%)}
 :where(body.p-case-studies-orgos) #recon-orgos .rxo-toggle{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
 :where(body.p-case-studies-orgos) #recon-orgos .rxo-mode{padding:8px 12px;background:var(--surface-page);border:1px solid var(--border-strong);border-radius:2px;color:var(--text-muted);transition:border-color .2s,color .2s}
@@ -917,11 +917,11 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 :where(body.p-case-studies-ptc) .plP-frame{border:1px solid var(--border-strong);border-radius:9px;overflow:hidden;box-shadow:0 22px 48px rgba(0,0,0,.4);font-family:var(--ff-sans)}
 :where(body.p-case-studies-ptc) .plP-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-ptc) .plP-chrome i{width:8px;height:8px;border-radius:50%;background:#3A3F48;display:inline-block}
-:where(body.p-case-studies-ptc) .plP-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:0.625rem;letter-spacing:.04em;color:#8D95A3;text-transform:none}
+:where(body.p-case-studies-ptc) .plP-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.04em;color:#8D95A3;text-transform:none}
 :where(body.p-case-studies-ptc) .plP-win{border:1px solid var(--border-strong);border-radius:8px;overflow:hidden;box-shadow:0 12px 24px rgba(0,0,0,.35);background:#F4F5F7}
 :where(body.p-case-studies-ptc) .plP-winb{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:12px;font-size:0.78125rem;color:#16181D}
 :where(body.p-case-studies-ptc) .plP-winb b{font-weight:600}
-:where(body.p-case-studies-ptc) .plP-winb span{font-size:0.6875rem;color:#282B31;white-space:nowrap}
+:where(body.p-case-studies-ptc) .plP-winb span{font-size:var(--fs-micro);color:#282B31;white-space:nowrap}
 :where(body.p-case-studies-ptc) .plP-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 40px;transform:translateX(-50%)}
 :where(body.p-case-studies-ptc) #recon-ptc .rxp-toggle{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
 :where(body.p-case-studies-ptc) #recon-ptc .rxp-mode{padding:8px 12px;background:var(--surface-page);border:1px solid var(--border-strong);border-radius:2px;color:var(--text-muted);transition:border-color .2s,color .2s}
@@ -959,21 +959,21 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV *{box-sizing:border-box}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:0.625rem;letter-spacing:.1em;color:#8D95A3}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.1em;color:#8D95A3}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-app{background:#F4F5F7;color:#16181D}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:#fff;border-bottom:1px solid #E3E6EA}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-brand{font-weight:600;font-size:0.8125rem;color:#16181D}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-deal{font-size:0.8125rem;color:#464C56}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-deal b{color:#16181D;font-weight:600}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-elapsed{font-family:var(--ff-mono);font-size:0.625rem;letter-spacing:.02em;color:#2E2570;background:#ECEAF8;border-radius:3px;padding:3px 8px;white-space:nowrap}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-elapsed{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.02em;color:#2E2570;background:#ECEAF8;border-radius:3px;padding:3px 8px;white-space:nowrap}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-body{display:grid;grid-template-columns:1.5fr 1fr;gap:0}
 @media(max-width:700px){:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-body{grid-template-columns:1fr}}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-main{padding:16px;border-right:1px solid #E3E6EA}
 @media(max-width:700px){:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-main{border-right:none;border-bottom:1px solid #E3E6EA}}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-vlab{font-family:var(--ff-mono);font-size:0.59375rem;letter-spacing:.02em;color:#464C56;margin-bottom:4px}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-vlab{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.02em;color:#464C56;margin-bottom:4px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-verdict{font-family:var(--ff-display);font-weight:300;font-size:1.625rem;line-height:1.25;color:#16181D;margin-bottom:4px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-verdict em{font-style:normal;color:var(--accent-fill)}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sub{font-size:0.6875rem;color:#464C56;margin-bottom:12px}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sub{font-size:var(--fs-micro);color:#464C56;margin-bottom:12px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sig{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 12px;background:#fff;border:1px solid #E3E6EA;border-radius:6px;margin-bottom:8px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sig.sel{border-color:#2E2570;box-shadow:0 0 0 1px #2E2570 inset}
 /* The diligence dossier at phone widths (2026-08-16). Two grid/flex min-content traps stacked:
@@ -987,23 +987,23 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sig{flex-wrap:wrap}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sig > *{min-width:0}}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sname{flex:1 1 auto;min-width:150px;/* a floor, not 0: long chips crushed rows C-09/D-05 into one-word towers (2026-09-02 sweep) */font-size:0.78125rem;font-weight:600;color:#16181D}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sname small{display:block;font-weight:400;font-size:0.6875rem;color:#464C56;margin-top:2px}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-st{font-family:var(--ff-mono);font-size:0.625rem;letter-spacing:.02em;padding:3px 8px;border-radius:3px;flex:0 0 auto}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-sname small{display:block;font-weight:400;font-size:var(--fs-micro);color:#464C56;margin-top:2px}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-st{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.02em;padding:3px 8px;border-radius:3px;flex:0 0 auto}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-st.clear{color:#0E7A5F;background:#E6F3EE}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-st.watch{color:var(--accent-fill);background:#FCF2DC}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-conf{font-family:var(--ff-mono);font-size:0.65625rem;color:#464C56;flex:0 0 auto;font-variant-numeric:tabular-nums}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-src{font-family:var(--ff-mono);font-size:0.625rem;color:#2E2570;background:#ECEAF8;border-radius:3px;padding:3px 8px;white-space:nowrap;flex:0 0 auto}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-foot{font-family:var(--ff-mono);font-size:0.625rem;color:#464C56;padding-top:8px;border-top:1px solid #E3E6EA;margin-top:4px}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-conf{font-family:var(--ff-mono);font-size:var(--fs-micro);color:#464C56;flex:0 0 auto;font-variant-numeric:tabular-nums}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-src{font-family:var(--ff-mono);font-size:var(--fs-micro);color:#2E2570;background:#ECEAF8;border-radius:3px;padding:3px 8px;white-space:nowrap;flex:0 0 auto}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-foot{font-family:var(--ff-mono);font-size:var(--fs-micro);color:#464C56;padding-top:8px;border-top:1px solid #E3E6EA;margin-top:4px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-rail{padding:16px;background:#FBFBFC}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-rl{font-family:var(--ff-mono);font-size:0.59375rem;letter-spacing:.02em;color:#464C56;margin-bottom:8px}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-rl{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.02em;color:#464C56;margin-bottom:8px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-quote{background:#fff;border:1px solid #E3E6EA;border-left:3px solid #2E2570;border-radius:4px;padding:12px 12px;font-size:0.78125rem;line-height:1.6;color:#16181D;font-style:italic}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-quote mark{background:#FDF0C9;font-style:italic}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-cite{font-family:var(--ff-mono);font-size:0.625rem;color:#464C56;margin:8px 0 12px}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-open{display:inline-block;font-size:0.71875rem;font-weight:600;color:#fff;background:#2E2570;border-radius:4px;padding:8px 12px}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-more{display:inline-block;font-size:0.6875rem;color:#2E2570;margin-left:8px}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-cite{font-family:var(--ff-mono);font-size:var(--fs-micro);color:#464C56;margin:8px 0 12px}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-open{display:inline-block;font-size:var(--fs-micro);font-weight:600;color:#fff;background:#2E2570;border-radius:4px;padding:8px 12px}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-more{display:inline-block;font-size:var(--fs-micro);color:#2E2570;margin-left:8px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-signoff{margin-top:16px;border-top:1px solid #E3E6EA;padding-top:12px}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-signed{display:inline-block;font-family:var(--ff-mono);font-size:0.65625rem;letter-spacing:.02em;color:#0E7A5F;background:#E6F3EE;border:1px solid #0E7A5F;border-radius:4px;padding:8px 12px}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-cond{font-size:0.6875rem;color:#464C56;margin-top:8px}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-signed{display:inline-block;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.02em;color:#0E7A5F;background:#E6F3EE;border:1px solid #0E7A5F;border-radius:4px;padding:8px 12px}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-cond{font-size:var(--fs-micro);color:#464C56;margin-top:8px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-caption{width:min(840px,calc(100vw - 32px));margin:0 50% 24px;transform:translateX(-50%)}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) #recon-vc .rxv-card{max-width:520px;margin:0 auto;background:var(--surface-page);border:1px solid var(--border-strong);border-radius:6px;padding:20px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) #recon-vc .rxv-vlabel{font-family:var(--ff-mono);font-size:0.5625rem;letter-spacing:.02em;text-transform:none;color:var(--text-muted);margin:0 0 4px}
@@ -1557,7 +1557,7 @@ body.p-home .hero .k{color:var(--acc-copper)}
    the eyebrow's: a second, different piece of information should not look like
    a second title. line-height is explicit because this wraps to two lines on a
    phone and the label floor is 1.40. */
-body.p-home .hero .k-open{font-family:var(--mono);font-size:0.71875rem;font-weight:400;letter-spacing:.02em;line-height:1.55;color:var(--acc-amber);margin:8px 0 0}
+body.p-home .hero .k-open{font-family:var(--mono);font-size:var(--fs-micro);font-weight:400;letter-spacing:.02em;line-height:1.55;color:var(--acc-amber);margin:8px 0 0}
 body.p-home .hero h1{font-size:clamp(52px,7.2vw,106px);margin:24px 0 24px;max-width:13ch}
 body.p-home .hero h1 .grad{font-style:italic}
 /* .hero .sub retired 2026-09-11 with the paragraph it styled — 22 words whose
@@ -1574,7 +1574,7 @@ body.p-home .receipts .hand{color:var(--acc-amber);font-size:1.375rem;display:in
 body.p-home .rrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
 body.p-home .rcell{background:var(--surface-card);border-radius:10px;padding:24px 24px;border-top:3px solid var(--rc)}
 body.p-home .rcell b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(30px,3vw,46px);line-height:1;color:var(--rc)}
-body.p-home .rcell span{display:block;font-family:var(--mono);font-size:0.71875rem;letter-spacing:.02em;color:var(--text-muted);line-height:1.9;margin-top:12px}
+body.p-home .rcell span{display:block;font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-muted);line-height:1.9;margin-top:12px}
 body.p-home .rc1{--rc:var(--acc-copper)}
 body.p-home .rc2{--rc:var(--acc-violet)}
 body.p-home .rc3{--rc:var(--acc-amber)}
@@ -1614,7 +1614,7 @@ body.p-home .facts dl{font-size:0.875rem}
 body.p-home .facts .fr{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-hairline)}
 body.p-home .facts .fr dt{font-weight:600}
 body.p-home .facts .fr dd{font-family:var(--mono);font-size:0.8125rem}
-body.p-home .facts .warn{font-size:0.71875rem;color:var(--text-muted);margin-top:12px;line-height:1.6}
+body.p-home .facts .warn{font-size:var(--fs-micro);color:var(--text-muted);margin-top:12px;line-height:1.6}
 body.p-home .facts .warn b{color:var(--text-body)}
 body.p-home .work{background:var(--surface-sunken);padding:0 0 96px;position:relative}
 body.p-home .work .seam{background:var(--surface-sunken)}
@@ -1628,14 +1628,14 @@ body.p-home .contract h2{font-size:clamp(28px,3.2vw,44px);margin:12px 0 16px}
 body.p-home .contract p{color:var(--text-muted);margin-bottom:16px;max-width:56ch}
 body.p-home .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
 body.p-home .col{border-top:3px solid var(--cc);padding-top:16px}
-body.p-home .col .ck{font-family:var(--mono);font-size:0.71875rem;letter-spacing:.02em;color:var(--cc)}
+body.p-home .col .ck{font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--cc)}
 body.p-home .col h3{font-size:1.25rem;margin:8px 0 8px;font-weight:400;font-style:italic}
 body.p-home .col p{font-size:0.8125rem;color:var(--text-muted);line-height:1.7}
 body.p-home .co1{--cc:var(--acc-amber)}
 body.p-home .co2{--cc:var(--acc-violet)}
 body.p-home .co3{--cc:var(--acc-copper)}
 body.p-home .demo{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:12px;padding:24px;position:relative;overflow:hidden}
-body.p-home .demo .dk{display:flex;justify-content:space-between;font-family:var(--mono);font-size:0.71875rem;letter-spacing:.02em;color:var(--text-faint)}
+body.p-home .demo .dk{display:flex;justify-content:space-between;font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-faint)}
 body.p-home .demo .dk b{color:var(--acc-amber);font-weight:500}
 body.p-home .demo .box{background:var(--surface-page);border:1px solid var(--border-strong);border-radius:8px;padding:16px 16px;margin-top:16px;font-family:var(--mono);font-size:0.78125rem;line-height:1.9;color:var(--text-muted)}
 body.p-home .demo .box b{color:var(--text-body);font-weight:500}
@@ -1646,14 +1646,14 @@ body.p-home .lead .k{color:var(--acc-copper)}
 body.p-home .lead h2{font-size:clamp(26px,3vw,40px);max-width:34ch;line-height:1.2;margin:12px 0 40px}
 body.p-home .memos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 body.p-home .memo{background:var(--surface-card);border-radius:10px;padding:24px;border-top:3px solid var(--mc)}
-body.p-home .memo .mk{font-family:var(--mono);font-size:0.71875rem;letter-spacing:.02em;color:var(--mc)}
+body.p-home .memo .mk{font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--mc)}
 body.p-home .memo h3{font-size:1.1875rem;font-weight:400;margin:8px 0 8px}
 body.p-home .memo p{font-size:0.84375rem;color:var(--text-muted);line-height:1.7}
 body.p-home .m1{--mc:var(--acc-copper)}
 body.p-home .m2{--mc:var(--acc-violet)}
 body.p-home .m3{--mc:var(--acc-amber)}
 body.p-home .errata{margin-top:24px;border:1.5px dashed var(--acc-rose);border-radius:10px;padding:16px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;max-width:960px}
-body.p-home .errata .ek{font-family:var(--mono);font-size:0.71875rem;letter-spacing:.02em;color:var(--acc-rose);border:1.5px solid var(--acc-rose);border-radius:4px;padding:4px 12px;transform:rotate(-3deg)}
+body.p-home .errata .ek{font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--acc-rose);border:1.5px solid var(--acc-rose);border-radius:4px;padding:4px 12px;transform:rotate(-3deg)}
 @media (prefers-reduced-motion:reduce){body.p-home .errata .ek{transform:none}}
 body.p-home .errata p{font-size:0.875rem;color:var(--text-muted);max-width:66ch}
 body.p-home .errata a{color:var(--acc-amber);text-decoration:underline;text-underline-offset:3px}
@@ -1665,7 +1665,7 @@ body.p-home .labrow{padding:92px 0}
 body.p-home .labrow .k{color:var(--acc-amber)}
 body.p-home .labrow h2{font-size:clamp(28px,3.2vw,44px);margin:12px 0 40px}
 body.p-home .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
-body.p-home .act .ak{font-family:var(--mono);font-size:0.71875rem;letter-spacing:.02em;color:var(--acc-copper)}
+body.p-home .act .ak{font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--acc-copper)}
 body.p-home .act h3{font-size:1.1875rem;font-weight:400;font-style:italic;margin:8px 0 8px}
 body.p-home .act p{font-size:0.84375rem;color:var(--text-muted);line-height:1.7}
 body.p-home .close{position:relative;overflow:hidden;padding:120px 0 100px}
@@ -1689,13 +1689,13 @@ body.p-home .close .wrap{position:relative;z-index:2;display:block;max-width:720
    rather than by accident. */
 body.p-home .close .door-stack{margin-top:32px;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center}
 body.p-home .pass{background:var(--surface-page);color:var(--text-body);border-radius:8px;padding:24px 24px;font-family:var(--mono);box-shadow:0 30px 64px rgba(0,0,0,.55);margin-inline:auto;text-align:left}
-body.p-home .pass .pk{display:flex;justify-content:space-between;font-size:0.65625rem;letter-spacing:.16em;color:var(--text-muted)}
+body.p-home .pass .pk{display:flex;justify-content:space-between;font-size:var(--fs-micro);letter-spacing:.16em;color:var(--text-muted)}
 body.p-home .pass .pr{display:flex;justify-content:space-between;align-items:center;margin:16px 0}
 body.p-home .pass .pc{font-family:var(--serif);font-size:2.75rem}
 body.p-home .pass .arr{color:var(--acc-copper);font-size:1.25rem}
-body.p-home .pass .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px dashed rgba(34,28,16,.3);padding-top:16px;font-size:0.65625rem;color:var(--text-muted)}
+body.p-home .pass .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px dashed rgba(34,28,16,.3);padding-top:16px;font-size:var(--fs-micro);color:var(--text-muted)}
 body.p-home .pass .grid b{display:block;font-size:0.78125rem;font-weight:500;color:var(--text-body);margin-top:2px}
-body.p-home .pass .stamp{display:inline-block;margin-top:16px;font-size:0.6875rem;letter-spacing:.02em;color:var(--acc-copper);border:2px solid var(--acc-copper);border-radius:4px;padding:4px 12px;transform:rotate(-3deg)}
+body.p-home .pass .stamp{display:inline-block;margin-top:16px;font-size:var(--fs-micro);letter-spacing:.02em;color:var(--acc-copper);border:2px solid var(--acc-copper);border-radius:4px;padding:4px 12px;transform:rotate(-3deg)}
 @media (prefers-reduced-motion:reduce){body.p-home .pass .stamp{transform:none}}
 body.p-home .pass .bar{margin-top:16px;height:36px;background:repeating-linear-gradient(90deg,var(--text-body),var(--text-body) 2px,transparent 2px,transparent 5px)}
 /* The pass is a 3-column ticket, and direction A gave its fields longer values
@@ -1764,15 +1764,15 @@ body.p-home .hero .hero-widget{align-self:auto;padding-bottom:0;margin-top:40px;
 .hd-reset:hover{color:var(--acc-amber)}
 /* receipts: the expand buttons live inside the prototype cells */
 body.p-home .rcell{display:flex;flex-direction:column;align-items:flex-start}
-body.p-home .rcpt-btn{margin-top:16px;background:transparent;border:1px solid var(--border-strong);border-radius:999px;color:var(--rc);font-family:var(--mono);font-size:0.6875rem;letter-spacing:.02em;padding:8px 16px;cursor:pointer}
+body.p-home .rcpt-btn{margin-top:16px;background:transparent;border:1px solid var(--border-strong);border-radius:999px;color:var(--rc);font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;padding:8px 16px;cursor:pointer}
 body.p-home .rcpt-btn:hover{border-color:var(--rc)}
 body.p-home .rcpt{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:12px;padding:24px;margin-top:16px}
 body.p-home .rcpt h3{font-size:1.25rem;margin-bottom:12px}
-body.p-home .rcpt-l{flex:0 0 140px;font-family:var(--mono);font-size:0.6875rem;letter-spacing:.02em;color:var(--text-faint)}
+body.p-home .rcpt-l{flex:0 0 140px;font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-faint)}
 body.p-home .rcpt-v{color:var(--text-muted);font-size:0.875rem}
 /* contract demo */
 body.p-home .demo-slot .ccd{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:var(--radius-2);padding:24px;position:relative;overflow:hidden}
-body.p-home .ccd-cap{font-family:var(--mono);font-size:0.71875rem;letter-spacing:.02em;color:var(--text-faint);display:flex;justify-content:space-between;margin-bottom:16px}
+body.p-home .ccd-cap{font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-faint);display:flex;justify-content:space-between;margin-bottom:16px}
 body.p-home .ccd-cap b{color:var(--acc-amber)}
 body.p-home .ccd-ctr{background:var(--surface-page);border:1px solid var(--border-strong);border-radius:8px;color:var(--text-muted);padding:16px 16px;font-family:var(--mono);font-size:0.78125rem;line-height:1.9;margin-bottom:12px}
 body.p-home .ccd-ctr b{color:var(--text-body)}
@@ -1782,22 +1782,22 @@ body.p-home .ccd-q:hover{background:var(--act-wash)}
 body.p-home .ccd-ans{margin-top:16px;color:var(--text-muted);font-size:1rem;line-height:1.6}
 body.p-home .ccd-idle,
 body.p-home .ccd-note,
-body.p-home .ccd-src{color:var(--text-faint);font-family:var(--mono);font-size:0.6875rem}
-body.p-home .ccd-tag--in{color:var(--status-positive);border:1.5px solid var(--status-positive);border-radius:4px;padding:2px 8px;font-size:0.625rem}
-body.p-home .ccd-tag--out{color:var(--acc-rose);border:1.5px solid var(--acc-rose);border-radius:4px;padding:2px 8px;font-size:0.625rem}
-body.p-home .contract-links{margin-top:24px;display:flex;flex-wrap:wrap;gap:20px;font-family:var(--mono);font-size:0.71875rem;letter-spacing:.02em}
+body.p-home .ccd-src{color:var(--text-faint);font-family:var(--mono);font-size:var(--fs-micro)}
+body.p-home .ccd-tag--in{color:var(--status-positive);border:1.5px solid var(--status-positive);border-radius:4px;padding:2px 8px;font-size:var(--fs-micro)}
+body.p-home .ccd-tag--out{color:var(--acc-rose);border:1.5px solid var(--acc-rose);border-radius:4px;padding:2px 8px;font-size:var(--fs-micro)}
+body.p-home .contract-links{margin-top:24px;display:flex;flex-wrap:wrap;gap:20px;font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em}
 body.p-home .contract-links a{color:var(--acc-amber);text-decoration:underline;text-underline-offset:3px}
 /* 2026-09-10: the whole .form-slot block, plus .sig (the "— Arpit"
    signature), deleted with direction A. Verified 0 uses site-wide. */
 /* diagnostic list needs its own rhythm inside the prototype card */
 .hd-presets{display:flex;flex-direction:column;gap:8px}
 .hd-preset{display:flex;align-items:center;gap:12px;padding:12px 16px;font-size:1rem;line-height:1.5;text-decoration:none}
-.hd-preset span{flex:0 0 auto;font-family:var(--mono);font-size:0.6875rem}
+.hd-preset span{flex:0 0 auto;font-family:var(--mono);font-size:var(--fs-micro)}
 .hd-preset::after{content:"→";margin-left:auto;padding-left:12px;opacity:.5}
 .hd-preset:hover::after{opacity:1}
 .hd-free{margin-top:16px;display:flex;align-items:flex-end;gap:8px}
 .hd-free input{flex:1 1 auto;background:transparent;border:none;border-bottom:1px solid var(--border-strong,var(--border-hairline));font-family:var(--serif);font-style:italic;font-size:0.9375rem;padding:8px 2px}
-.hd-diag > a{display:block;margin-top:16px;font-family:var(--mono);font-size:0.6875rem;letter-spacing:.02em;color:var(--text-muted)}
+.hd-diag > a{display:block;margin-top:16px;font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-muted)}
 .hd-diag > a:hover{color:var(--acc-amber)}
 /* REMOVED 2026-08-17: eleven prototype-era homepage nav rules (a.nl, .pill, .hd, .logo,
    header) that matched NOTHING on the shipped page — verified 0 matches each in the
@@ -1833,14 +1833,14 @@ body.p-home .rcpt-h{font-family:var(--serif);font-weight:400;font-size:1.375rem;
 body.p-home .rcpt-rows{display:flex;flex-direction:column}
 body.p-home .rcpt-row{display:grid;grid-template-columns:132px minmax(0,1fr);gap:24px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--border-strong)}
 body.p-home .rcpt-row:last-of-type{border-bottom:none}
-body.p-home .rcpt-l{font-family:var(--mono);font-size:0.6875rem;letter-spacing:.02em;line-height:1.8;color:var(--text-faint)}
+body.p-home .rcpt-l{font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;line-height:1.8;color:var(--text-faint)}
 body.p-home .rcpt-v{font-size:0.90625rem;line-height:1.75;color:var(--text-muted)}
 body.p-home .rcpt{position:relative}
 body.p-home .rcpt-h{padding-right:110px}
 /* corner reserved for .rcpt-close */
-body.p-home .rcpt-close{position:absolute;top:20px;right:20px;min-width:44px;min-height:44px;font-family:var(--ff-label);font-weight:600;font-size:0.6875rem;letter-spacing:.02em;color:var(--text-faint);background:none;border:1px solid var(--border-strong);border-radius:8px;padding:0 16px;cursor:pointer}
+body.p-home .rcpt-close{position:absolute;top:20px;right:20px;min-width:44px;min-height:44px;font-family:var(--ff-label);font-weight:600;font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-faint);background:none;border:1px solid var(--border-strong);border-radius:8px;padding:0 16px;cursor:pointer}
 body.p-home .rcpt-close:hover{color:var(--text-body);border-color:var(--accent)}
-body.p-home .rcpt-more{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:0.71875rem;letter-spacing:.02em;color:var(--acc-amber);text-decoration:underline;text-underline-offset:3px;border-bottom:none;padding-bottom:0}
+body.p-home .rcpt-more{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--acc-amber);text-decoration:underline;text-underline-offset:3px;border-bottom:none;padding-bottom:0}
 /* classic drew a border-bottom AND ember drew
   text-decoration — two underlines. One voice: the text-decoration. */
 @media (max-width:640px){body.p-home .rcpt-row{grid-template-columns:1fr;gap:4px}
@@ -1897,10 +1897,10 @@ body[class*="p-case-studies"] .case-stats > *:nth-child(3):last-child{grid-colum
 body[class*="p-case-studies"] .case-stats > *:nth-child(3):last-child{grid-column:auto}}
 body[class*="p-case-studies"] .case-stat{background:var(--surface-card);border:none;border-top:3px solid var(--act);border-radius:var(--radius-2);padding:20px}
 body[class*="p-case-studies"] .case-stat b{display:block;font-family:var(--ff-display);font-weight:400;font-size:clamp(24px,2.4vw,34px);line-height:1.15;color:var(--act)}
-body[class*="p-case-studies"] .case-stat span{display:block;margin-top:8px;font-family:var(--ff-label);font-size:0.71875rem;letter-spacing:.02em;color:var(--text-muted);line-height:1.8}
+body[class*="p-case-studies"] .case-stat span{display:block;margin-top:8px;font-family:var(--ff-label);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-muted);line-height:1.8}
 /* --- vitals: a quiet card strip, not a bare dl --- */
 body[class*="p-case-studies"] .case-vitals{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:var(--radius-2);padding:20px 24px;gap:24px 32px}
-body[class*="p-case-studies"] .case-vitals dt{font-family:var(--ff-label);font-size:0.6875rem;letter-spacing:.02em;color:var(--text-faint)}
+body[class*="p-case-studies"] .case-vitals dt{font-family:var(--ff-label);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-faint)}
 body[class*="p-case-studies"] .case-vitals dd{color:var(--text-body);margin-top:4px}
 body[class*="p-case-studies"] .case-vitals .gold{color:var(--act)}
 /* --- ownership + receipt blocks: bordered cards with the label column --- */
@@ -2374,7 +2374,7 @@ body.p-home p.contract-links a{display:inline-block;margin-right:0}
    other homepage section uses, and its aria-labelledby pointed at an id that
    did not exist. Now eyebrow + h2 + lede like every other section. */
 body.p-home #thoughts .wr-more{margin-top:16px}
-body.p-home #thoughts .wr-more a{font-family:var(--ff-label);font-size:0.71875rem;letter-spacing:.02em;color:var(--act);white-space:nowrap;border-bottom:1px solid color-mix(in srgb, var(--act) 45%, transparent);padding-bottom:3px;text-decoration:none}
+body.p-home #thoughts .wr-more a{font-family:var(--ff-label);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--act);white-space:nowrap;border-bottom:1px solid color-mix(in srgb, var(--act) 45%, transparent);padding-bottom:3px;text-decoration:none}
 body.p-home #thoughts .wr-more a:hover{border-bottom-color:var(--act)}
 /* PHONE: plate internals have fixed track widths, so at 390px the fintech and
    vc plates pushed their content past the edge (measured right=413 and 491).
@@ -2465,7 +2465,7 @@ button.footer-back{line-height:1.4}
    this ever got noticed. */
 :is(.ba-wrap,.td-scroll){overflow-x:auto;-webkit-overflow-scrolling:touch;margin:24px 0 8px}
 .ba-table{width:100%;min-width:0;border-collapse:collapse;font-size:0.875rem;line-height:1.5}
-.ba-table th{font-family:var(--ff-label);font-size:0.71875rem;letter-spacing:.02em;color:var(--acc-copper);text-align:left;padding:12px 16px;border-bottom:1px solid var(--accent)}
+.ba-table th{font-family:var(--ff-label);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--acc-copper);text-align:left;padding:12px 16px;border-bottom:1px solid var(--accent)}
 .ba-table td{padding:12px 16px;border-bottom:1px solid var(--border-strong);color:var(--text-body);vertical-align:top}
 .ba-table td:nth-child(2){color:var(--text-faint)}
 .ba-table td:nth-child(3){color:var(--text-body)}
@@ -2496,7 +2496,7 @@ button.footer-back{line-height:1.4}
   :is(.ba-table,.td-table) td:first-child{min-width:0;font-size:0.9375rem;line-height:1.45;color:var(--text-body);padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid var(--border-strong)}
 :is(.ba-table,.td-table) td[data-label]{padding-left:12px;border-left:2px solid var(--border-strong)}
 :is(.ba-table,.td-table) td[data-label]:nth-child(3){border-left-color:var(--accent);margin-top:12px}
-:is(.ba-table,.td-table) td[data-label]::before{content:attr(data-label);display:block;margin-bottom:3px;font-family:var(--ff-label);font-size:0.71875rem;font-weight:600;letter-spacing:.02em}
+:is(.ba-table,.td-table) td[data-label]::before{content:attr(data-label);display:block;margin-bottom:3px;font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:600;letter-spacing:.02em}
 :is(.ba-table,.td-table) td[data-label]:nth-child(2)::before{color:var(--text-muted)}
 :is(.ba-table,.td-table) td[data-label]:nth-child(3)::before{color:var(--acc-copper)}}
 /* ================================================================
@@ -2538,7 +2538,7 @@ button.footer-back{line-height:1.4}
    A component must declare its own critical properties rather than inherit half of them
    from the treatment it is replacing. Padding is symmetric and on the 8px grid; the border
    is one colour on all four sides, the violet this rule always intended. */
-.lab-links a:not(.cta){font-family:var(--ff-label);font-size:0.71875rem;font-weight:500;letter-spacing:.02em;color:var(--link-ink);text-decoration:none;border:1px solid color-mix(in srgb, var(--link-ink) 58%, transparent);border-radius:var(--radius);padding:8px 16px}
+.lab-links a:not(.cta){font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:500;letter-spacing:.02em;color:var(--link-ink);text-decoration:none;border:1px solid color-mix(in srgb, var(--link-ink) 58%, transparent);border-radius:var(--radius);padding:8px 16px}
 .lab-links a:not(.cta):hover{color:var(--link-ink-hover);border-color:var(--link-ink);background:transparent}
 /* ================================================================
    SIMILARITY PASS (Playwright Gestalt audit, 2026-08-14)
@@ -2739,11 +2739,11 @@ body[class*="p-case-studies"] :is(.fig-paper figcaption,
    Six cases, six different principles: the portfolio as a system of ideas.
    ============================================================================ */
 .thesis{border:1px solid var(--accent);border-radius:12px;padding:40px;margin:40px 0;background:linear-gradient(160deg,var(--act-wash),var(--ink-wash));text-align:center}
-.thesis .t-l{font-family:var(--ff-label);font-weight:600;font-size:0.71875rem;letter-spacing:.02em;color:var(--acc-amber);display:block;margin-bottom:16px}
+.thesis .t-l{font-family:var(--ff-label);font-weight:600;font-size:var(--fs-micro);letter-spacing:.02em;color:var(--acc-amber);display:block;margin-bottom:16px}
 .thesis p{font-family:var(--ff-display);font-weight:300;font-size:clamp(21px,2.4vw,28px);line-height:1.25;letter-spacing:-.01em;color:var(--text-body);max-width:30ch;margin:0 auto}
 .thesis p em{font-style:italic;color:var(--acc-violet)}
 .counter{border-left:3px solid var(--acc-rose);padding:20px 24px;margin:32px 0;background:color-mix(in srgb, var(--acc-rose) 6%, transparent);border-radius:0 8px 8px 0}
-.counter .c-l{font-family:var(--ff-label);font-weight:600;font-size:0.6875rem;letter-spacing:.02em;color:var(--acc-rose);display:block;margin-bottom:8px}
+.counter .c-l{font-family:var(--ff-label);font-weight:600;font-size:var(--fs-micro);letter-spacing:.02em;color:var(--acc-rose);display:block;margin-bottom:8px}
 .loopfig{margin:32px 0;border:1px solid var(--border-hairline);border-radius:12px;padding:32px;background:var(--surface-page);overflow-x:auto}
 .loopfig figcaption{font-family:var(--ff-sans);font-size:0.75rem;color:var(--text-faint);margin-top:16px;line-height:1.6}
 /* ============================================================================
@@ -2777,10 +2777,10 @@ body.p-home .qt figcaption{margin-top:20px;padding-top:16px;border-top:1px solid
 .loop-steps{display:flex;flex-wrap:wrap;align-items:stretch;gap:12px}
 .lstep{flex:1 1 140px;min-width:140px;background:color-mix(in srgb, var(--surface-card) 80%, transparent);border:1px solid var(--border-hairline);border-radius:8px;padding:12px 16px}
 .lstep b{display:block;font-family:var(--ff-sans);font-weight:600;font-size:0.8125rem;color:var(--text-body);margin-bottom:4px}
-.lstep span{font-size:0.71875rem;color:var(--text-faint);line-height:1.5}
+.lstep span{font-size:var(--fs-micro);color:var(--text-faint);line-height:1.5}
 .lstep-hot{border-color:var(--acc-violet)}
 .larr{align-self:center;color:var(--text-disabled);font-size:1rem}
-.lback{flex-basis:100%;font-size:0.71875rem;color:var(--acc-violet);border-top:1px dashed color-mix(in srgb, var(--acc-violet) 60%, transparent);padding-top:12px;margin-top:4px}
+.lback{flex-basis:100%;font-size:var(--fs-micro);color:var(--acc-violet);border-top:1px dashed color-mix(in srgb, var(--acc-violet) 60%, transparent);padding-top:12px;margin-top:4px}
 /* the arrows only mean something on ONE line: from 640-849 the row wrapped 3+1
    with a dangling third arrow (2026-09-02 sweep) — below the single-line width
    the tiles carry the sequence on their own */
@@ -2957,7 +2957,7 @@ body.p-case-studies-planit .mascot-row{display:grid;grid-template-columns:repeat
    The ROW breaks out as one object; the plates inside obey their tracks. */
 body.p-case-studies-planit .mascot-row .mascot{min-width:0;display:flex;flex-direction:column;align-items:center;gap:12px;background:#FFF6E9;border:1px solid var(--border-hairline);border-radius:16px;padding:20px 16px 12px}
 body.p-case-studies-planit .mascot-row .mascot img{width:116px;height:auto;border:0;display:block}
-body.p-case-studies-planit .mascot-row .mascot span{font-family:var(--ff-label);font-size:0.6875rem;font-weight:600;letter-spacing:.02em;color:rgba(32,24,12,.78);text-align:center;margin:0}  /* .62 -> .78, 2026-09-20. The nightly measured these 11px captions at 4.30-4.34:1 against a 4.5 floor on cream. Note the gap between theory and pixels: .62 COMPUTES to 4.82:1, and the painted result is 4.33 — this page carries overlay texture that no style-based sum can see, so the alpha was raised until the AUDIT cleared it, not until the arithmetic did. */
+body.p-case-studies-planit .mascot-row .mascot span{font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:600;letter-spacing:.02em;color:rgba(32,24,12,.78);text-align:center;margin:0}  /* .62 -> .78, 2026-09-20. The nightly measured these 11px captions at 4.30-4.34:1 against a 4.5 floor on cream. Note the gap between theory and pixels: .62 COMPUTES to 4.82:1, and the painted result is 4.33 — this page carries overlay texture that no style-based sum can see, so the alpha was raised until the AUDIT cleared it, not until the arithmetic did. */
 /* Headings sat almost on top of their first paragraph — the base
    .section-title carries no bottom margin because elsewhere a kicker or grid
    supplies the gap. On this page nothing does. */
@@ -2971,7 +2971,7 @@ body.p-case-studies-planit .phone-row{display:grid;grid-template-columns:repeat(
 body.p-case-studies-planit .phone-row--one{grid-template-columns:minmax(0,1fr)}
 body.p-case-studies-planit .phone-row .shot{display:flex;flex-direction:column;align-items:center;gap:12px;width:100%;max-width:340px}
 body.p-case-studies-planit .phone-row .shot img{width:100%;height:auto;display:block;border:1px solid var(--border-hairline);border-radius:12px}
-body.p-case-studies-planit .phone-row .shot span{font-family:var(--ff-label);font-size:0.6875rem;font-weight:600;letter-spacing:.02em;color:var(--text-faint)}
+body.p-case-studies-planit .phone-row .shot span{font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:600;letter-spacing:.02em;color:var(--text-faint)}
 @media (max-width:640px){body.p-case-studies-planit .phone-row{grid-template-columns:minmax(0,1fr)}}
 /* The single-phone figures: a 340px screenshot centred in a 1040px band left a
    ~350px void down each side. The space gets a content role — an annotation
@@ -3069,7 +3069,7 @@ body.p-lab .dsg-card > ul{flex:1 1 auto;align-content:space-between}
 /* ...except the spacing ramp: it wraps onto two lines but it is ONE continuous scale, so
    distributing its rows pulls 40 away from 48. The ramp stays tight; the note takes the floor. */
 body.p-lab .dsg-card > .dsg-steps{flex:0 0 auto;align-content:normal}
-body.p-lab .dsg-k{font-family:var(--ff-label);font-size:0.6875rem;font-weight:600;letter-spacing:.02em;color:var(--text-faint);margin:0 0 20px}
+body.p-lab .dsg-k{font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:600;letter-spacing:.02em;color:var(--text-faint);margin:0 0 20px}
 body.p-lab .dsg-heats{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 body.p-lab .dsg-heats li{display:flex;align-items:center;gap:12px}
 body.p-lab .dsg-heats i{width:32px;height:32px;border-radius:8px;flex:0 0 auto}
@@ -3084,7 +3084,7 @@ body.p-lab .dsg-type{list-style:none;margin:0;padding:0;display:grid;gap:16px}
    table only when the labels sit on the same line as the specimens.
    Every row here is single-line, so there is no wrap to strand. */
 body.p-lab .dsg-type li{display:flex;align-items:baseline;gap:12px;justify-content:space-between}
-body.p-lab .dsg-type b{font-family:var(--ff-label);font-size:0.6875rem;font-weight:600;letter-spacing:.06em;color:var(--text-faint);text-align:right;flex:0 0 auto}
+body.p-lab .dsg-type b{font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:600;letter-spacing:.06em;color:var(--text-faint);text-align:right;flex:0 0 auto}
 body.p-lab .dsg-serif{font-family:var(--ff-display);font-weight:300;font-size:1.5rem;color:var(--text-body)}
 body.p-lab .dsg-sans{font-size:1rem;color:var(--text-body)}
 body.p-lab .dsg-label{font-family:var(--ff-label);font-weight:600;font-size:0.75rem;letter-spacing:.02em;color:var(--acc-amber)}
@@ -3092,7 +3092,7 @@ body.p-lab .dsg-mono{font-family:var(--ff-mono);font-size:0.875rem;color:var(--t
 body.p-lab .dsg-steps{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
 body.p-lab .dsg-steps li{text-align:center}
 body.p-lab .dsg-steps i{display:block;height:20px;border-radius:3px;background:var(--cta-grad)}
-body.p-lab .dsg-steps span{display:block;margin-top:8px;font-family:var(--ff-mono);font-size:0.6875rem;color:var(--text-faint)}
+body.p-lab .dsg-steps span{display:block;margin-top:8px;font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--text-faint)}
 body.p-lab .dsg-note{margin-top:auto;padding-top:20px;font-size:0.78125rem;color:var(--text-faint);max-width:none}
 /* ============================================================================
    /fit/ · THE FIT CHECK (2026-08-17)
@@ -3107,7 +3107,7 @@ body.p-lab .dsg-note{margin-top:auto;padding-top:20px;font-size:0.78125rem;color
    pair needed 660 and the Lab measure is 653, so auto-fit silently stacked them. */
 body.p-fit .fit-contract{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(272px,100%),1fr));gap:20px;margin:32px 0 0}
 body.p-fit .fit-col{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:var(--radius-2);padding:24px}
-body.p-fit .fit-col-k{font-family:var(--ff-label);font-size:0.6875rem;font-weight:600;letter-spacing:.02em;margin:0 0 16px}
+body.p-fit .fit-col-k{font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:600;letter-spacing:.02em;margin:0 0 16px}
 body.p-fit .fit-can .fit-col-k{color:var(--status-positive)}
 body.p-fit .fit-cannot .fit-col-k{color:var(--status-negative)}
 body.p-fit .fit-col ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
@@ -3115,10 +3115,10 @@ body.p-fit .fit-col li{position:relative;padding-left:24px;font-size:0.9375rem;l
 body.p-fit .fit-col li::before{position:absolute;left:0;top:0;font-family:var(--ff-mono);font-size:0.8125rem}
 body.p-fit .fit-can li::before{content:"+";color:var(--status-positive)}
 body.p-fit .fit-cannot li::before{content:"\2212";color:var(--status-negative)}
-body.p-fit .fit-constraints-k{font-family:var(--ff-label);font-size:0.6875rem;font-weight:600;letter-spacing:.02em;color:var(--text-faint);margin:40px 0 0}
+body.p-fit .fit-constraints-k{font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:600;letter-spacing:.02em;color:var(--text-faint);margin:40px 0 0}
 /* --- the input --- */
 body.p-fit .fit-form{margin-top:32px}
-body.p-fit .fit-label{display:block;font-family:var(--ff-label);font-size:0.6875rem;font-weight:600;letter-spacing:.02em;color:var(--text-faint);margin-bottom:12px}
+body.p-fit .fit-label{display:block;font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:600;letter-spacing:.02em;color:var(--text-faint);margin-bottom:12px}
 body.p-fit .fit-jd{width:100%;box-sizing:border-box;background:var(--surface-card);color:var(--text-body);border:1px solid var(--border-strong);border-radius:12px;padding:16px 20px;font-family:var(--ff-mono);font-size:0.84375rem;line-height:1.7;resize:vertical;min-height:220px}
 body.p-fit .fit-jd::placeholder{color:var(--text-faint)}
 body.p-fit .fit-jd:focus{outline:2px solid var(--acc-amber);outline-offset:2px;border-color:transparent}
@@ -3149,10 +3149,10 @@ body.p-fit .fit-item-h{font-size:0.9375rem;font-weight:600;color:var(--text-body
 body.p-fit .fit-item-c{margin:8px 0 0;font-size:0.9375rem;line-height:1.65;color:var(--text-muted)}
 body.p-fit .fit-cites,
 body.p-fit .fit-terms{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:16px 0 0}
-body.p-fit :is(.fit-cites-k,.fit-terms-k,.fit-more){font-family:var(--ff-label);font-size:0.625rem;font-weight:600;letter-spacing:.02em;color:var(--text-faint)}
+body.p-fit :is(.fit-cites-k,.fit-terms-k,.fit-more){font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:600;letter-spacing:.02em;color:var(--text-faint)}
 body.p-fit .fit-cites a{font-family:var(--ff-mono);font-size:0.75rem;color:var(--acc-amber);text-decoration:none;border-bottom:1px solid rgba(255,199,110,.4);padding-bottom:1px}
 body.p-fit .fit-cites a:hover{color:var(--text-body);border-bottom-color:var(--text-body)}
-body.p-fit .fit-chip{font-family:var(--ff-mono);font-size:0.71875rem;color:var(--text-muted);background:rgba(255,255,255,.06);border-radius:6px;padding:3px 8px}
+body.p-fit .fit-chip{font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--text-muted);background:rgba(255,255,255,.06);border-radius:6px;padding:3px 8px}
 body.p-fit .fit-item--chips{display:flex;flex-wrap:wrap;gap:12px;padding:20px}
 body.p-fit .fit-item--chips .fit-chip{font-size:0.78125rem;padding:4px 12px}
 body.p-fit .fit-blocker-note{margin:16px 0 0}
@@ -3514,4 +3514,4 @@ body.dyslexia-mode *:not(code):not(pre):not(kbd):not(samp):not(code *):not(pre *
    manually starting a server on :8000, so nobody saw it.
    The grammar now belongs to the component, not to one page. Layout (gap, margin) stays
    per-page: a row under a rule and a row inside the hero want different spacing. */
-.contract-links{font-family:var(--mono);font-size:0.71875rem;letter-spacing:.02em}}
+.contract-links{font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em}}
