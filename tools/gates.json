@@ -1041,6 +1041,17 @@
     "build"
    ],
    "note": "BUILD STEP (writes): the fit-check index from the pages."
+  },
+  {
+   "id": "resume-parity",
+   "cmd": [
+    "python3",
+    "tools/resume-parity.py"
+   ],
+   "stages": [
+    "pre-push"
+   ],
+   "note": "The designed PDF and the ATS .docx are built from two INDEPENDENT sources (portfolio-sources/resume.html and make-resume.js), each with its own hand-written copy, and until 2026-10-28 nothing compared them: the .docx had lost two skills groups, restated a PTC fact twice, read 'Available · available on', and still carried a product count canon retired in August. The PDF meanwhile emitted page 2's bullets AFTER Skills and Education in its text layer, so an ATS read achievements detached from the job they belong to. Checks font type, per-job reading order, run-together text, doubled words, a fact restated in two bullets of one role, every locked claim present in BOTH files, the five skills groups, and the LinkedIn URL as parseable text. SKIPS when portfolio-sources/ is absent, like design-doc-mirror."
   }
  ],
  "manual": [
