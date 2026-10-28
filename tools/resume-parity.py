@@ -213,8 +213,16 @@ def main():
         if group not in df:
             fail(f"DOCX: skills group {group!r} missing — lost keyword coverage")
 
-    if "linkedin.com/in/arpitmaheshwariprofile" not in df:
-        fail("DOCX: LinkedIn URL is not present as parseable text")
+    # The masthead shows the socials as icons, which no parser can read, so BOTH
+    # documents carry them spelled out in the closing line instead (2026-10-28).
+    # Handles are locked in CANONICAL-FACTS.md §3.
+    for handle in ("linkedin.com/in/arpitmaheshwariprofile",
+                   "substack.com/@arpitmaheshwari",
+                   "github.com/arpitmaheshwari"):
+        if handle not in pf:
+            fail(f"PDF: {handle} is not present as parseable text — an icon is not a URL")
+        if handle not in df:
+            fail(f"DOCX: {handle} is not present as parseable text")
     if "arpitmaheshwari88" in pf or "arpitmaheshwari88" in df:
         fail("The retired LinkedIn handle 'arpitmaheshwari88' is printed somewhere")
 
