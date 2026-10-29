@@ -140,9 +140,13 @@ curl -sf -o /dev/null "http://localhost:$PORT/" || { echo "pre-push: local serve
 NOT_PAGES=$(python3 -c "import sys; sys.path.insert(0,'tools'); from gatelib import NOT_PAGES; print('|'.join('^'+d for d in NOT_PAGES))" 2>/dev/null)
 [ -z "$NOT_PAGES" ] && NOT_PAGES='^partials/|^prototypes/|^assets/|^portfolio-sources/|^tests/'
 
+# A DELETED page is in $CHANGED too. Asking a browser gate to audit one loads the
+# server's bare 404 (no viewport meta): the 390px camera then reads 980px and
+# contrast-audit exits 2 — which blocked the 2026-10-30 push over a page that no
+# longer existed. The page scopes below keep only files still on disk.
 if printf '%s\n' "$CHANGED" | grep -qE '\.(css|js)$|^partials/'; then
   IMG_SCOPE="http://localhost:$PORT/ http://localhost:$PORT/case-studies/adtech.html http://localhost:$PORT/writing/ http://localhost:$PORT/lab/teardown.html"
-  CHANGED_HTML=$(printf '%s\n' "$CHANGED" | grep -E '\.html$' | grep -vE "$NOT_PAGES" \
+  CHANGED_HTML=$(printf '%s\n' "$CHANGED" | grep -E '\.html$' | grep -vE "$NOT_PAGES" | while read -r _f; do [ -f "$_f" ] && echo "$_f"; done \
                  | sed "s|^|http://localhost:$PORT/|" | tr '\n' ' ')
   [ -n "$CHANGED_HTML" ] && IMG_SCOPE="$IMG_SCOPE $CHANGED_HTML"
   echo "pre-push: rendering assets changed — four representative pages here, all 44 nightly"
@@ -150,7 +154,7 @@ elif printf '%s\n' "$CHANGED" | grep -qE '^(tools/|\.githooks/)'; then
   IMG_SCOPE="http://localhost:$PORT/ http://localhost:$PORT/case-studies/adtech.html http://localhost:$PORT/writing/ http://localhost:$PORT/lab/teardown.html"
   echo "pre-push: a gate changed — four representative pages here, all 44 nightly"
 else
-  IMG_SCOPE=$(printf '%s\n' "$CHANGED" | grep -E '\.html$' | grep -vE "$NOT_PAGES" \
+  IMG_SCOPE=$(printf '%s\n' "$CHANGED" | grep -E '\.html$' | grep -vE "$NOT_PAGES" | while read -r _f; do [ -f "$_f" ] && echo "$_f"; done \
               | sed "s|^|http://localhost:$PORT/|" | tr '\n' ' ')
   [ -z "$IMG_SCOPE" ] && IMG_SCOPE="--all"
   echo "pre-push: scoping page gates to the changed pages"
