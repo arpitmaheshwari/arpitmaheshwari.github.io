@@ -35,7 +35,7 @@
       "url": "https://arpitmaheshwari.com"
     },
     "datePublished": "2026-05-12",
-    "dateModified": "2026-05-16",
+    "dateModified": "2026-10-29",
     "image": "https://arpitmaheshwari.com/assets/og-images/human-in-loop-og.png"
   }
   </script>
@@ -79,14 +79,14 @@
 
 <main id="main" class="section page-bg"><div class="xi-process-004">
 
-  <p class="lead xi-resources-founder-questions-009">The recommender was good. The students skipped it most of the time anyway. Not because it was wrong — because we’d made them click “confirm” so often they’d stopped reading. We’d asked for their judgement so relentlessly that we’d trained them to switch it off.</p>
+  <p class="lead xi-resources-founder-questions-009">The easiest way to keep a human in the loop is to ask them to confirm everything. It is also the surest way to lose them: ask for a person’s judgement on every answer and you get it on none. Three of the AI products I’ve shipped spend the ask in exactly one place each, and where that place sits did more for adoption than any change to the model.</p>
 
   <h2 class="section-title xi-writing-human-in-loop-011" id="death-by-are-you-sure">Death by “are you sure?”</h2>
-  <p class="u-body xi-case-studies-adtech-016">In 2019 I was looking at a learning platform that, on paper, was doing everything right. It recommended the next course. It asked the student to confirm. It kept the human in the loop. And it was quietly failing — the engine was accurate, and most of its recommendations got skipped anyway. When I watched a few students go through it, the reason was almost embarrassing: they weren’t disagreeing with the recommendations. They were exhausted by them. “Do you want to take this course?” appeared so often it had become wallpaper, and the muscle-memory answer to wallpaper is <em>skip</em>.</p>
+  <p class="u-body xi-case-studies-adtech-016">A confirmation step looks like respect. On paper it keeps the human in control. But attention is a finite account, and every “are you sure?” is a withdrawal from it. Past a certain rate the prompts stop being questions and become wallpaper, and the muscle-memory answer to wallpaper is <em>skip</em>. The system is still technically asking. Nobody is still technically answering.</p>
   <p class="u-body xi-case-studies-adtech-016">That’s the trap hiding inside good intentions. We add the confirmation step to respect the user’s autonomy. But ask for a person’s judgement on everything and you get their judgement on nothing — the prompts blur together, attention drains out, and people start clicking on reflex. The thing we added to keep the human in control was the exact thing pushing them out of it.</p>
 
   <h2 class="section-title xi-resources-ai-design-checklist-015" id="spend-the-asks-where-they-count">Spend the asks where they count</h2>
-  <p class="u-body xi-case-studies-adtech-016">The shift that fixed it was to stop treating every recommendation as equally worth interrupting someone for. A confirmation is a withdrawal from a finite account of attention. So I started spending those asks only where the model was genuinely unsure and a human’s input would actually change the answer. Where the model was confident, it just acted, and the student could undo it if they cared to. Where the model was lost, it said so plainly and got out of the way. That three-way split is the one my patterns library names the Act / Review / Ignore rule — it kept recurring until it earned a name. The asks that remained landed, because they’d become rare enough to mean something.</p>
+  <p class="u-body xi-case-studies-adtech-016">So the design question is never <em>whether</em> to ask. It is <em>where</em>. In the <a class="link-gold" href="../case-studies/fintech.html">private-equity screening product</a>, the ask sits on one event: when the evidence behind a claim runs thin, the model says “I’m not sure about this one” and hands the call to the analyst, whose override is logged rather than lost. Everywhere the evidence is solid it shows the claim beside its source and gets out of the way. In the <a class="link-gold" href="../case-studies/vc-diligence.html">due-diligence dossier</a> the one ask is the partner’s sign-off, and it stays locked until every signal’s evidence has been opened — more friction, on purpose, at the single moment where the signer carries the downside. And in the <a class="link-gold" href="../case-studies/adtech.html">out-of-home planning platform</a> the trader was never asked to approve a recommendation at all: the plan arrived with its KPIs attached and one click to change it, so their judgement went into shaping the answer, not rubber-stamping it. Three products, three different moments, one rule — a tap that rare is a tap the system has earned. The patterns library names the underlying split the Act / Review / Ignore rule; it is a synthesis across the AI products, not the invention of any one of them.</p>
 
   <div class="xi-resources-ai-design-checklist-022">
     <p class="lead xi-writing-human-in-loop-015"><strong>Ask for a person&rsquo;s judgement on everything and you get their judgement on nothing.</strong> The best human-in-the-loop systems spend the ask only where a human&rsquo;s input would change the answer &mdash; a tap that rare is a tap the system has earned.</p>
