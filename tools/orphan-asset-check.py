@@ -39,6 +39,19 @@ for rel in files:
         corpus.append(open(os.path.join(ROOT, rel), encoding='utf-8', errors='replace').read())
     except OSError:
         pass
+# The portfolio-sources/ folder is a nested private repo, so `git ls-files` here
+# never lists it — yet its portfolio.html, resume.html and interview cards reference
+# assets/ by relative path. In 2026-10 that blind spot deleted
+# fintech-gate-print.svg and the PDF printed a broken image for days. Read its
+# text files too when the folder is present (CI has no copy; the gate still cannot
+# see them there, which the CANNOT SEE line below says).
+import glob
+for ext in TEXT:
+    for path in glob.glob(os.path.join(ROOT, 'portfolio-sources', '**', '*' + ext), recursive=True):
+        try:
+            corpus.append(open(path, encoding='utf-8', errors='replace').read())
+        except OSError:
+            pass
 blob = '\n'.join(corpus)
 
 orphans = []
@@ -61,5 +74,6 @@ if orphans:
     print(f'\n{len(orphans)} orphan asset(s), {total:.0f} KB. Delete them or point at them.')
     sys.exit(1)
 print(f'{len(files)} tracked files: every asset is referenced and none is empty.')
-print('CANNOT SEE: an asset referenced only from an untracked file, one built from a')
+print('CANNOT SEE: an asset referenced only from an untracked file (portfolio-sources/ is read\n'
+      '  only where that private checkout exists — never in CI), one built from a')
 print('string at runtime, or a file that IS referenced but by a page nobody can reach.')
