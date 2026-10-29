@@ -52,6 +52,11 @@ for ext in TEXT:
             corpus.append(open(path, encoding='utf-8', errors='replace').read())
         except OSError:
             pass
+# Fallback for machines without portfolio-sources/ (CI): a tracked keep-list.
+try:
+    corpus.append(open(os.path.join(ROOT, 'tools', 'orphan-keep.txt'), encoding='utf-8').read())
+except OSError:
+    pass
 blob = '\n'.join(corpus)
 
 orphans = []
