@@ -31,7 +31,7 @@
   "description":"Case study on designing AI-powered technical due-diligence for venture-capital and private-equity firms.",
   "author":{"@type":"Person","name":"Arpit Maheshwari"},
   "datePublished":"2026-03-15",
-  "dateModified":"2026-05-24"
+  "dateModified":"2026-10-29"
 }
 </script>
 <script type="application/ld+json">
@@ -87,7 +87,7 @@
       <h2 id="vslip-title" class="vslip-title">The case in sixty seconds.</h2>
       <p class="vslip-sub">The full case is folded below &mdash; every line links into it and opens it.</p>
       <dl class="vslip-rows">
-        <div><dt>The outcome</dt><dd>Technical due diligence <b>3 wks &rarr; 4 days</b>, measured across VC + PE engagements &mdash; partners trusted what arrived enough to act on it the same week. <a href="#the-receipt">the receipt&nbsp;&rarr;</a></dd></div>
+        <div><dt>The outcome</dt><dd>Technical due diligence <b>3 wks &rarr; 4 days</b> &mdash; partners trusted what arrived enough to act on it the same week. <a href="#the-receipt">the receipt&nbsp;&rarr;</a></dd></div>
         <div><dt>The call</dt><dd>The opposite of easy-to-accept AI: <b>sign-off stays locked</b> until every signal&rsquo;s evidence has been opened. More work, by design &mdash; the work was the conviction. <a href="#test">the test&nbsp;&rarr;</a></dd></div>
         <div><dt>My part</dt><dd><b>Product &amp; design lead</b>, alongside the engineers and data scientists who built the model &mdash; 16 analysis dimensions distilled to confidence-backed signals. <a href="#stakes">the seat&nbsp;&rarr;</a></dd></div>
         <div><dt>Where it breaks</dt><dd>Deliberate friction pays only when the signer <b>bears the downside</b>; in front of a user with nothing at stake it&rsquo;s a nag screen. <a href="#breaks">the boundary&nbsp;&rarr;</a></dd></div>
@@ -232,8 +232,8 @@
     <circle cx="1151.7" cy="259.9" r="6" fill="#F4ECDA" stroke="#C0512B" stroke-width="3"/>
     <!-- verdict readout -->
     <text x="1064" y="212" class="lb" font-size="12" text-anchor="middle" letter-spacing="0.2" opacity="0.85">Verdict</text>
-    <text x="1064" y="268" class="hd" font-size="56" text-anchor="middle">B+</text>
-    <text style="fill:#76321A" x="1064" y="302" class="em" font-size="18" text-anchor="middle" font-weight="600" letter-spacing="0.2">Commit</text>
+    <text x="1064" y="262" class="hd" font-size="38" text-anchor="middle">Proceed</text>
+    <text style="fill:#76321A" x="1064" y="290" class="em" font-size="14" text-anchor="middle" font-weight="600" letter-spacing="0.2">with conditions</text>
   </g>
 
   <!-- ===================== FOOTER: timeline motif ===================== -->
@@ -277,7 +277,7 @@
       </div>
 
 
-    <figcaption>Evidence-backed signals, one verdict a partner can stand on · 3 weeks to 4 days</figcaption>
+    <figcaption>Evidence-backed signals, one verdict a partner can stand on · 3 weeks to 4 days · reconstruction, illustrative counts</figcaption>
   </figure>
 
   <!-- THE HOOK — the symptom, stated as a mystery -->
@@ -436,7 +436,7 @@
       sign.classList.add('rxv-signed');sign.textContent='Signed — conditions attached';hint.textContent='';});
   })();</script>
 
-    <p class="t-body xi-case-studies-o2-028">That sign-off gate looks like a small interaction. It was the whole argument. It turns the LLM from an oracle you either believe or ignore into an evidence file a partner walks through, each verdict grounded in its cited source — which is the difference between a tool that sits in a drawer and one that compresses three weeks into four days. The analyst’s overrides feed back to the model, so the trust runs both ways.</p>
+    <p class="t-body xi-case-studies-o2-028">That sign-off gate looks like a small interaction. It was the whole argument. It turns the LLM from an oracle you either believe or ignore into an evidence file a partner walks through, each verdict grounded in its cited source — which is the difference between a tool that sits in a drawer and one that compresses three weeks into four days. The analyst’s overrides are logged and reviewed with the data-science team, so the trust runs both ways.</p>
   </section>
 
   <!-- §04 — WHAT IT COST -->
@@ -531,7 +531,7 @@
 
   <!-- THE RECEIPT -->
   <section class="xi-case-studies-adtech-014" id="the-receipt">
-    <h2 class="section-title xi-case-studies-adtech-035"><span class="chapter-k">Falsifiable evidence<span class="visually-hidden">:</span></span> Three weeks to four days, measured across engagements.</h2>
+    <h2 class="section-title xi-case-studies-adtech-035"><span class="chapter-k">Falsifiable evidence<span class="visually-hidden">:</span></span> Three weeks to four days.</h2>
     <p class="t-body xi-case-studies-adtech-016"><strong class="xi-process-016 lead-in" role="heading" aria-level="3">Whose three weeks these were.</strong> The cycle was never slow because the analysis was slow &mdash; a machine did the hard technical read in an afternoon. The three weeks were analysts assembling something a partner would put their name to, and a partner picking up the phone to re-check a clean verdict by hand anyway. So what the four days buy is not speed. It is a partner who can wire the millions, or walk away from them, and know which one they are doing.</p>
     <p class="lbl-cap xi-case-studies-adtech-007">What changed, and for whom</p>
     <p class="t-body xi-case-studies-adtech-007">The 3 wks → 4 days belongs to the whole platform — model, retrieval, pipeline, surface. The part I claim is the design that made partners willing to stand on it for live deals.</p>
@@ -546,7 +546,7 @@
       </div>
       <div class="rcpt-r xi-case-studies-adtech-009" data-tint>
         <div class="lbl-eyebrow xi-case-studies-adtech-010">Provenance</div>
-        <div class="t-ui xi-case-studies-adtech-011">Every claim drills from the summary down to the source signal and code-quality measure behind it</div>
+        <div class="t-ui xi-case-studies-adtech-011">Every claim drills from the summary down to a signal and its evidence</div>
       </div>
       <div class="rcpt-r-last">
         <div class="lbl-eyebrow xi-case-studies-adtech-010">Fund types served</div>
@@ -577,7 +577,6 @@
   <section class="xi-case-studies-adtech-019">
     <h2 class="section-title xi-case-studies-adtech-016" id="breaks">Where the principle breaks.</h2>
     <p class="t-body">Deliberate friction earns its keep only when the signer bears the downside — a partner with capital at risk, a clinician, an underwriter. Put the same locks in front of a user with nothing at stake and you’ve built a nag screen; they’ll satisfice, click through, and resent you. It also assumes the evidence is worth opening: gating sign-off on weak sources teaches people to stop reading. Friction is a precision instrument — this case argues for placing it, not sprinkling it.</p>
-    <p class="t-body">Deliberate friction survives only when the person clicking is personally accountable for the verdict. Give the same evidence gate to a user with no downside and they’ll route around it — the friction has to buy them something they actually need.</p>
   </section>
 
   <!-- NDA CALENDLY CTA -->
@@ -592,8 +591,8 @@
     <h3 class="t-card-title xi-process-005">Design Patterns Demonstrated</h3>
     <ul class="t-ui-muted-loose xi-case-studies-vc-diligence-033">
       <li class="xi-process-013"><strong><a class="link-gold" href="../patterns/confidence-scores.html">Confidence Score Patterns</a>:</strong> Per-signal and per-document confidence, each one mapping to a next step a partner can take.</li>
-      <li class="xi-process-013"><strong><a class="link-gold" href="../patterns/ml-explainability.html">ML Explainability Patterns</a>:</strong> Provenance on every claim — a clean drill from the summary down to the source signal and code-quality measure behind it.</li>
-      <li><strong><a class="link-gold" href="../patterns/human-in-loop.html">Human-in-Loop Patterns</a>:</strong> Analyst overrides fed back to the model; partner sign-off as real workflow, not a rubber stamp.</li>
+      <li class="xi-process-013"><strong><a class="link-gold" href="../patterns/ml-explainability.html">ML Explainability Patterns</a>:</strong> Provenance on every claim — a clean drill from the summary down to a signal and its evidence.</li>
+      <li><strong><a class="link-gold" href="../patterns/human-in-loop.html">Human-in-Loop Patterns</a>:</strong> Analyst overrides logged and reviewed with the data-science team; partner sign-off as real workflow, not a rubber stamp.</li>
     </ul>
   </section>
 

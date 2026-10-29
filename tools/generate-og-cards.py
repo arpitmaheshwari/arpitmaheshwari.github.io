@@ -149,7 +149,7 @@ REG = [
      "15 core terms for designing AI products", "Arpit Maheshwari · Resource"),
     # --- case cards (2026-08-15): the F3 hook titles; adtech names Talon ---
     ("adtech-og.png", "ADTECH · TALON OUTDOOR · NAMED", "An Ad Agency Became the Market\u2019s Aggregator",
-     "Five systems, one platform \u2014 planning 2 wks \u2192 3 hrs once traders could argue back.", "Arpit Maheshwari \u00b7 Case Study"),
+     "Six systems, one platform \u2014 planning 2 wks \u2192 3 hrs once traders could argue back.", "Arpit Maheshwari \u00b7 Case Study"),
     ("ptc-og.png", "EDTECH · PTC · PUBLIC", "The Redesign That Asked PTC to Kill Four Products",
      "Five platforms to one \u00b7 $1M/yr saved \u00b7 subscription 0% \u2192 64% of new bookings.", "Arpit Maheshwari \u00b7 Case Study"),
     ("o2-og.png", "TELECOM · O2 UK · PUBLIC", "Two O2 UK Products, Four Million People",

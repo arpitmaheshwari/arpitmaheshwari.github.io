@@ -44,7 +44,7 @@ SKILL_GROUPS = ["AI product design", "Product & systems", "Design foundations",
 # the next one. `position:relative` on a list item silently breaks this (Chrome paints
 # positioned boxes last, so every bullet lands after Skills and Education).
 ROLE_ORDER = [
-    ("· Sahaj AI", "Turned the UK’s largest independent"),
+    ("· Sahaj AI", "Turned the UK’s largest out-of-home"),
     ("· PTC Inc.", "Consolidated five learning platforms"),
     ("· Equal Experts", "Shipped reward and offer screens"),
 ]

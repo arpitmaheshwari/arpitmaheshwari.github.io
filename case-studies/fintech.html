@@ -31,7 +31,7 @@
   "description":"Case study on designing AI-assisted analysis interfaces for expert skepticism and high-stakes decisions.",
   "author":{"@type":"Person","name":"Arpit Maheshwari"},
   "datePublished":"2025-06-30",
-  "dateModified":"2026-05-24"
+  "dateModified":"2026-10-29"
 }
 </script>
 <script type="application/ld+json">
@@ -92,7 +92,7 @@
       <div class="case-stats">
         <div class="case-stat" data-ground="bookend"><b>60% faster</b><span>deal screening · pre/post rollout</span></div>
         <div class="case-stat" data-ground="bookend"><b>Sources</b><span>sat beside every score, not behind it</span></div>
-        <div class="case-stat" data-ground="bookend"><b>Lead</b><span>analysts now open the memo with it</span></div>
+        <div class="case-stat" data-ground="bookend"><b>Logged</b><span>every analyst override, kept for the data-science team</span></div>
       </div>
     </div>
   </div>
@@ -179,7 +179,7 @@
             <div class="vg-hd"><b>Screening score</b><i>Risk read</i></div>
             <p class="vg-score"><b>0.82</b><em>grounded</em></p>
             <ul class="vg-srcs">
-              <li style="--t:.55s">Commit history · 24 months</li>
+              <li style="--t:.55s">Data-room filing · 24 months</li>
               <li style="--t:.72s">Founder interview · run 2 of 2</li>
               <li style="--t:.89s">Filing · audited accounts</li>
             </ul>
@@ -202,7 +202,7 @@
     <h2 class="section-title xi-case-studies-adtech-015"><span class="chapter-k">The stakes<span class="visually-hidden">:</span></span> An accurate score that added work instead of removing it.</h2>
     <p class="scene">The analysts never worried the machine might be wrong. They worried it might be fluent &mdash; a confident number with nothing underneath, arriving faster than anyone could doubt it.</p>
     <p class="t-body xi-case-studies-adtech-016">Doubt is the job here, and these analysts are very good at it. A score they couldn’t cross-examine wasn’t a tool — it was a liability with a UI, and they treated it like one. It didn’t help that the number came out of a large language model reading messy deal documents: the same technology that, pushed too far, will invent a confident answer it can’t back up.</p>
-    <p class="t-body xi-case-studies-adtech-016">The LLM &mdash; the kind of AI that reads documents and writes like a person &mdash; read board packs, statements and interview notes like a junior analyst, and scored deal risk accurately. But on screen, a ninety-percent-confident score looked identical to a fifty-percent guess, and nothing said whether a claim came from a real document or was quietly made up. So analysts built parallel scorecards by hand and demoted the AI to sanity check.</p>
+    <p class="t-body xi-case-studies-adtech-016">The LLM &mdash; the kind of AI that reads documents and writes like a person &mdash; read board packs, statements and interview notes like a junior analyst, and scored deal risk accurately. But on screen, a ninety-percent-confident score looked identical to a fifty-percent guess, and nothing said whether a claim came from a real document or was quietly made up. So analysts audited the score by hand and demoted the AI to sanity check.</p>
     <p class="t-body">The accuracy is the ML team’s result to defend. Mine is everything that made an accurate score acted on: the evidence beside the number, the abstention state &mdash; the model saying &ldquo;I&rsquo;m not sure&rdquo; instead of guessing &mdash; the override logged instead of lost. The job was to make a correct score survive cross-examination by the most sceptical reader in the building — and to hold the launch until it could.</p>
   </section>
 
@@ -344,9 +344,9 @@
 
     <p class="t-body xi-case-studies-adtech-016"><strong class="xi-process-016 lead-in" role="heading" aria-level="3">Above the single deal sat the scoring dashboard.</strong> The whole pipeline scored side-by-side — the multi-deal view where screening actually starts — and any deal drills down into the per-signal breakdown, the written analysis, and the conversation. One analysis, three surfaces, no forced workflow.</p>
     <p class="t-body xi-case-studies-adtech-016"><strong class="xi-process-016 lead-in" role="heading" aria-level="3">So I built an &ldquo;explain this score&rdquo; surface that grounds the model in its evidence.</strong> An analyst could pull any rating apart into the signals behind it, challenge the weighting, and watch the score answer back — and every signal came stapled to the exact document it was retrieved from, so no claim floated free of a source. Making the model survive that, before release rather than after, is the argument the whole project hung on — and the reason it took the weeks it did.</p>
-    <p class="t-body xi-case-studies-adtech-016"><strong class="xi-process-016 lead-in" role="heading" aria-level="3">Two conditions were non-negotiable, and one rule shipped with them:</strong> a cited source behind every generated number; a visible &ldquo;I’m not sure about this one&rdquo; where the model abstains instead of bluffing — an LLM’s worst failure is a fluent wrong claim; and a logged override when the analyst disagreed. The override drew the longest fight: logging disagreement felt exposing. It was actually the moat. Every correction became structured data the system learns from, so the platform comes to reflect how <em>this firm</em> thinks. A rented model any competitor can rent too; a record of the firm’s own judgement, nobody can.</p>
+    <p class="t-body xi-case-studies-adtech-016"><strong class="xi-process-016 lead-in" role="heading" aria-level="3">Two conditions were non-negotiable, and one rule shipped with them:</strong> a cited source behind every generated number; a visible &ldquo;I’m not sure about this one&rdquo; where the model abstains instead of bluffing — an LLM’s worst failure is a fluent wrong claim; and a logged override when the analyst disagreed. The override drew the longest fight: logging disagreement felt exposing. It was actually the moat. Every override was logged for the data-science team, so the platform could come to reflect how <em>this firm</em> thinks. A rented model any competitor can rent too; a record of the firm’s own judgement, nobody can.</p>
     <p class="t-body xi-case-studies-adtech-016"><strong class="xi-process-016 lead-in" role="heading" aria-level="3">The abstention threshold was a design argument, not just a statistical one.</strong> Every claim carried its own confidence; run low, and it rendered as &ldquo;I’m not sure about this one&rdquo; — a signal promoted from the eval dashboard &mdash; the tests that score the model&rsquo;s answers &mdash; to a state the analyst can act on. The pitch is the whole difficulty: too eager and analysts learn to skim past the crying wolf; too shy and one fluent wrong claim burns the trust bank. The threshold fails toward humility — the cheaper mistake.</p>
-    <p class="t-body xi-case-studies-adtech-016"><strong class="xi-process-016 lead-in" role="heading" aria-level="3">Trust also had to be cheap to enter.</strong> Deal flow lives in email — decks, spreadsheets, forwarded intros — and no analyst re-keys email into a system. So the platform meets them inside Outlook: tag a message, drag an attachment, get <em>&ldquo;Received, thanks&rdquo;</em> while agents stitch the pile into a deal profile — and the prequalification score surfaces back in the inbox, where prioritisation actually happens. The fuzziest judgement got the same discipline: management quality — pure gut feel, traditionally — became a scorecard of leadership tenure, employee sentiment and filed financials on one timeline, every input traceable.</p>
+    <p class="t-body xi-case-studies-adtech-016"><strong class="xi-process-016 lead-in" role="heading" aria-level="3">Trust also had to be cheap to enter.</strong> Deal flow lives in email — decks, spreadsheets, forwarded intros — and no analyst re-keys email into a system. So the platform meets them inside Outlook: tag a message, drag an attachment, get <em>&ldquo;Received, thanks&rdquo;</em> while agents stitch the pile into a deal profile — and the prequalification score surfaces back in the inbox, where prioritisation actually happens.</p>
     <!-- PLATE — production-fidelity reconstruction, synthetic data -->
     
     <!-- query container for the phone-scaling rule in ember.css: the mockup is a
@@ -363,7 +363,7 @@
         <div class="plF-body">
           <div class="plF-main">
             <div class="plF-score"><b>6.8</b><span class="plF-verb">→ Review first</span></div>
-            <div class="plF-sub">Composite risk · 4 signals · model v2.3 · every claim cited or abstained</div>
+            <div class="plF-sub">Composite risk · synthetic · every claim cited or abstained</div>
             <div class="plF-sig sel">
               <span class="plF-sname">Revenue concentration<small>Top client is 61% of ARR</small></span>
               <span class="plF-risk hi">High</span><span class="plF-conf">conf 92%</span><span class="plF-src">Board pack Q3 · p.12</span>
@@ -372,7 +372,7 @@
               <span class="plF-sname">Founder dependency<small>Sole approver on 4 of 5 key systems</small></span>
               <span class="plF-risk md">Med</span><span class="plF-conf">conf 84%</span><span class="plF-src">Org chart · p.3</span>
             </div>
-            <span class="plF-ovr">✓ analyst override logged → next retrain</span>
+            <span class="plF-ovr">✓ analyst override logged for the data-science team</span>
             <div class="plF-sig">
               <span class="plF-sname">Contract churn trend<small>Logo churn rising two consecutive quarters</small></span>
               <span class="plF-risk md">Med</span><span class="plF-conf">conf 78%</span><span class="plF-src">KPI export · row 214</span>
@@ -710,9 +710,9 @@
     </h2>
     <div class="counter">
       <span class="c-l">The strongest objection, kept in</span>
-      <p class="t-body">&ldquo;Ship the score now, add citations later — provenance is polish.&rdquo; Reasonable, budget-shaped, and wrong for this room: with expert sceptics you get exactly one first impression, and a bluffing tool never earns a second audit. The product-owner call was to perfect it before the release — provenance went in as a launch condition, not a fast-follow.</p>
+      <p class="t-body">&ldquo;Ship the score now, add citations later — provenance is polish.&rdquo; Reasonable, budget-shaped, and wrong for this room: with expert sceptics you get exactly one first impression, and a bluffing tool never earns a second audit. I made the case for the two conditions; the product owner agreed to hold the release until they were met.</p>
     </div>
-    <p class="t-body xi-case-studies-adtech-016">Building it first wasn’t free. The accurate LLM sat finished while I built the surface that could defend it — the surface where each claim’s source sat beside it, the abstention state, the override — weeks the team could feel, against a model that already worked. Waiting was the product owner’s call as much as mine; what I own is the argument for it, because shipping a correct score nobody acted on would have been the more expensive mistake.</p>
+    <p class="t-body xi-case-studies-adtech-016">Building it first wasn’t free. The accurate LLM sat finished while I built the surface that could defend it — the surface where each claim’s source sat beside it, the abstention state, the override — weeks the team could feel, against a model that already worked. What I own is the argument for it, because shipping a correct score nobody acted on would have been the more expensive mistake.</p>
     <blockquote class="pullq xi-case-studies-adtech-038">
       <p class="t-quote xi-process-017">Accuracy gets you a correct number. It doesn’t get you a decision. The gap between the two is the whole job — and it’s made of trust, not math.</p>
     </blockquote>
@@ -720,9 +720,9 @@
 
   <!-- THE RECEIPT -->
   <section class="xi-case-studies-adtech-014" id="the-receipt">
-    <h2 class="section-title xi-case-studies-adtech-035"><span class="chapter-k">Falsifiable evidence<span class="visually-hidden">:</span></span> 60% faster, and the sceptics now open with the score.</h2>
+    <h2 class="section-title xi-case-studies-adtech-035"><span class="chapter-k">Falsifiable evidence<span class="visually-hidden">:</span></span> 60% faster, measured pre- vs post-rollout.</h2>
     <p class="lbl-cap xi-case-studies-adtech-007">Interrogation turned into reliance · every number with its window</p>
-    <p class="t-body xi-case-studies-adtech-007">Screening ran 60% faster, measured pre- vs post-rollout, and analysts went from ignoring the model to leading their deal memos with it. The LLM didn’t get more accurate — they could finally trace every claim to its cited source and see where its confidence came from. What the NDA keeps off this page — the sample, the eval design, the baseline, who ran the count — I walk through on a call, artefacts open.</p>
+    <p class="t-body xi-case-studies-adtech-007">Screening ran 60% faster, measured pre- vs post-rollout. The LLM didn’t get more accurate — analysts could finally trace every claim to its cited source and see where its confidence came from. What the NDA keeps off this page — the sample, the eval design, the baseline, who ran the count — I walk through on a call, artefacts open.</p>
     <div class="rcpt-box xi-case-studies-adtech-008">
       <div class="rcpt-r xi-case-studies-adtech-009" data-tint>
         <div class="lbl-eyebrow xi-case-studies-adtech-010">Screening speed</div>
@@ -730,7 +730,7 @@
       </div>
       <div class="rcpt-r" data-tint>
         <div class="lbl-eyebrow xi-case-studies-adtech-010">Adoption</div>
-        <div class="t-ui xi-case-studies-adtech-011">From ignoring the model to leading the deal memo with it · lead analysts now open with the score</div>
+        <div class="t-ui xi-case-studies-adtech-011">Screening 60% faster · measured pre- vs post-rollout</div>
       </div>
       <div class="rcpt-r xi-case-studies-adtech-009" data-tint>
         <div class="lbl-eyebrow xi-case-studies-adtech-010">Explainability</div>
@@ -738,7 +738,7 @@
       </div>
       <div class="rcpt-r-last">
         <div class="lbl-eyebrow xi-case-studies-adtech-010">Override loop</div>
-        <div class="t-ui xi-case-studies-adtech-011">Logged disagreement became a training signal the model learned from</div>
+        <div class="t-ui xi-case-studies-adtech-011">Overrides were logged for the data-science team</div>
       </div>
     </div>
   
@@ -747,7 +747,7 @@
     <div class="framed-tight xi-case-studies-adtech-008">
   <div class="rcpt-r-tight xi-case-studies-adtech-009" data-tint>
     <div class="lbl-eyebrow xi-case-studies-adtech-010">Owned</div>
-    <div class="t-ui xi-case-studies-adtech-011">Product definition, the interaction design, and the abstention + citation UX — built before the first release, so every claim traced to its source on day one.</div>
+    <div class="t-ui xi-case-studies-adtech-011">Product definition with the product owner, the interaction design, and the abstention + citation UX — built before the first release, so every claim traced to its source on day one.</div>
   </div>
   <div class="rcpt-r-tight" data-tint>
     <div class="lbl-eyebrow xi-case-studies-adtech-010">Shared</div>

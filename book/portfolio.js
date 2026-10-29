@@ -51,7 +51,7 @@ const WORK = [{
   title: "The App People Broke on Purpose",
   metric: "0 complaints",
   basis: "launch window · no tutorial",
-  desc: "The same client’s data, pointed at a commuter. People triggered the error screen on purpose, just to watch the little train be sorry — the failure state became the reason they came back."
+  desc: "The same client’s data, pointed at an anxious traveller. People triggered the error screen on purpose, just to watch the little train be sorry — the failure state became the reason they came back."
 }];
 const PRINCIPLES = [{
   h: "What gets measured is a design decision.",
@@ -104,32 +104,28 @@ const PATTERNS = [{
 }];
 const WRITING = [{
   d: "2026 · Essay",
-  h: "The Agentic MVP: Why Your Next Launch Will Be Lovable",
-  p: "How the rise of agentic systems is rewriting what 'minimum viable' means — and why lovability is now the bar."
-}, {
-  d: "2026 · Field note",
-  h: "The AI Fight Club",
-  p: "Weaponising Claude and Gemini for Bulletproof Products. A practical method for stress-testing AI interfaces."
+  h: "The Model Was Right. I Fixed the Wrong Thing.",
+  p: "A recommendation engine that beat the traders it was built for — and sat unused. Two weeks lost to the wrong suspect."
 }, {
   d: "2026 · Essay",
-  h: "The New Renaissance",
-  p: "How agentic AI is shifting knowledge work from executing tasks to exercising judgement."
+  h: "Design the Failure State First",
+  p: "Every model is wrong some of the time, and most interfaces have nothing to say at that moment."
 }, {
   d: "2026 · Essay",
-  h: "AI as Your Startup Cofounder",
-  p: "Treating AI as a 24/7 strategic partner — if you govern its decision-making first."
+  h: "The Explainability Layer: Making AI Legible",
+  p: "An accurate risk score the analysts audited by hand anyway, because a number with no sources is homework."
 }, {
   d: "2026 · Essay",
-  h: "How I Forbid AI from Hallucinating",
-  p: "Forcing AI to ask before it assumes — clarifying questions before any implementation work begins."
+  h: "Human-in-the-Loop: When to Ask, When to Override",
+  p: "Ask for a person’s judgement on everything and you get it on nothing. Where three shipped products put their one ask."
 }];
-const STATUS = ["Available · 4 weeks' notice", "Product & design lead · AI", "Remote · GMT+5:30"];
+const STATUS = ["Available · 4 weeks' notice", "Product & Design Lead · AI & Data-Intensive Products", "Remote · GMT+5:30"];
 
 /* ---- CURRICULUM VITAE (the printable appendix) ---- */
 const CV_SKILLS = ["Model-Layer Design", "Product Definition & Roadmaps", "Data-Intensive UI", "Design Leadership", "Organisational Design", "Research & Evals", "System Architecture"];
 const CV_EXP = [{
   yr: "2019—",
-  role: "Product & Design Lead — AI Products",
+  role: "Product & Design Lead · AI & Data-Intensive Products",
   org: "Sahaj AI · AdTech, HRTech & Private Equity"
 }, {
   yr: "2014–19",
@@ -344,7 +340,7 @@ const NDA_CASES = [{
   title: CF.get("planit").title,
   standfirst: "The prediction was right and nobody moved: a slower train is a nerve, not a calculation. The interface paid what the model could not.",
   meta: cfMeta("planit"),
-  context: "The same client, the same data, a different bet: the AdTech platform’s footfall, pointed at a commuter. It could say which carriages would be empty — and that changed nothing, because the people who most needed a quiet carriage were the least likely to accept a slower journey on the word of a number. Designing for the frightened, not the busy, decided everything downstream.",
+  context: "The same client, the same data, a different bet: the AdTech platform’s footfall, pointed at an anxious traveller. It could say which carriages would be empty — and that changed nothing, because the people who most needed a quiet carriage were the least likely to accept a slower journey on the word of a number. Designing for the frightened, not the busy, decided everything downstream.",
   moves: [{
     h: "One score, not a data stream",
     p: "Crowd data collapsed into Quietness, 1–10, so a route could be judged at a glance. Green, amber, red — softened away from neon; a warning that induces panic defeats the product."
@@ -393,7 +389,7 @@ const PATTERN_PAGES = {
     note: "I design the error recovery first now",
     dos: ["Design the wrong-answer screen before you design the happy path.", "Make recovery from a miss cheaper than the mistake itself.", "Say what the system doesn’t know, plainly and early."],
     donts: ["Hide uncertainty behind a confident-looking default.", "File \u201Cwhat if it’s wrong\u201D as an edge case to handle later.", "Apologise for an error without offering the next step."],
-    instTag: "FinTech · Due Diligence",
+    instTag: "FinTech · PE screening",
     inst: /*#__PURE__*/React.createElement(React.Fragment, null, "We shipped the ", /*#__PURE__*/React.createElement("span", {
       className: "bk-em"
     }, "\u201CI’m not sure about this one\u201D"), " state first. Analysts trusted the confident answers more once they’d watched the model decline to bluff."),
@@ -413,10 +409,10 @@ const PATTERN_PAGES = {
     note: "an output you can audit is an output you’ll stand behind",
     dos: ["Show the two or three inputs that actually moved the result.", "Let the user trace from the output back to the evidence.", "Make \u201CI disagree\u201D a first-class, recorded action."],
     donts: ["Dump every feature weight on screen and call it transparency.", "Explain after the decision instead of before it.", "Mistake a tooltip for an account of the reasoning."],
-    instTag: "FinTech · Due Diligence",
-    inst: /*#__PURE__*/React.createElement(React.Fragment, null, "Analysts went from ignoring the risk score to ", /*#__PURE__*/React.createElement("span", {
+    instTag: "FinTech · PE screening",
+    inst: /*#__PURE__*/React.createElement(React.Fragment, null, "The \u201Cexplain this score\u201D surface put the ", /*#__PURE__*/React.createElement("span", {
       className: "bk-em"
-    }, "leading their memos with it"), " \u2014 once \u201Cexplain this score\u201D surfaced the three documents behind the number."),
+    }, "documents behind the number"), " where the analyst could see them."),
     fig: {
       no: "3.3",
       img: "../assets/visuals/pattern-explainability.svg",
@@ -481,7 +477,7 @@ const PATTERN_PAGES = {
     note: "confidence with a memory gets acted on; confidence alone doesn’t",
     dos: ["Show the model’s hit rate beside its current confidence.", "Break the record down by the kind of case, not one global average.", "Let the history update in the open, so trust is earned, not assumed."],
     donts: ["Show a confidence number with no past to back it.", "Average away the cases where the model is reliably wrong.", "Reset the track record silently every time the model changes."],
-    instTag: "FinTech \xB7 Due Diligence",
+    instTag: "FinTech \xB7 PE screening",
     inst: React.createElement(React.Fragment, null, "Once the track record was long enough to read, the score had been right often enough that analysts ", React.createElement("span", { className: "bk-em" }, "stopped re-checking the confident calls"), ". The history earned the trust the number alone couldn’t."),
     fig: { no: "3.7", img: "../assets/visuals/pattern-calibration.svg", label: "confidence beside its own hit rate" }
   },
@@ -1386,7 +1382,7 @@ function buildBook(ctx) {
       className: "bk-cover__rule"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-cover__byline"
-    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Product & Design Lead \xB7 AI & LLM Products \xB7 shipped to 4M+"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "Read the classic site instead \u2192"), /*#__PURE__*/React.createElement("button", {
+    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Product & Design Lead \xB7 AI & Data-Intensive Products \xB7 shipped to 4M+"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "Read the classic site instead \u2192"), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1),
       "aria-label": "Open the book \u2014 tap or press space"
@@ -1751,7 +1747,7 @@ function buildBook(ctx) {
     }, "my newsletter on Substack ", Icon({ name: "external", cls: "bk-icon--sm" })), ". One idea per issue, on getting humans to act on machines. The fastest way to know how I think before you hire me."), /*#__PURE__*/React.createElement("p", {
       className: "bk-body",
       style: { marginTop: 16 }
-    }, "A loose thread runs through all five: what happens when a system that behaves like a colleague still needs to be governed like software \u2014 the confidence to let it act, and the discipline to check it did."), /*#__PURE__*/React.createElement("div", {
+    }, "A loose thread runs through all four: what happens when a system that behaves like a colleague still needs to be governed like software \u2014 the confidence to let it act, and the discipline to check it did."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note"
@@ -1879,7 +1875,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "Six systems became one platform. Product & Design Lead for AI & LLM products — definition, roadmap, and the interface that ships. Open to a hands-on director seat. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
+    }, "Six systems became one platform. Product & Design Lead · AI & Data-Intensive Products — definition, roadmap, and the interface that ships. Open to a hands-on director seat. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-social",
       style: {
         marginTop: 24
