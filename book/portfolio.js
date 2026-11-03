@@ -104,8 +104,8 @@ const PATTERNS = [{
 }];
 const WRITING = [{
   d: "2026 · Essay",
-  h: "The Model Was Right. I Fixed the Wrong Thing.",
-  p: "A recommendation engine that beat the traders it was built for — and sat unused. Two weeks lost to the wrong suspect."
+  h: "The Model Was Right and Ignored.",
+  p: "A recommendation engine that beat the traders it was built for — and sat unused. Accuracy was never the problem."
 }, {
   d: "2026 · Essay",
   h: "Design the Failure State First",

@@ -74,7 +74,7 @@ REG = [
     #     story and its card still carried the retired "How I Design Confidence Scores"
     #     headline. A card outside REG does not change when its page does. The other three
     #     essay cards (explainability, failure-states, human-in-loop) are still unmanaged.
-    ("confidence-scoring-og.png", "ESSAY", "The Model Was Right. I Fixed the Wrong Thing.",
+    ("confidence-scoring-og.png", "ESSAY", "The Model Was Right and Ignored.",
      "Adoption is not a function of accuracy.", "Arpit Maheshwari \u00b7 Essay"),
     # The other three essay cards, brought in 2026-08-30. All were hand-made, all were
     # labelled "DESIGN PATTERN" on an essay, and failure-states carried a subtitle its own
