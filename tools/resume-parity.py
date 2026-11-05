@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """resume-parity.py — keep every résumé file honest, and readable by scanning software.
 
-Since 2026-11-05 there is ONE content source, portfolio-sources/resume-content.js, and two
-tracks rendered from it by make-resume.js (the .html printed to PDF by make-pdfs.py, and
+Since 2026-11-05 there is ONE content source, portfolio-sources/resume-content.js, and ONE
+résumé rendered from it by make-resume.js (resume.html printed to PDF by make-pdfs.py, and
 the plain .docx for job-site uploads):
 
-  design → Arpit-Maheshwari-Resume.pdf     + .docx   (title-agnostic)
-  pm     → Arpit-Maheshwari-Resume-PM.pdf  + .docx   ("Product Manager & Designer")
+  Arpit-Maheshwari-Resume.pdf + .docx   ("Product Manager & Designer"; Arpit retired the
+                                         second, title-agnostic track the same day)
 
 Before that, the designed PDF and the .docx were two hand-written sources and drifted
 (2026-10-28: the .docx was missing two skills groups, repeated a sentence, said
@@ -27,14 +27,13 @@ from pathlib import Path
 # The résumés live in the PRIVATE folio-private repo, gitignored here. This gate SKIPS
 # rather than fails when it is not checked out — CI does not have it.
 SRC = Path(__file__).resolve().parent.parent / "portfolio-sources"
-TRACKS = {
-    "design": SRC / "Arpit-Maheshwari-Resume",
-    "pm": SRC / "Arpit-Maheshwari-Resume-PM",
-}
+BASE = SRC / "Arpit-Maheshwari-Resume"
+RETIRED = [SRC / "Arpit-Maheshwari-Resume-PM.pdf", SRC / "Arpit-Maheshwari-Resume-PM.docx",
+           SRC / "resume-pm.html"]   # the second track, deleted 2026-11-05; must not come back
 SITE_COPY = SRC.parent / "Arpit-Maheshwari-Resume.pdf"   # linked from the homepage
 
 # Claims locked in CANONICAL-FACTS.md §3, in the résumé's PLAIN spelling (Arpit's call,
-# 2026-11-05: no arrows on a document a parser reads first). Every track, both files.
+# 2026-11-05: no arrows on a document a parser reads first). Both files.
 LOCKED = [
     "two weeks to three hours", "£69,000", "60% faster", "three weeks to four days",
     "$1M a year", "0% to 64%", "4M+", "150k learners", "550k+",
@@ -46,8 +45,8 @@ LOCKED = [
 # Scanner-hostile glyphs: an arrow or a curly-quote headline is noise to keyword matching.
 BANNED = {"→": "arrow", "←": "arrow", "“": "quote-as-headline", "”": "quote-as-headline"}
 
-# Keyword blocks ATS scoring reads. Each must appear in both files of every track.
-SKILL_GROUPS = ["Product design", "AI product design", "Product management", "Engineering & domains"]
+# Keyword blocks ATS scoring reads. Each must appear in both files.
+SKILL_GROUPS = ["Product management", "AI product design", "Product design", "Engineering & domains"]
 SECTIONS = ["Professional Summary", "Highlights", "Professional Experience", "Skills", "Education"]
 
 # Each job title, with the opening words of the first achievement that belongs to it.
@@ -176,20 +175,17 @@ def check_restated_facts(txt, where):
                 seen.setdefault(fig, i)
 
 
-HTML_FOR = {"design": "resume.html", "pm": "resume-pm.html"}
-
-
-def vocabulary(name):
+def vocabulary():
     """Words of the rendered page (tags stripped), NOT of the source files: a code comment in
     the template that describes the defect ("parsers read it as dataheavy") put the defect's
     own spelling into the word list, and a planted "dataheavy" sailed through (2026-11-05)."""
-    page = (SRC / HTML_FOR[name]).read_text(encoding="utf-8")
+    page = (SRC / "resume.html").read_text(encoding="utf-8")
     page = re.sub(r"<style>.*?</style>", "", page, flags=re.S)
     text = html.unescape(re.sub(r"<[^>]+>", " ", page))
     return {w.lower() for w in re.findall(r"[A-Za-z][A-Za-z’'-]*[A-Za-z]|[A-Za-z]", text)}
 
 
-def check_track(name, base, vocab):
+def check_resume(base, vocab, name="resume"):
     pdf, docx = base.with_suffix(".pdf"), base.with_suffix(".docx")
     for f in (pdf, docx):
         if not f.exists():
@@ -237,23 +233,23 @@ def main():
     if not SRC.is_dir():
         print("resume-parity: SKIP — portfolio-sources/ is not checked out")
         return 0
-    for name, base in TRACKS.items():
-        check_track(name, base, vocabulary(name))
+    check_resume(BASE, vocabulary())
 
-    # The homepage links a copy of the design-track PDF at the repo root; it must be the same bytes.
-    design_pdf = TRACKS["design"].with_suffix(".pdf")
-    if not SITE_COPY.exists() or SITE_COPY.read_bytes() != design_pdf.read_bytes():
+    # The homepage links a copy of the PDF at the repo root; it must be the same bytes.
+    if not SITE_COPY.exists() or SITE_COPY.read_bytes() != BASE.with_suffix(".pdf").read_bytes():
         fail("site copy ../Arpit-Maheshwari-Resume.pdf differs from portfolio-sources/ — run make-pdfs.py resume")
 
-    # The two tracks differ ONLY in headline, open-to line, summary and ordering: every
-    # locked claim and every role must be in both. (Already enforced above, per track.)
+    # One résumé only (Arpit, 2026-11-05): a second track reappearing is the confusion he removed.
+    for f in RETIRED:
+        if f.exists():
+            fail(f"{f.name} exists — the second résumé track was retired; delete it")
 
     if failures:
         print(f"resume-parity: {len(failures)} defect(s)")
         for f in failures:
             print("  ✗", f)
         return 1
-    print("resume-parity: clean — both tracks, both files, parse in order and carry the same claims")
+    print("resume-parity: clean — PDF and .docx parse in order and carry the same claims; one résumé only")
     return 0
 
 
