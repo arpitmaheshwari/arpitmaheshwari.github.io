@@ -137,7 +137,7 @@ def check_hyphen_breaks(txt, where, vocabulary):
     word then fails. Every word in the PDF must exist in the content source."""
     for w in sorted({w for w in re.findall(r"[A-Za-z][A-Za-z’'-]*[A-Za-z]", txt)}):
         if w.lower() not in vocabulary:
-            fail(f"{where}: {w!r} is not a word in resume-content.js — a line break ate a hyphen, "
+            fail(f"{where}: {w!r} is not a word on the rendered page — a line break ate a hyphen, "
                  "or the PDF was printed from a stale .html")
 
 
@@ -177,11 +177,17 @@ def check_restated_facts(txt, where):
                 seen.setdefault(fig, i)
 
 
-def vocabulary():
-    src = ""
-    for name in ("resume-content.js", "resume.template.html", "make-resume.js"):
-        src += (SRC / name).read_text(encoding="utf-8")
-    return {w.lower() for w in re.findall(r"[A-Za-z][A-Za-z’'-]*[A-Za-z]|[A-Za-z]", src)}
+HTML_FOR = {"design": "resume.html", "pm": "resume-pm.html"}
+
+
+def vocabulary(name):
+    """Words of the rendered page (tags stripped), NOT of the source files: a code comment in
+    the template that describes the defect ("parsers read it as dataheavy") put the defect's
+    own spelling into the word list, and a planted "dataheavy" sailed through (2026-11-05)."""
+    page = (SRC / HTML_FOR[name]).read_text(encoding="utf-8")
+    page = re.sub(r"<style>.*?</style>", "", page, flags=re.S)
+    text = html.unescape(re.sub(r"<[^>]+>", " ", page))
+    return {w.lower() for w in re.findall(r"[A-Za-z][A-Za-z’'-]*[A-Za-z]|[A-Za-z]", text)}
 
 
 def check_track(name, base, vocab):
@@ -234,9 +240,8 @@ def main():
     if not SRC.is_dir():
         print("resume-parity: SKIP — portfolio-sources/ is not checked out")
         return 0
-    vocab = vocabulary()
     for name, base in TRACKS.items():
-        check_track(name, base, vocab)
+        check_track(name, base, vocabulary(name))
 
     # The homepage links a copy of the design-track PDF at the repo root; it must be the same bytes.
     design_pdf = TRACKS["design"].with_suffix(".pdf")
