@@ -5,8 +5,8 @@ Since 2026-11-05 there is ONE content source, portfolio-sources/resume-content.j
 résumé rendered from it by make-resume.js (resume.html printed to PDF by make-pdfs.py, and
 the plain .docx for job-site uploads):
 
-  Arpit-Maheshwari-Resume.pdf + .docx   ("Product Manager & Designer"; Arpit retired the
-                                         second, title-agnostic track the same day)
+  Arpit-Maheshwari-Resume.pdf + .docx          THE résumé ("Product Manager & Designer"), on the site
+  Arpit-Maheshwari-Resume-Design.pdf + .docx   backup for design-only roles, private folder only
 
 Before that, the designed PDF and the .docx were two hand-written sources and drifted
 (2026-10-28: the .docx was missing two skills groups, repeated a sentence, said
@@ -27,9 +27,13 @@ from pathlib import Path
 # The résumés live in the PRIVATE folio-private repo, gitignored here. This gate SKIPS
 # rather than fails when it is not checked out — CI does not have it.
 SRC = Path(__file__).resolve().parent.parent / "portfolio-sources"
-BASE = SRC / "Arpit-Maheshwari-Resume"
+RESUMES = {   # name -> (file base, rendered page it was printed from)
+    "resume": (SRC / "Arpit-Maheshwari-Resume", "resume.html"),
+    "design": (SRC / "Arpit-Maheshwari-Resume-Design", "resume-design.html"),
+}
 RETIRED = [SRC / "Arpit-Maheshwari-Resume-PM.pdf", SRC / "Arpit-Maheshwari-Resume-PM.docx",
-           SRC / "resume-pm.html"]   # the second track, deleted 2026-11-05; must not come back
+           SRC / "resume-pm.html"]   # the "-PM" naming, dropped 2026-11-05; must not come back
+SITE_ROOT = SRC.parent
 SITE_COPY = SRC.parent / "Arpit-Maheshwari-Resume.pdf"   # linked from the homepage
 
 # Claims locked in CANONICAL-FACTS.md §3, in the résumé's PLAIN spelling (Arpit's call,
@@ -46,7 +50,7 @@ LOCKED = [
 BANNED = {"→": "arrow", "←": "arrow", "“": "quote-as-headline", "”": "quote-as-headline"}
 
 # Keyword blocks ATS scoring reads. Each must appear in both files.
-SKILL_GROUPS = ["Product management", "AI product design", "Product design", "Engineering & domains"]
+SKILL_GROUPS = ["Product management", "AI product design", "Product design", "Engineering & domains"]  # order differs per résumé
 SECTIONS = ["Professional Summary", "Highlights", "Professional Experience", "Skills", "Education"]
 
 # Each job title, with the opening words of the first achievement that belongs to it.
@@ -175,17 +179,17 @@ def check_restated_facts(txt, where):
                 seen.setdefault(fig, i)
 
 
-def vocabulary():
+def vocabulary(page_name):
     """Words of the rendered page (tags stripped), NOT of the source files: a code comment in
     the template that describes the defect ("parsers read it as dataheavy") put the defect's
     own spelling into the word list, and a planted "dataheavy" sailed through (2026-11-05)."""
-    page = (SRC / "resume.html").read_text(encoding="utf-8")
+    page = (SRC / page_name).read_text(encoding="utf-8")
     page = re.sub(r"<style>.*?</style>", "", page, flags=re.S)
     text = html.unescape(re.sub(r"<[^>]+>", " ", page))
     return {w.lower() for w in re.findall(r"[A-Za-z][A-Za-z’'-]*[A-Za-z]|[A-Za-z]", text)}
 
 
-def check_resume(base, vocab, name="resume"):
+def check_resume(name, base, vocab):
     pdf, docx = base.with_suffix(".pdf"), base.with_suffix(".docx")
     for f in (pdf, docx):
         if not f.exists():
@@ -233,23 +237,26 @@ def main():
     if not SRC.is_dir():
         print("resume-parity: SKIP — portfolio-sources/ is not checked out")
         return 0
-    check_resume(BASE, vocabulary())
+    for name, (base, page) in RESUMES.items():
+        check_resume(name, base, vocabulary(page))
 
-    # The homepage links a copy of the PDF at the repo root; it must be the same bytes.
-    if not SITE_COPY.exists() or SITE_COPY.read_bytes() != BASE.with_suffix(".pdf").read_bytes():
+    # The homepage links a copy of THE résumé at the repo root; it must be the same bytes.
+    main_pdf = RESUMES["resume"][0].with_suffix(".pdf")
+    if not SITE_COPY.exists() or SITE_COPY.read_bytes() != main_pdf.read_bytes():
         fail("site copy ../Arpit-Maheshwari-Resume.pdf differs from portfolio-sources/ — run make-pdfs.py resume")
-
-    # One résumé only (Arpit, 2026-11-05): a second track reappearing is the confusion he removed.
+    # The design backup stays private (Arpit, 2026-11-05): never a copy at the site root.
+    for stray in SITE_ROOT.glob("Arpit-Maheshwari-Resume-*"):
+        fail(f"{stray.name} sits at the site root — the design backup is private, delete the copy")
     for f in RETIRED:
         if f.exists():
-            fail(f"{f.name} exists — the second résumé track was retired; delete it")
+            fail(f"{f.name} exists — the '-PM' naming was retired; the PM résumé IS Arpit-Maheshwari-Resume")
 
     if failures:
         print(f"resume-parity: {len(failures)} defect(s)")
         for f in failures:
             print("  ✗", f)
         return 1
-    print("resume-parity: clean — PDF and .docx parse in order and carry the same claims; one résumé only")
+    print("resume-parity: clean — both résumés, both files, parse in order and carry the same claims")
     return 0
 
 
