@@ -47,9 +47,8 @@ LOCKED = [
 BANNED = {"→": "arrow", "←": "arrow", "“": "quote-as-headline", "”": "quote-as-headline"}
 
 # Keyword blocks ATS scoring reads. Each must appear in both files of every track.
-SKILL_GROUPS = ["AI product design", "Product & systems", "Design foundations",
-                "Craft & tools", "Domains"]
-SECTIONS = ["Summary", "Core skills", "Experience", "Education"]
+SKILL_GROUPS = ["Product design", "AI product design", "Product management", "Engineering & domains"]
+SECTIONS = ["Professional Summary", "Highlights", "Professional Experience", "Skills", "Education"]
 
 # Each job title, with the opening words of the first achievement that belongs to it.
 # In the PDF's text layer the achievement must appear AFTER its own title and BEFORE
@@ -162,7 +161,7 @@ FIGURE = re.compile(r"\$\d[\d,.]*|£\d[\d,.]*|\d+%|\b\d+k\b")
 def check_restated_facts(txt, where):
     """Within ONE job, the same figure in two different bullets means the fact is told twice.
     (Summary vs Experience repetition is deliberate; this only looks inside a role.)"""
-    body = txt.split("Experience", 1)[-1]
+    body = txt.split("Professional Experience", 1)[-1]   # Highlights repeat figures on purpose
     blocks = re.split(r"(?=(?:Product & Design Lead|Designer and Front-End|Systems Analyst))", body)
     for block in blocks:
         if len(block) < 200:
@@ -205,9 +204,7 @@ def check_track(name, base, vocab):
     check_hyphen_breaks(p, P, vocab)
     for txt, where in ((pf, P), (df, D)):
         check_spacing(txt, where)
-        # The Core-skills keyword line legitimately reads "Interaction design · Design systems";
-        # the stutter rule is for prose ("Available · available on"), so it skips that line.
-        check_doubled_words(re.sub(r"Core skills.*?(?=Experience)", "", txt), where)
+        check_doubled_words(txt, where)
         check_repeated_sentences(txt, where)
         check_restated_facts(txt, where)
         for glyph, why in BANNED.items():
