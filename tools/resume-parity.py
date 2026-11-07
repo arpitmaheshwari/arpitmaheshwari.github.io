@@ -58,8 +58,8 @@ SECTIONS = ["Professional Summary", "Highlights", "Professional Experience", "Sk
 # the next one. `position:relative` on a list item silently breaks this (Chrome paints
 # positioned boxes last, so every bullet lands after Skills and Education).
 ROLE_ORDER = [
-    ("· Sahaj AI", "Led product and design for Talon Outdoor"),
-    ("· PTC Inc.", "Consolidated five learning platforms"),
+    ("· Sahaj AI", "Rebuilt Talon Outdoor"),
+    ("· PTC Inc.", "Killed four of five learning platforms"),
     ("· Equal Experts", "Co-designed and hand-coded the front-end"),
 ]
 
@@ -165,7 +165,7 @@ def check_restated_facts(txt, where):
     """Within ONE job, the same figure in two different bullets means the fact is told twice.
     (Summary vs Experience repetition is deliberate; this only looks inside a role.)"""
     body = txt.split("Professional Experience", 1)[-1]   # Highlights repeat figures on purpose
-    blocks = re.split(r"(?=(?:Product & Design Lead|Designer and Front-End|Systems Analyst))", body)
+    blocks = re.split(r"(?=(?:Solution Consultant ·|Solution Consultant  \||Product & Design Lead|Designer and Front-End|Systems Analyst))", body)
     for block in blocks:
         if len(block) < 200:
             continue
