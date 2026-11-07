@@ -1875,7 +1875,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "Six systems became one platform. Product & Design Lead · AI & Data-Intensive Products — definition, roadmap, and the interface that ships. Open to a hands-on director seat. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
+    }, "Six systems became one platform. Product & Design Lead · AI & Data-Intensive Products — definition, roadmap, and the interface that ships. Open to Senior or Staff Product Manager on AI products. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-social",
       style: {
         marginTop: 24
