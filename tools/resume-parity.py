@@ -58,8 +58,8 @@ SECTIONS = ["Professional Summary", "Highlights", "Professional Experience", "Sk
 # the next one. `position:relative` on a list item silently breaks this (Chrome paints
 # positioned boxes last, so every bullet lands after Skills and Education).
 ROLE_ORDER = [
-    ("· Sahaj AI", "Rebuilt Talon Outdoor"),
-    ("· PTC Inc.", "Killed four of five learning platforms"),
+    ("· Sahaj AI", "£400M revenue"),   # in the first Sahaj bullet of BOTH résumés; "Talon Outdoor" alone also sits in the design summary
+    ("· PTC Inc.", "Consolidated five independent learning products"),
     ("· Equal Experts", "Co-designed and hand-coded the front-end"),
 ]
 
