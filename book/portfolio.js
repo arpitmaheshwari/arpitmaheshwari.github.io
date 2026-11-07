@@ -1910,15 +1910,7 @@ function buildBook(ctx) {
     }, STATUS.map((st, i) => /*#__PURE__*/React.createElement("span", {
       className: "bk-chip",
       key: i
-    }, st))), /*#__PURE__*/React.createElement("div", {
-      className: "bk-note",
-      style: { marginTop: 16 }
-    }, "prefer to talk first? ", /*#__PURE__*/React.createElement("a", {
-      href: "https://calendly.com/arpitmaheshwari",
-      target: "_blank",
-      rel: "noopener",
-      style: { color: "var(--bk-ember-ink, #B04A24)" }
-    }, "book 30 minutes \u2197")), /*#__PURE__*/React.createElement("p", { className: "bk-fine", style: { marginTop: 8, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "I do human-in-the-loop design for AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
+    }, st))), /*#__PURE__*/React.createElement("p", { className: "bk-fine", style: { marginTop: 8, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "I build human-in-the-loop AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
       className: "bk-cv__sub"
     }, "Colophon"), /*#__PURE__*/React.createElement("div", {
       className: "bk-cv bk-cv--facts"
