@@ -50,7 +50,7 @@ BANNED = [
      'no basis — canon has 8 PATTERNS and 6 case studies, not 8 products',
      "ChatGPT-spec fact quarantine"),
     (r"AI Product Designer",
-     'superseded job title — use "Product & Design Leader"',
+     'superseded job title — use "Product Manager & Designer"',
      "§1 retitled 2026-07-25"),
     (r"2\s*wks?\s*(?:→|->)\s*1\s*hr|two weeks to one hour",
      'the retired speed variant — "2 wks → 3 hrs" is the ONLY time metric on any surface',

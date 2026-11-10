@@ -119,17 +119,17 @@ const WRITING = [{
   h: "Human-in-the-Loop: When to Ask, When to Override",
   p: "Ask for a person’s judgement on everything and you get it on nothing. Where three shipped products put their one ask."
 }];
-const STATUS = ["Available · 4 weeks' notice", "Product & Design Lead · AI & Data-Intensive Products", "Remote · GMT+5:30"];
+const STATUS = ["Available · 4 weeks' notice", "Product Manager & Designer · AI & Data-Intensive Products", "Remote · GMT+5:30"];
 
 /* ---- CURRICULUM VITAE (the printable appendix) ---- */
 const CV_SKILLS = ["Model-Layer Design", "Product Definition & Roadmaps", "Data-Intensive UI", "Design Leadership", "Organisational Design", "Research & Evals", "System Architecture"];
 const CV_EXP = [{
   yr: "2019—",
-  role: "Product & Design Lead · AI & Data-Intensive Products",
+  role: "Product Manager & Designer · AI & Data-Intensive Products",
   org: "Sahaj AI · AdTech, HRTech & Private Equity"
 }, {
   yr: "2014–19",
-  role: "Product & Design Lead",
+  role: "Product Manager & Designer",
   org: "PTC Inc. · PTC University — Learning Connector · 550k+ registered, 350k+ active · NASA, Boeing, Toyota, Airbus and Apple"
 }, {
   yr: "2012–14",
@@ -1382,7 +1382,7 @@ function buildBook(ctx) {
       className: "bk-cover__rule"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-cover__byline"
-    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Product & Design Lead \xB7 AI & Data-Intensive Products \xB7 shipped to 4M+"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "Read the classic site instead \u2192"), /*#__PURE__*/React.createElement("button", {
+    }, "Arpit Maheshwari"), /*#__PURE__*/React.createElement("p", { className: "bk-cover__skim" }, "Product Manager & Designer \xB7 AI & Data-Intensive Products \xB7 shipped to 4M+"), /*#__PURE__*/React.createElement("a", { className: "bk-cover__skimlink", href: "../index.html?view=classic", onClick: e => { e.stopPropagation(); try { localStorage.setItem("am-view", "classic"); } catch (err) {} } }, "Read the classic site instead \u2192"), /*#__PURE__*/React.createElement("button", {
       className: "bk-cover__open",
       onClick: () => go(1),
       "aria-label": "Open the book \u2014 tap or press space"
@@ -1875,7 +1875,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "Six systems became one platform. Product & Design Lead · AI & Data-Intensive Products — definition, roadmap, and the interface that ships. Open to Senior or Staff Product Manager on AI products. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
+    }, "Six systems became one platform. Product Manager & Designer · AI & Data-Intensive Products — definition, roadmap, and the interface that ships. Open to Senior or Staff Product Manager on AI products. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-social",
       style: {
         marginTop: 24

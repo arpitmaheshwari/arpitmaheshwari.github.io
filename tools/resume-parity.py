@@ -165,7 +165,7 @@ def check_restated_facts(txt, where):
     """Within ONE job, the same figure in two different bullets means the fact is told twice.
     (Summary vs Experience repetition is deliberate; this only looks inside a role.)"""
     body = txt.split("Professional Experience", 1)[-1]   # Highlights repeat figures on purpose
-    blocks = re.split(r"(?=(?:Solution Consultant ·|Solution Consultant  \||Product & Design Lead|Designer and Front-End|Systems Analyst))", body)
+    blocks = re.split(r"(?=(?:Solution Consultant ·|Solution Consultant  \||Product Manager & Designer|Product & Design Lead|Designer and Front-End|Systems Analyst))", body)
     for block in blocks:
         if len(block) < 200:
             continue

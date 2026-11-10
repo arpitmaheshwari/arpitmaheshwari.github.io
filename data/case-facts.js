@@ -47,7 +47,7 @@
       "meta": [
         [
           "Role",
-          "Product & Design Lead"
+          "Product Manager & Designer"
         ],
         [
           "Span",
@@ -131,7 +131,7 @@
       "meta": [
         [
           "Role",
-          "Product & Design Lead"
+          "Product Manager & Designer"
         ],
         [
           "Team",
@@ -171,7 +171,7 @@
       "meta": [
         [
           "Role",
-          "Product & Design Lead"
+          "Product Manager & Designer"
         ],
         [
           "Team",
@@ -211,7 +211,7 @@
       "meta": [
         [
           "Role",
-          "Product & Design Lead"
+          "Product Manager & Designer"
         ],
         [
           "Team",
@@ -270,7 +270,7 @@
       "meta": [
         [
           "Role",
-          "Product & Design Lead"
+          "Product Manager & Designer"
         ],
         [
           "Team",
