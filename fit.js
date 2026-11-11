@@ -27,29 +27,30 @@
   if (!form) return;
 
   var SAMPLE = [
-    'Senior Product Designer, AI',
+    'Senior Product Manager, AI (design-strong)',
     '',
-    'You will design AI-native experiences for a B2B SaaS platform used by revenue teams.',
-    'You will work day to day with ML engineers and data scientists to turn model output',
-    'into interfaces people trust — confidence, explainability, and human-in-the-loop review',
-    'of agent actions.',
+    'You will own an AI-native product line in a B2B SaaS platform used by revenue teams:',
+    'the roadmap, the requirements, and the interfaces people trust. You will work day to day',
+    'with ML engineers and data scientists to turn model output into decisions users act on —',
+    'confidence, explainability, and human-in-the-loop review of agent actions.',
     '',
     'What you will do',
-    '- Own end-to-end design for data-dense dashboards and workflow tools',
-    '- Build and evolve our design system, with design tokens and a component library',
+    '- Own product definition, prioritisation and the quarterly roadmap for the AI features',
+    '- Write PRDs and set the success metrics with engineering and data science',
+    '- Design end-to-end flows for data-dense dashboards and workflow tools yourself',
     '- Prototype in code (React/TypeScript) and partner closely with front-end engineers',
-    '- Run usability testing and discovery interviews with enterprise customers',
+    '- Run discovery interviews and usability testing with enterprise customers',
     '',
     'Requirements',
-    '- 8+ years in product design, including 0 to 1 work',
+    '- 8+ years across product management and product design, including 0 to 1 work',
     '- Experience with enterprise SaaS and complex data',
     '- Strong accessibility practice (WCAG)',
     '- Comfortable with ambiguity in an early stage startup',
     '',
     'Nice to have',
     '- Experience in fintech or private equity',
-    '- Native iOS and Android app design',
-    '- Motion design'
+    '- SQL and product analytics',
+    '- Pricing and packaging'
   ].join('\n');
 
   /* ── matching ────────────────────────────────────────────────────────────── */

@@ -79,6 +79,12 @@ EVIDENCE = [
          claim="Built and led the CX team at PTC across 2014–2019, and led design across "
                "4 engineering streams on an internal operating system.",
          cites=["/case-studies/ptc.html", "/case-studies/orgos.html"], strength="documented"),
+    dict(id="product-ownership", label="Product definition and roadmap ownership",
+         claim="Product definition and the quarterly roadmap at PTC University, 2016 to 2019, "
+               "five platforms consolidated to one; product definition across six Talon "
+               "systems; eight OrgOS modules defined, with a roadmap co-owned with the PM.",
+         cites=["/case-studies/ptc.html", "/case-studies/adtech.html",
+                "/case-studies/orgos.html"], strength="documented"),
     dict(id="strategy", label="Product strategy and killing scope",
          claim="Argued PTC into consolidating 5 platforms into 1, saving $1M / yr on print and "
                "shipping and moving subscription share of new bookings from 0% to 64%.",
@@ -167,6 +173,12 @@ LEXICON = {
                    "mentor", "mentoring", "hiring designers", "people management", "line management",
                    "director of design", "lead a team", "build a team", "manage designers",
                    "grow the team"],
+    "product-ownership": ["product manager", "product management", "product owner",
+                          "product ownership", "product definition", "product requirements",
+                          "prd", "prds", "requirements", "backlog", "okr", "okrs", "kpi", "kpis",
+                          "success metrics", "metrics", "product analytics", "discovery",
+                          "customer discovery", "stakeholder management", "stakeholders",
+                          "go-to-market", "go to market", "launch", "product lifecycle"],
     "strategy": ["product strategy", "strategic", "roadmap", "prioritisation",
                  "prioritization", "trade-off", "tradeoff", "business impact", "north star"],
     "accessibility": ["accessibility", "a11y", "wcag", "inclusive design", "screen reader",

@@ -1,8 +1,8 @@
 /* ============================================================================
-   case-facts.js — THE single source for the locked facts of the six case studies.
+   case-facts.js — THE single source for the locked facts of the seven case studies.
 
    WHY THIS FILE EXISTS
-   The same six cases are told on two surfaces: the classic pages under case-studies/
+   The same seven cases are told on two surfaces: the classic pages under case-studies/
    and the bound book in book/. They were maintained by hand, twice, and on 2026-08-01
    the book was found to have silently gone stale — two job titles left at a superseded
    value, a "the screens are redacted on purpose" line printed directly above visible

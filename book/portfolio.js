@@ -54,7 +54,7 @@ const WORK = [{
   desc: "The same client’s data, pointed at an anxious traveller. People triggered the error screen on purpose, just to watch the little train be sorry — the failure state became the reason they came back."
 }];
 const PRINCIPLES = [{
-  h: "What gets measured is a design decision.",
+  h: "What gets measured is a product decision.",
   p: "By Friday of week one I’ve read your evals and sat in your customer calls. I shape what gets measured, then I ship the front-end under my own name in the PR."
 }, {
   h: "I design the wrong-answer screen first.",
