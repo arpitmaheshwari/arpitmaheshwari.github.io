@@ -2572,6 +2572,13 @@ body.p-home .bcard:hover .bcard-go{color:var(--a)}
    component states its own critical properties. 1.45 clears the <18px floor of
    1.40, and it only matters at all because this text now always wraps. */
 .role-line .rl-l{display:block;line-height:1.45}
+/* THE NAME, ON PHONES (2026-11-13). At <=768px the nav hides .nav-name, and the
+   first visible "Arpit Maheshwari" on the homepage was then 10,989px down, inside
+   a testimonial. A reader who cannot say whose page this is cannot refer him.
+   Shown only where the nav name is hidden, so it is never on screen twice.
+   Every critical property is declared here, none inherited. */
+.role-line .rl-l.rl-name{display:none}
+@media (max-width:768px){.role-line .rl-l.rl-name{display:block;font-family:var(--ff-sans);font-size:1.0625rem;font-weight:600;letter-spacing:.01em;line-height:1.45;text-transform:none;color:var(--text-body);margin-bottom:6px}}
 
 /* The .hero-pov rules lived here and were deleted with the element on 2026-09-27.
    A rule whose selector matches nothing is not harmless: one generic line in a
