@@ -39,9 +39,9 @@ SITE_COPY = SRC.parent / "Arpit-Maheshwari-Resume.pdf"   # linked from the homep
 # Claims locked in CANONICAL-FACTS.md §3, in the résumé's PLAIN spelling (Arpit's call,
 # 2026-11-05: no arrows on a document a parser reads first). Both files.
 LOCKED = [
-    "two weeks to three hours", "£69,000", "60% faster", "three weeks to four days",
+    "2 weeks to 3 hours", "£69,000", "60% faster", "3 weeks to 4 days",   # digits since 2026-11-20: the one-page résumé leads each bullet with its number
     "$1M a year", "0% to 64%", "4M+", "150k learners", "550k+",
-    "200 people", "4-person", "16 analysis dimensions",
+    "200 people", "4-person", "16 analysis dimensions", "5 products to 1",
     "100% of UK bookings", "Solution Consultant",          # employer title, canon §title honesty
     "4 weeks’ notice",
 ]
@@ -50,17 +50,24 @@ LOCKED = [
 BANNED = {"→": "arrow", "←": "arrow", "“": "quote-as-headline", "”": "quote-as-headline"}
 
 # Keyword blocks ATS scoring reads. Each must appear in both files.
-SKILL_GROUPS = ["Product management", "AI product design", "Product design", "Engineering & domains"]  # order differs per résumé
-SECTIONS = ["Professional Summary", "Highlights", "Professional Experience", "Skills", "Education"]
+# Two focused résumés since 2026-11-20: each carries three groups, named for its own seat.
+SKILL_GROUPS = {
+    "resume": ["Product management", "AI products", "Design and engineering"],
+    "design": ["Product design", "AI product design", "Engineering"],
+}
+# "Highlights" is a heading in the .docx only: on the PDF the four results are a strip under the summary.
+SECTIONS = ["Professional Summary", "Professional Experience", "Skills", "Education"]
 
 # Each job title, with the opening words of the first achievement that belongs to it.
 # In the PDF's text layer the achievement must appear AFTER its own title and BEFORE
 # the next one. `position:relative` on a list item silently breaks this (Chrome paints
 # positioned boxes last, so every bullet lands after Skills and Education).
+# The Sahaj and PTC anchors are bullet labels that open the first bullet of BOTH résumés' role
+# and appear nowhere above it ("Talon Outdoor" alone also sits in the results strip).
 ROLE_ORDER = [
-    ("· Sahaj AI", "£400M revenue"),   # in the first Sahaj bullet of BOTH résumés; "Talon Outdoor" alone also sits in the design summary
-    ("· PTC Inc.", "Consolidated five independent learning products"),
-    ("· Equal Experts", "Co-designed and hand-coded the front-end"),
+    ("Sahaj AI", "£69,000"),
+    ("PTC Inc.", "5 products to 1"),
+    ("Equal Experts", "Co-designed and hand-coded the front-end"),
 ]
 
 failures = []
@@ -213,7 +220,7 @@ def check_resume(name, base, vocab):
         for sec in SECTIONS:
             if sec not in txt:
                 fail(f"{where}: section {sec!r} missing — a parser needs the standard heading")
-        for group in SKILL_GROUPS:
+        for group in SKILL_GROUPS[name]:
             if group not in txt:
                 fail(f"{where}: skills group {group!r} missing — lost keyword coverage")
         for handle in ("linkedin.com/in/arpitmaheshwariprofile", "substack.com/@arpitmaheshwari",
