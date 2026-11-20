@@ -93,6 +93,10 @@ REG = [
     ("fit-og.png", "FIT CHECK", "Paste the role. It answers with evidence, or says it can\u2019t.",
      "Matched against work published on this site \u2014 with the page behind every claim.",
      "Arpit Maheshwari \u00b7 Fit Check"),
+    # --- /resume/ (added 2026-11-20 with the page; words are the page's own title and results line)
+    ("resume-og.png", "R\u00c9SUM\u00c9", "Product Manager & Designer for AI products",
+     "Sixteen years on data-heavy enterprise software. Each result stated against its baseline.",
+     "Arpit Maheshwari \u00b7 R\u00e9sum\u00e9"),
     # --- the 4 blank/broken pattern cards (source: each page's own og:title/og:description) ---
     ("act-review-ignore-og.png", "AI DESIGN PATTERNS", "The Act / Review / Ignore Rule",
      "An unexplained 87% is a shrug with decimals.", "Arpit Maheshwari · Pattern Library"),
