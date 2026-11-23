@@ -5542,13 +5542,12 @@ body.p-home .bcard{grid-column:span 2}
 @supports (grid-template-rows: subgrid){body.p-home .caseboard{grid-template-rows:auto auto auto auto auto}
 body.p-home .bcard--lead{grid-row:1}
 body.p-home .caseboard > .range-lbl{grid-row:2}
-body.p-home .bcard:not(.bcard--lead){grid-row:span 4;display:grid;grid-template-rows:subgrid;align-content:stretch}
-body.p-home .bcard:not(.bcard--lead) .bcard-m{align-self:start}
-body.p-home .bcard:not(.bcard--lead) .bcard-s{align-self:start}
-body.p-home .bcard:not(.bcard--lead) h3{align-self:start}
-body.p-home .bcard:not(.bcard--lead) .vg{align-self:start;margin:16px 0 0}}
-/* Without subgrid the cards simply stack in DOM order — number, sector, title,
-   instrument — which is still the right reading order, just unaligned. */
+body.p-home .bcard:not(.bcard--lead){grid-row:span 6;display:grid;grid-template-rows:subgrid;align-content:stretch}
+body.p-home .bcard:not(.bcard--lead) > *{align-self:start}
+body.p-home .bcard:not(.bcard--lead) .vg{margin:8px 0 0}}
+/* Without subgrid the cards simply stack in DOM order — label, title, result,
+   summary, role, instrument — still the right reading order, just unaligned. */
+@supports not (grid-template-rows: subgrid){.bcard:not(.bcard--lead) > * + *{margin-top:12px}}
 body.p-home .bcard--lead{grid-column:1/-1}
 /* the range label is a band across the board, not a tile in it — without the
    span it took two columns and pushed the six cards into 2/1/3/1 rows */
@@ -5576,10 +5575,15 @@ body.p-home .bcard.bcard--lead{grid-column:span 1}}
 @media (max-width:660px){.bcard--lead{padding:20px 20px 24px}}
 /* the case line — declared here, never inherited (a component that inherits
    its ink renders differently on every page it lands on) */
-.bcard-m{margin:0;font-family:var(--serif);font-weight:300;font-size:2.125rem;line-height:1.05;letter-spacing:-.02em;color:var(--a)}
-.bcard-m i{font-style:normal;opacity:.5;padding:0 .12em}
-.bcard--lead .bcard-m{font-size:clamp(40px,4.6vw,60px)}
-.bcard-s{margin:8px 0 0;font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-faint);line-height:1.5}
+/* 2026-11-23 (Arpit: "Yes, apply it"): one card grammar on all seven — label,
+   title, result, summary, role, instrument. The result is a sentence: the
+   number in the accent, its meaning beside it. */
+.bcard-r{margin:0;font-size:var(--fs-ui);line-height:1.5;color:var(--text-muted)}
+.bcard-r b{font-family:var(--serif);font-weight:300;font-size:var(--fs-metric-sm);line-height:1.2;letter-spacing:-.02em;color:var(--a);margin-right:.25em}
+.bcard-r b i{font-style:normal;opacity:.5;padding:0 .12em}
+.bcard--lead .bcard-r{margin-top:12px}
+.bcard--lead .bcard-r b{display:block;font-size:var(--fs-metric);line-height:1.1;margin:0 0 4px}
+.bcard-s{margin:0;font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-faint);line-height:1.5}
 /* 1.45, not 1.35: these titles wrap to two lines in six of seven cards, and
    this repo's own floor for rendered text under 18px is 1.40. I declared 1.35
    when I built the board and put a wrapping card title below my own floor.
@@ -5587,9 +5591,10 @@ body.p-home .bcard.bcard--lead{grid-column:span 1}}
    because it was run by hand: that gate is NIGHTLY, so the pre-push suite went
    22-of-23 green over it. Leading is invisible on one line, which is why a
    card title is exactly where it hides. */
-.bcard h3{margin:12px 0 0;font-size:0.9375rem;font-weight:600;line-height:1.45;color:var(--text-body)}
-.bcard--lead h3{margin-top:16px;font-family:var(--serif);font-size:clamp(20px,2vw,26px);font-weight:400;line-height:1.25}
-.bcard-d{margin:12px 0 0;font-size:0.84375rem;line-height:1.65;color:var(--text-muted);max-width:46ch}
+.bcard h3{margin:0;font-family:var(--serif);font-size:var(--fs-card);font-weight:400;line-height:1.25;color:var(--text-body)}
+.bcard--lead h3{margin-top:12px;font-size:clamp(22px,2vw,26px)}
+.bcard-d{margin:0;font-size:0.84375rem;line-height:1.65;color:var(--text-muted)}
+.bcard--lead .bcard-d{margin-top:12px;max-width:46ch}
 .bcard-nom{position:absolute;top:0;right:24px;transform:translateY(-50%);margin:0;font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.02em;color:var(--surface-page);background:var(--a);padding:4px 8px;border-radius:2px;line-height:1.4;z-index:2}
 @media (max-width:660px){.bcard-nom{right:16px}}
 /* ── the instrument shell ─────────────────────────────────────────────────── */
@@ -6172,10 +6177,8 @@ body.p-lab #the-quality-bar{--serif:var(--ff-display),Georgia,serif;--sans:var(-
    Both components DECLARE their ink, family, size and leading: --ff-mono and
    --ink-dim / --amber, never --mono/--dim, which exist only on body.p-home.
    ========================================================================== */
-/* the two metadata lines are ONE grid item — see index.html. align-self moves
-   with them, or the pair sits centred in a track sized for something else. */
-body.p-home .bcard:not(.bcard--lead) .bcard-meta{align-self:start}
-body.p-home .bcard-own{margin:8px 0 0;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:.02em;line-height:1.6;color:var(--acc-amber)}
+body.p-home .bcard--lead .bcard-own{margin-top:12px}
+body.p-home .bcard-own{margin:0;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:.02em;line-height:1.6;color:var(--acc-amber)}
 /* The band is act 01's own four-column grid, a second time. Rows are SHARED
    across the cells (display:contents + explicit grid-row) so the four
    provenance lines align to one another at every width even when one headline

@@ -60,8 +60,9 @@ def classify_home(r):
     if r['in_facts']: return r['sz']==20 and r['w']=='600'
     # case board (2026-09-08), registered by COMPONENT not value so 15/600 stays
     # illegal elsewhere: lead card = serif claim clamp(20,2vw,26); the six = 15/600.
-    if r['in_lead']: return 20 <= r['sz'] <= 26 and r['w']=='400'
-    if r['in_bcard']: return r['sz']==15 and r['w']=='600'
+    # 2026-11-23 (Arpit approved the render): the six carry the system's card title, serif 22/400.
+    if r['in_lead']: return 22 <= r['sz'] <= 26 and r['w']=='400'
+    if r['in_bcard']: return r['sz']==22 and r['w']=='400'
     return (r['sz'],r['w']) in ((22,'600'),(17,'600'))
 
 def classify_sub(r):

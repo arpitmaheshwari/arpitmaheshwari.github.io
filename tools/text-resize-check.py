@@ -31,7 +31,7 @@ from gatelib import page_urls
 WIDTHS = (1440, 390)
 PROBE = """(()=>{
   const out = {};
-  const sel = ['h2','h3','.t-body','.lbl-eyebrow','.cta','.role-line','.bcard-m',
+  const sel = ['h2','h3','.t-body','.lbl-eyebrow','.cta','.role-line','.bcard-r b',
                '.nav-links a','footer','main p, article p, .t-body, main li, p'];
   for (const s of sel) {
     const e = document.querySelector(s);
