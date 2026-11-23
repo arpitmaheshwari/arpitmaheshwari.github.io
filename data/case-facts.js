@@ -90,7 +90,7 @@
     "o2": {
       "no": "02",
       "key": "o2",
-      "title": "Two O2 UK Products, Four Million People",
+      "title": "Two O2 Apps I Co-Designed and Hand-Coded",
       "tag": "Telecom · Non-NDA",
       "meta": [
         [
@@ -246,7 +246,7 @@
     "planit": {
       "no": "07",
       "key": "planit",
-      "title": "The App People Broke on Purpose",
+      "title": "One Quietness Score for Anxious Travellers",
       "tag": "Consumer · PlanIt",
       "meta": [
         ["Role", "Designer & strategist"],

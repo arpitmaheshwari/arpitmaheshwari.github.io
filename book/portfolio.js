@@ -42,13 +42,13 @@ const WORK = [{
     desc: "Five learning platforms, one survivor, eleven languages. Drawing the screens was easy; the case for retiring four products was the work that mattered."
 }, {
   tag: "Telecom · Non-NDA",
-    title: "Two O2 UK Products, Four Million People",
+    title: "Two O2 Apps I Co-Designed and Hand-Coded",
     metric: "4M+",
     basis: "O2’s figure, not mine",
     desc: "Two O2 UK products at national scale. Every screen co-designed, every screen coded by me — mobile web."
 }, {
   tag: "Consumer · PlanIt",
-  title: "The App People Broke on Purpose",
+  title: "One Quietness Score for Anxious Travellers",
   metric: "0 complaints",
   basis: "launch window · no tutorial",
   desc: "The same client’s data, pointed at an anxious traveller. People triggered the error screen on purpose, just to watch the little train be sorry — the failure state became the reason they came back."
@@ -2013,7 +2013,7 @@ function buildBook(ctx) {
       }, {
         crumb: "PlanIt",
         idxLabel: "walk-through",
-        runheadR: "PlanIt · The App People Broke on Purpose",
+        runheadR: "PlanIt · One Quietness Score for Anxious Travellers",
         folioL: "1",
         folioR: "2",
         ...ndaPages[5]
