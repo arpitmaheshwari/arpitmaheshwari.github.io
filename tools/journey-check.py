@@ -45,7 +45,7 @@ SCROLL = ("(async()=>{const h=document.documentElement.scrollHeight;for(let y=0;
           "await new Promise(r=>setTimeout(r,25));}scrollTo(0,0);await new Promise(r=>setTimeout(r,120));"
           "await Promise.all([...document.images].map(i=>i.complete?1:new Promise(r=>{i.onload=i.onerror=r;setTimeout(r,2500)})));return 1})()")
 PAGE_STATE = r"""(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>0&&r.height>0&&getComputedStyle(e).visibility!=='hidden'};
- const imgs=[...document.images].filter(vis);   /* an image inside a collapsed panel has no width: judged when the panel opens (receipts step), never on load */
+ const imgs=[...document.images].filter(i=>vis(i)&&!i.closest('details:not([open])'));   /* an image inside a collapsed panel is judged when the panel opens (receipts, the full-case fold), never on load: a closed <details> here still gives its images a box (2026-11-25: 26 false 'never painted') */
  const broken=imgs.filter(i=>!(i.naturalWidth>0)).map(i=>(i.currentSrc||i.getAttribute('src')||'?').split('/').pop().slice(0,60));
  return JSON.stringify({url:location.pathname+location.hash,h1:!!document.querySelector('h1'),
    overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
@@ -156,6 +156,12 @@ def journey(br, width, urls, defects, plant=False):
             br.eval("(()=>{const j=document.querySelector('.case-jump');if(j){const a=document.createElement('a');a.href='#zz-missing-anchor';a.textContent='plant';j.appendChild(a)}"
                     "const i=document.createElement('img');i.src='/zz-missing.png';i.width=80;i.height=40;document.querySelector('main').appendChild(i);return 1})()")
             page_checks(br, label + ' (plant)', defects)
+        # the "Read the full case" fold (2026-11-25): a reader's click must open it, and what it reveals must paint
+        if br.eval("!!document.querySelector('details.deep-read > summary')"):
+            br.eval("(()=>{const s=document.querySelector('details.deep-read > summary');s.scrollIntoView({block:'center'});s.click();return 1})()"); time.sleep(0.5)
+            f = br.eval_json("(()=>{const d=document.querySelector('details.deep-read'),b=d.querySelector('.deep-read-body');return JSON.stringify({open:d.open,h:b?Math.round(b.getBoundingClientRect().height):0})})()")
+            if not f['open'] or f['h'] < 200: defects.append((label, f"full-case fold did not open (open={f['open']}, body height={f['h']}px)"))
+            else: page_checks(br, label + ' (fold open)', defects)
         jumps = br.eval_json("JSON.stringify([...document.querySelectorAll('.case-jump a')].map(a=>a.getAttribute('href')))")
         navh = br.eval("(()=>{const n=document.getElementById('nav');return n?n.getBoundingClientRect().height:0})()")
         br.eval("(()=>{if(!document.getElementById('__jc')){const s=document.createElement('style');s.id='__jc';s.textContent='html,body{scroll-behavior:auto!important}';document.head.appendChild(s)}return 1})()")
