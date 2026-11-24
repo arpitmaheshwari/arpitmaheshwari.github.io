@@ -2728,8 +2728,8 @@ body.p-screen .scr-wrap--split .scr-head .hand-note{margin:16px 0 0}
 body.p-screen .scr-wrap--split .scr-q{background:none;border:0;border-top:1px solid var(--border-strong);border-radius:0;padding:32px 0;margin:0;scroll-margin-top:96px}
 body.p-screen .scr-wrap--split .scr-q h2{margin:0 0 16px}
 body.p-screen .scr-wrap--split .scr-q p.scr-lead{font-family:var(--ff-display);font-weight:400;font-style:normal;font-size:var(--fs-lead);line-height:1.35;letter-spacing:-0.005em;color:var(--text-body);margin:0 0 12px}
-body.p-screen .scr-wrap--split .scr-terms{margin:0 0 16px;display:grid;gap:0}
-body.p-screen .scr-wrap--split .scr-terms>div{padding:12px 0;border-top:1px solid var(--border-strong)}
+body.p-screen .scr-wrap--split .scr-terms{margin:0 0 16px;padding:12px 0 0;display:grid;gap:16px;border-top:1px solid var(--border-strong)}   /* one rule over the list, none between rows (2026-11-25): five answers are lists now, and a hairline per row put 5-6 rules in a band (rule-density-check; q04 alone already read 6) */
+body.p-screen .scr-wrap--split .scr-terms>div{padding:0}
 body.p-screen .scr-wrap--split .scr-terms dt{font-family:var(--ff-sans);font-size:var(--fs-body);line-height:1.5;font-weight:600;color:var(--text-body);margin:0 0 4px}
 body.p-screen .scr-wrap--split .scr-terms dt a{color:var(--accent-text);text-decoration:none}
 body.p-screen .scr-wrap--split .scr-terms dt a:hover{text-decoration:underline;text-underline-offset:3px}
@@ -2941,4 +2941,18 @@ body.p-home .bcard-d .bd-l + .bd-l{margin-top:8px}
 body.p-home .bcard-d .bd-l b{display:block;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);font-weight:500;letter-spacing:.08em;text-transform:uppercase;line-height:1.5;color:var(--text-faint)}
 @media (max-width:900px){body.p-home .work .work-notes{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){body.p-home .work .work-notes{grid-template-columns:minmax(0,1fr)}}
+/* --- .lrows: LABELLED ROWS, THE HOMEPAGE'S .who-rows AS A SHARED COMPONENT (2026-11-25, Arpit: "review other page ...
+   make such changes in each section"). A run-in list inside a paragraph (three questions, four moves, four claims)
+   set as label + value so it can be scanned. Declares its own face, size and ink: it sits on /process/ and inside
+   the patterns card, whose paragraphs differ. No rules between rows (rule-density). --- */
+.lrows{margin:0 0 16px;padding:0;display:grid;row-gap:12px;max-width:var(--measure)}
+.lrows > div{display:grid;grid-template-columns:96px minmax(0,1fr);column-gap:16px;align-items:baseline}   /* baseline on purpose, as .who-rows: the label is one line and never wraps */
+.lrows dt{margin:0;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);font-weight:400;letter-spacing:.08em;text-transform:uppercase;line-height:1.5;color:var(--text-faint);white-space:nowrap}
+.lrows dd{margin:0;font-family:var(--ff-sans);font-size:1rem;font-weight:400;line-height:1.6;color:var(--text-body)}
+.lrows--card{font-size:var(--fs-ui)}   /* the measure is in ch: sized like the card's prose so the rows end where its paragraphs end */
+.lrows--card dd{font-size:var(--fs-ui);line-height:1.6}   /* inside the patterns card, whose prose is set at the UI size */
+@media (max-width:560px){.lrows--card > div{grid-template-columns:minmax(0,1fr);row-gap:2px}}   /* the card's own padding leaves the value 110px beside a 96px label on a phone: label over value there */
+/* The Lab's four cards: each one opens on its claim. Set as its own line, the claim is what a skimmer takes from the card
+   and the description under it is for the reader who stays (2026-11-25, same instruction as .lrows). */
+body.p-lab .lab-card p > strong:first-child{display:block;margin:0 0 8px}
 }

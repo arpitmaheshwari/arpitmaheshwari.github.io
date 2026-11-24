@@ -136,7 +136,8 @@
     </div>
     <div class="scr-ans">
       <p class="scr-lead">I don’t — and I won’t pretend to.</p>
-      <p>Whether the model is right is the ML team’s work and their measurement to defend; the eval is their proof, not mine. What I own starts where the eval ends. Week one, I’m reading eval results before I open a design file, because the interface inherits every property the eval measures — and a few it doesn’t. Then I design what gets measured into the surface itself: abstentions the user can see, overrides that get logged, a track record that accumulates in the open. One rule holds throughout: the screen never claims more certainty than the eval supports. The fastest way to lose an ML team is to design a surface their eval can’t back.</p>
+      <p>Whether the model is right is the ML team’s work and their measurement to defend; the eval is their proof, not mine. What I own starts where the eval ends.</p>
+      <p>Week one, I’m reading eval results before I open a design file, because the interface inherits every property the eval measures — and a few it doesn’t. Then I design what gets measured into the surface itself: abstentions the user can see, overrides that get logged, a track record that accumulates in the open. One rule holds throughout: the screen never claims more certainty than the eval supports. The fastest way to lose an ML team is to design a surface their eval can’t back.</p>
       <p class="scr-receipt">Receipt → <a href="../index.html#how-i-lead">how I lead: I read the model at the eval layer</a></p>
     </div>
   </section>
@@ -148,7 +149,8 @@
     </div>
     <div class="scr-ans">
       <p class="scr-lead">Never the 87.</p>
-      <p>An unexplained 87% is a shrug with decimals — it reports the model’s mood and hands the user all of the work. So the score resolves to a verb before it reaches the screen: act, review, or ignore. Every review carries the handful of signals that drove it, in language a person can test against their own judgement; every act carries an override. Where the bands sit is a product decision someone owns and revisits against real outcomes — the same 87 can mean <em>act</em> on a low-stakes call and <em>review</em> on a deal memo, because the stakes set the verb, not the number. A naked number ends in a shrug. A score tied to a verb ends in an action.</p>
+      <p>An unexplained 87% is a shrug with decimals — it reports the model’s mood and hands the user all of the work. So the score resolves to a verb before it reaches the screen: act, review, or ignore. Every review carries the handful of signals that drove it, in language a person can test against their own judgement; every act carries an override.</p>
+      <p>Where the bands sit is a product decision someone owns and revisits against real outcomes — the same 87 can mean <em>act</em> on a low-stakes call and <em>review</em> on a deal memo, because the stakes set the verb, not the number. A naked number ends in a shrug. A score tied to a verb ends in an action.</p>
       <p class="scr-receipt">Receipt → <a href="../patterns/act-review-ignore.html">the Act / Review / Ignore rule</a></p>
     </div>
   </section>
@@ -190,7 +192,12 @@
     </div>
     <div class="scr-ans">
       <p class="scr-lead">They’re design inputs, and I ask about both in week one.</p>
-      <p>What’s precomputed and what’s generated on demand — because an explanation drawer is a latency budget decision, and a drawer that takes four seconds to open teaches people to stop opening it. When retrieval costs real money per call, the evidence may have to load behind the number instead of beside it — that’s a trust trade-off, and it should be made on purpose rather than discovered in the invoice. And the loading state is a promise: what the interface says while the model thinks sets what the person expects when it answers. I won’t hand you case numbers here, because I don’t have honest ones — these are the questions I bring, and the answers are always specific to your stack. That’s part of what the first week is for.</p>
+      <dl class="scr-terms">
+        <div><dt>What’s precomputed and what’s generated on demand</dt><dd>An explanation drawer is a latency budget decision, and a drawer that takes four seconds to open teaches people to stop opening it.</dd></div>
+        <div><dt>When retrieval costs real money per call</dt><dd>The evidence may have to load behind the number instead of beside it — that’s a trust trade-off, and it should be made on purpose rather than discovered in the invoice.</dd></div>
+        <div><dt>The loading state is a promise</dt><dd>What the interface says while the model thinks sets what the person expects when it answers.</dd></div>
+      </dl>
+      <p>I won’t hand you case numbers here, because I don’t have honest ones — these are the questions I bring, and the answers are always specific to your stack. That’s part of what the first week is for.</p>
     </div>
   </section>
   <!-- 06 -->
@@ -201,7 +208,8 @@
     </div>
     <div class="scr-ans">
       <p class="scr-lead">I keep this boundary sharp, because blurring it insults the people who did the work.</p>
-      <p>The model’s accuracy, its lift, its benchmarks — theirs; question 01 already drew that line. Mine is the layer where a right answer becomes an acted-on one: the evidence beside the number, the abstention state, the override that gets logged instead of lost, the score that resolves to a decision. I write it the same way about my O2 work — &ldquo;the launch-era figures are O2’s; the screens I owned are mine.&rdquo; A candidate who claims the model’s numbers as their own is telling you something. A candidate who can’t say exactly which pixels were theirs is telling you more.</p>
+      <p>The model’s accuracy, its lift, its benchmarks — theirs; question 01 already drew that line. Mine is the layer where a right answer becomes an acted-on one: the evidence beside the number, the abstention state, the override that gets logged instead of lost, the score that resolves to a decision.</p>
+      <p>I write it the same way about my O2 work — &ldquo;the launch-era figures are O2’s; the screens I owned are mine.&rdquo; A candidate who claims the model’s numbers as their own is telling you something. A candidate who can’t say exactly which pixels were theirs is telling you more.</p>
       <p class="scr-receipt">Receipt → <a href="../case-studies/o2.html">the O2 case, scoped honestly</a></p>
     </div>
   </section>
@@ -213,7 +221,8 @@
     </div>
     <div class="scr-ans">
       <p class="scr-lead">I fought hard for a recommendation card with three ranked options.</p>
-      <p>The live A/B test made the single-option card permanent: it converted better, because three choices froze people at the exact moment we needed them to move. Every recommendation surface I’ve designed since starts from that loss. There’s a second scar. I used to treat a human-in-the-loop checkpoint as a safety net by itself — it isn’t, because people click through without reading. Now, on anything high-stakes, a confirmation sits between the click and the consequence.</p>
+      <p>The live A/B test made the single-option card permanent: it converted better, because three choices froze people at the exact moment we needed them to move. Every recommendation surface I’ve designed since starts from that loss.</p>
+      <p>There’s a second scar. I used to treat a human-in-the-loop checkpoint as a safety net by itself — it isn’t, because people click through without reading. Now, on anything high-stakes, a confirmation sits between the click and the consequence.</p>
       <p class="scr-receipt">Receipt → <a href="../patterns/human-in-loop.html">the Human-in-Loop pattern, scar included</a></p>
     </div>
   </section>
@@ -225,7 +234,13 @@
     </div>
     <div class="scr-ans">
       <p class="scr-lead">The receipt is the page you’re reading.</p>
-      <p>This site is hand-built HTML, CSS, and JavaScript — view source, or read the repository. In production I ship the front-end of the features I design — buttons, forms, data displays, AI surfaces — in the PR, under my name, with senior engineers reviewing. React beyond prototypes — the book edition of this site is ~150KB of my own React, 50+ hooks of state management. I won’t claim the backend; that’s someone else’s craft, and I’d rather be reviewed by them than pretend at it. A product owner who codes doesn’t need the handoff meeting — the handoff is the pull request. If you want the code rather than the claim, <a href="../lab/">The Lab</a> is four artefacts where the code is the deliverable — including a zero-dependency module with 42 tests that run in your browser.</p>
+      <dl class="scr-terms">
+        <div><dt>This site</dt><dd>Hand-built HTML, CSS, and JavaScript — view source, or read the repository.</dd></div>
+        <div><dt>In production</dt><dd>I ship the front-end of the features I design — buttons, forms, data displays, AI surfaces — in the PR, under my name, with senior engineers reviewing.</dd></div>
+        <div><dt>React beyond prototypes</dt><dd>The book edition of this site is ~150KB of my own React, 50+ hooks of state management.</dd></div>
+        <div><dt>Not the backend</dt><dd>I won’t claim the backend; that’s someone else’s craft, and I’d rather be reviewed by them than pretend at it.</dd></div>
+      </dl>
+      <p>A product owner who codes doesn’t need the handoff meeting — the handoff is the pull request. If you want the code rather than the claim, <a href="../lab/">The Lab</a> is four artefacts where the code is the deliverable — including a zero-dependency module with 42 tests that run in your browser.</p>
       <p class="scr-receipt">Receipt → <a href="../lab/loop.html">loop.js — the pattern logic as a tested module</a> · <a href="../lab/teardown.html">how this site is built</a> · <a href="https://github.com/arpitmaheshwari" target="_blank" rel="noopener noreferrer">the repository ↗<span class="visually-hidden"> (opens in a new tab)</span></a></p>
     </div>
   </section>
@@ -248,7 +263,13 @@
     </div>
     <div class="scr-ans">
       <p class="scr-lead">It differed by engagement, and I will tell you which it was rather than let a title imply more.</p>
-      <p>On the private-equity screening tool I owned the scope of the AI feature — what it would and would not do — and the launch bar that went with it; the product owner held the wider platform and release timing. On the org-design platform the roadmap was co-owned with the PM, no clean line, and I owned the definition of the eight modules and what we refused to build. On the transit app the reframe that decided the product — comfort over speed, for the traveller who finds a crowded carriage a risk — was my call, which the founding PM backed. At PTC University I was the product&rsquo;s owner in practice: definition, the quarterly roadmap, the consolidation and the sunsets. At Talon I held product definition and design across six systems inside a 50+ team, shaping the roadmap with the client&rsquo;s product leadership.</p>
+      <dl class="scr-terms">
+        <div><dt>The private-equity screening tool</dt><dd>I owned the scope of the AI feature — what it would and would not do — and the launch bar that went with it; the product owner held the wider platform and release timing.</dd></div>
+        <div><dt>The org-design platform</dt><dd>The roadmap was co-owned with the PM, no clean line, and I owned the definition of the eight modules and what we refused to build.</dd></div>
+        <div><dt>The transit app</dt><dd>The reframe that decided the product — comfort over speed, for the traveller who finds a crowded carriage a risk — was my call, which the founding PM backed.</dd></div>
+        <div><dt>PTC University</dt><dd>I was the product&rsquo;s owner in practice: definition, the quarterly roadmap, the consolidation and the sunsets.</dd></div>
+        <div><dt>Talon</dt><dd>I held product definition and design across six systems inside a 50+ team, shaping the roadmap with the client&rsquo;s product leadership.</dd></div>
+      </dl>
       <p class="scr-receipt">Receipt → <a href="../case-studies/fintech.html">FinTech</a> · <a href="../case-studies/orgos.html">OrgOS</a> · <a href="../case-studies/planit.html">PlanIt</a> · <a href="../case-studies/ptc.html">PTC</a> · <a href="../case-studies/adtech.html">AdTech</a> — each case ends with an Owned / Shared / Not mine split</p>
     </div>
   </section>
@@ -260,7 +281,11 @@
     </div>
     <div class="scr-ans">
       <p class="scr-lead">By asking what each feature request is really a request for.</p>
-      <p>On the org-design platform every obvious feature — assignment, approval, escalation — was a manager wearing a different name, so the job was refusing each one and replacing them with visibility: commitments people publish, not tasks the system hands out. At PTC the brief was a redesign of five learning platforms; three weeks inside customer-success recordings said the navigation was innocent, so the deliverable became the argument to retire four products and rewrite the contract. In both cases the thing not built was the thing most requested, and the test I apply is the same: does this feature solve the problem, or does it re-create the structure that caused it?</p>
+      <dl class="scr-terms">
+        <div><dt>The org-design platform</dt><dd>Every obvious feature — assignment, approval, escalation — was a manager wearing a different name, so the job was refusing each one and replacing them with visibility: commitments people publish, not tasks the system hands out.</dd></div>
+        <div><dt>PTC</dt><dd>The brief was a redesign of five learning platforms; three weeks inside customer-success recordings said the navigation was innocent, so the deliverable became the argument to retire four products and rewrite the contract.</dd></div>
+      </dl>
+      <p>In both cases the thing not built was the thing most requested, and the test I apply is the same: does this feature solve the problem, or does it re-create the structure that caused it?</p>
       <p class="scr-receipt">Receipt → <a href="../case-studies/orgos.html">OrgOS — the features I said no to</a> · <a href="../case-studies/ptc.html">PTC — four products retired</a></p>
     </div>
   </section>
@@ -272,7 +297,13 @@
     </div>
     <div class="scr-ans">
       <p class="scr-lead">Adoption before accuracy.</p>
-      <p>The AI products I have shipped each had a model that was good enough and a user who hesitated to act on it, so the number I watch is whether people act on the output, not whether the output was correct. At Talon the loop was judged by the numbers on the next plan — impressions, reach, cover and frequency — and the headline was the planning time it bought back: two weeks to three hours per campaign. On the screening tool the measure was the time per diligence pass, taken before and after rollout. Where a number is a client&rsquo;s — O2&rsquo;s four million, Talon&rsquo;s bookings share — the page says so and I do not claim it. What I will not do is put a figure on a page I cannot defend in the room; the NDA cases carry the measurement, not the sample.</p>
+      <p>The AI products I have shipped each had a model that was good enough and a user who hesitated to act on it, so the number I watch is whether people act on the output, not whether the output was correct.</p>
+      <dl class="scr-terms">
+        <div><dt>Talon</dt><dd>The loop was judged by the numbers on the next plan — impressions, reach, cover and frequency — and the headline was the planning time it bought back: two weeks to three hours per campaign.</dd></div>
+        <div><dt>The screening tool</dt><dd>The measure was the time per diligence pass, taken before and after rollout.</dd></div>
+        <div><dt>A client&rsquo;s number</dt><dd>O2&rsquo;s four million, Talon&rsquo;s bookings share — the page says so and I do not claim it.</dd></div>
+      </dl>
+      <p>What I will not do is put a figure on a page I cannot defend in the room; the NDA cases carry the measurement, not the sample.</p>
       <p class="scr-receipt">Receipt → <a href="../case-studies/adtech.html">AdTech — how the loop was judged</a> · <a href="../case-studies/fintech.html">FinTech — measured pre/post rollout</a> · <a href="../case-studies/o2.html">O2 — whose numbers they are</a></p>
     </div>
   </section>
