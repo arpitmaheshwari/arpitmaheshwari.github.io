@@ -7230,4 +7230,46 @@ body.p-lab-teardown .td-block{display:grid;grid-template-columns:minmax(0,4fr) m
 body.p-lab-teardown .td-ask{position:sticky;top:96px;align-self:start}
 body.p-lab-teardown .td-block h3{margin:0}
 }
+
+/* --- essay figures (2026-11-24): one per essay, every word lifted from the essay. A table from 720px,
+   stacked rows below; the steps are four across from 900px. --- */
+figure.ef{margin:40px 0;padding:0;max-width:none;border-top:1px solid var(--border-strong)}
+figure.ef figcaption{margin:16px 0 0;font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:400;font-style:normal;line-height:1.5;color:var(--text-muted);max-width:var(--measure)}
+.ef-table{width:100%;border-collapse:collapse;display:block}
+.ef-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.ef-table tbody{display:block}
+.ef-table tr{display:block;padding:20px 0;border-bottom:1px solid var(--border-strong)}
+.ef-table th[scope="row"]{display:block;padding:0 0 8px;text-align:left;font-family:var(--ff-display);font-size:var(--fs-lead);font-weight:400;line-height:1.3;color:var(--text-body)}
+.ef-table td{display:block;padding:8px 0 0;font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:400;line-height:1.5;color:var(--text-body)}
+.ef-table td::before{content:attr(data-label);display:block;margin:0 0 4px;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:500;line-height:1.5;letter-spacing:.02em;color:var(--text-muted)}
+.ef-steps{list-style:none;margin:0;padding:0;display:grid}
+.ef-steps li{display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:12px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--border-strong);font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:400;line-height:1.5;color:var(--text-body)}
+.ef-n{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:500;line-height:1.5;letter-spacing:.02em;color:var(--accent-text)}
+@media (min-width:720px){
+.ef-table{display:table;table-layout:fixed}
+.ef-table thead{position:static;width:auto;height:auto;overflow:visible;clip-path:none;white-space:normal;display:table-header-group}
+.ef-table tbody{display:table-row-group}
+.ef-table tr{display:table-row;padding:0}
+.ef-table thead th{padding:12px 24px 12px 0;text-align:left;vertical-align:bottom;border-bottom:1px solid var(--border-strong);font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:500;line-height:1.5;letter-spacing:.02em;color:var(--text-muted)}
+.ef-table th[scope="row"],.ef-table td{display:table-cell;padding:16px 24px 16px 0;vertical-align:top;border-bottom:1px solid var(--border-strong)}
+.ef-table th[scope="row"]{width:28%;font-size:var(--fs-body);line-height:1.4}
+.ef-table td:last-child,.ef-table thead th:last-child{padding-right:0}
+.ef-table td::before{content:none}
+.ef-table thead th:nth-child(2){width:28%}
+.ef--ba td:nth-child(2){color:var(--text-muted)}
+}
+@media (min-width:900px){
+.ef-steps{grid-template-columns:repeat(4,minmax(0,1fr));column-gap:32px}
+.ef-steps li{grid-template-columns:1fr;row-gap:8px;align-content:start;border-bottom:0;padding:20px 0 0}
+}
+
+/* --- Fit check, the honest-limits section from 1024px (2026-11-24): the two cards take the full width under the
+   heading, and the "True before any match runs" label sits in the left column beside the facts it introduces.
+   The heading stops being sticky here because the cards now cross its column. --- */
+@media (min-width:1024px){
+body.p-fit main#main > .section:not(.lab-hero) > .lab-wrap > .fit-contract{grid-column:1 / -1;margin-top:40px}
+body.p-fit main#main > .section:not(.lab-hero) > .lab-wrap > .fit-constraints-k{grid-column:1;margin-top:64px}
+body.p-fit main#main > .section:not(.lab-hero) > .lab-wrap > .ev-tiers{margin-top:48px}
+body.p-fit main#main > .section:not(.lab-hero) > .lab-wrap > h2#h-contract{position:static}
+}
 }
