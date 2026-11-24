@@ -277,7 +277,7 @@ def main():
         print("  all valid.")
 
     for url in urls:
-        res = scan_page(url, docroot)
+        res = scan_page(url, docroot) or scan_page(url, docroot)   # one retry: a single no-answer under the hook's parallel browser load blocked a 20-minute push on 2026-11-24, and the same page measured clean ten lines later
         if res is None or "error" in res:
             failures += 1
             unmeasured += 1

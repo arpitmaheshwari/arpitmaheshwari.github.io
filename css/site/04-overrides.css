@@ -1757,15 +1757,19 @@ body.p-lab-teardown #the-quality-bar{--serif:var(--ff-display),Georgia,serif;--s
    ========================================================================== */
 body.p-home .bcard--lead .bcard-own{margin-top:12px}
 body.p-home .bcard-own{margin:0;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:.02em;line-height:1.6;color:var(--acc-amber)}
-/* The band is act 01's own four-column grid, a second time. Rows are SHARED
+/* WHAT I OWNED sits under the career strip in the person band since 2026-11-24, and is set as that strip's
+   twin: same label, same number face and size, same spacing above, same breakpoints (900 / 480). Its
+   number had asked for var(--ff-serif), a token that never existed, so it had always rendered in the
+   body sans; beside the career strip's serif years that read as two components.
+   The band is act 01's own four-column grid, a second time. Rows are SHARED
    across the cells (display:contents + explicit grid-row) so the four
    provenance lines align to one another at every width even when one headline
    wraps — per-cell grids align only where nothing wraps. .scope-k is itself a
    grid item in row 1, which is why the cell selectors count from nth-child(2). */
-body.p-home .scope{margin-top:clamp(32px,4.4vh,48px);padding-top:24px;border-top:1px solid var(--border-strong);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto auto;column-gap:32px;row-gap:0}
-body.p-home .scope-k{grid-column:1 / -1;margin:0 0 20px;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:.16em;line-height:1.7;color:var(--acc-amber);text-transform:uppercase}
+body.p-home .scope{margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto auto;column-gap:32px;row-gap:0}
+body.p-home .scope-k{grid-column:1 / -1;margin:0 0 20px;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:.04em;line-height:1.5;color:var(--text-faint);text-transform:uppercase}
 body.p-home .scope > div{display:contents}
-body.p-home .scope > div > b{grid-row:2;font-family:var(--ff-serif),Georgia,serif;font-size:1.875rem;font-weight:400;line-height:1.15;color:var(--text-body)}
+body.p-home .scope > div > b{grid-row:2;font-family:var(--serif);font-size:1.75rem;font-weight:300;line-height:1.15;letter-spacing:-.01em;color:var(--text-body)}
 body.p-home .scope > div > span{grid-row:3;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:.01em;line-height:1.65;color:var(--text-faint);padding-top:8px}
 @media (max-width:900px){body.p-home .scope{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto auto auto auto auto;column-gap:24px}
 body.p-home .scope > div:nth-child(-n+3) > b{grid-row:2}
@@ -1774,12 +1778,12 @@ body.p-home .scope > div:nth-child(n+4) > b{grid-row:4;padding-top:24px}
 body.p-home .scope > div:nth-child(n+4) > span{grid-row:5}}
 /* one column: each fact is its own block again, so the shared rows are RELEASED
    — leave them in place and four facts pair into two rows */
-@media (max-width:520px){body.p-home .scope{grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:20px}
+@media (max-width:480px){body.p-home .scope{grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:20px}
 body.p-home .scope > div{display:grid}
 body.p-home .scope > div > b,
 body.p-home .scope > div > span{grid-row:auto}
 body.p-home .scope > div:nth-child(n+4) > b{padding-top:0}
-body.p-home .scope > div > b{font-size:1.625rem}}
+body.p-home .scope-k{margin-bottom:0}}   /* the 20px row gap already separates the label here; with its own 20px it sat 40 from the first number, twice the career strip's */
 :is(body.p-home,body.p-lab-teardown) .aiwork-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,420px);column-gap:48px;align-items:start;margin-top:8px}
 /* 1000px, matching 03·1's own breakpoint — the two halves of the act must flip
    to one column at the same width or they disagree for 99px. */
@@ -2908,4 +2912,11 @@ body.p-home .hero .hero-nums b{font-size:var(--fs-body)}
 body.p-home .hero .hero-nums{column-gap:16px}
 body.p-home .hero .hero-nums b{font-size:1.25rem}
 }
+
+/* --- WHAT I OWNED, in the person band (2026-11-24; the strip moved up from the work band, Arpit: "Yes to 2, 3
+   and 4"). .who .wrap is a two-column grid, so this row declares itself a block. The space and the rule above
+   it sit on the ROW, exactly as on .wrap.career: a first child of .wrap has its top margin zeroed by the
+   rhythm rule, so the same 64px declared on .scope itself rendered as 0 and the rule touched the last
+   career caption. The strip's own rules are beside .scope above. --- */
+body.p-home .who .wrap.who-scope{display:block;margin-top:64px;padding-top:32px;border-top:1px solid var(--border-strong)}
 }
