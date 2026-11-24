@@ -411,7 +411,7 @@ a{text-decoration:underline}}
 .rcpt-r-last{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;padding:16px 20px}
 .rcpt-r-tight-last{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;padding:12px 20px}
 .rcpt-box{display:grid;gap:0;grid-template-columns:1fr;border:1px solid var(--border-strong);border-radius:var(--radius-2)}
-.btn-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:48px}
+.btn-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:48px}   /* centre, declared on the component: nine pattern pages inherited stretch and set the link 8px above the button beside it (Arpit, 2026-11-24) */
 .chip-row{display:flex;flex-wrap:wrap;gap:8px}
 .meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:20px}
 .card-gold{margin-bottom:64px;padding:32px;border:1px solid color-mix(in srgb, var(--accent-text) 10%, transparent);border-radius:var(--radius-2)}
@@ -1105,14 +1105,12 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
    underlined link (height 19.5px, no box) while the other four pages rendered a 31.5px
    button. A component copied per page is not a system, and the page that forgets a copy is
    the page that looks wrong. The attribute match covers every current and future p-lab-* page. */
-:where(body[class*="p-lab"],body.p-fit) .lab-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
-:where(body[class*="p-lab"],body.p-fit) .lab-links a:not(.cta){font-family:var(--ff-mono);font-size:var(--fs-caption);letter-spacing:.04em;color:var(--accent-text);text-decoration:none;border:1px solid var(--accent-fill);border-radius:var(--radius);padding:8px 16px;transition:background .15s, color .15s, border-color .15s}
-:where(body[class*="p-lab"],body.p-fit) .lab-links a:not(.cta):hover{background:var(--accent-text);color:var(--surface-page)}
+:where(body[class*="p-lab"],body.p-fit) .lab-links{display:flex;flex-wrap:wrap;align-items:center;gap:4px 32px;margin-top:24px}
 @media (prefers-reduced-motion: reduce){:where(body.p-lab,body.p-fit) .lab-card{transition:none}
 :where(body.p-lab,body.p-fit) .lab-card:hover{transform:none}}
-:where(body.p-lab,body.p-fit) .ev-tiers{margin:16px 0 0}
-:where(body.p-lab,body.p-fit) .ev-tiers dt{font-family:var(--ff-mono);font-size:0.75rem;letter-spacing:.02em;color:var(--accent-text);margin-top:16px}
-:where(body.p-lab,body.p-fit) .ev-tiers dd{margin:4px 0 0;padding-left:16px;border-left:1px solid var(--border-strong)}
+:where(body.p-lab,body.p-lab-plugin,body.p-fit) .ev-tiers{margin:16px 0 0}
+:where(body.p-lab,body.p-lab-plugin,body.p-fit) .ev-tiers dt{font-family:var(--ff-mono);font-size:0.75rem;letter-spacing:.02em;color:var(--accent-text);margin-top:16px}
+:where(body.p-lab,body.p-lab-plugin,body.p-fit) .ev-tiers dd{margin:4px 0 0;padding-left:16px;border-left:1px solid var(--border-strong)}
 /* ===== EXTRACTED FROM lab/eval.html (theme-swap migration; scoped body.p-lab-eval) ===== */
 :where(body.p-lab-eval) .lab-wrap{max-width:var(--inner-max);margin:0 auto;padding:0 var(--page-x)}
 :where(body.p-lab-eval) .lab-hero{padding-top:128px}
@@ -1125,7 +1123,7 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 @media (max-width: 860px){:where(body.p-lab-eval) .lint-grid{grid-template-columns:1fr}}
 :where(body.p-lab-eval) .lint-panel{border:1px solid var(--border-strong);border-radius:var(--radius);background:var(--surface-card);padding:20px 24px;min-width:0}
 :where(body.p-lab-eval) .lint-panel h3{font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:500;letter-spacing:.02em;color:var(--text-muted);margin:0 0 12px}
-:where(body.p-lab-eval) .lint-seg{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+:where(body.p-lab-eval) .lint-seg{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
 :where(body.p-lab-eval) .lint-seg button{flex:1 1 auto;padding:8px 8px;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);letter-spacing:.02em;color:var(--text-muted);background:transparent;border:1px solid var(--border-strong);border-radius:var(--radius);cursor:pointer;transition:border-color .15s, color .15s, background .15s}
 :where(body.p-lab-eval) .lint-seg button:hover{border-color:var(--accent-text);color:var(--text-body)}
 :where(body.p-lab-eval) .lint-seg button.on{background:var(--accent-text);color:var(--surface-page);border-color:var(--accent-text)}
@@ -1982,7 +1980,6 @@ body[class*="p-case-studies"] blockquote{border-left:3px solid var(--act);backgr
    two sit at the ENDS of the block — the arrangement seven of the eight already had.
    (I first normalised to flex-start, which was my preference substituted for his; the
    majority arrangement was the one to normalise TO.) Primary left, secondary right. */
-body[class*="p-case-studies"] .btn-row{align-items:center;gap:16px}
 /* .measure-c caps the whole case body at 595px — right for prose, wrong for the
    card components, which sat centred in a narrow column with dead space either
    side. Widen the container; give the PROSE its measure back explicitly; pin the
@@ -2584,8 +2581,6 @@ button.footer-back{line-height:1.4}
    A component must declare its own critical properties rather than inherit half of them
    from the treatment it is replacing. Padding is symmetric and on the 8px grid; the border
    is one colour on all four sides, the violet this rule always intended. */
-.lab-links a:not(.cta){font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:500;letter-spacing:.02em;color:var(--link-ink);text-decoration:none;border:1px solid color-mix(in srgb, var(--link-ink) 58%, transparent);border-radius:var(--radius);padding:8px 16px}
-.lab-links a:not(.cta):hover{color:var(--link-ink-hover);border-color:var(--link-ink);background:transparent}
 /* ================================================================
    SIMILARITY PASS (Playwright Gestalt audit, 2026-08-14)
    Four classes rendered at arbitrary different sizes/weights for the SAME
@@ -2617,7 +2612,7 @@ button.footer-back{line-height:1.4}
    ============================================================================ */
 :is(.k,.eyebrow,.lbl-eyebrow,.ck,.mk,.lab-kicker,.opt-n,
   .thought-tag,.case-hero__kicker,.lbl-cap,.lbl-meta,.lbl-badge-gold,
-  .go,.lab-go,.rcpt-btn,.contract-links a,.wr-more a,.contact-alt a,.lab-links a):not(.cta){font-family:var(--ff-label);font-weight:600;letter-spacing:.08em}
+  .go,.lab-go,.rcpt-btn,.contract-links a,.wr-more a,.contact-alt a):not(.cta){font-family:var(--ff-label);font-weight:600;letter-spacing:.08em}
 /* code keeps the mono, and keeps its own tracking */
 :is(code,pre,.t-code,.td-inline,.lab-code,.plA-stage,.plF-stage){font-family:var(--ff-mono);letter-spacing:0}
 /* CODE BLOCKS WRAP; THEY DO NOT SCROLL (2026-08-17, Arpit's pick) ----------
@@ -3090,7 +3085,6 @@ body[class*="p-case-studies"] .fig-paper figcaption{text-align:left}}
    reported as "UNKNOWN, not passing" beside a "0 failures" verdict.
    The lesson from 2026-08-17 still stands, with a date on it: a correction is only as good as
    the ground it was measured against, and grounds change. */
-body.p-lab #design-system .lab-code{margin-top:20px}
 /* ============================================================================
    LAB · DESIGN SYSTEM SPECIMEN (2026-08-17)
    Lives inside the #design-system band, between the three properties and the install
@@ -3100,46 +3094,45 @@ body.p-lab #design-system .lab-code{margin-top:20px}
    ============================================================================ */
 /* No max-width of its own: it sits in the Lab's 653px measure and must wrap on the same
    line-length as the paragraphs above it. A second measure in one column reads as a mistake. */
-body.p-lab #design-system .dsg-cap{max-width:none;color:var(--text-muted);margin:24px 0 0;font-size:0.9375rem;line-height:1.65}
+body.p-lab-plugin #design-system .dsg-cap{max-width:none;color:var(--text-muted);margin:24px 0 0;font-size:0.9375rem;line-height:1.65}
 /* In the Lab the default is ONE column: the essay measure is 653px, and auto-fit put two cards
    up and orphaned the third against an empty half-row — leftover space, not designed space. */
-body.p-lab #design-system .dsg-grid{display:grid;grid-template-columns:1fr;gap:20px;margin:20px 0 32px}
+body.p-lab-plugin #design-system .dsg-grid{display:grid;grid-template-columns:1fr;gap:20px;margin:20px 0 32px}
 /* Wide enough to hold three: the specimen steps OUT of the essay column, the way a case-study
    figure steps out of the spine. Symmetric because the column is already centred on the page,
    so no transform is needed and there is nothing to un-do at the next breakpoint down. */
-@media (min-width:1024px){body.p-lab #design-system .dsg-grid{--dsg-w:min(1040px,calc(100vw - 128px));width:var(--dsg-w);margin-left:calc((100% - var(--dsg-w))/2);margin-right:calc((100% - var(--dsg-w))/2);grid-template-columns:repeat(3,1fr)}}
 /* The grid equalises card heights, so the shorter cards ended with dead space under the last
    row — leftover, not designed. Each card is a column that distributes its own content instead. */
-body.p-lab .dsg-card{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:12px;padding:24px;display:flex;flex-direction:column}
-body.p-lab .dsg-card > ul{flex:1 1 auto;align-content:space-between}
+body.p-lab-plugin .dsg-card{background:var(--surface-card);border:1px solid var(--border-strong);border-radius:12px;padding:24px;display:flex;flex-direction:column}
+body.p-lab-plugin .dsg-card > ul{flex:1 1 auto;align-content:space-between}
 /* ...except the spacing ramp: it wraps onto two lines but it is ONE continuous scale, so
    distributing its rows pulls 40 away from 48. The ramp stays tight; the note takes the floor. */
-body.p-lab .dsg-card > .dsg-steps{flex:0 0 auto;align-content:normal}
-body.p-lab .dsg-k{font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:600;letter-spacing:.02em;color:var(--text-faint);margin:0 0 20px}
-body.p-lab .dsg-heats{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-body.p-lab .dsg-heats li{display:flex;align-items:center;gap:12px}
-body.p-lab .dsg-heats i{width:32px;height:32px;border-radius:8px;flex:0 0 auto}
-body.p-lab .dsg-heats b{font-size:0.875rem;font-weight:600;color:var(--text-body)}
-body.p-lab .dsg-heats em{font-style:normal;font-size:0.75rem;color:var(--text-faint);display:block;margin-top:2px}
-body.p-lab .dsg-heats span{margin-left:auto;font-family:var(--ff-mono);font-size:0.75rem;color:var(--status-positive);white-space:nowrap}
-body.p-lab .dsg-type{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+body.p-lab-plugin .dsg-card > .dsg-steps{flex:0 0 auto;align-content:normal}
+body.p-lab-plugin .dsg-k{font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:600;letter-spacing:.02em;color:var(--text-faint);margin:0 0 20px}
+body.p-lab-plugin .dsg-heats{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+body.p-lab-plugin .dsg-heats li{display:flex;align-items:center;gap:12px}
+body.p-lab-plugin .dsg-heats i{width:32px;height:32px;border-radius:8px;flex:0 0 auto}
+body.p-lab-plugin .dsg-heats b{font-size:0.875rem;font-weight:600;color:var(--text-body)}
+body.p-lab-plugin .dsg-heats em{font-style:normal;font-size:0.75rem;color:var(--text-faint);display:block;margin-top:2px}
+body.p-lab-plugin .dsg-heats span{margin-left:auto;font-family:var(--ff-mono);font-size:0.75rem;color:var(--status-positive);white-space:nowrap}
+body.p-lab-plugin .dsg-type{list-style:none;margin:0;padding:0;display:grid;gap:16px}
 /* baseline, because this is a TYPE SPECIMEN: the demo word set in the face,
    with the face name annotating it. Centring put an 11px label 5.0px below
    the baseline of the 24px word it describes, and the four rows are four
    different sizes, so nothing lined up down the card. A specimen reads as a
    table only when the labels sit on the same line as the specimens.
    Every row here is single-line, so there is no wrap to strand. */
-body.p-lab .dsg-type li{display:flex;align-items:baseline;gap:12px;justify-content:space-between}
-body.p-lab .dsg-type b{font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:600;letter-spacing:.06em;color:var(--text-faint);text-align:right;flex:0 0 auto}
-body.p-lab .dsg-serif{font-family:var(--ff-display);font-weight:300;font-size:1.5rem;color:var(--text-body)}
-body.p-lab .dsg-sans{font-size:1rem;color:var(--text-body)}
-body.p-lab .dsg-label{font-family:var(--ff-label);font-weight:600;font-size:0.75rem;letter-spacing:.02em;color:var(--acc-amber)}
-body.p-lab .dsg-mono{font-family:var(--ff-mono);font-size:0.875rem;color:var(--text-body)}
-body.p-lab .dsg-steps{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
-body.p-lab .dsg-steps li{text-align:center}
-body.p-lab .dsg-steps i{display:block;height:20px;border-radius:3px;background:var(--cta-grad)}
-body.p-lab .dsg-steps span{display:block;margin-top:8px;font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--text-faint)}
-body.p-lab .dsg-note{margin-top:auto;padding-top:20px;font-size:0.78125rem;color:var(--text-faint);max-width:none}
+body.p-lab-plugin .dsg-type li{display:flex;align-items:baseline;gap:12px;justify-content:space-between}
+body.p-lab-plugin .dsg-type b{font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:600;letter-spacing:.06em;color:var(--text-faint);text-align:right;flex:0 0 auto}
+body.p-lab-plugin .dsg-serif{font-family:var(--ff-display);font-weight:300;font-size:1.5rem;color:var(--text-body)}
+body.p-lab-plugin .dsg-sans{font-size:1rem;color:var(--text-body)}
+body.p-lab-plugin .dsg-label{font-family:var(--ff-label);font-weight:600;font-size:0.75rem;letter-spacing:.02em;color:var(--acc-amber)}
+body.p-lab-plugin .dsg-mono{font-family:var(--ff-mono);font-size:0.875rem;color:var(--text-body)}
+body.p-lab-plugin .dsg-steps{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+body.p-lab-plugin .dsg-steps li{text-align:center}
+body.p-lab-plugin .dsg-steps i{display:block;height:20px;border-radius:3px;background:var(--cta-grad)}
+body.p-lab-plugin .dsg-steps span{display:block;margin-top:8px;font-family:var(--ff-mono);font-size:var(--fs-micro);color:var(--text-faint)}
+body.p-lab-plugin .dsg-note{margin-top:auto;padding-top:20px;font-size:0.78125rem;color:var(--text-faint);max-width:none}
 /* ============================================================================
    /fit/ · THE FIT CHECK (2026-08-17)
    Built in the Lab's page grammar (it joins :where(body.p-lab,body.p-fit) in styles.css
@@ -3174,9 +3167,6 @@ body.p-fit .fit-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;
    save contrast. Empty until the JS writes it, so it takes no space in the normal flow. */
 body.p-fit .fit-status{margin-top:12px;font-size:0.9375rem;color:var(--text-body)}
 body.p-fit .fit-status:empty{margin-top:0}
-body.p-fit .btn-primary{font-family:var(--ff-label);font-size:0.75rem;font-weight:600;letter-spacing:.02em;color:var(--btn-fill-ink);background:var(--cta-grad);border:1px solid transparent;border-radius:999px;padding:16px 24px;cursor:pointer}
-body.p-fit .btn-ghost{font-family:var(--ff-label);font-size:0.75rem;font-weight:600;letter-spacing:.02em;color:var(--text-muted);background:none;border:1px solid var(--accent);border-radius:999px;padding:16px 24px;cursor:pointer}
-body.p-fit .btn-ghost:hover{color:var(--text-body);border-color:var(--acc-amber)}
 /* --- the read --- */
 body.p-fit .fit-count{font-family:var(--ff-mono);font-size:0.8125rem;color:var(--text-faint);margin:12px 0 0}
 body.p-fit .fit-group{margin-top:40px}
@@ -3402,7 +3392,7 @@ body.p-home :is(.k,.go,.ck,.mk,.ek,.lk,.ak,.meta,
 /* One tracking for every CTA. The type change left three components on the old
    .12em (correct for uppercase MONO, too loose for uppercase sans) and /hire/'s
    primary CTA still on the mono face. Caught by tools/cta-grammar-check.py. */
-:is(.wr-more a,.contact-alt a,.lab-links a,.contract-links a,
+:is(.wr-more a,.contact-alt a,.contract-links a,
   .go,.rcpt-btn,.rcpt-more,.lbl-badge-gold,.nav-cta):not(.cta){font-family:var(--ff-label);letter-spacing:.08em}
 /* OPEN, 5px: patterns/ml-explainability's comparison table runs 5px past 390px.
    Tried and REJECTED, each re-measured: display:block on the table (broke two
@@ -6145,25 +6135,25 @@ body.p-home .work .wrap{max-width:1240px}
    ========================================================================== */
 /* the font aliases these rules read (--mono, --sans) are defined on body.p-home only; the band
    declares them itself on the Lab, where it moved 2026-10-19, instead of inheriting and hoping */
-body.p-lab #the-quality-bar{--serif:var(--ff-display),Georgia,serif;--sans:var(--ff-sans);--mono:var(--ff-mono),monospace}
-:is(body.p-home,body.p-lab) .arts{min-width:0;border-top:1px solid var(--border-strong)}
-:is(body.p-home,body.p-lab) .art{padding:16px 0;border-bottom:1px solid var(--border-strong)}
-:is(body.p-home,body.p-lab) .art > b{display:block;font-family:"Source Sans 3",var(--sans),system-ui;font-size:1rem;font-weight:600;letter-spacing:.005em;line-height:1.4;color:var(--text-body)}
+body.p-lab-teardown #the-quality-bar{--serif:var(--ff-display),Georgia,serif;--sans:var(--ff-sans);--mono:var(--ff-mono),monospace}
+:is(body.p-home,body.p-lab-teardown) .arts{min-width:0;border-top:1px solid var(--border-strong)}
+:is(body.p-home,body.p-lab-teardown) .art{padding:16px 0;border-bottom:1px solid var(--border-strong)}
+:is(body.p-home,body.p-lab-teardown) .art > b{display:block;font-family:"Source Sans 3",var(--sans),system-ui;font-size:1rem;font-weight:600;letter-spacing:.005em;line-height:1.4;color:var(--text-body)}
 /* A GRID, NOT A FLEX ROW. With flex and space-between, a receipt that wraps to
    two lines eats a different amount of the line, so the four doors landed at
    three different right edges — 798, 825 and 828px. Four instances of one
    component must align to ONE ANOTHER, not merely sit inside correct bounds.
    An auto column is as wide as the widest door and every door shares it.
    Baseline alignment keeps the door on the receipt's FIRST line when it wraps. */
-:is(body.p-home,body.p-lab) .art-r{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:4px 20px;margin:8px 0 0}
-:is(body.p-home,body.p-lab) .art-r > i{font-style:normal;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:.01em;line-height:1.65;color:var(--text-faint)}
+:is(body.p-home,body.p-lab-teardown) .art-r{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:4px 20px;margin:8px 0 0}
+:is(body.p-home,body.p-lab-teardown) .art-r > i{font-style:normal;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:.01em;line-height:1.65;color:var(--text-faint)}
 /* the house CTA grammar, declared: Source Sans 3, 11.5px, 600, .08em, violet —
    the same six properties the film's caption had to be normalised onto */
-:is(body.p-home,body.p-lab) .art-r > a{justify-self:end;font-family:"Source Sans 3",var(--sans),system-ui;font-size:var(--fs-micro);font-weight:600;letter-spacing:.08em;line-height:1.6;color:var(--acc-violet);white-space:nowrap}
-:is(body.p-home,body.p-lab) .art-note{margin:16px 0 0;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:.01em;line-height:1.65;color:var(--text-faint)}
+:is(body.p-home,body.p-lab-teardown) .art-r > a{justify-self:end;font-family:"Source Sans 3",var(--sans),system-ui;font-size:var(--fs-micro);font-weight:600;letter-spacing:.08em;line-height:1.6;color:var(--acc-violet);white-space:nowrap}
+:is(body.p-home,body.p-lab-teardown) .art-note{margin:16px 0 0;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:.01em;line-height:1.65;color:var(--text-faint)}
 /* one column on a phone: the door drops under its receipt, left-aligned */
-@media (max-width:560px){:is(body.p-home,body.p-lab) .art-r{grid-template-columns:minmax(0,1fr)}
-:is(body.p-home,body.p-lab) .art-r > a{justify-self:start;margin-top:4px}}
+@media (max-width:560px){:is(body.p-home,body.p-lab-teardown) .art-r{grid-template-columns:minmax(0,1fr)}
+:is(body.p-home,body.p-lab-teardown) .art-r > a{justify-self:start;margin-top:4px}}
 /* ============================================================================
    WHAT HE OWNED — the scope line on a case card, and act 01's scope band
    ----------------------------------------------------------------------------
@@ -6212,21 +6202,21 @@ body.p-home .scope > div > b,
 body.p-home .scope > div > span{grid-row:auto}
 body.p-home .scope > div:nth-child(n+4) > b{padding-top:0}
 body.p-home .scope > div > b{font-size:1.625rem}}
-:is(body.p-home,body.p-lab) .aiwork-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,420px);column-gap:48px;align-items:start;margin-top:8px}
+:is(body.p-home,body.p-lab-teardown) .aiwork-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,420px);column-gap:48px;align-items:start;margin-top:8px}
 /* 1000px, matching 03·1's own breakpoint — the two halves of the act must flip
    to one column at the same width or they disagree for 99px. */
-@media (max-width:1000px){:is(body.p-home,body.p-lab) .aiwork-two{grid-template-columns:minmax(0,1fr);row-gap:24px}}
-@media (max-width:1199px){body.p-lab .aiwork-two{grid-template-columns:minmax(0,1fr);row-gap:24px}}   /* the Lab's wider gutters leave the rows too little room beside a 420px ledger until ~1200 (a 20px sweep: 185px rows at 1010, a 119px description at 1040); stacked, they read at full measure */
+@media (max-width:1000px){:is(body.p-home,body.p-lab-teardown) .aiwork-two{grid-template-columns:minmax(0,1fr);row-gap:24px}}
+@media (max-width:1199px){body.p-lab-teardown .aiwork-two{grid-template-columns:minmax(0,1fr);row-gap:24px}}   /* the Lab's wider gutters leave the rows too little room beside a 420px ledger until ~1200 (a 20px sweep: 185px rows at 1010, a 119px description at 1040); stacked, they read at full measure */
 /* the readout: hairlines, no card */
-:is(body.p-home,body.p-lab) .barledger{margin:0;padding:0;border:0;background:none}
-:is(body.p-home,body.p-lab) .bl-hd{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:8px;border-bottom:1px solid color-mix(in oklab,var(--acc-amber) 40%,transparent)}
-:is(body.p-home,body.p-lab) .bl-hd b{font-family:var(--mono);font-weight:400;font-size:var(--fs-micro);letter-spacing:.02em;color:var(--acc-amber);line-height:1.4}
-:is(body.p-home,body.p-lab) .bl-hd i{font-family:var(--mono);font-style:normal;font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-faint);line-height:1.4}
-:is(body.p-home,body.p-lab) .bl-rows{list-style:none;margin:0;padding:0;display:grid}
-:is(body.p-home,body.p-lab) .bl-rows li{display:grid;grid-template-columns:minmax(80px,auto) minmax(0,1fr);column-gap:16px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--border-hairline)}
-:is(body.p-home,body.p-lab) .bl-rows i{font-family:var(--mono);font-style:normal;font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-faint);line-height:1.4}
-:is(body.p-home,body.p-lab) .bl-rows span{font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.03em;color:var(--text-body);line-height:1.5}
-:is(body.p-home,body.p-lab) .bl-foot{margin:12px 0 0;font-family:var(--sans);font-size:0.8125rem;line-height:1.6;color:var(--text-muted)}
+:is(body.p-home,body.p-lab-teardown) .barledger{margin:0;padding:0;border:0;background:none}
+:is(body.p-home,body.p-lab-teardown) .bl-hd{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:8px;border-bottom:1px solid color-mix(in oklab,var(--acc-amber) 40%,transparent)}
+:is(body.p-home,body.p-lab-teardown) .bl-hd b{font-family:var(--mono);font-weight:400;font-size:var(--fs-micro);letter-spacing:.02em;color:var(--acc-amber);line-height:1.4}
+:is(body.p-home,body.p-lab-teardown) .bl-hd i{font-family:var(--mono);font-style:normal;font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-faint);line-height:1.4}
+:is(body.p-home,body.p-lab-teardown) .bl-rows{list-style:none;margin:0;padding:0;display:grid}
+:is(body.p-home,body.p-lab-teardown) .bl-rows li{display:grid;grid-template-columns:minmax(80px,auto) minmax(0,1fr);column-gap:16px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--border-hairline)}
+:is(body.p-home,body.p-lab-teardown) .bl-rows i{font-family:var(--mono);font-style:normal;font-size:var(--fs-micro);letter-spacing:.02em;color:var(--text-faint);line-height:1.4}
+:is(body.p-home,body.p-lab-teardown) .bl-rows span{font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.03em;color:var(--text-body);line-height:1.5}
+:is(body.p-home,body.p-lab-teardown) .bl-foot{margin:12px 0 0;font-family:var(--sans);font-size:0.8125rem;line-height:1.6;color:var(--text-muted)}
 /* ── the close: the cost of getting it wrong, and the first ninety days ──────
    Brand review, 2026-09-08. The page had enormous proof and no PROMISE: the H1
    states the reader's problem, the sub stated Arpit's credentials, and nothing
@@ -6521,7 +6511,6 @@ body.p-home .hero .cred-strip > div > b { color:var(--neutral-50); }
 #nav .nav-links li.nav-grp{display:block;padding:16px 16px 0;border-top:1px solid var(--border-strong);font-family:var(--ff-mono);font-size:0.75rem;line-height:1.4;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint)}
 }
 /* a control edge owes 3:1: the lab door's 58% link-ink border read 2.47:1 */
-.lab-links a:not(.cta){border-color:var(--link-ink)}
 /* the teardown's measured table held min-width:520px through the phone restack (overflow-sweep
    at 390: 520px in 294px) — the restack's own selector loses to :where(body) table.td-table on
    specificity; released here, where the layer decides */
@@ -6613,7 +6602,7 @@ a.cta:focus-visible, button.cta:focus-visible, .cta:focus-visible { outline:2px 
 a.cta--secondary, button.cta--secondary, .cta--secondary { background:none; border-color:var(--btn-line); color:var(--btn-line-ink); }
 a.cta--secondary:hover, button.cta--secondary:hover, .cta--secondary:hover { background:var(--ink-wash); color:var(--btn-line-ink); box-shadow:none; }
 a.cta-quiet, button.cta-quiet, .cta-quiet {
-  display:inline-block; min-height:24px; padding:4px 0; border:0; background:none; border-radius:0;
+  display:inline-flex; align-items:center; min-height:44px; padding:4px 0; border:0; background:none; border-radius:0;   /* 44px and self-centring on the component (2026-11-24): the Lab rows had set their own 44 while 16 others stood 29 tall */
   font:var(--type-label); font-weight:600; letter-spacing:.02em; color:var(--door-ink); text-decoration:none;
   /* Arpit, 2026-09-12: coloured, no underline. The colour is the affordance; hover deepens it. */
 }
@@ -6673,8 +6662,7 @@ body.p-lab-plugin main#main > .section:first-child { padding-top: calc(var(--nav
 /* ── SECONDARY CONTROLS REACH THE 44px FLOOR (2026-09-14, explore-loop sessions 4 and 6: the receipt
    buttons measured 37px tall and the Lab's link-buttons 38px on a 412px phone, the case jump links 36px at 768 (round two), the reconstruction mode toggles 40px at 412 (round four, live), trustlint's presets 38px and the pattern demos' disclosure 37px (round five, live) — under the 44px thumb
    floor the primary button already clears). Same look, taller box: the padding stays, the pill grows. */
-body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode, :where(body.p-lab-eval) .lint-seg button, .pd__go,
-:where(body[class*="p-lab"],body.p-fit) .lab-links a:not(.cta) { min-height:44px; display:inline-flex; align-items:center; box-sizing:border-box; }
+body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode, :where(body.p-lab-eval) .lint-seg button, .pd__go { min-height:44px; display:inline-flex; align-items:center; box-sizing:border-box; }
 /* ── THE LAB HERO RUNS THE CODE (2026-09-14, Arpit: "fix the empty right half of the lab hero", A of
    three rendered directions). The band is a 7/5 grid at the inner width: the claim left, a panel right
    that imports loop.test.js and reports the tally. Below the hero, the Lab's list sections are two
@@ -6720,7 +6708,6 @@ body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode, :where(body.p-lab-eva
 @media (min-width:1024px){
   /* the band that holds a two-column body opens to the inner width — otherwise the columns split a 62ch measure and the right half of the page stays empty */
   :where(body.p-lab) .lab-wrap:has(> .lab-body.lb-two){max-width:var(--inner-max)}
-  :where(body.p-lab) .lab-wrap:has(> .aiwork-two){max-width:var(--inner-max)}   /* the quality bar (moved from the homepage 2026-10-19) is a rows-plus-ledger band, same reason */
   :where(body.p-lab) .lab-body.lb-two{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:64px;align-items:start;max-width:var(--inner-max)}
   :where(body.p-lab) .lab-body.lb-two > .lb-main > p{max-width:none}
   :where(body.p-lab) .lab-body.lb-two > .lb-side{min-width:0}
@@ -6851,20 +6838,20 @@ body.p-home .memo{border-top:0;padding-top:0}
    it's about repetitive patterns"; A of three rendered layouts). Four list rows, five ledger rows and three
    underlined links drew eleven rules in one band. Now: numerals separate the claims, the ledger is four
    label–value pairs in one soft card, the proof links are chips. Every word unchanged. */
-:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .art, :is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .arts, :is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .bl-rows li, :is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .barledger, :is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .bl-hd, :is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .aiwork-two, :is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .lab-row{border:0;box-shadow:none}
-:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .arts{counter-reset:art}
-:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .art{counter-increment:art;display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:16px;padding:0 0 32px}
-:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .art::before{content:counter(art,decimal-leading-zero);grid-row:1 / span 2;font-family:var(--ff-display);font-size:2.125rem;line-height:1;color:var(--acc-amber)}
-:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .art > b{grid-column:2}
-:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .art > .art-r{grid-column:2;padding:8px 0 0}
-:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .barledger{background:var(--surface-card);border-radius:12px;padding:24px}
-:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .bl-rows{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;margin:16px 0 0;padding:0;list-style:none}
-:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .bl-rows li{display:block;padding:0}
-:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .bl-rows li i{display:block;font-style:normal;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px}
-:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .bl-rows li span{font-family:var(--ff-display);font-size:1.25rem;line-height:1.25;color:var(--text-body)}
-:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .bl-foot{margin-top:20px}
-:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .lab-row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding-top:0}
-:is(body.p-home #how-i-build,body.p-lab #the-quality-bar) .lab-row a{border-bottom:0;text-decoration:none;background:color-mix(in srgb, var(--acc-amber) 10%, transparent);padding:8px 12px;border-radius:999px;color:var(--accent-text)}
+:is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .art, :is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .arts, :is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .bl-rows li, :is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .barledger, :is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .bl-hd, :is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .aiwork-two, :is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .lab-row{border:0;box-shadow:none}
+:is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .arts{counter-reset:art}
+:is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .art{counter-increment:art;display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:16px;padding:0 0 32px}
+:is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .art::before{content:counter(art,decimal-leading-zero);grid-row:1 / span 2;font-family:var(--ff-display);font-size:2.125rem;line-height:1;color:var(--acc-amber)}
+:is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .art > b{grid-column:2}
+:is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .art > .art-r{grid-column:2;padding:8px 0 0}
+:is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .barledger{background:var(--surface-card);border-radius:12px;padding:24px}
+:is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .bl-rows{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;margin:16px 0 0;padding:0;list-style:none}
+:is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .bl-rows li{display:block;padding:0}
+:is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .bl-rows li i{display:block;font-style:normal;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px}
+:is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .bl-rows li span{font-family:var(--ff-display);font-size:1.25rem;line-height:1.25;color:var(--text-body)}
+:is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .bl-foot{margin-top:20px}
+:is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .lab-row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding-top:0}
+:is(body.p-home #how-i-build,body.p-lab-teardown #the-quality-bar) .lab-row a{border-bottom:0;text-decoration:none;background:color-mix(in srgb, var(--acc-amber) 10%, transparent);padding:8px 12px;border-radius:999px;color:var(--accent-text)}
 /* ── THE WHOLE CARD IS THE DOOR (2026-09-15, Arpit: "remove all the CTA buttons and keep the card clickable").
    The title link already stretches over its card (.bcard-go::after above); the card lifts on hover. No button. */
 body.p-home .bcard{transition:transform var(--dur-quick) var(--ease-standard), box-shadow var(--dur-quick) var(--ease-standard)}
@@ -7000,12 +6987,12 @@ body.p-home .hero .hero-skills .hs-k{margin-right:8px;font-family:var(--mono),mo
    measure, and the ledger closes the band as one strip of four facts. The homepage's
    band keeps its rail, because its six-step ledger matches its rows' height. */
 @media (min-width:1024px){
-  body.p-lab #the-quality-bar .bl-rows{grid-template-columns:repeat(4,minmax(0,1fr))}
+  body.p-lab-teardown #the-quality-bar .bl-rows{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 @media (min-width:1200px){
-  body.p-lab #the-quality-bar .aiwork-two{grid-template-columns:minmax(0,1fr);row-gap:24px}
-  body.p-lab #the-quality-bar .arts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px;align-items:start}
-  body.p-lab #the-quality-bar .art-note{grid-column:1 / -1;margin:0}
+  body.p-lab-teardown #the-quality-bar .aiwork-two{grid-template-columns:minmax(0,1fr);row-gap:24px}
+  body.p-lab-teardown #the-quality-bar .arts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px;align-items:start}
+  body.p-lab-teardown #the-quality-bar .art-note{grid-column:1 / -1;margin:0}
 }
 
 /* ── THE HERO (2026-10-22, Arpit's call; prototype prototypes/hero-wow-A1.html,
@@ -7094,7 +7081,7 @@ body[class*="p-case-studies"] .deep-read-body>section:first-child{border-top:0;p
 /* ---------- tap-target floor (2026-10-25, Arpit's pick: option B). Every standalone link or
    control a thumb has to hit is at least 24px tall (WCAG 2.2 target size). Links inside a
    sentence are exempt by that rule and are left alone, so they keep the line's rhythm. */
-a.bcard-go, .qt-src a, :is(body.p-home, body.p-lab) .art-r > a, .lab-links a:not(.cta),
+a.bcard-go, .qt-src a, :is(body.p-home, body.p-lab-teardown) .art-r > a,
 a[data-cta="process"][data-location="hero"]{display:inline-flex;align-items:center;min-height:24px}
 input[type="checkbox"]{width:24px;height:24px}
 input[type="range"]{min-height:24px}
@@ -7272,4 +7259,47 @@ body.p-fit main#main > .section:not(.lab-hero) > .lab-wrap > .fit-constraints-k{
 body.p-fit main#main > .section:not(.lab-hero) > .lab-wrap > .ev-tiers{margin-top:48px}
 body.p-fit main#main > .section:not(.lab-hero) > .lab-wrap > h2#h-contract{position:static}
 }
+
+/* --- Lab index, extras moved out (2026-11-24, Arpit: "Move the extras out").
+   TEARDOWN gets the quality bar: heading left, the four rows then the CI ledger in the right column, like every
+   other band on that page; the ledger is two-by-two because the column is narrower than its old full-width home.
+   PLUGIN gets the design-system specimen: single-column body beside the heading, the three cards across the full
+   width from 1024px, and the heading is not sticky there because the cards cross its column. --- */
+body.p-lab-teardown #the-quality-bar .bl-rows{grid-template-columns:1fr 1fr}
+body.p-lab-plugin #design-system .dsg-grid{margin:24px 0 32px}
+@media (min-width:1024px){
+body.p-lab-teardown main#main > .section:not(.lab-hero) > .lab-wrap > .aiwork-two{grid-row:1 / span 2;grid-template-columns:minmax(0,1fr);row-gap:32px;margin-top:0}
+body.p-lab-teardown #the-quality-bar > .lab-wrap{grid-template-rows:auto 1fr}
+body.p-lab-teardown #the-quality-bar .arts{grid-template-columns:minmax(0,1fr)}
+body.p-lab-plugin main#main > .section:not(.lab-hero) > .lab-wrap > .dsg-grid{grid-column:1 / -1;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:40px}
+body.p-lab-plugin main#main > .section:not(.lab-hero) > .lab-wrap > .lab-body.dsg-after{grid-row:auto}
+body.p-lab-plugin #design-system > .lab-wrap{grid-template-rows:auto 1fr}
+body.p-lab-plugin #design-system h2.section-title{position:static}
+}
+
+/* --- Lab link rows use the system's quiet link (2026-11-24, Arpit: "This button doesn't look like it belongs to
+   the design system" -> picked "Quiet link" of two rendered options). The boxed 12px link was drawn in SEVEN
+   places and matched none of the system's three controls; all seven are deleted and the markup carries
+   .cta-quiet. The only thing a row adds is a thumb-sized hit area. And the hero's panel no longer touches the
+   row above it when the two stack (it measured 0px on four pages below 1024px; the Lab index already had 40). --- */
+/* a gold link inside a list sentence flows with its sentence: as an inline-block (the 2026-09-15 tap-size sweep) a
+   two-line link became a box and pushed the rest of its sentence, colon first, onto a new line. Links inside a
+   sentence are exempt from the tap floor, as the rule above already says. */
+li a.link-gold{display:inline;padding-block:0}
+/* same fault, one more row: the method page's link sat 7px above the button beside it at tablet width */
+.contract-links{align-items:center}
+/* the newsletter's email box is the height of the button beside it (it was 50px and stretched the 46px pill to match) */
+.chip-row > input[type="email"]{height:46px;padding-block:0}
+@media (max-width:1023px){
+:is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) .lab-hero .lab-wrap > .lh-r{margin-top:40px}
+}
+
+/* --- Lab loop: the assertion list folds after six lines (2026-11-24). The control is the system's quiet link on a
+   <summary>, so it needs no script and works from the keyboard; it declares its own hit area and marker. --- */
+body.p-lab-loop .lab-tests-more{margin-top:16px}
+body.p-lab-loop .lab-tests-more > summary{cursor:pointer;list-style:none}
+body.p-lab-loop .lab-tests-more > summary::-webkit-details-marker{display:none}
+body.p-lab-loop .lab-tests-more > summary::after{content:"";width:8px;height:8px;margin-left:12px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+body.p-lab-loop .lab-tests-more[open] > summary::after{transform:translateY(2px) rotate(-135deg)}
+body.p-lab-loop .lab-tests-more > .lab-tests{margin-top:8px}
 }

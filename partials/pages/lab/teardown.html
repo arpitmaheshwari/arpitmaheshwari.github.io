@@ -48,8 +48,8 @@
         <b>Every number on this page was measured, not estimated.</b> The commands are printed beside the results so you can run them against the repository yourself. Where something is unmeasured, it says so.
       </div>
       <div class="lab-links">
-        <a href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io" data-cta="lab-github" data-location="teardown-hero">The whole repository</a>
-        <a href="./loop.html" data-cta="lab-loop" data-location="teardown-hero">loop.js →</a>
+        <a class="cta-quiet" href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io" data-cta="lab-github" data-location="teardown-hero">The whole repository</a>
+        <a class="cta-quiet" href="./loop.html" data-cta="lab-loop" data-location="teardown-hero">loop.js →</a>
       </div>
       </div>
       <div class="lh-r">
@@ -75,7 +75,7 @@
       <h2 class="section-title" id="the-whole-thing-in-numbers">The whole thing, in numbers</h2>
       <dl class="td-ledger">
         <div class="td-fig"><dt>Hand-written HTML pages</dt><dd class="td-val"><b>41</b></dd><dd class="td-how"><span class="td-inline">find . -name "*.html"</span>, excluding the book, print sources and the two OG-card templates &mdash; those render to PNG and no visitor can reach them. This read 43 until 2026-09-03, when the templates were still counted as pages.</dd></div>
-        <div class="td-fig"><dt>Stylesheet, entire site</dt><dd class="td-val"><b><span data-fact="stylesheet_kb">649.6</span> KB</b> on disk &middot; <b><span data-fact="stylesheet_gzip_kb">170.6</span> KB</b> gzipped</dd><dd class="td-how"><span class="td-inline">cat fonts.css amber.css site.css | wc -c</span> &rarr; <span data-fact="stylesheet_bytes">665,151</span> bytes, unminified, across the three sheets every content page links. Gzipped they are 170,936 bytes over the wire. Counted all three after 2026-09-03, when this row measured styles.css alone and still called it &ldquo;entire site&rdquo;. It understated the CSS by 82%, and never moved when ember.css changed. book/book.css (71,850 bytes) is excluded: no classic page loads it. Unminified because there is no build step &mdash; gzip is what a reader pays, the disk number is what the choice costs me. The rendered-coverage instrument that earlier passes waited for now exists (tools/css-coverage.py): a rule is called dead only when Chrome&rsquo;s rule-usage tracking, a DOM census of every page, and a JS-token sweep all agree. And the instrument is calibrated with a planted dead rule each run. Its first pass removed 115 rules from the ember sheet with zero geometry change on the sampled pages. This classic sheet keeps its dead weight by design: the coverage harness can only exercise the active theme, so deleting here would be a guess again.</dd></div>
+        <div class="td-fig"><dt>Stylesheet, entire site</dt><dd class="td-val"><b><span data-fact="stylesheet_kb">652.0</span> KB</b> on disk &middot; <b><span data-fact="stylesheet_gzip_kb">171.5</span> KB</b> gzipped</dd><dd class="td-how"><span class="td-inline">cat fonts.css amber.css site.css | wc -c</span> &rarr; <span data-fact="stylesheet_bytes">667,650</span> bytes, unminified, across the three sheets every content page links. Gzipped they are 170,936 bytes over the wire. Counted all three after 2026-09-03, when this row measured styles.css alone and still called it &ldquo;entire site&rdquo;. It understated the CSS by 82%, and never moved when ember.css changed. book/book.css (71,850 bytes) is excluded: no classic page loads it. Unminified because there is no build step &mdash; gzip is what a reader pays, the disk number is what the choice costs me. The rendered-coverage instrument that earlier passes waited for now exists (tools/css-coverage.py): a rule is called dead only when Chrome&rsquo;s rule-usage tracking, a DOM census of every page, and a JS-token sweep all agree. And the instrument is calibrated with a planted dead rule each run. Its first pass removed 115 rules from the ember sheet with zero geometry change on the sampled pages. This classic sheet keeps its dead weight by design: the coverage harness can only exercise the active theme, so deleting here would be a guess again.</dd></div>
         <div class="td-fig"><dt>Renders without JavaScript</dt><dd class="td-val"><b>100%</b> on the reading pages &middot; <b>68%</b> on /fit/</dd><dd class="td-how">Scripts disabled via CDP and <span class="td-inline">&lt;main&gt;</span> word counts diffed across nine pages on 2026-09-03. Identical with and without: the homepage (2,782 words), the AdTech case (3,417), /patterns/, /writing/, /screen/ and /resources/. Three are not. /fit/ keeps 305 of 447 &mdash; the matcher is client-side, and that page says so in its own copy. /book/ keeps 4,483 of 4,540 and /lab/ 1,114 of 1,145, both losing only scroll-revealed labels. This row read &ldquo;100% of the copy&rdquo; until 2026-09-03, generalised from two pages to the whole site. A <span class="td-inline">noscript</span> fallback restores the scroll-reveal elements. Increasingly relevant: in a 72-portfolio field review, nine sites served an empty shell to any non-browser reader &mdash; this one reads complete to a text-only or AI screener.</dd></div>
         <div class="td-fig"><dt>Runtime dependencies, classic site</dt><dd class="td-val"><b>0</b></dd><dd class="td-how">No root <span class="td-inline">package.json</span>, no <span class="td-inline">node_modules</span>, no bundler config</dd></div>
         <div class="td-fig"><dt>Third-party domains serving code</dt><dd class="td-val"><b>2</b></dd><dd class="td-how">Google Analytics and Microsoft Clarity (heatmaps, added 2026-08-15; honours Do-Not-Track). Attention measurement (scroll depth, section dwell) is first-party: <span class="td-inline">attention.js</span>, 178 lines, no network of its own. Both load async and gate nothing on first paint. Google Fonts left on 2026-08-14 when the nine font files then in use moved to this origin; the dyslexia typeface added two more on 2026-08-28.</dd></div>
@@ -164,6 +164,44 @@
   </section>
 
   <!-- ===================== WHAT'S MISSING ===================== -->
+  <section class="section" id="the-quality-bar" aria-labelledby="h-quality-bar">
+    <div class="lab-wrap">
+      <p class="eyebrow">The bar everything here ships against</p>
+      <h2 class="section-title" id="h-quality-bar">The quality bar is code.</h2>
+      <!-- MOVED HERE FROM THE LAB INDEX (2026-11-24, Arpit: "Move the extras out"), where it
+           had come from the homepage on 2026-10-19. Same rows, same ledger; the row that
+           linked to this page lost its self-link. -->
+      <div class="aiwork-two">
+      <!-- ASK THE ARTIFACT, NOT ME. The three sentences that were in .aiwork-lede
+           are rows 2-4 here, each now standing beside the thing that proves it;
+           row 1 is the memo body it replaces. Nothing is new copy. Deliberately
+           NO gate count and no test counts: the CI ledger below states the first
+           and the proof row states the second, and a fact gets one home. -->
+      <div class="arts">
+        <div class="art"><b>The front-end I own ships in the PR</b>
+          <p class="art-r"><i>commented and ready for review &mdash; when we disagree on feasibility, the cheapest experiment settles it</i></p></div>
+        <div class="art"><b>Contrast, overflow and legibility are measured from rendered pixels</b>
+          <p class="art-r"><i>on every push that touches a page, its styles or the tooling</i></p></div>
+        <div class="art"><b>Prototypes are working HTML/CSS/JS from the start</b>
+          <p class="art-r"><i>usability-tested as real code &mdash; 8 patterns and one rule, all 9 drivable &mdash; and that same code is what goes to production</i><a href="../patterns/" data-cta="patterns" data-location="teardown-bar">The patterns &rarr;</a></p></div>
+        <div class="art"><b>This same site again, in my own React</b>
+          <p class="art-r"><i>self-hosted from the repository &mdash; no CDN, no third-party runtime</i><a href="../book/" data-cta="switch-book" data-location="teardown-bar">The book edition &rarr;</a></p></div>
+        <p class="art-note">A client&rsquo;s design system, encoded as an installable plugin: two shipped across client orgs, one public.</p>
+      </div>
+      <figure class="barledger">
+        <div class="bl-hd"><b>The bar, in CI</b><i>49 gates &middot; before a push</i></div>
+        <ul class="bl-rows">
+          <li><i>Contrast</i><span>rendered pixels, not tokens</span></li>
+          <li><i>Overflow</i><span>41 pages &times; 5 widths</span></li>
+          <li><i>Legibility</i><span>nightly, every diagram</span></li>
+          <li><i>Prose</i><span>59 pages</span></li>
+        </ul>
+        <p class="bl-foot">When a gate and my eye disagree, the pixels win.</p>
+      </figure>
+    </div>
+    </div>
+  </section>
+
   <section class="section act-cream">
     <div class="lab-wrap">
       <p class="eyebrow">What’s missing</p>
@@ -181,8 +219,8 @@
         <li class="is-fixed"><b>A token had drifted out of sync with its own spec.</b> The design system documented <span class="td-inline">--fs-display</span> while the stylesheet defined <span class="td-inline">--fs-display-xl</span> — a rename that never reached the document. Found while writing this page, and fixed in the commit that published it.</li>
       </ul>
       <div class="lab-links">
-        <a href="./index.html" data-cta="lab-home" data-location="teardown-foot">← Everything in The Lab</a>
-        <a href="../screen/" data-cta="lab-screen" data-location="teardown-foot">The technical screen, pre-answered →</a>
+        <a class="cta-quiet" href="./index.html" data-cta="lab-home" data-location="teardown-foot">← Everything in The Lab</a>
+        <a class="cta-quiet" href="../screen/" data-cta="lab-screen" data-location="teardown-foot">The technical screen, pre-answered →</a>
         <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="teardown-foot">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
       </div>
     </div>

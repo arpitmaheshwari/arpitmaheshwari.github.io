@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
-<link rel="stylesheet" href="../site.css?v=9feca26b">
+<link rel="stylesheet" href="../site.css?v=c041cf25">
 
 <script defer src="../analytics.js?v=4f9aa0a0" data-cfasync="false"></script>
 
@@ -71,9 +71,9 @@
         <b>What this is not.</b> It is not a UI kit and not a model. There is no network call, no DOM, no state, no framework — four pure functions and their tests. I own the decision logic and the interface; whether the model is right is the ML team’s result to defend.
       </div>
       <div class="lab-links">
-        <a href="./loop.js" data-cta="lab-source" data-location="loop-hero">Read the source →</a>
-        <a href="./loop.test.js" data-cta="lab-tests" data-location="loop-hero">Read the tests →</a>
-        <a href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io/blob/master/lab/loop.js" data-cta="lab-github" data-location="loop-hero">On GitHub</a>
+        <a class="cta-quiet" href="./loop.js" data-cta="lab-source" data-location="loop-hero">Read the source →</a>
+        <a class="cta-quiet" href="./loop.test.js" data-cta="lab-tests" data-location="loop-hero">Read the tests →</a>
+        <a class="cta-quiet" href="https://github.com/arpitmaheshwari/arpitmaheshwari.github.io/blob/master/lab/loop.js" data-cta="lab-github" data-location="loop-hero">On GitHub</a>
       </div>
       </div>
       <div class="lh-r">
@@ -299,6 +299,10 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
         <span class="lab-tallynote" id="t-note">running</span>
       </div>
       <ul class="lab-tests" id="t-list"><li class="lab-nojs">Enable JavaScript to run the suite, or read the assertions in the source.</li></ul>
+      <details class="lab-tests-more" id="t-more" hidden>
+        <summary class="cta-quiet" id="t-more-n">Show the other assertions</summary>
+        <ul class="lab-tests" id="t-rest"></ul>
+      </details>
     </div>
   </section>
 
@@ -315,8 +319,8 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
       <p class="t-body-muted xi-process-015">Written as functions, the same rules get a failing state &mdash; the record above is those slides, versioned and able to go red. That is the whole argument for this file existing: human-in-the-loop design is a set of decisions, and decisions can be tested.</p>
       <p class="t-body-muted xi-process-017">The patterns these come from are documented, with live demos, in <a class="xi-process-020" href="../patterns/">the pattern library</a> — and each one is running in a production product. This is their logic, extracted and made checkable.</p>
       <div class="lab-links">
-        <a href="./index.html" data-cta="lab-home" data-location="loop-foot">← Everything in The Lab</a>
-        <a href="./eval.html" data-cta="lab-eval" data-location="loop-foot">trustlint — audit an AI answer →</a>
+        <a class="cta-quiet" href="./index.html" data-cta="lab-home" data-location="loop-foot">← Everything in The Lab</a>
+        <a class="cta-quiet" href="./eval.html" data-cta="lab-eval" data-location="loop-foot">trustlint — audit an AI answer →</a>
         <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="loop-foot">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
       </div>
     </div>
@@ -502,9 +506,16 @@ function renderTests() {
   $('t-note').textContent = failed
     ? `${failed} failing — shown below, not hidden`
     : 'assertions passing, this page load';
-  $('t-list').innerHTML = results.map((r) =>
-    `<li class="${r.passed ? '' : 'is-fail'}">${r.name}${r.error ? `<span class="lab-err">${r.error}</span>` : ''}</li>`
-  ).join('');
+  const row = (r) =>
+    `<li class="${r.passed ? '' : 'is-fail'}">${r.name}${r.error ? `<span class="lab-err">${r.error}</span>` : ''}</li>`;
+  // Failures first and always in view; then the first passes, up to six lines. The rest fold.
+  const ordered = results.filter((r) => !r.passed).concat(results.filter((r) => r.passed));
+  const shown = Math.max(6, failed);
+  $('t-list').innerHTML = ordered.slice(0, shown).map(row).join('');
+  const rest = ordered.slice(shown);
+  $('t-rest').innerHTML = rest.map(row).join('');
+  $('t-more').hidden = rest.length === 0;
+  $('t-more-n').textContent = `Show the other ${rest.length} assertions`;
 }
 
 renderDecide();

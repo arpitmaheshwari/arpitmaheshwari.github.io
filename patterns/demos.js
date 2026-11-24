@@ -14,7 +14,7 @@
     ".pd__btn:hover{border-color:var(--accent-text);color:var(--text-body)}" +
     ".pd__btn.on{background:var(--accent-text);color:var(--surface-page);border-color:var(--accent-text)}" +
     ".pd__btn:focus-visible{outline:2px solid var(--accent-text);outline-offset:2px}" +
-    ".pd__go{padding:9px 16px;font-family:var(--ff-mono);font-size:0.625rem;letter-spacing:.02em;color:var(--accent-text);background:transparent;border:1px solid var(--accent-fill);border-radius:5px;cursor:pointer;transition:background .15s,color .15s}" +
+    ".pd__go{padding:9px 16px;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:500;letter-spacing:.02em;color:var(--accent-text);background:transparent;border:1px solid var(--accent-fill);border-radius:var(--radius);cursor:pointer;transition:background .15s,color .15s}" +
     ".pd__go:hover{background:var(--accent-text);color:var(--surface-page)}" +
     ".pd__verdict{padding-top:14px;border-top:1px solid var(--border-strong)}" +
     ".pd__verb{font-family:var(--ff-display);font-style:italic;font-size:1.3125rem;line-height:1.35;color:var(--accent-text);display:block;margin-bottom:5px}" +

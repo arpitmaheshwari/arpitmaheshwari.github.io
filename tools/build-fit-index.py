@@ -50,7 +50,7 @@ EVIDENCE = [
          claim="One design system introduced across six Talon products, then encoded as "
                "installable plugins so it applies without anyone remembering it; the public "
                "version is MIT-licensed and audits its own rendered pixels.",
-         cites=["/lab/#design-system", "/lab/plugin.html", "/case-studies/adtech.html"],
+         cites=["/lab/plugin.html#design-system", "/case-studies/adtech.html"],
          strength="documented"),
     dict(id="data-density", label="Data-dense and analytical interfaces",
          claim="An end-to-end aggregator across 6 systems that cut campaign planning from "

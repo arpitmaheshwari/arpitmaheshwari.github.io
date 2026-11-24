@@ -22,7 +22,7 @@ import cdp
 # .cta is now the component this gate exists for: one door on 38 pages, and the
 # whole point of collapsing 39 asks in six classes into one was that it renders
 # identically everywhere. Measured at 107 instances, one shape — this keeps it so.
-COMPONENTS = ['cta', 'cta-quiet', 'nav-cta', 'nav-links', 'btn-primary']
+COMPONENTS = ['cta', 'cta-quiet', 'nav-cta', 'nav-links']
 # NOT in the list, on purpose: .footer-note and .footer-tools. I added them
 # speculatively on 2026-09-10 and they are WRAPPERS whose computed weight and
 # family are inherited, not declared — so this gate grades the page's cascade
