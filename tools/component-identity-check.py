@@ -53,9 +53,9 @@ document.querySelectorAll('*').forEach(e=>{
   // ([data-ground="bookend"] sets --door-ink light), so .cta-quiet is violet-700 on paper and violet-100 on
   // a dark header: one declaration, two correct inks. Grading both as one group blocked a push the day the
   // Lab's dark heroes first carried a quiet link. Same component on the same ground must still match.
-  const ground = (e.closest('[data-ground]') || {dataset:{}}).dataset.ground || 'paper';
+  const g = e.closest('[data-ground],[data-tint]'); const ground = g ? (g.dataset.ground || 'tint') : 'paper';   // a tinted band re-points the same tokens a bookend does (01-tokens: :root, [data-ground="bookend"], [data-tint]); the one Connect button on a tint (screen/) is copper-dark there by that rule
   hit.forEach(h=>{
-    const mod = cl.find(x => x.startsWith(h + '--'));
+    const mod = cl.filter(x => x.startsWith(h + '--')).sort().join('.');   // every modifier, not the first: .cta--secondary.cta--doc is its own variant
     out.push({comp: (mod || h) + ' on ' + ground, sig: JSON.stringify(sig)});
   });
 });
@@ -99,7 +99,7 @@ def main():
                 seen[r['comp']][r['sig']].append(p)
 
     findings = 0
-    for comp in sorted(k for k in seen if k.split(' on ')[0] in COMPONENTS):
+    for comp in sorted(k for k in seen if k.split(' on ')[0].split('--')[0] in COMPONENTS):   # 2026-11-25: the variants were grouped above and then dropped HERE ('cta--secondary' is not in the list), so no modifier variant had ever been graded
         variants = seen[comp]
         if len(variants) == 1:
             continue
