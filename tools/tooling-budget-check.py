@@ -357,6 +357,7 @@ CEILING = 18_653   # 2026-11-24 +8 (7 + this line): nav-clearance-check re-reads
 CEILING = 18_661   # 2026-11-24 +8 (7 + this line): gatelib._swap — planted() replaces the served file in one step instead of emptying it first. Measured: 80 plant/restore writes gave 50 empty and 85 cut-short reads of site.css to pages loading in other gates; after, 0. This was the 'unstyled load' behind contrast-audit, nav-clearance and grid-containment failing on a different page each run.
 CEILING = 18_667   # 2026-11-24 +6 (5 + this line): the servers the gates load from queue 256 connections, not 5. Measured with six browsers at once: 21 of 648 page loads lost site.css (status 0 in 1ms, connection refused) and rendered unstyled; 0 of 1,296 after. This was the second cause of the one-page false alarms that blocked three pushes.
 CEILING = 18_760   # 2026-11-24 +93: resources-preview-check — the three 'Inside' previews on /resources/ are typed copies of their pages; this proves each line is still, word for word and in order, an item on the page it links to, and that '+ N more' adds up
+CEILING = 18_763   # 2026-11-24 +3 (2 + this line): component-identity-check grades a component per GROUND. One ink token re-pointed on a dark header is one declaration, not drift; it blocked a push as '.cta-quiet, 2 appearances'.
 
 
 def loc(paths):

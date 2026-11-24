@@ -49,9 +49,14 @@ document.querySelectorAll('*').forEach(e=>{
   // ".cta - 2 distinct appearances" on 1 page against 66. It is supposed to differ:
   // that is what a secondary IS. Group by the modifier so each variant is graded
   // against its own instances.
+  // THE GROUND IS PART OF THE IDENTITY (2026-11-24). A component's ink is a token the ground re-points
+  // ([data-ground="bookend"] sets --door-ink light), so .cta-quiet is violet-700 on paper and violet-100 on
+  // a dark header: one declaration, two correct inks. Grading both as one group blocked a push the day the
+  // Lab's dark heroes first carried a quiet link. Same component on the same ground must still match.
+  const ground = (e.closest('[data-ground]') || {dataset:{}}).dataset.ground || 'paper';
   hit.forEach(h=>{
     const mod = cl.find(x => x.startsWith(h + '--'));
-    out.push({comp: mod || h, sig: JSON.stringify(sig)});
+    out.push({comp: (mod || h) + ' on ' + ground, sig: JSON.stringify(sig)});
   });
 });
 return out;})()""" % (json.dumps(COMPONENTS), json.dumps(PROPS))
@@ -94,9 +99,9 @@ def main():
                 seen[r['comp']][r['sig']].append(p)
 
     findings = 0
-    for comp in COMPONENTS:
-        variants = seen.get(comp)
-        if not variants or len(variants) == 1:
+    for comp in sorted(k for k in seen if k.split(' on ')[0] in COMPONENTS):
+        variants = seen[comp]
+        if len(variants) == 1:
             continue
         findings += 1
         print(f'\nDRIFT  .{comp} — {len(variants)} distinct appearances')

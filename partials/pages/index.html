@@ -173,29 +173,38 @@ document.documentElement.classList.add('vg-js');
   <div class="field" aria-hidden="true"></div>
   <div class="wrap in hero-split">
     <div class="hero-copy">
-      <p class="k role-line"><span class="rl-l rl-name">Arpit Maheshwari</span><span class="rl-l">Product Manager &amp; Designer &middot; AI &amp; Data-Intensive Products</span><span class="rl-l">My unit of ownership is the product, not the screen</span></p>
-      <!-- THE HEADLINE IS ARPIT'S OWN PUBLISHED SENTENCE (2026-10-22, his call).
-           Verbatim from patterns/ai-failure-states.html. It is a claim about USERS,
-           never about him, so the 2026-09-26 ruling stands: no claim in the h1, and
-           the level is still inferred from the scope below rather than named.
-           WHY IT REPLACED "The model was right and ignored" (2026-10-20, one commit
-           old, never pushed). Both carry the same insight, but that one is an
-           ANECDOTE about Arpit and this one is a PRINCIPLE that serves the reader in
-           the first second. A hiring manager shipping an AI product recognises their
-           own week in it before they know anything about him; the attribution line
-           then tells them he wrote the pattern. Thought leadership doing its own
-           work — no adjective, nothing about him in the headline at all.
-           THE COUNT: one rule (Act / Review / Ignore) PLUS EIGHT patterns — nine
-           artifacts, eight patterns. An earlier draft of this line said "nine
-           patterns" and was wrong. See CANONICAL-FACTS.md §4. -->
-      <h1 id="h-hero" class="h1-said">Users forgive a model for being wrong; <span class="grad">never for bluffing.</span></h1>
-      <p class="h-attr"><a href="./patterns/ai-failure-states.html" data-cta="pattern-failure-states" data-location="hero">AI Failure States &mdash; one of eight patterns, all in production<span class="visually-hidden"> (in the pattern library)</span>&nbsp;&rarr;</a></p>
-      <p class="h-stake">I owned the product definition and the roadmap across six systems, then shipped the front-end &mdash; <b>2 wks &rarr; 3 hrs</b> on campaign planning, per campaign, vs the 2-week manual baseline.</p>
-      <p class="h-prov">Talon Outdoor &middot; 2019&ndash;2025 &middot; <a class="h-go" href="./case-studies/adtech.html#test" data-cta="adtech-miss" data-location="hero">the call and the fix<span class="visually-hidden"> &mdash; in the AdTech case</span>&nbsp;&rarr;</a></p>
+      <!-- THE HERO IS A FACT SHEET (2026-11-24, Arpit picked "1 · Fact sheet" of two rendered
+           scan-first options, after rejecting two sentence-led ones: "they lack scannability …
+           ignore biases, and use first principal thinking"). The first screen answers, without
+           a sentence to read: what he is (the h1), the proof (four results, each with its
+           client), whether he can be hired (four labelled rows) and what to do (two buttons).
+           This overturns two earlier rulings on purpose and at his instruction: the 2026-10-22
+           headline ("Users forgive a model …") and the 2026-09-26 "no claim in the h1". The
+           sentence stays, quoted, below the buttons. The four numbers are the old client strip's
+           four, so that strip is gone rather than repeated; the ownership sentence lives in
+           "What I owned" in the work band. Every fact was already on this page; the only new
+           words are the four row labels. -->
+      <p class="k role-line"><span class="rl-l rl-name">Arpit Maheshwari</span></p>
+      <h1 id="h-hero" class="h1-said hero-role">Product Manager &amp; Designer</h1>
+      <p class="hero-field">AI &amp; Data-Intensive Products</p>
+      <div class="hero-nums">
+        <div><b>2 wks &rarr; 3 hrs</b><span>Talon Outdoor &middot; campaign planning</span></div>
+        <div><b>60% faster</b><span>PE &amp; VC &middot; deal screening</span></div>
+        <div><b>$1M / yr saved</b><span>PTC</span></div>
+        <div><b>4M+ subscribers</b><span>Telef&oacute;nica O2 &middot; two products</span></div>
+      </div>
+      <dl class="hero-facts">
+        <div><dt>Open to</dt><dd>Senior or Staff &middot; Product Manager or Product Designer</dd></div>
+        <div><dt>Terms</dt><dd>Full-time, contract or fractional</dd></div>
+        <div><dt>Based</dt><dd>Remote from India</dd></div>
+        <div><dt>Experience</dt><dd>16 yrs</dd></div>
+      </dl>
       <div class="ctas">
         <a class="cta cta--linkedin" href="https://www.linkedin.com/in/arpitmaheshwariprofile/" target="_blank" rel="noopener noreferrer" data-cta="linkedin-connect" data-location="hero">Connect<span class="visually-hidden"> on LinkedIn (opens in a new tab)</span></a>
-        <span class="cta-status"><i aria-hidden="true"></i>Open to Senior or Staff Product Manager or Product Designer on AI products &middot; full-time, contract or fractional &middot; remote from India</span>
+        <a class="cta cta--secondary cta--doc" href="/Arpit-Maheshwari-Resume.pdf" download data-cta="resume" data-location="hero">Download résumé</a>
       </div>
+      <p class="hero-said">Users forgive a model for being wrong; never for bluffing.</p>
+      <p class="h-attr"><a href="./patterns/ai-failure-states.html" data-cta="pattern-failure-states" data-location="hero">AI Failure States &mdash; one of eight patterns, all in production<span class="visually-hidden"> (in the pattern library)</span>&nbsp;&rarr;</a></p>
     </div>
     <div class="hero-widget"><figure class="vid-main vid-hero" id="walkthrough">
     <p class="vid-hero-k">The process, on film &mdash; 3:35</p>
@@ -211,21 +220,6 @@ document.documentElement.classList.add('vg-js');
     </div>
     <figcaption class="vid-hero-cap"><a href="./process/" data-cta="process" data-location="hero">The method, written out&nbsp;&rarr;</a></figcaption>
   </figure></div>
-  <!-- THE CLIENTS ARE THE PROOF STRIP. Four engagements, one per column — the
-       same four as act 01. Act 01 says what changed; this says who trusted it.
-       It was a 12.5px run-on line inside .hero-copy, capped at 600px, which left
-       the right half of the band empty and put four proper nouns in fine print.
-       As a row of the hero grid it spans both columns, so the full-width band has
-       a role and each client gets a column instead of a middot.
-       Toyota and Airbus are not new claims: case-studies/ptc.html:416 and
-       book/index.html:465 both carry all five names, and the homepage was the
-       only surface that had dropped two of them. -->
-  <div class="cred-strip">
-    <div><b>Talon Outdoor</b><span>six connected systems &middot; <span class="cred-m">2 wks &#8594; 3 hrs</span> &middot; per campaign</span></div>
-    <div><b>PE &amp; VC &middot; AI-native platforms</b><span>deal screening &middot; <span class="cred-m">60% faster</span> &middot; pre/post rollout</span></div>
-    <div><b>PTC</b><span>NASA, Boeing, Toyota, Airbus &amp; Apple engineers &middot; <span class="cred-m">$1M / yr saved</span></span></div>
-    <div><b>Telef&oacute;nica O2</b><span>two products &middot; <span class="cred-m">4M+ subscribers</span></span></div>
-  </div>
   </div>
 </section>
 
