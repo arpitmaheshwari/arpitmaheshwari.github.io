@@ -65,10 +65,10 @@ REG = [
     #     a defect no text gate can ever see, on the site's most-shared image. It keeps its
     #     own scale and its italic gold clause (hero=1, em=...) rather than being flattened
     #     into the generic card; kicker chosen by Arpit on 2026-08-30 from three renders.
-    ("home-og.png", "PRODUCT MANAGER & DESIGNER \u00b7 AI & DATA-INTENSIVE PRODUCTS",
-     "Users forgive a model for being wrong; never for bluffing.", "",
-     "Arpit Maheshwari \u00b7 arpitmaheshwari.com",
-     {"hero": "1", "em": "never for bluffing."}),
+    #     2026-11-25: the quote card gave way to the homepage's fact sheet, which has its own
+    #     template because four results in a row are nothing the generic card can express
+    #     (Arpit, from three renders: "Share image: B (fact sheet)"). Words live in the template.
+    ("home-og.png", "", "", "", "", {"template": "assets/og-images/_home-og.template.html"}),
     # --- essays. The four essay cards were hand-made and outside this generator until
     #     2026-08-30, when the confidence-scoring essay was rewritten to the attested AdTech
     #     story and its card still carried the retired "How I Design Confidence Scores"

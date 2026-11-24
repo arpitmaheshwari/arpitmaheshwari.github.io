@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- The HOME share card (1200x630): the homepage's fact sheet, not a quote.
+     Arpit picked this from three rendered options on 2026-11-25 ("Share image: B (fact sheet)");
+     the quote card it replaces is in git history (home-og.png before that date).
+
+     Every word here is the homepage hero's own: the h1, the field line, the Experience and Based
+     rows, and the four results with their clients. If the hero changes, change this file to match
+     and re-render; the words are written out here on purpose, so that nothing can be passed in.
+
+     Rendered by tools/generate-og-cards.py (the home-og.png entry names this template). By hand:
+       chrome --headless --window-size=1200,630 --virtual-time-budget=4000 \
+         --screenshot=home-og.png "http://localhost:8000/assets/og-images/_home-og.template.html"
+
+     Same ground, gold, type stack and left edge as _card.template.html, so it sits in the family. -->
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body { position: relative; background: #0A0A0A; font-family: 'IBM Plex Sans', sans-serif; color: #F2EDE4; }
+  .pad { position: absolute; inset: 0; padding: 96px 80px 64px; display: flex; flex-direction: column; }
+  .rule { width: 40px; height: 3px; background: #D4A85E; margin-bottom: 20px; }
+  .kicker { font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 500; letter-spacing: .02em; color: #D4A85E; }
+  .title { font-family: Newsreader, Georgia, serif; font-weight: 300; letter-spacing: -.01em; font-size: 68px; line-height: 1.1; margin-top: 24px; white-space: nowrap; color: #F2EDE4; }
+  .dom { font-size: 25px; margin-top: 12px; color: rgba(242,237,228,.62); }
+  .nums { display: grid; grid-template-columns: repeat(4, auto); justify-content: space-between; column-gap: 32px; margin-top: 64px; padding-top: 32px; border-top: 1px solid rgba(242,237,228,.22); }
+  .nums b { display: block; font-family: Newsreader, Georgia, serif; font-weight: 300; font-size: 35px; line-height: 1.15; color: #D4A85E; white-space: nowrap; }
+  .nums span { display: block; font-size: 20px; margin-top: 8px; color: rgba(242,237,228,.62); }
+  .byline { font-size: 19px; color: rgba(242,237,228,.62); margin-top: auto; }
+</style>
+</head>
+<body>
+  <div class="pad">
+    <div class="rule"></div>
+    <p class="kicker">ARPIT MAHESHWARI</p>
+    <p class="title">Product Manager &amp; Designer</p>
+    <p class="dom">AI &amp; Data-Intensive Products &middot; 16 yrs &middot; Remote from India</p>
+    <div class="nums">
+      <div><b>2 wks &rarr; 3 hrs</b><span>Talon Outdoor</span></div>
+      <div><b>60% faster</b><span>PE &amp; VC</span></div>
+      <div><b>$1M / yr saved</b><span>PTC</span></div>
+      <div><b>4M+ subscribers</b><span>Telef&oacute;nica O2</span></div>
+    </div>
+    <p class="byline">arpitmaheshwari.com</p>
+  </div>
+</body>
+</html>
