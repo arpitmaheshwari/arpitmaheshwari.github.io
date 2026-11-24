@@ -1789,7 +1789,7 @@ body.p-home .hero .hero-widget{align-self:end;padding-bottom:4px}
    the film still stacks, but capped so it stays the small object beside the
    claim rather than a second hero. */
 @media (max-width:900px){body.p-home .hero .wrap.hero-split{grid-template-columns:minmax(0,1fr);column-gap:0}
-body.p-home .hero .hero-widget{align-self:auto;padding-bottom:0;margin-top:40px;max-width:520px}}
+body.p-home .hero .hero-widget{align-self:auto;padding-bottom:0;margin-top:40px}}   /* no width cap since 2026-11-25: the 520px cap was there because the film's poster repeated the h1; the fact-sheet hero ended that, and the cap left the stacked film with an empty strip beside it (14% of the column at 640, 24% at 768, 37% at 900). It now runs the column, on the same edges as the fact rows above it. */
 .hd-tag{font-family:var(--mono);font-size:0.75rem;letter-spacing:.02em;color:var(--acc-copper);margin-bottom:12px}
 .hd-card{background:var(--surface-card,var(--surface-card));border:1px solid var(--border-strong,var(--border-hairline));border-radius:var(--radius-2);padding:24px;box-shadow:var(--elev-2);position:relative;overflow:hidden}
 .hd-diag-q{font-family:var(--serif);font-weight:300;font-size:1.3125rem;line-height:1.3;color:var(--text-body);margin:0 0 16px}
@@ -7118,8 +7118,8 @@ body.p-resources a.xi-resources-008{display:grid;gap:20px}
 body.p-resources .rx-main > p:last-child{margin-bottom:0}
 body.p-resources .card-p32 p.rx-pv-h{margin:0 0 8px;max-width:none;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:500;line-height:1.4;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint)}
 body.p-resources .rx-list{margin:0;padding:0;list-style:none;font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:400;line-height:1.5;color:var(--text-body)}
-body.p-resources .rx-list li{padding:12px 0;border-top:1px solid var(--border-strong)}
-body.p-resources .card-p32 p.rx-more{margin:0;max-width:none;padding:12px 0 0;border-top:1px solid var(--border-strong);font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:600;line-height:1.5;color:var(--accent-text)}
+body.p-resources .rx-list li{padding:0 0 12px}   /* no rules inside a preview since 2026-11-25: one above every item plus one above "+ N more" put five lines in 300px on each card (rule-density). The "Inside" label heads the list; the card's own bottom rule is the only line left. */
+body.p-resources .card-p32 p.rx-more{margin:0;max-width:none;padding:0;font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:600;line-height:1.5;color:var(--accent-text)}
 @media (min-width:900px){
 body.p-resources a.xi-resources-008{grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:64px;align-items:start}
 }

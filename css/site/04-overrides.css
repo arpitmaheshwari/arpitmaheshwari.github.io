@@ -2766,8 +2766,8 @@ body.p-resources a.xi-resources-008{display:grid;gap:20px}
 body.p-resources .rx-main > p:last-child{margin-bottom:0}
 body.p-resources .card-p32 p.rx-pv-h{margin:0 0 8px;max-width:none;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:500;line-height:1.4;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint)}
 body.p-resources .rx-list{margin:0;padding:0;list-style:none;font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:400;line-height:1.5;color:var(--text-body)}
-body.p-resources .rx-list li{padding:12px 0;border-top:1px solid var(--border-strong)}
-body.p-resources .card-p32 p.rx-more{margin:0;max-width:none;padding:12px 0 0;border-top:1px solid var(--border-strong);font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:600;line-height:1.5;color:var(--accent-text)}
+body.p-resources .rx-list li{padding:0 0 12px}   /* no rules inside a preview since 2026-11-25: one above every item plus one above "+ N more" put five lines in 300px on each card (rule-density). The "Inside" label heads the list; the card's own bottom rule is the only line left. */
+body.p-resources .card-p32 p.rx-more{margin:0;max-width:none;padding:0;font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:600;line-height:1.5;color:var(--accent-text)}
 @media (min-width:900px){
 body.p-resources a.xi-resources-008{grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:64px;align-items:start}
 }
