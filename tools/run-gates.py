@@ -95,8 +95,8 @@ def start_server(port):
         return base, None
     except (urllib.error.URLError, OSError):
         pass
-    proc = subprocess.Popen([sys.executable, '-m', 'http.server', str(port),
-                             '--directory', ROOT],
+    # devserver.py, not `-m http.server`: the stock server refuses connections past a queue of 5
+    proc = subprocess.Popen([sys.executable, os.path.join(ROOT, 'tools', 'devserver.py'), str(port), ROOT],
                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     if not wait_for(base):
         proc.terminate()

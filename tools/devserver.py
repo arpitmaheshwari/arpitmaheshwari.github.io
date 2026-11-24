@@ -29,6 +29,10 @@ if __name__ == '__main__':
     os.chdir(root)
     print(f"serving {root} on :{port} with no-store (nothing here will be cached)")
     class QuietServer(ThreadingHTTPServer):
+        # socketserver queues 5 waiting connections and the OS refuses the rest. Four gates
+        # loading pages at once overflow that: site.css came back status 0 in 1ms on about
+        # 1 load in 30, so the page rendered unstyled and a gate reported it as a defect.
+        request_queue_size = 256
         # Same treatment as cdp.ensure_server: a browser that hangs up mid-response
         # is not a server error, and its traceback in a gate's output teaches people
         # to distrust green. Only connection teardown is swallowed; everything else

@@ -342,6 +342,7 @@ def ensure_server(port=8000, root=None):
         anything else still prints. Silencing everything would make a genuine
         server bug invisible — the same mistake as a check that cannot go red.
         """
+        request_queue_size = 256   # default 5 refuses connections under parallel gates; see devserver.py
         def handle_error(self, request, client_address):
             import sys as _sys
             exc = _sys.exc_info()[1]
