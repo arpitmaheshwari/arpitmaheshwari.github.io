@@ -81,7 +81,7 @@ if python3 -c 'import urllib.request,sys; urllib.request.urlopen("http://localho
   echo "pre-push: reusing the server already on :8000"
 else
   PORT=8000
-  python3 -m http.server "$PORT" --directory . >/dev/null 2>&1 &
+  python3 tools/devserver.py "$PORT" . >/dev/null 2>&1 &   # NOT python -m http.server: its queue of 5 dropped 10 of 60 requests at 12 at once (devserver: 0 of 550 at 110) and blocked two pushes on 2026-11-24 as "font ERR_CONNECTION_RESET"
   SRV=$!
   # Wait for it, rather than racing the first gate.
   for _ in 1 2 3 4 5 6 7 8 9 10; do
