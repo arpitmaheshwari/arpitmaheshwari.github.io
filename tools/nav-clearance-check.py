@@ -17,7 +17,7 @@ Exit: 0 clean / 1 page-width(s) under the bar / 2 calibration failed.
 CANNOT SEE: content that becomes the first thing only after interaction (an opened drawer),
 the book (its own layout, no fixed nav), or whether the breath LOOKS right — only that it exists.
 """
-import sys, os
+import sys, os, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cdp
 from gatelib import pages
@@ -40,7 +40,14 @@ PLANT = "(()=>{const s=document.createElement('style');s.textContent='.page-head
 
 def measure(br, rel):
     br.navigate(f'{BASE}/{rel}', settle=1.0)
-    return br.eval_json(JS)
+    d = br.eval_json(JS)
+    # A real defect persists; a page still settling on a loaded machine does not (2026-11-24:
+    # two full runs flagged three different pages, each clean when run alone). Re-read twice.
+    for _ in range(2):
+        if d.get('nav') is None or d.get('first') is None or d['first'] - d['nav'] >= FLOOR:
+            break
+        time.sleep(1.5); d = br.eval_json(JS)
+    return d
 
 
 def main():
