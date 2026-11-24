@@ -32,7 +32,7 @@ EXEMPT = {
     '.rcpt-rows,.rcpt-r,.rcpt-r-tight,.rcpt-box': 'the receipt is a ledger the reader opened on purpose (2026-08); the case pages carry the same ledger inline',
     '.rule-list,.lint-findings,.lint-stats': "trustlint's rules and findings ARE lists; the rows are the content",
     '.fr': "the Candidate Facts card is a nutrition label by design (2026-08)",
-    '.td-block,.td-scroll': 'the teardown table is measurements in rows',
+    '.td-block,.td-scroll,.td-ledger,.td-fig': 'the teardown ledger is measurements in rows',
     '.lab-fn,.vg,.lh-inst,.dsg-card,.recon,.rxp-cat,.rxo-panel,.hero-demo,.hd-card,.pd,.vid-frame,.card-wire,.artalt,.thesis,.card-gold,.fig-paper,.bp,.boarding,[class*="-chrome"],[class*="pl"][class*="-bar"]': 'an instrument or reconstruction draws its own internal lines',
     'pre,code,button,input,select,textarea,.cta,.rcpt-btn,nav,#nav,footer': 'controls and chrome',
 }
