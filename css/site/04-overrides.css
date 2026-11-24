@@ -2919,4 +2919,26 @@ body.p-home .hero .hero-nums b{font-size:1.25rem}
    rhythm rule, so the same 64px declared on .scope itself rendered as 0 and the rule touched the last
    career caption. The strip's own rules are beside .scope above. --- */
 body.p-home .who .wrap.who-scope{display:block;margin-top:64px;padding-top:32px;border-top:1px solid var(--border-strong)}
+
+/* --- THE PERSON, SET TO BE SCANNED (2026-11-25; Arpit: "use first principal thinking and improve each and
+   every section on the homepage"). Four labelled rows under the heading, the hero fact sheet's pattern on the
+   light band: fixed label column so every value starts on one line; each row declares its own ink. --- */
+body.p-home .who .who-rows{margin:24px 0 0;padding:0;display:grid;row-gap:12px}   /* no rules between rows: with the chapter rule, the career strip and the owned strip this band already has three, and five more made it lined paper (rule-density-check: 8 in one band) */
+body.p-home .who .who-rows > div{display:grid;grid-template-columns:96px minmax(0,1fr);column-gap:16px;align-items:baseline}   /* baseline on purpose, as in .hero-facts: a 12px label beside a 16px value reads as one line only when their baselines meet; the label never wraps */
+body.p-home .who .who-rows dt{margin:0;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;line-height:1.5;color:var(--text-faint);white-space:nowrap}
+body.p-home .who .who-rows dd{margin:0;font-family:var(--ff-sans);font-size:1rem;font-weight:500;line-height:1.5;color:var(--text-body)}
+body.p-home .who .who-rows dd a{color:var(--link-ink);text-decoration:underline;text-underline-offset:3px}
+/* --- THE WORK BAND, SET TO BE SCANNED (2026-11-25, same instruction). .work-notes: the old intro paragraph as
+   four labelled notes, label over value, four across / two / one. .bd-l: a card's story as two labelled lines
+   (the problem, the move) inside the same .bcard-d paragraph, so the cards' shared row grid is untouched. --- */
+body.p-home .work .work-notes{margin:24px 0 32px;padding:16px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:32px;row-gap:16px;border-top:1px solid var(--border-strong)}
+body.p-home .work .work-notes > div{display:block}
+body.p-home .work .work-notes dt{margin:0 0 4px;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;line-height:1.5;color:var(--text-faint)}
+body.p-home .work .work-notes dd{margin:0;font-family:var(--ff-sans);font-size:0.9375rem;line-height:1.5;color:var(--text-body)}
+body.p-home .work .work-notes dd a{color:var(--link-ink);text-decoration:underline;text-underline-offset:3px}
+body.p-home .bcard-d .bd-l{display:block}
+body.p-home .bcard-d .bd-l + .bd-l{margin-top:8px}
+body.p-home .bcard-d .bd-l b{display:block;font-family:var(--ff-mono),ui-monospace,monospace;font-size:var(--fs-micro);font-weight:500;letter-spacing:.08em;text-transform:uppercase;line-height:1.5;color:var(--text-faint)}
+@media (max-width:900px){body.p-home .work .work-notes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){body.p-home .work .work-notes{grid-template-columns:minmax(0,1fr)}}
 }
