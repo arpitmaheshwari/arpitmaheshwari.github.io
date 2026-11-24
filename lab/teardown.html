@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How This Site Is Built — A Teardown — Arpit Maheshwari</title>
-<meta name="description" content="How this site is built, measured rather than described: no build step, one enforced type scale, and an honest list of the gaps.">
+<meta name="description" content="How this site is built, measured rather than described: nothing runs at deploy, one enforced type scale, and an honest list of the gaps.">
 <meta name="author" content="Arpit Maheshwari">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="canonical" href="https://arpitmaheshwari.com/lab/teardown.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How This Site Is Built — A Teardown">
-<meta property="og:description" content="No build step, no framework on the classic site, two third-party services, one type scale — and an honest list of what is still missing.">
+<meta property="og:description" content="Nothing runs at deploy, no framework on the classic site, two third-party services, one type scale — and an honest list of what is still missing.">
 <meta property="og:url" content="https://arpitmaheshwari.com/lab/teardown.html">
 <meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/lab-og.png">
 <meta property="og:image:alt" content="How this site is built — a teardown">
@@ -20,7 +20,7 @@
 <meta property="og:locale" content="en_IN" />
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="How This Site Is Built — A Teardown">
-<meta name="twitter:description" content="No build step, no framework on the classic site, two third-party services — and what is still missing.">
+<meta name="twitter:description" content="Nothing runs at deploy, no framework on the classic site, two third-party services — and what is still missing.">
 <meta name="twitter:image" content="https://arpitmaheshwari.com/assets/og-images/lab-og.png">
 <meta name="twitter:image:alt" content="How this site is built — a teardown">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
@@ -96,7 +96,7 @@
       <h2 class="section-title" id="the-whole-thing-in-numbers">The whole thing, in numbers</h2>
       <dl class="td-ledger">
         <div class="td-fig"><dt>Hand-written HTML pages</dt><dd class="td-val"><b>41</b></dd><dd class="td-how"><span class="td-inline">find . -name "*.html"</span>, excluding the book, print sources and the two OG-card templates &mdash; those render to PNG and no visitor can reach them. This read 43 until 2026-09-03, when the templates were still counted as pages.</dd></div>
-        <div class="td-fig"><dt>Stylesheet, entire site</dt><dd class="td-val"><b><span data-fact="stylesheet_kb">652.0</span> KB</b> on disk &middot; <b><span data-fact="stylesheet_gzip_kb">171.5</span> KB</b> gzipped</dd><dd class="td-how"><span class="td-inline">cat fonts.css amber.css site.css | wc -c</span> &rarr; <span data-fact="stylesheet_bytes">667,650</span> bytes, unminified, across the three sheets every content page links. Gzipped they are 170,936 bytes over the wire. Counted all three after 2026-09-03, when this row measured styles.css alone and still called it &ldquo;entire site&rdquo;. It understated the CSS by 82%, and never moved when ember.css changed. book/book.css (71,850 bytes) is excluded: no classic page loads it. Unminified because there is no build step &mdash; gzip is what a reader pays, the disk number is what the choice costs me. The rendered-coverage instrument that earlier passes waited for now exists (tools/css-coverage.py): a rule is called dead only when Chrome&rsquo;s rule-usage tracking, a DOM census of every page, and a JS-token sweep all agree. And the instrument is calibrated with a planted dead rule each run. Its first pass removed 115 rules from the ember sheet with zero geometry change on the sampled pages. This classic sheet keeps its dead weight by design: the coverage harness can only exercise the active theme, so deleting here would be a guess again.</dd></div>
+        <div class="td-fig"><dt>Stylesheet, entire site</dt><dd class="td-val"><b><span data-fact="stylesheet_kb">652.0</span> KB</b> on disk &middot; <b><span data-fact="stylesheet_gzip_kb">171.5</span> KB</b> gzipped</dd><dd class="td-how"><span class="td-inline">cat fonts.css amber.css site.css | wc -c</span> &rarr; <span data-fact="stylesheet_bytes">667,650</span> bytes, unminified, across the three sheets every content page links. Gzipped they are 170,936 bytes over the wire. Counted all three after 2026-09-03, when this row measured styles.css alone and still called it &ldquo;entire site&rdquo;. It understated the CSS by 82%, and never moved when ember.css changed. book/book.css (71,850 bytes) is excluded: no classic page loads it. Unminified because nothing in the pipeline minifies &mdash; gzip is what a reader pays, the disk number is what the choice costs me. The rendered-coverage instrument that earlier passes waited for now exists (tools/css-coverage.py): a rule is called dead only when Chrome&rsquo;s rule-usage tracking, a DOM census of every page, and a JS-token sweep all agree. And the instrument is calibrated with a planted dead rule each run. Its first pass removed 115 rules from the ember sheet with zero geometry change on the sampled pages. This classic sheet keeps its dead weight by design: the coverage harness can only exercise the active theme, so deleting here would be a guess again.</dd></div>
         <div class="td-fig"><dt>Renders without JavaScript</dt><dd class="td-val"><b>100%</b> on the reading pages &middot; <b>68%</b> on /fit/</dd><dd class="td-how">Scripts disabled via CDP and <span class="td-inline">&lt;main&gt;</span> word counts diffed across nine pages on 2026-09-03. Identical with and without: the homepage (2,782 words), the AdTech case (3,417), /patterns/, /writing/, /screen/ and /resources/. Three are not. /fit/ keeps 305 of 447 &mdash; the matcher is client-side, and that page says so in its own copy. /book/ keeps 4,483 of 4,540 and /lab/ 1,114 of 1,145, both losing only scroll-revealed labels. This row read &ldquo;100% of the copy&rdquo; until 2026-09-03, generalised from two pages to the whole site. A <span class="td-inline">noscript</span> fallback restores the scroll-reveal elements. Increasingly relevant: in a 72-portfolio field review, nine sites served an empty shell to any non-browser reader &mdash; this one reads complete to a text-only or AI screener.</dd></div>
         <div class="td-fig"><dt>Runtime dependencies, classic site</dt><dd class="td-val"><b>0</b></dd><dd class="td-how">No root <span class="td-inline">package.json</span>, no <span class="td-inline">node_modules</span>, no bundler config</dd></div>
         <div class="td-fig"><dt>Third-party domains serving code</dt><dd class="td-val"><b>2</b></dd><dd class="td-how">Google Analytics and Microsoft Clarity (heatmaps, added 2026-08-15; honours Do-Not-Track). Attention measurement (scroll depth, section dwell) is first-party: <span class="td-inline">attention.js</span>, 178 lines, no network of its own. Both load async and gate nothing on first paint. Google Fonts left on 2026-08-14 when the nine font files then in use moved to this origin; the dyslexia typeface added two more on 2026-08-28.</dd></div>
@@ -104,7 +104,7 @@
         <div class="td-fig"><dt>Its imports, requires, fetches</dt><dd class="td-val"><b>0</b></dd><dd class="td-how"><span class="td-inline"><code>grep -nE "import |require\(|fetch\("</code></span> → no matches</dd></div>
         <div class="td-fig"><dt>Open Graph share cards</dt><dd class="td-val"><b>33</b></dd><dd class="td-how">All exactly 1200×630, verified with <span class="td-inline">sips -g pixelWidth</span></dd></div>
         <div class="td-fig"><dt>Pages carrying a skip link</dt><dd class="td-val"><b>37</b></dd><dd class="td-how"><span class="td-inline">grep -rl skip-link</span></dd></div>
-        <div class="td-fig"><dt>Build steps between edit and deploy</dt><dd class="td-val"><b>0</b></dd><dd class="td-how">Commit to <span class="td-inline">master</span>; GitHub Pages serves the files as written</dd></div>
+        <div class="td-fig"><dt>Steps that run at deploy</dt><dd class="td-val"><b>0</b></dd><dd class="td-how">Commit to <span class="td-inline">master</span>; GitHub Pages serves the files as committed. Five standard-library scripts run on my machine before the commit</dd></div>
       </dl>
     </div>
   </section>
@@ -116,11 +116,11 @@
       <h2 class="section-title" id="five-choices-and-what-each-one-cost">Five choices, and what each one cost</h2>
 
       <div class="td-block xi-case-studies-o2-028" data-tint>
-        <div class="td-ask"><p class="td-num">01</p><h3>No build step, and therefore no build to break</h3></div>
+        <div class="td-ask"><p class="td-num">01</p><h3>Nothing runs at deploy, and nothing needs installing</h3></div>
         <div class="td-ans">
         <div class="lab-body" data-tint>
-          <p>There is no bundler, no transpiler, no build pipeline. A file I edit is the file the browser receives. The benefit is that this site cannot rot: no dependency will publish a breaking major, and nothing in it needs a lockfile to reproduce in three years.</p>
-          <p>One qualification, added when the nav and footer became shared: they now live in <span class="td-inline">partials/</span> and a script stamps them into every page. Nothing runs at deploy &mdash; GitHub Pages still serves the committed file, and the file in the repo is the file you receive. But there is a generator between editing a partial and committing, and cache versions are now content hashes it computes rather than numbers I bump by hand. Before that, the nav existed in 37 copies which had all quietly diverged.</p>
+          <p>There is no bundler, no transpiler and nothing to install. Nothing runs at deploy: GitHub Pages serves the files exactly as they are committed. The benefit is that this site cannot rot: no dependency will publish a breaking major, and nothing in it needs a lockfile to reproduce in three years.</p>
+          <p>What does run, runs on my machine before a commit. Five small scripts join the five stylesheet source files into <span class="td-inline">site.css</span>, render each page from its source into the shared layout, stamp the nav, the footer and the cache versions into every page, and refresh the sitemap dates and the Fit check&rsquo;s index. All five use Python&rsquo;s standard library and nothing else, so there is still nothing to install. The file in the repo is the file you receive; it is no longer always the file I typed. Cache versions are content hashes the scripts compute rather than numbers I bump by hand. Before that, the nav existed in 37 copies which had all quietly diverged.</p>
           <p class="td-cost"><strong>What it costs:</strong> no tree-shaking and no automatic minification. On a site of this size that is the right trade. On a product it would not be, and I would not defend it there.</p>
         </div>
         </div>
@@ -301,7 +301,7 @@ document.addEventListener('click', (e) => {
   if (cta && typeof gtag === 'function') gtag('event', 'cta_click', { cta_type: cta.dataset.cta, location: cta.dataset.location || 'unknown', href: cta.getAttribute('href') || '' });
 });
 </script>
-<script defer src="../ia-rail.js?v=efbbf77f" data-cfasync="false"></script>
+<script defer src="../ia-rail.js?v=6eb17b3f" data-cfasync="false"></script>
 <script defer src="../attention.js?v=cc700788" data-cfasync="false"></script>
 <script defer src="../clarity.js?v=9e4df576" data-cfasync="false"></script>
 </body>

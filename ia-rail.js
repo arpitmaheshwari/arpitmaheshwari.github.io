@@ -24,14 +24,21 @@
     });
     return ol;
   }
-  // 1 · the hero card gets the section count and the list
-  // the card states the count; it lists the sections only when it has nothing else to say (writing, resources),
-  // because the article rail below already carries the list
+  // 1 · the hero card states the page's facts and the section count. It never repeats the list when the
+  // article rail below carries it (2026-11-24, Arpit: "Fix the glossary duplicate": seven writing and
+  // resources pages showed the same list twice, one above the other). A card with no facts of its own takes
+  // the hero's own kind-and-date line, moved, not copied. Only the Lab's side card lists sections, because
+  // the Lab has no rail.
   var card = document.querySelector('.page-head .ph-card, .lab-hero .lh-side');
   if (card) {
+    var isLab = card.classList.contains('lh-side');
+    if (!isLab && !card.querySelector('.lbl-cap')) {
+      var fact = document.querySelector('.page-head .ph-main > h1 + p');
+      if (fact) card.insertBefore(fact, card.firstChild);
+    }
     var k = document.createElement('p'); k.className = 'ia-k'; k.textContent = 'On this page · ' + heads.length + ' sections';
     card.appendChild(k);
-    if (!card.querySelector('.lbl-cap') || card.classList.contains('lh-side')) card.appendChild(list());
+    if (isLab || !main.querySelector(':scope > .xi-process-004')) card.appendChild(list());
   }
   // 2 · the article rail (article family only; the Lab's body uses its own sticky headings)
   var col = main.querySelector(':scope > .xi-process-004');

@@ -71,8 +71,8 @@ EVIDENCE = [
          claim="Two O2 UK products serving 4M+ users, with 2.6M Priority sign-ups in year one.",
          cites=["/case-studies/o2.html"], strength="documented"),
     dict(id="ships-code", label="Designing and shipping the front-end",
-         claim="The interface is shipped as front-end code, not handed over: this site has no "
-               "build step, and the lab holds runnable modules with tests.",
+         claim="The interface is shipped as front-end code, not handed over: this site runs nothing at "
+               "deploy and installs no dependency, and the lab holds runnable modules with tests.",
          cites=["/lab/teardown.html", "/lab/loop.html", "/lab/eval.html"],
          strength="documented"),
     dict(id="leadership", label="Leading and building design teams",
