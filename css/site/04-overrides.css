@@ -2793,4 +2793,40 @@ input[type="range"]{min-height:24px}
   .rs-role{grid-template-columns:168px minmax(0,1fr) minmax(0,62ch);grid-template-areas:'d w b';grid-template-rows:auto;gap:48px}
   .rs-results{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
+/* --- /screen/ two columns (Arpit, 2026-11-24: 'B, two columns'). Twelve identical cards read as one grey wall;
+   the question now sits left, the answer right, a hairline between. Each answer's first sentence is its short
+   answer (.scr-lead); 04 is a list of its six terms. Stacks below 1024. --- */
+body.p-screen .scr-wrap.scr-wrap--split{max-width:1120px;padding-left:24px;padding-right:24px}
+body.p-screen .scr-wrap--split .scr-head{margin:0 0 48px}
+body.p-screen .scr-wrap--split .scr-head .scr-stand{margin:0}
+body.p-screen .scr-wrap--split .scr-head .hand-note{margin:16px 0 0}
+body.p-screen .scr-wrap--split .scr-q{background:none;border:0;border-top:1px solid var(--border-strong);border-radius:0;padding:32px 0;margin:0;scroll-margin-top:96px}
+body.p-screen .scr-wrap--split .scr-q h2{margin:0 0 16px}
+body.p-screen .scr-wrap--split .scr-q p.scr-lead{font-family:var(--ff-display);font-weight:400;font-style:normal;font-size:var(--fs-lead);line-height:1.35;letter-spacing:-0.005em;color:var(--text-body);margin:0 0 12px}
+body.p-screen .scr-wrap--split .scr-terms{margin:0 0 16px;display:grid;gap:0}
+body.p-screen .scr-wrap--split .scr-terms>div{padding:12px 0;border-top:1px solid var(--border-strong)}
+body.p-screen .scr-wrap--split .scr-terms dt{font-family:var(--ff-sans);font-size:var(--fs-body);line-height:1.5;font-weight:600;color:var(--text-body);margin:0 0 4px}
+body.p-screen .scr-wrap--split .scr-terms dt a{color:var(--accent-text);text-decoration:none}
+body.p-screen .scr-wrap--split .scr-terms dt a:hover{text-decoration:underline;text-underline-offset:3px}
+body.p-screen .scr-wrap--split .scr-terms dd{font-family:var(--ff-sans);font-size:var(--fs-body);line-height:1.7;font-weight:400;color:var(--text-muted);margin:0}
+body.p-screen .scr-wrap--split .scr-q p.scr-receipt{margin:16px 0 0;padding-top:12px;border-top:1px solid var(--border-strong)}
+@media (min-width:1024px){
+body.p-screen .scr-wrap--split .scr-head,body.p-screen .scr-wrap--split .scr-q{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);column-gap:64px}
+body.p-screen .scr-wrap--split .scr-head>.scr-kicker,body.p-screen .scr-wrap--split .scr-head>.scr-title{grid-column:1/-1}
+body.p-screen .scr-wrap--split .scr-head>.scr-stand{grid-column:2;grid-row:3;max-width:none}
+body.p-screen .scr-wrap--split .scr-head>.hand-note{grid-column:1;grid-row:3;align-self:end;margin:0}
+body.p-screen .scr-wrap--split .scr-ask{position:sticky;top:96px;align-self:start}
+body.p-screen .scr-wrap--split .scr-q h2{margin:0}
+body.p-screen .scr-wrap--split .scr-close,body.p-screen .scr-wrap--split .scr-print-note{margin-left:calc((100% - 64px)*4/11 + 64px)}
+}
+@media print{
+body.p-screen .scr-wrap--split .scr-head,body.p-screen .scr-wrap--split .scr-q{display:block}
+body.p-screen .scr-wrap--split .scr-ask{position:static}
+body.p-screen .scr-wrap--split .scr-q h2{margin:0 0 12px}
+body.p-screen .scr-wrap--split .scr-close,body.p-screen .scr-wrap--split .scr-print-note{margin-left:0}
+body.p-screen .scr-wrap--split .scr-terms dt,body.p-screen .scr-wrap--split .scr-q p.scr-lead{color:#111}
+body.p-screen .scr-wrap--split .scr-terms dd{color:#111}
+body.p-screen .scr-wrap--split .scr-terms dt a{color:#8a6320}
+body.p-screen .scr-wrap--split .scr-terms>div,body.p-screen .scr-wrap--split .scr-q p.scr-receipt{border-color:#ddd}
+}
 }
