@@ -1684,6 +1684,18 @@ footer .footer-tools{display:flex;align-items:center;gap:20px;flex:0 0 auto}
    the flex row already constrains it. text-wrap:pretty tells the browser to
    avoid a short last line if the copy ever grows past the row. */
 footer .footer-note{white-space:normal;max-width:none;text-wrap:pretty}
+/* 2026-11-24 — THE FOOTER DIRECTORY (Arpit: "B, screen in menu"). A full-width row ABOVE the
+   words|tools row he composed on 2026-09; that row is untouched. body>footer, not footer: a
+   quote or article footer elsewhere must not start wrapping. Every property the directory
+   needs is declared here — the footer itself is 12px mono in --text-faint, and a link list
+   that inherited that would be unreadable. */
+body>footer{flex-wrap:wrap}
+.footer-dir{flex:0 0 100%;width:100%;align-self:stretch;box-sizing:border-box;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;padding-bottom:32px;margin-bottom:8px;border-bottom:1px solid var(--border-strong)}
+.footer-dir-label{font-family:var(--ff-mono);font-size:0.75rem;line-height:1.4;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin:0 0 12px}
+.footer-dir ul{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.footer-dir a{display:block;padding:12px 0;font-family:var(--ff-sans);font-size:0.9375rem;line-height:1.4;font-weight:400;letter-spacing:0;color:var(--text-body);text-decoration:none}
+.footer-dir a:hover{color:var(--accent-text)}
+@media (max-width:767px){.footer-dir{grid-template-columns:1fr;gap:24px}}
 @media (max-width:640px){footer .footer-tools{gap:16px}}
 /* 2 · THE PATTERNS WIDGET IS INSET AT 768. The slot is the full 688px column at
       x=40 like everything else — my first reading blamed the slot, and the slot
@@ -2131,6 +2143,21 @@ body.p-home .hero .cred-strip > div > b { color:var(--neutral-50); }
    compute two values across 35 pages (component-identity-check) */
 #nav .nav-links{letter-spacing:0}
 #nav .nav-links a:not(.cta){letter-spacing:.02em}
+/* Top bar, 2026-11-24 (Arpit: "Yes, build it"). Three strong seats (Work, Technical
+   screen, Resume), a hairline, then three quiet seats (Patterns, The Lab, Writing).
+   A quiet seat turns accent on hover and when it is the current page, as in the
+   approved mock-up (prototypes/ia-topbar-2026-11-24/ab). In the drawer (<=1100) the hairline becomes a
+   labelled group heading. */
+#nav .nav-links li.nav-grp{display:none}
+@media (min-width:1101px){
+#nav .nav-links li.nav-rule{display:block;align-self:stretch;width:1px;background:var(--border-strong);margin:4px 0}
+#nav .nav-links li.nav-quiet a:not(.cta){font-weight:400;color:var(--text-faint)}
+#nav .nav-links li.nav-quiet a:not(.cta):hover,#nav .nav-links li.nav-quiet a[aria-current]{color:var(--accent-text)}
+}
+@media (max-width:1100px){
+#nav .nav-links li.nav-rule{display:none}
+#nav .nav-links li.nav-grp{display:block;padding:16px 16px 0;border-top:1px solid var(--border-strong);font-family:var(--ff-mono);font-size:0.75rem;line-height:1.4;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint)}
+}
 /* a control edge owes 3:1: the lab door's 58% link-ink border read 2.47:1 */
 .lab-links a:not(.cta){border-color:var(--link-ink)}
 /* the teardown's measured table held min-width:520px through the phone restack (overflow-sweep

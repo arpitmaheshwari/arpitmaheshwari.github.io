@@ -103,7 +103,7 @@ def current_for(rel):
     if rel == 'index.html':
         return 'index.html'
     top = rel.split('/')[0]
-    if top in ('lab', 'patterns', 'writing'):
+    if top in ('lab', 'patterns', 'writing', 'screen'):
         return top + '/'
     if top == 'case-studies':
         return '#featured-case-studies'
