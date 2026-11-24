@@ -7197,4 +7197,15 @@ a.fq-ans:hover{text-decoration:underline;text-underline-offset:3px}
 /* glossary: a term that has its own pattern page links to it (Arpit, 2026-11-24) */
 a.gl-term{color:var(--accent-text);font-weight:inherit;text-decoration:none}
 a.gl-term:hover{text-decoration:underline;text-underline-offset:3px}
+/* --- /resources/ (2026-11-24): each resource shows its first three real lines beside its
+   description, so the index proves what it offers. Stacks below 900. --- */
+body.p-resources a.xi-resources-008{display:grid;gap:20px}
+body.p-resources .rx-main > p:last-child{margin-bottom:0}
+body.p-resources .card-p32 p.rx-pv-h{margin:0 0 8px;max-width:none;font-family:var(--ff-mono);font-size:var(--fs-eyebrow);font-weight:500;line-height:1.4;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint)}
+body.p-resources .rx-list{margin:0;padding:0;list-style:none;font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:400;line-height:1.5;color:var(--text-body)}
+body.p-resources .rx-list li{padding:10px 0;border-top:1px solid var(--border-strong)}
+body.p-resources .card-p32 p.rx-more{margin:0;max-width:none;padding:10px 0 0;border-top:1px solid var(--border-strong);font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:600;line-height:1.5;color:var(--accent-text)}
+@media (min-width:900px){
+body.p-resources a.xi-resources-008{grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:64px;align-items:start}
+}
 }
