@@ -157,6 +157,15 @@ if __name__ == '__main__':
 LOCK = os.path.join(ROOT, '.gate-source-lock')
 
 
+def _swap(path, text):
+    """Replace a SERVED file in one step. open(path,'w') empties it first, and a page loading
+    in another gate at that moment gets no stylesheet: measured 2026-11-24, 80 writes gave 50
+    empty and 85 cut-short reads of site.css — the 'unstyled load' three gates kept reporting."""
+    with open(path + '.planting', 'w', encoding='utf-8') as fh:
+        fh.write(text)
+    os.replace(path + '.planting', path)
+
+
 @contextlib.contextmanager
 def planted(path, addition, timeout=300):
     """Append `addition` to a SHARED source file, then restore it — under a lock.
@@ -195,14 +204,12 @@ def planted(path, addition, timeout=300):
         fd = None
         original = open(path, encoding='utf-8').read()
         try:
-            with open(path, 'w', encoding='utf-8') as fh:
-                fh.write(original + addition)
+            _swap(path, original + addition)
             yield
         finally:
             # Restore from the text read INSIDE the lock, so nothing else can have
             # touched it in between.
-            with open(path, 'w', encoding='utf-8') as fh:
-                fh.write(original)
+            _swap(path, original)
     finally:
         if fd is not None:
             os.close(fd)

@@ -354,6 +354,7 @@ CEILING = 18_619   # 2026-11-05 +99 (98 + this line): ink-recolour.py — the te
 CEILING = 18_632   # 2026-11-11 +13 (12 + this line): build-fit-index.py gains a product-ownership evidence card and 25 PM lexicon terms (product manager, PRD, OKR, KPI, discovery, stakeholder management…). Before this a PM job description pasted into /fit/ scored nothing on most of its lines even where the cases carry the evidence — the index knew design-leadership vocabulary and no product-management vocabulary at all, which is the fit check quietly arguing against the title the site now carries.
 CEILING = 18_645   # 2026-11-20 +13 (12 + this line): resume-parity follows the one-page résumés (skill groups per résumé, three new locked figures) and generate-og-cards registers the /resume/ share card
 CEILING = 18_653   # 2026-11-24 +8 (7 + this line): nav-clearance-check re-reads a page twice before reporting it under the bar. Two full parallel runs flagged three different pages (index@1440, vc-diligence@1024, capability-contract@1024), each clean when run alone; a real defect persists, a page still settling does not.
+CEILING = 18_661   # 2026-11-24 +8 (7 + this line): gatelib._swap — planted() replaces the served file in one step instead of emptying it first. Measured: 80 plant/restore writes gave 50 empty and 85 cut-short reads of site.css to pages loading in other gates; after, 0. This was the 'unstyled load' behind contrast-audit, nav-clearance and grid-containment failing on a different page each run.
 
 
 def loc(paths):
