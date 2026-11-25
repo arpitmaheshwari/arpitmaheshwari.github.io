@@ -1211,6 +1211,16 @@ body.dyslexia-mode *:not(code):not(pre):not(kbd):not(samp):not(code *):not(pre *
   .bk-m-page .bk-cv__yr, .bk-m-page .bk-writing__date, .bk-m-page .bk-chip, .bk-m-page .bk-feature__more { font-size: 12px; }
   /* 2026-11-25: a pill longer than the phone's column ran off the right edge ("Product Manager & Designer · AI & Data-Intensive Products" is 451px wide in a 327px column, cut at 475). It wraps instead; 14px keeps a one-line pill fully round and gives a two-line one plain rounded corners. */
   .bk-m-page .bk-chip { white-space: normal; border-radius: 14px; }
+  /* 2026-11-25 (Arpit picked "A: words on the picture", "Phones only"): a picture that opens on a tap says so.
+     On a phone the picture is a thin strip (PlanIt's shows little more than the logo) and the only cue was a
+     mouse-hover tooltip. Only pictures that really open get the label (the ones holding a button); it sits
+     above the plate's colour wash, declares its own ink and ground, and lets the tap through to the button. */
+  .bk-m-page .bk-plate__img:has(> button)::before {
+    content: "Tap to enlarge"; position: absolute; right: 8px; bottom: 8px; z-index: 2; pointer-events: none;
+    font-family: var(--bk-mono); font-size: 12px; font-weight: 400; font-style: normal; line-height: 1; letter-spacing: 0.02em; text-transform: none;
+    color: #F4ECDA; padding: 8px 8px 8px 24px; border-radius: 2px;
+    background: #2C2620 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23F4ECDA' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9.5 2.5h4v4M13.5 2.5 9 7M6.5 13.5h-4v-4M2.5 13.5 7 9'/%3E%3C/svg%3E") no-repeat 8px 50% / 12px 12px;
+  }
   .bk-cover__skim { font-size: 13px; }
   .bk-cover__skimlink, .bk-cover__open { min-height: 44px; display: inline-flex; align-items: center; }
   .bk-m-top button, .bk-menu-btn { min-height: 44px; }
