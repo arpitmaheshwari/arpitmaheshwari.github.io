@@ -2968,4 +2968,11 @@ body.p-screen .scr-receipt > a::after, body.p-screen .scr-terms dt > a::after{co
 body.p-home .ccd-q{min-height:44px}
 body.p-lab-loop .lab-ctl > input[type="range"], body.p-lab-loop .lab-inline > input[type="checkbox"]{padding-block:10px;margin-block:-10px;box-sizing:content-box}
 body.p-lab-plugin .dsg-type b{flex:0 1 auto;min-width:0}
+/* --- 2026-11-25 · two rhythm faults found by LOOKING at the review's renders; no gate asks whether one paragraph's own lines are evenly spaced.
+   1. A link inside a sentence was a padded inline-block (the 24px tap floor, 2026-09-15), so its line stood 4px further from the next one than its
+      neighbours did (30.6 / 34.6px) and the link could not wrap with its sentence. 22 paragraphs. Links inside a sentence are exempt from that floor,
+      as the list-item rule above already says; the header captions (.lbl-cap: "Part of ...", the case line) are short rows and keep it.
+   2. The plugin page set its paragraphs solid: two pairs with 0px between them. 16px, as on the teardown. --- */
+p:not(.lbl-cap) a.link-gold{display:inline;padding-block:0}
+body.p-lab-plugin .lab-body > p + p{margin-top:16px}
 }
