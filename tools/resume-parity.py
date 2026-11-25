@@ -43,7 +43,7 @@ LOCKED = [
     "$1M a year", "0% to 64%", "4M+", "150k learners", "550k+",
     "200 people", "4-person", "16 analysis dimensions", "5 products to 1",
     "100% of UK bookings", "Solution Consultant",          # employer title, canon §title honesty
-    "4 weeks’ notice",
+    "Available now",
 ]
 
 # Scanner-hostile glyphs: an arrow or a curly-quote headline is noise to keyword matching.

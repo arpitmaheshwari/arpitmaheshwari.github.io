@@ -62,8 +62,8 @@ BANNED = [
      'missed the one baked into an inline SVG artifact heading on fintech.html, which then sat '
      'live for four days. A retired phrase that is not in this list is a phrase that comes back',
      "\u00a73 case 3, retired 2026-08-12"),
-    (r"\bfour weeks'? notice\b",
-     'availability must use the digit "4", never the word',
+    (r"\b(?:four|4) weeks['\u2019]? notice\b",
+     'retired 2026-11-25 (Sahaj tenure ended Nov 2026): availability reads "Available now"',
      "§2 availability"),
     (r"forty[-\s]two deals|ninety days and forty|\bn\s*=\s*42\b",
      'the DO-NOT-PUBLISH FinTech sample size, spelled as words to dodge the digit rule. '
@@ -372,7 +372,7 @@ CANARIES = [
 # go red says nothing about whether it goes red for the RIGHT reasons — a gate that cries wolf is a
 # gate that gets switched off, which is strictly worse than no gate at all.
 CLEAN_CANARY = ("__canon_canary_ok.html", """<!doctype html><html><body>
-<p>Sixteen years, five industries, one problem. Available &middot; 4 weeks' notice.</p>
+<p>Sixteen years, five industries, one problem. Available now.</p>
 <p>Campaign planning 2 wks &rarr; 3 hrs. Deal screening 60% faster. Diligence 3 wks &rarr; 4 days.</p>
 <p>550k+ registered learners &middot; subscription 0% &rarr; 64% of new bookings &middot; $1M / yr.</p>
 <p>Print run &minus;92% in year one. Product &amp; Design Leader. Human in the Loop.</p>

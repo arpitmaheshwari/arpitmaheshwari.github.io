@@ -119,12 +119,12 @@ const WRITING = [{
   h: "Human-in-the-Loop: When to Ask, When to Override",
   p: "Ask for a person’s judgement on everything and you get it on nothing. Where three shipped products put their one ask."
 }];
-const STATUS = ["Available · 4 weeks' notice", "Product Manager & Designer · AI & Data-Intensive Products", "Remote · GMT+5:30"];
+const STATUS = ["Available now", "Product Manager & Designer · AI & Data-Intensive Products", "Remote · GMT+5:30"];
 
 /* ---- CURRICULUM VITAE (the printable appendix) ---- */
 const CV_SKILLS = ["Model-Layer Design", "Product Definition & Roadmaps", "Data-Intensive UI", "Design Leadership", "Organisational Design", "Research & Evals", "System Architecture"];
 const CV_EXP = [{
-  yr: "2019—",
+  yr: "2019–26",
   role: "Product Manager & Designer · AI & Data-Intensive Products",
   org: "Sahaj AI · AdTech, HRTech & Private Equity"
 }, {
