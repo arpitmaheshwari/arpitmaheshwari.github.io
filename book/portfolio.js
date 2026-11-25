@@ -742,7 +742,12 @@ function Plate({
     loading: "lazy",
     title: "Click to enlarge",
     style: { width: "100%", height: "100%", objectFit: "cover", display: "block" }
-  })), zoom && /*#__PURE__*/React.createElement("div", {
+  })), zoom &&
+  // 2026-11-25: the enlarged picture is attached to the page body, not to the book page it came from.
+  // A phone page is a moving (transformed) layer, so "fill the screen" meant "fill that layer": the
+  // book's bottom bar sat on top of the picture and hid its last 25px (PlanIt, 375 wide: picture
+  // 127-753, bar from 728).
+  ReactDOM.createPortal(/*#__PURE__*/React.createElement("div", {
     role: "dialog",
     "aria-modal": "true",
     "aria-label": (cn || "plate") + " \u2014 enlarged. Escape or click to close.",
@@ -754,7 +759,7 @@ function Plate({
     src: img,
     alt: cn,
     style: { maxWidth: "94vw", maxHeight: "92vh", objectFit: "contain", borderRadius: 6, boxShadow: "0 24px 80px rgba(0,0,0,.6)" }
-  }))) : redacted ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  })), document.body)) : redacted ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "bk-plate__ph"
   }, ph), /*#__PURE__*/React.createElement("span", {
     className: "bk-stamp bk-stamp--r",
