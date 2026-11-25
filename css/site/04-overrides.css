@@ -2975,4 +2975,20 @@ body.p-lab-plugin .dsg-type b{flex:0 1 auto;min-width:0}
    2. The plugin page set its paragraphs solid: two pairs with 0px between them. 16px, as on the teardown. --- */
 p:not(.lbl-cap) a.link-gold{display:inline;padding-block:0}
 body.p-lab-plugin .lab-body > p + p{margin-top:16px}
+
+/* --- 2026-11-25 · the Lab reads at the system's measure (Arpit picked 1B and 2B from rendered pairs: "go with 1b and 2b").
+   2B. One older rule (02-components: .lab-wrap :is(p,dl,ul,ol) max-width 781px) let Lab prose run to 102 characters a line on desktop, while the
+       essays hold --measure (62ch) in the same heading-left / text-right grid. Body paragraphs only take the measure; test lists, the numbers
+       ledger, code and the live instruments keep their width. Narrowing the text made the right column taller than the heading column, and the
+       grid shared that extra height between the eyebrow row and the heading row, so the heading dropped away from its eyebrow: the first row is
+       auto and the heading sits 12px under its label, at the widths where the grid is two columns.
+   1B. The plugin page's Install band printed "Then ask for a component..." above the two commands it follows (the code box spanned both columns
+       under it). The commands now sit in the reading column with the sentence 16px under them; the markup groups them in .lab-body. --- */
+:is(body.p-lab,body.p-lab-loop,body.p-lab-eval,body.p-lab-plugin,body.p-lab-teardown) main#main > .section:not(.lab-hero) > .lab-wrap :is(p.lab-body,.lab-body > p,.lab-fn > p:not(.lab-pat),.lb-main > p,p.t-body-muted,.counter > p){max-width:var(--measure)}
+@media (min-width:1024px){
+:is(body.p-lab,body.p-lab-loop,body.p-lab-eval,body.p-lab-plugin,body.p-lab-teardown) main#main > .section:not(.lab-hero) > .lab-wrap:has(> .lab-body){grid-template-rows:auto 1fr}
+:is(body.p-lab,body.p-lab-loop,body.p-lab-eval,body.p-lab-plugin,body.p-lab-teardown) main#main > .section:not(.lab-hero) > .lab-wrap:has(> .lab-body) > h2.section-title{margin-top:12px}
+}
+body.p-lab-plugin .lab-body > pre.lab-code{margin:0}
+body.p-lab-plugin .lab-body > pre.lab-code + p{margin-top:16px}
 }
