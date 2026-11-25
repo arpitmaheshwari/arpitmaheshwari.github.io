@@ -6297,6 +6297,14 @@ body.p-home #contact .one-door:hover{filter:brightness(1.06)}
               0 1px 2px color-mix(in srgb, var(--text-primary) 8%, transparent);
   filter: none;
 }
+/* 2026-11-26: the edge above belongs to the plate, not to what sits around it. [class*="-paper"]
+   also matched the .fig-paper WRAPPER (card + caption), and the *-caption entries drew the same
+   ring round each caption, so caption text sat flush against a hairline on every case page (and a
+   caption box ran wider than its picture on VC Plate 02). They keep the plate's tokens; they lose
+   its edge. No geometry changes: a box-shadow takes no space. */
+:is(.fig-paper, .plA-caption, .plF-caption, .plM-caption, .plO-caption, .plP-caption, .plV-caption, .recon-caption){
+  box-shadow: none;
+}
 /* A PAPER OBJECT paints paper wherever it sits. The boarding pass in the closing bookend read
    var(--cream) → the page ground, which on a bookend is dark: a cream ticket went black (Arpit
    caught it, 2026-09-12). Objects read the object tokens, and re-point the roles their

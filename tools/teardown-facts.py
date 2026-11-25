@@ -89,6 +89,7 @@ facts={
                         for f in ('fonts.css','amber.css','site.css')),
  "stylesheet_gzip": sum(len(__import__('gzip').compress(open(os.path.join(R,f),'rb').read()))
                         for f in ('fonts.css','amber.css','site.css')),
+ "book_css_bytes": os.path.getsize(os.path.join(R,'book','book.css')),
  "runtime_deps": 0 if not os.path.exists(os.path.join(R,'package.json')) else -1,
  # Measured, not asserted. The previous version grepped index.html and
  # intersected it with a hardcoded set of three domain names, so it could only
@@ -158,6 +159,8 @@ FMT = {
     "stylesheet_kb":      lambda v: f"{v}",
     "stylesheet_gzip_kb": lambda v: f"{v}",
     "stylesheet_bytes":   lambda v: f"{v:,}",
+    "stylesheet_gzip":    lambda v: f"{v:,}",   # 2026-11-26: these two sat typed in the prose and went stale
+    "book_css_bytes":     lambda v: f"{v:,}",
     "demos_js_kb":        lambda v: f"{v}",
 }
 if '--sync' in sys.argv:

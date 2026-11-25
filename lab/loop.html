@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
-<link rel="stylesheet" href="../site.css?v=172fa1dc">
+<link rel="stylesheet" href="../site.css?v=fd2d3388">
 
 <script defer src="../analytics.js?v=4f9aa0a0" data-cfasync="false"></script>
 
@@ -300,7 +300,7 @@ d.explain           <span class="c">// → 'Confidence 0.92 at or above 0.85: sa
       </div>
       <ul class="lab-tests" id="t-list"><li class="lab-nojs">Enable JavaScript to run the suite, or read the assertions in the source.</li></ul>
       <details class="lab-tests-more" id="t-more" hidden>
-        <summary class="cta-quiet" id="t-more-n">Show the other assertions</summary>
+        <summary class="cta-quiet" id="t-more-n">Show the other tests</summary>
         <ul class="lab-tests" id="t-rest"></ul>
       </details>
     </div>
@@ -505,7 +505,7 @@ function renderTests() {
   $('t-tally').classList.toggle('is-err', failed > 0);
   $('t-note').textContent = failed
     ? `${failed} failing — shown below, not hidden`
-    : 'assertions passing, this page load';
+    : 'tests passing, this page load';
   const row = (r) =>
     `<li class="${r.passed ? '' : 'is-fail'}">${r.name}${r.error ? `<span class="lab-err">${r.error}</span>` : ''}</li>`;
   // Failures first and always in view; then the first passes, up to six lines. The rest fold.
@@ -515,7 +515,7 @@ function renderTests() {
   const rest = ordered.slice(shown);
   $('t-rest').innerHTML = rest.map(row).join('');
   $('t-more').hidden = rest.length === 0;
-  $('t-more-n').textContent = `Show the other ${rest.length} assertions`;
+  $('t-more-n').textContent = `Show the other ${rest.length} tests`;
 }
 
 renderDecide();

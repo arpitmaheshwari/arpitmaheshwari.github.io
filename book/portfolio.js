@@ -274,7 +274,7 @@ const NDA_CASES = [{
     h: "KPIs on the plan itself",
     p: "Reach, estimated ROI, price trend — the case for the plan sat on the plan, checkable before anyone committed budget."
   }, {
-    h: "Customization that teaches",
+    h: "Customisation that teaches",
     p: "Reshaping the plan took one click; every edit was logged and fed next week’s recommendations. Watching their pushback land flipped fighting into coaching."
   }],
   plateNo: CF.get("adtech").plateNo,
@@ -369,9 +369,9 @@ const PATTERN_PAGES = {
     dos: ["Anchor the score to an action — act, review, or ignore — not just a bare number.", "Show the score’s own track record so people can calibrate their trust.", "Round to the precision you’d be willing to defend out loud."],
     donts: ["Render 87.3% when what you actually mean is \u201Cprobably.\u201D", "Let a high score auto-execute with no visible way to override.", "Reuse one confidence scale across decisions of wildly different stakes."],
     instTag: "AdTech · Programmatic",
-    inst: /*#__PURE__*/React.createElement(React.Fragment, null, "Media buyers ignored the recommendation until the score sat beside ", /*#__PURE__*/React.createElement("span", {
+    inst: /*#__PURE__*/React.createElement(React.Fragment, null, "Buyers ignored the recommendation until it arrived as ", /*#__PURE__*/React.createElement("span", {
       className: "bk-em"
-    }, "what it had gotten right last month"), ". Confidence with a memory got acted on; confidence alone never did."),
+    }, "a plan with the KPIs to check it"), ". Evidence they could audit got acted on; a bare recommendation never did."),
     fig: {
       no: "3.1",
       img: "../assets/visuals/pattern-confidence.svg",

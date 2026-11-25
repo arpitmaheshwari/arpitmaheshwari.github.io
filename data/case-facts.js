@@ -149,7 +149,7 @@
       "metrics": [
         [
           "60% faster",
-          "Per diligence pass · pre/post rollout"
+          "Deal screening · pre/post rollout"
         ],
         [
           "Cited",
@@ -260,7 +260,7 @@
         ["250", "Active users a month \u00b7 on 1,000 visitors"]
       ],
       "plateNo": "7.1",
-      "provenance": "The shipped product — his own screens, from a client project; the client is not named"
+      "provenance": "The shipped product — my own screens, from a client project; the client is not named"
     },
     "vc-diligence": {
       "no": "06",
