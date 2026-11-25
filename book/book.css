@@ -80,7 +80,7 @@ body {
 .bk-drop::first-letter, .bk-feature__metric, .bk-metric__v, .bk-ledger__fig,
 .bk-item__metric, .bk-principle__n, .bk-move__n, .bk-beat__n,
 .bk-pull, .bk-blurb p, .bk-chno, .bk-standfirst, .bk-principle-stmt,
-.bk-toc__name, .bk-serifhead, .bk-ok, .bk-body, .bk-lede {
+.bk-toc__name, .bk-serifhead, .bk-body, .bk-lede {
   font-optical-sizing: auto;
 }
 
@@ -448,7 +448,7 @@ body {
 .bk-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .bk-chip {font-family: var(--bk-mono); font-size: 10.5px; letter-spacing:.02em; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--bk-ink-faint); color: var(--bk-ink-soft); white-space: nowrap}
 
-/* buttons + form */
+/* buttons */
 .bk-btn {display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: none; white-space: nowrap;
   font-family: var(--bk-mono); font-size: 12px; letter-spacing:.02em;
   padding: 12px 20px; border-radius: 4px; background: var(--bk-ember); color: #F7F0E1;
@@ -457,15 +457,10 @@ body {
 .bk-btn:hover { transform: translateY(-2px); background: var(--bk-ember-deep); }
 .bk-btn--ghost { background: transparent; color: var(--bk-ink); border: 1.5px solid var(--bk-ink); }
 .bk-btn--ghost:hover { background: var(--bk-ink); color: var(--bk-paper); }
-.bk-form { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
-.bk-form input {
-  font-family: var(--bk-serif); font-size: 15px; padding: 12px 4px; border: none;
-  border-bottom: 1.5px solid var(--bk-ink-faint); background: transparent; color: var(--bk-ink);
-}
-.bk-form input::placeholder { color: var(--bk-ink-faint); }
-.bk-form input:focus { outline: none; border-bottom-color: var(--bk-ember); }
-.bk-form .bk-btn { align-self: flex-start; margin-top: 4px; }
-.bk-ok { font-family: var(--bk-display); font-style: italic; font-size: 22px; color: var(--bk-pine); }
+/* the contact page's one door (2026-11-25, replaces the email form): declares its own ink and decoration because it is a link, not a button */
+.bk-door { align-self: flex-start; margin-top: 8px; color: var(--bk-ink); text-decoration: none; }
+.bk-door:hover { color: var(--bk-paper); }
+
 .bk-contactlinks { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
 .bk-contactlinks a { font-family: var(--bk-serif); font-size: 15px; color: var(--bk-ink); text-decoration: none; display: flex; justify-content: space-between; border-bottom: 1px solid var(--bk-rule); padding: 8px 0; transition: color var(--bk-ease); }
 .bk-contactlinks a:hover { color: var(--bk-ember-ink); }
@@ -1214,8 +1209,10 @@ body.dyslexia-mode *:not(code):not(pre):not(kbd):not(samp):not(code *):not(pre *
   .bk-m-page .bk-cv__sub, .bk-m-page .bk-meta dt, .bk-m-page .bk-metric__l, .bk-m-page .bk-ledger__lbl,
   .bk-m-page .bk-plate__no, .bk-m-page .bk-figure__tag, .bk-m-page .bk-device__label, .bk-m-page .bk-kicker,
   .bk-m-page .bk-cv__yr, .bk-m-page .bk-writing__date, .bk-m-page .bk-chip, .bk-m-page .bk-feature__more { font-size: 12px; }
+  /* 2026-11-25: a pill longer than the phone's column ran off the right edge ("Product Manager & Designer · AI & Data-Intensive Products" is 451px wide in a 327px column, cut at 475). It wraps instead; 14px keeps a one-line pill fully round and gives a two-line one plain rounded corners. */
+  .bk-m-page .bk-chip { white-space: normal; border-radius: 14px; }
   .bk-cover__skim { font-size: 13px; }
   .bk-cover__skimlink, .bk-cover__open { min-height: 44px; display: inline-flex; align-items: center; }
   .bk-m-top button, .bk-menu-btn { min-height: 44px; }
-  .bk-m-page .bk-demo__seg-btn, .bk-m-page .bk-form .bk-btn, .bk-menu__exit { min-height: 44px; }   /* the demo stakes (29px), the form button (40px) and the menu's classic-site link (29px) were under the floor on a phone */
+  .bk-m-page .bk-demo__seg-btn, .bk-m-page .bk-door, .bk-menu__exit { min-height: 44px; }   /* the demo stakes (29px), the contact page's button (40px) and the menu's classic-site link (29px) were under the floor on a phone */
 }

@@ -1244,69 +1244,6 @@ function patternSpread(p) {
   };
 }
 
-/* ---- contact form (own state) ------------------------------ */
-function ContactForm() {
-  const [email, setEmail] = React.useState("");
-  const [product, setProduct] = React.useState("");
-  const [sent, setSent] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState("");
-  if (sent) return /*#__PURE__*/React.createElement("div", {
-    className: "bk-ok"
-  }, "Got it — I reply within 48 hours.");
-  return /*#__PURE__*/React.createElement("form", {
-    className: "bk-form",
-    onSubmit: e => {
-      e.preventDefault();
-      if (!email.trim()) return;
-      setLoading(true);
-      setError("");
-      fetch("https://formspree.io/f/xpqednyy", {
-        method: "POST",
-        headers: { "Accept": "application/json" },
-        body: new FormData(e.target)
-      }).then(r => r.json()).then(data => {
-        setLoading(false);
-        if (data.ok) setSent(true);
-        else setError("Something went wrong — please try again.");
-      }).catch(() => {
-        setLoading(false);
-        setError("Could not connect — please try again.");
-      });
-    }
-  }, /*#__PURE__*/React.createElement("label", {
-    className: "bk-form__label",
-    htmlFor: "bk-email",
-    style: { fontFamily: "var(--bk-mono)", fontSize: "11px", letterSpacing: ".04em", textTransform: "uppercase", color: "var(--bk-ink-faint)", marginBottom: "3px" }
-  }, "Your work email"), /*#__PURE__*/React.createElement("input", {
-    type: "email",
-    id: "bk-email",
-    name: "email",
-    required: true,
-    placeholder: "you@company.com",
-    value: email,
-    onChange: e => setEmail(e.target.value)
-  }), /*#__PURE__*/React.createElement("label", {
-    className: "bk-form__label",
-    htmlFor: "bk-product",
-    style: { fontFamily: "var(--bk-mono)", fontSize: "11px", letterSpacing: ".04em", textTransform: "uppercase", color: "var(--bk-ink-faint)", marginBottom: "3px" }
-  }, "Link to the role or your company (optional)"), /*#__PURE__*/React.createElement("input", {
-    type: "url",
-    id: "bk-product",
-    name: "product",
-    placeholder: "https://… the role you’re hiring for",
-    value: product,
-    onChange: e => setProduct(e.target.value)
-  }), error ? /*#__PURE__*/React.createElement("p", {
-    role: "alert",
-    style: { color: "var(--bk-ember)", fontSize: "12px", margin: "4px 0 0", fontFamily: "var(--bk-mono)" }
-  }, error) : null, /*#__PURE__*/React.createElement("button", {
-    type: "submit",
-    className: "bk-btn bk-btn--ghost",
-    disabled: loading
-  }, loading ? "Sending…" : "Send me the role →"));
-}
-
 /* ---- runheads ---------------------------------------------- */
 const VERSO = "Arpit Maheshwari";
 function buildBook(ctx) {
@@ -1905,12 +1842,6 @@ function buildBook(ctx) {
     }, Icon({
       name: "github"
     }))), /*#__PURE__*/React.createElement("div", {
-      className: "bk-chips",
-      style: { marginTop: 20 }
-    }, STATUS.map((st, i) => /*#__PURE__*/React.createElement("span", {
-      className: "bk-chip",
-      key: i
-    }, st))), /*#__PURE__*/React.createElement("p", { className: "bk-fine", style: { marginTop: 8, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "I build human-in-the-loop AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
       className: "bk-cv__sub"
     }, "Colophon"), /*#__PURE__*/React.createElement("div", {
       className: "bk-cv bk-cv--facts"
@@ -1931,7 +1862,12 @@ function buildBook(ctx) {
       }
     })),
     right: /*#__PURE__*/React.createElement("div", {
-      className: "bk-reveal"
+      className: "bk-reveal",
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        height: "100%"
+      }
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-kicker"
     }, "Hiring?"), /*#__PURE__*/React.createElement("h2", {
@@ -1944,12 +1880,24 @@ function buildBook(ctx) {
       style: {
         marginBottom: 12
       }
-    }, "A line about the role and the stage, or just a link — I reply within 48 hours. Prefer a message? ", /*#__PURE__*/React.createElement("a", {
+    }, "A line about the role and the stage, or just a link."),
+    // 2026-11-25: the email form that sat here is gone (Arpit: "Remove contact form from book").
+    // LinkedIn is the one way in, as on the rest of the site; the sentence's own link became the button,
+    // and its 48-hour promise went with the form (his pick: "Drop the promise"). The status pills and the
+    // italic line moved here from the left page so this page is not left empty (his pick: arrangement C);
+    // the page is a column so the closing note sits at its foot, level with "fin." opposite.
+    /*#__PURE__*/React.createElement("a", {
+      className: "bk-btn bk-btn--ghost bk-door",
       href: "https://www.linkedin.com/in/arpitmaheshwariprofile/",
       target: "_blank",
-      rel: "noopener",
-      style: { color: "var(--bk-ember-ink, #B04A24)" }
-    }, "message me on LinkedIn \u2192")), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
+      rel: "noopener"
+    }, "Message me on LinkedIn \u2192"), /*#__PURE__*/React.createElement("div", {
+      className: "bk-chips",
+      style: { marginTop: 24 }
+    }, STATUS.map((st, i) => /*#__PURE__*/React.createElement("span", {
+      className: "bk-chip",
+      key: i
+    }, st))), /*#__PURE__*/React.createElement("p", { className: "bk-fine", style: { marginTop: 8, fontStyle: "italic", lineHeight: 1.5, color: "var(--bk-ink-faint)" } }, "I build human-in-the-loop AI products — the surface where a person decides to act on the model."), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: { marginTop: "auto", textAlign: "center", paddingTop: 16 }
     }, "thanks for reading to the end ♥"))
