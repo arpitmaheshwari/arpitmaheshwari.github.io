@@ -21,7 +21,7 @@ SRC = os.path.join(ROOT, 'partials', 'pages', 'resources')
 # how each resource marks one item; the count of matches is the number the index must add up to
 ITEMS = {
     'ai-design-checklist.html': r'<li class="xi-resources-ai-design-checklist-019">(.*?)</li>',
-    'founder-questions.html': r'<strong>(\s*&ldquo;.*?)</strong>',
+    'founder-questions.html': r'<h3 class="fq-q">(\s*&ldquo;.*?)</h3>',
     'intelligent-systems-glossary.html': r'<dt\b[^>]*>(.*?)</dt>',
 }
 
