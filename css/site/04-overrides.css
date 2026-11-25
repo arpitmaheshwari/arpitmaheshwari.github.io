@@ -2999,4 +2999,11 @@ body.p-lab-plugin .lab-body > pre.lab-code + p{margin-top:16px}
       It is a <p>, so `.lab-body p{margin:0 0 16px}` outranked the note's own 32px. Beside the essay (1024px and up) it still starts at the column top. --- */
 body.p-lab .lab-card > .lab-num{flex:none}
 @media (max-width:1023.98px){body.p-lab .lab-body.lb-two > aside.lb-side > .lab-note{margin-top:32px}}
+/* --- 2026-11-25, three pairs that touched (Arpit: 'fix ... all other pending items'). Each is the same fault: the element's own spacing was lost, so it sat 0px from its neighbour.
+   1. Homepage contract demo: the 'answers openly canned' note sat 0px under the answer. Its own 12px is declared on .ccd-note, and the homepage's paragraph reset outranked it.
+   2. Pattern index: below 1440px the drawing is replaced by its written stand-in, and the drawing's 16px of space below (on .framed-blk) did not come with it, so the stand-in touched the label under it.
+   3. Plugin page: the note under the handwritten line sat 1px into it. The Lab's note spacing (32px) is declared per page, and this page was never added to that list (loop and teardown: 30px clear). --- */
+body.p-home .ccd-note{margin-top:12px}
+.framed-blk.art-svg + .artalt{margin-bottom:16px}
+body.p-lab-plugin .lh-l > .hand-note + .lab-note{margin-top:32px}
 }
