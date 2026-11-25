@@ -1203,7 +1203,7 @@ body.p-home .bcard.bcard--lead{grid-column:span 1}}
 .vg-sig span{display:block;height:3px;border-radius:2px;background:var(--bar-track);position:relative;overflow:hidden}
 .vg-sig span::after{content:"";position:absolute;inset:0;transform-origin:left center;transform:scaleX(var(--v));border-radius:2px;background:var(--a)}
 .vg-sig b{font-family:var(--mono);font-size:0.625rem;font-weight:400;font-variant-numeric:tabular-nums;color:var(--text-muted);line-height:1.4;text-align:right}
-.vg-held{display:block;margin:12px 0 0}
+.vg-held{display:block;margin:12px 0 0;font-size:0.75rem}
 .vg-verdict{display:flex;align-items:baseline;gap:8px;margin:12px 0 0;padding-top:12px;border-top:1px solid var(--border-hairline)}
 .vg-verdict i{font-family:var(--mono);font-style:normal;font-size:0.59375rem;letter-spacing:.02em;color:var(--text-faint);line-height:1.4}
 .vg-verdict b{font-family:var(--serif);font-size:1.375rem;font-weight:400;line-height:1;color:var(--a)}
@@ -1265,7 +1265,7 @@ body.p-home .bcard.bcard--lead{grid-column:span 1}}
 .vg-srcs::before{content:"";position:absolute;left:3px;top:5px;bottom:6px;width:1px;background:color-mix(in oklab,var(--a) 38%,transparent)}
 .vg-srcs li{position:relative;font-family:var(--mono);font-size:0.59375rem;letter-spacing:.04em;color:var(--text-muted);line-height:1.45}
 .vg-srcs li::before{content:"";position:absolute;left:-10px;top:.52em;width:6px;height:1px;background:color-mix(in oklab,var(--a) 55%,transparent)}
-.vg-note{margin:12px 0 0;padding-top:12px;border-top:1px solid var(--border-hairline);font-family:var(--mono);font-size:0.59375rem;letter-spacing:.06em;color:var(--text-faint);line-height:1.45}
+.vg-note{margin:12px 0 0;padding-top:12px;border-top:1px solid var(--border-hairline);font-family:var(--mono);font-size:0.75rem;letter-spacing:.06em;color:var(--text-faint);line-height:1.45}
 /* ═══════════════════ 6 · PTC: five platforms become one ═══════════════════
    The artefact names all five; the title says four products were killed. Which
    one survived is not in canon, so nothing is marked as the survivor and the
@@ -1423,7 +1423,7 @@ html.vg-js :is(.bcard,.vg-hero):not(.live) .vg-allows span::after,
    1040px and pushed it half a page left. A component declares its own box. */
 .vg-hero .vg{width:auto;max-width:100%;margin-left:0;transform:none;background:linear-gradient(180deg,
   color-mix(in oklab,var(--a) 7%,var(--surface-sunken)),var(--surface-sunken))}
-.vg-cap{margin:12px 0 0;font-family:var(--mono);font-size:0.6875rem;letter-spacing:.06em;color:var(--text-faint);line-height:1.5;max-width:52ch}
+.vg-cap{margin:12px 0 0;font-family:var(--mono);font-size:0.75rem;letter-spacing:.06em;color:var(--text-faint);line-height:1.5;max-width:52ch}
 /* the act accents, keyed to the real body classes (p-case-studies-*) */
 body.p-case-studies-fintech .vg-hero,
 body.p-case-studies-vc-diligence .vg-hero{--a:var(--acc-violet)}
@@ -2955,4 +2955,17 @@ body.p-home .bcard-d .bd-l b{display:block;font-family:var(--ff-mono),ui-monospa
 /* The Lab's four cards: each one opens on its claim. Set as its own line, the claim is what a skimmer takes from the card
    and the description under it is for the reader who stays (2026-11-25, same instruction as .lrows). */
 body.p-lab .lab-card p > strong:first-child{display:block;margin:0 0 8px}
+/* --- 2026-11-25 · site reading review (Arpit: 'Fix all and then push'). Each rule answers one measured finding.
+   Drawings and demos: the sentence that carries a drawing's point was the smallest text on the site (9.5px); it is 12px now (rules edited in place above, and in patterns/demos.js).
+   Lab line length (87-102 characters at 781px) is NOT changed here: the design system's own rule, stated on the plugin page, is that a capped column inside a wider container is a defect. Narrowing the column itself is a recomposition for Arpit to see first.
+   Founder questions: the 12 questions are h3 so a screen reader can jump between them; .fq-q declares everything so the heading looks exactly like the bold line it replaced.
+   Touch: hit areas grow toward 44px; on the technical screen by an invisible overlay, so nothing moves. --- */
+.fq-q{display:block;margin:0;padding:0;font:inherit;font-weight:700;letter-spacing:inherit;text-transform:none;color:inherit}
+body.p-lab-teardown .td-fig dd.td-how > p{margin:0;max-width:none;font:inherit;letter-spacing:inherit;color:inherit}
+body.p-lab-teardown .td-fig dd.td-how > p + p{margin-top:8px}
+body.p-screen .scr-receipt > a, body.p-screen .scr-terms dt > a{position:relative}
+body.p-screen .scr-receipt > a::after, body.p-screen .scr-terms dt > a::after{content:"";position:absolute;inset:-8px 0}   /* the hit area, not the box: a padded inline-block shortened each receipt by 8px (measured), a positioned overlay moves nothing */
+body.p-home .ccd-q{min-height:44px}
+body.p-lab-loop .lab-ctl > input[type="range"], body.p-lab-loop .lab-inline > input[type="checkbox"]{padding-block:10px;margin-block:-10px;box-sizing:content-box}
+body.p-lab-plugin .dsg-type b{flex:0 1 auto;min-width:0}
 }
