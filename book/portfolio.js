@@ -236,7 +236,7 @@ const NDA_CASES = [{
   stamp: { t: "5★ APP", v: "ok" }
 }, {
   no: "03",
-  img: "../assets/shots/fintech-screening.png",
+  img: "../assets/shots/fintech-dashboard.png",
   tag: CF.get("fintech").tag,
   title: CF.get("fintech").title,
   standfirst: "The LLM shipped already able to defend its own scores. Then screening sped up 60%.",
@@ -250,7 +250,7 @@ const NDA_CASES = [{
     p: "A visible “I’m not sure about this one” state, so the model could refuse to bluff instead of guessing."
   }, {
     h: "Disagreement on record",
-    p: "A logged override when the analyst disagreed — fed the next eval."
+    p: "A logged override when the analyst disagreed — kept for the data-science team."
   }],
   plateNo: CF.get("fintech").plateNo,
   plateCn: CF.get("fintech").provenance,
@@ -323,7 +323,7 @@ const NDA_CASES = [{
     p: "Each score named the signals that drove it, with a drill from summary to source before capital moved."
   }, {
     h: "Dissent on record",
-    p: "Analyst overrides fed back into the model; partner sign-off was real workflow, not a stamp."
+    p: "Analyst overrides logged and reviewed with the data-science team; partner sign-off was real workflow, not a stamp."
   }],
   plateNo: CF.get("vc-diligence").plateNo,
   plateCn: CF.get("vc-diligence").provenance,
@@ -719,6 +719,9 @@ function Plate({
         setZoom(false);
       } else if (e.key === "Tab") {
         e.preventDefault(); // nothing else to tab to — the dialog is the only stop
+      } else if (e.key === "ArrowRight" || e.key === "ArrowLeft" || e.key === " ") {
+        e.stopPropagation(); // 2026-11-26: the book's page-turn keys must not turn the page behind an enlarged picture
+        if (e.key === " ") e.preventDefault();
       }
     };
     window.addEventListener("keydown", h, true);
