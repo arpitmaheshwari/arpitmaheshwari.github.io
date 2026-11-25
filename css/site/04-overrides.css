@@ -3026,4 +3026,14 @@ body.p-lab-loop .lab-legend i.xi-lab-loop-008{background:var(--acc-violet)}
    inner frame was decided on 2026-09 (T4.22, components ~3198) and never took effect, because the
    block's extracted class sits in the later utilities layer. Declared here so it does. --- */
 body.p-patterns .xi-patterns-023{border:0;padding:0;margin:0 0 32px}
+
+/* --- Case ending: one main action per moment (2026-11-25, Arpit: "we have 3 CTA, this leads to conflict with no
+   primary CTA, think from first principles and remove confusion" -> picked "A: one main action per moment" of
+   three rendered options, prototypes/renders/case-ending-cta-2026-11-25/). A reader reaches this row in one of
+   two states. Fold closed (end of the 60-second summary): the main action is opening the full case, so the row
+   offers only the quiet "Next case study". Fold open (end of the full case): the proof has been read, so the
+   Connect button joins the row. The nav's Connect stays pinned on screen in both states, so LinkedIn is never
+   more than one tap away. The row keeps the button's 46px height while it is hidden, so nothing below moves. --- */
+details.deep-read:not([open]) ~ .btn-row > .cta--linkedin{display:none}
+details.deep-read:not([open]) ~ .btn-row{min-height:46px}
 }
