@@ -57,7 +57,7 @@ CAPS = re.compile(r'\b((?:[A-Z] ){1,6}[A-Z])\b')
 # "i O S" the i belongs to the acronym and in "a D S P" it is the article.
 # The general rule gets the second one right on its own, so only the genuine
 # lowercase-led names are listed, and the list is short because the scripts are.
-LOWER_LED = {'i O S': 'iOS'}
+LOWER_LED = {'i O S': 'iOS', 'K P Is': 'KPIs', 'My O2': 'MyO2'}
 
 
 def unspace(text):

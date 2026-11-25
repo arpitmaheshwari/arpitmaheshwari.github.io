@@ -2490,10 +2490,12 @@ button.footer-back{line-height:1.4}
 /* the question heads the card */
   :is(.ba-table,.td-table) td:first-child{min-width:0;font-size:0.9375rem;line-height:1.45;color:var(--text-body);padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid var(--border-strong)}
 :is(.ba-table,.td-table) td[data-label]{padding-left:12px;border-left:2px solid var(--border-strong)}
-:is(.ba-table,.td-table) td[data-label]:nth-child(3){border-left-color:var(--accent);margin-top:12px}
+/* 2026-11-25: every labelled cell after the first sits 12px under the one above (the fourth cell of the four-column tables touched the third); the accent edge and copper label mean "After", so only the before/after table carries them */
+:is(.ba-table,.td-table) td[data-label] + td[data-label]{margin-top:12px}
+.ba-table td[data-label]:nth-child(3){border-left-color:var(--accent)}
 :is(.ba-table,.td-table) td[data-label]::before{content:attr(data-label);display:block;margin-bottom:3px;font-family:var(--ff-label);font-size:var(--fs-micro);font-weight:600;letter-spacing:.02em}
-:is(.ba-table,.td-table) td[data-label]:nth-child(2)::before{color:var(--text-muted)}
-:is(.ba-table,.td-table) td[data-label]:nth-child(3)::before{color:var(--acc-copper)}}
+:is(.ba-table,.td-table) td[data-label]::before{color:var(--text-muted)}
+.ba-table td[data-label]:nth-child(3)::before{color:var(--acc-copper)}}
 /* ================================================================
    /lab/ — ONE READING AXIS (2026-08-14)
    The balance pass centred each capped element as a block; different widths

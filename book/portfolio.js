@@ -104,19 +104,19 @@ const PATTERNS = [{
 }];
 const WRITING = [{
   d: "2026 · Essay",
-  h: "The Model Was Right and Ignored.",
+  h: "The Model Was Right and Ignored.", u: "../writing/confidence-scoring.html",
   p: "A recommendation engine that beat the traders it was built for — and sat unused. Accuracy was never the problem."
 }, {
   d: "2026 · Essay",
-  h: "Design the Failure State First",
+  h: "Design the Failure State First", u: "../writing/failure-states.html",
   p: "Every model is wrong some of the time, and most interfaces have nothing to say at that moment."
 }, {
   d: "2026 · Essay",
-  h: "The Explainability Layer: Making AI Legible",
+  h: "The Explainability Layer: Making AI Legible", u: "../writing/explainability.html",
   p: "An accurate risk score the analysts audited by hand anyway, because a number with no sources is homework."
 }, {
   d: "2026 · Essay",
-  h: "Human-in-the-Loop: When to Ask, When to Override",
+  h: "Human-in-the-Loop: When to Ask, When to Override", u: "../writing/human-in-loop.html",
   p: "Ask for a person’s judgement on everything and you get it on nothing. Where three shipped products put their one ask."
 }];
 const STATUS = ["Available now", "Product Manager & Designer · AI & Data-Intensive Products", "Remote · GMT+5:30"];
@@ -1766,11 +1766,11 @@ function buildBook(ctx) {
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-writing__date"
     }, w.d), /*#__PURE__*/React.createElement("h4", null, w.h), /*#__PURE__*/React.createElement("p", null, w.p), /*#__PURE__*/React.createElement("a", {
-      href: "https://arpitmaheshwari.substack.com",
-      target: "_blank",
-      rel: "noopener",
+      // 2026-11-25: each row opens ITS essay on this site. It used to say "View on Substack" and
+      // open the newsletter's front page, where a reader then had to hunt for the piece.
+      href: w.u,
       className: "bk-em bk-writing__link"
-    }, "View on Substack ", Icon({ name: "arrow-right", cls: "bk-icon--sm" }))))))
+    }, "Read the essay ", Icon({ name: "arrow-right", cls: "bk-icon--sm" }))))))
   }, /* APPENDIX - CURRICULUM VITAE */
   {
     kind: "spread",
@@ -1875,7 +1875,7 @@ function buildBook(ctx) {
       }
     }, "Building in AI?"), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
-    }, "Six systems became one platform. Product Manager & Designer · AI & Data-Intensive Products — definition, roadmap, and the interface that ships. Open to Senior or Staff Product Manager or Product Designer on AI products. Available."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
+    }, "Six systems became one platform. Product Manager & Designer · AI & Data-Intensive Products — definition, roadmap, and the interface that ships. Open to Senior or Staff Product Manager or Product Designer on AI products. Available now."), /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
       className: "bk-social",
       style: {
         marginTop: 24

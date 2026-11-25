@@ -582,7 +582,7 @@ body {
 .bk-feature__more span { color: var(--bk-ink-faint); }
 .bk-item--link { cursor: pointer; border-radius: 6px; transition: background var(--bk-ease), transform var(--bk-ease); }
 .bk-item--link:hover { background: rgba(192,81,43,0.07); transform: translateX(6px); }
-.bk-item__case, .bk-pattern__go {font-family: var(--bk-mono); font-size: 9.5px; letter-spacing:.02em; color: var(--bk-ember); margin-left: 8px; vertical-align: 2px}
+.bk-item__case, .bk-pattern__go {font-family: var(--bk-mono); font-size: 9.5px; letter-spacing:.02em; color: var(--bk-ember); margin-left: 8px; vertical-align: 2px; white-space: nowrap}
 .bk-pattern--link { cursor: pointer; border-radius: 8px; transition: background var(--bk-ease), transform var(--bk-ease); padding-left: 4px; padding-right: 4px; margin-left: -6px; }
 .bk-pattern--link:hover { background: rgba(192,81,43,0.07); transform: translateX(6px); }
 
@@ -1153,7 +1153,7 @@ body {
    .bk-item, which the rest of the book shares. Measured 2026-08-16: content bottom
    821px against an 814px text edge — full page, 59px of bottom margin intact. */
 .bk-list--volume .bk-item { padding: 8px 0; }
-.bk-list--volume .bk-item h4 { margin: 2px 0 3px; font-size: 18px; }
+.bk-list--volume .bk-item h4 { margin: 2px 0 3px; font-size: 18px; text-wrap: balance; }
 .bk-list--volume .bk-item p { font-size: 13.5px; line-height: 1.5; }
 .bk-list--volume .bk-item__metric { font-size: 23px; }
 
@@ -1191,7 +1191,7 @@ body.dyslexia-mode *:not(code):not(pre):not(kbd):not(samp):not(code *):not(pre *
 
 /* ── 2026-09-15 · book review ────────────────────────────────────────────────────────────────
    The hub's headline figures carry how they were measured (the classic site did this on 09-14). */
-.bk-item__basis {font-family: var(--bk-mono); font-size: 10px; letter-spacing:.02em; color: var(--bk-ink-faint); flex: 1; min-width: 0; margin-left: 8px; line-height: 1.3; align-self: center}
+.bk-item__basis {font-family: var(--bk-mono); font-size: 10px; letter-spacing:.02em; color: var(--bk-ink-faint); flex: 1; min-width: 0; margin-left: 8px; line-height: 1.3; align-self: baseline}
 .bk-item__basis::before {content: "· "; }
 .bk-cv--facts .bk-cv__row {padding: 4px 0; grid-template-columns: 180px 1fr}   /* labels are words here, not years */
 .bk-fine {font-size: 12.5px}

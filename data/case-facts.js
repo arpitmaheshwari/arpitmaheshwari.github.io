@@ -152,7 +152,7 @@
           "Per diligence pass · pre/post rollout"
         ],
         [
-          "3",
+          "Cited",
           "Sources behind every score"
         ],
         [

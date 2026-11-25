@@ -2989,6 +2989,16 @@ body.p-lab-plugin .lab-body > p + p{margin-top:16px}
 :is(body.p-lab,body.p-lab-loop,body.p-lab-eval,body.p-lab-plugin,body.p-lab-teardown) main#main > .section:not(.lab-hero) > .lab-wrap:has(> .lab-body){grid-template-rows:auto 1fr}
 :is(body.p-lab,body.p-lab-loop,body.p-lab-eval,body.p-lab-plugin,body.p-lab-teardown) main#main > .section:not(.lab-hero) > .lab-wrap:has(> .lab-body) > h2.section-title{margin-top:12px}
 }
+/* --- 2026-11-25, the same fault swept across every two-column Lab band (36 bands, 1024 to 1440): the label sat 52 to 291px above its
+       heading wherever the first thing beside it was a paragraph or the objection box (loop, eval, teardown), and 0px above it where nothing
+       or a full-width instrument followed (eval, teardown, fit). One grammar now: label, heading 12px under it, and the first item of the
+       reading column starts level with the label. Selectors name the items that sit in the reading column; nothing else moves. --- */
+@media (min-width:1024px){
+:is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap:has(> .eyebrow){grid-template-rows:auto 1fr}
+:is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > .eyebrow + h2.section-title,:is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > .eyebrow + .counter + h2.section-title{margin-top:12px}
+:is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > .eyebrow + h2.section-title + p.lab-lede,:is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap > .eyebrow + .counter{grid-row:1 / span 2}
+:is(body.p-lab-loop,body.p-lab-eval,body.p-lab-teardown,body.p-lab-plugin,body.p-fit) main#main > .section:not(.lab-hero) > .lab-wrap:has(> p.lab-lede + p.lab-lede) > .eyebrow + h2.section-title{grid-row:2 / span 3}   /* two paragraphs and the test count sit beside this heading: it spans their rows, so a heading taller than the first paragraph cannot open a gap under it */
+}
 body.p-lab-plugin .lab-body > pre.lab-code{margin:0}
 body.p-lab-plugin .lab-body > pre.lab-code + p{margin-top:16px}
 /* --- 2026-11-25 · two faults on the Lab index, both on the site before today (Arpit: 'fix the two Lab index faults').
@@ -3006,4 +3016,14 @@ body.p-lab .lab-card > .lab-num{flex:none}
 body.p-home .ccd-note{margin-top:12px}
 .framed-blk.art-svg + .artalt{margin-bottom:16px}
 body.p-lab-plugin .lh-l > .hand-note + .lab-note{margin-top:32px}
+/* --- 2026-11-25, QA sweep: the calibration chart's key did not match its bars. "Said" bars are violet
+   (components, line ~3193) and the same rule was meant to colour the key's swatch, but the swatch's
+   extracted class sits in the later utilities layer and kept it amber, so the key showed two browns
+   against violet-and-brown bars. Declared here, where it outranks the extracted class. --- */
+body.p-lab-loop .lab-legend i.xi-lab-loop-008{background:var(--acc-violet)}
+/* Same cause, patterns index: the "Prior art, named" block drew its own frame inside the section's
+   identical frame (two borders 33px apart; on a phone the text column was 226px of 390). Removing the
+   inner frame was decided on 2026-09 (T4.22, components ~3198) and never took effect, because the
+   block's extracted class sits in the later utilities layer. Declared here so it does. --- */
+body.p-patterns .xi-patterns-023{border:0;padding:0;margin:0 0 32px}
 }
