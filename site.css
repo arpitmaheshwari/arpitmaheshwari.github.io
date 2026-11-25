@@ -7343,4 +7343,12 @@ body.p-lab-plugin .lab-body > p + p{margin-top:16px}
 }
 body.p-lab-plugin .lab-body > pre.lab-code{margin:0}
 body.p-lab-plugin .lab-body > pre.lab-code + p{margin-top:16px}
+/* --- 2026-11-25 · two faults on the Lab index, both on the site before today (Arpit: 'fix the two Lab index faults').
+   1. Card titles in one row did not sit on one line. The card's number label ('01') is a <p>, so `.lab-card p{flex:1}`, written for the description,
+      stretched the label too: it shared the card's spare height with the description and pushed the title down (24px at 1440 and 768, 47px in the
+      second row at 768, 10px at 1024). The label keeps its own height; the description alone takes the spare height.
+   2. The thresholds note touched the paragraph above it whenever the essay and its aside stack (below 1024px: 0px, against 32px over the page's other note).
+      It is a <p>, so `.lab-body p{margin:0 0 16px}` outranked the note's own 32px. Beside the essay (1024px and up) it still starts at the column top. --- */
+body.p-lab .lab-card > .lab-num{flex:none}
+@media (max-width:1023.98px){body.p-lab .lab-body.lb-two > aside.lb-side > .lab-note{margin-top:32px}}
 }
