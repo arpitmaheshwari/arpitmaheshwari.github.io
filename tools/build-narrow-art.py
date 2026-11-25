@@ -395,7 +395,7 @@ def failure_states():
     a.y += 44
     a.text('I’m not sure', 'n-mv', x=16, dy=0)
     a.text('about this one.', 'n-mv', x=16, dy=24)
-    a.text('Confidence', 'n-cap', x=16, dy=26); a.text('Low', 'n-act', x=100, dy=0)
+    a.text('Confidence', 'n-cap', x=16, dy=26); a.text('Low', 'n-act', x=116, dy=0)
     a.y += 26
     a.text('What now?', 'n-act', dy=32)
     for name, note in (('Try another source', 'Search a different reference'),
