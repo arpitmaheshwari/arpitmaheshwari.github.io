@@ -12,8 +12,14 @@
    dependency on fonts.googleapis.com being reachable, and the teardown page
    can honestly claim one third-party domain instead of two.
 
-   Latin subsets only — this is an English-language site. Variable files carry
-   their weight RANGE in the filename (300_600), static files a single weight.
+   Latin subsets only — this is an English-language site.
+
+   EVERY Source and JetBrains file here is a VARIABLE font, whatever its filename says (measured
+   2026-11-27: text set from one file changes width or ink at every weight from 200 to 900; the mono
+   from 400 to 800). Until that day each was declared as a single weight, and the "400" and "600"
+   files were byte-identical copies downloaded twice. A rule asking for 500 silently got 400, a rule
+   asking for 700 got 600, and mono 600 was smeared bold by the browser. Each file is now declared
+   once, with the range it really holds; the filenames stay because every page preloads them by name.
    font-display:swap: text paints immediately in the fallback and re-renders,
    which is the right trade for a reading site.
 
@@ -25,14 +31,14 @@
 @font-face{
   font-family:'Source Serif 4';
   font-style:normal;
-  font-weight:300 600;
+  font-weight:200 900;
   font-display:swap;
   src:url('/assets/fonts-web/source-serif-4-normal-300_600.woff2') format('woff2');
 }
 @font-face{
   font-family:'Source Serif 4';
   font-style:italic;
-  font-weight:300 600;
+  font-weight:200 900;
   font-display:swap;
   src:url('/assets/fonts-web/source-serif-4-italic-300_600.woff2') format('woff2');
 }
@@ -41,46 +47,25 @@
 @font-face{
   font-family:'Source Sans 3';
   font-style:normal;
-  font-weight:400;
+  font-weight:200 900;
   font-display:swap;
   src:url('/assets/fonts-web/source-sans-3-normal-400.woff2') format('woff2');
 }
 @font-face{
   font-family:'Source Sans 3';
-  font-style:normal;
-  font-weight:600;
-  font-display:swap;
-  src:url('/assets/fonts-web/source-sans-3-normal-600.woff2') format('woff2');
-}
-@font-face{
-  font-family:'Source Sans 3';
   font-style:italic;
-  font-weight:400;
+  font-weight:200 900;
   font-display:swap;
   src:url('/assets/fonts-web/source-sans-3-italic-400.woff2') format('woff2');
-}
-@font-face{
-  font-family:'Source Sans 3';
-  font-style:italic;
-  font-weight:600;
-  font-display:swap;
-  src:url('/assets/fonts-web/source-sans-3-italic-600.woff2') format('woff2');
 }
 
 /* ---------- MONO — code, and only code ------------------------------------- */
 @font-face{
   font-family:'JetBrains Mono';
   font-style:normal;
-  font-weight:400;
+  font-weight:400 800;
   font-display:swap;
   src:url('/assets/fonts-web/jetbrains-mono-normal-400.woff2') format('woff2');
-}
-@font-face{
-  font-family:'JetBrains Mono';
-  font-style:normal;
-  font-weight:500;
-  font-display:swap;
-  src:url('/assets/fonts-web/jetbrains-mono-normal-500.woff2') format('woff2');
 }
 
 /* ---------- HAND — the margin annotation, one role, one weight ------------- */
