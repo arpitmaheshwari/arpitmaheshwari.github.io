@@ -176,3 +176,29 @@ document.addEventListener('click', function (e) {
     if (was) { v.play(); } else { v.pause(); }
   }, 60);
 });
+
+/* ONE PLAY BUTTON (Arpit, 2026-11-26: picked 'B · The circle is the button'). Each film
+   cover has a play circle painted into it; the browser's control bar put a second play
+   arrow under it. Until the film starts, the bar is taken away and a real button covers
+   the cover, so the painted circle is the only control shown and the whole cover (and
+   the keyboard) starts the film. The bar returns the moment it plays. The markup keeps
+   `controls`, so with scripts off the bar is simply there as before. */
+Array.prototype.forEach.call(document.querySelectorAll('.vid-frame video[controls]'), function (v) {
+  var b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'vid-play';
+  b.setAttribute('aria-label', 'Play the film');
+  function started() {
+    v.setAttribute('controls', '');
+    if (b.parentNode) b.parentNode.removeChild(b);
+  }
+  b.addEventListener('click', function () {
+    started();
+    v.focus();
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});     // a refused play leaves the bar there to use
+  });
+  v.addEventListener('play', started);
+  v.removeAttribute('controls');
+  v.parentNode.appendChild(b);
+});

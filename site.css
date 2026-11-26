@@ -7443,4 +7443,13 @@ body.p-screen .scr-wrap--split .scr-terms{border-top:0}
 body.p-lab-teardown .td-fig:last-child{border-bottom:0}
 /* writing: four steps take three lines between them, not one under the last */
 .ef-steps li:last-child{border-bottom:0}
+/* ONE PLAY BUTTON (Arpit, 2026-11-26: picked 'B · The circle is the button'). Every film
+   cover has a play circle painted into it, and the browser's control bar added a second
+   play arrow under it. attention.js takes the bar away until the film starts and lays this
+   button over the whole cover, so the painted circle is the one control a reader sees and
+   the whole cover is its target. It is a real button (keyboard reach, a name for screen
+   readers); it paints nothing itself, so it declares everything rather than inherit a
+   button's look from the page. Without scripts the bar simply stays. */
+.vid-play{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;margin:0;padding:0;border:0;border-radius:inherit;background:transparent;color:inherit;font:inherit;cursor:pointer;appearance:none;-webkit-appearance:none}
+.vid-play:focus-visible{outline:3px solid var(--border-focus);outline-offset:-6px}
 }
