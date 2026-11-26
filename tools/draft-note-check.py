@@ -56,7 +56,7 @@ DOC_NOUN = (r"quote|pull-?quote|paragraph|para|sentence|section|heading|subhead|
             r"list|title|label|figure|table")
 
 INSTRUCTION = re.compile(
-    r"\b(?:%s)\s+(?:the|this|that|these|those|a|an|it|them)?\s*"
+    r"\b(?:%s)\s+(?!(?:is|was)\b)(?:the|this|that|these|those|a|an|it|them)?\s*"
     r"(?:\w+[\s-]){0,3}(?:%s)s?\b" % (EDIT_VERB, DOC_NOUN), re.I)
 
 # Markers that are never deliberate prose, whatever surrounds them.

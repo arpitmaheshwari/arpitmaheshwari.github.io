@@ -7474,12 +7474,26 @@ main > .xi-process-004 > section.essay-sec > h2.section-title{margin-top:var(--r
       the only one (wide screens, where the section is full-bleed); on a phone the section's is enough.
    2. Patterns index: the rule card pads 32px, the picture inside pads 24px and its rows 16px: a box in
       a box in a box, leaving a 191px text column. The card gives way first. */
+/* 2026-11-27 (Arpit: "Remove the doubling"): the wrapper's side padding goes at every width, not only on a phone;
+   at 1440 it started Lab and fit-check content 64px further in than every other page. */
+:is([class*="p-lab"],.p-fit) main > .section > .lab-wrap{padding-left:0;padding-right:0}
 @media (max-width:600px){
-  :is([class*="p-lab"],.p-fit) main > .section > .lab-wrap{padding-left:0;padding-right:0}
   body[class*="p-patterns"] .xi-patterns-012{padding:24px 16px}
 }
 /* ESSAY ENDING: the other two essays as cards, then one plain way back to the list
    (2026-11-26, Arpit picked "A: two essay cards" from prototypes/renders/essay-links-2026-11-26/). */
 .ess-all{margin:20px 0 0;font-family:var(--ff-ui,inherit);font-size:1rem;line-height:1.5}
 .ess-all a{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
+
+/* CASE PICTURES: no label under 12px (2026-11-27, Arpit: "Raise to 12px + stack rows").
+   The screen pictures in the seven case studies set their labels at 9-11.5px. Each one is named here
+   and raised to 12px. The deal-screening rows stack at every width: the name on its own line, the tags
+   under it. Side by side, the larger tags squeezed the name into one-word lines even on a desktop. */
+body[class*="p-case-studies"] main :is(.vg-hd > b,.vg-hd > i,.vg-brief,.vg-met > i,.vg-ring > span,.vg-score > em,.vg-srcs > li,.nobar > i,.nobar > b,.vg li > i,.vg li > b,.vg-bill > i,.vg-bill > em,.vg-row > b,.vg-spine > span,.vg-routes > b,.vg-plats > li,.vg-after > i,.vg-after > b,.vg-count,.vg-verdict > i,.vg-verdict > em,
+  .plA-chrome > span,.plA-stage,.plA-sub,.plA-conf,.plA-verb,.plA-reason,.plA-apply,.plA-quiet,.plA-ovr,.plA-note,.plA-foot,.plA-rl,.plA-w,.plA-mono,.plA-cmp,.plA-bcap,
+  .plF-chrome > span,.plF-stage,.plF-verb,.plF-sub,.plF-sname > small,.plF-risk,.plF-conf,.plF-src,.plF-ovr,.plF-foot,.plF-rl,.plF-cite,.plF-open,.plF-more,.plF-w,
+  .recon-badge,.recon-caption,.rl-clock,.rxa-kicker,.rxf-conf,.rxf-doc,.rxf-wlabel,.rxf-unsure,.rxf-logged,.rx2-sig4,.rx2-sub,.rx2-row > span,.rx2-label,.rx2-kicker,.rx2-osub,.rx2-codelabel,.rxo-colh,.rxo-meta,.rxo-own,.rxo-lock,.rxp-tile > span,.rxp-explore,.rxv-vlabel,.rxv-st,.rxv-cite,.rxv-hint){font-size:12px}
+body.p-case-studies-fintech .plF-sig{flex-wrap:wrap}
+body.p-case-studies-fintech .plF-sig .plF-sname{flex:1 1 100%}
+body.p-case-studies-fintech :is(.plF-main,.plF-rail){min-width:0}
 }

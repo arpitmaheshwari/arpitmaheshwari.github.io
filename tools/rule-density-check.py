@@ -43,6 +43,7 @@ EXEMPT = {
     '.fr,.hero-facts': "the Candidate Facts card is a nutrition label by design (2026-08); the hero's fact sheet is four labelled rows, his pick (2026-11-24, Arpit: '1 · Fact sheet')",
     '.td-block,.td-scroll,.td-ledger,.td-fig': 'the teardown ledger is measurements in rows',
     '.lab-fn,.vg,.lh-inst,.dsg-card,.recon,.rxp-cat,.rxo-panel,.hero-demo,.hd-card,.pd,.vid-frame,.card-wire,.artalt,.thesis,.card-gold,.fig-paper,.bp,.boarding,[class*="-chrome"],[class*="pl"][class*="-bar"]': 'an instrument or reconstruction draws its own internal lines',
+    'body.p-writing .xi-resources-004': 'the writing index is a list of essays, one ruled row each; six since 2026-11-27 (Arpit: "publish")',
     'pre,code,button,input,select,textarea,.cta,.rcpt-btn,nav,#nav,footer': 'controls and chrome',
 }
 SKIP = ','.join(EXEMPT.keys())

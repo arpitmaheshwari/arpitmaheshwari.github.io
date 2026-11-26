@@ -103,15 +103,21 @@ const PATTERNS = [{
   p: "People don’t act when the model is right. They act when being wrong is cheap."
 }];
 const WRITING = [{
-  d: "Essay",
   h: "The Model Was Right and Ignored.", u: "../writing/confidence-scoring.html",
   p: "A recommendation engine that beat the traders it was built for — and sat unused. Accuracy was never the problem."
 }, {
-  d: "Essay",
+  h: "Fluent Is Not the Same as Sure.", u: "../writing/fluent-is-not-sure.html",
+  p: "A language model writes a wrong answer in the same voice as a right one. What that changed on two products I shipped, and what it did not."
+}, {
   h: "The Receipt Beside the Number.", u: "../writing/receipt-beside-the-number.html",
   p: "A precise figure from someone with something to gain reads as a tactic. What I moved on my own pages, and why the miss goes in too."
 }, {
-  d: "Essay",
+  h: "A Gate Is Not a Gate Until You\u2019ve Watched It Go Red.", u: "../writing/a-gate-is-not-a-gate.html",
+  p: "Five checks were green and a reader still found four defects in minutes. The two rules that came out of that afternoon."
+}, {
+  h: "The System Before the Prompt.", u: "../writing/the-system-before-the-prompt.html",
+  p: "A careful brief still gets back the wrong button and an invented colour. The layer I put under the brief, and what it stopped costing."
+}, {
   h: "My Tests Are on the Page. Run Them.", u: "../writing/tests-on-the-page.html",
   p: "A designer who says they ship code should hand you some to run. What the Lab proves, and exactly what it does not."
 }];
@@ -169,7 +175,7 @@ const CASES = {
     no: "01",
     tag: CF.get("ptc").tag,
     title: CF.get("ptc").title,
-    standfirst: "Five platforms, one survivor. The redesign took a quarter — the case for killing four products took a year. That was the design work.",
+    standfirst: "Five platforms, one survivor.",
     meta: cfMeta("ptc"),
     context: "The brief said “redesign the UX.” Three weeks in the customer-success recordings said the navigation was fine — so I made the call that the contract was the broken interface: kill four of five learning platforms (LearningExchange, Precision LMS, Digital Guides, IoTU) and move the survivor off perpetual licenses — onto a product-led funnel where free tutorials and trainings converted learners to premium subscriptions. Research had already named the survivor: usability testing kept showing customers didn’t use our product names — they called everything “PTC University.”",
     fig1: {
@@ -1724,7 +1730,7 @@ function buildBook(ctx) {
     }, "my newsletter on Substack ", Icon({ name: "external", cls: "bk-icon--sm" })), ". One idea per issue, on getting humans to act on machines. The fastest way to know how I think before you hire me."), /*#__PURE__*/React.createElement("p", {
       className: "bk-body",
       style: { marginTop: 16 }
-    }, "A loose thread runs through all three: what happens when a system that behaves like a colleague still needs to be governed like software \u2014 the confidence to let it act, and the discipline to check it did."), /*#__PURE__*/React.createElement("div", {
+    }, "A loose thread runs through all six: what happens when a system that behaves like a colleague still needs to be governed like software \u2014 the confidence to let it act, and the discipline to check it did."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note"
@@ -1740,9 +1746,7 @@ function buildBook(ctx) {
     }, WRITING.map((w, i) => /*#__PURE__*/React.createElement("div", {
       className: "bk-writing",
       key: i
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "bk-writing__date"
-    }, w.d), /*#__PURE__*/React.createElement("h4", null, w.h), /*#__PURE__*/React.createElement("p", null, w.p), /*#__PURE__*/React.createElement("a", {
+    }, /*#__PURE__*/React.createElement("h4", null, w.h), /*#__PURE__*/React.createElement("p", null, w.p), /*#__PURE__*/React.createElement("a", {
       // 2026-11-25: each row opens ITS essay on this site. It used to say "View on Substack" and
       // open the newsletter's front page, where a reader then had to hunt for the piece.
       href: w.u,

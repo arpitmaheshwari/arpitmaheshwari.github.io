@@ -76,13 +76,11 @@ REG = [
     #     essay cards (explainability, failure-states, human-in-loop) are still unmanaged.
     ("confidence-scoring-og.png", "ESSAY", "The Model Was Right and Ignored.",
      "Adoption is not a function of accuracy.", "Arpit Maheshwari \u00b7 Essay"),
-    # 2026-11-26: the other three essays were merged into the flagship above (their cards are gone
-    # with them) and two essays were added.
+    # 2026-11-26/27: three essays merged into the flagship above (cards gone); five essays added since.
     ("receipt-beside-the-number-og.png", "ESSAY", "The Receipt Beside the Number.",
      "A ledger with only wins is a brochure.", "Arpit Maheshwari \u00b7 Essay"),
     ("tests-on-the-page-og.png", "ESSAY", "My Tests Are on the Page. Run Them.",
      "An opinion becomes testable the day it compiles.", "Arpit Maheshwari \u00b7 Essay"),
-    # 2026-11-27: the three held essays published (Arpit: "publish").
     ("fluent-is-not-sure-og.png", "ESSAY", "Fluent Is Not the Same as Sure.",
      "Fluent is not sure.", "Arpit Maheshwari \u00b7 Essay"),
     ("a-gate-is-not-a-gate-og.png", "ESSAY", "A Gate Is Not a Gate Until You\u2019ve Watched It Go Red.",

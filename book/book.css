@@ -446,7 +446,6 @@ body {
 
 .bk-writing { padding: 12px 0; border-top: 1px solid var(--bk-rule); }
 .bk-writing:first-of-type { border-top: none; }
-.bk-writing__date { font-family: var(--bk-mono); font-size: 10.5px; letter-spacing: 0.08em; color: var(--bk-ink-faint); }
 .bk-writing h4 { font-family: var(--bk-serif); font-weight: 600; font-size: 17px; margin: 3px 0 3px; color: var(--bk-ink); }
 .bk-writing p { font-family: var(--bk-serif); font-size: 13px; line-height: 1.5; color: var(--bk-ink-soft); margin: 0; }
 
@@ -1098,6 +1097,10 @@ body {
    ============================================================ */
 /* a taped-in Polaroid / snapshot */
 .bk-tape { position: relative; background: #FBF7EC; padding: 8px 8px 32px; box-shadow: 0 9px 20px rgba(0,0,0,0.20); transform: rotate(-3deg); }
+/* 2026-11-27 (Arpit: "2: photo left, text beside"): on the desktop spread the author photo's card hugs the
+   220px photo and the opening paragraph runs beside it. The phone page keeps the card as it was. */
+.bk-page .bk-plate.bk-tape:has(#about-portrait) { width: fit-content; float: left; margin-right: 24px !important; margin-bottom: 12px !important; }
+.bk-page .bk-plate__img:has(#about-portrait) { width: 220px; }
 .bk-tape::before, .bk-tape::after {
   content: ""; position: absolute; top: -10px; width: 58px; height: 21px;
   background: rgba(206,182,120,0.42); box-shadow: 0 1px 2px rgba(0,0,0,0.10);
@@ -1233,7 +1236,7 @@ body.dyslexia-mode *:not(code):not(pre):not(kbd):not(samp):not(code *):not(pre *
   .bk-m-page .bk-item__tag, .bk-m-page .bk-item__basis, .bk-m-page .bk-item__case, .bk-m-page .bk-pattern__go,
   .bk-m-page .bk-cv__sub, .bk-m-page .bk-meta dt, .bk-m-page .bk-metric__l, .bk-m-page .bk-ledger__lbl,
   .bk-m-page .bk-plate__no, .bk-m-page .bk-figure__tag, .bk-m-page .bk-device__label, .bk-m-page .bk-kicker,
-  .bk-m-page .bk-cv__yr, .bk-m-page .bk-writing__date, .bk-m-page .bk-chip, .bk-m-page .bk-feature__more { font-size: 12px; }
+  .bk-m-page .bk-cv__yr, .bk-m-page .bk-chip, .bk-m-page .bk-feature__more { font-size: 12px; }
   /* 2026-11-25: a pill longer than the phone's column ran off the right edge ("Product Manager & Designer · AI & Data-Intensive Products" is 451px wide in a 327px column, cut at 475). It wraps instead; 14px keeps a one-line pill fully round and gives a two-line one plain rounded corners. */
   .bk-m-page .bk-chip { white-space: normal; border-radius: 14px; }
   /* 2026-11-25 (Arpit picked "A: words on the picture", "Phones only"): a picture that opens on a tap says so.
