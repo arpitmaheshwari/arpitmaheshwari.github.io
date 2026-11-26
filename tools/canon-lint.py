@@ -172,8 +172,8 @@ MALFORMED = [
 
 # If the left phrase appears in a file, the right one must appear in the same file.
 PAIRED = [
-    (r"years, five industries", r"[Ss]ixteen years",
-     'the "five industries" line must carry "Sixteen years"', "§1 the line is locked"),
+    (r"years, seven industries", r"[Ss]ixteen years",
+     'the "seven industries" line must carry "Sixteen years"', "§1 the line is locked"),
 ]
 
 # Shipped = what a visitor or a crawler reads. Errors here fail the build.
@@ -237,7 +237,7 @@ SKIP_DIRS = {".git", "node_modules", ".claude", "portfolio-sources", ".requireme
 # (same principle as the paper-first / hook-d / reference-concepts entries in ALLOW).
 RULE_ARCHIVE_EXEMPT = {
     r"\b15 years\b|\bfifteen years\b|\b15 yrs\b": ("prototypes/",),
-    r"years, five industries": ("prototypes/",),   # the PAIRED tenure rule, same reason
+    r"years, seven industries": ("prototypes/",),   # the PAIRED tenure rule, same reason
     # Dated prototype snapshots record what the copy WAS on the day they were made. Rewriting
     # them would falsify the record — the same reasoning as the tenure rules above. The rule
     # still fails the build for every shipped surface, which is where it matters.
@@ -372,7 +372,7 @@ CANARIES = [
 # go red says nothing about whether it goes red for the RIGHT reasons — a gate that cries wolf is a
 # gate that gets switched off, which is strictly worse than no gate at all.
 CLEAN_CANARY = ("__canon_canary_ok.html", """<!doctype html><html><body>
-<p>Sixteen years, five industries, one problem. Available now.</p>
+<p>Sixteen years, seven industries, one problem. Available now.</p>
 <p>Campaign planning 2 wks &rarr; 3 hrs. Deal screening 60% faster. Diligence 3 wks &rarr; 4 days.</p>
 <p>550k+ registered learners &middot; subscription 0% &rarr; 64% of new bookings &middot; $1M / yr.</p>
 <p>Print run &minus;92% in year one. Product &amp; Design Leader. Human in the Loop.</p>

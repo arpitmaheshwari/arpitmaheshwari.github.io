@@ -309,7 +309,7 @@ const NDA_CASES = [{
   stamp: { t: "0 Managers", v: "ok" }
 }, {
   no: "06",
-  img: "../assets/visuals/case-vc.svg?v=4",
+  img: "../assets/visuals/case-vc.svg?v=5",
   tag: CF.get("vc-diligence").tag,
   title: CF.get("vc-diligence").title,
   standfirst: "Partners bet millions on claims they’ll never check. So the design made them work: no sign-off until the evidence is read.",
@@ -1380,7 +1380,7 @@ function buildBook(ctx) {
         marginTop: 16,
         maxWidth: "30ch"
       }
-    }, "Sixteen years, five industries, the same half-second: the model surfaces something true, and the person at the screen pauses — not because the model is wrong, but because they don’t know how to bet on it yet. This book is everything I’ve worked out about that pause."), /*#__PURE__*/React.createElement("div", {
+    }, "Sixteen years, seven industries, the same half-second: the model surfaces something true, and the person at the screen pauses — not because the model is wrong, but because they don’t know how to bet on it yet. This book is everything I’ve worked out about that pause."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("p", {
       className: "bk-body bk-small--13",
@@ -1782,7 +1782,7 @@ function buildBook(ctx) {
       className: "bk-cv__sub"
     }, "Candidate facts"), /*#__PURE__*/React.createElement("div", {
       className: "bk-cv bk-cv--facts"
-    }, [["Experience", "16 yrs"], ["Industries", "5"], ["Patterns in production", "8"], ["Act / Review / Ignore", "1 rule"], ["Users shipped", "4M+ \u00B7 public"]].map((f, i) => /*#__PURE__*/React.createElement("div", {
+    }, [["Experience", "16 yrs"], ["Industries", "7"], ["Patterns in production", "8"], ["Act / Review / Ignore", "1 rule"], ["Users shipped", "4M+ \u00B7 public"]].map((f, i) => /*#__PURE__*/React.createElement("div", {
       className: "bk-cv__row",
       key: i
     }, /*#__PURE__*/React.createElement("div", {
