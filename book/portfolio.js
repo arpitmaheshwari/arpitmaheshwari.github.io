@@ -334,6 +334,9 @@ const NDA_CASES = [{
 }, {
   no: "07",
   img: "../assets/planit/phone-3.png",
+  // 2026-11-26 (Arpit picked "B: intro runs full width"): this page ran 8px long and its caption sat on the
+  // page-number row. The intro takes three lines instead of four on the open book; nothing else changes.
+  standfirstWide: true,
   tag: CF.get("planit").tag,
   redacted: false,
   ph: "PlanIt — the quietness chart and the suggested travel windows, mobile web",
@@ -974,7 +977,7 @@ function caseWalk(c) {
         margin: "6px 0 0"
       }
     }, c.title), /*#__PURE__*/React.createElement("p", {
-      className: "bk-standfirst"
+      className: "bk-standfirst" + (c.standfirstWide ? " bk-standfirst--wide" : "")
     }, c.standfirst), /*#__PURE__*/React.createElement("dl", {
       className: "bk-meta"
     }, c.meta.map(([k, v], i) => /*#__PURE__*/React.createElement(React.Fragment, {
@@ -1486,7 +1489,9 @@ function buildBook(ctx) {
     runheadR: "The Method",
     folioL: "iv",
     folioR: "v",
-    left: /*#__PURE__*/React.createElement("div", { className: "bk-reveal" },
+    // 2026-11-26 (Arpit picked "B: closing lines at the foot" from prototypes/renders/book-light-pages-2026-11-26/):
+    // both pages are columns so the handwritten note and the quote sit at the page foot, as on the CV and Notes pages.
+    left: /*#__PURE__*/React.createElement("div", { className: "bk-reveal", style: { display: "flex", flexDirection: "column", height: "100%" } },
       /*#__PURE__*/React.createElement("div", { className: "bk-kicker" }, "The Method"),
       /*#__PURE__*/React.createElement("p", { className: "bk-lede bk-drop", style: { marginTop: 12 } },
         "Every product is a series of bets someone else has to accept. The process isn\u2019t a ritual for making screens \u2014 it\u2019s a machine for making each bet ",
@@ -1496,9 +1501,10 @@ function buildBook(ctx) {
         alt: "The method in three acts: the wager (desirable, feasible, viable), the spiral of four moves, and the open loop from MVP to version n",
         style: { width: "100%", display: "block", margin: "22px 0 0" }
       }),
+      /*#__PURE__*/React.createElement("div", { className: "bk-spacer" }),
       /*#__PURE__*/React.createElement("div", { className: "bk-note", style: { marginTop: 20 } },
         "the same shape on every project, whatever the industry")),
-    right: /*#__PURE__*/React.createElement("div", { className: "bk-reveal" },
+    right: /*#__PURE__*/React.createElement("div", { className: "bk-reveal", style: { display: "flex", flexDirection: "column", height: "100%" } },
       /*#__PURE__*/React.createElement("div", { className: "bk-kicker" }, "The four moves of the spiral"),
       /*#__PURE__*/React.createElement("div", { style: { marginTop: 12 } },
         [["01", "Listen", "User research and requirement gathering, in the problem space’s own words. Act / Review / Ignore was born here \u2014 watching traders override a correct model."],
@@ -1510,6 +1516,7 @@ function buildBook(ctx) {
           /*#__PURE__*/React.createElement("div", null,
             /*#__PURE__*/React.createElement("h4", null, m[1]),
             /*#__PURE__*/React.createElement("p", null, m[2]))))),
+      /*#__PURE__*/React.createElement("div", { className: "bk-spacer" }),
       /*#__PURE__*/React.createElement("p", { className: "bk-lede", style: { marginTop: 32, fontStyle: "italic" } },
         "\u201CConfidence is earned in loops, not declared in launches.\u201D"))
   }, /* 4 · CHAPTER I — SELECTED WORK (hub) */

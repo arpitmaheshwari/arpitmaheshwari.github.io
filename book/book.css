@@ -489,6 +489,8 @@ body {
   font-family: var(--bk-display); font-style: italic; font-size: 18px; line-height: 1.45;
   color: var(--bk-ink-soft); margin: 4px 0 0; max-width: 30ch; text-wrap: pretty;
 }
+/* PlanIt, open book only (2026-11-26): the intro runs the full column so the page stops 8px short of overrunning */
+@media (min-width: 1025px) { .bk-standfirst--wide { max-width: none; } }
 .bk-meta {
   display: grid; grid-template-columns: auto 1fr; align-items: baseline; gap: 4px 20px; margin: 12px 0 0; padding: 8px 0;
   border-top: 1px solid var(--bk-rule); border-bottom: 1px solid var(--bk-rule);
