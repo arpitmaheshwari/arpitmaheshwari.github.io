@@ -309,7 +309,7 @@ const NDA_CASES = [{
   stamp: { t: "0 Managers", v: "ok" }
 }, {
   no: "06",
-  img: "../assets/visuals/case-vc.svg?v=3",
+  img: "../assets/visuals/case-vc.svg?v=4",
   tag: CF.get("vc-diligence").tag,
   title: CF.get("vc-diligence").title,
   standfirst: "Partners bet millions on claims they’ll never check. So the design made them work: no sign-off until the evidence is read.",
