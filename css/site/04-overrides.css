@@ -3142,4 +3142,137 @@ body[class*="p-case-studies"] main :is(.vg-hd > b,.vg-hd > i,.vg-brief,.vg-met >
 body.p-case-studies-fintech .plF-sig{flex-wrap:wrap}
 body.p-case-studies-fintech .plF-sig .plF-sname{flex:1 1 100%}
 body.p-case-studies-fintech :is(.plF-main,.plF-rail){min-width:0}
+
+/* ============================================================================
+   PAGE-TOP LAYOUT, ONE SYSTEM (2026-11-27, Arpit picked "A, with B's phone" from
+   prototypes/renders/hero-2026-11-27/compare.html).
+   Every page top shares one left edge and one 1180px container; words sit left and the proof
+   (film, card, panel, fact sheet, numbers) sits right, both starting on the same line; nothing is
+   capped narrow beside an empty remainder. On a phone a case study shows its three numbers
+   straight after the title, before the long paragraph.
+   ============================================================================ */
+/* SHARED FRAME — one left edge, one width, one bottom space, on every hero */
+section.hero,header.case-hero,.page-head,body.p-writing header.xi-writing-003,body.p-resources .xi-resources-003,.lab-hero,.rs-hero,body.p-patterns .xi-patterns-004{padding-left:24px!important;padding-right:24px!important;padding-bottom:48px!important}
+.hero-split,.case-hero__in,.page-head>div,body.p-writing header.xi-writing-003>div,body.p-resources .xi-resources-003>div{max-width:1180px!important;width:100%!important;padding-left:0!important;padding-right:0!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important}
+@media (min-width:768px){
+section.hero,header.case-hero,.page-head,body.p-writing header.xi-writing-003,body.p-resources .xi-resources-003,.lab-hero,.rs-hero,body.p-patterns .xi-patterns-004{padding-left:32px!important;padding-right:32px!important;padding-bottom:64px!important}
+}
+@media (min-width:1024px){
+section.hero,header.case-hero,.page-head,body.p-writing header.xi-writing-003,body.p-resources .xi-resources-003,.lab-hero,.rs-hero,body.p-patterns .xi-patterns-004{padding-left:64px!important;padding-right:64px!important}
+}
+/* home: the band is as tall as its content, like every other page (was: forced to a full screen, content floated in the middle) */
+section.hero{min-height:0!important;align-items:flex-start!important;padding-top:126px!important}
+@media (max-width:1023px){section.hero{padding-top:112px!important}}
+@media (min-width:768px) and (max-width:1023px){
+/* tablet: nothing is capped beside an empty half */
+.case-hero__in:not(.case-hero__in--solo) .case-hero__hook,.page-head .ph-main>.lead{max-width:none!important}
+.case-hero__in:not(.case-hero__in--solo) .case-stats{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media (max-width:1023px){
+/* Below laptop width an essay, guide or pattern page is one centred reading column. Its title keeps that
+   column's width and edge, so the title and the first paragraph under it start on the same line. */
+body:not(.p-process) .page-head>div{max-width:var(--measure)!important}
+}
+@media (min-width:1024px){
+/* PTC (the one case with a picture): same columns as every page; its three numbers get the full width instead of a squeezed third */
+.case-hero__in:not(.case-hero__in--solo){grid-template-columns:minmax(0,1fr) 465px!important;align-items:start!important;column-gap:64px!important;row-gap:0!important}
+.case-hero__in:not(.case-hero__in--solo)>div{display:contents!important}
+.case-hero__in:not(.case-hero__in--solo)>div>*{grid-column:1!important}
+.case-hero__in:not(.case-hero__in--solo)>div>.case-hero__kicker{grid-column:1/-1!important;grid-row:1}
+.case-hero__in:not(.case-hero__in--solo)>div>h1{grid-row:2}
+.case-hero__in:not(.case-hero__in--solo)>div>.case-hero__hook{grid-row:3}
+.case-hero__in:not(.case-hero__in--solo)>div>.case-own{grid-row:4}
+.case-hero__in:not(.case-hero__in--solo)>div>.hand{grid-row:5;justify-self:start}
+.case-hero__in:not(.case-hero__in--solo)>.case-hero__fig{grid-column:2!important;grid-row:2/span 4!important;align-self:start!important;margin:16px 0 0!important}
+.case-hero__in:not(.case-hero__in--solo)>div>.case-stats{grid-column:1/-1!important;grid-row:6;margin-top:32px!important}
+}
+@media (min-width:768px){
+/* three numbers are three equal cards, never two and an orphan */
+.case-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+.case-stats>.case-stat{grid-column:auto!important}
+}
+/* OPTION A — SQUARED COLUMNS: words left, proof right; both start on one line and end together */
+@media (min-width:1024px){
+/* home: film top-right, the quote moves under it so the right column ends with the left */
+.hero-split{grid-template-columns:minmax(0,1fr) 465px!important;column-gap:64px!important;align-items:start!important}
+.hero-copy{display:contents!important}
+.hero-copy>*{grid-column:1!important}
+.hero-copy>.role-line{grid-row:1}.hero-copy>h1{grid-row:2}.hero-copy>.hero-field{grid-row:3}.hero-copy>.hero-nums{grid-row:4}.hero-copy>.hero-facts{grid-row:5}.hero-copy>.ctas{grid-row:6}
+.hero-widget{grid-column:2!important;grid-row:2/span 4!important;align-self:start!important;margin:0!important}
+.hero-copy>.hero-said{grid-column:2!important;grid-row:5!important;align-self:end!important;margin:0!important;max-width:none!important}
+.hero-copy>.h-attr{grid-column:2!important;grid-row:6!important;align-self:center!important;margin:0!important}
+/* essays, patterns, guides, method: the side card starts level with the title */
+.page-head>div{align-items:start!important}
+.page-head .ph-card{margin-top:0!important}
+/* a page-head that carries an intro paragraph (the method page): intro goes right, above the card */
+.page-head>div:has(.ph-main>.lead){grid-template-rows:auto auto 1fr}
+.page-head>div:has(.ph-main>.lead)>.ph-main{display:contents!important}
+.page-head>div:has(.ph-main>.lead)>.ph-main>.eyebrow{grid-column:1;grid-row:1}
+.page-head>div:has(.ph-main>.lead)>.ph-main>h1{grid-column:1;grid-row:2;margin-bottom:0!important}
+.page-head>div:has(.ph-main>.lead)>.ph-main>.hand{grid-column:1;grid-row:3;align-self:end;justify-self:start}
+.page-head>div:has(.ph-main>.lead)>.ph-main>.lead{grid-column:2;grid-row:2;max-width:none!important;margin:8px 0 24px!important}
+.page-head>div:has(.ph-main>.lead)>.ph-card{grid-column:2;grid-row:3;align-self:end!important}
+/* writing + resources index: the intro takes the right column instead of leaving it empty */
+body.p-writing header.xi-writing-003>div,body.p-resources .xi-resources-003>div{display:grid!important;grid-template-columns:minmax(0,1fr) 465px;column-gap:64px;align-items:start}
+body.p-writing header.xi-writing-003>div>h1,body.p-resources .xi-resources-003>div>h1{grid-column:1;grid-row:1;margin-bottom:0!important}
+body.p-writing header.xi-writing-003>div>.lead,body.p-resources .xi-resources-003>div>.lead{grid-column:2;grid-row:1/span 2;max-width:none!important;margin:8px 0 0!important}
+body.p-writing header.xi-writing-003>div>.hand{grid-column:1;grid-row:2;align-self:end}
+/* lab + fit: panel starts level with the label; the source links sit under the panel they belong to */
+.lab-hero .lab-wrap{align-items:start!important}
+.lab-hero .lh-l{display:contents!important}
+.lab-hero .lh-l>*{grid-column:1}
+.lab-hero .lab-wrap{grid-template-rows:repeat(3,auto) auto 1fr}
+.lab-hero .lh-r{grid-column:2!important;grid-row:1/span 3!important}
+/* lab index: the test panel is the tall object, so it gets the wide column and its checks run in two columns */
+body.p-lab .lab-hero .lab-wrap{grid-template-columns:465px minmax(0,1fr)!important;grid-template-rows:repeat(5,auto) 1fr}
+body.p-lab .lab-hero .lh-r{grid-row:1/-1!important}
+body.p-lab .lab-hero .lh-log{columns:2;column-gap:32px}
+body.p-lab .lab-hero .lh-log>li{break-inside:avoid}
+body.p-lab .lab-hero h1{max-width:none!important}
+.lab-hero .lh-l>.lab-links{grid-column:2!important;grid-row:4!important;align-self:start;margin-top:24px!important}
+}
+@media (min-width:768px){
+/* résumé: title runs wide; buttons sit under the fact sheet so both columns end together */
+.rs-hero-grid{align-items:start!important}
+.rs-hero-grid>div{display:contents!important}
+.rs-hero-grid>div>*{grid-column:1}
+.rs-hero-grid .rs-h1{max-width:none!important}
+.rs-hero-grid>div>.eyebrow{grid-row:1}.rs-hero-grid>div>h1{grid-row:2}.rs-hero-grid>div>.rs-lead{grid-row:3}
+.rs-hero-grid>.rs-facts{grid-column:2!important;grid-row:1/span 3!important}
+.rs-hero-grid>div>.rs-actions{grid-column:2!important;grid-row:4!important;margin-top:0!important}
+.rs-hero-grid{row-gap:0!important}
+.rs-hero-grid>div>.eyebrow{margin:0 0 12px!important}.rs-hero-grid>div>h1{margin:0 0 20px!important}.rs-hero-grid>div>.rs-lead{margin:0!important}
+.rs-hero-grid>div>.rs-actions{margin-top:24px!important}
+}
+@media (min-width:768px) and (max-width:1099px){
+/* cases on a tablet: numbers sit beside the story instead of an empty right half */
+.case-hero__in--solo>div{display:grid!important;grid-template-columns:minmax(0,1fr) 264px;column-gap:40px;align-items:start}
+.case-hero__in--solo>div>*{grid-column:1}
+.case-hero__in--solo>div>.case-hero__kicker{grid-column:1/-1;grid-row:1}.case-hero__in--solo>div>h1{grid-column:1/-1;grid-row:2}
+.case-hero__in--solo>div>.case-hero__hook{grid-row:3;max-width:none!important}.case-hero__in--solo>div>.hand{grid-row:4}.case-hero__in--solo>div>.case-own{grid-row:5}
+.case-hero__in--solo>div>.case-stats{grid-column:2;grid-row:3/span 3;display:flex!important;flex-direction:column!important;margin-top:0!important}
+body.p-writing header.xi-writing-003>div>.lead,body.p-resources .xi-resources-003>div>.lead{max-width:none!important}
+}
+@media (min-width:1024px) and (max-width:1199px){
+/* laptop: the Lab checklist reads as one column; two would squeeze every line */
+body.p-lab .lab-hero .lab-wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+body.p-lab .lab-hero .lh-log{columns:1}
+}
+@media (max-width:767px){
+/* phone: the proof comes straight after the title, before the long paragraph */
+.case-hero__in--solo>div{display:flex!important;flex-direction:column}
+.case-hero__in--solo>div>.case-hero__kicker{order:1}.case-hero__in--solo>div>h1{order:2}
+.case-hero__in--solo>div>.case-stats{order:3;margin:8px 0 24px!important;gap:0!important}
+.case-hero__in--solo>div>.case-stats>.case-stat{padding:12px 0!important;background:none!important;border:0!important;border-top:1px solid rgba(255,255,255,.16)!important;border-radius:0!important;box-shadow:none!important;display:grid!important;grid-template-columns:128px 1fr;column-gap:16px;align-items:baseline}
+.case-hero__in--solo>div>.case-stats>.case-stat>b{font-size:20px!important}
+.case-hero__in--solo>div>.case-hero__hook{order:4}.case-hero__in--solo>div>.case-own{order:5}.case-hero__in--solo>div>.hand{order:6}
+}
+/* HOME SECTIONS ON THE SHARED EDGE (2026-11-27, Arpit: "Yes, move home sections"). The home page's own
+   wrapper sat on 16 / 40 / 40 / 140px while every page top now sits on 24 / 32 / 64 / 130px, so the home
+   title started off the line of the sections under it. The wrapper takes the same gutters and the same
+   1180px content width. */
+body.p-home .wrap,body.p-home .work .wrap{max-width:1308px;padding-left:24px;padding-right:24px}
+@media (min-width:768px){body.p-home .wrap,body.p-home .work .wrap{padding-left:32px;padding-right:32px}}
+@media (min-width:1024px){body.p-home .wrap,body.p-home .work .wrap{padding-left:64px;padding-right:64px}}
+body.p-home .close .wrap{max-width:720px}
 }
