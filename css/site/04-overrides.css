@@ -3050,4 +3050,43 @@ details.deep-read:not([open]) ~ .btn-row{min-height:46px}
    prototypes/renders/case-ending-full-2026-11-26/. The closing card carries its own
    Connect button; this is the space between the card's words and that button. */
 .note-gold > .cta--linkedin{margin-top:24px}
+
+/* 2026-11-26 - ONE BREAK, ONE MARK. Arpit: "There are so many separators on the homepage, separators are
+   supposed to give a break point, multiple separators are not helpful, same situation on technical screen,
+   resume and others." Picked "One line: the coloured one", "Remove them" (the inner card lines) and "Whole
+   site, as one rule" from prototypes/renders/separators-2026-11-26/. The rule (DESIGN-SYSTEM.md, section 6):
+     1. a break between two things gets ONE line, never two with nothing between them;
+     2. a heading is never ruled on both sides;
+     3. rows are divided BETWEEN rows only: no line over the first row or under the last;
+     4. inside a bordered box the border is the frame: no inner rules except between rows of data.
+   Only the lines go; every padding and margin stays, so a page shortens by 1px per line removed and nothing
+   else moves. Gate: tools/rule-density-check.py (STACKED, HEADING), pre-push since this date. */
+/* homepage: the coloured chapter rule is the section's one mark */
+body.p-home main > section:has(.chap){border-top:0}
+body.p-home .seam-up{background:none}
+body.p-home .who .wrap.career,
+body.p-home .who .wrap.who-scope,
+body.p-home .work .work-notes,
+body.p-home .work .hero-skills{border-top:0}
+/* the small boxed instruments on the case cards and case pages */
+.vg-hd{border-bottom:0}
+.vg-note{border-top:0}
+/* technical screen: the question's own top line is the break; the receipt under an answer needs none, and
+   the glossary's line sat 73px under the question's line in the side column at 1024 */
+body.p-screen .scr-wrap--split .scr-q p.scr-receipt,
+body.p-screen .scr-wrap--split .scr-terms{border-top:0}
+/* resume: no line under a section heading, none under a last row, none between a role's bullets */
+.rs-results,.rs-edu{border-top:0}
+.rs-result:last-child,.rs-edu-i:last-child{border-bottom:0}
+/* the results sit two, then four, to a row on wider screens: the LAST ROW carries no line, not just the last item */
+@media (min-width:640px){.rs-result:nth-last-child(-n+2){border-bottom:0}}
+@media (min-width:1100px){.rs-result{border-bottom:0}}
+.rs-role:first-of-type{border-top:0}
+.rs-bullet{border-top:0}
+/* lab: the readout under an instrument, the stats strip, the last figure before a section line */
+:where(body.p-lab-loop) .lab-json{border-top:0}
+:where(body.p-lab-eval) .lint-stats{border-bottom:0}
+body.p-lab-teardown .td-fig:last-child{border-bottom:0}
+/* writing: four steps take three lines between them, not one under the last */
+.ef-steps li:last-child{border-bottom:0}
 }

@@ -943,11 +943,12 @@
     "tools/rule-density-check.py"
    ],
    "stages": [
+    "pre-push",
     "nightly"
    ],
    "runner": true,
    "serial": false,
-   "note": "2026-09-15: Arpit, twice in one evening — 'too many rule lines' on How I lead (five separators in 300px), then 'it's about repetitive patterns' on The quality bar (eleven rules: list rows + ledger rows + underlined links). Every gate reads one element or one band's padding; none counts how often one visual device repeats inside a band. This counts painted horizontal rules per innermost section (a four-sided border is a box, not a rule): DENSE >4, DOUBLED two different rules within 40px. Ledgers, tables, instruments and reconstructions are exempt by name with their reason. Nightly, not pre-push: the remaining findings are judgement calls for Arpit's eye, and the gate's job is to put them in front of him."
+   "note": "2026-09-15: Arpit, twice in one evening — 'too many rule lines' on How I lead (five separators in 300px), then 'it's about repetitive patterns' on The quality bar (eleven rules: list rows + ledger rows + underlined links). Every gate reads one element or one band's padding; none counts how often one visual device repeats inside a band. This counts painted horizontal rules per innermost section (a four-sided border is a box, not a rule): DENSE >4, DOUBLED two different rules within 40px. Ledgers, tables, instruments and reconstructions are exempt by name with their reason. Was nightly-only until 2026-11-26, which is one reason it stayed green while the homepage carried 48 rules on a phone (Arpit: 'so many separators'); pre-push since then, with two page-level kinds added: STACKED (two rules with no text between them) and HEADING (a heading ruled on both sides)."
   },
   {
    "id": "journey-check",

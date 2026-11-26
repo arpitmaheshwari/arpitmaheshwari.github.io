@@ -359,6 +359,7 @@ CEILING = 18_667   # 2026-11-24 +6 (5 + this line): the servers the gates load f
 CEILING = 18_760   # 2026-11-24 +93: resources-preview-check — the three 'Inside' previews on /resources/ are typed copies of their pages; this proves each line is still, word for word and in order, an item on the page it links to, and that '+ N more' adds up
 CEILING = 18_763   # 2026-11-24 +3 (2 + this line): component-identity-check grades a component per GROUND. One ink token re-pointed on a dark header is one declaration, not drift; it blocked a push as '.cta-quiet, 2 appearances'.
 CEILING = 18_773   # 2026-11-26 +3: teardown-facts now measures the gzip byte count and book.css size that sat typed in the teardown prose and had gone stale. Before: 2026-11-25 +7 (6 + this line): journey-check opens each case's 'Read the full case' fold with a reader's click and requires it to open and its contents to paint; until now the walk never touched the fold, so a dead summary would have passed
+CEILING = 18_808   # 2026-11-26 +35: rule-density-check's page-level pass (STACKED, HEADING) — the per-band count stayed green on a homepage with 48 rules on a phone (Arpit: 'so many separators'); a section's own line never met the chapter rule 49px under it
 
 
 def loc(paths):

@@ -13,7 +13,16 @@ that spans at least 40% of the band. Table cells, the rails' contents lists, cod
 instrument panels that draw their own internal rules on purpose are skipped (EXEMPT, each with its reason).
   DENSE   more than 4 rules in one band (a border on all four sides is a box, not a rule, and is not counted)
   DOUBLED two rules from different elements within 40px of each other (a rule drawn on a rule)
-CALIBRATION: a page is loaded with five <hr> injected into one band and must go red.
+  STACKED two rules anywhere on the page with no text between them, however far apart (2026-11-26)
+  HEADING a heading ruled on both sides: the only text between two rules is a heading or its eyebrow (2026-11-26)
+WHY THE LAST TWO (2026-11-26, Arpit: "There are so many separators on the homepage, separators are supposed to
+give a break point, multiple separators are not helpful"). This gate was green on a homepage with 48 rules on a
+phone. Three blind spots, each structural: it counted rules INSIDE a band, so a section's own top line never met
+the chapter rule 49px below it; DOUBLED stopped at 40px; and the instrument panels were exempt wholesale. The
+page-level pass below has no band and no exemption list (tables only: on a phone their hidden header row still
+has a box). The rule it enforces is DESIGN-SYSTEM.md section 6, "One break, one mark".
+CALIBRATION: a page is loaded with five <hr> injected into one band and must go red; and two <hr> planted
+back to back must be reported as STACKED.
 Exit: 0 clean / 1 finding(s) / 2 calibration failed.
 CANNOT SEE: whether the rules that remain are the right ones, repeats of OTHER devices (dashed boxes, chips,
 underlines drawn as background), rules drawn by images or shadows, the book, or any state after interaction.
@@ -62,6 +71,27 @@ for(const b of bands){
   for(let i=0;i+1<d.length;i++){if(d[i+1].y-d[i].y<=%d&&d[i].el!==d[i+1].el)out.push({kind:'DOUBLED',band:bn,n:2,fam:d[i].el+' + '+d[i+1].el+' @y'+d[i].y});}
 }
 return out;})()""" % (repr(SKIP), DENSE_MAX, DOUBLE_GAP)
+JS_PAGE = r"""(()=>{
+const vw=innerWidth,lines=[];const M=document.querySelector('main')||document.body;
+const sel=e=>e.tagName.toLowerCase()+(e.id?'#'+e.id:'')+'.'+(e.className||'').toString().trim().split(/\s+/).filter(c=>!/^xi-/.test(c)).slice(0,2).join('.');
+const closed=e=>e.closest('details:not([open])')&&!e.closest('summary');
+for(const e of M.querySelectorAll('*')){
+  if(e.closest('table'))continue;const r=e.getBoundingClientRect();if(r.width<vw*0.5||(r.height===0&&e.tagName!=='HR'))continue;
+  const cs=getComputedStyle(e);if(cs.display==='none'||cs.visibility==='hidden'||closed(e))continue;const Y=r.top+scrollY;
+  if(e.tagName==='HR'){lines.push({y:Math.round(Y),s:sel(e),side:'hr'});continue;}
+  if(parseFloat(cs.borderLeftWidth)>0)continue;   /* a box, not a rule */
+  for(const side of ['Top','Bottom']){const w=parseFloat(cs['border'+side+'Width'])||0;const c=cs['border'+side+'Color'];
+    if(w>0&&cs['border'+side+'Style']!=='none'&&!/, 0\)$/.test(c)&&c!=='transparent')lines.push({y:Math.round(side==='Top'?Y:Y+r.height),s:sel(e),side});}
+}
+lines.sort((a,b)=>a.y-b.y);const texts=[];const w=document.createTreeWalker(M,NodeFilter.SHOW_TEXT);let n;
+while(n=w.nextNode()){if(!n.nodeValue.trim())continue;const p=n.parentElement;if(!p||p.closest('script,style,.visually-hidden,.sr-only')||closed(p))continue;
+  const cs=getComputedStyle(p);if(cs.display==='none'||cs.visibility==='hidden')continue;const g=document.createRange();g.selectNodeContents(n);const b=g.getBoundingClientRect();
+  if(!b.height||!b.width)continue;texts.push({c:b.top+scrollY+b.height/2,h:!!p.closest('h1,h2,h3,h4,header.chap,[class*=eyebrow],.chapter-k,.lbl')});}
+const out=[];for(let i=1;i<lines.length;i++){const A=lines[i-1],B=lines[i];if(A.s===B.s&&A.side===B.side)continue;const gap=B.y-A.y;if(gap>700)continue;
+  const bt=texts.filter(t=>t.c>A.y&&t.c<B.y);const kind=!bt.length?'STACKED':(bt.every(t=>t.h)?'HEADING':null);
+  if(kind)out.push({kind,band:'page',n:2,fam:A.s+' '+A.side+' + '+B.s+' '+B.side+' @y'+A.y+' gap '+gap});}
+return out;})()"""
+PLANT_STACK = "(()=>{const m=document.querySelector('main');for(let i=0;i<2;i++){const h=document.createElement('hr');h.className='planted'+i;h.style.cssText='margin:0 0 30px;border:0;border-top:1px solid #000;width:100%';m.insertBefore(h,m.firstChild);}return 1})()"
 PLANT = "(()=>{const s=document.querySelector('main > section');for(let i=0;i<5;i++){const h=document.createElement('hr');h.style.cssText='margin:40px 0;border:0;border-top:1px solid #000';s.appendChild(h);}return 1})()"
 
 
@@ -73,16 +103,20 @@ def main():
         if not [o for o in br.eval_json(JS) if o['kind'] == 'DENSE']:
             print('CALIBRATION FAILED: five planted rules in one band were not reported'); return 2
         print('  calibrated: five planted rules in one band go red')
+        br.navigate(f'{BASE}/lab/plugin.html', settle=1.2); br.eval(PLANT_STACK)
+        if not [o for o in br.eval_json(JS_PAGE) if o['kind'] == 'STACKED' and 'planted' in o['fam']]:
+            print('CALIBRATION FAILED: two planted rules back to back were not reported as STACKED'); return 2
+        print('  calibrated: two planted rules with nothing between them go red')
         for w in WIDTHS:
             br.viewport(w, 900)
             for rel in pages(include_book=False):
                 br.navigate(f'{BASE}/{rel}', settle=1.2)
-                for o in br.eval_json(JS):
+                for o in br.eval_json(JS) + br.eval_json(JS_PAGE):
                     findings.append(f"{o['kind']:8} {rel:42} @{w:<5} {o['band'][:34]:34} {o['n']:>2} rules  {o['fam'][:110]}")
     seen = set(); uniq = [f for f in findings if not (f in seen or seen.add(f))]
     for f in uniq: print('  ' + f)
     print(f'{len(uniq)} rule-density finding(s) across {len(WIDTHS) * len(pages(include_book=False))} page-widths.')
-    print('CANNOT SEE: other repeated devices (dashed boxes, chips), rules drawn by images or shadows, the book, or post-interaction states.')
+    print('CANNOT SEE: inner rules of a bordered card (rule 4 of "One break, one mark" is looked at, not gated), other repeated devices (dashed boxes, chips), rules drawn by images or shadows, the book, or post-interaction states.')
     return 1 if uniq else 0
 
 
