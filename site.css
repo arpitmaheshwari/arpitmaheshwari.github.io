@@ -7158,7 +7158,7 @@ body.p-lab-teardown .td-block h3{margin:0}
    stacked rows below; the steps are four across from 900px. --- */
 figure.ef{margin:40px 0;padding:0;max-width:none;border-top:1px solid var(--border-strong)}
 figure.ef figcaption{margin:16px 0 0;font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:400;font-style:normal;line-height:1.5;color:var(--text-muted);max-width:var(--measure)}
-.ef-table{width:100%;border-collapse:collapse;display:block}
+.ef-table{width:100%;max-width:100%;border-collapse:collapse;display:block}   /* max-width declared: the phone safety clamp on every table (100vw - 48px) made the row rules stop 16px short of the figure rule above them */
 .ef-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .ef-table tbody{display:block}
 .ef-table tr{display:block;padding:20px 0;border-bottom:1px solid var(--border-strong)}
@@ -7468,4 +7468,14 @@ body.p-writing .fl-rail{border-top:0;padding-top:0;border-left:1px solid var(--b
    margin above is for case and pattern chapters, and an essay keeps the rhythm it already had. */
 main > .xi-process-004 > section.essay-sec{margin-bottom:0}
 main > .xi-process-004 > section.essay-sec > h2.section-title{margin-top:var(--rhythm-chapter)}   /* the same space the heading had as a direct child */
+/* PHONE GUTTERS (2026-11-26, exploratory pass at 375). Two faults of the same kind: padding applied twice.
+   1. Lab + Fit: .section pads by --page-x and .lab-wrap pads by it again, so the text column sat 48px
+      in on a phone, against 16-24px on every other page. The wrapper keeps its padding where it is
+      the only one (wide screens, where the section is full-bleed); on a phone the section's is enough.
+   2. Patterns index: the rule card pads 32px, the picture inside pads 24px and its rows 16px: a box in
+      a box in a box, leaving a 191px text column. The card gives way first. */
+@media (max-width:600px){
+  :is([class*="p-lab"],.p-fit) main > .section > .lab-wrap{padding-left:0;padding-right:0}
+  body[class*="p-patterns"] .xi-patterns-012{padding:24px 16px}
+}
 }
