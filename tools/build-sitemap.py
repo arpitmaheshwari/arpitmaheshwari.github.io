@@ -19,7 +19,7 @@ import xml.etree.ElementTree as ET
 NS = 'http://www.sitemaps.org/schemas/sitemap/0.9'
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://arpitmaheshwari.com/'
-MAX_WALK = 60
+MAX_WALK = None   # no cap (2026-11-26): a 60-revision cap made the date creep one commit per save
 
 
 def visible_main(blob):
