@@ -103,15 +103,15 @@ const PATTERNS = [{
   p: "People don’t act when the model is right. They act when being wrong is cheap."
 }];
 const WRITING = [{
-  d: "2026 · Essay",
+  d: "Essay",
   h: "The Model Was Right and Ignored.", u: "../writing/confidence-scoring.html",
   p: "A recommendation engine that beat the traders it was built for — and sat unused. Accuracy was never the problem."
 }, {
-  d: "2026 · Essay",
+  d: "Essay",
   h: "The Receipt Beside the Number.", u: "../writing/receipt-beside-the-number.html",
   p: "A precise figure from someone with something to gain reads as a tactic. What I moved on my own pages, and why the miss goes in too."
 }, {
-  d: "2026 · Essay",
+  d: "Essay",
   h: "My Tests Are on the Page. Run Them.", u: "../writing/tests-on-the-page.html",
   p: "A designer who says they ship code should hand you some to run. What the Lab proves, and exactly what it does not."
 }];

@@ -82,6 +82,13 @@ REG = [
      "A ledger with only wins is a brochure.", "Arpit Maheshwari \u00b7 Essay"),
     ("tests-on-the-page-og.png", "ESSAY", "My Tests Are on the Page. Run Them.",
      "An opinion becomes testable the day it compiles.", "Arpit Maheshwari \u00b7 Essay"),
+    # 2026-11-27: the three held essays published (Arpit: "publish").
+    ("fluent-is-not-sure-og.png", "ESSAY", "Fluent Is Not the Same as Sure.",
+     "Fluent is not sure.", "Arpit Maheshwari \u00b7 Essay"),
+    ("a-gate-is-not-a-gate-og.png", "ESSAY", "A Gate Is Not a Gate Until You\u2019ve Watched It Go Red.",
+     "Green meant nothing.", "Arpit Maheshwari \u00b7 Essay"),
+    ("the-system-before-the-prompt-og.png", "ESSAY", "The System Before the Prompt.",
+     "Answer once.", "Arpit Maheshwari \u00b7 Essay"),
     # --- /fit/ (added 2026-08-17 with the page; a page shipped without a card falls back to
     #     a personal photo as its share image, which is the defect this generator was built for)
     ("fit-og.png", "FIT CHECK", "Paste the role. It answers with evidence, or says it can\u2019t.",
