@@ -110,6 +110,18 @@ body {
   position: fixed; inset: 0;
   display: grid; place-items: center;
 }
+/* THE BOOK IS LAID OUT AT 1180 x 880 AND THEN SCALED DOWN TO FIT. Without an explicit
+   track, the grid's automatic row and column grow to that unscaled size, so on any
+   window shorter than 880px (or narrower than 1180px) the book started at the top-left
+   of the track instead of the middle, and scaling about its own centre left it sitting
+   low and to the right: at 1280 x 720 the bottom 44px of both pages was off the screen,
+   at 1100 wide the Next arrow sat on the chapter tabs. Measured 2026-11-26 at 1100x720,
+   1280x720, 1366x768, 1280x800 (all cut off) and 1440x900 (fine, which is why it was
+   never seen: every check ran at 1440x900). A track that may shrink to nothing lets the
+   book overhang it equally on every side, so the scaled book is centred at every size. */
+@media (min-width: 1025px) {
+  .bk-stage { grid-template: minmax(0, 1fr) / minmax(0, 1fr); }
+}
 /* faint desk grain */
 .bk-stage::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;

@@ -360,6 +360,7 @@ CEILING = 18_760   # 2026-11-24 +93: resources-preview-check — the three 'Insi
 CEILING = 18_763   # 2026-11-24 +3 (2 + this line): component-identity-check grades a component per GROUND. One ink token re-pointed on a dark header is one declaration, not drift; it blocked a push as '.cta-quiet, 2 appearances'.
 CEILING = 18_773   # 2026-11-26 +3: teardown-facts now measures the gzip byte count and book.css size that sat typed in the teardown prose and had gone stale. Before: 2026-11-25 +7 (6 + this line): journey-check opens each case's 'Read the full case' fold with a reader's click and requires it to open and its contents to paint; until now the walk never touched the fold, so a dead summary would have passed
 CEILING = 18_808   # 2026-11-26 +35: rule-density-check's page-level pass (STACKED, HEADING) — the per-band count stayed green on a homepage with 48 rules on a phone (Arpit: 'so many separators'); a section's own line never met the chapter rule 49px under it
+CEILING = 18_885   # 2026-11-26 +77 (76 + this line): book-fit-check — is the whole open book on screen? It was scaled to fit and positioned wrongly, so every window shorter than 880px lost the bottom of both pages (44px at 1280x720); every gate and every look ran at 1440x900, where it happens to fit. Six laptop sizes x cover, chapter, case; calibrated by switching the fix off in the browser
 
 
 def loc(paths):
