@@ -1220,8 +1220,18 @@ function UndoDemo() {
 
 function patternSpread(p) {
   return {
+    // 2026-11-26 (Arpit picked "D: case note under the idea" from four rendered layouts in
+    // prototypes/renders/book-pattern-spreads-2026-11-26/): each pattern holds about a page and a third of
+    // content on two pages, and both pages used to stop a third short. The left page now reads idea, then the
+    // proof from the work, then the handwritten line at its foot; the right page is do/don't at the top and the
+    // try-it panel at its foot. Both pages are columns so the last item sits on the foot.
     left: /*#__PURE__*/React.createElement("div", {
-      className: "bk-reveal"
+      className: "bk-reveal",
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        height: "100%"
+      }
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-kicker"
     }, "Pattern \xB7 No. ", p.no), /*#__PURE__*/React.createElement("div", {
@@ -1238,23 +1248,35 @@ function patternSpread(p) {
     }, p.principle), /*#__PURE__*/React.createElement("p", {
       className: "bk-body"
     }, p.def), /*#__PURE__*/React.createElement("div", {
+      className: "bk-instance",
+      style: {
+        marginTop: 24
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "bk-instance__label"
+    }, "From the work \xB7 ", p.instTag), /*#__PURE__*/React.createElement("p", null, p.inst)), /*#__PURE__*/React.createElement("div", {
+      className: "bk-spacer"
+    }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
         marginTop: 16
       }
     }, p.note)),
     right: /*#__PURE__*/React.createElement("div", {
-      className: "bk-reveal"
+      className: "bk-reveal",
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        height: "100%"
+      }
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-kicker"
     }, "Do & don’t"), /*#__PURE__*/React.createElement(DoDont, {
       dos: p.dos,
       donts: p.donts
     }), /*#__PURE__*/React.createElement("div", {
-      className: "bk-instance"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "bk-instance__label"
-    }, "From the work \xB7 ", p.instTag), /*#__PURE__*/React.createElement("p", null, p.inst)), p.demo || /*#__PURE__*/React.createElement(Figure, {
+      className: "bk-spacer"
+    }), p.demo || /*#__PURE__*/React.createElement(Figure, {
       no: p.fig.no,
       label: p.fig.label,
       img: p.fig.img
