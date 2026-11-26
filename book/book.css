@@ -472,6 +472,8 @@ body {
 /* the contact page's one door (2026-11-25, replaces the email form): declares its own ink and decoration because it is a link, not a button */
 .bk-door { align-self: flex-start; margin-top: 8px; color: var(--bk-ink); text-decoration: none; }
 .bk-door:hover { color: var(--bk-paper); }
+/* the CV page's résumé download (2026-11-26): sits at the page foot on the open book; on a phone the page has no spare height, so it keeps its own gap from the chips above */
+.bk-door--cv { margin-top: 24px; }
 
 .bk-contactlinks { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
 .bk-contactlinks a { font-family: var(--bk-serif); font-size: 15px; color: var(--bk-ink); text-decoration: none; display: flex; justify-content: space-between; border-bottom: 1px solid var(--bk-rule); padding: 8px 0; transition: color var(--bk-ease); }
@@ -803,6 +805,12 @@ body {
 }
 
 .bk-m-page--cover::after { display: none; }
+/* 2026-11-26: six pages pin a closing note or button to the page foot by making their content exactly one page
+   tall (an inline height of 100%). On the open book the page is a fixed size, so that is right. On a phone or
+   tablet the page scrolls, and anything longer than one screen ran out of its box: the page number printed over
+   the last rows and the foot of the page hid under the bottom bar (CV both pages, Contents, Contact). The page
+   may now grow past one screen; a short page still fills it, so its note stays at the foot. */
+.bk-m-page > .bk-reveal[style*="height: 100%"] { height: auto !important; min-height: 100%; }
 .bk-m-folio { font-family: var(--bk-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--bk-ink-faint); margin-top: 24px; text-align: center; }
 @keyframes mFlip {
   from {
@@ -912,6 +920,9 @@ body {
   background: linear-gradient(160deg, rgba(168,57,43,0.22), rgba(34,28,22,0.14));
 }
 .bk-plate--wide .bk-plate__img { aspect-ratio: 16 / 5; }
+/* a real screenshot shown as a screen, stacked under another plate (PTC page 2, 2026-11-26) */
+.bk-plate--shot { margin-top: 16px; }
+.bk-plate--shot .bk-plate__img { aspect-ratio: 16 / 9; }
 .bk-plate--redacted .bk-plate__img {
   background:
     repeating-linear-gradient(135deg, rgba(44,38,32,0.05) 0 9px, transparent 9px 18px),

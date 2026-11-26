@@ -704,6 +704,7 @@ function Plate({
   ph,
   redacted,
   wide,
+  shot,
   img
 }) {
   const [zoom, setZoom] = React.useState(false);
@@ -731,7 +732,7 @@ function Plate({
     };
   }, [zoom]);
   return /*#__PURE__*/React.createElement("div", {
-    className: "bk-plate" + (redacted ? " bk-plate--redacted" : "") + (wide ? " bk-plate--wide" : "")
+    className: "bk-plate" + (redacted ? " bk-plate--redacted" : "") + (wide ? " bk-plate--wide" : "") + (shot ? " bk-plate--shot" : "")
   }, /*#__PURE__*/React.createElement("div", {
     className: "bk-plate__img"
   }, img ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
@@ -865,6 +866,19 @@ function caseSpreadA(c) {
       wide: true,
       img: "../assets/visuals/case-ptc-before.svg",
       ph: "Drop a screenshot \u00b7 " + c.fig1.label
+    }),
+    // 2026-11-26 (Arpit picked "C: before + after together" from three rendered layouts in
+    // prototypes/renders/book-empty-pages-2026-11-26/): the real screenshot sat on page 3 under the three
+    // decisions and left this page 41% empty. It now sits under the "before" drawing so the two read as one
+    // pair, in a taller frame (16:9, was a 16:5 strip). Page 3 is the light page now; the case holds about
+    // three pages of content on four.
+    /*#__PURE__*/React.createElement(Plate, {
+      id: "pl-" + c.key + "-" + c.fig2.no,
+      no: c.fig2.no,
+      cn: c.fig2.label,
+      shot: true,
+      img: "../assets/shots/ptc-portal.png",
+      ph: "Drop a screenshot \u00b7 " + c.fig2.label
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note",
       style: {
@@ -892,14 +906,7 @@ function caseSpreadB(c) {
       key: i
     }, /*#__PURE__*/React.createElement("span", {
       className: "bk-move__n"
-    }, i + 1), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, m.h), /*#__PURE__*/React.createElement("p", null, m.p))))), /*#__PURE__*/React.createElement(Plate, {
-      id: "pl-" + c.key + "-" + c.fig2.no,
-      no: c.fig2.no,
-      cn: c.fig2.label,
-      wide: true,
-      img: "../assets/shots/ptc-portal.png",
-      ph: "Drop a screenshot \u00b7 " + c.fig2.label
-    })),
+    }, i + 1), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, m.h), /*#__PURE__*/React.createElement("p", null, m.p)))))),
     right: /*#__PURE__*/React.createElement("div", {
       className: "bk-reveal"
     }, /*#__PURE__*/React.createElement(Beat, {
@@ -1761,7 +1768,12 @@ function buildBook(ctx) {
       }
     }, "the rest travels by walk-through.")),
     right: /*#__PURE__*/React.createElement("div", {
-      className: "bk-reveal"
+      className: "bk-reveal",
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        height: "100%"
+      }
     }, /*#__PURE__*/React.createElement("div", {
       className: "bk-cv__sub",
       style: {
@@ -1796,7 +1808,17 @@ function buildBook(ctx) {
     }, CV_SKILLS.map((s, i) => /*#__PURE__*/React.createElement("span", {
       className: "bk-chip",
       key: i
-    }, s))))
+    }, s))), /*#__PURE__*/React.createElement("div", {
+      className: "bk-spacer"
+    }),
+    // 2026-11-26 (Arpit picked "C: résumé download at the foot"): the lower third of this page was empty.
+    // The reader who has just read the CV gets the file itself, at the foot, level with the note opposite.
+    // Same file and words as the site's own "Download résumé" button.
+    /*#__PURE__*/React.createElement("a", {
+      className: "bk-btn bk-btn--ghost bk-door bk-door--cv",
+      href: "/Arpit-Maheshwari-Resume.pdf",
+      download: true
+    }, "Download r\xE9sum\xE9"))
   }, /* COLOPHON & CONTACT */
   {
     kind: "spread",
