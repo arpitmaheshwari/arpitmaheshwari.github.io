@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
-<link rel="stylesheet" href="../site.css?v=923143f9">
+<link rel="stylesheet" href="../site.css?v=636c6a1c">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -79,36 +79,48 @@
 <main id="main" class="section page-bg"><div class="xi-process-004">
   <p class="lead xi-resources-founder-questions-009">You are the engineer on the interview panel, and a designer has just said they ship code. Here is what I would hand you instead of a screenshot, and exactly what it does and does not prove.</p>
 
-  <h2 class="section-title xi-resources-ai-design-checklist-015" id="one-lets-you-check">Every other page tells you what I decided. One lets you check.</h2>
+  <section class="essay-sec">
+<h2 class="section-title xi-resources-ai-design-checklist-015" id="one-lets-you-check">Every other page tells you what I decided. One lets you check.</h2>
   <p class="u-body xi-case-studies-adtech-016">For years I had no such page. The trust patterns I keep writing about came out of shipped products, and they lived where principles usually live: in slides, in review comments, in my head. Reasonable people agreed with every one of them in the meeting and shipped the naked confidence score anyway. I would find it in the next release and start the argument again.</p>
   <p class="u-body xi-case-studies-adtech-016">A principle you can nod at costs nothing to ignore. That was the failure, and it was mine: I had been asking people to agree, when I should have been giving the rule a way to fail without me.</p>
   <div class="xi-writing-confidence-scoring-014">
     <p class="xi-writing-confidence-scoring-015"><strong>Written as code, the same rules get exactly that.</strong> An opinion becomes testable the day it compiles.</p>
   </div>
+</section>
 
-  <h2 class="section-title xi-resources-ai-design-checklist-015" id="four-things">Four things you can run</h2>
+<section class="essay-sec">
+<h2 class="section-title xi-resources-ai-design-checklist-015" id="four-things">Four things you can run</h2>
   <p class="u-body xi-case-studies-adtech-016"><strong><a class="link-gold" href="../lab/loop.html">loop.js</a>.</strong> The decisions behind four trust patterns, written as functions with tests. Which verb a confidence score turns into: act, review or ignore. Whether that confidence has earned belief, using two standard calibration measures, a Brier score and expected calibration error, that both ask how often the model’s stated confidence matched what actually happened. When the system should say “I don’t know”. What to show while the model is thinking. Zero dependencies, 42 tests, 76 assertions, one module.</p>
   <p class="u-body xi-case-studies-adtech-016"><strong>trustlint.</strong> Paste an AI answer and it flags the seven habits that lose a reader’s trust: figures with no source, absolutes, hedges used as decoration, and the expensive one, confidence with nothing underneath. No network. Runs in the tab. And it says in its own output the thing it cannot judge: whether the answer is true. You can lint how an answer is shaped. You cannot lint whether it is true.</p>
   <p class="u-body xi-case-studies-adtech-016"><strong><a class="link-gold" href="../lab/teardown.html">This site, torn down</a>.</strong> A site that asks for evidence should stand being inspected. How the page you are reading is built, measured rather than described: no framework and no bundler, the size of its stylesheet to a tenth of a kilobyte, two third-party services across four domains, one type scale, and the gaps, including the one the page caught in itself. No typed numbers. Every figure comes from a command shown beside it.</p>
   <p class="u-body xi-case-studies-adtech-016"><strong><a class="link-gold" href="../lab/plugin.html">ember-design-system</a>.</strong> A design system a machine can read is one that gets applied. This is the public twin of a plugin I shipped inside a client: the tokens with their measured contrast, one type scale, the spacing grid, and the ten checks that decide whether a change may ship.</p>
+</section>
 
-  <h2 class="section-title xi-resources-ai-design-checklist-015" id="what-these-prove">What these prove, and what they do not</h2>
+<section class="essay-sec">
+<h2 class="section-title xi-resources-ai-design-checklist-015" id="what-these-prove">What these prove, and what they do not</h2>
   <p class="u-body xi-case-studies-adtech-016">Three different things get called evidence. Only the first lives on that page.</p>
   <figure class="ef "><table class="ef-table"><thead><tr><th scope="col"></th><th scope="col">What it says</th><th scope="col">Where it lives</th></tr></thead><tbody><tr><th scope="row">Implementation</th><td data-label="What it says">The code does what it says. 76 assertions across 42 tests, run in your browser, on the same module the demos import. That is all a green test proves.</td><td data-label="Where it lives">The Lab</td></tr><tr><th scope="row">Usage</th><td data-label="What it says">The rules came out of shipped products, not a notebook. The code is my restatement of those decisions, not the client’s source.</td><td data-label="Where it lives">The case studies</td></tr><tr><th scope="row">Outcome</th><td data-label="What it says">Whether a pattern moves adoption is a claim about a product, not about a function. A passing suite will never stand in for a result.</td><td data-label="Where it lives">On the case, with its baseline and window</td></tr></tbody></table><figcaption>A test suite you can run is exactly one kind of evidence, and it should say which.</figcaption></figure>
   <p class="u-body xi-case-studies-adtech-016">I put that boundary on the page because the alternative is letting a green tally imply more than it means. A demo you can’t run is a screenshot with ambitions.</p>
+</section>
 
-  <h2 class="section-title xi-resources-ai-design-checklist-015" id="where-the-line-sits">Where the line sits</h2>
+<section class="essay-sec">
+<h2 class="section-title xi-resources-ai-design-checklist-015" id="where-the-line-sits">Where the line sits</h2>
   <p class="u-body xi-case-studies-adtech-016">I ship the front-end of what I design, in the pull request under my name, with senior engineers reviewing. These artifacts are pure functions by choice, not by ceiling: logic any stack can adopt and any test can pin down. The stateful counterpart is the book edition of the site, around 180 KB of my own code.</p>
   <p class="u-body xi-case-studies-adtech-016">What I don’t claim is the backend. That is the honest boundary, and it is the same one I give on the <a class="link-gold" href="../screen/">technical screen</a>.</p>
+</section>
 
-  <h2 class="section-title xi-resources-ai-design-checklist-015" id="thresholds-are-defaults">The thresholds are defaults</h2>
+<section class="essay-sec">
+<h2 class="section-title xi-resources-ai-design-checklist-015" id="thresholds-are-defaults">The thresholds are defaults</h2>
   <p class="u-body xi-case-studies-adtech-016">One more thing the page says about itself. Where a confidence band starts is a product decision someone owns and revisits. The rule is only that a score lands on one verb, never that 0.7 is the right place to put the line. The code enforces the shape of the decision, not the number.</p>
+</section>
 
-  <h2 class="section-title xi-resources-ai-design-checklist-015" id="if-you-are-the-engineer">If you are the engineer on the panel</h2>
+<section class="essay-sec">
+<h2 class="section-title xi-resources-ai-design-checklist-015" id="if-you-are-the-engineer">If you are the engineer on the panel</h2>
   <p class="u-body xi-case-studies-adtech-016">Open it, run it, then try to break it. If you find a rule you disagree with, the argument is now about a line of code with a test beside it, not about my taste. That is the only kind of argument about design principles I have ever seen end.</p>
   <p class="u-body xi-case-studies-adtech-016">The half-second of doubt is the only thing I design.</p>
+</section>
 
-  <div class="xi-writing-confidence-scoring-016">
+<div class="xi-writing-confidence-scoring-016">
     <div class="eyebrow xi-patterns-act-review-ignore-027">The reference version</div>
     <p class="u-ui xi-writing-confidence-scoring-018">Want the code, not the argument? The source is public and MIT.</p>
     <a class="xi-writing-confidence-scoring-019" href="../lab/" data-cta="pattern-reference" data-location="essay-body">Open the Lab: the suite runs when you arrive &rarr;</a>

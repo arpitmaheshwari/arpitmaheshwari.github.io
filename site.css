@@ -7463,4 +7463,9 @@ body.p-writing .fl-toc{margin:12px 0 0;padding-left:20px;font-size:0.875rem;line
 body.p-writing .fl-toc li{margin-bottom:8px}
 @media (min-width:700px){body.p-writing .fl-feat{grid-template-columns:1.5fr 1fr;gap:40px;align-items:stretch}
 body.p-writing .fl-rail{border-top:0;padding-top:0;border-left:1px solid var(--border-strong);padding-left:32px}}
+/* ESSAY SECTIONS (2026-11-26): each heading and its text is one <section>, so a long essay is read
+   section by section rather than as one band. The wrapper adds no space of its own: the chapter
+   margin above is for case and pattern chapters, and an essay keeps the rhythm it already had. */
+main > .xi-process-004 > section.essay-sec{margin-bottom:0}
+main > .xi-process-004 > section.essay-sec > h2.section-title{margin-top:var(--rhythm-chapter)}   /* the same space the heading had as a direct child */
 }
