@@ -117,7 +117,7 @@ const WRITING = [{
 }, {
   d: "2026 · Essay",
   h: "Human-in-the-Loop: When to Ask, When to Override", u: "../writing/human-in-loop.html",
-  p: "Ask for a person’s judgement on everything and you get it on nothing. Where three shipped products put their one ask."
+  p: "Ask for a person’s judgement on everything and you get it on nothing. Where three shipped products put the ask."
 }];
 const STATUS = ["Available now", "Product Manager & Designer · AI & Data-Intensive Products", "Remote · GMT+5:30"];
 
