@@ -108,16 +108,12 @@ const WRITING = [{
   p: "A recommendation engine that beat the traders it was built for — and sat unused. Accuracy was never the problem."
 }, {
   d: "2026 · Essay",
-  h: "Design the Failure State First", u: "../writing/failure-states.html",
-  p: "Every model is wrong some of the time, and most interfaces have nothing to say at that moment."
+  h: "The Receipt Beside the Number.", u: "../writing/receipt-beside-the-number.html",
+  p: "A precise figure from someone with something to gain reads as a tactic. What I moved on my own pages, and why the miss goes in too."
 }, {
   d: "2026 · Essay",
-  h: "The Explainability Layer: Making AI Legible", u: "../writing/explainability.html",
-  p: "An accurate risk score the analysts audited by hand anyway, because a number with no sources is homework."
-}, {
-  d: "2026 · Essay",
-  h: "Human-in-the-Loop: When to Ask, When to Override", u: "../writing/human-in-loop.html",
-  p: "Ask for a person’s judgement on everything and you get it on nothing. Where three shipped products put the ask."
+  h: "My Tests Are on the Page. Run Them.", u: "../writing/tests-on-the-page.html",
+  p: "A designer who says they ship code should hand you some to run. What the Lab proves, and exactly what it does not."
 }];
 const STATUS = ["Available now", "Product Manager & Designer · AI & Data-Intensive Products", "Remote · GMT+5:30"];
 
@@ -1728,7 +1724,7 @@ function buildBook(ctx) {
     }, "my newsletter on Substack ", Icon({ name: "external", cls: "bk-icon--sm" })), ". One idea per issue, on getting humans to act on machines. The fastest way to know how I think before you hire me."), /*#__PURE__*/React.createElement("p", {
       className: "bk-body",
       style: { marginTop: 16 }
-    }, "A loose thread runs through all four: what happens when a system that behaves like a colleague still needs to be governed like software \u2014 the confidence to let it act, and the discipline to check it did."), /*#__PURE__*/React.createElement("div", {
+    }, "A loose thread runs through all three: what happens when a system that behaves like a colleague still needs to be governed like software \u2014 the confidence to let it act, and the discipline to check it did."), /*#__PURE__*/React.createElement("div", {
       className: "bk-spacer"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bk-note"

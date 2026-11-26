@@ -76,18 +76,12 @@ REG = [
     #     essay cards (explainability, failure-states, human-in-loop) are still unmanaged.
     ("confidence-scoring-og.png", "ESSAY", "The Model Was Right and Ignored.",
      "Adoption is not a function of accuracy.", "Arpit Maheshwari \u00b7 Essay"),
-    # The other three essay cards, brought in 2026-08-30. All were hand-made, all were
-    # labelled "DESIGN PATTERN" on an essay, and failure-states carried a subtitle its own
-    # page never says — "AI is wrong 30-70% of the time", a sweeping claim about AI in
-    # general, on the image that renders when the essay is shared. Its replacement is the
-    # essay's own sentence. The unattested "94% demo" figure is left for Arpit to attest or
-    # retire; it is not repeated on the card.
-    ("failure-states-og.png", "ESSAY", "Design the Failure State First",
-     "The failure state is where trust is won or lost.", "Arpit Maheshwari \u00b7 Essay"),
-    ("human-in-loop-og.png", "ESSAY", "Human-in-the-Loop: When to Ask, When to Override",
-     "Design dissent as a feature, not an afterthought.", "Arpit Maheshwari \u00b7 Essay"),
-    ("explainability-og.png", "ESSAY", "The Explainability Layer: Making AI Legible",
-     "Reasons on the card, not buried in a tooltip.", "Arpit Maheshwari \u00b7 Essay"),
+    # 2026-11-26: the other three essays were merged into the flagship above (their cards are gone
+    # with them) and two essays were added.
+    ("receipt-beside-the-number-og.png", "ESSAY", "The Receipt Beside the Number.",
+     "A ledger with only wins is a brochure.", "Arpit Maheshwari \u00b7 Essay"),
+    ("tests-on-the-page-og.png", "ESSAY", "My Tests Are on the Page. Run Them.",
+     "An opinion becomes testable the day it compiles.", "Arpit Maheshwari \u00b7 Essay"),
     # --- /fit/ (added 2026-08-17 with the page; a page shipped without a card falls back to
     #     a personal photo as its share image, which is the defect this generator was built for)
     ("fit-og.png", "FIT CHECK", "Paste the role. It answers with evidence, or says it can\u2019t.",

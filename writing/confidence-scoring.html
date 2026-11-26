@@ -10,7 +10,7 @@
   <meta property="og:url" content="https://arpitmaheshwari.com/writing/confidence-scoring.html">
   <meta property="og:type" content="article">
   <meta property="article:published_time" content="2026-05-09">
-  <meta property="article:modified_time" content="2026-05-09">
+  <meta property="article:modified_time" content="2026-11-26">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://arpitmaheshwari.com/writing/confidence-scoring.html">
   <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts-web/source-sans-3-normal-400.woff2">
@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="/fonts.css?v=f0312437">
 <noscript></noscript>
 <link rel="stylesheet" href="../amber.css?v=fb751bd1">
-<link rel="stylesheet" href="../site.css?v=8b643db8">
+<link rel="stylesheet" href="../site.css?v=923143f9">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -31,7 +31,7 @@
       "url": "https://arpitmaheshwari.com"
     },
     "datePublished": "2026-05-09",
-    "dateModified": "2026-10-29"
+    "dateModified": "2026-11-26"
   }
   </script>
 <meta property="og:image" content="https://arpitmaheshwari.com/assets/og-images/confidence-scoring-og.png">
@@ -78,45 +78,64 @@
 
 <main id="main" class="section page-bg"><div class="xi-process-004">
 
-  <p class="lead xi-resources-founder-questions-009">In 2019 a recommendation engine I was working on beat the traders it was built for — visibly, on their own numbers. Adoption sat near zero. Accuracy was never the problem.</p>
+  <p class="lead xi-resources-founder-questions-009">If you are hiring someone to lead an AI product, this is the failure I have been handed most often: the model is right, and nobody uses it. It arrives dressed as a model problem, so the effort goes into the model. Here is what it turned out to be on the products I have shipped, and four questions to ask of yours.</p>
 
-  <h2 class="section-title xi-resources-ai-design-checklist-015" id="the-usual-suspect">The usual suspect, and why it is the wrong one</h2>
-  <p class="u-body xi-case-studies-adtech-016">The client was the UK&rsquo;s largest out-of-home advertising company, and the engine did something the desk genuinely could not: it read demand and supply across the whole market and proposed where a campaign should run. It outperformed the traders&rsquo; own picks. They ignored it anyway.</p>
-  <p class="u-body xi-case-studies-adtech-016">The usual instinct is the engineer&rsquo;s instinct: if a correct thing is not being used, make it more correct. Here it would have bought nothing, because accuracy was never the problem. The model was already beating the desk. The wrong suspect is expensive, and it looks exactly like diligence while you are chasing it.</p>
-  <p class="u-body xi-case-studies-adtech-016">The traders were not being stubborn. They were being rational. A bare recommendation asks for faith, and traders deal in collateral &mdash; their name goes on the booking, and &ldquo;the system said so&rdquo; is not a defence you can carry into a client review. The model was not being out-argued. It was being ignored, which is a different failure and has a different fix.</p>
+  <h2 class="section-title xi-resources-ai-design-checklist-015" id="the-engine-beat-the-desk">The engine beat the desk. The desk ignored it.</h2>
+  <p class="u-body xi-case-studies-adtech-016">In 2019 I was working on a recommendation engine at <a class="link-gold" href="../case-studies/adtech.html">Talon</a>, the UK’s largest out-of-home advertising company. The engine did something the trading desk genuinely could not: it read demand and supply across the whole market and proposed where a campaign should run. It outperformed the traders’ own picks, visibly, on their own numbers. Adoption sat near zero.</p>
+  <p class="u-body xi-case-studies-adtech-016">The usual instinct is the engineer’s instinct: if a correct thing is not being used, make it more correct. Here it would have bought nothing. The model was already beating the desk. The wrong suspect is expensive, and it looks exactly like diligence while you are chasing it.</p>
 
+  <h2 class="section-title xi-resources-ai-design-checklist-015" id="the-traders-were-being-rational">The traders were being rational</h2>
+  <p class="u-body xi-case-studies-adtech-016">The traders were not being stubborn. A bare recommendation asks for faith, and traders deal in collateral: their name goes on the booking, and “the system said so” is not a defence you can carry into a client review.</p>
   <div class="xi-writing-confidence-scoring-014">
     <p class="xi-writing-confidence-scoring-015"><strong>The model did not need to be more right.</strong> It needed to hand over something a professional could put their name on.</p>
   </div>
 
-  <h2 class="section-title xi-resources-ai-design-checklist-015" id="what-i-actually-changed">What I actually changed</h2>
-  <p class="u-body xi-case-studies-adtech-016">Nothing in the model. What changed was what it handed over.</p>
-  <p class="u-body xi-case-studies-adtech-016">The engine&rsquo;s raw output was a ranked list of billboards. A list is an instruction: take it or leave it, and there is no third move. So the screen stopped serving a list and started serving a full campaign plan &mdash; the sites, the creative rotation, and the KPIs the plan was committing to, printed on the plan itself. Every component customisable in one click.</p>
-  <p class="u-body xi-case-studies-adtech-016">That last part is the whole thing. The trader could argue back &mdash; pull a cluster, shift budget between channels, reject a panel on pricing &mdash; and every one of those edits was logged and fed into the next week&rsquo;s recommendations. Disagreement stopped being friction and became fuel. A trader who overrode Friday&rsquo;s plan watched the following week&rsquo;s arrive already reflecting the override, which is a very different feeling from being audited by a machine.</p>
-
+  <h2 class="section-title xi-resources-ai-design-checklist-015" id="nothing-in-the-model-changed">So nothing in the model changed. What it handed over did.</h2>
+  <p class="u-body xi-case-studies-adtech-016">The engine’s raw output was a ranked list of billboards. A list is an instruction: take it or leave it, and there is no third move. So the screen stopped serving a list and started serving a full campaign plan: the sites, the creative rotation, and the KPIs the plan was committing to, printed on the plan itself. Every component customisable in one click.</p>
+  <p class="u-body xi-case-studies-adtech-016">The trader could argue back — pull a cluster, shift budget between channels, reject a panel on pricing — and every one of those edits was logged and fed into the next week’s recommendations. A trader who overrode Friday’s plan watched the following week’s arrive already reflecting the override.</p>
   <figure class="ef ef--ba"><table class="ef-table"><thead><tr><th scope="col"></th><th scope="col">Before</th><th scope="col">After</th></tr></thead><tbody><tr><th scope="row">What the engine handed over</th><td data-label="Before">A ranked list of billboards</td><td data-label="After">The sites, the creative rotation, and the KPIs the plan was committing to</td></tr><tr><th scope="row">What the trader could do with it</th><td data-label="Before">Take it or leave it</td><td data-label="After">Pull a cluster, shift budget between channels, reject a panel on pricing</td></tr><tr><th scope="row">What happened to a disagreement</th><td data-label="Before">The engine was ignored</td><td data-label="After">Logged and fed into the next week&rsquo;s recommendations</td></tr></tbody></table><figcaption>Nothing in the model changed. What it handed over did, and campaign planning went from two weeks to three hours.</figcaption></figure>
+  <p class="u-body xi-case-studies-adtech-016">Campaign planning went from two weeks to three hours. Against the traders’ own baselines, the plans carried £69,000 more media value per client on average. Those two figures were measured in the work, and they are mine to defend.</p>
+  <p class="u-body xi-case-studies-adtech-016">The third is not my claim. Talon’s Chief Product Officer said <a class="link-gold" href="../case-studies/adtech.html#public-record">on the record</a> that bookings through the platform went from under 5% to 100% of UK bookings in about a year.</p>
 
-  <h2 class="section-title xi-resources-ai-design-checklist-015" id="what-it-bought-and-where-it-stops">What it bought, and where it stops</h2>
-  <p class="u-body xi-case-studies-adtech-016">Campaign planning went from two weeks to three hours. Against the traders&rsquo; own baselines the plans carried &pound;69,000 more media value per client on average. The platform went from under 5% of the client&rsquo;s UK bookings to all of them &mdash; that part is <a class="link-gold" href="../case-studies/adtech.html#public-record">on the public record</a>, not my claim.</p>
-  <p class="u-body xi-case-studies-adtech-016">The honest limit: argue-back only works when there is an accountable expert on the other side. Give the same interface to someone with no standing to disagree and you have built a slower list. And it cannot rescue a weak model &mdash; a plan built on bad reasoning is just a bad plan with more surface area to defend.</p>
+  <h2 class="section-title xi-resources-ai-design-checklist-015" id="a-name-on-it-takes-more-than-a-plan">But putting a name on it takes more than a plan</h2>
+  <p class="u-body xi-case-studies-adtech-016">Talon’s traders could sign a plan because they could change it. Two other products had no plan to change. Both are built on an LLM, the kind of AI that reads documents and writes, and both put a verdict in front of someone accountable for a decision: an analyst screening <a class="link-gold" href="../case-studies/fintech.html">private-equity deals</a>, and a partner signing off <a class="link-gold" href="../case-studies/vc-diligence.html">technical due diligence</a> on a startup. Each showed one more thing the output has to carry.</p>
 
-  <h2 class="section-title xi-resources-ai-design-checklist-015" id="what-i-believe-now">What I believe now</h2>
-  <p class="u-body xi-case-studies-adtech-016">Adoption is not a function of accuracy. It is a function of whether a professional can put their name on the output.</p>
-<p class="u-body xi-case-studies-adtech-016">Most of the AI-adoption problems I have been handed since have arrived dressed as model problems and turned out to be handover problems &mdash; the system was right, and it gave the person nothing to hold. The fix is rarely inside the model. It is in what the model hands over, and whether the person can push back on it and be heard. Right isn’t enough. The handover has to earn the tap.</p>
+  <h2 class="section-title xi-resources-ai-design-checklist-015" id="a-reason-not-a-number">1. A reason, not a number</h2>
+  <p class="u-body xi-case-studies-adtech-016">In the private-equity screening product the model scored deal risk accurately, and the analysts checked its work by hand anyway. A number with no sources isn’t evidence, it’s homework.</p>
+  <p class="u-body xi-case-studies-adtech-016">I had the fix wrong at first. I used to think explainability meant exposing the machinery: model weights, feature vectors, the architecture. It doesn’t. The analysts didn’t want a lecture on the model. They wanted an answer to one human question: why this, and not that?</p>
+  <p class="u-body xi-case-studies-adtech-016">So the surface I built was an “explain this score” drawer, so no claim floats free:</p>
+  <figure class="ef"><ol class="ef-steps"><li><span class="ef-n">01</span><span>Pull any rating apart into the signals behind it</span></li><li><span class="ef-n">02</span><span>Challenge the weighting, and watch the score answer back</span></li><li><span class="ef-n">03</span><span>Find every signal stapled to the exact document it was retrieved from</span></li><li><span class="ef-n">04</span><span>Where the evidence runs thin, the model says &ldquo;I&rsquo;m not sure about this one&rdquo;</span></li></ol><figcaption>The &ldquo;explain this score&rdquo; drawer: a number never reaches the screen alone.</figcaption></figure>
+  <p class="u-body xi-case-studies-adtech-016">The analyst wasn’t being asked to trust a number. They were being handed a case they could check, argue with, and put their name next to.</p>
+
+  <h2 class="section-title xi-resources-ai-design-checklist-015" id="something-to-say-when-it-is-not-sure">2. Something to say when it is not sure</h2>
+  <p class="u-body xi-case-studies-adtech-016">Every model is wrong some of the time, and most interfaces have no language for being wrong. A confident number and a coin-flip look identical on screen, and the user finds out which one they were holding only after they have acted on it.</p>
+  <p class="u-body xi-case-studies-adtech-016">So I changed the order I design in. I start with the question almost nobody asks until production forces it: what does this look like when it’s wrong?</p>
+  <figure class="ef "><table class="ef-table"><thead><tr><th scope="col">Product</th><th scope="col">The state drawn first</th><th scope="col">What the reader sees</th></tr></thead><tbody><tr><th scope="row">Private-equity screening</th><td data-label="The state drawn first">The abstention</td><td data-label="What the reader sees">Thin evidence renders as &ldquo;I&rsquo;m not sure about this one&rdquo;, kept visible beside the claims that are sure</td></tr><tr><th scope="row">Due-diligence dossier</th><td data-label="The state drawn first">The confidence bar</td><td data-label="What the reader sees">A finding that doesn&rsquo;t clear it never reaches the report</td></tr><tr><th scope="row">PlanIt</th><td data-label="The state drawn first">The error screen</td><td data-label="What the reader sees">In the product&rsquo;s own words, with the last good answer still on screen underneath</td></tr></tbody></table><figcaption>Three products, and in each one the first screen drawn was the one for being wrong.</figcaption></figure>
+
+  <h2 class="section-title xi-resources-ai-design-checklist-015" id="one-ask-spent-where-it-counts">3. One ask, spent where it counts</h2>
+  <p class="u-body xi-case-studies-adtech-016">The easiest way to keep a human in the loop is to ask them to confirm everything. It is also the surest way to lose them. Attention is a finite account, and every “are you sure?” is a withdrawal from it. Past a certain rate the prompts stop being questions and become wallpaper, and the muscle-memory answer to wallpaper is <em>skip</em>.</p>
+  <p class="u-body xi-case-studies-adtech-016">So the design question is never whether to ask. It is <em>where</em>.</p>
+  <figure class="ef "><table class="ef-table"><thead><tr><th scope="col">Product</th><th scope="col">Where the one ask sits</th><th scope="col">What it protects</th></tr></thead><tbody><tr><th scope="row">Private-equity screening</th><td data-label="Where the one ask sits">When the evidence behind a claim runs thin</td><td data-label="What it protects">The analyst makes the call, and the override is logged rather than lost</td></tr><tr><th scope="row">Due-diligence dossier</th><td data-label="Where the one ask sits">The partner&rsquo;s sign-off</td><td data-label="What it protects">Locked until every signal&rsquo;s evidence has been opened</td></tr><tr><th scope="row">Out-of-home planning</th><td data-label="Where the one ask sits">None: the trader was never asked to approve</td><td data-label="What it protects">One click to change the plan, so judgement shapes the answer</td></tr></tbody></table><figcaption>Three products, three different moments, one rule: spend the ask only where a person&rsquo;s input would change the answer.</figcaption></figure>
+
+  <h2 class="section-title xi-resources-ai-design-checklist-015" id="the-rule-underneath">The rule underneath</h2>
+  <p class="u-body xi-case-studies-adtech-016">The same split kept appearing across these products. The patterns library names it the <a class="link-gold" href="../patterns/act-review-ignore.html">Act / Review / Ignore rule</a>: a score never reaches the screen without resolving to a verb — act on it, review it, or ignore it. It is a synthesis across the AI products, not the invention of any one of them.</p>
+
+  <h2 class="section-title xi-resources-ai-design-checklist-015" id="where-this-stops">Where this stops</h2>
+  <p class="u-body xi-case-studies-adtech-016">Argue-back only works when there is an accountable expert on the other side. Give the same interface to someone with no standing to disagree and you have built a slower list. And it cannot rescue a weak model — a plan built on bad reasoning is just a bad plan with more surface area to defend.</p>
+
+  <h2 class="section-title xi-resources-ai-design-checklist-015" id="four-questions">Four questions to ask of your own product</h2>
+  <figure class="ef"><ol class="ef-steps"><li><span class="ef-n">01</span><span>Can the person change the answer, or only take it or leave it?</span></li><li><span class="ef-n">02</span><span>Does every number arrive with the sources behind it?</span></li><li><span class="ef-n">03</span><span>What does the screen say when the model is not sure?</span></li><li><span class="ef-n">04</span><span>How often does it ask “are you sure?”, and would the answer change anything?</span></li></ol><figcaption>If a professional cannot put their name on the output, more accuracy will not move adoption.</figcaption></figure>
+  <p class="u-body xi-case-studies-adtech-016">Adoption is not a function of accuracy. It is a function of whether a professional can put their name on the output. Right isn’t enough. The handover has to earn the tap.</p>
 
   <div class="xi-writing-confidence-scoring-016">
     <div class="eyebrow xi-patterns-act-review-ignore-027">The reference version</div>
-    <p class="u-ui xi-writing-confidence-scoring-018">Want the playbook, not the story? The pattern behind this &mdash; a human kept in the loop, with the right to override and a log that keeps the override.</p>
-    <a class="xi-writing-confidence-scoring-019" href="../patterns/human-in-loop.html" data-cta="pattern-reference" data-location="essay-body">See the pattern reference: Human-in-the-Loop Patterns &rarr;</a>
+    <p class="u-ui xi-writing-confidence-scoring-018">Want the playbook, not the story? The rule behind this, with the patterns it organises.</p>
+    <a class="xi-writing-confidence-scoring-019" href="../patterns/act-review-ignore.html" data-cta="pattern-reference" data-location="essay-body">See the pattern reference: The Act / Review / Ignore Rule &rarr;</a>
   </div>
 
   <div class="xi-writing-015">
     <p class="eyebrow xi-process-005">Continue exploring</p>
     <div class="xi-writing-confidence-scoring-022">
-      <a class="xi-writing-confidence-scoring-023 hv-writing-confidence-scoring-1" href="./failure-states.html" data-cta="next-essay" data-location="essay-footer">
-        <div class="xi-writing-confidence-scoring-024">Next essay</div>
-        <div class="card-title">Design the Failure State First</div>
-      </a>
       <a class="xi-writing-confidence-scoring-023 hv-writing-confidence-scoring-1" href="./index.html" data-cta="back-to-writing" data-location="essay-footer">
         <div class="xi-writing-confidence-scoring-024">All essays</div>
         <div class="card-title">Back to Writing</div>

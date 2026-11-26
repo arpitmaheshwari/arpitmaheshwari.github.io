@@ -7450,4 +7450,17 @@ body.p-lab-teardown .td-fig:last-child{border-bottom:0}
    button's look from the page. Without scripts the bar simply stays. */
 .vid-play{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;margin:0;padding:0;border:0;border-radius:inherit;background:transparent;color:inherit;font:inherit;cursor:pointer;appearance:none;-webkit-appearance:none}
 .vid-play:focus-visible{outline:3px solid var(--border-focus);outline-offset:-6px}
+/* WRITING INDEX: the flagship essay as one feature (2026-11-26, Arpit: "Flagship replaces all four").
+   Title and summary left, the essay's own section headings as a rail right; one column on a phone. */
+body.p-writing .fl-feat{display:grid;grid-template-columns:1fr;gap:32px;max-width:none}
+body.p-writing .fl-main{display:flex;flex-direction:column}
+body.p-writing .fl-title{font-family:var(--ff-display);font-weight:400;font-size:2.25rem;line-height:1.15;margin:8px 0 16px;color:var(--text,#221C10)}
+body.p-writing .fl-feat .fl-main p{max-width:none}
+body.p-writing .fl-pull{font-family:var(--ff-display);font-style:italic;font-size:1.25rem;line-height:1.4;color:var(--text,#221C10);border-left:3px solid var(--accent);padding-left:16px;margin:24px 0}
+body.p-writing .fl-main .lbl-cap-plain{margin-top:auto}
+body.p-writing .fl-rail{border-top:1px solid var(--border-strong);padding-top:24px}
+body.p-writing .fl-toc{margin:12px 0 0;padding-left:20px;font-size:0.875rem;line-height:1.5;color:#5D5442}
+body.p-writing .fl-toc li{margin-bottom:8px}
+@media (min-width:700px){body.p-writing .fl-feat{grid-template-columns:1.5fr 1fr;gap:40px;align-items:stretch}
+body.p-writing .fl-rail{border-top:0;padding-top:0;border-left:1px solid var(--border-strong);padding-left:32px}}
 }
