@@ -31,26 +31,26 @@ W = 360
 # 13-unit caption lands at 11.1px, under the site's 12.5px floor and no better than
 # the 7px landscape drawing this replaces. Measured, not assumed. The smallest type
 # is 15 units, which holds 12.8px at that scale. Captions were re-checked for
-# overflow afterwards; a wider glyph at the same artboard is how text runs off it.
-STYLE = """ .n-ttl{font:400 23px Georgia,serif;fill:#F2EDE4}
- .n-sub{font:400 15px ui-monospace,monospace;fill:#938B81}
- .n-cap{font:400 15px ui-monospace,monospace;fill:#938B81}
- .n-act{font:400 16px ui-monospace,monospace;fill:#D4A85E}
- .n-qn{font:400 17px Georgia,serif;fill:#F2EDE4}
- .n-mv{font:400 19px Georgia,serif;fill:#F2EDE4}
- .n-num{font:400 26px Georgia,serif;fill:#D4A85E}
- .n-quo{font:italic 400 16px Georgia,serif;fill:#D4A85E}
- .n-edge{fill:none;stroke:#D4A85E;stroke-width:1.25}
- .n-dash{fill:none;stroke:#D4A85E;stroke-width:1.25;stroke-dasharray:4 5}
- .n-rule{fill:none;stroke:#5C554A;stroke-width:1}
+# overflow afterwards; a wider glyph at the same artboard is how text runs off it.  DAYLIGHT 2026-11-27, colours only: paper ground, words ink or quiet ink, lines the rule's orange (a line, never a word).
+STYLE = """ .n-ttl{font:400 23px Georgia,serif;fill:#241B2B}
+ .n-sub{font:400 15px ui-monospace,monospace;fill:#51475A}
+ .n-cap{font:400 15px ui-monospace,monospace;fill:#51475A}
+ .n-act{font:400 16px ui-monospace,monospace;fill:#241B2B}
+ .n-qn{font:400 17px Georgia,serif;fill:#241B2B}
+ .n-mv{font:400 19px Georgia,serif;fill:#241B2B}
+ .n-num{font:400 26px Georgia,serif;fill:#241B2B}
+ .n-quo{font:italic 400 16px Georgia,serif;fill:#241B2B}
+ .n-edge{fill:none;stroke:#E0521F;stroke-width:1.25}
+ .n-dash{fill:none;stroke:#E0521F;stroke-width:1.25;stroke-dasharray:4 5}
+ .n-rule{fill:none;stroke:#D6CBC0;stroke-width:1}
  /* Composited, not translucent. fill-opacity leaves the DECLARED fill amber, and
     artifact-legibility-check judges each label against the nearest painted fill —
     so amber text on an amber card measured 1:1 and it reported 67 invisible labels.
     The gate was right to refuse: a checker should not have to guess what alpha
     composites to. These are the same colours, stated. */
- .n-card{fill:#181510;stroke:#8A6E3E;stroke-width:1}
- .n-band{fill:#1E1A12;stroke:#D4A85E;stroke-width:1}
- .n-node{fill:#0A0A0A;stroke:#D4A85E;stroke-width:1.5}
+ .n-card{fill:#FFFFFF;stroke:#D6CBC0;stroke-width:1}
+ .n-band{fill:#FBF1E6;stroke:#E0521F;stroke-width:1}
+ .n-node{fill:#FFFFFF;stroke:#E0521F;stroke-width:1.5}
  /* DYSLEXIA MODE HAS TO REACH INSIDE THE DRAWING. The site swaps every face with
     body.dyslexia-mode *{font-family:'Atkinson Hyperlegible'...} in @layer components,
     but an inlined SVG carries its own style element and an UNLAYERED rule outranks
@@ -138,7 +138,7 @@ class Art:
                 # Georgia label was invisible while the monospace ones, being grey, read
                 # fine, so the measurements all passed. A screenshot caught what numbers
                 # could not.
-                f'<rect x="{-PAD}" y="{-PAD}" width="{W + PAD * 2}" height="{h + PAD * 2}" fill="#0A0A0A"/>\n'
+                f'<rect x="{-PAD}" y="{-PAD}" width="{W + PAD * 2}" height="{h + PAD * 2}" fill="#FFFBF6"/>\n'
                 + '\n'.join(self.parts) + '\n</svg>\n')
 
 

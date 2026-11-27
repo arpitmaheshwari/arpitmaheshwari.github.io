@@ -12,72 +12,86 @@
          --screenshot=out.png \
          "http://localhost:8000/assets/og-images/_card.template.html?kicker=DESIGN+PATTERN&title=Title+Here&subtitle=Subtitle+here&byline=Arpit+Maheshwari+%C2%B7+Essay"
 
-     Geometry measured from the two known-correct cards (home-og.png, vc-diligence-og.png) on
-     2026-08-10: left margin 84px, rule at y~120 (3px thick, 40px wide, gold), kicker baseline
-     ~150, title starting ~263. Colors are the site's own tokens (styles.css), not re-guessed. -->
+     DAYLIGHT (2026-11-27, Arpit: "Later update all the videos , images and  other media"): the card is a
+     page top of the live site. Paper ground, the label on the ink line with the rising sun sitting on it,
+     the title in ink, the second line in quiet ink. Colour is never a word (the gold title clause and the
+     gold second line are gone). Paints are the site's own (css/site/01-tokens.css, the --day-* block),
+     written out here because this file loads no stylesheet. Type is the site's own files, declared below,
+     so a card no longer depends on which fonts the rendering machine happens to have installed. -->
 <style>
+  @font-face{font-family:'Source Serif 4';font-style:normal;font-weight:200 900;src:url('/assets/fonts-web/source-serif-4-normal-300_600.woff2') format('woff2')}
+  @font-face{font-family:'Source Serif 4';font-style:italic;font-weight:200 900;src:url('/assets/fonts-web/source-serif-4-italic-300_600.woff2') format('woff2')}
+  @font-face{font-family:'Source Sans 3';font-style:normal;font-weight:200 900;src:url('/assets/fonts-web/source-sans-3-normal-400.woff2') format('woff2')}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 800;src:url('/assets/fonts-web/jetbrains-mono-normal-400.woff2') format('woff2')}
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 1200px; height: 630px; overflow: hidden; }
   body {
     position: relative;
-    background: #0A0A0A; /* --surface-page */
-    font-family: 'IBM Plex Sans', sans-serif;
+    /* paper, with the warmth the sun throws (the page top's own wash) */
+    background: radial-gradient(90% 70% at 88% 20%, rgba(255,170,110,.20), rgba(255,170,110,0) 70%), #FFFBF6;
+    font-family: 'Source Sans 3', sans-serif; color: #241B2B;
   }
   .pad {
     position: absolute; inset: 0;
-    padding: 120px 80px 80px;
+    padding: 64px 80px 64px;
     display: flex; flex-direction: column;
   }
-  .rule { width: 40px; height: 3px; background: #D4A85E; margin-bottom: 20px; } /* --accent-text */
+  /* THE LABEL LINE: the label sits on a 2px ink line; the sun rises from that line at its right end.
+     Same part, same sizes as the site's page top from 961px up (180 x 90, halo rings 14 and 30). */
   .kicker {
-    font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 500;
-    letter-spacing:.02em;  color: #D4A85E;
-    margin-bottom: 24px;
+    display: flex; align-items: flex-end; gap: 16px;
+    border-bottom: 2px solid #241B2B; padding-bottom: 12px; margin-bottom: 40px;
+    font-family: 'Source Sans 3', sans-serif; font-size: 17px; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase; color: #51475A;
+  }
+  .kicker::after {
+    content: ""; flex: none; margin-left: auto; margin-right: 40px; margin-bottom: -12px;
+    width: 180px; height: 90px; border-radius: 180px 180px 0 0;
+    background: linear-gradient(120deg, #FFB36B 0%, #FF8A5C 42%, #E86BFF 100%);   /* decoration only: never under words */
+    box-shadow: 0 0 0 14px rgba(255,150,100,.14), 0 0 0 30px rgba(255,150,100,.07);
+    clip-path: inset(-36px -40px 0 -40px);
   }
   .title {
-    font-family: Newsreader, Georgia, serif; font-weight: 300; font-size: 56px;
-    line-height: 1.18; letter-spacing: -0.01em; color: #F2EDE4; /* --text-body */
-    max-width: 920px;
+    /* Regular weight, not the page's light: a card is read at a third of this size in a feed, where the light
+       weight's hairlines wash out (looked at, 480px wide, 2026-11-27). 64px for the same reason. */
+    font-family: 'Source Serif 4', Georgia, serif; font-weight: 400; font-size: 64px;
+    line-height: 1.15; letter-spacing: -0.01em; color: #241B2B;
+    max-width: 920px; text-wrap: balance;   /* even lines: no single word left alone on the second line */
   }
+  .nb { white-space: nowrap; }             /* a hyphenated word never breaks at its hyphen ("Rubber-" / "Stamp") */
   .subtitle {
-    font-family: 'IBM Plex Sans', sans-serif; font-size: 25px; font-weight: 400;
-    color: #D4A85E; margin-top: 24px; max-width: 900px;
+    font-family: 'Source Sans 3', sans-serif; font-size: 27px; font-weight: 400; line-height: 1.4;
+    /* pretty, not balance: the first line stays full and only a lone last word is pulled back. Balance cut
+       "planning 2 / wks" in two and set every second line as a narrow block. */
+    color: #51475A; margin-top: 24px; max-width: 900px; text-wrap: pretty;
   }
-  /* Hero variant (home-og). The home card was hand-made until 2026-08-30 and drifted:
-     it still carried the pre-2026-08-29 "Product & Design Leader" positioning and a
-     STRAIGHT apostrophe in "won't", baked into pixels where no text gate can see it.
-     It is the site's most-shared image, so it keeps its own scale and its italic gold
-     clause rather than being flattened into the generic card. Same template, one flag. */
-  /* 780px measure, not 1000: at the wider measure the hero line wraps to TWO lines and
-     leaves a dead band across the middle third of the card. Three lines is the original
-     composition and it fills the frame. */
+  /* Hero variant (lab-og, screen-og): its own scale and an italic clause on its own line.
+     780px measure, not 1000: at the wider measure the hero line wraps to TWO lines and
+     leaves a dead band across the middle third of the card. Three lines fill the frame. */
   body.hero .title { font-size: 74px; line-height: 1.16; max-width: 780px; }
   /* display:block puts the italic clause on its OWN line deterministically. Relying on
-     the wrap width instead broke "won’t / bet on it." across two lines, and the exact
-     break then depends on the measure, the font and the string — three things that all
-     move. The original card breaks the clause whole; this reproduces it by construction. */
-  body.hero .title em { font-style: italic; color: #D4A85E; display: block; }
+     the wrap width instead broke a clause across two lines, and the exact break then
+     depends on the measure, the font and the string, three things that all move. */
+  body.hero .title em { font-style: italic; color: #241B2B; display: block; }
   body.hero .subtitle { display: none; }
-  /* Two subtitle treatments the hand-made cards used and the generic gold one cannot do:
-     sub-muted  — screen-og's quiet sans line under the title
-     sub-mono   — lab-og's function-signature row, with a gold tail for the test count */
+  /* Two second-line treatments:
+     sub-muted  : screen-og's quiet sans line under the title
+     sub-mono   : lab-og's function-signature row; its test count is set heavier, in ink */
   body.hero.sub-muted .subtitle, body.hero.sub-mono .subtitle { display: block; }
-  body.hero.sub-muted .subtitle {
-    color: rgba(242,237,228,0.62); font-size: 23px; margin-top: 40px; }
+  body.hero.sub-muted .subtitle { font-size: 23px; margin-top: 32px; }
   body.hero.sub-mono .subtitle {
-    font-family: "IBM Plex Mono", monospace; font-size: 21px; letter-spacing: 0.02em;
-    color: rgba(242,237,228,0.62); margin-top: 48px; }
-  body.hero .subtitle em { font-style: normal; color: #D4A85E; }
+    font-family: 'JetBrains Mono', monospace; font-size: 20px; letter-spacing: 0;
+    margin-top: 32px; }
+  body.hero .subtitle em { font-style: normal; font-weight: 700; color: #241B2B; }
   .byline {
-    font-family: 'IBM Plex Sans', sans-serif; font-size: 19px;
-    color: rgba(242,237,228,0.62); /* --text-muted */
+    font-family: 'Source Sans 3', sans-serif; font-size: 19px;
+    color: #51475A;
     margin-top: auto;
   }
 </style>
 </head>
 <body>
   <div class="pad">
-    <div class="rule"></div>
     <p class="kicker" id="kicker"></p>
     <p class="title" id="title"></p>
     <p class="subtitle" id="subtitle"></p>
@@ -92,6 +106,25 @@
     }
     // hero=1 switches to the home card's scale; em=<substring of title> is set as an
     // <em> node built with textContent, never innerHTML, so the no-injection rule holds.
+    // FIT (2026-11-27, from looking at all 35): a short title set at one fixed size left the lower half of
+    // the card empty, and a card is read at a third of its size in a feed. The title takes the largest of
+    // three sizes at which it still sits on two lines (three at the smallest). Measured after the site's
+    // type has loaded: the stand-in font has other widths and would pick the wrong size.
+    if (!q.get("hero")) {
+      // a slash stays with the word before it, so no line can begin with "/" ("The Act / Review" + "/ Ignore Rule")
+      const t = document.getElementById("title"), words = t.textContent.replace(/ \//g, "\u00A0/").split(" ");
+      t.textContent = "";
+      words.forEach((w, i) => {
+        if (i) t.appendChild(document.createTextNode(" "));
+        if (w.includes("-")) { const s = document.createElement("span"); s.className = "nb"; s.textContent = w; t.appendChild(s); }
+        else t.appendChild(document.createTextNode(w));
+      });
+      const lines = () => Math.round(t.getBoundingClientRect().height / parseFloat(getComputedStyle(t).lineHeight));
+      const fit = () => { for (const [px, max] of [[84, 2], [72, 2], [64, 3]]) { t.style.fontSize = px + "px"; if (lines() <= max) break; } };
+      fit();
+      document.fonts.load('400 64px "Source Serif 4"').then(fit);
+      document.fonts.ready.then(fit);
+    }
     if (q.get("hero")) {
       document.body.classList.add("hero");
       const em = q.get("em"), t = document.getElementById("title"), full = t.textContent;
@@ -105,7 +138,7 @@
       }
       const sub = q.get("sub");
       if (sub) document.body.classList.add("sub-" + sub);
-      // subem highlights a trailing token of the subtitle (e.g. a test count) in gold.
+      // subem sets a trailing token of the subtitle (e.g. a test count) heavier, in ink.
       const se = q.get("subem"), st = document.getElementById("subtitle");
       const j = se ? st.textContent.indexOf(se) : -1;
       if (j >= 0) {

@@ -14,25 +14,32 @@
        chrome --headless --window-size=1200,630 --virtual-time-budget=4000 \
          --screenshot=home-og.png "http://localhost:8000/assets/og-images/_home-og.template.html"
 
-     Same ground, gold, type stack and left edge as _card.template.html, so it sits in the family. -->
+     DAYLIGHT (2026-11-27): the same page top as _card.template.html (paper, the label on the ink line, the
+     rising sun, ink words), so it sits in the family. Each result carries the site's short coloured rule
+     under its figure, as the homepage's own headline numbers do. Colour is never a word. -->
 <style>
+  @font-face{font-family:'Source Serif 4';font-style:normal;font-weight:200 900;src:url('/assets/fonts-web/source-serif-4-normal-300_600.woff2') format('woff2')}
+  @font-face{font-family:'Source Sans 3';font-style:normal;font-weight:200 900;src:url('/assets/fonts-web/source-sans-3-normal-400.woff2') format('woff2')}
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 1200px; height: 630px; overflow: hidden; }
-  body { position: relative; background: #0A0A0A; font-family: 'IBM Plex Sans', sans-serif; color: #F2EDE4; }
-  .pad { position: absolute; inset: 0; padding: 96px 80px 64px; display: flex; flex-direction: column; }
-  .rule { width: 40px; height: 3px; background: #D4A85E; margin-bottom: 20px; }
-  .kicker { font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 500; letter-spacing: .02em; color: #D4A85E; }
-  .title { font-family: Newsreader, Georgia, serif; font-weight: 300; letter-spacing: -.01em; font-size: 68px; line-height: 1.1; margin-top: 24px; white-space: nowrap; color: #F2EDE4; }
-  .dom { font-size: 25px; margin-top: 12px; color: rgba(242,237,228,.62); }
-  .nums { display: grid; grid-template-columns: repeat(4, auto); justify-content: space-between; column-gap: 32px; margin-top: 64px; padding-top: 32px; border-top: 1px solid rgba(242,237,228,.22); }
-  .nums b { display: block; font-family: Newsreader, Georgia, serif; font-weight: 300; font-size: 35px; line-height: 1.15; color: #D4A85E; white-space: nowrap; }
-  .nums span { display: block; font-size: 20px; margin-top: 8px; color: rgba(242,237,228,.62); }
-  .byline { font-size: 19px; color: rgba(242,237,228,.62); margin-top: auto; }
+  body { position: relative; background: radial-gradient(90% 70% at 88% 20%, rgba(255,170,110,.20), rgba(255,170,110,0) 70%), #FFFBF6; font-family: 'Source Sans 3', sans-serif; color: #241B2B; }
+  .pad { position: absolute; inset: 0; padding: 64px 80px 64px; display: flex; flex-direction: column; }
+  .kicker { display: flex; align-items: flex-end; gap: 16px; border-bottom: 2px solid #241B2B; padding-bottom: 12px;
+            font-size: 17px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #51475A; }
+  .kicker::after { content: ""; flex: none; margin-left: auto; margin-right: 40px; margin-bottom: -12px; width: 180px; height: 90px;
+            border-radius: 180px 180px 0 0; background: linear-gradient(120deg, #FFB36B 0%, #FF8A5C 42%, #E86BFF 100%);
+            box-shadow: 0 0 0 14px rgba(255,150,100,.14), 0 0 0 30px rgba(255,150,100,.07); clip-path: inset(-36px -40px 0 -40px); }
+  .title { font-family: 'Source Serif 4', Georgia, serif; font-weight: 400; letter-spacing: -.01em; font-size: 68px; line-height: 1.1; margin-top: 40px; white-space: nowrap; color: #241B2B; }
+  .dom { font-size: 25px; line-height: 1.4; margin-top: 12px; color: #51475A; }
+  .nums { display: grid; grid-template-columns: repeat(4, auto); justify-content: space-between; column-gap: 32px; margin-top: 64px; }
+  .nums b { display: block; font-family: 'Source Serif 4', Georgia, serif; font-weight: 400; font-size: 35px; line-height: 1.15; color: #241B2B; white-space: nowrap;
+            background: linear-gradient(90deg, #E0521F, #9C36D6) 0 100%/36px 3px no-repeat; padding-bottom: 8px; }
+  .nums span { display: block; font-size: 20px; margin-top: 8px; color: #51475A; }
+  .byline { font-size: 19px; color: #51475A; margin-top: auto; }
 </style>
 </head>
 <body>
   <div class="pad">
-    <div class="rule"></div>
     <p class="kicker">ARPIT MAHESHWARI</p>
     <p class="title">Product Manager &amp; Designer</p>
     <p class="dom">AI &amp; Data-Intensive Products &middot; 16 yrs &middot; Remote from India</p>
