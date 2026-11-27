@@ -7902,18 +7902,38 @@ p:not(.lbl-cap) a.link-gold,li a.link-gold,:is(p,li,dd) a.xi-process-020,p a.fq-
 /* an inner object that used to be a dark panel (a stat, a step, a film frame) is a card; the page tops, nav, close and footer are the page */
 [data-ground="bookend"]:not(nav,footer,.page-head,.case-hero,header.xi-writing-003,.close,.hero,.lab-hero){--surface-page:var(--day-card)}
 /* PAGE TOP: the warmth the sun throws, and the label line as the horizon the sun sits on. The horizon
-   runs the full width of the page top, above both columns; words and proof start together under it. */
-:is(section.hero,header.case-hero,.page-head,.lab-hero,.rs-hero,header.xi-writing-003){background-image:var(--day-wash)!important}
-:is(.hero .role-line,.case-hero__kicker,.lab-hero .lab-kicker,.rs-hero .eyebrow,.page-head .eyebrow){display:flex!important;align-items:flex-end;gap:16px;grid-column:1/-1!important;max-width:none!important;min-height:0;border-bottom:2px solid var(--day-ink);padding-bottom:12px!important;margin-bottom:24px!important;color:var(--day-ink-quiet)!important}
-:is(.hero .role-line,.case-hero__kicker,.lab-hero .lab-kicker,.rs-hero .eyebrow,.page-head .eyebrow)::after{content:"";flex:none;margin-left:auto;margin-right:26px;margin-bottom:-12px;width:116px;height:58px;border-radius:116px 116px 0 0;background:var(--day-sun);box-shadow:0 0 0 10px var(--day-halo-1),0 0 0 22px var(--day-halo-2);clip-path:inset(-30px -30px 0 -30px)}
-@media (min-width:961px){:is(.hero .role-line,.case-hero__kicker,.lab-hero .lab-kicker,.rs-hero .eyebrow,.page-head .eyebrow)::after{width:180px;height:90px;border-radius:180px 180px 0 0;margin-right:38px;box-shadow:0 0 0 14px var(--day-halo-1),0 0 0 30px var(--day-halo-2);clip-path:inset(-36px -40px 0 -40px)}}
+   runs the full width of the page top, above both columns; words and proof start together under it.
+   The label list sits in :is(), so the whole rule weighs as its heaviest entry (three classes). That is on purpose:
+   it outranks each page family's own label margin, so the title starts 24px under the line on every page. */
+:is(section.hero,header.case-hero,.page-head,.lab-hero,.rs-hero,header.xi-writing-003,.xi-patterns-004,.xi-resources-003){background-image:var(--day-wash)!important}
+:is(.hero .role-line,.case-hero__kicker,.lab-hero .lab-kicker,.lab-hero .lab-wrap>.eyebrow,.rs-hero .eyebrow,.page-head .eyebrow,.pat-hero>.eyebrow,.scr-head>.scr-kicker){display:flex!important;align-items:flex-end;gap:16px;grid-column:1/-1!important;max-width:none!important;min-height:0;border-bottom:2px solid var(--day-ink);padding-bottom:12px!important;margin-bottom:24px!important;color:var(--day-ink-quiet)!important}
+:is(.hero .role-line,.case-hero__kicker,.lab-hero .lab-kicker,.lab-hero .lab-wrap>.eyebrow,.rs-hero .eyebrow,.page-head .eyebrow,.pat-hero>.eyebrow,.scr-head>.scr-kicker)::after{content:"";flex:none;margin-left:auto;margin-right:26px;margin-bottom:-12px;width:116px;height:58px;border-radius:116px 116px 0 0;background:var(--day-sun);box-shadow:0 0 0 10px var(--day-halo-1),0 0 0 22px var(--day-halo-2);clip-path:inset(-30px -30px 0 -30px)}
+@media (min-width:961px){:is(.hero .role-line,.case-hero__kicker,.lab-hero .lab-kicker,.lab-hero .lab-wrap>.eyebrow,.rs-hero .eyebrow,.page-head .eyebrow,.pat-hero>.eyebrow,.scr-head>.scr-kicker)::after{width:180px;height:90px;border-radius:180px 180px 0 0;margin-right:38px;box-shadow:0 0 0 14px var(--day-halo-1),0 0 0 30px var(--day-halo-2);clip-path:inset(-36px -40px 0 -40px)}}
 @media (min-width:768px){.rs-hero-grid>.rs-facts{grid-row:2/span 2!important}}
 /* the Lab: its label is the grid's first row (moved out of the left column in the markup), so the panel starts level with the title */
 @media (min-width:961px){.lab-hero .lab-hero-grid>.lh-r{align-self:start}}
-@media (max-width:960px){:where(body.p-lab) .lab-hero .lab-hero-grid{row-gap:0}.lab-hero .lab-hero-grid>.lh-r{margin-top:40px}.lab-hero .lh-l>:first-child{margin-top:0}}   /* in one column the title no longer has the label above it to collapse its top margin into */
+/* at laptop width the label owns row 1 across both columns, so the panel starts on row 2, level with the title (it used to start on row 1, beside the label) */
+@media (min-width:1024px){
+.lab-hero .lab-wrap>:is(.lab-kicker,.eyebrow){grid-row:1}
+.lab-hero .lab-wrap>.lh-r{align-self:start;grid-row:2/span 2!important}
+body.p-lab .lab-hero .lab-hero-grid>.lh-r{grid-row:2/-1!important}
+/* the writing and resources lists: the sun's line is row 1 of their two-column top, the title and the lead start under it */
+body.p-writing header.xi-writing-003>div::before,body.p-resources .xi-resources-003>div::before{grid-row:1}
+body.p-writing header.xi-writing-003>div>h1,body.p-resources .xi-resources-003>div>h1{grid-row:2}
+body.p-writing header.xi-writing-003>div>.lead,body.p-resources .xi-resources-003>div>.lead{grid-row:2/span 2}
+body.p-writing header.xi-writing-003>div>.hand{grid-row:3}
+}
+/* one distance from the sun's line to the title on every page: the label's 24px, with no second margin stacked on it */
+body[class*="p-case-studies"] .case-hero h1{margin-top:0}
+/* the pattern library: the same move, on its own grid */
+.pat-hero>.pat-hero-l>:first-child{margin-top:0}
+@media (min-width:961px){.pat-hero>:is(.pat-hero-l,.pat-diag){align-self:start}}   /* words and panel both start under the line (the words were centred against the taller panel between 961 and 1100) */
+@media (max-width:960px){body[class*="p-patterns"] .pat-hero{row-gap:0}.pat-hero>.pat-diag{margin-top:32px}}
+@media (max-width:960px){:where(body.p-lab) .lab-hero .lab-hero-grid{row-gap:0}.lab-hero .lab-hero-grid>.lh-r{margin-top:40px}}
+.lab-hero .lh-l>:first-child{margin-top:0}   /* the title no longer has the label above it to collapse its top margin into: 24px from the line at every width, and level with the panel beside it */
 /* a page top with no label above its title (essays, the writing list): the sun sits on a line of its own */
-:is(.page-head>div:not(:has(.eyebrow)),header.xi-writing-003>div)::before{content:"";display:block;grid-column:1/-1;height:80px;margin-top:-22px;margin-bottom:24px;border-bottom:2px solid var(--day-ink);background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20160%2080%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%27.6%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%23FFB36B%27/%3E%3Cstop%20offset%3D%27.42%27%20stop-color%3D%27%23FF8A5C%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%23E86BFF%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2780%27%20fill%3D%27rgb%28255%2C150%2C100%29%27%20fill-opacity%3D%27.07%27/%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2768%27%20fill%3D%27rgb%28255%2C150%2C100%29%27%20fill-opacity%3D%27.14%27/%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2758%27%20fill%3D%27url%28%23g%29%27/%3E%3C/svg%3E") right 4px bottom 0/160px 80px no-repeat}
-@media (min-width:961px){:is(.page-head>div:not(:has(.eyebrow)),header.xi-writing-003>div)::before{height:120px;margin-top:-30px;background-size:240px 120px;background-position:right 8px bottom 0}}
+:is(.page-head>div:not(:has(.eyebrow)),header.xi-writing-003>div,.xi-resources-003>.xi-resources-004)::before{content:"";display:block;grid-column:1/-1;height:80px;margin-top:-22px;margin-bottom:24px;border-bottom:2px solid var(--day-ink);background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20160%2080%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%27.6%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%23FFB36B%27/%3E%3Cstop%20offset%3D%27.42%27%20stop-color%3D%27%23FF8A5C%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%23E86BFF%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2780%27%20fill%3D%27rgb%28255%2C150%2C100%29%27%20fill-opacity%3D%27.07%27/%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2768%27%20fill%3D%27rgb%28255%2C150%2C100%29%27%20fill-opacity%3D%27.14%27/%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2758%27%20fill%3D%27url%28%23g%29%27/%3E%3C/svg%3E") right 4px bottom 0/160px 80px no-repeat}
+@media (min-width:961px){:is(.page-head>div:not(:has(.eyebrow)),header.xi-writing-003>div,.xi-resources-003>.xi-resources-004)::before{height:120px;margin-top:-30px;background-size:240px 120px;background-position:right 8px bottom 0}}
 nav[data-ground="bookend"]{border-bottom:1px solid var(--day-line)}
 /* SECTION WASH: the tint at the top of a home section is the sun's warmth, not a grey of the ink */
 body.p-home :is(.whoband,.work,.receipts,.voices,.thoughts){background:linear-gradient(180deg,var(--day-sunk),var(--day-paper))!important}
