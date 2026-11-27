@@ -7681,4 +7681,11 @@ body.p-home .doors-list li{font-weight:400}
    violet with no underline (Arpit, 2026-09-12: coloured no-underline doors; cta-grammar-check). Same job, same voice. */
 .ess-all a,body.p-home .doors-l a[href="./writing/"]{font-family:var(--ff-sans);font-size:var(--fs-ui);font-weight:600;letter-spacing:.02em;color:var(--door-ink);text-decoration:none}
 .ess-all a:is(:hover,:focus-visible),body.p-home .doors-l a[href="./writing/"]:is(:hover,:focus-visible){text-decoration:underline;text-underline-offset:3px}
+
+/* COPY BUTTONS KEEP THEIR LABEL ON HOVER (2026-11-27, exploratory test). Their hover rule
+   (.hv-patterns-3, .hv-patterns-capability-contract-1, components layer) turns the text cream
+   and asks for a dark fill, but the per-page class in the utilities layer pins the fill to cream
+   or transparent, so the label vanished (1.0:1) the moment a reader pointed at or tapped it.
+   The fill is declared here, where the utilities class cannot outrank it. */
+:is(#copyCiteBtn,#copyContractBtn):is(:hover,:focus-visible){background:var(--accent-text);color:var(--surface-page)}
 }

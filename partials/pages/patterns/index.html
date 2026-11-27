@@ -341,11 +341,14 @@ document.querySelectorAll('section[id]').forEach(s => sectionViewObs.observe(s))
   const btn = document.getElementById('copyCiteBtn');
   const line = document.getElementById('citeLine');
   if (!btn || !line) return;
+  const say = t => { btn.textContent = t; setTimeout(() => { btn.textContent = 'Copy'; }, 2400); };
+  // When the browser refuses the clipboard (in-app browsers often do), highlight the
+  // text so the reader can copy it by hand, and say so. Silence here reads as broken.
+  const selectIt = () => { const r = document.createRange(); r.selectNodeContents(line);
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r); say('Text selected'); };
   btn.addEventListener('click', () => {
-    navigator.clipboard.writeText(line.textContent.trim()).then(() => {
-      btn.textContent = 'Copied';
-      setTimeout(() => { btn.textContent = 'Copy'; }, 1600);
-    });
+    try { navigator.clipboard.writeText(line.textContent.trim()).then(() => say('Copied'), selectIt); }
+    catch (e) { selectIt(); }
   });
 })();
 </script>
