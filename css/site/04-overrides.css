@@ -3350,4 +3350,73 @@ p:not(.lbl-cap) a.link-gold,li a.link-gold,:is(p,li,dd) a.xi-process-020,p a.fq-
    every other sentence link (2026-11-25 said the same of p and li). .lab-note a is taken OUT of the tap-floor list above
    rather than outvoted here: that list's :is() scores as its heaviest member (p.hand a), so a plain rule lost to it. */
 .lab-note a:not(.cta){display:inline;padding-block:0;text-decoration:underline;text-underline-offset:3px}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   DAYLIGHT — the parts (Arpit, 2026-11-27). Tokens: css/site/01-tokens.css.
+   Every colour below is a job; the only literals are inside the sun drawing, which a
+   data: image cannot read a token from (same three stops as --day-sun, same two halos).
+   ════════════════════════════════════════════════════════════════════════════ */
+[data-ground="bookend"]{--cta-fill:var(--day-ink);--cta-fill-hover:var(--day-ink-2);--btn-fill-ink:var(--day-card)}
+/* an inner object that used to be a dark panel (a stat, a step, a film frame) is a card; the page tops, nav, close and footer are the page */
+[data-ground="bookend"]:not(nav,footer,.page-head,.case-hero,header.xi-writing-003,.close,.hero,.lab-hero){--surface-page:var(--day-card)}
+/* PAGE TOP: the warmth the sun throws, and the label line as the horizon the sun sits on. The horizon
+   runs the full width of the page top, above both columns; words and proof start together under it. */
+:is(section.hero,header.case-hero,.page-head,.lab-hero,.rs-hero,header.xi-writing-003){background-image:var(--day-wash)!important}
+:is(.hero .role-line,.case-hero__kicker,.lab-hero .lab-kicker,.rs-hero .eyebrow,.page-head .eyebrow){display:flex!important;align-items:flex-end;gap:16px;grid-column:1/-1!important;max-width:none!important;min-height:0;border-bottom:2px solid var(--day-ink);padding-bottom:12px!important;margin-bottom:24px!important;color:var(--day-ink-quiet)!important}
+:is(.hero .role-line,.case-hero__kicker,.lab-hero .lab-kicker,.rs-hero .eyebrow,.page-head .eyebrow)::after{content:"";flex:none;margin-left:auto;margin-right:26px;margin-bottom:-12px;width:116px;height:58px;border-radius:116px 116px 0 0;background:var(--day-sun);box-shadow:0 0 0 10px var(--day-halo-1),0 0 0 22px var(--day-halo-2);clip-path:inset(-30px -30px 0 -30px)}
+@media (min-width:961px){:is(.hero .role-line,.case-hero__kicker,.lab-hero .lab-kicker,.rs-hero .eyebrow,.page-head .eyebrow)::after{width:180px;height:90px;border-radius:180px 180px 0 0;margin-right:38px;box-shadow:0 0 0 14px var(--day-halo-1),0 0 0 30px var(--day-halo-2);clip-path:inset(-36px -40px 0 -40px)}}
+@media (min-width:768px){.rs-hero-grid>.rs-facts{grid-row:2/span 2!important}}
+/* the Lab: its label is the grid's first row (moved out of the left column in the markup), so the panel starts level with the title */
+@media (min-width:961px){.lab-hero .lab-hero-grid>.lh-r{align-self:start}}
+@media (max-width:960px){:where(body.p-lab) .lab-hero .lab-hero-grid{row-gap:0}.lab-hero .lab-hero-grid>.lh-r{margin-top:40px}.lab-hero .lh-l>:first-child{margin-top:0}}   /* in one column the title no longer has the label above it to collapse its top margin into */
+/* a page top with no label above its title (essays, the writing list): the sun sits on a line of its own */
+:is(.page-head>div:not(:has(.eyebrow)),header.xi-writing-003>div)::before{content:"";display:block;grid-column:1/-1;height:80px;margin-top:-22px;margin-bottom:24px;border-bottom:2px solid var(--day-ink);background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20160%2080%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%27.6%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%23FFB36B%27/%3E%3Cstop%20offset%3D%27.42%27%20stop-color%3D%27%23FF8A5C%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%23E86BFF%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2780%27%20fill%3D%27rgb%28255%2C150%2C100%29%27%20fill-opacity%3D%27.07%27/%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2768%27%20fill%3D%27rgb%28255%2C150%2C100%29%27%20fill-opacity%3D%27.14%27/%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2758%27%20fill%3D%27url%28%23g%29%27/%3E%3C/svg%3E") right 4px bottom 0/160px 80px no-repeat}
+@media (min-width:961px){:is(.page-head>div:not(:has(.eyebrow)),header.xi-writing-003>div)::before{height:120px;margin-top:-30px;background-size:240px 120px;background-position:right 8px bottom 0}}
+nav[data-ground="bookend"]{border-bottom:1px solid var(--day-line)}
+/* SECTION WASH: the tint at the top of a home section is the sun's warmth, not a grey of the ink */
+body.p-home :is(.whoband,.work,.receipts,.voices,.thoughts){background:linear-gradient(180deg,var(--day-sunk),var(--day-paper))!important}
+/* SECTION MARK: a short coloured rule in place of the full-width ink line */
+header.chap{border-top:0!important;padding-top:0!important}
+header.chap::before{content:"";display:block;width:56px;height:4px;border-radius:2px;background:var(--day-rule);margin-bottom:20px;grid-column:1/-1}
+.close header.chap::before{margin-inline:auto}
+/* HEADLINE NUMBER: the same rule, short, under the figure */
+:is(.hero-nums b,.bcard-r b,.case-stat__n,.case-stat b){display:inline-block;background:var(--day-rule) 0 100%/36px 3px no-repeat;padding-bottom:7px}
+/* CARD: white, soft edge, warm shadow. One surface, one shadow, always together. */
+:is(.bcard,.facts,.card-p32,.case-stat,.lstep,.loopfig,.ph-card,.rs-facts,.lh-side){background:var(--day-card)!important;border:1px solid var(--day-card-edge)!important;border-radius:var(--day-radius)!important;box-shadow:var(--day-shadow)!important}
+:is(.thesis,main blockquote.pull,.essay-sec blockquote){background:var(--day-card)!important;border:1px solid var(--day-card-edge)!important;border-radius:var(--day-radius)!important;box-shadow:var(--day-shadow-quote)!important}
+figure.qt{background:var(--day-card);border:1px solid var(--day-card-edge);border-radius:var(--day-radius);box-shadow:var(--day-shadow-quote);padding:24px}
+/* "Start here": the tag carries a small sun */
+.bcard-nom::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--day-sun);margin-right:7px;vertical-align:baseline}
+/* LINK IN A SENTENCE: an ink word with the coloured rule under it; the rule thickens on hover.
+   The list is every rule above that underlines a link at rest. A door (arrow, no underline) is not in it;
+   the two "all essays" doors match a rule in the list and underline only on hover, so they are named in :not() (inside :where(), which keeps the weight down).
+   The list sits in :where() so the part weighs one class and one element: a link's own spacing still wins. */
+:where(main,footer) a[href]:where(
+body.p-home .who p a,
+body.p-home .errata a,
+body.p-home .contract-links a,
+body.p-home .rcpt-more,
+body[class*="p-case-studies"] .vslip-rows dd a,
+body.p-home .qt-src a,
+body.p-home .doors-l a,body.p-home .doors-list a,
+body.p-home .who .who-rows dd a,
+body.p-home .work .work-notes dd a,
+:where(main p:not(.lbl-cap,.scr-receipt,.ia-m,.art-r,.h-attr,.fit-skip,.scr-after,.lh-foot,.vid-fallback,.hd-route),main dd) a:where(:not([class])), p:not(.lbl-cap) a.link-gold,li a.link-gold,:is(p,li,dd) a.xi-process-020,p a.fq-ans,
+.lab-note a:not(.cta)
+):where(:not(.ess-all a,.doors-l a[href="./writing/"])){text-decoration:none!important;background:var(--day-rule) 0 100%/100% 2.5px no-repeat;padding-bottom:2px}
+:where(main,footer) a[href]:where(
+body.p-home .who p a,
+body.p-home .errata a,
+body.p-home .contract-links a,
+body.p-home .rcpt-more,
+body[class*="p-case-studies"] .vslip-rows dd a,
+body.p-home .qt-src a,
+body.p-home .doors-l a,body.p-home .doors-list a,
+body.p-home .who .who-rows dd a,
+body.p-home .work .work-notes dd a,
+:where(main p:not(.lbl-cap,.scr-receipt,.ia-m,.art-r,.h-attr,.fit-skip,.scr-after,.lh-foot,.vid-fallback,.hd-route),main dd) a:where(:not([class])), p:not(.lbl-cap) a.link-gold,li a.link-gold,:is(p,li,dd) a.xi-process-020,p a.fq-ans,
+.lab-note a:not(.cta)
+):where(:not(.ess-all a,.doors-l a[href="./writing/"])):hover{background-size:100% 4px}
+/* FOCUS: one ring everywhere, two colours (ink ring, white gap), so it shows on any ground */
+:is(a,button,input,textarea,select,summary,[tabindex]):focus-visible{outline:3px solid var(--day-ink)!important;outline-offset:3px!important;box-shadow:0 0 0 3px var(--day-card)!important}
 }

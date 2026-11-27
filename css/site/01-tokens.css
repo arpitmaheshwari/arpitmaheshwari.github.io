@@ -16,4 +16,191 @@
    on this site's #140C16 (nontext-contrast-check) — 42% clears it. Logged for the system. */
 [data-ground="bookend"]{--border-strong:color-mix(in srgb, var(--neutral-100) 42%, transparent); --door-ink:var(--violet-100);
   --cta-grad-hover:linear-gradient(92deg, var(--copper-50), var(--amber-50)); --cta-fill-hover-copper:var(--copper-50)}
-/* one stop lighter on a bookend */}
+/* one stop lighter on a bookend */
+/* ════════════════════════════════════════════════════════════════════════════
+   DAYLIGHT — the site's theme. Arpit, 2026-11-27: "I like it, go ahead and start
+   implementation", on five real pages (prototypes/renders/daylight-2026-11-27).
+   One rising sun from the logo's colours, thin coloured rules, warm shadows, black
+   words on a calm page.
+
+   THREE TIERS: paints -> jobs -> parts. A page rule reads a JOB, never a paint.
+
+   THE ONE RULE: every word is ink or quiet ink. Colour is carried by things that
+   are not words (the sun, the rule, the shadow), and the sun never sits under a word.
+     ink        #241B2B   16.1:1 on the page, 14.9:1 on the sunk wash
+     ink-2      #392E41   12.4:1 on the page; also the pressed/hover fill (white on it 12.8:1)
+     quiet ink  #51475A    8.5:1 on the page, 8.8:1 on a card, 7.8:1 on the sunk wash
+     rule ends  #E0521F 3.8:1 · #9C36D6 5.2:1 on the page: a graphic (3:1), never a word
+   Every word is held to 7:1 (AAA), not the 4.5:1 minimum.
+
+   amber.css still declares the Amber system's own values; this block sits later in
+   the same layer and re-points them. Record and research:
+   portfolio-sources/design-system/daylight/.
+   ════════════════════════════════════════════════════════════════════════════ */
+:root{
+  /* ── PAINTS (tier 1). Literal colours live here and nowhere else. ── */
+  --day-paper:#FFFBF6; --day-card:#FFFFFF; --day-sunk:#FBF1E6; --day-line:#E6DDD3;
+  --day-ink:#241B2B; --day-ink-2:#392E41; --day-ink-quiet:#51475A;
+  --day-sun-1:#FFB36B; --day-sun-2:#FF8A5C; --day-sun-3:#E86BFF;     /* the logo's own colours */
+  --day-rule-1:#E0521F; --day-rule-2:#9C36D6;                         /* the same two, deepened until a thin line reads */
+  /* ── JOBS that are not a single colour ── */
+  --day-sun:linear-gradient(120deg,var(--day-sun-1) 0%,var(--day-sun-2) 42%,var(--day-sun-3) 100%);   /* DECORATION ONLY */
+  --day-rule:linear-gradient(90deg,var(--day-rule-1),var(--day-rule-2));
+  --day-halo-1:rgba(255,150,100,.14); --day-halo-2:rgba(255,150,100,.07);
+  --day-wash:radial-gradient(90% 70% at 88% 20%,rgba(255,170,110,.20),rgba(255,170,110,0) 70%);     /* the warmth the sun throws on a page top */
+  --day-card-edge:rgba(36,27,43,.14);
+  --day-shadow:0 1px 2px rgba(120,60,40,.10),0 22px 36px -22px rgba(255,110,70,.55);                /* a card */
+  --day-shadow-quote:0 1px 2px rgba(120,60,40,.10),0 22px 36px -22px rgba(200,90,230,.55);         /* someone's words */
+  --day-radius:16px;
+  /* ── the Amber ramp names, kept as aliases so every existing rule resolves. DEPRECATED:
+     new rules read a job. The deep steps of the four warm families ARE the inks (no brown
+     or purple words); their light steps stay colour, for fills. ── */
+  --paper:var(--day-paper);
+  --neutral-50:var(--day-card); --neutral-100:var(--day-line); --neutral-200:#D6CBC0; --neutral-300:#B4ADAE; --neutral-400:#9C929B; --neutral-500:#867A8A; --neutral-600:#706277; --neutral-700:var(--day-ink-quiet); --neutral-800:var(--day-ink-2); --neutral-900:var(--day-ink);
+  --amber-50:#FFECE3; --amber-100:#FFD0BB; --amber-200:#FEB08D; --amber-300:#FE8950; --amber-400:#E86D2C; --amber-500:var(--neutral-600); --amber-600:var(--day-ink-quiet); --amber-700:var(--day-ink-quiet); --amber-800:var(--day-ink-2); --amber-900:var(--day-ink);
+  --copper-50:#FEECE6; --copper-100:#FED0C1; --copper-200:#FEAF96; --copper-300:#FE8762; --copper-400:#EA6940; --copper-500:var(--neutral-600); --copper-600:var(--day-ink-quiet); --copper-700:var(--day-ink-quiet); --copper-800:var(--day-ink-2); --copper-900:var(--day-ink);
+  --violet-50:#FAEAFF; --violet-100:#F2CCFF; --violet-200:#EAA8FE; --violet-300:#DC84F7; --violet-400:#C569E0; --violet-500:var(--neutral-600); --violet-600:var(--day-ink-quiet); --violet-700:var(--day-ink-quiet); --violet-800:var(--day-ink-2); --violet-900:var(--day-ink);
+  --rose-50:#FEEBEE; --rose-100:#FFCCD6; --rose-200:#FEAABC; --rose-300:#FF7EA0; --rose-400:#E86188; --rose-500:var(--neutral-600); --rose-600:var(--day-ink-quiet); --rose-700:var(--day-ink-quiet); --rose-800:var(--day-ink-2); --rose-900:var(--day-ink);
+}
+/* ── JOBS (tier 2) on the page, and on a tinted surface (a tint no longer costs a stop: ink is ink) ── */
+:root,[data-tint],.a-tinted{
+  --text-primary:var(--neutral-900);
+  --text-body:var(--neutral-900);
+  --text-muted:var(--neutral-700);
+  --text-faint:var(--neutral-700);
+  --text-disabled:var(--neutral-700);
+  --accent-text:var(--neutral-900);
+  --accent-hover:var(--neutral-900);
+  --acc-amber:var(--neutral-900);
+  --acc-copper:var(--neutral-900);
+  --acc-violet:var(--neutral-900);
+  --acc-rose:var(--neutral-900);
+  --door-ink:var(--neutral-900);
+  --link-ink:var(--neutral-900);
+  --link-ink-hover:var(--neutral-900);
+  --acc-forest:var(--forest-800);
+  --acc-indigo:var(--indigo-800);
+  --border-focus:var(--neutral-900);
+  --border-strong:var(--neutral-600);
+  --surface-sunken:var(--day-sunk);
+  --cta-fill:var(--day-ink);
+  --cta-fill-hover:var(--day-ink-2);
+  --cta-fill-hover-copper:var(--day-ink-2);
+  --btn-fill-ink:#fff;
+  --surface-card:var(--day-card);
+}
+/* ── THE BANDS ARE LIGHT NOW. [data-ground="bookend"] was the dark opening and close of a page; in
+   Daylight it is a band of the same page. This block is a SHIM and is scheduled to go: it re-declares
+   the page's jobs on the band, and re-points the light ramp steps to ink, because 40 rules written
+   for a dark band still name those steps directly. Each becomes a job, then this block is deleted. ── */
+[data-theme="dark"],[data-ground="bookend"]{
+  --surface-inverse:var(--bookend);
+  --accent:var(--amber-500);
+  --accent-fill:var(--amber-700);
+  --accent-soft:var(--amber-100);
+  --accent-on-dark:var(--amber-100);
+  --status-positive:var(--forest-600);
+  --status-positive-soft:var(--forest-100);
+  --status-caution:var(--amber-600);
+  --status-caution-soft:var(--amber-100);
+  --status-negative:var(--rose-700);
+  --status-negative-soft:var(--rose-100);
+  --status-info:var(--indigo-600);
+  --status-info-soft:var(--indigo-100);
+  --overlay-scrim:color-mix(in srgb, var(--neutral-900) 55%, transparent);
+  --glow:none;
+  --tint-amber-a:var(--amber-100);
+  --tint-amber-b:var(--amber-300);
+  --tint-copper-a:var(--copper-100);
+  --tint-copper-b:var(--copper-300);
+  --tint-violet-a:var(--violet-100);
+  --tint-violet-b:var(--violet-300);
+  --tint-rose-a:var(--rose-100);
+  --tint-rose-b:var(--rose-300);
+  --tint-forest-a:var(--forest-100);
+  --tint-forest-b:var(--forest-300);
+  --tint-indigo-a:var(--indigo-100);
+  --tint-indigo-b:var(--indigo-300);
+  --cream-ground:var(--surface-page);
+  --cream-paper:var(--surface-card);
+  --cream-sunken:var(--surface-sunken);
+  --cream-ink:var(--text-primary);
+  --cream-ink-2:var(--text-body);
+  --cream-grey:var(--text-muted);
+  --cream-grey-2:var(--text-disabled);
+  --cream-silver:var(--border-strong);
+  --cream-silver-2:var(--border-hairline);
+  --cream-gold:var(--accent);
+  --cream-gold-lt:var(--accent-on-dark);
+  --cream-gold-text:var(--accent-text);
+  --cream-gold-deep:var(--accent-fill);
+  --cream-positive:var(--status-positive);
+  --cream-caution:var(--status-caution);
+  --cream-negative:var(--status-negative);
+  --cream-info:var(--status-info);
+  --cream-tint-blue-a:var(--tint-indigo-a);
+  --cream-tint-blue-b:var(--tint-indigo-b);
+  --cream-tint-peach-a:var(--tint-copper-a);
+  --cream-tint-peach-b:var(--tint-copper-b);
+  --cream-tint-sage-a:var(--tint-forest-a);
+  --cream-tint-sage-b:var(--tint-forest-b);
+  --cream-tint-lilac-a:var(--tint-violet-a);
+  --cream-tint-lilac-b:var(--tint-violet-b);
+  --cream-tint-flax-a:var(--tint-amber-a);
+  --cream-tint-flax-b:var(--tint-amber-b);
+  --border-hairline:color-mix(in srgb,var(--neutral-900) 22%,transparent);
+  --cta-grad-hover:linear-gradient(92deg,var(--copper-700),var(--amber-700));
+  --surface-page:var(--day-paper);
+  --neutral-50:var(--day-ink);
+  --neutral-100:var(--day-ink-2);
+  --neutral-200:var(--day-ink-2);
+  --neutral-300:var(--day-ink-quiet);
+  --neutral-400:var(--day-ink-quiet);
+  --amber-50:var(--day-ink);
+  --amber-100:var(--day-ink);
+  --amber-200:var(--day-ink);
+  --amber-300:var(--day-ink);
+  --amber-400:var(--day-ink);
+  --copper-50:var(--day-ink);
+  --copper-100:var(--day-ink);
+  --copper-200:var(--day-ink);
+  --copper-300:var(--day-ink);
+  --copper-400:var(--day-ink);
+  --violet-50:var(--day-ink);
+  --violet-100:var(--day-ink);
+  --violet-200:var(--day-ink);
+  --violet-300:var(--day-ink);
+  --violet-400:var(--day-ink);
+  --rose-50:var(--day-ink);
+  --rose-100:var(--day-ink);
+  --rose-200:var(--day-ink);
+  --rose-300:var(--day-ink);
+  --rose-400:var(--day-ink);
+  --surface-card:color-mix(in srgb,#fff 62%,transparent);
+  --text-on-accent:#fff;
+  --text-on-inverse:#fff;
+  --text-primary:var(--neutral-900);
+  --text-body:var(--neutral-900);
+  --text-muted:var(--neutral-700);
+  --text-faint:var(--neutral-700);
+  --text-disabled:var(--neutral-700);
+  --accent-text:var(--neutral-900);
+  --accent-hover:var(--neutral-900);
+  --acc-amber:var(--neutral-900);
+  --acc-copper:var(--neutral-900);
+  --acc-violet:var(--neutral-900);
+  --acc-rose:var(--neutral-900);
+  --door-ink:var(--neutral-900);
+  --link-ink:var(--neutral-900);
+  --link-ink-hover:var(--neutral-900);
+  --acc-forest:var(--forest-800);
+  --acc-indigo:var(--indigo-800);
+  --border-focus:var(--neutral-900);
+  --border-strong:var(--neutral-600);
+  --surface-sunken:var(--day-sunk);
+  --cta-fill:var(--day-ink);
+  --cta-fill-hover:var(--day-ink-2);
+  --cta-fill-hover-copper:var(--day-ink-2);
+  --btn-fill-ink:#fff;
+}
+}
