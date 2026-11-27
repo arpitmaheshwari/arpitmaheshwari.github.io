@@ -3365,8 +3365,8 @@ p:not(.lbl-cap) a.link-gold,li a.link-gold,:is(p,li,dd) a.xi-process-020,p a.fq-
    it outranks each page family's own label margin, so the title starts 24px under the line on every page. */
 :is(section.hero,header.case-hero,.page-head,.lab-hero,.rs-hero,header.xi-writing-003,.xi-patterns-004,.xi-resources-003){background-image:var(--day-wash)!important}
 :is(.hero .role-line,.case-hero__kicker,.lab-hero .lab-kicker,.lab-hero .lab-wrap>.eyebrow,.rs-hero .eyebrow,.page-head .eyebrow,.pat-hero>.eyebrow,.scr-head>.scr-kicker){display:flex!important;align-items:flex-end;gap:16px;grid-column:1/-1!important;max-width:none!important;min-height:0;border-bottom:2px solid var(--day-ink);padding-bottom:12px!important;margin-bottom:24px!important;color:var(--day-ink-quiet)!important}
-:is(.hero .role-line,.case-hero__kicker,.lab-hero .lab-kicker,.lab-hero .lab-wrap>.eyebrow,.rs-hero .eyebrow,.page-head .eyebrow,.pat-hero>.eyebrow,.scr-head>.scr-kicker)::after{content:"";flex:none;margin-left:auto;margin-right:26px;margin-bottom:-12px;width:116px;height:58px;border-radius:116px 116px 0 0;background:var(--day-sun);box-shadow:0 0 0 10px var(--day-halo-1),0 0 0 22px var(--day-halo-2);clip-path:inset(-30px -30px 0 -30px)}
-@media (min-width:961px){:is(.hero .role-line,.case-hero__kicker,.lab-hero .lab-kicker,.lab-hero .lab-wrap>.eyebrow,.rs-hero .eyebrow,.page-head .eyebrow,.pat-hero>.eyebrow,.scr-head>.scr-kicker)::after{width:180px;height:90px;border-radius:180px 180px 0 0;margin-right:38px;box-shadow:0 0 0 14px var(--day-halo-1),0 0 0 30px var(--day-halo-2);clip-path:inset(-36px -40px 0 -40px)}}
+:is(.hero .role-line,.case-hero__kicker,.lab-hero .lab-kicker,.lab-hero .lab-wrap>.eyebrow,.rs-hero .eyebrow,.page-head .eyebrow,.pat-hero>.eyebrow,.scr-head>.scr-kicker)::after{content:"";flex:none;margin-left:auto;margin-right:24px;margin-bottom:-12px;width:116px;height:58px;border-radius:116px 116px 0 0;background:var(--day-sun);box-shadow:0 0 0 10px var(--day-halo-1),0 0 0 22px var(--day-halo-2);clip-path:inset(-30px -30px 0 -30px)}
+@media (min-width:961px){:is(.hero .role-line,.case-hero__kicker,.lab-hero .lab-kicker,.lab-hero .lab-wrap>.eyebrow,.rs-hero .eyebrow,.page-head .eyebrow,.pat-hero>.eyebrow,.scr-head>.scr-kicker)::after{width:180px;height:90px;border-radius:180px 180px 0 0;margin-right:40px;box-shadow:0 0 0 14px var(--day-halo-1),0 0 0 30px var(--day-halo-2);clip-path:inset(-36px -40px 0 -40px)}}
 @media (min-width:768px){.rs-hero-grid>.rs-facts{grid-row:2/span 2!important}}
 /* the Lab: its label is the grid's first row (moved out of the left column in the markup), so the panel starts level with the title */
 @media (min-width:961px){.lab-hero .lab-hero-grid>.lh-r{align-self:start}}
@@ -3394,6 +3394,9 @@ body[class*="p-case-studies"] .case-hero h1{margin-top:0}
 @media (min-width:961px){:is(.page-head>div:not(:has(.eyebrow)),header.xi-writing-003>div,.xi-resources-003>.xi-resources-004,body.p-404 .wrap)::before{height:120px;margin-top:-30px;background-size:240px 120px;background-position:right 8px bottom 0}}
 /* the "page not found" counter: the same sun and line, as the first row of its grid (above the words and the luggage tag at laptop width).
    The grid's own row gap (48px, 64px from 901) follows the line, so the line gives back all but 24px of it: the label starts 24px under the line, as on every page. */
+/* A page top carries one line, the sun's. The Lab family (five Lab pages and the fit check) still drew the generic
+   section rule at its very top, hidden under the menu bar: a heading ruled on both sides. */
+.section.lab-hero{border-top:0}
 body.p-404 .wrap{grid-template-rows:auto 1fr}
 body.p-404 .wrap::before{margin-top:0;margin-bottom:-24px;align-self:start}
 @media (min-width:901px){body.p-404 .wrap::before{margin-bottom:-40px}}
@@ -3405,7 +3408,7 @@ header.chap{border-top:0!important;padding-top:0!important}
 header.chap::before{content:"";display:block;width:56px;height:4px;border-radius:2px;background:var(--day-rule);margin-bottom:20px;grid-column:1/-1}
 .close header.chap::before{margin-inline:auto}
 /* HEADLINE NUMBER: the same rule, short, under the figure */
-:is(.hero-nums b,.bcard-r b,.case-stat__n,.case-stat b){display:inline-block;background:var(--day-rule) 0 100%/36px 3px no-repeat;padding-bottom:7px}
+:is(.hero-nums b,.bcard-r b,.case-stat__n,.case-stat b){display:inline-block;background:var(--day-rule) 0 100%/36px 3px no-repeat;padding-bottom:8px}
 /* CARD: white, soft edge, warm shadow. One surface, one shadow, always together. */
 :is(.bcard,.facts,.card-p32,.case-stat,.lstep,.loopfig,.rs-facts,.lh-side){background:var(--day-card)!important;border:1px solid var(--day-card-edge)!important;border-radius:var(--day-radius)!important;box-shadow:var(--day-shadow)!important}
 /* the fact card in an essay or pattern page top is a card only from laptop width; below that its lines read inline under the title (as a card there it had no inner space, and an empty one drew as a stray shadowed line) */
@@ -3442,7 +3445,7 @@ body.p-home .qv-t:has(input:checked){background:var(--day-card)}
 :is(.thesis,main blockquote.pull,.essay-sec blockquote){background:var(--day-card)!important;border:1px solid var(--day-card-edge)!important;border-radius:var(--day-radius)!important;box-shadow:var(--day-shadow-quote)!important}
 figure.qt{background:var(--day-card);border:1px solid var(--day-card-edge);border-radius:var(--day-radius);box-shadow:var(--day-shadow-quote);padding:24px}
 /* "Start here": the tag carries a small sun */
-.bcard-nom::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--day-sun);margin-right:7px;vertical-align:baseline}
+.bcard-nom::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--day-sun);margin-right:8px;vertical-align:baseline}
 /* LINK IN A SENTENCE: an ink word with the coloured rule under it; the rule thickens on hover.
    The list is every rule above that underlines a link at rest. A door (arrow, no underline) is not in it;
    the two "all essays" doors match a rule in the list and underline only on hover, so they are named in :not() (inside :where(), which keeps the weight down).

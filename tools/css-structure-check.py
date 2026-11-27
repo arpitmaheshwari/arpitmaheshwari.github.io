@@ -120,10 +120,10 @@ def main():
         d0, n0 = brace_report(good)
         d1, n1 = brace_report(bad)
         s0, s1 = layer_shares(good), layer_shares(bad)
-        ok = (d0 == 0 and n0 is None and d1 != 0 and s1['base'] < s0['base'])
+        ok = (d0 == 0 and n0 is None and d1 != 0 and s1['base']['share'] < s0['base']['share'])
         print('[calibration] %s — clean sheet balances (%+d); one planted orphan brace '
               'unbalances it (%+d) and shrinks @layer base %.0f%% -> %.0f%%'
-              % ('PASS' if ok else 'FAIL', d0, d1, 100 * s0['base'], 100 * s1['base']))
+              % ('PASS' if ok else 'FAIL', d0, d1, 100 * s0['base']['share'], 100 * s1['base']['share']))
         # a brace inside a comment must NOT register
         cmt = 'a{color:red}\n/* a stray } inside prose */\n'
         d2, _ = brace_report(cmt)
