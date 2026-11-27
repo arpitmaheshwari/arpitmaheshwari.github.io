@@ -1003,14 +1003,14 @@ body.p-writing .slips{list-style:none;margin:32px 0 0;padding:0;/* TWO columns, 
      wraps to five lines in 159px of content. Two give 438px. */display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 @media (max-width:640px){body.p-writing .slips{grid-template-columns:1fr;gap:16px}}
 body.p-writing .slip{margin:0}
-body.p-writing .slip > a{display:grid;height:100%;background:#EFE7D2;color:#221C10;border-radius:2px;padding:24px 24px 32px;text-decoration:none;box-shadow:0 12px 30px rgba(0,0,0,.4);transition:transform .2s var(--ease-out,ease-out),box-shadow .2s}
+body.p-writing .slip > a{display:grid;height:100%;background:#EFE7D2;color:#221C10;border-radius:2px;padding:24px 24px 32px;text-decoration:none;box-shadow:var(--shadow-object);transition:transform .2s var(--ease-out,ease-out),box-shadow .2s}
 /* artifact tilt, DS ceiling is 1.5 degrees */
 body.p-writing .slip:nth-child(4n+1) > a{transform:rotate(-1.1deg)}
 body.p-writing .slip:nth-child(4n+2) > a{transform:rotate(.6deg)}
 body.p-writing .slip:nth-child(4n+3) > a{transform:rotate(-.5deg)}
 body.p-writing .slip:nth-child(4n+4) > a{transform:rotate(.9deg)}
 body.p-writing .slip > a:hover,
-body.p-writing .slip > a:focus-visible{transform:rotate(0deg) translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+body.p-writing .slip > a:focus-visible{transform:rotate(0deg) translateY(-3px);box-shadow:var(--shadow-object-lift)}
 /* baseline — the same call Arpit made on .chap and #thoughts .ixi: a big
    numeral beside small text belongs on that text's line. Here a 32px "01"
    sat 7.0px off a 10px date under align-items:center. Third instance of one

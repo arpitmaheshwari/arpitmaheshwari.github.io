@@ -81,6 +81,9 @@
   --day-card-edge:rgba(36,27,43,.14);
   --day-shadow:0 1px 2px rgba(120,60,40,.10),0 22px 36px -22px rgba(255,110,70,.55);                /* a card */
   --day-shadow-quote:0 1px 2px rgba(120,60,40,.10),0 22px 36px -22px rgba(200,90,230,.55);         /* someone's words */
+  --day-shadow-object:0 1px 2px rgba(60,30,20,.12),0 20px 40px -18px rgba(60,30,20,.36);            /* a drawn object or a product screen resting on the page */
+  --day-shadow-object-lift:0 2px 4px rgba(60,30,20,.14),0 28px 48px -18px rgba(60,30,20,.44);       /* the same object, picked up (hover, focus) */
+  --day-shadow-object-cut:drop-shadow(0 12px 18px rgba(60,30,20,.24));                              /* the same, for a shape that is not a rectangle */
   --day-radius:16px;
   /* ── the Amber ramp names, kept as aliases so every existing rule resolves. DEPRECATED:
      new rules read a job. The deep steps of the four warm families ARE the inks (no brown
@@ -118,6 +121,12 @@
   --cta-fill-hover-copper:var(--day-ink-2);
   --btn-fill-ink:#fff;
   --surface-card:var(--day-card);
+  /* OBJECT SHADOW (Arpit, 2026-11-27: "fix all"). A drawn object (the boarding pass, a writing slip, the luggage tag,
+     a paper figure) and a product screen rest on the page under a soft warm-brown shadow: not the black one made
+     for the dark site, and not the card's orange glow, which belongs to cards alone. */
+  --shadow-object:var(--day-shadow-object);
+  --shadow-object-lift:var(--day-shadow-object-lift);
+  --shadow-object-cut:var(--day-shadow-object-cut);
   /* STATUS WORDS. The one word that may carry a colour is a pass mark ("It can", a tick, "Act on it"): deep green,
      9.9:1 on the page, 10.2:1 on a card, and always beside a mark (a tick, a plus, an arrow), never colour alone.
      A warning or a fault is ink-2: on its soft pink or peach chip the quiet ink read 6.0:1, ink-2 reads 9.1:1. */
@@ -459,7 +468,7 @@ html,body{font-size:1rem}
    O2 and PTC actually looked like. Restyling them to pass would falsify the
    evidence the case study rests on, which canon forbids. Flagged to Arpit as
    a known, reasoned exception rather than silently fixed or silently left. */
-.recon{margin:32px 0 48px;border:1px solid rgba(255,255,255,0.12);border-radius:10px;overflow:hidden;position:relative;--surface-page:#FFFFFF;--surface-sunken:#F4F5F7;--surface-card:#F4F5F7;--text-body:#16181D;--text-muted:#282B31;--text-faint:#282B31;--accent-text:#8A6210;--accent-fill:#8A6210;--accent-text:#6B4C0C;--border-strong:#E3E6EA;--accent:#C9CED6;--status-negative:#B63D0B;--status-caution:var(--accent-fill);--status-positive:#0E7A5F;--acc-copper:#0E7A5F;background:var(--surface-sunken);color:var(--text-body);box-shadow:0 30px 64px rgba(0,0,0,0.45)}
+.recon{margin:32px 0 48px;border:1px solid rgba(255,255,255,0.12);border-radius:10px;overflow:hidden;position:relative;--surface-page:#FFFFFF;--surface-sunken:#F4F5F7;--surface-card:#F4F5F7;--text-body:#16181D;--text-muted:#282B31;--text-faint:#282B31;--accent-text:#8A6210;--accent-fill:#8A6210;--accent-text:#6B4C0C;--border-strong:#E3E6EA;--accent:#C9CED6;--status-negative:#B63D0B;--status-caution:var(--accent-fill);--status-positive:#0E7A5F;--acc-copper:#0E7A5F;background:var(--surface-sunken);color:var(--text-body);box-shadow:var(--shadow-object)}
 /* the chrome bar — same idiom as the plates: dark strip, three window dots, quiet title */
 /* WRAPS. This row is a flex nowrap containing a BARE TEXT NODE — the "Reconstruction —
    anonymised … client under NDA" provenance line — beside an svg and the clock, both
@@ -661,7 +670,7 @@ a{text-decoration:underline}}
 /* — paper diagram (case pages, 2026-08-06): the cream explainer SVGs read as pasted
    rectangles on the dark pages (Arpit). They now join the paper-object family — tilted,
    shadowed, captioned like an artifact pulled from the case file, not a band of foreign UI. */
-.fig-paper{margin:32px auto 8px;max-width:720px;border:none;background:none;overflow:visible;transform:rotate(-1.2deg);filter:drop-shadow(0 16px 28px rgba(0,0,0,0.5))}
+.fig-paper{margin:32px auto 8px;max-width:720px;border:none;background:none;overflow:visible;transform:rotate(-1.2deg);filter:var(--shadow-object-cut)}
 .fig-paper img{display:block;width:100%;height:auto;border:1px solid rgba(32,24,12,0.2)}
 .fig-paper figcaption{background:var(--obj-paper);color:var(--obj-paper-soft);border-top:1px dashed var(--obj-paper-rule);font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.05em;text-transform:none;padding:8px 16px}
 .fig-paper--r{transform:rotate(1.2deg)}
@@ -754,7 +763,7 @@ body:where(.p-404){background:var(--surface-page);color:var(--text-body);font-fa
 :where(body.p-404) .meta-note{margin-top:32px;padding-top:20px;border-top:1px solid var(--border-strong);font-size:var(--fs-caption);color:var(--text-muted);line-height:1.8;max-width:54ch}
 :where(body.p-404) .meta-note a{color:var(--accent-text);text-decoration:none;border-bottom:1px solid var(--accent-fill);padding-bottom:1px}
 :where(body.p-404) .meta-note a:hover{color:var(--accent-text)}
-:where(body.p-404) .lug{position:relative;z-index:1;background:var(--obj-paper);color:var(--p-ink);font-family:var(--ff-mono);padding:24px;transform:rotate(1.6deg);filter:drop-shadow(0 16px 28px rgba(0,0,0,0.55))}
+:where(body.p-404) .lug{position:relative;z-index:1;background:var(--obj-paper);color:var(--p-ink);font-family:var(--ff-mono);padding:24px;transform:rotate(1.6deg)}
 :where(body.p-404) .lug-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.5px solid var(--p-ink);padding-bottom:8px;margin-bottom:12px}
 :where(body.p-404) .lug-head b{font-size:var(--fs-caption);letter-spacing:.02em;font-weight:600}
 :where(body.p-404) .lug-head span{font-size:var(--fs-micro);color:var(--p-soft)}
@@ -823,7 +832,7 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 @media(max-width:860px){:where(body.p-case-studies-adtech) .case-hero{padding:84px 20px 24px}
 :where(body.p-case-studies-adtech) .case-hero__in{grid-template-columns:1fr;gap:32px}
 :where(body.p-case-studies-adtech) .case-stats{gap:20px 32px}}
-:where(body.p-case-studies-adtech) .plA{width:min(840px,calc(100vw - 32px));margin:32px 50% 8px;transform:translateX(-50%);border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
+:where(body.p-case-studies-adtech) .plA{width:min(840px,calc(100vw - 32px));margin:32px 50% 8px;transform:translateX(-50%);border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;box-shadow:var(--shadow-object);font-family:var(--ff-sans)}
 :where(body.p-case-studies-adtech) .plA *{box-sizing:border-box}
 :where(body.p-case-studies-adtech) .plA-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-adtech) .plA-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
@@ -911,7 +920,7 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 @media(max-width:860px){:where(body.p-case-studies-fintech) .case-hero{padding:84px 20px 24px}
 :where(body.p-case-studies-fintech) .case-hero__in{grid-template-columns:1fr;gap:32px}
 :where(body.p-case-studies-fintech) .case-stats{gap:20px 32px}}
-:where(body.p-case-studies-fintech) .plF{width:min(840px,calc(100vw - 32px));margin:32px 50% 8px;transform:translateX(-50%);border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
+:where(body.p-case-studies-fintech) .plF{width:min(840px,calc(100vw - 32px));margin:32px 50% 8px;transform:translateX(-50%);border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;box-shadow:var(--shadow-object);font-family:var(--ff-sans)}
 :where(body.p-case-studies-fintech) .plF *{box-sizing:border-box}
 :where(body.p-case-studies-fintech) .plF-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-fintech) .plF-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
@@ -1002,7 +1011,7 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 @media(max-width:860px){:where(body.p-case-studies-o2) .case-hero{padding:84px 20px 24px}
 :where(body.p-case-studies-o2) .case-hero__in{grid-template-columns:1fr;gap:32px}
 :where(body.p-case-studies-o2) .case-stats{gap:20px 32px}}
-:where(body.p-case-studies-o2) .plM{width:min(840px,calc(100vw - 32px));margin:32px 50% 8px;transform:translateX(-50%);border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
+:where(body.p-case-studies-o2) .plM{width:min(840px,calc(100vw - 32px));margin:32px 50% 8px;transform:translateX(-50%);border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;box-shadow:var(--shadow-object);font-family:var(--ff-sans)}
 :where(body.p-case-studies-o2) .plM *{box-sizing:border-box}
 :where(body.p-case-studies-o2) .plM-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-o2) .plM-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
@@ -1089,7 +1098,7 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 @media(max-width:860px){:where(body.p-case-studies-orgos) .case-hero{padding:84px 20px 24px}
 :where(body.p-case-studies-orgos) .case-hero__in{grid-template-columns:1fr;gap:32px}
 :where(body.p-case-studies-orgos) .case-stats{gap:20px 32px}}
-:where(body.p-case-studies-orgos) .plO{width:min(840px,calc(100vw - 32px));margin:32px 50% 8px;transform:translateX(-50%);border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
+:where(body.p-case-studies-orgos) .plO{width:min(840px,calc(100vw - 32px));margin:32px 50% 8px;transform:translateX(-50%);border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;box-shadow:var(--shadow-object);font-family:var(--ff-sans)}
 :where(body.p-case-studies-orgos) .plO *{box-sizing:border-box}
 :where(body.p-case-studies-orgos) .plO-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-orgos) .plO-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
@@ -1156,7 +1165,7 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 :where(body.p-case-studies-ptc) .plP{width:min(840px,calc(100vw - 32px));margin:32px 50% 8px;transform:translateX(-50%);display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:700px){:where(body.p-case-studies-ptc) .plP{grid-template-columns:1fr}}
 :where(body.p-case-studies-ptc) .plP *{box-sizing:border-box}
-:where(body.p-case-studies-ptc) .plP-frame{border:1px solid var(--border-strong);border-radius:9px;overflow:hidden;box-shadow:0 22px 48px rgba(0,0,0,.4);font-family:var(--ff-sans)}
+:where(body.p-case-studies-ptc) .plP-frame{border:1px solid var(--border-strong);border-radius:9px;overflow:hidden;box-shadow:var(--shadow-object);font-family:var(--ff-sans)}
 :where(body.p-case-studies-ptc) .plP-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-ptc) .plP-chrome i{width:8px;height:8px;border-radius:50%;background:#3A3F48;display:inline-block}
 :where(body.p-case-studies-ptc) .plP-chrome span{margin-left:8px;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.04em;color:#8D95A3;text-transform:none}
@@ -1197,7 +1206,7 @@ body:where(.p-folio){margin:0;min-height:100vh;display:flex;align-items:center;j
 @media(max-width:860px){:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .case-hero{padding:84px 20px 24px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .case-hero__in{grid-template-columns:1fr;gap:32px}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .case-stats{gap:20px 32px}}
-:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV{width:min(840px,calc(100vw - 32px));margin:32px 50% 8px;transform:translateX(-50%);border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;box-shadow:0 30px 64px rgba(0,0,0,.45);font-family:var(--ff-sans)}
+:where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV{width:min(840px,calc(100vw - 32px));margin:32px 50% 8px;transform:translateX(-50%);border:1px solid var(--border-strong);border-radius:10px;overflow:hidden;box-shadow:var(--shadow-object);font-family:var(--ff-sans)}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV *{box-sizing:border-box}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#22252B;border-bottom:1px solid #2E323A}
 :where(body.p-case-studies-vc-diligence,body.p-case-studies-planit) .plV-chrome i{width:9px;height:9px;border-radius:50%;background:#3A3F48;display:inline-block}
@@ -1928,7 +1937,7 @@ body.p-home .close .wrap{position:relative;z-index:2;display:block;max-width:720
    at 0px. A flex row with a declared gap fixes both, and wraps deliberately
    rather than by accident. */
 body.p-home .close .door-stack{margin-top:32px;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center}
-body.p-home .pass{background:var(--surface-page);color:var(--text-body);border-radius:8px;padding:24px 24px;font-family:var(--mono);box-shadow:0 30px 64px rgba(0,0,0,.55);margin-inline:auto;text-align:left}
+body.p-home .pass{background:var(--surface-page);color:var(--text-body);border-radius:8px;padding:24px 24px;font-family:var(--mono);box-shadow:var(--shadow-object);margin-inline:auto;text-align:left}
 body.p-home .pass .pk{display:flex;justify-content:space-between;font-size:var(--fs-micro);letter-spacing:.16em;color:var(--text-muted)}
 body.p-home .pass .pr{display:flex;justify-content:space-between;align-items:center;margin:16px 0}
 body.p-home .pass .pc{font-family:var(--serif);font-size:2.75rem}
@@ -3170,7 +3179,7 @@ body.p-404 .meta-note{color:var(--text-faint);font-size:var(--fs-ui);line-height
 body.p-404 .meta-note a{color:var(--link-ink)}
 /* the claim ticket stays PAPER on purpose — it is a printed artifact in a dark room,
    the same grammar the case studies use for document exhibits */
-body.p-404 .lug{background:#F5EDE6;color:#241830;border-radius:10px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+body.p-404 .lug{background:#F5EDE6;color:#241830;border-radius:10px;box-shadow:var(--shadow-object)}
 body.p-404 .lug-head b,
 body.p-404 .lug-row b{color:#241830}
 body.p-404 .lug-row span,
@@ -5553,14 +5562,14 @@ body.p-writing .slips{list-style:none;margin:32px 0 0;padding:0;/* TWO columns, 
      wraps to five lines in 159px of content. Two give 438px. */display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 @media (max-width:640px){body.p-writing .slips{grid-template-columns:1fr;gap:16px}}
 body.p-writing .slip{margin:0}
-body.p-writing .slip > a{display:grid;height:100%;background:#EFE7D2;color:#221C10;border-radius:2px;padding:24px 24px 32px;text-decoration:none;box-shadow:0 12px 30px rgba(0,0,0,.4);transition:transform .2s var(--ease-out,ease-out),box-shadow .2s}
+body.p-writing .slip > a{display:grid;height:100%;background:#EFE7D2;color:#221C10;border-radius:2px;padding:24px 24px 32px;text-decoration:none;box-shadow:var(--shadow-object);transition:transform .2s var(--ease-out,ease-out),box-shadow .2s}
 /* artifact tilt, DS ceiling is 1.5 degrees */
 body.p-writing .slip:nth-child(4n+1) > a{transform:rotate(-1.1deg)}
 body.p-writing .slip:nth-child(4n+2) > a{transform:rotate(.6deg)}
 body.p-writing .slip:nth-child(4n+3) > a{transform:rotate(-.5deg)}
 body.p-writing .slip:nth-child(4n+4) > a{transform:rotate(.9deg)}
 body.p-writing .slip > a:hover,
-body.p-writing .slip > a:focus-visible{transform:rotate(0deg) translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+body.p-writing .slip > a:focus-visible{transform:rotate(0deg) translateY(-3px);box-shadow:var(--shadow-object-lift)}
 /* baseline — the same call Arpit made on .chap and #thoughts .ixi: a big
    numeral beside small text belongs on that text's line. Here a 32px "01"
    sat 7.0px off a 10px date under align-items:center. Third instance of one

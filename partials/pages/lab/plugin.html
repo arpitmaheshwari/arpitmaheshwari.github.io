@@ -117,7 +117,7 @@
 
       <div class="dsg-grid">
         <div class="dsg-card">
-          <p class="dsg-k">Four heats &middot; semantic, never decorative</p>
+          <p class="dsg-k">Four colours &middot; semantic, never decorative</p>
           <ul class="dsg-heats" id="dsg-heats"></ul>
         </div>
         <div class="dsg-card">
@@ -139,11 +139,11 @@
 
       <div class="lab-body dsg-after" data-tint>
         <p>The public plugin is MIT, and its reference page runs the same audit on itself,
-           failures included. Amber, the successor system that paints this page, is public in the same place.</p>
+           failures included. Amber, the successor system this page is built on, is public in the same place.</p>
       </div>
       <div class="lab-links">
         <a class="cta-quiet" href="https://github.com/arpitmaheshwari/ember-design-system" target="_blank" rel="noopener" data-cta="design-system" data-location="plugin-ds">The repository&nbsp;&#8599;<span class="visually-hidden"> (opens in a new tab)</span></a>
-        <a class="cta-quiet" href="https://github.com/arpitmaheshwari/amber-design-system" target="_blank" rel="noopener" data-cta="design-system-amber" data-location="plugin-ds">The system painting this page&nbsp;&#8599;<span class="visually-hidden"> (opens in a new tab)</span></a>
+        <a class="cta-quiet" href="https://github.com/arpitmaheshwari/amber-design-system" target="_blank" rel="noopener" data-cta="design-system-amber" data-location="plugin-ds">The system this page is built on&nbsp;&#8599;<span class="visually-hidden"> (opens in a new tab)</span></a>
       </div>
     </div>
   </section>
@@ -185,8 +185,10 @@ document.addEventListener('click', (e) => {
    drift from the system the way a screenshot would. Alpha is composited against the real ground
    before the ratio is taken; a translucent ink is not a colour until you do that. */
 (function(){
-  var heats=[['--acc-copper','Ember','action, emphasis'],['--acc-violet','Violet','contrast within a set'],
-              ['--acc-amber','Amber','links, kickers, CTAs'],['--acc-rose','Rose','the fourth voice']];
+  /* Daylight (2026-11-27): the page's colours are two inks, one pass mark and the rule. The four accent names
+     this list used to read all point at ink now, so it drew four identical swatches under four colour names. */
+  var heats=[['--text-primary','Ink','words, titles, buttons'],['--text-muted','Quiet ink','labels, captions'],
+              ['--status-positive','Pass green','a pass mark, beside a tick'],['--day-rule-1','Rule','a thin line, never a word']];
   var ul=document.getElementById('dsg-heats'); if(!ul) return;
   function parse(c){var m=c.match(/rgba?\(([^)]+)\)/);if(!m)return null;
     var p=m[1].split(',').map(parseFloat);return {r:p[0],g:p[1],b:p[2],a:p.length>3?p[3]:1};}
@@ -198,10 +200,9 @@ document.addEventListener('click', (e) => {
     return (hi+0.05)/(lo+0.05);}
   function tok(name){var p=document.createElement('span');p.style.color='var('+name+')';
     document.body.appendChild(p);var c=parse(getComputedStyle(p).color);p.remove();return c;}
-  // Measured against --surface-page AS RESOLVED ON THIS PAGE. That is #1B1320 here, while the published
-  // skill quotes its ratios against #120B14 — so ember reads 8.3 here and 8.0 there. Both are
-  // correct; they are different grounds. The fix is to SAY which ground, not to force the
-  // numbers to agree, because a ratio without its ground is the thing this system argues against.
+  // Measured against --surface-page AS RESOLVED ON THIS PAGE, and the heading names that ground: a ratio
+  // without its ground is the thing this system argues against. The published skill quotes its own ratios
+  // against its own ground; the two are different systems on different grounds, so the numbers differ.
   var ground=tok('--surface-page')||parse(getComputedStyle(document.body).backgroundColor)||{r:18,g:11,b:20,a:1};
   function hex(c){return '#'+[c.r,c.g,c.b].map(function(x){
     return ('0'+Math.round(x).toString(16)).slice(-2).toUpperCase();}).join('');}
@@ -215,7 +216,7 @@ document.addEventListener('click', (e) => {
     ul.appendChild(li);
   });
   var k=document.querySelector('.dsg-card .dsg-k');
-  if(k) k.textContent='Four heats · measured on '+hex(ground);
+  if(k) k.textContent='Four colours · measured on '+hex(ground);
 
   var steps=document.getElementById('dsg-steps');
   [4,8,12,16,20,24,32,40,48,64,80].forEach(function(n){

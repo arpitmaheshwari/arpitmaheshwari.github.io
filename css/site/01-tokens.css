@@ -52,6 +52,9 @@
   --day-card-edge:rgba(36,27,43,.14);
   --day-shadow:0 1px 2px rgba(120,60,40,.10),0 22px 36px -22px rgba(255,110,70,.55);                /* a card */
   --day-shadow-quote:0 1px 2px rgba(120,60,40,.10),0 22px 36px -22px rgba(200,90,230,.55);         /* someone's words */
+  --day-shadow-object:0 1px 2px rgba(60,30,20,.12),0 20px 40px -18px rgba(60,30,20,.36);            /* a drawn object or a product screen resting on the page */
+  --day-shadow-object-lift:0 2px 4px rgba(60,30,20,.14),0 28px 48px -18px rgba(60,30,20,.44);       /* the same object, picked up (hover, focus) */
+  --day-shadow-object-cut:drop-shadow(0 12px 18px rgba(60,30,20,.24));                              /* the same, for a shape that is not a rectangle */
   --day-radius:16px;
   /* ── the Amber ramp names, kept as aliases so every existing rule resolves. DEPRECATED:
      new rules read a job. The deep steps of the four warm families ARE the inks (no brown
@@ -89,6 +92,12 @@
   --cta-fill-hover-copper:var(--day-ink-2);
   --btn-fill-ink:#fff;
   --surface-card:var(--day-card);
+  /* OBJECT SHADOW (Arpit, 2026-11-27: "fix all"). A drawn object (the boarding pass, a writing slip, the luggage tag,
+     a paper figure) and a product screen rest on the page under a soft warm-brown shadow: not the black one made
+     for the dark site, and not the card's orange glow, which belongs to cards alone. */
+  --shadow-object:var(--day-shadow-object);
+  --shadow-object-lift:var(--day-shadow-object-lift);
+  --shadow-object-cut:var(--day-shadow-object-cut);
   /* STATUS WORDS. The one word that may carry a colour is a pass mark ("It can", a tick, "Act on it"): deep green,
      9.9:1 on the page, 10.2:1 on a card, and always beside a mark (a tick, a plus, an arrow), never colour alone.
      A warning or a fault is ink-2: on its soft pink or peach chip the quiet ink read 6.0:1, ink-2 reads 9.1:1. */
