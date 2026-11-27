@@ -3285,7 +3285,7 @@ body.p-home > footer{padding-left:24px;padding-right:24px}
 @media (min-width:768px){body:not(.p-home) > footer{padding-left:max(32px,calc((100% - 1180px)/2));padding-right:max(32px,calc((100% - 1180px)/2))}
 body.p-home > footer{padding-left:32px;padding-right:32px}}
 @media (min-width:1024px){body:not(.p-home) > footer{padding-left:max(64px,calc((100% - 1180px)/2));padding-right:max(64px,calc((100% - 1180px)/2))}
-body.p-home > footer{padding-left:max(30px,calc(64px - max(0px,(100vw - 1240px)/2)));padding-right:max(30px,calc(64px - max(0px,(100vw - 1240px)/2)))}}
+body.p-home > footer{padding-left:max(calc((1240px - 1180px)/2),calc(64px - max(0px,(100vw - 1240px)/2)));padding-right:max(calc((1240px - 1180px)/2),calc(64px - max(0px,(100vw - 1240px)/2)))}}
 /* HOME CARD PICTURES: no label under 12px (2026-11-27, Arpit: "fix all"). The same screen pictures sit in the
    home page's case cards, where the case-page rule above did not reach; labels there were 9-11.5px. */
 body.p-home #featured-case-studies :is(.vg-hd > b,.vg-hd > i,.vg-brief,.vg-met > i,.vg-ring > span,.vg-score > em,.vg-srcs > li,.nobar > i,.nobar > b,.vg li > i,.vg li > b,.vg-bill > i,.vg-bill > em,.vg-row > b,.vg-spine > span,.vg-routes > b,.vg-plats > li,.vg-after > i,.vg-after > b,.vg-count,.vg-verdict > i,.vg-verdict > em,.vg-sig > i,.vg-sig > b,.vg-allows > i,.vg-allows > b){font-size:var(--fs-micro)}
@@ -3298,11 +3298,11 @@ body.p-home #featured-case-studies :is(.vg-hd > b,.vg-hd > i,.vg-brief,.vg-met >
 body.p-home .hero{padding-bottom:64px}
 body.p-home .hero-split{grid-template-rows:auto auto auto auto minmax(132px,auto) auto!important}
 body.p-home .hero-copy>.hero-facts{grid-row:4!important;margin-top:32px!important}
-body.p-home .hero-copy>.ctas{grid-row:5!important;margin-top:36px!important;align-self:start!important}
+body.p-home .hero-copy>.ctas{grid-row:5!important;margin-top:40px!important;align-self:start!important}
 body.p-home .hero-widget{grid-row:2/span 3!important}
-body.p-home .hero-copy>.hero-said{grid-row:5!important;align-self:start!important;margin-top:36px!important}
+body.p-home .hero-copy>.hero-said{grid-row:5!important;align-self:start!important;margin-top:40px!important}
 body.p-home .hero-copy>.h-attr{grid-row:5!important;align-self:end!important}
-body.p-home .hero-copy>.hero-nums{grid-row:6!important;grid-column:1/-1!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;column-gap:32px!important;margin-top:36px!important;padding-top:28px;border-top:1px solid rgba(255,255,255,.16)}
+body.p-home .hero-copy>.hero-nums{grid-row:6!important;grid-column:1/-1!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;column-gap:32px!important;margin-top:40px!important;padding-top:32px;border-top:1px solid rgba(255,255,255,.16)}
 body.p-home .hero .hero-nums > div:nth-child(n+3){padding-top:0}
 }
 
@@ -3334,4 +3334,7 @@ body.p-home .doors-list li{font-weight:400}
    or transparent, so the label vanished (1.0:1) the moment a reader pointed at or tapped it.
    The fill is declared here, where the utilities class cannot outrank it. */
 :is(#copyCiteBtn,#copyContractBtn):is(:hover,:focus-visible){background:var(--accent-text);color:var(--surface-page)}
+/* The citation and its Copy button share a first line: baseline, deliberately, so "Copy" reads on
+   the citation's first line when the citation wraps (it sat 3px off at 768 under flex-start). */
+.xi-patterns-028{align-items:baseline}
 }

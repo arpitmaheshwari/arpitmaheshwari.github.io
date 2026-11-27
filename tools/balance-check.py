@@ -105,21 +105,13 @@ def scan(page):
         if os.path.exists("__bal.html"): os.unlink("__bal.html")
 
 def calibrate():
-    # Under gatelib.planted, which holds a lock for the whole plant -> scan -> restore
-    # window. Unguarded, two gates doing this at once clobber each other's restore and
-    # leave a canary rule in ember.css permanently.
-    # 2026-11-27: calibrated on an essay, measured before AND after the plant. The homepage
-    # stopped being measurable once every band became two columns (each paragraph has a
-    # neighbour, so the scan skips), and the old test then read "skew None" as a broken check.
-    # Comparing the planted skew with the page's own skew also stops a page that is already
-    # lopsided from passing the calibration for free. The space is planted on the LEFT: the essay column
-    # already sits right of centre, so space on the right moved it toward balance (223 -> 177, under TOL).
-    page = "writing/confidence-scoring.html"
-    d0 = scan(page)
-    with planted("site.css",
-                 '\nbody[class*="p-writing"] main p{margin-left:400px!important}\n'):
+    # Under gatelib.planted (a lock over plant -> scan -> restore). 2026-11-27: calibrated on an essay,
+    # measured before AND after the plant: the homepage has no single reading column left. Planted on
+    # the LEFT, because the essay column already sits right of centre (right-side space moved it to 177).
+    page = "writing/confidence-scoring.html"; d0 = scan(page)
+    with planted("site.css", '\nbody[class*="p-writing"] main p{margin-left:400px!important}\n'):
         d = scan(page)
-    if "skew" not in d0 or "skew" not in d or abs(d["skew"] - d0["skew"]) <= TOL:   # either direction: on a page already off-centre, the plant can move it toward the centre
+    if "skew" not in d0 or "skew" not in d or abs(d["skew"] - d0["skew"]) <= TOL:
         print(f"[calibration] FAIL — planted 400px one-sided margin moved skew from "
               f"{d0.get('skew')} to {d.get('skew')}. The check cannot see lopsided space."); sys.exit(2)
     print(f"[calibration] PASS — planted one-sided space caught (skew {d0['skew']} -> {d['skew']}px)")
