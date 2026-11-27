@@ -41,6 +41,7 @@
   /* ── PAINTS (tier 1). Literal colours live here and nowhere else. ── */
   --day-paper:#FFFBF6; --day-card:#FFFFFF; --day-sunk:#FBF1E6; --day-line:#E6DDD3;
   --day-ink:#241B2B; --day-ink-2:#392E41; --day-ink-quiet:#51475A;
+  --day-on-frame:#C2C6CD;                                            /* words on the dark window bar round a film or a reconstruction: 9.0:1 on #22252B, 9.5:1 on #22201C */
   --day-sun-1:#FFB36B; --day-sun-2:#FF8A5C; --day-sun-3:#E86BFF;     /* the logo's own colours */
   --day-rule-1:#E0521F; --day-rule-2:#9C36D6;                         /* the same two, deepened until a thin line reads */
   /* ── JOBS that are not a single colour ── */
@@ -88,6 +89,13 @@
   --cta-fill-hover-copper:var(--day-ink-2);
   --btn-fill-ink:#fff;
   --surface-card:var(--day-card);
+  /* STATUS WORDS. The one word that may carry a colour is a pass mark ("It can", a tick, "Act on it"): deep green,
+     9.9:1 on the page, 10.2:1 on a card, and always beside a mark (a tick, a plus, an arrow), never colour alone.
+     A warning or a fault is ink-2: on its soft pink or peach chip the quiet ink read 6.0:1, ink-2 reads 9.1:1. */
+  --status-positive:var(--forest-800);
+  --status-caution:var(--day-ink-2);
+  --status-negative:var(--day-ink-2);
+  --status-info:var(--indigo-800);
 }
 /* ── THE BANDS ARE LIGHT NOW. [data-ground="bookend"] was the dark opening and close of a page; in
    Daylight it is a band of the same page. This block is a SHIM and is scheduled to go: it re-declares
@@ -99,13 +107,13 @@
   --accent-fill:var(--amber-700);
   --accent-soft:var(--amber-100);
   --accent-on-dark:var(--amber-100);
-  --status-positive:var(--forest-600);
+  --status-positive:var(--forest-800);
   --status-positive-soft:var(--forest-100);
-  --status-caution:var(--amber-600);
+  --status-caution:var(--day-ink-2);
   --status-caution-soft:var(--amber-100);
-  --status-negative:var(--rose-700);
+  --status-negative:var(--day-ink-2);
   --status-negative-soft:var(--rose-100);
-  --status-info:var(--indigo-600);
+  --status-info:var(--indigo-800);
   --status-info-soft:var(--indigo-100);
   --overlay-scrim:color-mix(in srgb, var(--neutral-900) 55%, transparent);
   --glow:none;

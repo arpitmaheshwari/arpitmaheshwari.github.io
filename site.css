@@ -70,6 +70,7 @@
   /* ── PAINTS (tier 1). Literal colours live here and nowhere else. ── */
   --day-paper:#FFFBF6; --day-card:#FFFFFF; --day-sunk:#FBF1E6; --day-line:#E6DDD3;
   --day-ink:#241B2B; --day-ink-2:#392E41; --day-ink-quiet:#51475A;
+  --day-on-frame:#C2C6CD;                                            /* words on the dark window bar round a film or a reconstruction: 9.0:1 on #22252B, 9.5:1 on #22201C */
   --day-sun-1:#FFB36B; --day-sun-2:#FF8A5C; --day-sun-3:#E86BFF;     /* the logo's own colours */
   --day-rule-1:#E0521F; --day-rule-2:#9C36D6;                         /* the same two, deepened until a thin line reads */
   /* ── JOBS that are not a single colour ── */
@@ -117,6 +118,13 @@
   --cta-fill-hover-copper:var(--day-ink-2);
   --btn-fill-ink:#fff;
   --surface-card:var(--day-card);
+  /* STATUS WORDS. The one word that may carry a colour is a pass mark ("It can", a tick, "Act on it"): deep green,
+     9.9:1 on the page, 10.2:1 on a card, and always beside a mark (a tick, a plus, an arrow), never colour alone.
+     A warning or a fault is ink-2: on its soft pink or peach chip the quiet ink read 6.0:1, ink-2 reads 9.1:1. */
+  --status-positive:var(--forest-800);
+  --status-caution:var(--day-ink-2);
+  --status-negative:var(--day-ink-2);
+  --status-info:var(--indigo-800);
 }
 /* ── THE BANDS ARE LIGHT NOW. [data-ground="bookend"] was the dark opening and close of a page; in
    Daylight it is a band of the same page. This block is a SHIM and is scheduled to go: it re-declares
@@ -128,13 +136,13 @@
   --accent-fill:var(--amber-700);
   --accent-soft:var(--amber-100);
   --accent-on-dark:var(--amber-100);
-  --status-positive:var(--forest-600);
+  --status-positive:var(--forest-800);
   --status-positive-soft:var(--forest-100);
-  --status-caution:var(--amber-600);
+  --status-caution:var(--day-ink-2);
   --status-caution-soft:var(--amber-100);
-  --status-negative:var(--rose-700);
+  --status-negative:var(--day-ink-2);
   --status-negative-soft:var(--rose-100);
-  --status-info:var(--indigo-600);
+  --status-info:var(--indigo-800);
   --status-info-soft:var(--indigo-100);
   --overlay-scrim:color-mix(in srgb, var(--neutral-900) 55%, transparent);
   --glow:none;
@@ -3166,10 +3174,10 @@ body.p-404 .lug{background:#F5EDE6;color:#241830;border-radius:10px;box-shadow:0
 body.p-404 .lug-head b,
 body.p-404 .lug-row b{color:#241830}
 body.p-404 .lug-row span,
-body.p-404 .lug-head span{color:rgba(36,24,48,.72)}
+body.p-404 .lug-head span{color:rgba(36,24,48,.86)}   /* the tag's small labels: .72 read 6.4:1 on the tag, .86 reads 9:1 (every word is held to 7:1) */
 body.p-404 .lug-fill{background:var(--acc-copper)}
 body.p-404 .divert{color:#B84A1F;border-color:rgba(184,74,31,.5)}
-body.p-404 .lug-claim{color:rgba(36,24,48,.75)}
+body.p-404 .lug-claim{color:rgba(36,24,48,.86)}
 body.p-404 .lug-claim .rt{color:#B84A1F}
 body.p-404 footer{color:var(--text-disabled);border-top:1px solid var(--border-strong)}
 /* ── PlanIt: the mascot row ──────────────────────────────────────────────
@@ -5537,7 +5545,7 @@ body.p-home #thoughts .ixx{margin:0;font-size:0.9375rem;line-height:1.65;color:v
    a reader the thing a "recent writing" list actually has to prove. A library
    card is date-stamped anyway.
    Palette is the DS's own cream set, every pair already measured there:
-   #221C10 ink ~13:1 · #5D5442 secondary ~5.6:1 · #A93A24 stamp ~4.9:1 on
+   #221C10 ink ~13:1 · #443C2E secondary 8.8:1 (was #5D5442, 6.0:1: under the 7:1 every word is held to) · #A93A24 stamp ~4.9:1 on
    #EFE7D2. Never #C2452D (4.1:1, fails small text).
    ============================================================================ */
 body.p-writing .slips{list-style:none;margin:32px 0 0;padding:0;/* TWO columns, not four. /writing's own container caps at 900px
@@ -5563,7 +5571,7 @@ body.p-writing .slip-no{font-family:var(--serif);font-size:2rem;font-weight:300;
    lines at 20px, and the floor for rendered 18-24px is 1.25. */
 body.p-writing .slip-title{font-family:var(--serif);font-weight:400;font-size:1.25rem;line-height:1.30;color:#221C10}
 body.p-writing .slip-rule{display:block;border-top:1px dashed rgba(34,28,16,.42);margin:16px 0}
-body.p-writing .slip-x{font-size:var(--fs-caption);line-height:1.6;color:#5D5442}
+body.p-writing .slip-x{font-size:var(--fs-caption);line-height:1.6;color:#443C2E}
 /* the DS's reduced-motion contract: every tilt and transform comes off */
 @media (prefers-reduced-motion:reduce){body.p-writing .slip > a,
 body.p-writing .slip > a:hover,
@@ -6807,7 +6815,7 @@ body.p-home .rcpt-btn, .case-jump a, .rxp-mode, .rxo-mode, :where(body.p-lab-eva
 .lh-log{list-style:none;margin:16px 0 0;padding:0;font-size:var(--fs-caption);line-height:1.75}   /* eight lines, all fully painted — a clipped-and-faded tail read as text with no ink (contrast-audit) */
 .lh-log li{display:flex;gap:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;animation:lh-in .25s forwards}
 .lh-log li.lab-nojs{white-space:normal;opacity:1;animation:none;color:var(--neutral-200)}
-.lh-log li b{color:#7FCF9E;font-weight:600;flex:0 0 auto}
+.lh-log li b{color:var(--status-positive);font-weight:600;flex:0 0 auto}
 .lh-log li span{color:var(--neutral-200);overflow:hidden;text-overflow:ellipsis}
 /* ON A PHONE THE ASSERTIONS MUST BE READABLE, which is the entire point of the panel.
    Found by exploratory testing on the live site at 390px, 2026-09-20: all EIGHT lines
@@ -7646,7 +7654,7 @@ body.p-writing .fl-feat .fl-main p{max-width:none}
 body.p-writing .fl-pull{font-family:var(--ff-display);font-style:italic;font-size:1.25rem;line-height:1.4;color:var(--text,#221C10);border-left:3px solid var(--accent);padding-left:16px;margin:24px 0}
 body.p-writing .fl-main .lbl-cap-plain{margin-top:auto}
 body.p-writing .fl-rail{border-top:1px solid var(--border-strong);padding-top:24px}
-body.p-writing .fl-toc{margin:12px 0 0;padding-left:20px;font-size:var(--fs-ui);line-height:1.5;color:#5D5442}
+body.p-writing .fl-toc{margin:12px 0 0;padding-left:20px;font-size:var(--fs-ui);line-height:1.5;color:#443C2E}
 body.p-writing .fl-toc li{margin-bottom:8px}
 @media (min-width:700px){body.p-writing .fl-feat{grid-template-columns:1.5fr 1fr;gap:40px;align-items:stretch}
 body.p-writing .fl-rail{border-top:0;padding-top:0;border-left:1px solid var(--border-strong);padding-left:32px}}
@@ -7932,8 +7940,13 @@ body[class*="p-case-studies"] .case-hero h1{margin-top:0}
 @media (max-width:960px){:where(body.p-lab) .lab-hero .lab-hero-grid{row-gap:0}.lab-hero .lab-hero-grid>.lh-r{margin-top:40px}}
 .lab-hero .lh-l>:first-child{margin-top:0}   /* the title no longer has the label above it to collapse its top margin into: 24px from the line at every width, and level with the panel beside it */
 /* a page top with no label above its title (essays, the writing list): the sun sits on a line of its own */
-:is(.page-head>div:not(:has(.eyebrow)),header.xi-writing-003>div,.xi-resources-003>.xi-resources-004)::before{content:"";display:block;grid-column:1/-1;height:80px;margin-top:-22px;margin-bottom:24px;border-bottom:2px solid var(--day-ink);background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20160%2080%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%27.6%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%23FFB36B%27/%3E%3Cstop%20offset%3D%27.42%27%20stop-color%3D%27%23FF8A5C%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%23E86BFF%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2780%27%20fill%3D%27rgb%28255%2C150%2C100%29%27%20fill-opacity%3D%27.07%27/%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2768%27%20fill%3D%27rgb%28255%2C150%2C100%29%27%20fill-opacity%3D%27.14%27/%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2758%27%20fill%3D%27url%28%23g%29%27/%3E%3C/svg%3E") right 4px bottom 0/160px 80px no-repeat}
-@media (min-width:961px){:is(.page-head>div:not(:has(.eyebrow)),header.xi-writing-003>div,.xi-resources-003>.xi-resources-004)::before{height:120px;margin-top:-30px;background-size:240px 120px;background-position:right 8px bottom 0}}
+:is(.page-head>div:not(:has(.eyebrow)),header.xi-writing-003>div,.xi-resources-003>.xi-resources-004,body.p-404 .wrap)::before{content:"";display:block;grid-column:1/-1;height:80px;margin-top:-22px;margin-bottom:24px;border-bottom:2px solid var(--day-ink);background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20160%2080%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%27.6%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%23FFB36B%27/%3E%3Cstop%20offset%3D%27.42%27%20stop-color%3D%27%23FF8A5C%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%23E86BFF%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2780%27%20fill%3D%27rgb%28255%2C150%2C100%29%27%20fill-opacity%3D%27.07%27/%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2768%27%20fill%3D%27rgb%28255%2C150%2C100%29%27%20fill-opacity%3D%27.14%27/%3E%3Ccircle%20cx%3D%2780%27%20cy%3D%2780%27%20r%3D%2758%27%20fill%3D%27url%28%23g%29%27/%3E%3C/svg%3E") right 4px bottom 0/160px 80px no-repeat}
+@media (min-width:961px){:is(.page-head>div:not(:has(.eyebrow)),header.xi-writing-003>div,.xi-resources-003>.xi-resources-004,body.p-404 .wrap)::before{height:120px;margin-top:-30px;background-size:240px 120px;background-position:right 8px bottom 0}}
+/* the "page not found" counter: the same sun and line, as the first row of its grid (above the words and the luggage tag at laptop width).
+   The grid's own row gap (48px, 64px from 901) follows the line, so the line gives back all but 24px of it: the label starts 24px under the line, as on every page. */
+body.p-404 .wrap{grid-template-rows:auto 1fr}
+body.p-404 .wrap::before{margin-top:0;margin-bottom:-24px;align-self:start}
+@media (min-width:901px){body.p-404 .wrap::before{margin-bottom:-40px}}
 nav[data-ground="bookend"]{border-bottom:1px solid var(--day-line)}
 /* SECTION WASH: the tint at the top of a home section is the sun's warmth, not a grey of the ink */
 body.p-home :is(.whoband,.work,.receipts,.voices,.thoughts){background:linear-gradient(180deg,var(--day-sunk),var(--day-paper))!important}
@@ -7944,7 +7957,38 @@ header.chap::before{content:"";display:block;width:56px;height:4px;border-radius
 /* HEADLINE NUMBER: the same rule, short, under the figure */
 :is(.hero-nums b,.bcard-r b,.case-stat__n,.case-stat b){display:inline-block;background:var(--day-rule) 0 100%/36px 3px no-repeat;padding-bottom:7px}
 /* CARD: white, soft edge, warm shadow. One surface, one shadow, always together. */
-:is(.bcard,.facts,.card-p32,.case-stat,.lstep,.loopfig,.ph-card,.rs-facts,.lh-side){background:var(--day-card)!important;border:1px solid var(--day-card-edge)!important;border-radius:var(--day-radius)!important;box-shadow:var(--day-shadow)!important}
+:is(.bcard,.facts,.card-p32,.case-stat,.lstep,.loopfig,.rs-facts,.lh-side){background:var(--day-card)!important;border:1px solid var(--day-card-edge)!important;border-radius:var(--day-radius)!important;box-shadow:var(--day-shadow)!important}
+/* the fact card in an essay or pattern page top is a card only from laptop width; below that its lines read inline under the title (as a card there it had no inner space, and an empty one drew as a stray shadowed line) */
+@media (min-width:1024px){.ph-card{background:var(--day-card)!important;border:1px solid var(--day-card-edge)!important;border-radius:var(--day-radius)!important;box-shadow:var(--day-shadow)!important}}
+/* the essay and resource lists: each row became a card, so it gets a card's inner space (it had kept the row's 24px 0, which put its words on the card's edge at every width), and the lead essay keeps the list's 24px from the one under it */
+:is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28){padding:24px}
+@media (min-width:768px){:is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28){padding:32px}}
+body.p-writing .card-p32.fl-feat{margin-bottom:24px}
+/* a card shows its own empty side (a flat row did not): the row's one-column form kept a short line cap, which left the right 40% of a
+   tablet-width card blank. So the two columns (title | summary) start at 700px, where the lead essay's already do, and below that the summary
+   runs the card's width. */
+@media (min-width:700px) and (max-width:768px){
+:is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28):not(.fl-feat){grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto auto 1fr}
+:is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28):not(.fl-feat) > .eyebrow{grid-column:1;grid-row:1}
+:is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28):not(.fl-feat) > .card-title{grid-column:1;grid-row:2}
+:is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28):not(.fl-feat) > p{grid-column:2;grid-row:1/span 3;margin-top:0}
+:is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28):not(.fl-feat) > [class*="lbl-cap"]{grid-column:1;grid-row:3}
+}
+@media (max-width:699px){:is(body[class*="p-writing"],body[class*="p-resources"]) :is(.card-p32,.card-p28):not(.fl-feat) > p{max-width:none}}
+/* phone: a case's three numbers are rows, not cards; the hairline between them is the page's line (it was a white line for the old dark band, invisible here) */
+@media (max-width:767px){.case-hero__in--solo>div>.case-stats>.case-stat{border-top-color:var(--day-line)!important}}
+/* A PAPER WRAPPER AND A PLATE'S CAPTION SPEAK IN THE SITE'S VOICE. The plate itself quotes someone else's product and keeps its own
+   inks (the rule far above re-points the roles for it); the figure around it, its caption, and the text version of a drawing are
+   this site's words, so they read the site's inks. A plate nested inside re-declares its own and is untouched. */
+:is(.fig-paper,.is-paper,.plA-caption,.plF-caption,.plM-caption,.plO-caption,.plP-caption,.plV-caption,.recon-caption){--text-body:var(--day-ink);--text-muted:var(--day-ink-quiet);--text-faint:var(--day-ink-quiet);--border-hairline:var(--day-line);--border-strong:var(--neutral-600);--accent-text:var(--day-ink);--accent-fill:var(--day-ink-quiet);--acc-amber:var(--day-ink)}
+.artalt-p{color:var(--day-ink-quiet)}.artalt-flow{border-left-color:var(--day-line)}
+/* the dark window bar the site draws round a reconstruction or a film stays dark; its words reach 7:1 on it (they were 5.1 and 6.2) */
+:is(.recon-badge,.rl-clock,.plA-chrome span,.plF-chrome span,.plM-chrome span,.plO-chrome span,.plP-chrome span,.plV-chrome span){color:var(--day-on-frame)}
+body[class*="p-case-studies"] .vplate-bar{color:var(--day-on-frame)}
+/* home voices: the chosen name sits on a card, so its quiet line keeps 7:1 (on the 8% ink tint it read 6.8) */
+body.p-home .qv-t:has(input:checked){background:var(--day-card)}
+/* a caption inside a tinted demo box (the pattern pages): quiet ink is promised on the page, a card and the sunk wash only; on the box's 10% ink tint it read 6.6:1, so the caption is ink-2 (9.7:1) */
+.xi-patterns-ml-explainability-038{color:var(--day-ink-2)}
 :is(.thesis,main blockquote.pull,.essay-sec blockquote){background:var(--day-card)!important;border:1px solid var(--day-card-edge)!important;border-radius:var(--day-radius)!important;box-shadow:var(--day-shadow-quote)!important}
 figure.qt{background:var(--day-card);border:1px solid var(--day-card-edge);border-radius:var(--day-radius);box-shadow:var(--day-shadow-quote);padding:24px}
 /* "Start here": the tag carries a small sun */

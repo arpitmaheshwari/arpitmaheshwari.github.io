@@ -1,11 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140" role="img" aria-label="AM — Arpit Maheshwari">
-  <!-- Favicon build of the half-second mark. Same geometry and the SAME GRADIENT as
-       assets/logo-ember.svg — a solid-ember favicon beside a gradient site logo read as two
-       different marks (Arpit, 2026-08-17). Only the stroke is heavier, so the ligature
-       survives at 16px; the colour no longer differs from the logo it stands for. -->
+  <!-- Favicon build of the half-second mark. Same geometry as the site logo, with a heavier stroke so the
+       ligature survives at 16px. The rule since 2026-08-17 (Arpit): the icon carries the SAME colours as the
+       logo it stands for. Daylight, 2026-11-27: a browser tab can be light or dark, so the mark carries the
+       logo's deep pair on a light tab (5.2:1 and 6.3:1 on white; the bright pair read 2.3:1 there) and the
+       logo's own bright pair, the sun's colours, on a dark tab (6.9:1 and 6.1:1; the deep pair read 3.1:1).
+       Keep this style block free of angle brackets: an icon is loaded as an image and must stay valid XML. -->
+  <style>
+    .am-a{stop-color:#C2410C}
+    .am-b{stop-color:#A21CAF}
+    @media (prefers-color-scheme:dark){
+      .am-a{stop-color:#FF8A5C}
+      .am-b{stop-color:#E86BFF}
+    }
+  </style>
   <defs>
     <linearGradient id="am-hot" x1="0%" y1="0%" x2="100%" y2="15%">
-      <stop offset="0%" stop-color="#FF8A5C"/><stop offset="100%" stop-color="#E86BFF"/>
+      <stop offset="0%" class="am-a"/><stop offset="100%" class="am-b"/>
     </linearGradient>
   </defs>
   <g stroke="url(#am-hot)" stroke-width="24" fill="none" stroke-linecap="round" stroke-linejoin="round">
