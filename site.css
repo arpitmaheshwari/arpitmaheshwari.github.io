@@ -4822,8 +4822,7 @@ main figure:not(.measure-c figure){width:auto}}
    assumed 44px, which is SC 2.5.5 (AAA) and a different requirement — the AA
    line at 24px had never been checked. */
 :is(.inline-links a,.divert a,.btn-row a,
-  .wr-more a,p.hand a,.hd-route a,.contract-links a,.scr-receipt a,.lab-row a,
-  .lab-note a):not(.cta),a.link-gold,a.lbl-eyebrow{padding-block:4px;display:inline-block}   /* 2026-09-15 sweep: the pattern pages' "Part of" link (18px), the Writing eyebrow link and the fit page's JSON link (20px) sat under the 24px AA line */
+  .wr-more a,p.hand a,.hd-route a,.contract-links a,.scr-receipt a,.lab-row a):not(.cta),a.link-gold,a.lbl-eyebrow{padding-block:4px;display:inline-block}   /* 2026-09-15 sweep: the pattern pages' "Part of" link (18px), the Writing eyebrow link and the fit page's JSON link (20px) sat under the 24px AA line */
 :is(button.rxa-why,button.rxf-explain,button.rxa-logged,
   .rx2-btn,.demo-btn,.ccd-q){min-height:24px;padding-block:4px}
 /* The last reflow failure: div.pat-hero is a grid whose container is 272px at
@@ -7691,4 +7690,18 @@ body.p-home .doors-list li{font-weight:400}
 /* The citation and its Copy button share a first line: baseline, deliberately, so "Copy" reads on
    the citation's first line when the citation wraps (it sat 3px off at 768 under flex-start). */
 .xi-patterns-028{align-items:baseline}
+/* A LINK INSIDE A SENTENCE IS UNDERLINED (2026-11-27; Arpit: "fix the essay and lab links on the live site too").
+   DESIGN-SYSTEM says it ("Links that lead on"); the stylesheet did not. .link-gold, the Lab's coloured links and plain
+   links in a paragraph carried colour alone: 1.1 to 1.8:1 against the words around them, where WCAG 1.4.1 asks for a cue
+   that is not colour. 71 links on 30 pages (essays, Lab, pattern pages, process, fit, screen, resources), found by
+   sweeping every sitemap page for links that flow inside a sentence. Doors are untouched (Arpit, 2026-09-12: coloured,
+   no underline): they carry an arrow in their own words and are either classed or sit in the row paragraphs named in
+   the :not() below. The first selector is zero-specificity on purpose, so any door rule in this layer still wins. */
+:where(main p:not(.lbl-cap,.scr-receipt,.ia-m,.art-r,.h-attr,.fit-skip,.scr-after,.lh-foot,.vid-fallback,.hd-route),main dd) a:where(:not([class])),
+p:not(.lbl-cap) a.link-gold,li a.link-gold,:is(p,li,dd) a.xi-process-020,p a.fq-ans{text-decoration:underline;text-underline-offset:3px}
+/* The same link in a note box (.lab-note, a div, so the sweep's first pass missed it; found by looking at the Lab at 390).
+   It was a padded inline-block from the 24px tap floor, so "the technical screen" broke onto a line of its own. Inline, like
+   every other sentence link (2026-11-25 said the same of p and li). .lab-note a is taken OUT of the tap-floor list above
+   rather than outvoted here: that list's :is() scores as its heaviest member (p.hand a), so a plain rule lost to it. */
+.lab-note a:not(.cta){display:inline;padding-block:0;text-decoration:underline;text-underline-offset:3px}
 }
